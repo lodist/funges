@@ -13,7 +13,7 @@ This covers:
 - the "forecast" section of every content/species/*/species.json, and
   content/species/_host_classes.json (scoring parameters, host lists, land
   cover and their references);
-- docs/species/ and scripts/qa_*.py (calibration notes and evaluation tools);
+- scripts/qa_*.py (evaluation tools);
 - every forecast, score, model and dataset Fung.es produces, wherever it is
   published: in this repository (for example public/data/), on fung.es or on
   data.fung.es.

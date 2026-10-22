@@ -10,7 +10,7 @@ import type { Species } from './species';
  *
  * The 22 entries are the toxic label set the BioCLIP spike measured its
  * false-edible gate against — see
- * docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md
+ * funges-lab/superpowers/specs/2026-07-25-bioclip2-spike-results.md
  */
 
 /**
@@ -944,6 +944,25 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
   {
     id: 'scleroderma-verrucosum',
     scientificName: 'Scleroderma verrucosum',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.interiorPattern',
+      'toxicity.checks.capStructure',
+    ],
+    confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    criticalConfusions: [
+      {
+        catalogId: 'giant_puffball',
+        noteKey: 'toxicity.critical.puffballPair',
+      },
+    ],
+  },
+  // Same test, same fault, when the kingdom caps brought it in (Oct 2026).
+  {
+    id: 'scleroderma-cepa',
+    scientificName: 'Scleroderma cepa',
     category: 'mushroom',
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',

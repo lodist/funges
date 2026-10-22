@@ -55,8 +55,8 @@
       "status": "approved",
       "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
       "references": [
-        "docs/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
-        "docs/species/2026-09-30-step4-plants.md"
+        "https://github.com/lodist/funges-lab/blob/main/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "https://github.com/lodist/funges-lab/blob/main/species/2026-09-30-step4-plants.md"
       ]
     }
   },
@@ -95,8 +95,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/3023221",
-          "docs/species/2026-09-30-step4-plants.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-30-step4-plants.md",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },
@@ -130,8 +130,8 @@
         },
         "scoringReferences": [
           "https://www.gbif.org/species/3023221",
-          "docs/species/2026-09-30-step4-plants.md",
-          "docs/species/2026-10-05-soil-ph.md"
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-09-30-step4-plants.md",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"
         ],
         "landCoverScheme": "CORINE"
       },

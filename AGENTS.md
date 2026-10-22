@@ -40,6 +40,25 @@ icons at the size the manifest declares, WebP quality ~75.
 - Copy `.env.example` to `.env` and set required variables.
 - Important variables: `VITE_BASE_URL` and the `R2_*` credentials.
 
+## What lives where
+
+The repo is public, so it holds code and nothing the code was fitted or built into.
+
+- **Built and fitted files** in `backend/generated/` (normals, ground layers,
+  model fits) live on R2. `backend/generated/on_r2.json` records each one's
+  sha256, and whatever reads one goes through `r2.generated(path)`, which
+  downloads a missing or outdated copy first. The build and fit tools upload
+  what they write and update `on_r2.json`: commit that file where you used to
+  commit the build. `python backend/r2.py push <name>` does the same by hand,
+  and `python backend/r2.py sync` fetches every file at once.
+- **Findings** (QA reports, calibration notes, specs and plans) live in the
+  private `lodist/funges-lab` repo, cloned next to this one
+  (`app_operation/funges-lab`). `scripts/qa_*.py` write there by default.
+  PRs and issues here say what changed and link the report; numbers stay in
+  funges-lab.
+- **Data-building tools and their raw inputs** stay local in
+  `app_operation/data_tools`.
+
 ## Common Commands
 
 - `npm run dev` / `task dev` – start development server
@@ -82,8 +101,8 @@ is a failing build, and the a11y addon is configured to fail on axe violations.
 The stored scores are no test of the scoring code: each day keeps whatever model
 ran that night. Before merging a scoring change, replay it with
 `scripts/qa_replay.py` from main and from the branch on the same day (the
-branch with `--against` main's output) and paste the report's tables into the
-PR. It scores the past again from the weather in `app_operation/backups/masters`
+branch with `--against` main's output), commit the report to funges-lab and
+link it from the PR. It scores the past again from the weather in `app_operation/backups/masters`
 (about 2 hours for all regions; `--regions`/`--species` take minutes) and needs
 the system Python with LightGBM, not `backend/.venv`.
 

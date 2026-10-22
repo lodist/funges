@@ -73,7 +73,7 @@ vi.mock('@/store/offlineStore', () => ({
   useOfflineStore: () => state,
 }));
 vi.mock('@/hooks/use-pwa', () => ({
-  usePWA: () => ({ isOnline, hasUpdate: false, reloadForUpdate: vi.fn() }),
+  usePWA: () => ({ isOnline }),
 }));
 vi.mock('@/store/mapStore', () => ({
   useMapStore: () => ({ setCenter: vi.fn(), setZoom: vi.fn() }),

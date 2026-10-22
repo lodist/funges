@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "backend"), str(ROOT / "backend" / "tools"), str(ROOT / "scripts")]
 import era5_normals  # noqa: E402
 import forecast_pipeline as fp  # noqa: E402
+import r2  # noqa: E402
 from range_prior import COVER_SCALE, load_host_cover  # noqa: E402
 
 SCRIPTS = {"NE": "EU/North_Europe/NE_Scoring.py", "SE": "EU/South_Europe/SE_Scoring.py",
@@ -54,7 +55,7 @@ def host_shares(cover, lats, lons) -> dict:
 
 def town_km(lats, lons, continent) -> np.ndarray:
     import geopandas as gpd
-    towns = gpd.read_file(ROOT / "backend" / "generated" / f"bloom_towns_{continent}.geojson").to_crs(CRS[continent])
+    towns = gpd.read_file(r2.generated(ROOT / "backend" / "generated" / f"bloom_towns_{continent}.geojson")).to_crs(CRS[continent])
     points = gpd.GeoDataFrame(geometry=gpd.points_from_xy(lons, lats), crs=4326).to_crs(CRS[continent])
     near = gpd.sjoin_nearest(points, towns[["geometry"]], distance_col="m").groupby(level=0)["m"].min()
     return near.reindex(range(len(points))).to_numpy() / 1000.0

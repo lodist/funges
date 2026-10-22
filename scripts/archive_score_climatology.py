@@ -27,7 +27,7 @@ from species_registry import infer_region
 
 GOOD_SCORE = 4.0
 DEFAULT_PARQUET = ROOT / "public" / "data" / "foraging_scores.parquet"
-DEFAULT_ARCHIVE = ROOT / "docs" / "qa" / "score-climatology.json"
+DEFAULT_ARCHIVE = ROOT.parent / "funges-lab" / "qa" / "score-climatology.json"
 
 
 def iso_month(value: object) -> str:

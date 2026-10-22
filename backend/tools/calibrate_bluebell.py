@@ -74,6 +74,7 @@ _TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(_TOOLS.parent))
 sys.path.insert(0, str(_TOOLS))
 import bloom  # noqa: E402
+import r2  # noqa: E402
 
 ROOT = _TOOLS.parents[1]
 UA = {"User-Agent": "funges-calibrate-bluebell/1.0 (+https://www.fung.es)"}
@@ -747,7 +748,7 @@ def main():
           f"r(observed, predicted) = {np.corrcoef(hb_obs, hb_obs + hb_own)[0, 1]:.2f}\n")
 
     # --- the normal year at the cells, and the WeatherAPI offset ---
-    normals = dict(np.load(ROOT / "backend" / "generated" / "bloom_normals_EU.npz"))
+    normals = dict(np.load(r2.generated(ROOT / "backend" / "generated" / "bloom_normals_EU.npz")))
     # The normals at each cell-year's elevation, as its series (the normal year has 28 February only).
     nt = bloom.daily_normals(normals, c.lat.to_numpy(), c.lon.to_numpy(),
                              (c.elev if args.no_lapse else c.ground).to_numpy(), date(2026, 11, 1), 242)

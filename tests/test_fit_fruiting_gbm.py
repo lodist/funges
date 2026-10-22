@@ -59,3 +59,20 @@ def test_early_stopping_on_held_out_strata_stops_where_there_is_nothing_to_learn
     x, mask = _strata(2000, lambda v: 1.5 * v, seed=7)               # and keeps going where there is
     valid_x, valid_mask = _strata(600, lambda v: 1.5 * v, seed=8)
     assert gbm.fit(x, mask, rounds=400, valid=(valid_x, valid_mask)).best_iteration > 50
+
+
+def test_a_region_never_seen_in_training_is_still_scored():
+    import pandas as pd
+    signal, mask = _strata(4000, lambda v: 1.5 * v, seed=9)           # the species follows x
+    noise, noise_mask = _strata(2000, lambda v: 0.0 * v, seed=10)     # brackets don't
+    rng = np.random.default_rng(11)
+    region = np.r_[rng.integers(0, 2, 4000), rng.integers(0, 2, 2000)].astype(float)
+    x = np.concatenate([np.concatenate([signal, noise]), np.repeat(region[:, None, None], 5, axis=1)], axis=2)
+    cases = pd.DataFrame({"species": ["a"] * 4000 + ["placebo"] * 2000,
+                          "region": np.where(region == 0, "NE", "SE"),
+                          "year": rng.integers(2016, 2027, 6000)})
+    today = np.zeros((6000, 5))                                        # a model with no skill
+    result = gbm.region_unseen(cases, x, np.concatenate([mask, noise_mask]), "a", today, rng)
+    for region in ("NE", "SE"):
+        assert abs(result[region]["today"]["net"]) < 0.02
+        assert result[region]["gbm_unseen"]["net"] > 0.1

@@ -109,10 +109,10 @@ def within_day_auc(scored: pd.DataFrame, cases: set[tuple], column: str) -> tupl
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--truth", default="docs/qa/season-truth-2026/gbif-season-truth.json")
-    parser.add_argument("--scan", default="docs/qa/season-timing-2026")
+    parser.add_argument("--truth", default="../funges-lab/qa/season-truth-2026/gbif-season-truth.json")
+    parser.add_argument("--scan", default="../funges-lab/qa/season-timing-2026")
     parser.add_argument("--regions", default="NE,USE")
-    parser.add_argument("--output", default="docs/qa/season-timing-2026/weather-spatial.json")
+    parser.add_argument("--output", default="../funges-lab/qa/season-timing-2026/weather-spatial.json")
     args = parser.parse_args()
     truth = json.loads(Path(args.truth).read_text(encoding="utf-8"))
     session = requests.Session()

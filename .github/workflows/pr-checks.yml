@@ -14,7 +14,8 @@ jobs:
     # Skip draft PRs — checks run once the PR is marked ready for review
     # (or immediately, for a PR opened directly as non-draft).
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
+    # Playwright 1.60 does not support ubuntu-26.04 (now ubuntu-latest); unpin once it does.
+    runs-on: ubuntu-24.04
     env:
       VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
       VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}

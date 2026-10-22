@@ -169,8 +169,8 @@ def scan_region(region: str, records: pd.DataFrame, session: requests.Session, o
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--truth", default="docs/qa/season-truth-2026/gbif-season-truth.json")
-    parser.add_argument("--output", default="docs/qa/season-timing-2026")
+    parser.add_argument("--truth", default="../funges-lab/qa/season-truth-2026/gbif-season-truth.json")
+    parser.add_argument("--output", default="../funges-lab/qa/season-timing-2026")
     parser.add_argument("--regions", default="NE,SE,USE,USW")
     args = parser.parse_args()
     output = Path(args.output)

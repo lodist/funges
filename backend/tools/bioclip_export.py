@@ -11,6 +11,7 @@ small matrix (`--stage text-matrix`), so the text tower never reaches a device.
     python backend/tools/bioclip_export.py --stage export        # ONNX fp32 + parity vs PyTorch
     python backend/tools/bioclip_export.py --stage quantize      # int8 dynamic
     python backend/tools/bioclip_export.py --stage verify        # re-run the gate on int8
+    python backend/tools/bioclip_export.py --stage sweep         # gate metrics at several list sizes
     python backend/tools/bioclip_export.py --stage text-matrix   # fp16 label matrix + labels file
 
 Prompt construction is imported from bioclip_spike, never reimplemented: a
@@ -62,10 +63,23 @@ LABELS_TS = Path(__file__).resolve().parents[2] / "src" / "data" / "bioclip-labe
 
 OPSET = 17
 
-# Tier-2 cap. See the sweep in the docstring of --stage verify-shipped: vocabulary
-# size trades the safety gate against catalog recall and warning availability, and
-# this is the chosen point on that curve.
-TIER2_LIMIT = 2500
+# Tier-2 caps, one per kingdom. Vocabulary size trades the safety gate against
+# catalog recall and warning availability; --stage sweep measures the curve and
+# these are the chosen point on it (funges-lab/superpowers/specs/2026-07-25-bioclip2-
+# spike-results.md, addendum 4). One shared cap ranked by sightings gave plants
+# 89% of the slots, because plants get 7-19x more sightings than fungi, and
+# left the list able to name only half of mushroom photos. Fungi stop at 2,000
+# because the next 1,000 named 15 of their own 28 test photos but cost 19
+# commoner ones, and pushed 18 more catalog photos out of first place.
+TIER2_LIMITS = {"Fungi": 2000, "Plantae": 5000}
+
+# Tier-2 species in these genera get the app's genus caution ("its genus
+# includes poisonous species") instead of "no safety information". A wide
+# vocabulary brings in hundreds of species from dangerous genera, too many to
+# review one by one, and a death cap named as another Amanita must still warn.
+# Four Apiaceae on DANGER_TAXA are left out: they are there only as hemlock
+# look-alikes, none is poisonous, and hemlock's own entry carries that warning.
+LOOKALIKE_ONLY = {"Anthriscus", "Torilis", "Scandix", "Myrrhis"}
 PARITY_IMAGES = 8
 
 
@@ -364,24 +378,56 @@ def _probe_input(numpy):
     return (raw / 255.0 * 2.0 - 1.0).astype(numpy.float32).reshape(PROBE_M, PROBE_K)
 
 
-def stage_verify_shipped():
-    """Re-run the safety gate against the shipped text matrix and labels file.
-
-    Distinct from --stage verify, which reconstructs the text side from the spike
-    cache. This one reads the two artifacts the browser actually loads:
-    src/assets/bioclip_text_embeddings.f16.bin and src/data/bioclip-labels.ts,
-    paired with the int8 image embeddings that ship. So it measures the shipped
-    configuration end to end rather than a faithful reproduction of it.
-
-    This is the gate for a VOCABULARY change. Adding an edible label widens the
-    false-edible surface, and promoting a species from tier 2 to toxic narrows it;
-    neither is visible without re-scoring, because both change the softmax for
-    every photo.
-    """
-    import re
-
+def _gate_photos():
+    """(vectors, rows) for the catalog/toxic test split, int8 as shipped."""
     import numpy as np
 
+    from bioclip_spike import CATALOG_NAMES, TOXIC_NAMES
+
+    order = json.loads((CACHE / "embed_order.json").read_text())
+    photos = order["photos"]
+    vectors = np.load(CACHE / "embeddings_int8.npy")
+    if len(vectors) != len(photos):
+        raise SystemExit("cached embeddings do not match embed_order.json")
+
+    # A test photo whose true label no longer ships as catalog or toxic cannot be
+    # scored right or wrong. The 30 genus-`Boletus` photos from before the #266
+    # split are that case: as catalog photos they could never hit, and the warning
+    # metric counted them as toxic, which read 93.8% where toxic photos had 97.6%.
+    shipped = CATALOG_NAMES | TOXIC_NAMES
+    test = [i for i, p in enumerate(photos) if p["split"] == "test"]
+    retired = sorted({photos[i]["label"] for i in test} - shipped)
+    if retired:
+        print(f"skipped test photos whose label no longer ships: {retired}")
+    idx = [i for i in test if photos[i]["label"] in shipped]
+    return vectors[idx], [photos[i] for i in idx]
+
+
+def _others_photos():
+    """(vectors, rows) for the non-catalog test set, or None before it exists."""
+    import numpy as np
+
+    from bioclip_spike import CATALOG_NAMES, TOXIC_NAMES
+    from bioclip_wide_vocab import OTHERS_EMBEDDINGS, OTHERS_MANIFEST
+
+    if not OTHERS_EMBEDDINGS.exists():
+        print("no others set - run bioclip_wide_vocab.py --stage others")
+        return None
+    rows = json.loads(OTHERS_MANIFEST.read_text())["photos"]
+    vectors = np.load(OTHERS_EMBEDDINGS)
+    # A species promoted to the catalog or the toxic list since sampling now has
+    # a right answer of its own, so it no longer belongs in this set.
+    idx = [i for i, r in enumerate(rows) if r["label"] not in CATALOG_NAMES | TOXIC_NAMES]
+    return vectors[idx], [rows[i] for i in idx]
+
+
+def _gate_metrics(text, names, kinds, gate, others):
+    """Every number a vocabulary change moves, from one code path.
+
+    Reported together, deliberately. Vocabulary size moves these in OPPOSITE
+    directions, so false-edible alone can show a 7x improvement while the
+    catalog gets materially worse and warnings go missing.
+    """
     from bioclip_spike import (
         CATALOG_NAMES,
         TOXIC_NAMES,
@@ -389,6 +435,51 @@ def stage_verify_shipped():
         false_edible_rate,
         top_k_accuracy,
     )
+
+    def share(preds, hit):
+        return sum(1 for p in preds if hit(p)) / max(1, len(preds))
+
+    # A caution row carries a visible warning in the app, so it counts as one.
+    warn = {n for n, k in zip(names, kinds) if k in ("toxic", "caution")}
+    vectors, rows = gate
+    preds = _predictions(vectors @ text.T, names, rows)
+    toxic = [p for p in preds if p["truth"] in TOXIC_NAMES]
+    metrics = {
+        "labels": len(names),
+        "false_edible_1": false_edible_rate(preds, CATALOG_NAMES, k=1),
+        "catalog_top1": top_k_accuracy(preds, 1),
+        "catalog_top3": top_k_accuracy(preds, 3),
+        "warned": share(toxic, lambda p: any(r in warn for r in p["ranked"][:3])),
+        "warned_toxic": share(
+            toxic, lambda p: any(r in TOXIC_NAMES for r in p["ranked"][:3])
+        ),
+    }
+    if others is None:
+        return metrics
+
+    # Per kingdom: the draws are 2:1 fungi, so a pooled rate would mean nothing.
+    vectors, rows = others
+    vocab = set(names)
+    for kingdom in ("Fungi", "Plantae"):
+        ix = [i for i, r in enumerate(rows) if r["kingdom"] == kingdom]
+        preds = _predictions(vectors[ix] @ text.T, names, [rows[i] for i in ix])
+        metrics[kingdom] = {
+            "photos": len(preds),
+            # Not a fault of the model: these species have no label to win.
+            "in_vocab": share(preds, lambda p: p["truth"] in vocab),
+            "named_1": share(preds, lambda p: p["ranked"][0] == p["truth"]),
+            # The failure a wider vocabulary should shrink: something outside
+            # the catalog named first as an edible catalog species.
+            "edible_1": share(preds, lambda p: p["ranked"][0] in CATALOG_NAMES),
+        }
+    return metrics
+
+
+def _shipped_labels():
+    """(names, kinds, fp32 matrix) from the two generated artifacts, drift-checked."""
+    import re
+
+    import numpy as np
 
     if not TEXT_MATRIX.exists():
         raise SystemExit("no text matrix — run --stage text-matrix first")
@@ -408,8 +499,7 @@ def stage_verify_shipped():
     if not labels:
         raise SystemExit(f"could not parse labels out of {LABELS_TS.name}")
     names = [n for n, _ in labels]
-    dim_match = re.search(r"BIOCLIP_EMBEDDING_DIM = (\d+)", ts)
-    dim = int(dim_match.group(1))
+    dim = int(re.search(r"BIOCLIP_EMBEDDING_DIM = (\d+)", ts).group(1))
 
     raw = np.frombuffer(TEXT_MATRIX.read_bytes(), dtype=np.float16)
     if raw.size != len(names) * dim:
@@ -417,58 +507,54 @@ def stage_verify_shipped():
             f"matrix holds {raw.size} halves, labels file declares "
             f"{len(names)} x {dim} = {len(names) * dim}. They have drifted."
         )
-    text = raw.astype(np.float32).reshape(len(names), dim)
+    return names, [k for _, k in labels], raw.astype(np.float32).reshape(len(names), dim)
 
-    order = json.loads((CACHE / "embed_order.json").read_text())
-    photos = order["photos"]
-    vectors = np.load(CACHE / "embeddings_int8.npy")
-    if len(vectors) != len(photos):
-        raise SystemExit("cached embeddings do not match embed_order.json")
 
-    # A test photo whose true label no longer ships as catalog or toxic cannot be
-    # scored right or wrong. The 30 genus-`Boletus` photos from before the #266
-    # split are that case: as catalog photos they could never hit, and the warning
-    # metric counted them as toxic, which read 93.8% where toxic photos had 97.6%.
-    shipped = {name for name, kind in labels if kind in ("catalog", "toxic")}
-    idx = [i for i, p in enumerate(photos) if p["split"] == "test"]
-    retired = sorted({photos[i]["label"] for i in idx if photos[i]["label"] not in shipped})
-    dropped = sum(1 for i in idx if photos[i]["label"] not in shipped)
-    idx = [i for i in idx if photos[i]["label"] in shipped]
-    rows = [photos[i] for i in idx]
-    preds = _predictions(vectors[idx] @ text.T, names, rows)
+def stage_verify_shipped():
+    """Re-run the safety gate against the shipped text matrix and labels file.
 
-    kinds = {}
-    for name, kind in labels:
-        kinds.setdefault(kind, 0)
-        kinds[kind] += 1
-    rate = false_edible_rate(preds, CATALOG_NAMES, k=1)
-    toxic_rows = [p for p in preds if p["truth"] in TOXIC_NAMES]
+    Distinct from --stage verify, which reconstructs the text side from the spike
+    cache. This one reads the two artifacts the browser actually loads:
+    src/assets/bioclip_text_embeddings.f16.bin and src/data/bioclip-labels.ts,
+    paired with the int8 image embeddings that ship. So it measures the shipped
+    configuration end to end rather than a faithful reproduction of it.
 
-    # Reported together, deliberately. Vocabulary size moves these in OPPOSITE
-    # directions, so false-edible alone can show a 7x improvement while the
-    # catalog gets materially worse and warnings go missing.
-    catalog_1 = top_k_accuracy(preds, 1)
-    catalog_3 = top_k_accuracy(preds, 3)
-    warned = sum(
-        1 for p in toxic_rows if any(n in TOXIC_NAMES for n in p["ranked"][:3])
-    ) / max(1, len(toxic_rows))
+    This is the gate for a VOCABULARY change. Adding an edible label widens the
+    false-edible surface, and promoting a species from tier 2 to toxic narrows it;
+    neither is visible without re-scoring, because both change the softmax for
+    every photo.
+    """
+    names, kinds, text = _shipped_labels()
 
-    print(f"labels: {len(names)} ({kinds})")
-    if dropped:
-        print(f"skipped {dropped} test photos whose label no longer ships: {retired}")
-    print(f"test photos: {len(rows)}, of which toxic: {len(toxic_rows)}")
-    print(f"false-edible@1 (SHIPPED artifacts): {rate:.2%}")
-    print(f"catalog top-1: {catalog_1:.1%}   catalog top-3: {catalog_3:.1%}")
-    print(f"toxic label in top-3 of a toxic photo: {warned:.1%}")
+    gate = _gate_photos()
+    m = _gate_metrics(text, names, kinds, gate, _others_photos())
+
+    print(f"labels: {len(names)} ({ {k: kinds.count(k) for k in sorted(set(kinds))} })")
+    print(f"test photos: {len(gate[1])}")
+    print(f"false-edible@1 (SHIPPED artifacts): {m['false_edible_1']:.2%}")
+    print(f"catalog top-1: {m['catalog_top1']:.1%}   catalog top-3: {m['catalog_top3']:.1%}")
+    print(
+        f"warning in top-3 of a toxic photo: {m['warned']:.1%} "
+        f"(toxic label alone: {m['warned_toxic']:.1%})"
+    )
+    for kingdom in ("Fungi", "Plantae"):
+        if kingdom in m:
+            o = m[kingdom]
+            print(
+                f"others, {kingdom} ({o['photos']} photos): in vocabulary "
+                f"{o['in_vocab']:.1%}, named first {o['named_1']:.1%}, "
+                f"an edible named first {o['edible_1']:.2%}"
+            )
 
     # Warning availability gets its own floor. A toxic photo whose three
-    # candidates carry no toxic label shows the user three neutral rows, which is
+    # candidates carry no warning shows the user three neutral rows, which is
     # a missing warning rather than a false one - not caught by false-edible at
-    # all, and the failure this feature exists to prevent.
+    # all, and the failure this feature exists to prevent. Genus-caution rows
+    # count: they carry a warning badge, so they are not neutral.
     WARN_FLOOR = 0.92
-    if warned < WARN_FLOOR:
+    if m["warned"] < WARN_FLOOR:
         raise SystemExit(
-            f"a toxic label reaches the top 3 for only {warned:.1%} of toxic "
+            f"a warning reaches the top 3 for only {m['warned']:.1%} of toxic "
             f"photos, under the {WARN_FLOOR:.0%} floor. The vocabulary is "
             "crowding warnings out of the candidate list."
         )
@@ -477,12 +563,72 @@ def stage_verify_shipped():
     # rather than a delta because the vocabulary is no longer the one the spike
     # measured, so a delta would compare two different label sets.
     CEILING = 0.02
-    if rate > CEILING:
+    if m["false_edible_1"] > CEILING:
         raise SystemExit(
-            f"false-edible@1 is {rate:.2%}, over the {CEILING:.0%} ceiling. "
-            "A vocabulary change made the top-1 edible claim less safe."
+            f"false-edible@1 is {m['false_edible_1']:.2%}, over the {CEILING:.0%} "
+            "ceiling. A vocabulary change made the top-1 edible claim less safe."
         )
     print(f"within the {CEILING:.0%} ceiling")
+
+
+# Points the sweep measures, (fungi, plants). The last one checks what halving
+# the plants buys back; the shipped list is always printed above them.
+SWEEP = [(1000, 5000), (2000, 5000), (3000, 5000), (4000, 5000), (5000, 5000),
+         (3000, 2500)]
+
+
+def stage_sweep():
+    """Measure every number a vocabulary size moves, at several sizes.
+
+    One text embedding pass over the largest pool; each point is a slice of
+    it, built by the same cap_vocabulary text-matrix ships with. The shipped
+    matrix is scored too, with and without the genus caution, so the table
+    separates what the caution buys from what the extra labels buy.
+    """
+    vocab = build_vocabulary()
+    caution = caution_genera()
+    gate, others = _gate_photos(), _others_photos()
+
+    widest = {"Fungi": max(f for f, _ in SWEEP), "Plantae": max(p for _, p in SWEEP)}
+    pool = cap_vocabulary(vocab, widest)
+    index = {n: i for i, n in enumerate(pool)}
+    text = _embed_text(pool, vocab["lineages"])
+
+    shipped_names, shipped_kinds, shipped_text = _shipped_labels()
+
+    points = [
+        ("shipped", shipped_text, shipped_names, shipped_kinds),
+        ("shipped+caution", shipped_text, shipped_names,
+         [label_kind(n, caution) for n in shipped_names]),
+    ]
+    for fungi, plants in SWEEP:
+        names = cap_vocabulary(vocab, {"Fungi": fungi, "Plantae": plants})
+        points.append((
+            f"{fungi}F+{plants}P",
+            text[[index[n] for n in names]],
+            names,
+            [label_kind(n, caution) for n in names],
+        ))
+
+    head = (f"{'list':<16} {'labels':>6} {'MB':>5} {'FE@1':>6} {'cat@1':>6} "
+            f"{'cat@3':>6} {'warn':>6} {'warnT':>6} | "
+            f"{'F vocab':>7} {'F @1':>6} {'F edbl':>6} | "
+            f"{'P vocab':>7} {'P @1':>6} {'P edbl':>6}")
+    print("\n" + head + "\n" + "-" * len(head))
+    report = {}
+    for tag, matrix, names, kinds in points:
+        m = _gate_metrics(matrix, names, kinds, gate, others)
+        report[tag] = m
+        f, p = m.get("Fungi", {}), m.get("Plantae", {})
+        print(
+            f"{tag:<16} {len(names):>6} {len(names) * matrix.shape[1] * 2 / 1e6:>5.1f} "
+            f"{m['false_edible_1']:>6.2%} {m['catalog_top1']:>6.1%} {m['catalog_top3']:>6.1%} "
+            f"{m['warned']:>6.1%} {m['warned_toxic']:>6.1%} | "
+            f"{f.get('in_vocab', 0):>7.1%} {f.get('named_1', 0):>6.1%} {f.get('edible_1', 0):>6.2%} | "
+            f"{p.get('in_vocab', 0):>7.1%} {p.get('named_1', 0):>6.1%} {p.get('edible_1', 0):>6.2%}"
+        )
+    (CACHE / "sweep_report.json").write_text(json.dumps(report, indent=2))
+    print(f"\nwrote {CACHE / 'sweep_report.json'}")
 
 
 # Genera and species with a serious, well-documented poisoning risk in Europe and
@@ -737,14 +883,21 @@ def stage_selfcheck_reference():
 
 def _embed_all_onnx(onnx_path, batch_size=16):
     """Re-embed every cached photo through the ONNX session, in manifest order."""
+    order = json.loads((CACHE / "embed_order.json").read_text())
+    vectors, kept = _embed_onnx(onnx_path, order["photos"], CACHE / "images", batch_size)
+    return vectors, kept, order["text_labels"]
+
+
+def _embed_onnx(onnx_path, photos, image_dir, batch_size=16):
+    """Embed `photos` (rows with a `file`) through the ONNX session, in order.
+
+    Unreadable images are dropped, so callers must use the returned rows.
+    """
     import numpy as np
     import onnxruntime as ort
     from PIL import Image
 
     _model, preprocess, _tok, torch = load_model()
-    order = json.loads((CACHE / "embed_order.json").read_text())
-    photos = order["photos"]
-
     sess = ort.InferenceSession(str(onnx_path), providers=["CPUExecutionProvider"])
     out, kept = [], []
     for start in range(0, len(photos), batch_size):
@@ -752,7 +905,7 @@ def _embed_all_onnx(onnx_path, batch_size=16):
         tensors, chunk_kept = [], []
         for row in chunk:
             try:
-                img = Image.open(CACHE / "images" / row["file"]).convert("RGB")
+                img = Image.open(image_dir / row["file"]).convert("RGB")
             except Exception:
                 continue
             tensors.append(preprocess(img))
@@ -764,7 +917,7 @@ def _embed_all_onnx(onnx_path, batch_size=16):
         kept.extend(chunk_kept)
         if start % (batch_size * 20) == 0:
             print(f"  embedded {len(kept)}/{len(photos)}")
-    return np.concatenate(out), kept, order["text_labels"]
+    return np.concatenate(out), kept
 
 
 def stage_verify(artifact=None, tag="int8"):
@@ -878,15 +1031,37 @@ def _verify_wide(quant_vectors, photos, tier1_labels, tag="int8"):
     return delta
 
 
-def stage_text_matrix():
-    """All labels -> fp16 matrix + index-aligned TS labels file.
+def caution_genera():
+    """Genera whose tier-2 members get the genus caution. See LOOKALIKE_ONLY."""
+    from bioclip_spike import TOXIC_NAMES
 
-    Emitted in ONE pass so the binary and the labels file cannot drift: they are
-    joined by row index at runtime, and a mismatch would silently pair every
-    photo with the wrong species name.
+    toxic = {name.split(" ")[0] for name in TOXIC_NAMES}
+    danger = {taxon for taxon in DANGER_TAXA if " " not in taxon}
+    return (toxic | danger) - LOOKALIKE_ONLY
+
+
+def label_kind(name, caution):
+    """The kind the app shows for a label. Toxic wins, as in photo-id.ts."""
+    from bioclip_spike import CATALOG_NAMES, CULTIVATED_NAMES, TOXIC_NAMES
+
+    if name in TOXIC_NAMES:
+        return "toxic"
+    if name in CATALOG_NAMES:
+        return "catalog"
+    # Cultivated labels exist so that a supermarket champignon is NOT shown a
+    # warning. A genus caution on Agaricus bisporus would undo exactly that.
+    if name not in CULTIVATED_NAMES and name.split(" ")[0] in caution:
+        return "caution"
+    return "other"
+
+
+def build_vocabulary():
+    """Tier 1, curated tier 2 and the ranked regional pool, before any cap.
+
+    Returns {"tier1", "curated", "regional": {kingdom: names, most sighted
+    first}, "lineages", "observations"}. Shared by text-matrix and the sweep,
+    so the sweep measures exactly the lists text-matrix can ship.
     """
-    import numpy as np
-
     from bioclip_spike import (
         CATALOG,
         CATALOG_NAMES,
@@ -994,10 +1169,10 @@ def stage_text_matrix():
 
     # Drop tier-2 names sharing a genus with a genus-level catalog entry.
     #
-    # Two labels, one species: the catalog carries the bare genus ("Boletus"),
-    # and the regional list independently contains "Boletus edulis" — which the
-    # app's genus allow-list resolves to that same catalog entry. Keeping both
-    # means one porcini photo can return the same species twice and burn two of
+    # Two labels, one species: the catalog carries the bare genus ("Morchella"),
+    # and the regional list independently contains "Morchella esculenta" — which
+    # the app's genus allow-list resolves to that same catalog entry. Keeping both
+    # means one morel photo can return the same species twice and burn two of
     # three candidate slots, and the generated `kind` would disagree with the
     # app's (caught by src/test/photo-id.test.ts). Same-genus names that are NOT
     # the catalog species render identically whether they are 'other' or
@@ -1006,51 +1181,72 @@ def stage_text_matrix():
     ambiguous = [n for n in tier2 if n.split(" ")[0] in genus_level]
     if ambiguous:
         tier2 = [n for n in tier2 if n not in set(ambiguous)]
-        tier2_lineages = {k: v for k, v in tier2_lineages.items() if k in set(tier2)}
         print(
             f"dropped {len(ambiguous)} tier-2 names sharing a genus with a "
             f"genus-level catalog entry: {ambiguous[:6]}"
         )
 
-    # Cap tier 2. Applied after the genus-ambiguity drop so the limit counts
-    # labels that actually ship, and by observation count so what falls off the
-    # end is the least-photographed rather than the alphabetically unlucky.
-    # Curated labels are EXEMPT from the cap. They are absent from
-    # wide_vocab.json by definition - nobody logs a supermarket champignon on
-    # iNaturalist - so ranking them by observation count sent every one to the
-    # back and the cap deleted them. That silently undid the previous commit:
-    # Agaricus bisporus vanished while Agaricus xanthodermus stayed toxic, so a
-    # champignon photo came back as the yellow-stainer with a toxic warning.
-    curated = [n for n in tier2 if n in CULTIVATED_NAMES]
-    regional = [n for n in tier2 if n not in CULTIVATED_NAMES]
-    if len(regional) > TIER2_LIMIT:
-        dropped = len(regional) - TIER2_LIMIT
-        regional = sorted(regional, key=lambda n: -observations.get(n, 0))[
-            :TIER2_LIMIT
-        ]
-        kept_min = min(observations.get(n, 0) for n in regional)
-        print(
-            f"capped regional tier 2 at the {TIER2_LIMIT} most observed "
-            f"({dropped} dropped; fewest observations kept: {kept_min}); "
-            f"{len(curated)} curated labels exempt"
-        )
-    tier2 = sorted(set(regional) | set(curated))
-    tier2_lineages = {k: v for k, v in tier2_lineages.items() if k in set(tier2)}
-
-    # Nothing curated may go missing. The bug above was invisible in the label
-    # totals, because regional names arrived to replace exactly what was lost.
-    lost = sorted(CULTIVATED_NAMES - set(tier2) - set(tier1))
-    if lost:
-        raise SystemExit(f"curated labels missing from the vocabulary: {lost}")
-
-    all_lineages = {**{n: lineages[n] for n in tier1 if n in lineages}, **tier2_lineages}
-    labels = [n for n in tier1 if n in lineages] + tier2
     missing = [n for n in tier1 if n not in lineages]
     if missing:
         raise SystemExit(f"tier-1 labels have no lineage: {missing}")
 
+    # Ranked by observation count so a cap drops the least-photographed rather
+    # than the alphabetically unlucky. Ties keep alphabetical order (stable sort
+    # over a sorted list), so the same inputs always ship the same list.
+    regional = {}
+    for name in sorted(
+        (n for n in tier2 if n not in CULTIVATED_NAMES),
+        key=lambda n: -observations.get(n, 0),
+    ):
+        regional.setdefault(tier2_lineages[name].get("kingdom"), []).append(name)
+
+    return {
+        "tier1": tier1,
+        "curated": sorted(n for n in tier2 if n in CULTIVATED_NAMES),
+        "regional": regional,
+        "lineages": {
+            **{n: lineages[n] for n in tier1},
+            **{n: tier2_lineages[n] for n in tier2},
+        },
+        "observations": observations,
+    }
+
+
+def cap_vocabulary(vocab, limits):
+    """Shipping label order: tier 1, then tier 2, each sorted.
+
+    Curated labels are EXEMPT from the cap. They are absent from
+    wide_vocab.json by definition - nobody logs a supermarket champignon on
+    iNaturalist - so ranking them by observation count sent every one to the
+    back and the cap deleted them. That silently undid the commit that added
+    them: Agaricus bisporus vanished while Agaricus xanthodermus stayed toxic,
+    so a champignon photo came back as the yellow-stainer with a toxic warning.
+    """
+    from bioclip_spike import CULTIVATED_NAMES
+
+    regional = []
+    for kingdom, names in vocab["regional"].items():
+        # A kingdom with no cap would ship everything or nothing depending on a
+        # default, so refuse instead.
+        if kingdom not in limits:
+            raise SystemExit(f"no tier-2 cap for kingdom {kingdom!r}: {names[:3]}")
+        regional += names[: limits[kingdom]]
+    tier2 = sorted(set(regional) | set(vocab["curated"]))
+
+    # Nothing curated may go missing. The bug above was invisible in the label
+    # totals, because regional names arrived to replace exactly what was lost.
+    lost = sorted(CULTIVATED_NAMES - set(tier2) - set(vocab["tier1"]))
+    if lost:
+        raise SystemExit(f"curated labels missing from the vocabulary: {lost}")
+    return vocab["tier1"] + tier2
+
+
+def _embed_text(names, lineages):
+    """L2-normalised BioCLIP text embeddings, one fp32 row per name, in order."""
+    import numpy as np
+
     model, _preprocess, tokenizer, torch = load_model()
-    prompts = [taxonomic_prompt(all_lineages[n]) for n in labels]
+    prompts = [taxonomic_prompt(lineages[n]) for n in names]
     print(f"embedding {len(prompts)} prompts…")
     chunks = []
     for start in range(0, len(prompts), 256):
@@ -1058,11 +1254,32 @@ def stage_text_matrix():
             feats = model.encode_text(tokenizer(prompts[start : start + 256]))
             feats /= feats.norm(dim=-1, keepdim=True)
         chunks.append(feats.cpu().numpy())
-    matrix = np.concatenate(chunks).astype(np.float32)
+    return np.concatenate(chunks).astype(np.float32)
 
-    # fp16 keeps the file under workbox's 2 MiB precache default (fp32 at this
-    # label count is 3.25MB and would make `vite build` throw). Verify the
-    # narrowing does not move the classifier's decisions.
+
+def stage_text_matrix():
+    """All labels -> fp16 matrix + index-aligned TS labels file.
+
+    Emitted in ONE pass so the binary and the labels file cannot drift: they are
+    joined by row index at runtime, and a mismatch would silently pair every
+    photo with the wrong species name.
+    """
+    import numpy as np
+
+    vocab = build_vocabulary()
+    labels = cap_vocabulary(vocab, TIER2_LIMITS)
+    for kingdom, names in sorted(vocab["regional"].items()):
+        kept = names[: TIER2_LIMITS[kingdom]]
+        fewest = vocab["observations"].get(kept[-1], 0) if kept else 0
+        print(
+            f"tier 2 {kingdom}: {len(kept)} of {len(names)} regional names "
+            f"(fewest sightings kept: {fewest})"
+        )
+    print(f"{len(vocab['curated'])} curated labels, exempt from the cap")
+    matrix = _embed_text(labels, vocab["lineages"])
+
+    # fp16 halves the download, and the browser widens it at load time. Verify
+    # the narrowing does not move the classifier's decisions.
     matrix16 = matrix.astype(np.float16)
     widened = matrix16.astype(np.float32)
     cos = (matrix * widened).sum(axis=1) / (
@@ -1087,17 +1304,18 @@ def stage_text_matrix():
         print("  WARNING: over 60 MB decoded — verify on a low-end phone before "
               "shipping; this sits in memory next to the model")
 
-    catalog, toxic = CATALOG_NAMES, TOXIC_NAMES
-    rows = []
-    for name in labels:
-        kind = "toxic" if name in toxic else ("catalog" if name in catalog else "other")
-        rows.append(f"  {{ scientificName: {name!r}, kind: {kind!r} }},".replace("'", "'"))
+    caution = caution_genera()
+    kinds = [label_kind(name, caution) for name in labels]
+    rows = [
+        f"  {{ scientificName: {name!r}, kind: {kind!r} }},"
+        for name, kind in zip(labels, kinds)
+    ]
     LABELS_TS.write_text(
         "// GENERATED by backend/tools/bioclip_export.py --stage text-matrix\n"
         "// DO NOT EDIT. Row order is index-aligned with\n"
         "// src/assets/bioclip_text_embeddings.f16.bin - editing one without\n"
         "// regenerating the other pairs every photo with the wrong species.\n\n"
-        "export type BioclipLabelKind = 'catalog' | 'toxic' | 'other';\n\n"
+        "export type BioclipLabelKind = 'catalog' | 'toxic' | 'caution' | 'other';\n\n"
         "export interface BioclipLabel {\n"
         "  scientificName: string;\n"
         "  kind: BioclipLabelKind;\n"
@@ -1108,10 +1326,7 @@ def stage_text_matrix():
         + "\n];\n",
         encoding="utf-8",
     )
-    counts = {}
-    for name in labels:
-        k = "toxic" if name in toxic else ("catalog" if name in catalog else "other")
-        counts[k] = counts.get(k, 0) + 1
+    counts = {kind: kinds.count(kind) for kind in sorted(set(kinds))}
     print(f"wrote {LABELS_TS} ({counts})")
 
 
@@ -1431,6 +1646,7 @@ def main():
             "verify-4bit",
             "webgpu-coverage",
             "verify-shipped",
+            "sweep",
             "audit-danger",
             "text-matrix",
             "parity-fixtures",
@@ -1451,6 +1667,7 @@ def main():
         "verify-4bit": lambda: stage_verify(ONNX_INT4, tag="int4"),
         "webgpu-coverage": stage_webgpu_coverage,
         "verify-shipped": stage_verify_shipped,
+        "sweep": stage_sweep,
         "audit-danger": stage_audit_danger,
         "text-matrix": stage_text_matrix,
         "parity-fixtures": stage_parity_fixtures,

@@ -12,9 +12,9 @@ sys.path.insert(0, str(ROOT / "backend"))
 import r2  # noqa: E402
 from qa_season_analysis import CLIMATOLOGY_YEARS, monthly_rate, month_labels
 
-QA = ROOT / "docs/qa/season-timing-2026"
+QA = ROOT.parent / "funges-lab/qa/season-timing-2026"
 OUT = QA / "season-timing.html"
-truth = json.loads((ROOT / "docs/qa/season-truth-2026/gbif-season-truth.json").read_text())
+truth = json.loads((ROOT.parent / "funges-lab/qa/season-truth-2026/gbif-season-truth.json").read_text())
 analysis = json.loads((QA / "season-analysis.json").read_text())
 
 R2 = "https://data.fung.es"

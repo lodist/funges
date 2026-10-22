@@ -7,7 +7,7 @@ so there is none. Where the sum is not reached by 30 June there is no peak.
 
 FORCING targets the median iNaturalist record date; full flower ("at its best") is
 about 12 °C·days (1.5 days) earlier. Fitted on NASA POWER temperatures, the source
-of the normals: docs/species/2026-10-10-bluebell.md, from
+of the normals: funges-lab/species/2026-10-10-bluebell.md, from
 backend/tools/calibrate_bluebell.py.
 
 The cells are drawn on bluebell woods (backend/generated/bluebell_woods_EU.parquet,

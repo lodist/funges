@@ -16,7 +16,8 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Playwright 1.60 does not support ubuntu-26.04 (now ubuntu-latest); unpin once it does.
+    runs-on: ubuntu-24.04
     env:
       VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
       VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}

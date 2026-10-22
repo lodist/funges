@@ -342,6 +342,7 @@ def run(region, points, now=None):
     prune(region_dir / "forecast", KEEP_FORECAST_DAYS)
     upload(region_dir)
     summary(frame, time.time() - started)
+    return frame
 
 
 if __name__ == "__main__":

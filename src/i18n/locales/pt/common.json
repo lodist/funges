@@ -41,9 +41,7 @@
   },
   "offline": {
     "mode": "Modo offline",
-    "updateAvailable": "Atualização disponível",
-    "installApp": "Instalar aplicativo",
-    "reloadForUpdate": "Recarregar para atualizar"
+    "installApp": "Instalar aplicativo"
   },
   "home": {
     "headline": "Explore o que cresce à sua volta",

@@ -85,7 +85,10 @@ jobs:
         with:
           commit_message: 'chore: update site data'
           file_pattern: public/data/visitors.json public/data/scores_metadata.json public/data/data_nerd.json public/data/worth_foraging_now.json public/offline-packages.json
-          commit_user_name: funges-bot
-          commit_user_email: funges-bot@users.noreply.github.com
+          # Without commit_author the action credits github.actor, which on a
+          # scheduled run is whoever last touched the cron.
+          commit_user_name: funges-bot[bot]
+          commit_user_email: 228909006+funges-bot[bot]@users.noreply.github.com
+          commit_author: funges-bot[bot] <228909006+funges-bot[bot]@users.noreply.github.com>
         env:
           GIT_AUTH_TOKEN: ${{ steps.app-token.outputs.token }}

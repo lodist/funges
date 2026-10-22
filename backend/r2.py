@@ -6,6 +6,8 @@ locally, repository secrets in CI. Paths may be full data.fung.es URLs, as .env 
 them, or bare keys.
 """
 
+import hashlib
+import json
 import os
 import tempfile
 from pathlib import Path
@@ -14,6 +16,10 @@ from urllib.parse import urlparse
 import boto3
 
 _SECRET = Path(__file__).resolve().parents[1] / ".env.secret"
+GENERATED = Path(__file__).resolve().parent / "generated"
+# The built and fitted files in backend/generated live on R2, not in git; this lists each
+# one's name and the sha256 of the shipped copy, at generated/<sha256>/<name>.
+SHIPPED = GENERATED / "on_r2.json"
 
 
 def _load_secret():
@@ -62,8 +68,75 @@ def download_to_temp(path, suffix=""):
     return name
 
 
+def _sha256(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def _shipped():
+    return json.loads(SHIPPED.read_text(encoding="utf-8")) if SHIPPED.exists() else {}
+
+
+def generated(path):
+    """`path`, first downloaded from R2 when it is a shipped backend/generated file that is
+    missing or older than the shipped copy. Any other path comes back as it is."""
+    path = Path(path)
+    sha = _shipped().get(path.name)
+    if sha is None or path.resolve().parent != GENERATED:
+        return path
+    if path.exists():
+        if _sha256(path) == sha:
+            return path
+        # ponytail: newer than on_r2.json = a local build not pushed yet; a branch switch
+        # before the push still overwrites it.
+        if path.stat().st_mtime > SHIPPED.stat().st_mtime:
+            print(f"[warn] {path.name} differs from the shipped copy; ship it with: python backend/r2.py push {path.name}")
+            return path
+    data = fetch(f"generated/{sha}/{path.name}")
+    if hashlib.sha256(data).hexdigest() != sha:
+        raise ValueError(f"{path.name}: the R2 copy fails its checksum")
+    part = path.with_name(f"{path.name}.{os.getpid()}.part")  # regions may fetch at once
+    part.write_bytes(data)
+    try:
+        part.replace(path)
+    except OSError:  # another region put it there first and has it open
+        part.unlink(missing_ok=True)
+        if not (path.exists() and _sha256(path) == sha):
+            raise
+    return path
+
+
+def ship(path):
+    """For build tools: push `path` when it was written into backend/generated. A failed
+    upload only warns, so the tool's other outputs still get written."""
+    path = Path(path)
+    if path.resolve().parent != GENERATED:
+        return
+    try:
+        push(path.name)
+        print(f"shipped {path.name} to R2; commit backend/generated/on_r2.json")
+    except Exception as error:
+        print(f"[warn] {path.name} not uploaded ({error}); later: python backend/r2.py push {path.name}")
+
+
+def push(name):
+    """Upload backend/generated/<name> and record it in on_r2.json (commit that file)."""
+    sha = _sha256(GENERATED / name)
+    client().upload_file(str(GENERATED / name), os.environ["R2_BUCKET_NAME"], f"generated/{sha}/{name}")
+    shipped = {**_shipped(), name: sha}
+    SHIPPED.write_text(json.dumps(dict(sorted(shipped.items())), indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
 if __name__ == "__main__":
     # python backend/r2.py <key-or-url> <dest>: CI pulls the private scores this way.
+    # python backend/r2.py push <name>...: ship backend/generated files after a build.
+    # python backend/r2.py sync: download every shipped backend/generated file.
     import sys
 
-    download(sys.argv[1], sys.argv[2])
+    if sys.argv[1] == "push":
+        for name in sys.argv[2:]:
+            push(name)
+    elif sys.argv[1] == "sync":
+        for name in _shipped():
+            generated(GENERATED / name)
+    else:
+        download(sys.argv[1], sys.argv[2])

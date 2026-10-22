@@ -6,7 +6,13 @@
     "seoDescription": "Identifica cogumelos e plantas silvestres a partir de uma foto, no teu próprio dispositivo. Compara as correspondências mais próximas com os seus sósias tóxicos.",
     "onDevice": "Funciona neste dispositivo",
     "noUpload": "Nada é enviado",
-    "offline": "Funciona offline depois de transferido"
+    "offline": "Funciona offline depois de transferido",
+    "coverage": {
+      "species": "espécies reconhecidas",
+      "mushrooms": "dos avistamentos de cogumelos",
+      "plants": "dos avistamentos de plantas",
+      "note": "Sobre registos verificados na Europa e nos EUA."
+    }
   },
   "plate": {
     "title": "O teu achado",
@@ -85,6 +91,8 @@
     "lethalLabel": "Mortal - não comer",
     "inedibleLabel": "Não comestível",
     "notInCatalog": "Não consta do catálogo desta aplicação - sem informação de segurança",
+    "cautionLabel": "Parentes tóxicos",
+    "cautionGenus": "Não consta do catálogo desta aplicação - o seu género inclui espécies tóxicas",
     "unknownSpecies": "Não reconhecido",
     "confidence": "{{percent}} % de correspondência",
     "confidenceUnderOne": "<1 % de correspondência",
