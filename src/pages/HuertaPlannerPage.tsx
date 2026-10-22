@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
@@ -454,6 +455,14 @@ export default function HuertaPlannerPage() {
                   {t('planner.noRoom')}
                 </p>
               )}
+              <Palette
+                advice={advice}
+                count={patch === null ? chosen.length : 0}
+                onPick={crop => place(chosen, crop)}
+                onDrop={(i, crop) =>
+                  place(chosen.includes(i) ? chosen : [i], crop)
+                }
+              />
               <div className='flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-border px-4 py-2 text-sm text-muted-foreground'>
                 <span>
                   {t(open ? 'planner.strips' : 'planner.beds', { count: beds })}{' '}
@@ -486,11 +495,6 @@ export default function HuertaPlannerPage() {
                 </Button>
                 <span>{t('planner.faded')}</span>
               </div>
-              <Palette
-                advice={advice}
-                count={patch === null ? chosen.length : 0}
-                onPick={crop => place(chosen, crop)}
-              />
             </div>
 
             {
@@ -706,14 +710,18 @@ function Palette({
   advice,
   count,
   onPick,
+  onDrop,
 }: {
   advice: PlaceAdvice;
   /** Sections selected: a tapped crop goes into them. */
   count: number;
   onPick: (crop: string) => void;
+  /** A crop dropped on section `index` by touch (a mouse drops on the model). */
+  onDrop: (index: number, crop: string) => void;
 }) {
   const { t } = useTranslation('huerta');
   const [kind, setKind] = useState<string>('all');
+  const lifted = useTouchDrag(onDrop);
   const crops = useMemo(
     () =>
       CROPS.filter(c => kind === 'all' || c.kind === kind).sort(
@@ -744,20 +752,25 @@ function Palette({
         }))}
         value={kind}
         onChange={setKind}
-        className='justify-start'
+        // One row on a phone, scrolled sideways, so the crops stay near the garden.
+        className='flex-nowrap justify-start overflow-x-auto sm:flex-wrap [&>*]:shrink-0'
       />
-      <ul className='mt-3 grid max-h-[22rem] grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] gap-2 overflow-y-auto p-0.5'>
+      <ul
+        ref={lifted.list}
+        className='mt-3 flex gap-2 overflow-x-auto p-0.5 sm:grid sm:max-h-[22rem] sm:grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] sm:overflow-x-visible sm:overflow-y-auto'
+      >
         {crops.map(c => (
-          <li key={c.id}>
+          <li key={c.id} className='w-40 shrink-0 sm:w-auto'>
             <button
               type='button'
+              data-crop={c.id}
               draggable
               onDragStart={e => {
                 e.dataTransfer.setData(CROP_DRAG, c.id);
                 e.dataTransfer.effectAllowed = 'copy';
               }}
               onClick={() => count && onPick(c.id)}
-              className='focus-ring flex w-full cursor-grab items-center gap-2 rounded-lg bg-card p-1.5 text-left text-sm elevation-raised hover:bg-muted active:cursor-grabbing'
+              className='focus-ring flex w-full cursor-grab touch-manipulation items-center gap-2 rounded-lg bg-card p-1.5 text-left text-sm elevation-raised select-none hover:bg-muted active:cursor-grabbing [-webkit-touch-callout:none]'
             >
               <img
                 src={photo(c.id)}
@@ -779,8 +792,92 @@ function Palette({
           </li>
         ))}
       </ul>
+      {lifted.at
+        ? createPortal(
+            <img
+              src={photo(lifted.at.crop)}
+              alt=''
+              className='pointer-events-none fixed z-50 size-14 -translate-x-1/2 -translate-y-[120%] rounded-lg object-cover shadow-lg ring-2 ring-primary'
+              style={{ left: lifted.at.x, top: lifted.at.y }}
+            />,
+            document.body
+          )
+        : null}
     </div>
   );
+}
+
+/** How long a finger holds a crop before it lifts: shorter is a scroll. */
+const LIFT_MS = 280;
+
+/** Drag by touch, which HTML drag and drop does not do on phones: hold a crop
+ *  tile until it lifts (a buzz, where the phone has one), move it over a bed,
+ *  let go. A finger that moves before it lifts scrolls the strip as before.
+ *  Returns the list's ref and where the lifted crop is. */
+function useTouchDrag(onDrop: (index: number, crop: string) => void) {
+  const list = useRef<HTMLUListElement>(null);
+  const drop = useRef(onDrop);
+  drop.current = onDrop;
+  const [at, setAt] = useState<{ crop: string; x: number; y: number } | null>(
+    null
+  );
+  useEffect(() => {
+    const ul = list.current;
+    if (!ul) return;
+    let hold = 0;
+    let start: { crop: string; x: number; y: number } | null = null;
+    let dragging = false;
+    const end = () => {
+      window.clearTimeout(hold);
+      start = null;
+      dragging = false;
+      setAt(null);
+    };
+    const down = (e: TouchEvent) => {
+      const tile = (e.target as Element).closest<HTMLElement>('[data-crop]');
+      if (!tile || e.touches.length > 1) return;
+      const f = e.touches[0];
+      start = { crop: tile.dataset.crop!, x: f.clientX, y: f.clientY };
+      hold = window.setTimeout(() => {
+        if (!start) return;
+        dragging = true;
+        navigator.vibrate?.(15);
+        setAt(start);
+      }, LIFT_MS);
+    };
+    const move = (e: TouchEvent) => {
+      if (!start) return;
+      const f = e.touches[0];
+      if (dragging) {
+        e.preventDefault(); // the page holds still under the lifted crop
+        setAt({ crop: start.crop, x: f.clientX, y: f.clientY });
+      } else if (Math.hypot(f.clientX - start.x, f.clientY - start.y) > 8)
+        end();
+    };
+    const up = (e: TouchEvent) => {
+      if (dragging && start) {
+        e.preventDefault(); // no tap after a drop
+        const f = e.changedTouches[0];
+        const bed = document
+          .elementFromPoint(f.clientX, f.clientY)
+          ?.closest('[data-sec]');
+        if (bed) drop.current(Number(bed.getAttribute('data-sec')), start.crop);
+      }
+      end();
+    };
+    ul.addEventListener('touchstart', down, { passive: true });
+    ul.addEventListener('touchmove', move, { passive: false });
+    ul.addEventListener('touchend', up);
+    ul.addEventListener('touchcancel', end);
+    return () => {
+      window.clearTimeout(hold);
+      ul.removeEventListener('touchstart', down);
+      ul.removeEventListener('touchmove', move);
+      ul.removeEventListener('touchend', up);
+      ul.removeEventListener('touchcancel', end);
+    };
+  }, []);
+  return { list, at };
 }
 
 const COMPASS = ['north', 'east', 'south', 'west'] as const;

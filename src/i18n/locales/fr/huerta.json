@@ -127,6 +127,12 @@
           "text": "Depuis le semis ou la plantation, la chaleur reçue suffit."
         }
       }
+    },
+    "short": {
+      "soil": "Sol",
+      "nights": "Nuits",
+      "rain": "Pluie",
+      "water": "Arrosage"
     }
   },
   "units": {
@@ -328,7 +334,8 @@
     "failed": "La carte n'a pas pu se charger. Réessayez dans un instant.",
     "search": "Rechercher une culture",
     "noResults": "Aucune culture ne correspond",
-    "clearFilters": "Effacer les filtres"
+    "clearFilters": "Effacer les filtres",
+    "useShort": "Mon potager"
   },
   "planner": {
     "title": "Plan du potager",

@@ -34,6 +34,7 @@ export function HuertaWeek({
   advice,
   title,
   tone = 'band',
+  compact = false,
   className,
   children,
 }: {
@@ -41,11 +42,14 @@ export function HuertaWeek({
   /** A line above the frost line: the place, on the map. */
   title?: ReactNode;
   tone?: Tone;
+  /** On a card, for a phone: the four facts in one row, short labels. */
+  compact?: boolean;
   className?: string;
   /** More under the frost dates. */
   children?: ReactNode;
 }) {
   const card = tone === 'card';
+  const small = card && compact;
   const { t, i18n } = useTranslation('huerta');
   const FrostIcon = advice.frost === 'none' ? Sun : Snowflake;
   const value = (number: number | null, unit: 'celsius' | 'mm' | 'litres') =>
@@ -65,14 +69,26 @@ export function HuertaWeek({
   const head = (
     <>
       {title}
-      <p className='flex items-center gap-2 text-lg font-semibold'>
-        <FrostIcon className='size-5 shrink-0 text-happy-300' />
+      <p
+        className={cn(
+          'flex items-center gap-2 font-semibold',
+          small ? 'text-base' : 'text-lg'
+        )}
+      >
+        <FrostIcon
+          className={cn('shrink-0 text-happy-300', small ? 'size-4' : 'size-5')}
+        />
         {t(`frost.${advice.frost}`)}
       </p>
       {advice.laterFrost &&
       advice.laterFrost !== 'none' &&
       advice.laterNight ? (
-        <p className='mt-1 pl-7 text-sm text-happy-100'>
+        <p
+          className={cn(
+            'mt-1 text-happy-100',
+            small ? 'pl-6 text-xs' : 'pl-7 text-sm'
+          )}
+        >
           {t(`week.later.${advice.laterFrost}`, {
             night: weekday(advice.laterNight, i18n.language),
           })}
@@ -84,20 +100,45 @@ export function HuertaWeek({
     <>
       <dl
         className={cn(
-          'grid grid-cols-2 gap-6 @lg:grid-cols-4',
+          'grid',
+          small ? 'grid-cols-4 gap-2' : 'grid-cols-2 gap-6 @lg:grid-cols-4',
           !card && 'mt-6'
         )}
       >
-        <Fact tone={tone} icon={Thermometer} fact='soil' label={t('week.soil')}>
+        <Fact
+          tone={tone}
+          small={small}
+          icon={Thermometer}
+          fact='soil'
+          label={t(small ? 'week.short.soil' : 'week.soil')}
+        >
           {value(advice.soil, 'celsius')}
         </Fact>
-        <Fact tone={tone} icon={Moon} fact='nights' label={t('week.nights')}>
+        <Fact
+          tone={tone}
+          small={small}
+          icon={Moon}
+          fact='nights'
+          label={t(small ? 'week.short.nights' : 'week.nights')}
+        >
           {value(advice.nights, 'celsius')}
         </Fact>
-        <Fact tone={tone} icon={CloudRain} fact='rain' label={t('week.rain')}>
+        <Fact
+          tone={tone}
+          small={small}
+          icon={CloudRain}
+          fact='rain'
+          label={t(small ? 'week.short.rain' : 'week.rain')}
+        >
           {value(advice.rain, 'mm')}
         </Fact>
-        <Fact tone={tone} icon={Droplets} fact='water' label={t('week.water')}>
+        <Fact
+          tone={tone}
+          small={small}
+          icon={Droplets}
+          fact='water'
+          label={t(small ? 'week.short.water' : 'week.water')}
+        >
           {advice.water === 0
             ? t('week.noWater')
             : value(advice.water, 'litres')}
@@ -109,7 +150,8 @@ export function HuertaWeek({
             'mt-6 flex flex-wrap gap-x-6 gap-y-1 border-t pt-4 text-sm',
             card
               ? 'mt-5 border-border text-muted-foreground'
-              : 'border-happy-100/25 text-happy-100'
+              : 'border-happy-100/25 text-happy-100',
+            small && 'mt-3 gap-x-3 pt-3 text-xs'
           )}
         >
           {dates.length > 0
@@ -128,8 +170,10 @@ export function HuertaWeek({
         className
       )}
     >
-      <div className={cn('p-4 sm:p-5', BAND_SURFACE_CLASS)}>{head}</div>
-      <div className='p-4 sm:p-5'>{body}</div>
+      <div className={cn(small ? 'p-3' : 'p-4 sm:p-5', BAND_SURFACE_CLASS)}>
+        {head}
+      </div>
+      <div className={small ? 'p-3' : 'p-4 sm:p-5'}>{body}</div>
     </section>
   ) : (
     <section
@@ -148,18 +192,31 @@ export function HuertaWeek({
 
 function Fact({
   tone,
+  small,
   icon: Icon,
   fact,
   label,
   children,
 }: {
   tone: Tone;
+  small: boolean;
   icon: ComponentType<{ className?: string }>;
   fact: keyof typeof ICON;
   label: string;
   children: ReactNode;
 }) {
   const card = tone === 'card';
+  if (small)
+    // The value first to the eye, its short label under it.
+    return (
+      <div className='flex min-w-0 flex-col-reverse'>
+        <dt className='truncate text-xs text-muted-foreground'>{label}</dt>
+        <dd className='flex items-center gap-1 font-display text-lg font-semibold whitespace-nowrap text-foreground'>
+          <Icon className={cn('size-3.5 shrink-0', ICON[fact])} />
+          {children}
+        </dd>
+      </div>
+    );
   return (
     <div className='flex gap-3'>
       <Icon
