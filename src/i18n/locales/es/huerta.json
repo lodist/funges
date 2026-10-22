@@ -1,5 +1,5 @@
 {
-  "title": "Tu huerto esta semana",
+  "title": "Esta semana",
   "description": "Qué sembrar y plantar esta semana, avisos de helada y riego para tu localidad.",
   "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
   "around": "Alrededores de {{place}}, {{day}}",
@@ -298,7 +298,7 @@
     "year": "Su año en {{place}}"
   },
   "map": {
-    "title": "Mapa del huerto",
+    "title": "Mapa",
     "description": "Dónde va cada cultivo esta semana, heladas en los próximos tres días, temperatura del suelo y riego, lugar a lugar.",
     "crop": "Cultivo",
     "layer": "Capa del mapa",
@@ -493,7 +493,7 @@
     "strips_other": "{{count}} franjas"
   },
   "year": {
-    "title": "Tu año",
+    "title": "Calendario",
     "description": "Cuándo se siembra, se planta y se cosecha cada cultivo en tu zona, a partir de su clima.",
     "around": "En {{place}}, en un año normal.",
     "noPlace": "Elige tu lugar para ver su año.",

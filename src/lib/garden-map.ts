@@ -59,12 +59,7 @@ export function grid(places: Int16Array): RegionGrid {
 
 /** A layer's colour for one byte; null leaves the place unpainted. */
 export function colour(layer: MapLayer, value: number): RGBA | null {
-  if (layer === 'crop') {
-    const code = String.fromCharCode(value);
-    if (code === 'n') return [201, 96, 58, 235];
-    if ('fswhap'.includes(code)) return [245, 174, 144, 215];
-    return [207, 198, 189, 170];
-  }
+  if (layer === 'crop') return [...STATUS_RGB[group(value)], 195] as RGBA;
   if (layer === 'frost')
     return value === 2
       ? [63, 107, 154, 225]
@@ -77,6 +72,18 @@ export function colour(layer: MapLayer, value: number): RGBA | null {
   if (layer === 'soil') return ramp(SOIL, value - 40);
   return value === 0 ? null : ramp(WATER, value);
 }
+
+/** The crop layer's three groups (STATUS_GROUPS): in now in the chart's
+ *  green, not yet in a light amber, too late in grey; the legend reads it. */
+export const STATUS_RGB = {
+  now: [21, 139, 66],
+  wait: [239, 176, 98],
+  over: [196, 188, 180],
+} as const;
+const group = (value: number): keyof typeof STATUS_RGB => {
+  const code = String.fromCharCode(value);
+  return code === 'n' ? 'now' : 'fswhap'.includes(code) ? 'wait' : 'over';
+};
 
 const SOIL: [number, RGBA][] = [
   [0, [220, 230, 239, 215]],

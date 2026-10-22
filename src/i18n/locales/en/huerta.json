@@ -1,5 +1,5 @@
 {
-  "title": "Your garden this week",
+  "title": "This week",
   "description": "What to sow and plant this week, frost warnings and watering for your town.",
   "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
   "around": "Around {{place}}, {{day}}",
@@ -298,7 +298,7 @@
     "year": "Its year around {{place}}"
   },
   "map": {
-    "title": "Garden map",
+    "title": "Map",
     "description": "Where each crop goes in this week, frost in the next three days, soil temperature and watering, place by place.",
     "crop": "Crop",
     "layer": "Map layer",
@@ -493,7 +493,7 @@
     "strips_other": "{{count}} strips"
   },
   "year": {
-    "title": "Your year",
+    "title": "Calendar",
     "description": "When each crop is sown, planted and harvested at your own place, worked out from its climate.",
     "around": "Around {{place}}, in a typical year.",
     "noPlace": "Choose your place to see its year.",

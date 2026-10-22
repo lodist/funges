@@ -1,5 +1,5 @@
 {
-  "title": "Votre potager cette semaine",
+  "title": "Cette semaine",
   "description": "Quoi semer et planter cette semaine, alertes gel et arrosage pour votre commune.",
   "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
   "around": "Environs de {{place}}, {{day}}",
@@ -298,7 +298,7 @@
     "year": "Son année autour de {{place}}"
   },
   "map": {
-    "title": "Carte du potager",
+    "title": "Carte",
     "description": "Où chaque culture se met en terre cette semaine, les gelées des trois prochains jours, la température du sol et l'arrosage, lieu par lieu.",
     "crop": "Culture",
     "layer": "Couche de la carte",
@@ -493,7 +493,7 @@
     "strips_other": "{{count}} bandes"
   },
   "year": {
-    "title": "Votre année",
+    "title": "Calendrier",
     "description": "Quand chaque culture se sème, se plante et se récolte chez vous, d'après votre climat.",
     "around": "Autour de {{place}}, une année ordinaire.",
     "noPlace": "Choisissez votre lieu pour voir son année.",

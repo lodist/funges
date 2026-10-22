@@ -16,19 +16,19 @@
   "settings": "Einstellungen",
   "help": "Hilfe",
   "googlePlay": "Jetzt bei Google Play",
-  "huertaWeek": "Dein Garten",
+  "huertaWeek": "Diese Woche",
   "spaces": {
     "switch": "Bereich: {{space}}. Bereich wechseln",
     "terra": {
       "name": "Terra",
-      "tagline": "Wildes Essen in deiner Nähe"
+      "tagline": "Wilde Pilze und Pflanzen"
     },
     "huerta": {
       "name": "Huerta",
-      "tagline": "Dein Garten, diese Woche"
+      "tagline": "Gemüse, Obst und Kräuter"
     }
   },
-  "huertaMap": "Gartenkarte",
+  "huertaMap": "Karte",
   "huertaPlanner": "Gartenplaner",
-  "huertaYear": "Dein Jahr"
+  "huertaYear": "Kalender"
 }

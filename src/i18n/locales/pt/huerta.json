@@ -1,5 +1,5 @@
 {
-  "title": "Sua horta esta semana",
+  "title": "Esta semana",
   "description": "O que semear e plantar esta semana, alertas de geada e rega para a sua cidade.",
   "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
   "around": "Arredores de {{place}}, {{day}}",
@@ -298,7 +298,7 @@
     "year": "O ano dele em {{place}}"
   },
   "map": {
-    "title": "Mapa da horta",
+    "title": "Mapa",
     "description": "Onde cada cultura vai para a terra esta semana, geadas nos próximos três dias, temperatura do solo e rega, lugar a lugar.",
     "crop": "Cultura",
     "layer": "Camada do mapa",
@@ -493,7 +493,7 @@
     "strips_other": "{{count}} faixas"
   },
   "year": {
-    "title": "Seu ano",
+    "title": "Calendário",
     "description": "Quando cada cultura é semeada, plantada e colhida no seu lugar, calculado a partir do seu clima.",
     "around": "Em {{place}}, num ano típico.",
     "noPlace": "Escolha seu lugar para ver o ano dele.",

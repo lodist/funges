@@ -1,5 +1,5 @@
 {
-  "title": "Dein Garten diese Woche",
+  "title": "Diese Woche",
   "description": "Was du diese Woche säen und pflanzen kannst, Frostwarnungen und Gießen für deinen Ort.",
   "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
   "around": "Rund um {{place}}, {{day}}",
@@ -298,7 +298,7 @@
     "year": "Sein Jahr rund um {{place}}"
   },
   "map": {
-    "title": "Gartenkarte",
+    "title": "Karte",
     "description": "Wo jede Kultur diese Woche in die Erde kommt, Frost in den nächsten drei Tagen, Bodentemperatur und Gießen, Ort für Ort.",
     "crop": "Kultur",
     "layer": "Kartenebene",
@@ -493,7 +493,7 @@
     "strips_other": "{{count}} Streifen"
   },
   "year": {
-    "title": "Dein Jahr",
+    "title": "Kalender",
     "description": "Wann jede Kultur bei dir gesät, gepflanzt und geerntet wird, berechnet aus deinem Klima.",
     "around": "Rund um {{place}}, in einem typischen Jahr.",
     "noPlace": "Wähle deinen Ort, um sein Jahr zu sehen.",

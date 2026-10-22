@@ -16,19 +16,19 @@
   "settings": "Paramètres",
   "help": "Aide",
   "googlePlay": "Disponible sur Google Play",
-  "huertaWeek": "Votre potager",
+  "huertaWeek": "Cette semaine",
   "spaces": {
     "switch": "Espace : {{space}}. Changer d'espace",
     "terra": {
       "name": "Terra",
-      "tagline": "Cueillette sauvage près de chez vous"
+      "tagline": "Champignons et plantes sauvages"
     },
     "huerta": {
       "name": "Huerta",
-      "tagline": "Votre potager, cette semaine"
+      "tagline": "Légumes, fruits et aromates"
     }
   },
-  "huertaMap": "Carte du potager",
+  "huertaMap": "Carte",
   "huertaPlanner": "Plan du potager",
-  "huertaYear": "Votre année"
+  "huertaYear": "Calendrier"
 }

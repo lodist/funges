@@ -16,19 +16,19 @@
   "settings": "Configuración",
   "help": "Ayuda",
   "googlePlay": "Disponible en Google Play",
-  "huertaWeek": "Tu huerto",
+  "huertaWeek": "Esta semana",
   "spaces": {
     "switch": "Espacio: {{space}}. Cambiar de espacio",
     "terra": {
       "name": "Terra",
-      "tagline": "Comida silvestre cerca de ti"
+      "tagline": "Setas y plantas silvestres"
     },
     "huerta": {
       "name": "Huerta",
-      "tagline": "Tu huerto, esta semana"
+      "tagline": "Hortalizas, fruta y hierbas"
     }
   },
-  "huertaMap": "Mapa del huerto",
+  "huertaMap": "Mapa",
   "huertaPlanner": "Planificador del huerto",
-  "huertaYear": "Tu año"
+  "huertaYear": "Calendario"
 }
