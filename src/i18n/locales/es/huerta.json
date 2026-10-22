@@ -457,9 +457,6 @@
     "shorter": "Más corta",
     "longer": "Más larga",
     "lengthValue": "{{value}} m",
-    "keep": "Fijar",
-    "kept": "Fijada",
-    "keptHint": "«Planifícalo por mí» y los cambios de tamaño dejan las partes fijadas como están.",
     "deleteBed": "Quitar este bancal",
     "deleteStrip": "Quitar esta franja",
     "bare": "Tierra sin cultivar",
@@ -490,7 +487,6 @@
     "faded": "Las plantas claras están planificadas, aún no plantadas",
     "selected_one": "{{count}} parte seleccionada",
     "selected_other": "{{count}} partes seleccionadas",
-    "keepAll": "Fijarlas",
     "clearSelection": "Quitar la selección",
     "noneSelected": "Toca un bancal para verlo. Toca más para cambiarlos a la vez.",
     "palette": {

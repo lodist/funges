@@ -457,9 +457,6 @@
     "shorter": "Più corta",
     "longer": "Più lunga",
     "lengthValue": "{{value}} m",
-    "keep": "Blocca",
-    "kept": "Bloccata",
-    "keptHint": "«Pianificalo per me» e i cambi di misura lasciano le parti bloccate come sono.",
     "deleteBed": "Togli questa aiuola",
     "deleteStrip": "Togli questa striscia",
     "bare": "Terra nuda",
@@ -490,7 +487,6 @@
     "faded": "Le piante chiare sono previste, non ancora piantate",
     "selected_one": "{{count}} parte selezionata",
     "selected_other": "{{count}} parti selezionate",
-    "keepAll": "Bloccale",
     "clearSelection": "Annulla la selezione",
     "noneSelected": "Tocca un'aiuola per vederla. Toccane altre per cambiarle insieme.",
     "palette": {

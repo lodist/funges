@@ -457,9 +457,6 @@
     "shorter": "Mais curta",
     "longer": "Mais longa",
     "lengthValue": "{{value}} m",
-    "keep": "Fixar",
-    "kept": "Fixada",
-    "keptHint": "“Planejar por mim” e mudanças de tamanho deixam as partes fixadas como estão.",
     "deleteBed": "Remover este canteiro",
     "deleteStrip": "Remover esta faixa",
     "bare": "Terra livre",
@@ -490,7 +487,6 @@
     "faded": "Plantas claras estão planejadas, ainda não plantadas",
     "selected_one": "{{count}} parte selecionada",
     "selected_other": "{{count}} partes selecionadas",
-    "keepAll": "Fixá-las",
     "clearSelection": "Limpar a seleção",
     "noneSelected": "Toque num canteiro para vê-lo. Toque em mais para mudá-los juntos.",
     "palette": {

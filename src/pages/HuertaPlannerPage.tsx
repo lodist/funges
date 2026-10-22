@@ -43,7 +43,6 @@ import {
 import {
   Check,
   ChevronDown,
-  Lock,
   Minus,
   Plus,
   Search,
@@ -63,7 +62,6 @@ import {
   MIN_SIDE,
   nextYear,
   notes,
-  PERENNIAL,
   ready,
   removeBed,
   reshape,
@@ -210,17 +208,14 @@ export default function HuertaPlannerPage() {
       sections: plan.sections.map((x, i) => (ids.includes(i) ? change(x) : x)),
     });
   };
-  // A crop put into sections: chosen, not yet planted.
+  // A crop put into sections by hand: chosen, not yet planted, and left
+  // alone by "Plan it for me".
   const place = (ids: number[], crop: string) =>
-    edit(ids, x => ({ ...x, crop, planted: undefined }));
-  // Marked planted today (a perennial then stays where it is), or not.
+    edit(ids, x => ({ ...x, crop, planted: undefined, locked: true }));
+  // Marked planted today, or not.
   const plantOn = (ids: number[], planted: string | undefined) => {
     const withCrop = ids.filter(i => plan?.sections[i]?.crop);
-    edit(withCrop, x => ({
-      ...x,
-      planted,
-      locked: x.locked || Boolean(planted && x.crop && PERENNIAL.has(x.crop)),
-    }));
+    edit(withCrop, x => ({ ...x, planted }));
     if (planted) {
       setFresh(withCrop);
       setTimeout(() => setFresh([]), 2500);
@@ -270,7 +265,7 @@ export default function HuertaPlannerPage() {
     plan.sections
       .map((_, i) => i)
       .filter(i => notes(plan.sections, i, north).some(n => n.bad === bad));
-  const allKept = chosen.every(i => plan.sections[i].locked);
+  const allPlanted = chosen.every(i => plan.sections[i].planted);
   const beds = new Set(plan.sections.map(x => x.bed)).size;
 
   return (
@@ -587,26 +582,23 @@ export default function HuertaPlannerPage() {
                       })}
                     </p>
                     <div className='flex flex-wrap gap-2'>
-                      <Button onClick={() => plantOn(chosen, today())}>
-                        {t(goesIn(chosen.map(i => plan.sections[i].crop)))}
-                      </Button>
-                      <Button
-                        variant='outline'
-                        aria-pressed={allKept}
-                        onClick={() =>
-                          edit(chosen, x => ({ ...x, locked: !allKept }))
-                        }
-                      >
-                        <Lock className='size-4' />
-                        {t('planner.keepAll')}
-                      </Button>
+                      {/* All in the ground already: the way back instead. */}
+                      {allPlanted ? (
+                        <Button
+                          variant='outline'
+                          onClick={() => plantOn(chosen, undefined)}
+                        >
+                          {t('planner.notPlanted')}
+                        </Button>
+                      ) : (
+                        <Button onClick={() => plantOn(chosen, today())}>
+                          {t(goesIn(chosen.map(i => plan.sections[i].crop)))}
+                        </Button>
+                      )}
                       <Button variant='ghost' onClick={() => setSel([])}>
                         {t('planner.clearSelection')}
                       </Button>
                     </div>
-                    <p className='text-xs text-muted-foreground'>
-                      {t('planner.keptHint')}
-                    </p>
                   </div>
                 ) : null}
                 {patch !== null ? (
@@ -680,14 +672,6 @@ export default function HuertaPlannerPage() {
                           plan.sections.indexOf(s),
                           delta,
                           axis
-                        ),
-                      })
-                    }
-                    onKeep={() =>
-                      update({
-                        ...plan,
-                        sections: plan.sections.map(x =>
-                          x === s ? { ...x, locked: !x.locked } : x
                         ),
                       })
                     }
@@ -1051,7 +1035,6 @@ function SectionPanel({
   onSplit,
   onMerge,
   onLength,
-  onKeep,
   onDeleteBed,
 }: {
   section: Section;
@@ -1068,7 +1051,6 @@ function SectionPanel({
   onSplit: () => void;
   onMerge: (dir: -1 | 1) => void;
   onLength: (delta: number) => void;
-  onKeep: () => void;
   onDeleteBed: () => void;
 }) {
   const { t, i18n } = useTranslation('huerta');
@@ -1313,19 +1295,6 @@ function SectionPanel({
             <Plus className='size-4' />
           </Button>
         </div>
-        <Button
-          variant='outline'
-          aria-pressed={Boolean(s.locked)}
-          className={cn(
-            'self-start',
-            s.locked && 'border-primary text-primary-text'
-          )}
-          onClick={onKeep}
-        >
-          <Lock className='size-4' />
-          {t(s.locked ? 'planner.kept' : 'planner.keep')}
-        </Button>
-        <p className='text-xs text-muted-foreground'>{t('planner.keptHint')}</p>
         <Button
           variant='ghost'
           className='self-start text-destructive-text'

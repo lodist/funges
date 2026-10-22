@@ -457,9 +457,6 @@
     "shorter": "Kürzer",
     "longer": "Länger",
     "lengthValue": "{{value}} m",
-    "keep": "Fixieren",
-    "kept": "Fixiert",
-    "keptHint": "„Für mich planen“ und neue Maße lassen fixierte Teile, wie sie sind.",
     "deleteBed": "Dieses Beet entfernen",
     "deleteStrip": "Diesen Streifen entfernen",
     "bare": "Freie Erde",
@@ -490,7 +487,6 @@
     "faded": "Blasse Pflanzen sind geplant, noch nicht gepflanzt",
     "selected_one": "{{count}} Teil ausgewählt",
     "selected_other": "{{count}} Teile ausgewählt",
-    "keepAll": "Diese fixieren",
     "clearSelection": "Auswahl aufheben",
     "noneSelected": "Tippe auf ein Beet, um es zu sehen. Tippe weitere an, um sie gemeinsam zu ändern.",
     "palette": {

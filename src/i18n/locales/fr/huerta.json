@@ -457,9 +457,6 @@
     "shorter": "Plus courte",
     "longer": "Plus longue",
     "lengthValue": "{{value}} m",
-    "keep": "Verrouiller",
-    "kept": "Verrouillée",
-    "keptHint": "« Planifiez pour moi » et les changements de taille laissent les parties verrouillées telles quelles.",
     "deleteBed": "Supprimer cette planche",
     "deleteStrip": "Supprimer cette bande",
     "bare": "Terre nue",
@@ -490,7 +487,6 @@
     "faded": "Les plantes pâles sont prévues, pas encore plantées",
     "selected_one": "{{count}} partie sélectionnée",
     "selected_other": "{{count}} parties sélectionnées",
-    "keepAll": "Les verrouiller",
     "clearSelection": "Tout désélectionner",
     "noneSelected": "Touchez une planche pour la voir. Touchez-en d'autres pour les modifier ensemble.",
     "palette": {

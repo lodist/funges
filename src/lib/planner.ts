@@ -60,7 +60,7 @@ export interface Section {
   crop: string | null;
   /** The day it went in, YYYY-MM-DD; absent while only planned. */
   planted?: string;
-  /** "Keep here": planning it again and resizing leave its crop alone. */
+  /** Its crop was put in by hand: "Plan it for me" leaves it alone. */
   locked?: boolean;
 }
 
@@ -70,13 +70,6 @@ export interface Plan {
   /** Beds deleted: plain earth, which a bed can be put back on. */
   bare?: Rect[];
 }
-
-/** Crops that stay for years: marking one planted keeps it where it is. */
-export const PERENNIAL = new Set(
-  'asparagus rhubarb artichoke strawberry chives thyme rosemary oregano sage mint lavender'.split(
-    ' '
-  )
-);
 
 const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
 
@@ -373,8 +366,8 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
 
 /** Fill every section from this week's statuses at the visitor's place: one
  *  family per bed (of those the style grows), onions and garlic never beside
- *  peas and beans, the tallest crop of a bed at its north end. Planted and
- *  kept sections keep their crop, and with `keepChosen` every section that
+ *  peas and beans, the tallest crop of a bed at its north end. Planted sections
+ *  and those filled by hand keep their crop, and with `keepChosen` every section that
  *  has one. */
 export function autoPlan(
   sections: Section[],
