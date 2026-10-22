@@ -40,7 +40,8 @@ import {
 } from '@/lib/icons';
 import { protocol } from '@/lib/pmtiles-protocol';
 import { cn } from '@/lib/utils';
-import { useMapStore } from '@/store/mapStore';
+import { HILLSHADE_LAYER_ID, useMapStore } from '@/store/mapStore';
+import MapThemeSelector from '@/components/MapThemeSelector';
 
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
 maplibregl.addProtocol('pmtiles', protocol.tile);
@@ -83,11 +84,12 @@ function startView(): MapView {
 }
 /** Terra's basemap style without its species layers, its sprite and glyph
  *  paths made absolute (the files give them relative to the site). */
-async function basemapStyle(): Promise<maplibregl.StyleSpecification> {
+async function basemapStyle(
+  path: string
+): Promise<maplibregl.StyleSpecification> {
   const base = new URL(import.meta.env.BASE_URL, window.location.origin);
-  const file = document.documentElement.classList.contains('dark')
-    ? 'funges_style_darkmatter.json'
-    : 'funges_style_positron.json';
+  // The style picked in Terra's map picker (the store keeps it, shared).
+  const file = path.replace(/^\//, '');
   const style = (await (
     await fetch(new URL(file, base))
   ).json()) as maplibregl.StyleSpecification;
@@ -101,6 +103,16 @@ async function basemapStyle(): Promise<maplibregl.StyleSpecification> {
     if (terra(id)) delete style.sources[id];
   return style;
 }
+
+/** The relief layer on or off, if the style has one. */
+const relief = (m: maplibregl.Map, on: boolean) => {
+  if (m.getLayer(HILLSHADE_LAYER_ID))
+    m.setLayoutProperty(
+      HILLSHADE_LAYER_ID,
+      'visibility',
+      on ? 'visible' : 'none'
+    );
+};
 
 /** A continent's drawing on the map, under the basemap's labels. */
 function show(
@@ -204,6 +216,8 @@ export default function HuertaMapPage() {
   // The advice at the map's centre, for the crop panel's status filter.
   const [centre, setCentre] = useState<PlaceAdvice | null | undefined>();
   const [crop, setCrop] = useState('garlic');
+  const mapStyle = useMapStore(state => state.mapStyle);
+  const hillshadeVisible = useMapStore(state => state.hillshadeVisible);
   const [layer, setLayer] = useState<MapLayer>('crop');
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -213,12 +227,14 @@ export default function HuertaMapPage() {
     advice?: PlaceAdvice | null;
   } | null>(null);
 
-  // The map itself, once, on Terra's basemap.
+  // The map itself, on Terra's basemap in the style picked there; a new
+  // style makes a new map (as Terra's does), which draws its layers anew.
   useEffect(() => {
     let live = true;
     let m: maplibregl.Map | null = null;
     const drawings = urls.current;
-    basemapStyle()
+    const drawn = wanted.current;
+    basemapStyle(mapStyle)
       .then(style => {
         if (!live || !container.current) return;
         m = new maplibregl.Map({
@@ -242,6 +258,7 @@ export default function HuertaMapPage() {
           );
         };
         m.on('load', () => {
+          relief(m!, useMapStore.getState().hillshadeVisible);
           setReady(true);
           look();
         });
@@ -273,8 +290,17 @@ export default function HuertaMapPage() {
       m?.remove();
       map.current = null;
       drawings.forEach(url => URL.revokeObjectURL(url));
+      drawings.clear();
+      drawn.clear();
+      setReady(false);
+      setPicked(null);
     };
-  }, []);
+  }, [mapStyle]);
+
+  // Relief shading, switched in the picker as on Terra's map.
+  useEffect(() => {
+    if (ready && map.current) relief(map.current, hillshadeVisible);
+  }, [ready, hillshadeVisible]);
 
   // The chosen layer, drawn for every continent looked at; one already
   // showing it is left alone.
@@ -388,6 +414,7 @@ export default function HuertaMapPage() {
               })()}
             </Button>
           ))}
+          <MapThemeSelector onBand />
         </div>
         <div
           className={cn(
