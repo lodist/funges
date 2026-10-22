@@ -31,7 +31,7 @@ const MARK = '#c9603a';
 const HI = 'rgba(255,255,255,0.3)';
 /** Crops drawn as photographed plants seen from the model's angle
  *  (huerta/iso/<id>.webp). The rest keep their forms. */
-const PHOTO = new Set(['garlic', 'peas']);
+const PHOTO = new Set(['peas']);
 const GROUND = (name: string) => huertaImage(`ground/${name}`);
 /** Crops photographed at each stage, on a frame of this many metres of real
  *  height, the plant's foot at the middle, 8% above the bottom:
@@ -60,6 +60,12 @@ const STAGED: Record<string, number> = {
   courgette: 1.5,
   crimson_clover: 0.75,
   crocus: 0.5,
+  cucumber: 2.0,
+  daffodil: 0.75,
+  dill: 1.0,
+  fennel: 1.0,
+  field_beans: 1.0,
+  garlic: 0.75,
   lettuce: 1.0,
   tomato: 1.5,
 };
