@@ -492,7 +492,7 @@
     "noneSelected": "Tippe auf ein Beet, um es zu sehen. Tippe weitere an, um sie gemeinsam zu ändern.",
     "palette": {
       "title": "Kulturen",
-      "hint": "Zieh eine Kultur auf ein Beet, oder wähle Beete aus und tippe eine Kultur an.",
+      "hint": "Halte eine Kultur gedrückt und zieh sie auf ein Beet, oder wähle Beete aus und tippe eine Kultur an.",
       "toSelected_one": "Tippe eine Kultur an, um sie in den ausgewählten Teil zu setzen.",
       "toSelected_other": "Tippe eine Kultur an, um sie in die {{count}} ausgewählten Teile zu setzen."
     },

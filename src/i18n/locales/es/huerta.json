@@ -492,7 +492,7 @@
     "noneSelected": "Toca un bancal para verlo. Toca más para cambiarlos a la vez.",
     "palette": {
       "title": "Cultivos",
-      "hint": "Arrastra un cultivo a un bancal, o selecciona bancales y toca un cultivo.",
+      "hint": "Mantén pulsado un cultivo y arrástralo a un bancal, o selecciona bancales y toca un cultivo.",
       "toSelected_one": "Toca un cultivo para ponerlo en la parte seleccionada.",
       "toSelected_other": "Toca un cultivo para ponerlo en las {{count}} partes seleccionadas."
     },
