@@ -29,8 +29,8 @@
     "soil": "Soil",
     "nights": "Nights",
     "rain": "Rain this week",
-    "water": "To water",
-    "noWater": "None",
+    "water": "Watering needed",
+    "noWater": "None needed",
     "lastFrost": "Last frost here usually around {{date}}",
     "firstFrost": "First frost usually around {{date}}",
     "noFrostDates": "Frost is rare here",
@@ -132,7 +132,7 @@
       "soil": "Soil",
       "nights": "Nights",
       "rain": "Rain",
-      "water": "To water",
+      "water": "Watering",
       "lastFrost": "Last frost ~{{date}}",
       "firstFrost": "First frost ~{{date}}"
     }
@@ -315,7 +315,7 @@
       "crop": "Sow or plant now",
       "frost": "Frost this week",
       "soil": "Soil temperature",
-      "water": "To water this week"
+      "water": "Watering needed this week"
     },
     "legend": {
       "now": "Sow or plant now",
@@ -411,6 +411,7 @@
     "notPlanted": "Not planted yet",
     "sownToday": "Sown today",
     "plantedToday": "Planted today",
+    "sownOrPlantedToday": "Sown or planted today",
     "neighbours": "Neighbours",
     "noNeighbours": "Nothing to watch next to it.",
     "nextTo": "Next to {{crop}}",
@@ -456,9 +457,9 @@
     "shorter": "Shorter",
     "longer": "Longer",
     "lengthValue": "{{value}} m",
-    "keep": "Keep here",
-    "kept": "Kept here",
-    "keptHint": "“Plan it for me” and resizing leave it where it is.",
+    "keep": "Lock",
+    "kept": "Locked",
+    "keptHint": "“Plan it for me” and resizing leave locked sections as they are.",
     "deleteBed": "Delete this bed",
     "deleteStrip": "Delete this strip",
     "bare": "Plain earth",
@@ -489,7 +490,7 @@
     "faded": "Faded plants are planned, not planted yet",
     "selected_one": "{{count}} section selected",
     "selected_other": "{{count}} sections selected",
-    "keepAll": "Keep these here",
+    "keepAll": "Lock these",
     "clearSelection": "Clear selection",
     "noneSelected": "Tap a bed to see it. Tap more beds to change them together.",
     "palette": {

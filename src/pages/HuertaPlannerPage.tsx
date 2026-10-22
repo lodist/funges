@@ -46,6 +46,7 @@ import {
   Lock,
   Minus,
   Plus,
+  Search,
   SlidersHorizontal,
   Trash2,
   Undo2,
@@ -88,6 +89,16 @@ const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
 const photo = (id: string) =>
   `${import.meta.env.BASE_URL}huerta/crops/${id}.webp`;
 const today = () => new Date().toLocaleDateString('sv');
+// One action, named for how the crops go in: seed sown in place, or plants,
+// sets and tubers planted.
+const goesIn = (crops: (string | null | undefined)[]) => {
+  const how = new Set(crops.flatMap(c => (c && CROP[c] ? [CROP[c].how] : [])));
+  return how.size > 1
+    ? 'planner.sownOrPlantedToday'
+    : how.has('sow')
+      ? 'planner.sownToday'
+      : 'planner.plantedToday';
+};
 const STYLES: PlanStyle[] = [
   'mixed',
   'veg',
@@ -577,7 +588,7 @@ export default function HuertaPlannerPage() {
                     </p>
                     <div className='flex flex-wrap gap-2'>
                       <Button onClick={() => plantOn(chosen, today())}>
-                        {t('planner.plantedToday')}
+                        {t(goesIn(chosen.map(i => plan.sections[i].crop)))}
                       </Button>
                       <Button
                         variant='outline'
@@ -593,6 +604,9 @@ export default function HuertaPlannerPage() {
                         {t('planner.clearSelection')}
                       </Button>
                     </div>
+                    <p className='text-xs text-muted-foreground'>
+                      {t('planner.keptHint')}
+                    </p>
                   </div>
                 ) : null}
                 {patch !== null ? (
@@ -765,28 +779,45 @@ function Palette({
 }) {
   const { t } = useTranslation('huerta');
   const [kind, setKind] = useState<string>('all');
+  const [term, setTerm] = useState('');
   const lifted = useTouchDrag(onDrop);
-  const crops = useMemo(
-    () =>
-      CROPS.filter(c => kind === 'all' || c.kind === kind).sort(
-        (a, z) =>
-          Number(advice.crops[z.id] === 'now') -
-            Number(advice.crops[a.id] === 'now') ||
-          t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
-      ),
-    [kind, advice, t]
-  );
+  const crops = useMemo(() => {
+    const text = term.trim().toLowerCase();
+    return CROPS.filter(
+      c =>
+        (kind === 'all' || c.kind === kind) &&
+        (t(`crops.${c.id}`).toLowerCase().includes(text) ||
+          c.scientific.toLowerCase().includes(text))
+    ).sort(
+      (a, z) =>
+        Number(advice.crops[z.id] === 'now') -
+          Number(advice.crops[a.id] === 'now') ||
+        t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
+    );
+  }, [kind, term, advice, t]);
   return (
     <div className='border-t border-border p-4'>
-      <div className='mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1'>
+      {/* The hint drops under the title and search on a phone. */}
+      <div className='mb-3 flex flex-wrap items-center gap-x-4 gap-y-1'>
         <h2 className='text-base font-semibold text-foreground'>
           {t('planner.palette.title')}
         </h2>
-        <p className='text-sm text-muted-foreground'>
+        <p className='order-last basis-full text-sm text-muted-foreground sm:order-none sm:flex-1 sm:basis-auto sm:text-right'>
           {count
             ? t('planner.palette.toSelected', { count })
             : t('planner.palette.hint')}
         </p>
+        <label className='relative ml-auto sm:ml-0'>
+          <Search className='pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground' />
+          <Input
+            type='search'
+            value={term}
+            onChange={e => setTerm(e.target.value)}
+            placeholder={t('map.search')}
+            aria-label={t('map.search')}
+            className='h-9 w-40 rounded-full pl-8 text-sm sm:w-48'
+          />
+        </label>
       </div>
       <CategoryChips
         chips={KINDS.map(value => ({
@@ -840,6 +871,11 @@ function Palette({
           </li>
         ))}
       </ul>
+      {crops.length ? null : (
+        <p className='py-4 text-sm text-muted-foreground'>
+          {t('map.noResults')}
+        </p>
+      )}
       {lifted.lifted
         ? createPortal(
             // Placed by transform from its corner; the inner offsets keep it
@@ -1150,11 +1186,7 @@ function SectionPanel({
             </div>
           ) : (
             <Button onClick={() => onPlanted(today())} className='self-start'>
-              {t(
-                crop.how === 'sow'
-                  ? 'planner.sownToday'
-                  : 'planner.plantedToday'
-              )}
+              {t(goesIn([crop.id]))}
             </Button>
           )}
           <div>
@@ -1293,11 +1325,7 @@ function SectionPanel({
           <Lock className='size-4' />
           {t(s.locked ? 'planner.kept' : 'planner.keep')}
         </Button>
-        {s.locked ? (
-          <p className='text-xs text-muted-foreground'>
-            {t('planner.keptHint')}
-          </p>
-        ) : null}
+        <p className='text-xs text-muted-foreground'>{t('planner.keptHint')}</p>
         <Button
           variant='ghost'
           className='self-start text-destructive-text'

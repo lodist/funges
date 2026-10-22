@@ -10,7 +10,7 @@ export type Space = 'terra' | 'huerta';
 /** Where a space opens when it has not been visited yet. */
 export const SPACE_HOME: Record<Space, string> = {
   terra: '/map',
-  huerta: '/huerta',
+  huerta: '/huerta/map',
 };
 
 /** The spaces a visitor can switch between: Huerta only where it is shown. */
