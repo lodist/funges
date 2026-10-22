@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useRegisterSW } from 'virtual:pwa-register/react';
 
 interface PWAStatus {
   isOnline: boolean;
   isInstalled: boolean;
-  hasUpdate: boolean;
   isLoading: boolean;
 }
 
@@ -29,7 +27,6 @@ export const usePWA = () => {
   const [status, setStatus] = useState<PWAStatus>({
     isOnline: navigator.onLine,
     isInstalled: false,
-    hasUpdate: false,
     isLoading: true,
   });
 
@@ -66,15 +63,6 @@ export const usePWA = () => {
     };
   }, []);
 
-  const {
-    needRefresh: [needRefresh],
-    updateServiceWorker,
-  } = useRegisterSW();
-
-  useEffect(() => {
-    setStatus(prev => ({ ...prev, hasUpdate: needRefresh }));
-  }, [needRefresh]);
-
   // Function to install PWA
   const installPWA = async () => {
     if ('serviceWorker' in navigator && 'BeforeInstallPromptEvent' in window) {
@@ -90,16 +78,8 @@ export const usePWA = () => {
     }
   };
 
-  // Function to reload app for updates
-  const reloadForUpdate = async () => {
-    setStatus(prev => ({ ...prev, hasUpdate: false }));
-    await updateServiceWorker();
-    window.location.reload();
-  };
-
   return {
     ...status,
     installPWA,
-    reloadForUpdate,
   };
 };

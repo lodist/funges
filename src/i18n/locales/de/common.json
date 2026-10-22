@@ -41,9 +41,7 @@
   },
   "offline": {
     "mode": "Offline-Modus",
-    "updateAvailable": "Update verfügbar",
-    "installApp": "App installieren",
-    "reloadForUpdate": "Zum Aktualisieren neu laden"
+    "installApp": "App installieren"
   },
   "home": {
     "headline": "Entdecke, was um dich herum wächst",

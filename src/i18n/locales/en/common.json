@@ -41,9 +41,7 @@
   },
   "offline": {
     "mode": "Offline Mode",
-    "updateAvailable": "Update Available",
-    "installApp": "Install App",
-    "reloadForUpdate": "Reload for Update"
+    "installApp": "Install App"
   },
   "home": {
     "headline": "Explore what grows around you",
