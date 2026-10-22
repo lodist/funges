@@ -323,10 +323,7 @@ export default function HuertaMapPage() {
     };
   }, [picked]);
 
-  const layerName = (l: MapLayer) =>
-    l === 'crop'
-      ? t('map.layers.crop', { crop: t(`crops.${crop}`) })
-      : t(`map.layers.${l}`);
+  const layerName = (l: MapLayer) => t(`map.layers.${l}`);
 
   // The crop panel opened: its status filter is for the spot picked, else
   // for the map's centre.
@@ -443,7 +440,8 @@ function Legend({
         : [];
   return (
     <div className='pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm'>
-      {failed ? null : (
+      {failed || layer === 'crop' ? null : (
+        // The crop layer's rows already say it: sow or plant now, not yet, too late.
         <p className='mb-2 font-semibold text-foreground'>{title}</p>
       )}
       {failed ? (

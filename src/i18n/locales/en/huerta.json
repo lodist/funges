@@ -304,7 +304,7 @@
     "layer": "Map layer",
     "place": "Around {{place}}",
     "layers": {
-      "crop": "{{crop}}: sow or plant now",
+      "crop": "Sow or plant now",
       "frost": "Frost this week",
       "soil": "Soil temperature",
       "water": "To water this week"

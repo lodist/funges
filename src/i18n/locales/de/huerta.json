@@ -304,7 +304,7 @@
     "layer": "Kartenebene",
     "place": "Rund um {{place}}",
     "layers": {
-      "crop": "{{crop}}: jetzt säen oder pflanzen",
+      "crop": "Jetzt säen oder pflanzen",
       "frost": "Frost diese Woche",
       "soil": "Bodentemperatur",
       "water": "Diese Woche gießen"
