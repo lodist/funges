@@ -492,7 +492,7 @@
     "noneSelected": "Tocca un'aiuola per vederla. Toccane altre per cambiarle insieme.",
     "palette": {
       "title": "Colture",
-      "hint": "Trascina una coltura su un'aiuola, oppure seleziona le aiuole e tocca una coltura.",
+      "hint": "Tieni premuta una coltura e trascinala su un'aiuola, oppure seleziona le aiuole e tocca una coltura.",
       "toSelected_one": "Tocca una coltura per metterla nella parte selezionata.",
       "toSelected_other": "Tocca una coltura per metterla nelle {{count}} parti selezionate."
     },

@@ -10,7 +10,14 @@ import {
   type Section,
 } from '@/lib/planner';
 import { huertaImage } from '@/lib/huerta';
-import { Maximize2, RotateCcw, RotateCw, ZoomIn, ZoomOut } from '@/lib/icons';
+import {
+  Maximize2,
+  RotateCcw,
+  RotateCw,
+  X,
+  ZoomIn,
+  ZoomOut,
+} from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { PLANT_LOOK, type PlantLook } from '@/lib/planner-data';
 
@@ -30,6 +37,8 @@ const MAX_DRAWN = 1500;
 const MIN_VIEW = 560;
 const MAX_ZOOM = 4;
 const ZOOM_STEP = 1.5;
+/** How far off a bed (metres, on the ground) a tap still picks it. */
+const REACH = 0.6;
 const PLOT = '#ece5db';
 const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
@@ -135,6 +144,10 @@ interface GardenModelProps {
   onTurnNorth?: (delta: number) => void;
   /** A crop dropped on a section. */
   onDropCrop?: (index: number, crop: string) => void;
+  /** The section a crop dragged by touch is over (the palette tracks it). */
+  hover?: number | null;
+  /** Clears the selection: a button on the model while sections are selected. */
+  onClear?: () => void;
   title: string;
 }
 
@@ -160,6 +173,8 @@ export function GardenModel({
   onBare,
   onTurnNorth,
   onDropCrop,
+  hover = null,
+  onClear,
   title,
 }: GardenModelProps) {
   const { t } = useTranslation('huerta');
@@ -171,6 +186,13 @@ export function GardenModel({
   };
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState<[number, number]>([0, 0]);
+  // Fingers on the model, for a pinch: where each is, and the pinch's start.
+  const fingers = useRef(new Map<number, [number, number]>());
+  const pinch = useRef<{ d: number; zoom: number } | null>(null);
+  const spread = () => {
+    const [a, b] = [...fingers.current.values()];
+    return Math.hypot(a[0] - b[0], a[1] - b[1]);
+  };
   // A drag in progress: where it began, and whether it has moved (then the
   // click that ends it selects nothing).
   const drag = useRef<{
@@ -202,6 +224,18 @@ export function GardenModel({
         return [x, y];
     }
   };
+  const unturn = (a: number, b: number): [number, number] => {
+    switch (quarter % 4) {
+      case 1:
+        return [b, L - a];
+      case 2:
+        return [W - a, L - b];
+      case 3:
+        return [W - b, a];
+      default:
+        return [a, b];
+    }
+  };
   const V = (a: number, b: number, z: number): [number, number] => [
     (a - b) * COS * S,
     (a + b) * SIN * S - z * S,
@@ -214,6 +248,26 @@ export function GardenModel({
   const pts = (ps: [number, number][]) =>
     ps.map(p => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
   const select = (i: number) => () => onSelect(i);
+  // A tap off every bed (a path, a board, the border): the bed nearest the
+  // ground point under it, within REACH, so a fingertip need not land inside.
+  const nearest = (svg: SVGSVGElement, cx: number, cy: number) => {
+    const m = svg.getScreenCTM();
+    if (!m) return null;
+    const p = new DOMPoint(cx, cy).matrixTransform(m.inverse());
+    const u = p.x / (COS * S),
+      v = (p.y + soilZ * S) / (SIN * S);
+    const [x, y] = unturn((u + v) / 2, (v - u) / 2);
+    let best: number | null = null,
+      reach = REACH;
+    sections.forEach((s, i) => {
+      const d = Math.hypot(
+        Math.max(s.x0 - x, 0, x - s.x1),
+        Math.max(s.y0 - y, 0, y - s.y1)
+      );
+      if (d < reach) [best, reach] = [i, d];
+    });
+    return best;
+  };
 
   const beds = [...new Set(sections.map(s => s.bed))].map(bed => {
     const parts = sections.filter(s => s.bed === bed);
@@ -660,9 +714,7 @@ export function GardenModel({
                   <g
                     key={`c${i}-${x}-${y}`}
                     opacity={opacity}
-                    data-sec={i}
-                    onClick={select(i)}
-                    className='cursor-pointer'
+                    pointerEvents='none'
                   >
                     <Staged
                       id={crop}
@@ -684,8 +736,7 @@ export function GardenModel({
                 <g
                   key={`c${i}-${x}-${y}`}
                   opacity={opacity}
-                  data-sec={i}
-                  onClick={select(i)}
+                  pointerEvents='none'
                 >
                   <line
                     x1={bx}
@@ -716,9 +767,7 @@ export function GardenModel({
                 <g
                   key={`p${i}-${x}-${y}`}
                   opacity={opacity}
-                  data-sec={i}
-                  onClick={select(i)}
-                  className='cursor-pointer'
+                  pointerEvents='none'
                 >
                   {STAGED[crop] ? (
                     <Staged
@@ -755,11 +804,12 @@ export function GardenModel({
           pointerEvents='none'
         />
       );
-  if (over !== null && sections[over])
+  const target = over ?? hover;
+  if (target !== null && sections[target])
     drawn.push(
       <polygon
         key='over'
-        points={top(sections[over])}
+        points={top(sections[target])}
         fill='rgba(154,63,31,0.18)'
         stroke={MARK}
         strokeWidth={2}
@@ -865,9 +915,19 @@ export function GardenModel({
         viewBox={`${minX + (w - vw) / 2 + px} ${minY + (h - vh) / 2 + py} ${vw} ${vh}`}
         className={cn(
           'block h-auto max-h-[38rem] w-full',
-          zoom > 1 && 'cursor-grab touch-none active:cursor-grabbing'
+          // Two fingers pinch the model, one scrolls the page; zoomed in,
+          // one finger moves the view.
+          zoom > 1
+            ? 'cursor-grab touch-none active:cursor-grabbing'
+            : 'touch-pan-y'
         )}
         onPointerDown={e => {
+          fingers.current.set(e.pointerId, [e.clientX, e.clientY]);
+          if (fingers.current.size === 2) {
+            pinch.current = { d: spread(), zoom };
+            drag.current = { x: 0, y: 0, pan: [px, py], moved: true };
+            return;
+          }
           if (zoom > 1)
             drag.current = {
               x: e.clientX,
@@ -877,18 +937,41 @@ export function GardenModel({
             };
         }}
         onPointerMove={e => {
+          if (fingers.current.has(e.pointerId))
+            fingers.current.set(e.pointerId, [e.clientX, e.clientY]);
+          if (pinch.current && fingers.current.size === 2) {
+            zoomTo((pinch.current.zoom * spread()) / pinch.current.d);
+            return;
+          }
           const d = drag.current;
-          if (!d) return;
+          if (!d || pinch.current) return;
           const dx = e.clientX - d.x,
             dy = e.clientY - d.y;
           if (Math.abs(dx) + Math.abs(dy) > 4) d.moved = true;
           const k = vw / e.currentTarget.clientWidth;
           if (d.moved) setPan(limit([d.pan[0] - dx * k, d.pan[1] - dy * k]));
         }}
-        onPointerUp={() => setTimeout(() => (drag.current = null))}
-        onPointerLeave={() => (drag.current = null)}
+        onPointerUp={e => {
+          fingers.current.delete(e.pointerId);
+          if (fingers.current.size < 2) pinch.current = null;
+          setTimeout(() => (drag.current = null));
+        }}
+        onPointerCancel={e => {
+          fingers.current.delete(e.pointerId);
+          pinch.current = null;
+          drag.current = null;
+        }}
+        onPointerLeave={e => {
+          fingers.current.delete(e.pointerId);
+          drag.current = null;
+        }}
         onClickCapture={e => {
           if (drag.current?.moved) e.stopPropagation();
+        }}
+        onClick={e => {
+          if ((e.target as Element).closest('[data-sec]')) return;
+          const i = nearest(e.currentTarget, e.clientX, e.clientY);
+          if (i !== null) onSelect(i);
         }}
         onDragOver={e => {
           if (!onDropCrop || !e.dataTransfer.types.includes(CROP_DRAG)) return;
@@ -938,6 +1021,16 @@ export function GardenModel({
           </Button>
         ) : null}
       </div>
+      {onClear && selected.length > 0 ? (
+        <Button
+          variant='ghost'
+          onClick={onClear}
+          className='absolute bottom-2 left-2 bg-card/90 px-3 text-sm elevation-raised hover:bg-card'
+        >
+          <X className='size-4' />
+          {t('planner.clearSelection')}
+        </Button>
+      ) : null}
       <div className='absolute right-2 bottom-2 flex flex-col gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'>
         <Button
           variant='ghost'

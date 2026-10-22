@@ -492,7 +492,7 @@
     "noneSelected": "Touchez une planche pour la voir. Touchez-en d'autres pour les modifier ensemble.",
     "palette": {
       "title": "Cultures",
-      "hint": "Glissez une culture sur une planche, ou sélectionnez des planches et touchez une culture.",
+      "hint": "Maintenez une culture et glissez-la sur une planche, ou sélectionnez des planches et touchez une culture.",
       "toSelected_one": "Touchez une culture pour la mettre dans la partie sélectionnée.",
       "toSelected_other": "Touchez une culture pour la mettre dans les {{count}} parties sélectionnées."
     },

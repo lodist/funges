@@ -492,7 +492,7 @@
     "noneSelected": "Toque num canteiro para vê-lo. Toque em mais para mudá-los juntos.",
     "palette": {
       "title": "Culturas",
-      "hint": "Arraste uma cultura para um canteiro, ou selecione canteiros e toque numa cultura.",
+      "hint": "Mantenha uma cultura premida e arraste-a para um canteiro, ou selecione canteiros e toque numa cultura.",
       "toSelected_one": "Toque numa cultura para colocá-la na parte selecionada.",
       "toSelected_other": "Toque numa cultura para colocá-la nas {{count}} partes selecionadas."
     },

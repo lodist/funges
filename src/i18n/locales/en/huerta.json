@@ -492,7 +492,7 @@
     "noneSelected": "Tap a bed to see it. Tap more beds to change them together.",
     "palette": {
       "title": "Crops",
-      "hint": "Drag a crop onto a bed, or select beds and tap a crop.",
+      "hint": "Hold a crop and drag it onto a bed, or select beds and tap a crop.",
       "toSelected_one": "Tap a crop to put it in the selected section.",
       "toSelected_other": "Tap a crop to put it in the {{count}} selected sections."
     },

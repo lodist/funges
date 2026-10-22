@@ -98,7 +98,7 @@ const UNDO_STEPS = 20;
 /** The chips' look (CategoryChips), for the planner's own choices. */
 const chip = (on: boolean) =>
   cn(
-    'h-9 px-3 text-foreground hover:text-foreground dark:hover:text-foreground',
+    'h-9 px-3 text-foreground hover:text-foreground max-sm:text-sm dark:hover:text-foreground',
     'bg-muted hover:bg-muted/80 dark:hover:bg-muted/80',
     on ? 'font-semibold shadow-[0_1px_4px_rgba(0,0,0,0.08)]' : 'font-medium'
   );
@@ -117,6 +117,8 @@ export default function HuertaPlannerPage() {
   const [sel, setSel] = useState<number[]>([0]);
   // A deleted bed's patch of earth, when one is picked instead of a section.
   const [patch, setPatch] = useState<number | null>(null);
+  // The section a crop dragged by touch is over.
+  const [touchOver, setTouchOver] = useState<number | null>(null);
   // Earlier plans, for Undo; kept while the page is open.
   const [past, setPast] = useState<Plan[]>([]);
   const year = useHuertaYear();
@@ -286,7 +288,7 @@ export default function HuertaPlannerPage() {
         </header>
 
         <section className='overflow-hidden rounded-card bg-card elevation-raised'>
-          <div className='flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-border p-4'>
+          <div className='flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-border p-3 max-sm:text-sm sm:gap-x-4 sm:gap-y-3 sm:p-4'>
             {(['width', 'length'] as const).map(key => (
               <label
                 key={key}
@@ -301,7 +303,7 @@ export default function HuertaPlannerPage() {
                   step={0.5}
                   defaultValue={plan.garden[key]}
                   key={`${key}-${plan.garden[key]}`}
-                  className='h-9 w-20'
+                  className='h-9 w-16 max-sm:text-sm sm:w-20'
                   onBlur={e => {
                     const v = Math.min(
                       MAX_SIDE,
@@ -342,7 +344,7 @@ export default function HuertaPlannerPage() {
             >
               <SelectTrigger
                 aria-label={t('planner.groundLabel')}
-                className='h-9 w-auto'
+                className='h-9 w-auto max-sm:text-sm'
               >
                 <SelectValue />
               </SelectTrigger>
@@ -376,7 +378,7 @@ export default function HuertaPlannerPage() {
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button>
+                <Button className='max-sm:px-4 max-sm:text-sm'>
                   {t('planner.auto')}
                   <ChevronDown className='size-4' />
                 </Button>
@@ -411,7 +413,12 @@ export default function HuertaPlannerPage() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button variant='outline' onClick={undo} disabled={!past.length}>
+            <Button
+              variant='outline'
+              onClick={undo}
+              disabled={!past.length}
+              className='max-sm:px-4 max-sm:text-sm'
+            >
               <Undo2 className='size-4' />
               {t('planner.undo')}
             </Button>
@@ -428,6 +435,11 @@ export default function HuertaPlannerPage() {
                   onDropCrop={(i, crop) =>
                     place(chosen.includes(i) ? chosen : [i], crop)
                   }
+                  hover={touchOver}
+                  onClear={() => {
+                    setSel([]);
+                    setPatch(null);
+                  }}
                   stage={stageOf}
                   fresh={fresh}
                   bare={plan.bare}
@@ -462,6 +474,7 @@ export default function HuertaPlannerPage() {
                 onDrop={(i, crop) =>
                   place(chosen.includes(i) ? chosen : [i], crop)
                 }
+                onHover={setTouchOver}
               />
               <div className='flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-border px-4 py-2 text-sm text-muted-foreground'>
                 <span>
@@ -711,6 +724,7 @@ function Palette({
   count,
   onPick,
   onDrop,
+  onHover,
 }: {
   advice: PlaceAdvice;
   /** Sections selected: a tapped crop goes into them. */
@@ -718,10 +732,12 @@ function Palette({
   onPick: (crop: string) => void;
   /** A crop dropped on section `index` by touch (a mouse drops on the model). */
   onDrop: (index: number, crop: string) => void;
+  /** The section under a crop dragged by touch, or null. */
+  onHover: (index: number | null) => void;
 }) {
   const { t } = useTranslation('huerta');
   const [kind, setKind] = useState<string>('all');
-  const lifted = useTouchDrag(onDrop);
+  const lifted = useTouchDrag(onDrop, onHover);
   const crops = useMemo(
     () =>
       CROPS.filter(c => kind === 'all' || c.kind === kind).sort(
@@ -778,7 +794,9 @@ function Palette({
                 src={photo(c.id)}
                 alt=''
                 draggable={false}
-                className='size-9 rounded-md object-cover'
+                // Not the long press's target: a held photo opens the
+                // browser's image menu, which cancels the touch.
+                className='pointer-events-none size-9 rounded-md object-cover'
               />
               <span className='min-w-0'>
                 <span className='block truncate font-medium text-foreground'>
@@ -816,10 +834,15 @@ const LIFT_MS = 280;
  *  tile until it lifts (a buzz, where the phone has one), move it over a bed,
  *  let go. A finger that moves before it lifts scrolls the strip as before.
  *  Returns the list's ref and where the lifted crop is. */
-function useTouchDrag(onDrop: (index: number, crop: string) => void) {
+function useTouchDrag(
+  onDrop: (index: number, crop: string) => void,
+  onHover: (index: number | null) => void
+) {
   const list = useRef<HTMLUListElement>(null);
   const drop = useRef(onDrop);
   drop.current = onDrop;
+  const hover = useRef(onHover);
+  hover.current = onHover;
   const [at, setAt] = useState<{ crop: string; x: number; y: number } | null>(
     null
   );
@@ -829,11 +852,20 @@ function useTouchDrag(onDrop: (index: number, crop: string) => void) {
     let hold = 0;
     let start: { crop: string; x: number; y: number } | null = null;
     let dragging = false;
+    const bedAt = (x: number, y: number) => {
+      const bed = document.elementFromPoint(x, y)?.closest('[data-sec]');
+      return bed ? Number(bed.getAttribute('data-sec')) : null;
+    };
     const end = () => {
       window.clearTimeout(hold);
       start = null;
       dragging = false;
       setAt(null);
+      hover.current(null);
+    };
+    // A long press on a tile is ours: no image or text menu.
+    const menu = (e: Event) => {
+      if ((e.target as Element).closest('[data-crop]')) e.preventDefault();
     };
     const down = (e: TouchEvent) => {
       const tile = (e.target as Element).closest<HTMLElement>('[data-crop]');
@@ -853,6 +885,7 @@ function useTouchDrag(onDrop: (index: number, crop: string) => void) {
       if (dragging) {
         e.preventDefault(); // the page holds still under the lifted crop
         setAt({ crop: start.crop, x: f.clientX, y: f.clientY });
+        hover.current(bedAt(f.clientX, f.clientY));
       } else if (Math.hypot(f.clientX - start.x, f.clientY - start.y) > 8)
         end();
     };
@@ -860,10 +893,8 @@ function useTouchDrag(onDrop: (index: number, crop: string) => void) {
       if (dragging && start) {
         e.preventDefault(); // no tap after a drop
         const f = e.changedTouches[0];
-        const bed = document
-          .elementFromPoint(f.clientX, f.clientY)
-          ?.closest('[data-sec]');
-        if (bed) drop.current(Number(bed.getAttribute('data-sec')), start.crop);
+        const bed = bedAt(f.clientX, f.clientY);
+        if (bed !== null) drop.current(bed, start.crop);
       }
       end();
     };
@@ -871,7 +902,9 @@ function useTouchDrag(onDrop: (index: number, crop: string) => void) {
     ul.addEventListener('touchmove', move, { passive: false });
     ul.addEventListener('touchend', up);
     ul.addEventListener('touchcancel', end);
+    ul.addEventListener('contextmenu', menu);
     return () => {
+      ul.removeEventListener('contextmenu', menu);
       window.clearTimeout(hold);
       ul.removeEventListener('touchstart', down);
       ul.removeEventListener('touchmove', move);
