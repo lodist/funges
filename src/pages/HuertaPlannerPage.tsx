@@ -123,8 +123,6 @@ export default function HuertaPlannerPage() {
   const isMobile = useIsMobile();
   // The garden's setup on a phone: folded until opened.
   const [setupOpen, setSetupOpen] = useState(false);
-  // The section a crop dragged by touch is over.
-  const [touchOver, setTouchOver] = useState<number | null>(null);
   // Earlier plans, for Undo; kept while the page is open.
   const [past, setPast] = useState<Plan[]>([]);
   const year = useHuertaYear();
@@ -470,7 +468,6 @@ export default function HuertaPlannerPage() {
                   onDropCrop={(i, crop) =>
                     place(chosen.includes(i) ? chosen : [i], crop)
                   }
-                  hover={touchOver}
                   onClear={() => {
                     setSel([]);
                     setPatch(null);
@@ -509,7 +506,6 @@ export default function HuertaPlannerPage() {
                 onDrop={(i, crop) =>
                   place(chosen.includes(i) ? chosen : [i], crop)
                 }
-                onHover={setTouchOver}
               />
               <div className='flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-border px-4 py-2 text-sm text-muted-foreground'>
                 <span>
@@ -759,7 +755,6 @@ function Palette({
   count,
   onPick,
   onDrop,
-  onHover,
 }: {
   advice: PlaceAdvice;
   /** Sections selected: a tapped crop goes into them. */
@@ -767,12 +762,10 @@ function Palette({
   onPick: (crop: string) => void;
   /** A crop dropped on section `index` by touch (a mouse drops on the model). */
   onDrop: (index: number, crop: string) => void;
-  /** The section under a crop dragged by touch, or null. */
-  onHover: (index: number | null) => void;
 }) {
   const { t } = useTranslation('huerta');
   const [kind, setKind] = useState<string>('all');
-  const lifted = useTouchDrag(onDrop, onHover);
+  const lifted = useTouchDrag(onDrop);
   const crops = useMemo(
     () =>
       CROPS.filter(c => kind === 'all' || c.kind === kind).sort(
@@ -847,13 +840,18 @@ function Palette({
           </li>
         ))}
       </ul>
-      {lifted.at
+      {lifted.lifted
         ? createPortal(
+            // Placed by transform from its corner; the inner offsets keep it
+            // above the finger, where the bed under it stays in sight.
             <img
-              src={photo(lifted.at.crop)}
+              ref={lifted.ghost}
+              src={photo(lifted.lifted)}
               alt=''
-              className='pointer-events-none fixed z-50 size-14 -translate-x-1/2 -translate-y-[120%] rounded-lg object-cover shadow-lg ring-2 ring-primary'
-              style={{ left: lifted.at.x, top: lifted.at.y }}
+              className='pointer-events-none fixed top-0 left-0 z-50 -mt-[4.25rem] -ml-7 size-14 rounded-lg object-cover shadow-lg ring-2 ring-primary will-change-transform'
+              style={{
+                transform: `translate(${lifted.at.current[0]}px, ${lifted.at.current[1]}px)`,
+              }}
             />,
             document.body
           )
@@ -869,24 +867,43 @@ const LIFT_MS = 280;
  *  tile until it lifts (a buzz, where the phone has one), move it over a bed,
  *  let go. A finger that moves before it lifts scrolls the strip as before.
  *  Returns the list's ref and where the lifted crop is. */
-function useTouchDrag(
-  onDrop: (index: number, crop: string) => void,
-  onHover: (index: number | null) => void
-) {
+function useTouchDrag(onDrop: (index: number, crop: string) => void) {
   const list = useRef<HTMLUListElement>(null);
   const drop = useRef(onDrop);
   drop.current = onDrop;
-  const hover = useRef(onHover);
-  hover.current = onHover;
-  const [at, setAt] = useState<{ crop: string; x: number; y: number } | null>(
-    null
-  );
+  // The crop lifted (one render when it lifts, one when it drops); the
+  // finger's moves go straight to the lifted image's style, so a move costs
+  // no render: a render of the garden per move (up to 1,500 plants) took
+  // ~140 ms on a phone, and the browser then took the gesture as a scroll.
+  const [lifted, setLifted] = useState<string | null>(null);
+  const ghost = useRef<HTMLImageElement>(null);
+  const at = useRef<[number, number]>([0, 0]);
   useEffect(() => {
     const ul = list.current;
     if (!ul) return;
     let hold = 0;
     let start: { crop: string; x: number; y: number } | null = null;
     let dragging = false;
+    let over: number | null = null;
+    // The model's outline for the bed under the finger (GardenModel), moved
+    // by its attributes: a render of the garden per new bed took half a
+    // second on a phone.
+    const outline = (bed: number | null) => {
+      over = bed;
+      const mark = document.querySelector('[data-touch-over]');
+      const poly =
+        bed === null
+          ? null
+          : document.querySelector(`polygon[data-sec="${bed}"]`);
+      if (!mark) return;
+      mark.setAttribute('points', poly?.getAttribute('points') ?? '');
+      mark.setAttribute('visibility', poly ? 'visible' : 'hidden');
+    };
+    const follow = (x: number, y: number) => {
+      at.current = [x, y];
+      if (ghost.current)
+        ghost.current.style.transform = `translate(${x}px, ${y}px)`;
+    };
     const bedAt = (x: number, y: number) => {
       const bed = document.elementFromPoint(x, y)?.closest('[data-sec]');
       return bed ? Number(bed.getAttribute('data-sec')) : null;
@@ -895,8 +912,8 @@ function useTouchDrag(
       window.clearTimeout(hold);
       start = null;
       dragging = false;
-      setAt(null);
-      hover.current(null);
+      setLifted(null);
+      if (over !== null) outline(null);
     };
     // A long press on a tile is ours: no image or text menu.
     const menu = (e: Event) => {
@@ -911,7 +928,8 @@ function useTouchDrag(
         if (!start) return;
         dragging = true;
         navigator.vibrate?.(15);
-        setAt(start);
+        follow(start.x, start.y);
+        setLifted(start.crop);
       }, LIFT_MS);
     };
     const move = (e: TouchEvent) => {
@@ -919,8 +937,9 @@ function useTouchDrag(
       const f = e.touches[0];
       if (dragging) {
         e.preventDefault(); // the page holds still under the lifted crop
-        setAt({ crop: start.crop, x: f.clientX, y: f.clientY });
-        hover.current(bedAt(f.clientX, f.clientY));
+        follow(f.clientX, f.clientY);
+        const bed = bedAt(f.clientX, f.clientY);
+        if (bed !== over) outline(bed);
       } else if (Math.hypot(f.clientX - start.x, f.clientY - start.y) > 8)
         end();
     };
@@ -947,7 +966,7 @@ function useTouchDrag(
       ul.removeEventListener('touchcancel', end);
     };
   }, []);
-  return { list, at };
+  return { list, lifted, ghost, at };
 }
 
 const COMPASS = ['north', 'east', 'south', 'west'] as const;

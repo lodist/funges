@@ -143,8 +143,6 @@ interface GardenModelProps {
   onTurnNorth?: (delta: number) => void;
   /** A crop dropped on a section. */
   onDropCrop?: (index: number, crop: string) => void;
-  /** The section a crop dragged by touch is over (the palette tracks it). */
-  hover?: number | null;
   /** Clears the selection: a button on the model while sections are selected. */
   onClear?: () => void;
   title: string;
@@ -172,7 +170,6 @@ export function GardenModel({
   onBare,
   onTurnNorth,
   onDropCrop,
-  hover = null,
   onClear,
   title,
 }: GardenModelProps) {
@@ -803,12 +800,11 @@ export function GardenModel({
           pointerEvents='none'
         />
       );
-  const target = over ?? hover;
-  if (target !== null && sections[target])
+  if (over !== null && sections[over])
     drawn.push(
       <polygon
         key='over'
-        points={top(sections[target])}
+        points={top(sections[over])}
         fill='rgba(154,63,31,0.18)'
         stroke={MARK}
         strokeWidth={2}
@@ -991,6 +987,18 @@ export function GardenModel({
         }}
       >
         {drawn}
+        {/* The bed under a crop dragged by touch: the drag points this outline
+            at it (TOUCH_OVER), so a move never re-renders the garden. */}
+        <polygon
+          data-touch-over=''
+          points=''
+          visibility='hidden'
+          fill='rgba(154,63,31,0.18)'
+          stroke={MARK}
+          strokeWidth={2}
+          strokeDasharray='6 4'
+          pointerEvents='none'
+        />
       </svg>
       <div
         role='group'
