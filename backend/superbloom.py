@@ -16,7 +16,7 @@ to POWER, the source of the normals, and WeatherAPI's temperatures are warmed by
 TEMP_OFFSET to match it.
 
 Fitted on iNaturalist records of desert annuals and NASA POWER weather:
-docs/species/2026-10-10-desert-superbloom.md, from
+funges-lab/species/2026-10-10-desert-superbloom.md, from
 backend/tools/calibrate_superbloom.py. The cells are clipped to bloom ground
 (backend/generated/superbloom_ground_US.geojson, built
 offline): dry, low and open desert where the

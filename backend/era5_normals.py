@@ -8,6 +8,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+import r2
+
 GENERATED = Path(__file__).resolve().parent / "generated"
 CONTINENT = {"NE": "EU", "SE": "EU", "USE": "US", "USW": "US"}
 STEP = 0.25
@@ -19,7 +21,7 @@ def relative_humidity(t, td):
 
 
 def load(region: str) -> dict:
-    with np.load(GENERATED / f"era5_normals_{CONTINENT[region]}.npz") as z:
+    with np.load(r2.generated(GENERATED / f"era5_normals_{CONTINENT[region]}.npz")) as z:
         return {name: z[name] for name in z.files}
 
 

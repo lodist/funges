@@ -42,6 +42,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import era5_normals  # noqa: E402
 import forecast_pipeline as fp  # noqa: E402
+import r2  # noqa: E402
 from download_era5_points import log  # noqa: E402
 
 SLOTS = {0: 0, -21: 1, -14: 2, 14: 3, 21: 4}
@@ -348,7 +349,7 @@ def group_fits(table, out, cases, x, mask, scores, shipped, level, sds, specs, h
     other years (all members, all regions) and the member-region pulled toward it, against today's
     model on the same days; shipped by group_ships."""
     from fit_fruiting_parts import pooled_gain
-    gbm = json.loads(fp.FRUITING_GBM_PATH.read_text(encoding="utf-8"))["models"]
+    gbm = json.loads(r2.generated(fp.FRUITING_GBM_PATH).read_text(encoding="utf-8"))["models"]
     species_all, regions, years = cases["species"].to_numpy(), cases["region"].to_numpy(), cases["year"].to_numpy()
     is_placebo = species_all == PLACEBO
     found = pd.to_datetime(cases["find_date"])
@@ -572,6 +573,7 @@ def main() -> None:
                                 f"at least {SHIP_MIN_YEARS} years)",
                   "models": shipped}
         Path(args.export).write_text(json.dumps(export, indent=1) + "\n", encoding="utf-8", newline="\n")
+        r2.ship(args.export)
         log(f"shipped {sum(len(r) for r in shipped.values())} species-regions to {args.export}: "
             + "; ".join(f"{s} {', '.join(r)}" for s, r in sorted(shipped.items())))
     (out / "fruiting_report.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

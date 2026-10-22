@@ -8,7 +8,7 @@ NORMAL_PEAK, moved by K times the season's lead: how much earlier (or later) thi
 year's degree-days above BASE since 1 March reach their normal sum at NORMAL_PEAK.
 
 Fitted on iNaturalist records and the German weather service's first-flowering series:
-docs/species/2026-10-11-heather.md, from backend/tools/calibrate_heather.py. Drawn on
+funges-lab/species/2026-10-11-heather.md, from backend/tools/calibrate_heather.py. Drawn on
 moors and heaths (backend/generated/heather_moors_EU.parquet, built
 offline): CORINE's moors and heathland, and in Britain
 and Ireland its blanket bog, inside Calluna's range.

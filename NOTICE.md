@@ -170,4 +170,4 @@ Natural Earth is in the public domain: "Made with Natural Earth", <https://www.n
 The model was fitted on the National Park Service's Tidal Basin peak-bloom dates,
 the Japan Meteorological Agency's Yoshino first-bloom dates (both as cleaned by the
 GMU cherry blossom prediction competition) and iNaturalist observation dates. None
-of those records are redistributed; see `docs/species/2026-09-30-cherry-blossom.md`.
+of those records are redistributed.

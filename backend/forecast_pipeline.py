@@ -46,7 +46,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasona
 import era5_normals
 import era5_rain
 import hourly_weather
+import huerta
 import process_priority
+import r2
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_composites, get_region_boundaries, get_species_params
@@ -1203,6 +1205,11 @@ def fruiting_gbm_weather_part(features, df, model):
 
 def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
     """Give each species the region's fitted model, where generated/fruiting_fit.json has one."""
+    try:
+        path = r2.generated(path)
+    except Exception as error:
+        print(f"[warn] {Path(path).name} not loaded ({error}); hand-set weather parts used")
+        return
     if not Path(path).exists():
         return
     fit = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -1225,7 +1232,14 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
     replaces that species' linear fit. The models live on R2 (each training run in its own
     folder, checked against the sha256 recorded here); one that cannot be fetched or fails its
     checksum leaves the species on its linear fit. `today` anchors normals and day of year."""
-    if lgb is None or not Path(path).exists():
+    if lgb is None:
+        return
+    try:
+        path = r2.generated(path)
+    except Exception as error:
+        print(f"[warn] {Path(path).name} not loaded ({error}); linear fits stay")
+        return
+    if not Path(path).exists():
         return
     spec = json.loads(Path(path).read_text(encoding="utf-8"))
     if spec.get("features") != FRUITING_GBM_FEATURES:
@@ -1767,9 +1781,15 @@ def run_pipeline(config: RegionConfig):
         # At every place (the base points, ~6-7 km apart), not just the ~10 km weather points:
         # a garden needs its own town's weather, and the model files cost nothing per point.
         places = read_df_from_source(base_file_path)[["Latitude", "Longitude"]].round(config.ndp)
-        hourly_weather.run(config.region, list(places.drop_duplicates().itertuples(index=False, name=None)))
+        hourly = hourly_weather.run(config.region, list(places.drop_duplicates().itertuples(index=False, name=None)))
     except Exception as e:  # noqa: BLE001
+        hourly = None
         print(f"Hourly weather failed: {e!r}")
+    if hourly is not None:
+        try:
+            huerta.publish(config.region, hourly)
+        except Exception as e:  # noqa: BLE001
+            print(f"Huerta advice failed: {e!r}")
     print(f"Script ended at {datetime.now()}")
 
 

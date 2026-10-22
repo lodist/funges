@@ -27,6 +27,9 @@ MACROS = {"EU": (-25.0, 34.0, 42.5, 71.5), "US": (-125.5, 24.0, -67.0, 49.5)}
 ROUND = 0.01  # degrees, ~1 km: grown by this and shrunk back, corners come out round
 SIMPLIFY = 0.002  # degrees, ~200 m
 DECIMALS = 4  # ~10 m
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import r2  # noqa: E402
+
 OUT = Path(__file__).resolve().parents[1] / "generated"
 
 
@@ -55,6 +58,7 @@ def main():
         out = OUT / f"bloom_towns_{macro}.geojson"
         out.write_text(frame.to_json(drop_id=True), encoding="utf-8")
         print(f"wrote {out} ({len(frame)} areas, {out.stat().st_size // 1024} KB)", file=sys.stderr)
+        r2.ship(out)
 
 
 if __name__ == "__main__":

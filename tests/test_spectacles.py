@@ -12,6 +12,7 @@ import bloom
 import bluebell
 import foliage
 import heather
+import r2
 import superbloom
 
 
@@ -242,7 +243,7 @@ def test_foliage_europe_requirement_and_larch(monkeypatch):
     # A larch cell at any height; the Alps from 1,300 m only; elsewhere no.
     assert list(foliage.is_larch([52.5, 46.5, 46.5, 55.0], [3.5, 9.8, 9.8, 5.0],
                                  [0.0, 1800.0, 900.0, 1800.0])) == [True, True, False, False]
-    assert foliage.larch_mask is not None and np.load(bloom._BACKEND / "generated" / "larch_mask_EU.npz")["mask"].any()
+    assert foliage.larch_mask is not None and np.load(r2.generated(bloom._BACKEND / "generated" / "larch_mask_EU.npz"))["mask"].any()
 
 
 def test_build_foliage_in_europe_colours_broadleaf_woods_on_its_requirement(tmp_path):

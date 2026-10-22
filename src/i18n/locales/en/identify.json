@@ -6,7 +6,13 @@
     "seoDescription": "Identify wild mushrooms and plants from a photo, on your own device. Compare the closest matches with their toxic look-alikes.",
     "onDevice": "Runs on this device",
     "noUpload": "Nothing is uploaded",
-    "offline": "Works offline once downloaded"
+    "offline": "Works offline once downloaded",
+    "coverage": {
+      "species": "species recognized",
+      "mushrooms": "of mushroom sightings",
+      "plants": "of plant sightings",
+      "note": "Across verified records in Europe and the US."
+    }
   },
   "plate": {
     "title": "Your find",
@@ -85,6 +91,8 @@
     "lethalLabel": "Deadly - do not eat",
     "inedibleLabel": "Not edible",
     "notInCatalog": "Not in this app's catalog - no safety information",
+    "cautionLabel": "Toxic relatives",
+    "cautionGenus": "Not in this app's catalog - its genus includes toxic species",
     "unknownSpecies": "Not recognised",
     "confidence": "{{percent}}% match",
     "confidenceUnderOne": "<1% match",

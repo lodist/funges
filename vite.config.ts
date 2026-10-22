@@ -53,7 +53,11 @@ export default defineConfig({
     }),
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      // A new version installs in the background and waits for the next page
+      // change (routes/__root.tsx) instead of reloading the page in use.
+      // Registered by src/lib/pwa.ts, which also hands over to it.
+      registerType: 'prompt',
+      injectRegister: false,
       workbox: {
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,webp,avif}',
@@ -271,8 +275,8 @@ export default defineConfig({
           /\/data\/.*\.csv$/,
           new RegExp(`^${baseUrl}identify(?:/|$)`),
         ],
-        // Skip waiting for immediate activation
-        skipWaiting: true,
+        // No skipWaiting: a new version waits for its SKIP_WAITING message.
+        // clientsClaim moves the page onto it as soon as it activates.
         clientsClaim: true,
         // Clean up old caches
         cleanupOutdatedCaches: true,
@@ -376,9 +380,6 @@ export default defineConfig({
             ],
           },
         ],
-      },
-      devOptions: {
-        enabled: true,
       },
     }),
     Sitemap({

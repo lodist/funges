@@ -101,6 +101,7 @@ _TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(_TOOLS.parent))
 sys.path.insert(0, str(_TOOLS))
 import bloom  # noqa: E402
+import r2  # noqa: E402
 
 ROOT = _TOOLS.parents[1]
 APP = ROOT.parent  # app_operation: the local data next to the repo
@@ -544,7 +545,7 @@ def group_of(lat, lon):
 
 
 def load_normals():
-    return dict(np.load(ROOT / "backend" / "generated" / "bloom_normals_US.npz"))
+    return dict(np.load(r2.generated(ROOT / "backend" / "generated" / "bloom_normals_US.npz")))
 
 
 def series(lat, lon, years, ground, cache, kind="t2m", lapse=True, normals=None):

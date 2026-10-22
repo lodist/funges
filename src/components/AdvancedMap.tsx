@@ -227,6 +227,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   const map = useRef<maplibregl.Map | null>(null);
   const geolocateControl = useRef<maplibregl.GeolocateControl | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+  // Bumping it rebuilds the map; see rebuildIfStyleLost below.
+  const [mapRebuilds, setMapRebuilds] = useState(0);
   const [mapError, setMapError] = useState<string | null>(null);
   const [viewportBounds, setViewportBounds] = useState<
     [number, number, number, number] | null
@@ -522,6 +524,24 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
 
+    // MapLibre restores a lost WebGL context by itself, but reloads the style
+    // only on the next animation frame, and a hidden page gets none. A second
+    // loss before then (Android can kill the GPU process twice while the app
+    // sits in the background) leaves the map with no style: blank white until
+    // a reload. Rebuild it then, as a theme switch does, once it is on screen.
+    // ponytail: reads MapLibre's own `style` field; drop this once a second
+    // loss keeps the style (maplibre-gl 6.9 does not).
+    const rebuildIfStyleLost = () => {
+      if (
+        document.visibilityState === 'visible' &&
+        map.current &&
+        !map.current.style
+      ) {
+        setMapRebuilds(n => n + 1);
+      }
+    };
+    document.addEventListener('visibilitychange', rebuildIfStyleLost);
+
     try {
       // Arrive: start above the saved (or default) viewport; the load handler
       // below zooms the camera in to it once the style is ready. The flags are
@@ -761,6 +781,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
         console.warn('MapLibre error (non-fatal):', sourceId ?? '', e);
       });
 
+      map.current.on('webglcontextrestored', rebuildIfStyleLost);
+
       // Handle map move
       map.current.on('move', () => {
         if (map.current) {
@@ -784,6 +806,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     }
 
     return () => {
+      document.removeEventListener('visibilitychange', rebuildIfStyleLost);
       if (map.current) {
         // map.remove() already tears down every registered control
         // (including geolocate.onRemove()) - don't call removeControl()
@@ -803,7 +826,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       setMapRef(null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapStyle]);
+  }, [mapStyle, mapRebuilds]);
 
   // Update map when center or zoom changes
   useEffect(() => {

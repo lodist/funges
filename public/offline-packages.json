@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-19T08:30:35.427268Z",
+  "generatedAt": "2026-10-22T08:22:16.991972Z",
   "packages": [
     {
       "id": "eu",
@@ -15,8 +15,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "e31d1fb01fe0",
-      "updatedAt": "2026-10-19T02:12:02Z",
+      "version": "90103d59e2db",
+      "updatedAt": "2026-10-22T02:24:11Z",
       "published": true,
       "resources": [
         {
@@ -31,18 +31,18 @@
         {
           "id": "ne-forecast",
           "kind": "forecast",
-          "version": "68fffe47cb5daf095c075a22fdfd1f41",
+          "version": "60959ed98090e045f17afc0d06fa001c",
           "sourceUrl": "https://data.fung.es/EU/NE/ne_forecast.pmtiles",
-          "sizeBytes": 8671751,
-          "etag": "68fffe47cb5daf095c075a22fdfd1f41"
+          "sizeBytes": 8702629,
+          "etag": "60959ed98090e045f17afc0d06fa001c"
         },
         {
           "id": "se-forecast",
           "kind": "forecast",
-          "version": "44705bfb3586ee5418f34694e4c780b3",
+          "version": "a57793298309a1cb9a45fb6830dab94d",
           "sourceUrl": "https://data.fung.es/EU/SE/se_forecast.pmtiles",
-          "sizeBytes": 12992553,
-          "etag": "44705bfb3586ee5418f34694e4c780b3"
+          "sizeBytes": 13025557,
+          "etag": "a57793298309a1cb9a45fb6830dab94d"
         }
       ]
     },
@@ -59,8 +59,8 @@
       ],
       "minZoom": 3,
       "maxZoom": 8,
-      "version": "ee32c46dd2bf",
-      "updatedAt": "2026-10-19T03:13:32Z",
+      "version": "300cd61271b9",
+      "updatedAt": "2026-10-22T03:37:54Z",
       "published": true,
       "resources": [
         {
@@ -75,18 +75,18 @@
         {
           "id": "use-forecast",
           "kind": "forecast",
-          "version": "0a791a662f3e25b303c107c479a85c04",
+          "version": "b416b9a0f07d944154e5360d5901f66f",
           "sourceUrl": "https://data.fung.es/USA/USE/use_forecast.pmtiles",
-          "sizeBytes": 7861158,
-          "etag": "0a791a662f3e25b303c107c479a85c04"
+          "sizeBytes": 7858629,
+          "etag": "b416b9a0f07d944154e5360d5901f66f"
         },
         {
           "id": "usw-forecast",
           "kind": "forecast",
-          "version": "702d1c6e9c0ff5338251a8cf3ea76f0e",
+          "version": "8aba897a87a4ae2de5728733c5c51325",
           "sourceUrl": "https://data.fung.es/USA/USW/usw_forecast.pmtiles",
-          "sizeBytes": 7651767,
-          "etag": "702d1c6e9c0ff5338251a8cf3ea76f0e"
+          "sizeBytes": 7598770,
+          "etag": "8aba897a87a4ae2de5728733c5c51325"
         }
       ]
     }

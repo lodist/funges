@@ -6,7 +6,13 @@
     "seoDescription": "Identifiez champignons et plantes sauvages à partir d’une photo, sur votre propre appareil. Comparez les correspondances les plus proches avec leurs sosies toxiques.",
     "onDevice": "Fonctionne sur cet appareil",
     "noUpload": "Rien n’est envoyé",
-    "offline": "Hors ligne une fois téléchargé"
+    "offline": "Hors ligne une fois téléchargé",
+    "coverage": {
+      "species": "espèces reconnues",
+      "mushrooms": "des observations de champignons",
+      "plants": "des observations de plantes",
+      "note": "Sur les relevés validés en Europe et aux États-Unis."
+    }
   },
   "plate": {
     "title": "Votre trouvaille",
@@ -85,6 +91,8 @@
     "lethalLabel": "Mortel - ne pas consommer",
     "inedibleLabel": "Non comestible",
     "notInCatalog": "Absent du catalogue de cette application - aucune information de sécurité",
+    "cautionLabel": "Parents toxiques",
+    "cautionGenus": "Absent du catalogue de cette application - son genre comprend des espèces toxiques",
     "unknownSpecies": "Non reconnu",
     "confidence": "{{percent}} % de correspondance",
     "confidenceUnderOne": "<1 % de correspondance",

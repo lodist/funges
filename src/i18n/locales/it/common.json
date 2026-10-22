@@ -1,9 +1,7 @@
 {
   "offline": {
     "mode": "Modalità Offline",
-    "updateAvailable": "Aggiornamento Disponibile",
-    "installApp": "Installa App",
-    "reloadForUpdate": "Ricarica per Aggiornare"
+    "installApp": "Installa App"
   },
   "home": {
     "headline": "Esplora ciò che cresce intorno a te",
