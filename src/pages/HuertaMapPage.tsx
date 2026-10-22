@@ -4,13 +4,16 @@ import { useTranslation } from 'react-i18next';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
-import { SELECTED_CHIP_CLASS } from '@/components/CategoryChips';
 import { HuertaCropPicker } from '@/components/HuertaCropPicker';
 import { HuertaWeek } from '@/components/HuertaWeek';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { BAND_GHOST_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
+import {
+  BAND_ACTIVE_CLASS,
+  BAND_GHOST_CLASS,
+  BAND_SURFACE_CLASS,
+} from '@/lib/band-surface';
 import { grid, paint, STATUS_RGB, type MapLayer } from '@/lib/garden-map';
 import { CROPS, statusGroup, type PlaceAdvice } from '@/lib/huerta';
 import {
@@ -27,7 +30,14 @@ import {
   type MapView,
   type Place,
 } from '@/lib/huerta-api';
-import { MapPinned, X } from '@/lib/icons';
+import {
+  Droplets,
+  MapPinned,
+  Snowflake,
+  Sprout,
+  Thermometer,
+  X,
+} from '@/lib/icons';
 import { protocol } from '@/lib/pmtiles-protocol';
 import { cn } from '@/lib/utils';
 import { useMapStore } from '@/store/mapStore';
@@ -37,6 +47,12 @@ maplibregl.addProtocol('pmtiles', protocol.tile);
 
 type Continent = keyof typeof MAP_REGIONS;
 const LAYERS: MapLayer[] = ['crop', 'frost', 'soil', 'water'];
+const LAYER_ICON: Record<MapLayer, typeof Sprout> = {
+  crop: Sprout,
+  frost: Snowflake,
+  soil: Thermometer,
+  water: Droplets,
+};
 /** Roughly where each continent's places are: its layer loads once in view. */
 const BOX: Record<Continent, [number, number, number, number]> = {
   eu: [-25, 34, 45, 72],
@@ -307,6 +323,11 @@ export default function HuertaMapPage() {
     };
   }, [picked]);
 
+  const layerName = (l: MapLayer) =>
+    l === 'crop'
+      ? t('map.layers.crop', { crop: t(`crops.${crop}`) })
+      : t(`map.layers.${l}`);
+
   // The crop panel opened: its status filter is for the spot picked, else
   // for the map's centre.
   const lookAround = () => {
@@ -340,26 +361,34 @@ export default function HuertaMapPage() {
               onOpen={lookAround}
             />
           </div>
-          <div
-            role='group'
-            aria-label={t('map.layer')}
-            className='pointer-events-auto -mx-3 flex gap-2 overflow-x-auto px-3 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0'
-          >
-            {LAYERS.map(l => (
-              <Button
-                key={l}
-                type='button'
-                variant='ghost'
-                aria-pressed={layer === l}
-                onClick={() => setLayer(l)}
-                className={cn(chipClass(layer === l), 'shrink-0')}
-              >
-                {l === 'crop'
-                  ? t('map.layers.crop', { crop: t(`crops.${crop}`) })
-                  : t(`map.layers.${l}`)}
-              </Button>
-            ))}
-          </div>
+        </div>
+        {/* The layers as Terra's tool rail: one band-coloured column, top right. */}
+        <div
+          role='group'
+          aria-label={t('map.layer')}
+          className={cn(
+            'absolute top-2 right-4 z-20 flex flex-col gap-1 rounded-full p-1 elevation-raised',
+            BAND_SURFACE_CLASS
+          )}
+        >
+          {LAYERS.map(l => (
+            <Button
+              key={l}
+              type='button'
+              variant='ghost'
+              size='icon'
+              aria-pressed={layer === l}
+              aria-label={layerName(l)}
+              title={layerName(l)}
+              onClick={() => setLayer(l)}
+              className={layer === l ? BAND_ACTIVE_CLASS : BAND_GHOST_CLASS}
+            >
+              {(() => {
+                const Icon = LAYER_ICON[l];
+                return <Icon className='h-4 w-4' />;
+              })()}
+            </Button>
+          ))}
         </div>
         <div
           className={cn(
@@ -378,23 +407,25 @@ export default function HuertaMapPage() {
               onClose={() => setPicked(null)}
             />
           ) : null}
-          {picked && isMobile ? null : <Legend layer={layer} failed={failed} />}
+          {picked && isMobile ? null : (
+            <Legend layer={layer} title={layerName(layer)} failed={failed} />
+          )}
         </div>
       </div>
     </>
   );
 }
 
-/** The filter chips' look over the map (CategoryChips, glass tone). */
-const chipClass = (selected: boolean) =>
-  cn(
-    'px-4',
-    selected
-      ? SELECTED_CHIP_CLASS
-      : 'bg-card/90 font-medium text-foreground backdrop-blur-sm hover:bg-card hover:text-foreground dark:hover:bg-card dark:hover:text-foreground'
-  );
-
-function Legend({ layer, failed }: { layer: MapLayer; failed: boolean }) {
+function Legend({
+  layer,
+  title,
+  failed,
+}: {
+  layer: MapLayer;
+  /** The layer's name: the rail shows only its icon. */
+  title: string;
+  failed: boolean;
+}) {
   const { t } = useTranslation('huerta');
   const keys: [string, string][] =
     layer === 'crop'
@@ -412,6 +443,9 @@ function Legend({ layer, failed }: { layer: MapLayer; failed: boolean }) {
         : [];
   return (
     <div className='pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm'>
+      {failed ? null : (
+        <p className='mb-2 font-semibold text-foreground'>{title}</p>
+      )}
       {failed ? (
         <p className='text-muted-foreground'>{t('map.failed')}</p>
       ) : keys.length > 0 ? (
