@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 import type { CropStatus } from '@/lib/huerta';
@@ -268,5 +269,16 @@ describe('the garden planner', () => {
     // Planned again, the strip stays a strip.
     const again = autoPlan(mixed, all, { style: 'vegFlowers' });
     expect(again).toHaveLength(mixed.length);
+  });
+});
+
+describe('the garden model', () => {
+  it('has every crop photographed at each stage', () => {
+    // The model draws only photographs now: a crop added without its five
+    // stage images would draw nothing (style/integrate.py lists them in STAGED).
+    const source = readFileSync('src/components/GardenModel.tsx', 'utf8');
+    const block = source.match(/const STAGED[^{]*\{([^}]*)\}/)?.[1] ?? '';
+    const staged = new Set([...block.matchAll(/^\s*(\w+):/gm)].map(m => m[1]));
+    expect(CROPS.filter(c => !staged.has(c.id)).map(c => c.id)).toEqual([]);
   });
 });

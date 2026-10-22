@@ -18,7 +18,7 @@ import {
   ZoomOut,
 } from '@/lib/icons';
 import { cn } from '@/lib/utils';
-import { PLANT_LOOK, type PlantLook } from '@/lib/planner-data';
+import { PLANT_LOOK } from '@/lib/planner-data';
 
 /**
  * The garden drawn as an architect's model (axonometric, turned a quarter at
@@ -42,7 +42,6 @@ const PLOT = '#ece5db';
 const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
 const MARK = '#c9603a';
-const HI = 'rgba(255,255,255,0.3)';
 const GROUND = (name: string) => huertaImage(`ground/${name}`);
 /** Crops photographed at each stage, on a frame of this many metres of real
  *  height, the plant's foot at the middle, 8% above the bottom:
@@ -106,7 +105,17 @@ const STAGED: Record<string, number> = {
   spinach: 0.5,
   strawberry: 0.5,
   sunflower: 3.0,
+  sweet_pea: 2.0,
+  sweetcorn: 2.5,
+  thyme: 0.5,
   tomato: 1.5,
+  tulip: 0.75,
+  turnip: 0.5,
+  watermelon: 2.0,
+  white_mustard: 1.0,
+  winter_rye: 1.5,
+  winter_squash: 2.0,
+  zinnia: 1.0,
 };
 /** Real-world size of one texture tile, metres. */
 const TILE = { soil: 0.8, gravel: 0.6 };
@@ -698,34 +707,9 @@ export function GardenModel({
         tallest = Math.max(tallest, look.height);
         const f = fit(s, open);
         const opacity = s.planted ? 1 : 0.6;
-        if (!f && STAGED[crop])
-          // A green manure sown thick: its photographed patches over the
-          // section, one for every sixth blade.
-          carpet(s, i, look)
-            .filter((_, k) => k % 6 === 0)
-            .forEach(([x, y], k) =>
-              plants.push({
-                d: depth(x, y),
-                node: (
-                  <g
-                    key={`c${i}-${x}-${y}`}
-                    opacity={opacity}
-                    pointerEvents='none'
-                  >
-                    <Staged
-                      id={crop}
-                      stage={s.planted && stage ? stage(s) : 'grown'}
-                      at={P(x, y, soilZ)}
-                      seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
-                      pop={fresh?.includes(i) ? k : null}
-                    />
-                  </g>
-                ),
-              })
-            );
-        else if (!f)
-          carpet(s, i, look).forEach(([x, y, h, flower]) => {
-            const [bx, by] = P(x, y, soilZ);
+        if (!f)
+          // A green manure sown thick: its photographed patches over the section.
+          carpet(s, i).forEach(([x, y], k) =>
             plants.push({
               d: depth(x, y),
               node: (
@@ -734,27 +718,17 @@ export function GardenModel({
                   opacity={opacity}
                   pointerEvents='none'
                 >
-                  <line
-                    x1={bx}
-                    y1={by}
-                    x2={bx + h[0]}
-                    y2={by - h[1] * S}
-                    stroke={look.leaf}
-                    strokeWidth={1.3}
-                    strokeLinecap='round'
+                  <Staged
+                    id={crop}
+                    stage={s.planted && stage ? stage(s) : 'grown'}
+                    at={P(x, y, soilZ)}
+                    seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
+                    pop={fresh?.includes(i) ? k : null}
                   />
-                  {flower && look.accent ? (
-                    <circle
-                      cx={bx + h[0]}
-                      cy={by - h[1] * S}
-                      r={2.3}
-                      fill={look.accent}
-                    />
-                  ) : null}
                 </g>
               ),
-            });
-          });
+            })
+          );
         else
           thin(f.points, share).forEach(([x, y], k) =>
             plants.push({
@@ -765,21 +739,13 @@ export function GardenModel({
                   opacity={opacity}
                   pointerEvents='none'
                 >
-                  {STAGED[crop] ? (
-                    <Staged
-                      id={crop}
-                      stage={s.planted && stage ? stage(s) : 'grown'}
-                      at={P(x, y, soilZ)}
-                      seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
-                      pop={fresh?.includes(i) ? k : null}
-                    />
-                  ) : (
-                    <Plant
-                      look={look}
-                      at={P(x, y, soilZ)}
-                      r={Math.min(f.spacing, f.across) / 2}
-                    />
-                  )}
+                  <Staged
+                    id={crop}
+                    stage={s.planted && stage ? stage(s) : 'grown'}
+                    at={P(x, y, soilZ)}
+                    seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
+                    pop={fresh?.includes(i) ? k : null}
+                  />
                 </g>
               ),
             })
@@ -1188,220 +1154,13 @@ function Staged({
 
 /** A photographed plant standing on its spot, about as wide as its spacing:
  *  the photo's foot (its shadow) sits just in front of the spot. */
-/** A scattered green manure: blades (and some flowers) over the section. */
-function carpet(
-  s: Section,
-  i: number,
-  look: PlantLook
-): [number, number, [number, number], boolean][] {
+/** A green manure sown thick: where its photographed patches stand. */
+function carpet(s: Section, i: number): [number, number][] {
   let seed = (i + 1) * 7919;
   const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
-  const n = Math.min(Math.round(((s.x1 - s.x0) * (s.y1 - s.y0)) / 0.009), 320);
-  return Array.from({ length: n }, () => {
-    const x = s.x0 + 0.04 + rnd() * (s.x1 - s.x0 - 0.08);
-    const y = s.y0 + 0.04 + rnd() * (s.y1 - s.y0 - 0.08);
-    return [
-      x,
-      y,
-      [(rnd() - 0.5) * 5, look.height * (0.45 + rnd() * 0.55)],
-      rnd() < 0.35,
-    ];
-  });
-}
-
-/** One plant as its form: spikes, rosette, root, ball, column, climber, sprawl or flower. */
-function Plant({
-  look,
-  at: [bx, by],
-  r,
-}: {
-  look: PlantLook;
-  at: [number, number];
-  r: number;
-}) {
-  const h = look.height * S;
-  const R = Math.max(r * S * 0.9, 3);
-  const L = look.leaf,
-    A = look.accent;
-  switch (look.habit) {
-    case 'rosette':
-      return (
-        <>
-          <ellipse cx={bx} cy={by - R * 0.15} rx={R} ry={R * 0.58} fill={L} />
-          <ellipse
-            cx={bx - R * 0.22}
-            cy={by - R * 0.32}
-            rx={R * 0.5}
-            ry={R * 0.27}
-            fill={HI}
-          />
-          {A ? (
-            <ellipse
-              cx={bx}
-              cy={by - R * 0.1}
-              rx={R * 0.28}
-              ry={R * 0.16}
-              fill={A}
-            />
-          ) : null}
-        </>
-      );
-    case 'ball': {
-      const rr = Math.min(R, h * 0.5);
-      return (
-        <>
-          <circle cx={bx} cy={by - rr} r={rr} fill={L} />
-          <circle
-            cx={bx - rr * 0.32}
-            cy={by - rr * 1.35}
-            r={rr * 0.45}
-            fill={HI}
-          />
-          {A ? (
-            <circle
-              cx={bx + rr * 0.12}
-              cy={by - rr * 1.15}
-              r={rr * 0.42}
-              fill={A}
-            />
-          ) : null}
-        </>
-      );
-    }
-    case 'column': {
-      const w = Math.max(R * 0.6, 5);
-      return (
-        <>
-          <rect
-            x={bx - w / 2}
-            y={by - h}
-            width={w}
-            height={h}
-            rx={w / 2}
-            fill={L}
-          />
-          <rect
-            x={bx - w / 2 + 1.2}
-            y={by - h + 3}
-            width={w * 0.3}
-            height={Math.max(h - 6, 1)}
-            rx={w * 0.15}
-            fill={HI}
-          />
-          {A
-            ? [0.3, 0.55, 0.78].map(k => (
-                <circle
-                  key={k}
-                  cx={bx + (k === 0.55 ? -w * 0.45 : w * 0.45)}
-                  cy={by - h * k}
-                  r={Math.max(w * 0.28, 2.2)}
-                  fill={A}
-                />
-              ))
-            : null}
-        </>
-      );
-    }
-    case 'spikes':
-    case 'root': {
-      const d = Math.max(R * (look.habit === 'root' ? 0.5 : 0.45), 2.5);
-      return (
-        <>
-          <g
-            stroke={L}
-            strokeWidth={look.habit === 'root' ? 1.2 : 1.7}
-            strokeLinecap='round'
-          >
-            <line x1={bx} y1={by} x2={bx - d} y2={by - h} />
-            <line x1={bx} y1={by} x2={bx} y2={by - h * 1.1} />
-            <line x1={bx} y1={by} x2={bx + d} y2={by - h * 0.9} />
-          </g>
-          {A ? (
-            <ellipse
-              cx={bx}
-              cy={by - (look.habit === 'root' ? 0 : 1.5)}
-              rx={d * 0.85}
-              ry={d * 0.5}
-              fill={A}
-            />
-          ) : null}
-        </>
-      );
-    }
-    case 'climber':
-      return (
-        <>
-          <line
-            x1={bx}
-            y1={by}
-            x2={bx}
-            y2={by - h}
-            stroke='#b39a7a'
-            strokeWidth={1.6}
-          />
-          {[1, 2, 3, 4, 5].map(k => (
-            <circle
-              key={k}
-              cx={bx + (k % 2 ? -3.5 : 3.5)}
-              cy={by - (h * k) / 6}
-              r={3.6}
-              fill={L}
-            />
-          ))}
-          {A ? (
-            <circle cx={bx + 3} cy={by - h * 0.86} r={2.6} fill={A} />
-          ) : null}
-        </>
-      );
-    case 'sprawl':
-      return (
-        <>
-          <ellipse
-            cx={bx}
-            cy={by - R * 0.25}
-            rx={R * 1.1}
-            ry={R * 0.62}
-            fill={L}
-          />
-          <ellipse
-            cx={bx - R * 0.3}
-            cy={by - R * 0.45}
-            rx={R * 0.5}
-            ry={R * 0.25}
-            fill={HI}
-          />
-          {A ? (
-            <ellipse
-              cx={bx + R * 0.35}
-              cy={by - R * 0.12}
-              rx={Math.max(R * 0.38, 2.5)}
-              ry={Math.max(R * 0.3, 2)}
-              fill={A}
-            />
-          ) : null}
-        </>
-      );
-    case 'flower':
-      return (
-        <>
-          <line
-            x1={bx}
-            y1={by}
-            x2={bx}
-            y2={by - h}
-            stroke={L}
-            strokeWidth={1.6}
-          />
-          <ellipse cx={bx - 3} cy={by - 2} rx={4} ry={2} fill={L} />
-          <circle
-            cx={bx}
-            cy={by - h}
-            r={Math.max(Math.min(R * 0.5, 7), 3)}
-            fill={A ?? L}
-          />
-        </>
-      );
-    default:
-      return null;
-  }
+  const n = Math.min(Math.round(((s.x1 - s.x0) * (s.y1 - s.y0)) / 0.054), 54);
+  return Array.from({ length: n }, () => [
+    s.x0 + 0.04 + rnd() * (s.x1 - s.x0 - 0.08),
+    s.y0 + 0.04 + rnd() * (s.y1 - s.y0 - 0.08),
+  ]);
 }
