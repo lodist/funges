@@ -9,8 +9,8 @@ import {
   ScanSearch,
   Sprout,
 } from '@/lib/icons';
-import { currentSpace } from '@/lib/spaces';
-import { SpaceBadge } from '@/components/SpaceSwitcher';
+import { currentSpace, visibleSpaces } from '@/lib/spaces';
+import { SpaceNavButton } from '@/components/SpaceSwitcher';
 import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
@@ -90,10 +90,19 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       // is what actually rides --transition-duration-slow.
       transition={{ duration: DURATION_SLOW, ease: EASE_STANDARD }}
     >
-      {/* The space switch rides the bar's top edge, left: the bar's slots are
-          full, and it hides with the bar. */}
-      <SpaceBadge className='absolute -top-5 left-3' />
       <ul className='flex justify-around items-center py-3 px-3'>
+        {/* First slot: the space switch, a grey squirrel that opens the colour
+            tiles (only while there is more than one space). */}
+        {visibleSpaces().length > 1 && (
+          <li className='flex-1'>
+            <SpaceNavButton
+              className={cn(
+                'flex w-full items-center justify-center rounded-xl px-1 py-2 transition-all duration-base',
+                INACTIVE_ACCENT_CLASS
+              )}
+            />
+          </li>
+        )}
         {(currentSpace(location.pathname) === 'huerta'
           ? huertaItems
           : items

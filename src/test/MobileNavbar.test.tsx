@@ -34,9 +34,9 @@ vi.mock('@tanstack/react-router', () => ({
   ),
 }));
 
-// The space badge on the bar's edge is the space menu's own (SpaceSwitcher),
-// with its router hooks; the bar's contract here is its six links.
-vi.mock('@/components/SpaceSwitcher', () => ({ SpaceBadge: () => null }));
+// The space button in the first slot is the space menu's own (SpaceSwitcher),
+// with its router hooks; the bar's contract here is its links.
+vi.mock('@/components/SpaceSwitcher', () => ({ SpaceNavButton: () => null }));
 
 const { isMobile } = vi.hoisted(() => ({ isMobile: { current: true } }));
 vi.mock('@/hooks/use-mobile', () => ({
@@ -57,6 +57,8 @@ vi.mock('@/lib/feature-flags', () => ({
   get shouldShowOfflineFeatures() {
     return offlineEnabled.current;
   },
+  // One space, as on the live site: no space slot in the bar.
+  shouldShowHuerta: false,
 }));
 
 const navLinks = () =>
