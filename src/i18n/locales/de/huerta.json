@@ -29,8 +29,8 @@
     "soil": "Boden",
     "nights": "Nächte",
     "rain": "Regen diese Woche",
-    "water": "Zu gießen",
-    "noWater": "Nichts",
+    "water": "Gießbedarf",
+    "noWater": "Keiner",
     "lastFrost": "Letzter Frost hier meist um den {{date}}",
     "firstFrost": "Erster Frost meist um den {{date}}",
     "noFrostDates": "Frost ist hier selten",
@@ -132,7 +132,7 @@
       "soil": "Boden",
       "nights": "Nächte",
       "rain": "Regen",
-      "water": "Gießen",
+      "water": "Gießbedarf",
       "lastFrost": "Letzter Frost ~{{date}}",
       "firstFrost": "Erster Frost ~{{date}}"
     }
@@ -315,7 +315,7 @@
       "crop": "Jetzt säen oder pflanzen",
       "frost": "Frost diese Woche",
       "soil": "Bodentemperatur",
-      "water": "Diese Woche gießen"
+      "water": "Gießbedarf diese Woche"
     },
     "legend": {
       "now": "Jetzt säen oder pflanzen",
@@ -411,6 +411,7 @@
     "notPlanted": "Noch nicht gepflanzt",
     "sownToday": "Heute gesät",
     "plantedToday": "Heute gepflanzt",
+    "sownOrPlantedToday": "Heute gesät oder gepflanzt",
     "neighbours": "Nachbarn",
     "noNeighbours": "Daneben gibt es nichts zu beachten.",
     "nextTo": "Neben {{crop}}",
@@ -456,9 +457,9 @@
     "shorter": "Kürzer",
     "longer": "Länger",
     "lengthValue": "{{value}} m",
-    "keep": "Hier lassen",
-    "kept": "Bleibt hier",
-    "keptHint": "„Für mich planen“ und neue Maße lassen ihn, wo er ist.",
+    "keep": "Fixieren",
+    "kept": "Fixiert",
+    "keptHint": "„Für mich planen“ und neue Maße lassen fixierte Teile, wie sie sind.",
     "deleteBed": "Dieses Beet entfernen",
     "deleteStrip": "Diesen Streifen entfernen",
     "bare": "Freie Erde",
@@ -489,7 +490,7 @@
     "faded": "Blasse Pflanzen sind geplant, noch nicht gepflanzt",
     "selected_one": "{{count}} Teil ausgewählt",
     "selected_other": "{{count}} Teile ausgewählt",
-    "keepAll": "Hier lassen",
+    "keepAll": "Diese fixieren",
     "clearSelection": "Auswahl aufheben",
     "noneSelected": "Tippe auf ein Beet, um es zu sehen. Tippe weitere an, um sie gemeinsam zu ändern.",
     "palette": {

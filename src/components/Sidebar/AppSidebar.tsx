@@ -51,16 +51,10 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   // Each space lists its own pages; Help is shared.
   const huertaNav = [
     {
-      title: t('huertaWeek'),
-      url: `${basePath}huerta`,
-      icon: Sprout,
+      title: t('huertaMap'),
+      url: `${basePath}huerta/map`,
+      icon: Map,
       isActive: true,
-    },
-    {
-      title: t('huertaYear'),
-      url: `${basePath}huerta/year`,
-      icon: CalendarRange,
-      isActive: false,
     },
     {
       title: t('huertaPlanner'),
@@ -69,9 +63,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
       isActive: false,
     },
     {
-      title: t('huertaMap'),
-      url: `${basePath}huerta/map`,
-      icon: Map,
+      title: t('huertaWeek'),
+      url: `${basePath}huerta`,
+      icon: Sprout,
+      isActive: false,
+    },
+    {
+      title: t('huertaYear'),
+      url: `${basePath}huerta/year`,
+      icon: CalendarRange,
       isActive: false,
     },
   ];

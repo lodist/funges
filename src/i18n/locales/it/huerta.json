@@ -29,8 +29,8 @@
     "soil": "Terreno",
     "nights": "Notti",
     "rain": "Pioggia della settimana",
-    "water": "Da irrigare",
-    "noWater": "Niente",
+    "water": "Acqua da dare",
+    "noWater": "Non serve",
     "lastFrost": "Ultima gelata qui di solito verso il {{date}}",
     "firstFrost": "Prima gelata di solito verso il {{date}}",
     "noFrostDates": "Qui gela di rado",
@@ -132,7 +132,7 @@
       "soil": "Suolo",
       "nights": "Notti",
       "rain": "Pioggia",
-      "water": "Da annaffiare",
+      "water": "Acqua da dare",
       "lastFrost": "Ultima gelata ~{{date}}",
       "firstFrost": "Prima gelata ~{{date}}"
     }
@@ -315,7 +315,7 @@
       "crop": "Semina o pianta ora",
       "frost": "Gelate questa settimana",
       "soil": "Temperatura del terreno",
-      "water": "Da irrigare questa settimana"
+      "water": "Acqua da dare questa settimana"
     },
     "legend": {
       "now": "Semina o pianta ora",
@@ -411,6 +411,7 @@
     "notPlanted": "Non ancora piantato",
     "sownToday": "Seminato oggi",
     "plantedToday": "Piantato oggi",
+    "sownOrPlantedToday": "Seminato o piantato oggi",
     "neighbours": "Vicini",
     "noNeighbours": "Niente da tenere d'occhio accanto.",
     "nextTo": "Accanto a {{crop}}",
@@ -456,9 +457,9 @@
     "shorter": "Più corta",
     "longer": "Più lunga",
     "lengthValue": "{{value}} m",
-    "keep": "Tieni qui",
-    "kept": "Resta qui",
-    "keptHint": "«Pianifica per me» e i cambi di misura la lasciano dov'è.",
+    "keep": "Blocca",
+    "kept": "Bloccata",
+    "keptHint": "«Pianificalo per me» e i cambi di misura lasciano le parti bloccate come sono.",
     "deleteBed": "Togli questa aiuola",
     "deleteStrip": "Togli questa striscia",
     "bare": "Terra nuda",
@@ -489,7 +490,7 @@
     "faded": "Le piante chiare sono previste, non ancora piantate",
     "selected_one": "{{count}} parte selezionata",
     "selected_other": "{{count}} parti selezionate",
-    "keepAll": "Tienile qui",
+    "keepAll": "Bloccale",
     "clearSelection": "Annulla la selezione",
     "noneSelected": "Tocca un'aiuola per vederla. Toccane altre per cambiarle insieme.",
     "palette": {
