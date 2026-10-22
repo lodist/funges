@@ -38,6 +38,7 @@ import {
   Thermometer,
   X,
 } from '@/lib/icons';
+import { ONLINE_MAX_ZOOM } from '@/lib/offline-packages';
 import { protocol } from '@/lib/pmtiles-protocol';
 import { cn } from '@/lib/utils';
 import { HILLSHADE_LAYER_ID, useMapStore } from '@/store/mapStore';
@@ -142,7 +143,19 @@ function show(
       id,
       type: 'raster',
       source: id,
-      paint: { 'raster-opacity': 0.85, 'raster-resampling': 'nearest' },
+      paint: {
+        // Fainter close in, where the streets show where a garden is.
+        'raster-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          11,
+          0.85,
+          15,
+          0.3,
+        ],
+        'raster-resampling': 'nearest',
+      },
     },
     firstLabel
   );
@@ -242,7 +255,7 @@ export default function HuertaMapPage() {
           style,
           ...startView(),
           minZoom: 2.5,
-          maxZoom: 12,
+          maxZoom: ONLINE_MAX_ZOOM, // as Terra's: down to a street
           attributionControl: false,
         });
         m.dragRotate.disable();
