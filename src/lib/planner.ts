@@ -16,6 +16,8 @@ export const BED_HEIGHT = 0.22;
 export const MIN_SIDE = 1;
 export const MAX_SIDE = 60;
 const ROW_STRIP = 1.5;
+/** An open plot's strips are cut into blocks of about this length, metres. */
+const ROW_BLOCK = 3;
 const FOOTPATH = 0.3;
 const SHORTEST = 0.3;
 
@@ -112,7 +114,7 @@ const flip = (s: Section): Section => ({
 
 /** Beds in one region, running down it side by side: 1.2 m wide with 40 cm
  *  paths, in sections of about 1.8 m; in rows, strips of 1.5 m with 30 cm
- *  footpaths, one crop each. */
+ *  footpaths, in blocks of about 3 m, one crop each. */
 function bedsIn(
   [x0, y0, x1, y1]: Rect,
   b: number,
@@ -127,7 +129,7 @@ function bedsIn(
   const used = n * width + (n - 1) * path;
   const ya = y0 + b,
     yb = y1 - b;
-  const k = rows ? 1 : Math.max(1, Math.round((yb - ya) / 1.8));
+  const k = Math.max(1, Math.round((yb - ya) / (rows ? ROW_BLOCK : 1.8)));
   let x = x0 + (x1 - x0 - used) / 2;
   for (let i = 0; i < n; i++, x += width + path)
     for (let j = 0; j < k; j++)
@@ -579,10 +581,10 @@ export function restoreBed(plan: Plan, i: number): Plan {
   if (!r) return plan;
   const a = axisOf(plan.garden);
   const [lo, hi] = a === 'y' ? [r[1], r[3]] : [r[0], r[2]];
-  const k =
-    plan.garden.ground === 'rows'
-      ? 1
-      : Math.max(1, Math.round((hi - lo) / 1.8));
+  const k = Math.max(
+    1,
+    Math.round((hi - lo) / (plan.garden.ground === 'rows' ? ROW_BLOCK : 1.8))
+  );
   const bed = plan.sections.reduce((m, s) => Math.max(m, s.bed), -1) + 1;
   const base: Section = {
     bed,
@@ -795,13 +797,13 @@ export interface Fit {
 }
 
 /** The plants a section holds at the crop's spacing: in the row at its own
- *  spacing, rows at least that far apart (half the field row gap in a bed).
- *  Null for a scattered green manure. */
-export function fit(s: Section): Fit | null {
+ *  spacing, rows at least that far apart (half the field row gap in a bed,
+ *  the whole gap in an `open` plot). Null for a scattered green manure. */
+export function fit(s: Section, open = false): Fit | null {
   const crop = s.crop ? CROP[s.crop] : null;
   if (!crop || crop.spacing === null) return null;
   const sp = crop.spacing / 100;
-  const across = Math.max(sp, (crop.rows ?? crop.spacing) / 200);
+  const across = Math.max(sp, (crop.rows ?? crop.spacing) / (open ? 100 : 200));
   const w = s.x1 - s.x0,
     l = s.y1 - s.y0;
   const rows = Math.max(1, Math.floor(w / across + 1e-6));

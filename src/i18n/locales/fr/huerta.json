@@ -346,20 +346,12 @@
       "L": "En L"
     },
     "auto": "Planifiez pour moi",
-    "turnLeft": "Tourner à gauche",
-    "turnRight": "Tourner à droite",
     "model": "Votre potager, dessiné",
     "noRoom": "Cette taille ne laisse place à aucune planche.",
     "beds_one": "{{count}} planche",
     "beds_other": "{{count}} planches",
     "plants_one": "{{count}} plant",
     "plants_other": "{{count}} plants",
-    "good_one": "✓ {{count}} bonne association",
-    "good_other": "✓ {{count}} bonnes associations",
-    "toFix_one": "! {{count}} à corriger",
-    "toFix_other": "! {{count}} à corriger",
-    "nothingToFix": "Rien à corriger",
-    "paleSolid": "Pâle : prévu · plein : planté",
     "allBeds": "Toutes les planches",
     "bed": "Planche {{n}}",
     "part": {
@@ -478,7 +470,28 @@
       "vegFlowers": "Légumes, avec des fleurs au bout de chaque planche",
       "fruit": "Les fruits d'abord : fraises, melons, tomates, courges",
       "herbsFlowers": "Aromatiques et fleurs"
-    }
+    },
+    "goodPairs_one": "✓ 1 paire de bons voisins",
+    "goodPairs_other": "✓ {{count}} paires de bons voisins",
+    "badPairs_one": "! 1 paire à séparer",
+    "badPairs_other": "! {{count}} paires à séparer",
+    "noBadPairs": "Aucun voisin à séparer",
+    "goodHint": "Des cultures qui s'aident côte à côte, comme le basilic près des tomates ou les fleurs près des cultures à fruits. Touchez pour les sélectionner.",
+    "badHint": "Des cultures à ne pas mettre côte à côte, comme oignons et haricots ou pommes de terre et tomates, ou une culture haute qui fait de l'ombre à une basse. Touchez pour les sélectionner.",
+    "faded": "Les plantes pâles sont prévues, pas encore plantées",
+    "selected_one": "{{count}} partie sélectionnée",
+    "selected_other": "{{count}} parties sélectionnées",
+    "keepAll": "Les garder ici",
+    "clearSelection": "Tout désélectionner",
+    "noneSelected": "Touchez une planche pour la voir. Touchez-en d'autres pour les modifier ensemble.",
+    "palette": {
+      "title": "Cultures",
+      "hint": "Glissez une culture sur une planche, ou sélectionnez des planches et touchez une culture.",
+      "toSelected_one": "Touchez une culture pour la mettre dans la partie sélectionnée.",
+      "toSelected_other": "Touchez une culture pour la mettre dans les {{count}} parties sélectionnées."
+    },
+    "strips_one": "{{count}} bande",
+    "strips_other": "{{count}} bandes"
   },
   "year": {
     "title": "Votre année",

@@ -346,20 +346,12 @@
       "L": "A L"
     },
     "auto": "Pianificalo per me",
-    "turnLeft": "Ruota a sinistra",
-    "turnRight": "Ruota a destra",
     "model": "Il tuo orto, disegnato",
     "noRoom": "Con questa misura non ci sta nessuna aiuola.",
     "beds_one": "{{count}} aiuola",
     "beds_other": "{{count}} aiuole",
     "plants_one": "{{count}} pianta",
     "plants_other": "{{count}} piante",
-    "good_one": "✓ {{count}} buona coppia",
-    "good_other": "✓ {{count}} buone coppie",
-    "toFix_one": "! {{count}} da sistemare",
-    "toFix_other": "! {{count}} da sistemare",
-    "nothingToFix": "Niente da sistemare",
-    "paleSolid": "Chiaro: pianificato · pieno: piantato",
     "allBeds": "Tutte le aiuole",
     "bed": "Aiuola {{n}}",
     "part": {
@@ -478,7 +470,28 @@
       "vegFlowers": "Ortaggi, con fiori in fondo a ogni aiuola",
       "fruit": "Prima la frutta: fragole, meloni, pomodori, zucche",
       "herbsFlowers": "Aromatiche e fiori"
-    }
+    },
+    "goodPairs_one": "✓ 1 coppia di buoni vicini",
+    "goodPairs_other": "✓ {{count}} coppie di buoni vicini",
+    "badPairs_one": "! 1 coppia da separare",
+    "badPairs_other": "! {{count}} coppie da separare",
+    "noBadPairs": "Nessun vicino da separare",
+    "goodHint": "Colture che si aiutano vicine, come il basilico accanto ai pomodori o i fiori accanto alle colture da frutto. Tocca per selezionarle.",
+    "badHint": "Colture che non vanno vicine, come cipolle e fagioli o patate e pomodori, o una coltura alta che fa ombra a una bassa. Tocca per selezionarle.",
+    "faded": "Le piante chiare sono previste, non ancora piantate",
+    "selected_one": "{{count}} parte selezionata",
+    "selected_other": "{{count}} parti selezionate",
+    "keepAll": "Tienile qui",
+    "clearSelection": "Annulla la selezione",
+    "noneSelected": "Tocca un'aiuola per vederla. Toccane altre per cambiarle insieme.",
+    "palette": {
+      "title": "Colture",
+      "hint": "Trascina una coltura su un'aiuola, oppure seleziona le aiuole e tocca una coltura.",
+      "toSelected_one": "Tocca una coltura per metterla nella parte selezionata.",
+      "toSelected_other": "Tocca una coltura per metterla nelle {{count}} parti selezionate."
+    },
+    "strips_one": "{{count}} striscia",
+    "strips_other": "{{count}} strisce"
   },
   "year": {
     "title": "Il tuo anno",

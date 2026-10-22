@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { GardenModel, type Stage } from '@/components/GardenModel';
+import { CategoryChips } from '@/components/CategoryChips';
+import { CROP_DRAG, GardenModel, type Stage } from '@/components/GardenModel';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -25,6 +26,8 @@ import {
 } from '@/components/ui/select';
 import {
   CROPS,
+  huertaImage,
+  KINDS,
   SAMPLE_ADVICE,
   type CropNeeds,
   type PlaceAdvice,
@@ -41,8 +44,6 @@ import {
   Lock,
   Minus,
   Plus,
-  RotateCcw,
-  RotateCw,
   Trash2,
   Undo2,
 } from '@/lib/icons';
@@ -109,10 +110,10 @@ export default function HuertaPlannerPage() {
   const [sample, setSample] = useState(true);
   const [needs, setNeeds] = useState<Record<string, CropNeeds>>({});
   const [plan, setPlan] = useState<Plan | null>(() => loadPlan());
-  const [turn, setTurn] = useState(0);
-  // The section just planted, while its plants come up.
-  const [fresh, setFresh] = useState<number | null>(null);
-  const [sel, setSel] = useState(0);
+  // The sections just planted, while their plants come up.
+  const [fresh, setFresh] = useState<number[]>([]);
+  // The sections selected: tapping one adds it, tapping it again takes it out.
+  const [sel, setSel] = useState<number[]>([0]);
   // A deleted bed's patch of earth, when one is picked instead of a section.
   const [patch, setPatch] = useState<number | null>(null);
   // Earlier plans, for Undo; kept while the page is open.
@@ -173,12 +174,39 @@ export default function HuertaPlannerPage() {
   const resize = (garden: Garden) => {
     if (!plan) return;
     update(reshape(plan, garden, status));
-    setSel(0);
-    setPatch(null);
+    only(0);
   };
   const pick = (i: number) => {
-    setSel(i);
+    setSel(cur => (cur.includes(i) ? cur.filter(k => k !== i) : [...cur, i]));
     setPatch(null);
+  };
+  const only = (i: number) => {
+    setSel(i >= 0 ? [i] : []);
+    setPatch(null);
+  };
+  // Sections changed together: `change` maps each chosen one.
+  const edit = (ids: number[], change: (s: Section) => Section) => {
+    if (!plan || !ids.length) return;
+    update({
+      ...plan,
+      sections: plan.sections.map((x, i) => (ids.includes(i) ? change(x) : x)),
+    });
+  };
+  // A crop put into sections: chosen, not yet planted.
+  const place = (ids: number[], crop: string) =>
+    edit(ids, x => ({ ...x, crop, planted: undefined }));
+  // Marked planted today (a perennial then stays where it is), or not.
+  const plantOn = (ids: number[], planted: string | undefined) => {
+    const withCrop = ids.filter(i => plan?.sections[i]?.crop);
+    edit(withCrop, x => ({
+      ...x,
+      planted,
+      locked: x.locked || Boolean(planted && x.crop && PERENNIAL.has(x.crop)),
+    }));
+    if (planted) {
+      setFresh(withCrop);
+      setTimeout(() => setFresh([]), 2500);
+    }
   };
   const name = (id: string) => t(`crops.${id}`);
   // A planted crop's stage, from the warmth it has had at the place since.
@@ -189,7 +217,7 @@ export default function HuertaPlannerPage() {
     return done < 0.3 ? 'seedling' : done < 0.75 ? 'young' : 'grown';
   };
   const count = (s: Section) => {
-    const f = fit(s);
+    const f = fit(s, plan?.garden.ground === 'rows');
     return f
       ? t(`planner.unit.${(s.crop && UNIT[s.crop]) ?? 'plants'}`, {
           count: f.count,
@@ -206,12 +234,25 @@ export default function HuertaPlannerPage() {
         </SkeletonGroup>
       </div>
     );
+  const chosen = sel.filter(i => plan.sections[i]);
   const s =
-    patch === null ? (plan.sections[sel] ?? plan.sections[0]) : undefined;
+    patch === null && chosen.length === 1
+      ? plan.sections[chosen[0]]
+      : undefined;
   const north = plan.garden.north ?? 0;
   const axis = axisOf(plan.garden);
   const totals = summary(plan.sections, north);
-  const plants = plan.sections.reduce((n, x) => n + (fit(x)?.count ?? 0), 0);
+  const open = plan.garden.ground === 'rows';
+  const plants = plan.sections.reduce(
+    (n, x) => n + (fit(x, open)?.count ?? 0),
+    0
+  );
+  // The sections in a good pair, and in a pair to keep apart.
+  const pairs = (bad: boolean) =>
+    plan.sections
+      .map((_, i) => i)
+      .filter(i => notes(plan.sections, i, north).some(n => n.bad === bad));
+  const allKept = chosen.every(i => plan.sections[i].locked);
   const beds = new Set(plan.sections.map(x => x.bed)).size;
 
   return (
@@ -373,24 +414,6 @@ export default function HuertaPlannerPage() {
               <Undo2 className='size-4' />
               {t('planner.undo')}
             </Button>
-            <div className='ml-auto flex items-center gap-2'>
-              <Button
-                variant='outline'
-                size='icon'
-                aria-label={t('planner.turnLeft')}
-                onClick={() => setTurn((turn + 3) % 4)}
-              >
-                <RotateCcw className='size-4' />
-              </Button>
-              <Button
-                variant='outline'
-                size='icon'
-                aria-label={t('planner.turnRight')}
-                onClick={() => setTurn((turn + 1) % 4)}
-              >
-                <RotateCw className='size-4' />
-              </Button>
-            </div>
           </div>
 
           <div className='grid lg:grid-cols-[minmax(0,1fr)_22rem]'>
@@ -399,9 +422,11 @@ export default function HuertaPlannerPage() {
                 <GardenModel
                   garden={plan.garden}
                   sections={plan.sections}
-                  selected={sel}
-                  turn={turn}
+                  selected={patch === null ? chosen : []}
                   onSelect={pick}
+                  onDropCrop={(i, crop) =>
+                    place(chosen.includes(i) ? chosen : [i], crop)
+                  }
                   stage={stageOf}
                   fresh={fresh}
                   bare={plan.bare}
@@ -429,27 +454,99 @@ export default function HuertaPlannerPage() {
                   {t('planner.noRoom')}
                 </p>
               )}
-              <p className='flex flex-wrap gap-x-5 gap-y-1 border-t border-border px-4 py-3 text-sm text-muted-foreground'>
+              <div className='flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-border px-4 py-2 text-sm text-muted-foreground'>
                 <span>
-                  {t('planner.beds', { count: beds })} ·{' '}
-                  {t('planner.plants', { count: plants })}
+                  {t(open ? 'planner.strips' : 'planner.beds', { count: beds })}{' '}
+                  · {t('planner.plants', { count: plants })}
                 </span>
-                <span>{t('planner.good', { count: totals.good })}</span>
-                <span
-                  className={
-                    totals.bad.length ? 'text-destructive-text' : undefined
-                  }
+                <Button
+                  variant='link'
+                  className='h-auto p-0 text-muted-foreground'
+                  title={t('planner.goodHint')}
+                  disabled={!totals.good}
+                  onClick={() => setSel(pairs(false))}
+                >
+                  {t('planner.goodPairs', { count: totals.good })}
+                </Button>
+                <Button
+                  variant='link'
+                  className={cn(
+                    'h-auto p-0',
+                    totals.bad.length
+                      ? 'text-destructive-text'
+                      : 'text-muted-foreground'
+                  )}
+                  title={t('planner.badHint')}
+                  disabled={!totals.bad.length}
+                  onClick={() => setSel(pairs(true))}
                 >
                   {totals.bad.length
-                    ? t('planner.toFix', { count: totals.bad.length })
-                    : t('planner.nothingToFix')}
-                </span>
-                <span>{t('planner.paleSolid')}</span>
-              </p>
+                    ? t('planner.badPairs', { count: totals.bad.length })
+                    : t('planner.noBadPairs')}
+                </Button>
+                <span>{t('planner.faded')}</span>
+              </div>
+              <Palette
+                advice={advice}
+                count={patch === null ? chosen.length : 0}
+                onPick={crop => place(chosen, crop)}
+              />
             </div>
 
-            {s || patch !== null ? (
+            {
               <aside className='flex flex-col gap-5 border-t border-border p-4 lg:border-t-0 lg:border-l'>
+                {patch === null && chosen.length === 0 ? (
+                  <p className='text-sm text-muted-foreground'>
+                    {t('planner.noneSelected')}
+                  </p>
+                ) : null}
+                {patch === null && chosen.length > 1 ? (
+                  <div className='flex flex-col gap-3'>
+                    <h2 className='type-micro text-muted-foreground'>
+                      {t('planner.selected', { count: chosen.length })}
+                    </h2>
+                    <ul className='flex flex-col gap-1 text-sm'>
+                      {chosen.map(i => (
+                        <li
+                          key={`${plan.sections[i].x0}-${plan.sections[i].y0}`}
+                          className='flex justify-between gap-3'
+                        >
+                          <span className='text-foreground'>
+                            {plan.sections[i].crop
+                              ? name(plan.sections[i].crop!)
+                              : '–'}
+                          </span>
+                          <span className='text-right text-muted-foreground'>
+                            {placeName(t, plan.sections[i], plan.garden)}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className='text-sm text-muted-foreground'>
+                      {t('planner.palette.toSelected', {
+                        count: chosen.length,
+                      })}
+                    </p>
+                    <div className='flex flex-wrap gap-2'>
+                      <Button onClick={() => plantOn(chosen, today())}>
+                        {t('planner.plantedToday')}
+                      </Button>
+                      <Button
+                        variant='outline'
+                        aria-pressed={allKept}
+                        onClick={() =>
+                          edit(chosen, x => ({ ...x, locked: !allKept }))
+                        }
+                      >
+                        <Lock className='size-4' />
+                        {t('planner.keepAll')}
+                      </Button>
+                      <Button variant='ghost' onClick={() => setSel([])}>
+                        {t('planner.clearSelection')}
+                      </Button>
+                    </div>
+                  </div>
+                ) : null}
                 {patch !== null ? (
                   <div className='flex flex-col gap-3'>
                     <h2 className='type-micro text-muted-foreground'>
@@ -472,7 +569,7 @@ export default function HuertaPlannerPage() {
                             axis,
                           }),
                         });
-                        pick(first);
+                        only(first);
                       }}
                     >
                       {t('planner.putBed')}
@@ -489,37 +586,8 @@ export default function HuertaPlannerPage() {
                     harvest={s.crop ? year?.crops[s.crop]?.harvest : undefined}
                     need={s.crop ? needs[s.crop] : undefined}
                     count={count}
-                    onSwap={crop =>
-                      update({
-                        ...plan,
-                        sections: plan.sections.map(x =>
-                          x === s ? { ...x, crop, planted: undefined } : x
-                        ),
-                      })
-                    }
-                    onPlanted={planted => {
-                      update({
-                        ...plan,
-                        sections: plan.sections.map(x =>
-                          x === s
-                            ? {
-                                ...x,
-                                planted,
-                                // A perennial planted stays where it is.
-                                locked:
-                                  x.locked ||
-                                  Boolean(
-                                    planted && x.crop && PERENNIAL.has(x.crop)
-                                  ),
-                              }
-                            : x
-                        ),
-                      });
-                      if (planted) {
-                        setFresh(plan.sections.indexOf(s));
-                        setTimeout(() => setFresh(null), 2500);
-                      }
-                    }}
+                    onSwap={crop => place(chosen, crop)}
+                    onPlanted={planted => plantOn(chosen, planted)}
                     onSplit={() =>
                       update({
                         ...plan,
@@ -534,7 +602,7 @@ export default function HuertaPlannerPage() {
                       const i = plan.sections.indexOf(s);
                       const next = merge(plan.sections, i, dir, axis);
                       update({ ...plan, sections: next });
-                      pick(
+                      only(
                         next.findIndex(
                           x =>
                             x.bed === s.bed &&
@@ -563,7 +631,7 @@ export default function HuertaPlannerPage() {
                     }
                     onDeleteBed={() => {
                       update(removeBed(plan, s.bed));
-                      pick(0);
+                      only(0);
                     }}
                   />
                 ) : null}
@@ -577,7 +645,7 @@ export default function HuertaPlannerPage() {
                         <li key={`${x.bed}-${x.x0}-${x.y0}`}>
                           <button
                             type='button'
-                            aria-current={patch === null && i === sel}
+                            aria-current={patch === null && chosen.includes(i)}
                             onClick={() => pick(i)}
                             className='focus-ring grid w-full grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-1.5 text-left text-sm hover:bg-muted aria-[current=true]:bg-muted'
                           >
@@ -614,7 +682,7 @@ export default function HuertaPlannerPage() {
                   </ul>
                 </div>
               </aside>
-            ) : null}
+            }
           </div>
         </section>
         <p className='mt-4 text-sm text-muted-foreground'>
@@ -631,6 +699,89 @@ export default function HuertaPlannerPage() {
 }
 
 type T = ReturnType<typeof useTranslation>['t'];
+
+/** The crops, to drag onto a bed or tap into the selected sections; those
+ *  that go in now come first. */
+function Palette({
+  advice,
+  count,
+  onPick,
+}: {
+  advice: PlaceAdvice;
+  /** Sections selected: a tapped crop goes into them. */
+  count: number;
+  onPick: (crop: string) => void;
+}) {
+  const { t } = useTranslation('huerta');
+  const [kind, setKind] = useState<string>('all');
+  const crops = useMemo(
+    () =>
+      CROPS.filter(c => kind === 'all' || c.kind === kind).sort(
+        (a, z) =>
+          Number(advice.crops[z.id] === 'now') -
+            Number(advice.crops[a.id] === 'now') ||
+          t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
+      ),
+    [kind, advice, t]
+  );
+  return (
+    <div className='border-t border-border p-4'>
+      <div className='mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1'>
+        <h2 className='text-base font-semibold text-foreground'>
+          {t('planner.palette.title')}
+        </h2>
+        <p className='text-sm text-muted-foreground'>
+          {count
+            ? t('planner.palette.toSelected', { count })
+            : t('planner.palette.hint')}
+        </p>
+      </div>
+      <CategoryChips
+        chips={KINDS.map(value => ({
+          value,
+          label: t(`kinds.${value}`),
+          icon: huertaImage(`kinds/${value}`),
+        }))}
+        value={kind}
+        onChange={setKind}
+        className='justify-start'
+      />
+      <ul className='mt-3 grid max-h-[22rem] grid-cols-[repeat(auto-fill,minmax(8.5rem,1fr))] gap-2 overflow-y-auto p-0.5'>
+        {crops.map(c => (
+          <li key={c.id}>
+            <button
+              type='button'
+              draggable
+              onDragStart={e => {
+                e.dataTransfer.setData(CROP_DRAG, c.id);
+                e.dataTransfer.effectAllowed = 'copy';
+              }}
+              onClick={() => count && onPick(c.id)}
+              className='focus-ring flex w-full cursor-grab items-center gap-2 rounded-lg bg-card p-1.5 text-left text-sm elevation-raised hover:bg-muted active:cursor-grabbing'
+            >
+              <img
+                src={photo(c.id)}
+                alt=''
+                draggable={false}
+                className='size-9 rounded-md object-cover'
+              />
+              <span className='min-w-0'>
+                <span className='block truncate font-medium text-foreground'>
+                  {t(`crops.${c.id}`)}
+                </span>
+                <span className='block truncate text-xs text-muted-foreground'>
+                  {advice.crops[c.id] === 'now'
+                    ? t(`sheet.${c.how}Now`)
+                    : t('planner.later')}
+                </span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 const COMPASS = ['north', 'east', 'south', 'west'] as const;
 /** The compass side of a bed's first section: its top end, or its left end
@@ -701,7 +852,7 @@ function SectionPanel({
   const { t, i18n } = useTranslation('huerta');
   const crop = s.crop ? CROP[s.crop] : null;
   const st = s.crop ? advice.crops[s.crop] : undefined;
-  const f = fit(s);
+  const f = fit(s, garden.ground === 'rows');
   const due = crop
     ? ready(st, need?.days ?? null, new Date(`${advice.day}T12:00:00`))
     : null;

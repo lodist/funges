@@ -143,9 +143,14 @@ describe('the garden planner', () => {
       ground: 'rows',
     };
     const rows = layout(rowsGarden);
-    expect(rows.every(s => s.parts === 1)).toBe(true);
-    expect(rows[0].x1 - rows[0].x0).toBeCloseTo(6 - 0.7);
+    // Strips across the plot, cut into blocks of about 3 m.
+    expect(rows.every(s => s.parts === 2)).toBe(true);
+    expect(rows[0].x1 - rows[0].x0).toBeCloseTo((6 - 0.7) / 2);
     expect(rows[0].y1 - rows[0].y0).toBeCloseTo(1.5);
+    // Open rows keep the field's full row gap; a bed halves it.
+    const onions = { ...rows[0], crop: 'onion_sets' };
+    expect(fit(onions, true)?.across).toBeCloseTo(0.3);
+    expect(fit(onions)?.across).toBeCloseTo(0.15);
     expect(axisOf(rowsGarden)).toBe('x');
     expect(axisOf({ ...rowsGarden, ground: 'raised', across: true })).toBe('x');
     expect(axisOf({ ...rowsGarden, ground: 'raised' })).toBe('y');
