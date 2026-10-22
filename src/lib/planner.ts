@@ -22,6 +22,15 @@ const SHORTEST = 0.3;
 export type Rect = [number, number, number, number];
 export type Ground = 'raised' | 'ground' | 'rows';
 export type Axis = 'x' | 'y';
+/** What "Plan it for me" grows: a mixed garden (vegetables, herbs and some
+ *  flowers), vegetables only, vegetables with flowers at each bed's sunny
+ *  end, fruit first, or herbs and flowers. */
+export type PlanStyle =
+  | 'mixed'
+  | 'veg'
+  | 'vegFlowers'
+  | 'fruit'
+  | 'herbsFlowers';
 
 export interface Garden {
   width: number;
@@ -33,6 +42,8 @@ export interface Garden {
   across?: boolean;
   /** Raised beds (the default), beds dug in the ground, or an open plot in rows. */
   ground?: Ground;
+  /** What "Plan it for me" grows; mixed by default. */
+  style?: PlanStyle;
 }
 
 export interface Section {
@@ -223,6 +234,20 @@ const GROUPS = {
     'daffodil',
     'lavender',
   ],
+  herbs: [
+    'basil',
+    'parsley',
+    'coriander',
+    'dill',
+    'chervil',
+    'chives',
+    'thyme',
+    'rosemary',
+    'oregano',
+    'sage',
+    'mint',
+  ],
+  fruit: ['strawberry', 'melon', 'watermelon'],
 } as const;
 type Group = keyof typeof GROUPS;
 
@@ -240,6 +265,65 @@ const CYCLE: Group[] = [
   'alliums',
   'fruiting',
 ];
+const VEG_CYCLE: Group[] = [
+  'legumes',
+  'brassicas',
+  'leaves',
+  'alliums',
+  'fruiting',
+];
+const isVeg = (id: string) => CROP[id]?.kind === 'vegetable';
+const FRUIT_FIRST = new Set(
+  'strawberry melon watermelon tomato pepper chilli aubergine courgette cucumber pumpkin winter_squash'.split(
+    ' '
+  )
+);
+/** Low flowers that do their neighbours good, for a bed's sunny end, in a
+ *  strip 40 cm deep. */
+const COMPANIONS = ['calendula', 'marigold', 'nasturtium'];
+const FLOWER_STRIP = 0.4;
+
+/** Each style's beds: the families in turn (by number of beds for the first
+ *  few), the families to fall back on, and which crops it allows. */
+const STYLES: Record<
+  PlanStyle,
+  {
+    order?: Record<number, Group[]>;
+    cycle: Group[];
+    fallback: Group[];
+    allow: (id: string) => boolean;
+  }
+> = {
+  mixed: {
+    order: ORDER,
+    cycle: CYCLE,
+    fallback: ['leaves', 'brassicas', 'flowers', 'fruiting'],
+    allow: () => true,
+  },
+  veg: {
+    order: ORDER,
+    cycle: VEG_CYCLE,
+    fallback: ['leaves', 'brassicas', 'fruiting'],
+    allow: isVeg,
+  },
+  vegFlowers: {
+    order: ORDER,
+    cycle: VEG_CYCLE,
+    fallback: ['leaves', 'brassicas', 'fruiting'],
+    allow: isVeg,
+  },
+  fruit: {
+    cycle: ['fruiting', 'fruit'],
+    fallback: ['fruit', 'fruiting'],
+    allow: id => FRUIT_FIRST.has(id),
+  },
+  herbsFlowers: {
+    cycle: ['herbs', 'flowers'],
+    fallback: ['herbs', 'flowers'],
+    allow: () => true,
+  },
+};
+
 const WAITING = new Set<CropStatus>([
   'wait_frost',
   'wait_soil',
@@ -286,42 +370,78 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
 }
 
 /** Fill every section from this week's statuses at the visitor's place: one
- *  family per bed, onions and garlic never beside peas and beans, the tallest
- *  crop of a bed at its north end. Planted and kept sections keep their crop,
- *  and with `keepChosen` every section that has one. */
+ *  family per bed (of those the style grows), onions and garlic never beside
+ *  peas and beans, the tallest crop of a bed at its north end. Planted and
+ *  kept sections keep their crop, and with `keepChosen` every section that
+ *  has one. */
 export function autoPlan(
   sections: Section[],
   status: (crop: string) => CropStatus | undefined,
-  north = 0,
-  keepChosen = false
+  {
+    north = 0,
+    keepChosen = false,
+    style = 'mixed',
+    axis = 'y',
+  }: {
+    north?: number;
+    keepChosen?: boolean;
+    style?: PlanStyle;
+    axis?: Axis;
+  } = {}
 ): Section[] {
   const rank = (id: string) => {
     const s = status(id);
     return s === 'now' ? 0 : s && WAITING.has(s) ? 1 : 2;
   };
-  const out = sections.map(s => ({ ...s }));
+  const how = STYLES[style];
+  let out = sections.map(s => ({ ...s }));
   const beds = [...new Set(out.map(s => s.bed))];
   const groups = arrange(
     out,
     beds,
-    ORDER[beds.length] ?? beds.map((_, i) => CYCLE[i % CYCLE.length])
+    how.order?.[beds.length] ??
+      beds.map((_, i) => how.cycle[i % how.cycle.length])
   );
   const used = new Set<string>();
+  const best = (ids: readonly string[]) =>
+    ids
+      .filter(how.allow)
+      .sort(
+        (a, z) => rank(a) - rank(z) || Number(used.has(a)) - Number(used.has(z))
+      );
   beds.forEach((bed, i) => {
     let group = groups[i];
-    if (!GROUPS[group].some(id => rank(id) < 2))
+    if (!GROUPS[group].some(id => how.allow(id) && rank(id) < 2))
       group =
-        (['leaves', 'brassicas', 'flowers', 'fruiting'] as Group[]).find(k =>
-          GROUPS[k].some(id => rank(id) === 0)
+        how.fallback.find(k =>
+          GROUPS[k].some(id => how.allow(id) && rank(id) === 0)
         ) ?? group;
-    const pick = [...GROUPS[group]].sort(
-      (a, z) => rank(a) - rank(z) || Number(used.has(a)) - Number(used.has(z))
-    );
+    const pick = best(GROUPS[group]);
     const parts = out
       .filter(
         s => s.bed === bed && !s.planted && !s.locked && !(keepChosen && s.crop)
       )
       .sort((a, z) => northOf(north, z) - northOf(north, a));
+    // Vegetables with flowers: a strip of a low companion flower across the
+    // bed's sunny end, cut from its last section (unless that is a strip).
+    if (style === 'vegFlowers' && parts.length) {
+      const flower = [...COMPANIONS].sort((a, z) => rank(a) - rank(z))[0];
+      const last = parts[parts.length - 1];
+      const [lo, hi] = span(last, axis);
+      if (hi - lo < 2 * FLOWER_STRIP + 0.3) parts.pop()!.crop = flower;
+      else {
+        const atLo = along(last, axis, lo, lo + FLOWER_STRIP),
+          atHi = along(last, axis, hi - FLOWER_STRIP, hi);
+        const loSouth = northOf(north, atLo) < northOf(north, atHi);
+        const rest = loSouth
+          ? along(last, axis, lo + FLOWER_STRIP, hi)
+          : along(last, axis, lo, hi - FLOWER_STRIP);
+        out[out.indexOf(last)] = rest;
+        parts[parts.length - 1] = rest;
+        out.push({ ...(loSouth ? atLo : atHi), crop: flower });
+      }
+    }
+    if (!pick.length) return;
     const crops = parts
       .map((_, j) => pick[j % pick.length])
       .sort((a, z) => PLANT_LOOK[z].height - PLANT_LOOK[a].height);
@@ -330,6 +450,8 @@ export function autoPlan(
       used.add(crops[j]);
     });
   });
+  if (style === 'vegFlowers')
+    for (const bed of beds) out = renumber(out, bed, axis);
   return out;
 }
 
@@ -515,7 +637,12 @@ export function reshape(
   });
   return {
     garden,
-    sections: autoPlan(numberBeds(kept), status, garden.north, true),
+    sections: autoPlan(numberBeds(kept), status, {
+      north: garden.north,
+      keepChosen: true,
+      style: garden.style,
+      axis: axisOf(garden),
+    }),
     bare,
   };
 }

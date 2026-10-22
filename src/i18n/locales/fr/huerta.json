@@ -439,7 +439,6 @@
     "split": "Couper cette partie en deux",
     "footnote": "Semis et plantations au {{date}}. Votre plan reste sur cet appareil.",
     "sownOn": "Semé le {{date}}",
-    "faces": "Le haut du terrain fait face au",
     "groundLabel": "Votre façon de cultiver",
     "ground": {
       "raised": "Carrés surélevés",
@@ -466,15 +465,19 @@
     "bareText": "Il y avait une planche ici. Remettez-en une, ou laissez la terre nue.",
     "putBed": "Remettre une planche",
     "strip": "Bande {{n}}",
-    "bearing": {
-      "0": "Nord",
-      "45": "Nord-est",
-      "90": "Est",
-      "135": "Sud-est",
-      "180": "Sud",
-      "225": "Sud-ouest",
-      "270": "Ouest",
-      "315": "Nord-ouest"
+    "whereNorth": "Où est le nord ?",
+    "northLeft": "Tourner le nord vers la gauche",
+    "northRight": "Tourner le nord vers la droite",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
+    "zoomFit": "Voir tout le potager",
+    "styleLabel": "Que cultiver",
+    "style": {
+      "mixed": "Un potager mixte : légumes, aromatiques et fleurs",
+      "veg": "Légumes seulement",
+      "vegFlowers": "Légumes, avec des fleurs au bout de chaque planche",
+      "fruit": "Les fruits d'abord : fraises, melons, tomates, courges",
+      "herbsFlowers": "Aromatiques et fleurs"
     }
   },
   "year": {

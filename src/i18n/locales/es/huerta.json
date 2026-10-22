@@ -439,7 +439,6 @@
     "split": "Dividir esta parte en dos",
     "footnote": "Siembra y plantación a {{date}}. Tu plan se guarda en este dispositivo.",
     "sownOn": "Sembrado el {{date}}",
-    "faces": "El lado superior mira al",
     "groundLabel": "Cómo cultivas",
     "ground": {
       "raised": "Bancales elevados",
@@ -466,15 +465,19 @@
     "bareText": "Aquí había un bancal. Vuelve a ponerlo o deja la tierra libre.",
     "putBed": "Volver a poner el bancal",
     "strip": "Franja {{n}}",
-    "bearing": {
-      "0": "Norte",
-      "45": "Noreste",
-      "90": "Este",
-      "135": "Sureste",
-      "180": "Sur",
-      "225": "Suroeste",
-      "270": "Oeste",
-      "315": "Noroeste"
+    "whereNorth": "¿Hacia dónde queda el norte?",
+    "northLeft": "Girar el norte a la izquierda",
+    "northRight": "Girar el norte a la derecha",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "zoomFit": "Ver todo el huerto",
+    "styleLabel": "Qué cultivar",
+    "style": {
+      "mixed": "Un huerto mixto: hortalizas, aromáticas y flores",
+      "veg": "Solo hortalizas",
+      "vegFlowers": "Hortalizas, con flores al final de cada bancal",
+      "fruit": "Primero fruta: fresas, melones, tomates, calabazas",
+      "herbsFlowers": "Aromáticas y flores"
     }
   },
   "year": {

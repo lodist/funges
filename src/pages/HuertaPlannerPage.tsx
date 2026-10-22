@@ -4,6 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { GardenModel, type Stage } from '@/components/GardenModel';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
@@ -30,6 +37,7 @@ import {
 } from '@/lib/huerta-api';
 import {
   Check,
+  ChevronDown,
   Lock,
   Minus,
   Plus,
@@ -63,6 +71,7 @@ import {
   type Garden,
   type Ground,
   type Plan,
+  type PlanStyle,
   type Section,
 } from '@/lib/planner';
 import { growth } from '@/lib/garden-week';
@@ -74,7 +83,13 @@ const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
 const photo = (id: string) =>
   `${import.meta.env.BASE_URL}huerta/crops/${id}.webp`;
 const today = () => new Date().toLocaleDateString('sv');
-const BEARINGS = [0, 45, 90, 135, 180, 225, 270, 315];
+const STYLES: PlanStyle[] = [
+  'mixed',
+  'veg',
+  'vegFlowers',
+  'fruit',
+  'herbsFlowers',
+];
 const GROUNDS: Ground[] = ['raised', 'ground', 'rows'];
 const UNDO_STEPS = 20;
 
@@ -278,32 +293,6 @@ export default function HuertaPlannerPage() {
               ))}
             </div>
             <Select
-              value={String(plan.garden.north ?? 0)}
-              onValueChange={v =>
-                update({
-                  ...plan,
-                  garden: { ...plan.garden, north: Number(v) },
-                })
-              }
-            >
-              <SelectTrigger
-                aria-label={t('planner.faces')}
-                className='h-9 w-auto gap-2'
-              >
-                <span className='text-muted-foreground'>
-                  {t('planner.faces')}
-                </span>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {BEARINGS.map(b => (
-                  <SelectItem key={b} value={String(b)}>
-                    {t(`planner.bearing.${b}`)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select
               value={plan.garden.ground ?? 'raised'}
               onValueChange={v =>
                 resize({ ...plan.garden, ground: v as Ground })
@@ -343,16 +332,43 @@ export default function HuertaPlannerPage() {
                 </Button>
               ))}
             </div>
-            <Button
-              onClick={() =>
-                update({
-                  ...plan,
-                  sections: autoPlan(plan.sections, status, plan.garden.north),
-                })
-              }
-            >
-              {t('planner.auto')}
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button>
+                  {t('planner.auto')}
+                  <ChevronDown className='size-4' />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align='start'>
+                <DropdownMenuLabel>{t('planner.styleLabel')}</DropdownMenuLabel>
+                {STYLES.map(style => (
+                  <DropdownMenuItem
+                    key={style}
+                    onSelect={() =>
+                      update({
+                        ...plan,
+                        garden: { ...plan.garden, style },
+                        sections: autoPlan(plan.sections, status, {
+                          north: plan.garden.north,
+                          style,
+                          axis: axisOf(plan.garden),
+                        }),
+                      })
+                    }
+                  >
+                    <Check
+                      className={cn(
+                        'size-4',
+                        (plan.garden.style ?? 'mixed') === style
+                          ? 'text-primary-text'
+                          : 'invisible'
+                      )}
+                    />
+                    {t(`planner.style.${style}`)}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button variant='outline' onClick={undo} disabled={!past.length}>
               <Undo2 className='size-4' />
               {t('planner.undo')}
@@ -390,6 +406,17 @@ export default function HuertaPlannerPage() {
                   fresh={fresh}
                   bare={plan.bare}
                   onBare={setPatch}
+                  onTurnNorth={delta =>
+                    update({
+                      ...plan,
+                      garden: {
+                        ...plan.garden,
+                        north:
+                          ((((plan.garden.north ?? 0) + delta) % 360) + 360) %
+                          360,
+                      },
+                    })
+                  }
                   label={
                     s?.crop
                       ? { name: name(s.crop), count: count(s) }
@@ -438,12 +465,12 @@ export default function HuertaPlannerPage() {
                         const back = restoreBed(plan, patch);
                         update({
                           ...back,
-                          sections: autoPlan(
-                            back.sections,
-                            status,
+                          sections: autoPlan(back.sections, status, {
                             north,
-                            true
-                          ),
+                            keepChosen: true,
+                            style: plan.garden.style,
+                            axis,
+                          }),
                         });
                         pick(first);
                       }}
