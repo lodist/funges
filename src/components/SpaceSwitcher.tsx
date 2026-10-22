@@ -67,7 +67,7 @@ function SpaceMenu({
             )}
             aria-label={t('spaces.switch', { space: name(current) })}
           >
-            <span>{name(current)}</span>
+            <span className='flex-1 text-left'>{name(current)}</span>
             <ChevronDown className='size-4' />
           </Button>
         )}

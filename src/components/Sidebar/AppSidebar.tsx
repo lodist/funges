@@ -240,7 +240,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
           </div>
         )}
         {(state !== 'collapsed' || isMobile) && (
-          <SpaceSwitcher className='mt-2 w-fit' />
+          <SpaceSwitcher className='mt-2 w-full' />
         )}
       </SidebarHeader>
       <SidebarSeparator className='mx-2 group-data-[collapsible=icon]:mx-2' />
