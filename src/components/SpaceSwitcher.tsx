@@ -1,15 +1,16 @@
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import { SpaceDot } from '@/components/SpaceDot';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ChevronDown } from '@/lib/icons';
+import { CATEGORY_ICONS } from '@/lib/categoryIcons';
+import { huertaImage } from '@/lib/huerta';
+import { Check, ChevronDown } from '@/lib/icons';
 import {
   currentSpace,
   pathForSpace,
@@ -18,11 +19,17 @@ import {
 } from '@/lib/spaces';
 import { cn } from '@/lib/utils';
 
+/** Each space's picture on its tile: what you look for there. */
+const PICTURE: Record<Space, string> = {
+  terra: CATEGORY_ICONS.mushroom,
+  huerta: huertaImage('kinds/vegetable'),
+};
+
 /**
- * Moves between the spaces of Funges: the current space's name, and a menu of
- * every space with what it is for. Switching opens the page last seen in that
- * space. Draws nothing while only one space is shown (the live site, until
- * Huerta launches).
+ * Moves between the spaces of Funges: the current space's name on a pill of
+ * its own colour, and a menu of every space as a tile of its colour, with what
+ * it holds. Switching opens the page last seen in that space. Draws nothing
+ * while only one space is shown (the live site, until Huerta launches).
  */
 export const SpaceSwitcher = ({ className }: { className?: string }) =>
   visibleSpaces().length > 1 ? <SpaceMenu className={className} /> : null;
@@ -39,38 +46,50 @@ function SpaceMenu({ className }: { className?: string }) {
       <DropdownMenuTrigger asChild>
         <Button
           variant='ghost'
+          data-space={current}
           className={cn(
-            'justify-start gap-2 font-display text-lg font-semibold text-primary-text',
+            'justify-start gap-2 rounded-full bg-band pl-4 pr-3 font-display text-lg font-semibold text-band-foreground hover:bg-band hover:text-band-foreground hover:brightness-110 dark:bg-band dark:hover:bg-band dark:hover:text-band-foreground',
             className
           )}
           aria-label={t('spaces.switch', { space: name(current) })}
         >
-          <SpaceDot space={current} />
           <span>{name(current)}</span>
           <ChevronDown className='size-4' />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='start' className='w-64'>
+      <DropdownMenuContent
+        align='start'
+        className='flex w-72 flex-col gap-1.5 p-1.5'
+      >
         <DropdownMenuRadioGroup
           value={current}
           onValueChange={space =>
             navigate({ to: pathForSpace(space as Space) })
           }
+          className='flex flex-col gap-1.5'
         >
           {visibleSpaces().map(space => (
-            <DropdownMenuRadioItem
+            <DropdownMenuPrimitive.RadioItem
               key={space}
               value={space}
-              className='min-h-11 gap-3'
+              data-space={space}
+              className='flex min-h-16 cursor-default select-none items-center gap-3 rounded-xl bg-band p-3 text-band-foreground outline-hidden transition-[filter] duration-base data-[highlighted]:brightness-115 data-[highlighted]:ring-2 data-[highlighted]:ring-band-foreground/60 data-[highlighted]:ring-inset'
             >
-              <SpaceDot space={space} />
-              <span className='flex flex-col'>
-                <span className='font-semibold'>{name(space)}</span>
-                <span className='text-xs text-muted-foreground'>
+              <span className='flex size-11 shrink-0 items-center justify-center rounded-full bg-band-foreground/15'>
+                <img src={PICTURE[space]} alt='' className='size-8' />
+              </span>
+              <span className='flex min-w-0 flex-1 flex-col'>
+                <span className='font-display text-base font-semibold'>
+                  {name(space)}
+                </span>
+                <span className='text-xs text-band-foreground/80'>
                   {t(`spaces.${space}.tagline`)}
                 </span>
               </span>
-            </DropdownMenuRadioItem>
+              <DropdownMenuPrimitive.ItemIndicator className='flex size-6 shrink-0 items-center justify-center rounded-full bg-band-foreground text-band'>
+                <Check className='size-4' />
+              </DropdownMenuPrimitive.ItemIndicator>
+            </DropdownMenuPrimitive.RadioItem>
           ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

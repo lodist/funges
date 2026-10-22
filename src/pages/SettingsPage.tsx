@@ -89,7 +89,7 @@ export default function SettingsPage() {
           {t('title')}
         </h1>
         {/* Phones have no sidebar: the hub is where the spaces meet. */}
-        <SpaceSwitcher className='w-full' />
+        <SpaceSwitcher className='w-fit' />
 
         <div className='space-y-4'>
           {links.map(link => (
