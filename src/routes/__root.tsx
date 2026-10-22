@@ -9,26 +9,39 @@ import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { recordPath } from '@/lib/nav-history';
 import { crossesIsolationBoundary } from '@/lib/isolation';
+import { activateUpdate, isOutdated } from '@/lib/pwa';
 
 // Evaluated once per document load: the route this document was served for.
 const DOCUMENT_PATH =
   typeof window === 'undefined' ? '/' : window.location.pathname;
+// The page on screen, so a change of search params alone is not a page change.
+let shownPath = DOCUMENT_PATH;
 
 export const Route = createRootRoute({
-  // Photo ID is served cross-origin isolated and nothing else is, and a page's
-  // isolation is fixed when it loads. A client-side move across that line —
-  // a link, the back button — becomes a fresh load of the same URL. Decided
-  // before the route renders, so the page being left stays up (blurred, by
-  // index.html's view transition) until the new one has drawn.
+  // Two kinds of client-side move become a fresh load of the same URL:
+  // - across the isolation line. Photo ID is served cross-origin isolated and
+  //   nothing else is, and a page's isolation is fixed when it loads.
+  // - to another page while a new version of the site is waiting. The update
+  //   lands on a page change the visitor asked for, not mid-task.
+  // Decided before the route renders, so the page being left stays up
+  // (blurred, by index.html's view transition) until the new one has drawn.
   beforeLoad: ({ location, preload }) => {
-    if (preload || !crossesIsolationBoundary(DOCUMENT_PATH, location.pathname))
+    if (preload) return;
+    const pageChanged = location.pathname !== shownPath;
+    shownPath = location.pathname;
+    if (
+      !(pageChanged && isOutdated()) &&
+      !crossesIsolationBoundary(DOCUMENT_PATH, location.pathname)
+    )
       return;
     // The router has already pushed the URL. A replace, not a reload: reloads
     // never get a view transition. With a '#' a same-URL replace would only
     // scroll, so that case reloads.
     const href = window.location.href;
-    if (href.includes('#')) window.location.reload();
-    else window.location.replace(href);
+    void activateUpdate().then(() => {
+      if (href.includes('#')) window.location.reload();
+      else window.location.replace(href);
+    });
     return new Promise<never>(() => {}); // this document never renders the route
   },
   component: RootComponent,

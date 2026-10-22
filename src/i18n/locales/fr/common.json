@@ -41,9 +41,7 @@
   },
   "offline": {
     "mode": "Mode hors ligne",
-    "updateAvailable": "Mise à jour disponible",
-    "installApp": "Installer l'application",
-    "reloadForUpdate": "Recharger pour mettre à jour"
+    "installApp": "Installer l'application"
   },
   "home": {
     "headline": "Explorez ce qui pousse autour de vous",
