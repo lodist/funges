@@ -457,9 +457,6 @@
     "shorter": "Shorter",
     "longer": "Longer",
     "lengthValue": "{{value}} m",
-    "keep": "Lock",
-    "kept": "Locked",
-    "keptHint": "“Plan it for me” and resizing leave locked sections as they are.",
     "deleteBed": "Delete this bed",
     "deleteStrip": "Delete this strip",
     "bare": "Plain earth",
@@ -490,7 +487,6 @@
     "faded": "Faded plants are planned, not planted yet",
     "selected_one": "{{count}} section selected",
     "selected_other": "{{count}} sections selected",
-    "keepAll": "Lock these",
     "clearSelection": "Clear selection",
     "noneSelected": "Tap a bed to see it. Tap more beds to change them together.",
     "palette": {
