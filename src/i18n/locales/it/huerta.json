@@ -304,7 +304,7 @@
     "layer": "Livello della mappa",
     "place": "A {{place}}",
     "layers": {
-      "crop": "{{crop}}: semina o pianta ora",
+      "crop": "Semina o pianta ora",
       "frost": "Gelate questa settimana",
       "soil": "Temperatura del terreno",
       "water": "Da irrigare questa settimana"

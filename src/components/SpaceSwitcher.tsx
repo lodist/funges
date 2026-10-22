@@ -8,8 +8,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { CATEGORY_ICONS } from '@/lib/categoryIcons';
-import { huertaImage } from '@/lib/huerta';
+import { SpaceMark } from '@/components/Logo';
 import { Check, ChevronDown } from '@/lib/icons';
 import {
   currentSpace,
@@ -19,17 +18,12 @@ import {
 } from '@/lib/spaces';
 import { cn } from '@/lib/utils';
 
-/** Each space's picture on its tile: what you look for there. */
-const PICTURE: Record<Space, string> = {
-  terra: CATEGORY_ICONS.mushroom,
-  huerta: huertaImage('kinds/vegetable'),
-};
-
 /**
  * Moves between the spaces of Funges: the current space's name on a pill of
- * its own colour, and a menu of every space as a tile of its colour, with what
- * it holds. Switching opens the page last seen in that space. Draws nothing
- * while only one space is shown (the live site, until Huerta launches).
+ * its own colour, and a menu of every space as a tile of its colour, with the
+ * Funges mark in that colour and what it holds. Switching opens the page last
+ * seen in that space. Draws nothing while only one space is shown (the live
+ * site, until Huerta launches).
  */
 export const SpaceSwitcher = ({ className }: { className?: string }) =>
   visibleSpaces().length > 1 ? <SpaceMenu className={className} /> : null;
@@ -75,9 +69,7 @@ function SpaceMenu({ className }: { className?: string }) {
               data-space={space}
               className='flex min-h-16 cursor-default select-none items-center gap-3 rounded-xl bg-band p-3 text-band-foreground outline-hidden transition-[filter] duration-base data-[highlighted]:brightness-115 data-[highlighted]:ring-2 data-[highlighted]:ring-band-foreground/60 data-[highlighted]:ring-inset'
             >
-              <span className='flex size-11 shrink-0 items-center justify-center rounded-full bg-band-foreground/15'>
-                <img src={PICTURE[space]} alt='' className='size-8' />
-              </span>
+              <SpaceMark space={space} />
               <span className='flex min-w-0 flex-1 flex-col'>
                 <span className='font-display text-base font-semibold'>
                   {name(space)}

@@ -304,7 +304,7 @@
     "layer": "Couche de la carte",
     "place": "Autour de {{place}}",
     "layers": {
-      "crop": "{{crop}} : semer ou planter maintenant",
+      "crop": "Semer ou planter maintenant",
       "frost": "Gel cette semaine",
       "soil": "Température du sol",
       "water": "À arroser cette semaine"
