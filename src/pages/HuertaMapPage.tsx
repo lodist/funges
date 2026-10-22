@@ -359,8 +359,10 @@ export default function HuertaMapPage() {
             />
           </div>
         </div>
-        {/* The layers as Terra's tool rail: one band-coloured column, top right. */}
+        {/* The layers as Terra's tool rail: one band-coloured column, top right.
+            On a phone it steps aside while a spot's card is open. */}
         <div
+          hidden={isMobile && picked !== null}
           role='group'
           aria-label={t('map.layer')}
           className={cn(

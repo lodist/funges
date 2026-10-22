@@ -93,6 +93,7 @@ import {
   XIcon as LucideXIcon,
   ZoomIn as LucideZoomIn,
   ZoomOut as LucideZoomOut,
+  SlidersHorizontal as LucideSlidersHorizontal,
   createLucideIcon,
 } from 'lucide-react';
 
@@ -221,6 +222,7 @@ export const X = decorativeByDefault(LucideX);
 export const XIcon = decorativeByDefault(LucideXIcon);
 export const ZoomIn = decorativeByDefault(LucideZoomIn);
 export const ZoomOut = decorativeByDefault(LucideZoomOut);
+export const SlidersHorizontal = decorativeByDefault(LucideSlidersHorizontal);
 
 // Trailhead: lucide has no mushroom and this app forages them. Built with
 // createLucideIcon so it takes the same size/strokeWidth/currentColor contract

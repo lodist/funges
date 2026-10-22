@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { MapPinned, Navigation } from '@/lib/icons';
@@ -8,6 +8,9 @@ interface ScopeHeaderProps {
   title: string;
   /** Where the page's scores come from: "North Europe", "Within 100 km of you". */
   scopeLabel?: string;
+  /** The page's own action in place of "Use my location" (Huerta: its place),
+   *  null for none. */
+  action?: ReactNode;
 }
 
 /**
@@ -17,7 +20,7 @@ interface ScopeHeaderProps {
  * got the nearby scores. In Season, Species and Recipes share it, so the
  * three headers stay one header.
  */
-export function ScopeHeader({ title, scopeLabel }: ScopeHeaderProps) {
+export function ScopeHeader({ title, scopeLabel, action }: ScopeHeaderProps) {
   const { t } = useTranslation('common');
   const userLocation = useMapStore(state => state.userLocation);
   const getUserLocation = useMapStore(state => state.getUserLocation);
@@ -45,7 +48,9 @@ export function ScopeHeader({ title, scopeLabel }: ScopeHeaderProps) {
           </p>
         ) : null}
       </div>
-      {!userLocation ? (
+      {action !== undefined ? (
+        action
+      ) : !userLocation ? (
         <div className='flex flex-col items-start gap-1'>
           <Button variant='outline' onClick={locate} disabled={locating}>
             <Navigation />

@@ -1,5 +1,5 @@
 {
-  "title": "Cette semaine",
+  "title": "De saison",
   "description": "Quoi semer et planter cette semaine, alertes gel et arrosage pour votre commune.",
   "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
   "around": "Environs de {{place}}, {{day}}",
@@ -132,7 +132,9 @@
       "soil": "Sol",
       "nights": "Nuits",
       "rain": "Pluie",
-      "water": "Arrosage"
+      "water": "Arrosage",
+      "lastFrost": "Dernière gelée ~{{date}}",
+      "firstFrost": "Première gelée ~{{date}}"
     }
   },
   "units": {
@@ -497,7 +499,9 @@
       "toSelected_other": "Touchez une culture pour la mettre dans les {{count}} parties sélectionnées."
     },
     "strips_one": "{{count}} bande",
-    "strips_other": "{{count}} bandes"
+    "strips_other": "{{count}} bandes",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Effacer"
   },
   "year": {
     "title": "Calendrier",

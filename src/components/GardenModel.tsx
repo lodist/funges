@@ -1,6 +1,5 @@
 import { useRef, useState, type DragEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
 import {
   BED_HEIGHT,
   fit,
@@ -997,70 +996,88 @@ export function GardenModel({
         role='group'
         aria-label={t('planner.whereNorth')}
         title={t('planner.whereNorth')}
-        className='absolute top-2 left-2 flex items-center gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'
+        className='absolute top-2 left-2 flex items-center rounded-lg bg-card/90 elevation-raised'
       >
         {onTurnNorth ? (
-          <Button
-            variant='ghost'
-            size='icon'
-            aria-label={t('planner.northLeft')}
+          <ModelControl
+            label={t('planner.northLeft')}
             onClick={() => onTurnNorth(45)}
           >
             <RotateCcw className='size-4' />
-          </Button>
+          </ModelControl>
         ) : null}
         <Needle d={[n1[0] - n0[0], n1[1] - n0[1]]} />
         {onTurnNorth ? (
-          <Button
-            variant='ghost'
-            size='icon'
-            aria-label={t('planner.northRight')}
+          <ModelControl
+            label={t('planner.northRight')}
             onClick={() => onTurnNorth(-45)}
           >
             <RotateCw className='size-4' />
-          </Button>
+          </ModelControl>
         ) : null}
       </div>
       {onClear && selected.length > 0 ? (
-        <Button
-          variant='ghost'
+        <button
+          type='button'
           onClick={onClear}
-          className='absolute bottom-2 left-2 bg-card/90 px-3 text-sm elevation-raised hover:bg-card'
+          aria-label={t('planner.clearSelection')}
+          className='focus-ring absolute bottom-2 left-2 flex h-8 items-center gap-1 rounded-full bg-card/90 px-2.5 text-xs font-medium text-foreground elevation-raised hover:bg-card sm:h-9 sm:px-3 sm:text-sm'
         >
-          <X className='size-4' />
-          {t('planner.clearSelection')}
-        </Button>
+          <X className='size-3.5' />
+          {t('planner.clear')}
+        </button>
       ) : null}
-      <div className='absolute right-2 bottom-2 flex flex-col gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'>
-        <Button
-          variant='ghost'
-          size='icon'
-          aria-label={t('planner.zoomIn')}
+      <div className='absolute right-2 bottom-2 flex flex-col rounded-lg bg-card/90 elevation-raised'>
+        <ModelControl
+          label={t('planner.zoomIn')}
           disabled={zoom >= MAX_ZOOM}
           onClick={() => zoomTo(zoom * ZOOM_STEP)}
         >
           <ZoomIn className='size-4' />
-        </Button>
-        <Button
-          variant='ghost'
-          size='icon'
-          aria-label={t('planner.zoomOut')}
+        </ModelControl>
+        <ModelControl
+          label={t('planner.zoomOut')}
           disabled={zoom <= 1}
           onClick={() => zoomTo(zoom / ZOOM_STEP)}
         >
           <ZoomOut className='size-4' />
-        </Button>
-        <Button
-          variant='ghost'
-          size='icon'
-          aria-label={t('planner.zoomFit')}
+        </ModelControl>
+        <ModelControl
+          label={t('planner.zoomFit')}
           disabled={zoom === 1}
           onClick={() => zoomTo(1)}
         >
           <Maximize2 className='size-4' />
-        </Button>
+        </ModelControl>
       </div>
     </div>
+  );
+}
+
+/** A control over the model, sized as a map's are (32 px on a phone, 40 px
+ *  above): page-sized 44 px buttons took the garden's room on a phone. */
+function ModelControl({
+  label,
+  disabled,
+  onClick,
+  children,
+}: {
+  label: string;
+  disabled?: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type='button'
+      aria-label={label}
+      title={label}
+      disabled={disabled}
+      onClick={onClick}
+      className='focus-ring flex size-8 items-center justify-center rounded-md text-foreground hover:bg-muted disabled:pointer-events-none disabled:opacity-40 sm:size-10'
+    >
+      {children}
+    </button>
   );
 }
 
@@ -1073,7 +1090,11 @@ function Needle({ d }: { d: [number, number] }) {
   const half = (sign: number) =>
     `${sign * ux * 11},${sign * uy * 11} ${-uy * 3.4},${ux * 3.4} ${uy * 3.4},${-ux * 3.4}`;
   return (
-    <svg viewBox='-19 -19 38 38' className='size-10' aria-hidden='true'>
+    <svg
+      viewBox='-19 -19 38 38'
+      className='size-8 sm:size-10'
+      aria-hidden='true'
+    >
       <polygon points={half(1)} fill='#c0391b' />
       <polygon points={half(-1)} fill='#a39890' />
       <circle r={1.7} fill='#fff' />

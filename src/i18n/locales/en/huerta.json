@@ -1,5 +1,5 @@
 {
-  "title": "This week",
+  "title": "In Season",
   "description": "What to sow and plant this week, frost warnings and watering for your town.",
   "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
   "around": "Around {{place}}, {{day}}",
@@ -132,7 +132,9 @@
       "soil": "Soil",
       "nights": "Nights",
       "rain": "Rain",
-      "water": "To water"
+      "water": "To water",
+      "lastFrost": "Last frost ~{{date}}",
+      "firstFrost": "First frost ~{{date}}"
     }
   },
   "units": {
@@ -497,7 +499,9 @@
       "toSelected_other": "Tap a crop to put it in the {{count}} selected sections."
     },
     "strips_one": "{{count}} strip",
-    "strips_other": "{{count}} strips"
+    "strips_other": "{{count}} strips",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Clear"
   },
   "year": {
     "title": "Calendar",
