@@ -126,7 +126,7 @@ export default function HuertaPlannerPage() {
   // The sections just planted, while their plants come up.
   const [fresh, setFresh] = useState<number[]>([]);
   // The sections selected: tapping one adds it, tapping it again takes it out.
-  const [sel, setSel] = useState<number[]>([0]);
+  const [sel, setSel] = useState<number[]>([]);
   // A deleted bed's patch of earth, when one is picked instead of a section.
   const [patch, setPatch] = useState<number | null>(null);
   const isMobile = useIsMobile();
@@ -208,10 +208,9 @@ export default function HuertaPlannerPage() {
       sections: plan.sections.map((x, i) => (ids.includes(i) ? change(x) : x)),
     });
   };
-  // A crop put into sections by hand: chosen, not yet planted, and left
-  // alone by "Plan it for me".
+  // A crop put into sections: chosen, not yet planted.
   const place = (ids: number[], crop: string) =>
-    edit(ids, x => ({ ...x, crop, planted: undefined, locked: true }));
+    edit(ids, x => ({ ...x, crop, planted: undefined }));
   // Marked planted today, or not.
   const plantOn = (ids: number[], planted: string | undefined) => {
     const withCrop = ids.filter(i => plan?.sections[i]?.crop);
@@ -430,10 +429,15 @@ export default function HuertaPlannerPage() {
                       update({
                         ...plan,
                         garden: { ...plan.garden, style },
+                        // Everything not planted, or only the sections chosen.
                         sections: autoPlan(plan.sections, status, {
                           north: plan.garden.north,
                           style,
                           axis: axisOf(plan.garden),
+                          only:
+                            patch === null && chosen.length
+                              ? chosen
+                              : undefined,
                         }),
                       })
                     }
@@ -465,7 +469,8 @@ export default function HuertaPlannerPage() {
 
           <div className='grid lg:grid-cols-[minmax(0,1fr)_22rem]'>
             <div className='min-w-0 bg-background/40'>
-              {plan.sections.length > 0 ? (
+              {/* Every bed deleted: still the ground, to put one back. */}
+              {plan.sections.length > 0 || plan.bare?.length ? (
                 <GardenModel
                   garden={plan.garden}
                   sections={plan.sections}

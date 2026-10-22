@@ -60,8 +60,6 @@ export interface Section {
   crop: string | null;
   /** The day it went in, YYYY-MM-DD; absent while only planned. */
   planted?: string;
-  /** Its crop was put in by hand: "Plan it for me" leaves it alone. */
-  locked?: boolean;
 }
 
 export interface Plan {
@@ -366,20 +364,22 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
 
 /** Fill every section from this week's statuses at the visitor's place: one
  *  family per bed (of those the style grows), onions and garlic never beside
- *  peas and beans, the tallest crop of a bed at its north end. Planted sections
- *  and those filled by hand keep their crop, and with `keepChosen` every section that
- *  has one. */
+ *  peas and beans, the tallest crop of a bed at its north end. Planted
+ *  sections keep their crop, and with `keepChosen` every section that has one;
+ *  with `only`, just those sections (by index) are planned. */
 export function autoPlan(
   sections: Section[],
   status: (crop: string) => CropStatus | undefined,
   {
     north = 0,
     keepChosen = false,
+    only,
     style = 'mixed',
     axis = 'y',
   }: {
     north?: number;
     keepChosen?: boolean;
+    only?: number[];
     style?: PlanStyle;
     axis?: Axis;
   } = {}
@@ -390,6 +390,7 @@ export function autoPlan(
   };
   const how = STYLES[style];
   let out = sections.map(s => ({ ...s }));
+  const open = new Set(only ? only.map(i => out[i]) : out);
   const beds = [...new Set(out.map(s => s.bed))];
   const groups = arrange(
     out,
@@ -414,7 +415,8 @@ export function autoPlan(
     const pick = best(GROUPS[group]);
     const parts = out
       .filter(
-        s => s.bed === bed && !s.planted && !s.locked && !(keepChosen && s.crop)
+        s =>
+          s.bed === bed && open.has(s) && !s.planted && !(keepChosen && s.crop)
       )
       .sort((a, z) => northOf(north, z) - northOf(north, a));
     // Vegetables with flowers: a strip of a low companion flower across the
@@ -605,7 +607,7 @@ export function restoreBed(plan: Plan, i: number): Plan {
 }
 
 /** The plan on a new size, shape, north, bed direction or way of growing:
- *  each new section keeps the crop, planting and lock of the old one it
+ *  each new section keeps the crop and planting of the old one it
  *  mostly lies on, deleted beds stay deleted, and the rest is planned. */
 export function reshape(
   plan: Plan,
@@ -627,7 +629,7 @@ export function reshape(
       if (v > most) [best, most] = [o, v];
     }
     return best && most >= area(rectOf(s)) / 2
-      ? { ...s, crop: best.crop, planted: best.planted, locked: best.locked }
+      ? { ...s, crop: best.crop, planted: best.planted }
       : s;
   });
   return {

@@ -222,16 +222,27 @@ describe('the garden planner', () => {
     const back = restoreBed(cut, 0);
     expect(back.bare).toHaveLength(0);
     expect(new Set(back.sections.map(s => s.bed)).size).toBe(3);
-    const locked = {
+    const planted = {
       ...plan,
       sections: plan.sections.map((s, i) =>
-        i === 0 ? { ...s, crop: 'asparagus', locked: true } : s
+        i === 0 ? { ...s, crop: 'asparagus', planted: '2026-10-01' } : s
       ),
     };
-    expect(autoPlan(locked.sections, status)[0].crop).toBe('asparagus');
-    const wider = reshape(locked, { ...g, width: 7.5 }, status);
-    expect(wider.sections.find(s => s.locked)?.crop).toBe('asparagus');
+    expect(autoPlan(planted.sections, status)[0].crop).toBe('asparagus');
+    const wider = reshape(planted, { ...g, width: 7.5 }, status);
+    expect(wider.sections.find(s => s.planted)?.crop).toBe('asparagus');
     expect(wider.sections.every(s => s.crop)).toBe(true);
+    // A crop chosen by hand is planned again; with `only`, the rest stay.
+    const hand = plan.sections.map((s, i) =>
+      i === 0 || i === 1 ? { ...s, crop: 'zinnia' } : s
+    );
+    expect(autoPlan(hand, status)[0].crop).not.toBe('zinnia');
+    const just = autoPlan(hand, status, { only: [1] });
+    expect(just[0].crop).toBe('zinnia');
+    expect(just[1].crop).not.toBe('zinnia');
+    expect(just.slice(2).map(s => s.crop)).toEqual(
+      hand.slice(2).map(s => s.crop)
+    );
     // A deleted bed stays deleted through a resize.
     const after = reshape(cut, { ...g, length: 5 }, status);
     expect(after.bare).toHaveLength(1);
