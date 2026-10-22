@@ -19,8 +19,10 @@ import {
   split,
   summary,
   type Garden,
+  type PlanStyle,
   type Section,
 } from '@/lib/planner';
+import { CROPS } from '@/lib/huerta';
 import { PLANT_LOOK } from '@/lib/planner-data';
 
 const NOW = new Set([
@@ -155,7 +157,7 @@ describe('the garden planner', () => {
     expect(northness({ north: 90 }, 1, 0)).toBeCloseTo(-1); // top faces east: north is left
     expect(northness({ north: 180 }, 0, 1)).toBeCloseTo(1); // top faces south
     const g: Garden = { width: 2, length: 4.5, shape: 'rect', north: 180 };
-    const plan = autoPlan(layout(g), status, g.north);
+    const plan = autoPlan(layout(g), status, { north: g.north });
     const [south, north] = plan.sort((a, z) => a.y0 - z.y0);
     expect(PLANT_LOOK[north.crop!].height).toBeGreaterThanOrEqual(
       PLANT_LOOK[south.crop!].height
@@ -228,5 +230,38 @@ describe('the garden planner', () => {
     const after = reshape(cut, { ...g, length: 5 }, status);
     expect(after.bare).toHaveLength(1);
     expect(new Set(after.sections.map(s => s.bed)).size).toBe(2);
+  });
+
+  it('plans the kind of garden asked for', () => {
+    const KIND = Object.fromEntries(CROPS.map(c => [c.id, c.kind]));
+    const all = (_: string): CropStatus => 'now';
+    const g: Garden = { width: 10, length: 6, shape: 'rect' };
+    const plan = (style: PlanStyle) =>
+      autoPlan(layout(g), all, { style }).map(s => s.crop!);
+    expect(plan('veg').every(id => KIND[id] === 'vegetable')).toBe(true);
+    expect(
+      plan('herbsFlowers').every(id => ['herb', 'flower'].includes(KIND[id]))
+    ).toBe(true);
+    const FRUIT = new Set(
+      'strawberry melon watermelon tomato pepper chilli aubergine courgette cucumber pumpkin winter_squash'.split(
+        ' '
+      )
+    );
+    expect(plan('fruit').every(id => FRUIT.has(id))).toBe(true);
+    // Vegetables with flowers: each bed's south end in flower, the rest vegetables.
+    const mixed = autoPlan(layout(g), all, { style: 'vegFlowers' });
+    for (const bed of new Set(mixed.map(s => s.bed))) {
+      const parts = mixed
+        .filter(s => s.bed === bed)
+        .sort((a, z) => z.y0 - a.y0);
+      expect(KIND[parts[0].crop!]).toBe('flower');
+      expect(parts[0].y1 - parts[0].y0).toBeCloseTo(0.4); // a strip, not a section
+      expect(parts.slice(1).every(s => KIND[s.crop!] === 'vegetable')).toBe(
+        true
+      );
+    }
+    // Planned again, the strip stays a strip.
+    const again = autoPlan(mixed, all, { style: 'vegFlowers' });
+    expect(again).toHaveLength(mixed.length);
   });
 });

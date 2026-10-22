@@ -1,4 +1,6 @@
-import type { ReactNode } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/ui/button';
 import {
   BED_HEIGHT,
   fit,
@@ -8,6 +10,8 @@ import {
   type Section,
 } from '@/lib/planner';
 import { huertaImage } from '@/lib/huerta';
+import { Maximize2, RotateCcw, RotateCw, ZoomIn, ZoomOut } from '@/lib/icons';
+import { cn } from '@/lib/utils';
 import { PLANT_LOOK, type PlantLook } from '@/lib/planner-data';
 
 /**
@@ -24,6 +28,8 @@ const MAX_GLYPHS = 180;
 const MAX_DRAWN = 1500;
 /** The narrowest view, in model units (64 a metre). */
 const MIN_VIEW = 560;
+const MAX_ZOOM = 4;
+const ZOOM_STEP = 1.5;
 const PLOT = '#ece5db';
 const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
@@ -97,6 +103,8 @@ interface GardenModelProps {
   /** Beds deleted: plain earth, which can be tapped to put a bed back. */
   bare?: Rect[];
   onBare?: (index: number) => void;
+  /** Turn north on the drawing by `delta` degrees (counter-clockwise: +). */
+  onTurnNorth?: (delta: number) => void;
   title: string;
 }
 
@@ -120,8 +128,20 @@ export function GardenModel({
   fresh,
   bare = [],
   onBare,
+  onTurnNorth,
   title,
 }: GardenModelProps) {
+  const { t } = useTranslation('huerta');
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState<[number, number]>([0, 0]);
+  // A drag in progress: where it began, and whether it has moved (then the
+  // click that ends it selects nothing).
+  const drag = useRef<{
+    x: number;
+    y: number;
+    pan: [number, number];
+    moved: boolean;
+  } | null>(null);
   const { width: W, length: L } = garden;
   const ground = garden.ground ?? 'raised';
   const raised = ground === 'raised';
@@ -768,42 +788,142 @@ export function GardenModel({
   const bearing = ((garden.north ?? 0) * Math.PI) / 180;
   const n0 = P(0, 0),
     n1 = P(-Math.sin(bearing), -Math.cos(bearing));
+
+  // Zoomed in, the view is a window on the whole, moved by dragging.
+  const w = maxX - minX,
+    h = maxY - minY,
+    vw = w / zoom,
+    vh = h / zoom;
+  const limit = ([x, y]: [number, number]): [number, number] => [
+    Math.max(-(w - vw) / 2, Math.min((w - vw) / 2, x)),
+    Math.max(-(h - vh) / 2, Math.min((h - vh) / 2, y)),
+  ];
+  const [px, py] = limit(pan);
+  const zoomTo = (z: number) => {
+    const next = z < 1.01 ? 1 : Math.min(MAX_ZOOM, z);
+    setZoom(next);
+    if (next === 1) setPan([0, 0]);
+  };
   return (
-    <svg
-      role='img'
-      aria-label={title}
-      viewBox={`${minX} ${minY} ${maxX - minX} ${maxY - minY}`}
-      className='block h-auto max-h-[38rem] w-full'
-    >
-      {drawn}
-      <North x={minX + 58} y={minY + 46} d={[n1[0] - n0[0], n1[1] - n0[1]]} />
-    </svg>
+    <div className='relative'>
+      <svg
+        role='img'
+        aria-label={title}
+        viewBox={`${minX + (w - vw) / 2 + px} ${minY + (h - vh) / 2 + py} ${vw} ${vh}`}
+        className={cn(
+          'block h-auto max-h-[38rem] w-full',
+          zoom > 1 && 'cursor-grab touch-none active:cursor-grabbing'
+        )}
+        onPointerDown={e => {
+          if (zoom > 1)
+            drag.current = {
+              x: e.clientX,
+              y: e.clientY,
+              pan: [px, py],
+              moved: false,
+            };
+        }}
+        onPointerMove={e => {
+          const d = drag.current;
+          if (!d) return;
+          const dx = e.clientX - d.x,
+            dy = e.clientY - d.y;
+          if (Math.abs(dx) + Math.abs(dy) > 4) d.moved = true;
+          const k = vw / e.currentTarget.clientWidth;
+          if (d.moved) setPan(limit([d.pan[0] - dx * k, d.pan[1] - dy * k]));
+        }}
+        onPointerUp={() => setTimeout(() => (drag.current = null))}
+        onPointerLeave={() => (drag.current = null)}
+        onClickCapture={e => {
+          if (drag.current?.moved) e.stopPropagation();
+        }}
+      >
+        {drawn}
+      </svg>
+      <div className='absolute top-2 left-2 flex items-center gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'>
+        {onTurnNorth ? (
+          <Button
+            variant='ghost'
+            size='icon'
+            aria-label={t('planner.northLeft')}
+            onClick={() => onTurnNorth(45)}
+          >
+            <RotateCcw className='size-4' />
+          </Button>
+        ) : null}
+        <Needle d={[n1[0] - n0[0], n1[1] - n0[1]]} />
+        {onTurnNorth ? (
+          <Button
+            variant='ghost'
+            size='icon'
+            aria-label={t('planner.northRight')}
+            onClick={() => onTurnNorth(-45)}
+          >
+            <RotateCw className='size-4' />
+          </Button>
+        ) : null}
+        <span className='pr-2 text-xs text-muted-foreground'>
+          {t('planner.whereNorth')}
+        </span>
+      </div>
+      <div className='absolute right-2 bottom-2 flex flex-col gap-0.5 rounded-lg bg-card/90 p-1 elevation-raised'>
+        <Button
+          variant='ghost'
+          size='icon'
+          aria-label={t('planner.zoomIn')}
+          disabled={zoom >= MAX_ZOOM}
+          onClick={() => zoomTo(zoom * ZOOM_STEP)}
+        >
+          <ZoomIn className='size-4' />
+        </Button>
+        <Button
+          variant='ghost'
+          size='icon'
+          aria-label={t('planner.zoomOut')}
+          disabled={zoom <= 1}
+          onClick={() => zoomTo(zoom / ZOOM_STEP)}
+        >
+          <ZoomOut className='size-4' />
+        </Button>
+        <Button
+          variant='ghost'
+          size='icon'
+          aria-label={t('planner.zoomFit')}
+          disabled={zoom === 1}
+          onClick={() => zoomTo(1)}
+        >
+          <Maximize2 className='size-4' />
+        </Button>
+      </div>
+    </div>
   );
 }
 
-function North({ x, y, d }: { x: number; y: number; d: [number, number] }) {
+/** The north needle, pointing where north lies on the drawing. */
+function Needle({ d }: { d: [number, number] }) {
   const len = Math.hypot(d[0], d[1]) || 1;
   const ux = d[0] / len,
     uy = d[1] / len;
   return (
-    <g pointerEvents='none'>
+    <svg viewBox='-16 -16 32 32' className='size-9' aria-hidden='true'>
       <line
-        x1={x}
-        y1={y}
-        x2={x + ux * 22}
-        y2={y + uy * 22}
+        x1={-ux * 8}
+        y1={-uy * 8}
+        x2={ux * 8}
+        y2={uy * 8}
         stroke='#776c64'
-        strokeWidth={1.5}
+        strokeWidth={1.6}
       />
-      <circle cx={x + ux * 22} cy={y + uy * 22} r={2.5} fill='#776c64' />
+      <circle cx={ux * 8} cy={uy * 8} r={2.6} fill='#9a3f1f' />
       <text
-        x={x + ux * 34 - 4}
-        y={y + uy * 34 + 4}
-        style={{ font: '700 11px var(--font-sans)', fill: '#776c64' }}
+        x={ux * 12.5}
+        y={uy * 12.5 + 3.2}
+        textAnchor='middle'
+        style={{ font: '700 9px var(--font-sans)', fill: '#776c64' }}
       >
         N
       </text>
-    </g>
+    </svg>
   );
 }
 

@@ -439,7 +439,6 @@
     "split": "Diesen Teil zweiteilen",
     "footnote": "Säen und Pflanzen mit Stand {{date}}. Dein Plan bleibt auf diesem Gerät.",
     "sownOn": "Gesät am {{date}}",
-    "faces": "Oberer Rand zeigt nach",
     "groundLabel": "So gärtnerst du",
     "ground": {
       "raised": "Hochbeete",
@@ -466,15 +465,19 @@
     "bareText": "Hier war ein Beet. Leg es wieder an oder lass die Erde frei.",
     "putBed": "Beet wieder anlegen",
     "strip": "Streifen {{n}}",
-    "bearing": {
-      "0": "Norden",
-      "45": "Nordosten",
-      "90": "Osten",
-      "135": "Südosten",
-      "180": "Süden",
-      "225": "Südwesten",
-      "270": "Westen",
-      "315": "Nordwesten"
+    "whereNorth": "Wo ist Norden?",
+    "northLeft": "Norden nach links drehen",
+    "northRight": "Norden nach rechts drehen",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "zoomFit": "Ganzen Garten zeigen",
+    "styleLabel": "Was du anbauen willst",
+    "style": {
+      "mixed": "Ein gemischter Garten: Gemüse, Kräuter und Blumen",
+      "veg": "Nur Gemüse",
+      "vegFlowers": "Gemüse, mit Blumen am Ende jedes Beets",
+      "fruit": "Obst zuerst: Erdbeeren, Melonen, Tomaten, Kürbisse",
+      "herbsFlowers": "Kräuter und Blumen"
     }
   },
   "year": {

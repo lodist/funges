@@ -439,7 +439,6 @@
     "split": "Split this section in two",
     "footnote": "Sowing and planting as of {{date}}. Your plan stays on this device.",
     "sownOn": "Sown on {{date}}",
-    "faces": "Top of the plot faces",
     "groundLabel": "How you grow",
     "ground": {
       "raised": "Raised beds",
@@ -466,15 +465,19 @@
     "bareText": "A bed was here. Put one back, or leave the earth bare.",
     "putBed": "Put a bed back",
     "strip": "Strip {{n}}",
-    "bearing": {
-      "0": "North",
-      "45": "North-east",
-      "90": "East",
-      "135": "South-east",
-      "180": "South",
-      "225": "South-west",
-      "270": "West",
-      "315": "North-west"
+    "whereNorth": "Which way is north?",
+    "northLeft": "Turn north to the left",
+    "northRight": "Turn north to the right",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "zoomFit": "Show the whole garden",
+    "styleLabel": "What to grow",
+    "style": {
+      "mixed": "A mixed garden: vegetables, herbs and flowers",
+      "veg": "Vegetables only",
+      "vegFlowers": "Vegetables, with flowers at each bed's end",
+      "fruit": "Fruit first: strawberries, melons, tomatoes, squash",
+      "herbsFlowers": "Herbs and flowers"
     }
   },
   "year": {

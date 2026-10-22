@@ -439,7 +439,6 @@
     "split": "Dividi questa parte in due",
     "footnote": "Semina e trapianto al {{date}}. Il tuo piano resta su questo dispositivo.",
     "sownOn": "Seminato il {{date}}",
-    "faces": "Il lato in alto guarda a",
     "groundLabel": "Come coltivi",
     "ground": {
       "raised": "Aiuole rialzate",
@@ -466,15 +465,19 @@
     "bareText": "Qui c'era un'aiuola. Rimettila, o lascia la terra libera.",
     "putBed": "Rimetti l'aiuola",
     "strip": "Striscia {{n}}",
-    "bearing": {
-      "0": "Nord",
-      "45": "Nord-est",
-      "90": "Est",
-      "135": "Sud-est",
-      "180": "Sud",
-      "225": "Sud-ovest",
-      "270": "Ovest",
-      "315": "Nord-ovest"
+    "whereNorth": "Da che parte è il nord?",
+    "northLeft": "Gira il nord a sinistra",
+    "northRight": "Gira il nord a destra",
+    "zoomIn": "Ingrandisci",
+    "zoomOut": "Riduci",
+    "zoomFit": "Mostra tutto l'orto",
+    "styleLabel": "Cosa coltivare",
+    "style": {
+      "mixed": "Un orto misto: ortaggi, aromatiche e fiori",
+      "veg": "Solo ortaggi",
+      "vegFlowers": "Ortaggi, con fiori in fondo a ogni aiuola",
+      "fruit": "Prima la frutta: fragole, meloni, pomodori, zucche",
+      "herbsFlowers": "Aromatiche e fiori"
     }
   },
   "year": {

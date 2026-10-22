@@ -439,7 +439,6 @@
     "split": "Dividir esta parte em duas",
     "footnote": "Semeadura e plantio em {{date}}. Seu plano fica neste dispositivo.",
     "sownOn": "Semeado em {{date}}",
-    "faces": "O lado de cima fica para o",
     "groundLabel": "Como você cultiva",
     "ground": {
       "raised": "Canteiros elevados",
@@ -466,15 +465,19 @@
     "bareText": "Aqui havia um canteiro. Coloque-o de volta ou deixe a terra livre.",
     "putBed": "Colocar o canteiro de volta",
     "strip": "Faixa {{n}}",
-    "bearing": {
-      "0": "Norte",
-      "45": "Nordeste",
-      "90": "Leste",
-      "135": "Sudeste",
-      "180": "Sul",
-      "225": "Sudoeste",
-      "270": "Oeste",
-      "315": "Noroeste"
+    "whereNorth": "Para que lado fica o norte?",
+    "northLeft": "Girar o norte para a esquerda",
+    "northRight": "Girar o norte para a direita",
+    "zoomIn": "Aproximar",
+    "zoomOut": "Afastar",
+    "zoomFit": "Ver a horta inteira",
+    "styleLabel": "O que cultivar",
+    "style": {
+      "mixed": "Uma horta mista: hortaliças, ervas e flores",
+      "veg": "Só hortaliças",
+      "vegFlowers": "Hortaliças, com flores no fim de cada canteiro",
+      "fruit": "Fruta primeiro: morangos, melões, tomates, abóboras",
+      "herbsFlowers": "Ervas e flores"
     }
   },
   "year": {

@@ -52,6 +52,7 @@ import {
   Lock as LucideLock,
   Mail as LucideMail,
   Map as LucideMap,
+  Maximize2 as LucideMaximize2,
   MapPin as LucideMapPin,
   MapPinned as LucideMapPinned,
   Minus as LucideMinus,
@@ -90,6 +91,8 @@ import {
   WifiOff as LucideWifiOff,
   X as LucideX,
   XIcon as LucideXIcon,
+  ZoomIn as LucideZoomIn,
+  ZoomOut as LucideZoomOut,
   createLucideIcon,
 } from 'lucide-react';
 
@@ -177,6 +180,7 @@ export const Loader2 = decorativeByDefault(LucideLoader2);
 export const Lock = decorativeByDefault(LucideLock);
 export const Mail = decorativeByDefault(LucideMail);
 export const Map = decorativeByDefault(LucideMap);
+export const Maximize2 = decorativeByDefault(LucideMaximize2);
 export const MapPin = decorativeByDefault(LucideMapPin);
 export const MapPinned = decorativeByDefault(LucideMapPinned);
 export const Minus = decorativeByDefault(LucideMinus);
@@ -215,6 +219,8 @@ export const Users = decorativeByDefault(LucideUsers);
 export const WifiOff = decorativeByDefault(LucideWifiOff);
 export const X = decorativeByDefault(LucideX);
 export const XIcon = decorativeByDefault(LucideXIcon);
+export const ZoomIn = decorativeByDefault(LucideZoomIn);
+export const ZoomOut = decorativeByDefault(LucideZoomOut);
 
 // Trailhead: lucide has no mushroom and this app forages them. Built with
 // createLucideIcon so it takes the same size/strokeWidth/currentColor contract
