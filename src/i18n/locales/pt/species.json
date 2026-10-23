@@ -377,6 +377,9 @@
     "notToday": "Fora de estação hoje",
     "whereItGrows": "Onde cresce",
     "lookalikes": "Sósias tóxicos",
-    "tellApart": "Como diferenciá-los"
+    "tellApart": "Como diferenciá-los",
+    "testedLabel": "Testado · temporada {{year}}",
+    "tested": "No mesmo ponto, a previsão avaliou melhor os dias da sua temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
+    "howWeCheck": "Como verificamos"
   }
 }

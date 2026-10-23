@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Daten ansehen"
+    },
+    "proof": {
+      "line": "Geprüft an der Saison {{year}} an {{spots}} Stellen, an denen Menschen Pilze gefunden haben: Die Vorhersage bewertete Tage in der Saison eines Pilzes <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb der Saison.",
+      "link": "So prüfen wir"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,19 @@
       "whereW": "im Westen",
       "whereNW": "im Nordwesten",
       "rainPatchyDry": "Der Regen war ungleich verteilt in {{daysLabel}}: Mindestens die Hälfte des Gebiets blieb trocken, {{where}} fielen dagegen etwa {{amount}} mm{{peakSuffix}}, am stärksten {{when}}."
+    },
+    "scorecard": {
+      "title": "Wie gut die Vorhersage war",
+      "intro": "Die aktuelle Vorhersage vom {{since}} bis zum {{until}}, an {{spots}} Stellen, an denen Menschen Pilze gefunden haben. Jeder Balken zeigt, wie oft sie an derselben Stelle einen Tag in der Saison des Pilzes besser bewertete als einen Tag außerhalb.",
+      "all": "Alle Pilze",
+      "finds_one": "{{finds}} Fund",
+      "finds_other": "{{finds}} Funde",
+      "howTitle": "So prüfen wir",
+      "how": {
+        "replay": "Wir rechnen die aktuelle Vorhersage mit dem Wetter jedes Tages und vergleichen sie mit Pilzfunden, die Menschen bei GBIF melden, der weltweiten Biodiversitätsdatenbank.",
+        "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}.",
+        "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen."
+      }
     }
   },
   "sidebar": {

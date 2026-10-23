@@ -152,6 +152,28 @@
     color: var(--happy-700);
     font-size: 0.875rem;
   }
+  // The track record, said once under the promise: a hard green rule on the
+  // left, no box, the link underlined like the walk's below.
+  .proof {
+    max-width: 46ch;
+    margin-block: -0.5rem 2rem;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--happy-700);
+    p {
+      color: var(--happy-900);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    strong {
+      font-weight: 700;
+    }
+    .textLink {
+      color: var(--happy-900);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+    }
+  }
 }
 
 // 3 — Bright green: the walk from forest to table on one line.

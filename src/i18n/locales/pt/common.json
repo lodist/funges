@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Ver os dados"
+    },
+    "proof": {
+      "line": "Testado na temporada de {{year}} em {{spots}} pontos onde as pessoas acharam cogumelos: a previsão avaliou melhor os dias da temporada de cada cogumelo do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
+      "link": "Como verificamos"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,19 @@
       "whereW": "no oeste",
       "whereNW": "no noroeste",
       "rainPatchyDry": "A chuva foi irregular {{daysLabel}}: pelo menos metade da área ficou seca, mas {{where}} caíram cerca de {{amount}} mm{{peakSuffix}}, com o pico {{when}}."
+    },
+    "scorecard": {
+      "title": "Como a previsão se saiu",
+      "intro": "A previsão atual de {{since}} a {{until}}, em {{spots}} pontos onde as pessoas acharam cogumelos. Cada barra mostra quantas vezes, no mesmo ponto, ela avaliou melhor um dia da temporada do cogumelo do que um dia fora dela.",
+      "all": "Todos os cogumelos",
+      "finds_one": "{{finds}} achado",
+      "finds_other": "{{finds}} achados",
+      "howTitle": "Como verificamos",
+      "how": {
+        "replay": "Aplicamos a previsão atual ao tempo de cada dia e a comparamos com os achados de cogumelos que as pessoas registram no GBIF, o banco de dados mundial de biodiversidade.",
+        "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}.",
+        "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro."
+      }
     }
   },
   "sidebar": {

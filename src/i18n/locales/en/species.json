@@ -377,6 +377,9 @@
     "notToday": "Not in season today",
     "whereItGrows": "Where it grows",
     "lookalikes": "Toxic look-alikes",
-    "tellApart": "How to tell them apart"
+    "tellApart": "How to tell them apart",
+    "testedLabel": "Tested · {{year}} season",
+    "tested": "At the same spot, the forecast rated days in its season above days out of season <strong>{{times}} times in 10</strong>.",
+    "howWeCheck": "How we check"
   }
 }

@@ -377,6 +377,9 @@
     "notToday": "Oggi non è di stagione",
     "whereItGrows": "Dove cresce",
     "lookalikes": "Sosia tossici",
-    "tellApart": "Come distinguerli"
+    "tellApart": "Come distinguerli",
+    "testedLabel": "Verificato · stagione {{year}}",
+    "tested": "Nello stesso punto, la previsione ha valutato i giorni della sua stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>.",
+    "howWeCheck": "Come verifichiamo"
   }
 }

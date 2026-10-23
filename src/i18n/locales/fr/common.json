@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Voir les données"
+    },
+    "proof": {
+      "line": "Vérifiée sur la saison {{year}} en {{spots}} endroits où des gens ont trouvé des champignons : la prévision a mieux noté les jours de saison de chaque champignon que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
+      "link": "Comment nous vérifions"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,19 @@
       "whereW": "dans l'ouest",
       "whereNW": "dans le nord-ouest",
       "rainPatchyDry": "Pluie très inégale durant {{daysLabel}} : au moins la moitié de la zone est restée sèche, mais {{where}} il est tombé environ {{amount}} mm{{peakSuffix}}, au plus fort {{when}}."
+    },
+    "scorecard": {
+      "title": "Ce qu'a donné la prévision",
+      "intro": "La prévision actuelle du {{since}} au {{until}}, en {{spots}} endroits où des gens ont trouvé des champignons. Chaque barre montre combien de fois, au même endroit, elle a mieux noté un jour dans la saison du champignon qu'un jour hors saison.",
+      "all": "Tous les champignons",
+      "finds_one": "{{finds}} trouvaille",
+      "finds_other": "{{finds}} trouvailles",
+      "howTitle": "Comment nous vérifions",
+      "how": {
+        "replay": "Nous appliquons la prévision actuelle à la météo de chaque jour et la comparons aux trouvailles de champignons signalées sur GBIF, la base de données mondiale de la biodiversité.",
+        "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}.",
+        "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double."
+      }
     }
   },
   "sidebar": {

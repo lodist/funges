@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Ver los datos"
+    },
+    "proof": {
+      "line": "Probado con la temporada {{year}} en {{spots}} lugares donde la gente encontró setas: la previsión valoró mejor los días de temporada de cada seta que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>.",
+      "link": "Cómo lo comprobamos"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,19 @@
       "whereW": "en el oeste",
       "whereNW": "en el noroeste",
       "rainPatchyDry": "La lluvia fue irregular durante {{daysLabel}}: al menos la mitad de la zona siguió seca, pero {{where}} cayeron unos {{amount}} mm{{peakSuffix}}, con el máximo {{when}}."
+    },
+    "scorecard": {
+      "title": "Cómo le ha ido a la previsión",
+      "intro": "La previsión actual del {{since}} al {{until}}, en {{spots}} lugares donde la gente encontró setas. Cada barra muestra cuántas veces, en el mismo lugar, valoró mejor un día de la temporada de la seta que un día fuera de temporada.",
+      "all": "Todas las setas",
+      "finds_one": "{{finds}} hallazgo",
+      "finds_other": "{{finds}} hallazgos",
+      "howTitle": "Cómo lo comprobamos",
+      "how": {
+        "replay": "Aplicamos la previsión actual al tiempo de cada día y la comparamos con los hallazgos de setas que la gente registra en GBIF, la base de datos mundial de biodiversidad.",
+        "late": "Los hallazgos llegan a GBIF con una a tres semanas de retraso, así que los últimos días se completan más tarde. Actualizado el {{updated}}.",
+        "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble."
+      }
     }
   },
   "sidebar": {

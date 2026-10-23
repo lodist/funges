@@ -377,6 +377,9 @@
     "notToday": "Pas de saison aujourd'hui",
     "whereItGrows": "Où elle pousse",
     "lookalikes": "Sosies toxiques",
-    "tellApart": "Comment les distinguer"
+    "tellApart": "Comment les distinguer",
+    "testedLabel": "Vérifié · saison {{year}}",
+    "tested": "Au même endroit, la prévision a mieux noté les jours de sa saison que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
+    "howWeCheck": "Comment nous vérifions"
   }
 }
