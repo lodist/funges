@@ -166,6 +166,49 @@ def test_the_scale_follows_the_time_of_year():
     assert 2.0 < new_year < 3.0                                  # between December's and January's
 
 
+def _local(ratio):
+    """Settings of a species whose season is local, with a region curve of this ratio."""
+    return {"local_season": {}, "season_curve": {"multiplier": {m: 1.0 for m in range(1, 13)},
+                                                 "ratio": {m: r for m, r in zip(range(1, 13), ratio)}}}
+
+
+def test_one_scale_is_the_hand_set_part_over_the_species_months():
+    months = [{"eta": [-1.0, 1.0], "weather_part": [v, v + 0.1]} for v in np.linspace(0.1, 0.8, 12)]
+    only_june = fp.season_scale(months, _local([0] * 5 + [1] + [0] * 6))
+    assert np.allclose(only_june, months[5]["weather_part"])
+    alike = [{"eta": [-1.0, 1.0], "weather_part": [0.2, 0.6]}] * 12
+    assert np.allclose(fp.season_scale(alike, _local(np.linspace(0, 1, 12))), [0.2, 0.6])
+    regional = {k: v for k, v in _local([1] * 12).items() if k != "local_season"}
+    assert fp.season_scale(months, regional) is None             # season on region curves: months' own
+    assert fp.season_scale(months, {"local_season": {}}) is None   # no ratio to weigh the months
+
+
+def test_on_one_scale_the_same_weather_reads_the_same_all_year():
+    series = _series(days=250)
+    at = [series.index[series["Date"] == d][0] for d in ("2026-06-15", "2026-07-15", "2027-01-01")]
+    frame = _production_frame(series, pd.DatetimeIndex(series["Date"].iloc[at]))
+    level = [2.0] + [m / 10 for m in range(1, 11)] + [3.0]
+    months = [{"eta": [-1.0, 1.0], "weather_part": [v, v]} for v in level]
+    model = _model(np.zeros(len(fp.FRUITING_FEATURES)), months=months)
+    model["scale"] = np.array([0.3, 0.7])
+    assert np.allclose(fp.fruiting_weather_part(frame, model), 0.5)   # the months' own levels are gone
+    months[6] = {"eta": [-2.0, 0.0], "weather_part": [0.7, 0.7]}      # July: index 0 is its best
+    assert abs(fp.fruiting_weather_part(frame, model)[1] - 0.7) < 0.02  # a month still ranks its own index
+
+
+def test_a_species_with_a_local_season_gets_one_scale(tmp_path):
+    k = len(fp.FRUITING_FEATURES)
+    month = {"eta": [-1.0, 1.0], "weather_part": [0.2, 0.6]}
+    path = tmp_path / "fruiting_fit.json"
+    path.write_text(json.dumps({"features": fp.FRUITING_FEATURES, "means": [0] * k, "sds": [1] * k,
+                                "humidity_from_stored": {"NE": [0.0, 1.0]},
+                                "models": {s: {"NE": {"beta": [0] * k, "map": [month] * 12}} for s in ("a", "b")}}))
+    params = {"a": _local([1.0] * 12), "b": {}}
+    fp.attach_fruiting_models(params, "NE", path)
+    assert np.allclose(params["a"]["fruiting"]["scale"], [0.2, 0.6])
+    assert params["b"]["fruiting"]["scale"] is None
+
+
 def test_stored_humidity_is_put_on_the_era5_level_first():
     series = _series()
     frame = _production_frame(series, pd.DatetimeIndex(series["Date"].iloc[[60, 90]]))

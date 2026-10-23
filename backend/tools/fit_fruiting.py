@@ -201,10 +201,12 @@ def month_maps(dates, eta: np.ndarray, part: np.ndarray) -> list[dict]:
 
 def season_maps(table, out, species, region, index, specs, corrections) -> list[dict]:
     """month_maps over every MAP_DAY_STEP-th day of every year at up to MAP_CELLS of the
-    species' places in the region. One map per month keeps today's level at each time of
-    year: the fit only compares a day with the same place 2-3 weeks either side, so it says
-    nothing about how one season compares with another, and a single map for the whole year
-    moved early October's share of 4+ scores by up to 45 points. index(cell, days) gives the
+    species' places in the region. The fit only compares a day with the same place 2-3 weeks
+    either side, so it says nothing about how one season compares with another: production
+    ranks a day against its own month's index quantiles, and where the species' season is local
+    ends every month on one scale (forecast_pipeline.season_scale), the local season carrying
+    the season. Pooling the index's months too moved early October's share of 4+
+    scores by up to 45 points: a GBM's index drifts across the year. index(cell, days) gives the
     fitted index on ERA5's level, which production reaches through its stored-input
     corrections; today's side is computed on stored-level inputs (corrections undone), as
     production computes it."""
