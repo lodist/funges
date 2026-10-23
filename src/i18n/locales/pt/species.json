@@ -377,6 +377,9 @@
     "notToday": "Fora de estação hoje",
     "whereItGrows": "Onde cresce",
     "lookalikes": "Sósias tóxicos",
-    "tellApart": "Como diferenciá-los"
+    "tellApart": "Como diferenciá-los",
+    "testedLabel": "Testado · {{region}} · desde {{since}}",
+    "tested": "<strong>{{share}}</strong> de {{finds}} achados registrados estavam em pontos que a previsão atual colocava no seu melhor quarto naquele dia. Ao acaso: {{chance}}.",
+    "howWeCheck": "Como verificamos"
   }
 }

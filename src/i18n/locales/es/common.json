@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Ver los datos"
+    },
+    "proof": {
+      "line": "Comprobado con los hallazgos de setas registrados en {{area}} desde el {{since}}: el <strong>{{share}}</strong> estaba en lugares que la previsión actual situaba en su cuarta parte mejor valorada ese día. Al azar sería el {{chance}}.",
+      "link": "Cómo lo comprobamos"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,22 @@
       "whereW": "en el oeste",
       "whereNW": "en el noroeste",
       "rainPatchyDry": "La lluvia fue irregular durante {{daysLabel}}: al menos la mitad de la zona siguió seca, pero {{where}} cayeron unos {{amount}} mm{{peakSuffix}}, con el máximo {{when}}."
+    },
+    "scorecard": {
+      "title": "Cómo le ha ido a la previsión",
+      "intro": "La previsión actual, comprobada con los hallazgos de setas registrados del {{since}} al {{until}} ({{region}}). Cada barra es la parte de los hallazgos en lugares que situaba en su cuarta parte mejor valorada el día del hallazgo. La línea marca lo que daría el azar: {{chance}}.",
+      "all": "Todas las setas",
+      "finds_one": "{{finds}} hallazgo",
+      "finds_other": "{{finds}} hallazgos",
+      "empty": "{{region}}: todavía no hay suficientes hallazgos registrados.",
+      "howTitle": "Cómo lo comprobamos",
+      "how": {
+        "replay": "Aplicamos la previsión actual al tiempo de cada día y la comparamos con los hallazgos de setas que la gente registra en GBIF, la base de datos mundial de biodiversidad.",
+        "unseen": "Solo cuentan los hallazgos desde el {{since}}, posteriores a los últimos con los que se entrenó la previsión.",
+        "spots": "Estar en la cuarta parte mejor valorada significa que, ese día, el lugar del hallazgo puntuaba más que tres de cada cuatro de los otros lugares donde la gente registró setas. Señalar los bosques que la gente ya visita no suma nada.",
+        "everything": "Aparecen todas las setas con al menos 30 hallazgos, les haya ido bien o no. Las plantas no están incluidas.",
+        "late": "Los hallazgos llegan a GBIF con una a tres semanas de retraso, así que los últimos días se completan más tarde. Actualizado el {{updated}}."
+      }
     }
   },
   "sidebar": {

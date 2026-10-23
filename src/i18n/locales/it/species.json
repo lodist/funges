@@ -377,6 +377,9 @@
     "notToday": "Oggi non è di stagione",
     "whereItGrows": "Dove cresce",
     "lookalikes": "Sosia tossici",
-    "tellApart": "Come distinguerli"
+    "tellApart": "Come distinguerli",
+    "testedLabel": "Verificato · {{region}} · dal {{since}}",
+    "tested": "Il <strong>{{share}}</strong> di {{finds}} ritrovamenti segnalati era in punti che la previsione attuale metteva nel suo quarto migliore quel giorno. Per caso: {{chance}}.",
+    "howWeCheck": "Come verifichiamo"
   }
 }

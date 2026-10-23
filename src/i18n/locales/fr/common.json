@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Voir les données"
+    },
+    "proof": {
+      "line": "Vérifiée sur les trouvailles de champignons signalées en {{area}} depuis le {{since}} : <strong>{{share}}</strong> étaient à des endroits que la prévision actuelle classait dans son meilleur quart ce jour-là. Au hasard, ce serait {{chance}}.",
+      "link": "Comment nous vérifions"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,22 @@
       "whereW": "dans l'ouest",
       "whereNW": "dans le nord-ouest",
       "rainPatchyDry": "Pluie très inégale durant {{daysLabel}} : au moins la moitié de la zone est restée sèche, mais {{where}} il est tombé environ {{amount}} mm{{peakSuffix}}, au plus fort {{when}}."
+    },
+    "scorecard": {
+      "title": "Ce qu'a donné la prévision",
+      "intro": "La prévision actuelle, vérifiée sur les trouvailles de champignons signalées du {{since}} au {{until}} ({{region}}). Chaque barre donne la part des trouvailles à des endroits qu'elle classait dans son meilleur quart le jour de la trouvaille. Le trait marque ce que donnerait le hasard : {{chance}}.",
+      "all": "Tous les champignons",
+      "finds_one": "{{finds}} trouvaille",
+      "finds_other": "{{finds}} trouvailles",
+      "empty": "{{region}} : pas encore assez de trouvailles signalées.",
+      "howTitle": "Comment nous vérifions",
+      "how": {
+        "replay": "Nous appliquons la prévision actuelle à la météo de chaque jour et la comparons aux trouvailles de champignons signalées sur GBIF, la base de données mondiale de la biodiversité.",
+        "unseen": "Seules comptent les trouvailles à partir du {{since}}, après les dernières sur lesquelles la prévision a été entraînée.",
+        "spots": "Dans le meilleur quart signifie que, ce jour-là, l'endroit de la trouvaille avait un meilleur score que trois sur quatre des autres endroits où des gens ont signalé des champignons. Désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
+        "everything": "Chaque champignon avec au moins 30 trouvailles figure ici, que le résultat soit bon ou non. Les plantes ne sont pas incluses.",
+        "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}."
+      }
     }
   },
   "sidebar": {

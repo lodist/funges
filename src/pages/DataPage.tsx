@@ -43,6 +43,7 @@ import {
 } from '@/lib/data';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
+import { ForecastScorecard } from '@/components/ForecastScorecard';
 import { Route as DataRoute } from '@/routes/data';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
@@ -1561,6 +1562,10 @@ export default function DataPage() {
           )}
         </ChartCard>
       </div>
+
+      {/* Last: the region switch applies, the zone and time range do not;
+          the section says its own period. */}
+      <ForecastScorecard region={region} />
     </div>
   );
 }

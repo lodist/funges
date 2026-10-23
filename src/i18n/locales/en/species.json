@@ -377,6 +377,9 @@
     "notToday": "Not in season today",
     "whereItGrows": "Where it grows",
     "lookalikes": "Toxic look-alikes",
-    "tellApart": "How to tell them apart"
+    "tellApart": "How to tell them apart",
+    "testedLabel": "Tested · {{region}} · since {{since}}",
+    "tested": "<strong>{{share}}</strong> of {{finds}} reported finds were at spots the current forecast ranked in its top quarter that day. By chance: {{chance}}.",
+    "howWeCheck": "How we check"
   }
 }

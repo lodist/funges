@@ -377,6 +377,9 @@
     "notToday": "Pas de saison aujourd'hui",
     "whereItGrows": "Où elle pousse",
     "lookalikes": "Sosies toxiques",
-    "tellApart": "Comment les distinguer"
+    "tellApart": "Comment les distinguer",
+    "testedLabel": "Vérifié · {{region}} · depuis le {{since}}",
+    "tested": "<strong>{{share}}</strong> des {{finds}} trouvailles signalées étaient à des endroits que la prévision actuelle classait dans son meilleur quart ce jour-là. Hasard : {{chance}}.",
+    "howWeCheck": "Comment nous vérifions"
   }
 }

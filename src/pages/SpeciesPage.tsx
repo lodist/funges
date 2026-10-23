@@ -356,6 +356,7 @@ export default function SpeciesPage() {
         species={openSpecies ?? null}
         score={openSpecies ? scores?.[openSpecies.id] : undefined}
         scopeLabel={scopeLabel}
+        regionId={current?.regionId}
         recipes={recipes}
         onClose={() => setOpenId(null)}
       />

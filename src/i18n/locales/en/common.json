@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "See the data"
+    },
+    "proof": {
+      "line": "Tested on mushroom finds reported in {{area}} since {{since}}: <strong>{{share}}</strong> were at spots the current forecast ranked in its top quarter that day. By chance it would be {{chance}}.",
+      "link": "How we check"
     }
   },
   "worthForagingNow": {
@@ -324,6 +328,22 @@
       "whereW": "in the west",
       "whereNW": "in the northwest",
       "rainPatchyDry": "Rain was patchy over {{daysLabel}}: at least half of {{location}} stayed dry, but {{where}} about {{amount}} mm fell{{peakSuffix}}, peaking {{when}}."
+    },
+    "scorecard": {
+      "title": "How the forecast did",
+      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}} ({{region}}). Each bar is the share of finds at spots it ranked in its top quarter on the day of the find. The line marks what chance would give: {{chance}}.",
+      "all": "All mushrooms",
+      "finds_one": "{{finds}} find",
+      "finds_other": "{{finds}} finds",
+      "empty": "{{region}}: not enough reported finds yet.",
+      "howTitle": "How we check",
+      "how": {
+        "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
+        "unseen": "Only finds from {{since}} on, after the last finds the forecast was trained on.",
+        "spots": "Top quarter means the find's spot scored higher that day than three in four of the other spots where people reported mushrooms. Pointing at woods people already visit earns nothing.",
+        "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. Plants are not included.",
+        "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}."
+      }
     }
   },
   "theme": {

@@ -377,6 +377,9 @@
     "notToday": "Heute nicht in Saison",
     "whereItGrows": "Wo sie wächst",
     "lookalikes": "Giftige Doppelgänger",
-    "tellApart": "So unterscheidest du sie"
+    "tellApart": "So unterscheidest du sie",
+    "testedLabel": "Geprüft · {{region}} · seit dem {{since}}",
+    "tested": "<strong>{{share}}</strong> von {{finds}} gemeldeten Funden lagen an Stellen, die die aktuelle Vorhersage an diesem Tag im besten Viertel sah. Zufall: {{chance}}.",
+    "howWeCheck": "So prüfen wir"
   }
 }

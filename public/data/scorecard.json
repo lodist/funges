@@ -1,0 +1,42 @@
+{
+  "updated_at": "2026-10-23",
+  "since": "2026-10-05",
+  "until": "2026-10-18",
+  "regions": {
+    "SE": {
+      "finds": 39,
+      "top_quarter": 0.513,
+      "species": {}
+    },
+    "NE": {
+      "finds": 409,
+      "top_quarter": 0.533,
+      "species": {
+        "black_chant": {
+          "finds": 36,
+          "top_quarter": 0.694
+        },
+        "chant": {
+          "finds": 36,
+          "top_quarter": 0.556
+        },
+        "mushroom": {
+          "finds": 39,
+          "top_quarter": 0.436
+        },
+        "parasol": {
+          "finds": 32,
+          "top_quarter": 0.688
+        },
+        "shaggy_mane": {
+          "finds": 84,
+          "top_quarter": 0.5
+        },
+        "winter_chant": {
+          "finds": 68,
+          "top_quarter": 0.544
+        }
+      }
+    }
+  }
+}

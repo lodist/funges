@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { ScorecardLine } from '@/components/ForecastScorecard';
 import { ConditionsMeter } from '@/components/SpeciesSignals';
 import { getRecipesBySpecies, type Recipe } from '@/data/recipes';
 import type { SpeciesWithTranslations } from '@/data/species';
@@ -16,6 +17,7 @@ import { TOXIC_SPECIES, type ToxicSeverity } from '@/data/toxic-species';
 import { AlertTriangle, ChefHat, MapPin } from '@/lib/icons';
 import { cn, getSpeciesImage } from '@/lib/utils';
 import { monthsLabel, seasonMonthSet, speciesSeasons } from '@/lib/seasons';
+import type { ScoreRegionId } from '@/lib/worth-foraging-now';
 
 const SEVERITY_ORDER: ToxicSeverity[] = ['lethal', 'toxic', 'inedible'];
 const SEVERITY_LABEL: Record<ToxicSeverity, string> = {
@@ -30,6 +32,8 @@ interface SpeciesSheetProps {
   score?: number;
   /** Where `score` was read: "North Europe", "Within 100 km of you". */
   scopeLabel?: string;
+  /** The forecast region the reader is in, for how the forecast did there. */
+  regionId?: ScoreRegionId;
   recipes: Recipe[];
   onClose: () => void;
 }
@@ -39,6 +43,7 @@ export function SpeciesSheet({
   species,
   score,
   scopeLabel,
+  regionId,
   recipes,
   onClose,
 }: SpeciesSheetProps) {
@@ -49,6 +54,7 @@ export function SpeciesSheet({
           species={species}
           score={score}
           scopeLabel={scopeLabel}
+          regionId={regionId}
           recipes={recipes}
         />
       ) : null}
@@ -60,6 +66,7 @@ function SheetBody({
   species,
   score,
   scopeLabel,
+  regionId,
   recipes,
 }: Omit<SpeciesSheetProps, 'species' | 'onClose'> & {
   species: SpeciesWithTranslations;
@@ -133,6 +140,12 @@ function SheetBody({
                 <p className='text-sm text-foreground'>{t('sheet.notToday')}</p>
               )}
             </div>
+          ) : null}
+
+          {/* Why to believe the meter: how today's forecast did on this
+              species' recent finds in the region, when there are enough. */}
+          {regionId ? (
+            <ScorecardLine speciesId={species.id} regionId={regionId} />
           ) : null}
 
           <div className='flex flex-col gap-2'>

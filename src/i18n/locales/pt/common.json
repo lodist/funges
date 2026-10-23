@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Ver os dados"
+    },
+    "proof": {
+      "line": "Testado com achados de cogumelos registrados na {{area}} desde {{since}}: <strong>{{share}}</strong> estavam em pontos que a previsão atual colocava no seu melhor quarto naquele dia. Ao acaso seriam {{chance}}.",
+      "link": "Como verificamos"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,22 @@
       "whereW": "no oeste",
       "whereNW": "no noroeste",
       "rainPatchyDry": "A chuva foi irregular {{daysLabel}}: pelo menos metade da área ficou seca, mas {{where}} caíram cerca de {{amount}} mm{{peakSuffix}}, com o pico {{when}}."
+    },
+    "scorecard": {
+      "title": "Como a previsão se saiu",
+      "intro": "A previsão atual, testada com achados de cogumelos registrados de {{since}} a {{until}} ({{region}}). Cada barra é a parte dos achados em pontos que ela colocava no seu melhor quarto no dia do achado. A linha marca o que o acaso daria: {{chance}}.",
+      "all": "Todos os cogumelos",
+      "finds_one": "{{finds}} achado",
+      "finds_other": "{{finds}} achados",
+      "empty": "{{region}}: ainda não há achados registrados suficientes.",
+      "howTitle": "Como verificamos",
+      "how": {
+        "replay": "Aplicamos a previsão atual ao tempo de cada dia e a comparamos com os achados de cogumelos que as pessoas registram no GBIF, o banco de dados mundial de biodiversidade.",
+        "unseen": "Só contam os achados a partir de {{since}}, depois dos últimos com que a previsão foi treinada.",
+        "spots": "No melhor quarto significa que, naquele dia, o ponto do achado tinha pontuação maior que três em cada quatro dos outros pontos onde as pessoas registraram cogumelos. Apontar para os bosques que todo mundo já visita não rende nada.",
+        "everything": "Aparecem todos os cogumelos com pelo menos 30 achados, tenham ido bem ou não. As plantas não estão incluídas.",
+        "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}."
+      }
     }
   },
   "sidebar": {

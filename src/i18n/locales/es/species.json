@@ -377,6 +377,9 @@
     "notToday": "Hoy no está de temporada",
     "whereItGrows": "Dónde crece",
     "lookalikes": "Parecidos tóxicos",
-    "tellApart": "Cómo distinguirlas"
+    "tellApart": "Cómo distinguirlas",
+    "testedLabel": "Comprobado · {{region}} · desde el {{since}}",
+    "tested": "El <strong>{{share}}</strong> de {{finds}} hallazgos registrados estaba en lugares que la previsión actual situaba en su cuarta parte mejor valorada ese día. Al azar: {{chance}}.",
+    "howWeCheck": "Cómo lo comprobamos"
   }
 }

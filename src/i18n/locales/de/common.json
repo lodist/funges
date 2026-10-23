@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "Daten ansehen"
+    },
+    "proof": {
+      "line": "Geprüft an Pilzfunden, die seit dem {{since}} in {{area}} gemeldet wurden: <strong>{{share}}</strong> lagen an Stellen, die die aktuelle Vorhersage an diesem Tag im besten Viertel sah. Zufällig wären es {{chance}}.",
+      "link": "So prüfen wir"
     }
   },
   "worthForagingNow": {
@@ -319,6 +323,22 @@
       "whereW": "im Westen",
       "whereNW": "im Nordwesten",
       "rainPatchyDry": "Der Regen war ungleich verteilt in {{daysLabel}}: Mindestens die Hälfte des Gebiets blieb trocken, {{where}} fielen dagegen etwa {{amount}} mm{{peakSuffix}}, am stärksten {{when}}."
+    },
+    "scorecard": {
+      "title": "Wie gut die Vorhersage war",
+      "intro": "Die aktuelle Vorhersage, geprüft an Pilzfunden, die vom {{since}} bis zum {{until}} gemeldet wurden ({{region}}). Jeder Balken zeigt den Anteil der Funde an Stellen, die sie am Fundtag im besten Viertel sah. Die Linie markiert, was der Zufall ergäbe: {{chance}}.",
+      "all": "Alle Pilze",
+      "finds_one": "{{finds}} Fund",
+      "finds_other": "{{finds}} Funde",
+      "empty": "{{region}}: noch nicht genug gemeldete Funde.",
+      "howTitle": "So prüfen wir",
+      "how": {
+        "replay": "Wir rechnen die aktuelle Vorhersage mit dem Wetter jedes Tages und vergleichen sie mit Pilzfunden, die Menschen bei GBIF melden, der weltweiten Biodiversitätsdatenbank.",
+        "unseen": "Es zählen nur Funde ab dem {{since}}, nach den letzten Funden, mit denen die Vorhersage trainiert wurde.",
+        "spots": "Im besten Viertel heißt: Die Fundstelle lag an diesem Tag höher als drei von vier anderen Stellen, an denen Menschen Pilze gemeldet haben. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt dabei nichts.",
+        "everything": "Jeder Pilz mit mindestens 30 Funden steht hier, ob gut oder schlecht. Pflanzen sind nicht dabei.",
+        "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}."
+      }
     }
   },
   "sidebar": {

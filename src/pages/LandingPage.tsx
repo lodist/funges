@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
@@ -9,6 +9,13 @@ import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import {
+  CHANCE,
+  formatDay,
+  formatShare,
+  pooledTally,
+  useScorecard,
+} from '@/lib/scorecard';
 import {
   fetchStrongestSpeciesToday,
   type ScoreRegionId,
@@ -165,6 +172,7 @@ export default function LandingPage() {
           <div className={styles.forecastCopy}>
             <h2 id='forecast-title'>{t('home.forecast.heading')}</h2>
             <p>{t('home.forecast.body')}</p>
+            <ProofLine />
             <Button asChild size='lg'>
               <Link to='/worth-foraging-now'>
                 {t('home.forecast.link')}
@@ -311,5 +319,41 @@ function LiveLine() {
         })}
       </span>
     </p>
+  );
+}
+
+/** Why to believe the forecast: how today's model did on the continent's
+ *  recent mushroom finds, the Data page holding the rest. Nothing until a
+ *  region there has enough finds (the US, for now). */
+function ProofLine() {
+  const { t, i18n } = useTranslation('common');
+  const card = useScorecard();
+  const tally = card ? pooledTally(card, REGIONS) : null;
+  if (!card || !tally) return null;
+
+  return (
+    <div className={styles.proof}>
+      <p>
+        <Trans
+          t={t}
+          i18nKey='home.proof.line'
+          values={{
+            area: t(AMERICAS ? 'home.live.northAmerica' : 'home.live.europe'),
+            since: formatDay(card.since, i18n.language),
+            share: formatShare(tally.top_quarter, i18n.language),
+            chance: formatShare(CHANCE, i18n.language),
+          }}
+          components={{ strong: <strong /> }}
+        />
+      </p>
+      <Link
+        to='/data'
+        hash='scorecard'
+        className={`${styles.textLink} focus-ring`}
+      >
+        {t('home.proof.link')}
+        <ArrowUpRight className='size-5' />
+      </Link>
+    </div>
   );
 }
