@@ -172,10 +172,12 @@ def _local(ratio):
                                                  "ratio": {m: r for m, r in zip(range(1, 13), ratio)}}}
 
 
-def test_one_scale_is_the_hand_set_part_over_the_species_months():
+def test_one_scale_is_the_hand_set_part_of_the_species_best_month():
     months = [{"eta": [-1.0, 1.0], "weather_part": [v, v + 0.1]} for v in np.linspace(0.1, 0.8, 12)]
     only_june = fp.season_scale(months, _local([0] * 5 + [1] + [0] * 6))
     assert np.allclose(only_june, months[5]["weather_part"])
+    autumn = fp.season_scale(months, _local([0, 0, 0, 0, 0, 0.1, 0.5, 0.8, 1.0, 0.6, 0.2, 0]))
+    assert np.allclose(autumn, months[8]["weather_part"])        # September, the peak
     alike = [{"eta": [-1.0, 1.0], "weather_part": [0.2, 0.6]}] * 12
     assert np.allclose(fp.season_scale(alike, _local(np.linspace(0, 1, 12))), [0.2, 0.6])
     regional = {k: v for k, v in _local([1] * 12).items() if k != "local_season"}

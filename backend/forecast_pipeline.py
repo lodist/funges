@@ -1183,13 +1183,16 @@ def season_scale(maps, params):
     fits compare a day only with the same place 2-3 weeks either side, so their index says
     nothing about one season against another; each month still ranks a day against its own index
     quantiles (which also takes out a GBM's drift across the year), but all of them end on the
-    hand-set part over the species' months in the region, each weighted by the region curve's
-    ratio, and the local season carries the season. A species on region curves keeps the months'
-    level, which hides their open winters (giant puffball husks in North Europe)."""
+    scale of the species' best month in the region (the region curve's peak), and the local
+    season carries the season. A blend of the season's months instead was wider than any one
+    month, which lost places that people find species at in poor weather (shaggy mane in North
+    Europe in October). A species on region curves keeps the months' level, which hides their
+    open winters (giant puffball husks in North Europe)."""
     ratio = split_curve(params.get("season_curve"))[1]
     if params.get("local_season") is None or not ratio or len(maps) != 12:
         return None
     weights = np.array([ratio[m] for m in range(1, 13)], float)
+    weights = (weights == weights.max()).astype(float)
     parts = [np.asarray(m["weather_part"], float) for m in maps]
     share = np.linspace(0.0, 1.0, len(parts[0]))
     values = np.unique(np.concatenate([part for part, w in zip(parts, weights) if w > 0]))
