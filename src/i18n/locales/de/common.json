@@ -339,7 +339,7 @@
         "spots": "Jeder Fund wird mit anderen Stellen verglichen, an denen Menschen Pilze gefunden haben. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt also nichts.",
         "everything": "Jeder Pilz mit mindestens 30 Funden steht hier, ob gut oder schlecht. Pflanzen sind nicht dabei.",
         "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}.",
-        "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen. Jeder Pilz, dessen Saison in diese Monate fiel, steht hier."
+        "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen."
       },
       "seasonTitle": "Die Saison",
       "seasonIntro": "Die aktuelle Vorhersage vom {{since}} bis zum {{until}}, an den Stellen, an denen Menschen Pilze gefunden haben. Jeder Balken zeigt, wie oft sie an derselben Stelle einen Tag in der Saison des Pilzes besser bewertete als einen Tag außerhalb."

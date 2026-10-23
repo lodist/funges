@@ -339,7 +339,7 @@
         "spots": "Cada achado é comparado com outros pontos onde as pessoas acharam cogumelos, então apontar para bosques que todo mundo já visita não rende nada.",
         "everything": "Aparecem todos os cogumelos com pelo menos 30 achados, tenham ido bem ou não. As plantas não estão incluídas.",
         "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}.",
-        "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro. Aparece cada cogumelo cuja temporada caiu nesses meses."
+        "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro."
       },
       "seasonTitle": "A temporada",
       "seasonIntro": "A previsão atual de {{since}} a {{until}}, nos pontos onde as pessoas acharam cogumelos. Cada barra mostra quantas vezes, no mesmo ponto, ela avaliou melhor um dia da temporada do cogumelo do que um dia fora dela."

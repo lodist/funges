@@ -68,8 +68,8 @@
     "since": "2026-05-24",
     "until": "2026-10-15",
     "all": {
-      "finds": 11048,
-      "auc": 0.875
+      "finds": 10582,
+      "auc": 0.891
     },
     "species": {
       "black_chant": {
@@ -79,10 +79,6 @@
       "chant": {
         "finds": 1713,
         "auc": 0.638
-      },
-      "chicken-of-the-woods": {
-        "finds": 466,
-        "auc": 0.213
       },
       "hedgehog_mushroom": {
         "finds": 180,

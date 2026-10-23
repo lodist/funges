@@ -339,7 +339,7 @@
         "spots": "Cada hallazgo se compara con otros lugares donde la gente encontró setas, así que señalar los bosques que la gente ya visita no suma nada.",
         "everything": "Aparecen todas las setas con al menos 30 hallazgos, les haya ido bien o no. Las plantas no están incluidas.",
         "late": "Los hallazgos llegan a GBIF con una a tres semanas de retraso, así que los últimos días se completan más tarde. Actualizado el {{updated}}.",
-        "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble. Aparece cada seta cuya temporada cayó en estos meses."
+        "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble."
       },
       "seasonTitle": "La temporada",
       "seasonIntro": "La previsión actual del {{since}} al {{until}}, en los lugares donde la gente encontró setas. Cada barra muestra cuántas veces, en el mismo lugar, valoró mejor un día de la temporada de la seta que un día fuera de temporada."

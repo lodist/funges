@@ -344,7 +344,7 @@
         "spots": "Ogni ritrovamento è confrontato con altri punti dove le persone hanno trovato funghi: indicare i boschi che la gente frequenta già non porta nulla.",
         "everything": "Compare ogni fungo con almeno 30 ritrovamenti, che sia andato bene o no. Le piante non sono incluse.",
         "late": "I ritrovamenti arrivano su GBIF con una-tre settimane di ritardo, quindi gli ultimi giorni si completano dopo. Aggiornato il {{updated}}.",
-        "season": "La stagione: le settimane in cui ogni fungo era in stagione o fuori nel 2026 vengono dai suoi ritrovamenti segnalati, contati rispetto a tutte le segnalazioni di funghi perché i weekend affollati non contino il doppio. Compare ogni fungo la cui stagione è caduta in questi mesi."
+        "season": "La stagione: le settimane in cui ogni fungo era in stagione o fuori nel 2026 vengono dai suoi ritrovamenti segnalati, contati rispetto a tutte le segnalazioni di funghi perché i weekend affollati non contino il doppio."
       },
       "seasonTitle": "La stagione",
       "seasonIntro": "La previsione attuale dal {{since}} al {{until}}, nei punti dove le persone hanno trovato funghi. Ogni barra mostra quante volte, nello stesso punto, ha valutato un giorno nella stagione del fungo meglio di un giorno fuori stagione."

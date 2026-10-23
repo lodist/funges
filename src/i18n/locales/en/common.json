@@ -344,7 +344,7 @@
         "spots": "Each find is compared with other spots where people found mushrooms, so pointing at woods people already visit earns nothing.",
         "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. Plants are not included.",
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
-        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice. Every mushroom whose season fell within these months is listed."
+        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice."
       },
       "seasonTitle": "The season",
       "seasonIntro": "The current forecast from {{since}} to {{until}}, at the spots where people found mushrooms. Each bar shows how often, at the same spot, it rated a day in the mushroom's season above a day out of season."

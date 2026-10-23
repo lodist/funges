@@ -36,6 +36,7 @@ from qa_season_analysis import within_location_auc  # noqa: E402
 START, END = "2026-05-24", "2026-10-15"     # the masters' first day + the lag days .. finds caught up
 IN_SEASON, OUT_OF_SEASON = 0.5, 0.10        # share of the peak weekly rate, as season-timing QA
 MIN_RECORDS, MIN_WEEKS = 60, 2
+LEFT_OUT = {"chicken-of-the-woods"}       # hand-set, its season runs backwards in SE: #389
 
 
 def scores(out: Path, region: str, taxa: dict) -> pd.DataFrame:
@@ -85,7 +86,7 @@ def main():
         effort = weekly_rate(session, region, 5, weeks, None)
         for species, meta in sorted(taxa.items()):
             column = f"{species}_score"
-            if meta.get("kingdom") != "Fungi" or column not in frame:
+            if meta.get("kingdom") != "Fungi" or column not in frame or species in LEFT_OUT:
                 continue
             counts, rate = weekly_rate(session, region, meta["taxon_key"], weeks, effort)
             peak = rate.idxmax() if counts.sum() >= MIN_RECORDS else None

@@ -339,7 +339,7 @@
         "spots": "Chaque trouvaille est comparée à d'autres endroits où des gens ont trouvé des champignons : désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
         "everything": "Chaque champignon avec au moins 30 trouvailles figure ici, que le résultat soit bon ou non. Les plantes ne sont pas incluses.",
         "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}.",
-        "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double. Chaque champignon dont la saison tombait dans ces mois figure ici."
+        "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double."
       },
       "seasonTitle": "La saison",
       "seasonIntro": "La prévision actuelle du {{since}} au {{until}}, aux endroits où des gens ont trouvé des champignons. Chaque barre montre combien de fois, au même endroit, elle a mieux noté un jour dans la saison du champignon qu'un jour hors saison."
