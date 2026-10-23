@@ -87,9 +87,8 @@
       "link": "Voir les données"
     },
     "proof": {
-      "line": "Vérifiée sur {{finds}} trouvailles de champignons depuis le {{since}} : <strong>{{times}} fois sur 10</strong>, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons ce jour-là.",
-      "link": "Comment nous vérifions",
-      "season": "Et au même endroit, elle a mieux noté les jours de saison que les jours hors saison <strong>{{times}} fois sur 10</strong>."
+      "line": "Vérifiée sur la saison {{year}} en {{spots}} endroits où des gens ont trouvé des champignons : la prévision a mieux noté les jours de saison de chaque champignon que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
+      "link": "Comment nous vérifions"
     }
   },
   "worthForagingNow": {
@@ -327,22 +326,16 @@
     },
     "scorecard": {
       "title": "Ce qu'a donné la prévision",
-      "intro": "La prévision actuelle, vérifiée sur les trouvailles de champignons signalées du {{since}} au {{until}}. Chaque barre montre combien de fois elle a mieux noté l'endroit de la trouvaille qu'un autre endroit où des champignons ont été trouvés ce jour-là.",
+      "intro": "La prévision actuelle du {{since}} au {{until}}, en {{spots}} endroits où des gens ont trouvé des champignons. Chaque barre montre combien de fois, au même endroit, elle a mieux noté un jour dans la saison du champignon qu'un jour hors saison.",
       "all": "Tous les champignons",
       "finds_one": "{{finds}} trouvaille",
       "finds_other": "{{finds}} trouvailles",
-      "empty": "Pas encore assez de trouvailles signalées.",
       "howTitle": "Comment nous vérifions",
       "how": {
         "replay": "Nous appliquons la prévision actuelle à la météo de chaque jour et la comparons aux trouvailles de champignons signalées sur GBIF, la base de données mondiale de la biodiversité.",
-        "unseen": "Seules comptent les trouvailles à partir du {{since}}, après les dernières sur lesquelles la prévision a été entraînée.",
-        "spots": "Chaque trouvaille est comparée à des endroits où des gens ont trouvé d'autres champignons, mais aucun de la même espèce à moins de 10 km : désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
-        "everything": "Chaque champignon avec au moins 30 trouvailles figure ici, que le résultat soit bon ou non. Les plantes ne sont pas incluses.",
         "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}.",
         "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double."
-      },
-      "seasonTitle": "La saison",
-      "seasonIntro": "La prévision actuelle du {{since}} au {{until}}, aux endroits où des gens ont trouvé des champignons. Chaque barre montre combien de fois, au même endroit, elle a mieux noté un jour dans la saison du champignon qu'un jour hors saison."
+      }
     }
   },
   "sidebar": {

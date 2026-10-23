@@ -9,7 +9,7 @@ import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
-import { formatDay, timesInTen, useScorecard } from '@/lib/scorecard';
+import { timesInTen, useScorecard } from '@/lib/scorecard';
 import {
   fetchStrongestSpeciesToday,
   type ScoreRegionId,
@@ -316,14 +316,14 @@ function LiveLine() {
   );
 }
 
-/** Why to believe the forecast: how today's model did on the continent's
- *  recent mushroom finds, the Data page holding the rest. Nothing until the
- *  continent has enough finds (the US, for now). */
+/** Why to believe the forecast: how today's model did on this year's season,
+ *  the Data page holding the rest. The test ran on European finds, so
+ *  visitors from the Americas do not get it yet. */
 function ProofLine() {
   const { t, i18n } = useTranslation('common');
   const card = useScorecard();
-  const tally = card?.continents[AMERICAS ? 'US' : 'EU'];
-  if (!card || !tally) return null;
+  const season = card?.season;
+  if (AMERICAS || !season) return null;
 
   return (
     <div className={styles.proof}>
@@ -332,23 +332,12 @@ function ProofLine() {
           t={t}
           i18nKey='home.proof.line'
           values={{
-            finds: tally.finds.toLocaleString(i18n.language),
-            since: formatDay(card.since, i18n.language),
-            times: timesInTen(tally.place),
+            year: season.until.slice(0, 4),
+            spots: season.spots.toLocaleString(i18n.language),
+            times: timesInTen(season.all.auc),
           }}
           components={{ strong: <strong /> }}
         />
-        {card.season ? (
-          <>
-            {' '}
-            <Trans
-              t={t}
-              i18nKey='home.proof.season'
-              values={{ times: timesInTen(card.season.all.auc) }}
-              components={{ strong: <strong /> }}
-            />
-          </>
-        ) : null}
       </p>
       <Link
         to='/data'

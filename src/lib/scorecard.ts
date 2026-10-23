@@ -1,24 +1,11 @@
 import { useEffect, useState } from 'react';
 
 /**
- * How today's forecast did on mushroom finds it never learned from, built by
- * scripts/build_scorecard.py from a replay: for all regions together and per
- * continent, the finds and `place`, how often the forecast rated the find's
- * spot higher that day than another spot where people found mushrooms.
+ * How today's forecast did on 2026 mushroom finds, built by
+ * scripts/build_scorecard.py from scripts/qa_season_auc.py: per mushroom and
+ * for all of them, how often at the same spot a day in its season scored
+ * above a day out of season (`auc`), on how many finds and spots.
  */
-export interface Tally {
-  finds: number;
-  place: number;
-}
-
-export interface AreaScorecard extends Tally {
-  species: Record<string, Tally>;
-}
-
-export type Continent = 'EU' | 'US';
-
-/** The season: how often, at the same spot, a day in the mushroom's season
- *  scored above a day out of season (scripts/qa_season_auc.py). */
 export interface SeasonTally {
   finds: number;
   auc: number;
@@ -26,20 +13,16 @@ export interface SeasonTally {
 
 export interface Scorecard {
   updated_at: string;
-  since: string;
-  until: string;
-  /** Every region together. */
-  all: AreaScorecard | null;
-  continents: Partial<Record<Continent, AreaScorecard>>;
   season: {
     since: string;
     until: string;
+    spots: number;
     all: SeasonTally;
     species: Record<string, SeasonTally>;
   } | null;
 }
 
-/** Picking one of two spots blindly is right half the time. */
+/** A coin toss: one of two days picked blindly is the right one half the time. */
 export const CHANCE = 0.5;
 
 const SCORECARD_URL = `${import.meta.env.BASE_URL}data/scorecard.json`;
@@ -50,7 +33,7 @@ let request: Promise<Scorecard | null> | null = null;
 export function loadScorecard(): Promise<Scorecard | null> {
   request ??= fetch(SCORECARD_URL)
     .then(response => (response.ok ? response.json() : null))
-    .then((card: Scorecard | null) => (card?.continents ? card : null))
+    .then((card: Scorecard | null) => (card?.season ? card : null))
     .catch(() => null);
   return request;
 }

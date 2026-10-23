@@ -378,9 +378,8 @@
     "whereItGrows": "Où elle pousse",
     "lookalikes": "Sosies toxiques",
     "tellApart": "Comment les distinguer",
-    "testedLabel": "Vérifié · depuis le {{since}}",
-    "tested": "Sur {{finds}} trouvailles signalées, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons <strong>{{times}} fois sur 10</strong>.",
-    "howWeCheck": "Comment nous vérifions",
-    "season": "En 2026, au même endroit, elle a mieux noté les jours de sa saison que les jours hors saison <strong>{{times}} fois sur 10</strong>."
+    "testedLabel": "Vérifié · saison {{year}}",
+    "tested": "Au même endroit, la prévision a mieux noté les jours de sa saison que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
+    "howWeCheck": "Comment nous vérifions"
   }
 }

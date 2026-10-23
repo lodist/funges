@@ -87,9 +87,8 @@
       "link": "Daten ansehen"
     },
     "proof": {
-      "line": "Geprüft an {{finds}} Pilzfunden seit dem {{since}}: <strong>{{times}} von 10 Mal</strong> bewertete die Vorhersage die Fundstelle besser als andere Pilzstellen an diesem Tag.",
-      "link": "So prüfen wir",
-      "season": "Und an derselben Stelle bewertete sie Tage in der Saison eines Pilzes <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb der Saison."
+      "line": "Geprüft an der Saison {{year}} an {{spots}} Stellen, an denen Menschen Pilze gefunden haben: Die Vorhersage bewertete Tage in der Saison eines Pilzes <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb der Saison.",
+      "link": "So prüfen wir"
     }
   },
   "worthForagingNow": {
@@ -327,22 +326,16 @@
     },
     "scorecard": {
       "title": "Wie gut die Vorhersage war",
-      "intro": "Die aktuelle Vorhersage, geprüft an Pilzfunden, die vom {{since}} bis zum {{until}} gemeldet wurden. Jeder Balken zeigt, wie oft sie die Fundstelle besser bewertete als eine andere Stelle, an der an diesem Tag Pilze gefunden wurden.",
+      "intro": "Die aktuelle Vorhersage vom {{since}} bis zum {{until}}, an {{spots}} Stellen, an denen Menschen Pilze gefunden haben. Jeder Balken zeigt, wie oft sie an derselben Stelle einen Tag in der Saison des Pilzes besser bewertete als einen Tag außerhalb.",
       "all": "Alle Pilze",
       "finds_one": "{{finds}} Fund",
       "finds_other": "{{finds}} Funde",
-      "empty": "Noch nicht genug gemeldete Funde.",
       "howTitle": "So prüfen wir",
       "how": {
         "replay": "Wir rechnen die aktuelle Vorhersage mit dem Wetter jedes Tages und vergleichen sie mit Pilzfunden, die Menschen bei GBIF melden, der weltweiten Biodiversitätsdatenbank.",
-        "unseen": "Es zählen nur Funde ab dem {{since}}, nach den letzten Funden, mit denen die Vorhersage trainiert wurde.",
-        "spots": "Jeder Fund wird mit Stellen verglichen, an denen Menschen andere Pilze gefunden haben, aber keinen derselben Art im Umkreis von 10 km. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt also nichts.",
-        "everything": "Jeder Pilz mit mindestens 30 Funden steht hier, ob gut oder schlecht. Pflanzen sind nicht dabei.",
         "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}.",
         "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen."
-      },
-      "seasonTitle": "Die Saison",
-      "seasonIntro": "Die aktuelle Vorhersage vom {{since}} bis zum {{until}}, an den Stellen, an denen Menschen Pilze gefunden haben. Jeder Balken zeigt, wie oft sie an derselben Stelle einen Tag in der Saison des Pilzes besser bewertete als einen Tag außerhalb."
+      }
     }
   },
   "sidebar": {

@@ -1,21 +1,19 @@
-"""The public scorecard: today's forecast against mushroom finds it never learned from.
+"""The public scorecard: how today's forecast did on 2026 mushroom finds.
 
-Reads a scripts/qa_replay.py run and writes public/data/scorecard.json: for all regions together
-(`all`) and per continent, all mushrooms and each mushroom with at least MIN_FINDS finds, the
-finds and `place`, the replay's mean `where_absent`: how often the forecast rated the find's spot
-higher that day than another spot where people reported mushrooms but none of this one nearby (a
-broad flush puts the species at many of the other spots too, and those are not misses). Guessing
-gets 0.5. Only totals leave the machine.
+Writes public/data/scorecard.json from a scripts/qa_season_auc.py season_auc.json: per mushroom and
+for all of them, how often at the same spot a day in its 2026 season scored above a day out of
+season, and how many finds and spots that rests on. Only totals leave the machine.
 
-With --season (a scripts/qa_season_auc.py season_auc.json) it adds `season`: per mushroom and for
-all of them, how often at the same spot a day in season scored above a day out of season.
+With --place (a scripts/qa_replay.py --out directory) it also writes the place figures: for all
+regions together (`all`) and per continent, each mushroom with at least MIN_FINDS finds, `place`
+= the replay's mean `where_absent`, how often the forecast rated the find's spot higher that day
+than another spot where people reported mushrooms but none of this one nearby. The page does not
+show them for now (porcini reads low within an area, funges-lab qa/porcini-host-2026-10-23); the
+replay keeps measuring them. Its window must start after the last find any part of the forecast
+learned from (the training finds' last day, the last local season build).
 
-The replay window must start after the last find any part of the forecast learned from: the
-training finds' last day (era5_training/finds_2016_2026.parquet) and the last build of the local
-season curves, which count this year's records. A retrain moves the start.
-
-  python scripts/qa_replay.py --out ../qa/scorecard --regions NE,SE --species <the mushrooms> --start <day after>
-  python scripts/build_scorecard.py ../qa/scorecard
+  python scripts/qa_season_auc.py ../qa/season-auc --regions NE,SE
+  python scripts/build_scorecard.py ../qa/season-auc/season_auc.json [--place ../qa/scorecard]
 """
 
 from __future__ import annotations
@@ -48,40 +46,47 @@ def card(rows: pd.DataFrame) -> dict | None:
 
 def season_card(path: Path) -> dict:
     report = json.loads(path.read_text(encoding="utf-8"))
+    singles = [r for r in report["rows"] if not r.get("composite")]
     records = {}
-    for row in report["rows"]:
+    for row in singles:
         records[row["species"]] = records.get(row["species"], 0) + row["records"]
-    return {"since": report["start"], "until": report["end"],
-            "all": {"finds": sum(r["records"] for r in report["rows"] if not r.get("composite")), "auc": report["all"]},
-            "species": {s: {"finds": records[s], "auc": auc} for s, auc in report["species"].items()
-                        if s not in {r["species"] for r in report["rows"] if r.get("composite")}}}
+    spots = {}
+    for row in singles:                     # every species of a region is read at the same places
+        spots[row["region"]] = max(spots.get(row["region"], 0), row["locations"])
+    return {"since": report["start"], "until": report["end"], "spots": sum(spots.values()),
+            "all": {"finds": sum(records.values()), "auc": report["all"]},
+            "species": {s: {"finds": records[s], "auc": auc} for s, auc in report["species"].items() if s in records}}
 
 
-def build(replay: Path, season: Path | None = None) -> dict:
+def place_card(replay: Path) -> dict:
     meta = json.loads((replay / "metadata.json").read_text(encoding="utf-8"))
     rows = pd.concat([pd.read_csv(replay / f"finds_{r}.csv", dtype={"loc": str, "date": str})
                       for r in meta["regions"]], ignore_index=True)
     rows = rows[(rows.source == "today") & (rows.kingdom == "Fungi") & rows["where_absent"].notna()]
-    # Most regions are too thin on their own: the Data page and the species sheets read all of
-    # them together, the landing its visitor's continent.
-    everything = card(rows)
     continents = {k: c for k, members in CONTINENTS.items() if (c := card(rows[rows.region.isin(members)]))}
-    return {"updated_at": date.today().isoformat(), "since": meta["start"],
-            "until": rows.date.max() if len(rows) else meta["start"], "all": everything, "continents": continents,
-            "season": season_card(season) if season else None}
+    return {"since": meta["start"], "until": rows.date.max() if len(rows) else meta["start"],
+            "all": card(rows), "continents": continents}
+
+
+def build(season: Path, replay: Path | None = None) -> dict:
+    out = {"updated_at": date.today().isoformat(), "season": season_card(season)}
+    if replay:
+        out["place"] = place_card(replay)
+    return out
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("replay", type=Path, help="a qa_replay.py --out directory")
+    parser.add_argument("season", type=Path, help="a qa_season_auc.py season_auc.json")
+    parser.add_argument("--place", type=Path, help="a qa_replay.py --out directory (not shown on the page for now)")
     parser.add_argument("--out", type=Path, default=ROOT / "public" / "data" / "scorecard.json")
-    parser.add_argument("--season", type=Path, help="a qa_season_auc.py season_auc.json")
     args = parser.parse_args()
-    result = build(args.replay, args.season)
+    result = build(args.season, args.place)
     # As Prettier leaves it: two spaces, LF even on Windows.
     args.out.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")
-    for name, mine in {"all": result["all"] or {"finds": 0, "place": 0, "species": {}}, **result["continents"]}.items():
-        print(f"{name}: {mine['finds']} finds, place {mine['place']:.2f}, {len(mine['species'])} mushrooms shown")
+    season = result["season"]
+    print(f"season: {season['all']['auc']:.2f} on {season['all']['finds']} finds at {season['spots']} spots, "
+          f"{len(season['species'])} mushrooms")
 
 
 if __name__ == "__main__":

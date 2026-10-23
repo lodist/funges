@@ -378,9 +378,8 @@
     "whereItGrows": "Onde cresce",
     "lookalikes": "Sósias tóxicos",
     "tellApart": "Como diferenciá-los",
-    "testedLabel": "Testado · desde {{since}}",
-    "tested": "Em {{finds}} achados registrados, a previsão avaliou melhor o ponto do achado do que outros pontos com cogumelos <strong>{{times}} em cada 10 vezes</strong>.",
-    "howWeCheck": "Como verificamos",
-    "season": "Em 2026, no mesmo ponto, avaliou melhor os dias da sua temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>."
+    "testedLabel": "Testado · temporada {{year}}",
+    "tested": "No mesmo ponto, a previsão avaliou melhor os dias da sua temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
+    "howWeCheck": "Como verificamos"
   }
 }

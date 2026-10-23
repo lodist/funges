@@ -47,9 +47,8 @@
       "link": "Vedi i dati"
     },
     "proof": {
-      "line": "Verificata su {{finds}} ritrovamenti di funghi dal {{since}}: <strong>{{times}} volte su 10</strong> la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi quel giorno.",
-      "link": "Come verifichiamo",
-      "season": "E nello stesso punto ha valutato i giorni di stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>."
+      "line": "Verificata sulla stagione {{year}} in {{spots}} punti dove le persone hanno trovato funghi: la previsione ha valutato i giorni di stagione di ogni fungo meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>.",
+      "link": "Come verifichiamo"
     }
   },
   "worthForagingNow": {
@@ -332,22 +331,16 @@
     },
     "scorecard": {
       "title": "Come è andata la previsione",
-      "intro": "La previsione attuale, verificata sui ritrovamenti di funghi segnalati dal {{since}} al {{until}}. Ogni barra mostra quante volte ha valutato il punto del ritrovamento meglio di un altro punto dove quel giorno sono stati trovati funghi.",
+      "intro": "La previsione attuale dal {{since}} al {{until}}, in {{spots}} punti dove le persone hanno trovato funghi. Ogni barra mostra quante volte, nello stesso punto, ha valutato un giorno nella stagione del fungo meglio di un giorno fuori stagione.",
       "all": "Tutti i funghi",
       "finds_one": "{{finds}} ritrovamento",
       "finds_other": "{{finds}} ritrovamenti",
-      "empty": "Non ci sono ancora abbastanza ritrovamenti segnalati.",
       "howTitle": "Come verifichiamo",
       "how": {
         "replay": "Applichiamo la previsione attuale al meteo di ogni giorno e la confrontiamo con i ritrovamenti di funghi che le persone segnalano su GBIF, la banca dati mondiale della biodiversità.",
-        "unseen": "Contano solo i ritrovamenti dal {{since}} in poi, successivi agli ultimi su cui la previsione è stata addestrata.",
-        "spots": "Ogni ritrovamento è confrontato con punti dove le persone hanno trovato altri funghi ma nessuno della stessa specie entro 10 km: indicare i boschi che la gente frequenta già non porta nulla.",
-        "everything": "Compare ogni fungo con almeno 30 ritrovamenti, che sia andato bene o no. Le piante non sono incluse.",
         "late": "I ritrovamenti arrivano su GBIF con una-tre settimane di ritardo, quindi gli ultimi giorni si completano dopo. Aggiornato il {{updated}}.",
         "season": "La stagione: le settimane in cui ogni fungo era in stagione o fuori nel 2026 vengono dai suoi ritrovamenti segnalati, contati rispetto a tutte le segnalazioni di funghi perché i weekend affollati non contino il doppio."
-      },
-      "seasonTitle": "La stagione",
-      "seasonIntro": "La previsione attuale dal {{since}} al {{until}}, nei punti dove le persone hanno trovato funghi. Ogni barra mostra quante volte, nello stesso punto, ha valutato un giorno nella stagione del fungo meglio di un giorno fuori stagione."
+      }
     }
   },
   "theme": {

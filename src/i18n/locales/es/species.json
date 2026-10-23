@@ -378,9 +378,8 @@
     "whereItGrows": "Dónde crece",
     "lookalikes": "Parecidos tóxicos",
     "tellApart": "Cómo distinguirlas",
-    "testedLabel": "Comprobado · desde el {{since}}",
-    "tested": "Con {{finds}} hallazgos registrados, la previsión valoró mejor el lugar del hallazgo que otros lugares con setas <strong>{{times}} de cada 10 veces</strong>.",
-    "howWeCheck": "Cómo lo comprobamos",
-    "season": "En 2026, en el mismo lugar, valoró mejor los días de su temporada que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>."
+    "testedLabel": "Comprobado · temporada {{year}}",
+    "tested": "En el mismo lugar, la previsión valoró mejor los días de su temporada que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>.",
+    "howWeCheck": "Cómo lo comprobamos"
   }
 }

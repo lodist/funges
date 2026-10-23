@@ -378,9 +378,8 @@
     "whereItGrows": "Wo sie wächst",
     "lookalikes": "Giftige Doppelgänger",
     "tellApart": "So unterscheidest du sie",
-    "testedLabel": "Geprüft · seit dem {{since}}",
-    "tested": "Bei {{finds}} gemeldeten Funden bewertete die Vorhersage die Fundstelle <strong>{{times}} von 10 Mal</strong> besser als andere Pilzstellen.",
-    "howWeCheck": "So prüfen wir",
-    "season": "2026 bewertete sie an derselben Stelle Tage in seiner Saison <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb."
+    "testedLabel": "Geprüft · Saison {{year}}",
+    "tested": "An derselben Stelle bewertete die Vorhersage Tage in seiner Saison <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb.",
+    "howWeCheck": "So prüfen wir"
   }
 }

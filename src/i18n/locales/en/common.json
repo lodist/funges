@@ -87,9 +87,8 @@
       "link": "See the data"
     },
     "proof": {
-      "line": "Tested on {{finds}} mushroom finds since {{since}}: <strong>{{times}} times in 10</strong>, the forecast rated the find's spot higher than other mushroom spots that day.",
-      "link": "How we check",
-      "season": "And at the same spot, it rated days in a mushroom's season above days out of season <strong>{{times}} times in 10</strong>."
+      "line": "Tested on the {{year}} season at {{spots}} spots where people found mushrooms: the forecast rated days in a mushroom's season above days out of season <strong>{{times}} times in 10</strong>.",
+      "link": "How we check"
     }
   },
   "worthForagingNow": {
@@ -332,22 +331,16 @@
     },
     "scorecard": {
       "title": "How the forecast did",
-      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}}. Each bar shows how often it rated the find's spot higher than another spot where people found mushrooms that day.",
+      "intro": "The current forecast from {{since}} to {{until}}, at {{spots}} spots where people found mushrooms. Each bar shows how often, at the same spot, it rated a day in the mushroom's season above a day out of season.",
       "all": "All mushrooms",
       "finds_one": "{{finds}} find",
       "finds_other": "{{finds}} finds",
-      "empty": "Not enough reported finds yet.",
       "howTitle": "How we check",
       "how": {
         "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
-        "unseen": "Only finds from {{since}} on, after the last finds the forecast was trained on.",
-        "spots": "Each find is compared with spots where people found other mushrooms but none of the same kind within 10 km, so pointing at woods people already visit earns nothing.",
-        "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. Plants are not included.",
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
         "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice."
-      },
-      "seasonTitle": "The season",
-      "seasonIntro": "The current forecast from {{since}} to {{until}}, at the spots where people found mushrooms. Each bar shows how often, at the same spot, it rated a day in the mushroom's season above a day out of season."
+      }
     }
   },
   "theme": {
