@@ -2,6 +2,7 @@
 import json
 
 import numpy as np
+import pytest
 import pandas as pd
 
 import build_training_table as tt
@@ -172,17 +173,56 @@ def _local(ratio):
                                                  "ratio": {m: r for m, r in zip(range(1, 13), ratio)}}}
 
 
-def test_one_scale_is_the_hand_set_part_of_the_species_best_month():
-    months = [{"eta": [-1.0, 1.0], "weather_part": [v, v + 0.1]} for v in np.linspace(0.1, 0.8, 12)]
-    only_june = fp.season_scale(months, _local([0] * 5 + [1] + [0] * 6))
-    assert np.allclose(only_june, months[5]["weather_part"])
-    autumn = fp.season_scale(months, _local([0, 0, 0, 0, 0, 0.1, 0.5, 0.8, 1.0, 0.6, 0.2, 0]))
-    assert np.allclose(autumn, months[8]["weather_part"])        # September, the peak
-    alike = [{"eta": [-1.0, 1.0], "weather_part": [0.2, 0.6]}] * 12
-    assert np.allclose(fp.season_scale(alike, _local(np.linspace(0, 1, 12))), [0.2, 0.6])
-    regional = {k: v for k, v in _local([1] * 12).items() if k != "local_season"}
-    assert fp.season_scale(months, regional) is None             # season on region curves: months' own
-    assert fp.season_scale(months, {"local_season": {}}) is None   # no ratio to weigh the months
+def _months(base=0.1, step=0.7 / 11):
+    return [{"eta": [-1.0, 1.0], "weather_part": [base + m * step, base + m * step + 0.1]} for m in range(12)]
+
+
+def test_the_best_month_is_the_region_curve_s_peak():
+    months = _months()
+    june = fp.best_month_parts(months, _local([0] * 5 + [1] + [0] * 6)["season_curve"])
+    assert len(june) == 1 and np.allclose(june[0], months[5]["weather_part"])
+    autumn = fp.best_month_parts(months, _local([0, 0, 0, 0, 0, 0.1, 0.5, 0.8, 1.0, 0.6, 0.2, 0])["season_curve"])
+    assert np.allclose(autumn[0], months[8]["weather_part"])     # September, the peak
+    assert len(fp.best_month_parts(months, _local([1] * 12)["season_curve"])) == 12   # a tie keeps them all
+    assert fp.best_month_parts(months, None) is None             # no ratio, no best month
+
+
+def test_pooled_quantiles_weigh_each_part_alike():
+    low, high = np.array([0.2, 0.3, 0.4]), np.array([0.6, 0.7, 0.8])
+    assert np.allclose(fp.pooled_quantiles([low]), low)
+    pooled = fp.pooled_quantiles([low, high])
+    assert pooled[0] == pytest.approx(0.2) and pooled[-1] == pytest.approx(0.8) and 0.4 <= pooled[1] <= 0.6
+
+
+def test_a_species_reads_on_one_scale_in_every_region(monkeypatch):
+    months, september = _months(), _local([0] * 8 + [1] + [0] * 3)
+    monkeypatch.setattr(fp, "species_scales", lambda: {"porcini": np.array([0.5, 0.9])})
+    assert np.allclose(fp.season_scale("porcini", months, september), [0.5, 0.9])
+    assert np.allclose(fp.season_scale("other", months, september), months[8]["weather_part"])  # its region's best month
+    regional = {k: v for k, v in september.items() if k != "local_season"}
+    assert fp.season_scale("porcini", months, regional) is None  # season on region curves: months' own
+    assert fp.season_scale("porcini", months, {"local_season": {}}) is None   # no ratio
+
+
+def test_the_one_scale_pools_each_region_s_best_month(tmp_path, monkeypatch):
+    north, west = _months(0.6, 0.01), _months(0.2, 0.01)
+    fit, gbm = tmp_path / "fruiting_fit.json", tmp_path / "fruiting_gbm.json"
+    fit.write_text(json.dumps({"models": {"porcini": {"NE": {"map": north}}}}))
+    gbm.write_text(json.dumps({"models": {"porcini": {"regions": {"USW": {"map": west}}}}}))
+    for region, peak in (("NE", 9), ("SE", 9), ("USE", 9), ("USW", 10)):
+        curves = tmp_path / f"{region}_season_curves.json"
+        curves.write_text(json.dumps({"porcini": {"multiplier": {m: 1.0 for m in range(1, 13)},
+                                                  "ratio": {m: float(m == peak) for m in range(1, 13)}}}))
+        monkeypatch.setenv(f"{region}_SEASON_CURVES", str(curves))
+    monkeypatch.setattr(fp, "FRUITING_FIT_PATH", fit)
+    monkeypatch.setattr(fp, "FRUITING_GBM_PATH", gbm)
+    fp.species_scales.cache_clear()
+    try:
+        scales = fp.species_scales()
+    finally:
+        fp.species_scales.cache_clear()
+    best = [np.array(north[8]["weather_part"]), np.array(west[9]["weather_part"])]   # September, October
+    assert np.allclose(scales["porcini"], fp.pooled_quantiles(best))
 
 
 def test_on_one_scale_the_same_weather_reads_the_same_all_year():
@@ -198,7 +238,8 @@ def test_on_one_scale_the_same_weather_reads_the_same_all_year():
     assert abs(fp.fruiting_weather_part(frame, model)[1] - 0.7) < 0.02  # a month still ranks its own index
 
 
-def test_a_species_with_a_local_season_gets_one_scale(tmp_path):
+def test_a_species_with_a_local_season_gets_one_scale(tmp_path, monkeypatch):
+    monkeypatch.setattr(fp, "species_scales", dict)                 # no other region: its own best month
     k = len(fp.FRUITING_FEATURES)
     month = {"eta": [-1.0, 1.0], "weather_part": [0.2, 0.6]}
     path = tmp_path / "fruiting_fit.json"
