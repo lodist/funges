@@ -379,7 +379,7 @@
     "lookalikes": "Sosia tossici",
     "tellApart": "Come distinguerli",
     "testedLabel": "Verificato · {{area}} · dal {{since}}",
-    "tested": "Su {{finds}} ritrovamenti segnalati, la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi <strong>{{times}} volte su 10</strong>. Tirando a indovinare: 5.",
+    "tested": "Su {{finds}} ritrovamenti segnalati, la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi <strong>{{times}} volte su 10</strong>.",
     "howWeCheck": "Come verifichiamo"
   }
 }

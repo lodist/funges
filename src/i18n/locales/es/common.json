@@ -87,7 +87,7 @@
       "link": "Ver los datos"
     },
     "proof": {
-      "line": "Probado con {{finds}} hallazgos de setas desde el {{since}}: <strong>{{times}} de cada 10 veces</strong>, la previsión valoró mejor el lugar del hallazgo que otros lugares con setas ese día. Adivinando: 5.",
+      "line": "Probado con {{finds}} hallazgos de setas desde el {{since}}: <strong>{{times}} de cada 10 veces</strong>, la previsión valoró mejor el lugar del hallazgo que otros lugares con setas ese día.",
       "link": "Cómo lo comprobamos"
     }
   },
@@ -326,11 +326,11 @@
     },
     "scorecard": {
       "title": "Cómo le ha ido a la previsión",
-      "intro": "La previsión actual, comprobada con los hallazgos de setas registrados del {{since}} al {{until}} ({{region}}). Cada barra muestra cuántas veces valoró mejor el lugar del hallazgo que otro lugar donde la gente encontró setas ese día. Adivinando sale el {{chance}}, la línea del medio.",
+      "intro": "La previsión actual, comprobada con los hallazgos de setas registrados del {{since}} al {{until}} ({{area}}). Cada barra muestra cuántas veces valoró mejor el lugar del hallazgo que otro lugar donde la gente encontró setas ese día. Adivinando sale el {{chance}}, la línea del medio.",
       "all": "Todas las setas",
       "finds_one": "{{finds}} hallazgo",
       "finds_other": "{{finds}} hallazgos",
-      "empty": "{{region}}: todavía no hay suficientes hallazgos registrados.",
+      "empty": "Todavía no hay suficientes hallazgos registrados.",
       "howTitle": "Cómo lo comprobamos",
       "how": {
         "replay": "Aplicamos la previsión actual al tiempo de cada día y la comparamos con los hallazgos de setas que la gente registra en GBIF, la base de datos mundial de biodiversidad.",
@@ -338,7 +338,8 @@
         "spots": "Cada hallazgo se compara con otros lugares donde la gente encontró setas, así que señalar los bosques que la gente ya visita no suma nada.",
         "everything": "Aparecen todas las setas con al menos 30 hallazgos, les haya ido bien o no. Las plantas no están incluidas.",
         "late": "Los hallazgos llegan a GBIF con una a tres semanas de retraso, así que los últimos días se completan más tarde. Actualizado el {{updated}}."
-      }
+      },
+      "everywhere": "Europa y Norteamérica"
     }
   },
   "sidebar": {

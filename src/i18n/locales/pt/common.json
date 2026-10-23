@@ -87,7 +87,7 @@
       "link": "Ver os dados"
     },
     "proof": {
-      "line": "Testado com {{finds}} achados de cogumelos desde {{since}}: <strong>{{times}} em cada 10 vezes</strong>, a previsão avaliou melhor o ponto do achado do que outros pontos com cogumelos naquele dia. Chutando: 5.",
+      "line": "Testado com {{finds}} achados de cogumelos desde {{since}}: <strong>{{times}} em cada 10 vezes</strong>, a previsão avaliou melhor o ponto do achado do que outros pontos com cogumelos naquele dia.",
       "link": "Como verificamos"
     }
   },
@@ -326,11 +326,11 @@
     },
     "scorecard": {
       "title": "Como a previsão se saiu",
-      "intro": "A previsão atual, testada com achados de cogumelos registrados de {{since}} a {{until}} ({{region}}). Cada barra mostra quantas vezes ela avaliou melhor o ponto do achado do que outro ponto onde as pessoas acharam cogumelos naquele dia. Chutando dá {{chance}}, a linha do meio.",
+      "intro": "A previsão atual, testada com achados de cogumelos registrados de {{since}} a {{until}} ({{area}}). Cada barra mostra quantas vezes ela avaliou melhor o ponto do achado do que outro ponto onde as pessoas acharam cogumelos naquele dia. Chutando dá {{chance}}, a linha do meio.",
       "all": "Todos os cogumelos",
       "finds_one": "{{finds}} achado",
       "finds_other": "{{finds}} achados",
-      "empty": "{{region}}: ainda não há achados registrados suficientes.",
+      "empty": "Ainda não há achados registrados suficientes.",
       "howTitle": "Como verificamos",
       "how": {
         "replay": "Aplicamos a previsão atual ao tempo de cada dia e a comparamos com os achados de cogumelos que as pessoas registram no GBIF, o banco de dados mundial de biodiversidade.",
@@ -338,7 +338,8 @@
         "spots": "Cada achado é comparado com outros pontos onde as pessoas acharam cogumelos, então apontar para bosques que todo mundo já visita não rende nada.",
         "everything": "Aparecem todos os cogumelos com pelo menos 30 achados, tenham ido bem ou não. As plantas não estão incluídas.",
         "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}."
-      }
+      },
+      "everywhere": "Europa e América do Norte"
     }
   },
   "sidebar": {

@@ -1,9 +1,10 @@
 """The public scorecard: today's forecast against mushroom finds it never learned from.
 
-Reads a scripts/qa_replay.py run and writes public/data/scorecard.json: per region and per
-continent, all mushrooms and each mushroom with at least MIN_FINDS finds, the finds and `place`,
-the replay's mean `where`: how often the forecast rated the find's spot higher that day than
-another spot where people reported mushrooms. Guessing gets 0.5. Only totals leave the machine.
+Reads a scripts/qa_replay.py run and writes public/data/scorecard.json: for all regions together
+(`all`, with the regions its finds came from) and per continent, all mushrooms and each mushroom
+with at least MIN_FINDS finds, the finds and `place`, the replay's mean `where`: how often the
+forecast rated the find's spot higher that day than another spot where people reported
+mushrooms. Guessing gets 0.5. Only totals leave the machine.
 
 The replay window must start after the last find any part of the forecast learned from: the
 training finds' last day (era5_training/finds_2016_2026.parquet) and the last build of the local
@@ -43,10 +44,14 @@ def build(replay: Path) -> dict:
     rows = pd.concat([pd.read_csv(replay / f"finds_{r}.csv", dtype={"loc": str, "date": str})
                       for r in meta["regions"]], ignore_index=True)
     rows = rows[(rows.source == "today") & (rows.kingdom == "Fungi") & rows["where"].notna()]
-    regions = {r: c for r in meta["regions"] if (c := card(rows[rows.region == r]))}
+    # Most regions are too thin on their own: the Data page and the species sheets read all of
+    # them together, the landing its visitor's continent.
+    everything = card(rows)
+    if everything:
+        everything["from"] = sorted(rows.region.unique())
     continents = {k: c for k, members in CONTINENTS.items() if (c := card(rows[rows.region.isin(members)]))}
     return {"updated_at": date.today().isoformat(), "since": meta["start"],
-            "until": rows.date.max() if len(rows) else meta["start"], "regions": regions, "continents": continents}
+            "until": rows.date.max() if len(rows) else meta["start"], "all": everything, "continents": continents}
 
 
 def main():
@@ -57,7 +62,7 @@ def main():
     result = build(args.replay)
     # As Prettier leaves it: two spaces, LF even on Windows.
     args.out.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")
-    for name, mine in {**result["regions"], **result["continents"]}.items():
+    for name, mine in {"all": result["all"] or {"finds": 0, "place": 0, "species": {}}, **result["continents"]}.items():
         print(f"{name}: {mine['finds']} finds, place {mine['place']:.2f}, {len(mine['species'])} mushrooms shown")
 
 

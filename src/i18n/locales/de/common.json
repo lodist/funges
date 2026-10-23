@@ -87,7 +87,7 @@
       "link": "Daten ansehen"
     },
     "proof": {
-      "line": "Geprüft an {{finds}} Pilzfunden seit dem {{since}}: <strong>{{times}} von 10 Mal</strong> bewertete die Vorhersage die Fundstelle besser als andere Pilzstellen an diesem Tag. Raten trifft 5.",
+      "line": "Geprüft an {{finds}} Pilzfunden seit dem {{since}}: <strong>{{times}} von 10 Mal</strong> bewertete die Vorhersage die Fundstelle besser als andere Pilzstellen an diesem Tag.",
       "link": "So prüfen wir"
     }
   },
@@ -326,11 +326,11 @@
     },
     "scorecard": {
       "title": "Wie gut die Vorhersage war",
-      "intro": "Die aktuelle Vorhersage, geprüft an Pilzfunden, die vom {{since}} bis zum {{until}} gemeldet wurden ({{region}}). Jeder Balken zeigt, wie oft sie die Fundstelle besser bewertete als eine andere Stelle, an der an diesem Tag Pilze gefunden wurden. Raten ergibt {{chance}}, die Linie in der Mitte.",
+      "intro": "Die aktuelle Vorhersage, geprüft an Pilzfunden, die vom {{since}} bis zum {{until}} gemeldet wurden ({{area}}). Jeder Balken zeigt, wie oft sie die Fundstelle besser bewertete als eine andere Stelle, an der an diesem Tag Pilze gefunden wurden. Raten ergibt {{chance}}, die Linie in der Mitte.",
       "all": "Alle Pilze",
       "finds_one": "{{finds}} Fund",
       "finds_other": "{{finds}} Funde",
-      "empty": "{{region}}: noch nicht genug gemeldete Funde.",
+      "empty": "Noch nicht genug gemeldete Funde.",
       "howTitle": "So prüfen wir",
       "how": {
         "replay": "Wir rechnen die aktuelle Vorhersage mit dem Wetter jedes Tages und vergleichen sie mit Pilzfunden, die Menschen bei GBIF melden, der weltweiten Biodiversitätsdatenbank.",
@@ -338,7 +338,8 @@
         "spots": "Jeder Fund wird mit anderen Stellen verglichen, an denen Menschen Pilze gefunden haben. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt also nichts.",
         "everything": "Jeder Pilz mit mindestens 30 Funden steht hier, ob gut oder schlecht. Pflanzen sind nicht dabei.",
         "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}."
-      }
+      },
+      "everywhere": "Europa und Nordamerika"
     }
   },
   "sidebar": {

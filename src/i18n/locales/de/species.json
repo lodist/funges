@@ -379,7 +379,7 @@
     "lookalikes": "Giftige Doppelgänger",
     "tellApart": "So unterscheidest du sie",
     "testedLabel": "Geprüft · {{area}} · seit dem {{since}}",
-    "tested": "Bei {{finds}} gemeldeten Funden bewertete die Vorhersage die Fundstelle <strong>{{times}} von 10 Mal</strong> besser als andere Pilzstellen. Raten trifft 5.",
+    "tested": "Bei {{finds}} gemeldeten Funden bewertete die Vorhersage die Fundstelle <strong>{{times}} von 10 Mal</strong> besser als andere Pilzstellen.",
     "howWeCheck": "So prüfen wir"
   }
 }

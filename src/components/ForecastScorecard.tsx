@@ -4,15 +4,14 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useSpeciesData } from '@/data/species';
 import { cn } from '@/lib/utils';
 import {
+  areaKey,
   CHANCE,
-  continentOf,
   formatDay,
   formatShare,
   timesInTen,
   useScorecard,
   type Tally,
 } from '@/lib/scorecard';
-import type { ScoreRegionId } from '@/lib/worth-foraging-now';
 
 /** How often the forecast picked the find's spot, on a track with a tick at
  *  guessing: the species sheet's season strip, read as a meter. */
@@ -34,28 +33,13 @@ function HitBar({ share, className }: { share: number; className?: string }) {
   );
 }
 
-/** One species' result under its conditions on the species sheet. */
-export function ScorecardLine({
-  speciesId,
-  regionId,
-}: {
-  speciesId: string;
-  regionId: ScoreRegionId;
-}) {
+/** One species' result under its conditions on the species sheet: all
+ *  regions together, since one region alone rarely has enough finds. */
+export function ScorecardLine({ speciesId }: { speciesId: string }) {
   const { t, i18n } = useTranslation(['species', 'common']);
   const card = useScorecard();
-  // The region's own figure once it has enough finds, the continent's before.
-  const continent = continentOf(regionId);
-  const own = card?.regions[regionId]?.species[speciesId];
-  const tally = own ?? card?.continents[continent]?.species[speciesId];
-  if (!card || !tally) return null;
-  const area = own
-    ? t(`common:worthForagingNow.regions.${regionId}`)
-    : t(
-        continent === 'EU'
-          ? 'common:home.live.europe'
-          : 'common:home.live.northAmerica'
-      );
+  const tally = card?.all?.species[speciesId];
+  if (!card?.all || !tally) return null;
 
   // The sheet's own pattern: a micro label over a strip, like "Today" over
   // the meter and "Season" over the months.
@@ -63,7 +47,7 @@ export function ScorecardLine({
     <div className='flex flex-col gap-2'>
       <p className='type-micro text-muted-foreground'>
         {t('sheet.testedLabel', {
-          area,
+          area: t(`common:${areaKey(card.all.from)}`),
           since: formatDay(card.since, i18n.language, 'short'),
         })}
       </p>
@@ -80,7 +64,6 @@ export function ScorecardLine({
         />{' '}
         <Link
           to='/data'
-          search={{ region: regionId }}
           hash='scorecard'
           className='focus-ring font-medium whitespace-nowrap text-primary-text underline underline-offset-2'
         >
@@ -129,9 +112,10 @@ function Row({
   );
 }
 
-/** The Data page's proof: every tested mushroom in the region, good or bad,
- *  and how the test works. Links land on #scorecard. */
-export function ForecastScorecard({ region }: { region: ScoreRegionId }) {
+/** The Data page's proof: every tested mushroom, all regions together, good
+ *  or bad, and how the test works. The page's region switch does not apply:
+ *  the intro names where the finds came from. Links land on #scorecard. */
+export function ForecastScorecard() {
   const { t, i18n } = useTranslation('common');
   const species = useSpeciesData();
   const card = useScorecard();
@@ -147,14 +131,13 @@ export function ForecastScorecard({ region }: { region: ScoreRegionId }) {
   }, [ready]);
 
   if (!card) return null;
-  const mine = card.regions[region];
-  const regionName = t(`worthForagingNow.regions.${region}`);
+  const all = card.all;
   const days = {
     since: formatDay(card.since, i18n.language),
     until: formatDay(card.until, i18n.language),
   };
-  const rows = mine
-    ? Object.entries(mine.species)
+  const rows = all
+    ? Object.entries(all.species)
         .map(([id, tally]) => ({
           id,
           tally,
@@ -181,19 +164,19 @@ export function ForecastScorecard({ region }: { region: ScoreRegionId }) {
           {t('data.scorecard.title')}
         </h2>
         <p className='text-muted-foreground'>
-          {mine
+          {all
             ? t('data.scorecard.intro', {
-                region: regionName,
+                area: t(areaKey(all.from)),
                 ...days,
                 chance: formatShare(CHANCE, i18n.language),
               })
-            : t('data.scorecard.empty', { region: regionName })}
+            : t('data.scorecard.empty')}
         </p>
       </div>
 
-      {mine ? (
+      {all ? (
         <ul className='flex flex-col gap-4'>
-          <Row name={t('data.scorecard.all')} tally={mine} strong />
+          <Row name={t('data.scorecard.all')} tally={all} strong />
           {rows.map(row => (
             <Row key={row.id} name={row.name} tally={row.tally} />
           ))}

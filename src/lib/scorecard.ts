@@ -3,9 +3,9 @@ import type { ScoreRegionId } from '@/lib/worth-foraging-now';
 
 /**
  * How today's forecast did on mushroom finds it never learned from, built by
- * scripts/build_scorecard.py from a replay: per region and continent, the
- * finds and `place`, how often the forecast rated the find's spot higher that
- * day than another spot where people found mushrooms.
+ * scripts/build_scorecard.py from a replay: for all regions together and per
+ * continent, the finds and `place`, how often the forecast rated the find's
+ * spot higher that day than another spot where people found mushrooms.
  */
 export interface Tally {
   finds: number;
@@ -22,15 +22,13 @@ export interface Scorecard {
   updated_at: string;
   since: string;
   until: string;
-  regions: Partial<Record<ScoreRegionId, AreaScorecard>>;
+  /** Every region together; `from` lists the regions its finds came from. */
+  all: (AreaScorecard & { from: ScoreRegionId[] }) | null;
   continents: Partial<Record<Continent, AreaScorecard>>;
 }
 
 /** Picking one of two spots blindly is right half the time. */
 export const CHANCE = 0.5;
-
-export const continentOf = (region: ScoreRegionId): Continent =>
-  region === 'NE' || region === 'SE' ? 'EU' : 'US';
 
 const SCORECARD_URL = `${import.meta.env.BASE_URL}data/scorecard.json`;
 
@@ -40,9 +38,7 @@ let request: Promise<Scorecard | null> | null = null;
 export function loadScorecard(): Promise<Scorecard | null> {
   request ??= fetch(SCORECARD_URL)
     .then(response => (response.ok ? response.json() : null))
-    .then((card: Scorecard | null) =>
-      card?.regions && card.continents ? card : null
-    )
+    .then((card: Scorecard | null) => (card?.continents ? card : null))
     .catch(() => null);
   return request;
 }
@@ -59,6 +55,15 @@ export function useScorecard(): Scorecard | null {
     };
   }, []);
   return card;
+}
+
+/** Where the pooled finds came from, as a translation key: "Europe" while
+ *  only European regions have finds. */
+export function areaKey(regions: ScoreRegionId[]) {
+  const european = regions.map(region => region === 'NE' || region === 'SE');
+  if (european.every(Boolean)) return 'home.live.europe' as const;
+  if (!european.some(Boolean)) return 'home.live.northAmerica' as const;
+  return 'data.scorecard.everywhere' as const;
 }
 
 /** A share as "times in 10", the way the landing and the sheet say it. */

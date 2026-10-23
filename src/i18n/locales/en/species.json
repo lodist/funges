@@ -379,7 +379,7 @@
     "lookalikes": "Toxic look-alikes",
     "tellApart": "How to tell them apart",
     "testedLabel": "Tested · {{area}} · since {{since}}",
-    "tested": "On {{finds}} reported finds, the forecast rated the find's spot higher than other mushroom spots <strong>{{times}} times in 10</strong>. Guessing gets 5.",
+    "tested": "On {{finds}} reported finds, the forecast rated the find's spot higher than other mushroom spots <strong>{{times}} times in 10</strong>.",
     "howWeCheck": "How we check"
   }
 }

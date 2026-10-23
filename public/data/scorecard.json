@@ -2,42 +2,36 @@
   "updated_at": "2026-10-23",
   "since": "2026-10-05",
   "until": "2026-10-18",
-  "regions": {
-    "SE": {
-      "finds": 39,
-      "place": 0.71,
-      "species": {}
-    },
-    "NE": {
-      "finds": 409,
-      "place": 0.709,
-      "species": {
-        "black_chant": {
-          "finds": 36,
-          "place": 0.789
-        },
-        "chant": {
-          "finds": 36,
-          "place": 0.692
-        },
-        "mushroom": {
-          "finds": 39,
-          "place": 0.58
-        },
-        "parasol": {
-          "finds": 32,
-          "place": 0.798
-        },
-        "shaggy_mane": {
-          "finds": 84,
-          "place": 0.717
-        },
-        "winter_chant": {
-          "finds": 68,
-          "place": 0.716
-        }
+  "all": {
+    "finds": 448,
+    "place": 0.709,
+    "species": {
+      "black_chant": {
+        "finds": 37,
+        "place": 0.784
+      },
+      "chant": {
+        "finds": 36,
+        "place": 0.692
+      },
+      "mushroom": {
+        "finds": 50,
+        "place": 0.588
+      },
+      "parasol": {
+        "finds": 34,
+        "place": 0.805
+      },
+      "shaggy_mane": {
+        "finds": 99,
+        "place": 0.709
+      },
+      "winter_chant": {
+        "finds": 68,
+        "place": 0.716
       }
-    }
+    },
+    "from": ["NE", "SE"]
   },
   "continents": {
     "EU": {

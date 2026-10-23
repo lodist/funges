@@ -47,7 +47,7 @@
       "link": "Vedi i dati"
     },
     "proof": {
-      "line": "Verificata su {{finds}} ritrovamenti di funghi dal {{since}}: <strong>{{times}} volte su 10</strong> la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi quel giorno. Tirando a indovinare: 5.",
+      "line": "Verificata su {{finds}} ritrovamenti di funghi dal {{since}}: <strong>{{times}} volte su 10</strong> la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi quel giorno.",
       "link": "Come verifichiamo"
     }
   },
@@ -331,11 +331,11 @@
     },
     "scorecard": {
       "title": "Come è andata la previsione",
-      "intro": "La previsione attuale, verificata sui ritrovamenti di funghi segnalati dal {{since}} al {{until}} ({{region}}). Ogni barra mostra quante volte ha valutato il punto del ritrovamento meglio di un altro punto dove quel giorno sono stati trovati funghi. Tirando a indovinare si ottiene il {{chance}}, la linea al centro.",
+      "intro": "La previsione attuale, verificata sui ritrovamenti di funghi segnalati dal {{since}} al {{until}} ({{area}}). Ogni barra mostra quante volte ha valutato il punto del ritrovamento meglio di un altro punto dove quel giorno sono stati trovati funghi. Tirando a indovinare si ottiene il {{chance}}, la linea al centro.",
       "all": "Tutti i funghi",
       "finds_one": "{{finds}} ritrovamento",
       "finds_other": "{{finds}} ritrovamenti",
-      "empty": "{{region}}: non ci sono ancora abbastanza ritrovamenti segnalati.",
+      "empty": "Non ci sono ancora abbastanza ritrovamenti segnalati.",
       "howTitle": "Come verifichiamo",
       "how": {
         "replay": "Applichiamo la previsione attuale al meteo di ogni giorno e la confrontiamo con i ritrovamenti di funghi che le persone segnalano su GBIF, la banca dati mondiale della biodiversità.",
@@ -343,7 +343,8 @@
         "spots": "Ogni ritrovamento è confrontato con altri punti dove le persone hanno trovato funghi: indicare i boschi che la gente frequenta già non porta nulla.",
         "everything": "Compare ogni fungo con almeno 30 ritrovamenti, che sia andato bene o no. Le piante non sono incluse.",
         "late": "I ritrovamenti arrivano su GBIF con una-tre settimane di ritardo, quindi gli ultimi giorni si completano dopo. Aggiornato il {{updated}}."
-      }
+      },
+      "everywhere": "Europa e Nord America"
     }
   },
   "theme": {

@@ -379,7 +379,7 @@
     "lookalikes": "Sosies toxiques",
     "tellApart": "Comment les distinguer",
     "testedLabel": "Vérifié · {{area}} · depuis le {{since}}",
-    "tested": "Sur {{finds}} trouvailles signalées, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons <strong>{{times}} fois sur 10</strong>. Au hasard : 5.",
+    "tested": "Sur {{finds}} trouvailles signalées, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons <strong>{{times}} fois sur 10</strong>.",
     "howWeCheck": "Comment nous vérifions"
   }
 }

@@ -25,10 +25,10 @@ def test_build_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
 
     card = build(tmp_path)
 
-    assert list(card["regions"]) == ["SE"]                   # NE has too few finds to say anything
-    assert card["regions"]["SE"] == {"finds": 45, "place": round((40 * 0.8 + 5 * 0.5) / 45, 3),
-                                     "species": {"mushroom": {"finds": 40, "place": 0.8}}}
-    # Europe pools both regions: NE's 20 porcini join SE's 40.
-    assert card["continents"]["EU"]["species"]["mushroom"] == {"finds": 60, "place": round((40 * 0.8 + 20 * 0.6) / 60, 3)}
+    # All regions together: NE's 20 porcini, too few alone, join SE's 40; the 5 morels stay out.
+    porcini = {"finds": 60, "place": round((40 * 0.8 + 20 * 0.6) / 60, 3)}
+    assert card["all"]["species"] == {"mushroom": porcini}
+    assert card["all"]["finds"] == 65 and card["all"]["from"] == ["NE", "SE"]
+    assert card["continents"]["EU"]["species"]["mushroom"] == porcini
     assert "US" not in card["continents"]
     assert card["since"] == "2026-10-05" and card["until"] == "2026-10-20"

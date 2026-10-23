@@ -87,7 +87,7 @@
       "link": "Voir les données"
     },
     "proof": {
-      "line": "Vérifiée sur {{finds}} trouvailles de champignons depuis le {{since}} : <strong>{{times}} fois sur 10</strong>, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons ce jour-là. Au hasard : 5.",
+      "line": "Vérifiée sur {{finds}} trouvailles de champignons depuis le {{since}} : <strong>{{times}} fois sur 10</strong>, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons ce jour-là.",
       "link": "Comment nous vérifions"
     }
   },
@@ -326,11 +326,11 @@
     },
     "scorecard": {
       "title": "Ce qu'a donné la prévision",
-      "intro": "La prévision actuelle, vérifiée sur les trouvailles de champignons signalées du {{since}} au {{until}} ({{region}}). Chaque barre montre combien de fois elle a mieux noté l'endroit de la trouvaille qu'un autre endroit où des champignons ont été trouvés ce jour-là. Au hasard, on obtient {{chance}} : le trait au milieu.",
+      "intro": "La prévision actuelle, vérifiée sur les trouvailles de champignons signalées du {{since}} au {{until}} ({{area}}). Chaque barre montre combien de fois elle a mieux noté l'endroit de la trouvaille qu'un autre endroit où des champignons ont été trouvés ce jour-là. Au hasard, on obtient {{chance}} : le trait au milieu.",
       "all": "Tous les champignons",
       "finds_one": "{{finds}} trouvaille",
       "finds_other": "{{finds}} trouvailles",
-      "empty": "{{region}} : pas encore assez de trouvailles signalées.",
+      "empty": "Pas encore assez de trouvailles signalées.",
       "howTitle": "Comment nous vérifions",
       "how": {
         "replay": "Nous appliquons la prévision actuelle à la météo de chaque jour et la comparons aux trouvailles de champignons signalées sur GBIF, la base de données mondiale de la biodiversité.",
@@ -338,7 +338,8 @@
         "spots": "Chaque trouvaille est comparée à d'autres endroits où des gens ont trouvé des champignons : désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
         "everything": "Chaque champignon avec au moins 30 trouvailles figure ici, que le résultat soit bon ou non. Les plantes ne sont pas incluses.",
         "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}."
-      }
+      },
+      "everywhere": "Europe et Amérique du Nord"
     }
   },
   "sidebar": {

@@ -379,7 +379,7 @@
     "lookalikes": "Parecidos tóxicos",
     "tellApart": "Cómo distinguirlas",
     "testedLabel": "Comprobado · {{area}} · desde el {{since}}",
-    "tested": "Con {{finds}} hallazgos registrados, la previsión valoró mejor el lugar del hallazgo que otros lugares con setas <strong>{{times}} de cada 10 veces</strong>. Adivinando: 5.",
+    "tested": "Con {{finds}} hallazgos registrados, la previsión valoró mejor el lugar del hallazgo que otros lugares con setas <strong>{{times}} de cada 10 veces</strong>.",
     "howWeCheck": "Cómo lo comprobamos"
   }
 }

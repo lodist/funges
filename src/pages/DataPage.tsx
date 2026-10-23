@@ -1563,9 +1563,9 @@ export default function DataPage() {
         </ChartCard>
       </div>
 
-      {/* Last: the region switch applies, the zone and time range do not;
-          the section says its own period. */}
-      <ForecastScorecard region={region} />
+      {/* Last, and outside the controls: all regions together, its own
+          period, as the section's intro says. */}
+      <ForecastScorecard />
     </div>
   );
 }

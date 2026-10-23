@@ -87,7 +87,7 @@
       "link": "See the data"
     },
     "proof": {
-      "line": "Tested on {{finds}} mushroom finds since {{since}}: <strong>{{times}} times in 10</strong>, the forecast rated the find's spot higher than other mushroom spots that day. Guessing gets 5.",
+      "line": "Tested on {{finds}} mushroom finds since {{since}}: <strong>{{times}} times in 10</strong>, the forecast rated the find's spot higher than other mushroom spots that day.",
       "link": "How we check"
     }
   },
@@ -331,11 +331,11 @@
     },
     "scorecard": {
       "title": "How the forecast did",
-      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}} ({{region}}). Each bar shows how often it rated the find's spot higher than another spot where people found mushrooms that day. Guessing gets {{chance}}, the line in the middle.",
+      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}} ({{area}}). Each bar shows how often it rated the find's spot higher than another spot where people found mushrooms that day. Guessing gets {{chance}}, the line in the middle.",
       "all": "All mushrooms",
       "finds_one": "{{finds}} find",
       "finds_other": "{{finds}} finds",
-      "empty": "{{region}}: not enough reported finds yet.",
+      "empty": "Not enough reported finds yet.",
       "howTitle": "How we check",
       "how": {
         "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
@@ -343,7 +343,8 @@
         "spots": "Each find is compared with other spots where people found mushrooms, so pointing at woods people already visit earns nothing.",
         "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. Plants are not included.",
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}."
-      }
+      },
+      "everywhere": "Europe and North America"
     }
   },
   "theme": {

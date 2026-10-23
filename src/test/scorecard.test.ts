@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { continentOf, formatShare, timesInTen } from '@/lib/scorecard';
+import { areaKey, formatShare, timesInTen } from '@/lib/scorecard';
 
 describe('scorecard helpers', () => {
   it('says a share in tens, rounded', () => {
@@ -8,10 +8,10 @@ describe('scorecard helpers', () => {
     expect(timesInTen(0.5)).toBe(5);
   });
 
-  it('puts the European regions in Europe and the rest in the US', () => {
-    expect(continentOf('SE')).toBe('EU');
-    expect(continentOf('NE')).toBe('EU');
-    expect(continentOf('USW')).toBe('US');
+  it('names where the pooled finds came from', () => {
+    expect(areaKey(['NE', 'SE'])).toBe('home.live.europe');
+    expect(areaKey(['USE'])).toBe('home.live.northAmerica');
+    expect(areaKey(['NE', 'USW'])).toBe('data.scorecard.everywhere');
   });
 
   it('rounds to whole percent in the reader language', () => {
