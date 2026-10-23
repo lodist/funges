@@ -204,25 +204,44 @@ def test_a_species_reads_on_one_scale_in_every_region(monkeypatch):
     assert fp.season_scale("porcini", months, {"local_season": {}}) is None   # no ratio
 
 
-def test_the_one_scale_pools_each_region_s_best_month(tmp_path, monkeypatch):
-    north, west = _months(0.6, 0.01), _months(0.2, 0.01)
-    fit, gbm = tmp_path / "fruiting_fit.json", tmp_path / "fruiting_gbm.json"
-    fit.write_text(json.dumps({"models": {"porcini": {"NE": {"map": north}}}}))
-    gbm.write_text(json.dumps({"models": {"porcini": {"regions": {"USW": {"map": west}}}}}))
-    for region, peak in (("NE", 9), ("SE", 9), ("USE", 9), ("USW", 10)):
-        curves = tmp_path / f"{region}_season_curves.json"
-        curves.write_text(json.dumps({"porcini": {"multiplier": {m: 1.0 for m in range(1, 13)},
-                                                  "ratio": {m: float(m == peak) for m in range(1, 13)}}}))
-        monkeypatch.setenv(f"{region}_SEASON_CURVES", str(curves))
-    monkeypatch.setattr(fp, "FRUITING_FIT_PATH", fit)
-    monkeypatch.setattr(fp, "FRUITING_GBM_PATH", gbm)
-    fp.species_scales.cache_clear()
-    try:
-        scales = fp.species_scales()
-    finally:
-        fp.species_scales.cache_clear()
+def _peak(month):
+    return {"multiplier": {m: 1.0 for m in range(1, 13)}, "ratio": {m: float(m == month) for m in range(1, 13)}}
+
+
+def test_the_one_scale_pools_each_region_s_best_month():
+    import build_fruiting_scale
+
+    north, west, south = _months(0.6, 0.01), _months(0.2, 0.01), _months(0.9, 0.0)
+    fit = {"porcini": {"NE": {"map": north}, "SE": {"map": south}}}
+    gbm = {"porcini": {"regions": {"USW": {"map": west}}}}
+    curves = {"NE": {"porcini": _peak(9)}, "SE": {"porcini": _peak(9)}, "USW": {"porcini": _peak(10)}}
+    local = {"NE": {"porcini"}, "USW": {"porcini"}}                 # SE's season is not local: left out
+    scales = build_fruiting_scale.build(fit, gbm, curves, local)
     best = [np.array(north[8]["weather_part"]), np.array(west[9]["weather_part"])]   # September, October
     assert np.allclose(scales["porcini"], fp.pooled_quantiles(best))
+
+
+def test_a_fitted_local_species_without_a_best_month_stops_the_build():
+    import build_fruiting_scale
+
+    flat = {"porcini": {"multiplier": {m: 1.0 for m in range(1, 13)}}}   # no ratio
+    with pytest.raises(SystemExit, match="porcini NE"):
+        build_fruiting_scale.build({"porcini": {"NE": {"map": _months()}}}, {}, {"NE": flat}, {"NE": {"porcini"}})
+
+
+def test_the_scales_are_read_from_their_file(tmp_path, monkeypatch, capsys):
+    path = tmp_path / "fruiting_scale.json"
+    path.write_text(json.dumps({"built": "2026-10-24", "scales": {"porcini": [0.2, 0.5, 0.9]}}))
+    monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", path)
+    fp.species_scales.cache_clear()
+    try:
+        assert np.allclose(fp.species_scales()["porcini"], [0.2, 0.5, 0.9])
+        fp.species_scales.cache_clear()
+        monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", tmp_path / "missing.json")
+        assert fp.species_scales() == {}                             # each region keeps its own best month
+        assert "not loaded" in capsys.readouterr().out
+    finally:
+        fp.species_scales.cache_clear()
 
 
 def test_on_one_scale_the_same_weather_reads_the_same_all_year():

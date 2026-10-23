@@ -1215,31 +1215,23 @@ def pooled_quantiles(parts):
     return np.interp(share, cdf, values)
 
 
+FRUITING_SCALE_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_scale.json"
+
+
 @functools.lru_cache(maxsize=None)
 def species_scales():
-    """Each species' one weather-part scale, the same in every region: the hand-set part in its
-    best month (from each region's own curve) in every region it has a fitted part in, pooled.
-    US West's hand-set part sits low (porcini in its best month 0.52, against 0.77 in North
-    Europe), and on its own scale Washington's porcini scored about a fifth below a European
-    place with the same weather. {} when a file or a region's curves cannot be read, which
-    leaves each region its own best month."""
+    """Each species' one weather-part scale, the same in every region (tools/build_fruiting_scale.py,
+    rebuilt when the fits or the season curves change): the hand-set part in its best month in every
+    region where it has a fitted part and a local season, pooled. US West's sits low (porcini in its
+    best month 0.52, against 0.77 in North Europe), and on its own scale Washington's porcini scored
+    about a fifth below a European place with the same weather. {} when the file cannot be read: each
+    region then keeps its own best month's scale, and the nightly log names those species."""
     try:
-        fit = json.loads(Path(r2.generated(FRUITING_FIT_PATH)).read_text(encoding="utf-8"))["models"]
-        gbm = json.loads(Path(r2.generated(FRUITING_GBM_PATH)).read_text(encoding="utf-8"))["models"]
-        parts = {}
-        for region in FRUITING_GBM_REGIONS:
-            path = get_required_env(f"{region}_SEASON_CURVES")
-            raw = r2_fetch(path).decode("utf-8") if is_remote_path(path) else Path(path).read_text(encoding="utf-8")
-            for specie, curve in json.loads(raw).items():
-                model = gbm.get(specie, {}).get("regions", {}).get(region) or fit.get(specie, {}).get(region)
-                best = best_month_parts(model["map"], normalize_curve(curve)) if model else None
-                if best:
-                    parts.setdefault(specie, []).append(pooled_quantiles(best))
+        data = json.loads(Path(r2.generated(FRUITING_SCALE_PATH)).read_text(encoding="utf-8"))
     except Exception as error:
-        print(f"[warn] one weather scale per species not built ({error}); each region keeps its own")
+        print(f"[warn] {FRUITING_SCALE_PATH.name} not loaded ({error}); each region keeps its own best month's scale")
         return {}
-    print(f"One weather scale across the regions for {len(parts)} species")
-    return {specie: pooled_quantiles(p) for specie, p in parts.items()}
+    return {specie: np.asarray(quantiles, float) for specie, quantiles in data["scales"].items()}
 
 
 def fruiting_gbm_features(df, model):
@@ -1707,6 +1699,10 @@ def _load_species_and_curves(config):
     _monthly = sorted(s for s, p in species_params.items()
                       if (m := p.get("fruiting_gbm") or p.get("fruiting")) and m.get("scale") is None)
     print(f"Fitted weather part on monthly scales (no local season) for: {', '.join(_monthly) or 'none'}")
+    _own = sorted(s for s, p in species_params.items()
+                  if (m := p.get("fruiting_gbm") or p.get("fruiting")) and m.get("scale") is not None
+                  and s not in species_scales())
+    print(f"Fitted weather part on its own region's scale (not in {FRUITING_SCALE_PATH.name}) for: {', '.join(_own) or 'none'}")
     _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
     print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)

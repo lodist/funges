@@ -8,6 +8,7 @@
   "era5_normals_US.npz": "99a58d821ae4f049cf0b982ae36c2501b1ce71b8c8f28a8650322376f79204a1",
   "fruiting_fit.json": "8a018185613c036b86da5bca7eb80ad8b2cf9979a87a5627c2794374a8e9be1b",
   "fruiting_gbm.json": "8458f173968365509438add10e4bc737bea9e9ea09882e2e4b83b5aca23f1d9f",
+  "fruiting_scale.json": "3d61b3b8b92ba0a265ad253fa279fd86a6f2c0da81de3f6c615aea55b21d74c0",
   "heather_moors_EU.parquet": "653d5b42cac8ee602a607a61e46ed2454a5b02dd77851b5dafb4180522c12fea",
   "larch_mask_EU.npz": "d72d5c0ecfe2668964f348d82de5cfaa4aceb40893daddffa6782df6b0ce695e",
   "superbloom_ground_US.geojson": "dd29d930bc7a8c84f23a001a6d4c67a89ef9dbe234fc8e3a4c5521ff834b09a3"
