@@ -86,6 +86,15 @@ def test_the_order_holds_every_coords_nearest_cell():
     assert rows["TotalPrecipitation_mm"].tolist() == [24.0, 0.0, 0.0]
 
 
+def test_us_east_and_west_share_one_order():
+    # Copernicus queues three orders per user: US West's own, the night's fourth, was
+    # turned away from 22 Oct 2026. One box lets each region download the other's.
+    east = [(25.1, -80.3), (49.3, -67.2), (45.5, -106.4)]
+    west = [(31.3, -124.7), (48.9, -100.0), (40.0, -81.8)]
+    assert er.box(east) == er.box(west) == er.US_BOX
+    assert er.box(east + [(24.6, -81.0)])[0][0] == 24.5  # a coord outside grows the box
+
+
 def test_a_coord_off_the_downloaded_grid_keeps_its_stored_rain():
     # No measured row means the stored rain stays. Read from the grid's edge instead, a
     # coord carries another place's rain, as South Europe's west of 12° E did.
