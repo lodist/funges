@@ -4,6 +4,7 @@ import {
   type CropStatus,
   type PlaceAdvice,
 } from '@/lib/huerta';
+import type { MapSoil } from '@/lib/soil';
 
 /**
  * Huerta's advice comes from the Huerta Worker, one place at a time, never as a
@@ -289,12 +290,14 @@ export interface CropYear {
 const YEAR_KEY = 'huerta-year';
 const YEAR_DAYS = 30; // the year only changes when it is rebuilt
 
-/** A place's year: each crop's months, and the 12 monthly mean air
- *  temperatures (C, January first). */
+/** A place's year: each crop's months, the 12 monthly mean air
+ *  temperatures (C, January first), and the soil map's topsoil there (null
+ *  where it has none). */
 export interface PlaceYear {
   place: string;
   crops: Record<string, CropYear>;
   temps?: number[];
+  soil?: MapSoil | null;
 }
 
 /** The nearest place's year. Kept on the device for a month; null where
@@ -314,7 +317,8 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
     kept.lon === lon &&
     Date.now() - kept.at < YEAR_DAYS * 864e5 &&
     CROPS.every(crop => crop.id in kept.year.crops) &&
-    kept.year.temps
+    kept.year.temps &&
+    kept.year.soil !== undefined
   )
     return kept.year;
   const response = await fetch(url('/v1/year', { lat, lon }));
@@ -322,11 +326,18 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
   if (!response.ok) throw new Error(`Huerta year: ${response.status}`);
   const body = (await response.json()) as {
     crops: string[];
-    place: { name: string; months: string; temps?: number[] };
+    place: {
+      name: string;
+      months: string;
+      temps?: number[];
+      soil?: [number, number, number];
+    };
   };
+  const soil = body.place.soil;
   const year: PlaceYear = {
     place: body.place.name,
     temps: body.place.temps,
+    soil: soil ? { ph: soil[0], clay: soil[1], sand: soil[2] } : null,
     crops: Object.fromEntries(
       body.crops.map((id, i) => {
         const code = body.place.months.slice(i * 6, i * 6 + 6);

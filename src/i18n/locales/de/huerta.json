@@ -51,7 +51,9 @@
       },
       "water": {
         "title": "Diese Woche etwa {{mm}} L/m² gießen",
-        "text": "Der Regen ersetzt nicht, was Sonne und Wind nehmen. Zweimal gründlich gießen ist besser als täglich ein bisschen."
+        "text": "Der Regen ersetzt nicht, was Sonne und Wind nehmen. Zweimal gründlich gießen ist besser als täglich ein bisschen.",
+        "sandy": "Sandboden trocknet schnell aus: lieber drei, vier kleinere Gaben über die Woche verteilt.",
+        "clay": "Tonboden hält Wasser: einmal gründlich gießen, dann warten, bis die obersten Zentimeter trocken sind."
       },
       "rain": {
         "title": "Regen diese Woche, etwa {{mm}} mm",
@@ -66,7 +68,8 @@
       },
       "from": {
         "forecast": "Laut Vorhersage",
-        "plan": "Laut deinem Plan"
+        "plan": "Laut deinem Plan",
+        "soil": "Laut deinem Boden"
       },
       "nothing": "Dein Garten braucht diese Woche nichts von dir.",
       "noPlan": "Plane deinen Garten und trage ein, was du pflanzt: Diese Seite sagt dir dann jede Woche, was er braucht.",
@@ -125,6 +128,20 @@
         "harvest": {
           "title": "{{crop}}: erntereif",
           "text": "Seit der Aussaat oder Pflanzung gab es genug Wärme."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}}: erst das Beet kalken",
+          "text": "Auf saurem Boden bekommt die Kohlfamilie Kohlhernie. Kalk hebt den pH-Wert: einige Wochen vor dem Pflanzen ausbringen, nie zusammen mit Mist."
+        },
+        "scab": {
+          "title": "{{crops}}: dieses Jahr kein Kalk",
+          "text": "Auf alkalischem Boden bekommen Kartoffeln Schorf. Weder Kalk noch frischen Mist geben und den Boden feucht halten, während die Knollen ansetzen."
+        },
+        "forking": {
+          "title": "{{crops}}: den Ton lockern",
+          "text": "In schwerem Ton gabeln sich die Wurzeln. Die Reihe tief und steinfrei mit etwas Kompost lockern, oder im Hochbeet oder kurze Sorten anbauen."
         }
       }
     },
@@ -498,7 +515,26 @@
     "strips_one": "{{count}} Streifen",
     "strips_other": "{{count}} Streifen",
     "setup": "{{width}} × {{length}} m · {{ground}}",
-    "clear": "Aufheben"
+    "clear": "Aufheben",
+    "soilLabel": "Boden",
+    "soil": {
+      "sandy": "Sandboden",
+      "loam": "Lehmboden",
+      "clay": "Tonboden"
+    },
+    "acidityLabel": "Boden-pH",
+    "acidity": {
+      "acid": "Saurer Boden",
+      "neutral": "Neutraler Boden",
+      "alkaline": "Alkalischer Boden"
+    },
+    "soilWord": {
+      "sandy": "sandig",
+      "loam": "lehmig",
+      "clay": "tonig"
+    },
+    "soilHint": "Um {{place}} ist der Boden meist {{texture}}, pH {{ph}}.",
+    "soilHintRaised": "Um {{place}} ist der Boden meist {{texture}}, pH {{ph}}. Hochbeete haben ihre eigene Erde."
   },
   "year": {
     "title": "Kalender",

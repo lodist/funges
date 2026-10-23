@@ -51,7 +51,9 @@
       },
       "water": {
         "title": "Riega unos {{mm}} L/m² esta semana",
-        "text": "La lluvia no repone lo que se llevan el sol y el viento. Dos buenos riegos valen más que uno diario."
+        "text": "La lluvia no repone lo que se llevan el sol y el viento. Dos buenos riegos valen más que uno diario.",
+        "sandy": "El suelo arenoso se seca rápido: mejor tres o cuatro riegos pequeños repartidos en la semana.",
+        "clay": "La arcilla retiene el agua: un riego profundo y espera a que los primeros centímetros estén secos."
       },
       "rain": {
         "title": "Lluvia esta semana, unos {{mm}} mm",
@@ -66,7 +68,8 @@
       },
       "from": {
         "forecast": "Según la previsión",
-        "plan": "Según tu plan"
+        "plan": "Según tu plan",
+        "soil": "Según tu suelo"
       },
       "nothing": "Esta semana tu huerto no necesita nada de ti.",
       "noPlan": "Planifica tu huerto y marca lo que plantas, y esta página te dirá lo que necesita cada semana.",
@@ -125,6 +128,20 @@
         "harvest": {
           "title": "{{crop}}: a punto para cosechar",
           "text": "Ha recibido el calor que necesita desde la siembra o el trasplante."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}}: encala antes el bancal",
+          "text": "En suelo ácido la familia de la col sufre hernia de la col. La cal sube el pH: échala unas semanas antes de plantar, nunca junto con estiércol."
+        },
+        "scab": {
+          "title": "{{crops}}: este año sin cal",
+          "text": "En suelo alcalino las patatas cogen sarna. Ni cal ni estiércol fresco, y mantén la tierra húmeda mientras se forman los tubérculos."
+        },
+        "forking": {
+          "title": "{{crops}}: afloja la arcilla",
+          "text": "En arcilla pesada las raíces se bifurcan. Cava la hilera honda y sin piedras, con algo de compost, o cultívalas en bancal elevado o en variedades cortas."
         }
       }
     },
@@ -498,7 +515,26 @@
     "strips_one": "{{count}} franja",
     "strips_other": "{{count}} franjas",
     "setup": "{{width}} × {{length}} m · {{ground}}",
-    "clear": "Quitar"
+    "clear": "Quitar",
+    "soilLabel": "Suelo",
+    "soil": {
+      "sandy": "Suelo arenoso",
+      "loam": "Suelo franco",
+      "clay": "Suelo arcilloso"
+    },
+    "acidityLabel": "pH del suelo",
+    "acidity": {
+      "acid": "Suelo ácido",
+      "neutral": "Suelo neutro",
+      "alkaline": "Suelo alcalino"
+    },
+    "soilWord": {
+      "sandy": "arenoso",
+      "loam": "franco",
+      "clay": "arcilloso"
+    },
+    "soilHint": "Alrededor de {{place}} el suelo es sobre todo {{texture}}, pH {{ph}}.",
+    "soilHintRaised": "Alrededor de {{place}} el suelo es sobre todo {{texture}}, pH {{ph}}. Los bancales elevados tienen su propia tierra."
   },
   "year": {
     "title": "Calendario",

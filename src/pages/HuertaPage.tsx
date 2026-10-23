@@ -38,6 +38,7 @@ import {
   Droplets,
   MapPinned,
   Navigation,
+  Shovel,
   Snowflake,
   Sprout,
 } from '@/lib/icons';
@@ -400,7 +401,12 @@ function ToDo({
                     ? [
                         Droplets,
                         t('week.todo.water.title', { mm: task.mm }),
-                        t('week.todo.water.text'),
+                        // Loam's two soakings; sand and clay their own way.
+                        t(
+                          task.soil === 'loam'
+                            ? 'week.todo.water.text'
+                            : `week.todo.water.${task.soil}`
+                        ),
                         'forecast',
                       ]
                     : task.kind === 'rain'
@@ -417,35 +423,45 @@ function ToDo({
                             names(task.crops),
                             'plan',
                           ]
-                        : task.kind === 'stage'
+                        : task.kind === 'soil'
                           ? [
-                              null,
-                              t(`week.todo.stage.${task.step}.title`, {
-                                crop: t(`crops.${task.crop}`),
-                                count: task.weeks,
+                              Shovel,
+                              t(`week.todo.soil.${task.note}.title`, {
+                                crops: names(task.crops),
                               }),
-                              t(`week.todo.stage.${task.step}.text`, {
-                                count: task.weeks,
-                                cm: task.cm,
-                              }),
-                              'plan',
+                              t(`week.todo.soil.${task.note}.text`),
+                              'soil',
                             ]
-                          : [
-                              null,
-                              t('week.todo.sowAgain.title', {
-                                crop: t(`crops.${task.crop}`),
-                              }),
-                              t('week.todo.sowAgain.text', {
-                                weeks: task.weeks,
-                              }),
-                              'plan',
-                            ];
+                          : task.kind === 'stage'
+                            ? [
+                                null,
+                                t(`week.todo.stage.${task.step}.title`, {
+                                  crop: t(`crops.${task.crop}`),
+                                  count: task.weeks,
+                                }),
+                                t(`week.todo.stage.${task.step}.text`, {
+                                  count: task.weeks,
+                                  cm: task.cm,
+                                }),
+                                'plan',
+                              ]
+                            : [
+                                null,
+                                t('week.todo.sowAgain.title', {
+                                  crop: t(`crops.${task.crop}`),
+                                }),
+                                t('week.todo.sowAgain.text', {
+                                  weeks: task.weeks,
+                                }),
+                                'plan',
+                              ];
             return (
               <li
                 key={
                   task.kind +
                   ('crop' in task ? task.crop : '') +
-                  ('step' in task ? task.step : '')
+                  ('step' in task ? task.step : '') +
+                  ('note' in task ? task.note : '')
                 }
                 className='grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-4 rounded-card bg-card p-3 elevation-raised sm:grid-cols-[2.75rem_minmax(0,1fr)_auto]'
               >

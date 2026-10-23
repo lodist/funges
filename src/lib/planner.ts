@@ -8,6 +8,7 @@
  */
 import { CROPS, type CropStatus } from '@/lib/huerta';
 import { PLANT_LOOK } from '@/lib/planner-data';
+import type { Acidity, Texture } from '@/lib/soil';
 
 export const BED_WIDTH = 1.2;
 export const PATH = 0.4;
@@ -46,6 +47,9 @@ export interface Garden {
   ground?: Ground;
   /** What "Plan it for me" grows; mixed by default. */
   style?: PlanStyle;
+  /** The soil as the gardener knows it; unset, the map's (lib/soil). */
+  soil?: Texture;
+  acidity?: Acidity;
 }
 
 export interface Section {
@@ -860,7 +864,8 @@ export function loadPlan(): Plan | null {
     const plan = JSON.parse(
       localStorage.getItem(STORE) ?? 'null'
     ) as Plan | null;
-    return plan?.sections?.length &&
+    // Every bed deleted is a plan too: its ground, to put a bed back on.
+    return (plan?.sections?.length || plan?.bare?.length) &&
       plan.sections.every(s => !s.crop || s.crop in CROP)
       ? plan
       : null;

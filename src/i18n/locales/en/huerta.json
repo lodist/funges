@@ -51,7 +51,9 @@
       },
       "water": {
         "title": "Water about {{mm}} L/m² this week",
-        "text": "The rain won't make up for what sun and wind take. Two good soakings beat a daily sprinkle."
+        "text": "The rain won't make up for what sun and wind take. Two good soakings beat a daily sprinkle.",
+        "sandy": "Sandy soil dries out fast: give it in three or four smaller waterings through the week.",
+        "clay": "Clay holds water: one deep soaking, then wait until the top few centimetres are dry."
       },
       "rain": {
         "title": "Rain this week, about {{mm}} mm",
@@ -66,7 +68,8 @@
       },
       "from": {
         "forecast": "From the forecast",
-        "plan": "From your plan"
+        "plan": "From your plan",
+        "soil": "From your soil"
       },
       "nothing": "Nothing your garden needs from you this week.",
       "noPlan": "Plan your garden and mark what you plant, and this page will list what it needs each week.",
@@ -125,6 +128,20 @@
         "harvest": {
           "title": "{{crop}}: ready to harvest",
           "text": "It has had the warmth it needs since it went in."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}}: lime the bed first",
+          "text": "On acid soil the cabbage family gets clubroot. Lime raises the pH: spread it a few weeks before planting, never together with manure."
+        },
+        "scab": {
+          "title": "{{crops}}: no lime this year",
+          "text": "On alkaline soil potatoes get scab. Leave out lime and fresh manure, and keep the soil moist while the tubers form."
+        },
+        "forking": {
+          "title": "{{crops}}: loosen the clay",
+          "text": "Roots fork in heavy clay. Dig the row deep and free of stones, with some compost, or grow them in a raised bed or short-rooted kinds."
         }
       }
     },
@@ -498,7 +515,26 @@
     "strips_one": "{{count}} strip",
     "strips_other": "{{count}} strips",
     "setup": "{{width}} × {{length}} m · {{ground}}",
-    "clear": "Clear"
+    "clear": "Clear",
+    "soilLabel": "Soil",
+    "soil": {
+      "sandy": "Sandy soil",
+      "loam": "Loam",
+      "clay": "Clay soil"
+    },
+    "acidityLabel": "Soil pH",
+    "acidity": {
+      "acid": "Acid soil",
+      "neutral": "Neutral soil",
+      "alkaline": "Alkaline soil"
+    },
+    "soilWord": {
+      "sandy": "sandy",
+      "loam": "loam",
+      "clay": "clay"
+    },
+    "soilHint": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}.",
+    "soilHintRaised": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}. Raised beds hold their own soil."
   },
   "year": {
     "title": "Calendar",

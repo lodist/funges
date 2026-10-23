@@ -51,7 +51,9 @@
       },
       "water": {
         "title": "Regue cerca de {{mm}} L/m² esta semana",
-        "text": "A chuva não repõe o que o sol e o vento levam. Duas boas regas valem mais que um pouco todo dia."
+        "text": "A chuva não repõe o que o sol e o vento levam. Duas boas regas valem mais que um pouco todo dia.",
+        "sandy": "O solo arenoso seca depressa: melhor três ou quatro regas pequenas ao longo da semana.",
+        "clay": "A argila retém a água: uma rega funda, depois espere até os primeiros centímetros secarem."
       },
       "rain": {
         "title": "Chuva esta semana, cerca de {{mm}} mm",
@@ -66,7 +68,8 @@
       },
       "from": {
         "forecast": "Pela previsão",
-        "plan": "Pelo seu plano"
+        "plan": "Pelo seu plano",
+        "soil": "Pelo seu solo"
       },
       "nothing": "Esta semana sua horta não precisa de nada.",
       "noPlan": "Planeje sua horta e marque o que planta, e esta página dirá o que ela precisa a cada semana.",
@@ -125,6 +128,20 @@
         "harvest": {
           "title": "{{crop}}: hora de colher",
           "text": "Recebeu o calor necessário desde a semeadura ou o plantio."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}}: calcário no canteiro antes",
+          "text": "Em solo ácido a família da couve pega hérnia-das-crucíferas. O calcário sobe o pH: espalhe algumas semanas antes de plantar, nunca junto com esterco."
+        },
+        "scab": {
+          "title": "{{crops}}: sem calcário este ano",
+          "text": "Em solo alcalino as batatas pegam sarna. Nada de calcário nem esterco fresco, e mantenha a terra úmida enquanto os tubérculos se formam."
+        },
+        "forking": {
+          "title": "{{crops}}: solte a argila",
+          "text": "Na argila pesada as raízes bifurcam. Cave a linha funda e sem pedras, com algum composto, ou cultive num canteiro elevado ou variedades curtas."
         }
       }
     },
@@ -498,7 +515,26 @@
     "strips_one": "{{count}} faixa",
     "strips_other": "{{count}} faixas",
     "setup": "{{width}} × {{length}} m · {{ground}}",
-    "clear": "Limpar"
+    "clear": "Limpar",
+    "soilLabel": "Solo",
+    "soil": {
+      "sandy": "Solo arenoso",
+      "loam": "Solo franco",
+      "clay": "Solo argiloso"
+    },
+    "acidityLabel": "pH do solo",
+    "acidity": {
+      "acid": "Solo ácido",
+      "neutral": "Solo neutro",
+      "alkaline": "Solo alcalino"
+    },
+    "soilWord": {
+      "sandy": "arenoso",
+      "loam": "franco",
+      "clay": "argiloso"
+    },
+    "soilHint": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}.",
+    "soilHintRaised": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}. Os canteiros elevados têm a sua própria terra."
   },
   "year": {
     "title": "Calendário",
