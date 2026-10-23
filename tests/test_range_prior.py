@@ -120,8 +120,6 @@ def test_host_prior_sums_a_species_hosts_and_saturates():
     half = host_prior(cover, ["aspen_birch", "aspen_birch"])["grid"][0, 0] / 255  # listed twice, summed
     assert abs(half - 0.5) < 0.05
     assert host_prior(cover, ["oak_hickory"])["grid"].min() == 255
-    # a higher full cover keeps the share as a signal instead of saturating at a few percent
-    assert abs(host_prior(cover, ["oak_hickory"], full_cover=1.8)["grid"][0, 0] / 255 - 0.5) < 0.01
 
 
 def test_host_pixels_land_in_their_cells():

@@ -275,8 +275,7 @@
               "quercus",
               "other_needleleaf",
               "other_broadleaf"
-            ],
-            "host_full_cover": 0.2
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/NE/NE_species_params.txt",
@@ -317,8 +316,7 @@
               "quercus",
               "other_needleleaf",
               "other_broadleaf"
-            ],
-            "host_full_cover": 0.2
+            ]
           },
           "scoringReferences": [
             "https://data.fung.es/EU/SE/SE_species_params.txt",
