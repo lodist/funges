@@ -82,20 +82,36 @@ export default defineConfig({
             urlPattern: /\.pmtiles$/i,
             handler: 'NetworkOnly',
           },
-          // The photo ID page, kept as the network served it: with the
-          // COOP/COEP headers the edge adds to /identify alone, so the page
-          // stays cross-origin isolated (and multi-threaded) when it is opened
-          // offline. Excluded from navigateFallback for the same reason.
+          // The photo ID page, from the network: the edge adds COOP/COEP to
+          // /identify alone, so the page is cross-origin isolated (and
+          // multi-threaded). Offline, or with no answer in 4 s, it is the
+          // precached shell with those headers added here. A kept network copy
+          // failed on phones: the bar links to /identify, only the 301's target
+          // /identify/ was kept, and a copy named scripts the next update
+          // deleted. Excluded from navigateFallback for the same reason.
           {
             urlPattern: new RegExp(
               `^https?://[^/]+${baseUrl}identify(?:/(?:index\\.html)?)?(?:[?#].*)?$`
             ),
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'identify-page',
-              networkTimeoutSeconds: 4,
-              expiration: { maxEntries: 4 },
-              cacheableResponse: { statuses: [200] },
+            // Serialised into the service worker: no imports, no closures.
+            handler: async ({ request }) => {
+              const network = fetch(request);
+              const answer = await Promise.race([
+                network,
+                new Promise<void>(resolve => setTimeout(resolve, 4000)),
+              ]).catch(() => undefined);
+              if (answer) return answer;
+              // ignoreSearch: precache keys end in ?__WB_REVISION__=…
+              // @ts-expect-error the service worker's CacheStorage, not Node's
+              const shell: Response | undefined = await caches.match(
+                'index.html',
+                { ignoreSearch: true }
+              );
+              if (!shell) return network;
+              const headers = new Headers(shell.headers);
+              headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+              headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
+              return new Response(shell.body, { headers });
             },
           },
           // onnxruntime-web runtime for photo identification. Emitted by Vite as
@@ -269,8 +285,8 @@ export default defineConfig({
         // /identify is the one page served cross-origin isolated (photo ID's
         // threads need it), and the headers live on the network response.
         // The precached index.html carries none, so serving it here would
-        // quietly drop the page back to one thread — see the identify-page
-        // route below, which keeps the network copy for offline use instead.
+        // quietly drop the page back to one thread — see the identify route
+        // above, which adds them to the shell when it serves it offline.
         navigateFallbackDenylist: [
           /\/data\/.*\.csv$/,
           new RegExp(`^${baseUrl}identify(?:/|$)`),
