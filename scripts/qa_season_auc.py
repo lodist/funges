@@ -125,7 +125,9 @@ def main():
             print({k: rows[-1][k] for k in ("region", "species", "records", "auc", "locations")}, flush=True)
 
     table = pd.DataFrame(rows)
-    pooled = lambda g: round(float(np.average(g.auc, weights=g.pairs)), 3)  # noqa: E731
+    # Pooled over regions by the finds behind each figure: weighting by day pairs let 69 South European
+    # chanterelle finds outweigh 1,644 North European ones, because the south has more spots.
+    pooled = lambda g: round(float(np.average(g.auc, weights=g.records)), 3)  # noqa: E731
     result = {"start": START, "end": END, "commit": qr.git("rev-parse", "--short", "HEAD"),
               "all": pooled(table[~table.composite]), "species": {s: pooled(g) for s, g in table.groupby("species")},
               "rows": rows}
