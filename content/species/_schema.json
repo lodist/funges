@@ -66,6 +66,12 @@
           "uniqueItems": true,
           "items": { "type": "string", "minLength": 1 }
         },
+        "host_full_cover": {
+          "description": "Share of host-tree ground around a place that gives the full host score (default 0.02, range_prior.HOST_FULL_COVER); raise it for species whose hosts are nearly every forest, so the share stays a signal",
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
         "wind_sensitive": { "type": "boolean" },
         "season_months": {
           "type": "array",

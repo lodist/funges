@@ -49,7 +49,7 @@ import hourly_weather
 import huerta
 import process_priority
 import r2
-from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
+from range_prior import HOST_FULL_COVER, host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
 from species_registry import get_composites, get_region_boundaries, get_species_params
 
@@ -1618,7 +1618,7 @@ def _load_species_and_curves(config):
                 r2_fetch(_cover_path) if is_remote_path(_cover_path) else Path(_cover_path).read_bytes())
             for _p in species_params.values():
                 if _p.get("hosts"):
-                    _p["host_prior"] = host_prior(_cover, _p["hosts"])
+                    _p["host_prior"] = host_prior(_cover, _p["hosts"], _p.get("host_full_cover", HOST_FULL_COVER))
             print(f"Loaded host cover for {sum('host_prior' in p for p in species_params.values())} species.")
         except Exception as _e:
             print(f"[warn] could not load host cover from {_cover_path}: {_e}; scoring without it")

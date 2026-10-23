@@ -41,13 +41,16 @@ def load_host_cover(raw):
         }
 
 
-def host_prior(cover, hosts):
-    """Grid for one species: 0 with none of its hosts around, 1 from HOST_FULL_COVER up.
+def host_prior(cover, hosts, full_cover=HOST_FULL_COVER):
+    """Grid for one species: 0 with none of its hosts around, 1 from `full_cover` up.
 
-    Ground the source map does not reach stays 1: no evidence either way.
+    Ground the source map does not reach stays 1: no evidence either way. A species whose
+    hosts are nearly every forest (porcini in Europe) saturates at the default anywhere there
+    are trees, so the factor told its spots from other mushroom spots not at all (a replay
+    without it changed nothing, 23 Oct); a higher `full_cover` keeps the share as a signal.
     """
     share = sum(cover["classes"][h].astype(float) for h in hosts) / COVER_SCALE
-    factor = np.where(cover["mapped"], np.clip(share / HOST_FULL_COVER, 0, 1), 1.0)
+    factor = np.where(cover["mapped"], np.clip(share / full_cover, 0, 1), 1.0)
     grid = np.rint(factor * 255).astype(np.uint8)
     return {"lat0": cover["lat0"], "lon0": cover["lon0"], "step": cover["step"], "grid": grid}
 
