@@ -341,7 +341,7 @@
       "how": {
         "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
         "unseen": "Only finds from {{since}} on, after the last finds the forecast was trained on.",
-        "spots": "Each find is compared with other spots where people found mushrooms, so pointing at woods people already visit earns nothing.",
+        "spots": "Each find is compared with spots where people found other mushrooms but none of the same kind within 10 km, so pointing at woods people already visit earns nothing.",
         "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. Plants are not included.",
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
         "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice."

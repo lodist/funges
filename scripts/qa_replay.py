@@ -83,6 +83,7 @@ CHUNK_DAYS = 14
 TIMING_DAYS = 21
 MIN_TIMING_DAYS = 15
 MIN_FINDS = 30           # fewer and a species stays out of the report's tables
+ABSENT_KM = 10.0         # where_absent: background spots this close to a find of the species are left out
 
 
 def on_day(params, day):
@@ -256,6 +257,8 @@ def evaluate(region, finds, tables, days):
     species added in October has no stored September, and its 3 weeks must be the same days on
     both sides. Every find is someone's background; species this run did not score get no rows."""
     place, day = pd.Index(finds["loc"].unique()), pd.DatetimeIndex(days)
+    located = {"lat", "lon"} <= set(finds.columns)   # GBIF finds always are; test frames may not be
+    spots = finds.groupby("loc")[["lat", "lon"]].mean() if located else None
     rows, cols = place.get_indexer(finds["loc"]), day.get_indexer(pd.to_datetime(finds.date))
     cells = {}
     for source, table in tables.items():
@@ -279,16 +282,27 @@ def evaluate(region, finds, tables, days):
         others = finds.loc[(finds.kingdom == kingdom) & (finds.species_id != species), "loc"].value_counts()
         index = finds.index.get_indexer(mine)
         r, c = rows[index], cols[index]
+        # In a broad flush the species also stands at many of the other species' spots, and those
+        # are not misses: `where_absent` keeps only background spots with no find of the species
+        # within ABSENT_KM in the window.
+        absent = others
+        if located:
+            tree = cKDTree(gbif.unit_xyz(finds.lat.to_numpy()[index], finds.lon.to_numpy()[index]))
+            distance, _ = tree.query(gbif.unit_xyz(spots.lat.reindex(others.index).to_numpy(),
+                                                   spots.lon.reindex(others.index).to_numpy()))
+            absent = others[gbif.chord_to_km(distance) > ABSENT_KM]
         # Against the stored scores, each day's mean over the places comes off both sides: the
         # stored scores step on the nights the code changed (winter chanterelle North Europe -1.0
         # on 12 Oct), and read as timing those steps are the code's, not the weather's.
         for source, values in (("today", today), ("stored", day_steps_off(stored)),
                                ("today@stored", day_steps_off(np.where(np.isfinite(stored), today, np.nan)))):
             where, timing, season = percentiles(values, r, c, place.get_indexer(others.index), others.to_numpy())
+            where_absent = percentiles(values, r, c, place.get_indexer(absent.index), absent.to_numpy())[0]
             out.append(pd.DataFrame({
                 "region": region, "species": species, "kingdom": kingdom, "source": source,
                 "date": finds.date.to_numpy()[index], "loc": finds["loc"].to_numpy()[index],
-                "score": values[r, c], "where": where, "timing": timing, "season": season}))
+                "score": values[r, c], "where": where, "where_absent": where_absent,
+                "timing": timing, "season": season}))
     return pd.concat(out, ignore_index=True)
 
 

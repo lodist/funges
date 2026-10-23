@@ -14,7 +14,7 @@ def test_build_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
 
     def rows(region, species, where, n, source="today", kingdom="Fungi", day="2026-10-12"):
         return [{"region": region, "species": species, "kingdom": kingdom, "source": source,
-                 "date": day, "where": where}] * n
+                 "date": day, "where_absent": where}] * n
 
     se = rows("SE", "mushroom", 0.8, 40) + rows("SE", "morel", 0.5, 5, day="2026-10-20")
     se += rows("SE", "mushroom", 0.1, 40, source="stored") + rows("SE", "nettle", 0.1, 40, kingdom="Plantae")
@@ -37,7 +37,7 @@ def test_build_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
 def test_build_adds_the_season_pooled_over_regions(tmp_path):
     (tmp_path / "metadata.json").write_text(json.dumps({"start": "2026-10-05", "regions": ["SE"]}))
     pd.DataFrame([{"region": "SE", "species": "mushroom", "kingdom": "Fungi", "source": "today",
-                   "date": "2026-10-12", "where": 0.7}] * 30).to_csv(tmp_path / "finds_SE.csv", index=False)
+                   "date": "2026-10-12", "where_absent": 0.7}] * 30).to_csv(tmp_path / "finds_SE.csv", index=False)
     season = tmp_path / "season_auc.json"
     season.write_text(json.dumps({"start": "2026-05-24", "end": "2026-10-15", "all": 0.9,
                                   "species": {"mushroom": 0.92},

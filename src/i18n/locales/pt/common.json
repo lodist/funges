@@ -336,7 +336,7 @@
       "how": {
         "replay": "Aplicamos a previsão atual ao tempo de cada dia e a comparamos com os achados de cogumelos que as pessoas registram no GBIF, o banco de dados mundial de biodiversidade.",
         "unseen": "Só contam os achados a partir de {{since}}, depois dos últimos com que a previsão foi treinada.",
-        "spots": "Cada achado é comparado com outros pontos onde as pessoas acharam cogumelos, então apontar para bosques que todo mundo já visita não rende nada.",
+        "spots": "Cada achado é comparado com pontos onde as pessoas acharam outros cogumelos, mas nenhum da mesma espécie a menos de 10 km, então apontar para bosques que todo mundo já visita não rende nada.",
         "everything": "Aparecem todos os cogumelos com pelo menos 30 achados, tenham ido bem ou não. As plantas não estão incluídas.",
         "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}.",
         "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro."

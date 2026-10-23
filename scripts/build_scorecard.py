@@ -2,9 +2,10 @@
 
 Reads a scripts/qa_replay.py run and writes public/data/scorecard.json: for all regions together
 (`all`) and per continent, all mushrooms and each mushroom with at least MIN_FINDS finds, the
-finds and `place`, the replay's mean `where`: how often the forecast rated the find's spot
-higher that day than another spot where people reported mushrooms. Guessing gets 0.5. Only
-totals leave the machine.
+finds and `place`, the replay's mean `where_absent`: how often the forecast rated the find's spot
+higher that day than another spot where people reported mushrooms but none of this one nearby (a
+broad flush puts the species at many of the other spots too, and those are not misses). Guessing
+gets 0.5. Only totals leave the machine.
 
 With --season (a scripts/qa_season_auc.py season_auc.json) it adds `season`: per mushroom and for
 all of them, how often at the same spot a day in season scored above a day out of season.
@@ -32,7 +33,7 @@ CONTINENTS = {"EU": ("NE", "SE"), "US": ("USE", "USW")}
 
 
 def tally(rows: pd.DataFrame) -> dict:
-    return {"finds": len(rows), "place": round(float(rows["where"].mean()), 3)}
+    return {"finds": len(rows), "place": round(float(rows["where_absent"].mean()), 3)}
 
 
 def card(rows: pd.DataFrame) -> dict | None:
@@ -56,7 +57,7 @@ def build(replay: Path, season: Path | None = None) -> dict:
     meta = json.loads((replay / "metadata.json").read_text(encoding="utf-8"))
     rows = pd.concat([pd.read_csv(replay / f"finds_{r}.csv", dtype={"loc": str, "date": str})
                       for r in meta["regions"]], ignore_index=True)
-    rows = rows[(rows.source == "today") & (rows.kingdom == "Fungi") & rows["where"].notna()]
+    rows = rows[(rows.source == "today") & (rows.kingdom == "Fungi") & rows["where_absent"].notna()]
     # Most regions are too thin on their own: the Data page and the species sheets read all of
     # them together, the landing its visitor's continent.
     everything = card(rows)

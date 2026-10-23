@@ -336,7 +336,7 @@
       "how": {
         "replay": "Wir rechnen die aktuelle Vorhersage mit dem Wetter jedes Tages und vergleichen sie mit Pilzfunden, die Menschen bei GBIF melden, der weltweiten Biodiversitätsdatenbank.",
         "unseen": "Es zählen nur Funde ab dem {{since}}, nach den letzten Funden, mit denen die Vorhersage trainiert wurde.",
-        "spots": "Jeder Fund wird mit anderen Stellen verglichen, an denen Menschen Pilze gefunden haben. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt also nichts.",
+        "spots": "Jeder Fund wird mit Stellen verglichen, an denen Menschen andere Pilze gefunden haben, aber keinen derselben Art im Umkreis von 10 km. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt also nichts.",
         "everything": "Jeder Pilz mit mindestens 30 Funden steht hier, ob gut oder schlecht. Pflanzen sind nicht dabei.",
         "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}.",
         "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen."

@@ -87,3 +87,19 @@ def test_on_day_anchors_the_gbm_without_touching_the_settings():
     assert dated["porcini"]["fruiting_gbm"]["booster"] is gbm["booster"]
     assert gbm["anchor"] == "2026-10-16"
     assert dated["nettle"] is params["nettle"]
+
+
+def test_where_absent_leaves_out_spots_where_the_species_was_found_too():
+    days = pd.date_range("2026-10-01", periods=10)
+    # porcini found at p0; a chanterelle at p1 right next to it and one at p2 far away
+    finds = pd.DataFrame({"species_id": ["porcini", "chant", "chant"], "date": ["2026-10-05"] * 3,
+                          "loc": ["p0", "p1", "p2"], "kingdom": ["Fungi"] * 3,
+                          "lat": [46.0, 46.01, 47.0], "lon": [9.0, 9.0, 9.0]})
+    today = pd.DataFrame({"Location_Id": np.repeat(["p0", "p1", "p2"], 10), "Date": np.tile(days, 3)})
+    today["porcini_score"] = np.repeat([5.0, 8.0, 2.0], 10)   # p1, beside the find, scores higher
+    today["chant_score"] = 1.0
+    stored = today.iloc[:0]
+    rows = evaluate("NE", finds, {"today": today, "stored": stored}, days)
+    find = rows[(rows.species == "porcini") & (rows.source == "today")].iloc[0]
+    assert find["where"] == 0.5          # beats p2, loses to p1
+    assert find["where_absent"] == 1.0   # p1 had porcini nearby: only p2 counts

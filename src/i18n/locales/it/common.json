@@ -341,7 +341,7 @@
       "how": {
         "replay": "Applichiamo la previsione attuale al meteo di ogni giorno e la confrontiamo con i ritrovamenti di funghi che le persone segnalano su GBIF, la banca dati mondiale della biodiversità.",
         "unseen": "Contano solo i ritrovamenti dal {{since}} in poi, successivi agli ultimi su cui la previsione è stata addestrata.",
-        "spots": "Ogni ritrovamento è confrontato con altri punti dove le persone hanno trovato funghi: indicare i boschi che la gente frequenta già non porta nulla.",
+        "spots": "Ogni ritrovamento è confrontato con punti dove le persone hanno trovato altri funghi ma nessuno della stessa specie entro 10 km: indicare i boschi che la gente frequenta già non porta nulla.",
         "everything": "Compare ogni fungo con almeno 30 ritrovamenti, che sia andato bene o no. Le piante non sono incluse.",
         "late": "I ritrovamenti arrivano su GBIF con una-tre settimane di ritardo, quindi gli ultimi giorni si completano dopo. Aggiornato il {{updated}}.",
         "season": "La stagione: le settimane in cui ogni fungo era in stagione o fuori nel 2026 vengono dai suoi ritrovamenti segnalati, contati rispetto a tutte le segnalazioni di funghi perché i weekend affollati non contino il doppio."

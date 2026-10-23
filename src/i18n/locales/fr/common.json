@@ -336,7 +336,7 @@
       "how": {
         "replay": "Nous appliquons la prévision actuelle à la météo de chaque jour et la comparons aux trouvailles de champignons signalées sur GBIF, la base de données mondiale de la biodiversité.",
         "unseen": "Seules comptent les trouvailles à partir du {{since}}, après les dernières sur lesquelles la prévision a été entraînée.",
-        "spots": "Chaque trouvaille est comparée à d'autres endroits où des gens ont trouvé des champignons : désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
+        "spots": "Chaque trouvaille est comparée à des endroits où des gens ont trouvé d'autres champignons, mais aucun de la même espèce à moins de 10 km : désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
         "everything": "Chaque champignon avec au moins 30 trouvailles figure ici, que le résultat soit bon ou non. Les plantes ne sont pas incluses.",
         "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}.",
         "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double."
