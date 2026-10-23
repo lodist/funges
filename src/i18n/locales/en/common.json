@@ -85,6 +85,10 @@
     },
     "data": {
       "link": "See the data"
+    },
+    "proof": {
+      "line": "Tested on the {{year}} season at {{spots}} spots where people found mushrooms: the forecast rated days in a mushroom's season above days out of season <strong>{{times}} times in 10</strong>.",
+      "link": "How we check"
     }
   },
   "worthForagingNow": {
@@ -324,6 +328,19 @@
       "whereW": "in the west",
       "whereNW": "in the northwest",
       "rainPatchyDry": "Rain was patchy over {{daysLabel}}: at least half of {{location}} stayed dry, but {{where}} about {{amount}} mm fell{{peakSuffix}}, peaking {{when}}."
+    },
+    "scorecard": {
+      "title": "How the forecast did",
+      "intro": "The current forecast from {{since}} to {{until}}, at {{spots}} spots where people found mushrooms. Each bar shows how often, at the same spot, it rated a day in the mushroom's season above a day out of season.",
+      "all": "All mushrooms",
+      "finds_one": "{{finds}} find",
+      "finds_other": "{{finds}} finds",
+      "howTitle": "How we check",
+      "how": {
+        "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
+        "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
+        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice."
+      }
     }
   },
   "theme": {

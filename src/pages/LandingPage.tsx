@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
@@ -9,6 +9,7 @@ import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { timesInTen, useScorecard } from '@/lib/scorecard';
 import {
   fetchStrongestSpeciesToday,
   type ScoreRegionId,
@@ -165,6 +166,7 @@ export default function LandingPage() {
           <div className={styles.forecastCopy}>
             <h2 id='forecast-title'>{t('home.forecast.heading')}</h2>
             <p>{t('home.forecast.body')}</p>
+            <ProofLine />
             <Button asChild size='lg'>
               <Link to='/worth-foraging-now'>
                 {t('home.forecast.link')}
@@ -311,5 +313,40 @@ function LiveLine() {
         })}
       </span>
     </p>
+  );
+}
+
+/** Why to believe the forecast: how today's model did on this year's season,
+ *  the Data page holding the rest. The test ran on European finds, so
+ *  visitors from the Americas do not get it yet. */
+function ProofLine() {
+  const { t, i18n } = useTranslation('common');
+  const card = useScorecard();
+  const season = card?.season;
+  if (AMERICAS || !season) return null;
+
+  return (
+    <div className={styles.proof}>
+      <p>
+        <Trans
+          t={t}
+          i18nKey='home.proof.line'
+          values={{
+            year: season.until.slice(0, 4),
+            spots: season.spots.toLocaleString(i18n.language),
+            times: timesInTen(season.all.auc),
+          }}
+          components={{ strong: <strong /> }}
+        />
+      </p>
+      <Link
+        to='/data'
+        hash='scorecard'
+        className={`${styles.textLink} focus-ring`}
+      >
+        {t('home.proof.link')}
+        <ArrowUpRight className='size-5' />
+      </Link>
+    </div>
   );
 }
