@@ -233,15 +233,15 @@ def test_the_scales_are_read_from_their_file(tmp_path, monkeypatch, capsys):
     path = tmp_path / "fruiting_scale.json"
     path.write_text(json.dumps({"built": "2026-10-24", "scales": {"porcini": [0.2, 0.5, 0.9]}}))
     monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", path)
-    fp.species_scales.cache_clear()
+    fp._scale_file.cache_clear()
     try:
         assert np.allclose(fp.species_scales()["porcini"], [0.2, 0.5, 0.9])
-        fp.species_scales.cache_clear()
+        fp._scale_file.cache_clear()
         monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", tmp_path / "missing.json")
         assert fp.species_scales() == {}                             # each region keeps its own best month
         assert "not loaded" in capsys.readouterr().out
     finally:
-        fp.species_scales.cache_clear()
+        fp._scale_file.cache_clear()
 
 
 def test_on_one_scale_the_same_weather_reads_the_same_all_year():
@@ -255,6 +255,28 @@ def test_on_one_scale_the_same_weather_reads_the_same_all_year():
     assert np.allclose(fp.fruiting_weather_part(frame, model), 0.5)   # the months' own levels are gone
     months[6] = {"eta": [-2.0, 0.0], "weather_part": [0.7, 0.7]}      # July: index 0 is its best
     assert abs(fp.fruiting_weather_part(frame, model)[1] - 0.7) < 0.02  # a month still ranks its own index
+
+
+def test_the_nightly_warns_when_an_input_of_the_scale_changed(tmp_path, monkeypatch, capsys):
+    for name in ("FRUITING_FIT_PATH", "FRUITING_GBM_PATH", "LOCAL_SEASON_PATH"):
+        path = tmp_path / f"{name}.json"
+        path.write_text("{}")
+        monkeypatch.setattr(fp, name, path)
+    scale = tmp_path / "fruiting_scale.json"
+    inputs = {**fp.scale_inputs(), "season_curves": {"NE": fp.season_curves_text_sha("curves")}}
+    scale.write_text(json.dumps({"inputs": inputs, "scales": {}}))
+    monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", scale)
+    fp._scale_file.cache_clear()
+    try:
+        fp.warn_if_scale_stale("NE", "curves")
+        assert capsys.readouterr().out == ""                         # built from what is there now
+        fp.warn_if_scale_stale("NE", "rebuilt curves")
+        assert "NE season curves" in capsys.readouterr().out
+        fp.FRUITING_FIT_PATH.write_text('{"refit": 1}')
+        fp.warn_if_scale_stale("NE", "curves")
+        assert "fruiting_fit.json" in capsys.readouterr().out
+    finally:
+        fp._scale_file.cache_clear()
 
 
 def test_a_species_with_a_local_season_gets_one_scale(tmp_path, monkeypatch):

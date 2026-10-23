@@ -1219,6 +1219,14 @@ FRUITING_SCALE_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_
 
 
 @functools.lru_cache(maxsize=None)
+def _scale_file():
+    try:
+        return json.loads(Path(r2.generated(FRUITING_SCALE_PATH)).read_text(encoding="utf-8"))
+    except Exception as error:
+        print(f"[warn] {FRUITING_SCALE_PATH.name} not loaded ({error}); each region keeps its own best month's scale")
+        return {}
+
+
 def species_scales():
     """Each species' one weather-part scale, the same in every region (tools/build_fruiting_scale.py,
     rebuilt when the fits or the season curves change): the hand-set part in its best month in every
@@ -1226,12 +1234,37 @@ def species_scales():
     best month 0.52, against 0.77 in North Europe), and on its own scale Washington's porcini scored
     about a fifth below a European place with the same weather. {} when the file cannot be read: each
     region then keeps its own best month's scale, and the nightly log names those species."""
-    try:
-        data = json.loads(Path(r2.generated(FRUITING_SCALE_PATH)).read_text(encoding="utf-8"))
-    except Exception as error:
-        print(f"[warn] {FRUITING_SCALE_PATH.name} not loaded ({error}); each region keeps its own best month's scale")
-        return {}
-    return {specie: np.asarray(quantiles, float) for specie, quantiles in data["scales"].items()}
+    return {specie: np.asarray(quantiles, float) for specie, quantiles in _scale_file().get("scales", {}).items()}
+
+
+def scale_inputs():
+    """The sha256 of each input fruiting_scale.json is built from, as they are now; the region's
+    season curves are hashed from the text the run read (season_curves_text)."""
+    return {name: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+            for name, path in (("fruiting_fit.json", FRUITING_FIT_PATH), ("fruiting_gbm.json", FRUITING_GBM_PATH),
+                               ("local_season.json", LOCAL_SEASON_PATH)) if Path(path).exists()}
+
+
+def season_curves_text_sha(text):
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def warn_if_scale_stale(region, curves_text):
+    """Nothing rebuilds fruiting_scale.json on its own, so a [warn] each night once an input it was built
+    from has changed: a fit file, local_season.json, or this region's season curves (each region checks
+    its own, which it reads anyway)."""
+    built = _scale_file().get("inputs")
+    if not built:
+        return
+    now = scale_inputs()
+    if curves_text is not None:
+        now[f"{region} season curves"] = season_curves_text_sha(curves_text)
+    recorded = {**{k: v for k, v in built.items() if k != "season_curves"},
+                **{f"{r} season curves": v for r, v in built.get("season_curves", {}).items()}}
+    changed = [name for name, sha in now.items() if name in recorded and recorded[name] != sha]
+    if changed:
+        print(f"[warn] {FRUITING_SCALE_PATH.name} predates {', '.join(changed)}: "
+              "rebuild it with python backend/tools/build_fruiting_scale.py and commit on_r2.json")
 
 
 def fruiting_gbm_features(df, model):
@@ -1637,6 +1670,7 @@ def _load_species_and_curves(config):
     species_params = get_species_params(config.region)
 
     _curves_path = get_required_env(config.season_curves_env)
+    _raw = None
     try:
         _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
         _curves = json.loads(_raw)
@@ -1703,6 +1737,7 @@ def _load_species_and_curves(config):
                   if (m := p.get("fruiting_gbm") or p.get("fruiting")) and m.get("scale") is not None
                   and s not in species_scales())
     print(f"Fitted weather part on its own region's scale (not in {FRUITING_SCALE_PATH.name}) for: {', '.join(_own) or 'none'}")
+    warn_if_scale_stale(config.region, _raw)
     _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
     print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)

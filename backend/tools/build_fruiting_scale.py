@@ -3,7 +3,7 @@
 the hand-set part in the species' best month, read from each region's own season curve, in every
 region where the species has a fitted part and a local season, pooled with equal weights. Built here
 rather than at scoring time, so a night never reads part of the regions' curves: rebuild it when the
-fits or the season curves change, and commit backend/generated/on_r2.json.
+fits or the season curves change (the nightly warns when one has), and commit backend/generated/on_r2.json.
 
     python backend/tools/build_fruiting_scale.py
 """
@@ -48,14 +48,15 @@ def main():
     gbm = json.loads(Path(r2.generated(fp.FRUITING_GBM_PATH)).read_text(encoding="utf-8"))["models"]
     seasons = json.loads(fp.LOCAL_SEASON_PATH.read_text(encoding="utf-8"))["continents"]
     local = {region: set(species) for entry in seasons.values() for region, species in entry.get("regions", {}).items()}
-    curves = {}
+    texts = {}
     for region in fp.FRUITING_GBM_REGIONS:
         path = fp.get_required_env(f"{region}_SEASON_CURVES")
-        raw = fp.r2_fetch(path).decode("utf-8") if fp.is_remote_path(path) else Path(path).read_text(encoding="utf-8")
-        curves[region] = json.loads(raw)
-    scales = build(fit, gbm, curves, local)
-    fp.FRUITING_SCALE_PATH.write_text(json.dumps({"built": date.today().isoformat(), "scales": scales}, indent=1),
-                                      encoding="utf-8")
+        texts[region] = fp.r2_fetch(path).decode("utf-8") if fp.is_remote_path(path) else Path(path).read_text(encoding="utf-8")
+    scales = build(fit, gbm, {region: json.loads(text) for region, text in texts.items()}, local)
+    # What it was built from, so that the nightly can say when it is out of date (fp.warn_if_scale_stale).
+    inputs = {**fp.scale_inputs(), "season_curves": {r: fp.season_curves_text_sha(t) for r, t in texts.items()}}
+    fp.FRUITING_SCALE_PATH.write_text(json.dumps({"built": date.today().isoformat(), "inputs": inputs,
+                                                  "scales": scales}, indent=1), encoding="utf-8")
     print(f"{len(scales)} species: {', '.join(scales)}")
     r2.ship(fp.FRUITING_SCALE_PATH)
 
