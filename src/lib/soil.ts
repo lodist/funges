@@ -23,16 +23,15 @@ export const textureOf = ({ clay, sand }: MapSoil): Texture =>
 export const acidityOf = ({ ph }: MapSoil): Acidity =>
   ph < 6 ? 'acid' : ph >= 7.5 ? 'alkaline' : 'neutral';
 
-/** The garden's soil: as the gardener set it; else, for beds in the ground,
- *  the map's; raised beds are filled with bought loam. */
+/** The garden's soil: as the gardener set it, else the map's at the place;
+ *  loam and neutral only where the map has none. */
 export function gardenSoil(
   garden: Garden | undefined,
   map?: MapSoil | null
 ): { texture: Texture; acidity: Acidity } {
-  const ground = map && (garden?.ground ?? 'raised') !== 'raised' ? map : null;
   return {
-    texture: garden?.soil ?? (ground ? textureOf(ground) : 'loam'),
-    acidity: garden?.acidity ?? (ground ? acidityOf(ground) : 'neutral'),
+    texture: garden?.soil ?? (map ? textureOf(map) : 'loam'),
+    acidity: garden?.acidity ?? (map ? acidityOf(map) : 'neutral'),
   };
 }
 

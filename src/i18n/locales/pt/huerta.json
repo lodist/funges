@@ -533,8 +533,7 @@
       "loam": "franco",
       "clay": "argiloso"
     },
-    "soilHint": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}.",
-    "soilHintRaised": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}. Os canteiros elevados têm a sua própria terra."
+    "soilHint": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}."
   },
   "year": {
     "title": "Calendário",

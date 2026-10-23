@@ -533,8 +533,7 @@
       "loam": "loam",
       "clay": "clay"
     },
-    "soilHint": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}.",
-    "soilHintRaised": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}. Raised beds hold their own soil."
+    "soilHint": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}."
   },
   "year": {
     "title": "Calendar",

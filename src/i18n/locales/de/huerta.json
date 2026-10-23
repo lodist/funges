@@ -533,8 +533,7 @@
       "loam": "lehmig",
       "clay": "tonig"
     },
-    "soilHint": "Um {{place}} ist der Boden meist {{texture}}, pH {{ph}}.",
-    "soilHintRaised": "Um {{place}} ist der Boden meist {{texture}}, pH {{ph}}. Hochbeete haben ihre eigene Erde."
+    "soilHint": "Um {{place}} ist der Boden meist {{texture}}, pH {{ph}}."
   },
   "year": {
     "title": "Kalender",

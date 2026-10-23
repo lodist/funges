@@ -14,11 +14,10 @@ const need = (min: number): CropNeeds => ({
 });
 
 describe("the garden's soil", () => {
-  it("takes the gardener's word, else the map's for beds in the ground", () => {
-    // Raised beds are filled with bought loam, whatever the ground beneath.
+  it("takes the gardener's word, else the map's at the place", () => {
     expect(gardenSoil(garden, valencia)).toEqual({
-      texture: 'loam',
-      acidity: 'neutral',
+      texture: 'clay',
+      acidity: 'alkaline',
     });
     expect(gardenSoil({ ...garden, ground: 'ground' }, valencia)).toEqual({
       texture: 'clay',

@@ -533,8 +533,7 @@
       "loam": "di medio impasto",
       "clay": "argilloso"
     },
-    "soilHint": "Intorno a {{place}} il terreno è per lo più {{texture}}, pH {{ph}}.",
-    "soilHintRaised": "Intorno a {{place}} il terreno è per lo più {{texture}}, pH {{ph}}. Le aiuole rialzate hanno la loro terra."
+    "soilHint": "Intorno a {{place}} il terreno è per lo più {{texture}}, pH {{ph}}."
   },
   "year": {
     "title": "Calendario",

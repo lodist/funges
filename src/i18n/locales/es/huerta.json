@@ -533,8 +533,7 @@
       "loam": "franco",
       "clay": "arcilloso"
     },
-    "soilHint": "Alrededor de {{place}} el suelo es sobre todo {{texture}}, pH {{ph}}.",
-    "soilHintRaised": "Alrededor de {{place}} el suelo es sobre todo {{texture}}, pH {{ph}}. Los bancales elevados tienen su propia tierra."
+    "soilHint": "Alrededor de {{place}} el suelo es sobre todo {{texture}}, pH {{ph}}."
   },
   "year": {
     "title": "Calendario",

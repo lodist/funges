@@ -533,8 +533,7 @@
       "loam": "franc",
       "clay": "argileux"
     },
-    "soilHint": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}.",
-    "soilHintRaised": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}. Les carrés surélevés ont leur propre terre."
+    "soilHint": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}."
   },
   "year": {
     "title": "Calendrier",
