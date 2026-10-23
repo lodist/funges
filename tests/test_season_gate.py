@@ -43,6 +43,18 @@ def test_gate_ramps_rather_than_switching():
     assert 0.2 < gate[0] < 0.8
 
 
+def test_a_fitted_part_on_one_scale_leaves_the_local_season_to_end_the_season():
+    ratio = dict.fromkeys(range(1, 13), 0.2)
+    curve = {"season_curve": {"multiplier": ratio, "ratio": ratio}}
+    frame = _frame(["2026-10-15"])
+    assert sn.season_gate_for_species(frame, "x", curve, {})[0] == pytest.approx(1.0)
+    one_scale = {**curve, "fruiting_gbm": {"scale": np.array([0.2, 0.8])}}
+    gate = sn.season_gate_for_species(frame, "x", one_scale, {})[0]
+    assert gate == pytest.approx((0.2 - sn.GATE_OFF) / (sn.ONE_SCALE_GATE_FULL - sn.GATE_OFF))
+    months = {**curve, "fruiting": {"scale": None}}           # monthly maps: the usual gate
+    assert sn.season_gate_for_species(frame, "x", months, {})[0] == pytest.approx(1.0)
+
+
 def test_zone_curve_overrides_region_curve_for_the_gate():
     dead_in_july = {m: (1.0 if m == 1 else 0.0) for m in range(1, 13)}
     zone_curves = {"alpine": {"chant": {"multiplier": dead_in_july, "ratio": dead_in_july}}}
