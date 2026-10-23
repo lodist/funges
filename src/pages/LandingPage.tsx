@@ -9,13 +9,7 @@ import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
-import {
-  CHANCE,
-  formatDay,
-  formatShare,
-  pooledTally,
-  useScorecard,
-} from '@/lib/scorecard';
+import { formatDay, timesInTen, useScorecard } from '@/lib/scorecard';
 import {
   fetchStrongestSpeciesToday,
   type ScoreRegionId,
@@ -323,12 +317,12 @@ function LiveLine() {
 }
 
 /** Why to believe the forecast: how today's model did on the continent's
- *  recent mushroom finds, the Data page holding the rest. Nothing until a
- *  region there has enough finds (the US, for now). */
+ *  recent mushroom finds, the Data page holding the rest. Nothing until the
+ *  continent has enough finds (the US, for now). */
 function ProofLine() {
   const { t, i18n } = useTranslation('common');
   const card = useScorecard();
-  const tally = card ? pooledTally(card, REGIONS) : null;
+  const tally = card?.continents[AMERICAS ? 'US' : 'EU'];
   if (!card || !tally) return null;
 
   return (
@@ -338,10 +332,9 @@ function ProofLine() {
           t={t}
           i18nKey='home.proof.line'
           values={{
-            area: t(AMERICAS ? 'home.live.northAmerica' : 'home.live.europe'),
+            finds: tally.finds.toLocaleString(i18n.language),
             since: formatDay(card.since, i18n.language),
-            share: formatShare(tally.top_quarter, i18n.language),
-            chance: formatShare(CHANCE, i18n.language),
+            times: timesInTen(tally.place),
           }}
           components={{ strong: <strong /> }}
         />

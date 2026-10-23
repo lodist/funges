@@ -3,27 +3,34 @@ import type { ScoreRegionId } from '@/lib/worth-foraging-now';
 
 /**
  * How today's forecast did on mushroom finds it never learned from, built by
- * scripts/build_scorecard.py from a replay: per region, the finds and the
- * share of them at spots the forecast ranked in its top quarter that day.
+ * scripts/build_scorecard.py from a replay: per region and continent, the
+ * finds and `place`, how often the forecast rated the find's spot higher that
+ * day than another spot where people found mushrooms.
  */
 export interface Tally {
   finds: number;
-  top_quarter: number;
+  place: number;
 }
 
-export interface RegionScorecard extends Tally {
+export interface AreaScorecard extends Tally {
   species: Record<string, Tally>;
 }
+
+export type Continent = 'EU' | 'US';
 
 export interface Scorecard {
   updated_at: string;
   since: string;
   until: string;
-  regions: Partial<Record<ScoreRegionId, RegionScorecard>>;
+  regions: Partial<Record<ScoreRegionId, AreaScorecard>>;
+  continents: Partial<Record<Continent, AreaScorecard>>;
 }
 
-/** A quarter of the spots are in the top quarter, so a blind guess hits 25%. */
-export const CHANCE = 0.25;
+/** Picking one of two spots blindly is right half the time. */
+export const CHANCE = 0.5;
+
+export const continentOf = (region: ScoreRegionId): Continent =>
+  region === 'NE' || region === 'SE' ? 'EU' : 'US';
 
 const SCORECARD_URL = `${import.meta.env.BASE_URL}data/scorecard.json`;
 
@@ -33,7 +40,9 @@ let request: Promise<Scorecard | null> | null = null;
 export function loadScorecard(): Promise<Scorecard | null> {
   request ??= fetch(SCORECARD_URL)
     .then(response => (response.ok ? response.json() : null))
-    .then((card: Scorecard | null) => (card?.regions ? card : null))
+    .then((card: Scorecard | null) =>
+      card?.regions && card.continents ? card : null
+    )
     .catch(() => null);
   return request;
 }
@@ -52,20 +61,8 @@ export function useScorecard(): Scorecard | null {
   return card;
 }
 
-/** Several regions' mushrooms as one, each weighed by its finds. */
-export function pooledTally(
-  card: Scorecard,
-  regionIds: ScoreRegionId[]
-): Tally | null {
-  const tallies = regionIds.flatMap(id => card.regions[id] ?? []);
-  const finds = tallies.reduce((sum, tally) => sum + tally.finds, 0);
-  if (finds === 0) return null;
-  const hits = tallies.reduce(
-    (sum, tally) => sum + tally.top_quarter * tally.finds,
-    0
-  );
-  return { finds, top_quarter: hits / finds };
-}
+/** A share as "times in 10", the way the landing and the sheet say it. */
+export const timesInTen = (share: number): number => Math.round(share * 10);
 
 export function formatShare(share: number, language: string): string {
   return new Intl.NumberFormat(language, {

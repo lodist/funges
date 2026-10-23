@@ -378,8 +378,8 @@
     "whereItGrows": "Où elle pousse",
     "lookalikes": "Sosies toxiques",
     "tellApart": "Comment les distinguer",
-    "testedLabel": "Vérifié · {{region}} · depuis le {{since}}",
-    "tested": "<strong>{{share}}</strong> des {{finds}} trouvailles signalées étaient à des endroits que la prévision actuelle classait dans son meilleur quart ce jour-là. Hasard : {{chance}}.",
+    "testedLabel": "Vérifié · {{area}} · depuis le {{since}}",
+    "tested": "Sur {{finds}} trouvailles signalées, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons <strong>{{times}} fois sur 10</strong>. Au hasard : 5.",
     "howWeCheck": "Comment nous vérifions"
   }
 }

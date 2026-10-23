@@ -378,8 +378,8 @@
     "whereItGrows": "Wo sie wächst",
     "lookalikes": "Giftige Doppelgänger",
     "tellApart": "So unterscheidest du sie",
-    "testedLabel": "Geprüft · {{region}} · seit dem {{since}}",
-    "tested": "<strong>{{share}}</strong> von {{finds}} gemeldeten Funden lagen an Stellen, die die aktuelle Vorhersage an diesem Tag im besten Viertel sah. Zufall: {{chance}}.",
+    "testedLabel": "Geprüft · {{area}} · seit dem {{since}}",
+    "tested": "Bei {{finds}} gemeldeten Funden bewertete die Vorhersage die Fundstelle <strong>{{times}} von 10 Mal</strong> besser als andere Pilzstellen. Raten trifft 5.",
     "howWeCheck": "So prüfen wir"
   }
 }

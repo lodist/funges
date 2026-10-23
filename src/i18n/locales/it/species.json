@@ -378,8 +378,8 @@
     "whereItGrows": "Dove cresce",
     "lookalikes": "Sosia tossici",
     "tellApart": "Come distinguerli",
-    "testedLabel": "Verificato · {{region}} · dal {{since}}",
-    "tested": "Il <strong>{{share}}</strong> di {{finds}} ritrovamenti segnalati era in punti che la previsione attuale metteva nel suo quarto migliore quel giorno. Per caso: {{chance}}.",
+    "testedLabel": "Verificato · {{area}} · dal {{since}}",
+    "tested": "Su {{finds}} ritrovamenti segnalati, la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi <strong>{{times}} volte su 10</strong>. Tirando a indovinare: 5.",
     "howWeCheck": "Come verifichiamo"
   }
 }

@@ -5,15 +5,17 @@ import { useSpeciesData } from '@/data/species';
 import { cn } from '@/lib/utils';
 import {
   CHANCE,
+  continentOf,
   formatDay,
   formatShare,
+  timesInTen,
   useScorecard,
   type Tally,
 } from '@/lib/scorecard';
 import type { ScoreRegionId } from '@/lib/worth-foraging-now';
 
-/** The share of finds in the top quarter on a track, with a tick at chance:
- *  the species sheet's season strip, read as a meter. */
+/** How often the forecast picked the find's spot, on a track with a tick at
+ *  guessing: the species sheet's season strip, read as a meter. */
 function HitBar({ share, className }: { share: number; className?: string }) {
   return (
     <span
@@ -42,8 +44,18 @@ export function ScorecardLine({
 }) {
   const { t, i18n } = useTranslation(['species', 'common']);
   const card = useScorecard();
-  const tally = card?.regions[regionId]?.species[speciesId];
+  // The region's own figure once it has enough finds, the continent's before.
+  const continent = continentOf(regionId);
+  const own = card?.regions[regionId]?.species[speciesId];
+  const tally = own ?? card?.continents[continent]?.species[speciesId];
   if (!card || !tally) return null;
+  const area = own
+    ? t(`common:worthForagingNow.regions.${regionId}`)
+    : t(
+        continent === 'EU'
+          ? 'common:home.live.europe'
+          : 'common:home.live.northAmerica'
+      );
 
   // The sheet's own pattern: a micro label over a strip, like "Today" over
   // the meter and "Season" over the months.
@@ -51,19 +63,18 @@ export function ScorecardLine({
     <div className='flex flex-col gap-2'>
       <p className='type-micro text-muted-foreground'>
         {t('sheet.testedLabel', {
-          region: t(`common:worthForagingNow.regions.${regionId}`),
+          area,
           since: formatDay(card.since, i18n.language, 'short'),
         })}
       </p>
-      <HitBar share={tally.top_quarter} />
+      <HitBar share={tally.place} />
       <p className='text-sm text-muted-foreground'>
         <Trans
           t={t}
           i18nKey='sheet.tested'
           values={{
-            share: formatShare(tally.top_quarter, i18n.language),
+            times: timesInTen(tally.place),
             finds: tally.finds.toLocaleString(i18n.language),
-            chance: formatShare(CHANCE, i18n.language),
           }}
           components={{ strong: <strong className='text-foreground' /> }}
         />{' '}
@@ -108,10 +119,10 @@ function Row({
         </span>
       </span>
       <span className='text-right text-sm font-semibold tabular-nums text-foreground sm:order-last sm:self-center'>
-        {formatShare(tally.top_quarter, i18n.language)}
+        {formatShare(tally.place, i18n.language)}
       </span>
       <HitBar
-        share={tally.top_quarter}
+        share={tally.place}
         className='col-span-2 self-center sm:col-span-1'
       />
     </li>
@@ -151,8 +162,7 @@ export function ForecastScorecard({ region }: { region: ScoreRegionId }) {
         }))
         .sort(
           (a, b) =>
-            b.tally.top_quarter - a.tally.top_quarter ||
-            a.name.localeCompare(b.name)
+            b.tally.place - a.tally.place || a.name.localeCompare(b.name)
         )
     : [];
 

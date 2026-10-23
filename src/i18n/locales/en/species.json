@@ -378,8 +378,8 @@
     "whereItGrows": "Where it grows",
     "lookalikes": "Toxic look-alikes",
     "tellApart": "How to tell them apart",
-    "testedLabel": "Tested · {{region}} · since {{since}}",
-    "tested": "<strong>{{share}}</strong> of {{finds}} reported finds were at spots the current forecast ranked in its top quarter that day. By chance: {{chance}}.",
+    "testedLabel": "Tested · {{area}} · since {{since}}",
+    "tested": "On {{finds}} reported finds, the forecast rated the find's spot higher than other mushroom spots <strong>{{times}} times in 10</strong>. Guessing gets 5.",
     "howWeCheck": "How we check"
   }
 }

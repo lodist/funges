@@ -47,7 +47,7 @@
       "link": "Vedi i dati"
     },
     "proof": {
-      "line": "Verificata sui ritrovamenti di funghi segnalati in {{area}} dal {{since}}: il <strong>{{share}}</strong> era in punti che la previsione attuale metteva nel suo quarto migliore quel giorno. Per caso sarebbe il {{chance}}.",
+      "line": "Verificata su {{finds}} ritrovamenti di funghi dal {{since}}: <strong>{{times}} volte su 10</strong> la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi quel giorno. Tirando a indovinare: 5.",
       "link": "Come verifichiamo"
     }
   },
@@ -331,7 +331,7 @@
     },
     "scorecard": {
       "title": "Come è andata la previsione",
-      "intro": "La previsione attuale, verificata sui ritrovamenti di funghi segnalati dal {{since}} al {{until}} ({{region}}). Ogni barra è la quota di ritrovamenti in punti che metteva nel suo quarto migliore il giorno del ritrovamento. La linea indica cosa darebbe il caso: {{chance}}.",
+      "intro": "La previsione attuale, verificata sui ritrovamenti di funghi segnalati dal {{since}} al {{until}} ({{region}}). Ogni barra mostra quante volte ha valutato il punto del ritrovamento meglio di un altro punto dove quel giorno sono stati trovati funghi. Tirando a indovinare si ottiene il {{chance}}, la linea al centro.",
       "all": "Tutti i funghi",
       "finds_one": "{{finds}} ritrovamento",
       "finds_other": "{{finds}} ritrovamenti",
@@ -340,7 +340,7 @@
       "how": {
         "replay": "Applichiamo la previsione attuale al meteo di ogni giorno e la confrontiamo con i ritrovamenti di funghi che le persone segnalano su GBIF, la banca dati mondiale della biodiversità.",
         "unseen": "Contano solo i ritrovamenti dal {{since}} in poi, successivi agli ultimi su cui la previsione è stata addestrata.",
-        "spots": "Nel quarto migliore significa che, quel giorno, il punto del ritrovamento aveva un punteggio più alto di tre su quattro degli altri punti in cui le persone hanno segnalato funghi. Indicare i boschi che la gente frequenta già non porta nulla.",
+        "spots": "Ogni ritrovamento è confrontato con altri punti dove le persone hanno trovato funghi: indicare i boschi che la gente frequenta già non porta nulla.",
         "everything": "Compare ogni fungo con almeno 30 ritrovamenti, che sia andato bene o no. Le piante non sono incluse.",
         "late": "I ritrovamenti arrivano su GBIF con una-tre settimane di ritardo, quindi gli ultimi giorni si completano dopo. Aggiornato il {{updated}}."
       }

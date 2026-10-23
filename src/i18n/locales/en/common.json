@@ -87,7 +87,7 @@
       "link": "See the data"
     },
     "proof": {
-      "line": "Tested on mushroom finds reported in {{area}} since {{since}}: <strong>{{share}}</strong> were at spots the current forecast ranked in its top quarter that day. By chance it would be {{chance}}.",
+      "line": "Tested on {{finds}} mushroom finds since {{since}}: <strong>{{times}} times in 10</strong>, the forecast rated the find's spot higher than other mushroom spots that day. Guessing gets 5.",
       "link": "How we check"
     }
   },
@@ -331,7 +331,7 @@
     },
     "scorecard": {
       "title": "How the forecast did",
-      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}} ({{region}}). Each bar is the share of finds at spots it ranked in its top quarter on the day of the find. The line marks what chance would give: {{chance}}.",
+      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}} ({{region}}). Each bar shows how often it rated the find's spot higher than another spot where people found mushrooms that day. Guessing gets {{chance}}, the line in the middle.",
       "all": "All mushrooms",
       "finds_one": "{{finds}} find",
       "finds_other": "{{finds}} finds",
@@ -340,7 +340,7 @@
       "how": {
         "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
         "unseen": "Only finds from {{since}} on, after the last finds the forecast was trained on.",
-        "spots": "Top quarter means the find's spot scored higher that day than three in four of the other spots where people reported mushrooms. Pointing at woods people already visit earns nothing.",
+        "spots": "Each find is compared with other spots where people found mushrooms, so pointing at woods people already visit earns nothing.",
         "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. Plants are not included.",
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}."
       }

@@ -87,7 +87,7 @@
       "link": "Daten ansehen"
     },
     "proof": {
-      "line": "Geprüft an Pilzfunden, die seit dem {{since}} in {{area}} gemeldet wurden: <strong>{{share}}</strong> lagen an Stellen, die die aktuelle Vorhersage an diesem Tag im besten Viertel sah. Zufällig wären es {{chance}}.",
+      "line": "Geprüft an {{finds}} Pilzfunden seit dem {{since}}: <strong>{{times}} von 10 Mal</strong> bewertete die Vorhersage die Fundstelle besser als andere Pilzstellen an diesem Tag. Raten trifft 5.",
       "link": "So prüfen wir"
     }
   },
@@ -326,7 +326,7 @@
     },
     "scorecard": {
       "title": "Wie gut die Vorhersage war",
-      "intro": "Die aktuelle Vorhersage, geprüft an Pilzfunden, die vom {{since}} bis zum {{until}} gemeldet wurden ({{region}}). Jeder Balken zeigt den Anteil der Funde an Stellen, die sie am Fundtag im besten Viertel sah. Die Linie markiert, was der Zufall ergäbe: {{chance}}.",
+      "intro": "Die aktuelle Vorhersage, geprüft an Pilzfunden, die vom {{since}} bis zum {{until}} gemeldet wurden ({{region}}). Jeder Balken zeigt, wie oft sie die Fundstelle besser bewertete als eine andere Stelle, an der an diesem Tag Pilze gefunden wurden. Raten ergibt {{chance}}, die Linie in der Mitte.",
       "all": "Alle Pilze",
       "finds_one": "{{finds}} Fund",
       "finds_other": "{{finds}} Funde",
@@ -335,7 +335,7 @@
       "how": {
         "replay": "Wir rechnen die aktuelle Vorhersage mit dem Wetter jedes Tages und vergleichen sie mit Pilzfunden, die Menschen bei GBIF melden, der weltweiten Biodiversitätsdatenbank.",
         "unseen": "Es zählen nur Funde ab dem {{since}}, nach den letzten Funden, mit denen die Vorhersage trainiert wurde.",
-        "spots": "Im besten Viertel heißt: Die Fundstelle lag an diesem Tag höher als drei von vier anderen Stellen, an denen Menschen Pilze gemeldet haben. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt dabei nichts.",
+        "spots": "Jeder Fund wird mit anderen Stellen verglichen, an denen Menschen Pilze gefunden haben. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt also nichts.",
         "everything": "Jeder Pilz mit mindestens 30 Funden steht hier, ob gut oder schlecht. Pflanzen sind nicht dabei.",
         "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}."
       }
