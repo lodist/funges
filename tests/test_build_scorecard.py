@@ -48,3 +48,16 @@ def test_build_adds_the_season_pooled_over_regions(tmp_path):
     assert card["season"] == {"since": "2026-05-24", "until": "2026-10-15", "all": {"finds": 120, "auc": 0.9},
                               "species": {"mushroom": {"finds": 120, "auc": 0.92}}}
     assert build(tmp_path)["season"] is None
+
+
+def test_a_composite_stays_off_the_page(tmp_path):
+    (tmp_path / "metadata.json").write_text(json.dumps({"start": "2026-10-05", "regions": ["NE"]}))
+    rows = [{"region": "NE", "species": "mushroom", "kingdom": "Fungi", "composite": False, "source": "today",
+             "date": "2026-10-12", "where_absent": 0.6}] * 30
+    rows += [{**rows[0], "species": "boletus", "composite": True, "where_absent": 0.8}] * 30
+    pd.DataFrame(rows).to_csv(tmp_path / "finds_NE.csv", index=False)
+
+    card = build(tmp_path)
+
+    assert card["all"]["finds"] == 30 and card["all"]["place"] == 0.6
+    assert list(card["all"]["species"]) == ["mushroom"]

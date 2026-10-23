@@ -37,10 +37,13 @@ def tally(rows: pd.DataFrame) -> dict:
 
 
 def card(rows: pd.DataFrame) -> dict | None:
-    if len(rows) < MIN_FINDS:
+    # Composites (Boletus, Chanterelles) stay off the page: their finds are their members' again,
+    # and as the best of several species they point less sharply than any of them (23 Oct replay).
+    single = rows[~rows["composite"].astype(bool)] if "composite" in rows else rows
+    if len(single) < MIN_FINDS:
         return None
-    species = {s: tally(g) for s, g in rows.groupby("species") if len(g) >= MIN_FINDS}
-    return {**tally(rows), "species": species}
+    species = {s: tally(g) for s, g in single.groupby("species") if len(g) >= MIN_FINDS}
+    return {**tally(single), "species": species}
 
 
 def season_card(path: Path) -> dict:
@@ -49,8 +52,9 @@ def season_card(path: Path) -> dict:
     for row in report["rows"]:
         records[row["species"]] = records.get(row["species"], 0) + row["records"]
     return {"since": report["start"], "until": report["end"],
-            "all": {"finds": sum(records.values()), "auc": report["all"]},
-            "species": {s: {"finds": records[s], "auc": auc} for s, auc in report["species"].items()}}
+            "all": {"finds": sum(r["records"] for r in report["rows"] if not r.get("composite")), "auc": report["all"]},
+            "species": {s: {"finds": records[s], "auc": auc} for s, auc in report["species"].items()
+                        if s not in {r["species"] for r in report["rows"] if r.get("composite")}}}
 
 
 def build(replay: Path, season: Path | None = None) -> dict:

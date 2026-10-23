@@ -52,7 +52,7 @@ import requests  # noqa: E402
 from scipy.spatial import cKDTree  # noqa: E402
 
 import qa_gbif_scores as gbif  # noqa: E402
-from species_registry import get_species_metadata  # noqa: E402
+from species_registry import get_composites, get_species_metadata  # noqa: E402
 
 CONFIGS = {
     "NE": "backend/EU/North_Europe/NE_Scoring.py",
@@ -199,6 +199,15 @@ def assign(finds, grid, taxa):
     return finds.assign(kingdom=finds.species_id.map(lambda s: taxa[s].get("kingdom"))).reset_index(drop=True)
 
 
+def with_composites(finds):
+    """Each composite's finds are its members' finds (one per place and day), marked so that they
+    are never anyone's background and never counted twice in a pooled figure."""
+    extra = [finds[(finds.region == region) & finds.species_id.isin(members)].assign(species_id=composite)
+             for region in finds.region.unique() for composite, members in get_composites(region).items()]
+    extra = pd.concat(extra, ignore_index=True).drop_duplicates(["species_id", "date", "loc"]) if extra else finds.iloc[:0]
+    return pd.concat([finds.assign(composite=False), extra.assign(composite=True)], ignore_index=True)
+
+
 def score_region(region, finds, grid, masters, species, without, days):
     """Today's scores and the stored ones at the finds' places, every day of the window."""
     config = load_config(region)
@@ -207,6 +216,10 @@ def score_region(region, finds, grid, masters, species, without, days):
     neighbour = settings(replace(config, region=other, season_curves_env=f"{other}_SEASON_CURVES"),
                          species, without)
     columns = [f"{s}_score" for s in params]
+    # A composite is the best of its members at each place and day, as the nightly run makes it;
+    # only when every member is scored, or it would be a different layer.
+    composites = {c: [f"{m}_score" for m in members] for c, members in get_composites(region).items()
+                  if all(m in params for m in members)}
 
     own = grid[grid.region == region].reset_index(drop=True)
     xyz = gbif.unit_xyz(own.Latitude.to_numpy(), own.Longitude.to_numpy())
@@ -217,13 +230,14 @@ def score_region(region, finds, grid, masters, species, without, days):
 
     master = masters / f"{region}_weather_data.parquet"
     names = set(pq.ParquetFile(master).schema_arrow.names)
-    history = pq.read_table(master, columns=[c for c in INPUTS + columns if c in names], filters=[
+    stored_columns = columns + [f"{c}_score" for c in composites]
+    history = pq.read_table(master, columns=[c for c in INPUTS + stored_columns if c in names], filters=[
         ("Location_Id", "in", list(wanted)),
         ("Date", ">=", days[0] - pd.Timedelta(days=config.lag_days)), ("Date", "<=", days[-1])]).to_pandas()
     history["Date"] = pd.to_datetime(history["Date"]).dt.normalize()
     history = history.drop_duplicates(["Location_Id", "Date"], keep="last").sort_values(["Location_Id", "Date"])
     stored = history.loc[history.Location_Id.isin(targets) & history.Date.isin(days),
-                         ["Location_Id", "Date", *(c for c in columns if c in history)]]
+                         ["Location_Id", "Date", *(c for c in stored_columns if c in history)]]
     inputs = fill_gaps(history[[c for c in INPUTS if c in history]])
     del history
 
@@ -239,7 +253,9 @@ def score_region(region, finds, grid, masters, species, without, days):
                                                       neighbour=(on_day(neighbour[0], day), neighbour[1])))
         frame = fp.spatial_smooth_scores(pd.concat(scored), columns)
         frame[columns] = frame[columns].round(2)
-        parts.append(frame.loc[frame.Location_Id.isin(targets), ["Location_Id", "Date", *columns]])
+        for composite, members in composites.items():
+            frame[f"{composite}_score"] = frame[members].max(axis=1)
+        parts.append(frame.loc[frame.Location_Id.isin(targets), ["Location_Id", "Date", *stored_columns]])
         print(f"  {region}: {chunk[0].date()}..{chunk[-1].date()} ({time.time() - started:.0f}s)", flush=True)
     return {"today": pd.concat(parts, ignore_index=True), "stored": stored}
 
@@ -272,6 +288,8 @@ def evaluate(region, finds, tables, days):
             values[pi[keep], dj[keep]] = tables[source][column].to_numpy(float)[keep]
         return values
 
+    composite = finds["composite"].to_numpy(bool) if "composite" in finds else np.zeros(len(finds), bool)
+    members = get_composites(region) if composite.any() else {}
     out = []
     for species, mine in finds.groupby("species_id").groups.items():
         column = f"{species}_score"
@@ -279,7 +297,8 @@ def evaluate(region, finds, tables, days):
             continue
         today, stored = matrix("today", column), matrix("stored", column)
         kingdom = finds.kingdom[mine[0]]
-        others = finds.loc[(finds.kingdom == kingdom) & (finds.species_id != species), "loc"].value_counts()
+        own = {species, *members.get(species, ())}
+        others = finds.loc[(finds.kingdom == kingdom) & ~composite & ~finds.species_id.isin(own), "loc"].value_counts()
         index = finds.index.get_indexer(mine)
         r, c = rows[index], cols[index]
         # In a broad flush the species also stands at many of the other species' spots, and those
@@ -299,7 +318,8 @@ def evaluate(region, finds, tables, days):
             where, timing, season = percentiles(values, r, c, place.get_indexer(others.index), others.to_numpy())
             where_absent = percentiles(values, r, c, place.get_indexer(absent.index), absent.to_numpy())[0]
             out.append(pd.DataFrame({
-                "region": region, "species": species, "kingdom": kingdom, "source": source,
+                "region": region, "species": species, "kingdom": kingdom, "composite": bool(composite[index[0]]),
+                "source": source,
                 "date": finds.date.to_numpy()[index], "loc": finds["loc"].to_numpy()[index],
                 "score": values[r, c], "where": where, "where_absent": where_absent,
                 "timing": timing, "season": season}))
@@ -311,6 +331,7 @@ def summarise(results, reference):
     where/timing/season of today's code; and today minus `reference` ('stored' or 'against') on
     the finds both scored, today's read on the stored scores' place-days against 'stored'."""
     key = ["region", "species", "date", "loc"]
+    results = results.assign(composite=results.get("composite", False)).fillna({"composite": False})
     today = results[(results.source == "today") & np.isfinite(results.score)]
     mine = results[results.source == ("today@stored" if reference == "stored" else "today")]
     paired = mine.merge(results[results.source == reference], on=key, suffixes=("", "_ref"))
@@ -318,8 +339,11 @@ def summarise(results, reference):
     paired = paired.assign(d_where=paired["where"] - paired.where_ref, d_timing=paired.timing - paired.timing_ref)
     out = []
     for group in (["region", "kingdom"], ["region", "species"]):
-        means = today.groupby(group)[["where", "timing", "season"]].mean().join(today.groupby(group).size().rename("n"))
-        deltas = paired.groupby(group)[["d_where", "d_timing"]].mean().join(paired.groupby(group).size().rename("paired"))
+        # A composite's finds are its members' again: they stay out of the kingdom's pooled figure.
+        mine = today[~today.composite.astype(bool)] if "kingdom" in group else today
+        pairs = paired[~paired.composite.astype(bool)] if "kingdom" in group else paired
+        means = mine.groupby(group)[["where", "timing", "season"]].mean().join(mine.groupby(group).size().rename("n"))
+        deltas = pairs.groupby(group)[["d_where", "d_timing"]].mean().join(pairs.groupby(group).size().rename("paired"))
         out.append(means.join(deltas).reset_index())
     summary = pd.concat(out, ignore_index=True)
     pooled = summary.species.isna()
@@ -408,7 +432,7 @@ def main():
     finds, taxa = gbif_finds(args.cache, start, end)
     finds = finds[finds.date.between(start, end)]
     grid = pd.concat([places(args.masters, r, days[-1]) for r in CONFIGS], ignore_index=True)
-    finds = assign(finds, grid, taxa)
+    finds = with_composites(assign(finds, grid, taxa))
     results, seconds = [], {}
     for region in regions:
         started = time.time()
