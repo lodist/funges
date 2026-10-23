@@ -451,16 +451,11 @@ export default function HuertaPlannerPage() {
                 ))}
                 {year?.soil ? (
                   <p className='basis-full text-xs text-muted-foreground'>
-                    {t(
-                      (plan.garden.ground ?? 'raised') === 'raised'
-                        ? 'planner.soilHintRaised'
-                        : 'planner.soilHint',
-                      {
-                        place: year.place,
-                        texture: t(`planner.soilWord.${textureOf(year.soil)}`),
-                        ph: year.soil.ph.toLocaleString(i18n.language),
-                      }
-                    )}
+                    {t('planner.soilHint', {
+                      place: year.place,
+                      texture: t(`planner.soilWord.${textureOf(year.soil)}`),
+                      ph: year.soil.ph.toLocaleString(i18n.language),
+                    })}
                   </p>
                 ) : null}
               </>
