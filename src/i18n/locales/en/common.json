@@ -88,7 +88,8 @@
     },
     "proof": {
       "line": "Tested on {{finds}} mushroom finds since {{since}}: <strong>{{times}} times in 10</strong>, the forecast rated the find's spot higher than other mushroom spots that day.",
-      "link": "How we check"
+      "link": "How we check",
+      "season": "And at the same spot, it rated days in a mushroom's season above days out of season <strong>{{times}} times in 10</strong>."
     }
   },
   "worthForagingNow": {
@@ -331,7 +332,7 @@
     },
     "scorecard": {
       "title": "How the forecast did",
-      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}} ({{area}}). Each bar shows how often it rated the find's spot higher than another spot where people found mushrooms that day. Guessing gets {{chance}}, the line in the middle.",
+      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}}. Each bar shows how often it rated the find's spot higher than another spot where people found mushrooms that day.",
       "all": "All mushrooms",
       "finds_one": "{{finds}} find",
       "finds_other": "{{finds}} finds",
@@ -342,9 +343,11 @@
         "unseen": "Only finds from {{since}} on, after the last finds the forecast was trained on.",
         "spots": "Each find is compared with other spots where people found mushrooms, so pointing at woods people already visit earns nothing.",
         "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. Plants are not included.",
-        "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}."
+        "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
+        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice. Every mushroom whose season fell within these months is listed."
       },
-      "everywhere": "Europe and North America"
+      "seasonTitle": "The season",
+      "seasonIntro": "The current forecast from {{since}} to {{until}}, at the spots where people found mushrooms. Each bar shows how often, at the same spot, it rated a day in the mushroom's season above a day out of season."
     }
   },
   "theme": {

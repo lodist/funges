@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import type { ScoreRegionId } from '@/lib/worth-foraging-now';
 
 /**
  * How today's forecast did on mushroom finds it never learned from, built by
@@ -18,13 +17,26 @@ export interface AreaScorecard extends Tally {
 
 export type Continent = 'EU' | 'US';
 
+/** The season: how often, at the same spot, a day in the mushroom's season
+ *  scored above a day out of season (scripts/qa_season_auc.py). */
+export interface SeasonTally {
+  finds: number;
+  auc: number;
+}
+
 export interface Scorecard {
   updated_at: string;
   since: string;
   until: string;
-  /** Every region together; `from` lists the regions its finds came from. */
-  all: (AreaScorecard & { from: ScoreRegionId[] }) | null;
+  /** Every region together. */
+  all: AreaScorecard | null;
   continents: Partial<Record<Continent, AreaScorecard>>;
+  season: {
+    since: string;
+    until: string;
+    all: SeasonTally;
+    species: Record<string, SeasonTally>;
+  } | null;
 }
 
 /** Picking one of two spots blindly is right half the time. */
@@ -55,15 +67,6 @@ export function useScorecard(): Scorecard | null {
     };
   }, []);
   return card;
-}
-
-/** Where the pooled finds came from, as a translation key: "Europe" while
- *  only European regions have finds. */
-export function areaKey(regions: ScoreRegionId[]) {
-  const european = regions.map(region => region === 'NE' || region === 'SE');
-  if (european.every(Boolean)) return 'home.live.europe' as const;
-  if (!european.some(Boolean)) return 'home.live.northAmerica' as const;
-  return 'data.scorecard.everywhere' as const;
 }
 
 /** A share as "times in 10", the way the landing and the sheet say it. */

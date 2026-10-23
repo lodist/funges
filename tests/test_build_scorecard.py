@@ -28,7 +28,23 @@ def test_build_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
     # All regions together: NE's 20 porcini, too few alone, join SE's 40; the 5 morels stay out.
     porcini = {"finds": 60, "place": round((40 * 0.8 + 20 * 0.6) / 60, 3)}
     assert card["all"]["species"] == {"mushroom": porcini}
-    assert card["all"]["finds"] == 65 and card["all"]["from"] == ["NE", "SE"]
+    assert card["all"]["finds"] == 65
     assert card["continents"]["EU"]["species"]["mushroom"] == porcini
     assert "US" not in card["continents"]
     assert card["since"] == "2026-10-05" and card["until"] == "2026-10-20"
+
+
+def test_build_adds_the_season_pooled_over_regions(tmp_path):
+    (tmp_path / "metadata.json").write_text(json.dumps({"start": "2026-10-05", "regions": ["SE"]}))
+    pd.DataFrame([{"region": "SE", "species": "mushroom", "kingdom": "Fungi", "source": "today",
+                   "date": "2026-10-12", "where": 0.7}] * 30).to_csv(tmp_path / "finds_SE.csv", index=False)
+    season = tmp_path / "season_auc.json"
+    season.write_text(json.dumps({"start": "2026-05-24", "end": "2026-10-15", "all": 0.9,
+                                  "species": {"mushroom": 0.92},
+                                  "rows": [{"species": "mushroom", "records": 100}, {"species": "mushroom", "records": 20}]}))
+
+    card = build(tmp_path, season)
+
+    assert card["season"] == {"since": "2026-05-24", "until": "2026-10-15", "all": {"finds": 120, "auc": 0.9},
+                              "species": {"mushroom": {"finds": 120, "auc": 0.92}}}
+    assert build(tmp_path)["season"] is None

@@ -338,6 +338,17 @@ function ProofLine() {
           }}
           components={{ strong: <strong /> }}
         />
+        {card.season ? (
+          <>
+            {' '}
+            <Trans
+              t={t}
+              i18nKey='home.proof.season'
+              values={{ times: timesInTen(card.season.all.auc) }}
+              components={{ strong: <strong /> }}
+            />
+          </>
+        ) : null}
       </p>
       <Link
         to='/data'

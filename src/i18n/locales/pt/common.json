@@ -88,7 +88,8 @@
     },
     "proof": {
       "line": "Testado com {{finds}} achados de cogumelos desde {{since}}: <strong>{{times}} em cada 10 vezes</strong>, a previsão avaliou melhor o ponto do achado do que outros pontos com cogumelos naquele dia.",
-      "link": "Como verificamos"
+      "link": "Como verificamos",
+      "season": "E no mesmo ponto, avaliou melhor os dias da temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>."
     }
   },
   "worthForagingNow": {
@@ -326,7 +327,7 @@
     },
     "scorecard": {
       "title": "Como a previsão se saiu",
-      "intro": "A previsão atual, testada com achados de cogumelos registrados de {{since}} a {{until}} ({{area}}). Cada barra mostra quantas vezes ela avaliou melhor o ponto do achado do que outro ponto onde as pessoas acharam cogumelos naquele dia. Chutando dá {{chance}}, a linha do meio.",
+      "intro": "A previsão atual, testada com achados de cogumelos registrados de {{since}} a {{until}}. Cada barra mostra quantas vezes ela avaliou melhor o ponto do achado do que outro ponto onde as pessoas acharam cogumelos naquele dia.",
       "all": "Todos os cogumelos",
       "finds_one": "{{finds}} achado",
       "finds_other": "{{finds}} achados",
@@ -337,9 +338,11 @@
         "unseen": "Só contam os achados a partir de {{since}}, depois dos últimos com que a previsão foi treinada.",
         "spots": "Cada achado é comparado com outros pontos onde as pessoas acharam cogumelos, então apontar para bosques que todo mundo já visita não rende nada.",
         "everything": "Aparecem todos os cogumelos com pelo menos 30 achados, tenham ido bem ou não. As plantas não estão incluídas.",
-        "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}."
+        "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}.",
+        "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro. Aparece cada cogumelo cuja temporada caiu nesses meses."
       },
-      "everywhere": "Europa e América do Norte"
+      "seasonTitle": "A temporada",
+      "seasonIntro": "A previsão atual de {{since}} a {{until}}, nos pontos onde as pessoas acharam cogumelos. Cada barra mostra quantas vezes, no mesmo ponto, ela avaliou melhor um dia da temporada do cogumelo do que um dia fora dela."
     }
   },
   "sidebar": {

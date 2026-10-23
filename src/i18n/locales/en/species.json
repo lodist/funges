@@ -378,8 +378,9 @@
     "whereItGrows": "Where it grows",
     "lookalikes": "Toxic look-alikes",
     "tellApart": "How to tell them apart",
-    "testedLabel": "Tested · {{area}} · since {{since}}",
+    "testedLabel": "Tested · since {{since}}",
     "tested": "On {{finds}} reported finds, the forecast rated the find's spot higher than other mushroom spots <strong>{{times}} times in 10</strong>.",
-    "howWeCheck": "How we check"
+    "howWeCheck": "How we check",
+    "season": "In 2026, at the same spot, it rated days in its season above days out of season <strong>{{times}} times in 10</strong>."
   }
 }

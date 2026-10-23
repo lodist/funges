@@ -4,13 +4,11 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useSpeciesData } from '@/data/species';
 import { cn } from '@/lib/utils';
 import {
-  areaKey,
   CHANCE,
   formatDay,
   formatShare,
   timesInTen,
   useScorecard,
-  type Tally,
 } from '@/lib/scorecard';
 
 /** How often the forecast picked the find's spot, on a track with a tick at
@@ -39,6 +37,7 @@ export function ScorecardLine({ speciesId }: { speciesId: string }) {
   const { t, i18n } = useTranslation(['species', 'common']);
   const card = useScorecard();
   const tally = card?.all?.species[speciesId];
+  const season = card?.season?.species[speciesId];
   if (!card?.all || !tally) return null;
 
   // The sheet's own pattern: a micro label over a strip, like "Today" over
@@ -47,7 +46,6 @@ export function ScorecardLine({ speciesId }: { speciesId: string }) {
     <div className='flex flex-col gap-2'>
       <p className='type-micro text-muted-foreground'>
         {t('sheet.testedLabel', {
-          area: t(`common:${areaKey(card.all.from)}`),
           since: formatDay(card.since, i18n.language, 'short'),
         })}
       </p>
@@ -62,6 +60,16 @@ export function ScorecardLine({ speciesId }: { speciesId: string }) {
           }}
           components={{ strong: <strong className='text-foreground' /> }}
         />{' '}
+        {season ? (
+          <>
+            <Trans
+              t={t}
+              i18nKey='sheet.season'
+              values={{ times: timesInTen(season.auc) }}
+              components={{ strong: <strong className='text-foreground' /> }}
+            />{' '}
+          </>
+        ) : null}
         <Link
           to='/data'
           hash='scorecard'
@@ -76,11 +84,13 @@ export function ScorecardLine({ speciesId }: { speciesId: string }) {
 
 function Row({
   name,
-  tally,
+  share,
+  finds,
   strong,
 }: {
   name: string;
-  tally: Tally;
+  share: number;
+  finds: number;
   strong?: boolean;
 }) {
   const { t, i18n } = useTranslation('common');
@@ -96,25 +106,22 @@ function Row({
         <span className='whitespace-nowrap text-muted-foreground'>
           {' · '}
           {t('data.scorecard.finds', {
-            count: tally.finds,
-            finds: tally.finds.toLocaleString(i18n.language),
+            count: finds,
+            finds: finds.toLocaleString(i18n.language),
           })}
         </span>
       </span>
       <span className='text-right text-sm font-semibold tabular-nums text-foreground sm:order-last sm:self-center'>
-        {formatShare(tally.place, i18n.language)}
+        {formatShare(share, i18n.language)}
       </span>
-      <HitBar
-        share={tally.place}
-        className='col-span-2 self-center sm:col-span-1'
-      />
+      <HitBar share={share} className='col-span-2 self-center sm:col-span-1' />
     </li>
   );
 }
 
 /** The Data page's proof: every tested mushroom, all regions together, good
- *  or bad, and how the test works. The page's region switch does not apply:
- *  the intro names where the finds came from. Links land on #scorecard. */
+ *  or bad, and how the test works. The page's region switch does not apply.
+ *  Links land on #scorecard. */
 export function ForecastScorecard() {
   const { t, i18n } = useTranslation('common');
   const species = useSpeciesData();
@@ -132,21 +139,37 @@ export function ForecastScorecard() {
 
   if (!card) return null;
   const all = card.all;
+  const season = card.season;
   const days = {
     since: formatDay(card.since, i18n.language),
     until: formatDay(card.until, i18n.language),
   };
+  const ranked = (entries: [string, number, number][]) =>
+    entries
+      .map(([id, share, finds]) => ({
+        id,
+        share,
+        finds,
+        name: species.find(s => s.id === id)?.name ?? id,
+      }))
+      .sort((a, b) => b.share - a.share || a.name.localeCompare(b.name));
   const rows = all
-    ? Object.entries(all.species)
-        .map(([id, tally]) => ({
+    ? ranked(
+        Object.entries(all.species).map(([id, tally]) => [
           id,
-          tally,
-          name: species.find(s => s.id === id)?.name ?? id,
-        }))
-        .sort(
-          (a, b) =>
-            b.tally.place - a.tally.place || a.name.localeCompare(b.name)
-        )
+          tally.place,
+          tally.finds,
+        ])
+      )
+    : [];
+  const seasonRows = season
+    ? ranked(
+        Object.entries(season.species).map(([id, tally]) => [
+          id,
+          tally.auc,
+          tally.finds,
+        ])
+      )
     : [];
 
   return (
@@ -164,23 +187,49 @@ export function ForecastScorecard() {
           {t('data.scorecard.title')}
         </h2>
         <p className='text-muted-foreground'>
-          {all
-            ? t('data.scorecard.intro', {
-                area: t(areaKey(all.from)),
-                ...days,
-                chance: formatShare(CHANCE, i18n.language),
-              })
-            : t('data.scorecard.empty')}
+          {all ? t('data.scorecard.intro', days) : t('data.scorecard.empty')}
         </p>
       </div>
 
       {all ? (
         <ul className='flex flex-col gap-4'>
-          <Row name={t('data.scorecard.all')} tally={all} strong />
+          <Row
+            name={t('data.scorecard.all')}
+            share={all.place}
+            finds={all.finds}
+            strong
+          />
           {rows.map(row => (
-            <Row key={row.id} name={row.name} tally={row.tally} />
+            <Row key={row.id} {...row} />
           ))}
         </ul>
+      ) : null}
+
+      {season ? (
+        <>
+          <div className='flex max-w-prose flex-col gap-3'>
+            <h3 className='text-xl leading-tight font-semibold text-foreground'>
+              {t('data.scorecard.seasonTitle')}
+            </h3>
+            <p className='text-muted-foreground'>
+              {t('data.scorecard.seasonIntro', {
+                since: formatDay(season.since, i18n.language),
+                until: formatDay(season.until, i18n.language),
+              })}
+            </p>
+          </div>
+          <ul className='flex flex-col gap-4'>
+            <Row
+              name={t('data.scorecard.all')}
+              share={season.all.auc}
+              finds={season.all.finds}
+              strong
+            />
+            {seasonRows.map(row => (
+              <Row key={row.id} {...row} />
+            ))}
+          </ul>
+        </>
       ) : null}
 
       <div className='flex max-w-prose flex-col gap-2'>
@@ -192,6 +241,7 @@ export function ForecastScorecard() {
           <li>{t('data.scorecard.how.unseen', { since: days.since })}</li>
           <li>{t('data.scorecard.how.spots')}</li>
           <li>{t('data.scorecard.how.everything')}</li>
+          {season ? <li>{t('data.scorecard.how.season')}</li> : null}
           <li>
             {t('data.scorecard.how.late', {
               updated: formatDay(card.updated_at, i18n.language),

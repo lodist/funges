@@ -88,7 +88,8 @@
     },
     "proof": {
       "line": "Vérifiée sur {{finds}} trouvailles de champignons depuis le {{since}} : <strong>{{times}} fois sur 10</strong>, la prévision a mieux noté l'endroit de la trouvaille que d'autres coins à champignons ce jour-là.",
-      "link": "Comment nous vérifions"
+      "link": "Comment nous vérifions",
+      "season": "Et au même endroit, elle a mieux noté les jours de saison que les jours hors saison <strong>{{times}} fois sur 10</strong>."
     }
   },
   "worthForagingNow": {
@@ -326,7 +327,7 @@
     },
     "scorecard": {
       "title": "Ce qu'a donné la prévision",
-      "intro": "La prévision actuelle, vérifiée sur les trouvailles de champignons signalées du {{since}} au {{until}} ({{area}}). Chaque barre montre combien de fois elle a mieux noté l'endroit de la trouvaille qu'un autre endroit où des champignons ont été trouvés ce jour-là. Au hasard, on obtient {{chance}} : le trait au milieu.",
+      "intro": "La prévision actuelle, vérifiée sur les trouvailles de champignons signalées du {{since}} au {{until}}. Chaque barre montre combien de fois elle a mieux noté l'endroit de la trouvaille qu'un autre endroit où des champignons ont été trouvés ce jour-là.",
       "all": "Tous les champignons",
       "finds_one": "{{finds}} trouvaille",
       "finds_other": "{{finds}} trouvailles",
@@ -337,9 +338,11 @@
         "unseen": "Seules comptent les trouvailles à partir du {{since}}, après les dernières sur lesquelles la prévision a été entraînée.",
         "spots": "Chaque trouvaille est comparée à d'autres endroits où des gens ont trouvé des champignons : désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
         "everything": "Chaque champignon avec au moins 30 trouvailles figure ici, que le résultat soit bon ou non. Les plantes ne sont pas incluses.",
-        "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}."
+        "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}.",
+        "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double. Chaque champignon dont la saison tombait dans ces mois figure ici."
       },
-      "everywhere": "Europe et Amérique du Nord"
+      "seasonTitle": "La saison",
+      "seasonIntro": "La prévision actuelle du {{since}} au {{until}}, aux endroits où des gens ont trouvé des champignons. Chaque barre montre combien de fois, au même endroit, elle a mieux noté un jour dans la saison du champignon qu'un jour hors saison."
     }
   },
   "sidebar": {

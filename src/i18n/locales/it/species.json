@@ -378,8 +378,9 @@
     "whereItGrows": "Dove cresce",
     "lookalikes": "Sosia tossici",
     "tellApart": "Come distinguerli",
-    "testedLabel": "Verificato · {{area}} · dal {{since}}",
+    "testedLabel": "Verificato · dal {{since}}",
     "tested": "Su {{finds}} ritrovamenti segnalati, la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi <strong>{{times}} volte su 10</strong>.",
-    "howWeCheck": "Come verifichiamo"
+    "howWeCheck": "Come verifichiamo",
+    "season": "Nel 2026, nello stesso punto, ha valutato i giorni della sua stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>."
   }
 }

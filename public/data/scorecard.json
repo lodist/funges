@@ -30,8 +30,7 @@
         "finds": 68,
         "place": 0.716
       }
-    },
-    "from": ["NE", "SE"]
+    }
   },
   "continents": {
     "EU": {
@@ -62,6 +61,64 @@
           "finds": 68,
           "place": 0.716
         }
+      }
+    }
+  },
+  "season": {
+    "since": "2026-05-24",
+    "until": "2026-10-15",
+    "all": {
+      "finds": 11048,
+      "auc": 0.875
+    },
+    "species": {
+      "black_chant": {
+        "finds": 245,
+        "auc": 0.935
+      },
+      "chant": {
+        "finds": 1713,
+        "auc": 0.638
+      },
+      "chicken-of-the-woods": {
+        "finds": 466,
+        "auc": 0.213
+      },
+      "hedgehog_mushroom": {
+        "finds": 180,
+        "auc": 0.953
+      },
+      "matsutake": {
+        "finds": 68,
+        "auc": 0.708
+      },
+      "mushroom": {
+        "finds": 2752,
+        "auc": 0.895
+      },
+      "parasol": {
+        "finds": 1405,
+        "auc": 0.884
+      },
+      "pine_bolete": {
+        "finds": 326,
+        "auc": 0.894
+      },
+      "saffron_milk_cap": {
+        "finds": 262,
+        "auc": 0.952
+      },
+      "shaggy_mane": {
+        "finds": 2531,
+        "auc": 0.987
+      },
+      "summer_bolete": {
+        "finds": 655,
+        "auc": 0.705
+      },
+      "winter_chant": {
+        "finds": 445,
+        "auc": 0.966
       }
     }
   }
