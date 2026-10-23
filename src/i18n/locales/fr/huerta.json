@@ -51,7 +51,9 @@
       },
       "water": {
         "title": "Arrosez environ {{mm}} L/m² cette semaine",
-        "text": "La pluie ne compense pas ce que prennent le soleil et le vent. Deux bons arrosages valent mieux qu'un peu chaque jour."
+        "text": "La pluie ne compense pas ce que prennent le soleil et le vent. Deux bons arrosages valent mieux qu'un peu chaque jour.",
+        "sandy": "Le sol sableux sèche vite : mieux vaut trois ou quatre petits arrosages dans la semaine.",
+        "clay": "L'argile retient l'eau : un arrosage profond, puis attendez que les premiers centimètres soient secs."
       },
       "rain": {
         "title": "Pluie cette semaine, environ {{mm}} mm",
@@ -66,7 +68,8 @@
       },
       "from": {
         "forecast": "Selon la prévision",
-        "plan": "Selon votre plan"
+        "plan": "Selon votre plan",
+        "soil": "Selon votre sol"
       },
       "nothing": "Votre potager n'a besoin de rien cette semaine.",
       "noPlan": "Planifiez votre potager et notez ce que vous plantez : cette page dira ce qu'il lui faut chaque semaine.",
@@ -125,6 +128,20 @@
         "harvest": {
           "title": "{{crop}} : à récolter",
           "text": "Depuis le semis ou la plantation, la chaleur reçue suffit."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}} : chaulez d'abord la planche",
+          "text": "En sol acide, la famille du chou attrape la hernie du chou. La chaux remonte le pH : épandez-la quelques semaines avant de planter, jamais avec du fumier."
+        },
+        "scab": {
+          "title": "{{crops}} : pas de chaux cette année",
+          "text": "En sol alcalin, les pommes de terre attrapent la gale. Ni chaux ni fumier frais, et gardez la terre humide pendant la formation des tubercules."
+        },
+        "forking": {
+          "title": "{{crops}} : ameublissez l'argile",
+          "text": "Dans une argile lourde, les racines fourchent. Bêchez le rang profond et sans cailloux, avec un peu de compost, ou cultivez-les en carré surélevé ou en variétés courtes."
         }
       }
     },
@@ -498,7 +515,26 @@
     "strips_one": "{{count}} bande",
     "strips_other": "{{count}} bandes",
     "setup": "{{width}} × {{length}} m · {{ground}}",
-    "clear": "Effacer"
+    "clear": "Effacer",
+    "soilLabel": "Sol",
+    "soil": {
+      "sandy": "Sol sableux",
+      "loam": "Terre franche",
+      "clay": "Sol argileux"
+    },
+    "acidityLabel": "pH du sol",
+    "acidity": {
+      "acid": "Sol acide",
+      "neutral": "Sol neutre",
+      "alkaline": "Sol alcalin"
+    },
+    "soilWord": {
+      "sandy": "sableux",
+      "loam": "franc",
+      "clay": "argileux"
+    },
+    "soilHint": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}.",
+    "soilHintRaised": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}. Les carrés surélevés ont leur propre terre."
   },
   "year": {
     "title": "Calendrier",

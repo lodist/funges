@@ -6,6 +6,14 @@
 import { CROPS, type CropNeeds, type PlaceAdvice } from '@/lib/huerta';
 import type { PlaceYear } from '@/lib/huerta-api';
 import type { Plan } from '@/lib/planner';
+import { PLANT_LOOK } from '@/lib/planner-data';
+import { forSoil, gardenSoil, type Texture } from '@/lib/soil';
+
+/** What the garden's soil asks of a crop as it goes in: lime for the cabbage
+ *  family on acid soil (clubroot), care with potatoes on alkaline soil (scab),
+ *  room for carrots and parsnips in heavy clay (forked roots). */
+export type SoilNote = 'lime' | 'scab' | 'forking';
+const FORKING = new Set(['carrot', 'parsnip']);
 
 export type Step =
   | 'thin'
@@ -25,7 +33,8 @@ export type Step =
 export type Task =
   | { kind: 'frost'; level: 'frost' | 'ground_frost'; crops: string[] }
   | { kind: 'laterFrost'; night: string; crops: string[] }
-  | { kind: 'water'; mm: number }
+  | { kind: 'water'; mm: number; soil: Texture }
+  | { kind: 'soil'; note: SoilNote; crops: string[] }
   | { kind: 'rain'; mm: number }
   | { kind: 'plantNow'; crops: string[] }
   | { kind: 'sowAgain'; crop: string; weeks: number }
@@ -181,6 +190,9 @@ export function gardenWeek(
   const growing = unique(planted.map(s => s.crop!));
   const frost = (id: string) => needs[id]?.frost;
   const tasks: Task[] = [];
+  const soil = gardenSoil(plan.garden, year?.soil);
+  // The place's statuses, sooner or later in spring for the garden's soil.
+  const week = forSoil(advice, needs, soil.texture, today);
 
   // Frost: a frost (<= 0 C) hurts tender and half-hardy crops, a ground
   // frost (<= 2 C) tender ones; later in the week, only a frost, as a warning.
@@ -201,7 +213,11 @@ export function gardenWeek(
   // Water, when something is in the ground.
   if (growing.length) {
     if ((advice.water ?? 0) >= WATER_MM)
-      tasks.push({ kind: 'water', mm: Math.round(advice.water!) });
+      tasks.push({
+        kind: 'water',
+        mm: Math.round(advice.water!),
+        soil: soil.texture,
+      });
     else if ((advice.rain ?? 0) >= RAIN_MM)
       tasks.push({ kind: 'rain', mm: Math.round(advice.rain!) });
   }
@@ -209,15 +225,33 @@ export function gardenWeek(
   // What the plan holds and can go in now.
   const ready = unique(
     plan.sections
-      .filter(s => s.crop && !s.planted && advice.crops[s.crop] === 'now')
+      .filter(s => s.crop && !s.planted && week.crops[s.crop] === 'now')
       .map(s => s.crop!)
   );
   if (ready.length) tasks.push({ kind: 'plantNow', crops: ready });
+  const notes: [SoilNote, string[]][] = [
+    [
+      'lime',
+      soil.acidity === 'acid'
+        ? ready.filter(id => PLANT_LOOK[id]?.family === 'brassica')
+        : [],
+    ],
+    [
+      'scab',
+      soil.acidity === 'alkaline' ? ready.filter(id => id === 'potato') : [],
+    ],
+    [
+      'forking',
+      soil.texture === 'clay' ? ready.filter(id => FORKING.has(id)) : [],
+    ],
+  ];
+  for (const [note, crops] of notes)
+    if (crops.length) tasks.push({ kind: 'soil', note, crops });
 
   // Sow quick crops again, a few weeks after the last sowing.
   for (const crop of growing) {
     const every = SUCCESSION[crop];
-    if (!every || advice.crops[crop] !== 'now') continue;
+    if (!every || week.crops[crop] !== 'now') continue;
     const sown = planted.filter(s => s.crop === crop).map(s => s.planted!);
     const last = sown.sort()[sown.length - 1];
     const weeks = Math.floor(days(last, today) / 7);

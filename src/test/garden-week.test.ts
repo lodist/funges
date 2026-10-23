@@ -67,10 +67,48 @@ describe("this week's to-do list", () => {
     const p = plan(['garlic', '2026-10-01']);
     expect(
       gardenWeek(p, { ...advice, water: 16.4 }, NEEDS, '2026-10-21')
-    ).toEqual([{ kind: 'water', mm: 16 }]);
+    ).toEqual([{ kind: 'water', mm: 16, soil: 'loam' }]);
     expect(gardenWeek(p, { ...advice, rain: 24 }, NEEDS, '2026-10-21')).toEqual(
       [{ kind: 'rain', mm: 24 }]
     );
+  });
+
+  it('reads the soil: how to water, and what it asks of crops going in', () => {
+    const on = (acidity: 'acid' | 'alkaline'): Plan => ({
+      ...plan(['garlic', '2026-10-01'], ['cabbage'], ['potato'], ['carrot']),
+      garden: {
+        width: 6,
+        length: 4.5,
+        shape: 'rect',
+        ground: 'ground',
+        soil: 'clay',
+        acidity,
+      },
+    });
+    const now = {
+      ...advice,
+      water: 12,
+      crops: {
+        ...advice.crops,
+        cabbage: 'now' as const,
+        potato: 'now' as const,
+        carrot: 'now' as const,
+      },
+    };
+    expect(gardenWeek(on('acid'), now, NEEDS, '2026-10-21')).toEqual([
+      { kind: 'water', mm: 12, soil: 'clay' },
+      { kind: 'plantNow', crops: ['cabbage', 'potato', 'carrot'] },
+      { kind: 'soil', note: 'lime', crops: ['cabbage'] },
+      { kind: 'soil', note: 'forking', crops: ['carrot'] },
+    ]);
+    expect(
+      gardenWeek(on('alkaline'), now, NEEDS, '2026-10-21').filter(
+        t => t.kind === 'soil'
+      )
+    ).toEqual([
+      { kind: 'soil', note: 'scab', crops: ['potato'] },
+      { kind: 'soil', note: 'forking', crops: ['carrot'] },
+    ]);
   });
 
   it('lists planned crops that can go in now, and quick crops to sow again', () => {

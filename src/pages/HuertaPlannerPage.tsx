@@ -51,6 +51,13 @@ import {
   Undo2,
 } from '@/lib/icons';
 import {
+  ACIDITIES,
+  forSoil,
+  gardenSoil,
+  TEXTURES,
+  textureOf,
+} from '@/lib/soil';
+import {
   autoPlan,
   axisOf,
   fit,
@@ -119,7 +126,7 @@ const chip = (on: boolean) =>
  *  place, drawn as a model, and what you planted when. */
 export default function HuertaPlannerPage() {
   const { t, i18n } = useTranslation('huerta');
-  const [advice, setAdvice] = useState<PlaceAdvice>(SAMPLE_ADVICE);
+  const [placeAdvice, setAdvice] = useState<PlaceAdvice>(SAMPLE_ADVICE);
   const [sample, setSample] = useState(true);
   const [needs, setNeeds] = useState<Record<string, CropNeeds>>({});
   const [plan, setPlan] = useState<Plan | null>(() => loadPlan());
@@ -135,6 +142,9 @@ export default function HuertaPlannerPage() {
   // Earlier plans, for Undo; kept while the page is open.
   const [past, setPast] = useState<Plan[]>([]);
   const year = useHuertaYear();
+  // This week's statuses for the garden's own soil (lib/soil).
+  const soil = gardenSoil(plan?.garden, year?.soil);
+  const advice = forSoil(placeAdvice, needs, soil.texture, today());
   // The visitor's own advice, when they chose a place; else the sample at once.
   const [settled, setSettled] = useState(
     () => !(huertaApiConfigured && savedPlace())
@@ -338,7 +348,7 @@ export default function HuertaPlannerPage() {
                       step={0.5}
                       defaultValue={plan.garden[key]}
                       key={`${key}-${plan.garden[key]}`}
-                      className='h-9 w-16 max-sm:text-sm sm:w-20'
+                      className='h-9 w-18 max-sm:text-sm sm:w-20'
                       onBlur={e => {
                         const v = Math.min(
                           MAX_SIDE,
@@ -411,6 +421,48 @@ export default function HuertaPlannerPage() {
                     </Button>
                   ))}
                 </div>
+                {(
+                  [
+                    ['soil', TEXTURES, soil.texture],
+                    ['acidity', ACIDITIES, soil.acidity],
+                  ] as const
+                ).map(([key, values, value]) => (
+                  <Select
+                    key={key}
+                    value={value}
+                    onValueChange={v =>
+                      update({ ...plan, garden: { ...plan.garden, [key]: v } })
+                    }
+                  >
+                    <SelectTrigger
+                      aria-label={t(`planner.${key}Label`)}
+                      className='h-9 w-auto max-sm:text-sm'
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {values.map(v => (
+                        <SelectItem key={v} value={v}>
+                          {t(`planner.${key}.${v}`)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                ))}
+                {year?.soil ? (
+                  <p className='basis-full text-xs text-muted-foreground'>
+                    {t(
+                      (plan.garden.ground ?? 'raised') === 'raised'
+                        ? 'planner.soilHintRaised'
+                        : 'planner.soilHint',
+                      {
+                        place: year.place,
+                        texture: t(`planner.soilWord.${textureOf(year.soil)}`),
+                        ph: year.soil.ph.toLocaleString(i18n.language),
+                      }
+                    )}
+                  </p>
+                ) : null}
               </>
             ) : null}
             <DropdownMenu>

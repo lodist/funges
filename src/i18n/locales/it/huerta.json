@@ -51,7 +51,9 @@
       },
       "water": {
         "title": "Annaffia circa {{mm}} L/m² questa settimana",
-        "text": "La pioggia non rende ciò che sole e vento si portano via. Due buone bagnature valgono più di una spruzzata al giorno."
+        "text": "La pioggia non rende ciò che sole e vento si portano via. Due buone bagnature valgono più di una spruzzata al giorno.",
+        "sandy": "Il terreno sabbioso si asciuga in fretta: meglio tre o quattro annaffiature piccole nella settimana.",
+        "clay": "L'argilla trattiene l'acqua: una bagnatura profonda, poi aspetta che i primi centimetri siano asciutti."
       },
       "rain": {
         "title": "Pioggia questa settimana, circa {{mm}} mm",
@@ -66,7 +68,8 @@
       },
       "from": {
         "forecast": "Dalle previsioni",
-        "plan": "Dal tuo piano"
+        "plan": "Dal tuo piano",
+        "soil": "Dal tuo terreno"
       },
       "nothing": "Questa settimana l'orto non ha bisogno di nulla.",
       "noPlan": "Pianifica l'orto e segna cosa pianti: questa pagina ti dirà cosa gli serve ogni settimana.",
@@ -125,6 +128,20 @@
         "harvest": {
           "title": "{{crop}}: da raccogliere",
           "text": "Ha ricevuto il calore necessario dalla semina o dal trapianto."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}}: prima la calce nell'aiuola",
+          "text": "In terreno acido la famiglia del cavolo prende l'ernia del cavolo. La calce alza il pH: spargila qualche settimana prima di piantare, mai insieme al letame."
+        },
+        "scab": {
+          "title": "{{crops}}: niente calce quest'anno",
+          "text": "In terreno alcalino le patate prendono la scabbia. Niente calce né letame fresco, e tieni la terra umida mentre si formano i tuberi."
+        },
+        "forking": {
+          "title": "{{crops}}: smuovi l'argilla",
+          "text": "Nell'argilla pesante le radici si biforcano. Vanga la fila in profondità e senza sassi, con un po' di compost, oppure coltivale in un'aiuola rialzata o in varietà corte."
         }
       }
     },
@@ -498,7 +515,26 @@
     "strips_one": "{{count}} striscia",
     "strips_other": "{{count}} strisce",
     "setup": "{{width}} × {{length}} m · {{ground}}",
-    "clear": "Togli"
+    "clear": "Togli",
+    "soilLabel": "Terreno",
+    "soil": {
+      "sandy": "Terreno sabbioso",
+      "loam": "Medio impasto",
+      "clay": "Terreno argilloso"
+    },
+    "acidityLabel": "pH del terreno",
+    "acidity": {
+      "acid": "Terreno acido",
+      "neutral": "Terreno neutro",
+      "alkaline": "Terreno alcalino"
+    },
+    "soilWord": {
+      "sandy": "sabbioso",
+      "loam": "di medio impasto",
+      "clay": "argilloso"
+    },
+    "soilHint": "Intorno a {{place}} il terreno è per lo più {{texture}}, pH {{ph}}.",
+    "soilHintRaised": "Intorno a {{place}} il terreno è per lo più {{texture}}, pH {{ph}}. Le aiuole rialzate hanno la loro terra."
   },
   "year": {
     "title": "Calendario",
