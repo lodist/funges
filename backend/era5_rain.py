@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import os
 import tempfile
+import time
 from datetime import timedelta
 from pathlib import Path
 
@@ -34,10 +35,12 @@ LOOKBACK = timedelta(days=2)
 NEWEST_DAY, OLDEST_DAY = 6, 10
 RAIN_HOUR_MM = 0.1
 GRID = 0.25                     # ERA5's grid step in degrees, as Copernicus delivers it
-# US East's and US West's boxes overlap almost wholly, and Copernicus queues only three
-# orders per user and dataset: from 22 Oct 2026 US West's, the night's fourth, was turned
-# away. Both order this one box, so each also downloads the other's order.
+# Copernicus queues two orders per account and dataset: from 22 Oct 2026 US West's order, the
+# night's fourth, was turned away, and on 24 Oct US East's too, with Europe's two still queued.
+# Each continent's two regions order one shared box, and only once (ordered()), so the night
+# places two orders and each region also downloads the other's.
 US_BOX = ((25.0, 49.5), (-124.75, -67.0))
+EU_BOX = ((27.5, 70.75), (-24.5, 44.75))
 EMPTY = pd.DataFrame(columns=["Latitude", "Longitude", "Date", "TotalPrecipitation_mm",
                               "Rain Hours", "Rain Measured"])
 
@@ -49,9 +52,9 @@ def box(coords) -> tuple[tuple, tuple]:
     read the rain of the box's edge."""
     c = np.asarray(coords, float).reshape(-1, 2)
     lo, hi = np.floor(c.min(axis=0) / GRID) * GRID, np.ceil(c.max(axis=0) / GRID) * GRID
-    if hi[1] < -50:  # the US: the shared box, grown if a coord ever falls outside it
-        (s, n), (w, e) = US_BOX
-        lo, hi = np.minimum(lo, (s, w)), np.maximum(hi, (n, e))
+    # The continent's shared box, grown if a coord ever falls outside it.
+    (s, n), (w, e) = US_BOX if hi[1] < -50 else EU_BOX
+    lo, hi = np.minimum(lo, (s, w)), np.maximum(hi, (n, e))
     return (float(lo[0]), float(hi[0])), (float(lo[1]), float(hi[1]))
 
 
@@ -137,15 +140,47 @@ def local_day_rain(hourly, times, lats, lons, coords, days) -> pd.DataFrame:
     return pd.concat(frames, ignore_index=True) if frames else EMPTY.copy()
 
 
-def place_orders(key, lat_range, lon_range, today) -> None:
-    """Order the window's rain. Copernicus answers at once and works the order later."""
+def ordered(key, request, since) -> bool:
+    """An order for this box and window placed after `since` is open or done: the night's other
+    region of the box placed it, and a second would take a second place in the queue."""
+    headers = {"PRIVATE-TOKEN": key}
+    for status in ("accepted", "running", "successful"):
+        jobs = requests.get(f"{CDS_API}/jobs", headers=headers, timeout=60, params={
+            "processID": DATASET, "status": status, "sortby": "-created", "limit": 20})
+        jobs.raise_for_status()
+        for job in jobs.json()["jobs"]:
+            if pd.Timestamp(job["created"]) < since:
+                break
+            ids = requests.get(f"{CDS_API}/jobs/{job['jobID']}", params={"request": "true"},
+                               headers=headers, timeout=60).json()["metadata"]["request"]["ids"]
+            if all(ids.get(k) == request[k] for k in ("area", "date", "variable")):
+                return True
+    return False
+
+
+def place_orders(key, lat_range, lon_range, today, wait=5) -> None:
+    """Order the window's rain, unless the box's order is already in. Copernicus answers at once
+    and works the order later; one it turns away says why in the log after `wait` seconds."""
     days = [today - timedelta(days=back) for back in range(OLDEST_DAY, NEWEST_DAY - 1, -1)]
     # Every longitude's local day fits inside the UTC days either side of it.
     utc_days = pd.date_range(days[0] - timedelta(days=1), days[-1] + timedelta(days=1)).date
+    request = cds_request(utc_days, lat_range, lon_range)
+    headers = {"PRIVATE-TOKEN": key}
     try:
-        requests.post(f"{CDS_API}/processes/{DATASET}/execution",
-                      json={"inputs": cds_request(utc_days, lat_range, lon_range)},
-                      headers={"PRIVATE-TOKEN": key}, timeout=60).raise_for_status()
+        if ordered(key, request, pd.Timestamp.now("UTC").tz_localize(None) - timedelta(hours=12)):
+            print("ERA5 order already in for this box", flush=True)
+            return
+    except Exception as error:  # the listing failed: order anyway, a twin costs only a place
+        print(f"[warn] ERA5 orders not listed: {error}", flush=True)
+    try:
+        response = requests.post(f"{CDS_API}/processes/{DATASET}/execution",
+                                 json={"inputs": request}, headers=headers, timeout=60)
+        response.raise_for_status()
+        job = response.json()["jobID"]
+        time.sleep(wait)  # Copernicus turns an order away within seconds
+        if requests.get(f"{CDS_API}/jobs/{job}", headers=headers, timeout=60).json()["status"] == "rejected":
+            why = requests.get(f"{CDS_API}/jobs/{job}/results", headers=headers, timeout=60).json()
+            print(f"[warn] ERA5 order turned away: {why.get('traceback') or why.get('title')}", flush=True)
     except Exception as error:  # its days are ordered again tomorrow
         print(f"[warn] ERA5 order not placed: {error}", flush=True)
 
