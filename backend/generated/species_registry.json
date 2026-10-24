@@ -7068,22 +7068,12 @@
         "USE": {
           "landCover": [41, 42, 43],
           "landCoverScheme": "NLCD",
-          "compositeOf": [
-            "mushroom",
-            "eastern_king",
-            "rocky_king",
-            "bay_bolete"
-          ]
+          "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
         },
         "USW": {
           "landCover": [41, 42, 43],
           "landCoverScheme": "NLCD",
-          "compositeOf": [
-            "mushroom",
-            "eastern_king",
-            "rocky_king",
-            "bay_bolete"
-          ]
+          "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
         }
       }
     },

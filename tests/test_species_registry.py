@@ -137,6 +137,6 @@ def test_a_composite_is_drawn_over_its_members_habitat_but_not_scored_itself():
     assert "boletus" not in species_registry.get_species_params("SE")
     assert species_registry.get_composites("SE")["boletus"] == [
         "mushroom", "pine_bolete", "bronze_bolete", "summer_bolete", "bay_bolete"]
-    assert species_registry.get_composites("USE")["boletus"] == ["mushroom", "eastern_king", "rocky_king", "bay_bolete"]
+    assert species_registry.get_composites("USE")["boletus"] == ["mushroom", "eastern_king", "rocky_king"]
     covers = species_registry.get_land_cover_mapping("SE")
     assert set(covers["mushroom"]) | set(covers["pine_bolete"]) <= set(covers["boletus"])
