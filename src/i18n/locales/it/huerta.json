@@ -577,6 +577,10 @@
       "ready": "Da raccogliere: {{crops}}",
       "growing": "In crescita: {{crops}}",
       "empty": "Niente nella terra"
+    },
+    "tab": {
+      "week": "Questa settimana",
+      "garden": "Orto"
     }
   },
   "year": {
@@ -640,7 +644,8 @@
     "cancel": "Annulla",
     "delete": "Elimina questo orto",
     "deleteText": "Anche il suo piano viene eliminato, su tutti i dispositivi.",
-    "offline": "Impossibile raggiungere Funges. Riprova quando sei online."
+    "offline": "Impossibile raggiungere Funges. Riprova quando sei online.",
+    "numbered": "Orto {{n}}"
   },
   "guide": {
     "title": "Per iniziare",
@@ -659,7 +664,8 @@
     "sow": {
       "title": "Semina e spunta",
       "text": "La lista di questa settimana dice cosa seminare, dove e come. Spunta ogni voce quando è nella terra, e Huerta la segue da lì."
-    }
+    },
+    "step": "Passo {{n}} di 3"
   },
   "views": {
     "all": "Tutto",

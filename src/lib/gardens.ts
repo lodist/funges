@@ -95,6 +95,16 @@ export function gardens(): StoredGarden[] {
   return list;
 }
 
+/** A garden's name, or its place in the list until it has one ("Garden 2"),
+ *  in the reader's language through `t`. */
+export const gardenLabel = (
+  t: (key: string, options?: Record<string, unknown>) => string,
+  list: StoredGarden[],
+  garden: StoredGarden
+) =>
+  garden.name ||
+  t('gardens.numbered', { n: list.findIndex(g => g.id === garden.id) + 1 });
+
 export function currentGarden(): StoredGarden | null {
   const all = gardens();
   const id = read<string>(CURRENT);

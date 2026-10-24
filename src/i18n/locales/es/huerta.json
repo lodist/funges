@@ -577,6 +577,10 @@
       "ready": "Para cosechar: {{crops}}",
       "growing": "Creciendo: {{crops}}",
       "empty": "Nada en la tierra"
+    },
+    "tab": {
+      "week": "Esta semana",
+      "garden": "Huerto"
     }
   },
   "year": {
@@ -640,7 +644,8 @@
     "cancel": "Cancelar",
     "delete": "Eliminar este huerto",
     "deleteText": "Su plan también se elimina, en todos los dispositivos.",
-    "offline": "No se ha podido conectar con Funges. Inténtalo de nuevo cuando tengas conexión."
+    "offline": "No se ha podido conectar con Funges. Inténtalo de nuevo cuando tengas conexión.",
+    "numbered": "Huerto {{n}}"
   },
   "guide": {
     "title": "Primeros pasos",
@@ -659,7 +664,8 @@
     "sow": {
       "title": "Siembra y márcalo",
       "text": "La lista de esta semana dice qué sembrar, dónde y cómo. Marca cada tarea cuando esté en la tierra, y Huerta la sigue desde ahí."
-    }
+    },
+    "step": "Paso {{n}} de 3"
   },
   "views": {
     "all": "Todo",

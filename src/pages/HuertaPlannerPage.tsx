@@ -174,6 +174,10 @@ export default function HuertaPlannerPage() {
   // The timeline: how many weeks ahead the drawing shows (0: today).
   const [weeks, setWeeks] = useState(0);
   const later = useDeferredValue(weeks);
+  // On a phone the page is two views, this week's jobs or the garden, not one
+  // long scroll; unset until chosen (the garden first while the first plan
+  // waits to be kept).
+  const [tab, setTab] = useState<'week' | 'garden' | null>(null);
   const year = useHuertaYear();
   // This week's statuses for the garden's own soil (lib/soil).
   const soil = gardenSoil(plan?.garden, year?.soil);
@@ -303,10 +307,14 @@ export default function HuertaPlannerPage() {
   const show = (ids: number[]) => {
     setSel(ids);
     setPatch(null);
-    modelRef.current?.scrollIntoView({
-      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-      block: 'start',
-    });
+    setTab('garden');
+    // After the garden view is drawn, on a phone.
+    requestAnimationFrame(() =>
+      modelRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+        block: 'start',
+      })
+    );
   };
   const name = (id: string) => t(`crops.${id}`);
   // A planted crop's stage, from the warmth it has had at the place since.
@@ -353,6 +361,13 @@ export default function HuertaPlannerPage() {
       .map((_, i) => i)
       .filter(i => notes(plan.sections, i, north).some(n => n.bad === bad));
   const allPlanted = chosen.every(i => plan.sections[i].planted);
+  const tabs = isMobile && !sample;
+  const view = tabs
+    ? (tab ??
+      (plan.done?.[KEPT] || plan.sections.some(x => x.planted)
+        ? 'week'
+        : 'garden'))
+    : null;
   // The timeline's day: each section's stage then, and the drawing that day.
   const temps = year?.temps;
   const stages =
@@ -433,7 +448,18 @@ export default function HuertaPlannerPage() {
               onKeep={() => tick(KEPT)}
             />
           )}
-          {sample ? null : (
+          {tabs ? (
+            <CategoryChips
+              chips={(['week', 'garden'] as const).map(value => ({
+                value,
+                label: t(`planner.tab.${value}`),
+              }))}
+              value={view!}
+              onChange={value => setTab(value as 'week' | 'garden')}
+              className='justify-start'
+            />
+          ) : null}
+          {sample || view === 'garden' ? null : (
             <GardenThisWeek
               plan={plan}
               advice={placeAdvice}
@@ -460,548 +486,561 @@ export default function HuertaPlannerPage() {
           )}
         </div>
 
-        <section className='overflow-hidden rounded-card bg-card elevation-raised'>
-          <div className='flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-border p-3 max-sm:text-sm sm:gap-x-4 sm:gap-y-3 sm:p-4'>
-            {/* On a phone the setup folds into one line that says what it is,
+        {view === 'week' ? null : (
+          <section className='overflow-hidden rounded-card bg-card elevation-raised'>
+            <div className='flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-border p-3 max-sm:text-sm sm:gap-x-4 sm:gap-y-3 sm:p-4'>
+              {/* On a phone the setup folds into one line that says what it is,
                 so the garden comes first. */}
-            {isMobile ? (
-              <Button
-                variant='ghost'
-                aria-expanded={setupOpen}
-                onClick={() => setSetupOpen(open => !open)}
-                className={cn(chip(setupOpen), 'max-w-full')}
-              >
-                <SlidersHorizontal className='size-4' />
-                <span className='truncate'>
-                  {t('planner.setup', {
-                    width: plan.garden.width,
-                    length: plan.garden.length,
-                    ground: t(
-                      `planner.ground.${plan.garden.ground ?? 'raised'}`
-                    ),
-                  })}
-                </span>
-                <ChevronDown
-                  className={cn(
-                    'size-4 transition-transform duration-base',
-                    setupOpen && 'rotate-180'
-                  )}
-                />
-              </Button>
-            ) : null}
-            {!isMobile || setupOpen ? (
-              <>
-                {(['width', 'length'] as const).map(key => (
-                  <label
-                    key={key}
-                    className='flex items-center gap-2 text-sm text-muted-foreground'
-                  >
-                    {t(`planner.${key}`)}
-                    <Input
-                      id={`planner-${key}`}
-                      type='number'
-                      min={MIN_SIDE}
-                      max={MAX_SIDE}
-                      step={0.5}
-                      defaultValue={plan.garden[key]}
-                      key={`${key}-${plan.garden[key]}`}
-                      className='h-9 w-18 max-sm:text-sm sm:w-20'
-                      onBlur={e => {
-                        const v = Math.min(
-                          MAX_SIDE,
-                          Math.max(
-                            MIN_SIDE,
-                            Number(e.target.value) || plan.garden[key]
-                          )
-                        );
-                        if (v !== plan.garden[key])
-                          resize({ ...plan.garden, [key]: v });
-                      }}
-                    />
-                    {t('planner.metres')}
-                  </label>
-                ))}
-                <div
-                  className='flex gap-2'
-                  role='group'
-                  aria-label={t('planner.shapeLabel')}
+              {isMobile ? (
+                <Button
+                  variant='ghost'
+                  aria-expanded={setupOpen}
+                  onClick={() => setSetupOpen(open => !open)}
+                  className={cn(chip(setupOpen), 'max-w-full')}
                 >
-                  {(['rect', 'L'] as const).map(shape => (
-                    <Button
-                      key={shape}
-                      variant='ghost'
-                      aria-pressed={plan.garden.shape === shape}
-                      className={chip(plan.garden.shape === shape)}
-                      onClick={() => resize({ ...plan.garden, shape })}
-                    >
-                      {t(`planner.shape.${shape}`)}
-                    </Button>
-                  ))}
-                </div>
-                <Select
-                  value={plan.garden.ground ?? 'raised'}
-                  onValueChange={v =>
-                    resize({ ...plan.garden, ground: v as Ground })
-                  }
-                >
-                  <SelectTrigger
-                    aria-label={t('planner.groundLabel')}
-                    className='h-9 w-auto max-sm:text-sm'
-                  >
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {GROUNDS.map(g => (
-                      <SelectItem key={g} value={g}>
-                        {t(`planner.ground.${g}`)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <div
-                  className='flex items-center gap-2'
-                  role='group'
-                  aria-label={t('planner.runLabel')}
-                >
-                  <span className='text-sm text-muted-foreground'>
-                    {t('planner.runLabel')}
+                  <SlidersHorizontal className='size-4' />
+                  <span className='truncate'>
+                    {t('planner.setup', {
+                      width: plan.garden.width,
+                      length: plan.garden.length,
+                      ground: t(
+                        `planner.ground.${plan.garden.ground ?? 'raised'}`
+                      ),
+                    })}
                   </span>
-                  {([false, true] as const).map(across => (
-                    <Button
-                      key={String(across)}
-                      variant='ghost'
-                      aria-pressed={Boolean(plan.garden.across) === across}
-                      className={chip(Boolean(plan.garden.across) === across)}
-                      onClick={() => resize({ ...plan.garden, across })}
+                  <ChevronDown
+                    className={cn(
+                      'size-4 transition-transform duration-base',
+                      setupOpen && 'rotate-180'
+                    )}
+                  />
+                </Button>
+              ) : null}
+              {!isMobile || setupOpen ? (
+                <>
+                  {(['width', 'length'] as const).map(key => (
+                    <label
+                      key={key}
+                      className='flex items-center gap-2 text-sm text-muted-foreground'
                     >
-                      {t(`planner.run.${across ? 'across' : 'along'}`)}
-                    </Button>
+                      {t(`planner.${key}`)}
+                      <Input
+                        id={`planner-${key}`}
+                        type='number'
+                        min={MIN_SIDE}
+                        max={MAX_SIDE}
+                        step={0.5}
+                        defaultValue={plan.garden[key]}
+                        key={`${key}-${plan.garden[key]}`}
+                        className='h-9 w-18 max-sm:text-sm sm:w-20'
+                        onBlur={e => {
+                          const v = Math.min(
+                            MAX_SIDE,
+                            Math.max(
+                              MIN_SIDE,
+                              Number(e.target.value) || plan.garden[key]
+                            )
+                          );
+                          if (v !== plan.garden[key])
+                            resize({ ...plan.garden, [key]: v });
+                        }}
+                      />
+                      {t('planner.metres')}
+                    </label>
                   ))}
-                </div>
-                {(
-                  [
-                    ['soil', TEXTURES, soil.texture],
-                    ['acidity', ACIDITIES, soil.acidity],
-                  ] as const
-                ).map(([key, values, value]) => (
+                  <div
+                    className='flex gap-2'
+                    role='group'
+                    aria-label={t('planner.shapeLabel')}
+                  >
+                    {(['rect', 'L'] as const).map(shape => (
+                      <Button
+                        key={shape}
+                        variant='ghost'
+                        aria-pressed={plan.garden.shape === shape}
+                        className={chip(plan.garden.shape === shape)}
+                        onClick={() => resize({ ...plan.garden, shape })}
+                      >
+                        {t(`planner.shape.${shape}`)}
+                      </Button>
+                    ))}
+                  </div>
                   <Select
-                    key={key}
-                    value={value}
+                    value={plan.garden.ground ?? 'raised'}
                     onValueChange={v =>
-                      update({ ...plan, garden: { ...plan.garden, [key]: v } })
+                      resize({ ...plan.garden, ground: v as Ground })
                     }
                   >
                     <SelectTrigger
-                      aria-label={t(`planner.${key}Label`)}
+                      aria-label={t('planner.groundLabel')}
                       className='h-9 w-auto max-sm:text-sm'
                     >
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {values.map(v => (
-                        <SelectItem key={v} value={v}>
-                          {t(`planner.${key}.${v}`)}
+                      {GROUNDS.map(g => (
+                        <SelectItem key={g} value={g}>
+                          {t(`planner.ground.${g}`)}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                ))}
-                {year?.soil ? (
-                  <p className='basis-full text-xs text-muted-foreground'>
-                    {t('planner.soilHint', {
-                      place: year.place,
-                      texture: t(`planner.soilWord.${textureOf(year.soil)}`),
-                      ph: year.soil.ph.toLocaleString(i18n.language),
-                    })}
-                  </p>
-                ) : null}
-              </>
-            ) : null}
-            <Select
-              value={String(forMonths)}
-              onValueChange={v => setForMonths(Number(v))}
-              disabled={!year}
-            >
-              <SelectTrigger
-                aria-label={t('planner.forLabel')}
-                className='h-9 w-auto max-sm:text-sm'
-              >
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='0'>{t('planner.thisWeek')}</SelectItem>
-                {Array.from({ length: 12 }, (_, k) => k + 1).map(k => {
-                  const first = monthAhead(today(), k);
-                  const label = monthName(
-                    first,
-                    first.slice(0, 4) !== today().slice(0, 4)
-                  );
-                  return (
-                    <SelectItem key={k} value={String(k)}>
-                      {label.charAt(0).toLocaleUpperCase(i18n.language) +
-                        label.slice(1)}
-                    </SelectItem>
-                  );
-                })}
-              </SelectContent>
-            </Select>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button className='max-sm:px-4 max-sm:text-sm'>
-                  {t('planner.auto')}
-                  <ChevronDown className='size-4' />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align='start'>
-                <DropdownMenuLabel>{t('planner.styleLabel')}</DropdownMenuLabel>
-                {STYLES.map(style => (
-                  <DropdownMenuItem
-                    key={style}
-                    onSelect={() =>
-                      update({
-                        ...plan,
-                        garden: { ...plan.garden, style },
-                        // Everything not planted, or only the sections chosen.
-                        sections: autoPlan(plan.sections, planStatus, {
-                          north: plan.garden.north,
-                          style,
-                          axis: axisOf(plan.garden),
-                          only:
-                            patch === null && chosen.length
-                              ? chosen
-                              : undefined,
-                          sow: forMonths ? target : today(),
-                        }),
-                      })
-                    }
+                  <div
+                    className='flex items-center gap-2'
+                    role='group'
+                    aria-label={t('planner.runLabel')}
                   >
-                    <Check
-                      className={cn(
-                        'size-4',
-                        (plan.garden.style ?? 'mixed') === style
-                          ? 'text-primary-text'
-                          : 'invisible'
-                      )}
-                    />
-                    {t(`planner.style.${style}`)}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button
-              variant='outline'
-              onClick={undo}
-              disabled={!past.length}
-              className='max-sm:px-4 max-sm:text-sm'
-              aria-label={t('planner.undo')}
-            >
-              <Undo2 className='size-4' />
-              <span className='max-sm:sr-only'>{t('planner.undo')}</span>
-            </Button>
-          </div>
-
-          <div className='grid lg:grid-cols-[minmax(0,1fr)_22rem]'>
-            <div ref={modelRef} className='min-w-0 bg-background/40'>
-              {/* Every bed deleted: still the ground, to put one back. */}
-              {plan.sections.length > 0 || plan.bare?.length ? (
-                <GardenModel
-                  garden={plan.garden}
-                  sections={drawn}
-                  selected={patch === null ? chosen : []}
-                  onSelect={pick}
-                  onDropCrop={(i, crop) =>
-                    place(chosen.includes(i) ? chosen : [i], crop)
-                  }
-                  onClear={() => {
-                    setSel([]);
-                    setPatch(null);
-                  }}
-                  stage={
-                    stages ? x => drawnAs(stages[drawn.indexOf(x)]) : stageOf
-                  }
-                  fresh={fresh}
-                  bare={plan.bare}
-                  onBare={setPatch}
-                  onTurnNorth={delta =>
-                    update({
-                      ...plan,
-                      garden: {
-                        ...plan.garden,
-                        north:
-                          ((((plan.garden.north ?? 0) + delta) % 360) + 360) %
-                          360,
-                      },
-                    })
-                  }
-                  label={
-                    s?.crop
-                      ? { name: name(s.crop), count: count(s) }
-                      : undefined
-                  }
-                  title={t('planner.model')}
-                />
-              ) : (
-                <p className='p-8 text-muted-foreground'>
-                  {t('planner.noRoom')}
-                </p>
-              )}
-              {temps ? (
-                <Timeline
-                  weeks={weeks}
-                  onWeeks={setWeeks}
-                  line={
+                    <span className='text-sm text-muted-foreground'>
+                      {t('planner.runLabel')}
+                    </span>
+                    {([false, true] as const).map(across => (
+                      <Button
+                        key={String(across)}
+                        variant='ghost'
+                        aria-pressed={Boolean(plan.garden.across) === across}
+                        className={chip(Boolean(plan.garden.across) === across)}
+                        onClick={() => resize({ ...plan.garden, across })}
+                      >
+                        {t(`planner.run.${across ? 'across' : 'along'}`)}
+                      </Button>
+                    ))}
+                  </div>
+                  {(
                     [
-                      readyThen &&
-                        t('planner.timeline.ready', { crops: readyThen }),
-                      growingThen &&
-                        t('planner.timeline.growing', { crops: growingThen }),
-                    ]
-                      .filter(Boolean)
-                      .join(' · ') || t('planner.timeline.empty')
-                  }
-                />
-              ) : null}
-              <Palette
-                goes={id => planStatus(id) === 'now'}
-                label={how =>
-                  forMonths
-                    ? t(how === 'sow' ? 'planner.sowIn' : 'planner.plantIn', {
-                        month: monthName(target),
-                      })
-                    : t(`sheet.${how}Now`)
-                }
-                count={patch === null ? chosen.length : 0}
-                onPick={crop => place(chosen, crop)}
-                onDrop={(i, crop) =>
-                  place(chosen.includes(i) ? chosen : [i], crop)
-                }
-              />
-              <div className='flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-border px-4 py-2 text-sm text-muted-foreground'>
-                <span>
-                  {t(open ? 'planner.strips' : 'planner.beds', { count: beds })}{' '}
-                  · {t('planner.plants', { count: plants })}
-                </span>
-                <Button
-                  variant='link'
-                  className='h-auto p-0 text-muted-foreground'
-                  title={t('planner.goodHint')}
-                  disabled={!totals.good}
-                  onClick={() => setSel(pairs(false))}
-                >
-                  {t('planner.goodPairs', { count: totals.good })}
-                </Button>
-                <Button
-                  variant='link'
-                  className={cn(
-                    'h-auto p-0',
-                    totals.bad.length
-                      ? 'text-destructive-text'
-                      : 'text-muted-foreground'
-                  )}
-                  title={t('planner.badHint')}
-                  disabled={!totals.bad.length}
-                  onClick={() => setSel(pairs(true))}
-                >
-                  {totals.bad.length
-                    ? t('planner.badPairs', { count: totals.bad.length })
-                    : t('planner.noBadPairs')}
-                </Button>
-                <span>{t('planner.faded')}</span>
-              </div>
-            </div>
-
-            {
-              <aside className='flex flex-col gap-5 border-t border-border p-4 lg:border-t-0 lg:border-l'>
-                {patch === null && chosen.length === 0 ? (
-                  <p className='text-sm text-muted-foreground'>
-                    {t('planner.noneSelected')}
-                  </p>
-                ) : null}
-                {patch === null && chosen.length > 1 ? (
-                  <div className='flex flex-col gap-3'>
-                    <h2 className='type-micro text-muted-foreground'>
-                      {t('planner.selected', { count: chosen.length })}
-                    </h2>
-                    <ul className='flex flex-col gap-1 text-sm'>
-                      {chosen.map(i => (
-                        <li
-                          key={`${plan.sections[i].x0}-${plan.sections[i].y0}`}
-                          className='flex justify-between gap-3'
-                        >
-                          <span className='text-foreground'>
-                            {plan.sections[i].crop
-                              ? name(plan.sections[i].crop!)
-                              : '–'}
-                          </span>
-                          <span className='text-right text-muted-foreground'>
-                            {placeName(t, plan.sections[i], plan.garden)}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className='text-sm text-muted-foreground'>
-                      {t('planner.palette.toSelected', {
-                        count: chosen.length,
+                      ['soil', TEXTURES, soil.texture],
+                      ['acidity', ACIDITIES, soil.acidity],
+                    ] as const
+                  ).map(([key, values, value]) => (
+                    <Select
+                      key={key}
+                      value={value}
+                      onValueChange={v =>
+                        update({
+                          ...plan,
+                          garden: { ...plan.garden, [key]: v },
+                        })
+                      }
+                    >
+                      <SelectTrigger
+                        aria-label={t(`planner.${key}Label`)}
+                        className='h-9 w-auto max-sm:text-sm'
+                      >
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {values.map(v => (
+                          <SelectItem key={v} value={v}>
+                            {t(`planner.${key}.${v}`)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  ))}
+                  {year?.soil ? (
+                    <p className='basis-full text-xs text-muted-foreground'>
+                      {t('planner.soilHint', {
+                        place: year.place,
+                        texture: t(`planner.soilWord.${textureOf(year.soil)}`),
+                        ph: year.soil.ph.toLocaleString(i18n.language),
                       })}
                     </p>
-                    <div className='flex flex-wrap gap-2'>
-                      {/* All in the ground already: the way back instead. */}
-                      {allPlanted ? (
-                        <Button
-                          variant='outline'
-                          onClick={() => plantOn(chosen, undefined)}
-                        >
-                          {t('planner.notPlanted')}
-                        </Button>
-                      ) : (
-                        <Button onClick={() => plantOn(chosen, today())}>
-                          {t(goesIn(chosen.map(i => plan.sections[i].crop)))}
-                        </Button>
-                      )}
-                      <Button variant='ghost' onClick={() => setSel([])}>
-                        {t('planner.clearSelection')}
-                      </Button>
-                    </div>
-                  </div>
-                ) : null}
-                {patch !== null ? (
-                  <div className='flex flex-col gap-3'>
-                    <h2 className='type-micro text-muted-foreground'>
-                      {t('planner.bare')}
-                    </h2>
-                    <p className='text-sm text-muted-foreground'>
-                      {t('planner.bareText')}
-                    </p>
-                    <Button
-                      className='self-start'
-                      onClick={() => {
-                        const first = plan.sections.length;
-                        const back = restoreBed(plan, patch);
+                  ) : null}
+                </>
+              ) : null}
+              <Select
+                value={String(forMonths)}
+                onValueChange={v => setForMonths(Number(v))}
+                disabled={!year}
+              >
+                <SelectTrigger
+                  aria-label={t('planner.forLabel')}
+                  className='h-9 w-auto max-sm:text-sm'
+                >
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value='0'>{t('planner.thisWeek')}</SelectItem>
+                  {Array.from({ length: 12 }, (_, k) => k + 1).map(k => {
+                    const first = monthAhead(today(), k);
+                    const label = monthName(
+                      first,
+                      first.slice(0, 4) !== today().slice(0, 4)
+                    );
+                    return (
+                      <SelectItem key={k} value={String(k)}>
+                        {label.charAt(0).toLocaleUpperCase(i18n.language) +
+                          label.slice(1)}
+                      </SelectItem>
+                    );
+                  })}
+                </SelectContent>
+              </Select>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button className='max-sm:px-4 max-sm:text-sm'>
+                    {t('planner.auto')}
+                    <ChevronDown className='size-4' />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align='start'>
+                  <DropdownMenuLabel>
+                    {t('planner.styleLabel')}
+                  </DropdownMenuLabel>
+                  {STYLES.map(style => (
+                    <DropdownMenuItem
+                      key={style}
+                      onSelect={() =>
                         update({
-                          ...back,
-                          sections: autoPlan(back.sections, status, {
-                            north,
-                            keepChosen: true,
-                            style: plan.garden.style,
-                            axis,
-                            sow: today(),
+                          ...plan,
+                          garden: { ...plan.garden, style },
+                          // Everything not planted, or only the sections chosen.
+                          sections: autoPlan(plan.sections, planStatus, {
+                            north: plan.garden.north,
+                            style,
+                            axis: axisOf(plan.garden),
+                            only:
+                              patch === null && chosen.length
+                                ? chosen
+                                : undefined,
+                            sow: forMonths ? target : today(),
                           }),
-                        });
-                        only(first);
-                      }}
+                        })
+                      }
                     >
-                      {t('planner.putBed')}
-                    </Button>
-                  </div>
-                ) : null}
-                {s ? (
-                  <SectionPanel
-                    section={s}
-                    index={plan.sections.indexOf(s)}
-                    sections={plan.sections}
+                      <Check
+                        className={cn(
+                          'size-4',
+                          (plan.garden.style ?? 'mixed') === style
+                            ? 'text-primary-text'
+                            : 'invisible'
+                        )}
+                      />
+                      {t(`planner.style.${style}`)}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button
+                variant='outline'
+                onClick={undo}
+                disabled={!past.length}
+                className='max-sm:px-4 max-sm:text-sm'
+                aria-label={t('planner.undo')}
+              >
+                <Undo2 className='size-4' />
+                <span className='max-sm:sr-only'>{t('planner.undo')}</span>
+              </Button>
+            </div>
+
+            <div className='grid lg:grid-cols-[minmax(0,1fr)_22rem]'>
+              <div ref={modelRef} className='min-w-0 bg-background/40'>
+                {/* Every bed deleted: still the ground, to put one back. */}
+                {plan.sections.length > 0 || plan.bare?.length ? (
+                  <GardenModel
                     garden={plan.garden}
-                    advice={advice}
-                    harvest={s.crop ? year?.crops[s.crop]?.harvest : undefined}
-                    temps={temps}
-                    need={s.crop ? needs[s.crop] : undefined}
-                    count={count}
-                    onSwap={crop => place(chosen, crop)}
-                    onPlanted={planted => plantOn(chosen, planted)}
-                    onDay={day =>
-                      edit(
-                        chosen.filter(i => plan.sections[i]?.crop),
-                        x => ({ ...x, planted: day })
-                      )
+                    sections={drawn}
+                    selected={patch === null ? chosen : []}
+                    onSelect={pick}
+                    onDropCrop={(i, crop) =>
+                      place(chosen.includes(i) ? chosen : [i], crop)
                     }
-                    onSplit={() =>
+                    onClear={() => {
+                      setSel([]);
+                      setPatch(null);
+                    }}
+                    stage={
+                      stages ? x => drawnAs(stages[drawn.indexOf(x)]) : stageOf
+                    }
+                    fresh={fresh}
+                    bare={plan.bare}
+                    onBare={setPatch}
+                    onTurnNorth={delta =>
                       update({
                         ...plan,
-                        sections: split(
-                          plan.sections,
-                          plan.sections.indexOf(s),
-                          axis
-                        ),
+                        garden: {
+                          ...plan.garden,
+                          north:
+                            ((((plan.garden.north ?? 0) + delta) % 360) + 360) %
+                            360,
+                        },
                       })
                     }
-                    onMerge={dir => {
-                      const i = plan.sections.indexOf(s);
-                      const next = merge(plan.sections, i, dir, axis);
-                      update({ ...plan, sections: next });
-                      only(
-                        next.findIndex(
-                          x =>
-                            x.bed === s.bed &&
-                            x.part === Math.max(0, s.part + Math.min(0, dir))
-                        )
-                      );
-                    }}
-                    onLength={delta =>
-                      update({
-                        ...plan,
-                        sections: lengthen(
-                          plan.sections,
-                          plan.sections.indexOf(s),
-                          delta,
-                          axis
-                        ),
-                      })
+                    label={
+                      s?.crop
+                        ? { name: name(s.crop), count: count(s) }
+                        : undefined
                     }
-                    onDeleteBed={() => {
-                      update(removeBed(plan, s.bed));
-                      only(0);
-                    }}
+                    title={t('planner.model')}
+                  />
+                ) : (
+                  <p className='p-8 text-muted-foreground'>
+                    {t('planner.noRoom')}
+                  </p>
+                )}
+                {temps ? (
+                  <Timeline
+                    weeks={weeks}
+                    onWeeks={setWeeks}
+                    line={
+                      [
+                        readyThen &&
+                          t('planner.timeline.ready', { crops: readyThen }),
+                        growingThen &&
+                          t('planner.timeline.growing', { crops: growingThen }),
+                      ]
+                        .filter(Boolean)
+                        .join(' · ') || t('planner.timeline.empty')
+                    }
                   />
                 ) : null}
-                <div>
-                  <h2 className='type-micro mb-2 text-muted-foreground'>
-                    {t('planner.allBeds')}
-                  </h2>
-                  <ul className='flex flex-col gap-1'>
-                    {plan.sections.map((x, i) =>
-                      x.crop ? (
-                        <li key={`${x.bed}-${x.x0}-${x.y0}`}>
-                          <button
-                            type='button'
-                            aria-current={patch === null && chosen.includes(i)}
-                            onClick={() => pick(i)}
-                            className='focus-ring grid w-full grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-1.5 text-left text-sm hover:bg-muted aria-[current=true]:bg-muted'
-                          >
-                            <img
-                              src={photo(x.crop)}
-                              alt=''
-                              className='size-8 rounded-md object-cover'
-                            />
-                            <span className='min-w-0'>
-                              <span className='block truncate font-medium text-foreground'>
-                                {name(x.crop)}
-                                {notes(plan.sections, i, north).some(
-                                  n => n.bad
-                                ) ? (
-                                  <span className='ml-1 font-bold text-destructive-text'>
-                                    !
-                                  </span>
-                                ) : null}
-                              </span>
-                              <span className='block text-xs text-muted-foreground'>
-                                {placeName(t, x, plan.garden)}
-                              </span>
-                            </span>
-                            <span className='flex items-center gap-1 text-xs text-muted-foreground tabular-nums'>
-                              {x.planted ? (
-                                <Check className='size-3.5 text-primary-text' />
-                              ) : null}
-                              {count(x)}
-                            </span>
-                          </button>
-                        </li>
-                      ) : null
+                <Palette
+                  goes={id => planStatus(id) === 'now'}
+                  label={how =>
+                    forMonths
+                      ? t(how === 'sow' ? 'planner.sowIn' : 'planner.plantIn', {
+                          month: monthName(target),
+                        })
+                      : t(`sheet.${how}Now`)
+                  }
+                  count={patch === null ? chosen.length : 0}
+                  onPick={crop => place(chosen, crop)}
+                  onDrop={(i, crop) =>
+                    place(chosen.includes(i) ? chosen : [i], crop)
+                  }
+                />
+                <div className='flex flex-wrap items-center gap-x-5 gap-y-1 border-t border-border px-4 py-2 text-sm text-muted-foreground'>
+                  <span>
+                    {t(open ? 'planner.strips' : 'planner.beds', {
+                      count: beds,
+                    })}{' '}
+                    · {t('planner.plants', { count: plants })}
+                  </span>
+                  <Button
+                    variant='link'
+                    className='h-auto p-0 text-muted-foreground'
+                    title={t('planner.goodHint')}
+                    disabled={!totals.good}
+                    onClick={() => setSel(pairs(false))}
+                  >
+                    {t('planner.goodPairs', { count: totals.good })}
+                  </Button>
+                  <Button
+                    variant='link'
+                    className={cn(
+                      'h-auto p-0',
+                      totals.bad.length
+                        ? 'text-destructive-text'
+                        : 'text-muted-foreground'
                     )}
-                  </ul>
+                    title={t('planner.badHint')}
+                    disabled={!totals.bad.length}
+                    onClick={() => setSel(pairs(true))}
+                  >
+                    {totals.bad.length
+                      ? t('planner.badPairs', { count: totals.bad.length })
+                      : t('planner.noBadPairs')}
+                  </Button>
+                  <span>{t('planner.faded')}</span>
                 </div>
-              </aside>
-            }
-          </div>
-        </section>
+              </div>
+
+              {
+                <aside className='flex flex-col gap-5 border-t border-border p-4 lg:border-t-0 lg:border-l'>
+                  {patch === null && chosen.length === 0 ? (
+                    <p className='text-sm text-muted-foreground'>
+                      {t('planner.noneSelected')}
+                    </p>
+                  ) : null}
+                  {patch === null && chosen.length > 1 ? (
+                    <div className='flex flex-col gap-3'>
+                      <h2 className='type-micro text-muted-foreground'>
+                        {t('planner.selected', { count: chosen.length })}
+                      </h2>
+                      <ul className='flex flex-col gap-1 text-sm'>
+                        {chosen.map(i => (
+                          <li
+                            key={`${plan.sections[i].x0}-${plan.sections[i].y0}`}
+                            className='flex justify-between gap-3'
+                          >
+                            <span className='text-foreground'>
+                              {plan.sections[i].crop
+                                ? name(plan.sections[i].crop!)
+                                : '–'}
+                            </span>
+                            <span className='text-right text-muted-foreground'>
+                              {placeName(t, plan.sections[i], plan.garden)}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className='text-sm text-muted-foreground'>
+                        {t('planner.palette.toSelected', {
+                          count: chosen.length,
+                        })}
+                      </p>
+                      <div className='flex flex-wrap gap-2'>
+                        {/* All in the ground already: the way back instead. */}
+                        {allPlanted ? (
+                          <Button
+                            variant='outline'
+                            onClick={() => plantOn(chosen, undefined)}
+                          >
+                            {t('planner.notPlanted')}
+                          </Button>
+                        ) : (
+                          <Button onClick={() => plantOn(chosen, today())}>
+                            {t(goesIn(chosen.map(i => plan.sections[i].crop)))}
+                          </Button>
+                        )}
+                        <Button variant='ghost' onClick={() => setSel([])}>
+                          {t('planner.clearSelection')}
+                        </Button>
+                      </div>
+                    </div>
+                  ) : null}
+                  {patch !== null ? (
+                    <div className='flex flex-col gap-3'>
+                      <h2 className='type-micro text-muted-foreground'>
+                        {t('planner.bare')}
+                      </h2>
+                      <p className='text-sm text-muted-foreground'>
+                        {t('planner.bareText')}
+                      </p>
+                      <Button
+                        className='self-start'
+                        onClick={() => {
+                          const first = plan.sections.length;
+                          const back = restoreBed(plan, patch);
+                          update({
+                            ...back,
+                            sections: autoPlan(back.sections, status, {
+                              north,
+                              keepChosen: true,
+                              style: plan.garden.style,
+                              axis,
+                              sow: today(),
+                            }),
+                          });
+                          only(first);
+                        }}
+                      >
+                        {t('planner.putBed')}
+                      </Button>
+                    </div>
+                  ) : null}
+                  {s ? (
+                    <SectionPanel
+                      section={s}
+                      index={plan.sections.indexOf(s)}
+                      sections={plan.sections}
+                      garden={plan.garden}
+                      advice={advice}
+                      harvest={
+                        s.crop ? year?.crops[s.crop]?.harvest : undefined
+                      }
+                      temps={temps}
+                      need={s.crop ? needs[s.crop] : undefined}
+                      count={count}
+                      onSwap={crop => place(chosen, crop)}
+                      onPlanted={planted => plantOn(chosen, planted)}
+                      onDay={day =>
+                        edit(
+                          chosen.filter(i => plan.sections[i]?.crop),
+                          x => ({ ...x, planted: day })
+                        )
+                      }
+                      onSplit={() =>
+                        update({
+                          ...plan,
+                          sections: split(
+                            plan.sections,
+                            plan.sections.indexOf(s),
+                            axis
+                          ),
+                        })
+                      }
+                      onMerge={dir => {
+                        const i = plan.sections.indexOf(s);
+                        const next = merge(plan.sections, i, dir, axis);
+                        update({ ...plan, sections: next });
+                        only(
+                          next.findIndex(
+                            x =>
+                              x.bed === s.bed &&
+                              x.part === Math.max(0, s.part + Math.min(0, dir))
+                          )
+                        );
+                      }}
+                      onLength={delta =>
+                        update({
+                          ...plan,
+                          sections: lengthen(
+                            plan.sections,
+                            plan.sections.indexOf(s),
+                            delta,
+                            axis
+                          ),
+                        })
+                      }
+                      onDeleteBed={() => {
+                        update(removeBed(plan, s.bed));
+                        only(0);
+                      }}
+                    />
+                  ) : null}
+                  <div>
+                    <h2 className='type-micro mb-2 text-muted-foreground'>
+                      {t('planner.allBeds')}
+                    </h2>
+                    <ul className='flex flex-col gap-1'>
+                      {plan.sections.map((x, i) =>
+                        x.crop ? (
+                          <li key={`${x.bed}-${x.x0}-${x.y0}`}>
+                            <button
+                              type='button'
+                              aria-current={
+                                patch === null && chosen.includes(i)
+                              }
+                              onClick={() => pick(i)}
+                              className='focus-ring grid w-full grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-3 rounded-lg px-2 py-1.5 text-left text-sm hover:bg-muted aria-[current=true]:bg-muted'
+                            >
+                              <img
+                                src={photo(x.crop)}
+                                alt=''
+                                className='size-8 rounded-md object-cover'
+                              />
+                              <span className='min-w-0'>
+                                <span className='block truncate font-medium text-foreground'>
+                                  {name(x.crop)}
+                                  {notes(plan.sections, i, north).some(
+                                    n => n.bad
+                                  ) ? (
+                                    <span className='ml-1 font-bold text-destructive-text'>
+                                      !
+                                    </span>
+                                  ) : null}
+                                </span>
+                                <span className='block text-xs text-muted-foreground'>
+                                  {placeName(t, x, plan.garden)}
+                                </span>
+                              </span>
+                              <span className='flex items-center gap-1 text-xs text-muted-foreground tabular-nums'>
+                                {x.planted ? (
+                                  <Check className='size-3.5 text-primary-text' />
+                                ) : null}
+                                {count(x)}
+                              </span>
+                            </button>
+                          </li>
+                        ) : null
+                      )}
+                    </ul>
+                  </div>
+                </aside>
+              }
+            </div>
+          </section>
+        )}
         <p className='mt-4 text-sm text-muted-foreground'>
           {t('planner.footnote', {
             date: new Intl.DateTimeFormat(i18n.language, {
@@ -1119,7 +1158,14 @@ function Palette({
                 <span className='block truncate font-medium text-foreground'>
                   {t(`crops.${c.id}`)}
                 </span>
-                <span className='block truncate text-xs text-muted-foreground'>
+                <span
+                  className={cn(
+                    'block truncate text-xs',
+                    goes(c.id)
+                      ? 'font-medium text-primary-text'
+                      : 'text-muted-foreground'
+                  )}
+                >
                   {goes(c.id) ? label(c.how) : t('planner.later')}
                 </span>
               </span>
@@ -1401,6 +1447,8 @@ function SectionPanel({
   const { t, i18n } = useTranslation('huerta');
   const crop = s.crop ? CROP[s.crop] : null;
   const st = s.crop ? advice.crops[s.crop] : undefined;
+  // Planned for a later day: it waits for that, whatever this week says.
+  const later = !s.planted && s.sow && s.sow > today() ? s.sow : null;
   const f = fit(s, garden.ground === 'rows');
   const due = crop
     ? ready(st, need?.days ?? null, new Date(`${advice.day}T12:00:00`))
@@ -1409,9 +1457,11 @@ function SectionPanel({
     new Intl.DateTimeFormat(i18n.language, { month: 'long' }).format(
       new Date(2026, m, 1)
     );
+  // Put where it can't go in any more: no ready day to promise.
+  const gone = !s.planted && !later && (st === 'too_late' || st === 'not_here');
   // The day it is ready, from the warmth since its planted (or planned) day.
   const readyOn =
-    crop && !crop.note && temps && need?.days
+    crop && !crop.note && !gone && temps && need?.days
       ? readyDay(
           crop.id,
           need,
@@ -1452,16 +1502,33 @@ function SectionPanel({
               <p className='text-xs text-muted-foreground italic'>
                 {crop.scientific}
               </p>
-              <Badge
-                variant={st === 'now' ? 'default' : 'secondary'}
-                className='mt-1.5'
-              >
-                {st === 'now'
-                  ? t(`sheet.${crop.how}Now`)
-                  : st
-                    ? t(`status.${st}`)
-                    : '–'}
-              </Badge>
+              {s.planted ? null : (
+                // Its planned month when it goes in later; a red outline
+                // when it was put where it can't go in now.
+                <Badge
+                  variant={later || st !== 'now' ? 'outline' : 'default'}
+                  className={cn(
+                    'mt-1.5',
+                    later && 'font-semibold text-primary-text',
+                    !later &&
+                      st !== 'now' &&
+                      'border-destructive-text text-destructive-text'
+                  )}
+                >
+                  {later
+                    ? t(
+                        crop.how === 'sow'
+                          ? 'planner.sowIn'
+                          : 'planner.plantIn',
+                        { month: month(Number(later.slice(5, 7)) - 1) }
+                      )
+                    : st === 'now'
+                      ? t(`sheet.${crop.how}Now`)
+                      : st
+                        ? t(`status.${st}`)
+                        : '–'}
+                </Badge>
+              )}
             </div>
           </div>
           <dl className='grid grid-cols-[6rem_minmax(0,1fr)] gap-x-3 gap-y-2 text-sm'>
@@ -1482,24 +1549,28 @@ function SectionPanel({
             <dd className='text-foreground'>
               {crop.note
                 ? t(`sheet.ready.${crop.note}`)
-                : readyOn
-                  ? t('planner.readyOn', {
-                      date: new Intl.DateTimeFormat(i18n.language, {
-                        day: 'numeric',
-                        month: 'long',
-                      }).format(new Date(`${readyOn}T12:00:00`)),
-                    })
-                  : harvest
-                    ? t('planner.readyAround', {
-                        month: month(
-                          nextMonth(harvest, new Date().getMonth()) ?? 0
-                        ),
+                : gone
+                  ? '–'
+                  : readyOn
+                    ? t('planner.readyOn', {
+                        date: new Intl.DateTimeFormat(i18n.language, {
+                          day: 'numeric',
+                          month: 'long',
+                        }).format(new Date(`${readyOn}T12:00:00`)),
                       })
-                    : due?.key === 'readyNextSpring'
-                      ? t('planner.readyNextSpring')
-                      : due
-                        ? t('planner.readyAround', { month: month(due.month) })
-                        : '–'}
+                    : harvest
+                      ? t('planner.readyAround', {
+                          month: month(
+                            nextMonth(harvest, new Date().getMonth()) ?? 0
+                          ),
+                        })
+                      : due?.key === 'readyNextSpring'
+                        ? t('planner.readyNextSpring')
+                        : due
+                          ? t('planner.readyAround', {
+                              month: month(due.month),
+                            })
+                          : '–'}
             </dd>
             <dt className='text-muted-foreground'>{t('planner.nextYear')}</dt>
             <dd className='text-foreground'>
@@ -1532,18 +1603,9 @@ function SectionPanel({
               </Button>
             </div>
           ) : (
-            <div className='flex flex-wrap items-center gap-x-3 gap-y-2'>
-              <Button onClick={() => onPlanted(today())}>
-                {t(goesIn([crop.id]))}
-              </Button>
-              {s.sow && s.sow > today() ? (
-                <span className='text-sm text-muted-foreground'>
-                  {t(crop.how === 'sow' ? 'planner.sowIn' : 'planner.plantIn', {
-                    month: month(Number(s.sow.slice(5, 7)) - 1),
-                  })}
-                </span>
-              ) : null}
-            </div>
+            <Button onClick={() => onPlanted(today())} className='self-start'>
+              {t(goesIn([crop.id]))}
+            </Button>
           )}
           <div>
             <h3 className='type-micro mb-2 text-muted-foreground'>

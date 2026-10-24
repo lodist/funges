@@ -577,6 +577,10 @@
       "ready": "À récolter : {{crops}}",
       "growing": "En croissance : {{crops}}",
       "empty": "Rien en terre"
+    },
+    "tab": {
+      "week": "Cette semaine",
+      "garden": "Potager"
     }
   },
   "year": {
@@ -640,7 +644,8 @@
     "cancel": "Annuler",
     "delete": "Supprimer ce potager",
     "deleteText": "Son plan disparaît aussi, sur tous vos appareils.",
-    "offline": "Impossible de joindre Funges. Réessayez une fois en ligne."
+    "offline": "Impossible de joindre Funges. Réessayez une fois en ligne.",
+    "numbered": "Potager {{n}}"
   },
   "guide": {
     "title": "Pour commencer",
@@ -659,7 +664,8 @@
     "sow": {
       "title": "Semez et cochez",
       "text": "La liste de la semaine dit quoi semer, où et comment. Cochez chaque ligne une fois en terre, et Huerta suit la suite."
-    }
+    },
+    "step": "Étape {{n}} sur 3"
   },
   "views": {
     "all": "Tout",

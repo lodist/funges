@@ -577,6 +577,10 @@
       "ready": "Erntereif: {{crops}}",
       "growing": "Wächst: {{crops}}",
       "empty": "Nichts in der Erde"
+    },
+    "tab": {
+      "week": "Diese Woche",
+      "garden": "Garten"
     }
   },
   "year": {
@@ -640,7 +644,8 @@
     "cancel": "Abbrechen",
     "delete": "Diesen Garten löschen",
     "deleteText": "Sein Plan wird ebenfalls gelöscht, auf allen Geräten.",
-    "offline": "Funges ist nicht erreichbar. Versuche es noch einmal, wenn du online bist."
+    "offline": "Funges ist nicht erreichbar. Versuche es noch einmal, wenn du online bist.",
+    "numbered": "Garten {{n}}"
   },
   "guide": {
     "title": "Erste Schritte",
@@ -659,7 +664,8 @@
     "sow": {
       "title": "Säen und abhaken",
       "text": "Die Liste dieser Woche sagt, was du wo und wie säst. Hake jedes ab, sobald es in der Erde ist, und Huerta begleitet es von da an."
-    }
+    },
+    "step": "Schritt {{n}} von 3"
   },
   "views": {
     "all": "Alle",

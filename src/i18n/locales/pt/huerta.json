@@ -577,6 +577,10 @@
       "ready": "Para colher: {{crops}}",
       "growing": "Crescendo: {{crops}}",
       "empty": "Nada na terra"
+    },
+    "tab": {
+      "week": "Esta semana",
+      "garden": "Horta"
     }
   },
   "year": {
@@ -640,7 +644,8 @@
     "cancel": "Cancelar",
     "delete": "Excluir esta horta",
     "deleteText": "O plano dela também é excluído, em todos os dispositivos.",
-    "offline": "Não foi possível conectar ao Funges. Tente de novo quando estiver online."
+    "offline": "Não foi possível conectar ao Funges. Tente de novo quando estiver online.",
+    "numbered": "Horta {{n}}"
   },
   "guide": {
     "title": "Primeiros passos",
@@ -659,7 +664,8 @@
     "sow": {
       "title": "Semeie e marque",
       "text": "A lista desta semana diz o que semear, onde e como. Marque cada item quando estiver na terra, e o Huerta acompanha a partir daí."
-    }
+    },
+    "step": "Passo {{n}} de 3"
   },
   "views": {
     "all": "Tudo",
