@@ -17,6 +17,7 @@ from io import StringIO, BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 import faulthandler
+import functools
 import gc
 import gzip
 import hashlib
@@ -1175,29 +1176,95 @@ def _monthly_map(index, dates, maps, scale=None):
     return out
 
 
-def season_scale(maps, params):
+def season_scale(specie, maps, params):
     """One weather-part scale for the whole year where the species' season is local
     (attach_local_season), else None: each month's own scale, as before. A month's own scale is
     the hand-set part's level over the region's places at that time of year, so a late-season
     place read its autumn like the whole region's: England's October porcini like Sweden's. The
     fits compare a day only with the same place 2-3 weeks either side, so their index says
     nothing about one season against another; each month still ranks a day against its own index
-    quantiles (which also takes out a GBM's drift across the year), but all of them end on the
-    scale of the species' best month in the region (the region curve's peak), and the local
-    season carries the season. A blend of the season's months instead was wider than any one
-    month, which lost places that people find species at in poor weather (shaggy mane in North
-    Europe in October). A species on region curves keeps the months' level, which hides their
-    open winters (giant puffball husks in North Europe)."""
-    ratio = split_curve(params.get("season_curve"))[1]
-    if params.get("local_season") is None or not ratio or len(maps) != 12:
+    quantiles (which also takes out a GBM's drift across the year), but all of them end on one
+    scale, the same in every region (species_scales): a normal good day for porcini reads the
+    same in Washington as in Sweden. When it fruits is the local season's to say, where it is
+    common the place parts' (range prior, habitat). A blend of a season's months was wider than
+    any one month, which lost places that people find species at in poor weather (shaggy mane in
+    North Europe in October), so the scale is the best month's. A species on region curves keeps
+    the months' level, which hides their open winters (giant puffball husks in North Europe)."""
+    own = best_month_parts(maps, params.get("season_curve"))
+    if params.get("local_season") is None or own is None:
         return None
-    weights = np.array([ratio[m] for m in range(1, 13)], float)
-    weights = (weights == weights.max()).astype(float)
-    parts = [np.asarray(m["weather_part"], float) for m in maps]
+    shared = species_scales().get(specie)
+    return shared if shared is not None else pooled_quantiles(own)
+
+
+def best_month_parts(maps, season_curve):
+    """The hand-set part's quantiles in the species' best month in a region, its curve's peak
+    (each of the months on a tie), or None without a ratio."""
+    ratio = split_curve(season_curve)[1]
+    if not ratio or len(maps) != 12:
+        return None
+    peak = np.array([ratio[m] for m in range(1, 13)], float)
+    return [np.asarray(maps[i]["weather_part"], float) for i in np.flatnonzero(peak == peak.max())]
+
+
+def pooled_quantiles(parts):
+    """The quantiles of the parts' distributions pooled with equal weights, on their grid."""
     share = np.linspace(0.0, 1.0, len(parts[0]))
-    values = np.unique(np.concatenate([part for part, w in zip(parts, weights) if w > 0]))
-    cdf = sum(w * np.interp(values, part, share) for w, part in zip(weights, parts)) / weights.sum()
+    values = np.unique(np.concatenate(parts))
+    cdf = sum(np.interp(values, part, share) for part in parts) / len(parts)
     return np.interp(share, cdf, values)
+
+
+FRUITING_SCALE_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_scale.json"
+
+
+@functools.lru_cache(maxsize=None)
+def _scale_file():
+    try:
+        return json.loads(Path(r2.generated(FRUITING_SCALE_PATH)).read_text(encoding="utf-8"))
+    except Exception as error:
+        print(f"[warn] {FRUITING_SCALE_PATH.name} not loaded ({error}); each region keeps its own best month's scale")
+        return {}
+
+
+def species_scales():
+    """Each species' one weather-part scale, the same in every region (tools/build_fruiting_scale.py,
+    rebuilt when the fits or the season curves change): the hand-set part in its best month in every
+    region where it has a fitted part and a local season, the regions' median at each quantile. US
+    West's sits low (porcini in its best month 0.52, against 0.77 in North Europe), and on its own
+    scale Washington's porcini scored about a fifth below a European place with the same weather. {} when the file cannot be read: each
+    region then keeps its own best month's scale, and the nightly log names those species."""
+    return {specie: np.asarray(quantiles, float) for specie, quantiles in _scale_file().get("scales", {}).items()}
+
+
+def scale_inputs():
+    """The sha256 of each input fruiting_scale.json is built from, as they are now; the region's
+    season curves are hashed from the text the run read (season_curves_text)."""
+    return {name: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+            for name, path in (("fruiting_fit.json", FRUITING_FIT_PATH), ("fruiting_gbm.json", FRUITING_GBM_PATH),
+                               ("local_season.json", LOCAL_SEASON_PATH)) if Path(path).exists()}
+
+
+def season_curves_text_sha(text):
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def warn_if_scale_stale(region, curves_text):
+    """Nothing rebuilds fruiting_scale.json on its own, so a [warn] each night once an input it was built
+    from has changed: a fit file, local_season.json, or this region's season curves (each region checks
+    its own, which it reads anyway)."""
+    built = _scale_file().get("inputs")
+    if not built:
+        return
+    now = scale_inputs()
+    if curves_text is not None:
+        now[f"{region} season curves"] = season_curves_text_sha(curves_text)
+    recorded = {**{k: v for k, v in built.items() if k != "season_curves"},
+                **{f"{r} season curves": v for r, v in built.get("season_curves", {}).items()}}
+    changed = [name for name, sha in now.items() if name in recorded and recorded[name] != sha]
+    if changed:
+        print(f"[warn] {FRUITING_SCALE_PATH.name} predates {', '.join(changed)}: "
+              "rebuild it with python backend/tools/build_fruiting_scale.py and commit on_r2.json")
 
 
 def fruiting_gbm_features(df, model):
@@ -1250,7 +1317,7 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
         if model:
             params["fruiting"] = {"means": fit["means"], "sds": fit["sds"],
                                   "humidity_from_stored": fit["humidity_from_stored"][region], **model,
-                                  "scale": season_scale(model["map"], params)}
+                                  "scale": season_scale(specie, model["map"], params)}
             if fit.get("relative_to_normal"):
                 normals = era5_normals.load(region) if normals is None else normals
                 params["fruiting"]["normals"] = normals
@@ -1293,7 +1360,7 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
         params.pop("fruiting", None)
         params["fruiting_gbm"] = {
             "booster": booster, "map": model["regions"][region]["map"],
-            "scale": season_scale(model["regions"][region]["map"], params),
+            "scale": season_scale(specie, model["regions"][region]["map"], params),
             "corrections": spec["inputs_from_stored"][region],
             "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
             "normals": normals}
@@ -1603,6 +1670,7 @@ def _load_species_and_curves(config):
     species_params = get_species_params(config.region)
 
     _curves_path = get_required_env(config.season_curves_env)
+    _raw = None
     try:
         _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
         _curves = json.loads(_raw)
@@ -1665,6 +1733,11 @@ def _load_species_and_curves(config):
     _monthly = sorted(s for s, p in species_params.items()
                       if (m := p.get("fruiting_gbm") or p.get("fruiting")) and m.get("scale") is None)
     print(f"Fitted weather part on monthly scales (no local season) for: {', '.join(_monthly) or 'none'}")
+    _own = sorted(s for s, p in species_params.items()
+                  if (m := p.get("fruiting_gbm") or p.get("fruiting")) and m.get("scale") is not None
+                  and s not in species_scales())
+    print(f"Fitted weather part on its own region's scale (not in {FRUITING_SCALE_PATH.name}) for: {', '.join(_own) or 'none'}")
+    warn_if_scale_stale(config.region, _raw)
     _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
     print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)
