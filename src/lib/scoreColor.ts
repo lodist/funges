@@ -4,16 +4,20 @@
 // ramp matches them byte-for-byte). Any UI that shows a score as a color (the
 // FeatureInfoModal number, today) must reuse this instead of inventing a palette,
 // so it always reads as the same color the polygon on the map is painted.
+//
+// The stops step lightness (OKLab L) evenly, about 0.07 a point, so 50% already reads as a
+// strong orange and red starts at 60%. The earlier ramp spent 1-5 on near-identical creams
+// and peaches (5 was #fbae7e), gave 6 and 7 the same colour, and then dropped sharply at 9.
 export const SCORE_COLOR_RAMP: ReadonlyArray<readonly [number, string]> = [
   [0.5, '#ffffcc'],
   [1, '#ffffcc'],
-  [2, '#ffe4b5'],
-  [3, '#ffdab9'],
-  [4, '#fec99a'],
-  [5, '#fbae7e'],
-  [6, '#fa733d'],
-  [7, '#fb6d51'],
-  [8, '#fb4646'],
+  [2, '#ffddad'],
+  [3, '#fdbe8f'],
+  [4, '#fc9d6b'],
+  [5, '#fa7741'],
+  [6, '#f64343'],
+  [7, '#d93032'],
+  [8, '#bd1c20'],
   [9, '#a60310'],
   [10, '#800020'],
 ];

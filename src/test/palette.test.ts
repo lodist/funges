@@ -83,8 +83,9 @@ describe('safety-warning tokens', () => {
 
   it('uses a lighter ramp stop for warning text in the dark theme', () => {
     const dark = css.slice(css.indexOf('.dark {'));
-    expect(dark).toContain(`--status-warning-text: ${stop(5)};`);
-    expect(dark).toContain(`--status-warning-border: ${stop(8)};`);
+    expect(dark).toContain(`--status-warning-text: ${stop(4)};`);
+    // Stop 8 is 2.42:1 on the dark background since the ramp steps evenly; 6 is 4.19:1.
+    expect(dark).toContain(`--status-warning-border: ${stop(6)};`);
   });
 });
 

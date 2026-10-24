@@ -79,7 +79,7 @@ describe('SCORE_COLOR_RAMP', () => {
 describe('getScoreColor', () => {
   it('returns the exact ramp color at each authored stop', () => {
     expect(getScoreColor(0.5)).toBe('#ffffcc');
-    expect(getScoreColor(6)).toBe('#fa733d');
+    expect(getScoreColor(6)).toBe('#f64343');
     expect(getScoreColor(10)).toBe('#800020');
   });
 
@@ -98,9 +98,9 @@ describe('getScoreGradientCss', () => {
   it('places every ramp stop at its proportional position, low to high', () => {
     const css = getScoreGradientCss();
     expect(css).toBe(
-      'linear-gradient(to right, #ffffcc 0.00%, #ffffcc 5.26%, #ffe4b5 15.79%, ' +
-        '#ffdab9 26.32%, #fec99a 36.84%, #fbae7e 47.37%, #fa733d 57.89%, ' +
-        '#fb6d51 68.42%, #fb4646 78.95%, #a60310 89.47%, #800020 100.00%)'
+      'linear-gradient(to right, #ffffcc 0.00%, #ffffcc 5.26%, #ffddad 15.79%, ' +
+        '#fdbe8f 26.32%, #fc9d6b 36.84%, #fa7741 47.37%, #f64343 57.89%, ' +
+        '#d93032 68.42%, #bd1c20 78.95%, #a60310 89.47%, #800020 100.00%)'
     );
   });
 });
