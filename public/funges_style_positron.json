@@ -6808,6 +6808,174 @@
       }
     },
     {
+      "id": "bay_bolete_ne",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bay_bolete_se",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bay_bolete_use",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bay_bolete_usw",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.17)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "truffle_b_se",
       "type": "fill",
       "paint": {
@@ -15584,6 +15752,206 @@
           ["<", ["get", "cantharellus_score"], 1],
           "",
           ["to-string", ["floor", ["get", "cantharellus_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bay_bolete_ne_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-ne",
+      "source-layer": "ne_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "bay_bolete_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "bay_bolete_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bay_bolete_se_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-se",
+      "source-layer": "se_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "bay_bolete_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "bay_bolete_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bay_bolete_use_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-use",
+      "source-layer": "use_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "bay_bolete_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "bay_bolete_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bay_bolete_usw_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bay_bolete_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-usw",
+      "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "bay_bolete_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "bay_bolete_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"

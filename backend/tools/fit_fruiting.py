@@ -25,6 +25,12 @@ What ships is refitted on every year. 2025 is reported on its own as well: some
 species' hand-set parameters were tuned on 2026 sightings, which favours today's model there.
 
     python backend/tools/fit_fruiting.py --out ../era5_training
+
+A species new to the table is fitted on its own with --add: on the shipped file's scale (its
+feature means and spreads, which a refit on the grown table would move for every species), and
+its shipped regions join that file, every other model in it unchanged:
+
+    python backend/tools/fit_fruiting.py --out ../era5_training --add bay_bolete --export backend/generated/fruiting_fit.json
 """
 from __future__ import annotations
 
@@ -79,6 +85,14 @@ MAP_CELLS, MAP_DAY_STEP = 100, 3   # the scale map's sample: places, and every n
 STORED_FROM = pd.Timestamp("2026-07-01")
 FEATURES = fp.FRUITING_FEATURES
 MAP_QUANTILES = np.linspace(0, 1, 101)
+
+
+def table_files(out: Path, folder: str, species: str | None = None) -> list[Path]:
+    """A training folder's files, plus, for a species added since the table was built, its own
+    rows: they wait in added/<species>/<folder>/ until it merges, so a full refit never meets
+    a species the checkout running it does not know."""
+    files = sorted((out / folder).glob("*.parquet"))
+    return files + sorted((out / "added" / species / folder).glob("*.parquet")) if species else files
 
 
 def warmth(table: pd.DataFrame) -> np.ndarray:
@@ -412,13 +426,20 @@ def main() -> None:
     parser.add_argument("--export", help="write the shipped models here (backend/generated/fruiting_fit.json)")
     parser.add_argument("--humidity-from", help="reuse this fit file's humidity_from_stored instead of measuring it on R2")
     parser.add_argument("--groups", help="add the group fits (GROUPS) to this exported fit file, its models unchanged")
+    parser.add_argument("--add", metavar="SPECIES",
+                        help="fit only this species, on the --export file's scale, and add what ships to that file")
     args = parser.parse_args()
     out = Path(args.out)
+    if args.add and not args.export:
+        parser.error("--add needs --export: the file whose scale it fits on and adds to")
 
-    table = pd.concat([t for t in (pd.read_parquet(p) for p in (out / "training").glob("*.parquet")) if len(t)],
+    table = pd.concat([t for t in (pd.read_parquet(p) for p in table_files(out, "training", args.add)) if len(t)],
                       ignore_index=True)
-    scores = pd.concat([s for s in (pd.read_parquet(p) for p in (out / "training_scores").glob("*.parquet"))
+    scores = pd.concat([s for s in (pd.read_parquet(p) for p in table_files(out, "training_scores", args.add))
                         if len(s)], ignore_index=True)
+    if args.add:
+        table = table[table["species"].isin([args.add, PLACEBO])].reset_index(drop=True)
+        scores = scores[scores["species"] == args.add]
     design = transform(table)
     cases, x, mask = strata(table, design)
     cases["continent"] = cases["region"].map(CONTINENT)
@@ -432,6 +453,12 @@ def main() -> None:
     for k, name in enumerate(FEATURES):
         if name in fp.FRUITING_RELATIVE or name == "temp_sq" or name.endswith("_x_warmth"):
             level[k] = float(np.nanmean(moved[name].to_numpy(float)))
+    if args.add:
+        # The shipped scale: a conditional logit ignores the centring, the spreads set the units.
+        shipped_file = json.loads(r2.generated(Path(args.export)).read_text(encoding="utf-8"))
+        assert shipped_file["features"] == FEATURES, "the shipped fit has other features"
+        level, sds = np.asarray(shipped_file["means"], float), np.asarray(shipped_file["sds"], float)
+        args.humidity_from = args.humidity_from or args.export
     x = np.where(mask[..., None], (x - means) / sds, 0.0)
     log(f"{len(cases):,} strata ({train.sum():,} train, {(~train).sum():,} test), {len(FEATURES)} features")
     if args.groups:
@@ -565,6 +592,21 @@ def main() -> None:
                                        "mean_fitted": round(float(np.mean([f for _, _, f in results])), 3)},
             }
 
+    if args.add:
+        def merged(name, key, entry):
+            path = out / name
+            old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+            (old.setdefault(key, {}) if key else old).update(entry)
+            path.write_text(json.dumps(old, indent=1), encoding="utf-8")
+
+        merged("fruiting_fit.json", "species", coefficients["species"])
+        merged("fruiting_report.json", None, report)
+        shipped_file["models"].update(shipped)
+        Path(args.export).write_text(json.dumps(shipped_file, indent=1) + "\n", encoding="utf-8", newline="\n")
+        r2.ship(args.export)
+        log(f"added {sum(len(r) for r in shipped.values())} species-regions to {args.export}: "
+            + "; ".join(f"{s} {', '.join(r)}" for s, r in sorted(shipped.items())))
+        return
     (out / "fruiting_fit.json").write_text(json.dumps(coefficients, indent=1), encoding="utf-8")
     if args.export:
         export = {"features": FEATURES, "relative_to_normal": True,

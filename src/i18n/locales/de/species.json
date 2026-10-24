@@ -339,14 +339,19 @@
       "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten"
     },
     "boletus": {
-      "name": "Boletus (alle Steinpilze)",
-      "description": "Alle Steinpilze in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz sowie die nordamerikanischen Königsröhrlinge",
+      "name": "Boletus (Steinpilze & Maronen)",
+      "description": "Steinpilze und Maronen in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz, in Europa der Maronen-Röhrling und die nordamerikanischen Königsröhrlinge",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen"
     },
     "cantharellus": {
       "name": "Pfifferlinge (alle)",
       "description": "Alle Pfifferlinge in einem Wert: die goldenen Pfifferlinge, die Totentrompete und der Trompetenpfifferling und in Nordamerika der glatte Pfifferling und der Pazifik-Pfifferling",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; goldene Pfifferlinge an moosigen Hängen unter Eichen, Buchen und Nadelbäumen nach warmem Regen, Totentrompeten in feuchtem Laub unter Laubbäumen, Trompetenpfifferlinge auf nassem Moos unter Nadelbäumen spät in der Saison"
+    },
+    "bay_bolete": {
+      "name": "Maronen-Röhrling",
+      "description": "Ein Röhrling mit kastanienbraunem, bei Nässe schmierigem Hut, cremefarbenen bis olivgelben Poren, die auf Druck blaugrün anlaufen, und gestreiftem Stiel ohne Netz",
+      "howTo": "Such im Moos unter Kiefern und Fichten, aber auch unter Buchen und Eichen, auf saurem Sandboden von August bis zu den ersten Frösten; am meisten gibt es im Oktober, wenn die Steinpilze nachlassen. Er speichert mehr Tschernobyl-Cäsium als die meisten Pilze, iss ihn in Bayern und Österreich deshalb nur gelegentlich"
     }
   },
   "place": {

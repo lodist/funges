@@ -29,6 +29,9 @@ about 1 C of the app's stored temperature (fit_fruiting.stored_corrections), so 
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --spatial   # the picks on summer 2026
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --optima [--spatial]
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --habitat   # -> habitat_years.csv (fit_habitat.py)
+
+--species <id> runs any of them for one species only, into <the csv>_<id>.csv; a species added
+after the training table was built brings its finds in finds_<id>_supplement.parquet.
 """
 import lightgbm  # noqa: F401  before pandas/pyarrow: see tests/conftest.py
 import argparse
@@ -43,7 +46,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "backend" / "tools"), str(ROOT / "backend"), str(ROOT / "scripts")]
 from fit_fruiting import (CONTINENT, MIN_TEST_STRATA, PLACEBO, SHIP_MIN_YEARS, SLOTS, find_day_rank, sign_test,  # noqa: E402
-                          ships, strata, transform)
+                          ships, strata, table_files, transform)
 from species_registry import get_species_params  # noqa: E402
 import r2  # noqa: E402
 
@@ -269,12 +272,12 @@ def spatial(out: Path, picks: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def daily_temps(out: Path, table: pd.DataFrame, cases: pd.DataFrame) -> np.ndarray:
+def daily_temps(out: Path, table: pd.DataFrame, cases: pd.DataFrame, species: str | None = None) -> np.ndarray:
     """[case, 5 days, 12] ERA5 mean temperature of the 12 days before each stratum day
     (training_lags/), a missing day as the day's own, as forecast_pipeline fills it."""
     names = [f"tmean_d{d}" for d in range(1, 13)]
     lags = pd.concat([pd.read_parquet(p, columns=["case_id", "offset", *names])
-                      for p in (out / "training_lags").glob("*.parquet")], ignore_index=True)
+                      for p in table_files(out, "training_lags", species)], ignore_index=True)
     row = pd.Series(np.arange(len(cases)), index=cases["case_id"].to_numpy())
     at = row.reindex(lags["case_id"].to_numpy()).to_numpy()
     ok = np.isfinite(at)
@@ -384,20 +387,26 @@ def main() -> None:
                         help="fit the temperature optimum and width on the place test (fit_temperature)")
     parser.add_argument("--habitat", action="store_true",
                         help="test a habitat factor on held-out years where none ships (fit_habitat.held_out_years)")
+    parser.add_argument("--species", help="only this species, its results in <the csv>_<species>.csv")
     args = parser.parse_args()
     out = Path(args.out)
     name = "habitat_years" if args.habitat else "temperature_fruiting" if args.temperature else "optima_fruiting" if args.optima else "parts_fruiting"
+    name += f"_{args.species}" if args.species else ""
     if args.spatial:
         picks = pd.read_csv(out / f"{name}.csv")
         result = spatial(out, picks[picks["ships"].astype(str) == "True"])
         result.to_csv(out / f"{name}_spatial.csv", index=False)
         print(result.to_string(index=False))
         return
-    table = pd.concat([t for t in (pd.read_parquet(p) for p in (out / "training").glob("*.parquet")) if len(t)], ignore_index=True)
-    scores = pd.concat([s for s in (pd.read_parquet(p) for p in (out / "training_scores").glob("*.parquet")) if len(s)],
+    table = pd.concat([t for t in (pd.read_parquet(p) for p in table_files(out, "training", args.species)) if len(t)],
+                      ignore_index=True)
+    scores = pd.concat([s for s in (pd.read_parquet(p) for p in table_files(out, "training_scores", args.species)) if len(s)],
                        ignore_index=True)
+    if args.species:
+        table = table[table["species"].isin([args.species, PLACEBO])].reset_index(drop=True)
+        scores = scores[scores["species"] == args.species]
     cases, _, mask = strata(table, transform(table))
-    temps = daily_temps(out, table, cases) if args.optima or args.temperature or args.habitat else None
+    temps = daily_temps(out, table, cases, args.species) if args.optima or args.temperature or args.habitat else None
     is_placebo = (cases["species"] == PLACEBO).to_numpy()
     fits = json.loads(r2.generated(ROOT / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8")).get("models", {})
     gbms = json.loads(r2.generated(ROOT / "backend" / "generated" / "fruiting_gbm.json").read_text(encoding="utf-8")).get("models", {})
@@ -421,6 +430,9 @@ def main() -> None:
         from fit_habitat import held_out_years
         shipped = json.loads((ROOT / "backend" / "generated" / "habitat_factor.json").read_text(encoding="utf-8"))["regions"]
         finds = pd.read_parquet(out / "finds_2016_2026.parquet")
+        added = out / f"finds_{args.species}_supplement.parquet"   # a species added after the table was built
+        if args.species and added.exists():
+            finds = pd.concat([finds, pd.read_parquet(added)])
         finds["Date"] = pd.to_datetime(finds["Date"])
         habitat = {r: (finds[finds["region"] == r], pd.read_parquet(out / f"habitat_features_{r}.parquet"))
                    for r in ("NE", "SE", "USE", "USW")}

@@ -339,14 +339,19 @@
       "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires"
     },
     "boletus": {
-      "name": "Boletus (tous les cèpes)",
-      "description": "Tous les cèpes en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, plus les bolets royaux d'Amérique du Nord",
+      "name": "Boletus (cèpes et bolet bai)",
+      "description": "Les cèpes et le bolet bai en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, le bolet bai en Europe et les bolets royaux d'Amérique du Nord",
       "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie"
     },
     "cantharellus": {
       "name": "Chanterelles (toutes)",
       "description": "Toutes les chanterelles en un seul score : les girolles, la trompette de la mort et la chanterelle en tube et, en Amérique du Nord, la girolle lisse et la girolle du Pacifique",
       "howTo": "Chaque lieu affiche le meilleur de leurs scores ; les girolles sur les pentes moussues sous les chênes, hêtres et conifères après une pluie chaude, les trompettes de la mort dans la litière humide sous les feuillus, les chanterelles en tube sur la mousse mouillée sous les conifères en fin de saison"
+    },
+    "bay_bolete": {
+      "name": "Bolet Bai",
+      "description": "Un bolet au chapeau brun châtaigne, visqueux par temps humide, aux pores crème à jaune olive qui bleuissent au toucher et au pied strié sans réseau",
+      "howTo": "Cherchez-le dans la mousse sous les pins et les épicéas, mais aussi sous les hêtres et les chênes, sur sol acide et sableux d'août aux premières gelées ; il culmine en octobre, quand les cèpes déclinent. Il accumule plus de césium de Tchernobyl que la plupart des champignons : en Bavière et en Autriche, n'en mangez qu'occasionnellement"
     }
   },
   "place": {

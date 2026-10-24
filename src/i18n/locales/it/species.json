@@ -338,14 +338,19 @@
       "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata"
     },
     "boletus": {
-      "name": "Boletus (tutti i porcini)",
-      "description": "Tutti i porcini in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, più i re boleti nordamericani",
+      "name": "Boletus (porcini e boleto baio)",
+      "description": "Porcini e boleto baio in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, il boleto baio in Europa e i re boleti nordamericani",
       "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante"
     },
     "cantharellus": {
       "name": "Finferli (tutti)",
       "description": "Tutti i finferli in un solo punteggio: i gallinacci dorati, la trombetta dei morti e la finferla e, in Nord America, il galletto liscio e il galletto del Pacifico",
       "howTo": "Ogni luogo mostra il punteggio migliore tra loro; i gallinacci sui pendii muschiosi sotto querce, faggi e conifere dopo una pioggia calda, le trombette dei morti nella lettiera umida sotto le latifoglie, le finferle sul muschio bagnato sotto le conifere a fine stagione"
+    },
+    "bay_bolete": {
+      "name": "Boleto Baio",
+      "description": "Un boleto dal cappello bruno castagna, vischioso col bagnato, con pori da crema a giallo oliva che virano al blu-verde e gambo striato senza reticolo",
+      "howTo": "Cercalo nel muschio sotto pini e abeti rossi, ma anche faggi e querce, su terreni acidi e sabbiosi da agosto alle prime gelate; il picco è a ottobre, quando i porcini calano. Accumula più cesio di Chernobyl della maggior parte dei funghi: in Baviera e in Austria mangialo solo ogni tanto"
     }
   },
   "search_placeholder": "Cerca una specie",
