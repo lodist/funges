@@ -550,6 +550,52 @@
   },
   "alerts": {
     "more_one": "und {{count}} weitere",
-    "more_other": "und {{count}} weitere"
+    "more_other": "und {{count}} weitere",
+    "title": "Morgendliche Hinweise",
+    "text": "Eine Benachrichtigung gegen 8:00 Uhr, wenn dein Garten etwas Neues braucht.",
+    "kinds": {
+      "frost": "Frost kommt",
+      "care": "Pflege",
+      "water": "Gießen und Regen",
+      "sow": "Zeit zum Säen"
+    },
+    "homeScreen": "Füge Funges auf dem iPhone zuerst zum Home-Bildschirm hinzu (Teilen, dann Zum Home-Bildschirm) und schalte die Hinweise dort ein.",
+    "unsupported": "Dieser Browser kann keine Benachrichtigungen anzeigen.",
+    "denied": "Benachrichtigungen von Funges sind blockiert. Erlaube sie in den Browser-Einstellungen."
+  },
+  "early": "Früher Zugang",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "Funges sagt dir, was du anbauen sollst, wohin es kommt, wann du es pflanzt und was dein Garten diese Woche braucht, nach dem tatsächlichen Klima dort, wo dein Garten ist.",
+    "button": "Mit Google anmelden",
+    "small": "Kostenlos, solange der frühe Zugang läuft. Wir speichern deine E-Mail-Adresse und deine Gärten, sonst nichts, und du kannst sie jederzeit in den Einstellungen löschen.",
+    "privacy": "Datenschutz",
+    "working": "Du wirst angemeldet…",
+    "doneElsewhere": "Du bist angemeldet. Kehre zur Funges-App zurück.",
+    "failed": "Die Anmeldung hat nicht geklappt.",
+    "retry": "Erneut versuchen"
+  },
+  "account": {
+    "title": "Huerta-Konto",
+    "signedInAs": "Angemeldet als {{email}}",
+    "signOut": "Abmelden",
+    "delete": "Konto löschen",
+    "deleteTitle": "Dein Konto löschen?",
+    "deleteText": "Deine Gärten und Hinweise verschwinden damit, auf allen Geräten. Das lässt sich nicht rückgängig machen.",
+    "deleteConfirm": "Endgültig löschen",
+    "cancel": "Abbrechen",
+    "failed": "Das hat nicht geklappt. Prüfe deine Verbindung und versuche es noch einmal."
+  },
+  "gardens": {
+    "label": "Deine Gärten",
+    "default": "Mein Garten",
+    "new": "Neuer Garten",
+    "rename": "Umbenennen",
+    "name": "Name",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Diesen Garten löschen",
+    "deleteText": "Sein Plan wird ebenfalls gelöscht, auf allen Geräten.",
+    "offline": "Funges ist nicht erreichbar. Versuche es noch einmal, wenn du online bist."
   }
 }

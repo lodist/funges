@@ -550,6 +550,52 @@
   },
   "alerts": {
     "more_one": "et {{count}} de plus",
-    "more_other": "et {{count}} de plus"
+    "more_other": "et {{count}} de plus",
+    "title": "Alertes du matin",
+    "text": "Une notification vers 8 h quand votre potager a besoin de quelque chose de nouveau.",
+    "kinds": {
+      "frost": "Gel en vue",
+      "care": "Soins",
+      "water": "Arrosage et pluie",
+      "sow": "Moment de semer"
+    },
+    "homeScreen": "Sur iPhone, ajoutez d'abord Funges à l'écran d'accueil (Partager, puis Sur l'écran d'accueil) et activez-y les alertes.",
+    "unsupported": "Ce navigateur ne peut pas afficher de notifications.",
+    "denied": "Les notifications de Funges sont bloquées. Autorisez-les dans les réglages du navigateur."
+  },
+  "early": "Accès anticipé",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "Funges vous dit quoi cultiver, où le mettre, quand le planter et ce dont votre potager a besoin cette semaine, selon le climat réel de l'endroit où il se trouve.",
+    "button": "Se connecter avec Google",
+    "small": "Gratuit pendant l'accès anticipé. Nous gardons votre e-mail et vos potagers, rien d'autre, et vous pouvez les supprimer à tout moment dans les Réglages.",
+    "privacy": "Confidentialité",
+    "working": "Connexion en cours…",
+    "doneElsewhere": "Vous êtes connecté. Revenez à l'application Funges.",
+    "failed": "La connexion n'a pas abouti.",
+    "retry": "Réessayer"
+  },
+  "account": {
+    "title": "Compte Huerta",
+    "signedInAs": "Connecté en tant que {{email}}",
+    "signOut": "Se déconnecter",
+    "delete": "Supprimer le compte",
+    "deleteTitle": "Supprimer votre compte ?",
+    "deleteText": "Vos potagers et vos alertes disparaissent avec lui, sur tous vos appareils. C'est définitif.",
+    "deleteConfirm": "Supprimer définitivement",
+    "cancel": "Annuler",
+    "failed": "Cela n'a pas fonctionné. Vérifiez votre connexion et réessayez."
+  },
+  "gardens": {
+    "label": "Vos potagers",
+    "default": "Mon potager",
+    "new": "Nouveau potager",
+    "rename": "Renommer",
+    "name": "Nom",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer ce potager",
+    "deleteText": "Son plan disparaît aussi, sur tous vos appareils.",
+    "offline": "Impossible de joindre Funges. Réessayez une fois en ligne."
   }
 }
