@@ -547,5 +547,9 @@
     "notHere": "No al aire libre aquí: {{crops}}.",
     "backIn": "Vuelve en {{month}}",
     "note": "Los meses de siembra siguen las mismas reglas que el consejo de cada semana, en un año normal en tu zona. Los meses de cosecha son aproximados."
+  },
+  "alerts": {
+    "more_one": "y {{count}} más",
+    "more_other": "y {{count}} más"
   }
 }

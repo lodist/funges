@@ -547,5 +547,9 @@
     "notHere": "Not outdoors here: {{crops}}.",
     "backIn": "Back in {{month}}",
     "note": "Sowing months follow the same rules as each week's advice, over a typical year at your place. Harvest months are approximate."
+  },
+  "alerts": {
+    "more_one": "and {{count}} more",
+    "more_other": "and {{count}} more"
   }
 }

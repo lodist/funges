@@ -547,5 +547,9 @@
     "notHere": "Pas en plein air ici : {{crops}}.",
     "backIn": "De retour en {{month}}",
     "note": "Les mois de semis suivent les mêmes règles que le conseil de chaque semaine, sur une année ordinaire chez vous. Les mois de récolte sont approximatifs."
+  },
+  "alerts": {
+    "more_one": "et {{count}} de plus",
+    "more_other": "et {{count}} de plus"
   }
 }

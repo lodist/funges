@@ -547,5 +547,9 @@
     "notHere": "Não ao ar livre aqui: {{crops}}.",
     "backIn": "Volta em {{month}}",
     "note": "Os meses de semeadura seguem as mesmas regras do conselho de cada semana, num ano típico no seu lugar. Os meses de colheita são aproximados."
+  },
+  "alerts": {
+    "more_one": "e mais {{count}}",
+    "more_other": "e mais {{count}}"
   }
 }

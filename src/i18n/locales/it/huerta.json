@@ -547,5 +547,9 @@
     "notHere": "Non all'aperto qui: {{crops}}.",
     "backIn": "Di nuovo a {{month}}",
     "note": "I mesi di semina seguono le stesse regole dei consigli di ogni settimana, su un anno tipico da te. I mesi di raccolto sono approssimativi."
+  },
+  "alerts": {
+    "more_one": "e altri {{count}}",
+    "more_other": "e altri {{count}}"
   }
 }

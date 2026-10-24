@@ -547,5 +547,9 @@
     "notHere": "Hier nicht im Freien: {{crops}}.",
     "backIn": "Wieder im {{month}}",
     "note": "Die Saatmonate folgen denselben Regeln wie der Rat jeder Woche, über ein typisches Jahr an deinem Ort. Die Erntemonate sind ungefähr."
+  },
+  "alerts": {
+    "more_one": "und {{count}} weitere",
+    "more_other": "und {{count}} weitere"
   }
 }
