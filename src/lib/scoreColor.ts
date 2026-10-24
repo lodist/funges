@@ -5,19 +5,20 @@
 // FeatureInfoModal number, today) must reuse this instead of inventing a palette,
 // so it always reads as the same color the polygon on the map is painted.
 //
-// The stops step lightness (OKLab L) evenly, about 0.07 a point, so 50% already reads as a
-// strong orange and red starts at 60%. The earlier ramp spent 1-5 on near-identical creams
-// and peaches (5 was #fbae7e), gave 6 and 7 the same colour, and then dropped sharply at 9.
+// Each of the stops 2-8 sits halfway (in OKLab) between the earlier ramp and one stepping
+// lightness evenly, so 50% reads as a clear orange (#fb9361) and the reds deepen from 60%.
+// The earlier ramp spent 1-5 on near-identical creams and peaches (5 was #fbae7e) and gave
+// 6 and 7 the same colour; the even ramp was too strong on the map.
 export const SCORE_COLOR_RAMP: ReadonlyArray<readonly [number, string]> = [
   [0.5, '#ffffcc'],
   [1, '#ffffcc'],
-  [2, '#ffddad'],
-  [3, '#fdbe8f'],
-  [4, '#fc9d6b'],
-  [5, '#fa7741'],
-  [6, '#f64343'],
-  [7, '#d93032'],
-  [8, '#bd1c20'],
+  [2, '#ffe1b1'],
+  [3, '#fecca4'],
+  [4, '#feb383'],
+  [5, '#fb9361'],
+  [6, '#f85d40'],
+  [7, '#ea5141'],
+  [8, '#dc3233'],
   [9, '#a60310'],
   [10, '#800020'],
 ];
