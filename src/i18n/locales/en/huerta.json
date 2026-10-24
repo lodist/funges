@@ -39,7 +39,7 @@
       "ground_frost": "Ground frost possible later this week: {{night}} night"
     },
     "todo": {
-      "title": "To do this week",
+      "title": "This week",
       "frost": {
         "frost": "Frost in the next 3 days",
         "ground_frost": "Ground frost in the next 3 days",
@@ -72,8 +72,8 @@
         "soil": "From your soil"
       },
       "nothing": "Nothing your garden needs from you this week.",
-      "noPlan": "Plan your garden and mark what you plant, and this page will list what it needs each week.",
-      "openPlanner": "Open the garden planner",
+      "noPlan": "Plan your garden, and Huerta will tell you what to do in it each week.",
+      "openPlanner": "Open My garden",
       "stage": {
         "thin": {
           "title": "{{crop}}: thin the seedlings",
@@ -143,6 +143,21 @@
           "title": "{{crops}}: loosen the clay",
           "text": "Roots fork in heavy clay. Dig the row deep and free of stones, with some compost, or grow them in a raised bed or short-rooted kinds."
         }
+      },
+      "done": "Done",
+      "sow": {
+        "title": "{{crop}}: sow this week"
+      },
+      "plant": {
+        "title": "{{crop}}: plant this week"
+      },
+      "forgot": {
+        "title": "{{crop}}: planned for {{date}}",
+        "text": "Did it go in? Tick it off so Huerta can follow how it grows."
+      },
+      "tooLate": {
+        "title": "{{crops}}: too late now",
+        "text": "Pick something else for its beds, or let “Plan it for me” fill them."
       }
     },
     "short": {
@@ -152,6 +167,19 @@
       "water": "Watering",
       "lastFrost": "Last frost ~{{date}}",
       "firstFrost": "First frost ~{{date}}"
+    },
+    "garden": {
+      "some": "Your garden has things to do this week.",
+      "none": "Nothing for your garden this week."
+    },
+    "coming": {
+      "title": "Coming up",
+      "ready": "{{crop}}: harvest time",
+      "sow": "{{crop}}: sow",
+      "plant": "{{crop}}: plant",
+      "wait": "{{crop}}: {{reason}}",
+      "waiting": "Waiting",
+      "note": "Harvest dates are approximate, from the usual temperatures at your place."
     }
   },
   "units": {
@@ -357,8 +385,8 @@
     "useShort": "My garden"
   },
   "planner": {
-    "title": "Garden planner",
-    "description": "Plan your garden bed by bed: what fits, how far apart, which neighbours get on, and when each crop goes in at your place.",
+    "title": "My garden",
+    "description": "Your garden bed by bed, and what it needs from you each week: what to sow where, care, watering and harvest, worked out for your place.",
     "sample": "Planned for a sample place, {{place}}.",
     "choosePlace": "Choose your place",
     "for": "Planned for this week around {{place}}.",
@@ -455,7 +483,7 @@
     "goesInNow": "Goes in now around {{place}}",
     "later": "Later",
     "split": "Split this section in two",
-    "footnote": "Sowing and planting as of {{date}}. Your plan stays on this device.",
+    "footnote": "Sowing and planting as of {{date}}. Your plan is kept on your account.",
     "sownOn": "Sown on {{date}}",
     "groundLabel": "How you grow",
     "ground": {
@@ -533,7 +561,11 @@
       "loam": "loam",
       "clay": "clay"
     },
-    "soilHint": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}."
+    "soilHint": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}.",
+    "sowIn": "Sow in {{month}}",
+    "plantIn": "Plant in {{month}}",
+    "sownOnInput": "Sown on",
+    "plantedOnInput": "Planted on"
   },
   "year": {
     "title": "Calendar",
@@ -597,5 +629,22 @@
     "delete": "Delete this garden",
     "deleteText": "Its plan goes too, on every device.",
     "offline": "Couldn't reach Funges. Try again when you're online."
+  },
+  "guide": {
+    "title": "Getting started",
+    "hide": "Hide",
+    "place": {
+      "title": "Where is your garden?",
+      "text": "Find it on the map, so everything here is worked out for your own place.",
+      "action": "Find it on the map"
+    },
+    "plan": {
+      "title": "Plan your beds",
+      "text": "We filled your beds with what goes in now at your place. Tap a bed, then a crop, to change it."
+    },
+    "sow": {
+      "title": "Sow and tick off",
+      "text": "This week's list says what to sow, where and how. Tick each one off when it's in, and Huerta follows it from there."
+    }
   }
 }

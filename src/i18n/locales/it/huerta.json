@@ -39,7 +39,7 @@
       "ground_frost": "Possibile gelata al suolo più avanti in settimana: {{night}} notte"
     },
     "todo": {
-      "title": "Da fare questa settimana",
+      "title": "Questa settimana",
       "frost": {
         "frost": "Gelata nei prossimi 3 giorni",
         "ground_frost": "Gelata al suolo nei prossimi 3 giorni",
@@ -71,9 +71,9 @@
         "plan": "Dal tuo piano",
         "soil": "Dal tuo terreno"
       },
-      "nothing": "Questa settimana l'orto non ha bisogno di nulla.",
-      "noPlan": "Pianifica l'orto e segna cosa pianti: questa pagina ti dirà cosa gli serve ogni settimana.",
-      "openPlanner": "Apri il pianificatore",
+      "nothing": "Questa settimana il tuo orto non ti chiede nulla.",
+      "noPlan": "Pianifica il tuo orto, e Huerta ti dirà cosa fare ogni settimana.",
+      "openPlanner": "Apri Il mio orto",
       "stage": {
         "thin": {
           "title": "{{crop}}: dirada le piantine",
@@ -143,6 +143,21 @@
           "title": "{{crops}}: smuovi l'argilla",
           "text": "Nell'argilla pesante le radici si biforcano. Vanga la fila in profondità e senza sassi, con un po' di compost, oppure coltivale in un'aiuola rialzata o in varietà corte."
         }
+      },
+      "done": "Fatto",
+      "sow": {
+        "title": "{{crop}}: seminare questa settimana"
+      },
+      "plant": {
+        "title": "{{crop}}: piantare questa settimana"
+      },
+      "forgot": {
+        "title": "{{crop}}: previsto per il {{date}}",
+        "text": "È già nella terra? Spuntalo così Huerta può seguire come cresce."
+      },
+      "tooLate": {
+        "title": "{{crops}}: ormai è tardi",
+        "text": "Scegli qualcos'altro per le sue aiuole, o lascia che «Pianificalo per me» le riempia."
       }
     },
     "short": {
@@ -152,6 +167,19 @@
       "water": "Acqua da dare",
       "lastFrost": "Ultima gelata ~{{date}}",
       "firstFrost": "Prima gelata ~{{date}}"
+    },
+    "garden": {
+      "some": "Il tuo orto ha cose da fare questa settimana.",
+      "none": "Niente per il tuo orto questa settimana."
+    },
+    "coming": {
+      "title": "In arrivo",
+      "ready": "{{crop}}: tempo di raccolta",
+      "sow": "{{crop}}: seminare",
+      "plant": "{{crop}}: piantare",
+      "wait": "{{crop}}: {{reason}}",
+      "waiting": "In attesa",
+      "note": "Le date di raccolta sono indicative, dalle temperature abituali del tuo luogo."
     }
   },
   "units": {
@@ -357,8 +385,8 @@
     "useShort": "Il mio orto"
   },
   "planner": {
-    "title": "Pianificatore dell'orto",
-    "description": "Pianifica l'orto aiuola per aiuola: cosa ci sta, a che distanza, quali vicini vanno d'accordo e quando va ogni coltura da te.",
+    "title": "Il mio orto",
+    "description": "Il tuo orto aiuola per aiuola, e ciò che ti chiede ogni settimana: cosa seminare e dove, cure, irrigazione e raccolto, calcolati per il tuo luogo.",
     "sample": "Pianificato per un luogo di esempio, {{place}}.",
     "choosePlace": "Scegli il tuo luogo",
     "for": "Pianificato per questa settimana a {{place}}.",
@@ -455,7 +483,7 @@
     "goesInNow": "Va ora a {{place}}",
     "later": "Più avanti",
     "split": "Dividi questa parte in due",
-    "footnote": "Semina e trapianto al {{date}}. Il tuo piano resta su questo dispositivo.",
+    "footnote": "Semina e trapianto al {{date}}. Il tuo piano è salvato nel tuo account.",
     "sownOn": "Seminato il {{date}}",
     "groundLabel": "Come coltivi",
     "ground": {
@@ -533,7 +561,11 @@
       "loam": "di medio impasto",
       "clay": "argilloso"
     },
-    "soilHint": "Intorno a {{place}} il terreno è per lo più {{texture}}, pH {{ph}}."
+    "soilHint": "Intorno a {{place}} il terreno è per lo più {{texture}}, pH {{ph}}.",
+    "sowIn": "Seminare a {{month}}",
+    "plantIn": "Piantare a {{month}}",
+    "sownOnInput": "Data di semina",
+    "plantedOnInput": "Data di messa a dimora"
   },
   "year": {
     "title": "Calendario",
@@ -597,5 +629,22 @@
     "delete": "Elimina questo orto",
     "deleteText": "Anche il suo piano viene eliminato, su tutti i dispositivi.",
     "offline": "Impossibile raggiungere Funges. Riprova quando sei online."
+  },
+  "guide": {
+    "title": "Per iniziare",
+    "hide": "Nascondi",
+    "place": {
+      "title": "Dov'è il tuo orto?",
+      "text": "Trovalo sulla mappa, così tutto qui è calcolato per il tuo luogo.",
+      "action": "Trovalo sulla mappa"
+    },
+    "plan": {
+      "title": "Pianifica le aiuole",
+      "text": "Abbiamo riempito le tue aiuole con ciò che va messo a dimora ora nel tuo luogo. Tocca un'aiuola, poi una coltura, per cambiarla."
+    },
+    "sow": {
+      "title": "Semina e spunta",
+      "text": "La lista di questa settimana dice cosa seminare, dove e come. Spunta ogni voce quando è nella terra, e Huerta la segue da lì."
+    }
   }
 }

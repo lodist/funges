@@ -39,7 +39,7 @@
       "ground_frost": "Später in der Woche Bodenfrost möglich: {{night}}nacht"
     },
     "todo": {
-      "title": "Diese Woche zu tun",
+      "title": "Diese Woche",
       "frost": {
         "frost": "Frost in den nächsten 3 Tagen",
         "ground_frost": "Bodenfrost in den nächsten 3 Tagen",
@@ -72,8 +72,8 @@
         "soil": "Laut deinem Boden"
       },
       "nothing": "Dein Garten braucht diese Woche nichts von dir.",
-      "noPlan": "Plane deinen Garten und trage ein, was du pflanzt: Diese Seite sagt dir dann jede Woche, was er braucht.",
-      "openPlanner": "Gartenplaner öffnen",
+      "noPlan": "Plane deinen Garten, und Huerta sagt dir jede Woche, was darin zu tun ist.",
+      "openPlanner": "Mein Garten öffnen",
       "stage": {
         "thin": {
           "title": "{{crop}}: Sämlinge vereinzeln",
@@ -143,6 +143,21 @@
           "title": "{{crops}}: den Ton lockern",
           "text": "In schwerem Ton gabeln sich die Wurzeln. Die Reihe tief und steinfrei mit etwas Kompost lockern, oder im Hochbeet oder kurze Sorten anbauen."
         }
+      },
+      "done": "Erledigt",
+      "sow": {
+        "title": "{{crop}}: diese Woche säen"
+      },
+      "plant": {
+        "title": "{{crop}}: diese Woche pflanzen"
+      },
+      "forgot": {
+        "title": "{{crop}}: geplant für den {{date}}",
+        "text": "Schon in der Erde? Hak es ab, damit Huerta verfolgen kann, wie es wächst."
+      },
+      "tooLate": {
+        "title": "{{crops}}: jetzt zu spät",
+        "text": "Wähle etwas anderes für die Beete, oder lass „Für mich planen“ sie füllen."
       }
     },
     "short": {
@@ -152,6 +167,19 @@
       "water": "Gießbedarf",
       "lastFrost": "Letzter Frost ~{{date}}",
       "firstFrost": "Erster Frost ~{{date}}"
+    },
+    "garden": {
+      "some": "In deinem Garten gibt es diese Woche etwas zu tun.",
+      "none": "Diese Woche nichts für deinen Garten."
+    },
+    "coming": {
+      "title": "Demnächst",
+      "ready": "{{crop}}: Erntezeit",
+      "sow": "{{crop}}: säen",
+      "plant": "{{crop}}: pflanzen",
+      "wait": "{{crop}}: {{reason}}",
+      "waiting": "Wartet",
+      "note": "Erntedaten sind ungefähr, aus den üblichen Temperaturen an deinem Ort."
     }
   },
   "units": {
@@ -357,8 +385,8 @@
     "useShort": "Mein Garten"
   },
   "planner": {
-    "title": "Gartenplaner",
-    "description": "Plane deinen Garten Beet für Beet: was passt, in welchem Abstand, welche Nachbarn sich vertragen und wann jede Kultur bei dir in die Erde kommt.",
+    "title": "Mein Garten",
+    "description": "Dein Garten Beet für Beet, und was er jede Woche von dir braucht: was wohin gesät wird, Pflege, Gießen und Ernte, berechnet für deinen Ort.",
     "sample": "Geplant für einen Beispielort, {{place}}.",
     "choosePlace": "Wähle deinen Ort",
     "for": "Geplant für diese Woche rund um {{place}}.",
@@ -455,7 +483,7 @@
     "goesInNow": "Kommt jetzt in die Erde rund um {{place}}",
     "later": "Später",
     "split": "Diesen Teil zweiteilen",
-    "footnote": "Säen und Pflanzen mit Stand {{date}}. Dein Plan bleibt auf diesem Gerät.",
+    "footnote": "Säen und Pflanzen mit Stand {{date}}. Dein Plan wird in deinem Konto gespeichert.",
     "sownOn": "Gesät am {{date}}",
     "groundLabel": "So gärtnerst du",
     "ground": {
@@ -533,7 +561,11 @@
       "loam": "lehmig",
       "clay": "tonig"
     },
-    "soilHint": "Um {{place}} ist der Boden meist {{texture}}, pH {{ph}}."
+    "soilHint": "Um {{place}} ist der Boden meist {{texture}}, pH {{ph}}.",
+    "sowIn": "Säen im {{month}}",
+    "plantIn": "Pflanzen im {{month}}",
+    "sownOnInput": "Gesät am",
+    "plantedOnInput": "Gepflanzt am"
   },
   "year": {
     "title": "Kalender",
@@ -597,5 +629,22 @@
     "delete": "Diesen Garten löschen",
     "deleteText": "Sein Plan wird ebenfalls gelöscht, auf allen Geräten.",
     "offline": "Funges ist nicht erreichbar. Versuche es noch einmal, wenn du online bist."
+  },
+  "guide": {
+    "title": "Erste Schritte",
+    "hide": "Ausblenden",
+    "place": {
+      "title": "Wo ist dein Garten?",
+      "text": "Such ihn auf der Karte, damit hier alles für deinen eigenen Ort berechnet wird.",
+      "action": "Auf der Karte suchen"
+    },
+    "plan": {
+      "title": "Plane deine Beete",
+      "text": "Wir haben deine Beete mit dem gefüllt, was bei dir jetzt in die Erde kommt. Tippe auf ein Beet und dann auf eine Kultur, um sie zu ändern."
+    },
+    "sow": {
+      "title": "Säen und abhaken",
+      "text": "Die Liste dieser Woche sagt, was du wo und wie säst. Hake jedes ab, sobald es in der Erde ist, und Huerta begleitet es von da an."
+    }
   }
 }

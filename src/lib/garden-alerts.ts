@@ -4,7 +4,7 @@
  * Worker's cron runs it on the night's files with the same garden-week code
  * the garden page runs.
  */
-import type { Task } from '@/lib/garden-week';
+import { isoWeek, type Task } from '@/lib/garden-week';
 import { taskText, type T } from '@/lib/garden-task-text';
 
 export type AlertKind = 'frost' | 'care' | 'water' | 'sow';
@@ -37,22 +37,6 @@ const LINES = 3;
 const dayNumber = (day: string) => Date.parse(`${day}T12:00:00Z`) / 864e5;
 const byRank = (a: Task, b: Task) =>
   RANK.indexOf(a.kind) - RANK.indexOf(b.kind);
-
-/** The ISO week of a YYYY-MM-DD day, as 2026-W43. */
-export function isoWeek(day: string) {
-  const d = new Date(`${day}T12:00:00Z`);
-  d.setUTCDate(d.getUTCDate() + 3 - ((d.getUTCDay() + 6) % 7)); // that week's Thursday
-  const jan4 = new Date(Date.UTC(d.getUTCFullYear(), 0, 4));
-  const week =
-    1 +
-    Math.round(
-      ((d.getTime() - jan4.getTime()) / 864e5 -
-        3 +
-        ((jan4.getUTCDay() + 6) % 7)) /
-        7
-    );
-  return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
-}
 
 /** What a task is remembered by. A frost by its level (forgotten on a morning
  *  without one, so the next cold spell is news); planting by crop, so a crop
@@ -139,7 +123,7 @@ export function morningMessage(
   return {
     title: line(first),
     body: lines.length ? lines.join('\n') : taskText(first.task, t, lang).text,
-    url: `/huerta?garden=${encodeURIComponent(first.id)}`,
+    url: `/huerta/planner?garden=${encodeURIComponent(first.id)}`,
   };
 }
 

@@ -39,7 +39,7 @@
       "ground_frost": "Possível geada no solo mais adiante na semana: na noite de {{night}}"
     },
     "todo": {
-      "title": "Para fazer esta semana",
+      "title": "Esta semana",
       "frost": {
         "frost": "Geada nos próximos 3 dias",
         "ground_frost": "Geada no solo nos próximos 3 dias",
@@ -71,9 +71,9 @@
         "plan": "Pelo seu plano",
         "soil": "Pelo seu solo"
       },
-      "nothing": "Esta semana sua horta não precisa de nada.",
-      "noPlan": "Planeje sua horta e marque o que planta, e esta página dirá o que ela precisa a cada semana.",
-      "openPlanner": "Abrir o planejador",
+      "nothing": "Sua horta não precisa de nada de você esta semana.",
+      "noPlan": "Planeje sua horta, e o Huerta dirá o que fazer nela a cada semana.",
+      "openPlanner": "Abrir Minha horta",
       "stage": {
         "thin": {
           "title": "{{crop}}: desbaste as mudas",
@@ -143,6 +143,21 @@
           "title": "{{crops}}: solte a argila",
           "text": "Na argila pesada as raízes bifurcam. Cave a linha funda e sem pedras, com algum composto, ou cultive num canteiro elevado ou variedades curtas."
         }
+      },
+      "done": "Feito",
+      "sow": {
+        "title": "{{crop}}: semear esta semana"
+      },
+      "plant": {
+        "title": "{{crop}}: plantar esta semana"
+      },
+      "forgot": {
+        "title": "{{crop}}: previsto para {{date}}",
+        "text": "Já está na terra? Marque para que o Huerta possa acompanhar o crescimento."
+      },
+      "tooLate": {
+        "title": "{{crops}}: agora é tarde",
+        "text": "Escolha outra coisa para os canteiros, ou deixe \"Planejar por mim\" preenchê-los."
       }
     },
     "short": {
@@ -152,6 +167,19 @@
       "water": "Rega",
       "lastFrost": "Última geada ~{{date}}",
       "firstFrost": "Primeira geada ~{{date}}"
+    },
+    "garden": {
+      "some": "Sua horta tem tarefas esta semana.",
+      "none": "Nada para sua horta esta semana."
+    },
+    "coming": {
+      "title": "Em breve",
+      "ready": "{{crop}}: hora de colher",
+      "sow": "{{crop}}: semear",
+      "plant": "{{crop}}: plantar",
+      "wait": "{{crop}}: {{reason}}",
+      "waiting": "Aguardando",
+      "note": "As datas de colheita são aproximadas, a partir das temperaturas habituais do seu lugar."
     }
   },
   "units": {
@@ -357,8 +385,8 @@
     "useShort": "Minha horta"
   },
   "planner": {
-    "title": "Planejador da horta",
-    "description": "Planeje sua horta canteiro por canteiro: o que cabe, a que distância, quais vizinhos se dão bem e quando cada cultura vai para a terra no seu lugar.",
+    "title": "Minha horta",
+    "description": "Sua horta canteiro por canteiro, e o que ela precisa de você a cada semana: o que semear e onde, cuidados, rega e colheita, calculados para o seu lugar.",
     "sample": "Planejado para um lugar de exemplo, {{place}}.",
     "choosePlace": "Escolha seu lugar",
     "for": "Planejado para esta semana em {{place}}.",
@@ -455,7 +483,7 @@
     "goesInNow": "Vai agora para a terra em {{place}}",
     "later": "Mais tarde",
     "split": "Dividir esta parte em duas",
-    "footnote": "Semeadura e plantio em {{date}}. Seu plano fica neste dispositivo.",
+    "footnote": "Semeadura e plantio em {{date}}. Seu plano fica salvo na sua conta.",
     "sownOn": "Semeado em {{date}}",
     "groundLabel": "Como você cultiva",
     "ground": {
@@ -533,7 +561,11 @@
       "loam": "franco",
       "clay": "argiloso"
     },
-    "soilHint": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}."
+    "soilHint": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}.",
+    "sowIn": "Semear em {{month}}",
+    "plantIn": "Plantar em {{month}}",
+    "sownOnInput": "Data da semeadura",
+    "plantedOnInput": "Data do plantio"
   },
   "year": {
     "title": "Calendário",
@@ -597,5 +629,22 @@
     "delete": "Excluir esta horta",
     "deleteText": "O plano dela também é excluído, em todos os dispositivos.",
     "offline": "Não foi possível conectar ao Funges. Tente de novo quando estiver online."
+  },
+  "guide": {
+    "title": "Primeiros passos",
+    "hide": "Ocultar",
+    "place": {
+      "title": "Onde fica sua horta?",
+      "text": "Encontre-a no mapa, para que tudo aqui seja calculado para o seu lugar.",
+      "action": "Encontrar no mapa"
+    },
+    "plan": {
+      "title": "Planeje seus canteiros",
+      "text": "Enchemos seus canteiros com o que vai para a terra agora no seu lugar. Toque em um canteiro e depois em uma cultura para trocá-la."
+    },
+    "sow": {
+      "title": "Semeie e marque",
+      "text": "A lista desta semana diz o que semear, onde e como. Marque cada item quando estiver na terra, e o Huerta acompanha a partir daí."
+    }
   }
 }

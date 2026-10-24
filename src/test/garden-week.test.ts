@@ -1,6 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
-import { gardenWeek } from '@/lib/garden-week';
+import {
+  comingUp,
+  gardenWeek,
+  growth,
+  jobKey,
+  pruneDone,
+  readyDay,
+  toSow,
+} from '@/lib/garden-week';
 import { SAMPLE_ADVICE, type CropNeeds } from '@/lib/huerta';
 import { layout, type Plan } from '@/lib/planner';
 
@@ -124,6 +132,7 @@ describe("this week's to-do list", () => {
     };
     expect(gardenWeek(p, now, NEEDS, '2026-10-21')).toEqual([
       { kind: 'plantNow', crops: ['garlic'] },
+      { kind: 'tooLate', crops: ['kale'] },
       { kind: 'sowAgain', crop: 'lettuce', weeks: 3 },
     ]);
   });
@@ -163,5 +172,150 @@ describe("this week's to-do list", () => {
     expect(
       gardenWeek(plan(['carrot', '2026-04-01']), advice, NEEDS, '2026-04-20')
     ).toEqual([]);
+  });
+});
+
+describe('the dated plan', () => {
+  const dated = (
+    ...rows: [string, { planted?: string; sow?: string }][]
+  ): Plan => ({
+    garden: { width: 6, length: 4.5, shape: 'rect' },
+    sections: rows.map(([crop, day], i) => ({ ...beds[i], crop, ...day })),
+  });
+  const now = {
+    ...advice,
+    crops: {
+      ...advice.crops,
+      lettuce: 'now' as const,
+      garlic: 'now' as const,
+      tomato: 'too_late' as const,
+    },
+  };
+
+  it('lists a crop to sow only once its day has come', () => {
+    const p = dated(
+      ['lettuce', { sow: '2026-10-20' }],
+      ['garlic', { sow: '2026-11-01' }]
+    );
+    expect(gardenWeek(p, now, NEEDS, '2026-10-24')).toContainEqual({
+      kind: 'plantNow',
+      crops: ['lettuce'],
+    });
+  });
+
+  it('asks about a sowing planned a week ago or more', () => {
+    const p = dated(
+      ['lettuce', { sow: '2026-10-10' }],
+      ['lettuce', { sow: '2026-10-12' }]
+    );
+    expect(toSow(p, 'lettuce', '2026-10-24')).toEqual({
+      at: [0, 1],
+      since: '2026-10-10',
+    });
+    expect(toSow(p, 'lettuce', '2026-10-15').since).toBeUndefined();
+  });
+
+  it('says when a planned crop missed its time', () => {
+    const p = dated(['tomato', { sow: '2026-06-01' }]);
+    expect(gardenWeek(p, now, NEEDS, '2026-10-24')).toContainEqual({
+      kind: 'tooLate',
+      crops: ['tomato'],
+    });
+    // Planned for next spring: not late, just not yet.
+    expect(
+      gardenWeek(dated(['tomato', { sow: '2027-04-01' }]), now, NEEDS, '2026-10-24')
+    ).toEqual([]);
+  });
+
+  it('a ticked job stays off until its key changes', () => {
+    const p = {
+      ...dated(['lettuce', { planted: '2026-10-01' }]),
+      done: { 'water:2026-W43': '2026-10-24' },
+    };
+    const dry = { ...now, water: 12 };
+    const water = (day: string) =>
+      gardenWeek(p, dry, NEEDS, day).some(task => task.kind === 'water');
+    expect(water('2026-10-24')).toBe(false);
+    expect(water('2026-10-27')).toBe(true);
+    expect(
+      jobKey({ kind: 'water', mm: 12, soil: 'loam' }, p, '2026-10-24')
+    ).toBe('water:2026-W43');
+    expect(
+      jobKey({ kind: 'stage', crop: 'lettuce', step: 'thin' }, p, '2026-10-24')
+    ).toBe('stage:lettuce:thin:2026-10-01');
+    expect(
+      jobKey({ kind: 'plantNow', crops: ['lettuce'] }, p, '2026-10-24')
+    ).toBeNull();
+  });
+
+  it('a row sown again counts as the last sowing', () => {
+    const p = {
+      ...dated(['lettuce', { planted: '2026-09-01' }]),
+      done: { 'sowAgain:lettuce': '2026-10-20' },
+    };
+    const again = (day: string) =>
+      gardenWeek(p, now, NEEDS, day).some(task => task.kind === 'sowAgain');
+    expect(again('2026-10-24')).toBe(false);
+    expect(again('2026-11-12')).toBe(true);
+  });
+
+  it('keeps ticks for 180 days', () => {
+    expect(
+      pruneDone({ old: '2026-01-01', recent: '2026-10-01' }, '2026-10-24')
+    ).toEqual({ recent: '2026-10-01' });
+  });
+});
+
+describe('ready days and the weeks ahead', () => {
+  const temps = [8, 9, 12, 14, 18, 22, 25, 25, 22, 17, 12, 9];
+  const year = { place: 'Valencia', crops: {}, temps };
+
+  it('the ready day is the first day its warmth reaches what it needs', () => {
+    const day = readyDay('lettuce', NEEDS.lettuce, temps, '2026-09-01')!;
+    const before = new Date(`${day}T12:00:00`);
+    before.setDate(before.getDate() - 1);
+    expect(
+      growth('lettuce', NEEDS.lettuce, temps, '2026-09-01', day)
+    ).toBeGreaterThanOrEqual(1);
+    expect(
+      growth(
+        'lettuce',
+        NEEDS.lettuce,
+        temps,
+        '2026-09-01',
+        before.toLocaleDateString('sv')
+      )
+    ).toBeLessThan(1);
+  });
+
+  it('coming up: sowings soon, crops coming ready, crops waiting for the weather', () => {
+    const p: Plan = {
+      garden: { width: 6, length: 4.5, shape: 'rect' },
+      sections: [
+        { ...beds[0], crop: 'lettuce', planted: '2026-09-25' }, // ready ~19 Nov
+        { ...beds[1], crop: 'garlic', sow: '2026-11-01' },
+        { ...beds[2], crop: 'carrot', sow: '2026-10-01' },
+        { ...beds[3], crop: 'tomato', sow: '2027-04-01' }, // too far ahead
+      ],
+    };
+    const wait = {
+      ...advice,
+      crops: { ...advice.crops, carrot: 'wait_soil' as const },
+    };
+    const items = comingUp(p, wait, NEEDS, '2026-10-24', year);
+    expect(items.map(c => c.kind)).toEqual(['sow', 'ready', 'wait']);
+    expect(items[0]).toEqual({
+      kind: 'sow',
+      crop: 'garlic',
+      day: '2026-11-01',
+      at: [1],
+    });
+    expect(items[1]).toMatchObject({ kind: 'ready', crop: 'lettuce', at: [0] });
+    expect(items[2]).toEqual({
+      kind: 'wait',
+      crop: 'carrot',
+      status: 'wait_soil',
+      at: [2],
+    });
   });
 });

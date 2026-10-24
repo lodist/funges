@@ -39,7 +39,7 @@
       "ground_frost": "Gelée au sol possible plus tard dans la semaine : dans la nuit de {{night}}"
     },
     "todo": {
-      "title": "À faire cette semaine",
+      "title": "Cette semaine",
       "frost": {
         "frost": "Gel dans les 3 prochains jours",
         "ground_frost": "Gelée au sol dans les 3 prochains jours",
@@ -72,8 +72,8 @@
         "soil": "Selon votre sol"
       },
       "nothing": "Votre potager n'a besoin de rien cette semaine.",
-      "noPlan": "Planifiez votre potager et notez ce que vous plantez : cette page dira ce qu'il lui faut chaque semaine.",
-      "openPlanner": "Ouvrir le plan du potager",
+      "noPlan": "Planifiez votre potager, et Huerta vous dira quoi y faire chaque semaine.",
+      "openPlanner": "Ouvrir Mon potager",
       "stage": {
         "thin": {
           "title": "{{crop}} : éclaircissez les semis",
@@ -143,6 +143,21 @@
           "title": "{{crops}} : ameublissez l'argile",
           "text": "Dans une argile lourde, les racines fourchent. Bêchez le rang profond et sans cailloux, avec un peu de compost, ou cultivez-les en carré surélevé ou en variétés courtes."
         }
+      },
+      "done": "Fait",
+      "sow": {
+        "title": "{{crop}} : à semer cette semaine"
+      },
+      "plant": {
+        "title": "{{crop}} : à planter cette semaine"
+      },
+      "forgot": {
+        "title": "{{crop}} : prévu pour le {{date}}",
+        "text": "C'est en terre ? Cochez-le pour que Huerta puisse suivre sa croissance."
+      },
+      "tooLate": {
+        "title": "{{crops}} : trop tard maintenant",
+        "text": "Choisissez autre chose pour ses planches, ou laissez « Planifiez pour moi » les remplir."
       }
     },
     "short": {
@@ -152,6 +167,19 @@
       "water": "Arrosage",
       "lastFrost": "Dernière gelée ~{{date}}",
       "firstFrost": "Première gelée ~{{date}}"
+    },
+    "garden": {
+      "some": "Votre potager a des choses à faire cette semaine.",
+      "none": "Rien pour votre potager cette semaine."
+    },
+    "coming": {
+      "title": "À venir",
+      "ready": "{{crop}} : à récolter",
+      "sow": "{{crop}} : semer",
+      "plant": "{{crop}} : planter",
+      "wait": "{{crop}} : {{reason}}",
+      "waiting": "En attente",
+      "note": "Les dates de récolte sont approximatives, d'après les températures habituelles chez vous."
     }
   },
   "units": {
@@ -357,8 +385,8 @@
     "useShort": "Mon potager"
   },
   "planner": {
-    "title": "Plan du potager",
-    "description": "Planifiez votre potager planche par planche : ce qui tient, à quelle distance, quels voisins s'entendent et quand chaque culture se met en terre chez vous.",
+    "title": "Mon potager",
+    "description": "Votre potager planche par planche, et ce qu'il vous demande chaque semaine : quoi semer où, soins, arrosage et récolte, calculés pour votre lieu.",
     "sample": "Planifié pour un lieu d'exemple, {{place}}.",
     "choosePlace": "Choisissez votre lieu",
     "for": "Planifié pour cette semaine autour de {{place}}.",
@@ -455,7 +483,7 @@
     "goesInNow": "Se met en terre maintenant autour de {{place}}",
     "later": "Plus tard",
     "split": "Couper cette partie en deux",
-    "footnote": "Semis et plantations au {{date}}. Votre plan reste sur cet appareil.",
+    "footnote": "Semis et plantations au {{date}}. Votre plan est enregistré sur votre compte.",
     "sownOn": "Semé le {{date}}",
     "groundLabel": "Votre façon de cultiver",
     "ground": {
@@ -533,7 +561,11 @@
       "loam": "franc",
       "clay": "argileux"
     },
-    "soilHint": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}."
+    "soilHint": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}.",
+    "sowIn": "Semer en {{month}}",
+    "plantIn": "Planter en {{month}}",
+    "sownOnInput": "Date de semis",
+    "plantedOnInput": "Date de plantation"
   },
   "year": {
     "title": "Calendrier",
@@ -597,5 +629,22 @@
     "delete": "Supprimer ce potager",
     "deleteText": "Son plan disparaît aussi, sur tous vos appareils.",
     "offline": "Impossible de joindre Funges. Réessayez une fois en ligne."
+  },
+  "guide": {
+    "title": "Pour commencer",
+    "hide": "Masquer",
+    "place": {
+      "title": "Où est votre potager ?",
+      "text": "Trouvez-le sur la carte, pour que tout ici soit calculé pour votre propre lieu.",
+      "action": "Le trouver sur la carte"
+    },
+    "plan": {
+      "title": "Planifiez vos planches",
+      "text": "Nous avons rempli vos planches avec ce qui se met en terre maintenant chez vous. Touchez une planche, puis une culture, pour la changer."
+    },
+    "sow": {
+      "title": "Semez et cochez",
+      "text": "La liste de la semaine dit quoi semer, où et comment. Cochez chaque ligne une fois en terre, et Huerta suit la suite."
+    }
   }
 }
