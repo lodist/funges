@@ -14,7 +14,7 @@ import {
   BAND_GHOST_CLASS,
   BAND_SURFACE_CLASS,
 } from '@/lib/band-surface';
-import { grid, paint, STATUS_RGB, type MapLayer } from '@/lib/garden-map';
+import { grid, paint, PALETTES, type MapLayer } from '@/lib/garden-map';
 import { CROPS, statusGroup, type PlaceAdvice } from '@/lib/huerta';
 import {
   fetchAdvice,
@@ -154,7 +154,8 @@ function show(
           15,
           0.3,
         ],
-        'raster-resampling': 'nearest',
+        // Blended between cells: smooth edges, not blocks.
+        'raster-resampling': 'linear',
       },
     },
     firstLabel
@@ -165,7 +166,8 @@ function show(
 async function drawContinent(
   continent: Continent,
   layer: MapLayer,
-  crop: string
+  crop: string,
+  dark: boolean
 ): Promise<{ url: string; bounds: [number, number, number, number] }> {
   const load = async (region: MapRegion, again: boolean) => {
     const night = await fetchMapNight(region, again);
@@ -195,16 +197,24 @@ async function drawContinent(
     at += part.values.length;
   }
   const area = grid(places);
-  const canvas = document.createElement('canvas');
-  canvas.width = area.width;
-  canvas.height = area.height;
-  canvas
+  const cells = document.createElement('canvas');
+  cells.width = area.width;
+  cells.height = area.height;
+  cells
     .getContext('2d')!
     .putImageData(
-      new ImageData(paint(area, layer, values), area.width, area.height),
+      new ImageData(paint(area, layer, values, dark), area.width, area.height),
       0,
       0
     );
+  // Softened by a pixel, half a cell: with MapLibre's blending the cells'
+  // steps read as smooth edges.
+  const canvas = document.createElement('canvas');
+  canvas.width = area.width;
+  canvas.height = area.height;
+  const pen = canvas.getContext('2d')!;
+  pen.filter = 'blur(1px)';
+  pen.drawImage(cells, 0, 0);
   const blob = await new Promise<Blob>(resolve =>
     canvas.toBlob(b => resolve(b!), 'image/png')
   );
@@ -230,6 +240,8 @@ export default function HuertaMapPage() {
   const [centre, setCentre] = useState<PlaceAdvice | null | undefined>();
   const [crop, setCrop] = useState('garlic');
   const mapStyle = useMapStore(state => state.mapStyle);
+  // The dark basemaps take the palette turned round.
+  const dark = /dark/.test(mapStyle);
   const hillshadeVisible = useMapStore(state => state.hillshadeVisible);
   const [layer, setLayer] = useState<MapLayer>('crop');
   const [ready, setReady] = useState(false);
@@ -325,7 +337,7 @@ export default function HuertaMapPage() {
     for (const continent of shown) {
       if (wanted.current.get(continent) === key) continue;
       wanted.current.set(continent, key);
-      drawContinent(continent, layer, crop)
+      drawContinent(continent, layer, crop, dark)
         .then(({ url, bounds }) => {
           if (wanted.current.get(continent) !== key || map.current !== m)
             return URL.revokeObjectURL(url);
@@ -341,7 +353,7 @@ export default function HuertaMapPage() {
           setFailed(true);
         });
     }
-  }, [ready, shown, layer, crop]);
+  }, [ready, shown, layer, crop, dark]);
 
   // The place tapped: a marker, and its own advice for the card.
   useEffect(() => {
@@ -448,7 +460,12 @@ export default function HuertaMapPage() {
             />
           ) : null}
           {picked && isMobile ? null : (
-            <Legend layer={layer} title={layerName(layer)} failed={failed} />
+            <Legend
+              layer={layer}
+              title={layerName(layer)}
+              failed={failed}
+              dark={dark}
+            />
           )}
         </div>
       </div>
@@ -456,31 +473,45 @@ export default function HuertaMapPage() {
   );
 }
 
+/** A palette colour as CSS, without the map's transparency. */
+const css = ([r, g, b]: readonly number[]) => `rgb(${r},${g},${b})`;
+
 function Legend({
   layer,
   title,
   failed,
+  dark,
 }: {
   layer: MapLayer;
   /** The layer's name: the rail shows only its icon. */
   title: string;
   failed: boolean;
+  /** The basemap is a dark one: its palette. */
+  dark: boolean;
 }) {
   const { t } = useTranslation('huerta');
+  const palette = PALETTES[dark ? 'dark' : 'light'];
   const keys: [string, string][] =
     layer === 'crop'
       ? [
-          [`rgb(${STATUS_RGB.now})`, t('map.legend.now')],
-          [`rgb(${STATUS_RGB.wait})`, t('map.legend.wait')],
-          [`rgb(${STATUS_RGB.over})`, t('map.legend.over')],
+          [css(palette.crop.now), t('map.legend.now')],
+          [css(palette.crop.wait), t('map.legend.wait')],
+          [css(palette.crop.over), t('map.legend.over')],
         ]
       : layer === 'frost'
         ? [
-            ['rgb(63,107,154)', t('map.legend.frost')],
-            ['rgb(169,193,220)', t('map.legend.ground')],
-            ['rgb(214,224,236)', t('map.legend.later')],
+            [css(palette.frost[2]), t('map.legend.frost')],
+            [css(palette.frost[1]), t('map.legend.ground')],
+            [css(palette.frost[3]), t('map.legend.later')],
+            [css(palette.frost[0]), t('map.legend.none')],
           ]
         : [];
+  // A ramp's stops along the bar, by value.
+  const ramp = layer === 'soil' ? palette.soil : palette.water;
+  const top = ramp[ramp.length - 1][0];
+  const gradient = `linear-gradient(90deg, ${ramp
+    .map(([x, c]) => `${css(c)} ${(x / top) * 100}%`)
+    .join(', ')})`;
   return (
     <div className='pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm'>
       {failed || layer === 'crop' ? null : (
@@ -494,7 +525,7 @@ function Legend({
           {keys.map(([fill, label]) => (
             <li key={label} className='flex items-center gap-2'>
               <span
-                className='size-3.5 shrink-0 rounded-sm'
+                className='size-3.5 shrink-0 rounded-sm border border-border'
                 style={{ background: fill }}
               />
               {label}
@@ -504,19 +535,19 @@ function Legend({
       ) : (
         <div className='flex w-48 flex-col gap-1'>
           <span
-            className='h-3 rounded-sm'
-            style={{
-              background:
-                layer === 'soil'
-                  ? 'linear-gradient(90deg, rgb(220,230,239), rgb(243,220,203), rgb(224,144,106), rgb(154,63,31))'
-                  : 'linear-gradient(90deg, rgb(222,236,246), rgb(130,177,214), rgb(47,101,150))',
-            }}
+            className='h-3 rounded-sm border border-border'
+            style={{ background: gradient }}
           />
           <span className='flex justify-between text-xs text-muted-foreground'>
             <span>{t(`map.legend.${layer}Low`)}</span>
             <span>{t(`map.legend.${layer}High`)}</span>
           </span>
         </div>
+      )}
+      {failed ? null : (
+        <p className='mt-2 max-w-48 text-xs text-muted-foreground'>
+          {t('map.legend.outside')}
+        </p>
       )}
     </div>
   );
@@ -598,7 +629,9 @@ function PlaceCard({
           <span
             aria-hidden='true'
             className='size-3 shrink-0 rounded-full'
-            style={{ background: `rgb(${STATUS_RGB[statusGroup(status)]})` }}
+            style={{
+              background: css(PALETTES.light.crop[statusGroup(status)]),
+            }}
           />
           <span>
             <span className='font-semibold'>{t(`crops.${crop}`)}:</span>{' '}

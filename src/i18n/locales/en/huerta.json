@@ -39,7 +39,7 @@
       "ground_frost": "Ground frost possible later this week: {{night}} night"
     },
     "todo": {
-      "title": "This week",
+      "title": "To do this week",
       "frost": {
         "frost": "Frost in the next 3 days",
         "ground_frost": "Ground frost in the next 3 days",
@@ -180,6 +180,12 @@
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Waiting",
       "note": "Harvest dates are approximate, from the usual temperatures at your place."
+    },
+    "done": {
+      "title": "Done this week",
+      "undo": "Undo",
+      "sown": "{{crop}}: sown {{date}}",
+      "planted": "{{crop}}: planted {{date}}"
     }
   },
   "units": {
@@ -370,9 +376,11 @@
       "ground": "Ground frost in the next 3 days",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "1 L/m²",
+      "waterLow": "0 L/m²",
       "waterHigh": "35 L/m² or more",
-      "later": "Frost possible later this week"
+      "later": "Frost possible later this week",
+      "none": "No frost",
+      "outside": "No colour: outside Huerta's forecast"
     },
     "use": "Make this my garden",
     "close": "Close",
@@ -567,7 +575,7 @@
     "sownOnInput": "Sown on",
     "plantedOnInput": "Planted on",
     "forLabel": "Plan for",
-    "thisWeek": "This week",
+    "thisWeek": "Today",
     "forMonth": "Planned for {{month}} around {{place}}.",
     "readyOn": "Around {{date}}",
     "timeline": {
@@ -579,7 +587,7 @@
       "empty": "Nothing in the ground"
     },
     "tab": {
-      "week": "This week",
+      "week": "To do",
       "garden": "Garden"
     }
   },
@@ -672,6 +680,7 @@
     "harvest": "Harvest now",
     "none": "Nothing here this week.",
     "until": "Until {{month}}",
-    "allYear": "All year"
+    "allYear": "All year",
+    "allGardens": "All crops"
   }
 }

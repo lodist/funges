@@ -174,10 +174,9 @@ export default function HuertaPlannerPage() {
   // The timeline: how many weeks ahead the drawing shows (0: today).
   const [weeks, setWeeks] = useState(0);
   const later = useDeferredValue(weeks);
-  // On a phone the page is two views, this week's jobs or the garden, not one
-  // long scroll; unset until chosen (the garden first while the first plan
-  // waits to be kept).
-  const [tab, setTab] = useState<'week' | 'garden' | null>(null);
+  // On a phone the page is two views, the garden or this week's jobs, not one
+  // long scroll; the garden first.
+  const [tab, setTab] = useState<'garden' | 'week'>('garden');
   const year = useHuertaYear();
   // This week's statuses for the garden's own soil (lib/soil).
   const soil = gardenSoil(plan?.garden, year?.soil);
@@ -362,12 +361,7 @@ export default function HuertaPlannerPage() {
       .filter(i => notes(plan.sections, i, north).some(n => n.bad === bad));
   const allPlanted = chosen.every(i => plan.sections[i].planted);
   const tabs = isMobile && !sample;
-  const view = tabs
-    ? (tab ??
-      (plan.done?.[KEPT] || plan.sections.some(x => x.planted)
-        ? 'week'
-        : 'garden'))
-    : null;
+  const view = tabs ? tab : null;
   // The timeline's day: each section's stage then, and the drawing that day.
   const temps = year?.temps;
   const stages =
@@ -450,12 +444,12 @@ export default function HuertaPlannerPage() {
           )}
           {tabs ? (
             <CategoryChips
-              chips={(['week', 'garden'] as const).map(value => ({
+              chips={(['garden', 'week'] as const).map(value => ({
                 value,
                 label: t(`planner.tab.${value}`),
               }))}
-              value={view!}
-              onChange={value => setTab(value as 'week' | 'garden')}
+              value={tab}
+              onChange={value => setTab(value as 'garden' | 'week')}
               className='justify-start'
             />
           ) : null}
@@ -468,7 +462,13 @@ export default function HuertaPlannerPage() {
               today={today()}
               where={i => placeName(t, plan.sections[i], plan.garden)}
               onSow={ids => plantOn(ids, today())}
+              onUnsow={ids => plantOn(ids, undefined)}
               onDone={tick}
+              onUndo={key => {
+                const done = { ...plan.done };
+                delete done[key];
+                update({ ...plan, done });
+              }}
               onShow={show}
               onReplan={ids =>
                 update({

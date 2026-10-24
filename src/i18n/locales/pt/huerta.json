@@ -39,7 +39,7 @@
       "ground_frost": "Possível geada no solo mais adiante na semana: na noite de {{night}}"
     },
     "todo": {
-      "title": "Esta semana",
+      "title": "Para fazer esta semana",
       "frost": {
         "frost": "Geada nos próximos 3 dias",
         "ground_frost": "Geada no solo nos próximos 3 dias",
@@ -180,6 +180,12 @@
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Aguardando",
       "note": "As datas de colheita são aproximadas, a partir das temperaturas habituais do seu lugar."
+    },
+    "done": {
+      "title": "Feito esta semana",
+      "undo": "Desfazer",
+      "sown": "{{crop}}: semeadura em {{date}}",
+      "planted": "{{crop}}: plantio em {{date}}"
     }
   },
   "units": {
@@ -370,9 +376,11 @@
       "ground": "Geada no solo nos próximos 3 dias",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "1 L/m²",
+      "waterLow": "0 L/m²",
       "waterHigh": "35 L/m² ou mais",
-      "later": "Possível geada mais adiante na semana"
+      "later": "Possível geada mais adiante na semana",
+      "none": "Sem geada",
+      "outside": "Sem cor: fora da previsão do Huerta"
     },
     "use": "Usar como minha horta",
     "close": "Fechar",
@@ -567,7 +575,7 @@
     "sownOnInput": "Data da semeadura",
     "plantedOnInput": "Data do plantio",
     "forLabel": "Planejar para",
-    "thisWeek": "Esta semana",
+    "thisWeek": "Hoje",
     "forMonth": "Planejado para {{month}} em {{place}}.",
     "readyOn": "Por volta de {{date}}",
     "timeline": {
@@ -579,7 +587,7 @@
       "empty": "Nada na terra"
     },
     "tab": {
-      "week": "Esta semana",
+      "week": "Tarefas",
       "garden": "Horta"
     }
   },
@@ -672,6 +680,7 @@
     "harvest": "Colher agora",
     "none": "Nada esta semana.",
     "until": "Até {{month}}",
-    "allYear": "O ano todo"
+    "allYear": "O ano todo",
+    "allGardens": "Todas as culturas"
   }
 }

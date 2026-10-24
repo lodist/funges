@@ -33,10 +33,22 @@ describe('the garden map drawing', () => {
     expect(empty).toEqual([]);
   });
 
-  it('leaves out places with no frost, no reading, or nothing to water', () => {
-    expect(colour('frost', 0)).toBeNull();
-    expect(colour('soil', 255)).toBeNull();
-    expect(colour('water', 0)).toBeNull();
+  it("paints no frost and nothing to water faintly, so the forecast's edge shows", () => {
+    const alpha = (rgba: number[] | null) => rgba![3];
+    expect(alpha(colour('frost', 0))).toBeLessThan(alpha(colour('frost', 1)));
+    expect(alpha(colour('water', 0))).toBeLessThan(alpha(colour('water', 15)));
+    expect(colour('soil', 255)).toBeNull(); // no reading: unpainted
     expect(colour('soil', 40 + 30)).toEqual(colour('soil', 40 + 26)); // warmest stop
+  });
+
+  it('turns the ramps round on a dark basemap', () => {
+    const light = (rgba: number[] | null) =>
+      rgba!.slice(0, 3).reduce((a, b) => a + b);
+    expect(light(colour('water', 0, true))).toBeLessThan(
+      light(colour('water', 35, true))
+    );
+    expect(light(colour('water', 0))).toBeGreaterThan(
+      light(colour('water', 35))
+    );
   });
 });

@@ -39,7 +39,7 @@
       "ground_frost": "Possibile gelata al suolo più avanti in settimana: {{night}} notte"
     },
     "todo": {
-      "title": "Questa settimana",
+      "title": "Da fare questa settimana",
       "frost": {
         "frost": "Gelata nei prossimi 3 giorni",
         "ground_frost": "Gelata al suolo nei prossimi 3 giorni",
@@ -180,6 +180,12 @@
       "wait": "{{crop}}: {{reason}}",
       "waiting": "In attesa",
       "note": "Le date di raccolta sono indicative, dalle temperature abituali del tuo luogo."
+    },
+    "done": {
+      "title": "Fatto questa settimana",
+      "undo": "Annulla",
+      "sown": "{{crop}}: semina del {{date}}",
+      "planted": "{{crop}}: messa a dimora del {{date}}"
     }
   },
   "units": {
@@ -370,9 +376,11 @@
       "ground": "Gelata al suolo nei prossimi 3 giorni",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "1 L/m²",
+      "waterLow": "0 L/m²",
       "waterHigh": "35 L/m² o più",
-      "later": "Possibile gelata più avanti in settimana"
+      "later": "Possibile gelata più avanti in settimana",
+      "none": "Nessuna gelata",
+      "outside": "Senza colore: fuori dalle previsioni di Huerta"
     },
     "use": "Usa come il mio orto",
     "close": "Chiudi",
@@ -567,7 +575,7 @@
     "sownOnInput": "Data di semina",
     "plantedOnInput": "Data di messa a dimora",
     "forLabel": "Pianifica per",
-    "thisWeek": "Questa settimana",
+    "thisWeek": "Oggi",
     "forMonth": "Pianificato per {{month}} a {{place}}.",
     "readyOn": "Verso il {{date}}",
     "timeline": {
@@ -579,7 +587,7 @@
       "empty": "Niente nella terra"
     },
     "tab": {
-      "week": "Questa settimana",
+      "week": "Da fare",
       "garden": "Orto"
     }
   },
@@ -672,6 +680,7 @@
     "harvest": "Raccogliere ora",
     "none": "Niente questa settimana.",
     "until": "Fino a {{month}}",
-    "allYear": "Tutto l'anno"
+    "allYear": "Tutto l'anno",
+    "allGardens": "Tutte le colture"
   }
 }

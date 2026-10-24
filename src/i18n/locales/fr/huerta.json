@@ -39,7 +39,7 @@
       "ground_frost": "Gelée au sol possible plus tard dans la semaine : dans la nuit de {{night}}"
     },
     "todo": {
-      "title": "Cette semaine",
+      "title": "À faire cette semaine",
       "frost": {
         "frost": "Gel dans les 3 prochains jours",
         "ground_frost": "Gelée au sol dans les 3 prochains jours",
@@ -180,6 +180,12 @@
       "wait": "{{crop}} : {{reason}}",
       "waiting": "En attente",
       "note": "Les dates de récolte sont approximatives, d'après les températures habituelles chez vous."
+    },
+    "done": {
+      "title": "Fait cette semaine",
+      "undo": "Annuler",
+      "sown": "{{crop}} : semis du {{date}}",
+      "planted": "{{crop}} : plantation du {{date}}"
     }
   },
   "units": {
@@ -370,9 +376,11 @@
       "ground": "Gelée au sol dans les 3 prochains jours",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "1 L/m²",
+      "waterLow": "0 L/m²",
       "waterHigh": "35 L/m² ou plus",
-      "later": "Gel possible plus tard dans la semaine"
+      "later": "Gel possible plus tard dans la semaine",
+      "none": "Pas de gel",
+      "outside": "Sans couleur : hors des prévisions de Huerta"
     },
     "use": "En faire mon potager",
     "close": "Fermer",
@@ -567,7 +575,7 @@
     "sownOnInput": "Date de semis",
     "plantedOnInput": "Date de plantation",
     "forLabel": "Planifier pour",
-    "thisWeek": "Cette semaine",
+    "thisWeek": "Aujourd'hui",
     "forMonth": "Planifié pour {{month}} autour de {{place}}.",
     "readyOn": "Vers le {{date}}",
     "timeline": {
@@ -579,7 +587,7 @@
       "empty": "Rien en terre"
     },
     "tab": {
-      "week": "Cette semaine",
+      "week": "À faire",
       "garden": "Potager"
     }
   },
@@ -672,6 +680,7 @@
     "harvest": "À récolter",
     "none": "Rien cette semaine.",
     "until": "Jusqu'en {{month}}",
-    "allYear": "Toute l'année"
+    "allYear": "Toute l'année",
+    "allGardens": "Toutes les cultures"
   }
 }
