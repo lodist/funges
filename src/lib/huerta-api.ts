@@ -6,6 +6,7 @@
  * searches it here. Every call is the signed-in account's (lib/huerta-session).
  */
 import { CROPS, type CropNeeds, type PlaceAdvice } from '@/lib/huerta';
+import { currentGarden, updateGarden } from '@/lib/gardens';
 import { apiFetch } from '@/lib/huerta-session';
 import {
   decodeAdvice,
@@ -39,7 +40,6 @@ const rounded = (value: number) => Math.round(value * 100) / 100;
 
 const localDay = () => new Date().toLocaleDateString('sv'); // YYYY-MM-DD, local
 const ADVICE_KEY = 'huerta-advice';
-const PLACE_KEY = 'huerta-place';
 const MAP_VIEW_KEY = 'huerta-map-view';
 
 const read = <T>(key: string): T | null => {
@@ -57,10 +57,10 @@ const write = (key: string, value: unknown) => {
   }
 };
 
-/** The place the visitor chose last, if any. */
-export const savedPlace = () => read<Place>(PLACE_KEY);
+/** The current garden's place (lib/gardens), if it has one. */
+export const savedPlace = (): Place | null => currentGarden()?.place ?? null;
 export const savePlace = (place: Place) =>
-  write(PLACE_KEY, { lat: rounded(place.lat), lon: rounded(place.lon) });
+  updateGarden({ place: { lat: rounded(place.lat), lon: rounded(place.lon) } });
 
 export interface MapView {
   center: [number, number];
