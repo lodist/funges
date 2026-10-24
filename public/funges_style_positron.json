@@ -29,7 +29,7 @@
     },
     "overlay-se": {
       "type": "vector",
-      "url": "pmtiles://https://data.fung.es/EU/SE/staging/se_forecast.pmtiles"
+      "url": "pmtiles://https://data.fung.es/EU/SE/se_forecast.pmtiles"
     },
     "overlay-use": {
       "type": "vector",
