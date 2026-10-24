@@ -640,7 +640,9 @@
     },
     "plan": {
       "title": "Pianifica le aiuole",
-      "text": "Abbiamo riempito le tue aiuole con ciò che va messo a dimora ora nel tuo luogo. Tocca un'aiuola, poi una coltura, per cambiarla."
+      "text": "Abbiamo riempito le tue aiuole con ciò che va messo a dimora ora nel tuo luogo. Tocca un'aiuola, poi una coltura, per cambiarla.",
+      "keep": "Tengo questo piano",
+      "empty": "In questo momento nel tuo luogo non si mette a dimora nulla. Tocca un'aiuola, poi una coltura: Huerta le dà la data in cui potrà andare in terra."
     },
     "sow": {
       "title": "Semina e spunta",

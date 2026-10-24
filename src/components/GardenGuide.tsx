@@ -9,10 +9,19 @@ const HIDDEN = 'huerta-guide-hidden';
 const STEPS = ['place', 'plan', 'sow'] as const;
 
 /** My garden's first steps, until something is sown: where the garden is,
- *  its beds, then sowing and ticking off. `done` says whether the first two
- *  are. "Hide" keeps it away on this device, for gardeners who know their
- *  way. */
-export function GardenGuide({ done }: { done: [boolean, boolean] }) {
+ *  its beds (filled for now at the place, or `empty` when nothing goes in
+ *  now), then sowing and ticking off. `done` says whether the first two are:
+ *  the beds once the gardener kept or changed them (`onKeep`). "Hide" keeps
+ *  it away on this device, for gardeners who know their way. */
+export function GardenGuide({
+  done,
+  empty,
+  onKeep,
+}: {
+  done: [boolean, boolean];
+  empty: boolean;
+  onKeep: () => void;
+}) {
   const { t } = useTranslation('huerta');
   const [hidden, setHidden] = useState(() => {
     try {
@@ -78,8 +87,17 @@ export function GardenGuide({ done }: { done: [boolean, boolean] }) {
                 </span>
                 {now ? (
                   <span className='mt-0.5 block text-sm text-muted-foreground'>
-                    {t(`guide.${step}.text`)}
+                    {t(
+                      step === 'plan' && empty
+                        ? 'guide.plan.empty'
+                        : `guide.${step}.text`
+                    )}
                   </span>
+                ) : null}
+                {now && step === 'plan' && !empty ? (
+                  <Button variant='outline' className='mt-2' onClick={onKeep}>
+                    {t('guide.plan.keep')}
+                  </Button>
                 ) : null}
                 {now && step === 'place' ? (
                   <Button asChild className='mt-2'>

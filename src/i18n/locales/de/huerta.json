@@ -640,7 +640,9 @@
     },
     "plan": {
       "title": "Plane deine Beete",
-      "text": "Wir haben deine Beete mit dem gefüllt, was bei dir jetzt in die Erde kommt. Tippe auf ein Beet und dann auf eine Kultur, um sie zu ändern."
+      "text": "Wir haben deine Beete mit dem gefüllt, was bei dir jetzt in die Erde kommt. Tippe auf ein Beet und dann auf eine Kultur, um sie zu ändern.",
+      "keep": "Plan behalten",
+      "empty": "Bei dir kommt gerade nichts in die Erde. Tippe auf ein Beet und dann auf eine Kultur: Huerta setzt das Datum, ab dem sie in die Erde kann."
     },
     "sow": {
       "title": "Säen und abhaken",

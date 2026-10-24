@@ -117,6 +117,8 @@ const STYLES: PlanStyle[] = [
   'herbsFlowers',
 ];
 const GROUNDS: Ground[] = ['raised', 'ground', 'rows'];
+/** The tick for the guide's second step: the plan kept or changed. */
+const KEPT = 'guide:plan';
 const UNDO_STEPS = 20;
 
 /** The chips' look (CategoryChips), for the planner's own choices. */
@@ -195,8 +197,13 @@ export default function HuertaPlannerPage() {
 
   const update = (next: Plan) => {
     if (plan) setPast(p => [...p.slice(1 - UNDO_STEPS), plan]);
-    setPlan(next);
-    savePlan(next);
+    // A change of the gardener's own: the plan has been looked at (the
+    // guide's second step).
+    const seen = next.done?.[KEPT]
+      ? next
+      : { ...next, done: { ...next.done, [KEPT]: today() } };
+    setPlan(seen);
+    savePlan(seen);
   };
   const undo = () => {
     const last = past[past.length - 1];
@@ -259,7 +266,7 @@ export default function HuertaPlannerPage() {
     setPatch(null);
     modelRef.current?.scrollIntoView({
       behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-      block: 'center',
+      block: 'start',
     });
   };
   const name = (id: string) => t(`crops.${id}`);
@@ -341,7 +348,9 @@ export default function HuertaPlannerPage() {
         <div className='mb-8 flex flex-col gap-6 empty:hidden'>
           {plan.sections.some(x => x.planted) ? null : (
             <GardenGuide
-              done={[Boolean(savedPlace()), plan.sections.some(x => x.crop)]}
+              done={[Boolean(savedPlace()), Boolean(plan.done?.[KEPT])]}
+              empty={!plan.sections.some(x => x.crop)}
+              onKeep={() => tick(KEPT)}
             />
           )}
           {sample ? null : (

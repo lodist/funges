@@ -640,7 +640,9 @@
     },
     "plan": {
       "title": "Planifica tus bancales",
-      "text": "Hemos llenado tus bancales con lo que se siembra ahora en tu lugar. Toca un bancal y luego un cultivo para cambiarlo."
+      "text": "Hemos llenado tus bancales con lo que se siembra ahora en tu lugar. Toca un bancal y luego un cultivo para cambiarlo.",
+      "keep": "Quedarme con este plan",
+      "empty": "Ahora mismo no se siembra nada en tu lugar. Toca un bancal y luego un cultivo: Huerta le pone fecha para cuando pueda ir a la tierra."
     },
     "sow": {
       "title": "Siembra y márcalo",

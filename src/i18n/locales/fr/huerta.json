@@ -640,7 +640,9 @@
     },
     "plan": {
       "title": "Planifiez vos planches",
-      "text": "Nous avons rempli vos planches avec ce qui se met en terre maintenant chez vous. Touchez une planche, puis une culture, pour la changer."
+      "text": "Nous avons rempli vos planches avec ce qui se met en terre maintenant chez vous. Touchez une planche, puis une culture, pour la changer.",
+      "keep": "Garder ce plan",
+      "empty": "Rien ne se met en terre chez vous en ce moment. Touchez une planche, puis une culture : Huerta la date pour quand elle pourra aller en terre."
     },
     "sow": {
       "title": "Semez et cochez",

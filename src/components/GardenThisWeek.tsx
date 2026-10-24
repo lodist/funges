@@ -190,14 +190,14 @@ export function GardenThisWeek({
             const body = (
               <>
                 {Icon || !job.crop ? (
-                  <span className='grid size-11 place-items-center rounded-lg bg-muted text-primary-text'>
+                  <span className='grid size-10 place-items-center rounded-lg bg-muted text-primary-text'>
                     {Icon ? <Icon className='size-5' /> : null}
                   </span>
                 ) : (
                   <img
                     src={huertaImage(`crops/${job.crop}`)}
                     alt=''
-                    className='size-11 rounded-lg object-cover'
+                    className='size-10 rounded-lg object-cover'
                   />
                 )}
                 <span className='min-w-0'>
@@ -302,7 +302,7 @@ function Shows({
   children: ReactNode;
 }) {
   const layout =
-    'grid min-w-0 flex-1 basis-64 grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-4 text-left';
+    'grid min-w-0 flex-1 basis-64 grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-3 text-left';
   return at.length ? (
     <button
       type='button'

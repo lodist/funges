@@ -640,7 +640,9 @@
     },
     "plan": {
       "title": "Planeje seus canteiros",
-      "text": "Enchemos seus canteiros com o que vai para a terra agora no seu lugar. Toque em um canteiro e depois em uma cultura para trocá-la."
+      "text": "Enchemos seus canteiros com o que vai para a terra agora no seu lugar. Toque em um canteiro e depois em uma cultura para trocá-la.",
+      "keep": "Manter este plano",
+      "empty": "Nada vai para a terra no seu lugar agora. Toque em um canteiro e depois em uma cultura: o Huerta marca a data em que ela pode ir para a terra."
     },
     "sow": {
       "title": "Semeie e marque",
