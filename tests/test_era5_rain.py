@@ -77,22 +77,85 @@ def test_the_order_holds_every_coords_nearest_cell():
     # South Europe's box stopped at 12° E while its coords reach 18° W: from 28 Sep 2026
     # Spain, France and north-west Italy read the rain of the box's edge.
     coords = [(40.4, -3.7), (45.07, 7.69), (27.66, 44.73)]
-    assert er.box(coords) == ((27.5, 45.25), (-3.75, 44.75))
+    assert er.box(coords) == er.EU_BOX
     (south, north), (west, east) = er.box(coords)
     hourly = np.zeros((72, int((north - south) * 4) + 1, int((east - west) * 4) + 1))
     lats, lons = np.arange(south, north + 0.01, 0.25), np.arange(west, east + 0.01, 0.25)
-    hourly[:, 52, 0] = 1.0                                    # the cell over Madrid only
+    hourly[:, 52, 83] = 1.0                                   # the cell over Madrid only
     rows = er.local_day_rain(hourly, _hours(), lats, lons, coords, [DAY])
     assert rows["TotalPrecipitation_mm"].tolist() == [24.0, 0.0, 0.0]
 
 
-def test_us_east_and_west_share_one_order():
-    # Copernicus queues three orders per user: US West's own, the night's fourth, was
-    # turned away from 22 Oct 2026. One box lets each region download the other's.
+def test_each_continent_orders_one_box():
+    # Copernicus queues two orders per account and dataset: US West's, the night's fourth, was
+    # turned away from 22 Oct 2026. One box per continent: two orders a night.
     east = [(25.1, -80.3), (49.3, -67.2), (45.5, -106.4)]
     west = [(31.3, -124.7), (48.9, -100.0), (40.0, -81.8)]
     assert er.box(east) == er.box(west) == er.US_BOX
     assert er.box(east + [(24.6, -81.0)])[0][0] == 24.5  # a coord outside grows the box
+    south = [(27.6, -17.9), (54.9, 44.7), (40.4, -3.7)]
+    north = [(70.7, 30.9), (49.6, -24.4), (59.3, 18.1)]
+    assert er.box(south) == er.box(north) == er.EU_BOX
+
+
+class _Reply:
+    def __init__(self, body):
+        self.body = body
+
+    def json(self):
+        return self.body
+
+    def raise_for_status(self):
+        pass
+
+
+def _copernicus(monkeypatch, open_orders, status="accepted"):
+    """A Copernicus holding `open_orders` (status -> requests); returns the orders placed."""
+    placed = []
+    now = pd.Timestamp.now("UTC").tz_localize(None).isoformat()
+
+    def get(url, params=None, **_):
+        if url.endswith("/jobs"):
+            return _Reply({"jobs": [{"jobID": f"{params['status']}-{i}", "created": now}
+                                    for i in range(len(open_orders.get(params["status"], [])))]})
+        if url.endswith("/results"):
+            return _Reply({"traceback": "Maximum number queued requests for this dataset has been reached."})
+        job = url.rsplit("/", 1)[1]
+        if job == "new":
+            return _Reply({"status": status})
+        kind, i = job.rsplit("-", 1)
+        return _Reply({"metadata": {"request": {"ids": open_orders[kind][int(i)]}}})
+
+    def post(url, json=None, **_):
+        placed.append(json["inputs"])
+        return _Reply({"jobID": "new"})
+
+    monkeypatch.setattr(er.requests, "get", get)
+    monkeypatch.setattr(er.requests, "post", post)
+    return placed
+
+
+def test_the_box_is_ordered_once_a_night(monkeypatch):
+    # US East orders the shared box; US West, finding that order in, does not place a twin.
+    (lat, lon), today = er.US_BOX, date(2026, 10, 25)
+    placed = _copernicus(monkeypatch, {})
+    er.place_orders("key", lat, lon, today, wait=0)
+    assert len(placed) == 1
+    twin = _copernicus(monkeypatch, {"accepted": [placed[0]]})
+    er.place_orders("key", lat, lon, today, wait=0)
+    assert twin == []
+    # Last night's order, for other days, is no twin.
+    yesterday = er.cds_request(pd.date_range("2026-10-13", "2026-10-19").date, lat, lon)
+    again = _copernicus(monkeypatch, {"successful": [yesterday]})
+    er.place_orders("key", lat, lon, today, wait=0)
+    assert len(again) == 1
+
+
+def test_an_order_turned_away_says_why(monkeypatch, capsys):
+    _copernicus(monkeypatch, {}, status="rejected")
+    (lat, lon) = er.EU_BOX
+    er.place_orders("key", lat, lon, date(2026, 10, 25), wait=0)
+    assert "turned away: Maximum number queued requests" in capsys.readouterr().out
 
 
 def test_a_coord_off_the_downloaded_grid_keeps_its_stored_rain():
