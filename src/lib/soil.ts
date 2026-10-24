@@ -16,10 +16,11 @@ export interface MapSoil {
 }
 
 // ponytail: the gardener's three classes from the texture triangle's corners
-// (from 30% clay a soil gardens heavy, as clay loams do); the USDA classes if a
-// crop ever needs finer ones.
+// (from 30% clay a soil gardens heavy, as clay loams do; half sand and little
+// clay gardens light, as sandy loams do); the USDA classes if a crop ever needs
+// finer ones.
 export const textureOf = ({ clay, sand }: MapSoil): Texture =>
-  clay >= 30 ? 'clay' : sand >= 60 ? 'sandy' : 'loam';
+  clay >= 30 ? 'clay' : sand >= 50 && clay < 20 ? 'sandy' : 'loam';
 export const acidityOf = ({ ph }: MapSoil): Acidity =>
   ph < 6 ? 'acid' : ph >= 7.5 ? 'alkaline' : 'neutral';
 

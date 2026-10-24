@@ -4,7 +4,7 @@
  * each crop has grown since it went in.
  */
 import { CROPS, type CropNeeds, type PlaceAdvice } from '@/lib/huerta';
-import type { PlaceYear } from '@/lib/huerta-api';
+import type { PlaceYear } from '@/lib/huerta-wire';
 import type { Plan } from '@/lib/planner';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import { forSoil, gardenSoil, type Texture } from '@/lib/soil';

@@ -1,23 +1,26 @@
-import {
-  CROPS,
-  type CropNeeds,
-  type CropStatus,
-  type PlaceAdvice,
-} from '@/lib/huerta';
-import type { MapSoil } from '@/lib/soil';
-
 /**
  * Huerta's advice comes from the Huerta Worker, one place at a time, never as a
  * public file. Kept cheap: the position is rounded to ~1 km before it leaves
  * the device, a day's advice is kept and reused until the next day, and the
  * town search fetches one two-letter section of the town list once and
- * searches it here. The key rides in the URL so no call needs a preflight.
+ * searches it here. Every call is the signed-in account's (lib/huerta-session).
  */
-const API = import.meta.env.VITE_HUERTA_API as string | undefined;
-const KEY = import.meta.env.VITE_HUERTA_KEY as string | undefined;
+import { CROPS, type CropNeeds, type PlaceAdvice } from '@/lib/huerta';
+import { currentGarden, updateGarden } from '@/lib/gardens';
+import { apiFetch } from '@/lib/huerta-session';
+import {
+  decodeAdvice,
+  decodeYear,
+  type AdviceResponse,
+  type PlaceYear,
+  type YearResponse,
+} from '@/lib/huerta-wire';
+
+export { decodeAdvice };
+export type { CropYear, PlaceYear } from '@/lib/huerta-wire';
 
 /** Whether this build talks to the Worker (else the page shows its sample). */
-export const huertaApiConfigured = Boolean(API && KEY);
+export const huertaApiConfigured = Boolean(import.meta.env.VITE_HUERTA_API);
 
 export interface Place {
   lat: number;
@@ -32,71 +35,11 @@ export interface Town extends Place {
   province: string;
 }
 
-const STATUS: Record<string, CropStatus> = {
-  n: 'now',
-  f: 'wait_frost',
-  s: 'wait_soil',
-  w: 'wait_warm',
-  h: 'too_warm',
-  l: 'too_late',
-  x: 'not_here',
-  a: 'wait_autumn',
-  p: 'wait_spring',
-};
-const FROST: Record<string, PlaceAdvice['frost']> = {
-  '': 'none',
-  g: 'ground_frost',
-  f: 'frost',
-};
-
-interface AdviceResponse {
-  day: string;
-  crops: string[];
-  place: {
-    name: string;
-    frost: string;
-    soil: number | null;
-    nights: number | null;
-    rain: number | null;
-    water: number | null;
-    /** One letter per entry of `crops`. */
-    statuses: string;
-    lastFrost?: number | null;
-    firstFrost?: number | null;
-    laterFrost?: string;
-    laterNight?: string | null;
-  };
-}
-
-export const decodeAdvice = ({ day, crops, place }: AdviceResponse) => ({
-  place: place.name,
-  day,
-  frost: FROST[place.frost] ?? 'none',
-  soil: place.soil,
-  nights: place.nights,
-  rain: place.rain,
-  water: place.water,
-  lastFrost: place.lastFrost,
-  firstFrost: place.firstFrost,
-  laterFrost:
-    place.laterFrost === undefined
-      ? undefined
-      : (FROST[place.laterFrost] ?? 'none'),
-  laterNight: place.laterNight ?? null,
-  crops: Object.fromEntries(
-    crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
-  ),
-});
-
-const url = (path: string, query: Record<string, string | number>) =>
-  `${API}${path}?${new URLSearchParams({ ...query, k: KEY ?? '' } as Record<string, string>)}`;
-
 /** About 1 km: enough to find the nearest place, kinder to privacy and caches. */
 const rounded = (value: number) => Math.round(value * 100) / 100;
 
 const localDay = () => new Date().toLocaleDateString('sv'); // YYYY-MM-DD, local
 const ADVICE_KEY = 'huerta-advice';
-const PLACE_KEY = 'huerta-place';
 const MAP_VIEW_KEY = 'huerta-map-view';
 
 const read = <T>(key: string): T | null => {
@@ -114,10 +57,10 @@ const write = (key: string, value: unknown) => {
   }
 };
 
-/** The place the visitor chose last, if any. */
-export const savedPlace = () => read<Place>(PLACE_KEY);
+/** The current garden's place (lib/gardens), if it has one. */
+export const savedPlace = (): Place | null => currentGarden()?.place ?? null;
 export const savePlace = (place: Place) =>
-  write(PLACE_KEY, { lat: rounded(place.lat), lon: rounded(place.lon) });
+  updateGarden({ place: { lat: rounded(place.lat), lon: rounded(place.lon) } });
 
 export interface MapView {
   center: [number, number];
@@ -158,7 +101,7 @@ export async function fetchAdvice(
     CROPS.every(crop => crop.id in kept.advice.crops)
   )
     return kept.advice;
-  const response = await fetch(url('/v1/advice', { lat, lon }));
+  const response = await apiFetch('/v1/advice', { lat, lon });
   if (response.status === 404) return null;
   if (!response.ok) throw new Error(`Huerta advice: ${response.status}`);
   const advice = decodeAdvice((await response.json()) as AdviceResponse);
@@ -185,7 +128,7 @@ export async function searchTowns(query: string): Promise<Town[]> {
   if (!sections.has(key)) {
     sections.set(
       key,
-      fetch(url('/v1/towns', { q: key }))
+      apiFetch('/v1/towns', { q: key })
         .then(r => {
           if (!r.ok) throw new Error(`Huerta towns: ${r.status}`);
           return r.json();
@@ -221,7 +164,7 @@ let needs: Promise<Record<string, CropNeeds>> | null = null;
 /** Every crop's needs, asked once per visit; rejects (and asks again next
  *  time) when the Worker cannot be reached. */
 export function fetchNeeds(): Promise<Record<string, CropNeeds>> {
-  needs ??= fetch(url('/v1/crops', {}))
+  needs ??= apiFetch('/v1/crops')
     .then(r => {
       if (!r.ok) throw new Error(`Huerta crops: ${r.status}`);
       return r.json() as Promise<Record<string, CropNeeds>>;
@@ -246,7 +189,7 @@ export interface MapNight {
 }
 
 const bytes = async (path: string, query: Record<string, string>) => {
-  const response = await fetch(url(path, query));
+  const response = await apiFetch(path, query);
   if (!response.ok) throw new Error(`Huerta map: ${response.status}`);
   return response.arrayBuffer();
 };
@@ -258,7 +201,7 @@ export function fetchMapNight(region: MapRegion, again = false) {
   if (again) nights.delete(region);
   if (!nights.has(region)) {
     const night = (async () => {
-      const response = await fetch(url('/v1/map/index', { region }));
+      const response = await apiFetch('/v1/map/index', { region });
       if (!response.ok) throw new Error(`Huerta map: ${response.status}`);
       const { day, layers } = (await response.json()) as MapNight;
       const places = new Int16Array(
@@ -281,24 +224,8 @@ export async function fetchMapLayer(
   return new Uint8Array(await bytes('/v1/map/layer', { region, day, layer }));
 }
 
-/** A crop's months at one place, bit 0 = January. */
-export interface CropYear {
-  sow: number;
-  harvest: number;
-}
-
 const YEAR_KEY = 'huerta-year';
 const YEAR_DAYS = 30; // the year only changes when it is rebuilt
-
-/** A place's year: each crop's months, the 12 monthly mean air
- *  temperatures (C, January first), and the soil map's topsoil there (null
- *  where it has none). */
-export interface PlaceYear {
-  place: string;
-  crops: Record<string, CropYear>;
-  temps?: number[];
-  soil?: MapSoil | null;
-}
 
 /** The nearest place's year. Kept on the device for a month; null where
  *  Huerta has no place. */
@@ -321,36 +248,10 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
     kept.year.soil !== undefined
   )
     return kept.year;
-  const response = await fetch(url('/v1/year', { lat, lon }));
+  const response = await apiFetch('/v1/year', { lat, lon });
   if (response.status === 404) return null;
   if (!response.ok) throw new Error(`Huerta year: ${response.status}`);
-  const body = (await response.json()) as {
-    crops: string[];
-    place: {
-      name: string;
-      months: string;
-      temps?: number[];
-      soil?: [number, number, number];
-    };
-  };
-  const soil = body.place.soil;
-  const year: PlaceYear = {
-    place: body.place.name,
-    temps: body.place.temps,
-    soil: soil ? { ph: soil[0], clay: soil[1], sand: soil[2] } : null,
-    crops: Object.fromEntries(
-      body.crops.map((id, i) => {
-        const code = body.place.months.slice(i * 6, i * 6 + 6);
-        return [
-          id,
-          {
-            sow: parseInt(code.slice(0, 3), 16),
-            harvest: parseInt(code.slice(3), 16),
-          },
-        ];
-      })
-    ),
-  };
+  const year = decodeYear((await response.json()) as YearResponse);
   write(YEAR_KEY, { lat, lon, at: Date.now(), year });
   return year;
 }

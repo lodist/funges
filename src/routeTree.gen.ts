@@ -25,6 +25,7 @@ import { Route as HuertaRouteImport } from './routes/huerta'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HuertaYearRouteImport } from './routes/huerta_.year'
+import { Route as HuertaSigninRouteImport } from './routes/huerta_.signin'
 import { Route as HuertaPlannerRouteImport } from './routes/huerta_.planner'
 import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
 
@@ -108,6 +109,11 @@ const HuertaYearRoute = HuertaYearRouteImport.update({
   path: '/huerta/year',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HuertaSigninRoute = HuertaSigninRouteImport.update({
+  id: '/huerta_/signin',
+  path: '/huerta/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HuertaPlannerRoute = HuertaPlannerRouteImport.update({
   id: '/huerta_/planner',
   path: '/huerta/planner',
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
+  '/huerta/signin': typeof HuertaSigninRoute
   '/huerta/year': typeof HuertaYearRoute
 }
 export interface FileRoutesByTo {
@@ -157,6 +164,7 @@ export interface FileRoutesByTo {
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
+  '/huerta/signin': typeof HuertaSigninRoute
   '/huerta/year': typeof HuertaYearRoute
 }
 export interface FileRoutesById {
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta_/map': typeof HuertaMapRoute
   '/huerta_/planner': typeof HuertaPlannerRoute
+  '/huerta_/signin': typeof HuertaSigninRoute
   '/huerta_/year': typeof HuertaYearRoute
 }
 export interface FileRouteTypes {
@@ -200,6 +209,7 @@ export interface FileRouteTypes {
     | '/worth-foraging-now'
     | '/huerta/map'
     | '/huerta/planner'
+    | '/huerta/signin'
     | '/huerta/year'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -220,6 +230,7 @@ export interface FileRouteTypes {
     | '/worth-foraging-now'
     | '/huerta/map'
     | '/huerta/planner'
+    | '/huerta/signin'
     | '/huerta/year'
   id:
     | '__root__'
@@ -240,6 +251,7 @@ export interface FileRouteTypes {
     | '/worth-foraging-now'
     | '/huerta_/map'
     | '/huerta_/planner'
+    | '/huerta_/signin'
     | '/huerta_/year'
   fileRoutesById: FileRoutesById
 }
@@ -261,6 +273,7 @@ export interface RootRouteChildren {
   WorthForagingNowRoute: typeof WorthForagingNowRoute
   HuertaMapRoute: typeof HuertaMapRoute
   HuertaPlannerRoute: typeof HuertaPlannerRoute
+  HuertaSigninRoute: typeof HuertaSigninRoute
   HuertaYearRoute: typeof HuertaYearRoute
 }
 
@@ -378,6 +391,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HuertaYearRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/huerta_/signin': {
+      id: '/huerta_/signin'
+      path: '/huerta/signin'
+      fullPath: '/huerta/signin'
+      preLoaderRoute: typeof HuertaSigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/huerta_/planner': {
       id: '/huerta_/planner'
       path: '/huerta/planner'
@@ -413,6 +433,7 @@ const rootRouteChildren: RootRouteChildren = {
   WorthForagingNowRoute: WorthForagingNowRoute,
   HuertaMapRoute: HuertaMapRoute,
   HuertaPlannerRoute: HuertaPlannerRoute,
+  HuertaSigninRoute: HuertaSigninRoute,
   HuertaYearRoute: HuertaYearRoute,
 }
 export const routeTree = rootRouteImport

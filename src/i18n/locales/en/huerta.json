@@ -547,5 +547,55 @@
     "notHere": "Not outdoors here: {{crops}}.",
     "backIn": "Back in {{month}}",
     "note": "Sowing months follow the same rules as each week's advice, over a typical year at your place. Harvest months are approximate."
+  },
+  "alerts": {
+    "more_one": "and {{count}} more",
+    "more_other": "and {{count}} more",
+    "title": "Morning alerts",
+    "text": "One notification at about 8:00 when your garden needs something new.",
+    "kinds": {
+      "frost": "Frost coming",
+      "care": "Care steps",
+      "water": "Water and rain",
+      "sow": "Time to sow"
+    },
+    "homeScreen": "On iPhone, add Funges to your Home Screen first (Share, then Add to Home Screen) and turn alerts on there.",
+    "unsupported": "This browser can't show notifications.",
+    "denied": "Notifications are blocked for Funges. Allow them in your browser's settings."
+  },
+  "early": "Early access",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "Funges tells you what to grow, where to put it, when to plant it, and what your garden needs this week, based on the actual climate where your garden is.",
+    "button": "Sign in with Google",
+    "small": "Free while in early access. We keep your email and your gardens, nothing else, and you can delete them any time in Settings.",
+    "privacy": "Privacy",
+    "working": "Signing you in…",
+    "doneElsewhere": "You're signed in. Go back to the Funges app.",
+    "failed": "Signing in didn't work.",
+    "retry": "Try again"
+  },
+  "account": {
+    "title": "Huerta account",
+    "signedInAs": "Signed in as {{email}}",
+    "signOut": "Sign out",
+    "delete": "Delete account",
+    "deleteTitle": "Delete your account?",
+    "deleteText": "Your gardens and alerts go with it, on every device. This can't be undone.",
+    "deleteConfirm": "Delete for good",
+    "cancel": "Cancel",
+    "failed": "That didn't work. Check your connection and try again."
+  },
+  "gardens": {
+    "label": "Your gardens",
+    "default": "My garden",
+    "new": "New garden",
+    "rename": "Rename",
+    "name": "Name",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete this garden",
+    "deleteText": "Its plan goes too, on every device.",
+    "offline": "Couldn't reach Funges. Try again when you're online."
   }
 }

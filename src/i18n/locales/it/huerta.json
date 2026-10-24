@@ -547,5 +547,55 @@
     "notHere": "Non all'aperto qui: {{crops}}.",
     "backIn": "Di nuovo a {{month}}",
     "note": "I mesi di semina seguono le stesse regole dei consigli di ogni settimana, su un anno tipico da te. I mesi di raccolto sono approssimativi."
+  },
+  "alerts": {
+    "more_one": "e altri {{count}}",
+    "more_other": "e altri {{count}}",
+    "title": "Avvisi del mattino",
+    "text": "Una notifica verso le 8:00 quando il tuo orto ha bisogno di qualcosa di nuovo.",
+    "kinds": {
+      "frost": "Gelate in arrivo",
+      "care": "Cure",
+      "water": "Acqua e pioggia",
+      "sow": "Tempo di seminare"
+    },
+    "homeScreen": "Su iPhone, aggiungi prima Funges alla schermata Home (Condividi, poi Aggiungi alla schermata Home) e attiva lì gli avvisi.",
+    "unsupported": "Questo browser non può mostrare notifiche.",
+    "denied": "Le notifiche di Funges sono bloccate. Consentile nelle impostazioni del browser."
+  },
+  "early": "Accesso anticipato",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "Funges ti dice cosa coltivare, dove metterlo, quando piantarlo e di cosa ha bisogno il tuo orto questa settimana, in base al clima reale del luogo in cui si trova.",
+    "button": "Accedi con Google",
+    "small": "Gratis durante l'accesso anticipato. Conserviamo la tua email e i tuoi orti, nient'altro, e puoi cancellarli quando vuoi nelle Impostazioni.",
+    "privacy": "Privacy",
+    "working": "Accesso in corso…",
+    "doneElsewhere": "Hai effettuato l'accesso. Torna all'app Funges.",
+    "failed": "L'accesso non è riuscito.",
+    "retry": "Riprova"
+  },
+  "account": {
+    "title": "Account Huerta",
+    "signedInAs": "Accesso effettuato come {{email}}",
+    "signOut": "Esci",
+    "delete": "Elimina account",
+    "deleteTitle": "Eliminare il tuo account?",
+    "deleteText": "I tuoi orti e gli avvisi spariscono con lui, su tutti i dispositivi. Non si può annullare.",
+    "deleteConfirm": "Elimina per sempre",
+    "cancel": "Annulla",
+    "failed": "Non ha funzionato. Controlla la connessione e riprova."
+  },
+  "gardens": {
+    "label": "I tuoi orti",
+    "default": "Il mio orto",
+    "new": "Nuovo orto",
+    "rename": "Rinomina",
+    "name": "Nome",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina questo orto",
+    "deleteText": "Anche il suo piano viene eliminato, su tutti i dispositivi.",
+    "offline": "Impossibile raggiungere Funges. Riprova quando sei online."
   }
 }

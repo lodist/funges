@@ -547,5 +547,55 @@
     "notHere": "Não ao ar livre aqui: {{crops}}.",
     "backIn": "Volta em {{month}}",
     "note": "Os meses de semeadura seguem as mesmas regras do conselho de cada semana, num ano típico no seu lugar. Os meses de colheita são aproximados."
+  },
+  "alerts": {
+    "more_one": "e mais {{count}}",
+    "more_other": "e mais {{count}}",
+    "title": "Alertas da manhã",
+    "text": "Uma notificação por volta das 8:00 quando sua horta precisar de algo novo.",
+    "kinds": {
+      "frost": "Geada chegando",
+      "care": "Cuidados",
+      "water": "Rega e chuva",
+      "sow": "Hora de semear"
+    },
+    "homeScreen": "No iPhone, primeiro adicione o Funges à Tela de Início (Compartilhar e depois Adicionar à Tela de Início) e ative os alertas lá.",
+    "unsupported": "Este navegador não consegue mostrar notificações.",
+    "denied": "As notificações do Funges estão bloqueadas. Permita-as nas configurações do navegador."
+  },
+  "early": "Acesso antecipado",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "O Funges diz o que cultivar, onde colocar, quando plantar e do que sua horta precisa nesta semana, com base no clima real do lugar onde ela fica.",
+    "button": "Fazer login com o Google",
+    "small": "Grátis durante o acesso antecipado. Guardamos seu e-mail e suas hortas, nada mais, e você pode apagá-los quando quiser em Configurações.",
+    "privacy": "Privacidade",
+    "working": "Entrando…",
+    "doneElsewhere": "Você entrou. Volte para o app Funges.",
+    "failed": "Não foi possível entrar.",
+    "retry": "Tentar de novo"
+  },
+  "account": {
+    "title": "Conta Huerta",
+    "signedInAs": "Conectado como {{email}}",
+    "signOut": "Sair",
+    "delete": "Excluir conta",
+    "deleteTitle": "Excluir sua conta?",
+    "deleteText": "Suas hortas e alertas vão junto, em todos os dispositivos. Não dá para desfazer.",
+    "deleteConfirm": "Excluir de vez",
+    "cancel": "Cancelar",
+    "failed": "Não funcionou. Verifique sua conexão e tente de novo."
+  },
+  "gardens": {
+    "label": "Suas hortas",
+    "default": "Minha horta",
+    "new": "Nova horta",
+    "rename": "Renomear",
+    "name": "Nome",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir esta horta",
+    "deleteText": "O plano dela também é excluído, em todos os dispositivos.",
+    "offline": "Não foi possível conectar ao Funges. Tente de novo quando estiver online."
   }
 }

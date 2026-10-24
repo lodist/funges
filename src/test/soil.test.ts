@@ -26,6 +26,13 @@ describe("the garden's soil", () => {
     expect(
       gardenSoil({ ...garden, ground: 'ground', soil: 'sandy' }, valencia)
     ).toEqual({ texture: 'sandy', acidity: 'alkaline' });
+    // Long Island's sandy loam gardens light; Madrid's, with more clay, loam.
+    expect(gardenSoil(garden, { ph: 4.9, clay: 13, sand: 55 }).texture).toBe(
+      'sandy'
+    );
+    expect(gardenSoil(garden, { ph: 7.3, clay: 22, sand: 48 }).texture).toBe(
+      'loam'
+    );
     expect(gardenSoil({ ...garden, ground: 'ground' }, null)).toEqual({
       texture: 'loam',
       acidity: 'neutral',

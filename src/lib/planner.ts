@@ -6,6 +6,7 @@
  * Distances in metres; x runs across the plot, y down it, and the plot's top
  * faces the bearing `north` (0, as before: north).
  */
+import { currentGarden, updateGarden } from '@/lib/gardens';
 import { CROPS, type CropStatus } from '@/lib/huerta';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import type { Acidity, Texture } from '@/lib/soil';
@@ -857,27 +858,14 @@ export function nextYear(id: string) {
 
 // ---------- kept on the device ----------
 
-const STORE = 'huerta-plan';
-
+/** The current garden's plan (lib/gardens), when it is one this app can draw. */
 export function loadPlan(): Plan | null {
-  try {
-    const plan = JSON.parse(
-      localStorage.getItem(STORE) ?? 'null'
-    ) as Plan | null;
-    // Every bed deleted is a plan too: its ground, to put a bed back on.
-    return (plan?.sections?.length || plan?.bare?.length) &&
-      plan.sections.every(s => !s.crop || s.crop in CROP)
-      ? plan
-      : null;
-  } catch {
-    return null;
-  }
+  const plan = currentGarden()?.plan;
+  // Every bed deleted is a plan too: its ground, to put a bed back on.
+  return (plan?.sections?.length || plan?.bare?.length) &&
+    plan.sections.every(s => !s.crop || s.crop in CROP)
+    ? plan
+    : null;
 }
 
-export function savePlan(plan: Plan) {
-  try {
-    localStorage.setItem(STORE, JSON.stringify(plan));
-  } catch {
-    // Private mode or blocked storage: the plan lasts this visit only.
-  }
-}
+export const savePlan = (plan: Plan) => updateGarden({ plan });

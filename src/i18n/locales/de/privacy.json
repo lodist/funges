@@ -7,7 +7,7 @@
   },
   "collection": {
     "title": "Erhebung und Nutzung von Informationen",
-    "content": "Wir verpflichten uns den Grundsätzen der Anonymität und des Datenschutzes. Dieser Dienst erhebt, speichert oder verarbeitet keine personenbezogenen Daten direkt. Unser Design legt Wert darauf, dir Informationen bereitzustellen, ohne dass du Daten preisgeben musst – dies spiegelt unseren festen Glauben an den Wert der Anonymität wider."
+    "content": "Terra, der Sammel-Teil von Funges, braucht kein Konto und erhebt, speichert oder verarbeitet keine personenbezogenen Daten direkt. Huerta, der Garten-Teil, braucht ein Konto: was dafür gespeichert wird und warum, steht unter „Huerta-Konten“."
   },
   "location": {
     "title": "Standortdaten",
@@ -48,5 +48,12 @@
     "intro": "Bei Fragen oder Anliegen zu dieser Datenschutzerklärung wende dich bitte an:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Letzte Aktualisierung am: 26.07.2026"
+  "lastUpdated": "Letzte Aktualisierung am: 26.07.2026",
+  "accounts": {
+    "title": "Huerta-Konten",
+    "content": "Du meldest dich bei Huerta mit deinem Google-Konto an. Google teilt uns deine E-Mail-Adresse und eine Nummer mit, die dein Google-Konto kennzeichnet; wir speichern beides zusammen mit deiner Sprache und Zeitzone, damit du dich auf jedem Gerät anmelden kannst und die Hinweise zur richtigen Zeit bekommst. Wir speichern deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet, nie deine Adresse.",
+    "alerts": "Wenn du die morgendlichen Hinweise einschaltest, speichern wir die Benachrichtigungsadresse, die dein Browser oder Handy uns dafür gibt, bis du sie ausschaltest oder sie nicht mehr funktioniert.",
+    "storage": "Diese Daten liegen bei Cloudflare (Datenbank D1), das sie in unserem Auftrag verarbeitet. Wir nutzen sie nur, um Huerta zu betreiben, und verkaufen oder teilen sie nie.",
+    "delete": "Du kannst dein Konto jederzeit unter Einstellungen → Huerta-Konto löschen. Deine E-Mail-Adresse, deine Gärten und deine Hinweise werden dann sofort gelöscht, auf allen Geräten."
+  }
 }

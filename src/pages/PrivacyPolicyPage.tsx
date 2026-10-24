@@ -73,6 +73,19 @@ export default function PrivacyPolicyPage() {
             </div>
           </section>
 
+          {/* Huerta accounts: the one part of Funges that keeps personal data. */}
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h2 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
+              {t('accounts.title')}
+            </h2>
+            <div className='space-y-4 text-foreground leading-relaxed'>
+              <p>{t('accounts.content')}</p>
+              <p>{t('accounts.alerts')}</p>
+              <p>{t('accounts.storage')}</p>
+              <p>{t('accounts.delete')}</p>
+            </div>
+          </section>
+
           {/* Your Rights */}
           <section className='bg-card rounded-lg p-6 shadow-sm'>
             <h2 className='text-xl font-semibold text-foreground dark:text-white mb-4'>

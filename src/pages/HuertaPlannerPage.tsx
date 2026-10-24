@@ -4,6 +4,7 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CROP_DRAG, GardenModel, type Stage } from '@/components/GardenModel';
+import { GardenPicker } from '@/components/GardenPicker';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
@@ -294,11 +295,14 @@ export default function HuertaPlannerPage() {
                 : t('planner.for', { place: advice.place })
             }
             action={
-              sample ? (
-                <Button variant='outline' asChild>
-                  <Link to='/huerta'>{t('planner.choosePlace')}</Link>
-                </Button>
-              ) : null
+              <div className='flex flex-wrap gap-2'>
+                {huertaApiConfigured ? <GardenPicker /> : null}
+                {sample ? (
+                  <Button variant='outline' asChild>
+                    <Link to='/huerta'>{t('planner.choosePlace')}</Link>
+                  </Button>
+                ) : null}
+              </div>
             }
           />
         </header>

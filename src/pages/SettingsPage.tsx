@@ -19,6 +19,7 @@ import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import MapLastUpdated from '@/components/MapLastUpdated';
 import { SpaceSwitcher } from '@/components/SpaceSwitcher';
+import { HuertaAccount } from '@/components/HuertaAccount';
 
 export default function SettingsPage() {
   const { t } = useTranslation('settings');
@@ -90,6 +91,8 @@ export default function SettingsPage() {
         </h1>
         {/* Phones have no sidebar: the hub is where the spaces meet. */}
         <SpaceSwitcher className='w-fit' />
+        {/* Signed in to Huerta: the account and its morning alerts. */}
+        <HuertaAccount />
 
         <div className='space-y-4'>
           {links.map(link => (

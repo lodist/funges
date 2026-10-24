@@ -7,7 +7,7 @@
   },
   "collection": {
     "title": "Coleta e Uso de Informações",
-    "content": "Estamos comprometidos com os princípios de anonimato e proteção de dados. Este serviço não coleta, armazena ou processa nenhuma informação pessoal diretamente. Nossa proposta prioriza fornecer informações sem exigir dados em troca, refletindo nossa forte crença no valor do anonimato."
+    "content": "O Terra, a parte do Funges para a coleta na natureza, não precisa de conta e não coleta, armazena nem processa diretamente nenhuma informação pessoal. O Huerta, a parte da horta, precisa de uma conta: o que ele guarda, e por quê, está explicado em “Contas Huerta”."
   },
   "location": {
     "title": "Dados de Localização",
@@ -48,5 +48,12 @@
     "intro": "Para quaisquer dúvidas ou preocupações sobre esta Política de Privacidade, entre em contato:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última atualização em: 26.07.2026"
+  "lastUpdated": "Última atualização em: 26.07.2026",
+  "accounts": {
+    "title": "Contas Huerta",
+    "content": "Você entra no Huerta com sua conta do Google. O Google nos informa seu endereço de e-mail e um número que identifica sua conta do Google; guardamos os dois, junto com seu idioma e fuso horário, para que você possa entrar em qualquer dispositivo e receber os alertas na hora certa. Guardamos suas hortas: os nomes, os planos e o local arredondado para cerca de 1 km, nunca seu endereço.",
+    "alerts": "Se você ativar os alertas da manhã, guardamos o endereço de notificação que seu navegador ou celular nos fornece para isso, até você desativá-los ou ele deixar de funcionar.",
+    "storage": "Esses dados ficam armazenados na Cloudflare (banco de dados D1), que os trata em nosso nome. Usamos esses dados apenas para fazer o Huerta funcionar e nunca os vendemos nem compartilhamos.",
+    "delete": "Você pode excluir sua conta a qualquer momento em Configurações → Conta Huerta. Seu e-mail, suas hortas e seus alertas são então excluídos na hora, em todos os dispositivos."
+  }
 }

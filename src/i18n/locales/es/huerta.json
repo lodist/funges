@@ -547,5 +547,55 @@
     "notHere": "No al aire libre aquí: {{crops}}.",
     "backIn": "Vuelve en {{month}}",
     "note": "Los meses de siembra siguen las mismas reglas que el consejo de cada semana, en un año normal en tu zona. Los meses de cosecha son aproximados."
+  },
+  "alerts": {
+    "more_one": "y {{count}} más",
+    "more_other": "y {{count}} más",
+    "title": "Avisos por la mañana",
+    "text": "Una notificación hacia las 8:00 cuando tu huerto necesita algo nuevo.",
+    "kinds": {
+      "frost": "Heladas",
+      "care": "Cuidados",
+      "water": "Riego y lluvia",
+      "sow": "Hora de sembrar"
+    },
+    "homeScreen": "En iPhone, añade primero Funges a tu pantalla de inicio (Compartir y después Añadir a pantalla de inicio) y activa allí los avisos.",
+    "unsupported": "Este navegador no puede mostrar notificaciones.",
+    "denied": "Las notificaciones de Funges están bloqueadas. Permítelas en los ajustes del navegador."
+  },
+  "early": "Acceso anticipado",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "Funges te dice qué cultivar, dónde ponerlo, cuándo plantarlo y qué necesita tu huerto esta semana, según el clima real del lugar donde está tu huerto.",
+    "button": "Iniciar sesión con Google",
+    "small": "Gratis durante el acceso anticipado. Guardamos tu correo y tus huertos, nada más, y puedes borrarlos cuando quieras en Configuración.",
+    "privacy": "Privacidad",
+    "working": "Iniciando sesión…",
+    "doneElsewhere": "Ya has iniciado sesión. Vuelve a la app de Funges.",
+    "failed": "No se ha podido iniciar sesión.",
+    "retry": "Intentar de nuevo"
+  },
+  "account": {
+    "title": "Cuenta de Huerta",
+    "signedInAs": "Sesión iniciada como {{email}}",
+    "signOut": "Cerrar sesión",
+    "delete": "Eliminar cuenta",
+    "deleteTitle": "¿Eliminar tu cuenta?",
+    "deleteText": "Tus huertos y avisos se eliminan con ella, en todos los dispositivos. No se puede deshacer.",
+    "deleteConfirm": "Eliminar definitivamente",
+    "cancel": "Cancelar",
+    "failed": "No ha funcionado. Revisa tu conexión e inténtalo de nuevo."
+  },
+  "gardens": {
+    "label": "Tus huertos",
+    "default": "Mi huerto",
+    "new": "Nuevo huerto",
+    "rename": "Cambiar nombre",
+    "name": "Nombre",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar este huerto",
+    "deleteText": "Su plan también se elimina, en todos los dispositivos.",
+    "offline": "No se ha podido conectar con Funges. Inténtalo de nuevo cuando tengas conexión."
   }
 }

@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CropSheet } from '@/components/CropSheet';
+import { GardenPicker } from '@/components/GardenPicker';
 import { HuertaWeek } from '@/components/HuertaWeek';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
@@ -15,7 +16,6 @@ import {
   huertaImage as image,
   KINDS,
   STATUS_GROUPS,
-  weekday,
   SAMPLE_ADVICE,
   type Crop,
   type CropNeeds,
@@ -23,6 +23,7 @@ import {
   type PlaceAdvice,
 } from '@/lib/huerta';
 import { gardenWeek } from '@/lib/garden-week';
+import { taskText } from '@/lib/garden-task-text';
 import {
   fetchAdvice,
   fetchNeeds,
@@ -113,14 +114,19 @@ export default function HuertaPage() {
               load.state === 'ready' ? placeLine(load.advice) : undefined
             }
             action={
-              load.state === 'ready' && huertaApiConfigured ? (
-                <Button
-                  variant='outline'
-                  onClick={() => setLoad({ state: 'picking' })}
-                >
-                  <MapPinned />
-                  {t('change')}
-                </Button>
+              huertaApiConfigured ? (
+                <div className='flex flex-wrap gap-2'>
+                  <GardenPicker />
+                  {load.state === 'ready' ? (
+                    <Button
+                      variant='outline'
+                      onClick={() => setLoad({ state: 'picking' })}
+                    >
+                      <MapPinned />
+                      {t('change')}
+                    </Button>
+                  ) : null}
+                </div>
               ) : null
             }
           />
@@ -325,6 +331,16 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   );
 }
 
+/** The picture beside a task: the weather's own, else the crop's photo. */
+const ICON = {
+  frost: Snowflake,
+  laterFrost: Snowflake,
+  water: Droplets,
+  rain: CloudRain,
+  plantNow: Sprout,
+  soil: Shovel,
+} as const;
+
 /** "To do this week": what the visitor's planted crops need, from the
  *  forecast, their plan and how far each crop has grown. Without a plan, a
  *  pointer to the planner. */
@@ -369,7 +385,6 @@ function ToDo({
     new Date().toLocaleDateString('sv'),
     year
   );
-  const names = (ids: string[]) => ids.map(id => t(`crops.${id}`)).join(', ');
   return (
     <section className='mt-10'>
       <h2 className='mb-4 text-xl font-semibold'>{t('week.todo.title')}</h2>
@@ -378,83 +393,9 @@ function ToDo({
       ) : (
         <ul className='flex flex-col gap-3'>
           {tasks.map(task => {
-            const [Icon, title, text, from] =
-              task.kind === 'frost'
-                ? [
-                    Snowflake,
-                    t(`week.todo.frost.${task.level}`),
-                    t('week.todo.frost.text', { crops: names(task.crops) }),
-                    'forecast',
-                  ]
-                : task.kind === 'laterFrost'
-                  ? [
-                      Snowflake,
-                      t('week.todo.laterFrost.title', {
-                        night: weekday(task.night, i18n.language),
-                      }),
-                      t('week.todo.laterFrost.text', {
-                        crops: names(task.crops),
-                      }),
-                      'forecast',
-                    ]
-                  : task.kind === 'water'
-                    ? [
-                        Droplets,
-                        t('week.todo.water.title', { mm: task.mm }),
-                        // Loam's two soakings; sand and clay their own way.
-                        t(
-                          task.soil === 'loam'
-                            ? 'week.todo.water.text'
-                            : `week.todo.water.${task.soil}`
-                        ),
-                        'forecast',
-                      ]
-                    : task.kind === 'rain'
-                      ? [
-                          CloudRain,
-                          t('week.todo.rain.title', { mm: task.mm }),
-                          t('week.todo.rain.text'),
-                          'forecast',
-                        ]
-                      : task.kind === 'plantNow'
-                        ? [
-                            Sprout,
-                            t('week.todo.plantNow.title'),
-                            names(task.crops),
-                            'plan',
-                          ]
-                        : task.kind === 'soil'
-                          ? [
-                              Shovel,
-                              t(`week.todo.soil.${task.note}.title`, {
-                                crops: names(task.crops),
-                              }),
-                              t(`week.todo.soil.${task.note}.text`),
-                              'soil',
-                            ]
-                          : task.kind === 'stage'
-                            ? [
-                                null,
-                                t(`week.todo.stage.${task.step}.title`, {
-                                  crop: t(`crops.${task.crop}`),
-                                  count: task.weeks,
-                                }),
-                                t(`week.todo.stage.${task.step}.text`, {
-                                  count: task.weeks,
-                                  cm: task.cm,
-                                }),
-                                'plan',
-                              ]
-                            : [
-                                null,
-                                t('week.todo.sowAgain.title', {
-                                  crop: t(`crops.${task.crop}`),
-                                }),
-                                t('week.todo.sowAgain.text', {
-                                  weeks: task.weeks,
-                                }),
-                                'plan',
-                              ];
+            const { title, text, from } = taskText(task, t, i18n.language);
+            const Icon =
+              task.kind in ICON ? ICON[task.kind as keyof typeof ICON] : null;
             return (
               <li
                 key={

@@ -7,7 +7,7 @@
   },
   "collection": {
     "title": "Collecte et utilisation des informations",
-    "content": "Nous nous engageons à respecter les principes d'anonymat et de protection des données. Ce service ne collecte, ne stocke ni ne traite aucune information personnelle directement. Notre conception privilégie la fourniture d'informations sans exiger de données en retour, reflétant notre forte conviction en la valeur de l'anonymat."
+    "content": "Terra, la partie de Funges consacrée à la cueillette, ne nécessite aucun compte et ne collecte, ne stocke ni ne traite directement aucune information personnelle. Huerta, la partie potager, nécessite un compte : ce qu’il conserve, et pourquoi, est expliqué sous « Comptes Huerta »."
   },
   "location": {
     "title": "Données de localisation",
@@ -48,5 +48,12 @@
     "intro": "Pour toute question ou préoccupation concernant cette politique de confidentialité, veuillez contacter :",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Dernière mise à jour : 26.07.2026"
+  "lastUpdated": "Dernière mise à jour : 26.07.2026",
+  "accounts": {
+    "title": "Comptes Huerta",
+    "content": "Vous vous connectez à Huerta avec votre compte Google. Google nous transmet votre adresse e-mail et un numéro qui identifie votre compte Google ; nous les conservons, avec votre langue et votre fuseau horaire, pour que vous puissiez vous connecter sur n’importe quel appareil et recevoir les alertes au bon moment. Nous conservons vos potagers : leurs noms, leurs plans et leur emplacement arrondi à environ 1 km, jamais votre adresse.",
+    "alerts": "Si vous activez les alertes du matin, nous conservons l’adresse de notification que votre navigateur ou votre téléphone nous fournit à cet effet, jusqu’à ce que vous les désactiviez ou qu’elle cesse de fonctionner.",
+    "storage": "Ces données sont stockées chez Cloudflare (base de données D1), qui les traite pour notre compte. Nous les utilisons uniquement pour faire fonctionner Huerta et ne les vendons ni ne les partageons jamais.",
+    "delete": "Vous pouvez supprimer votre compte à tout moment dans Paramètres → Compte Huerta. Votre e-mail, vos potagers et vos alertes sont alors supprimés aussitôt, sur tous vos appareils."
+  }
 }
