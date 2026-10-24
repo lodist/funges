@@ -372,6 +372,7 @@ export function validateManifests(
             'scoring',
             'scoringReferences',
             'scoringSnapshotSha256',
+            'without',
           ])
             if (key in config)
               fail(
@@ -381,7 +382,20 @@ export function validateManifests(
               );
           continue;
         }
+        if (config.without !== undefined && forecast.compositeOf === undefined)
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.without is only for a composite`
+          );
         if (forecast.compositeOf !== undefined) {
+          for (const id of config.without ?? [])
+            if (!forecast.compositeOf.includes(id))
+              fail(
+                errors,
+                where,
+                `forecast.regions.${region}.without: ${id} is not in compositeOf`
+              );
           for (const key of OWN_REGION_KEYS)
             if (key in config)
               fail(
@@ -601,7 +615,9 @@ export function validateManifests(
       if (
         m.forecast.regions?.[region]?.available &&
         !members.some(
-          id => byId.get(id)?.forecast?.regions?.[region]?.available
+          id =>
+            byId.get(id)?.forecast?.regions?.[region]?.available &&
+            !m.forecast.regions[region].without?.includes(id)
         )
       )
         fail(
@@ -727,7 +743,13 @@ function backendRegistry(manifests) {
           .map(([region, cfg]) => [
             region,
             m.forecast.compositeOf
-              ? compositeRegion(manifests, m.forecast.compositeOf, region)
+              ? compositeRegion(
+                  manifests,
+                  m.forecast.compositeOf.filter(
+                    id => !cfg.without?.includes(id)
+                  ),
+                  region
+                )
               : {
                   landCover: cfg.landCover,
                   landCoverScheme: cfg.landCoverScheme,

@@ -18,32 +18,32 @@
   "locales": {
     "en": {
       "name": "Boletus (porcini & bay bolete)",
-      "description": "Porcini and the bay bolete in one score: porcini, pine, bronze and summer boletes, the bay bolete and the North American kings",
+      "description": "Porcini and the bay bolete in one score: porcini, pine, bronze and summer boletes, the bay bolete in Europe and the North American kings",
       "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain"
     },
     "it": {
       "name": "Boletus (porcini e boleto baio)",
-      "description": "Porcini e boleto baio in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, il boleto baio e i re boleti nordamericani",
+      "description": "Porcini e boleto baio in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, il boleto baio in Europa e i re boleti nordamericani",
       "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante"
     },
     "fr": {
       "name": "Boletus (cèpes et bolet bai)",
-      "description": "Les cèpes et le bolet bai en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, le bolet bai et les bolets royaux d'Amérique du Nord",
+      "description": "Les cèpes et le bolet bai en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, le bolet bai en Europe et les bolets royaux d'Amérique du Nord",
       "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie"
     },
     "de": {
       "name": "Boletus (Steinpilze & Maronen)",
-      "description": "Steinpilze und Maronen in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz, der Maronen-Röhrling und die nordamerikanischen Königsröhrlinge",
+      "description": "Steinpilze und Maronen in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz, in Europa der Maronen-Röhrling und die nordamerikanischen Königsröhrlinge",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen"
     },
     "es": {
       "name": "Boletus (todos los boletos)",
-      "description": "Los boletos tipo porcini y el boleto bayo en una sola puntuación: boleto comestible, de pino, negro y de verano, el boleto bayo y los reyes norteamericanos",
+      "description": "Los boletos tipo porcini y el boleto bayo en una sola puntuación: boleto comestible, de pino, negro y de verano, el boleto bayo en Europa y los reyes norteamericanos",
       "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante"
     },
     "pt": {
       "name": "Boletus (porcini e boleto baio)",
-      "description": "Os boletos do tipo porcini e o boleto baio numa só pontuação: porcini, de pinheiro, bronzeado e de verão, o boleto baio e os reis norte-americanos",
+      "description": "Os boletos do tipo porcini e o boleto baio numa só pontuação: porcini, de pinheiro, bronzeado e de verão, o boleto baio na Europa e os reis norte-americanos",
       "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte"
     }
   },
@@ -79,10 +79,12 @@
         "available": true
       },
       "USE": {
-        "available": true
+        "available": true,
+        "without": ["bay_bolete"]
       },
       "USW": {
-        "available": true
+        "available": true,
+        "without": ["bay_bolete"]
       }
     }
   }
