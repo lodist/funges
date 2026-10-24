@@ -43,63 +43,6 @@ def interp_props(today_scores, d6_scores, threshold: float = INTERP_THRESHOLD) -
     return props
 
 
-LOW_ZOOMS = range(0, 6)  # built as cells; z6 keeps the triangles
-CELL_PX = 2  # cell side on screen at its own zoom (512 px tiles)
-
-
-def low_zoom_features(gdf, zoom: int, px: int = CELL_PX) -> list[dict]:
-    """The pieces as squares `px` screen pixels wide at `zoom`, for that zoom's tiles.
-
-    Left to tippecanoe, a low-zoom tile holds far more triangles than fit and most are
-    dropped, so the map thins out below z6. A cell holds the area-weighted mean of the
-    pieces whose centre falls in it, so every forest shows at every zoom. Props follow
-    interp_props: a missing `_score` is 0, a missing `_score_d6` equals `_score`.
-    """
-    import pandas as pd
-    if gdf.empty:
-        return []
-    centre = gdf.geometry.representative_point()
-    lon = centre.x.to_numpy()
-    lat = np.clip(centre.y.to_numpy(), -85.0511, 85.0511)
-    cells = 512 * 2 ** zoom / px  # cells across the world at this zoom
-    cx = np.floor((lon + 180) / 360 * cells).astype(np.int64)
-    cy = np.floor((1 - np.arcsinh(np.tan(np.radians(lat))) / np.pi) / 2 * cells).astype(np.int64)
-
-    keys = [c for c in gdf.columns if c.endswith('_score')]
-    d0 = gdf[keys].astype(float).fillna(0.0)
-    d6 = pd.DataFrame({k: gdf[f'{k}_d6'].astype(float) if f'{k}_d6' in gdf else np.nan for k in keys},
-                      index=gdf.index).fillna(d0)
-    w = gdf.geometry.area.to_numpy()
-    frame = pd.concat([d0.mul(w, axis=0), d6.mul(w, axis=0).add_suffix('_d6')], axis=1)
-    frame['_w'] = w
-    frame['_cx'], frame['_cy'] = cx, cy
-    sums = frame.groupby(['_cx', '_cy']).sum()
-    means = sums.drop(columns='_w').div(sums['_w'].where(sums['_w'] > 0), axis=0).fillna(0.0).round(1)
-
-    def lon_of(x):
-        return x / cells * 360 - 180
-
-    def lat_of(y):
-        return np.degrees(np.arctan(np.sinh(np.pi * (1 - 2 * y / cells))))
-
-    features = []
-    for (x, y), row in zip(means.index, means.to_dict('records')):
-        props = {}
-        for k in keys:
-            v0, v6 = row[k], row[f'{k}_d6']
-            if v0 != 0:
-                props[k] = v0
-            if v6 != v0:
-                props[f'{k}_d6'] = v6
-        if not props:
-            continue
-        west, east, north, south = lon_of(x), lon_of(x + 1), lat_of(y), lat_of(y + 1)
-        features.append({'type': 'Feature', 'properties': props, 'geometry': {
-            'type': 'Polygon',
-            'coordinates': [[[west, south], [east, south], [east, north], [west, north], [west, south]]]}})
-    return features
-
-
 def _combine_topk(values: np.ndarray, weights: np.ndarray) -> float:
     """Gaussian top-30%-median combine — same rule as the today loop in *_MapLayer.py."""
     m = np.isfinite(values)
