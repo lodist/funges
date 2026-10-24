@@ -565,7 +565,19 @@
     "sowIn": "Sembrar en {{month}}",
     "plantIn": "Plantar en {{month}}",
     "sownOnInput": "Fecha de siembra",
-    "plantedOnInput": "Fecha de plantación"
+    "plantedOnInput": "Fecha de plantación",
+    "forLabel": "Planificar para",
+    "thisWeek": "Esta semana",
+    "forMonth": "Planificado para {{month}} en {{place}}.",
+    "readyOn": "Hacia el {{date}}",
+    "timeline": {
+      "now": "Ahora",
+      "back": "Volver a hoy",
+      "hint": "Desliza para ver tu huerto en las próximas semanas",
+      "ready": "Para cosechar: {{crops}}",
+      "growing": "Creciendo: {{crops}}",
+      "empty": "Nada en la tierra"
+    }
   },
   "year": {
     "title": "Calendario",

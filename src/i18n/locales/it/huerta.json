@@ -565,7 +565,19 @@
     "sowIn": "Seminare a {{month}}",
     "plantIn": "Piantare a {{month}}",
     "sownOnInput": "Data di semina",
-    "plantedOnInput": "Data di messa a dimora"
+    "plantedOnInput": "Data di messa a dimora",
+    "forLabel": "Pianifica per",
+    "thisWeek": "Questa settimana",
+    "forMonth": "Pianificato per {{month}} a {{place}}.",
+    "readyOn": "Verso il {{date}}",
+    "timeline": {
+      "now": "Ora",
+      "back": "Torna a oggi",
+      "hint": "Scorri per vedere il tuo orto nelle prossime settimane",
+      "ready": "Da raccogliere: {{crops}}",
+      "growing": "In crescita: {{crops}}",
+      "empty": "Niente nella terra"
+    }
   },
   "year": {
     "title": "Calendario",

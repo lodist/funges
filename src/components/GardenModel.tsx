@@ -141,7 +141,8 @@ interface GardenModelProps {
   onSelect: (index: number) => void;
   /** The label over the selected section: its crop and count. */
   label?: { name: string; count: string };
-  /** How far a planted section has grown; planned ones are drawn grown. */
+  /** How far a section has grown (the page draws planned ones grown, but
+   *  for the timeline's days ahead). */
   stage?: (s: Section) => Stage;
   /** The sections just planted: their plants come up out of the soil. */
   fresh?: number[];
@@ -720,7 +721,7 @@ export function GardenModel({
                 >
                   <Staged
                     id={crop}
-                    stage={s.planted && stage ? stage(s) : 'grown'}
+                    stage={stage ? stage(s) : 'grown'}
                     at={P(x, y, soilZ)}
                     seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
                     pop={fresh?.includes(i) ? k : null}
@@ -741,7 +742,7 @@ export function GardenModel({
                 >
                   <Staged
                     id={crop}
-                    stage={s.planted && stage ? stage(s) : 'grown'}
+                    stage={stage ? stage(s) : 'grown'}
                     at={P(x, y, soilZ)}
                     seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
                     pop={fresh?.includes(i) ? k : null}

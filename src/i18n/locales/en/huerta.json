@@ -565,7 +565,19 @@
     "sowIn": "Sow in {{month}}",
     "plantIn": "Plant in {{month}}",
     "sownOnInput": "Sown on",
-    "plantedOnInput": "Planted on"
+    "plantedOnInput": "Planted on",
+    "forLabel": "Plan for",
+    "thisWeek": "This week",
+    "forMonth": "Planned for {{month}} around {{place}}.",
+    "readyOn": "Around {{date}}",
+    "timeline": {
+      "now": "Now",
+      "back": "Back to now",
+      "hint": "Slide to see your garden in the weeks ahead",
+      "ready": "Ready: {{crops}}",
+      "growing": "Growing: {{crops}}",
+      "empty": "Nothing in the ground"
+    }
   },
   "year": {
     "title": "Calendar",

@@ -565,7 +565,19 @@
     "sowIn": "Säen im {{month}}",
     "plantIn": "Pflanzen im {{month}}",
     "sownOnInput": "Gesät am",
-    "plantedOnInput": "Gepflanzt am"
+    "plantedOnInput": "Gepflanzt am",
+    "forLabel": "Planen für",
+    "thisWeek": "Diese Woche",
+    "forMonth": "Geplant für {{month}} rund um {{place}}.",
+    "readyOn": "Um den {{date}}",
+    "timeline": {
+      "now": "Jetzt",
+      "back": "Zurück zu heute",
+      "hint": "Schieben, um deinen Garten in den kommenden Wochen zu sehen",
+      "ready": "Erntereif: {{crops}}",
+      "growing": "Wächst: {{crops}}",
+      "empty": "Nichts in der Erde"
+    }
   },
   "year": {
     "title": "Kalender",
