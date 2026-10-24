@@ -219,6 +219,10 @@ CATALOG = [
   [
     "Hippophae rhamnoides",
     "species"
+  ],
+  [
+    "Imleria badia",
+    "species"
   ]
 ]
 CATALOG_NAMES = {name for name, _rank in CATALOG}
