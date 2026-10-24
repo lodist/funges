@@ -218,7 +218,18 @@ def test_the_one_scale_pools_each_region_s_best_month():
     local = {"NE": {"porcini"}, "USW": {"porcini"}}                 # SE's season is not local: left out
     scales = build_fruiting_scale.build(fit, gbm, curves, local)
     best = [np.array(north[8]["weather_part"]), np.array(west[9]["weather_part"])]   # September, October
-    assert np.allclose(scales["porcini"], fp.pooled_quantiles(best))
+    assert np.allclose(scales["porcini"], np.median(np.vstack(best), axis=0))   # the regions' median
+
+
+def test_one_odd_region_does_not_widen_the_others_scale():
+    import build_fruiting_scale
+
+    def flat(low, high):
+        return [{"eta": [-1.0, 0.0, 1.0], "weather_part": [low, (low + high) / 2, high]}] * 12
+    fit = {"porcini": {"NE": {"map": flat(0.5, 0.9)}, "SE": {"map": flat(0.55, 0.9)}, "USW": {"map": flat(0.1, 0.8)}}}
+    curves = {r: {"porcini": _peak(9)} for r in ("NE", "SE", "USW")}
+    scale = build_fruiting_scale.build(fit, {}, curves, {r: {"porcini"} for r in ("NE", "SE", "USW")})["porcini"]
+    assert np.allclose(scale, [0.5, 0.7, 0.9])                   # North Europe's, the middle one
 
 
 def test_a_fitted_local_species_without_a_best_month_stops_the_build():

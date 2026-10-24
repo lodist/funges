@@ -1230,9 +1230,9 @@ def _scale_file():
 def species_scales():
     """Each species' one weather-part scale, the same in every region (tools/build_fruiting_scale.py,
     rebuilt when the fits or the season curves change): the hand-set part in its best month in every
-    region where it has a fitted part and a local season, pooled. US West's sits low (porcini in its
-    best month 0.52, against 0.77 in North Europe), and on its own scale Washington's porcini scored
-    about a fifth below a European place with the same weather. {} when the file cannot be read: each
+    region where it has a fitted part and a local season, the regions' median at each quantile. US
+    West's sits low (porcini in its best month 0.52, against 0.77 in North Europe), and on its own
+    scale Washington's porcini scored about a fifth below a European place with the same weather. {} when the file cannot be read: each
     region then keeps its own best month's scale, and the nightly log names those species."""
     return {specie: np.asarray(quantiles, float) for specie, quantiles in _scale_file().get("scales", {}).items()}
 

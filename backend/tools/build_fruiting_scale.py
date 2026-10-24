@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """One weather-part scale per fitted species, the same in every region (forecast_pipeline.season_scale):
 the hand-set part in the species' best month, read from each region's own season curve, in every
-region where the species has a fitted part and a local season, pooled with equal weights. Built here
+region where the species has a fitted part and a local season, and at each quantile the regions'
+median: an odd region's own scale (US West's sits far below the others) is replaced by the typical
+one instead of widening everyone's, as a blend of the regions' distributions did. Built here
 rather than at scoring time, so a night never reads part of the regions' curves: rebuild it when the
 fits or the season curves change (the nightly warns when one has), and commit backend/generated/on_r2.json.
 
@@ -11,6 +13,8 @@ import json
 import sys
 from datetime import date
 from pathlib import Path
+
+import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import forecast_pipeline as fp  # noqa: E402
@@ -37,7 +41,7 @@ def build(fit, gbm, curves, local):
             parts.setdefault(specie, []).append(fp.pooled_quantiles(best))
     if holes:
         raise SystemExit(f"no best month for {', '.join(holes)}: their region curve has no ratio")
-    return {specie: fp.pooled_quantiles(p).round(6).tolist() for specie, p in sorted(parts.items())}
+    return {specie: np.median(np.vstack(p), axis=0).round(6).tolist() for specie, p in sorted(parts.items())}
 
 
 def main():
