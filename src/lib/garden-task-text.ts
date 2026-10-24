@@ -54,6 +54,12 @@ export function taskText(
         text: names(task.crops),
         from: 'plan',
       };
+    case 'tooLate':
+      return {
+        title: t('week.todo.tooLate.title', { crops: names(task.crops) }),
+        text: t('week.todo.tooLate.text'),
+        from: 'plan',
+      };
     case 'soil':
       return {
         title: t(`week.todo.soil.${task.note}.title`, {

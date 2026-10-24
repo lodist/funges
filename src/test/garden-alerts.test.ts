@@ -1,13 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import en from '@/i18n/locales/en/huerta.json';
 import {
-  isoWeek,
   miniT,
   morningMessage,
   newTasks,
   type AlertKind,
 } from '@/lib/garden-alerts';
-import type { Task } from '@/lib/garden-week';
+import { isoWeek, type Task } from '@/lib/garden-week';
 
 const ALL = new Set<AlertKind>(['frost', 'care', 'water', 'sow']);
 const frost: Task = { kind: 'frost', level: 'frost', crops: ['tomato'] };
@@ -91,7 +90,7 @@ describe('the morning notification', () => {
     ).toEqual({
       title: 'Frost in the next 3 days',
       body: `Cover ${en.crops.tomato} on the cold nights.`,
-      url: '/huerta?garden=g',
+      url: '/huerta/planner?garden=g',
     });
   });
 
@@ -119,7 +118,7 @@ describe('the morning notification', () => {
       `Home: From your plan, ready to go in: ${en.crops.garlic}`,
       'and 1 more',
     ]);
-    expect(message.url).toBe('/huerta?garden=a');
+    expect(message.url).toBe('/huerta/planner?garden=a');
   });
 
   it('nothing new: no notification', () => {

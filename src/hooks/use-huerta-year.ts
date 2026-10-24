@@ -23,15 +23,4 @@ export function useHuertaYear() {
   return year;
 }
 
-/** The months a bit mask holds, January first. */
-export const months = (mask: number) =>
-  Array.from({ length: 12 }, (_, m) => (mask >> m) & 1).map(Boolean);
-
-/** The first month after `from` (0-11) that the mask holds, wrapping; null if none. */
-export function nextMonth(mask: number, from: number) {
-  for (let k = 1; k <= 12; k++) {
-    const m = (from + k) % 12;
-    if ((mask >> m) & 1) return m;
-  }
-  return null;
-}
+export { months, nextMonth } from '@/lib/huerta-wire';

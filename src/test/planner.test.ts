@@ -6,6 +6,7 @@ import {
   adjacent,
   autoPlan,
   axisOf,
+  dueDate,
   fit,
   layout,
   lengthen,
@@ -303,5 +304,53 @@ describe('the garden model', () => {
     const block = source.match(/const STAGED[^{]*\{([^}]*)\}/)?.[1] ?? '';
     const staged = new Set([...block.matchAll(/^\s*(\w+):/gm)].map(m => m[1]));
     expect(CROPS.filter(c => !staged.has(c.id)).map(c => c.id)).toEqual([]);
+  });
+});
+
+describe('when a crop put in a bed goes in', () => {
+  // Tomatoes go in April to June here; garlic in October and November.
+  const TOMATO = 0b111000;
+  const GARLIC = (1 << 9) | (1 << 10);
+
+  it('today when it goes in now, or its month has come', () => {
+    expect(dueDate('now', TOMATO, '2026-10-24')).toBe('2026-10-24');
+    expect(dueDate('wait_soil', GARLIC, '2026-10-24')).toBe('2026-10-24');
+  });
+
+  it('else the 1st of its next month, next year if need be', () => {
+    expect(dueDate('too_late', TOMATO, '2026-10-24')).toBe('2027-04-01');
+    expect(dueDate('wait_frost', TOMATO, '2027-02-10')).toBe('2027-04-01');
+  });
+
+  it('unset without the calendar', () => {
+    expect(dueDate('too_late', undefined, '2026-10-24')).toBeUndefined();
+    expect(dueDate('too_late', 0, '2026-10-24')).toBeUndefined();
+  });
+});
+
+describe('Plan it for me dates what it plans', () => {
+  const garden: Garden = { width: 6, length: 4.5, shape: 'rect' };
+
+  it('stamps the day on the sections it fills and clears it on emptied ones', () => {
+    const out = autoPlan(layout(garden), status, { sow: '2026-10-24' });
+    expect(out.some(s => s.crop)).toBe(true);
+    expect(out.filter(s => s.crop).every(s => s.sow === '2026-10-24')).toBe(
+      true
+    );
+    const none = autoPlan(out, () => 'too_late', { sow: '2026-10-24' });
+    expect(none.every(s => s.crop === null && s.sow === undefined)).toBe(true);
+  });
+
+  it("a new size keeps each bed's date", () => {
+    const sections = autoPlan(layout(garden), status, { sow: '2026-10-20' });
+    const next = reshape(
+      { garden, sections },
+      { ...garden, width: 6.5 },
+      status,
+      '2026-10-24'
+    );
+    const kept = next.sections.filter(s => s.crop);
+    expect(kept.length).toBeGreaterThan(0);
+    expect(kept.every(s => s.sow === '2026-10-20')).toBe(true);
   });
 });

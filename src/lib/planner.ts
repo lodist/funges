@@ -8,6 +8,7 @@
  */
 import { currentGarden, updateGarden } from '@/lib/gardens';
 import { CROPS, type CropStatus } from '@/lib/huerta';
+import { nextMonth } from '@/lib/huerta-wire';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import type { Acidity, Texture } from '@/lib/soil';
 
@@ -65,6 +66,8 @@ export interface Section {
   crop: string | null;
   /** The day it went in, YYYY-MM-DD; absent while only planned. */
   planted?: string;
+  /** The day it is planned to go in, YYYY-MM-DD; absent: as soon as it can. */
+  sow?: string;
 }
 
 export interface Plan {
@@ -72,6 +75,9 @@ export interface Plan {
   sections: Section[];
   /** Beds deleted: plain earth, which a bed can be put back on. */
   bare?: Rect[];
+  /** Jobs ticked off on My garden: each job's key (lib/garden-week jobKey)
+   *  and the day it was ticked. */
+  done?: Record<string, string>;
 }
 
 const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
@@ -373,12 +379,15 @@ export function autoPlan(
     only,
     style = 'mixed',
     axis = 'y',
+    sow,
   }: {
     north?: number;
     keepChosen?: boolean;
     only?: number[];
     style?: PlanStyle;
     axis?: Axis;
+    /** The day the sections it fills are planned to go in. */
+    sow?: string;
   } = {}
 ): Section[] {
   // Only what goes in this week: a crop that must wait, or whose time is
@@ -386,6 +395,10 @@ export function autoPlan(
   const how = STYLES[style];
   const now = (id: string) => how.allow(id) && status(id) === 'now';
   let out = sections.map(s => ({ ...s }));
+  const put = (s: Section, crop: string | null) => {
+    s.crop = crop;
+    s.sow = crop ? sow : undefined;
+  };
   const open = new Set(only ? only.map(i => out[i]) : out);
   const beds = [...new Set(out.map(s => s.bed))];
   const groups = arrange(
@@ -418,7 +431,7 @@ export function autoPlan(
     if (style === 'vegFlowers' && parts.length && flower) {
       const last = parts[parts.length - 1];
       const [lo, hi] = span(last, axis);
-      if (hi - lo < 2 * FLOWER_STRIP + 0.3) parts.pop()!.crop = flower;
+      if (hi - lo < 2 * FLOWER_STRIP + 0.3) put(parts.pop()!, flower);
       else {
         const atLo = along(last, axis, lo, lo + FLOWER_STRIP),
           atHi = along(last, axis, hi - FLOWER_STRIP, hi);
@@ -428,18 +441,18 @@ export function autoPlan(
           : along(last, axis, lo, hi - FLOWER_STRIP);
         out[out.indexOf(last)] = rest;
         parts[parts.length - 1] = rest;
-        out.push({ ...(loSouth ? atLo : atHi), crop: flower });
+        out.push({ ...(loSouth ? atLo : atHi), crop: flower, sow });
       }
     }
     if (!pick.length) {
-      parts.forEach(s => (s.crop = null)); // nothing goes in now
+      parts.forEach(s => put(s, null)); // nothing goes in now
       return;
     }
     const crops = parts
       .map((_, j) => pick[j % pick.length])
       .sort((a, z) => PLANT_LOOK[z].height - PLANT_LOOK[a].height);
     parts.forEach((s, j) => {
-      s.crop = crops[j];
+      put(s, crops[j]);
       used.add(crops[j]);
     });
   });
@@ -608,7 +621,8 @@ export function restoreBed(plan: Plan, i: number): Plan {
 export function reshape(
   plan: Plan,
   garden: Garden,
-  status: (crop: string) => CropStatus | undefined
+  status: (crop: string) => CropStatus | undefined,
+  sow?: string
 ): Plan {
   const plot = regions(garden);
   const bare = (plan.bare ?? []).filter(r =>
@@ -625,7 +639,7 @@ export function reshape(
       if (v > most) [best, most] = [o, v];
     }
     return best && most >= area(rectOf(s)) / 2
-      ? { ...s, crop: best.crop, planted: best.planted }
+      ? { ...s, crop: best.crop, planted: best.planted, sow: best.sow }
       : s;
   });
   return {
@@ -635,6 +649,7 @@ export function reshape(
       keepChosen: true,
       style: garden.style,
       axis: axisOf(garden),
+      sow,
     }),
     bare,
   };
@@ -834,6 +849,24 @@ export function ready(
     key: 'readyAround',
     month: new Date(today.getTime() + days * 864e5).getMonth(),
   };
+}
+
+/** When a crop put in a bed on `today` is planned to go in: today if it goes
+ *  in now, or if the place's calendar (`sow`: its sowing months, bit 0 =
+ *  January) holds this month, while the weekly status says why it waits;
+ *  else the 1st of the next month the calendar holds. Without the calendar,
+ *  unset: as soon as it can. */
+export function dueDate(
+  status: CropStatus | undefined,
+  sow: number | undefined,
+  today: string
+): string | undefined {
+  if (status === 'now') return today;
+  if (!sow) return undefined;
+  const [y, m] = today.split('-').map(Number);
+  if ((sow >> (m - 1)) & 1) return today;
+  const next = nextMonth(sow, m - 1)!;
+  return `${next < m - 1 ? y + 1 : y}-${String(next + 1).padStart(2, '0')}-01`;
 }
 
 /** What should follow a crop in its bed next year: rotate the families. */

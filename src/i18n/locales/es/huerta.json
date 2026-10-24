@@ -39,7 +39,7 @@
       "ground_frost": "Posible helada en el suelo más adelante esta semana: la noche del {{night}}"
     },
     "todo": {
-      "title": "Para hacer esta semana",
+      "title": "Esta semana",
       "frost": {
         "frost": "Helada en los próximos 3 días",
         "ground_frost": "Helada en el suelo en los próximos 3 días",
@@ -71,9 +71,9 @@
         "plan": "Según tu plan",
         "soil": "Según tu suelo"
       },
-      "nothing": "Esta semana tu huerto no necesita nada de ti.",
-      "noPlan": "Planifica tu huerto y marca lo que plantas, y esta página te dirá lo que necesita cada semana.",
-      "openPlanner": "Abrir el planificador",
+      "nothing": "Tu huerto no necesita nada de ti esta semana.",
+      "noPlan": "Planifica tu huerto y Huerta te dirá qué hacer en él cada semana.",
+      "openPlanner": "Abrir Mi huerto",
       "stage": {
         "thin": {
           "title": "{{crop}}: aclara las plántulas",
@@ -143,6 +143,21 @@
           "title": "{{crops}}: afloja la arcilla",
           "text": "En arcilla pesada las raíces se bifurcan. Cava la hilera honda y sin piedras, con algo de compost, o cultívalas en bancal elevado o en variedades cortas."
         }
+      },
+      "done": "Hecho",
+      "sow": {
+        "title": "{{crop}}: sembrar esta semana"
+      },
+      "plant": {
+        "title": "{{crop}}: plantar esta semana"
+      },
+      "forgot": {
+        "title": "{{crop}}: previsto para el {{date}}",
+        "text": "¿Ya está en la tierra? Márcalo para que Huerta pueda seguir cómo crece."
+      },
+      "tooLate": {
+        "title": "{{crops}}: ya es tarde",
+        "text": "Elige otra cosa para sus bancales, o deja que «Planifícalo por mí» los llene."
       }
     },
     "short": {
@@ -152,6 +167,19 @@
       "water": "Riego",
       "lastFrost": "Última helada ~{{date}}",
       "firstFrost": "Primera helada ~{{date}}"
+    },
+    "garden": {
+      "some": "Tu huerto tiene tareas esta semana.",
+      "none": "Nada para tu huerto esta semana."
+    },
+    "coming": {
+      "title": "Próximamente",
+      "ready": "{{crop}}: hora de cosechar",
+      "sow": "{{crop}}: sembrar",
+      "plant": "{{crop}}: plantar",
+      "wait": "{{crop}}: {{reason}}",
+      "waiting": "En espera",
+      "note": "Las fechas de cosecha son aproximadas, según las temperaturas habituales de tu lugar."
     }
   },
   "units": {
@@ -357,8 +385,8 @@
     "useShort": "Mi huerto"
   },
   "planner": {
-    "title": "Planificador del huerto",
-    "description": "Planifica tu huerto bancal a bancal: qué cabe, a qué distancia, qué vecinos se llevan bien y cuándo va cada cultivo en tu zona.",
+    "title": "Mi huerto",
+    "description": "Tu huerto bancal a bancal, y lo que necesita de ti cada semana: qué sembrar y dónde, cuidados, riego y cosecha, calculado para tu lugar.",
     "sample": "Planificado para un lugar de ejemplo, {{place}}.",
     "choosePlace": "Elige tu lugar",
     "for": "Planificado para esta semana en {{place}}.",
@@ -455,7 +483,7 @@
     "goesInNow": "Va ahora en {{place}}",
     "later": "Más adelante",
     "split": "Dividir esta parte en dos",
-    "footnote": "Siembra y plantación a {{date}}. Tu plan se guarda en este dispositivo.",
+    "footnote": "Siembra y plantación a {{date}}. Tu plan se guarda en tu cuenta.",
     "sownOn": "Sembrado el {{date}}",
     "groundLabel": "Cómo cultivas",
     "ground": {
@@ -533,7 +561,11 @@
       "loam": "franco",
       "clay": "arcilloso"
     },
-    "soilHint": "Alrededor de {{place}} el suelo es sobre todo {{texture}}, pH {{ph}}."
+    "soilHint": "Alrededor de {{place}} el suelo es sobre todo {{texture}}, pH {{ph}}.",
+    "sowIn": "Sembrar en {{month}}",
+    "plantIn": "Plantar en {{month}}",
+    "sownOnInput": "Fecha de siembra",
+    "plantedOnInput": "Fecha de plantación"
   },
   "year": {
     "title": "Calendario",
@@ -597,5 +629,24 @@
     "delete": "Eliminar este huerto",
     "deleteText": "Su plan también se elimina, en todos los dispositivos.",
     "offline": "No se ha podido conectar con Funges. Inténtalo de nuevo cuando tengas conexión."
+  },
+  "guide": {
+    "title": "Primeros pasos",
+    "hide": "Ocultar",
+    "place": {
+      "title": "¿Dónde está tu huerto?",
+      "text": "Búscalo en el mapa, para que todo aquí se calcule para tu propio lugar.",
+      "action": "Buscarlo en el mapa"
+    },
+    "plan": {
+      "title": "Planifica tus bancales",
+      "text": "Hemos llenado tus bancales con lo que se siembra ahora en tu lugar. Toca un bancal y luego un cultivo para cambiarlo.",
+      "keep": "Quedarme con este plan",
+      "empty": "Ahora mismo no se siembra nada en tu lugar. Toca un bancal y luego un cultivo: Huerta le pone fecha para cuando pueda ir a la tierra."
+    },
+    "sow": {
+      "title": "Siembra y márcalo",
+      "text": "La lista de esta semana dice qué sembrar, dónde y cómo. Marca cada tarea cuando esté en la tierra, y Huerta la sigue desde ahí."
+    }
   }
 }

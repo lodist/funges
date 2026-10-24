@@ -3,9 +3,14 @@
  * need, from this week's forecast at their place, their plan, and how far
  * each crop has grown since it went in.
  */
-import { CROPS, type CropNeeds, type PlaceAdvice } from '@/lib/huerta';
+import {
+  CROPS,
+  type CropNeeds,
+  type CropStatus,
+  type PlaceAdvice,
+} from '@/lib/huerta';
 import type { PlaceYear } from '@/lib/huerta-wire';
-import type { Plan } from '@/lib/planner';
+import type { Plan, Section } from '@/lib/planner';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import { forSoil, gardenSoil, type Texture } from '@/lib/soil';
 
@@ -37,6 +42,7 @@ export type Task =
   | { kind: 'soil'; note: SoilNote; crops: string[] }
   | { kind: 'rain'; mm: number }
   | { kind: 'plantNow'; crops: string[] }
+  | { kind: 'tooLate'; crops: string[] }
   | { kind: 'sowAgain'; crop: string; weeks: number }
   | { kind: 'stage'; crop: string; step: Step; weeks?: number; cm?: number };
 
@@ -179,6 +185,25 @@ const days = (from: string, to: string) =>
   );
 const unique = (ids: string[]) => [...new Set(ids)];
 
+/** The ISO week of a YYYY-MM-DD day, as 2026-W43. */
+export function isoWeek(day: string) {
+  const d = new Date(`${day}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + 3 - ((d.getUTCDay() + 6) % 7)); // that week's Thursday
+  const jan4 = new Date(Date.UTC(d.getUTCFullYear(), 0, 4));
+  const week =
+    1 +
+    Math.round(
+      ((d.getTime() - jan4.getTime()) / 864e5 -
+        3 +
+        ((jan4.getUTCDay() + 6) % 7)) /
+        7
+    );
+  return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
+}
+
+/** A planned crop's day has come: the day it was planned for, or none. */
+export const due = (s: Section, today: string) => !s.sow || s.sow <= today;
+
 export function gardenWeek(
   plan: Plan,
   advice: PlaceAdvice,
@@ -190,6 +215,7 @@ export function gardenWeek(
   const growing = unique(planted.map(s => s.crop!));
   const frost = (id: string) => needs[id]?.frost;
   const tasks: Task[] = [];
+  const done = plan.done ?? {};
   const soil = gardenSoil(plan.garden, year?.soil);
   // The place's statuses, sooner or later in spring for the garden's soil.
   const week = forSoil(advice, needs, soil.texture, today);
@@ -222,12 +248,15 @@ export function gardenWeek(
       tasks.push({ kind: 'rain', mm: Math.round(advice.rain!) });
   }
 
-  // What the plan holds and can go in now.
-  const ready = unique(
-    plan.sections
-      .filter(s => s.crop && !s.planted && week.crops[s.crop] === 'now')
-      .map(s => s.crop!)
+  // What the plan holds whose day has come: in now, or too late for it.
+  const waiting = plan.sections.filter(
+    s => s.crop && !s.planted && due(s, today)
   );
+  const going = (status: CropStatus) =>
+    unique(
+      waiting.filter(s => week.crops[s.crop!] === status).map(s => s.crop!)
+    );
+  const ready = going('now');
   if (ready.length) tasks.push({ kind: 'plantNow', crops: ready });
   const notes: [SoilNote, string[]][] = [
     [
@@ -247,13 +276,21 @@ export function gardenWeek(
   ];
   for (const [note, crops] of notes)
     if (crops.length) tasks.push({ kind: 'soil', note, crops });
+  const late = going('too_late');
+  if (late.length) tasks.push({ kind: 'tooLate', crops: late });
 
   // Sow quick crops again, a few weeks after the last sowing.
   for (const crop of growing) {
     const every = SUCCESSION[crop];
     if (!every || week.crops[crop] !== 'now') continue;
-    const sown = planted.filter(s => s.crop === crop).map(s => s.planted!);
-    const last = sown.sort()[sown.length - 1];
+    // The last sowing: a section's, or a row ticked off as sown again.
+    const last = [
+      ...planted.filter(s => s.crop === crop).map(s => s.planted),
+      done[`sowAgain:${crop}`],
+    ]
+      .filter((day): day is string => Boolean(day))
+      .sort()
+      .pop()!;
     const weeks = Math.floor(days(last, today) / 7);
     if (weeks >= every) tasks.push({ kind: 'sowAgain', crop, weeks });
   }
@@ -273,5 +310,133 @@ export function gardenWeek(
       const task = stage(crop, needs[crop], temps, harvest, first, today);
       if (task) tasks.push(task);
     }
-  return tasks;
+  // A job ticked off stays off until it comes round again (a new key); a row
+  // sown again moved its own last sowing instead.
+  return tasks.filter(task => {
+    const key = jobKey(task, plan, today);
+    return task.kind === 'sowAgain' || !key || !(key in done);
+  });
+}
+
+/** What a ticked-off job is remembered by: the weather by its week, care by
+ *  the crop's first sowing, a soil note for good; null for sowing and
+ *  planting, whose tick is the planting itself. */
+export function jobKey(task: Task, plan: Plan, today: string): string | null {
+  switch (task.kind) {
+    case 'frost':
+      return `frost:${task.level}:${isoWeek(today)}`;
+    case 'laterFrost':
+      return `laterFrost:${task.night}`;
+    case 'water':
+    case 'rain':
+      return `${task.kind}:${isoWeek(today)}`;
+    case 'soil':
+      return `soil:${task.note}`;
+    case 'stage': {
+      const first = plan.sections
+        .filter(s => s.crop === task.crop && s.planted)
+        .map(s => s.planted!)
+        .sort()[0];
+      return `stage:${task.crop}:${task.step}:${first}`;
+    }
+    case 'sowAgain':
+      return `sowAgain:${task.crop}`;
+    default:
+      return null;
+  }
+}
+
+const KEEP_DAYS = 180;
+/** The ticks worth keeping on `today`: the last 180 days'. */
+export const pruneDone = (done: Record<string, string>, today: string) =>
+  Object.fromEntries(
+    Object.entries(done).filter(([, day]) => days(day, today) <= KEEP_DAYS)
+  );
+
+/** The day a crop that went in on `planted` is ready: when the warmth since
+ *  reaches what it needs (as `growth`), from the place's monthly means; null
+ *  if not within two years. */
+export function readyDay(
+  id: string,
+  needs: CropNeeds,
+  temps: number[],
+  planted: string
+) {
+  const { base, need } = warmth(id, needs);
+  let gained = 0;
+  const d = new Date(`${planted}T12:00:00`);
+  for (let k = 0; k < 730; k++) {
+    gained += Math.max(0, temps[d.getMonth()] - base);
+    d.setDate(d.getDate() + 1);
+    if (gained >= need) return d.toLocaleDateString('sv');
+  }
+  return null;
+}
+
+/** Where a crop of the plan waits to go in: its sections whose day has come,
+ *  and the day it was first planned for when that was a week or more ago
+ *  (the list then asks whether it went in). */
+export function toSow(plan: Plan, crop: string, today: string) {
+  const at = plan.sections.flatMap((s, i) =>
+    s.crop === crop && !s.planted && due(s, today) ? [i] : []
+  );
+  const planned = at.map(i => plan.sections[i].sow);
+  const late = planned.every(day => day && days(day, today) >= 7);
+  return { at, since: late ? planned.sort()[0] : undefined };
+}
+
+export type Coming =
+  | { kind: 'ready'; crop: string; day: string; at: number[] }
+  | { kind: 'sow'; crop: string; day: string; at: number[] }
+  | { kind: 'wait'; crop: string; status: CropStatus; at: number[] };
+const AHEAD_DAYS = 28;
+/** Crops whose first harvest is not a matter of weeks (perennials, flowers
+ *  next spring): no ready day. */
+const NOTED = new Set(CROPS.filter(c => c.note).map(c => c.id));
+
+/** The next four weeks in the garden: planted crops coming ready, planned
+ *  sowings coming up, and crops whose day has come but which wait for the
+ *  weather (with the reason). Soonest first, waits last; one entry per crop
+ *  and day, with its sections. */
+export function comingUp(
+  plan: Plan,
+  advice: PlaceAdvice,
+  needs: Record<string, CropNeeds>,
+  today: string,
+  year?: PlaceYear | null
+): Coming[] {
+  const soil = gardenSoil(plan.garden, year?.soil);
+  const week = forSoil(advice, needs, soil.texture, today);
+  const temps = year?.temps;
+  const byKey = new Map<string, Coming>();
+  const add = (key: string, make: () => Coming, i: number) => {
+    const item = byKey.get(key) ?? make();
+    item.at.push(i);
+    byKey.set(key, item);
+  };
+  plan.sections.forEach((s, i) => {
+    const crop = s.crop;
+    if (!crop) return;
+    if (s.planted) {
+      const need = needs[crop];
+      if (!temps || !need?.days || NOTED.has(crop)) return;
+      const day = readyDay(crop, need, temps, s.planted);
+      if (day && day > today && days(today, day) <= AHEAD_DAYS)
+        add(
+          `ready:${crop}:${day}`,
+          () => ({ kind: 'ready', crop, day, at: [] }),
+          i
+        );
+    } else if (!due(s, today)) {
+      const day = s.sow!;
+      if (days(today, day) <= AHEAD_DAYS)
+        add(`sow:${crop}:${day}`, () => ({ kind: 'sow', crop, day, at: [] }), i);
+    } else {
+      const status = week.crops[crop];
+      if (status && (status.startsWith('wait') || status === 'too_warm'))
+        add(`wait:${crop}`, () => ({ kind: 'wait', crop, status, at: [] }), i);
+    }
+  });
+  const when = (c: Coming) => (c.kind === 'wait' ? '9999' : c.day);
+  return [...byKey.values()].sort((a, z) => when(a).localeCompare(when(z)));
 }
