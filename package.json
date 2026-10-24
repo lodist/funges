@@ -93,7 +93,7 @@
     "@storybook/addon-docs": "^10.5.10",
     "@storybook/addon-mcp": "^0.7.0",
     "@storybook/addon-onboarding": "^10.5.10",
-    "@storybook/addon-vitest": "^10.5.10",
+    "@storybook/addon-vitest": "^10.6.2",
     "@storybook/tanstack-react": "10.5.10",
     "@tanstack/eslint-plugin-query": "^5.83.1",
     "@tanstack/router-plugin": "^1.122.1",
