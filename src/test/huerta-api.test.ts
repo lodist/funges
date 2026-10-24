@@ -3,12 +3,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   decodeAdvice,
   fetchAdvice,
+  fetchNeeds,
   plain,
   saveMapView,
   savedMapView,
   searchTowns,
 } from '@/lib/huerta-api';
 import { CROPS } from '@/lib/huerta';
+import { session, setSession } from '@/lib/huerta-session';
 
 const ADVICE = {
   day: '9999-01-01', // never stale: kept advice is reused until a later day
@@ -114,5 +116,21 @@ describe('the Huerta Worker client', () => {
       )
     );
     expect((await searchTowns('vale')).map(t => t.name)).toEqual(['Valencia']);
+  });
+
+  it('asks as the signed-in account, and a 401 signs the device out', async () => {
+    setSession({ token: 'f'.repeat(64), email: 'a@b.c' });
+    const calls = vi.fn(async (url: string) =>
+      url.includes('/v1/crops')
+        ? new Response('{}', { status: 401 })
+        : Response.json(FULL)
+    );
+    vi.stubGlobal('fetch', calls);
+    await fetchAdvice({ lat: 40.44, lon: -3.68 });
+    const asked = new URL(String(calls.mock.calls[0][0]));
+    expect(asked.searchParams.get('t')).toBe('f'.repeat(64));
+    expect(asked.searchParams.has('k')).toBe(false);
+    await expect(fetchNeeds()).rejects.toThrow('401');
+    expect(session()).toBeNull();
   });
 });
