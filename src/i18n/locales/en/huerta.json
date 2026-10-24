@@ -577,6 +577,10 @@
       "ready": "Ready: {{crops}}",
       "growing": "Growing: {{crops}}",
       "empty": "Nothing in the ground"
+    },
+    "tab": {
+      "week": "This week",
+      "garden": "Garden"
     }
   },
   "year": {
@@ -640,7 +644,8 @@
     "cancel": "Cancel",
     "delete": "Delete this garden",
     "deleteText": "Its plan goes too, on every device.",
-    "offline": "Couldn't reach Funges. Try again when you're online."
+    "offline": "Couldn't reach Funges. Try again when you're online.",
+    "numbered": "Garden {{n}}"
   },
   "guide": {
     "title": "Getting started",
@@ -659,7 +664,8 @@
     "sow": {
       "title": "Sow and tick off",
       "text": "This week's list says what to sow, where and how. Tick each one off when it's in, and Huerta follows it from there."
-    }
+    },
+    "step": "Step {{n}} of 3"
   },
   "views": {
     "all": "All",

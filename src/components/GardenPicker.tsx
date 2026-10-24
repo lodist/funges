@@ -23,6 +23,7 @@ import {
   MAX_GARDENS,
   addGarden,
   chooseGarden,
+  gardenLabel,
   removeGarden,
   updateGarden,
   useGardens,
@@ -38,14 +39,20 @@ const NAME_LENGTH = 60;
 export function GardenPicker() {
   const { t } = useTranslation('huerta');
   const { gardens, current } = useGardens();
-  const [dialog, setDialog] = useState<'rename' | 'delete' | null>(null);
+  const [dialog, setDialog] = useState<'new' | 'rename' | 'delete' | null>(
+    null
+  );
   const [name, setName] = useState('');
   const [failed, setFailed] = useState(false);
-  const label = (garden: StoredGarden) => garden.name || t('gardens.default');
+  const label = (garden: StoredGarden) => gardenLabel(t, gardens, garden);
 
-  const rename = (event: FormEvent) => {
+  // A new garden is named before it is made: making it opens it, and the
+  // page starts afresh (HuertaGate), which would close a dialog opened after.
+  const save = (event: FormEvent) => {
     event.preventDefault();
-    updateGarden({ name: name.trim().slice(0, NAME_LENGTH) });
+    const clean = name.trim().slice(0, NAME_LENGTH);
+    if (dialog === 'new') addGarden(clean);
+    else updateGarden({ name: clean });
     setDialog(null);
   };
   const remove = async () => {
@@ -86,7 +93,12 @@ export function GardenPicker() {
           ))}
           <DropdownMenuSeparator />
           {gardens.length < MAX_GARDENS ? (
-            <DropdownMenuItem onSelect={() => addGarden('')}>
+            <DropdownMenuItem
+              onSelect={() => {
+                setName('');
+                setDialog('new');
+              }}
+            >
               <Plus className='size-4' />
               {t('gardens.new')}
             </DropdownMenuItem>
@@ -122,10 +134,12 @@ export function GardenPicker() {
         }}
       >
         <DialogContent>
-          {dialog === 'rename' ? (
-            <form onSubmit={rename} className='flex flex-col gap-4'>
+          {dialog === 'new' || dialog === 'rename' ? (
+            <form onSubmit={save} className='flex flex-col gap-4'>
               <DialogHeader>
-                <DialogTitle>{t('gardens.rename')}</DialogTitle>
+                <DialogTitle>
+                  {t(dialog === 'new' ? 'gardens.new' : 'gardens.rename')}
+                </DialogTitle>
               </DialogHeader>
               <div className='flex flex-col gap-2'>
                 <Label htmlFor='garden-name'>{t('gardens.name')}</Label>
@@ -133,7 +147,13 @@ export function GardenPicker() {
                   id='garden-name'
                   value={name}
                   maxLength={NAME_LENGTH}
-                  placeholder={t('gardens.default')}
+                  placeholder={
+                    dialog === 'new'
+                      ? t('gardens.numbered', { n: gardens.length + 1 })
+                      : current
+                        ? gardenLabel(t, gardens, { ...current, name: '' })
+                        : ''
+                  }
                   onChange={event => setName(event.target.value)}
                 />
               </div>

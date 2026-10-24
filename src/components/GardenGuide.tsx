@@ -51,6 +51,9 @@ export function GardenGuide({
           className='text-base font-semibold text-foreground'
         >
           {t('guide.title')}
+          <span className='block text-sm font-normal text-muted-foreground sm:hidden'>
+            {t('guide.step', { n: current + 1 })}
+          </span>
         </h2>
         <Button variant='ghost' onClick={hide}>
           {t('guide.hide')}
@@ -64,7 +67,10 @@ export function GardenGuide({
             <li
               key={step}
               aria-current={now ? 'step' : undefined}
-              className={cn('flex gap-3 rounded-lg p-3', now && 'bg-muted')}
+              className={cn(
+                'flex gap-3 rounded-lg p-3',
+                now ? 'bg-muted' : 'max-sm:hidden'
+              )}
             >
               <span
                 className={cn(

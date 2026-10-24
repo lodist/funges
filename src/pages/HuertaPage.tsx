@@ -3,7 +3,6 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CropSheet } from '@/components/CropSheet';
-import { GardenPicker } from '@/components/GardenPicker';
 import { HuertaWeek } from '@/components/HuertaWeek';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
@@ -35,6 +34,7 @@ import {
   type Town,
 } from '@/lib/huerta-api';
 import { MapPinned, Navigation } from '@/lib/icons';
+import { chooseGarden, gardenLabel, useGardens } from '@/lib/gardens';
 import { loadPlan } from '@/lib/planner';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 import { cn } from '@/lib/utils';
@@ -106,19 +106,14 @@ export default function HuertaPage() {
               load.state === 'ready' ? placeLine(load.advice) : undefined
             }
             action={
-              huertaApiConfigured ? (
-                <div className='flex flex-wrap gap-2'>
-                  <GardenPicker />
-                  {load.state === 'ready' ? (
-                    <Button
-                      variant='outline'
-                      onClick={() => setLoad({ state: 'picking' })}
-                    >
-                      <MapPinned />
-                      {t('change')}
-                    </Button>
-                  ) : null}
-                </div>
+              huertaApiConfigured && load.state === 'ready' ? (
+                <Button
+                  variant='outline'
+                  onClick={() => setLoad({ state: 'picking' })}
+                >
+                  <MapPinned />
+                  {t('change')}
+                </Button>
               ) : null
             }
           />
@@ -268,6 +263,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   const year = useHuertaYear();
   const [view, setView] = useState<View>('all');
   const [kind, setKind] = useState<string>('all');
+  const { gardens, current } = useGardens();
   const [open, setOpen] = useState<Crop | null>(null);
   const pick = (statuses: CropStatus[]) =>
     cropsWith(advice, statuses).filter(
@@ -333,6 +329,18 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
         onChange={setKind}
         className='mt-3 justify-start'
       />
+      {/* Which garden, when there are more: each its own place's week. */}
+      {gardens.length > 1 ? (
+        <CategoryChips
+          chips={gardens.map(garden => ({
+            value: garden.id,
+            label: gardenLabel(t, gardens, garden),
+          }))}
+          value={current?.id ?? ''}
+          onChange={chooseGarden}
+          className='mt-3 justify-start'
+        />
+      ) : null}
 
       {list ? (
         <section className='mt-10'>
