@@ -23,7 +23,6 @@ import {
   type PlaceAdvice,
 } from '@/lib/huerta';
 import { gardenWeek } from '@/lib/garden-week';
-import { taskText } from '@/lib/garden-task-text';
 import {
   fetchAdvice,
   fetchNeeds,
@@ -34,15 +33,7 @@ import {
   type Place,
   type Town,
 } from '@/lib/huerta-api';
-import {
-  CloudRain,
-  Droplets,
-  MapPinned,
-  Navigation,
-  Shovel,
-  Snowflake,
-  Sprout,
-} from '@/lib/icons';
+import { MapPinned, Navigation } from '@/lib/icons';
 import { loadPlan } from '@/lib/planner';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 import { cn } from '@/lib/utils';
@@ -283,7 +274,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
     <>
       <HuertaWeek advice={advice} />
 
-      <ToDo advice={advice} year={year} />
+      <GardenLine advice={advice} year={year} />
 
       <CategoryChips
         chips={KINDS.map(value => ({
@@ -331,27 +322,16 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   );
 }
 
-/** The picture beside a task: the weather's own, else the crop's photo. */
-const ICON = {
-  frost: Snowflake,
-  laterFrost: Snowflake,
-  water: Droplets,
-  rain: CloudRain,
-  plantNow: Sprout,
-  soil: Shovel,
-} as const;
-
-/** "To do this week": what the visitor's planted crops need, from the
- *  forecast, their plan and how far each crop has grown. Without a plan, a
- *  pointer to the planner. */
-function ToDo({
+/** Your garden's week lives on My garden: this says whether it has jobs
+ *  this week, or how to start, with the way there. */
+function GardenLine({
   advice,
   year,
 }: {
   advice: PlaceAdvice;
   year: ReturnType<typeof useHuertaYear>;
 }) {
-  const { t, i18n } = useTranslation('huerta');
+  const { t } = useTranslation('huerta');
   const [plan] = useState(() => loadPlan());
   const [needs, setNeeds] = useState<Record<string, CropNeeds>>({});
   useEffect(() => {
@@ -359,84 +339,37 @@ function ToDo({
     let live = true;
     fetchNeeds()
       .then(n => live && setNeeds(n))
-      .catch(() => {}); // frost reminders wait for the crops' frost classes
+      .catch(() => {}); // frost jobs wait for the crops' frost classes
     return () => {
       live = false;
     };
   }, [plan]);
-
-  if (!plan)
-    return (
-      <p className='mt-6 text-sm text-muted-foreground'>
-        {t('week.todo.noPlan')}{' '}
-        <Link
-          to='/huerta/planner'
-          className='font-medium text-primary-text underline underline-offset-4'
-        >
-          {t('week.todo.openPlanner')}
-        </Link>
-      </p>
-    );
-
-  const tasks = gardenWeek(
-    plan,
-    advice,
-    needs,
-    new Date().toLocaleDateString('sv'),
-    year
-  );
+  const jobs = plan
+    ? gardenWeek(
+        plan,
+        advice,
+        needs,
+        new Date().toLocaleDateString('sv'),
+        year
+        // As My garden counts them: "ready in N weeks" is under Coming up.
+      ).filter(task => !(task.kind === 'stage' && task.step === 'harvestSoon'))
+    : [];
   return (
-    <section className='mt-10'>
-      <h2 className='mb-4 text-xl font-semibold'>{t('week.todo.title')}</h2>
-      {tasks.length === 0 ? (
-        <p className='text-muted-foreground'>{t('week.todo.nothing')}</p>
-      ) : (
-        <ul className='flex flex-col gap-3'>
-          {tasks.map(task => {
-            const { title, text, from } = taskText(task, t, i18n.language);
-            const Icon =
-              task.kind in ICON ? ICON[task.kind as keyof typeof ICON] : null;
-            return (
-              <li
-                key={
-                  task.kind +
-                  ('crop' in task ? task.crop : '') +
-                  ('step' in task ? task.step : '') +
-                  ('note' in task ? task.note : '')
-                }
-                className='grid grid-cols-[2.75rem_minmax(0,1fr)] items-center gap-4 rounded-card bg-card p-3 elevation-raised sm:grid-cols-[2.75rem_minmax(0,1fr)_auto]'
-              >
-                {Icon ? (
-                  <span className='grid size-11 place-items-center rounded-lg bg-muted text-primary-text'>
-                    <Icon className='size-5' />
-                  </span>
-                ) : (
-                  <img
-                    src={image(`crops/${'crop' in task ? task.crop : ''}`)}
-                    alt=''
-                    className='size-11 rounded-lg object-cover'
-                  />
-                )}
-                <span className='min-w-0'>
-                  <span className='block font-semibold text-foreground'>
-                    {title}
-                  </span>
-                  <span className='block text-sm text-muted-foreground'>
-                    {text}
-                  </span>
-                </span>
-                <Badge
-                  variant='secondary'
-                  className='col-start-2 justify-self-start sm:col-start-auto'
-                >
-                  {t(`week.todo.from.${from}`)}
-                </Badge>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </section>
+    <p className='mt-6 text-sm text-muted-foreground'>
+      {t(
+        !plan
+          ? 'week.todo.noPlan'
+          : jobs.length
+            ? 'week.garden.some'
+            : 'week.garden.none'
+      )}{' '}
+      <Link
+        to='/huerta/planner'
+        className='font-medium text-primary-text underline underline-offset-4'
+      >
+        {t('week.todo.openPlanner')}
+      </Link>
+    </p>
   );
 }
 

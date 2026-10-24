@@ -442,7 +442,7 @@ export default function HuertaMapPage() {
               crop={crop}
               onUse={() => {
                 savePlace(picked.place);
-                navigate({ to: '/huerta' });
+                navigate({ to: '/huerta/planner' });
               }}
               onClose={() => setPicked(null)}
             />

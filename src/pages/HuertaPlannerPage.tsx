@@ -4,7 +4,9 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CROP_DRAG, GardenModel, type Stage } from '@/components/GardenModel';
+import { GardenGuide } from '@/components/GardenGuide';
 import { GardenPicker } from '@/components/GardenPicker';
+import { GardenThisWeek } from '@/components/GardenThisWeek';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
@@ -61,6 +63,7 @@ import {
 import {
   autoPlan,
   axisOf,
+  dueDate,
   fit,
   layout,
   lengthen,
@@ -85,7 +88,8 @@ import {
   type PlanStyle,
   type Section,
 } from '@/lib/planner';
-import { growth } from '@/lib/garden-week';
+import { growth, pruneDone } from '@/lib/garden-week';
+import { prefersReducedMotion } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
@@ -142,6 +146,8 @@ export default function HuertaPlannerPage() {
   const [setupOpen, setSetupOpen] = useState(false);
   // Earlier plans, for Undo; kept while the page is open.
   const [past, setPast] = useState<Plan[]>([]);
+  // The drawing's column, brought into view when a job is tapped.
+  const modelRef = useRef<HTMLDivElement>(null);
   const year = useHuertaYear();
   // This week's statuses for the garden's own soil (lib/soil).
   const soil = gardenSoil(plan?.garden, year?.soil);
@@ -177,7 +183,10 @@ export default function HuertaPlannerPage() {
   // A first plan, once this week's statuses are known.
   useEffect(() => {
     if (plan || !settled) return;
-    const fresh = { garden: START, sections: autoPlan(layout(START), status) };
+    const fresh = {
+      garden: START,
+      sections: autoPlan(layout(START), status, { sow: today() }),
+    };
     setPlan(fresh);
     // The sample's plan is not kept: the visitor's own place may follow.
     if (!sample) savePlan(fresh);
@@ -200,7 +209,7 @@ export default function HuertaPlannerPage() {
   // A new size, shape, direction or way of growing keeps what it can.
   const resize = (garden: Garden) => {
     if (!plan) return;
-    update(reshape(plan, garden, status));
+    update(reshape(plan, garden, status, today()));
     only(0);
   };
   const pick = (i: number) => {
@@ -219,9 +228,15 @@ export default function HuertaPlannerPage() {
       sections: plan.sections.map((x, i) => (ids.includes(i) ? change(x) : x)),
     });
   };
-  // A crop put into sections: chosen, not yet planted.
+  // A crop put into sections: chosen, not yet planted, dated for when it
+  // can go in at the place.
   const place = (ids: number[], crop: string) =>
-    edit(ids, x => ({ ...x, crop, planted: undefined }));
+    edit(ids, x => ({
+      ...x,
+      crop,
+      planted: undefined,
+      sow: dueDate(status(crop), year?.crops[crop]?.sow, today()),
+    }));
   // Marked planted today, or not.
   const plantOn = (ids: number[], planted: string | undefined) => {
     const withCrop = ids.filter(i => plan?.sections[i]?.crop);
@@ -230,6 +245,22 @@ export default function HuertaPlannerPage() {
       setFresh(withCrop);
       setTimeout(() => setFresh([]), 2500);
     }
+  };
+  // A job on This week ticked off.
+  const tick = (key: string) =>
+    plan &&
+    update({
+      ...plan,
+      done: pruneDone({ ...plan.done, [key]: today() }, today()),
+    });
+  // The sections a job is about, selected and brought into view.
+  const show = (ids: number[]) => {
+    setSel(ids);
+    setPatch(null);
+    modelRef.current?.scrollIntoView({
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+      block: 'center',
+    });
   };
   const name = (id: string) => t(`crops.${id}`);
   // A planted crop's stage, from the warmth it has had at the place since.
@@ -306,6 +337,39 @@ export default function HuertaPlannerPage() {
             }
           />
         </header>
+
+        <div className='mb-8 flex flex-col gap-6 empty:hidden'>
+          {plan.sections.some(x => x.planted) ? null : (
+            <GardenGuide
+              done={[Boolean(savedPlace()), plan.sections.some(x => x.crop)]}
+            />
+          )}
+          {sample ? null : (
+            <GardenThisWeek
+              plan={plan}
+              advice={placeAdvice}
+              needs={needs}
+              year={year}
+              today={today()}
+              where={i => placeName(t, plan.sections[i], plan.garden)}
+              onSow={ids => plantOn(ids, today())}
+              onDone={tick}
+              onShow={show}
+              onReplan={ids =>
+                update({
+                  ...plan,
+                  sections: autoPlan(plan.sections, status, {
+                    north,
+                    style: plan.garden.style,
+                    axis,
+                    only: ids,
+                    sow: today(),
+                  }),
+                })
+              }
+            />
+          )}
+        </div>
 
         <section className='overflow-hidden rounded-card bg-card elevation-raised'>
           <div className='flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-border p-3 max-sm:text-sm sm:gap-x-4 sm:gap-y-3 sm:p-4'>
@@ -489,6 +553,7 @@ export default function HuertaPlannerPage() {
                             patch === null && chosen.length
                               ? chosen
                               : undefined,
+                          sow: today(),
                         }),
                       })
                     }
@@ -519,7 +584,7 @@ export default function HuertaPlannerPage() {
           </div>
 
           <div className='grid lg:grid-cols-[minmax(0,1fr)_22rem]'>
-            <div className='min-w-0 bg-background/40'>
+            <div ref={modelRef} className='min-w-0 bg-background/40'>
               {/* Every bed deleted: still the ground, to put one back. */}
               {plan.sections.length > 0 || plan.bare?.length ? (
                 <GardenModel
@@ -677,6 +742,7 @@ export default function HuertaPlannerPage() {
                             keepChosen: true,
                             style: plan.garden.style,
                             axis,
+                            sow: today(),
                           }),
                         });
                         only(first);
@@ -698,6 +764,12 @@ export default function HuertaPlannerPage() {
                     count={count}
                     onSwap={crop => place(chosen, crop)}
                     onPlanted={planted => plantOn(chosen, planted)}
+                    onDay={day =>
+                      edit(
+                        chosen.filter(i => plan.sections[i]?.crop),
+                        x => ({ ...x, planted: day })
+                      )
+                    }
                     onSplit={() =>
                       update({
                         ...plan,
@@ -1088,6 +1160,7 @@ function SectionPanel({
   count,
   onSwap,
   onPlanted,
+  onDay,
   onSplit,
   onMerge,
   onLength,
@@ -1104,6 +1177,8 @@ function SectionPanel({
   count: (s: Section) => string;
   onSwap: (crop: string) => void;
   onPlanted: (day: string | undefined) => void;
+  /** The day it went in, put right. */
+  onDay: (day: string) => void;
   onSplit: () => void;
   onMerge: (dir: -1 | 1) => void;
   onLength: (delta: number) => void;
@@ -1120,11 +1195,6 @@ function SectionPanel({
     new Intl.DateTimeFormat(i18n.language, { month: 'long' }).format(
       new Date(2026, m, 1)
     );
-  const date = (d: string) =>
-    new Intl.DateTimeFormat(i18n.language, {
-      day: 'numeric',
-      month: 'long',
-    }).format(new Date(`${d}T12:00:00`));
   const options = useMemo(() => {
     const sorted = [...CROPS].sort((a, z) =>
       t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
@@ -1206,14 +1276,22 @@ function SectionPanel({
             </dd>
           </dl>
           {s.planted ? (
-            <div className='flex flex-wrap items-center gap-x-3 gap-y-1 text-sm'>
-              <span className='flex items-center gap-1.5 font-medium text-foreground'>
+            <div className='flex flex-wrap items-center gap-x-3 gap-y-2 text-sm'>
+              <label className='flex items-center gap-2 font-medium text-foreground'>
                 <Check className='size-4 text-primary-text' />
                 {t(
-                  crop.how === 'sow' ? 'planner.sownOn' : 'planner.plantedOn',
-                  { date: date(s.planted) }
+                  crop.how === 'sow'
+                    ? 'planner.sownOnInput'
+                    : 'planner.plantedOnInput'
                 )}
-              </span>
+                <Input
+                  type='date'
+                  value={s.planted}
+                  max={today()}
+                  onChange={e => e.target.value && onDay(e.target.value)}
+                  className='h-8 w-auto px-2 text-sm'
+                />
+              </label>
               <Button
                 variant='link'
                 className='h-auto p-0'
@@ -1223,9 +1301,18 @@ function SectionPanel({
               </Button>
             </div>
           ) : (
-            <Button onClick={() => onPlanted(today())} className='self-start'>
-              {t(goesIn([crop.id]))}
-            </Button>
+            <div className='flex flex-wrap items-center gap-x-3 gap-y-2'>
+              <Button onClick={() => onPlanted(today())}>
+                {t(goesIn([crop.id]))}
+              </Button>
+              {s.sow && s.sow > today() ? (
+                <span className='text-sm text-muted-foreground'>
+                  {t(crop.how === 'sow' ? 'planner.sowIn' : 'planner.plantIn', {
+                    month: month(Number(s.sow.slice(5, 7)) - 1),
+                  })}
+                </span>
+              ) : null}
+            </div>
           )}
           <div>
             <h3 className='type-micro mb-2 text-muted-foreground'>
