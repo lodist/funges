@@ -869,6 +869,18 @@ export function dueDate(
   return `${next < m - 1 ? y + 1 : y}-${String(next + 1).padStart(2, '0')}-01`;
 }
 
+/** The 1st of the month `k` months after `today`'s, YYYY-MM-DD. */
+export function monthAhead(today: string, k: number) {
+  const [y, m] = today.split('-').map(Number);
+  const d = new Date(y, m - 1 + k, 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
+}
+
+/** A crop's status in a later month (0-11): in, when the place's calendar
+ *  has it going in then (`sow`: its sowing months, bit 0 = January). */
+export const inMonth = (sow: number | undefined, month: number): CropStatus =>
+  sow && (sow >> month) & 1 ? 'now' : 'too_late';
+
 /** What should follow a crop in its bed next year: rotate the families. */
 export function nextYear(id: string) {
   const crop = CROP[id];

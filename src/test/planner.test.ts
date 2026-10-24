@@ -8,9 +8,11 @@ import {
   axisOf,
   dueDate,
   fit,
+  inMonth,
   layout,
   lengthen,
   merge,
+  monthAhead,
   nextYear,
   northness,
   notes,
@@ -352,5 +354,33 @@ describe('Plan it for me dates what it plans', () => {
     const kept = next.sections.filter(s => s.crop);
     expect(kept.length).toBeGreaterThan(0);
     expect(kept.every(s => s.sow === '2026-10-20')).toBe(true);
+  });
+});
+
+describe('planning for a later month', () => {
+  it("names the month's 1st, into next year", () => {
+    expect(monthAhead('2026-10-24', 0)).toBe('2026-10-01');
+    expect(monthAhead('2026-10-24', 5)).toBe('2027-03-01');
+    expect(monthAhead('2026-12-31', 1)).toBe('2027-01-01');
+  });
+
+  it("goes by the place's calendar for that month", () => {
+    expect(inMonth(0b100, 2)).toBe('now');
+    expect(inMonth(0b100, 3)).toBe('too_late');
+    expect(inMonth(undefined, 3)).toBe('too_late');
+  });
+
+  it('Plan it for me for March plans what goes in in March, dated the 1st', () => {
+    const march = (id: string) => inMonth(id === 'tomato' ? 0b100 : 0, 2);
+    const out = autoPlan(
+      layout({ width: 6, length: 4.5, shape: 'rect' }),
+      march,
+      { style: 'veg', sow: '2027-03-01' }
+    );
+    const planned = out.filter(s => s.crop);
+    expect(planned.length).toBeGreaterThan(0);
+    expect(planned.every(s => s.crop === 'tomato' && s.sow === '2027-03-01')).toBe(
+      true
+    );
   });
 });

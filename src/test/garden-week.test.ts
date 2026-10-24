@@ -7,10 +7,11 @@ import {
   jobKey,
   pruneDone,
   readyDay,
+  stageOn,
   toSow,
 } from '@/lib/garden-week';
 import { SAMPLE_ADVICE, type CropNeeds } from '@/lib/huerta';
-import { layout, type Plan } from '@/lib/planner';
+import { layout, type Plan, type Section } from '@/lib/planner';
 
 const need = (frost: CropNeeds['frost']): CropNeeds => ({
   frost,
@@ -223,7 +224,12 @@ describe('the dated plan', () => {
     });
     // Planned for next spring: not late, just not yet.
     expect(
-      gardenWeek(dated(['tomato', { sow: '2027-04-01' }]), now, NEEDS, '2026-10-24')
+      gardenWeek(
+        dated(['tomato', { sow: '2027-04-01' }]),
+        now,
+        NEEDS,
+        '2026-10-24'
+      )
     ).toEqual([]);
   });
 
@@ -317,5 +323,40 @@ describe('ready days and the weeks ahead', () => {
       status: 'wait_soil',
       at: [2],
     });
+  });
+});
+
+describe('a bed on the timeline', () => {
+  const temps = [8, 9, 12, 14, 18, 22, 25, 25, 22, 17, 12, 9];
+  const lettuce = { ...beds[0], crop: 'lettuce', planted: '2026-09-01' };
+  const all = 0b111111111111;
+  const on = (s: Section, day: string, harvest = all) =>
+    stageOn(s, NEEDS, temps, harvest, day, '2026-09-01');
+
+  it('is bare before it goes in, then grows', () => {
+    const planned = { ...beds[1], crop: 'lettuce', sow: '2026-11-01' };
+    expect(on(planned, '2026-10-30')).toBe('bare');
+    expect(on(planned, '2026-11-03')).toBe('seedling');
+    expect(on(lettuce, '2026-09-05')).toBe('seedling');
+    expect(on(lettuce, '2026-09-25')).toBe('young');
+  });
+
+  it('is ready once its warmth is in, and bare again when its harvest is over', () => {
+    const ready = readyDay('lettuce', NEEDS.lettuce, temps, '2026-09-01')!;
+    expect(on(lettuce, ready)).toBe('ready');
+    expect(on(lettuce, '2027-08-01', 0)).toBe('bare');
+  });
+
+  it('a quick crop is picked within weeks, even where its harvest goes on all year', () => {
+    const carrot = { ...beds[1], crop: 'carrot', planted: '2026-09-01' };
+    expect(on(lettuce, '2027-01-15')).toBe('bare');
+    expect(on(carrot, '2027-01-15')).toBe('ready');
+  });
+
+  it('a planned bed with no date goes in today', () => {
+    const now = { ...beds[2], crop: 'lettuce' };
+    expect(stageOn(now, NEEDS, temps, all, '2026-09-05', '2026-09-01')).toBe(
+      'seedling'
+    );
   });
 });

@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import {
+  CROPS,
   cropsWith,
   huertaImage as image,
   KINDS,
@@ -258,9 +259,14 @@ function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
   );
 }
 
+/** In Season's filters: everything, or one list (harvest only with the
+ *  place's calendar). */
+type View = 'all' | 'sow' | 'plant' | 'harvest';
+
 function Advice({ advice }: { advice: PlaceAdvice }) {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
   const year = useHuertaYear();
+  const [view, setView] = useState<View>('all');
   const [kind, setKind] = useState<string>('all');
   const [open, setOpen] = useState<Crop | null>(null);
   const pick = (statuses: CropStatus[]) =>
@@ -270,12 +276,53 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   const now = pick(STATUS_GROUPS.now);
   const waiting = pick(STATUS_GROUPS.wait);
   const over = pick(STATUS_GROUPS.over);
+  // Picked around here this month, from the place's calendar, and until when.
+  const month = new Date().getMonth();
+  const picked = (id: string) => year?.crops[id]?.harvest ?? 0;
+  const harvesting = CROPS.filter(
+    crop =>
+      (kind === 'all' || crop.kind === kind) && (picked(crop.id) >> month) & 1
+  );
+  const until = (id: string) => {
+    let last = month;
+    for (let k = 1; k < 12 && (picked(id) >> (month + k) % 12) & 1; k++)
+      last = (month + k) % 12;
+    return picked(id) === 0xfff
+      ? t('views.allYear')
+      : t('views.until', {
+          month: new Intl.DateTimeFormat(i18n.language, {
+            month: 'long',
+          }).format(new Date(2026, last, 1)),
+        });
+  };
+  const views: View[] = year
+    ? ['all', 'sow', 'plant', 'harvest']
+    : ['all', 'sow', 'plant'];
+  const list =
+    view === 'sow' || view === 'plant'
+      ? now.filter(crop => crop.how === view)
+      : view === 'harvest'
+        ? harvesting
+        : null;
   return (
     <>
       <HuertaWeek advice={advice} />
 
       <GardenLine advice={advice} year={year} />
 
+      <CategoryChips
+        chips={views.map(value => ({
+          value,
+          label: t(
+            value === 'sow' || value === 'plant'
+              ? `sheet.${value}Now`
+              : `views.${value}`
+          ),
+        }))}
+        value={view}
+        onChange={value => setView(value as View)}
+        className='mt-6 justify-start'
+      />
       <CategoryChips
         chips={KINDS.map(value => ({
           value,
@@ -284,19 +331,38 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
         }))}
         value={kind}
         onChange={setKind}
-        className='mt-6 justify-start'
+        className='mt-3 justify-start'
       />
 
-      <section className='mt-10'>
-        <SectionTitle title={t('now.title')} count={now.length} />
-        {now.length > 0 ? (
-          <CropGrid crops={now} onOpen={setOpen} />
-        ) : (
-          <p className='text-muted-foreground'>{t('now.none')}</p>
-        )}
-      </section>
+      {list ? (
+        <section className='mt-10'>
+          <SectionTitle
+            title={t(view === 'harvest' ? 'views.harvest' : `sheet.${view}Now`)}
+            count={list.length}
+          />
+          {list.length > 0 ? (
+            <CropGrid
+              crops={list}
+              onOpen={setOpen}
+              note={view === 'harvest' ? crop => until(crop.id) : undefined}
+              how={view !== 'harvest'}
+            />
+          ) : (
+            <p className='text-muted-foreground'>{t('views.none')}</p>
+          )}
+        </section>
+      ) : (
+        <section className='mt-10'>
+          <SectionTitle title={t('now.title')} count={now.length} />
+          {now.length > 0 ? (
+            <CropGrid crops={now} onOpen={setOpen} />
+          ) : (
+            <p className='text-muted-foreground'>{t('now.none')}</p>
+          )}
+        </section>
+      )}
 
-      {waiting.length > 0 ? (
+      {!list && waiting.length > 0 ? (
         <section className='mt-10'>
           <SectionTitle title={t('waiting.title')} count={waiting.length} />
           <CropGrid
@@ -307,7 +373,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
         </section>
       ) : null}
 
-      {over.length > 0 ? (
+      {!list && over.length > 0 ? (
         <TooLate crops={over} advice={advice} onOpen={setOpen} year={year} />
       ) : null}
 
@@ -394,6 +460,7 @@ function CropGrid({
   onOpen,
   note,
   out = false,
+  how = true,
 }: {
   crops: Crop[];
   onOpen: (crop: Crop) => void;
@@ -401,6 +468,8 @@ function CropGrid({
   note?: (crop: Crop) => string | undefined;
   /** Its season is over here: the photo is greyed. */
   out?: boolean;
+  /** Whether it says how it goes in (sow or plant); not for the harvest. */
+  how?: boolean;
 }) {
   const { t } = useTranslation('huerta');
   return (
@@ -438,7 +507,7 @@ function CropGrid({
                     {line}
                   </span>
                 ) : null}
-                {out ? null : (
+                {out || !how ? null : (
                   <Badge variant='secondary' className='mt-auto'>
                     {t(`how.${crop.how}`)}
                   </Badge>

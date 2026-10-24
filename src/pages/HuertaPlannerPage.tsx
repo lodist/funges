@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
@@ -65,12 +65,14 @@ import {
   axisOf,
   dueDate,
   fit,
+  inMonth,
   layout,
   lengthen,
   loadPlan,
   MAX_SIDE,
   merge,
   MIN_SIDE,
+  monthAhead,
   nextYear,
   notes,
   ready,
@@ -88,7 +90,14 @@ import {
   type PlanStyle,
   type Section,
 } from '@/lib/planner';
-import { growth, pruneDone } from '@/lib/garden-week';
+import {
+  growth,
+  due,
+  pruneDone,
+  readyDay,
+  stageOn,
+  type GrowthStage,
+} from '@/lib/garden-week';
 import { prefersReducedMotion } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -117,6 +126,16 @@ const STYLES: PlanStyle[] = [
   'herbsFlowers',
 ];
 const GROUNDS: Ground[] = ['raised', 'ground', 'rows'];
+/** The timeline's reach: a year ahead, a week a step. */
+const TIMELINE_WEEKS = 52;
+const addDays = (day: string, n: number) => {
+  const d = new Date(`${day}T12:00:00`);
+  d.setDate(d.getDate() + n);
+  return d.toLocaleDateString('sv');
+};
+/** A stage on the timeline as the drawing's plants show it. */
+const drawnAs = (g: GrowthStage): Stage =>
+  g === 'seedling' || g === 'young' ? g : 'grown';
 /** The tick for the guide's second step: the plan kept or changed. */
 const KEPT = 'guide:plan';
 const UNDO_STEPS = 20;
@@ -150,6 +169,11 @@ export default function HuertaPlannerPage() {
   const [past, setPast] = useState<Plan[]>([]);
   // The drawing's column, brought into view when a job is tapped.
   const modelRef = useRef<HTMLDivElement>(null);
+  // What Plan it for me plans for: this week (0), or a month ahead (1-12).
+  const [forMonths, setForMonths] = useState(0);
+  // The timeline: how many weeks ahead the drawing shows (0: today).
+  const [weeks, setWeeks] = useState(0);
+  const later = useDeferredValue(weeks);
   const year = useHuertaYear();
   // This week's statuses for the garden's own soil (lib/soil).
   const soil = gardenSoil(plan?.garden, year?.soil);
@@ -182,6 +206,18 @@ export default function HuertaPlannerPage() {
   }, []);
 
   const status = (id: string) => advice.crops[id];
+  // The month planned for, and a crop's status then: this week's, or the
+  // place's calendar for a later month.
+  const target = monthAhead(today(), forMonths);
+  const planStatus = (id: string) =>
+    forMonths
+      ? inMonth(year?.crops[id]?.sow, Number(target.slice(5, 7)) - 1)
+      : status(id);
+  const monthName = (day: string, withYear = false) =>
+    new Intl.DateTimeFormat(i18n.language, {
+      month: 'long',
+      ...(withYear ? { year: 'numeric' } : {}),
+    }).format(new Date(`${day}T12:00:00`));
   // A first plan, once this week's statuses are known.
   useEffect(() => {
     if (plan || !settled) return;
@@ -242,7 +278,10 @@ export default function HuertaPlannerPage() {
       ...x,
       crop,
       planted: undefined,
-      sow: dueDate(status(crop), year?.crops[crop]?.sow, today()),
+      sow:
+        forMonths && planStatus(crop) === 'now'
+          ? target
+          : dueDate(status(crop), year?.crops[crop]?.sow, today()),
     }));
   // Marked planted today, or not.
   const plantOn = (ids: number[], planted: string | undefined) => {
@@ -314,6 +353,42 @@ export default function HuertaPlannerPage() {
       .map((_, i) => i)
       .filter(i => notes(plan.sections, i, north).some(n => n.bad === bad));
   const allPlanted = chosen.every(i => plan.sections[i].planted);
+  // The timeline's day: each section's stage then, and the drawing that day.
+  const temps = year?.temps;
+  const stages =
+    later && temps
+      ? plan.sections.map(x =>
+          // Planned, its day come, but too late for it: it won't go in.
+          !x.planted &&
+          due(x, today()) &&
+          (status(x.crop ?? '') === 'too_late' ||
+            status(x.crop ?? '') === 'not_here')
+            ? 'bare'
+            : stageOn(
+                x,
+                needs,
+                temps,
+                year?.crops[x.crop ?? '']?.harvest ?? 0,
+                addDays(today(), 7 * later),
+                today()
+              )
+        )
+      : null;
+  const drawn = stages
+    ? plan.sections.map((x, i) =>
+        stages[i] === 'bare' ? { ...x, crop: null } : x
+      )
+    : plan.sections;
+  const cropsAt = (want: GrowthStage[]) =>
+    [
+      ...new Set(
+        plan.sections
+          .filter((x, i) => x.crop && stages && want.includes(stages[i]))
+          .map(x => name(x.crop!))
+      ),
+    ].join(', ');
+  const readyThen = cropsAt(['ready']);
+  const growingThen = cropsAt(['seedling', 'young', 'grown']);
   const beds = new Set(plan.sections.map(x => x.bed)).size;
 
   return (
@@ -330,7 +405,12 @@ export default function HuertaPlannerPage() {
             scopeLabel={
               sample
                 ? t('planner.sample', { place: advice.place })
-                : t('planner.for', { place: advice.place })
+                : forMonths
+                  ? t('planner.forMonth', {
+                      month: monthName(target),
+                      place: advice.place,
+                    })
+                  : t('planner.for', { place: advice.place })
             }
             action={
               <div className='flex flex-wrap gap-2'>
@@ -537,6 +617,34 @@ export default function HuertaPlannerPage() {
                 ) : null}
               </>
             ) : null}
+            <Select
+              value={String(forMonths)}
+              onValueChange={v => setForMonths(Number(v))}
+              disabled={!year}
+            >
+              <SelectTrigger
+                aria-label={t('planner.forLabel')}
+                className='h-9 w-auto max-sm:text-sm'
+              >
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='0'>{t('planner.thisWeek')}</SelectItem>
+                {Array.from({ length: 12 }, (_, k) => k + 1).map(k => {
+                  const first = monthAhead(today(), k);
+                  const label = monthName(
+                    first,
+                    first.slice(0, 4) !== today().slice(0, 4)
+                  );
+                  return (
+                    <SelectItem key={k} value={String(k)}>
+                      {label.charAt(0).toLocaleUpperCase(i18n.language) +
+                        label.slice(1)}
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button className='max-sm:px-4 max-sm:text-sm'>
@@ -554,7 +662,7 @@ export default function HuertaPlannerPage() {
                         ...plan,
                         garden: { ...plan.garden, style },
                         // Everything not planted, or only the sections chosen.
-                        sections: autoPlan(plan.sections, status, {
+                        sections: autoPlan(plan.sections, planStatus, {
                           north: plan.garden.north,
                           style,
                           axis: axisOf(plan.garden),
@@ -562,7 +670,7 @@ export default function HuertaPlannerPage() {
                             patch === null && chosen.length
                               ? chosen
                               : undefined,
-                          sow: today(),
+                          sow: forMonths ? target : today(),
                         }),
                       })
                     }
@@ -598,7 +706,7 @@ export default function HuertaPlannerPage() {
               {plan.sections.length > 0 || plan.bare?.length ? (
                 <GardenModel
                   garden={plan.garden}
-                  sections={plan.sections}
+                  sections={drawn}
                   selected={patch === null ? chosen : []}
                   onSelect={pick}
                   onDropCrop={(i, crop) =>
@@ -608,7 +716,9 @@ export default function HuertaPlannerPage() {
                     setSel([]);
                     setPatch(null);
                   }}
-                  stage={stageOf}
+                  stage={
+                    stages ? x => drawnAs(stages[drawn.indexOf(x)]) : stageOf
+                  }
                   fresh={fresh}
                   bare={plan.bare}
                   onBare={setPatch}
@@ -635,8 +745,31 @@ export default function HuertaPlannerPage() {
                   {t('planner.noRoom')}
                 </p>
               )}
+              {temps ? (
+                <Timeline
+                  weeks={weeks}
+                  onWeeks={setWeeks}
+                  line={
+                    [
+                      readyThen &&
+                        t('planner.timeline.ready', { crops: readyThen }),
+                      growingThen &&
+                        t('planner.timeline.growing', { crops: growingThen }),
+                    ]
+                      .filter(Boolean)
+                      .join(' · ') || t('planner.timeline.empty')
+                  }
+                />
+              ) : null}
               <Palette
-                advice={advice}
+                goes={id => planStatus(id) === 'now'}
+                label={how =>
+                  forMonths
+                    ? t(how === 'sow' ? 'planner.sowIn' : 'planner.plantIn', {
+                        month: monthName(target),
+                      })
+                    : t(`sheet.${how}Now`)
+                }
                 count={patch === null ? chosen.length : 0}
                 onPick={crop => place(chosen, crop)}
                 onDrop={(i, crop) =>
@@ -769,6 +902,7 @@ export default function HuertaPlannerPage() {
                     garden={plan.garden}
                     advice={advice}
                     harvest={s.crop ? year?.crops[s.crop]?.harvest : undefined}
+                    temps={temps}
                     need={s.crop ? needs[s.crop] : undefined}
                     count={count}
                     onSwap={crop => place(chosen, crop)}
@@ -886,12 +1020,16 @@ type T = ReturnType<typeof useTranslation>['t'];
 /** The crops, to drag onto a bed or tap into the selected sections; those
  *  that go in now come first. */
 function Palette({
-  advice,
+  goes,
+  label,
   count,
   onPick,
   onDrop,
 }: {
-  advice: PlaceAdvice;
+  /** It goes in in the month planned for. */
+  goes: (crop: string) => boolean;
+  /** What a crop that goes in then says: "Sow now", "Plant in March". */
+  label: (how: 'sow' | 'plant') => string;
   /** Sections selected: a tapped crop goes into them. */
   count: number;
   onPick: (crop: string) => void;
@@ -911,11 +1049,10 @@ function Palette({
           c.scientific.toLowerCase().includes(text))
     ).sort(
       (a, z) =>
-        Number(advice.crops[z.id] === 'now') -
-          Number(advice.crops[a.id] === 'now') ||
+        Number(goes(z.id)) - Number(goes(a.id)) ||
         t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
     );
-  }, [kind, term, advice, t]);
+  }, [kind, term, goes, t]);
   return (
     <div className='border-t border-border p-4'>
       {/* The hint drops under the title and search on a phone. */}
@@ -983,9 +1120,7 @@ function Palette({
                   {t(`crops.${c.id}`)}
                 </span>
                 <span className='block truncate text-xs text-muted-foreground'>
-                  {advice.crops[c.id] === 'now'
-                    ? t(`sheet.${c.how}Now`)
-                    : t('planner.later')}
+                  {goes(c.id) ? label(c.how) : t('planner.later')}
                 </span>
               </span>
             </button>
@@ -1126,6 +1261,73 @@ function useTouchDrag(onDrop: (index: number, crop: string) => void) {
   return { list, lifted, ghost, at };
 }
 
+/** Under the drawing: a slider from today to a year ahead (the drawing shows
+ *  the garden on that day) and a line saying what is ready and growing then. */
+function Timeline({
+  weeks,
+  onWeeks,
+  line,
+}: {
+  weeks: number;
+  onWeeks: (weeks: number) => void;
+  line: string;
+}) {
+  const { t, i18n } = useTranslation('huerta');
+  const day = addDays(today(), 7 * weeks);
+  const long = new Intl.DateTimeFormat(i18n.language, {
+    day: 'numeric',
+    month: 'long',
+  }).format(new Date(`${day}T12:00:00`));
+  const tick = (months: number) =>
+    new Intl.DateTimeFormat(i18n.language, { month: 'short' }).format(
+      new Date(`${monthAhead(today(), months)}T12:00:00`)
+    );
+  return (
+    <div className='border-t border-border px-4 py-3'>
+      <div className='flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1'>
+        <label
+          htmlFor='planner-when'
+          className='text-sm font-semibold text-foreground'
+        >
+          {weeks ? long : t('planner.timeline.now')}
+        </label>
+        {weeks ? (
+          <Button
+            variant='link'
+            className='h-auto p-0 text-sm'
+            onClick={() => onWeeks(0)}
+          >
+            {t('planner.timeline.back')}
+          </Button>
+        ) : (
+          <span className='text-sm text-muted-foreground'>
+            {t('planner.timeline.hint')}
+          </span>
+        )}
+      </div>
+      <input
+        id='planner-when'
+        type='range'
+        min={0}
+        max={TIMELINE_WEEKS}
+        step={1}
+        value={weeks}
+        onChange={e => onWeeks(Number(e.target.value))}
+        aria-valuetext={weeks ? long : t('planner.timeline.now')}
+        className='h-11 w-full cursor-pointer accent-primary'
+      />
+      <div className='flex justify-between text-xs text-muted-foreground'>
+        <span>{t('planner.timeline.now')}</span>
+        <span>{tick(6)}</span>
+        <span>{tick(12)}</span>
+      </div>
+      {weeks ? (
+        <p className='mt-2 text-sm text-muted-foreground'>{line}</p>
+      ) : null}
+    </div>
+  );
+}
+
 const COMPASS = ['north', 'east', 'south', 'west'] as const;
 /** The compass side of a bed's first section: its top end, or its left end
  *  when beds run across. */
@@ -1166,6 +1368,7 @@ function SectionPanel({
   advice,
   need,
   harvest,
+  temps,
   count,
   onSwap,
   onPlanted,
@@ -1183,6 +1386,8 @@ function SectionPanel({
   need?: CropNeeds;
   /** The crop's harvest months at the place (bit 0 = January), when known. */
   harvest?: number;
+  /** The place's monthly mean temperatures, when known. */
+  temps?: number[];
   count: (s: Section) => string;
   onSwap: (crop: string) => void;
   onPlanted: (day: string | undefined) => void;
@@ -1204,6 +1409,16 @@ function SectionPanel({
     new Intl.DateTimeFormat(i18n.language, { month: 'long' }).format(
       new Date(2026, m, 1)
     );
+  // The day it is ready, from the warmth since its planted (or planned) day.
+  const readyOn =
+    crop && !crop.note && temps && need?.days
+      ? readyDay(
+          crop.id,
+          need,
+          temps,
+          s.planted ?? (s.sow && s.sow > today() ? s.sow : today())
+        )
+      : null;
   const options = useMemo(() => {
     const sorted = [...CROPS].sort((a, z) =>
       t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
@@ -1267,17 +1482,24 @@ function SectionPanel({
             <dd className='text-foreground'>
               {crop.note
                 ? t(`sheet.ready.${crop.note}`)
-                : harvest
-                  ? t('planner.readyAround', {
-                      month: month(
-                        nextMonth(harvest, new Date().getMonth()) ?? 0
-                      ),
+                : readyOn
+                  ? t('planner.readyOn', {
+                      date: new Intl.DateTimeFormat(i18n.language, {
+                        day: 'numeric',
+                        month: 'long',
+                      }).format(new Date(`${readyOn}T12:00:00`)),
                     })
-                  : due?.key === 'readyNextSpring'
-                    ? t('planner.readyNextSpring')
-                    : due
-                      ? t('planner.readyAround', { month: month(due.month) })
-                      : '–'}
+                  : harvest
+                    ? t('planner.readyAround', {
+                        month: month(
+                          nextMonth(harvest, new Date().getMonth()) ?? 0
+                        ),
+                      })
+                    : due?.key === 'readyNextSpring'
+                      ? t('planner.readyNextSpring')
+                      : due
+                        ? t('planner.readyAround', { month: month(due.month) })
+                        : '–'}
             </dd>
             <dt className='text-muted-foreground'>{t('planner.nextYear')}</dt>
             <dd className='text-foreground'>

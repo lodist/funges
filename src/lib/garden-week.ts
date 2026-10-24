@@ -430,7 +430,11 @@ export function comingUp(
     } else if (!due(s, today)) {
       const day = s.sow!;
       if (days(today, day) <= AHEAD_DAYS)
-        add(`sow:${crop}:${day}`, () => ({ kind: 'sow', crop, day, at: [] }), i);
+        add(
+          `sow:${crop}:${day}`,
+          () => ({ kind: 'sow', crop, day, at: [] }),
+          i
+        );
     } else {
       const status = week.crops[crop];
       if (status && (status.startsWith('wait') || status === 'too_warm'))
@@ -439,4 +443,34 @@ export function comingUp(
   });
   const when = (c: Coming) => (c.kind === 'wait' ? '9999' : c.day);
   return [...byKey.values()].sort((a, z) => when(a).localeCompare(when(z)));
+}
+
+export type GrowthStage = 'bare' | 'seedling' | 'young' | 'grown' | 'ready';
+
+/** Where a section's crop has got to on `day`: bare before it goes in (its
+ *  planted day, else its planned day, else today) and again once its harvest
+ *  is over (the place's harvest months, `harvest`, or a few weeks past
+ *  ready; a quick crop, sown again for more, is picked within weeks
+ *  wherever its season goes on); between, its stage from the warmth since,
+ *  as the drawing's plants. Perennials and next-year crops stay grown. */
+export function stageOn(
+  s: Section,
+  needs: Record<string, CropNeeds>,
+  temps: number[],
+  harvest: number,
+  day: string,
+  today: string
+): GrowthStage {
+  if (!s.crop) return 'bare';
+  const start = s.planted ?? (s.sow && s.sow > today ? s.sow : today);
+  if (day < start) return 'bare';
+  const need = needs[s.crop];
+  if (!need?.days || NOTED.has(s.crop)) return 'grown';
+  const done = growth(s.crop, need, temps, start, day);
+  if (done < 0.3) return 'seedling';
+  if (done < 0.75) return 'young';
+  if (done < 1) return 'grown';
+  if (s.crop in SUCCESSION) return done < 1.3 ? 'ready' : 'bare';
+  const month = new Date(`${day}T12:00:00`).getMonth();
+  return (harvest >> month) & 1 || done < 1.2 ? 'ready' : 'bare';
 }
