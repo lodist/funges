@@ -39,7 +39,7 @@
       "ground_frost": "Posible helada en el suelo más adelante esta semana: la noche del {{night}}"
     },
     "todo": {
-      "title": "Esta semana",
+      "title": "Para hacer esta semana",
       "frost": {
         "frost": "Helada en los próximos 3 días",
         "ground_frost": "Helada en el suelo en los próximos 3 días",
@@ -180,6 +180,12 @@
       "wait": "{{crop}}: {{reason}}",
       "waiting": "En espera",
       "note": "Las fechas de cosecha son aproximadas, según las temperaturas habituales de tu lugar."
+    },
+    "done": {
+      "title": "Hecho esta semana",
+      "undo": "Deshacer",
+      "sown": "{{crop}}: siembra del {{date}}",
+      "planted": "{{crop}}: plantación del {{date}}"
     }
   },
   "units": {
@@ -567,7 +573,7 @@
     "sownOnInput": "Fecha de siembra",
     "plantedOnInput": "Fecha de plantación",
     "forLabel": "Planificar para",
-    "thisWeek": "Esta semana",
+    "thisWeek": "Hoy",
     "forMonth": "Planificado para {{month}} en {{place}}.",
     "readyOn": "Hacia el {{date}}",
     "timeline": {
@@ -579,7 +585,7 @@
       "empty": "Nada en la tierra"
     },
     "tab": {
-      "week": "Esta semana",
+      "week": "Tareas",
       "garden": "Huerto"
     }
   },
@@ -672,6 +678,7 @@
     "harvest": "Cosechar ahora",
     "none": "Nada esta semana.",
     "until": "Hasta {{month}}",
-    "allYear": "Todo el año"
+    "allYear": "Todo el año",
+    "allGardens": "Todos los cultivos"
   }
 }

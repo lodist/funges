@@ -39,7 +39,7 @@
       "ground_frost": "Gelée au sol possible plus tard dans la semaine : dans la nuit de {{night}}"
     },
     "todo": {
-      "title": "Cette semaine",
+      "title": "À faire cette semaine",
       "frost": {
         "frost": "Gel dans les 3 prochains jours",
         "ground_frost": "Gelée au sol dans les 3 prochains jours",
@@ -180,6 +180,12 @@
       "wait": "{{crop}} : {{reason}}",
       "waiting": "En attente",
       "note": "Les dates de récolte sont approximatives, d'après les températures habituelles chez vous."
+    },
+    "done": {
+      "title": "Fait cette semaine",
+      "undo": "Annuler",
+      "sown": "{{crop}} : semis du {{date}}",
+      "planted": "{{crop}} : plantation du {{date}}"
     }
   },
   "units": {
@@ -567,7 +573,7 @@
     "sownOnInput": "Date de semis",
     "plantedOnInput": "Date de plantation",
     "forLabel": "Planifier pour",
-    "thisWeek": "Cette semaine",
+    "thisWeek": "Aujourd'hui",
     "forMonth": "Planifié pour {{month}} autour de {{place}}.",
     "readyOn": "Vers le {{date}}",
     "timeline": {
@@ -579,7 +585,7 @@
       "empty": "Rien en terre"
     },
     "tab": {
-      "week": "Cette semaine",
+      "week": "À faire",
       "garden": "Potager"
     }
   },
@@ -672,6 +678,7 @@
     "harvest": "À récolter",
     "none": "Rien cette semaine.",
     "until": "Jusqu'en {{month}}",
-    "allYear": "Toute l'année"
+    "allYear": "Toute l'année",
+    "allGardens": "Toutes les cultures"
   }
 }

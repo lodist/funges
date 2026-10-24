@@ -257,6 +257,9 @@ function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
 /** In Season's filters: everything, or one list (harvest only with the
  *  place's calendar). */
 type View = 'all' | 'sow' | 'plant' | 'harvest';
+/** The garden row: all crops, or one garden's (kept for the visit here). */
+const ALL = 'all';
+const ONLY = 'huerta-season-garden';
 
 function Advice({ advice }: { advice: PlaceAdvice }) {
   const { t, i18n } = useTranslation('huerta');
@@ -264,11 +267,36 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   const [view, setView] = useState<View>('all');
   const [kind, setKind] = useState<string>('all');
   const { gardens, current } = useGardens();
+  // The garden filter: only that garden's crops. Choosing another garden
+  // starts the page afresh at its place (HuertaGate), so the choice is kept
+  // for this visit.
+  const [only, setOnly] = useState(() => {
+    try {
+      return sessionStorage.getItem(ONLY) === current?.id;
+    } catch {
+      return false;
+    }
+  });
+  const mine = new Set(
+    only
+      ? (current?.plan?.sections.flatMap(s => (s.crop ? [s.crop] : [])) ?? [])
+      : []
+  );
+  const shown = (crop: Crop) =>
+    (kind === 'all' || crop.kind === kind) && (!only || mine.has(crop.id));
+  const filterGarden = (value: string) => {
+    try {
+      sessionStorage.setItem(ONLY, value === ALL ? '' : value);
+    } catch {
+      // Blocked storage: the filter holds until the page starts afresh.
+    }
+    if (value === ALL) setOnly(false);
+    else if (value === current?.id) setOnly(true);
+    else chooseGarden(value);
+  };
   const [open, setOpen] = useState<Crop | null>(null);
   const pick = (statuses: CropStatus[]) =>
-    cropsWith(advice, statuses).filter(
-      crop => kind === 'all' || crop.kind === kind
-    );
+    cropsWith(advice, statuses).filter(shown);
   const now = pick(STATUS_GROUPS.now);
   const waiting = pick(STATUS_GROUPS.wait);
   const over = pick(STATUS_GROUPS.over);
@@ -276,8 +304,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   const month = new Date().getMonth();
   const picked = (id: string) => year?.crops[id]?.harvest ?? 0;
   const harvesting = CROPS.filter(
-    crop =>
-      (kind === 'all' || crop.kind === kind) && (picked(crop.id) >> month) & 1
+    crop => shown(crop) && (picked(crop.id) >> month) & 1
   );
   const until = (id: string) => {
     let last = month;
@@ -329,15 +356,18 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
         onChange={setKind}
         className='mt-3 justify-start'
       />
-      {/* Which garden, when there are more: each its own place's week. */}
-      {gardens.length > 1 ? (
+      {/* A garden's own crops, at its place; all crops by default. */}
+      {gardens.some(g => g.plan?.sections.some(s => s.crop)) ? (
         <CategoryChips
-          chips={gardens.map(garden => ({
-            value: garden.id,
-            label: gardenLabel(t, gardens, garden),
-          }))}
-          value={current?.id ?? ''}
-          onChange={chooseGarden}
+          chips={[
+            { value: ALL, label: t('views.allGardens') },
+            ...gardens.map(garden => ({
+              value: garden.id,
+              label: gardenLabel(t, gardens, garden),
+            })),
+          ]}
+          value={only && current ? current.id : ALL}
+          onChange={filterGarden}
           className='mt-3 justify-start'
         />
       ) : null}

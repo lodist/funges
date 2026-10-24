@@ -10,7 +10,14 @@ import {
   type PlaceAdvice,
 } from '@/lib/huerta';
 import type { PlaceYear } from '@/lib/huerta-wire';
-import { Clock, CloudRain, Droplets, Shovel, Snowflake } from '@/lib/icons';
+import {
+  Check,
+  Clock,
+  CloudRain,
+  Droplets,
+  Shovel,
+  Snowflake,
+} from '@/lib/icons';
 import type { Plan } from '@/lib/planner';
 import { cn } from '@/lib/utils';
 
@@ -49,7 +56,9 @@ export function GardenThisWeek({
   today,
   where,
   onSow,
+  onUnsow,
   onDone,
+  onUndo,
   onShow,
   onReplan,
 }: {
@@ -62,8 +71,12 @@ export function GardenThisWeek({
   where: (index: number) => string;
   /** Mark sections sown or planted today. */
   onSow: (at: number[]) => void;
+  /** Put sections back to planned: a sowing ticked by mistake. */
+  onUnsow: (at: number[]) => void;
   /** Tick a job off, by its key. */
   onDone: (key: string) => void;
+  /** Take a tick back. */
+  onUndo: (key: string) => void;
   /** Select sections and bring the drawing into view. */
   onShow: (at: number[]) => void;
   /** Plan it for me, for just these sections. */
@@ -171,6 +184,51 @@ export function GardenThisWeek({
       ];
     });
   const coming = comingUp(plan, advice, needs, today, year);
+  // Ticked in the last week, to take back if it was a slip: jobs (as the
+  // week would list them without their ticks) and sowings.
+  const lately = (day: string | undefined) =>
+    Boolean(day) &&
+    day! <= today &&
+    (new Date(`${today}T12:00:00`).getTime() -
+      new Date(`${day}T12:00:00`).getTime()) /
+      864e5 <=
+      7;
+  const done = [
+    ...gardenWeek({ ...plan, done: {} }, advice, needs, today, year).flatMap(
+      task => {
+        const key = jobKey(task, plan, today);
+        return key && lately(plan.done?.[key])
+          ? [
+              {
+                key,
+                title: taskText(task, t, i18n.language).title,
+                undo: () => onUndo(key),
+              },
+            ]
+          : [];
+      }
+    ),
+    ...[
+      ...new Set(
+        plan.sections
+          .filter(s => s.crop && lately(s.planted))
+          .map(s => `${s.crop}|${s.planted}`)
+      ),
+    ].map(pair => {
+      const [crop, day] = pair.split('|');
+      const at = plan.sections.flatMap((s, i) =>
+        s.crop === crop && s.planted === day ? [i] : []
+      );
+      return {
+        key: `sown:${pair}`,
+        title: t(
+          CROP[crop].how === 'sow' ? 'week.done.sown' : 'week.done.planted',
+          { crop: name(crop), date: date(day) }
+        ),
+        undo: () => onUnsow(at),
+      };
+    }),
+  ];
 
   return (
     <section aria-labelledby='garden-week' className='flex flex-col gap-4'>
@@ -239,6 +297,27 @@ export function GardenThisWeek({
       ) : (
         <p className='text-muted-foreground'>{t('week.todo.nothing')}</p>
       )}
+
+      {done.length ? (
+        <div>
+          <h3 className='type-micro mb-1 text-muted-foreground'>
+            {t('week.done.title')}
+          </h3>
+          <ul className='flex flex-col'>
+            {done.map(d => (
+              <li key={d.key} className='flex items-center gap-3 pl-2 text-sm'>
+                <Check className='size-4 shrink-0 text-primary-text' />
+                <span className='min-w-0 flex-1 text-muted-foreground line-through'>
+                  {d.title}
+                </span>
+                <Button variant='ghost' onClick={d.undo}>
+                  {t('week.done.undo')}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       {coming.length ? (
         <div>

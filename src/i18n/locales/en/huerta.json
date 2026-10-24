@@ -39,7 +39,7 @@
       "ground_frost": "Ground frost possible later this week: {{night}} night"
     },
     "todo": {
-      "title": "This week",
+      "title": "To do this week",
       "frost": {
         "frost": "Frost in the next 3 days",
         "ground_frost": "Ground frost in the next 3 days",
@@ -180,6 +180,12 @@
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Waiting",
       "note": "Harvest dates are approximate, from the usual temperatures at your place."
+    },
+    "done": {
+      "title": "Done this week",
+      "undo": "Undo",
+      "sown": "{{crop}}: sown {{date}}",
+      "planted": "{{crop}}: planted {{date}}"
     }
   },
   "units": {
@@ -567,7 +573,7 @@
     "sownOnInput": "Sown on",
     "plantedOnInput": "Planted on",
     "forLabel": "Plan for",
-    "thisWeek": "This week",
+    "thisWeek": "Today",
     "forMonth": "Planned for {{month}} around {{place}}.",
     "readyOn": "Around {{date}}",
     "timeline": {
@@ -579,7 +585,7 @@
       "empty": "Nothing in the ground"
     },
     "tab": {
-      "week": "This week",
+      "week": "To do",
       "garden": "Garden"
     }
   },
@@ -672,6 +678,7 @@
     "harvest": "Harvest now",
     "none": "Nothing here this week.",
     "until": "Until {{month}}",
-    "allYear": "All year"
+    "allYear": "All year",
+    "allGardens": "All crops"
   }
 }
