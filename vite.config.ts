@@ -59,6 +59,8 @@ export default defineConfig({
       registerType: 'prompt',
       injectRegister: false,
       workbox: {
+        // Huerta's morning alerts: show a push, open its garden on a tap.
+        importScripts: ['huerta-push.js'],
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,webp,avif}',
           'funges_style*.json',
