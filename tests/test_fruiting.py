@@ -2,6 +2,7 @@
 import json
 
 import numpy as np
+import pytest
 import pandas as pd
 
 import build_training_table as tt
@@ -164,6 +165,143 @@ def test_the_scale_follows_the_time_of_year():
     assert abs(june - 0.5) < 0.01                                # mid-June reads June's scale
     assert abs(july_1st - 0.55) < 0.01                           # 1 July: halfway to July's
     assert 2.0 < new_year < 3.0                                  # between December's and January's
+
+
+def _local(ratio):
+    """Settings of a species whose season is local, with a region curve of this ratio."""
+    return {"local_season": {}, "season_curve": {"multiplier": {m: 1.0 for m in range(1, 13)},
+                                                 "ratio": {m: r for m, r in zip(range(1, 13), ratio)}}}
+
+
+def _months(base=0.1, step=0.7 / 11):
+    return [{"eta": [-1.0, 1.0], "weather_part": [base + m * step, base + m * step + 0.1]} for m in range(12)]
+
+
+def test_the_best_month_is_the_region_curve_s_peak():
+    months = _months()
+    june = fp.best_month_parts(months, _local([0] * 5 + [1] + [0] * 6)["season_curve"])
+    assert len(june) == 1 and np.allclose(june[0], months[5]["weather_part"])
+    autumn = fp.best_month_parts(months, _local([0, 0, 0, 0, 0, 0.1, 0.5, 0.8, 1.0, 0.6, 0.2, 0])["season_curve"])
+    assert np.allclose(autumn[0], months[8]["weather_part"])     # September, the peak
+    assert len(fp.best_month_parts(months, _local([1] * 12)["season_curve"])) == 12   # a tie keeps them all
+    assert fp.best_month_parts(months, None) is None             # no ratio, no best month
+
+
+def test_pooled_quantiles_weigh_each_part_alike():
+    low, high = np.array([0.2, 0.3, 0.4]), np.array([0.6, 0.7, 0.8])
+    assert np.allclose(fp.pooled_quantiles([low]), low)
+    pooled = fp.pooled_quantiles([low, high])
+    assert pooled[0] == pytest.approx(0.2) and pooled[-1] == pytest.approx(0.8) and 0.4 <= pooled[1] <= 0.6
+
+
+def test_a_species_reads_on_one_scale_in_every_region(monkeypatch):
+    months, september = _months(), _local([0] * 8 + [1] + [0] * 3)
+    monkeypatch.setattr(fp, "species_scales", lambda: {"porcini": np.array([0.5, 0.9])})
+    assert np.allclose(fp.season_scale("porcini", months, september), [0.5, 0.9])
+    assert np.allclose(fp.season_scale("other", months, september), months[8]["weather_part"])  # its region's best month
+    regional = {k: v for k, v in september.items() if k != "local_season"}
+    assert fp.season_scale("porcini", months, regional) is None  # season on region curves: months' own
+    assert fp.season_scale("porcini", months, {"local_season": {}}) is None   # no ratio
+
+
+def _peak(month):
+    return {"multiplier": {m: 1.0 for m in range(1, 13)}, "ratio": {m: float(m == month) for m in range(1, 13)}}
+
+
+def test_the_one_scale_pools_each_region_s_best_month():
+    import build_fruiting_scale
+
+    north, west, south = _months(0.6, 0.01), _months(0.2, 0.01), _months(0.9, 0.0)
+    fit = {"porcini": {"NE": {"map": north}, "SE": {"map": south}}}
+    gbm = {"porcini": {"regions": {"USW": {"map": west}}}}
+    curves = {"NE": {"porcini": _peak(9)}, "SE": {"porcini": _peak(9)}, "USW": {"porcini": _peak(10)}}
+    local = {"NE": {"porcini"}, "USW": {"porcini"}}                 # SE's season is not local: left out
+    scales = build_fruiting_scale.build(fit, gbm, curves, local)
+    best = [np.array(north[8]["weather_part"]), np.array(west[9]["weather_part"])]   # September, October
+    assert np.allclose(scales["porcini"], np.median(np.vstack(best), axis=0))   # the regions' median
+
+
+def test_one_odd_region_does_not_widen_the_others_scale():
+    import build_fruiting_scale
+
+    def flat(low, high):
+        return [{"eta": [-1.0, 0.0, 1.0], "weather_part": [low, (low + high) / 2, high]}] * 12
+    fit = {"porcini": {"NE": {"map": flat(0.5, 0.9)}, "SE": {"map": flat(0.55, 0.9)}, "USW": {"map": flat(0.1, 0.8)}}}
+    curves = {r: {"porcini": _peak(9)} for r in ("NE", "SE", "USW")}
+    scale = build_fruiting_scale.build(fit, {}, curves, {r: {"porcini"} for r in ("NE", "SE", "USW")})["porcini"]
+    assert np.allclose(scale, [0.5, 0.7, 0.9])                   # North Europe's, the middle one
+
+
+def test_a_fitted_local_species_without_a_best_month_stops_the_build():
+    import build_fruiting_scale
+
+    flat = {"porcini": {"multiplier": {m: 1.0 for m in range(1, 13)}}}   # no ratio
+    with pytest.raises(SystemExit, match="porcini NE"):
+        build_fruiting_scale.build({"porcini": {"NE": {"map": _months()}}}, {}, {"NE": flat}, {"NE": {"porcini"}})
+
+
+def test_the_scales_are_read_from_their_file(tmp_path, monkeypatch, capsys):
+    path = tmp_path / "fruiting_scale.json"
+    path.write_text(json.dumps({"built": "2026-10-24", "scales": {"porcini": [0.2, 0.5, 0.9]}}))
+    monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", path)
+    fp._scale_file.cache_clear()
+    try:
+        assert np.allclose(fp.species_scales()["porcini"], [0.2, 0.5, 0.9])
+        fp._scale_file.cache_clear()
+        monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", tmp_path / "missing.json")
+        assert fp.species_scales() == {}                             # each region keeps its own best month
+        assert "not loaded" in capsys.readouterr().out
+    finally:
+        fp._scale_file.cache_clear()
+
+
+def test_on_one_scale_the_same_weather_reads_the_same_all_year():
+    series = _series(days=250)
+    at = [series.index[series["Date"] == d][0] for d in ("2026-06-15", "2026-07-15", "2027-01-01")]
+    frame = _production_frame(series, pd.DatetimeIndex(series["Date"].iloc[at]))
+    level = [2.0] + [m / 10 for m in range(1, 11)] + [3.0]
+    months = [{"eta": [-1.0, 1.0], "weather_part": [v, v]} for v in level]
+    model = _model(np.zeros(len(fp.FRUITING_FEATURES)), months=months)
+    model["scale"] = np.array([0.3, 0.7])
+    assert np.allclose(fp.fruiting_weather_part(frame, model), 0.5)   # the months' own levels are gone
+    months[6] = {"eta": [-2.0, 0.0], "weather_part": [0.7, 0.7]}      # July: index 0 is its best
+    assert abs(fp.fruiting_weather_part(frame, model)[1] - 0.7) < 0.02  # a month still ranks its own index
+
+
+def test_the_nightly_warns_when_an_input_of_the_scale_changed(tmp_path, monkeypatch, capsys):
+    for name in ("FRUITING_FIT_PATH", "FRUITING_GBM_PATH", "LOCAL_SEASON_PATH"):
+        path = tmp_path / f"{name}.json"
+        path.write_text("{}")
+        monkeypatch.setattr(fp, name, path)
+    scale = tmp_path / "fruiting_scale.json"
+    inputs = {**fp.scale_inputs(), "season_curves": {"NE": fp.season_curves_text_sha("curves")}}
+    scale.write_text(json.dumps({"inputs": inputs, "scales": {}}))
+    monkeypatch.setattr(fp, "FRUITING_SCALE_PATH", scale)
+    fp._scale_file.cache_clear()
+    try:
+        fp.warn_if_scale_stale("NE", "curves")
+        assert capsys.readouterr().out == ""                         # built from what is there now
+        fp.warn_if_scale_stale("NE", "rebuilt curves")
+        assert "NE season curves" in capsys.readouterr().out
+        fp.FRUITING_FIT_PATH.write_text('{"refit": 1}')
+        fp.warn_if_scale_stale("NE", "curves")
+        assert "fruiting_fit.json" in capsys.readouterr().out
+    finally:
+        fp._scale_file.cache_clear()
+
+
+def test_a_species_with_a_local_season_gets_one_scale(tmp_path, monkeypatch):
+    monkeypatch.setattr(fp, "species_scales", dict)                 # no other region: its own best month
+    k = len(fp.FRUITING_FEATURES)
+    month = {"eta": [-1.0, 1.0], "weather_part": [0.2, 0.6]}
+    path = tmp_path / "fruiting_fit.json"
+    path.write_text(json.dumps({"features": fp.FRUITING_FEATURES, "means": [0] * k, "sds": [1] * k,
+                                "humidity_from_stored": {"NE": [0.0, 1.0]},
+                                "models": {s: {"NE": {"beta": [0] * k, "map": [month] * 12}} for s in ("a", "b")}}))
+    params = {"a": _local([1.0] * 12), "b": {}}
+    fp.attach_fruiting_models(params, "NE", path)
+    assert np.allclose(params["a"]["fruiting"]["scale"], [0.2, 0.6])
+    assert params["b"]["fruiting"]["scale"] is None
 
 
 def test_stored_humidity_is_put_on_the_era5_level_first():

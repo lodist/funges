@@ -17,6 +17,7 @@ from io import StringIO, BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 import faulthandler
+import functools
 import gc
 import gzip
 import hashlib
@@ -50,7 +51,7 @@ import huerta
 import process_priority
 import r2
 from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
-from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species
+from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species, split_curve
 from species_registry import get_composites, get_region_boundaries, get_species_params
 
 BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
@@ -1141,11 +1142,11 @@ def fruiting_design(raw, warmth=None, names=FRUITING_FEATURES):
 def fruiting_weather_part(df, model):
     """The fitted index, put on the hand-set weather part's own scale. model["map"] holds one
     map per calendar month, pairing quantiles of the index with the same quantiles of the
-    hand-set part at that time of year, so a score keeps its range, threshold and seasonal
-    level and only its order changes; a day blends the two months either side of it. The
-    fit learned on ERA5, whose humidity reads higher than the stored WeatherAPI values, so
-    model["humidity_from_stored"] = (a, b) puts stored humidity on ERA5's level first. A
-    feature the row lacks counts as average."""
+    hand-set part at that time of year; a day blends the two months either side of it. Where
+    the species' season is local, model["scale"] (season_scale) ends every month on one scale,
+    so the season comes from the local season. The fit learned on ERA5, whose humidity
+    reads higher than the stored WeatherAPI values, so model["humidity_from_stored"] = (a, b)
+    puts stored humidity on ERA5's level first. A feature the row lacks counts as average."""
     warmth = None
     if model.get("normals") is not None:
         warmth = fruiting_warmth(model["normals"], df["Latitude"], df["Longitude"], df["Date"])
@@ -1156,21 +1157,114 @@ def fruiting_weather_part(df, model):
         design = fruiting_relative(design, model["normals"], df["Latitude"], df["Longitude"], df["Date"])
     z = (design.to_numpy(float) - np.asarray(model["means"])) / np.asarray(model["sds"])
     eta = np.nan_to_num(z, nan=0.0) @ np.asarray(model["beta"], float)
-    return _monthly_map(eta, df["Date"], model["map"])
+    return _monthly_map(eta, df["Date"], model["map"], model.get("scale"))
 
 
-def _monthly_map(index, dates, maps):
+def _monthly_map(index, dates, maps, scale=None):
     """The index on the hand-set weather part's scale: one map per calendar month, a day
-    blending the two months either side of it."""
+    blending the two months either side of it. With `scale` every month ends on it, and a
+    month only ranks the index against its own quantiles."""
     months = (pd.to_datetime(dates).dt.dayofyear.to_numpy() - 15.0) / (365.25 / 12)  # 0 = mid-January
     before = np.floor(months).astype(int)
     weight = months - before
     out = np.empty(len(index))
     for month in np.unique(before):
         rows = before == month
-        part = [np.interp(index[rows], m["eta"], m["weather_part"]) for m in (maps[month % 12], maps[(month + 1) % 12])]
+        part = [np.interp(index[rows], m["eta"], m["weather_part"] if scale is None else scale)
+                for m in (maps[month % 12], maps[(month + 1) % 12])]
         out[rows] = (1 - weight[rows]) * part[0] + weight[rows] * part[1]
     return out
+
+
+def season_scale(specie, maps, params):
+    """One weather-part scale for the whole year where the species' season is local
+    (attach_local_season), else None: each month's own scale, as before. A month's own scale is
+    the hand-set part's level over the region's places at that time of year, so a late-season
+    place read its autumn like the whole region's: England's October porcini like Sweden's. The
+    fits compare a day only with the same place 2-3 weeks either side, so their index says
+    nothing about one season against another; each month still ranks a day against its own index
+    quantiles (which also takes out a GBM's drift across the year), but all of them end on one
+    scale, the same in every region (species_scales): a normal good day for porcini reads the
+    same in Washington as in Sweden. When it fruits is the local season's to say, where it is
+    common the place parts' (range prior, habitat). A blend of a season's months was wider than
+    any one month, which lost places that people find species at in poor weather (shaggy mane in
+    North Europe in October), so the scale is the best month's. A species on region curves keeps
+    the months' level, which hides their open winters (giant puffball husks in North Europe)."""
+    own = best_month_parts(maps, params.get("season_curve"))
+    if params.get("local_season") is None or own is None:
+        return None
+    shared = species_scales().get(specie)
+    return shared if shared is not None else pooled_quantiles(own)
+
+
+def best_month_parts(maps, season_curve):
+    """The hand-set part's quantiles in the species' best month in a region, its curve's peak
+    (each of the months on a tie), or None without a ratio."""
+    ratio = split_curve(season_curve)[1]
+    if not ratio or len(maps) != 12:
+        return None
+    peak = np.array([ratio[m] for m in range(1, 13)], float)
+    return [np.asarray(maps[i]["weather_part"], float) for i in np.flatnonzero(peak == peak.max())]
+
+
+def pooled_quantiles(parts):
+    """The quantiles of the parts' distributions pooled with equal weights, on their grid."""
+    share = np.linspace(0.0, 1.0, len(parts[0]))
+    values = np.unique(np.concatenate(parts))
+    cdf = sum(np.interp(values, part, share) for part in parts) / len(parts)
+    return np.interp(share, cdf, values)
+
+
+FRUITING_SCALE_PATH = Path(__file__).resolve().parent / "generated" / "fruiting_scale.json"
+
+
+@functools.lru_cache(maxsize=None)
+def _scale_file():
+    try:
+        return json.loads(Path(r2.generated(FRUITING_SCALE_PATH)).read_text(encoding="utf-8"))
+    except Exception as error:
+        print(f"[warn] {FRUITING_SCALE_PATH.name} not loaded ({error}); each region keeps its own best month's scale")
+        return {}
+
+
+def species_scales():
+    """Each species' one weather-part scale, the same in every region (tools/build_fruiting_scale.py,
+    rebuilt when the fits or the season curves change): the hand-set part in its best month in every
+    region where it has a fitted part and a local season, the regions' median at each quantile. US
+    West's sits low (porcini in its best month 0.52, against 0.77 in North Europe), and on its own
+    scale Washington's porcini scored about a fifth below a European place with the same weather. {} when the file cannot be read: each
+    region then keeps its own best month's scale, and the nightly log names those species."""
+    return {specie: np.asarray(quantiles, float) for specie, quantiles in _scale_file().get("scales", {}).items()}
+
+
+def scale_inputs():
+    """The sha256 of each input fruiting_scale.json is built from, as they are now; the region's
+    season curves are hashed from the text the run read (season_curves_text)."""
+    return {name: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+            for name, path in (("fruiting_fit.json", FRUITING_FIT_PATH), ("fruiting_gbm.json", FRUITING_GBM_PATH),
+                               ("local_season.json", LOCAL_SEASON_PATH)) if Path(path).exists()}
+
+
+def season_curves_text_sha(text):
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def warn_if_scale_stale(region, curves_text):
+    """Nothing rebuilds fruiting_scale.json on its own, so a [warn] each night once an input it was built
+    from has changed: a fit file, local_season.json, or this region's season curves (each region checks
+    its own, which it reads anyway)."""
+    built = _scale_file().get("inputs")
+    if not built:
+        return
+    now = scale_inputs()
+    if curves_text is not None:
+        now[f"{region} season curves"] = season_curves_text_sha(curves_text)
+    recorded = {**{k: v for k, v in built.items() if k != "season_curves"},
+                **{f"{r} season curves": v for r, v in built.get("season_curves", {}).items()}}
+    changed = [name for name, sha in now.items() if name in recorded and recorded[name] != sha]
+    if changed:
+        print(f"[warn] {FRUITING_SCALE_PATH.name} predates {', '.join(changed)}: "
+              "rebuild it with python backend/tools/build_fruiting_scale.py and commit on_r2.json")
 
 
 def fruiting_gbm_features(df, model):
@@ -1200,7 +1294,8 @@ def fruiting_gbm_features(df, model):
 
 def fruiting_gbm_weather_part(features, df, model):
     """The GBM's raw score through its monthly maps onto the hand-set weather part's scale."""
-    return _monthly_map(model["booster"].predict(features, raw_score=True), df["Date"], model["map"])
+    return _monthly_map(model["booster"].predict(features, raw_score=True), df["Date"], model["map"],
+                        model.get("scale"))
 
 
 def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
@@ -1221,7 +1316,8 @@ def attach_fruiting_models(species_params, region, path=FRUITING_FIT_PATH):
         model = fit.get("models", {}).get(specie, {}).get(region)
         if model:
             params["fruiting"] = {"means": fit["means"], "sds": fit["sds"],
-                                  "humidity_from_stored": fit["humidity_from_stored"][region], **model}
+                                  "humidity_from_stored": fit["humidity_from_stored"][region], **model,
+                                  "scale": season_scale(specie, model["map"], params)}
             if fit.get("relative_to_normal"):
                 normals = era5_normals.load(region) if normals is None else normals
                 params["fruiting"]["normals"] = normals
@@ -1264,6 +1360,7 @@ def attach_fruiting_gbm(species_params, region, today, path=FRUITING_GBM_PATH, f
         params.pop("fruiting", None)
         params["fruiting_gbm"] = {
             "booster": booster, "map": model["regions"][region]["map"],
+            "scale": season_scale(specie, model["regions"][region]["map"], params),
             "corrections": spec["inputs_from_stored"][region],
             "region_code": FRUITING_GBM_REGIONS.index(region), "anchor": pd.Timestamp(today),
             "normals": normals}
@@ -1573,6 +1670,7 @@ def _load_species_and_curves(config):
     species_params = get_species_params(config.region)
 
     _curves_path = get_required_env(config.season_curves_env)
+    _raw = None
     try:
         _raw = r2_fetch(_curves_path).decode("utf-8") if is_remote_path(_curves_path) else Path(_curves_path).read_text(encoding="utf-8")
         _curves = json.loads(_raw)
@@ -1623,15 +1721,23 @@ def _load_species_and_curves(config):
         except Exception as _e:
             print(f"[warn] could not load host cover from {_cover_path}: {_e}; scoring without it")
 
+    attach_local_season(species_params, config.region)   # first: the fits' scale follows it
     attach_fruiting_models(species_params, config.region)
     attach_fruiting_gbm(species_params, config.region, datetime.now())
     attach_habitat(species_params, config.region)
     attach_phenology(species_params, config.region)
-    attach_local_season(species_params, config.region)
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
     print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")
+    _monthly = sorted(s for s, p in species_params.items()
+                      if (m := p.get("fruiting_gbm") or p.get("fruiting")) and m.get("scale") is None)
+    print(f"Fitted weather part on monthly scales (no local season) for: {', '.join(_monthly) or 'none'}")
+    _own = sorted(s for s, p in species_params.items()
+                  if (m := p.get("fruiting_gbm") or p.get("fruiting")) and m.get("scale") is not None
+                  and s not in species_scales())
+    print(f"Fitted weather part on its own region's scale (not in {FRUITING_SCALE_PATH.name}) for: {', '.join(_own) or 'none'}")
+    warn_if_scale_stale(config.region, _raw)
     _habitat = sorted(s for s, p in species_params.items() if "habitat" in p)
     print(f"Habitat factor for {len(_habitat)} species: {', '.join(_habitat) or 'none'}")
     _learned = sorted(s for s, p in species_params.items() if p.get("phenology") is not None)
