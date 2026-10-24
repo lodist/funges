@@ -385,7 +385,7 @@
      are literal stops of SCORE_COLOR_RAMP in src/lib/scoreColor.ts — stop 6 as
      the fill, stop 10 as the text, stop 8 as the edge. src/test/palette.test.ts
      asserts they still match the ramp. */
-  --status-warning: #fa733d;
+  --status-warning: #f85d40;
   --status-warning-background: color-mix(
     in oklch,
     var(--status-warning) 15%,
@@ -395,7 +395,7 @@
      is 3.95:1 against that tint — both clear their floors as literal ramp stops,
      with none of the colour-mix guesswork these two used to need. */
   --status-warning-text: #800020;
-  --status-warning-border: #fb4646;
+  --status-warning-border: #dc3233;
 
   /* The brand scale (--happy-*) and the band live in the space blocks below. */
 
@@ -640,16 +640,17 @@
   --sidebar-ring: var(--ring);
 
   /* Safety warnings, dark counterpart. Same ramp identity; the text moves to
-     stop 5 (#fbae7e, 4.17:1 on a 22% tint) because stop 10 disappears against
-     a dark ground, and the tint is richer for the same reason. */
-  --status-warning: #fa733d;
+     stop 5 (#fb9361, about 5.0:1 on the 22% tint) because stop 10 disappears
+     against a dark ground, and the tint is richer for the same reason. The
+     border, stop 8, is about 3.3:1 on the dark background. */
+  --status-warning: #f85d40;
   --status-warning-background: color-mix(
     in oklch,
     var(--status-warning) 22%,
     var(--background)
   );
-  --status-warning-text: #fbae7e;
-  --status-warning-border: #fb4646;
+  --status-warning-text: #fb9361;
+  --status-warning-border: #dc3233;
 
   /* Dark-mode values for the tokens with no shadcn equivalent (see :root) */
   --text-inverse: oklch(0.3327 0.0271 90);
