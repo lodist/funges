@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CropSheet } from '@/components/CropSheet';
+import { GardenPicker } from '@/components/GardenPicker';
 import { HuertaWeek } from '@/components/HuertaWeek';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
@@ -113,14 +114,19 @@ export default function HuertaPage() {
               load.state === 'ready' ? placeLine(load.advice) : undefined
             }
             action={
-              load.state === 'ready' && huertaApiConfigured ? (
-                <Button
-                  variant='outline'
-                  onClick={() => setLoad({ state: 'picking' })}
-                >
-                  <MapPinned />
-                  {t('change')}
-                </Button>
+              huertaApiConfigured ? (
+                <div className='flex flex-wrap gap-2'>
+                  <GardenPicker />
+                  {load.state === 'ready' ? (
+                    <Button
+                      variant='outline'
+                      onClick={() => setLoad({ state: 'picking' })}
+                    >
+                      <MapPinned />
+                      {t('change')}
+                    </Button>
+                  ) : null}
+                </div>
               ) : null
             }
           />
