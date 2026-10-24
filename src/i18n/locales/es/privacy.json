@@ -7,7 +7,7 @@
   },
   "collection": {
     "title": "Recopilación y uso de la información",
-    "content": "Estamos comprometidos con los principios de anonimato y protección de datos. Este servicio no recopila, almacena ni procesa información personal de forma directa. Nuestro diseño prioriza brindarte información sin requerir ningún dato a cambio, reflejando nuestra firme creencia en el valor del anonimato."
+    "content": "Terra, la parte de Funges para la recolección silvestre, no necesita cuenta y no recopila, almacena ni procesa información personal de forma directa. Huerta, la parte del huerto, necesita una cuenta: lo que guarda, y por qué, se explica en «Cuentas de Huerta»."
   },
   "location": {
     "title": "Datos de ubicación",
@@ -48,5 +48,12 @@
     "intro": "Para cualquier pregunta o inquietud sobre esta Política de Privacidad, por favor contacta a:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última actualización: 26.07.2026"
+  "lastUpdated": "Última actualización: 26.07.2026",
+  "accounts": {
+    "title": "Cuentas de Huerta",
+    "content": "Inicias sesión en Huerta con tu cuenta de Google. Google nos facilita tu dirección de correo y un número que identifica tu cuenta de Google; guardamos ambos, junto con tu idioma y tu zona horaria, para que puedas iniciar sesión en cualquier dispositivo y recibir los avisos a la hora adecuada. Guardamos tus huertos: sus nombres, sus planes y su ubicación redondeada a aproximadamente 1 km, nunca tu dirección.",
+    "alerts": "Si activas los avisos por la mañana, guardamos la dirección de notificaciones que tu navegador o tu teléfono nos da para ello, hasta que los desactives o deje de funcionar.",
+    "storage": "Estos datos se guardan en Cloudflare (base de datos D1), que los trata por cuenta nuestra. Solo los usamos para hacer funcionar Huerta y nunca los vendemos ni los compartimos.",
+    "delete": "Puedes eliminar tu cuenta en cualquier momento en Configuración → Cuenta de Huerta. Tu correo, tus huertos y tus avisos se eliminan entonces de inmediato, en todos los dispositivos."
+  }
 }

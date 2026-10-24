@@ -7,7 +7,7 @@
   },
   "collection": {
     "title": "Raccolta e Utilizzo delle Informazioni",
-    "content": "Ci impegniamo a rispettare i principi di anonimato e protezione dei dati. Questo servizio non raccoglie, memorizza o elabora direttamente alcuna informazione personale. Il nostro design privilegia il fornire informazioni senza richiedere dati in cambio, riflettendo la nostra forte convinzione nel valore dell'anonimato."
+    "content": "Terra, la parte di Funges per la raccolta spontanea, non richiede un account e non raccoglie, memorizza né elabora direttamente alcuna informazione personale. Huerta, la parte dell’orto, richiede un account: cosa conserva, e perché, è spiegato in «Account Huerta»."
   },
   "location": {
     "title": "Dati di Localizzazione",
@@ -48,5 +48,12 @@
     "intro": "Per qualsiasi domanda o preoccupazione riguardo questa Informativa sulla Privacy, contatta:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Ultimo aggiornamento: 26.07.2026"
+  "lastUpdated": "Ultimo aggiornamento: 26.07.2026",
+  "accounts": {
+    "title": "Account Huerta",
+    "content": "Accedi a Huerta con il tuo account Google. Google ci comunica il tuo indirizzo email e un numero che identifica il tuo account Google; li conserviamo, insieme alla tua lingua e al tuo fuso orario, perché tu possa accedere da qualsiasi dispositivo e ricevere gli avvisi all’ora giusta. Conserviamo i tuoi orti: i nomi, i piani e la posizione arrotondata a circa 1 km, mai il tuo indirizzo.",
+    "alerts": "Se attivi gli avvisi del mattino, conserviamo l’indirizzo per le notifiche che il tuo browser o il tuo telefono ci fornisce, finché non li disattivi o smette di funzionare.",
+    "storage": "Questi dati sono conservati presso Cloudflare (database D1), che li tratta per nostro conto. Li usiamo solo per far funzionare Huerta e non li vendiamo né li condividiamo mai.",
+    "delete": "Puoi eliminare il tuo account in qualsiasi momento in Impostazioni → Account Huerta. La tua email, i tuoi orti e i tuoi avvisi vengono allora eliminati subito, su tutti i dispositivi."
+  }
 }

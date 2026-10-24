@@ -7,7 +7,7 @@
   },
   "collection": {
     "title": "Information Collection and Use",
-    "content": "We are committed to upholding the principles of anonymity and data protection. This service does not collect, store, or process any personal information directly. Our design prioritizes providing information to you without requiring any data in return, reflecting our strong belief in the value of anonymity."
+    "content": "Terra, the foraging side of Funges, needs no account and collects, stores or processes no personal information directly. Huerta, the garden side, needs an account: what it keeps, and why, is set out under Huerta accounts."
   },
   "location": {
     "title": "Location Data",
@@ -48,5 +48,12 @@
     "intro": "For any questions or concerns regarding this Privacy Policy, please contact:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Last updated on: 26.07.2026"
+  "lastUpdated": "Last updated on: 26.07.2026",
+  "accounts": {
+    "title": "Huerta accounts",
+    "content": "You sign in to Huerta with your Google account. Google tells us your email address and a number that identifies your Google account; we keep both, with your language and time zone, so you can sign in on any device and get alerts at the right time. We keep your gardens: their names, their plans and their place rounded to about 1 km, never your address.",
+    "alerts": "If you turn on morning alerts, we keep the push address your browser or phone gives us for them, until you turn them off or it stops working.",
+    "storage": "This data is stored with Cloudflare (D1 database), which processes it on our behalf. We use it only to run Huerta, and we never sell or share it.",
+    "delete": "You can delete your account at any time in Settings → Huerta account. Your email, your gardens and your alerts are then deleted at once, on every device."
+  }
 }
