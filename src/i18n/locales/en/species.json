@@ -339,14 +339,19 @@
       "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves"
     },
     "boletus": {
-      "name": "Boletus (all porcini)",
-      "description": "Every porcini-type bolete in one score: porcini, pine, bronze and summer boletes, and the North American kings",
+      "name": "Boletus (porcini & bay bolete)",
+      "description": "Porcini and the bay bolete in one score: porcini, pine, bronze and summer boletes, the bay bolete and the North American kings",
       "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain"
     },
     "cantharellus": {
       "name": "Chanterelles (all)",
       "description": "Every chanterelle in one score: the golden chanterelles, the black trumpet and the winter chanterelle, and in North America the smooth and Pacific chanterelles",
       "howTo": "Each place shows the best of their scores; golden chanterelles on mossy slopes under oak, beech and conifers after warm rain, black trumpets in damp leaf litter under broadleaves, winter chanterelles on wet moss under conifers late in the season"
+    },
+    "bay_bolete": {
+      "name": "Bay Bolete",
+      "description": "A chestnut-brown capped bolete, tacky when wet, with cream to olive-yellow pores that bruise blue-green and a streaky stem without a net",
+      "howTo": "Look in moss under pine and spruce, also beech and oak, on acid sandy soil from August to the first frosts; it peaks in October as porcini fade. It gathers more Chernobyl caesium than most mushrooms, so in Bavaria and Austria eat it only now and then"
     }
   },
   "place": {

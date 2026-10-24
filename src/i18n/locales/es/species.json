@@ -340,13 +340,18 @@
     },
     "boletus": {
       "name": "Boletus (todos los boletos)",
-      "description": "Todos los boletos tipo porcini en una sola puntuación: boleto comestible, de pino, negro y de verano, más los reyes norteamericanos",
+      "description": "Los boletos tipo porcini y el boleto bayo en una sola puntuación: boleto comestible, de pino, negro y de verano, el boleto bayo y los reyes norteamericanos",
       "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante"
     },
     "cantharellus": {
       "name": "Rebozuelos (todos)",
       "description": "Todos los rebozuelos en una sola puntuación: los rebozuelos dorados, la trompeta de los muertos y el rebozuelo de invierno y, en Norteamérica, el rebozuelo liso y el rebozuelo del Pacífico",
       "howTo": "Cada lugar muestra la mejor de sus puntuaciones; los rebozuelos dorados en laderas con musgo bajo robles, hayas y coníferas tras una lluvia templada, las trompetas de los muertos en la hojarasca húmeda bajo frondosas, los rebozuelos de invierno sobre musgo mojado bajo coníferas al final de la temporada"
+    },
+    "bay_bolete": {
+      "name": "Boleto Bayo",
+      "description": "Un boleto de sombrero castaño, viscoso con la humedad, con poros de crema a amarillo oliva que azulean al tocarlos y pie estriado sin retículo",
+      "howTo": "Búscalo entre el musgo bajo pinos y píceas, y también hayas y robles, en suelos ácidos y arenosos desde agosto hasta las primeras heladas; abunda sobre todo en octubre, cuando los boletos comestibles declinan. Acumula más cesio de Chernóbil que la mayoría de las setas: en Baviera y Austria cómelo solo de vez en cuando"
     }
   },
   "place": {

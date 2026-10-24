@@ -34,6 +34,10 @@ LOOKBACK = timedelta(days=2)
 NEWEST_DAY, OLDEST_DAY = 6, 10
 RAIN_HOUR_MM = 0.1
 GRID = 0.25                     # ERA5's grid step in degrees, as Copernicus delivers it
+# US East's and US West's boxes overlap almost wholly, and Copernicus queues only three
+# orders per user and dataset: from 22 Oct 2026 US West's, the night's fourth, was turned
+# away. Both order this one box, so each also downloads the other's order.
+US_BOX = ((25.0, 49.5), (-124.75, -67.0))
 EMPTY = pd.DataFrame(columns=["Latitude", "Longitude", "Date", "TotalPrecipitation_mm",
                               "Rain Hours", "Rain Measured"])
 
@@ -45,6 +49,9 @@ def box(coords) -> tuple[tuple, tuple]:
     read the rain of the box's edge."""
     c = np.asarray(coords, float).reshape(-1, 2)
     lo, hi = np.floor(c.min(axis=0) / GRID) * GRID, np.ceil(c.max(axis=0) / GRID) * GRID
+    if hi[1] < -50:  # the US: the shared box, grown if a coord ever falls outside it
+        (s, n), (w, e) = US_BOX
+        lo, hi = np.minimum(lo, (s, w)), np.maximum(hi, (n, e))
     return (float(lo[0]), float(hi[0])), (float(lo[1]), float(hi[1]))
 
 

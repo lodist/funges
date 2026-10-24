@@ -264,4 +264,7 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
       'Sea Buckthorn',
     ],
   },
+  bay_bolete: {
+    scorePropertyAliases: ['bay_bolete', 'bay_bolete_score', 'Bay Bolete'],
+  },
 } as const;
