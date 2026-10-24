@@ -5,9 +5,10 @@
  */
 import { apiFetch } from '@/lib/huerta-session';
 
-/** The VAPID public key; its private half is the Worker's secret. Empty until
- *  the Worker has one, and then alerts stay hidden. */
-export const VAPID_PUBLIC = '';
+/** The VAPID public key; its private half is the Huerta Worker's secret
+ *  VAPID_PRIVATE_KEY (a copy is in funges/.env.secret). */
+export const VAPID_PUBLIC =
+  'BGQcZOB3zY5QNvMeiXU1kSpfiE4-0eCfz0WSkga2vklFUHeCUs-o_ILcLMkcwP2J3wKQGWQKvlF4tC2-hsIGFE8';
 
 const bytes = (base64url: string) =>
   Uint8Array.from(atob(base64url.replace(/-/g, '+').replace(/_/g, '/')), c =>
