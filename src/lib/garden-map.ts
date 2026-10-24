@@ -57,45 +57,97 @@ export function grid(places: Int16Array): RegionGrid {
   return { places, bounds, width, height };
 }
 
-/** A layer's colour for one byte; null leaves the place unpainted. */
-export function colour(layer: MapLayer, value: number): RGBA | null {
-  if (layer === 'crop') return [...STATUS_RGB[group(value)], 195] as RGBA;
-  if (layer === 'frost')
-    return value === 2
-      ? [63, 107, 154, 225]
-      : value === 1
-        ? [169, 193, 220, 210]
-        : value === 3 // frost or ground frost later in the week
-          ? [214, 224, 236, 200]
-          : null;
-  if (value === 255) return null;
-  if (layer === 'soil') return ramp(SOIL, value - 40);
-  return value === 0 ? null : ramp(WATER, value);
+type Stops = [number, RGBA][];
+interface Palette {
+  crop: Record<'now' | 'wait' | 'over', RGBA>;
+  /** No frost, ground frost, frost, frost later in the week (the bytes). */
+  frost: [RGBA, RGBA, RGBA, RGBA];
+  soil: Stops;
+  water: Stops;
 }
 
-/** The crop layer's three groups (STATUS_GROUPS): in now in the chart's
- *  green, not yet in a light amber, too late in grey; the legend reads it. */
-export const STATUS_RGB = {
-  now: [21, 139, 66],
-  wait: [239, 176, 98],
-  over: [196, 188, 180],
-} as const;
-const group = (value: number): keyof typeof STATUS_RGB => {
+/** The layers' colours on a light basemap and on a dark one (worked out in
+ *  OKLCH; the crop layer's three checked apart for colour blindness, and
+ *  the deep green clear of the olive basemap the old one melted into).
+ *  Every place the forecast covers is painted, its "nothing" faintest (no
+ *  frost, no watering), so where the forecast ends shows: past it the map
+ *  has no colour. Soil diverges at 10 C: cold in blue, warm in terracotta. */
+export const PALETTES: Record<'light' | 'dark', Palette> = {
+  light: {
+    crop: {
+      now: [6, 125, 77, 225], // oklch(0.52 0.12 158)
+      wait: [247, 172, 77, 220], // oklch(0.80 0.14 70)
+      over: [152, 149, 144, 150], // oklch(0.67 0.008 80)
+    },
+    frost: [
+      [214, 226, 246, 100],
+      [120, 161, 214, 215],
+      [60, 97, 167, 230],
+      [185, 212, 241, 205],
+    ],
+    soil: [
+      [0, [47, 110, 158, 215]],
+      [5, [124, 171, 204, 205]],
+      [10, [232, 228, 221, 180]],
+      [18, [233, 157, 110, 210]],
+      [26, [176, 75, 43, 225]],
+    ],
+    water: [
+      [0, [210, 231, 246, 100]],
+      [1, [196, 228, 243, 190]],
+      [15, [105, 174, 213, 210]],
+      [35, [4, 96, 147, 230]],
+    ],
+  },
+  // The ramps turned round: the "nothing" end dark, the most the brightest.
+  dark: {
+    crop: {
+      now: [52, 157, 98, 215],
+      wait: [234, 169, 80, 210],
+      over: [79, 77, 72, 150],
+    },
+    frost: [
+      [48, 57, 66, 120],
+      [92, 136, 193, 210],
+      [161, 199, 248, 225],
+      [62, 91, 121, 200],
+    ],
+    soil: [
+      [0, [84, 146, 197, 215]],
+      [5, [55, 93, 118, 200]],
+      [10, [59, 55, 50, 170]],
+      [18, [163, 98, 59, 205]],
+      [26, [235, 134, 86, 220]],
+    ],
+    water: [
+      [0, [46, 58, 64, 120]],
+      [1, [47, 82, 100, 185]],
+      [15, [58, 137, 179, 205]],
+      [35, [117, 202, 242, 225]],
+    ],
+  },
+};
+
+/** A layer's colour for one byte on a light (or `dark`) basemap; null leaves
+ *  the place unpainted (no soil reading). */
+export function colour(
+  layer: MapLayer,
+  value: number,
+  dark = false
+): RGBA | null {
+  const palette = PALETTES[dark ? 'dark' : 'light'];
+  if (layer === 'crop') return palette.crop[group(value)];
+  if (layer === 'frost') return palette.frost[value] ?? null;
+  if (value === 255) return null;
+  if (layer === 'soil') return ramp(palette.soil, value - 40);
+  return ramp(palette.water, value);
+}
+
+/** The crop layer's three groups (STATUS_GROUPS): in now, not yet, too late. */
+const group = (value: number): keyof Palette['crop'] => {
   const code = String.fromCharCode(value);
   return code === 'n' ? 'now' : 'fswhap'.includes(code) ? 'wait' : 'over';
 };
-
-const SOIL: [number, RGBA][] = [
-  [0, [220, 230, 239, 215]],
-  [10, [243, 220, 203, 215]],
-  [18, [224, 144, 106, 220]],
-  [26, [154, 63, 31, 225]],
-];
-const WATER: [number, RGBA][] = [
-  [1, [222, 236, 246, 200]],
-  [15, [130, 177, 214, 215]],
-  [35, [47, 101, 150, 225]],
-];
 
 function ramp(stops: [number, RGBA][], x: number): RGBA {
   if (x <= stops[0][0]) return stops[0][1];
@@ -114,7 +166,8 @@ function ramp(stops: [number, RGBA][], x: number): RGBA {
 export function paint(
   region: RegionGrid,
   layer: MapLayer,
-  values: Uint8Array
+  values: Uint8Array,
+  dark = false
 ): Uint8ClampedArray<ArrayBuffer> {
   const { places, bounds, width, height } = region;
   const pixels = new Uint8ClampedArray(width * height * 4);
@@ -122,7 +175,7 @@ export function paint(
   const perRadian = (perDegree * 180) / Math.PI;
   const top = mercator(bounds[3]);
   for (let p = 0; p < values.length; p++) {
-    const rgba = colour(layer, values[p]);
+    const rgba = colour(layer, values[p], dark);
     if (!rgba) continue;
     const lat = places[2 * p] / 100,
       lon = places[2 * p + 1] / 100;

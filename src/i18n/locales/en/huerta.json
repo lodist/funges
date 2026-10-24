@@ -376,9 +376,11 @@
       "ground": "Ground frost in the next 3 days",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "1 L/m²",
+      "waterLow": "0 L/m²",
       "waterHigh": "35 L/m² or more",
-      "later": "Frost possible later this week"
+      "later": "Frost possible later this week",
+      "none": "No frost",
+      "outside": "No colour: outside Huerta's forecast"
     },
     "use": "Make this my garden",
     "close": "Close",
