@@ -660,5 +660,12 @@
       "title": "Sow and tick off",
       "text": "This week's list says what to sow, where and how. Tick each one off when it's in, and Huerta follows it from there."
     }
+  },
+  "views": {
+    "all": "All",
+    "harvest": "Harvest now",
+    "none": "Nothing here this week.",
+    "until": "Until {{month}}",
+    "allYear": "All year"
   }
 }

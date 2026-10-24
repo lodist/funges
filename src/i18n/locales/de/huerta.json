@@ -660,5 +660,12 @@
       "title": "Säen und abhaken",
       "text": "Die Liste dieser Woche sagt, was du wo und wie säst. Hake jedes ab, sobald es in der Erde ist, und Huerta begleitet es von da an."
     }
+  },
+  "views": {
+    "all": "Alle",
+    "harvest": "Jetzt ernten",
+    "none": "Diese Woche nichts.",
+    "until": "Bis {{month}}",
+    "allYear": "Ganzjährig"
   }
 }

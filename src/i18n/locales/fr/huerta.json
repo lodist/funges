@@ -660,5 +660,12 @@
       "title": "Semez et cochez",
       "text": "La liste de la semaine dit quoi semer, où et comment. Cochez chaque ligne une fois en terre, et Huerta suit la suite."
     }
+  },
+  "views": {
+    "all": "Tout",
+    "harvest": "À récolter",
+    "none": "Rien cette semaine.",
+    "until": "Jusqu'en {{month}}",
+    "allYear": "Toute l'année"
   }
 }

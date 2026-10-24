@@ -660,5 +660,12 @@
       "title": "Siembra y márcalo",
       "text": "La lista de esta semana dice qué sembrar, dónde y cómo. Marca cada tarea cuando esté en la tierra, y Huerta la sigue desde ahí."
     }
+  },
+  "views": {
+    "all": "Todo",
+    "harvest": "Cosechar ahora",
+    "none": "Nada esta semana.",
+    "until": "Hasta {{month}}",
+    "allYear": "Todo el año"
   }
 }

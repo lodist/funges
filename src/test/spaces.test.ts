@@ -35,4 +35,18 @@ describe('spaces', () => {
     expect(pathForSpace('terra')).toBe('/species');
     expect(pathForSpace('huerta')).toBe('/huerta');
   });
+
+  it('opens Huerta on the garden once one is planned, else on the map', () => {
+    expect(pathForSpace('huerta')).toBe('/huerta/map');
+    localStorage.setItem(
+      'huerta-gardens',
+      JSON.stringify([{ id: 'g', plan: null }])
+    );
+    expect(pathForSpace('huerta')).toBe('/huerta/map');
+    localStorage.setItem(
+      'huerta-gardens',
+      JSON.stringify([{ id: 'g', plan: { sections: [] } }])
+    );
+    expect(pathForSpace('huerta')).toBe('/huerta/planner');
+  });
 });

@@ -660,5 +660,12 @@
       "title": "Semina e spunta",
       "text": "La lista di questa settimana dice cosa seminare, dove e come. Spunta ogni voce quando è nella terra, e Huerta la segue da lì."
     }
+  },
+  "views": {
+    "all": "Tutto",
+    "harvest": "Raccogliere ora",
+    "none": "Niente questa settimana.",
+    "until": "Fino a {{month}}",
+    "allYear": "Tutto l'anno"
   }
 }

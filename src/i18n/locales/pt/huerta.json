@@ -660,5 +660,12 @@
       "title": "Semeie e marque",
       "text": "A lista desta semana diz o que semear, onde e como. Marque cada item quando estiver na terra, e o Huerta acompanha a partir daí."
     }
+  },
+  "views": {
+    "all": "Tudo",
+    "harvest": "Colher agora",
+    "none": "Nada esta semana.",
+    "until": "Até {{month}}",
+    "allYear": "O ano todo"
   }
 }

@@ -52,7 +52,23 @@ export const rememberPath = (pathname: string) => {
   }
 };
 
-/** Where switching to `space` should go: the page last seen there, else home. */
+/** A garden planned on this device: Huerta then opens on it, the page a
+ *  gardener comes back to each week. Read straight from lib/gardens' key, so
+ *  every page's bundle needn't carry the gardens code. */
+const hasGarden = () => {
+  try {
+    return (
+      JSON.parse(localStorage.getItem('huerta-gardens') ?? '[]') as {
+        plan?: unknown;
+      }[]
+    ).some(garden => garden.plan);
+  } catch {
+    return false;
+  }
+};
+
+/** Where switching to `space` should go: the page last seen there, else home
+ *  (for Huerta with a garden planned, the garden). */
 export const pathForSpace = (space: Space): string => {
   try {
     const last = localStorage.getItem(lastPathKey(space));
@@ -60,5 +76,7 @@ export const pathForSpace = (space: Space): string => {
   } catch {
     // As above.
   }
-  return SPACE_HOME[space];
+  return space === 'huerta' && hasGarden()
+    ? '/huerta/planner'
+    : SPACE_HOME[space];
 };
