@@ -39,6 +39,16 @@ describe('gardens on the device', () => {
     expect(g.currentGarden()?.id).toBe(only.id);
   });
 
+  it('leave a place from before accounts without a plan behind', () => {
+    // Opened on two devices, it would otherwise join the account twice.
+    localStorage.setItem(
+      'huerta-place',
+      JSON.stringify({ lat: 40.42, lon: -3.7 })
+    );
+    expect(g.gardens()).toEqual([]);
+    expect(localStorage.getItem('huerta-place')).toBeNull();
+  });
+
   it('are up to three, and the new one is the current one', () => {
     const home = g.addGarden('Home')!;
     g.addGarden('Plot');

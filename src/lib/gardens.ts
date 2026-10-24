@@ -67,10 +67,12 @@ function save(next: StoredGarden[]) {
 export function gardens(): StoredGarden[] {
   if (list) return list;
   list = read<StoredGarden[]>(LIST) ?? [];
-  // A plan and place from before accounts become the first garden.
+  // A plan from before accounts, with its place, becomes the first garden. A
+  // place alone is left behind: a device opened before accounts would
+  // otherwise add an empty garden to the account each.
   const plan = read<Plan>('huerta-plan');
   const place = read<GardenPlace>('huerta-place');
-  if (!list.length && (plan || place)) {
+  if (!list.length && plan) {
     list = [
       {
         id: crypto.randomUUID(),
