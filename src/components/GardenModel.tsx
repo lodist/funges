@@ -795,7 +795,7 @@ export function GardenModel({
             y1={ly}
             x2={lx}
             y2={ly + 18}
-            stroke='#9a3f1f'
+            stroke='#782c0c'
             strokeWidth={1.2}
           />
           <rect
