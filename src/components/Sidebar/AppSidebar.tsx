@@ -64,7 +64,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     },
     {
       title: t('huertaWeek'),
-      url: `${basePath}huerta`,
+      url: `${basePath}huerta/in-season`,
       icon: Sprout,
       isActive: false,
     },

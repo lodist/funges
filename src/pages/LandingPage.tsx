@@ -3,10 +3,12 @@ import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Logo } from '@/components/Logo';
+import { SpaceTab } from '@/components/SpaceTab';
 import { Button } from '@/components/ui/button';
 import { useSpeciesData } from '@/data/species';
 import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
+import { shouldShowHuerta } from '@/lib/feature-flags';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import {
@@ -108,6 +110,7 @@ export default function LandingPage() {
       />
       <div className={styles.page}>
         <section className={styles.hero} aria-labelledby='landing-title'>
+          {shouldShowHuerta ? <SpaceTab to='huerta' /> : null}
           <header className={styles.header}>
             <Logo className='h-10 md:h-12' />
             <Link

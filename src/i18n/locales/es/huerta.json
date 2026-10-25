@@ -686,5 +686,51 @@
     "until": "Hasta {{month}}",
     "allYear": "Todo el año",
     "allGardens": "Todos los cultivos"
+  },
+  "landing": {
+    "headline": "Tu huerto, semana a semana",
+    "intro": "Qué sembrar, plantar, regar y cosechar en tu zona, según la previsión de esta noche",
+    "headerLink": "Qué sembrar ahora",
+    "cta": "Planificar mi huerto",
+    "week": {
+      "heading": "Te dice qué hacer esta semana",
+      "body": "Cada tarea con su fecha para tu huerto: cuándo sembrar, cuándo plantar, cuándo regar y cuándo proteger de las heladas. Márcala cuando la hayas hecho",
+      "title": "Esta semana",
+      "plant": {
+        "job": "Planta los ajos",
+        "why": "El suelo ha bajado a 12 °C, justo lo ideal"
+      },
+      "water": {
+        "job": "Riega las lechugas",
+        "why": "Seis días sin lluvia"
+      },
+      "frost": {
+        "job": "Cubre las acelgas el jueves",
+        "why": "Probable helada esa noche"
+      }
+    },
+    "coverage": "Para huertos de Europa y Norteamérica",
+    "journey": "De la semilla al plato",
+    "plan": {
+      "heading": "Planifica",
+      "body": "Dibuja tus bancales y recibe un plan pensado para tu zona y la temporada",
+      "link": "Planificar mi huerto"
+    },
+    "plant": {
+      "heading": "Siembra y planta",
+      "body": "Cada cultivo cuando tu suelo está listo, no cuando lo dice el sobre",
+      "link": "Qué sembrar ahora"
+    },
+    "care": {
+      "heading": "Cuida",
+      "body": "Heladas en camino o una semana seca: el mapa lo muestra para tu zona",
+      "link": "Abrir el mapa del huerto"
+    },
+    "harvest": {
+      "heading": "Cosecha",
+      "body": "Mira cuándo estará listo cada cultivo, según lo cálidas que vengan tus semanas",
+      "link": "Abrir el calendario"
+    },
+    "closing": "Empieza tu huerto"
   }
 }

@@ -68,7 +68,7 @@ describe('signing in to Huerta', () => {
     vi.stubGlobal('fetch', answer({ token: TOKEN, email: 'a@b.c' }));
     expect(
       await s.finishSignIn(`#state=${'cd'.repeat(16)}&id_token=x.y.z`)
-    ).toEqual({ back: '/huerta', here: false });
+    ).toEqual({ back: '/huerta/in-season', here: false });
   });
 
   it('says why when Google sent no token', async () => {

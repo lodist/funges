@@ -96,7 +96,7 @@ export default function HuertaPage() {
       <SEO
         title={t('title')}
         description={t('description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta`}
+        canonicalUrl={`${import.meta.env.BASE_URL}huerta/in-season`}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>

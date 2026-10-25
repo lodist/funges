@@ -686,5 +686,51 @@
     "until": "Bis {{month}}",
     "allYear": "Ganzjährig",
     "allGardens": "Alle Kulturen"
+  },
+  "landing": {
+    "headline": "Dein Garten, Woche für Woche",
+    "intro": "Was du an deinem Ort säen, pflanzen, gießen und ernten kannst, nach der Vorhersage von heute Nacht",
+    "headerLink": "Was jetzt gesät wird",
+    "cta": "Meinen Garten planen",
+    "week": {
+      "heading": "Sagt dir, was diese Woche zu tun ist",
+      "body": "Jede Arbeit mit Datum für deinen eigenen Garten: wann säen, wann pflanzen, wann gießen und wann vor Frost schützen. Abhaken, wenn es erledigt ist",
+      "title": "Diese Woche",
+      "plant": {
+        "job": "Knoblauch stecken",
+        "why": "Der Boden ist auf 12 °C abgekühlt, genau richtig"
+      },
+      "water": {
+        "job": "Salat gießen",
+        "why": "Seit sechs Tagen kein Regen"
+      },
+      "frost": {
+        "job": "Mangold am Donnerstag abdecken",
+        "why": "In der Nacht ist Frost wahrscheinlich"
+      }
+    },
+    "coverage": "Für Gärten in Europa und Nordamerika",
+    "journey": "Vom Samen auf den Teller",
+    "plan": {
+      "heading": "Planen",
+      "body": "Zeichne deine Beete und erhalte einen Plan, der zu deinem Ort und zur Jahreszeit passt",
+      "link": "Meinen Garten planen"
+    },
+    "plant": {
+      "heading": "Säen und pflanzen",
+      "body": "Jede Kultur, wenn dein Boden bereit ist, nicht wenn es auf der Tüte steht",
+      "link": "Was jetzt gesät wird"
+    },
+    "care": {
+      "heading": "Pflegen",
+      "body": "Frost im Anmarsch oder eine trockene Woche: Die Karte zeigt es für deinen Ort",
+      "link": "Gartenkarte öffnen"
+    },
+    "harvest": {
+      "heading": "Ernten",
+      "body": "Sieh, wann jede Kultur reif ist, je nachdem, wie warm deine Wochen werden",
+      "link": "Kalender öffnen"
+    },
+    "closing": "Starte deinen Garten"
   }
 }

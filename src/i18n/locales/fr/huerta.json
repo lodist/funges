@@ -686,5 +686,51 @@
     "until": "Jusqu'en {{month}}",
     "allYear": "Toute l'année",
     "allGardens": "Toutes les cultures"
+  },
+  "landing": {
+    "headline": "Votre potager, semaine après semaine",
+    "intro": "Quoi semer, planter, arroser et récolter chez vous, d'après la prévision de cette nuit",
+    "headerLink": "Quoi semer maintenant",
+    "cta": "Planifier mon potager",
+    "week": {
+      "heading": "Il vous dit quoi faire cette semaine",
+      "body": "Chaque tâche datée pour votre potager : quand semer, quand planter, quand arroser et quand protéger du gel. Cochez-la une fois faite",
+      "title": "Cette semaine",
+      "plant": {
+        "job": "Plantez l'ail",
+        "why": "Le sol est descendu à 12 °C, c'est idéal"
+      },
+      "water": {
+        "job": "Arrosez la laitue",
+        "why": "Six jours sans pluie"
+      },
+      "frost": {
+        "job": "Couvrez les blettes jeudi",
+        "why": "Gel probable cette nuit-là"
+      }
+    },
+    "coverage": "Pour les potagers d'Europe et d'Amérique du Nord",
+    "journey": "De la graine à l'assiette",
+    "plan": {
+      "heading": "Planifier",
+      "body": "Dessinez vos planches et obtenez un plan adapté à votre lieu et à la saison",
+      "link": "Planifier mon potager"
+    },
+    "plant": {
+      "heading": "Semer et planter",
+      "body": "Chaque culture quand votre sol est prêt, pas quand le sachet le dit",
+      "link": "Quoi semer maintenant"
+    },
+    "care": {
+      "heading": "Entretenir",
+      "body": "Gel en approche ou semaine sèche : la carte le montre pour chez vous",
+      "link": "Ouvrir la carte du potager"
+    },
+    "harvest": {
+      "heading": "Récolter",
+      "body": "Voyez quand chaque culture sera prête, selon la chaleur de vos semaines",
+      "link": "Ouvrir le calendrier"
+    },
+    "closing": "Commencez votre potager"
   }
 }

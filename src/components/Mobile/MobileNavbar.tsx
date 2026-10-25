@@ -51,7 +51,7 @@ const items = [
 const huertaItems: typeof items = [
   { url: `${basePath}huerta/map`, icon: Map },
   { url: `${basePath}huerta/planner`, icon: LayoutGrid },
-  { url: `${basePath}huerta`, icon: Sprout },
+  { url: `${basePath}huerta/in-season`, icon: Sprout },
   { url: `${basePath}huerta/year`, icon: CalendarRange },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];

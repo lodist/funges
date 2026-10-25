@@ -426,7 +426,7 @@ export default function HuertaPlannerPage() {
                 {huertaApiConfigured ? <GardenPicker /> : null}
                 {sample ? (
                   <Button variant='outline' asChild>
-                    <Link to='/huerta'>{t('planner.choosePlace')}</Link>
+                    <Link to='/huerta/in-season'>{t('planner.choosePlace')}</Link>
                   </Button>
                 ) : null}
               </div>
