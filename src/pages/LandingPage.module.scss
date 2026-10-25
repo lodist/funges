@@ -315,10 +315,11 @@
   }
 }
 
-// The door to the other space, on the hero's edge on the side it leads to.
-// It carries that space's data-space, so --band here is the other space's.
+// The door to the other space, on the screen's edge on the side it leads to,
+// staying there as the page scrolls. It carries that space's data-space, so
+// --band here is the other space's.
 .spaceTab {
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: 0;
   z-index: 2;
@@ -414,6 +415,7 @@
   // clear of the full-width words and buttons. It still points the way.
   .spaceTab,
   .spaceTabLeft {
+    position: absolute;
     top: 1.125rem;
     right: var(--page-gutter);
     left: auto;
