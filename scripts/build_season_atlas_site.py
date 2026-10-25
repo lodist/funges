@@ -29,9 +29,10 @@ import r2  # noqa: E402
 from build_season_atlas import slug  # noqa: E402
 
 OUT = ROOT / "public" / "season-atlas"
-# Nothing to the local peak: one hue from the dark map's mint (#8fd6bb), dark teal lit up to
-# near-white, the same in both themes. Not the scores' cream-to-burgundy ramp.
-TEAL = ["#082a24", "#0e4037", "#165c4d", "#237a65", "#3a9a7f", "#5fb99c", "#8fd6bb", "#bfe8da", "#e3f4ee"]
+# Nothing to the local peak: the brand green's own steps (src/index.css --happy-900 ... --happy-50),
+# the band's deep green lit up to mint, the same in both themes. Not the scores' cream-to-burgundy
+# ramp, and no hue of its own.
+RAMP = ["#00280b", "#005e25", "#00ac4e", "#47c86e", "#93e4a4", "#ccf4d3", "#e8fbeb"]
 CONTINENTS = {"EU": ("europe", "Europe"), "US": ("united-states", "United States")}
 # URL slugs where the display name is not what people search ("Morchella", "Black Trumpet (Horn
 # of Plenty)"); a slug is a URL, so changing one later breaks links.
@@ -49,7 +50,7 @@ def hex_rgb(h):
 
 
 def lut():
-    stops = np.array([hex_rgb(h) for h in TEAL], float)
+    stops = np.array([hex_rgb(h) for h in RAMP], float)
     t = np.arange(255) / 254 * (len(stops) - 1)
     k = np.minimum(t.astype(int), len(stops) - 2)
     f = (t - k)[:, None]

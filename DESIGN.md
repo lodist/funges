@@ -229,7 +229,7 @@ Use `categoryVar()` wherever CSS resolves, and `categoryColor()` only for APIs t
 
 ### Season ramp
 
-The Data page's season atlas paints _when_ a mushroom fruits, not a score, so it must never be read as one. It is a single-hue teal ramp (hue ~170, from the dark map's `#8fd6bb` mint) running from dark teal (nothing fruiting) to near-white (the local peak), the same in both themes: the season lights up like the dark map, and Loris picked that over a light-to-dark ramp. Beetroot was rejected because its dark end sits next to the score ramp's burgundy top (`#800020`). It is a map ramp like the score ramp, not a chrome colour: it lives as literals in `ATLAS_TEAL` (`src/lib/season-atlas.ts`) and `TEAL` (`scripts/build_season_atlas_site.py`, which bakes the map frames), and the two must match. It appears on the atlas map, its legend and its month bars, nowhere else.
+The Data page's season atlas paints _when_ a mushroom fruits, not a score, so it must never be read as one. It adds no hue: it is the brand scale itself, `--happy-900` (the band's deep green, nothing fruiting) up to `--happy-50` (mint, the local peak), the same in both themes, so the season lights up out of the app's own dark green. Light-to-dark, a hue-170 teal and beetroot (whose dark end sits next to the score ramp's burgundy `#800020`) were tried and dropped. The canvas and the baked map frames need literal colours, so the steps live as `ATLAS_RAMP` (`src/lib/season-atlas.ts`) and `RAMP` (`scripts/build_season_atlas_site.py`); a test keeps them equal. It appears on the atlas map, its legend and its month bars, nowhere else.
 
 ### Status
 
