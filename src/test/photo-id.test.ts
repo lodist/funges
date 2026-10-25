@@ -404,9 +404,8 @@ describe('model vocabulary agrees with the app tables', () => {
   });
 
   it('has one embedding row per label, at the dim the export recorded', async () => {
-    const { BIOCLIP_LABELS, BIOCLIP_EMBEDDING_DIM } = await import(
-      '@/data/bioclip-labels'
-    );
+    const { BIOCLIP_LABELS, BIOCLIP_EMBEDDING_DIM } =
+      await import('@/data/bioclip-labels');
 
     // 2 bytes per fp16 value. If this drifts, the runtime slices the matrix at
     // the wrong stride and every similarity score is computed against garbage.
