@@ -388,6 +388,7 @@ def main() -> None:
     parser.add_argument("--habitat", action="store_true",
                         help="test a habitat factor on held-out years where none ships (fit_habitat.held_out_years)")
     parser.add_argument("--species", help="only this species, its results in <the csv>_<species>.csv")
+    parser.add_argument("--block-cap", type=int, help="--habitat: train on at most this many finds per block (fit_habitat.capped)")
     args = parser.parse_args()
     out = Path(args.out)
     name = "habitat_years" if args.habitat else "temperature_fruiting" if args.temperature else "optima_fruiting" if args.optima else "parts_fruiting"
@@ -443,7 +444,11 @@ def main() -> None:
         parts_all = {name: wide(own, cases, name) for name, _ in PARTS.values()}
         stored_all = wide(own, cases, "weather_part")
         for region in sorted(set(regions[mine_all])):
-            if region not in params or species not in params[region] or not hand_set(species, region, fits, gbms):
+            # A species added after the summer 2026 strata were built (--species) has no 2026 test of
+            # a habitat factor, so where its weather is fitted the held-out years test it as well, on
+            # the hand-set weather the training table stores: the factor only moves the place.
+            added = args.habitat and args.species
+            if region not in params or species not in params[region] or not (hand_set(species, region, fits, gbms) or added):
                 continue
             p = params[region][species]
             today = {k: float(p.get(k, default)) for k, (_, default) in PARTS.items()}
@@ -456,11 +461,13 @@ def main() -> None:
             days = mask[here] & np.isfinite(stored)
             mine, plac = mine_all[here], is_placebo[here]
             if args.habitat:
-                if species in shipped.get(region, {}).get("species", ()):
-                    continue
+                if species in shipped.get(region, {}).get("species", ()) and not args.species:
+                    continue              # a named species is tested again, e.g. with --block-cap
                 if region not in specs:
                     specs[region] = fp._load_species_and_curves(region_config(region))
-                place = place_parts(species, specs[region][0][species], specs[region][1], sites_all[here],
+                # the score without a factor: a species tested again ships one already
+                own = {k: v for k, v in specs[region][0][species].items() if k not in ("fruiting", "fruiting_gbm", "habitat")}
+                place = place_parts(species, own, specs[region][1], sites_all[here],
                                     dates_all[here], base, statics[CONTINENT[region]])
                 index = weather({**parts, "temp": temp_part(temps[here], float(p["optimal_temp"]), float(p["temp_sigma"]))},
                                 today, wind)
@@ -468,10 +475,11 @@ def main() -> None:
 
                 def place_score(s, d):        # the score's place parts on a perfect weather day
                     return full_score(np.ones(len(s)), today, np.ones(len(s)), place_parts(
-                        species, specs[region][0][species], specs[region][1], s, d, base, statics[CONTINENT[region]]))
+                        species, own, specs[region][1], s, d, base, statics[CONTINENT[region]]))
 
                 fit = held_out_years(species, full_score(index[:, 0], today, wind[:, 0], place), at, years, weeks,
-                                     sites_all[here], *habitat[region], place_score) if len(at) >= MIN_POOLED else {}
+                                     sites_all[here], *habitat[region], place_score, block_cap=args.block_cap
+                                     ) if len(at) >= MIN_POOLED else {}
                 if fit:
                     rows.append({"species": species, "region": region, "finds": int(mine.sum()), **fit})
                     print(rows[-1], flush=True)
