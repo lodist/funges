@@ -6,8 +6,8 @@
  "shipped_if": "score x habitat ranks held-out finds better than the score alone: on the training table's held-out years (hand-set weather), better beyond doubt against that day's bracket finds or other fungi's places and not worse beyond doubt on the other; otherwise 2026's finds above the places searched that week (other fungi's finds), and no worse against bracket fungi",
  "regions": {
   "NE": {
-   "file": "models/habitat/20261025-1255/habitat_NE.npz",
-   "sha256": "e9eb64fae83cae61b7d8d82b0c1f6c74b3d0d4251298fbde225e7263045f6200",
+   "file": "models/habitat/20261025-2333/habitat_NE.npz",
+   "sha256": "e940bfc172b04cd1b539c35ff34ff73c45c59b159ee40dc6428a3a3bab35b427",
    "species": [
     "bay_bolete",
     "black_chant",
