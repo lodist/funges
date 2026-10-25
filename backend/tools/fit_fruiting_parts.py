@@ -461,11 +461,12 @@ def main() -> None:
             days = mask[here] & np.isfinite(stored)
             mine, plac = mine_all[here], is_placebo[here]
             if args.habitat:
-                if species in shipped.get(region, {}).get("species", ()):
-                    continue
+                if species in shipped.get(region, {}).get("species", ()) and not args.species:
+                    continue              # a named species is tested again, e.g. with --block-cap
                 if region not in specs:
                     specs[region] = fp._load_species_and_curves(region_config(region))
-                own = {k: v for k, v in specs[region][0][species].items() if k not in ("fruiting", "fruiting_gbm")}
+                # the score without a factor: a species tested again ships one already
+                own = {k: v for k, v in specs[region][0][species].items() if k not in ("fruiting", "fruiting_gbm", "habitat")}
                 place = place_parts(species, own, specs[region][1], sites_all[here],
                                     dates_all[here], base, statics[CONTINENT[region]])
                 index = weather({**parts, "temp": temp_part(temps[here], float(p["optimal_temp"]), float(p["temp_sigma"]))},
