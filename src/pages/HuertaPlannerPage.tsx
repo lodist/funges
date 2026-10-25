@@ -426,7 +426,9 @@ export default function HuertaPlannerPage() {
                 {huertaApiConfigured ? <GardenPicker /> : null}
                 {sample ? (
                   <Button variant='outline' asChild>
-                    <Link to='/huerta/in-season'>{t('planner.choosePlace')}</Link>
+                    <Link to='/huerta/in-season'>
+                      {t('planner.choosePlace')}
+                    </Link>
                   </Button>
                 ) : null}
               </div>
@@ -984,7 +986,8 @@ export default function HuertaPlannerPage() {
                       }
                       onDeleteBed={() => {
                         update(removeBed(plan, s.bed));
-                        only(0);
+                        // What was chosen is gone: nothing is chosen now.
+                        only(-1);
                       }}
                     />
                   ) : null}
