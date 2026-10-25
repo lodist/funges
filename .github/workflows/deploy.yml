@@ -139,6 +139,10 @@ jobs:
           done
           echo "Route directories created"
 
+          # The season atlas's /data/seasons/<place>/<species>/ URLs, from the
+          # atlas index; without them 404.html sends links and reloads to /data/.
+          python scripts/build_season_atlas_site.py --pages dist || echo "::warning::season atlas pages not written"
+
           # Those directories make /species 301 to /species/; the plugin strips
           # the slash, so without this every sitemap URL is a redirect.
           sed -i -E 's#<loc>([^<]*[^/<])</loc>#<loc>\1/</loc>#g' dist/sitemap.xml
