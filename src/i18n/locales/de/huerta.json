@@ -376,11 +376,9 @@
       "ground": "Bodenfrost in den nächsten 3 Tagen",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "0 L/m²",
+      "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² oder mehr",
-      "later": "Später in der Woche Frost möglich",
-      "none": "Kein Frost",
-      "outside": "Ohne Farbe: außerhalb der Huerta-Vorhersage"
+      "later": "Später in der Woche Frost möglich"
     },
     "use": "Als meinen Garten nehmen",
     "close": "Schließen",

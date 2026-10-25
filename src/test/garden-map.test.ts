@@ -1,54 +1,84 @@
 import { describe, expect, it } from 'vitest';
 
-import { colour, grid, paint } from '@/lib/garden-map';
+import { cells, classes, grid, shapes } from '@/lib/garden-map';
 
 describe('the garden map drawing', () => {
-  it('paints each place as a cell where it sits, in its layer colour', () => {
+  it('puts each place in its cell, in its class', () => {
     // Two places on one row and one further north: lat, lon ×100.
     const area = grid(new Int16Array([4000, 0, 4000, 30, 4100, 0]));
-    const pixels = paint(area, 'crop', new Uint8Array([110, 108, 104])); // n, l, h
-    const at = (x: number, y: number) =>
-      Array.from(
-        pixels.slice((y * area.width + x) * 4, (y * area.width + x) * 4 + 4)
-      );
-    expect(at(1, area.height - 2)).toEqual(colour('crop', 110)); // south-west: now
-    expect(at(area.width - 2, area.height - 2)).toEqual(colour('crop', 108)); // east: too late
-    expect(at(1, 1)).toEqual(colour('crop', 104)); // north: waiting
-    expect(at(area.width - 2, 1)).toEqual([0, 0, 0, 0]); // no place there
+    const cls = cells(
+      area,
+      new Uint8Array([110, 108, 104]),
+      classes('crop').of
+    ); // n, l, h
+    const at = (x: number, y: number) => cls[y * area.width + x];
+    expect(at(0, area.height - 1)).toBe(0); // south-west: now
+    expect(at(area.width - 1, area.height - 1)).toBe(2); // east: too late
+    expect(at(0, 0)).toBe(1); // north: waiting
+    expect(at(area.width - 1, 0)).toBe(-1); // no place there
   });
 
   it('leaves no gaps along a row, though places are kept to 0.01°', () => {
     // A row 0.075° apart, rounded to hundredths as places.bin keeps them: the
-    // gaps fall 0.07 and 0.08 apart, which left one-pixel stripes.
+    // gaps fall 0.07 and 0.08 apart, which left stripes.
     const row = Array.from({ length: 60 }, (_, i) => [
       4200,
       Math.round((-104.95 + i * 0.075) * 100),
     ]).flat();
     const area = grid(new Int16Array(row));
-    const pixels = paint(area, 'crop', new Uint8Array(60).fill(110));
+    const cls = cells(area, new Uint8Array(60).fill(110), classes('crop').of);
     const y = Math.floor(area.height / 2);
     const empty = Array.from({ length: area.width }, (_, x) => x).filter(
-      x => pixels[(y * area.width + x) * 4 + 3] === 0
+      x => cls[y * area.width + x] === -1
     );
     expect(empty).toEqual([]);
   });
 
-  it("paints no frost and nothing to water faintly, so the forecast's edge shows", () => {
-    const alpha = (rgba: number[] | null) => rgba![3];
-    expect(alpha(colour('frost', 0))).toBeLessThan(alpha(colour('frost', 1)));
-    expect(alpha(colour('water', 0))).toBeLessThan(alpha(colour('water', 15)));
-    expect(colour('soil', 255)).toBeNull(); // no reading: unpainted
-    expect(colour('soil', 40 + 30)).toEqual(colour('soil', 40 + 26)); // warmest stop
+  it('leaves no frost and nothing to water uncoloured, and hatches too late', () => {
+    expect([0, 1, 2, 3].map(classes('frost').of)).toEqual([-1, 0, 1, 2]);
+    expect([0, 1].map(classes('water').of)).toEqual([-1, 0]);
+    expect(classes('soil').of(255)).toBe(-1); // no reading
+    expect(classes('crop').fills[2]).toBe('hatch');
   });
 
-  it('turns the ramps round on a dark basemap', () => {
-    const light = (rgba: number[] | null) =>
-      rgba!.slice(0, 3).reduce((a, b) => a + b);
-    expect(light(colour('water', 0, true))).toBeLessThan(
-      light(colour('water', 35, true))
+  it('bands soil warmth and watering, and turns the bands round on a dark basemap', () => {
+    const soil = classes('soil').of;
+    expect([40 - 5, 40 + 3, 40 + 12, 40 + 30].map(soil)).toEqual([0, 1, 3, 6]);
+    expect([1, 7, 34, 50].map(classes('water').of)).toEqual([0, 1, 3, 4]);
+    const light = (fill: unknown) =>
+      (fill as number[]).slice(0, 3).reduce((a, b) => a + b);
+    const day = classes('water').fills,
+      night = classes('water', true).fills;
+    expect(light(day[0])).toBeGreaterThan(light(day[4]));
+    expect(light(night[0])).toBeLessThan(light(night[4]));
+  });
+
+  it('traces a block of places as one rounded shape over them', () => {
+    // A 5 × 5 block of places going in now, 0.075° apart.
+    const block = Array.from({ length: 25 }, (_, i) => [
+      Math.round((40 + Math.floor(i / 5) * 0.05) * 100),
+      Math.round((10 + (i % 5) * 0.075) * 100),
+    ]).flat();
+    const { features } = shapes(
+      grid(new Int16Array(block)),
+      'crop',
+      new Uint8Array(25).fill(110)
     );
-    expect(light(colour('water', 0))).toBeGreaterThan(
-      light(colour('water', 35))
-    );
+    // One colour, and the forecast's limit around the same places.
+    expect(features.map(f => Object.keys(f.properties))).toEqual([
+      ['fill', 'opacity'],
+      ['edge'],
+    ]);
+    expect(features[0].properties.fill).toBe('rgb(234,144,109)');
+    expect(features[1].geometry.type).toBe('MultiLineString');
+    const ring = features[0].geometry.coordinates[0][0] as number[][];
+    expect(ring[0]).toEqual(ring[ring.length - 1]);
+    const lons = ring.map(([lon]) => lon),
+      lats = ring.map(([, lat]) => lat);
+    // Over the block, rounded inside its corners.
+    expect(Math.min(...lons)).toBeGreaterThan(9.9);
+    expect(Math.max(...lons)).toBeLessThan(10.4);
+    expect(Math.min(...lats)).toBeGreaterThan(39.9);
+    expect(Math.max(...lats)).toBeLessThan(40.3);
   });
 });

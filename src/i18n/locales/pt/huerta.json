@@ -376,11 +376,9 @@
       "ground": "Geada no solo nos próximos 3 dias",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "0 L/m²",
+      "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² ou mais",
-      "later": "Possível geada mais adiante na semana",
-      "none": "Sem geada",
-      "outside": "Sem cor: fora da previsão do Huerta"
+      "later": "Possível geada mais adiante na semana"
     },
     "use": "Usar como minha horta",
     "close": "Fechar",

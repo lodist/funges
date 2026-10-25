@@ -14,7 +14,14 @@ import {
   BAND_GHOST_CLASS,
   BAND_SURFACE_CLASS,
 } from '@/lib/band-surface';
-import { grid, paint, PALETTES, type MapLayer } from '@/lib/garden-map';
+import {
+  classes,
+  grid,
+  PALETTES,
+  shapes,
+  type MapLayer,
+  type Shapes,
+} from '@/lib/garden-map';
 import { CROPS, statusGroup, type PlaceAdvice } from '@/lib/huerta';
 import {
   fetchAdvice,
@@ -115,60 +122,97 @@ const relief = (m: maplibregl.Map, on: boolean) => {
     );
 };
 
-/** A continent's drawing on the map, under the basemap's labels. */
+const HATCH = 'huerta-hatch';
+/** The too-late hatching: thin diagonal lines in the palette's line colour,
+ *  a tile that joins up with its neighbours. */
+function hatch(m: maplibregl.Map, dark: boolean) {
+  if (m.hasImage(HATCH)) return;
+  const size = 16;
+  const tile = document.createElement('canvas');
+  tile.width = tile.height = size;
+  const pen = tile.getContext('2d')!;
+  pen.strokeStyle = PALETTES[dark ? 'dark' : 'light'].line;
+  pen.lineWidth = 2;
+  pen.beginPath();
+  for (const shift of [-size, 0, size]) {
+    pen.moveTo(shift, size);
+    pen.lineTo(shift + size, 0);
+  }
+  pen.stroke();
+  m.addImage(HATCH, pen.getImageData(0, 0, size, size), { pixelRatio: 2 });
+}
+
+/** A continent's shapes on the map, under the basemap's labels: the
+ *  colours, the hatching, and the line where the forecast ends. */
 function show(
   m: maplibregl.Map,
   continent: Continent,
-  url: string,
-  [w, s, e, n]: [number, number, number, number]
+  data: Shapes,
+  dark: boolean
 ) {
-  const coordinates: [
-    [number, number],
-    [number, number],
-    [number, number],
-    [number, number],
-  ] = [
-    [w, n],
-    [e, n],
-    [e, s],
-    [w, s],
-  ];
   const id = `garden-${continent}`;
-  const source = m.getSource(id) as maplibregl.ImageSource | undefined;
-  if (source) return source.updateImage({ url, coordinates });
-  m.addSource(id, { type: 'image', url, coordinates });
+  const source = m.getSource(id) as maplibregl.GeoJSONSource | undefined;
+  if (source) return source.setData(data);
+  hatch(m, dark);
+  m.addSource(id, { type: 'geojson', data });
   const firstLabel = m.getStyle().layers.find(l => l.type === 'symbol')?.id;
+  // Fainter close in, where the streets show where a garden is.
+  const fade = (opacity: maplibregl.ExpressionSpecification | number) =>
+    [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      11,
+      opacity,
+      15,
+      ['*', opacity, 0.35],
+    ] as maplibregl.ExpressionSpecification;
   m.addLayer(
     {
       id,
-      type: 'raster',
+      type: 'fill',
       source: id,
+      filter: ['has', 'fill'],
       paint: {
-        // Fainter close in, where the streets show where a garden is.
-        'raster-opacity': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          11,
-          0.85,
-          15,
-          0.3,
-        ],
-        // Blended between cells: smooth edges, not blocks.
-        'raster-resampling': 'linear',
+        'fill-color': ['get', 'fill'],
+        'fill-opacity': fade(['get', 'opacity']),
+      },
+    },
+    firstLabel
+  );
+  m.addLayer(
+    {
+      id: `${id}-hatch`,
+      type: 'fill',
+      source: id,
+      filter: ['has', 'hatch'],
+      paint: { 'fill-pattern': HATCH, 'fill-opacity': fade(1) },
+    },
+    firstLabel
+  );
+  m.addLayer(
+    {
+      id: `${id}-edge`,
+      type: 'line',
+      source: id,
+      filter: ['has', 'edge'],
+      paint: {
+        'line-color': PALETTES[dark ? 'dark' : 'light'].line,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 3, 1, 9, 2],
       },
     },
     firstLabel
   );
 }
 
-/** The canvas a region's layer is drawn on, as a URL MapLibre can show. */
+/** A continent's layer as shapes, its regions' places together: where two
+ *  regions meet, one shape runs on across. */
 async function drawContinent(
   continent: Continent,
   layer: MapLayer,
   crop: string,
   dark: boolean
-): Promise<{ url: string; bounds: [number, number, number, number] }> {
+): Promise<Shapes> {
   const load = async (region: MapRegion, again: boolean) => {
     const night = await fetchMapNight(region, again);
     return {
@@ -186,8 +230,6 @@ async function drawContinent(
       load(region, false).catch(() => load(region, true))
     )
   );
-  // One canvas for the continent's regions: where they meet, a cell replaces
-  // its neighbour's instead of darkening it.
   const places = new Int16Array(parts.reduce((n, p) => n + p.places.length, 0));
   const values = new Uint8Array(places.length / 2);
   let at = 0;
@@ -196,29 +238,7 @@ async function drawContinent(
     values.set(part.values, at);
     at += part.values.length;
   }
-  const area = grid(places);
-  const cells = document.createElement('canvas');
-  cells.width = area.width;
-  cells.height = area.height;
-  cells
-    .getContext('2d')!
-    .putImageData(
-      new ImageData(paint(area, layer, values, dark), area.width, area.height),
-      0,
-      0
-    );
-  // Softened by a pixel, half a cell: with MapLibre's blending the cells'
-  // steps read as smooth edges.
-  const canvas = document.createElement('canvas');
-  canvas.width = area.width;
-  canvas.height = area.height;
-  const pen = canvas.getContext('2d')!;
-  pen.filter = 'blur(1px)';
-  pen.drawImage(cells, 0, 0);
-  const blob = await new Promise<Blob>(resolve =>
-    canvas.toBlob(b => resolve(b!), 'image/png')
-  );
-  return { url: URL.createObjectURL(blob), bounds: area.bounds };
+  return shapes(grid(places), layer, values, dark);
 }
 
 export default function HuertaMapPage() {
@@ -235,7 +255,6 @@ export default function HuertaMapPage() {
   const [shown, setShown] = useState<Continent[]>([]);
   // Per continent, the drawing asked for last (layer:crop) and the one on show.
   const wanted = useRef(new Map<Continent, string>());
-  const urls = useRef(new Map<Continent, string>());
   // The advice at the map's centre, for the crop panel's status filter.
   const [centre, setCentre] = useState<PlaceAdvice | null | undefined>();
   const [crop, setCrop] = useState('garlic');
@@ -257,7 +276,6 @@ export default function HuertaMapPage() {
   useEffect(() => {
     let live = true;
     let m: maplibregl.Map | null = null;
-    const drawings = urls.current;
     const drawn = wanted.current;
     basemapStyle(mapStyle)
       .then(style => {
@@ -314,8 +332,6 @@ export default function HuertaMapPage() {
       live = false;
       m?.remove();
       map.current = null;
-      drawings.forEach(url => URL.revokeObjectURL(url));
-      drawings.clear();
       drawn.clear();
       setReady(false);
       setPicked(null);
@@ -338,14 +354,9 @@ export default function HuertaMapPage() {
       if (wanted.current.get(continent) === key) continue;
       wanted.current.set(continent, key);
       drawContinent(continent, layer, crop, dark)
-        .then(({ url, bounds }) => {
-          if (wanted.current.get(continent) !== key || map.current !== m)
-            return URL.revokeObjectURL(url);
-          show(m, continent, url, bounds);
-          const old = urls.current.get(continent);
-          urls.current.set(continent, url);
-          // Let MapLibre finish reading the old image before it goes.
-          if (old) setTimeout(() => URL.revokeObjectURL(old), 5000);
+        .then(data => {
+          if (wanted.current.get(continent) === key && map.current === m)
+            show(m, continent, data, dark);
         })
         .catch(() => {
           if (wanted.current.get(continent) !== key) return;
@@ -491,27 +502,28 @@ function Legend({
 }) {
   const { t } = useTranslation('huerta');
   const palette = PALETTES[dark ? 'dark' : 'light'];
+  // The hatching, in the legend's own ink (its card follows the app's
+  // theme, not the basemap's).
+  const hatched =
+    'repeating-linear-gradient(135deg, var(--color-muted-foreground) 0 1.5px, transparent 1.5px 4px)';
   const keys: [string, string][] =
     layer === 'crop'
       ? [
           [css(palette.crop.now), t('map.legend.now')],
           [css(palette.crop.wait), t('map.legend.wait')],
-          [css(palette.crop.over), t('map.legend.over')],
+          [hatched, t('map.legend.over')],
         ]
       : layer === 'frost'
         ? [
-            [css(palette.frost[2]), t('map.legend.frost')],
-            [css(palette.frost[1]), t('map.legend.ground')],
-            [css(palette.frost[3]), t('map.legend.later')],
-            [css(palette.frost[0]), t('map.legend.none')],
+            [css(palette.frost[1]), t('map.legend.frost')],
+            [css(palette.frost[0]), t('map.legend.ground')],
+            [css(palette.frost[2]), t('map.legend.later')],
           ]
         : [];
-  // A ramp's stops along the bar, by value.
-  const ramp = layer === 'soil' ? palette.soil : palette.water;
-  const top = ramp[ramp.length - 1][0];
-  const gradient = `linear-gradient(90deg, ${ramp
-    .map(([x, c]) => `${css(c)} ${(x / top) * 100}%`)
-    .join(', ')})`;
+  // A ramp's bands, as the map draws them.
+  const bands = classes(layer, dark).fills.filter(
+    (fill): fill is Exclude<typeof fill, 'hatch'> => fill !== 'hatch'
+  );
   return (
     <div className='pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm'>
       {failed || layer === 'crop' ? null : (
@@ -534,20 +546,20 @@ function Legend({
         </ul>
       ) : (
         <div className='flex w-48 flex-col gap-1'>
-          <span
-            className='h-3 rounded-sm border border-border'
-            style={{ background: gradient }}
-          />
+          <span className='flex h-3 overflow-hidden rounded-sm border border-border'>
+            {bands.map(fill => (
+              <span
+                key={css(fill)}
+                className='flex-1'
+                style={{ background: css(fill) }}
+              />
+            ))}
+          </span>
           <span className='flex justify-between text-xs text-muted-foreground'>
             <span>{t(`map.legend.${layer}Low`)}</span>
             <span>{t(`map.legend.${layer}High`)}</span>
           </span>
         </div>
-      )}
-      {failed ? null : (
-        <p className='mt-2 max-w-48 text-xs text-muted-foreground'>
-          {t('map.legend.outside')}
-        </p>
       )}
     </div>
   );
@@ -630,7 +642,12 @@ function PlaceCard({
             aria-hidden='true'
             className='size-3 shrink-0 rounded-full'
             style={{
-              background: css(PALETTES.light.crop[statusGroup(status)]),
+              background:
+                statusGroup(status) === 'over'
+                  ? PALETTES.light.line
+                  : css(
+                      PALETTES.light.crop[statusGroup(status) as 'now' | 'wait']
+                    ),
             }}
           />
           <span>
