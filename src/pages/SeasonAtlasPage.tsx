@@ -20,7 +20,7 @@ import { useSpeciesData } from '@/data/species';
 import { ArrowRight, Pause, Play } from '@/lib/icons';
 import {
   ATLAS_BASE,
-  ATLAS_TEAL,
+  ATLAS_RAMP,
   type AtlasIndex,
   type AtlasPlace,
   type AtlasPlaceSummary,
@@ -48,10 +48,10 @@ async function fetchJson<T>(path: string): Promise<T> {
   return (await response.json()) as T;
 }
 
-/** The ramp stop for a value, as on the map: dark teal for nothing, near-white at the peak. */
+/** The ramp stop for a value, as on the map: the band's deep green for nothing, mint at the peak. */
 function rampColour(value: number) {
-  return ATLAS_TEAL[
-    Math.round(Math.min(Math.max(value, 0), 1) * (ATLAS_TEAL.length - 1))
+  return ATLAS_RAMP[
+    Math.round(Math.min(Math.max(value, 0), 1) * (ATLAS_RAMP.length - 1))
   ];
 }
 
@@ -153,7 +153,7 @@ function AtlasMap({
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, proj.width, proj.height);
     // The ramp's "nothing" until the frames load, so the place never flashes empty.
-    ctx.fillStyle = ATLAS_TEAL[0];
+    ctx.fillStyle = ATLAS_RAMP[0];
     ctx.fill(land, 'nonzero');
     if (image) {
       // The day between its two month mids: the earlier frame, the later one over it.
@@ -171,9 +171,9 @@ function AtlasMap({
       }
       ctx.restore();
     }
-    // Mid-ramp borders: they show on dark teal, on lit land and against the page.
+    // Mid-ramp borders: they show on deep green, on lit land and against the page.
     ctx.lineWidth = 0.75;
-    ctx.strokeStyle = 'rgba(95, 185, 156, 0.6)';
+    ctx.strokeStyle = 'rgba(71, 200, 110, 0.6)';
     ctx.stroke(land);
   }, [map, image, day, place]);
 
@@ -494,7 +494,7 @@ export default function SeasonAtlasPage() {
                   aria-hidden='true'
                   className='h-2.5 w-40 rounded-full ring-1 ring-border'
                   style={{
-                    background: `linear-gradient(90deg, ${ATLAS_TEAL.join(', ')})`,
+                    background: `linear-gradient(90deg, ${ATLAS_RAMP.join(', ')})`,
                   }}
                 />
                 <span>{t('data.atlas.legendHigh')}</span>
@@ -512,7 +512,7 @@ export default function SeasonAtlasPage() {
                       aria-hidden='true'
                       // On the map's "nothing", so a near-white peak still reads on paper.
                       className='grid h-28 grid-cols-12 gap-1 rounded-lg p-1.5'
-                      style={{ backgroundColor: ATLAS_TEAL[0] }}
+                      style={{ backgroundColor: ATLAS_RAMP[0] }}
                     >
                       {Array.from({ length: 12 }, (_, m) => (
                         <li
@@ -522,7 +522,7 @@ export default function SeasonAtlasPage() {
                           style={
                             m === dayMonth
                               ? {
-                                  boxShadow: `inset 0 0 0 1.5px ${ATLAS_TEAL[ATLAS_TEAL.length - 1]}`,
+                                  boxShadow: `inset 0 0 0 1.5px ${ATLAS_RAMP[ATLAS_RAMP.length - 1]}`,
                                 }
                               : undefined
                           }

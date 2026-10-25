@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 import {
-  ATLAS_TEAL,
+  ATLAS_RAMP,
   blendMonths,
   curveAt,
   dayOfYear,
@@ -58,9 +58,9 @@ describe('the season atlas helpers', () => {
     // The map frames are baked by the site build; a ramp edited on one side only
     // would give the map and its legend different colours.
     const script = readFileSync('scripts/build_season_atlas_site.py', 'utf8');
-    const baked = script.match(/^TEAL = \[([^\]]*)\]/m)?.[1] ?? '';
+    const baked = script.match(/^RAMP = \[([^\]]*)\]/m)?.[1] ?? '';
     expect([...baked.matchAll(/"(#[0-9a-f]{6})"/g)].map(m => m[1])).toEqual(
-      ATLAS_TEAL
+      ATLAS_RAMP
     );
   });
 
