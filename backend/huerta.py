@@ -32,7 +32,8 @@ typical day of year of its last spring and first autumn frost (null: none in a t
 year), later_frost the same '' / 'g' / 'f' for days 4-7 and later_night the date of its
 first such night (null: none). For the garden map, huerta/map/<REGION>/:
 index.json {day, n, layers}, places.bin (int16 lat x100, lon x100 per place) and layers.bin,
-one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter),
+one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter;
+cold is the week's coldest hour, C + 40, and balance its rain less its evaporation, mm + 100),
 so the Worker can hand out one layer with a range read. And huerta/crops.json, what each crop needs
 (frost class, soil range, warm nights, days to harvest), for the app to say why. The Huerta Worker hands one place at a
 time to the app.
@@ -61,7 +62,7 @@ UPLOAD_WORKERS = 16
 # The garden map's own layers: frost (0 none; in the next 3 days 1 ground frost, 2 frost; 3 either
 # later in the week), soil
 # at 6 cm (degrees C + 40) and the week's water deficit (mm); 255 where unknown.
-MAP_LAYERS = ("frost", "soil", "water")
+MAP_LAYERS = ("frost", "soil", "water", "cold", "balance")
 
 
 def conditions(forecast):
@@ -169,7 +170,9 @@ def map_files(place, advice, day):
     n = len(place)
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2, place["frostw"] <= 2], [2, 1, 3], 0).astype(np.uint8)
     water = (place["et07"] - place["rain7"]).clip(lower=0)
-    columns = [frost, _byte(place["soil3"], 40), _byte(water)]
+    cold = np.fmin(place["frost3"], place["frostw"])                   # the week's coldest hour
+    balance = place["rain7"] - place["et07"]                            # rain to spare, or to water
+    columns = [frost, _byte(place["soil3"], 40), _byte(water), _byte(cold, 40), _byte(balance, 100)]
     codes = advice.replace(CODES)
     columns += [np.frombuffer("".join(codes[c]).encode("ascii"), np.uint8) for c in advice.columns]
     places = np.column_stack([np.round(place["Latitude"] * 100), np.round(place["Longitude"] * 100)]).astype("<i2")

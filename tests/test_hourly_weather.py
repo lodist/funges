@@ -30,6 +30,27 @@ def test_nearest_cells_find_the_closest_cell_and_drop_points_off_the_grid():
     assert cells[1] == -1
 
 
+def test_a_fine_grid_reads_the_nearest_cell_and_a_coarse_one_blends_four():
+    # 0.0625° (about 7 km, ICON-EU): the nearest cell, as before.
+    lat, lon = np.meshgrid(np.arange(45.0, 46.0, 0.0625), np.arange(5.0, 6.0, 0.0625), indexing="ij")
+    values = (lat * 10).ravel().astype(np.float32)
+    cells, weights = hw.blend_cells(lat.ravel(), lon.ravel(), np.array([45.51]), np.array([5.5]))
+    assert cells.shape == (1, 1)
+    np.testing.assert_allclose(hw.blended(values, cells, weights), [455.0])
+    # 0.25° (ECMWF): between its rows, no step at the halfway line.
+    lat, lon = np.meshgrid(np.arange(45.0, 49.0, 0.25), np.arange(5.0, 9.0, 0.25), indexing="ij")
+    values = (lat * 10).ravel().astype(np.float32)
+    cells, weights = hw.blend_cells(lat.ravel(), lon.ravel(), np.array([47.6, 47.65, 60.0]),
+                                    np.array([7.1, 7.1, 7.1]))
+    south, north, off = hw.blended(values, cells, weights)
+    assert 475 < south < north < 477.5
+    assert north - south < 1.5                   # nearest cell alone: 475 then 477.5
+    assert np.isnan(off)
+    # A cell with no value gives its weight to the others.
+    values[cells[0, 0]] = np.nan
+    assert not np.isnan(hw.blended(values, cells[:1], weights[:1])[0])
+
+
 def test_states_are_linear_between_steps_and_missing_beyond_them():
     out = hw.to_hours("state", _at(0, 3, 6), np.array([[0.0], [3.0], [6.0]]), _hours(1, 8), INIT)
     np.testing.assert_allclose(out[:, 0], [1, 2, 3, 4, 5, 6, np.nan, np.nan])
