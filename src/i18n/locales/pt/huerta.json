@@ -364,9 +364,9 @@
     "place": "Em {{place}}",
     "layers": {
       "crop": "Semeie ou plante agora",
-      "frost": "Geada esta semana",
+      "frost": "Geadas e noites frias",
       "soil": "Temperatura do solo",
-      "water": "Rega necessária esta semana"
+      "water": "Água esta semana"
     },
     "legend": {
       "now": "Semeie ou plante agora",
@@ -378,7 +378,13 @@
       "soilHigh": "26 °C",
       "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² ou mais",
-      "later": "Possível geada mais adiante na semana"
+      "later": "Possível geada mais adiante na semana",
+      "cold": "Noite mais fria, próximos 7 dias",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Chuva contra sol e vento, próximos 7 dias",
+      "balanceLow": "Precisa de rega",
+      "balanceHigh": "Chuva de sobra"
     },
     "use": "Usar como minha horta",
     "close": "Fechar",

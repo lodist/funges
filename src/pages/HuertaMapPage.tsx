@@ -15,11 +15,12 @@ import {
   BAND_SURFACE_CLASS,
 } from '@/lib/band-surface';
 import {
-  classes,
+  bands,
   grid,
   PALETTES,
   shapes,
   type MapLayer,
+  type MapSource,
   type Shapes,
 } from '@/lib/garden-map';
 import { CROPS, statusGroup, type PlaceAdvice } from '@/lib/huerta';
@@ -156,16 +157,19 @@ function show(
   hatch(m, dark);
   m.addSource(id, { type: 'geojson', data });
   const firstLabel = m.getStyle().layers.find(l => l.type === 'symbol')?.id;
-  // Fainter close in, where the streets show where a garden is.
+  // Fainter close in: the places are about 7 km apart, and there the
+  // streets show where a garden is.
   const fade = (opacity: maplibregl.ExpressionSpecification | number) =>
     [
       'interpolate',
       ['linear'],
       ['zoom'],
-      11,
+      6,
       opacity,
-      15,
-      ['*', opacity, 0.35],
+      9,
+      ['*', opacity, 0.75],
+      12,
+      ['*', opacity, 0.4],
     ] as maplibregl.ExpressionSpecification;
   m.addLayer(
     {
@@ -205,6 +209,16 @@ function show(
   );
 }
 
+/** What a layer is drawn from: frost from the week's coldest hour and
+ *  water from its balance where the night's files carry them, else the old
+ *  codes. */
+const sourceOf = (layer: MapLayer, layers: string[]): MapSource =>
+  layer === 'frost' && layers.includes('cold')
+    ? 'cold'
+    : layer === 'water' && layers.includes('balance')
+      ? 'balance'
+      : layer;
+
 /** A continent's layer as shapes, its regions' places together: where two
  *  regions meet, one shape runs on across. */
 async function drawContinent(
@@ -212,15 +226,17 @@ async function drawContinent(
   layer: MapLayer,
   crop: string,
   dark: boolean
-): Promise<Shapes> {
+): Promise<{ data: Shapes; source: MapSource }> {
   const load = async (region: MapRegion, again: boolean) => {
     const night = await fetchMapNight(region, again);
+    const source = sourceOf(layer, night.layers);
     return {
+      source,
       places: night.places,
       values: await fetchMapLayer(
         region,
         night.day,
-        layer === 'crop' ? crop : layer
+        layer === 'crop' ? crop : source
       ),
     };
   };
@@ -238,7 +254,10 @@ async function drawContinent(
     values.set(part.values, at);
     at += part.values.length;
   }
-  return shapes(grid(places), layer, values, dark);
+  // ponytail: both regions are written by one night's code; the first says
+  // which source the continent is drawn from.
+  const source = parts[0].source;
+  return { data: shapes(grid(places), source, values, dark), source };
 }
 
 export default function HuertaMapPage() {
@@ -263,6 +282,10 @@ export default function HuertaMapPage() {
   const dark = /dark/.test(mapStyle);
   const hillshadeVisible = useMapStore(state => state.hillshadeVisible);
   const [layer, setLayer] = useState<MapLayer>('crop');
+  // What each layer was last drawn from, for its legend.
+  const [sources, setSources] = useState<Partial<Record<MapLayer, MapSource>>>(
+    {}
+  );
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   // advice: undefined while it loads, null where Huerta has no place.
@@ -354,9 +377,11 @@ export default function HuertaMapPage() {
       if (wanted.current.get(continent) === key) continue;
       wanted.current.set(continent, key);
       drawContinent(continent, layer, crop, dark)
-        .then(data => {
-          if (wanted.current.get(continent) === key && map.current === m)
-            show(m, continent, data, dark);
+        .then(({ data, source }) => {
+          if (wanted.current.get(continent) !== key || map.current !== m)
+            return;
+          show(m, continent, data, dark);
+          setSources(prev => ({ ...prev, [layer]: source }));
         })
         .catch(() => {
           if (wanted.current.get(continent) !== key) return;
@@ -472,7 +497,7 @@ export default function HuertaMapPage() {
           ) : null}
           {picked && isMobile ? null : (
             <Legend
-              layer={layer}
+              source={sources[layer] ?? layer}
               title={layerName(layer)}
               failed={failed}
               dark={dark}
@@ -488,12 +513,13 @@ export default function HuertaMapPage() {
 const css = ([r, g, b]: readonly number[]) => `rgb(${r},${g},${b})`;
 
 function Legend({
-  layer,
+  source,
   title,
   failed,
   dark,
 }: {
-  layer: MapLayer;
+  /** What the layer on show is drawn from. */
+  source: MapSource;
   /** The layer's name: the rail shows only its icon. */
   title: string;
   failed: boolean;
@@ -502,34 +528,42 @@ function Legend({
 }) {
   const { t } = useTranslation('huerta');
   const palette = PALETTES[dark ? 'dark' : 'light'];
-  // The hatching, in the legend's own ink (its card follows the app's
-  // theme, not the basemap's).
-  const hatched =
-    'repeating-linear-gradient(135deg, var(--color-muted-foreground) 0 1.5px, transparent 1.5px 4px)';
+  // The hatching over its wash, in the legend's own ink (its card follows
+  // the app's theme, not the basemap's).
+  const hatched = `repeating-linear-gradient(135deg, var(--color-muted-foreground) 0 1.5px, transparent 1.5px 4px), ${css(palette.wash)}`;
   const keys: [string, string][] =
-    layer === 'crop'
+    source === 'crop'
       ? [
           [css(palette.crop.now), t('map.legend.now')],
           [css(palette.crop.wait), t('map.legend.wait')],
           [hatched, t('map.legend.over')],
         ]
-      : layer === 'frost'
+      : source === 'frost'
         ? [
-            [css(palette.frost[1]), t('map.legend.frost')],
-            [css(palette.frost[0]), t('map.legend.ground')],
-            [css(palette.frost[2]), t('map.legend.later')],
+            [css(palette.frost[2]), t('map.legend.frost')],
+            [css(palette.frost[1]), t('map.legend.ground')],
+            [css(palette.frost[0]), t('map.legend.later')],
           ]
         : [];
   // A ramp's bands, as the map draws them.
-  const bands = classes(layer, dark).fills.filter(
-    (fill): fill is Exclude<typeof fill, 'hatch'> => fill !== 'hatch'
+  const steps = bands(source, dark).fills.filter(
+    (fill): fill is Exclude<typeof fill, 'over' | null> =>
+      fill !== null && fill !== 'over'
   );
+  const what =
+    source === 'cold' || source === 'balance'
+      ? t(`map.legend.${source}`)
+      : null;
   return (
     <div className='pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm'>
-      {failed || layer === 'crop' ? null : (
+      {failed || source === 'crop' ? null : (
         // The crop layer's rows already say it: sow or plant now, not yet, too late.
-        <p className='mb-2 font-semibold text-foreground'>{title}</p>
+        <p className='font-semibold text-foreground'>{title}</p>
       )}
+      {what && !failed ? (
+        <p className='text-xs text-muted-foreground'>{what}</p>
+      ) : null}
+      {failed || source === 'crop' ? null : <span className='block h-2' />}
       {failed ? (
         <p className='text-muted-foreground'>{t('map.failed')}</p>
       ) : keys.length > 0 ? (
@@ -547,7 +581,7 @@ function Legend({
       ) : (
         <div className='flex w-48 flex-col gap-1'>
           <span className='flex h-3 overflow-hidden rounded-sm border border-border'>
-            {bands.map(fill => (
+            {steps.map(fill => (
               <span
                 key={css(fill)}
                 className='flex-1'
@@ -556,8 +590,8 @@ function Legend({
             ))}
           </span>
           <span className='flex justify-between text-xs text-muted-foreground'>
-            <span>{t(`map.legend.${layer}Low`)}</span>
-            <span>{t(`map.legend.${layer}High`)}</span>
+            <span>{t(`map.legend.${source}Low`)}</span>
+            <span>{t(`map.legend.${source}High`)}</span>
           </span>
         </div>
       )}

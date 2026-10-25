@@ -364,9 +364,9 @@
     "place": "Autour de {{place}}",
     "layers": {
       "crop": "Semer ou planter maintenant",
-      "frost": "Gel cette semaine",
+      "frost": "Gel et nuits froides",
       "soil": "Température du sol",
-      "water": "Arrosage nécessaire cette semaine"
+      "water": "Eau cette semaine"
     },
     "legend": {
       "now": "Semer ou planter maintenant",
@@ -378,7 +378,13 @@
       "soilHigh": "26 °C",
       "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² ou plus",
-      "later": "Gel possible plus tard dans la semaine"
+      "later": "Gel possible plus tard dans la semaine",
+      "cold": "Nuit la plus froide, 7 prochains jours",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Pluie contre soleil et vent, 7 prochains jours",
+      "balanceLow": "À arroser",
+      "balanceHigh": "Pluie suffisante"
     },
     "use": "En faire mon potager",
     "close": "Fermer",

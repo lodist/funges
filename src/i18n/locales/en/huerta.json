@@ -364,9 +364,9 @@
     "place": "Around {{place}}",
     "layers": {
       "crop": "Sow or plant now",
-      "frost": "Frost this week",
+      "frost": "Frost and cold nights",
       "soil": "Soil temperature",
-      "water": "Watering needed this week"
+      "water": "Water this week"
     },
     "legend": {
       "now": "Sow or plant now",
@@ -378,7 +378,13 @@
       "soilHigh": "26 °C",
       "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² or more",
-      "later": "Frost possible later this week"
+      "later": "Frost possible later this week",
+      "cold": "Coldest night, next 7 days",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Rain against sun and wind, next 7 days",
+      "balanceLow": "Needs water",
+      "balanceHigh": "Rain to spare"
     },
     "use": "Make this my garden",
     "close": "Close",
