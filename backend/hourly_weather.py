@@ -59,6 +59,34 @@ def nearest_cells(grid_lats, grid_lons, lats, lons):
     return np.where(dist <= 2 * spacing, cell, -1)
 
 
+COARSE_KM = 12  # grids coarser than this are blended between their four nearest cells
+
+
+def blend_cells(grid_lats, grid_lons, lats, lons):
+    """Each point's cells and their weights, -1 where the model does not reach it (as
+    nearest_cells). On a fine grid (ICON-EU, NBM) its nearest cell; on a coarse one (ECMWF's
+    0.25°, about 25 km) its four nearest, by inverse distance, so a field does not step in
+    straight lines along the grid's rows and columns (a frost line along 47.625° N)."""
+    tree = cKDTree(_xyz(grid_lats, grid_lons))
+    spacing = np.median(tree.query(_xyz(grid_lats[::997], grid_lons[::997]), k=2)[0][:, 1])
+    k = 4 if spacing * 6371 > COARSE_KM else 1
+    dist, cell = tree.query(_xyz(lats, lons), k=k)
+    dist, cell = dist.reshape(len(lats), k), cell.reshape(len(lats), k)
+    cell = np.where(dist[:, :1] <= 2 * spacing, cell, -1)
+    weights = 1 / np.maximum(dist, 1e-12)
+    return cell, weights / weights.sum(axis=1, keepdims=True)
+
+
+def blended(values, cells, weights):
+    """A field at the points: its cells' values by weight; a cell with no value gives its
+    weight to the others; NaN off the grid."""
+    picked = np.where(cells >= 0, values[cells], np.nan)
+    w = np.where(np.isnan(picked), 0.0, weights)
+    total = w.sum(axis=1)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(total > 0, np.nansum(picked * w, axis=1) / total, np.nan).astype(np.float32)
+
+
 def to_hours(kind, valid, values, hours, init):
     """One model variable, values[step, point] at its valid times, on our hours (each the
     end of its hour). 'state': instant values, linear between steps. 'accum': amount since
@@ -262,8 +290,8 @@ def read_source(source, init, last, lats, lons, session, deadline):
                     path.unlink(missing_ok=True)  # or the next region reads it from the cache
                 continue
             if cells is None:
-                cells = nearest_cells(*grid, lats, lons)
-            fields.setdefault(jobs[job], {})[valid] = np.where(cells >= 0, values[cells], np.nan).astype(np.float32)
+                cells = blend_cells(*grid, lats, lons)
+            fields.setdefault(jobs[job], {})[valid] = blended(values, *cells)
     finally:
         pool.shutdown(wait=False, cancel_futures=True)
     if failed > 0.05 * len(files):
