@@ -8,6 +8,7 @@ browser gets coloured maps and curves only, never the grid itself.
 
     python scripts/build_season_atlas_site.py                # grids from R2 (CI: read-only key)
     python scripts/build_season_atlas_site.py --grids DIR    # local copies of the npz files
+    python scripts/build_season_atlas_site.py --pages dist   # after the Vite build: the atlas URLs
 """
 import argparse
 import hashlib
@@ -151,10 +152,31 @@ def load_grids(atlas, grid_dir):
     return grids
 
 
+def write_pages(dist):
+    """The app's index.html at /data/seasons/ and every /data/seasons/<place>/<species>/, so GitHub
+    Pages serves them with a 200: its 404.html sends any other path to the site root, which broke
+    links to the atlas and reloads on it. The number of pages; none without the atlas files."""
+    index_file = dist / "season-atlas" / "index.json"
+    if not index_file.exists():
+        return 0
+    index = json.loads(index_file.read_text(encoding="utf-8"))
+    html = (dist / "index.html").read_text(encoding="utf-8")
+    urls = ["data/seasons"] + [f"data/seasons/{p['id']}/{index['slugs'].get(k, k)}"
+                               for p in index["places"] for k in p["species"]]
+    for url in urls:
+        (dist / url).mkdir(parents=True, exist_ok=True)
+        (dist / url / "index.html").write_text(html, encoding="utf-8")
+    return len(urls)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--grids", type=Path, help="local copies of the local_season_*.npz files")
+    ap.add_argument("--pages", type=Path, metavar="DIST", help="only write the atlas URLs into the built site")
     args = ap.parse_args()
+    if args.pages:
+        print(f"season atlas: {write_pages(args.pages)} pages in {args.pages}")
+        return
     atlas = json.loads(r2.generated(r2.GENERATED / "season_atlas.json").read_text(encoding="utf-8"))
     registry = json.loads((r2.GENERATED / "species_registry.json").read_text(encoding="utf-8"))
     index = write_site(atlas, load_grids(atlas, args.grids), OUT, species_slugs(registry))

@@ -72,3 +72,16 @@ def test_the_site_lists_continents_first_and_only_places(tmp_path):
 def test_species_slugs_come_from_the_english_names():
     registry = {"species": {"st_george": {"name": "St. George's Mushroom"}, "morel": {"name": "Morchella"}}}
     assert site.species_slugs(registry) == {"st_george": "st-georges-mushroom", "morel": "morel"}
+
+
+def test_every_atlas_url_gets_the_app_so_links_and_reloads_work(tmp_path):
+    site.write_site(_atlas(), _grid(), tmp_path / "season-atlas", {"mushroom": "porcini"})
+    (tmp_path / "index.html").write_text("<div id=root></div>")
+    assert site.write_pages(tmp_path) == 3
+    for url in ("data/seasons", "data/seasons/europe/porcini", "data/seasons/westland/porcini"):
+        assert (tmp_path / url / "index.html").read_text() == "<div id=root></div>"
+
+
+def test_no_atlas_files_no_pages(tmp_path):
+    (tmp_path / "index.html").write_text("app")
+    assert site.write_pages(tmp_path) == 0
