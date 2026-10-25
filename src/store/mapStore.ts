@@ -125,7 +125,7 @@ export interface MapState {
 // no per-layer `dark` variant. All 5 carry the SAME overlay/species layers (only
 // the basemap differs); AdvancedMap's [mapStyle] effect recreates the map
 // (camera preserved from the store) and re-applies species visibility on swap.
-// Regenerate positron/darkmatter/topographic via scripts/make_carto_styles.py.
+// Regenerate dark/positron/darkmatter/topographic via scripts/make_carto_styles.py.
 const MAP_STYLES = [
   '/funges_style.json', // 0 light (olive)
   '/funges_style_dark.json', // 1 dark
