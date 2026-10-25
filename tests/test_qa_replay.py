@@ -124,3 +124,27 @@ def test_a_composite_is_judged_against_other_species_and_never_against_its_membe
     # the composite only against the parasol spot: both its finds beat it
     assert list(rows[rows.species == "boletus"]["where"]) == [1.0, 1.0]
     assert rows[rows.species == "boletus"].composite.all() and not rows[rows.species == "mushroom"].composite.any()
+
+
+def test_the_calendar_takes_the_season_and_leaves_the_weather():
+    days = pd.date_range("2026-06-01", periods=100)
+    # "peak" follows the season alone and is found on its peak; "spike" is flat but for one day of
+    # good weather, when it is found
+    finds = pd.DataFrame({"species_id": ["peak", "spike"], "date": [str(days[50].date()), str(days[70].date())],
+                          "loc": ["p0", "p0"], "kingdom": ["Fungi"] * 2, "lat": [46.0] * 2, "lon": [9.0] * 2})
+    today = pd.DataFrame({"Location_Id": "p0", "Date": days})
+    today["peak_score"] = -np.abs(np.arange(100) - 50.0)
+    today["spike_score"] = np.where(np.arange(100) == 70, 5.0, 1.0)
+    # other years put both on their days 50 and 30; this year's find and a far one do not count
+    past = pd.DataFrame({"species": ["peak", "spike", "spike", "spike"],
+                         "Date": pd.to_datetime([days[50] - pd.DateOffset(years=1), days[30] - pd.DateOffset(years=1),
+                                                 days[70], days[70] - pd.DateOffset(years=1)]),
+                         "lat": [46.1, 46.1, 46.0, 52.0], "lon": [9.0, 9.0, 9.0, 9.0]})
+    past["year"] = past.Date.dt.year
+    rows = evaluate("NE", finds, {"today": today, "stored": today.iloc[:0]}, days, past)
+    rows = rows[rows.source == "today"].set_index("species")
+    assert rows.timing["peak"] == rows.timing_calendar["peak"] == 1.0   # the peak is all calendar
+    assert rows.timing["spike"] == 1.0 and rows.timing_calendar["spike"] == 0.5
+    assert rows.season_calendar["spike"] == 0.5 * 98 / 99
+    summary = summarise(rows.reset_index(), "stored").set_index("species")
+    assert summary.beyond["peak"] == 0.0 and summary.beyond["spike"] == 0.5
