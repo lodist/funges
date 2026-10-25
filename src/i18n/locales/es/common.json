@@ -336,6 +336,45 @@
         "late": "Los hallazgos llegan a GBIF con una a tres semanas de retraso, así que los últimos días se completan más tarde. Actualizado el {{updated}}.",
         "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble."
       }
+    },
+    "tabs": {
+      "label": "Informes de datos",
+      "conditions": "Condiciones",
+      "seasons": "Atlas de temporadas"
+    },
+    "atlas": {
+      "subtitle": "Cómo transcurre la temporada de cada seta, lugar por lugar.",
+      "place": "Lugar",
+      "species": "Seta",
+      "groups": {
+        "continents": "Continentes",
+        "countries": "Países",
+        "states": "Estados de EE. UU."
+      },
+      "title": "Temporada de {{species}}: {{place}}",
+      "peak": "Alcanza su máximo en {{month}}.",
+      "window": "La temporada principal es {{months}}.",
+      "windows": "Tiene más de una temporada: {{first}} y {{last}}.",
+      "allYear": "Se encuentra todo el año.",
+      "now": "Ahora está en temporada.",
+      "next": "Ahora está fuera de temporada; la próxima empieza en {{month}}.",
+      "starting": "La temporada está empezando.",
+      "ending": "La temporada está terminando.",
+      "note": "El color indica cuándo, no cuánto: cada zona alcanza su máximo en su mejor mes, incluso donde {{species}} escasea.",
+      "records": "Basado en {{formatted}} hallazgos registrados desde 2010.",
+      "play": "Reproducir",
+      "pause": "Pausa",
+      "day": "Día del año",
+      "legendLow": "Poca actividad",
+      "legendHigh": "Máximo local",
+      "curveLabel": "Mes a mes",
+      "mapLabel": "Mapa de temporada: {{species}}, {{place}}, {{date}}",
+      "forecast": "Ver la previsión de hoy",
+      "unavailable": "El atlas de temporadas no está disponible ahora. Inténtalo más tarde.",
+      "notFound": "Aún no tenemos mapa de temporada para este lugar.",
+      "openEurope": "Abrir Europa",
+      "fewRecords": "Pocos registros locales ({{formatted}} desde 2010), así que la temporada se apoya en lugares de clima parecido.",
+      "rareRecords": "Casi nunca se ha registrado aquí, así que la temporada que se ve es la de lugares de clima parecido."
     }
   },
   "sidebar": {

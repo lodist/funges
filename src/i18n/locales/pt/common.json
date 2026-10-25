@@ -336,6 +336,45 @@
         "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}.",
         "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro."
       }
+    },
+    "tabs": {
+      "label": "Relatórios de dados",
+      "conditions": "Condições",
+      "seasons": "Atlas de temporadas"
+    },
+    "atlas": {
+      "subtitle": "Como se desenrola a temporada de cada cogumelo, lugar por lugar.",
+      "place": "Lugar",
+      "species": "Cogumelo",
+      "groups": {
+        "continents": "Continentes",
+        "countries": "Países",
+        "states": "Estados dos EUA"
+      },
+      "title": "Temporada de {{species}}: {{place}}",
+      "peak": "Atinge o pico em {{month}}.",
+      "window": "A temporada principal é {{months}}.",
+      "windows": "Tem mais de uma temporada: {{first}} e {{last}}.",
+      "allYear": "É encontrado o ano todo.",
+      "now": "Está em temporada agora.",
+      "next": "Agora está fora de temporada; a próxima começa em {{month}}.",
+      "starting": "A temporada está começando.",
+      "ending": "A temporada está terminando.",
+      "note": "A cor mostra quando, não quanto: cada zona atinge o pico no seu melhor mês, mesmo onde {{species}} é escasso.",
+      "records": "Com base em {{formatted}} achados registrados desde 2010.",
+      "play": "Reproduzir",
+      "pause": "Pausa",
+      "day": "Dia do ano",
+      "legendLow": "Pouca atividade",
+      "legendHigh": "Pico local",
+      "curveLabel": "Mês a mês",
+      "mapLabel": "Mapa da temporada: {{species}}, {{place}}, {{date}}",
+      "forecast": "Ver a previsão de hoje",
+      "unavailable": "O atlas de temporadas não está disponível agora. Tente mais tarde.",
+      "notFound": "Ainda não temos mapa de temporada para este lugar.",
+      "openEurope": "Abrir a Europa",
+      "fewRecords": "Poucos registros locais ({{formatted}} desde 2010), então a temporada se apoia em lugares de clima parecido.",
+      "rareRecords": "Quase nunca registrado aqui, então a temporada mostrada é a de lugares de clima parecido."
     }
   },
   "sidebar": {

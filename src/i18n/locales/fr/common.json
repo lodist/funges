@@ -336,6 +336,45 @@
         "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}.",
         "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double."
       }
+    },
+    "tabs": {
+      "label": "Rapports de données",
+      "conditions": "Conditions",
+      "seasons": "Atlas des saisons"
+    },
+    "atlas": {
+      "subtitle": "Comment la saison de chaque champignon se déroule, lieu par lieu.",
+      "place": "Lieu",
+      "species": "Champignon",
+      "groups": {
+        "continents": "Continents",
+        "countries": "Pays",
+        "states": "États des États-Unis"
+      },
+      "title": "Saison de {{species}} : {{place}}",
+      "peak": "Le pic est en {{month}}.",
+      "window": "La saison principale : {{months}}.",
+      "windows": "Il y a plus d'une saison : {{first}} et {{last}}.",
+      "allYear": "On le trouve toute l'année.",
+      "now": "C'est la saison en ce moment.",
+      "next": "Hors saison pour le moment ; la prochaine commence en {{month}}.",
+      "starting": "La saison commence.",
+      "ending": "La saison touche à sa fin.",
+      "note": "La couleur indique quand, pas combien : chaque zone culmine pendant son meilleur mois, même là où {{species}} est rare.",
+      "records": "D'après {{formatted}} observations enregistrées depuis 2010.",
+      "play": "Lecture",
+      "pause": "Pause",
+      "day": "Jour de l'année",
+      "legendLow": "Peu d'activité",
+      "legendHigh": "Pic local",
+      "curveLabel": "Mois par mois",
+      "mapLabel": "Carte de saison : {{species}}, {{place}}, {{date}}",
+      "forecast": "Voir la prévision du jour",
+      "unavailable": "L'atlas des saisons n'est pas disponible pour le moment. Réessayez plus tard.",
+      "notFound": "Nous n'avons pas encore de carte de saison pour ce lieu.",
+      "openEurope": "Ouvrir l'Europe",
+      "fewRecords": "Peu d'observations locales ({{formatted}} depuis 2010) : la saison s'appuie sur des lieux au climat semblable.",
+      "rareRecords": "Presque jamais observé ici : la saison affichée est celle de lieux au climat semblable."
     }
   },
   "sidebar": {
