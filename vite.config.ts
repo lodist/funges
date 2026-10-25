@@ -73,6 +73,8 @@ export default defineConfig({
           '**/heic-decoder-*.js',
           '**/landing/hero-*.webp',
           '**/landing/spectacle-*.webp',
+          // Hundreds of season maps; a visitor opens a few of them.
+          '**/season-atlas/**',
         ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.

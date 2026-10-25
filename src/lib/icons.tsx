@@ -60,6 +60,8 @@ import {
   Navigation as LucideNavigation,
   Palette as LucidePalette,
   PanelLeftIcon as LucidePanelLeftIcon,
+  Pause as LucidePause,
+  Play as LucidePlay,
   Plus as LucidePlus,
   QrCode as LucideQrCode,
   RefreshCw as LucideRefreshCw,
@@ -177,6 +179,8 @@ export const MousePointerClick = decorativeByDefault(LucideMousePointerClick);
 export const Navigation = decorativeByDefault(LucideNavigation);
 export const Palette = decorativeByDefault(LucidePalette);
 export const PanelLeftIcon = decorativeByDefault(LucidePanelLeftIcon);
+export const Pause = decorativeByDefault(LucidePause);
+export const Play = decorativeByDefault(LucidePlay);
 export const Plus = decorativeByDefault(LucidePlus);
 export const QrCode = decorativeByDefault(LucideQrCode);
 export const RefreshCw = decorativeByDefault(LucideRefreshCw);
