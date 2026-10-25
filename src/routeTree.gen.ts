@@ -23,6 +23,8 @@ import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as IdentifyRouteImport } from './routes/identify'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DataSeasonsIndexRouteImport } from './routes/data_.seasons.index'
+import { Route as DataSeasonsPlaceSpeciesRouteImport } from './routes/data_.seasons.$place.$species'
 
 const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
   id: '/worth-foraging-now',
@@ -94,6 +96,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DataSeasonsIndexRoute = DataSeasonsIndexRouteImport.update({
+  id: '/data_/seasons/',
+  path: '/data/seasons/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataSeasonsPlaceSpeciesRoute = DataSeasonsPlaceSpeciesRouteImport.update({
+  id: '/data_/seasons/$place/$species',
+  path: '/data/seasons/$place/$species',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,6 +122,8 @@ export interface FileRoutesByFullPath {
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/data/seasons': typeof DataSeasonsIndexRoute
+  '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -126,6 +140,8 @@ export interface FileRoutesByTo {
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/data/seasons': typeof DataSeasonsIndexRoute
+  '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -143,6 +159,8 @@ export interface FileRoutesById {
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/data_/seasons/': typeof DataSeasonsIndexRoute
+  '/data_/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +179,8 @@ export interface FileRouteTypes {
     | '/support'
     | '/termsuse'
     | '/worth-foraging-now'
+    | '/data/seasons'
+    | '/data/seasons/$place/$species'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,6 +197,8 @@ export interface FileRouteTypes {
     | '/support'
     | '/termsuse'
     | '/worth-foraging-now'
+    | '/data/seasons'
+    | '/data/seasons/$place/$species'
   id:
     | '__root__'
     | '/'
@@ -193,6 +215,8 @@ export interface FileRouteTypes {
     | '/support'
     | '/termsuse'
     | '/worth-foraging-now'
+    | '/data_/seasons/'
+    | '/data_/seasons/$place/$species'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -210,6 +234,8 @@ export interface RootRouteChildren {
   SupportRoute: typeof SupportRoute
   TermsuseRoute: typeof TermsuseRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
+  DataSeasonsIndexRoute: typeof DataSeasonsIndexRoute
+  DataSeasonsPlaceSpeciesRoute: typeof DataSeasonsPlaceSpeciesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -312,6 +338,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/data_/seasons/': {
+      id: '/data_/seasons/'
+      path: '/data/seasons'
+      fullPath: '/data/seasons'
+      preLoaderRoute: typeof DataSeasonsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data_/seasons/$place/$species': {
+      id: '/data_/seasons/$place/$species'
+      path: '/data/seasons/$place/$species'
+      fullPath: '/data/seasons/$place/$species'
+      preLoaderRoute: typeof DataSeasonsPlaceSpeciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -330,6 +370,8 @@ const rootRouteChildren: RootRouteChildren = {
   SupportRoute: SupportRoute,
   TermsuseRoute: TermsuseRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
+  DataSeasonsIndexRoute: DataSeasonsIndexRoute,
+  DataSeasonsPlaceSpeciesRoute: DataSeasonsPlaceSpeciesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

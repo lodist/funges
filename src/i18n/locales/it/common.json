@@ -341,6 +341,43 @@
         "late": "I ritrovamenti arrivano su GBIF con una-tre settimane di ritardo, quindi gli ultimi giorni si completano dopo. Aggiornato il {{updated}}.",
         "season": "La stagione: le settimane in cui ogni fungo era in stagione o fuori nel 2026 vengono dai suoi ritrovamenti segnalati, contati rispetto a tutte le segnalazioni di funghi perché i weekend affollati non contino il doppio."
       }
+    },
+    "tabs": {
+      "label": "Report dei dati",
+      "conditions": "Condizioni",
+      "seasons": "Atlante delle stagioni"
+    },
+    "atlas": {
+      "subtitle": "Come si svolge la stagione di ogni fungo, luogo per luogo.",
+      "place": "Luogo",
+      "species": "Fungo",
+      "groups": {
+        "continents": "Continenti",
+        "countries": "Paesi",
+        "states": "Stati USA"
+      },
+      "title": "Stagione di {{species}}: {{place}}",
+      "peak": "Il picco è a {{month}}.",
+      "window": "La stagione principale è {{months}}.",
+      "windows": "Ha più di una stagione: {{first}} e {{last}}.",
+      "allYear": "Si trova tutto l'anno.",
+      "now": "Ora è in stagione.",
+      "next": "Ora è fuori stagione; la prossima inizia a {{month}}.",
+      "starting": "La stagione sta iniziando.",
+      "ending": "La stagione sta finendo.",
+      "note": "Il colore indica quando, non quanto: ogni zona ha il picco nel suo mese migliore, anche dove {{species}} scarseggia.",
+      "records": "Basato su {{formatted}} ritrovamenti registrati dal 2010.",
+      "play": "Riproduci",
+      "pause": "Pausa",
+      "day": "Giorno dell'anno",
+      "legendLow": "Poca attività",
+      "legendHigh": "Picco locale",
+      "curveLabel": "Mese per mese",
+      "mapLabel": "Mappa della stagione: {{species}}, {{place}}, {{date}}",
+      "forecast": "Vedi la previsione di oggi",
+      "unavailable": "L'atlante delle stagioni non è disponibile ora. Riprova più tardi.",
+      "notFound": "Non abbiamo ancora una mappa della stagione per questo luogo.",
+      "openEurope": "Apri Europa"
     }
   },
   "theme": {
