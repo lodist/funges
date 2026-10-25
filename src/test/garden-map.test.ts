@@ -146,7 +146,7 @@ describe('the garden map drawing', () => {
       ['fill', 'opacity'],
       ['edge'],
     ]);
-    expect(features[0].properties.fill).toBe('rgb(234,144,109)');
+    expect(features[0].properties.fill).toBe('rgb(200,79,122)');
     const polygonArea = (i: number) =>
       (features[i].geometry.coordinates as number[][][][])
         .flat()

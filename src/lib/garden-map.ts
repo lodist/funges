@@ -94,8 +94,8 @@ interface Palette {
 export const PALETTES: Record<'light' | 'dark', Palette> = {
   light: {
     crop: {
-      now: [234, 144, 109, 190], // oklch(0.74 0.12 42)
-      wait: [247, 231, 187, 185], // oklch(0.93 0.06 90)
+      now: [200, 79, 122, 205], // raspberry #c84f7a
+      wait: [191, 232, 211, 230], // pale mint #bfe8d3
     },
     wash: [236, 234, 228, 110],
     frost: [
@@ -135,8 +135,8 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
   // The ramps turned round: the "nothing" end dark, the most the brightest.
   dark: {
     crop: {
-      now: [226, 134, 98, 190], // oklch(0.70 0.12 42)
-      wait: [213, 194, 156, 175], // oklch(0.82 0.055 85)
+      now: [240, 128, 168, 205], // raspberry, lighter
+      wait: [100, 138, 121, 190], // mint, muted
     },
     wash: [24, 24, 22, 110],
     frost: [
