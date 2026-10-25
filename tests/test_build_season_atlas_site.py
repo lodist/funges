@@ -37,6 +37,17 @@ def test_frames_stack_the_months_and_light_up_the_peak():
     assert frames[0, 0, 3] == 0 and frames[0, 1, 3] == 255        # no curve: transparent
 
 
+def test_the_map_averages_2x2_cells_in_steps():
+    ratio = np.full((12, 2, 3), 255, np.uint8)
+    ratio[0, :, :2] = [[254, 200], [100, 50]]    # mean 151, snapped to the nearest step
+    ratio[0, 0, 2] = 254                          # odd edge: repeated, a block of its own
+    out = site.coarsen(ratio)
+    step = 254 / (site.LEVELS - 1)
+    assert out.shape == (12, 1, 2)
+    assert out[0, 0, 0] == round(round(151 / step) * step) and out[0, 0, 1] == 254
+    assert out[1, 0, 0] == 255                    # no curve anywhere in the block
+
+
 def test_a_crop_keeps_one_cell_around_the_place():
     g = _grid()["EU"]
     rows, cols, extent = site.crop(g["lat"], g["lon"], [0.2, 0.2, 1.8, 1.8])
@@ -50,12 +61,12 @@ def test_the_site_lists_continents_first_and_only_places(tmp_path):
     assert [p["id"] for p in index["places"]] == ["europe", "westland"]
     assert index["slugs"] == {"mushroom": "porcini"}
     place = json.loads((tmp_path / "westland.json").read_text())
-    assert place["extent"] == [0.0, 0.0, 3.0, 3.0] and place["frame"] == [3, 3]
+    assert place["extent"] == [0.0, -1.0, 4.0, 3.0] and place["frame"] == [2, 2]   # 3x3 cells padded to 2x2 pixels
     assert place["species"]["mushroom"]["records"] == 400
     europe = json.loads((tmp_path / "europe.json").read_text())
-    assert len(europe["land"]) == 2 and europe["frame"] == [4, 3]   # every region's outline
+    assert len(europe["land"]) == 2 and europe["frame"] == [2, 2]   # every region's outline
     with Image.open(tmp_path / "westland" / "mushroom.webp") as im:
-        assert im.size == (3, 36)
+        assert im.size == (2, 24)
 
 
 def test_species_slugs_come_from_the_english_names():

@@ -15,6 +15,7 @@ import io
 import json
 import shutil
 import sys
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -34,6 +35,12 @@ CONTINENTS = {"EU": ("europe", "Europe"), "US": ("united-states", "United States
 # URL slugs where the display name is not what people search ("Morchella", "Black Trumpet (Horn
 # of Plenty)"); a slug is a URL, so changing one later breaks links.
 SLUG_OVERRIDES = {"morel": "morel", "black_chant": "black-trumpet"}
+# Grid cells per map pixel and colour steps. The grid is smooth by construction (a ~50 km
+# kernel), so 2x2 cells in 24 steps look the same once the browser smooths them (10 steps
+# banded on dark ground), and the images are ~6x smaller. It is for speed: the values still
+# decode to within a few percent.
+CELLS = 2
+LEVELS = 24
 
 
 def hex_rgb(h):
@@ -57,6 +64,19 @@ def sprite(ratio):
     return rgba
 
 
+def coarsen(ratio):
+    """(12, h, w) season ratio (255 = no curve) -> CELLS x CELLS block means in LEVELS steps,
+    255 where a block has no curve. Odd edges repeat their last row or column."""
+    values = np.where(ratio == 255, np.nan, ratio.astype(float))
+    values = np.pad(values, ((0, 0), (0, -values.shape[1] % CELLS), (0, -values.shape[2] % CELLS)), mode="edge")
+    blocks = values.reshape(12, values.shape[1] // CELLS, CELLS, values.shape[2] // CELLS, CELLS)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)  # a block with no curve at all
+        mean = np.nanmean(blocks, axis=(2, 4))
+    steps = np.rint(np.rint(mean / 254 * (LEVELS - 1)) / (LEVELS - 1) * 254)
+    return np.where(np.isnan(mean), 255, steps).astype(np.uint8)
+
+
 def crop(lat, lon, bbox):
     """The grid rows and columns whose centres lie within one cell of `bbox` (w, s, e, n), and
     the cropped image's edges [lon min, lat min, lon max, lat max]. `lat` runs north to south."""
@@ -75,10 +95,14 @@ def species_slugs(registry):
 def write_place(out, place, grid, rows, cols, extent, land, species):
     names = grid["species"]
     for key in species:
-        ratio = grid["ratio"][names.index(key)][:, rows, cols]
+        ratio = coarsen(grid["ratio"][names.index(key)][:, rows, cols])
         (out / place["id"]).mkdir(parents=True, exist_ok=True)
         Image.fromarray(sprite(ratio), "RGBA").save(out / place["id"] / f"{key}.webp", "WEBP", lossless=True)
-    h, w = len(grid["lat"][rows]), len(grid["lon"][cols])
+    # The padded edge makes the image a cell wider or taller than the crop: east and south grow.
+    fine_h, fine_w = len(grid["lat"][rows]), len(grid["lon"][cols])
+    h, w = -(-fine_h // CELLS), -(-fine_w // CELLS)
+    d_lon, d_lat = (extent[2] - extent[0]) / fine_w, (extent[3] - extent[1]) / fine_h
+    extent = [extent[0], round(extent[3] - h * CELLS * d_lat, 3), round(extent[0] + w * CELLS * d_lon, 3), extent[3]]
     payload = {**place, "extent": extent, "frame": [w, h], "land": land, "species": species}
     (out / f"{place['id']}.json").write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
 
