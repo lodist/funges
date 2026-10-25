@@ -48,6 +48,7 @@ SHIPPED = Path(__file__).resolve().parents[1] / "generated" / "habitat_factor.js
 # Each region's factor also covers its neighbour's places: the nightly run scores the places
 # across the split with the neighbour's model, habitat too (forecast_pipeline.blend_neighbour_settings).
 NEIGHBOUR = {"NE": "SE", "SE": "NE", "USE": "USW", "USW": "USE"}
+BLOCK_DEGREES = 2.0     # the blocks --block-cap counts finds in
 
 
 def factor(eta, reference, mapped):
@@ -57,6 +58,25 @@ def factor(eta, reference, mapped):
 def columns(features: pd.DataFrame) -> list[str]:
     return [c for c in features.columns if c not in ("Location_Id", "Latitude", "Longitude", "region", "tree_map")
             and features[c].notna().mean() > 0.5]
+
+
+def capped(finds, species, features, cap):
+    """At most `cap` of the species' finds per BLOCK_DEGREES block of its places, the same ones on
+    every run (picked by a hash of place and day), so that one heavily recorded country does not
+    decide the habitat. 69% of the bay bolete's North Europe finds are Dutch. Uncapped, its factor
+    lowered 39% of the British and Irish find places and 65% of the Finnish ones; with at most 1,000
+    per block, every area keeps 82-97% of its find places at 1 (2016-2025; 300 cut the Dutch to 34%)."""
+    if not cap:
+        return finds
+    place = features.set_index("Location_Id").reindex(finds["Location_Id"])
+    block = (np.floor(place["Latitude"].to_numpy() / BLOCK_DEGREES) * 1000
+             + np.floor(place["Longitude"].to_numpy() / BLOCK_DEGREES))
+    mine = (finds["species"] == species).to_numpy() & np.isfinite(block)
+    key = pd.Series(pd.util.hash_pandas_object(finds[["Location_Id", "Date"]], index=False).to_numpy()[mine])
+    over = key.groupby(block[mine]).rank(method="first").to_numpy() > cap
+    drop = np.zeros(len(finds), bool)
+    drop[np.flatnonzero(mine)[over]] = True
+    return finds[~drop]
 
 
 def strata(finds, species, features, rng, max_cases=MAX_CASES, background_all=True):
@@ -89,7 +109,8 @@ def strata(finds, species, features, rng, max_cases=MAX_CASES, background_all=Tr
     return values[np.clip(rows, 0, None)], rows >= 0, cases[keep], rows
 
 
-def held_out_years(species, score, at, years, weeks, sites, finds, features, place_score=None, seed=291) -> dict:
+def held_out_years(species, score, at, years, weeks, sites, finds, features, place_score=None, seed=291,
+                   block_cap=None) -> dict:
     """The factor tested on the training table's held-out years, for where 2026 is too thin to
     test it (bronze bolete in South Europe: 26 finds; spring species have no summer strata). For
     each year a model trained on the other years' finds, and each of that year's finds ranked with
@@ -97,7 +118,8 @@ def held_out_years(species, score, at, years, weeks, sites, finds, features, pla
     fit_fruiting_parts.control_sets) on the full score ([case] values), and among the places other
     fungi were found within +-WINDOW_DAYS (strata) on place_score(sites, dates), the score's place
     parts on the find's day (the training table has no weather there). Each change is pooled over
-    the years, its 95% CI resampling whole weeks."""
+    the years, its 95% CI resampling whole weeks. block_cap thins the training years' finds as
+    --block-cap does; every held-out find is still tested."""
     from fit_fruiting_parts import place_ranks, week_ci
     rng = np.random.default_rng(seed)
     index = pd.Series(np.arange(len(features)), index=features["Location_Id"].to_numpy())
@@ -111,13 +133,14 @@ def held_out_years(species, score, at, years, weeks, sites, finds, features, pla
     test_year = years[at[:, 0]]
     for year in np.unique(test_year):
         in_year = finds["Date"].dt.year == year
-        x, mask, *_ = strata(finds[~in_year], species, features, rng)
+        trained = capped(finds[~in_year], species, features, block_cap)
+        x, mask, *_ = strata(trained, species, features, rng)
         if len(x) < MIN_CASES:
             continue
         held = rng.random(len(x)) < 0.15
         model = gbm.fit(x[~held], mask[~held], rounds=1000, params=PARAMS, valid=(x[held], mask[held]))
         eta = model.predict(values, num_iteration=model.best_iteration, raw_score=True)
-        own = index.reindex(finds.loc[~in_year & (finds["species"] == species), "Location_Id"]).dropna().astype(int)
+        own = index.reindex(trained.loc[trained["species"] == species, "Location_Id"]).dropna().astype(int)
         h = factor(eta, float(np.quantile(eta[own.to_numpy()], REFERENCE_QUANTILE)), mapped)
         rows = test_year == year
         change[rows] = place_ranks(score * np.where(listed, h[position], 1.0), at[rows]) - before[rows]
@@ -173,7 +196,7 @@ def with_years(table: pd.DataFrame, out: Path) -> pd.DataFrame:
 
 def from_models(table, finds, out):
     """The shipped factors from habitat_models/, each region's on its own places and then its
-    neighbour's; the reference stays the region's own training finds."""
+    neighbour's; the reference stays the region's own training finds (capped as trained)."""
     factors, ids_by_region = {}, {}
     train = finds[finds["Date"].dt.year < TEST_YEAR]
     for region, rows in table[table["ships"]].groupby("region"):
@@ -183,10 +206,12 @@ def from_models(table, finds, out):
         features = pd.concat([own, other[~other["Location_Id"].isin(own["Location_Id"])]], ignore_index=True)
         ids_by_region[region] = features["Location_Id"].to_numpy()
         where = pd.Series(np.arange(len(own)), index=own["Location_Id"].to_numpy())
-        for species in rows["species"]:
+        caps = rows["block_cap"] if "block_cap" in rows else pd.Series(np.nan, index=rows.index)
+        for species, cap in zip(rows["species"], caps):
             model = lgb.Booster(model_file=str(out / "habitat_models" / f"{species}_{region}.txt"))
             eta_all = model.predict(features[cols].to_numpy(np.float32), raw_score=True)
-            at = where.reindex(train.loc[(train["species"] == species) & (train["region"] == region), "Location_Id"]).dropna().astype(int)
+            trained = capped(train[train["region"] == region], species, own, int(cap) if pd.notna(cap) else None)
+            at = where.reindex(trained.loc[trained["species"] == species, "Location_Id"]).dropna().astype(int)
             factors[(species, region)] = factor(eta_all, float(np.quantile(eta_all[at.to_numpy()], REFERENCE_QUANTILE)),
                                                  features["tree_map"].to_numpy(bool))
     return factors, ids_by_region
@@ -260,6 +285,8 @@ def main() -> None:
                         help="train only this species, added after the finds table was built; with --export its "
                              "factors join the shipped files, every other factor in them unchanged")
     parser.add_argument("--regions", nargs="+", default=list(NEIGHBOUR), help="the regions to train in")
+    parser.add_argument("--block-cap", type=int,
+                        help="train on at most this many of each species' finds per block (capped); kept in the results")
     args = parser.parse_args()
     out = Path(args.out)
     rng = np.random.default_rng(291)
@@ -287,20 +314,21 @@ def main() -> None:
         here = finds[finds["region"] == region]
         train, test = here[here["Date"].dt.year < TEST_YEAR], here[here["Date"].dt.year == TEST_YEAR]
         for species in [args.add] if args.add else sorted(set(here["species"]) - {PLACEBO}):
-            x, mask, *_ = strata(train, species, features, rng)
+            trained = capped(train, species, features, args.block_cap)
+            x, mask, *_ = strata(trained, species, features, rng)
             if len(x) < MIN_CASES:
                 continue
             held = rng.random(len(x)) < 0.15
             model = gbm.fit(x[~held], mask[~held], rounds=1000, params=PARAMS, valid=(x[held], mask[held]))
             tx, tmask, *_ = strata(test, species, features, rng)
             entry = {"species": species, "region": region, "train": len(x), "test_2026": len(tx),
-                     "rounds": model.best_iteration}
+                     "rounds": model.best_iteration, "block_cap": args.block_cap}
             if len(tx) >= 30:
                 entry["habitat_2026"] = round(float(find_day_rank(gbm.predict(model, tx, model.best_iteration), tmask).mean()), 3)
             model.save_model(str(out / "habitat_models" / f"{species}_{region}.txt"), num_iteration=model.best_iteration)
             eta_all = model.predict(features[cols].to_numpy(np.float32), num_iteration=model.best_iteration, raw_score=True)
             at = pd.Series(np.arange(len(features)), index=features["Location_Id"].to_numpy()).reindex(
-                train.loc[train["species"] == species, "Location_Id"]).dropna().astype(int).to_numpy()
+                trained.loc[trained["species"] == species, "Location_Id"]).dropna().astype(int).to_numpy()
             reference = float(np.quantile(eta_all[at], REFERENCE_QUANTILE))
             for label, summer in summers.items():
                 g = summer[(summer["species"] == species) & (summer["region"] == region)]

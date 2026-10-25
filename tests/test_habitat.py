@@ -86,6 +86,22 @@ def test_an_added_species_joins_the_shipped_file_and_no_other_factor_moves(tmp_p
         add(["A", "C"])
 
 
+def test_the_cap_thins_only_crowded_blocks_and_picks_the_same_finds_every_time():
+    from fit_habitat import capped
+    features = pd.DataFrame({"Location_Id": ["NL", "UK", "DK"], "Latitude": [52.1, 51.0, 52.5],
+                             "Longitude": [5.1, -1.0, 5.9]})          # NL and DK share the 52N 4E block
+    days = pd.date_range("2020-09-01", periods=10)
+    finds = pd.concat([pd.DataFrame({"species": "bay", "Location_Id": place, "Date": days[:n]})
+                       for place, n in (("NL", 10), ("UK", 3), ("DK", 4))]
+                      + [pd.DataFrame({"species": "other", "Location_Id": "NL", "Date": days})], ignore_index=True)
+    kept = capped(finds, "bay", features, 5)
+    bay = kept[kept["species"] == "bay"]
+    assert len(bay[bay["Location_Id"].isin(["NL", "DK"])]) == 5 and (bay["Location_Id"] == "UK").sum() == 3
+    assert (kept["species"] == "other").sum() == 10
+    assert kept.equals(capped(finds.sample(frac=1, random_state=1), "bay", features, 5).sort_index())
+    assert capped(finds, "bay", features, None) is finds
+
+
 def test_a_region_without_a_file_gets_nothing(tmp_path):
     path, fetch = _write(tmp_path, region="NE")
     params = {"chant": {}}

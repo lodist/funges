@@ -388,6 +388,7 @@ def main() -> None:
     parser.add_argument("--habitat", action="store_true",
                         help="test a habitat factor on held-out years where none ships (fit_habitat.held_out_years)")
     parser.add_argument("--species", help="only this species, its results in <the csv>_<species>.csv")
+    parser.add_argument("--block-cap", type=int, help="--habitat: train on at most this many finds per block (fit_habitat.capped)")
     args = parser.parse_args()
     out = Path(args.out)
     name = "habitat_years" if args.habitat else "temperature_fruiting" if args.temperature else "optima_fruiting" if args.optima else "parts_fruiting"
@@ -476,7 +477,8 @@ def main() -> None:
                         species, own, specs[region][1], s, d, base, statics[CONTINENT[region]]))
 
                 fit = held_out_years(species, full_score(index[:, 0], today, wind[:, 0], place), at, years, weeks,
-                                     sites_all[here], *habitat[region], place_score) if len(at) >= MIN_POOLED else {}
+                                     sites_all[here], *habitat[region], place_score, block_cap=args.block_cap
+                                     ) if len(at) >= MIN_POOLED else {}
                 if fit:
                     rows.append({"species": species, "region": region, "finds": int(mine.sum()), **fit})
                     print(rows[-1], flush=True)
