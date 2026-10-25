@@ -376,11 +376,9 @@
       "ground": "Helada en el suelo en los próximos 3 días",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "0 L/m²",
+      "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² o más",
-      "later": "Posible helada más adelante esta semana",
-      "none": "Sin helada",
-      "outside": "Sin color: fuera del pronóstico de Huerta"
+      "later": "Posible helada más adelante esta semana"
     },
     "use": "Usar como mi huerto",
     "close": "Cerrar",

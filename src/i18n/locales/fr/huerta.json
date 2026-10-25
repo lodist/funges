@@ -376,11 +376,9 @@
       "ground": "Gelée au sol dans les 3 prochains jours",
       "soilLow": "0 °C",
       "soilHigh": "26 °C",
-      "waterLow": "0 L/m²",
+      "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² ou plus",
-      "later": "Gel possible plus tard dans la semaine",
-      "none": "Pas de gel",
-      "outside": "Sans couleur : hors des prévisions de Huerta"
+      "later": "Gel possible plus tard dans la semaine"
     },
     "use": "En faire mon potager",
     "close": "Fermer",
