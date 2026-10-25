@@ -126,6 +126,30 @@ def test_prune_deletes_old_files_and_empty_folders(tmp_path):
     assert not (tmp_path / "a").exists() and new.exists()
 
 
+def test_upload_sends_every_past_day_then_keeps_only_the_newest(tmp_path, monkeypatch):
+    import r2
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    for day in ("2026-10-20", "2026-10-21", "2026-10-22"):
+        (past / f"{day}.parquet").write_bytes(b"x")
+    monkeypatch.setattr(hw, "OUT_DIR", tmp_path)
+    monkeypatch.setenv("R2_BUCKET_NAME", "bucket")
+
+    class Failing:
+        def upload_file(self, *args):
+            raise ConnectionError
+    monkeypatch.setattr(r2, "client", Failing)
+    with pytest.raises(ConnectionError):
+        hw.upload(tmp_path / "SE")
+    assert len(list(past.iterdir())) == 3          # nothing deleted before R2 has it
+
+    sent = []
+    monkeypatch.setattr(r2, "client", lambda: type("S3", (), {"upload_file": lambda self, *a: sent.append(a[2])})())
+    hw.upload(tmp_path / "SE")
+    assert sent == [f"hourly_weather/SE/past/{d}.parquet" for d in ("2026-10-20", "2026-10-21", "2026-10-22")]
+    assert [p.name for p in past.iterdir()] == ["2026-10-22.parquet"]
+
+
 def test_newest_run_is_the_newest_complete_one():
     ok = {"1512"}
     source = Source(name="test", cycles=(0, 12), ready=lambda session, init: f"{init:%d%H}" in ok,

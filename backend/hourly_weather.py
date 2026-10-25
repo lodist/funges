@@ -7,8 +7,9 @@ it. Passed hours move into daily past files, so an hourly history builds up from
 night: the short-range forecast, as Earth's master keeps its day-0 forecast, until measured
 weather replaces it.
 
-Under HOURLY_WEATHER_DIR (default app_operation/hourly_weather): <REGION>/forecast/<run>.parquet
-(30 days here, for good on R2 under hourly_weather/) and <REGION>/past/<YYYY-MM-DD>.parquet.
+Under HOURLY_WEATHER_DIR (default app_operation/hourly_weather): <REGION>/forecast/<run>.parquet,
+only the newest, which the next night rolls into the past, and <REGION>/past/<YYYY-MM-DD>.parquet,
+each hour at each point once, kept for good on R2 under hourly_weather/ and here only the newest day.
 Downloads stay two days in cache/, so a continent's second region reads the first one's.
 """
 from __future__ import annotations
@@ -36,7 +37,7 @@ VARS = ("t2m_c", "td2m_c", "precip_mm", "wind10_kmh", "swdown_wm2", "cloud_pct",
 DECIMALS = {"t2m_c": 1, "td2m_c": 1, "precip_mm": 2, "wind10_kmh": 1, "swdown_wm2": 0, "cloud_pct": 0,
             "soil_c": 1}
 OUT_DIR = Path(os.getenv("HOURLY_WEATHER_DIR") or Path(__file__).resolve().parents[2] / "hourly_weather")
-KEEP_FORECAST_DAYS, KEEP_CACHE_DAYS = 30, 2
+KEEP_CACHE_DAYS = 2
 MAX_GAP = 6  # hours: the longest stretch between two steps we bridge; past it, the next model
 # A region's whole run. The regions score back to back and the scores upload at 04:10, so a
 # server that hangs must cost one night's hourly file, never the other regions' scores.
@@ -270,16 +271,18 @@ def read_source(source, init, last, lats, lons, session, deadline):
     return fields
 
 
-def upload(region_dir, days=2):
-    """Copy the region's files written in the last `days` to R2 under hourly_weather/, as
-    they lie under OUT_DIR: a night whose upload failed goes again the next night."""
+def upload(region_dir):
+    """Copy the region's past days to R2 under hourly_weather/, as they lie under OUT_DIR, then
+    keep here only the newest, which roll_past reads and adds to. A failed upload raises before
+    anything is deleted, so those days go again the next night."""
     import r2
     s3 = r2.client()  # loads .env.secret, which holds the bucket name
-    cutoff = time.time() - days * 86400
-    for path in Path(region_dir).rglob("*.parquet"):
-        if path.stat().st_mtime >= cutoff:
-            s3.upload_file(str(path), os.environ["R2_BUCKET_NAME"],
-                           f"hourly_weather/{path.relative_to(OUT_DIR).as_posix()}")
+    days = sorted((Path(region_dir) / "past").glob("*.parquet"))
+    for path in days:
+        s3.upload_file(str(path), os.environ["R2_BUCKET_NAME"],
+                       f"hourly_weather/{path.relative_to(OUT_DIR).as_posix()}")
+    for path in days[:-1]:
+        path.unlink()
 
 
 def summary(frame, seconds):
@@ -337,9 +340,11 @@ def run(region, points, now=None):
     if frame["t2m_c"].isna().all():
         raise RuntimeError("no temperature at any point: nothing written")
     region_dir = OUT_DIR / region
-    write_night(region_dir, frame, start)
+    tonight = write_night(region_dir, frame, start)
     roll_past(region_dir, start)
-    prune(region_dir / "forecast", KEEP_FORECAST_DAYS)
+    for path in (region_dir / "forecast").glob("*.parquet"):
+        if path != tonight:  # only the newest is read again; older runs repeat its hours
+            path.unlink()
     upload(region_dir)
     summary(frame, time.time() - started)
     return frame
