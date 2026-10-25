@@ -2,10 +2,12 @@
 """The season atlas: how each mushroom's season plays out in a country, a US state or a continent.
 
 Each place gets its 12-month curve: the shipped local season grid (build_local_season.py)
-averaged over the place's cells, each cell weighted by the species' GBIF records there, so the
-curve says when people find it in that place. A species shows in a place only with at least
-MIN_RECORDS records there in 2010-2026, the season grid's own shipping bar; with fewer, the
-curve comes mostly from similar climates elsewhere. Outlines come from Natural Earth.
+averaged over the place's area, so the curve and its sentences say what the place's map shows.
+(Weighting by GBIF records said "porcini peak in Italy in August" because Italy's records sit
+in the Alps, while most of the country's map is at its peak in September.) A species shows in a
+place only with at least MIN_RECORDS records there in 2010-2026, the season grid's own shipping
+bar; with fewer, the curve comes mostly from similar climates elsewhere. Outlines come from
+Natural Earth.
 
 Run it after every season grid export; it ships generated/season_atlas.json to R2 (commit
 on_r2.json). The deploy renders the site's maps from it (scripts/build_season_atlas_site.py).
@@ -91,7 +93,7 @@ def block_counts(counts, shape_out):
 
 
 def place_curve(ratio, weights, mask):
-    """The record-weighted mean of the cells' season ratio by month, scaled to peak at 1."""
+    """The weighted mean of the cells' season ratio by month, scaled to peak at 1."""
     valid = (ratio != 255) & mask[None]
     w = np.where(valid, weights[None], 0.0)
     curve = (np.where(valid, ratio, 0) * w).sum(axis=(1, 2)) / np.maximum(w.sum(axis=(1, 2)), 1e-9)
@@ -119,18 +121,19 @@ def build(grids, counts, regions, bounds=None, min_records=MIN_RECORDS):
         frame = box(*(bounds or {}).get(code, grid_bounds(g)))
         mine = [r for r in regions if r["continent"] == code and r["geom"].intersects(frame)]
         owner = cell_regions(g["lat"], g["lon"], mine)
-        weights = {sp: block_counts(counts[code][sp], owner.shape) for sp in g["species"]}
-        everywhere = np.ones(owner.shape, bool)
-        out["continents"][code] = {sp: {"records": int(weights[sp].sum()),
-                                        "curve": place_curve(g["ratio"][k], weights[sp], everywhere)}
+        records = {sp: block_counts(counts[code][sp], owner.shape) for sp in g["species"]}
+        area = np.repeat(np.cos(np.radians(g["lat"]))[:, None], len(g["lon"]), axis=1)  # a cell's true area
+        land = owner >= 0  # the grid also has values over the sea
+        out["continents"][code] = {sp: {"records": int(records[sp].sum()),
+                                        "curve": place_curve(g["ratio"][k], area, land)}
                                    for k, sp in enumerate(g["species"])}
         for idx, r in enumerate(mine):
             mask = owner == idx
             species = {}
             for k, sp in enumerate(g["species"]):
-                records = int(weights[sp][mask].sum())
-                if records >= min_records:
-                    species[sp] = {"records": records, "curve": place_curve(g["ratio"][k], weights[sp], mask)}
+                n = int(records[sp][mask].sum())
+                if n >= min_records:
+                    species[sp] = {"records": n, "curve": place_curve(g["ratio"][k], area, mask)}
             inside = r["geom"].intersection(frame).area / max(r["geom"].area, 1e-12)
             clipped = r["geom"].intersection(frame).simplify(SIMPLIFY, preserve_topology=True)
             out["regions"].append({

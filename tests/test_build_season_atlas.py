@@ -61,6 +61,15 @@ def test_a_species_needs_the_record_bar_in_a_place():
     assert atlas["grids"]["EU"] == {"file": "models/x/local_season_EU.npz", "sha256": "abc"}
 
 
+def test_the_place_curve_is_what_the_map_shows_not_where_finds_are():
+    # Italy: the records sit in the Alps (August), most of the map peaks in September.
+    grids, counts, regions = _grid(1000)            # every record in the south-west cell
+    grids["EU"]["ratio"][0, 8, 0, 0] = 0            # the north-west cell peaks in October
+    grids["EU"]["ratio"][0, 9, 0, 0] = 254
+    curve = sa.build(grids, counts, regions, bounds={"EU": (0, 0, 2, 2)})["regions"][0]["species"]["mushroom"]["curve"]
+    assert curve[8] == pytest.approx(curve[9], abs=0.01)
+
+
 def test_a_region_mostly_outside_the_grid_is_no_place():
     grids, counts, regions = _grid(1000)
     regions[0]["geom"] = box(-3, 0, 1, 2)   # a quarter inside
