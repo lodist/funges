@@ -4,10 +4,10 @@
 Each place gets its 12-month curve: the shipped local season grid (build_local_season.py)
 averaged over the place's area, so the curve and its sentences say what the place's map shows.
 (Weighting by GBIF records said "porcini peak in Italy in August" because Italy's records sit
-in the Alps, while most of the country's map is at its peak in September.) A species shows in a
-place only with at least MIN_RECORDS records there in 2010-2026, the season grid's own shipping
-bar; with fewer, the curve comes mostly from similar climates elsewhere. Outlines come from
-Natural Earth.
+in the Alps, while most of the country's map is at its peak in September.) Every place lists
+every species of its continent's grid, as the continent map shows them, with its GBIF records
+there in 2010-2026: the page says when they are few, since the curve then leans on similar
+climates elsewhere. Outlines come from Natural Earth.
 
 Run it after every season grid export; it ships generated/season_atlas.json to R2 (commit
 on_r2.json). The deploy renders the site's maps from it (scripts/build_season_atlas_site.py).
@@ -36,7 +36,7 @@ import r2  # noqa: E402
 APP = _TOOLS.parents[2]
 GENERATED = _TOOLS.parent / "generated"
 PERIODS = ("2010-2019", "2020-2026")  # build_local_season's cache files, summed
-MIN_RECORDS = 150
+SOLID_RECORDS = 150  # the season grid's own shipping bar: a local curve, not a borrowed one
 INSIDE_SHARE = 0.5  # a region at least this much inside the grid is a place (drops Russia)
 SIMPLIFY = 0.01  # degrees
 NATURAL_EARTH = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/{}.geojson"
@@ -112,10 +112,10 @@ def grid_bounds(g):
             float(g["lon"][-1] + d_lon / 2), float(g["lat"][0] + d_lat / 2))
 
 
-def build(grids, counts, regions, bounds=None, min_records=MIN_RECORDS):
+def build(grids, counts, regions, bounds=None):
     """grids: {code: {lat, lon, species, ratio, file, sha256}}; counts: {code: {species: cache
     counts}}; regions: load_regions(). -> the season_atlas.json payload."""
-    out = {"min_records": min_records, "grids": {}, "regions": [], "continents": {}}
+    out = {"solid_records": SOLID_RECORDS, "grids": {}, "regions": [], "continents": {}}
     for code, g in grids.items():
         out["grids"][code] = {"file": g["file"], "sha256": g["sha256"]}
         frame = box(*(bounds or {}).get(code, grid_bounds(g)))
@@ -129,11 +129,8 @@ def build(grids, counts, regions, bounds=None, min_records=MIN_RECORDS):
                                    for k, sp in enumerate(g["species"])}
         for idx, r in enumerate(mine):
             mask = owner == idx
-            species = {}
-            for k, sp in enumerate(g["species"]):
-                n = int(records[sp][mask].sum())
-                if n >= min_records:
-                    species[sp] = {"records": n, "curve": place_curve(g["ratio"][k], area, mask)}
+            species = {sp: {"records": int(records[sp][mask].sum()), "curve": place_curve(g["ratio"][k], area, mask)}
+                       for k, sp in enumerate(g["species"])} if mask.any() else {}
             inside = r["geom"].intersection(frame).area / max(r["geom"].area, 1e-12)
             clipped = r["geom"].intersection(frame).simplify(SIMPLIFY, preserve_topology=True)
             out["regions"].append({

@@ -377,7 +377,9 @@
       "forecast": "See today's forecast",
       "unavailable": "The season atlas is not available right now. Try again later.",
       "notFound": "We have no season map for this place yet.",
-      "openEurope": "Open Europe"
+      "openEurope": "Open Europe",
+      "fewRecords": "Few local records here ({{formatted}} since 2010), so the season leans on places with a similar climate.",
+      "rareRecords": "Hardly ever recorded here, so the season shown is that of places with a similar climate."
     }
   },
   "theme": {
