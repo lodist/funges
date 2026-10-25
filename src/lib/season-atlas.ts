@@ -40,19 +40,18 @@ export interface AtlasPlace extends Omit<AtlasPlaceSummary, 'species'> {
 export const ATLAS_BASE = `${import.meta.env.BASE_URL}season-atlas/`;
 
 /**
- * Nothing to the local peak: dark teal lit up to near-white, the same in both themes, so the
- * season glows like the dark map. Mirrors TEAL in build_season_atlas_site.py.
+ * Nothing to the local peak: the brand green's steps, --happy-900 (the band) up to --happy-50,
+ * the same in both themes. Literals because the canvas and the baked frames need them; mirrors
+ * RAMP in build_season_atlas_site.py.
  */
-export const ATLAS_TEAL = [
-  '#082a24',
-  '#0e4037',
-  '#165c4d',
-  '#237a65',
-  '#3a9a7f',
-  '#5fb99c',
-  '#8fd6bb',
-  '#bfe8da',
-  '#e3f4ee',
+export const ATLAS_RAMP = [
+  '#00280b', // --happy-900
+  '#005e25', // --happy-700
+  '#00ac4e', // --happy-600
+  '#47c86e', // --happy-500
+  '#93e4a4', // --happy-300
+  '#ccf4d3', // --happy-100
+  '#e8fbeb', // --happy-50
 ];
 
 /** Mid-month days of year, as the scoring's season blend uses them. */

@@ -32,8 +32,8 @@ def test_frames_stack_the_months_and_light_up_the_peak():
     ratio[0, 0, 0] = 255
     frames = site.sprite(ratio)
     assert frames.shape == (24, 3, 4)
-    assert tuple(frames[16, 0, :3]) == site.hex_rgb("#e3f4ee")   # September, the peak: near-white
-    assert tuple(frames[0, 1, :3]) == site.hex_rgb("#082a24")    # January, nothing: dark teal
+    assert tuple(frames[16, 0, :3]) == site.hex_rgb("#e8fbeb")   # September, the peak: mint (--happy-50)
+    assert tuple(frames[0, 1, :3]) == site.hex_rgb("#00280b")    # January, nothing: the band (--happy-900)
     assert frames[0, 0, 3] == 0 and frames[0, 1, 3] == 255        # no curve: transparent
 
 
