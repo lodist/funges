@@ -527,8 +527,8 @@
    (2026-10-19). The green scale's roles at nearly its lightness steps. 700 on
    paper 7.73:1; the 900 label on the 600 fill 4.77:1, on the hover fill
    5.39:1. The band is lighter than the deepest step, which stays dark for
-   labels on fills and the tooltip: 50 on the band 5.96:1, the 100 ring on it
-   5.08:1, a 300 chip 3.78:1. */
+   labels on fills and the tooltip: 50 on the band 8.55:1, the 100 ring on it
+   7.3:1, a 300 chip 5.43:1. */
 [data-space='huerta'] {
   --happy-50: oklch(0.959 0.02 40); /* #fdeee6 */
   --happy-100: oklch(0.908 0.042 40); /* #f9d9c9 */
@@ -537,7 +537,7 @@
   --happy-600: oklch(0.649 0.151 40); /* #d96a40 — hover/pressed, fill only */
   --happy-700: oklch(0.444 0.123 40); /* #8a3518 — readable text/icon */
   --happy-900: oklch(0.247 0.068 40); /* #3b1206 — deep */
-  --band: oklch(0.486 0.13 40); /* #9a3f1f */
+  --band: oklch(0.4 0.115 40); /* #782c0c, darker terracotta (2026-10-25) */
   --band-foreground: var(--happy-50);
   --primary-hover: oklch(0.679 0.142 40); /* #e07650 */
   --secondary: oklch(0.965 0.013 40); /* #fbf1ec */

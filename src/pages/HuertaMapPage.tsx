@@ -400,7 +400,7 @@ export default function HuertaMapPage() {
     const m = map.current;
     marker.current?.remove();
     if (!picked || !m) return;
-    marker.current = new maplibregl.Marker({ color: '#9a3f1f' })
+    marker.current = new maplibregl.Marker({ color: '#782c0c' })
       .setLngLat([picked.place.lon, picked.place.lat])
       .addTo(m);
     if (picked.advice !== undefined || !huertaApiConfigured) return;
