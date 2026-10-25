@@ -364,9 +364,9 @@
     "place": "Rund um {{place}}",
     "layers": {
       "crop": "Jetzt säen oder pflanzen",
-      "frost": "Frost diese Woche",
+      "frost": "Frost und kalte Nächte",
       "soil": "Bodentemperatur",
-      "water": "Gießbedarf diese Woche"
+      "water": "Wasser diese Woche"
     },
     "legend": {
       "now": "Jetzt säen oder pflanzen",
@@ -378,7 +378,13 @@
       "soilHigh": "26 °C",
       "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² oder mehr",
-      "later": "Später in der Woche Frost möglich"
+      "later": "Später in der Woche Frost möglich",
+      "cold": "Kälteste Nacht, nächste 7 Tage",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Regen gegen Sonne und Wind, nächste 7 Tage",
+      "balanceLow": "Gießen nötig",
+      "balanceHigh": "Regen reicht"
     },
     "use": "Als meinen Garten nehmen",
     "close": "Schließen",

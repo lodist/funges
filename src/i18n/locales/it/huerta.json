@@ -364,9 +364,9 @@
     "place": "A {{place}}",
     "layers": {
       "crop": "Semina o pianta ora",
-      "frost": "Gelate questa settimana",
+      "frost": "Gelate e notti fredde",
       "soil": "Temperatura del terreno",
-      "water": "Acqua da dare questa settimana"
+      "water": "Acqua questa settimana"
     },
     "legend": {
       "now": "Semina o pianta ora",
@@ -378,7 +378,13 @@
       "soilHigh": "26 °C",
       "waterLow": "1 L/m²",
       "waterHigh": "35 L/m² o più",
-      "later": "Possibile gelata più avanti in settimana"
+      "later": "Possibile gelata più avanti in settimana",
+      "cold": "Notte più fredda, prossimi 7 giorni",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Pioggia contro sole e vento, prossimi 7 giorni",
+      "balanceLow": "Da annaffiare",
+      "balanceHigh": "Pioggia in eccesso"
     },
     "use": "Usa come il mio orto",
     "close": "Chiudi",
