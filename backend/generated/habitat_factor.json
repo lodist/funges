@@ -27,9 +27,10 @@
    ]
   },
   "SE": {
-   "file": "models/habitat/20261022-1124/habitat_SE.npz",
-   "sha256": "76138e81f509b6618930d2637386095377ce4f7f70abde3ed5dbef4ec5615c56",
+   "file": "models/habitat/20261025-1221/habitat_SE.npz",
+   "sha256": "c3c4dd58a295f8805dec7ba2831e2eba7948a05e5fcce87b377099d0ffc87c7c",
    "species": [
+    "bay_bolete",
     "black_chant",
     "bronze_bolete",
     "chant",

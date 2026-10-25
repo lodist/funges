@@ -5,6 +5,7 @@ import json
 
 import numpy as np
 import pandas as pd
+import pytest
 
 import forecast_pipeline as fp
 from range_prior import habitat_values, range_prior_for_species
@@ -52,6 +53,37 @@ def test_a_file_that_fails_its_checksum_leaves_scores_without_it(tmp_path, capsy
     params = {"chant": {}}
     fp.attach_habitat(params, "SE", path, fetch)
     assert "habitat" not in params["chant"] and "without it" in capsys.readouterr().out
+
+
+def test_an_added_species_joins_the_shipped_file_and_no_other_factor_moves(tmp_path, monkeypatch):
+    import fit_habitat as fh
+    uploaded = {}
+
+    class R2:
+        get_required_env = staticmethod(lambda name: "bucket")
+
+        @staticmethod
+        def _r2_client():
+            class Client:
+                def put_object(self, Bucket, Key, Body, ContentType):
+                    uploaded[Key] = Body
+            return Client()
+
+    def add(ids):
+        path, R2.r2_fetch = _write(tmp_path)
+        monkeypatch.setattr(fh, "SHIPPED", path)
+        monkeypatch.setattr(fh, "r2_folder", lambda: (R2, "models/habitat/new"))
+        fh.add_to_shipped("bay_bolete", {("bay_bolete", "SE"): np.array([0.5, 1.0])}, {"SE": np.array(ids)})
+        return json.loads(path.read_text())["regions"]["SE"]
+
+    entry = add(["A", "B"])
+    with np.load(io.BytesIO(uploaded[entry["file"]])) as z:
+        columns = {str(s): z["factor"][:, k].tolist() for k, s in enumerate(z["species"])}
+    assert entry["species"] == ["bay_bolete", "chant", "parasol"]
+    assert entry["sha256"] == hashlib.sha256(uploaded[entry["file"]]).hexdigest()
+    assert columns == {"bay_bolete": [128, 255], "chant": [128, 255], "parasol": [255, 64]}
+    with pytest.raises(AssertionError, match="places changed"):
+        add(["A", "C"])
 
 
 def test_a_region_without_a_file_gets_nothing(tmp_path):

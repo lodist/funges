@@ -10,9 +10,19 @@ ways: the habitat index alone on every 2026 find, and the full score with and wi
 summer 2026's stored-weather strata (qa_spatial_weights.py --placebo-only).
 
     python backend/tools/fit_habitat.py --out ../era5_training
+
+A species added after the finds table was built (its finds in finds_<species>_supplement.parquet)
+is trained on its own with --add, after its held-out years (fit_fruiting_parts.py --habitat
+--species, as it has no summer 2026 strata). With --export its factors join the shipped files,
+every other species' factor copied as it is:
+
+    python backend/tools/fit_habitat.py --out ../era5_training --add bay_bolete --regions SE --export
 """
 import lightgbm as lgb  # before pandas/pyarrow: see tests/conftest.py
 import argparse
+import hashlib
+import io
+import json
 import sys
 from pathlib import Path
 
@@ -34,6 +44,7 @@ PARAMS = {"num_leaves": 15, "min_data_in_leaf": 100}
 # finds; at the 10th percentile the ranking keeps three quarters of the gain (0.645 -> 0.730).
 STRENGTH, FLOOR, REFERENCE_QUANTILE = 0.5, 0.5, 0.10
 R2_FOLDER = "models/habitat"
+SHIPPED = Path(__file__).resolve().parents[1] / "generated" / "habitat_factor.json"
 # Each region's factor also covers its neighbour's places: the nightly run scores the places
 # across the split with the neighbour's model, habitat too (forecast_pipeline.blend_neighbour_settings).
 NEIGHBOUR = {"NE": "SE", "SE": "NE", "USE": "USW", "USW": "USE"}
@@ -149,11 +160,12 @@ def ships(table: pd.DataFrame) -> pd.Series:
 
 
 def with_years(table: pd.DataFrame, out: Path) -> pd.DataFrame:
-    """The results with the held-out years' test where it ran (fit_fruiting_parts.py --habitat)."""
-    path = out / "habitat_years.csv"
-    if not path.exists():
+    """The results with the held-out years' test where it ran (fit_fruiting_parts.py --habitat; a
+    species added later ran on its own, into habitat_years_<species>.csv)."""
+    paths = [p for p in (out / "habitat_years.csv", *sorted(out.glob("habitat_years_*.csv"))) if p.exists()]
+    if not paths:
         return table
-    years = pd.read_csv(path)
+    years = pd.concat([pd.read_csv(p) for p in paths]).drop_duplicates(["species", "region"], keep="last")
     names = [c for c in years.columns if c.startswith("years_")]
     return table.drop(columns=names, errors="ignore").merge(years[["species", "region", *names]],
                                                             on=["species", "region"], how="left")
@@ -180,19 +192,52 @@ def from_models(table, finds, out):
     return factors, ids_by_region
 
 
-def export(table, factors, ids_by_region, out) -> None:
-    """Per region one file on R2 (R2_FOLDER/<date>/habitat_<region>.npz: location ids, species,
-    factor x 255 as uint8) and backend/generated/habitat_factor.json naming each with its sha256."""
-    import hashlib
-    import io
-    import json
+def r2_folder():
+    """forecast_pipeline with the R2 credentials loaded, and today's folder for the files."""
     import time
     import forecast_pipeline as fp
     root = Path(__file__).resolve().parents[2]
     fp.load_dotenv(root / ".env")
     fp.load_dotenv(root / ".env.secret")
-    client, bucket = fp._r2_client(), fp.get_required_env("R2_BUCKET_NAME")
-    folder = f"{R2_FOLDER}/{time.strftime('%Y%m%d-%H%M')}"
+    return fp, f"{R2_FOLDER}/{time.strftime('%Y%m%d-%H%M')}"
+
+
+def upload(fp, folder, region, ids, columns: dict) -> dict:
+    """One region's file on R2 (R2_FOLDER/<date>/habitat_<region>.npz: location ids, species,
+    factor x 255 as uint8), and its entry for habitat_factor.json."""
+    species = sorted(columns)
+    buffer = io.BytesIO()
+    np.savez_compressed(buffer, ids=ids.astype(str), species=np.array(species),
+                        factor=np.column_stack([columns[s] for s in species]))
+    data = buffer.getvalue()
+    key = f"{folder}/habitat_{region}.npz"
+    fp._r2_client().put_object(Bucket=fp.get_required_env("R2_BUCKET_NAME"), Key=key, Body=data,
+                               ContentType="application/octet-stream")
+    print(f"uploaded {key}: {len(species)} species, {len(data) / 1e6:.1f} MB", flush=True)
+    return {"file": key, "sha256": hashlib.sha256(data).hexdigest(), "species": species}
+
+
+def add_to_shipped(species, factors, ids_by_region) -> None:
+    """--add: the species' factors join the shipped region files. Every other column is copied as it
+    is, so no other species' factor moves; a file listing other places than today's is refused."""
+    fp, folder = r2_folder()
+    spec = json.loads(SHIPPED.read_text(encoding="utf-8"))
+    for region, ids in ids_by_region.items():
+        entry = spec["regions"][region]
+        data = fp.r2_fetch(entry["file"])
+        assert hashlib.sha256(data).hexdigest() == entry["sha256"], f"{entry['file']} is not the file shipped"
+        with np.load(io.BytesIO(data)) as z:
+            assert np.array_equal(z["ids"], ids.astype(str)), f"{region}: the places changed since {entry['file']}"
+            columns = dict(zip((str(s) for s in z["species"]), z["factor"].T))
+        columns[species] = np.rint(factors[(species, region)] * 255).astype(np.uint8)
+        spec["regions"][region] = upload(fp, folder, region, ids, columns)
+    SHIPPED.write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
+
+
+def export(table, factors, ids_by_region, out) -> None:
+    """Per region one file on R2 (upload) and backend/generated/habitat_factor.json naming each
+    with its sha256."""
+    fp, folder = r2_folder()
     spec = {"strength": STRENGTH, "floor": FLOOR, "reference_quantile": REFERENCE_QUANTILE,
             "trained": f"2016-{TEST_YEAR - 1}",
             "shipped_if": "score x habitat ranks held-out finds better than the score alone: on the training table's "
@@ -201,17 +246,9 @@ def export(table, factors, ids_by_region, out) -> None:
                           "the places searched that week (other fungi's finds), and no worse against bracket fungi",
             "regions": {}}
     for region, rows in table[table["ships"]].groupby("region"):
-        species = sorted(rows["species"])
-        matrix = np.column_stack([np.rint(factors[(s, region)] * 255) for s in species]).astype(np.uint8)
-        buffer = io.BytesIO()
-        np.savez_compressed(buffer, ids=ids_by_region[region].astype(str), species=np.array(species), factor=matrix)
-        data = buffer.getvalue()
-        key = f"{folder}/habitat_{region}.npz"
-        client.put_object(Bucket=bucket, Key=key, Body=data, ContentType="application/octet-stream")
-        spec["regions"][region] = {"file": key, "sha256": hashlib.sha256(data).hexdigest(), "species": species}
-        print(f"uploaded {key}: {len(species)} species, {len(data) / 1e6:.1f} MB", flush=True)
-    (root / "backend" / "generated" / "habitat_factor.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8",
-                                                                       newline="\n")
+        spec["regions"][region] = upload(fp, folder, region, ids_by_region[region],
+                                         {s: np.rint(factors[(s, region)] * 255).astype(np.uint8) for s in rows["species"]})
+    SHIPPED.write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
 
 
 def main() -> None:
@@ -219,10 +256,19 @@ def main() -> None:
     parser.add_argument("--out", required=True)
     parser.add_argument("--export", action="store_true", help="upload the shipped factors, write backend/generated/habitat_factor.json")
     parser.add_argument("--reuse", action="store_true", help="factors from habitat_models/ and habitat_result.csv, no training")
+    parser.add_argument("--add", metavar="SPECIES",
+                        help="train only this species, added after the finds table was built; with --export its "
+                             "factors join the shipped files, every other factor in them unchanged")
+    parser.add_argument("--regions", nargs="+", default=list(NEIGHBOUR), help="the regions to train in")
     args = parser.parse_args()
     out = Path(args.out)
     rng = np.random.default_rng(291)
     finds = pd.read_parquet(out / "finds_2016_2026.parquet")
+    # A species added after the table was built brings its finds, here and in every later run that
+    # trains or exports it (they set its reference).
+    listed = pd.read_csv(out / "habitat_result.csv")["species"] if (out / "habitat_result.csv").exists() else []
+    added = sorted({*listed, *([args.add] if args.add else [])} - set(finds["species"]))
+    finds = pd.concat([finds, *(pd.read_parquet(out / f"finds_{s}_supplement.parquet") for s in added)], ignore_index=True)
     finds["Date"] = pd.to_datetime(finds["Date"])
     if args.reuse:
         table = with_years(pd.read_csv(out / "habitat_result.csv"), out)
@@ -235,12 +281,12 @@ def main() -> None:
                "all": pd.read_parquet(out / "spatial" / "spatial_strata.parquet")}
     (out / "habitat_models").mkdir(exist_ok=True)
     results = []
-    for region in ("NE", "SE", "USE", "USW"):
+    for region in args.regions:
         features = pd.read_parquet(out / f"habitat_features_{region}.parquet")
         cols = columns(features)
         here = finds[finds["region"] == region]
         train, test = here[here["Date"].dt.year < TEST_YEAR], here[here["Date"].dt.year == TEST_YEAR]
-        for species in sorted(set(here["species"]) - {PLACEBO}):
+        for species in [args.add] if args.add else sorted(set(here["species"]) - {PLACEBO}):
             x, mask, *_ = strata(train, species, features, rng)
             if len(x) < MIN_CASES:
                 continue
@@ -282,8 +328,14 @@ def main() -> None:
             print(entry, flush=True)
     table = with_years(pd.DataFrame(results), out)
     table["ships"] = ships(table)
+    if args.add:
+        old = pd.read_csv(out / "habitat_result.csv")
+        mine = table
+        table = pd.concat([old[~((old["species"] == args.add) & old["region"].isin(args.regions))], mine], ignore_index=True)
     table.to_csv(out / "habitat_result.csv", index=False)
-    if args.export:
+    if args.export and args.add:
+        add_to_shipped(args.add, *from_models(mine, finds, out))
+    elif args.export:
         export(table, *from_models(table, finds, out), out)
     pd.set_option("display.width", 250)
     print(table.drop(columns=["top_features"]).to_string(index=False))
