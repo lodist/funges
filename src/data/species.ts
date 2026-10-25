@@ -27,8 +27,10 @@ export interface SpeciesOption {
   category: Species['category'];
 }
 
-export interface SpeciesWithTranslations
-  extends Omit<Species, 'nameKey' | 'descriptionKey' | 'howToKey'> {
+export interface SpeciesWithTranslations extends Omit<
+  Species,
+  'nameKey' | 'descriptionKey' | 'howToKey'
+> {
   name: string;
   description: string;
   howTo: string;

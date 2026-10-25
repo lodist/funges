@@ -92,8 +92,7 @@ describe('generated theme style completeness', () => {
   it('funges_style_topographic.json additionally styles trail/track paths', () => {
     const style = loadStyle('funges_style_topographic.json');
     const trail = style.layers.find(layer => layer.id === 'trail') as
-      | (StyleLayer & { minzoom?: number })
-      | undefined;
+      (StyleLayer & { minzoom?: number }) | undefined;
     expect(trail).toBeDefined();
     expect(trail?.minzoom).toBeLessThanOrEqual(9);
   });
