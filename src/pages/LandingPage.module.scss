@@ -42,11 +42,13 @@
   }
 }
 
-// 1 — Forest green. --logo turns the red mark cream on the dark block.
+// 1 — The space's band (Terra's forest green, Huerta's terracotta). --logo
+// turns the red mark cream on the dark block.
 .hero {
   --ring: var(--happy-100);
   --logo: var(--happy-50);
-  background: var(--happy-900);
+  position: relative;
+  background: var(--band);
   color: var(--happy-50);
   .textLink {
     color: var(--happy-100);
@@ -300,7 +302,7 @@
   // 4rem below the help links clears the desktop language switcher, which
   // floats 16px off the bottom-right corner.
   padding: clamp(4rem, 8vw, 7rem) var(--page-gutter) 4rem;
-  background: var(--happy-900);
+  background: var(--band);
   color: var(--happy-50);
 }
 .invite {
@@ -335,7 +337,131 @@
   }
 }
 
+// The door to the other space, on the hero's edge on the side it leads to.
+// It carries that space's data-space, so --band here is the other space's.
+.spaceTab {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 2.75rem;
+  padding: 1.25rem 0.625rem;
+  transform: translateY(-50%);
+  border-radius: var(--radius-card) 0 0 var(--radius-card);
+  background: var(--band);
+  box-shadow: 0 0.75rem 2rem -0.5rem rgb(0 0 0 / 0.45);
+  color: var(--band-foreground);
+  transition: padding var(--transition-duration-fast) var(--ease-standard);
+  &:hover {
+    padding-inline: 0.625rem 1rem;
+  }
+  span {
+    writing-mode: vertical-rl;
+  }
+  .spaceName {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .spaceTagline {
+    font-size: 0.875rem;
+    opacity: 0.85;
+  }
+}
+// Terra lies to the left: the tab sits on the left edge and reads upwards.
+.spaceTabLeft {
+  right: auto;
+  left: 0;
+  flex-direction: column-reverse;
+  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  &:hover {
+    padding-inline: 1rem 0.625rem;
+  }
+  span {
+    transform: rotate(180deg);
+  }
+}
+
+// Huerta's week, as the garden page lists it: one job per row.
+.week {
+  max-width: 30rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-card);
+  background: var(--card);
+  box-shadow: 0 1rem 2rem -1rem rgb(0 0 0 / 0.25);
+  color: var(--card-foreground);
+  h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    margin-top: 1rem;
+    list-style: none;
+  }
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.45;
+    svg {
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      color: var(--primary-text);
+    }
+  }
+  strong {
+    display: block;
+    font-weight: 600;
+  }
+  small {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+  }
+}
+
 @media (max-width: 767px) {
+  // A pill in the header, where the hidden text link was: seen at once, and
+  // clear of the full-width words and buttons. It still points the way.
+  .spaceTab,
+  .spaceTabLeft {
+    top: 1.125rem;
+    right: var(--page-gutter);
+    left: auto;
+    flex-direction: row-reverse;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    transform: none;
+    border-radius: 9999px;
+    &:hover {
+      padding-inline: 1rem;
+    }
+    span {
+      writing-mode: horizontal-tb;
+      transform: none;
+    }
+    .spaceName {
+      font-size: 0.9375rem;
+    }
+    .spaceTagline {
+      display: none;
+    }
+  }
+  .spaceTabLeft {
+    flex-direction: row;
+  }
   .page {
     --overlap: 4rem;
   }

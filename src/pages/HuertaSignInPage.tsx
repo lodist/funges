@@ -44,7 +44,7 @@ export default function HuertaSignInPage() {
             size='lg'
             variant='outline'
             className='bg-card'
-            onClick={() => void startSignIn('/huerta')}
+            onClick={() => void startSignIn('/huerta/in-season')}
           >
             <GoogleMark />
             {t('signin.retry')}

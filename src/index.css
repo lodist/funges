@@ -786,3 +786,48 @@
     font-family: var(--font-display);
   }
 }
+
+/* Between the spaces' front pages the page slides the way its tab points
+   (SpaceTab): Huerta comes in from the right, Terra from the left. */
+@keyframes space-out-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes space-in-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes space-out-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes space-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+}
+html:active-view-transition-type(to-huerta)::view-transition-old(root) {
+  animation: var(--transition-duration-slow) var(--ease-standard) both
+    space-out-left;
+}
+html:active-view-transition-type(to-huerta)::view-transition-new(root) {
+  animation: var(--transition-duration-slow) var(--ease-standard) both
+    space-in-right;
+}
+html:active-view-transition-type(to-terra)::view-transition-old(root) {
+  animation: var(--transition-duration-slow) var(--ease-standard) both
+    space-out-right;
+}
+html:active-view-transition-type(to-terra)::view-transition-new(root) {
+  animation: var(--transition-duration-slow) var(--ease-standard) both
+    space-in-left;
+}
+@media (prefers-reduced-motion: reduce) {
+  html::view-transition-old(root),
+  html::view-transition-new(root) {
+    animation: none;
+  }
+}

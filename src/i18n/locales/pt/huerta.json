@@ -686,5 +686,51 @@
     "until": "Até {{month}}",
     "allYear": "O ano todo",
     "allGardens": "Todas as culturas"
+  },
+  "landing": {
+    "headline": "Sua horta, semana a semana",
+    "intro": "O que semear, plantar, regar e colher no seu local, pela previsão desta noite",
+    "headerLink": "O que semear agora",
+    "cta": "Planejar minha horta",
+    "week": {
+      "heading": "Diz o que fazer nesta semana",
+      "body": "Cada tarefa com data para a sua horta: quando semear, quando plantar, quando regar e quando proteger da geada. Marque quando estiver feita",
+      "title": "Nesta semana",
+      "plant": {
+        "job": "Plante o alho",
+        "why": "O solo esfriou para 12 °C, no ponto certo"
+      },
+      "water": {
+        "job": "Regue a alface",
+        "why": "Seis dias sem chuva"
+      },
+      "frost": {
+        "job": "Cubra a acelga na quinta",
+        "why": "Geada provável naquela noite"
+      }
+    },
+    "coverage": "Para hortas na Europa e na América do Norte",
+    "journey": "Da semente ao prato",
+    "plan": {
+      "heading": "Planejar",
+      "body": "Desenhe seus canteiros e receba um plano adequado ao seu local e à estação",
+      "link": "Planejar minha horta"
+    },
+    "plant": {
+      "heading": "Semear e plantar",
+      "body": "Cada cultura quando o seu solo estiver pronto, não quando o pacote diz",
+      "link": "O que semear agora"
+    },
+    "care": {
+      "heading": "Cuidar",
+      "body": "Geada a caminho ou uma semana seca: o mapa mostra para o seu local",
+      "link": "Abrir o mapa da horta"
+    },
+    "harvest": {
+      "heading": "Colher",
+      "body": "Veja quando cada cultura estará pronta, conforme o calor das suas semanas",
+      "link": "Abrir o calendário"
+    },
+    "closing": "Comece sua horta"
   }
 }

@@ -686,5 +686,51 @@
     "until": "Fino a {{month}}",
     "allYear": "Tutto l'anno",
     "allGardens": "Tutte le colture"
+  },
+  "landing": {
+    "headline": "Il tuo orto, settimana per settimana",
+    "intro": "Cosa seminare, piantare, annaffiare e raccogliere nella tua zona, dalle previsioni di stanotte",
+    "headerLink": "Cosa seminare ora",
+    "cta": "Pianifica il mio orto",
+    "week": {
+      "heading": "Ti dice cosa fare questa settimana",
+      "body": "Ogni lavoro con la sua data per il tuo orto: quando seminare, quando piantare, quando annaffiare e quando coprire contro il gelo. Spuntalo quando è fatto",
+      "title": "Questa settimana",
+      "plant": {
+        "job": "Pianta l'aglio",
+        "why": "Il terreno è sceso a 12 °C, proprio giusto"
+      },
+      "water": {
+        "job": "Annaffia la lattuga",
+        "why": "Sei giorni senza pioggia"
+      },
+      "frost": {
+        "job": "Copri le bietole giovedì",
+        "why": "Probabile gelata quella notte"
+      }
+    },
+    "coverage": "Per orti in Europa e Nord America",
+    "journey": "Dal seme al piatto",
+    "plan": {
+      "heading": "Pianifica",
+      "body": "Disegna le tue aiuole e ricevi un piano adatto alla tua zona e alla stagione",
+      "link": "Pianifica il mio orto"
+    },
+    "plant": {
+      "heading": "Semina e pianta",
+      "body": "Ogni coltura quando il tuo terreno è pronto, non quando lo dice la bustina",
+      "link": "Cosa seminare ora"
+    },
+    "care": {
+      "heading": "Cura",
+      "body": "Gelo in arrivo o una settimana secca: la mappa lo mostra per la tua zona",
+      "link": "Apri la mappa dell'orto"
+    },
+    "harvest": {
+      "heading": "Raccolto",
+      "body": "Scopri quando ogni coltura sarà pronta, in base a quanto saranno calde le tue settimane",
+      "link": "Apri il calendario"
+    },
+    "closing": "Inizia il tuo orto"
   }
 }

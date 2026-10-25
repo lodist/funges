@@ -67,10 +67,13 @@ function RootComponent() {
       location.pathname.replace(/\/+$/, '') ===
       `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
   );
-  // The landing page is the other full-bleed route: no sidebar, no padding.
-  const isLandingPage =
-    location.pathname.replace(/\/+$/, '') ===
-    import.meta.env.BASE_URL.replace(/\/+$/, '');
+  // The front pages (Terra's and Huerta's) are the other full-bleed routes: no
+  // sidebar, no padding.
+  const isLandingPage = ['', 'huerta'].some(
+    page =>
+      location.pathname.replace(/\/+$/, '') ===
+      `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
+  );
   const mainRef = useRef<HTMLDivElement>(null);
   const [hideNavbar, setHideNavbar] = useState(false);
   const lastScrollYRef = useRef(0);

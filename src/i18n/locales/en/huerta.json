@@ -686,5 +686,51 @@
     "until": "Until {{month}}",
     "allYear": "All year",
     "allGardens": "All crops"
+  },
+  "landing": {
+    "headline": "Your garden, week by week",
+    "intro": "What to sow, plant, water and pick at your place, from tonight's forecast",
+    "headerLink": "What to sow now",
+    "cta": "Plan my garden",
+    "week": {
+      "heading": "It tells you what to do this week",
+      "body": "Every job dated for your own garden: when to sow, when to plant, when to water and when to cover against frost. Tick it off once it's done",
+      "title": "This week",
+      "plant": {
+        "job": "Plant the garlic",
+        "why": "The soil has cooled to 12 °C, just right"
+      },
+      "water": {
+        "job": "Water the lettuce",
+        "why": "No rain for six days"
+      },
+      "frost": {
+        "job": "Cover the chard on Thursday",
+        "why": "Frost likely that night"
+      }
+    },
+    "coverage": "For gardens across Europe and North America",
+    "journey": "From seed to plate",
+    "plan": {
+      "heading": "Plan",
+      "body": "Draw your beds and get a plan that suits your place and the season",
+      "link": "Plan my garden"
+    },
+    "plant": {
+      "heading": "Sow and plant",
+      "body": "Each crop when your soil is ready for it, not when the packet says",
+      "link": "What to sow now"
+    },
+    "care": {
+      "heading": "Care",
+      "body": "Frost on the way or a dry week ahead: the map shows it for your place",
+      "link": "Open the garden map"
+    },
+    "harvest": {
+      "heading": "Harvest",
+      "body": "See when each crop will be ready, from how warm your weeks turn out",
+      "link": "Open the calendar"
+    },
+    "closing": "Start your garden"
   }
 }

@@ -59,7 +59,7 @@ export default function HuertaYearPage() {
           <p className='text-foreground'>
             {t('year.noPlace')}{' '}
             <Link
-              to='/huerta'
+              to='/huerta/in-season'
               className='font-medium text-primary-text underline underline-offset-4'
             >
               {t('planner.choosePlace')}

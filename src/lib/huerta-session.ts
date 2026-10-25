@@ -130,7 +130,7 @@ export async function finishSignIn(hash: string) {
   const started = pending();
   const here = started?.handoff === handoff;
   if (here) sessionStorage.removeItem(PENDING);
-  return { back: here ? started.back : '/huerta', here };
+  return { back: here ? started.back : '/huerta/in-season', here };
 }
 
 /** Back in view after signing in in another browser view: the session, once. */
