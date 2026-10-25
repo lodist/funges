@@ -94,7 +94,7 @@ interface Palette {
 export const PALETTES: Record<'light' | 'dark', Palette> = {
   light: {
     crop: {
-      now: [200, 79, 122, 205], // raspberry #c84f7a
+      now: [238, 123, 106, 205], // coral #ee7b6a
       wait: [191, 232, 211, 230], // pale mint #bfe8d3
     },
     wash: [236, 234, 228, 110],
@@ -135,7 +135,7 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
   // The ramps turned round: the "nothing" end dark, the most the brightest.
   dark: {
     crop: {
-      now: [240, 128, 168, 205], // raspberry, lighter
+      now: [242, 140, 122, 205], // coral, lighter
       wait: [100, 138, 121, 190], // mint, muted
     },
     wash: [24, 24, 22, 110],
@@ -571,7 +571,9 @@ export function shapes(
         ? -spec.step
         : t === -Infinity
           ? spec.step
-          : Math.min(v - t, spec.step);
+          : // Off the edge itself: a cell right on it put the line through
+            // a grid corner, where rings touched and the map drew wedges.
+            Math.min(v - t, spec.step) || 1e-6;
     }
     return trace(cut)[0].coordinates;
   });

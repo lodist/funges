@@ -155,7 +155,10 @@ function show(
   const source = m.getSource(id) as maplibregl.GeoJSONSource | undefined;
   if (source) return source.setData(data);
   hatch(m, dark);
-  m.addSource(id, { type: 'geojson', data });
+  // Unsimplified: a band's holes share edges with its outline, and zoomed
+  // out each ring was simplified on its own, so they crossed and the map
+  // drew wedges across the sea.
+  m.addSource(id, { type: 'geojson', data, tolerance: 0 });
   const firstLabel = m.getStyle().layers.find(l => l.type === 'symbol')?.id;
   // Fainter close in: the places are about 7 km apart, and there the
   // streets show where a garden is.
