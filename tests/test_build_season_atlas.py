@@ -49,10 +49,11 @@ def _grid(records_in_place):
     return grids, {"EU": {"mushroom": counts}}, regions
 
 
-def test_a_species_needs_the_record_bar_in_a_place():
-    atlas = sa.build(*_grid(149), bounds={"EU": (0, 0, 2, 2)})
-    region = atlas["regions"][0]
-    assert region["species"] == {} and not region["place"]
+def test_every_place_lists_every_species_with_its_records():
+    # As the continent map colours it: a thinly recorded species still shows, the page says so.
+    region = sa.build(*_grid(3), bounds={"EU": (0, 0, 2, 2)})["regions"][0]
+    assert region["place"] and region["species"]["mushroom"]["records"] == 3
+    assert region["species"]["mushroom"]["curve"][8] == 1.0
     atlas = sa.build(*_grid(150), bounds={"EU": (0, 0, 2, 2)})
     region = atlas["regions"][0]
     assert region["place"] and region["species"]["mushroom"]["records"] == 150

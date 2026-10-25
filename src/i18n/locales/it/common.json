@@ -377,7 +377,9 @@
       "forecast": "Vedi la previsione di oggi",
       "unavailable": "L'atlante delle stagioni non è disponibile ora. Riprova più tardi.",
       "notFound": "Non abbiamo ancora una mappa della stagione per questo luogo.",
-      "openEurope": "Apri Europa"
+      "openEurope": "Apri Europa",
+      "fewRecords": "Pochi ritrovamenti registrati qui ({{formatted}} dal 2010), quindi la stagione si basa su luoghi dal clima simile.",
+      "rareRecords": "Quasi mai registrato qui, quindi la stagione mostrata è quella di luoghi dal clima simile."
     }
   },
   "theme": {

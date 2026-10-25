@@ -372,7 +372,9 @@
       "forecast": "Heutige Vorhersage ansehen",
       "unavailable": "Der Saisonatlas ist gerade nicht verfügbar. Versuche es später erneut.",
       "notFound": "Für diesen Ort gibt es noch keine Saisonkarte.",
-      "openEurope": "Europa öffnen"
+      "openEurope": "Europa öffnen",
+      "fewRecords": "Hier gibt es wenige erfasste Funde ({{formatted}} seit 2010), daher stützt sich die Saison auf Orte mit ähnlichem Klima.",
+      "rareRecords": "Hier kaum je erfasst, daher zeigt die Karte die Saison von Orten mit ähnlichem Klima."
     }
   },
   "sidebar": {

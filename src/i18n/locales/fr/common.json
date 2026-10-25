@@ -372,7 +372,9 @@
       "forecast": "Voir la prévision du jour",
       "unavailable": "L'atlas des saisons n'est pas disponible pour le moment. Réessayez plus tard.",
       "notFound": "Nous n'avons pas encore de carte de saison pour ce lieu.",
-      "openEurope": "Ouvrir l'Europe"
+      "openEurope": "Ouvrir l'Europe",
+      "fewRecords": "Peu d'observations locales ({{formatted}} depuis 2010) : la saison s'appuie sur des lieux au climat semblable.",
+      "rareRecords": "Presque jamais observé ici : la saison affichée est celle de lieux au climat semblable."
     }
   },
   "sidebar": {

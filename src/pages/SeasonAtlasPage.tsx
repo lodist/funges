@@ -41,6 +41,10 @@ const IN_SEASON = 0.5;
 /** Between this and IN_SEASON a season is starting or winding down, not over:
  *  a country's curve averages places that are still going. */
 const SHOULDER = 0.2;
+/** Local records from which a place's curve is its own (the season grid's shipping bar);
+ *  below it the curve leans on similar climates, and under RARE the species is hardly seen. */
+const SOLID_RECORDS = 150;
+const RARE_RECORDS = 10;
 
 async function fetchJson<T>(path: string): Promise<T> {
   const response = await fetch(`${ATLAS_BASE}${path}`);
@@ -559,9 +563,15 @@ export default function SeasonAtlasPage() {
                   </p>
                   <p className='text-sm leading-relaxed text-muted-foreground'>
                     {t('data.atlas.note', { species: sName })}{' '}
-                    {t('data.atlas.records', {
-                      formatted: curve.records.toLocaleString(language),
-                    })}
+                    {curve.records >= SOLID_RECORDS
+                      ? t('data.atlas.records', {
+                          formatted: curve.records.toLocaleString(language),
+                        })
+                      : curve.records >= RARE_RECORDS
+                        ? t('data.atlas.fewRecords', {
+                            formatted: curve.records.toLocaleString(language),
+                          })
+                        : t('data.atlas.rareRecords')}
                   </p>
                   {speciesKey ? (
                     <Button asChild variant='outline' className='self-start'>
