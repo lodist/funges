@@ -179,7 +179,9 @@
       "plant": "{{crop}}: plant",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Waiting",
-      "note": "Harvest dates are approximate, from the usual temperatures at your place."
+      "note": "Harvest and frost dates are approximate, from the usual weather at your place.",
+      "frostLost": "{{crop}}: frost likely, it won't survive",
+      "frostEnd": "{{crop}}: first frost likely, pick the last"
     },
     "done": {
       "title": "Done this week",
@@ -588,11 +590,20 @@
       "hint": "Slide to see your garden in the weeks ahead",
       "ready": "Ready: {{crops}}",
       "growing": "Growing: {{crops}}",
-      "empty": "Nothing in the ground"
+      "empty": "Nothing in the ground",
+      "lost": "Lost to frost: {{crops}}"
     },
     "tab": {
       "week": "To do",
       "garden": "Garden"
+    },
+    "frostFirst": "Frost likely first, around {{date}}",
+    "warn": {
+      "frost": "Frost will likely kill it around {{date}}, before it's ready: tender crops don't survive frost.",
+      "frostNow": "Frost is likely any night now, and tender crops don't survive it outdoors.",
+      "frostUntil": "Frost is still likely until about {{date}}: cover it on cold nights.",
+      "coldSeeds": "The soil is still too cold: its seeds may rot before they come up.",
+      "warmSeeds": "The soil is too warm: its seeds may not come up."
     }
   },
   "year": {

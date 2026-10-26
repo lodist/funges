@@ -179,7 +179,9 @@
       "plant": "{{crop}}: plantar",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "En espera",
-      "note": "Las fechas de cosecha son aproximadas, según las temperaturas habituales de tu lugar."
+      "note": "Las fechas de cosecha y de helada son aproximadas, según el tiempo habitual en tu zona.",
+      "frostLost": "{{crop}}: probable helada, no sobrevivirá",
+      "frostEnd": "{{crop}}: probable primera helada, cosecha lo último"
     },
     "done": {
       "title": "Hecho esta semana",
@@ -588,11 +590,20 @@
       "hint": "Desliza para ver tu huerto en las próximas semanas",
       "ready": "Para cosechar: {{crops}}",
       "growing": "Creciendo: {{crops}}",
-      "empty": "Nada en la tierra"
+      "empty": "Nada en la tierra",
+      "lost": "Perdido por la helada: {{crops}}"
     },
     "tab": {
       "week": "Tareas",
       "garden": "Huerto"
+    },
+    "frostFirst": "Antes llegará la helada, hacia el {{date}}",
+    "warn": {
+      "frost": "Una helada probablemente lo matará hacia el {{date}}, antes de que esté listo: los cultivos sensibles no sobreviven a las heladas.",
+      "frostNow": "Puede helar cualquier noche, y los cultivos sensibles no lo soportan al aire libre.",
+      "frostUntil": "Aún puede helar hasta el {{date}} más o menos: cúbrelo las noches frías.",
+      "coldSeeds": "El suelo aún está demasiado frío: sus semillas pueden pudrirse antes de brotar.",
+      "warmSeeds": "El suelo está demasiado caliente: sus semillas pueden no brotar."
     }
   },
   "year": {

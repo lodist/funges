@@ -12,7 +12,7 @@ import {
 import type { PlaceYear } from '@/lib/huerta-wire';
 import type { Plan, Section } from '@/lib/planner';
 import { PLANT_LOOK } from '@/lib/planner-data';
-import { forSoil, gardenSoil, type Texture } from '@/lib/soil';
+import { forSoil, gardenSoil, soilTemps, type Texture } from '@/lib/soil';
 
 /** What the garden's soil asks of a crop as it goes in: lime for the cabbage
  *  family on acid soil (clubroot), care with potatoes on alkaline soil (scab),
@@ -57,7 +57,9 @@ const SUCCESSION: Record<string, number> = {
   chervil: 3,
   green_beans: 4,
 };
-const WATER_MM = 5; // less than this over the week: not worth a reminder
+// Less than this over the week is not worth a reminder: sand runs dry
+// sooner than loam, clay holds out longer.
+const WATER_MM: Record<Texture, number> = { sandy: 3, loam: 5, clay: 8 };
 const RAIN_MM = 10;
 
 const fruiting: [Step, number, number] = ['feed', 0.5, 1];
@@ -184,6 +186,58 @@ const days = (from: string, to: string) =>
       864e5
   );
 const unique = (ids: string[]) => [...new Set(ids)];
+const addDays = (day: string, n: number) => {
+  const d = new Date(`${day}T12:00:00`);
+  d.setDate(d.getDate() + n);
+  return d.toLocaleDateString('sv');
+};
+const dayOfYear = (day: string) => {
+  const d = new Date(`${day}T12:00:00`);
+  return Math.round(
+    (d.getTime() - new Date(d.getFullYear(), 0, 0, 12).getTime()) / 864e5
+  );
+};
+
+/** A place's typical frost season, as its advice carries it: the first
+ *  autumn and last spring frost, day of the year (null: none in a typical
+ *  year, absent: not known). */
+export type FrostDates = Pick<PlaceAdvice, 'firstFrost' | 'lastFrost'>;
+
+/** Where `day` falls in the place's frost season: days since it began, its
+ *  length and the day of the year; null without one. */
+function frostSeason(day: string, { firstFrost, lastFrost }: FrostDates) {
+  if (firstFrost == null || lastFrost == null) return null;
+  const doy = dayOfYear(day);
+  return {
+    doy,
+    first: firstFrost,
+    last: lastFrost,
+    into: (doy - firstFrost + 365) % 365,
+    length: (lastFrost - firstFrost + 365) % 365,
+  };
+}
+
+/** The day frost likely ends a tender crop that goes in on `from`: that day
+ *  itself in the first half of the frost season (frost any night now),
+ *  otherwise the next autumn's first frost (put in late in the season, it
+ *  needs covering on cold nights until the last frost: frostUntil); null
+ *  where a typical year has no frost or the dates are not known. */
+export function frostDay(from: string, frost: FrostDates): string | null {
+  const at = frostSeason(from, frost);
+  if (!at) return null;
+  return at.into <= at.length / 2
+    ? from
+    : addDays(from, (at.first - at.doy + 365) % 365);
+}
+
+/** Put in in the frost season's second half: the last spring frost's day,
+ *  until when a tender crop needs covering on cold nights; else null. */
+export function frostUntil(from: string, frost: FrostDates): string | null {
+  const at = frostSeason(from, frost);
+  return at && at.into > at.length / 2 && at.into <= at.length
+    ? addDays(from, (at.last - at.doy + 365) % 365)
+    : null;
+}
 
 /** The ISO week of a YYYY-MM-DD day, as 2026-W43. */
 export function isoWeek(day: string) {
@@ -238,7 +292,7 @@ export function gardenWeek(
 
   // Water, when something is in the ground.
   if (growing.length) {
-    if ((advice.water ?? 0) >= WATER_MM)
+    if ((advice.water ?? 0) >= WATER_MM[soil.texture])
       tasks.push({
         kind: 'water',
         mm: Math.round(advice.water!),
@@ -298,7 +352,7 @@ export function gardenWeek(
   // Each planted crop's care for where it has got to.
   // ponytail: one step per crop, from its first sowing; per sowing if
   // succession rows ever need their own thinning reminder.
-  const temps = year?.temps;
+  const temps = year?.temps && soilTemps(year.temps, soil.texture);
   if (year && temps)
     for (const crop of growing) {
       if (!needs[crop]?.days) continue;
@@ -355,17 +409,21 @@ export const pruneDone = (done: Record<string, string>, today: string) =>
 
 /** The day a crop that went in on `planted` is ready: when the warmth since
  *  reaches what it needs (as `growth`), from the place's monthly means; null
- *  if not within two years. */
+ *  if not within two years, or if frost ends a tender crop first. */
 export function readyDay(
   id: string,
   needs: CropNeeds,
   temps: number[],
-  planted: string
+  planted: string,
+  frost?: FrostDates
 ) {
   const { base, need } = warmth(id, needs);
+  const killed =
+    frost && needs.frost === 'tender' ? frostDay(planted, frost) : null;
+  const limit = killed ? days(planted, killed) : 730;
   let gained = 0;
   const d = new Date(`${planted}T12:00:00`);
-  for (let k = 0; k < 730; k++) {
+  for (let k = 0; k < Math.min(limit, 730); k++) {
     gained += Math.max(0, temps[d.getMonth()] - base);
     d.setDate(d.getDate() + 1);
     if (gained >= need) return d.toLocaleDateString('sv');
@@ -387,6 +445,7 @@ export function toSow(plan: Plan, crop: string, today: string) {
 
 export type Coming =
   | { kind: 'ready'; crop: string; day: string; at: number[] }
+  | { kind: 'frost'; crop: string; day: string; lost: boolean; at: number[] }
   | { kind: 'sow'; crop: string; day: string; at: number[] }
   | { kind: 'wait'; crop: string; status: CropStatus; at: number[] };
 const AHEAD_DAYS = 28;
@@ -394,10 +453,11 @@ const AHEAD_DAYS = 28;
  *  next spring): no ready day. */
 const NOTED = new Set(CROPS.filter(c => c.note).map(c => c.id));
 
-/** The next four weeks in the garden: planted crops coming ready, planned
- *  sowings coming up, and crops whose day has come but which wait for the
- *  weather (with the reason). Soonest first, waits last; one entry per crop
- *  and day, with its sections. */
+/** The next four weeks in the garden: planted crops coming ready, the
+ *  place's first frost coming for tender ones (lost if not ready by then),
+ *  planned sowings coming up, and crops whose day has come but which wait
+ *  for the weather (with the reason). Soonest first, waits last; one entry
+ *  per crop and day, with its sections. */
 export function comingUp(
   plan: Plan,
   advice: PlaceAdvice,
@@ -407,7 +467,7 @@ export function comingUp(
 ): Coming[] {
   const soil = gardenSoil(plan.garden, year?.soil);
   const week = forSoil(advice, needs, soil.texture, today);
-  const temps = year?.temps;
+  const temps = year?.temps && soilTemps(year.temps, soil.texture);
   const byKey = new Map<string, Coming>();
   const add = (key: string, make: () => Coming, i: number) => {
     const item = byKey.get(key) ?? make();
@@ -420,7 +480,26 @@ export function comingUp(
     if (s.planted) {
       const need = needs[crop];
       if (!temps || !need?.days || NOTED.has(crop)) return;
-      const day = readyDay(crop, need, temps, s.planted);
+      // The first frost coming for a tender crop still in the ground then.
+      const killed =
+        need.frost === 'tender' ? frostDay(s.planted, advice) : null;
+      if (killed && killed > today && days(today, killed) <= AHEAD_DAYS) {
+        const harvest = year?.crops[crop]?.harvest ?? 0;
+        const then = stageOn(s, needs, temps, harvest, killed, today);
+        if (then !== 'bare')
+          add(
+            `frost:${crop}:${killed}`,
+            () => ({
+              kind: 'frost',
+              crop,
+              day: killed,
+              lost: then !== 'ready',
+              at: [],
+            }),
+            i
+          );
+      }
+      const day = readyDay(crop, need, temps, s.planted, advice);
       if (day && day > today && days(today, day) <= AHEAD_DAYS)
         add(
           `ready:${crop}:${day}`,
@@ -445,26 +524,42 @@ export function comingUp(
   return [...byKey.values()].sort((a, z) => when(a).localeCompare(when(z)));
 }
 
-export type GrowthStage = 'bare' | 'seedling' | 'young' | 'grown' | 'ready';
+export type GrowthStage =
+  | 'bare'
+  | 'seedling'
+  | 'young'
+  | 'grown'
+  | 'ready'
+  | 'lost';
 
 /** Where a section's crop has got to on `day`: bare before it goes in (its
  *  planted day, else its planned day, else today) and again once its harvest
  *  is over (the place's harvest months, `harvest`, or a few weeks past
  *  ready; a quick crop, sown again for more, is picked within weeks
  *  wherever its season goes on); between, its stage from the warmth since,
- *  as the drawing's plants. Perennials and next-year crops stay grown. */
+ *  as the drawing's plants. Perennials and next-year crops stay grown. With
+ *  the place's frost dates, frost ends a tender crop (frostDay): lost if it
+ *  was not ready by then, over if it was. */
 export function stageOn(
   s: Section,
   needs: Record<string, CropNeeds>,
   temps: number[],
   harvest: number,
   day: string,
-  today: string
+  today: string,
+  frost?: FrostDates
 ): GrowthStage {
   if (!s.crop) return 'bare';
   const start = s.planted ?? (s.sow && s.sow > today ? s.sow : today);
   if (day < start) return 'bare';
   const need = needs[s.crop];
+  if (frost && need?.frost === 'tender') {
+    const killed = frostDay(start, frost);
+    if (killed && day >= killed)
+      return need.days && growth(s.crop, need, temps, start, killed) >= 1
+        ? 'bare'
+        : 'lost';
+  }
   if (!need?.days || NOTED.has(s.crop)) return 'grown';
   const done = growth(s.crop, need, temps, start, day);
   if (done < 0.3) return 'seedling';

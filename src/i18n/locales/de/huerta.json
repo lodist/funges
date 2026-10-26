@@ -179,7 +179,9 @@
       "plant": "{{crop}}: pflanzen",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Wartet",
-      "note": "Erntedaten sind ungefähr, aus den üblichen Temperaturen an deinem Ort."
+      "note": "Ernte- und Frosttermine sind ungefähr, nach dem üblichen Wetter an deinem Ort.",
+      "frostLost": "{{crop}}: Frost wahrscheinlich, überlebt nicht",
+      "frostEnd": "{{crop}}: erster Frost wahrscheinlich, Rest ernten"
     },
     "done": {
       "title": "Diese Woche erledigt",
@@ -588,11 +590,20 @@
       "hint": "Schieben, um deinen Garten in den kommenden Wochen zu sehen",
       "ready": "Erntereif: {{crops}}",
       "growing": "Wächst: {{crops}}",
-      "empty": "Nichts in der Erde"
+      "empty": "Nichts in der Erde",
+      "lost": "Erfroren: {{crops}}"
     },
     "tab": {
       "week": "Zu tun",
       "garden": "Garten"
+    },
+    "frostFirst": "Vorher kommt wohl Frost, um den {{date}}",
+    "warn": {
+      "frost": "Frost tötet es wahrscheinlich um den {{date}}, bevor es reif ist: Empfindliche Kulturen überleben keinen Frost.",
+      "frostNow": "Frost ist jetzt jede Nacht möglich, und empfindliche Kulturen überleben ihn draußen nicht.",
+      "frostUntil": "Bis etwa zum {{date}} ist noch Frost möglich: in kalten Nächten abdecken.",
+      "coldSeeds": "Der Boden ist noch zu kalt: Die Samen können faulen, bevor sie keimen.",
+      "warmSeeds": "Der Boden ist zu warm: Die Samen keimen womöglich nicht."
     }
   },
   "year": {

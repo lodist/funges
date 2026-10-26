@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import {
   comingUp,
+  frostDay,
+  frostUntil,
   gardenWeek,
   growth,
   jobKey,
@@ -12,6 +14,7 @@ import {
 } from '@/lib/garden-week';
 import { SAMPLE_ADVICE, type CropNeeds } from '@/lib/huerta';
 import { layout, type Plan, type Section } from '@/lib/planner';
+import { soilTemps } from '@/lib/soil';
 
 const need = (frost: CropNeeds['frost']): CropNeeds => ({
   frost,
@@ -358,5 +361,114 @@ describe('a bed on the timeline', () => {
     expect(stageOn(now, NEEDS, temps, all, '2026-09-05', '2026-09-01')).toBe(
       'seedling'
     );
+  });
+});
+
+describe('frost and the soil', () => {
+  // A typical first frost on 20 October (day 293), the last on 20 April (110).
+  const zurich = { firstFrost: 293, lastFrost: 110 };
+  const temps = [8, 9, 12, 14, 18, 22, 25, 25, 22, 17, 12, 9];
+  const all = 0b111111111111;
+  const tomato = (planted: string): Section => ({
+    ...beds[0],
+    crop: 'tomato',
+    planted,
+  });
+
+  it('frost ends a tender crop at once in autumn, else at the next first frost', () => {
+    expect(frostDay('2026-11-10', zurich)).toBe('2026-11-10');
+    expect(frostDay('2026-04-01', zurich)).toBe('2026-10-20');
+    expect(frostDay('2026-06-01', zurich)).toBe('2026-10-20');
+    expect(frostDay('2026-06-01', { firstFrost: null, lastFrost: null })).toBe(
+      null
+    );
+    expect(frostDay('2026-06-01', {})).toBeNull();
+    // Put in before the last spring frost: cover it on cold nights till then.
+    expect(frostUntil('2026-04-01', zurich)).toBe('2026-04-20');
+    expect(frostUntil('2026-11-10', zurich)).toBeNull();
+    expect(frostUntil('2026-06-01', zurich)).toBeNull();
+  });
+
+  it('on the timeline a tender crop is lost to frost, or over if it was ready by then', () => {
+    const on = (s: Section, day: string, frost?: typeof zurich) =>
+      stageOn(s, NEEDS, temps, all, day, s.planted!, frost);
+    expect(on(tomato('2026-11-10'), '2026-11-20', zurich)).toBe('lost');
+    expect(on(tomato('2026-05-15'), '2026-10-25', zurich)).toBe('bare');
+    expect(
+      on(
+        { ...beds[1], crop: 'garlic', planted: '2026-11-10' },
+        '2026-12-01',
+        zurich
+      )
+    ).not.toBe('lost');
+    // Without the place's frost dates, as before.
+    expect(on(tomato('2026-11-10'), '2026-11-20')).toBe('seedling');
+    expect(readyDay('tomato', NEEDS.tomato, temps, '2026-11-10', zurich)).toBe(
+      null
+    );
+    expect(
+      readyDay('tomato', NEEDS.tomato, temps, '2026-05-15', zurich)
+    ).not.toBeNull();
+  });
+
+  it('coming up: the first frost for tender crops still in the ground', () => {
+    const p: Plan = {
+      garden: { width: 6, length: 4.5, shape: 'rect' },
+      sections: [
+        tomato('2026-05-15'),
+        { ...beds[1], crop: 'courgette', planted: '2026-09-20' },
+      ],
+    };
+    const year = {
+      place: 'Zurich',
+      crops: {
+        tomato: { sow: 0, harvest: all },
+        courgette: { sow: 0, harvest: all },
+      },
+      temps,
+    };
+    const items = comingUp(
+      p,
+      { ...advice, ...zurich },
+      NEEDS,
+      '2026-10-01',
+      year
+    );
+    expect(items).toEqual([
+      {
+        kind: 'frost',
+        crop: 'tomato',
+        day: '2026-10-20',
+        lost: false,
+        at: [0],
+      },
+      {
+        kind: 'frost',
+        crop: 'courgette',
+        day: '2026-10-20',
+        lost: true,
+        at: [1],
+      },
+    ]);
+  });
+
+  it("the garden's soil: sand brings spring crops on sooner and needs water sooner, clay later", () => {
+    const sand = soilTemps(temps, 'sandy');
+    expect(sand[3]).toBe(temps[3] + 1.5);
+    expect(sand[8]).toBe(temps[8]);
+    expect(soilTemps(temps, 'loam')).toBe(temps);
+    const ready = (t: number[]) =>
+      readyDay('lettuce', NEEDS.lettuce, t, '2026-03-01')!;
+    expect(ready(sand) < ready(temps)).toBe(true);
+    expect(ready(soilTemps(temps, 'clay')) > ready(temps)).toBe(true);
+    const on = (soil: 'sandy' | 'loam'): Plan => ({
+      ...plan(['garlic', '2026-10-01']),
+      garden: { width: 6, length: 4.5, shape: 'rect', soil },
+    });
+    const dry = { ...advice, water: 4 };
+    expect(gardenWeek(on('sandy'), dry, NEEDS, '2026-10-21')).toEqual([
+      { kind: 'water', mm: 4, soil: 'sandy' },
+    ]);
+    expect(gardenWeek(on('loam'), dry, NEEDS, '2026-10-21')).toEqual([]);
   });
 });

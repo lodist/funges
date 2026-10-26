@@ -341,14 +341,21 @@ export function GardenThisWeek({
                     <span className='block font-medium text-foreground'>
                       {c.kind === 'ready'
                         ? t('week.coming.ready', { crop: name(c.crop) })
-                        : c.kind === 'sow'
-                          ? t(`week.coming.${CROP[c.crop].how}`, {
-                              crop: name(c.crop),
-                            })
-                          : t('week.coming.wait', {
-                              crop: name(c.crop),
-                              reason: t(`status.${c.status}`),
-                            })}
+                        : c.kind === 'frost'
+                          ? t(
+                              c.lost
+                                ? 'week.coming.frostLost'
+                                : 'week.coming.frostEnd',
+                              { crop: name(c.crop) }
+                            )
+                          : c.kind === 'sow'
+                            ? t(`week.coming.${CROP[c.crop].how}`, {
+                                crop: name(c.crop),
+                              })
+                            : t('week.coming.wait', {
+                                crop: name(c.crop),
+                                reason: t(`status.${c.status}`),
+                              })}
                     </span>
                     <span className='block text-xs text-muted-foreground'>
                       {beds(c.at)}
@@ -358,7 +365,7 @@ export function GardenThisWeek({
               </li>
             ))}
           </ul>
-          {coming.some(c => c.kind === 'ready') ? (
+          {coming.some(c => c.kind === 'ready' || c.kind === 'frost') ? (
             <p className='mt-2 px-2 text-xs text-muted-foreground'>
               {t('week.coming.note')}
             </p>

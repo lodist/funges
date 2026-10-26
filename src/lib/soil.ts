@@ -40,6 +40,14 @@ export function gardenSoil(
  *  at sowing depth (°C). */
 const WARMS: Record<Texture, number> = { sandy: 1.5, loam: 0, clay: -1.5 };
 
+/** The place's monthly means as a garden's soil grows crops: in spring (the
+ *  months forSoil shifts) light soil is warmer and heavy clay colder, so what
+ *  goes in then comes on sooner or later; the rest of the year as the place's. */
+export const soilTemps = (temps: number[], texture: Texture) =>
+  WARMS[texture]
+    ? temps.map((t, month) => (month < 6 ? t + WARMS[texture] : t))
+    : temps;
+
 /** This week's statuses for a garden's soil. In spring a crop waiting for
  *  warmer soil goes into sand a little sooner, and one going in now waits a
  *  little longer in clay; the rest of the year, as the place's. */

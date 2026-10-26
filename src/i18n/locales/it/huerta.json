@@ -179,7 +179,9 @@
       "plant": "{{crop}}: piantare",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "In attesa",
-      "note": "Le date di raccolta sono indicative, dalle temperature abituali del tuo luogo."
+      "note": "Le date di raccolta e di gelo sono approssimative, dal tempo abituale della tua zona.",
+      "frostLost": "{{crop}}: probabile gelo, non sopravviverà",
+      "frostEnd": "{{crop}}: probabile prima gelata, raccogli gli ultimi"
     },
     "done": {
       "title": "Fatto questa settimana",
@@ -588,11 +590,20 @@
       "hint": "Scorri per vedere il tuo orto nelle prossime settimane",
       "ready": "Da raccogliere: {{crops}}",
       "growing": "In crescita: {{crops}}",
-      "empty": "Niente nella terra"
+      "empty": "Niente nella terra",
+      "lost": "Perso per il gelo: {{crops}}"
     },
     "tab": {
       "week": "Da fare",
       "garden": "Orto"
+    },
+    "frostFirst": "Prima arriva il gelo, verso il {{date}}",
+    "warn": {
+      "frost": "Probabilmente il gelo lo ucciderà verso il {{date}}, prima che sia pronto: le colture delicate non sopravvivono al gelo.",
+      "frostNow": "Può gelare da una notte all'altra, e all'aperto le colture delicate non lo sopportano.",
+      "frostUntil": "Può ancora gelare fino al {{date}} circa: coprilo nelle notti fredde.",
+      "coldSeeds": "Il terreno è ancora troppo freddo: i semi possono marcire prima di spuntare.",
+      "warmSeeds": "Il terreno è troppo caldo: i semi potrebbero non spuntare."
     }
   },
   "year": {
