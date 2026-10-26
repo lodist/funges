@@ -26,7 +26,8 @@
     "huerta": {
       "name": "Huerta",
       "tagline": "Légumes, fruits et aromates"
-    }
+    },
+    "early": "Accès anticipé"
   },
   "huertaMap": "Carte",
   "huertaPlanner": "Mon potager",

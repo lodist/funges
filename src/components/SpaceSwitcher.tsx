@@ -25,6 +25,9 @@ import { cn } from '@/lib/utils';
  * seen in that space. Draws nothing while only one space is shown (the live
  * site, until Huerta launches).
  */
+/** Spaces still in early release: a pill beside their name. */
+const EARLY = new Set<Space>(['huerta']);
+
 export const SpaceSwitcher = ({ className }: { className?: string }) =>
   visibleSpaces().length > 1 ? <SpaceMenu className={className} /> : null;
 
@@ -68,6 +71,11 @@ function SpaceMenu({
             aria-label={t('spaces.switch', { space: name(current) })}
           >
             <span className='flex-1 text-left'>{name(current)}</span>
+            {EARLY.has(current) ? (
+              <span className='rounded-full bg-band-foreground/15 px-2 py-0.5 font-sans text-xs font-medium'>
+                {t('spaces.early')}
+              </span>
+            ) : null}
             <ChevronDown className='size-4' />
           </Button>
         )}
@@ -93,8 +101,13 @@ function SpaceMenu({
             >
               <SpaceMark space={space} />
               <span className='flex min-w-0 flex-1 flex-col'>
-                <span className='font-display text-base font-semibold'>
+                <span className='flex items-center gap-2 font-display text-base font-semibold'>
                   {name(space)}
+                  {EARLY.has(space) ? (
+                    <span className='rounded-full bg-band-foreground/15 px-2 py-0.5 font-sans text-xs font-medium'>
+                      {t('spaces.early')}
+                    </span>
+                  ) : null}
                 </span>
                 <span className='text-xs text-band-foreground/80'>
                   {t(`spaces.${space}.tagline`)}
