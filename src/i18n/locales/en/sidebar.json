@@ -26,7 +26,8 @@
     "huerta": {
       "name": "Huerta",
       "tagline": "Vegetables, fruit and herbs"
-    }
+    },
+    "early": "Early release"
   },
   "huertaMap": "Map",
   "huertaPlanner": "My garden",

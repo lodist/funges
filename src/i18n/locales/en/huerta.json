@@ -742,6 +742,8 @@
       "body": "See when each crop will be ready, from how warm your weeks turn out",
       "link": "Open the calendar"
     },
-    "closing": "Start your garden"
+    "closing": "Start your garden",
+    "early": "Huerta is in early release: its advice gets better every week.",
+    "feedback": "Tell us what's off"
   }
 }

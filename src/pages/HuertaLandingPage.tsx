@@ -143,6 +143,13 @@ export default function HuertaLandingPage() {
               </Link>
             </Button>
             <p className={styles.coverage}>{t('landing.coverage')}</p>
+            {/* Huerta is new: say so once, and where to tell us. */}
+            <p className={styles.coverage}>
+              {t('landing.early')}{' '}
+              <Link to='/support' className='font-medium underline'>
+                {t('landing.feedback')}
+              </Link>
+            </p>
           </div>
         </section>
 

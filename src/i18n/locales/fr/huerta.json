@@ -742,6 +742,8 @@
       "body": "Voyez quand chaque culture sera prête, selon la chaleur de vos semaines",
       "link": "Ouvrir le calendrier"
     },
-    "closing": "Commencez votre potager"
+    "closing": "Commencez votre potager",
+    "early": "Huerta est en accès anticipé : ses conseils s'améliorent chaque semaine.",
+    "feedback": "Dites-nous ce qui cloche"
   }
 }

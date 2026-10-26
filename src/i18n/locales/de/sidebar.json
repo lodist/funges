@@ -26,7 +26,8 @@
     "huerta": {
       "name": "Huerta",
       "tagline": "Gemüse, Obst und Kräuter"
-    }
+    },
+    "early": "Frühe Version"
   },
   "huertaMap": "Karte",
   "huertaPlanner": "Mein Garten",

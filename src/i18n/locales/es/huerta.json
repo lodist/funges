@@ -742,6 +742,8 @@
       "body": "Mira cuándo estará listo cada cultivo, según lo cálidas que vengan tus semanas",
       "link": "Abrir el calendario"
     },
-    "closing": "Empieza tu huerto"
+    "closing": "Empieza tu huerto",
+    "early": "Huerta está en acceso anticipado: sus consejos mejoran cada semana.",
+    "feedback": "Cuéntanos qué falla"
   }
 }
