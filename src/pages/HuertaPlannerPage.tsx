@@ -1332,7 +1332,7 @@ function Timeline({
       new Date(`${monthAhead(today(), months)}T12:00:00`)
     );
   return (
-    <div className='border-t border-border px-4 py-3'>
+    <div className='border-t border-border px-4 py-2'>
       <div className='flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1'>
         <label
           htmlFor='planner-when'
@@ -1363,9 +1363,9 @@ function Timeline({
         value={weeks}
         onChange={e => onWeeks(Number(e.target.value))}
         aria-valuetext={weeks ? long : t('planner.timeline.now')}
-        className='h-11 w-full cursor-pointer accent-primary'
+        className='h-7 w-full cursor-pointer accent-primary'
       />
-      <div className='flex justify-between text-xs text-muted-foreground'>
+      <div className='-mt-1 flex justify-between text-xs text-muted-foreground'>
         <span>{t('planner.timeline.now')}</span>
         <span>{tick(6)}</span>
         <span>{tick(12)}</span>
