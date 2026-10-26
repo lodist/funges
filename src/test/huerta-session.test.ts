@@ -61,6 +61,10 @@ describe('signing in to Huerta', () => {
     });
     expect(s.session()).toEqual({ token: TOKEN, email: 'a@b.c' });
     expect(sessionStorage.getItem('huerta-signin')).toBeNull();
+    // Its sign-in record is collected at once, so the Worker deletes it.
+    expect(String(fetch.mock.calls[1]?.[0])).toBe(
+      `https://w.test/v1/auth/handoff?id=${HANDOFF}`
+    );
   });
 
   it('finishes elsewhere: an iPhone Home Screen app began it', async () => {

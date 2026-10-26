@@ -129,7 +129,11 @@ export async function finishSignIn(hash: string) {
   setSession((await response.json()) as Session);
   const started = pending();
   const here = started?.handoff === handoff;
-  if (here) sessionStorage.removeItem(PENDING);
+  if (here) {
+    sessionStorage.removeItem(PENDING);
+    // Nobody else will collect it: the Worker deletes it on this read.
+    void fetch(`${API}/v1/auth/handoff?id=${handoff}`).catch(() => {});
+  }
   return { back: here ? started.back : '/huerta/in-season', here };
 }
 

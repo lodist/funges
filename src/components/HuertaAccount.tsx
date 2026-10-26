@@ -100,6 +100,8 @@ export function HuertaAccount() {
   };
   const remove = async () => {
     try {
+      // The phone's own alert subscription goes too, not only the Worker's copy.
+      await disableAlerts().catch(() => {});
       await deleteAccount();
       setConfirming(false);
       void navigate({ to: '/huerta' });
