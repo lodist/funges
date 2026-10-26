@@ -15,8 +15,12 @@ const bytes = (base64url: string) =>
     c.charCodeAt(0)
   );
 
+/** Morning alerts are off for now (Loris, 26 Oct): the switch stays hidden and
+ *  the Worker has no cron. Back on: true here, and the cron in wrangler.toml. */
+export const ALERTS_ON = false;
+
 export const pushSupported = () =>
-  Boolean(VAPID_PUBLIC) &&
+  ALERTS_ON &&
   'serviceWorker' in navigator &&
   'PushManager' in window &&
   'Notification' in window;

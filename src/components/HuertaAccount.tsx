@@ -29,7 +29,7 @@ import {
 } from '@/lib/huerta-session';
 import { Trash2 } from '@/lib/icons';
 import {
-  VAPID_PUBLIC,
+  ALERTS_ON,
   alertsOn,
   disableAlerts,
   enableAlerts,
@@ -117,7 +117,7 @@ export function HuertaAccount() {
         </CardDescription>
       </CardHeader>
       <CardContent className='flex flex-col gap-6'>
-        {VAPID_PUBLIC ? (
+        {ALERTS_ON ? (
           <section className='flex flex-col gap-3'>
             <div className='flex items-center justify-between gap-4'>
               <div>
