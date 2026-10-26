@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
 import '@/i18n';
 import { AppSidebar } from '@/components/Sidebar/AppSidebar';
@@ -19,6 +19,7 @@ import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 const { pathname } = vi.hoisted(() => ({ pathname: { current: '/' } }));
 vi.mock('@tanstack/react-router', () => ({
   useLocation: () => ({ pathname: pathname.current }),
+  useNavigate: () => () => {},
   Link: ({
     to,
     children,
@@ -41,6 +42,7 @@ vi.mock('@/hooks/use-mobile', () => ({
   useIsMobile: () => isMobile.current,
 }));
 
+const { huertaShown } = vi.hoisted(() => ({ huertaShown: { current: false } }));
 const { offlineEnabled } = vi.hoisted(() => ({
   offlineEnabled: { current: false },
 }));
@@ -50,7 +52,9 @@ vi.mock('@/lib/feature-flags', () => ({
   },
   // The space switcher stays out of these link lists; Huerta's own nav is
   // pinned by the last test.
-  shouldShowHuerta: false,
+  get shouldShowHuerta() {
+    return huertaShown.current;
+  },
 }));
 
 const renderSidebar = () =>
@@ -77,6 +81,7 @@ beforeEach(() => {
   pathname.current = '/';
   isMobile.current = false;
   offlineEnabled.current = false;
+  huertaShown.current = false;
 });
 
 describe('AppSidebar', () => {
@@ -135,6 +140,24 @@ describe('AppSidebar', () => {
       '/privacy-policy',
       '/termsuse',
     ]);
+  });
+
+  it('puts the Huerta account first in Help, in Huerta only', () => {
+    huertaShown.current = true;
+    const flyout = () => {
+      openHelp();
+      return screen
+        .getAllByRole('menuitem')
+        .map(item => item.getAttribute('href'));
+    };
+    pathname.current = '/huerta/planner';
+    renderSidebar();
+    expect(flyout().slice(0, 2)).toEqual(['/huerta/account', '/support']);
+    cleanup();
+    // In Terra it would jump spaces: not there.
+    pathname.current = '/map';
+    renderSidebar();
+    expect(flyout()).not.toContain('/huerta/account');
   });
 
   it('adds Offline Maps on desktop once the flag is enabled', () => {

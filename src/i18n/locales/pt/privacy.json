@@ -28,7 +28,7 @@
     "restriction": "Limitação: pedir que limitemos o uso dos seus dados em certas circunstâncias.",
     "objection": "Oposição: opor-se ao uso dos seus dados.",
     "portability": "Portabilidade: receber seus dados em um formato estruturado e legível por máquina.",
-    "exercise": "Para excluir sua conta Huerta, use Configurações → Conta Huerta → Excluir conta (veja também fung.es/delete-account). Para qualquer outra questão sobre os dados que guardamos, escreva para o endereço de contato abaixo; para dados de um serviço de terceiros, fale com esse serviço. Você também pode reclamar a uma autoridade de proteção de dados: na Suíça, o Encarregado Federal de Proteção de Dados e Transparência (PFPDT); na UE, a autoridade do seu país."
+    "exercise": "Para excluir sua conta Huerta, abra a página da sua conta (Ajuda → Conta no computador, Configurações no celular) e escolha Excluir conta; fung.es/delete-account explica os passos. Para qualquer outra questão sobre os dados que guardamos, escreva para o endereço de contato abaixo; para dados de um serviço de terceiros, fale com esse serviço. Você também pode reclamar a uma autoridade de proteção de dados: na Suíça, o Encarregado Federal de Proteção de Dados e Transparência (PFPDT); na UE, a autoridade do seu país."
   },
   "protection": {
     "title": "Proteção de Dados",
@@ -54,7 +54,7 @@
     "content": "Você entra no Huerta com sua conta do Google. O Google nos informa seu endereço de e-mail e um número que identifica sua conta do Google; guardamos os dois, junto com seu idioma e fuso horário, para que você possa entrar em qualquer dispositivo e receber os alertas na hora certa. Guardamos suas hortas: os nomes, os planos e o local arredondado para cerca de 1 km, nunca seu endereço.",
     "alerts": "Se você ativar os alertas da manhã, guardamos o endereço de notificação que seu navegador ou celular nos fornece para isso, até você desativá-los ou ele deixar de funcionar.",
     "storage": "Esses dados ficam armazenados na Cloudflare (banco de dados Cloudflare D1, Europa Ocidental), que os trata em nosso nome. Os alertas, quando ativados, são entregues pelo serviço de notificações do fabricante do seu navegador ou celular (Google, Apple ou Mozilla); o conteúdo é criptografado para que só o seu dispositivo possa lê-lo. Usamos os dados apenas para fazer o Huerta funcionar e nunca os vendemos nem compartilhamos.",
-    "delete": "Você pode excluir sua conta a qualquer momento em Configurações → Conta Huerta → Excluir conta, ou escrevendo para o endereço de contato abaixo a partir do e-mail da sua conta. Seu e-mail, suas hortas e seus alertas são excluídos na hora, em todos os dispositivos.",
+    "delete": "Você pode excluir sua conta a qualquer momento: abra a página da sua conta (Ajuda → Conta no computador, Configurações no celular) e escolha Excluir conta, ou escreva para o endereço de contato abaixo a partir do e-mail da sua conta. Seu e-mail, suas hortas e seus alertas são excluídos na hora, em todos os dispositivos.",
     "google": "Do Google recebemos apenas seu endereço de e-mail, se o Google o verificou e o número que identifica sua conta do Google. Nunca vemos sua senha e não temos acesso aos seus contatos, arquivos nem a mais nada da sua conta do Google. Não usamos esses dados para publicidade e nunca os vendemos. Você também pode remover o Funges dos apps conectados à sua conta do Google quando quiser.",
     "legal": "Tratamos esses dados para fornecer a conta que você pediu (art. 6.º, n.º 1, alínea b, do RGPD). Os alertas da manhã só são enviados se você os ativar, e você pode desativá-los a qualquer momento.",
     "retention": "Guardamos seus dados enquanto você tiver uma conta. Um login em um dispositivo expira depois de um ano sem uso. Os registros de um login em andamento são apagados em poucos minutos. Quando você exclui sua conta, tudo é apagado na hora; o histórico de restauração do nosso provedor de banco de dados guarda tudo por no máximo mais 7 dias, depois some de vez.",
@@ -68,7 +68,7 @@
     "steps": [
       "Abra fung.es (ou o app Funges) e vá para o Huerta.",
       "Entre com a conta do Google que você usa no Huerta.",
-      "Abra Configurações → Conta Huerta.",
+      "Abra sua conta: no computador, Ajuda → Conta; no celular, Configurações.",
       "Toque em Excluir conta e confirme."
     ],
     "what": "Isso apaga seu endereço de e-mail, suas hortas e planos, suas configurações de alertas e todos os logins, em todos os seus dispositivos, na hora. O histórico de restauração do nosso provedor de banco de dados guarda uma cópia por no máximo 7 dias, depois some de vez.",

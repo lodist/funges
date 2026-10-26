@@ -28,7 +28,7 @@
     "restriction": "Einschränkung: unter bestimmten Umständen verlangen, dass wir deine Daten nur eingeschränkt nutzen.",
     "objection": "Widerspruch: der Nutzung deiner Daten widersprechen.",
     "portability": "Datenübertragbarkeit: deine Daten in einem strukturierten, maschinenlesbaren Format erhalten.",
-    "exercise": "Um dein Huerta-Konto zu löschen, nutze Einstellungen → Huerta-Konto → Konto löschen (siehe auch fung.es/delete-account). Für alles andere zu den Daten, die wir speichern, schreib an die Kontaktadresse unten; für Daten eines Drittanbieterdienstes wende dich an diesen Dienst. Du kannst dich auch bei einer Datenschutzbehörde beschweren: in der Schweiz beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB), in der EU bei der Behörde deines Landes."
+    "exercise": "Um dein Huerta-Konto zu löschen, öffne deine Kontoseite (Hilfe → Konto am Computer, Einstellungen am Handy) und wähle Konto löschen; fung.es/delete-account erklärt die Schritte. Für alles andere zu den Daten, die wir speichern, schreib an die Kontaktadresse unten; für Daten eines Drittanbieterdienstes wende dich an diesen Dienst. Du kannst dich auch bei einer Datenschutzbehörde beschweren: in der Schweiz beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB), in der EU bei der Behörde deines Landes."
   },
   "protection": {
     "title": "Datenschutz",
@@ -54,7 +54,7 @@
     "content": "Du meldest dich bei Huerta mit deinem Google-Konto an. Google teilt uns deine E-Mail-Adresse und eine Nummer mit, die dein Google-Konto kennzeichnet; wir speichern beides zusammen mit deiner Sprache und Zeitzone, damit du dich auf jedem Gerät anmelden kannst und die Hinweise zur richtigen Zeit bekommst. Wir speichern deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet, nie deine Adresse.",
     "alerts": "Wenn du die morgendlichen Hinweise einschaltest, speichern wir die Benachrichtigungsadresse, die dein Browser oder Handy uns dafür gibt, bis du sie ausschaltest oder sie nicht mehr funktioniert.",
     "storage": "Diese Daten liegen bei Cloudflare (Datenbank Cloudflare D1, Westeuropa), das sie in unserem Auftrag verarbeitet. Hinweise werden, wenn eingeschaltet, über den Benachrichtigungsdienst des Herstellers deines Browsers oder Handys zugestellt (Google, Apple oder Mozilla); ihr Inhalt ist verschlüsselt, sodass nur dein Gerät ihn lesen kann. Wir nutzen die Daten nur, um Huerta zu betreiben, und verkaufen oder teilen sie nie.",
-    "delete": "Du kannst dein Konto jederzeit unter Einstellungen → Huerta-Konto → Konto löschen löschen oder dafür von der E-Mail-Adresse deines Kontos an die Kontaktadresse unten schreiben. Deine E-Mail-Adresse, deine Gärten und deine Hinweise werden sofort gelöscht, auf allen Geräten.",
+    "delete": "Du kannst dein Konto jederzeit löschen: Öffne deine Kontoseite (Hilfe → Konto am Computer, Einstellungen am Handy) und wähle Konto löschen, oder schreib von der E-Mail-Adresse deines Kontos an die Kontaktadresse unten. Deine E-Mail-Adresse, deine Gärten und deine Hinweise werden sofort gelöscht, auf allen Geräten.",
     "google": "Von Google erhalten wir nur deine E-Mail-Adresse, ob Google sie bestätigt hat, und die Nummer, die dein Google-Konto kennzeichnet. Wir sehen nie dein Passwort und haben keinen Zugriff auf deine Kontakte, Dateien oder sonst etwas in deinem Google-Konto. Wir nutzen diese Daten nicht für Werbung und verkaufen sie nie. Du kannst Funges außerdem jederzeit aus den mit deinem Google-Konto verknüpften Apps entfernen.",
     "legal": "Wir verarbeiten diese Daten, um dir das Konto bereitzustellen, das du angefordert hast (Art. 6 Abs. 1 lit. b DSGVO). Morgendliche Hinweise werden nur gesendet, wenn du sie einschaltest, und du kannst sie jederzeit ausschalten.",
     "retention": "Wir speichern deine Daten, solange du ein Konto hast. Eine Anmeldung auf einem Gerät endet nach einem Jahr ohne Nutzung. Daten einer laufenden Anmeldung werden innerhalb weniger Minuten gelöscht. Wenn du dein Konto löschst, wird alles sofort gelöscht; der Wiederherstellungsverlauf unseres Datenbankanbieters bewahrt es noch höchstens 7 Tage auf, danach ist es endgültig weg.",
@@ -68,7 +68,7 @@
     "steps": [
       "Öffne fung.es (oder die Funges-App) und geh zu Huerta.",
       "Melde dich mit dem Google-Konto an, das du für Huerta nutzt.",
-      "Öffne Einstellungen → Huerta-Konto.",
+      "Öffne dein Konto: am Computer Hilfe → Konto, am Handy Einstellungen.",
       "Tippe auf Konto löschen und bestätige."
     ],
     "what": "Damit werden deine E-Mail-Adresse, deine Gärten und Pläne, deine Hinweis-Einstellungen und alle Anmeldungen gelöscht, auf allen deinen Geräten, sofort. Der Wiederherstellungsverlauf unseres Datenbankanbieters bewahrt höchstens 7 Tage lang eine Kopie auf, danach ist sie endgültig weg.",

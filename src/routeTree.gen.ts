@@ -30,6 +30,7 @@ import { Route as HuertaSigninRouteImport } from './routes/huerta_.signin'
 import { Route as HuertaPlannerRouteImport } from './routes/huerta_.planner'
 import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
 import { Route as HuertaInSeasonRouteImport } from './routes/huerta_.in-season'
+import { Route as HuertaAccountRouteImport } from './routes/huerta_.account'
 
 const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
   id: '/worth-foraging-now',
@@ -136,6 +137,11 @@ const HuertaInSeasonRoute = HuertaInSeasonRouteImport.update({
   path: '/huerta/in-season',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HuertaAccountRoute = HuertaAccountRouteImport.update({
+  id: '/huerta_/account',
+  path: '/huerta/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -154,6 +160,7 @@ export interface FileRoutesByFullPath {
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/huerta/account': typeof HuertaAccountRoute
   '/huerta/in-season': typeof HuertaInSeasonRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
@@ -177,6 +184,7 @@ export interface FileRoutesByTo {
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/huerta/account': typeof HuertaAccountRoute
   '/huerta/in-season': typeof HuertaInSeasonRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
@@ -201,6 +209,7 @@ export interface FileRoutesById {
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/huerta_/account': typeof HuertaAccountRoute
   '/huerta_/in-season': typeof HuertaInSeasonRoute
   '/huerta_/map': typeof HuertaMapRoute
   '/huerta_/planner': typeof HuertaPlannerRoute
@@ -226,6 +235,7 @@ export interface FileRouteTypes {
     | '/support'
     | '/termsuse'
     | '/worth-foraging-now'
+    | '/huerta/account'
     | '/huerta/in-season'
     | '/huerta/map'
     | '/huerta/planner'
@@ -249,6 +259,7 @@ export interface FileRouteTypes {
     | '/support'
     | '/termsuse'
     | '/worth-foraging-now'
+    | '/huerta/account'
     | '/huerta/in-season'
     | '/huerta/map'
     | '/huerta/planner'
@@ -272,6 +283,7 @@ export interface FileRouteTypes {
     | '/support'
     | '/termsuse'
     | '/worth-foraging-now'
+    | '/huerta_/account'
     | '/huerta_/in-season'
     | '/huerta_/map'
     | '/huerta_/planner'
@@ -296,6 +308,7 @@ export interface RootRouteChildren {
   SupportRoute: typeof SupportRoute
   TermsuseRoute: typeof TermsuseRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
+  HuertaAccountRoute: typeof HuertaAccountRoute
   HuertaInSeasonRoute: typeof HuertaInSeasonRoute
   HuertaMapRoute: typeof HuertaMapRoute
   HuertaPlannerRoute: typeof HuertaPlannerRoute
@@ -452,6 +465,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HuertaInSeasonRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/huerta_/account': {
+      id: '/huerta_/account'
+      path: '/huerta/account'
+      fullPath: '/huerta/account'
+      preLoaderRoute: typeof HuertaAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -472,6 +492,7 @@ const rootRouteChildren: RootRouteChildren = {
   SupportRoute: SupportRoute,
   TermsuseRoute: TermsuseRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
+  HuertaAccountRoute: HuertaAccountRoute,
   HuertaInSeasonRoute: HuertaInSeasonRoute,
   HuertaMapRoute: HuertaMapRoute,
   HuertaPlannerRoute: HuertaPlannerRoute,

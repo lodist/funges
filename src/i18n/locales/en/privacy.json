@@ -28,7 +28,7 @@
     "restriction": "Restriction: ask us to limit how your data is used in certain circumstances.",
     "objection": "Objection: object to how your data is used.",
     "portability": "Data Portability: get your data in a structured, machine-readable format.",
-    "exercise": "To delete your Huerta account, use Settings → Huerta account → Delete account (see also fung.es/delete-account). For anything else about the data we keep, write to the contact address below; for data held by a third-party service, contact that service. You can also complain to a data protection authority: in Switzerland the Federal Data Protection and Information Commissioner (FDPIC), in the EU the authority of your country."
+    "exercise": "To delete your Huerta account, open your account page (Help → Account on a computer, Settings on a phone) and choose Delete account; fung.es/delete-account explains the steps. For anything else about the data we keep, write to the contact address below; for data held by a third-party service, contact that service. You can also complain to a data protection authority: in Switzerland the Federal Data Protection and Information Commissioner (FDPIC), in the EU the authority of your country."
   },
   "protection": {
     "title": "Data Protection",
@@ -54,7 +54,7 @@
     "content": "You sign in to Huerta with your Google account. Google tells us your email address and a number that identifies your Google account; we keep both, with your language and time zone, so you can sign in on any device and get alerts at the right time. We keep your gardens: their names, their plans and their place rounded to about 1 km, never your address.",
     "alerts": "If you turn on morning alerts, we keep the push address your browser or phone gives us for them, until you turn them off or it stops working.",
     "storage": "This data is stored with Cloudflare (Cloudflare D1 database, Western Europe), which processes it on our behalf. Alerts, when on, are delivered by the push service of your browser or phone maker (Google, Apple or Mozilla); their content is encrypted so that only your device can read it. We use the data only to run Huerta and never sell or share it.",
-    "delete": "You can delete your account at any time in Settings → Huerta account → Delete account, or by writing to the contact address below from the email address of your account. Your email, your gardens and your alerts are deleted at once, on every device.",
+    "delete": "You can delete your account at any time: open your account page (Help → Account on a computer, Settings on a phone) and choose Delete account, or write to the contact address below from the email address of your account. Your email, your gardens and your alerts are deleted at once, on every device.",
     "google": "From Google we receive only your email address, whether Google has verified it, and the number that identifies your Google account. We never see your password and get no access to your contacts, files or anything else in your Google account. We don’t use this data for advertising and never sell it. You can also remove Funges from the apps connected to your Google account at any time.",
     "legal": "We process this data to provide the account you asked for (Art. 6(1)(b) GDPR). Morning alerts are sent only if you turn them on, and you can turn them off at any time.",
     "retention": "We keep your data for as long as you have an account. A sign-in on a device ends after a year without use. Records of a sign-in in progress are deleted within minutes. When you delete your account, everything is deleted at once; our database provider’s restore history keeps it for up to 7 more days, after which it is gone for good.",
@@ -68,7 +68,7 @@
     "steps": [
       "Open fung.es (or the Funges app) and go to Huerta.",
       "Sign in with the Google account you use for Huerta.",
-      "Open Settings → Huerta account.",
+      "Open your account: on a computer, Help → Account; on a phone, Settings.",
       "Tap Delete account and confirm."
     ],
     "what": "This deletes your email address, your gardens and plans, your alert settings and every sign-in, on all your devices, at once. Our database provider’s restore history keeps a copy for up to 7 days, after which it is gone for good.",
