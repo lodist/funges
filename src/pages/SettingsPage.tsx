@@ -19,9 +19,11 @@ import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import MapLastUpdated from '@/components/MapLastUpdated';
 import { SpaceSwitcher } from '@/components/SpaceSwitcher';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { HuertaAccount } from '@/components/HuertaAccount';
 
 export default function SettingsPage() {
+  const isMobile = useIsMobile();
   const { t } = useTranslation('settings');
   const { t: tCommon } = useTranslation('common');
   const { t: tNav } = useTranslation('sidebar');
@@ -90,31 +92,37 @@ export default function SettingsPage() {
           {t('title')}
         </h1>
         {/* Phones have no sidebar: the hub is where the spaces meet. */}
-        <SpaceSwitcher className='w-fit' />
+        {isMobile ? <SpaceSwitcher className='w-fit' /> : null}
         {/* Signed in to Huerta: the account and its morning alerts. */}
         <HuertaAccount />
 
-        <div className='space-y-4'>
-          {links.map(link => (
-            <Link key={link.url} to={link.url} className='block'>
-              <Card interactive>
-                <CardContent>
-                  <div className='flex items-center gap-3'>
-                    {link.icon && (
-                      <link.icon className='h-5 w-5 text-muted-foreground' />
-                    )}
-                    <CardTitle>{link.label}</CardTitle>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
+        {/* The hub's links and freshness line are the phone's sidebar; on
+            desktop the sidebar and its Help menu already hold them. */}
+        {isMobile ? (
+          <>
+            <div className='space-y-4'>
+              {links.map(link => (
+                <Link key={link.url} to={link.url} className='block'>
+                  <Card interactive>
+                    <CardContent>
+                      <div className='flex items-center gap-3'>
+                        {link.icon && (
+                          <link.icon className='h-5 w-5 text-muted-foreground' />
+                        )}
+                        <CardTitle>{link.label}</CardTitle>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
 
-        {/* Data Freshness Info */}
-        <div className='flex justify-center'>
-          <MapLastUpdated variant='mobile' />
-        </div>
+            {/* Data Freshness Info */}
+            <div className='flex justify-center'>
+              <MapLastUpdated variant='mobile' />
+            </div>
+          </>
+        ) : null}
         <div className='flex flex-col items-center justify-center py-6 space-y-6'>
           <ThemeToggle className='w-40' />
           <LanguageSwitcher />
