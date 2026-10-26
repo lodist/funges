@@ -179,7 +179,9 @@
       "plant": "{{crop}}: plantar",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Aguardando",
-      "note": "As datas de colheita são aproximadas, a partir das temperaturas habituais do seu lugar."
+      "note": "As datas de colheita e de geada são aproximadas, pelo tempo habitual no seu local.",
+      "frostLost": "{{crop}}: geada provável, não vai sobreviver",
+      "frostEnd": "{{crop}}: primeira geada provável, colha o restante"
     },
     "done": {
       "title": "Feito esta semana",
@@ -588,11 +590,20 @@
       "hint": "Deslize para ver sua horta nas próximas semanas",
       "ready": "Para colher: {{crops}}",
       "growing": "Crescendo: {{crops}}",
-      "empty": "Nada na terra"
+      "empty": "Nada na terra",
+      "lost": "Perdido para a geada: {{crops}}"
     },
     "tab": {
       "week": "Tarefas",
       "garden": "Horta"
+    },
+    "frostFirst": "A geada deve chegar antes, por volta de {{date}}",
+    "warn": {
+      "frost": "A geada provavelmente vai matá-lo por volta de {{date}}, antes de ficar pronto: culturas sensíveis não sobrevivem à geada.",
+      "frostNow": "Pode gear em qualquer noite, e culturas sensíveis não sobrevivem a ela ao ar livre.",
+      "frostUntil": "Ainda pode gear até cerca de {{date}}: cubra-o nas noites frias.",
+      "coldSeeds": "O solo ainda está frio demais: as sementes podem apodrecer antes de germinar.",
+      "warmSeeds": "O solo está quente demais: as sementes podem não germinar."
     }
   },
   "year": {

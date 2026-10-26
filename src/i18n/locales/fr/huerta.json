@@ -179,7 +179,9 @@
       "plant": "{{crop}} : planter",
       "wait": "{{crop}} : {{reason}}",
       "waiting": "En attente",
-      "note": "Les dates de récolte sont approximatives, d'après les températures habituelles chez vous."
+      "note": "Les dates de récolte et de gel sont approximatives, d'après le temps habituel chez vous.",
+      "frostLost": "{{crop}} : gel probable, n'y survivra pas",
+      "frostEnd": "{{crop}} : premier gel probable, récoltez les derniers"
     },
     "done": {
       "title": "Fait cette semaine",
@@ -588,11 +590,20 @@
       "hint": "Faites glisser pour voir votre potager dans les semaines à venir",
       "ready": "À récolter : {{crops}}",
       "growing": "En croissance : {{crops}}",
-      "empty": "Rien en terre"
+      "empty": "Rien en terre",
+      "lost": "Perdu au gel : {{crops}}"
     },
     "tab": {
       "week": "À faire",
       "garden": "Potager"
+    },
+    "frostFirst": "Le gel arrivera avant, vers le {{date}}",
+    "warn": {
+      "frost": "Le gel le tuera probablement vers le {{date}}, avant qu'il soit prêt : les cultures frileuses ne survivent pas au gel.",
+      "frostNow": "Il peut geler n'importe quelle nuit, et les cultures frileuses n'y survivent pas en pleine terre.",
+      "frostUntil": "Il peut encore geler jusque vers le {{date}} : couvrez-le les nuits froides.",
+      "coldSeeds": "Le sol est encore trop froid : les graines risquent de pourrir avant de lever.",
+      "warmSeeds": "Le sol est trop chaud : les graines risquent de ne pas lever."
     }
   },
   "year": {

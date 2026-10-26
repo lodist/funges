@@ -44,6 +44,7 @@ import {
   savedPlace,
 } from '@/lib/huerta-api';
 import {
+  AlertTriangle,
   Check,
   ChevronDown,
   Minus,
@@ -57,6 +58,7 @@ import {
   ACIDITIES,
   forSoil,
   gardenSoil,
+  soilTemps,
   TEXTURES,
   textureOf,
 } from '@/lib/soil';
@@ -93,6 +95,8 @@ import {
 import {
   growth,
   due,
+  frostDay,
+  frostUntil,
   pruneDone,
   readyDay,
   stageOn,
@@ -181,6 +185,8 @@ export default function HuertaPlannerPage() {
   // This week's statuses for the garden's own soil (lib/soil).
   const soil = gardenSoil(plan?.garden, year?.soil);
   const advice = forSoil(placeAdvice, needs, soil.texture, today());
+  // The place's monthly warmth as the garden's soil grows crops (lib/soil).
+  const temps = year?.temps && soilTemps(year.temps, soil.texture);
   // The visitor's own advice, when they chose a place; else the sample at once.
   const [settled, setSettled] = useState(
     () => !(huertaApiConfigured && savedPlace())
@@ -319,8 +325,8 @@ export default function HuertaPlannerPage() {
   // A planted crop's stage, from the warmth it has had at the place since.
   const stageOf = (s: Section): Stage => {
     const need = s.crop ? needs[s.crop] : undefined;
-    if (!s.crop || !s.planted || !need?.days || !year?.temps) return 'grown';
-    const done = growth(s.crop, need, year.temps, s.planted, today());
+    if (!s.crop || !s.planted || !need?.days || !temps) return 'grown';
+    const done = growth(s.crop, need, temps, s.planted, today());
     return done < 0.3 ? 'seedling' : done < 0.75 ? 'young' : 'grown';
   };
   const count = (s: Section) => {
@@ -363,7 +369,6 @@ export default function HuertaPlannerPage() {
   const tabs = isMobile && !sample;
   const view = tabs ? tab : null;
   // The timeline's day: each section's stage then, and the drawing that day.
-  const temps = year?.temps;
   const stages =
     later && temps
       ? plan.sections.map(x =>
@@ -379,13 +384,14 @@ export default function HuertaPlannerPage() {
                 temps,
                 year?.crops[x.crop ?? '']?.harvest ?? 0,
                 addDays(today(), 7 * later),
-                today()
+                today(),
+                advice
               )
         )
       : null;
   const drawn = stages
     ? plan.sections.map((x, i) =>
-        stages[i] === 'bare' ? { ...x, crop: null } : x
+        stages[i] === 'bare' || stages[i] === 'lost' ? { ...x, crop: null } : x
       )
     : plan.sections;
   const cropsAt = (want: GrowthStage[]) =>
@@ -398,6 +404,7 @@ export default function HuertaPlannerPage() {
     ].join(', ');
   const readyThen = cropsAt(['ready']);
   const growingThen = cropsAt(['seedling', 'young', 'grown']);
+  const lostThen = cropsAt(['lost']);
   const beds = new Set(plan.sections.map(x => x.bed)).size;
 
   return (
@@ -789,6 +796,8 @@ export default function HuertaPlannerPage() {
                           t('planner.timeline.ready', { crops: readyThen }),
                         growingThen &&
                           t('planner.timeline.growing', { crops: growingThen }),
+                        lostThen &&
+                          t('planner.timeline.lost', { crops: lostThen }),
                       ]
                         .filter(Boolean)
                         .join(' · ') || t('planner.timeline.empty')
@@ -1462,16 +1471,40 @@ function SectionPanel({
     );
   // Put where it can't go in any more: no ready day to promise.
   const gone = !s.planted && !later && (st === 'too_late' || st === 'not_here');
-  // The day it is ready, from the warmth since its planted (or planned) day.
+  const start = s.planted ?? (s.sow && s.sow > today() ? s.sow : today());
+  // The day it is ready, from the warmth since its planted (or planned) day;
+  // none when frost ends a tender crop first.
   const readyOn =
     crop && !crop.note && !gone && temps && need?.days
-      ? readyDay(
-          crop.id,
-          need,
-          temps,
-          s.planted ?? (s.sow && s.sow > today() ? s.sow : today())
-        )
+      ? readyDay(crop.id, need, temps, start, advice)
       : null;
+  // A tender crop in the ground through the frost: the day frost likely
+  // kills it, when it is not ready by then; or, put in late in the frost
+  // season, the day until when it needs covering on cold nights.
+  const tender = Boolean(crop && !gone && need?.frost === 'tender');
+  const killed = tender ? frostDay(start, advice) : null;
+  const lostOn =
+    killed &&
+    temps &&
+    need?.days &&
+    growth(crop!.id, need, temps, start, killed) < 1
+      ? killed
+      : null;
+  const cover = tender && !lostOn ? frostUntil(start, advice) : null;
+  // Seeds sown in the last two weeks into soil this week's too cold or too
+  // warm for: they may not come up.
+  const seeds =
+    crop?.how === 'sow' &&
+    s.planted &&
+    s.planted >= addDays(today(), -14) &&
+    (st === 'wait_soil' || st === 'too_warm')
+      ? st
+      : null;
+  const day = (d: string) =>
+    new Intl.DateTimeFormat(i18n.language, {
+      day: 'numeric',
+      month: 'long',
+    }).format(new Date(`${d}T12:00:00`));
   const options = useMemo(() => {
     const sorted = [...CROPS].sort((a, z) =>
       t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
@@ -1554,32 +1587,47 @@ function SectionPanel({
                 ? t(`sheet.ready.${crop.note}`)
                 : gone
                   ? '–'
-                  : readyOn
-                    ? t('planner.readyOn', {
-                        date: new Intl.DateTimeFormat(i18n.language, {
-                          day: 'numeric',
-                          month: 'long',
-                        }).format(new Date(`${readyOn}T12:00:00`)),
-                      })
-                    : harvest
-                      ? t('planner.readyAround', {
-                          month: month(
-                            nextMonth(harvest, new Date().getMonth()) ?? 0
-                          ),
-                        })
-                      : due?.key === 'readyNextSpring'
-                        ? t('planner.readyNextSpring')
-                        : due
-                          ? t('planner.readyAround', {
-                              month: month(due.month),
-                            })
-                          : '–'}
+                  : lostOn
+                    ? lostOn <= today()
+                      ? '–'
+                      : t('planner.frostFirst', { date: day(lostOn) })
+                    : readyOn
+                      ? t('planner.readyOn', { date: day(readyOn) })
+                      : harvest
+                        ? t('planner.readyAround', {
+                            month: month(
+                              nextMonth(harvest, new Date().getMonth()) ?? 0
+                            ),
+                          })
+                        : due?.key === 'readyNextSpring'
+                          ? t('planner.readyNextSpring')
+                          : due
+                            ? t('planner.readyAround', {
+                                month: month(due.month),
+                              })
+                            : '–'}
             </dd>
             <dt className='text-muted-foreground'>{t('planner.nextYear')}</dt>
             <dd className='text-foreground'>
               {t(`planner.next.${nextYear(crop.id)}`)}
             </dd>
           </dl>
+          {lostOn || cover || seeds ? (
+            <p className='flex gap-2 rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 text-sm text-status-warning-text'>
+              <AlertTriangle className='mt-0.5 size-4 shrink-0' />
+              {lostOn
+                ? lostOn <= today()
+                  ? t('planner.warn.frostNow')
+                  : t('planner.warn.frost', { date: day(lostOn) })
+                : cover
+                  ? t('planner.warn.frostUntil', { date: day(cover) })
+                  : t(
+                      seeds === 'too_warm'
+                        ? 'planner.warn.warmSeeds'
+                        : 'planner.warn.coldSeeds'
+                    )}
+            </p>
+          ) : null}
           {s.planted ? (
             <div className='flex flex-wrap items-center gap-x-3 gap-y-2 text-sm'>
               <label className='flex items-center gap-2 font-medium text-foreground'>
