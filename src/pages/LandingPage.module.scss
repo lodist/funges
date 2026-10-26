@@ -337,6 +337,21 @@
   }
 }
 
+// A quiet line under the hero's buttons: Huerta's early release.
+.early {
+  max-width: 34rem;
+  margin-top: 1.5rem;
+  color: var(--happy-100);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  a {
+    color: var(--happy-50);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+}
+
 // The door to the other space, on the screen's edge on the side it leads to,
 // staying there as the page scrolls. It carries that space's data-space, so
 // --band here is the other space's.
