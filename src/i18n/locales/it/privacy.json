@@ -28,7 +28,7 @@
     "restriction": "Limitazione: chiedere di limitare l’uso dei tuoi dati in determinate circostanze.",
     "objection": "Opposizione: opporti all’uso dei tuoi dati.",
     "portability": "Portabilità: ricevere i tuoi dati in un formato strutturato e leggibile da una macchina.",
-    "exercise": "Per eliminare il tuo account Huerta, usa Impostazioni → Account Huerta → Elimina account (vedi anche fung.es/delete-account). Per qualsiasi altra questione sui dati che conserviamo, scrivi all’indirizzo di contatto qui sotto; per i dati di un servizio di terze parti, contatta quel servizio. Puoi anche presentare reclamo a un’autorità per la protezione dei dati: in Svizzera l’Incaricato federale della protezione dei dati e della trasparenza (IFPDT), nell’UE l’autorità del tuo paese."
+    "exercise": "Per eliminare il tuo account Huerta, apri la pagina del tuo account (Aiuto → Account su un computer, Impostazioni su un telefono) e scegli Elimina account; fung.es/delete-account spiega i passaggi. Per qualsiasi altra questione sui dati che conserviamo, scrivi all’indirizzo di contatto qui sotto; per i dati di un servizio di terze parti, contatta quel servizio. Puoi anche presentare reclamo a un’autorità per la protezione dei dati: in Svizzera l’Incaricato federale della protezione dei dati e della trasparenza (IFPDT), nell’UE l’autorità del tuo paese."
   },
   "protection": {
     "title": "Protezione dei Dati",
@@ -54,7 +54,7 @@
     "content": "Accedi a Huerta con il tuo account Google. Google ci comunica il tuo indirizzo email e un numero che identifica il tuo account Google; li conserviamo, insieme alla tua lingua e al tuo fuso orario, perché tu possa accedere da qualsiasi dispositivo e ricevere gli avvisi all’ora giusta. Conserviamo i tuoi orti: i nomi, i piani e la posizione arrotondata a circa 1 km, mai il tuo indirizzo.",
     "alerts": "Se attivi gli avvisi del mattino, conserviamo l’indirizzo per le notifiche che il tuo browser o il tuo telefono ci fornisce, finché non li disattivi o smette di funzionare.",
     "storage": "Questi dati sono conservati presso Cloudflare (database Cloudflare D1, Europa occidentale), che li tratta per nostro conto. Gli avvisi, se attivi, sono consegnati dal servizio di notifiche del produttore del tuo browser o telefono (Google, Apple o Mozilla); il loro contenuto è cifrato, così solo il tuo dispositivo può leggerlo. Usiamo i dati solo per far funzionare Huerta e non li vendiamo né li condividiamo mai.",
-    "delete": "Puoi eliminare il tuo account in qualsiasi momento in Impostazioni → Account Huerta → Elimina account, oppure scrivendo all’indirizzo di contatto qui sotto dall’email del tuo account. La tua email, i tuoi orti e i tuoi avvisi vengono cancellati subito, su tutti i dispositivi.",
+    "delete": "Puoi eliminare il tuo account in qualsiasi momento: apri la pagina del tuo account (Aiuto → Account su un computer, Impostazioni su un telefono) e scegli Elimina account, oppure scrivi all’indirizzo di contatto qui sotto dall’email del tuo account. La tua email, i tuoi orti e i tuoi avvisi vengono cancellati subito, su tutti i dispositivi.",
     "google": "Da Google riceviamo solo il tuo indirizzo email, se Google lo ha verificato e il numero che identifica il tuo account Google. Non vediamo mai la tua password e non abbiamo accesso ai tuoi contatti, ai tuoi file né ad altro nel tuo account Google. Non usiamo questi dati per la pubblicità e non li vendiamo mai. Puoi anche rimuovere Funges dalle app collegate al tuo account Google in qualsiasi momento.",
     "legal": "Trattiamo questi dati per fornirti l’account che hai richiesto (art. 6, par. 1, lett. b GDPR). Gli avvisi del mattino vengono inviati solo se li attivi, e puoi disattivarli in qualsiasi momento.",
     "retention": "Conserviamo i tuoi dati finché hai un account. Un accesso su un dispositivo scade dopo un anno senza uso. I dati di un accesso in corso vengono cancellati entro pochi minuti. Quando elimini il tuo account, tutto viene cancellato subito; la cronologia di ripristino del nostro fornitore di database lo conserva per altri 7 giorni al massimo, dopodiché sparisce per sempre.",
@@ -68,7 +68,7 @@
     "steps": [
       "Apri fung.es (o l’app Funges) e vai su Huerta.",
       "Accedi con l’account Google che usi per Huerta.",
-      "Apri Impostazioni → Account Huerta.",
+      "Apri il tuo account: su un computer, Aiuto → Account; su un telefono, Impostazioni.",
       "Tocca Elimina account e conferma."
     ],
     "what": "Così vengono cancellati il tuo indirizzo email, i tuoi orti e piani, le impostazioni degli avvisi e tutti gli accessi, su tutti i tuoi dispositivi, subito. La cronologia di ripristino del nostro fornitore di database ne conserva una copia per 7 giorni al massimo, poi sparisce per sempre.",

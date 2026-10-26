@@ -28,7 +28,7 @@
     "restriction": "Limitation : demander que l’utilisation de vos données soit limitée dans certaines circonstances.",
     "objection": "Opposition : vous opposer à l’utilisation de vos données.",
     "portability": "Portabilité : recevoir vos données dans un format structuré et lisible par machine.",
-    "exercise": "Pour supprimer votre compte Huerta, utilisez Paramètres → Compte Huerta → Supprimer le compte (voir aussi fung.es/delete-account). Pour toute autre question sur les données que nous conservons, écrivez à l’adresse de contact ci-dessous ; pour les données d’un service tiers, contactez ce service. Vous pouvez aussi déposer une plainte auprès d’une autorité de protection des données : en Suisse, le Préposé fédéral à la protection des données et à la transparence (PFPDT) ; dans l’UE, l’autorité de votre pays."
+    "exercise": "Pour supprimer votre compte Huerta, ouvrez la page de votre compte (Aide → Compte sur un ordinateur, Paramètres sur un téléphone) et choisissez Supprimer le compte ; fung.es/delete-account explique les étapes. Pour toute autre question sur les données que nous conservons, écrivez à l’adresse de contact ci-dessous ; pour les données d’un service tiers, contactez ce service. Vous pouvez aussi déposer une plainte auprès d’une autorité de protection des données : en Suisse, le Préposé fédéral à la protection des données et à la transparence (PFPDT) ; dans l’UE, l’autorité de votre pays."
   },
   "protection": {
     "title": "Protection des données",
@@ -54,7 +54,7 @@
     "content": "Vous vous connectez à Huerta avec votre compte Google. Google nous transmet votre adresse e-mail et un numéro qui identifie votre compte Google ; nous les conservons, avec votre langue et votre fuseau horaire, pour que vous puissiez vous connecter sur n’importe quel appareil et recevoir les alertes au bon moment. Nous conservons vos potagers : leurs noms, leurs plans et leur emplacement arrondi à environ 1 km, jamais votre adresse.",
     "alerts": "Si vous activez les alertes du matin, nous conservons l’adresse de notification que votre navigateur ou votre téléphone nous fournit à cet effet, jusqu’à ce que vous les désactiviez ou qu’elle cesse de fonctionner.",
     "storage": "Ces données sont stockées chez Cloudflare (base de données Cloudflare D1, Europe de l’Ouest), qui les traite pour notre compte. Les alertes, si elles sont activées, sont transmises par le service de notifications du fabricant de votre navigateur ou de votre téléphone (Google, Apple ou Mozilla) ; leur contenu est chiffré pour que seul votre appareil puisse le lire. Nous n’utilisons les données que pour faire fonctionner Huerta et ne les vendons ni ne les partageons jamais.",
-    "delete": "Vous pouvez supprimer votre compte à tout moment dans Paramètres → Compte Huerta → Supprimer le compte, ou en écrivant à l’adresse de contact ci-dessous depuis l’adresse e-mail de votre compte. Votre e-mail, vos potagers et vos alertes sont supprimés aussitôt, sur tous vos appareils.",
+    "delete": "Vous pouvez supprimer votre compte à tout moment : ouvrez la page de votre compte (Aide → Compte sur un ordinateur, Paramètres sur un téléphone) et choisissez Supprimer le compte, ou écrivez à l’adresse de contact ci-dessous depuis l’adresse e-mail de votre compte. Votre e-mail, vos potagers et vos alertes sont supprimés aussitôt, sur tous vos appareils.",
     "google": "De Google, nous recevons seulement votre adresse e-mail, le fait que Google l’a vérifiée et le numéro qui identifie votre compte Google. Nous ne voyons jamais votre mot de passe et n’avons accès ni à vos contacts, ni à vos fichiers, ni à rien d’autre dans votre compte Google. Nous n’utilisons pas ces données pour la publicité et ne les vendons jamais. Vous pouvez aussi retirer Funges des applications associées à votre compte Google à tout moment.",
     "legal": "Nous traitons ces données pour vous fournir le compte que vous avez demandé (art. 6, par. 1, point b, du RGPD). Les alertes du matin ne sont envoyées que si vous les activez, et vous pouvez les désactiver à tout moment.",
     "retention": "Nous conservons vos données tant que vous avez un compte. Une connexion sur un appareil prend fin après un an sans utilisation. Les traces d’une connexion en cours sont supprimées en quelques minutes. Quand vous supprimez votre compte, tout est supprimé aussitôt ; l’historique de restauration de notre fournisseur de base de données le garde au plus 7 jours de plus, après quoi il disparaît définitivement.",
@@ -68,7 +68,7 @@
     "steps": [
       "Ouvrez fung.es (ou l’application Funges) et allez dans Huerta.",
       "Connectez-vous avec le compte Google que vous utilisez pour Huerta.",
-      "Ouvrez Paramètres → Compte Huerta.",
+      "Ouvrez votre compte : sur un ordinateur, Aide → Compte ; sur un téléphone, Paramètres.",
       "Touchez Supprimer le compte et confirmez."
     ],
     "what": "Cela supprime votre adresse e-mail, vos potagers et vos plans, vos réglages d’alertes et toutes vos connexions, sur tous vos appareils, aussitôt. L’historique de restauration de notre fournisseur de base de données en garde une copie au plus 7 jours, puis elle disparaît définitivement.",

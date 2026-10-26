@@ -18,6 +18,7 @@ import {
   Smartphone,
   ScanSearch,
   Sprout,
+  User,
 } from '@/lib/icons';
 import { currentSpace } from '@/lib/spaces';
 import { SpaceSwitcher } from '@/components/SpaceSwitcher';
@@ -34,7 +35,10 @@ import {
 import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import {
+  shouldShowHuerta,
+  shouldShowOfflineFeatures,
+} from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import MapLastUpdated from '@/components/MapLastUpdated';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -136,8 +140,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             },
           ]
         : []),
-      // On phones Settings leads the hub in the main list; on desktop it sits
-      // above Help (navHelp).
+      // Add settings to main nav only on mobile
       ...(isMobile
         ? [
             {
@@ -151,21 +154,24 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     ],
     // Four low-frequency utility links under one entry. `#help` is the
     // parent-without-a-destination convention this file already uses.
-    // Settings sits above Help on desktop too: it holds the Huerta account
-    // (sign out, delete) as well as the hub's links.
     navHelp: !isMobile
       ? [
-          {
-            title: t('settings'),
-            url: `${basePath}settings`,
-            icon: Settings,
-            isActive: false,
-          },
           {
             title: t('help'),
             url: '#help',
             icon: LifeBuoy,
             items: [
+              // The Huerta account (sign out, delete), in Huerta only: from
+              // Terra it would jump spaces. Phones have it in Settings.
+              ...(shouldShowHuerta && currentSpace(pathname) === 'huerta'
+                ? [
+                    {
+                      title: t('account'),
+                      url: `${basePath}huerta/account`,
+                      icon: User,
+                    },
+                  ]
+                : []),
               {
                 title: t('support'),
                 url: `${basePath}support`,
