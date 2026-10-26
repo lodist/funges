@@ -1,267 +1,128 @@
 # Fung.es
 
-A modern foraging webapp built with React 19, TanStack Router, and Vite that helps users discover wild mushrooms, edible plants, and berries in their area. Features an interactive MapLibre map with real-time foraging data, comprehensive species database, and curated wild food recipes.
+Foraging forecasts for Europe and the US. Fung.es shows where and when wild
+mushrooms, plants, berries, nuts and flowers are worth looking for, and what to
+cook with them.
 
-## 🌟 Features
+Live at [www.fung.es](https://www.fung.es) and on
+[Google Play](https://play.google.com/store/apps/details?id=es.fung.app).
 
-### 🗺️ Interactive Foraging Map
+## What's in the app
 
-- **Real-time MapLibre + PMTiles integration** with custom GeoJSON overlays
-- **Dynamic species filtering** by category (mushrooms, plants, berries, nuts, flowers)
-- **Geolocation support** with user location detection and navigation
-- **Responsive design** optimized for both desktop and mobile devices
-- **Dark/light theme support** with system preference detection
+- **Map**: a daily forecast score for each species across northern and
+  southern Europe and the eastern and western US. Tap a place to see what is
+  worth looking for there.
+- **Worth Foraging Now**: the species in season near you today.
+- **Species**: 59 species (28 mushrooms, 12 plants, 12 berries, 4 flowers,
+  3 nuts) with season, habitat, identification and safety notes.
+- **Recipes**: 44 recipes built on wild ingredients, with a route past the
+  places where they grow.
+- **Identify**: photo identification that runs in the browser. It suggests
+  candidates and never says whether something is safe to eat.
+- **Seasonal spectacles**: cherry blossom, bluebells, desert superbloom,
+  heather and autumn foliage, on the map like the species.
+- **Data**: the forecast scorecard and a season atlas for each place and
+  species.
+- **Offline maps**: basemap packages to download before you lose signal.
+- Installable as a PWA, light and dark themes, and six languages (English,
+  German, Spanish, French, Italian, Portuguese).
 
-### 🍄 Species Database
+## Tech stack
 
-- **Comprehensive catalog** of 30+ wild edibles including:
-  - Mushrooms (Chanterelles, Morels, Porcini, etc.)
-  - Edible plants (Nettles, Dandelions, Wild Garlic, etc.)
-  - Berries (Blackberries, Elderberries, Wild Strawberries, etc.)
-  - Nuts (Hazelnuts, Walnuts, Chestnuts)
-- **Scientific names** and detailed descriptions
-- **Seasonal information** and habitat details
-- **Safety notes** and identification tips
-- **Multi-language support** (English, German, Spanish, French, Italian, Portuguese)
+React 19 and TypeScript on Vite 6 · TanStack Router (file-based routes) and
+TanStack Query · Zustand · Tailwind CSS 4 with SCSS modules · MapLibre GL with
+PMTiles · i18next · vite-plugin-pwa · ONNX Runtime Web for photo ID · Vitest,
+Playwright and Storybook.
 
-### 🍽️ Wild Food Recipes
+## Getting started
 
-- **Curated recipe collection** featuring wild ingredients
-- **Difficulty levels** (Easy, Medium, Hard) with prep/cook times
-- **Safety warnings** and preparation tips
-- **Filterable by ingredient type** and dietary preferences
-- **Step-by-step instructions** with cooking tips
-- **Beautiful recipe images** and nutritional information
-
-### 📱 Progressive Web App (PWA)
-
-- **Full offline support** with service worker caching
-- **Installable** on mobile and desktop devices
-- **Splash screens** for native app-like experience
-- **Offline map functionality** with cached data
-- **Push notifications** support (configurable)
-
-### 🌍 Internationalization
-
-- **6 language support** with automatic detection
-- **Localized content** for species, recipes, and UI
-- **RTL language support** ready
-- **Cultural adaptations** for regional foraging practices
-
-## 🏗️ Architecture
-
-### Tech Stack
-
-- **Frontend**: React 19 with TypeScript
-- **Routing**: TanStack Router with file-based routing
-- **State Management**: Zustand stores
-- **Styling**: Tailwind CSS 4 + SCSS
-- **Maps**: MapLibre GL JS + PMTiles (self-hosted on R2)
-- **Build Tool**: Vite 6
-- **Testing**: Vitest + Testing Library
-- **PWA**: Vite PWA plugin
-
-### Project Structure
-
-```shell
-src/
-├── assets/             # Static assets
-├── components/         # Reusable UI components
-│   ├── ui/             # shadcn/ui components
-│   ├── Mobile/         # Mobile-specific components
-│   └── Sidebar/        # Navigation components
-├── contexts/           # React context providers
-├── data/               # Static data (species, recipes)
-├── hooks/              # Custom React hooks
-├── i18n/               # Internationalization
-├── lib/                # Utilities and API layer
-├── pages/              # Page components
-├── routes/             # TanStack Router file-based routes
-├── store/              # Zustand state stores
-├── stories/            # Storybook stories
-├── styles/             # Global styles and design tokens
-├── test/               # Test files
-└── types/              # TypeScript type definitions
-```
-
-### Key Components
-
-- **AdvancedMap**: Interactive MapLibre map with foraging data
-- **SpeciesSelector**: Filter and browse wild edibles
-- **RecipeModal**: Detailed recipe viewer with instructions
-- **RouteToDishPanel**: Route-to-dish feature panel
-- **AppSidebar**: Navigation and species filtering
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm, yarn, or bun
-
-### Installation
-
-1. **Clone the repository**
+You need Node.js 22 (CI and local work use 22.16.0).
 
 ```bash
 git clone https://github.com/lodist/funges.git
 cd funges
-```
-
-2. **Install dependencies**
-
-```bash
 npm install
-```
-
-3. **Environment setup**
-
-```bash
-cp .env.secret.example .env.secret
-```
-
-Fill in your credentials in `.env.secret`. Public config (R2 data URLs) is already committed in `.env`.
-
-4. **Start development server**
-
-```bash
 npm run dev
 ```
 
-The app will be available at `http://localhost:3000`
+The app opens at `http://localhost:3000`. It needs no environment setup: map
+tiles, scores and the photo-ID model load from the public data host
+`data.fung.es`.
 
-## 🛠️ Development
+## Commands
 
-### Available Scripts
+| Command                               | What it does                                               |
+| ------------------------------------- | ---------------------------------------------------------- |
+| `npm run dev`                         | Dev server on port 3000                                    |
+| `npm run dev:mobile`                  | Dev server on your network, to test on a phone             |
+| `npm run build` / `npm run preview`   | Production build, and a local server for it                |
+| `npm run check`                       | Prettier, ESLint (zero warnings) and the type check        |
+| `npm run lint:fix` / `npm run format` | Fix lint issues / format the code                          |
+| `npx vitest run --project unit`       | Unit tests                                                 |
+| `npx vitest run --project storybook`  | Render every story in a browser and fail on axe violations |
+| `npm run test:e2e`                    | Playwright end-to-end tests                                |
+| `npm run storybook`                   | Storybook on port 6006                                     |
+| `task ci-check`                       | Everything CI runs, from a clean `npm ci`                  |
 
-- `npm run dev` - Start Vite dev server
-- `npm run dev:mobile` - Start with mobile-optimized settings
-- `npm run build` - Build production bundle
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint issues
-- `npm run format` - Run Prettier
-- `npm run type-check` - TypeScript type checking
-- `npm run test` - Run Vitest tests
-- `npm run test:ui` - Interactive test UI
-- `npm run test:coverage` - Test coverage report
-- `npm run storybook` - Start Storybook
+The Storybook project needs a browser once: `npx playwright install chromium`.
 
-### Code Quality
+## Project structure
 
-- **ESLint** with TypeScript and React rules
-- **Prettier** for code formatting
-- **TypeScript** strict mode enabled
-
-## 📱 PWA Features
-
-### Installation
-
-- **Add to home screen** on mobile devices
-- **Desktop app** installation on supported browsers
-- **Automatic updates** with background sync
-- **Native app-like** user experience
-
-## 🌍 Internationalization
-
-### Supported Languages
-
-- **English** (en) - Default
-- **German** (de) - Deutsch
-- **Spanish** (es) - Español
-- **French** (fr) - Français
-- **Italian** (it) - Italiano
-- **Portuguese** (pt) - Português
-
-### Localization Features
-
-- **Automatic language detection** based on browser settings
-- **Persistent language preference** stored locally
-
-## ⚙️ Backend Scripts
-
-Python scripts that generate foraging scores and map tiles, running on a schedule and writing to Cloudflare R2.
-
-```
-backend/
-├── EU/
-│   ├── North_Europe/   NE_Scoring.py, NE_MapLayer.py
-│   └── South_Europe/   SE_Scoring.py, SE_MapLayer.py
-├── US/
-│   ├── USE/            USE_Scoring.py, USE_MapLayer.py
-│   └── USW/            USW_Scoring.py, USW_MapLayer.py
-├── tools/
-│   └── build_season_curves.py
-└── requirements.txt
+```text
+content/species/   one manifest per species, the source of the catalog
+src/
+├── components/    app components; ui/ holds the primitives and their stories
+├── foundations/   design tokens, documented in Storybook
+├── patterns/      composed patterns, documented in Storybook
+├── pages/         page components
+├── routes/        TanStack Router file routes
+├── data/          recipes, toxic look-alikes, photo-ID vocabulary
+├── generated/     built from content/species; do not edit by hand
+├── lib/ hooks/ store/ contexts/
+├── i18n/          translations
+└── workers/       the photo-ID worker
+public/            static files, icons and published site data
+scripts/           data, tile and QA scripts
+e2e/               Playwright tests
+docs/              decision records and how-tos
+backend/           the forecasting engine (proprietary, see below)
 ```
 
-- **Scoring** — fetch weather from R2, compute species scores, write Parquet back to R2
-- **MapLayer** — scores + GeoJSON → Delaunay triangulation → MBTiles + PMTiles via tippecanoe → R2
-- **`build_season_curves.py`** — queries GBIF for monthly fungi sightings per region, builds a target-group ratio curve (cancels observer-effort bias), uploads to `<REGION>_SEASON_CURVES` in R2. Run once before the first scoring run, then monthly.
+## Contributing
 
-```bash
-pip install -r backend/requirements.txt
-cp .env.secret.example .env.secret  # fill in R2, WeatherAPI credentials
+Read [AGENTS.md](AGENTS.md) first. It covers code style, how to write a
+story, image size limits and the checks to run before a PR. In short:
 
-python backend/tools/build_season_curves.py        # publish season curves to R2
-python backend/EU/North_Europe/NE_Scoring.py       # then run scoring
-python backend/EU/North_Europe/NE_MapLayer.py
-```
+- Storybook is the design-system documentation. Look there before building a
+  component, and document new primitives there.
+- Run `npm run check` and the unit tests before you open a PR.
+- To add or change a species, follow
+  [content/species/README.md](content/species/README.md).
 
-## 🔧 Configuration
+## Forecast engine
 
-### Environment Variables
+`backend/` holds the Python pipeline that builds the nightly forecast scores
+and map tiles and publishes them to Cloudflare R2. It is proprietary (see
+[License](#license)). Running it needs R2 and weather credentials in
+`.env.secret` (copy `.env.secret.example`). Its built files live on R2, not in
+git: `python backend/r2.py sync` fetches them.
 
-| Variable                     | Where         | Description                   |
-| ---------------------------- | ------------- | ----------------------------- |
-| `R2_ACCESS_KEY_ID`           | `.env.secret` | Cloudflare R2 credentials     |
-| `R2_SECRET_ACCESS_KEY`       | `.env.secret` | Cloudflare R2 credentials     |
-| `R2_BUCKET_NAME`             | `.env.secret` | Cloudflare R2 bucket name     |
-| `R2_ENDPOINT_URL`            | `.env.secret` | Cloudflare R2 endpoint        |
-| `WEATHERAPI_KEY`             | `.env.secret` | WeatherAPI.com key            |
-| R2 data URLs (NE/SE/USE/USW) | `.env`        | Public CDN URLs — already set |
+## Deployment
 
-## 🚀 Deployment
+Every push to `main` builds and deploys the site to GitHub Pages
+([deploy.yml](.github/workflows/deploy.yml)). The build needs the repository
+variables `VITE_BASE_URL` and `VITE_HOSTNAME`. A scheduled workflow refreshes
+the site data in `public/data/` after each nightly scoring run.
 
-### Build
+## License
 
-```bash
-npm run build
-```
+The app is open source under the MIT License. The forecasting engine
+(`backend/`), the species calibrations, the models and all forecast data are
+proprietary, all rights reserved. See [LICENSE](LICENSE) for exactly which
+parts.
 
-### PWA Deployment
+## Safety notice
 
-- **HTTPS required** for service worker functionality
-- **Manifest generation** automatic
-- **Icon generation** for all device sizes
-- **Splash screen** creation for native feel
-
-## 🤝 Contributing
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
-
-### Code Standards
-
-- **TypeScript** for type safety
-- **ESLint** for code quality
-- **Prettier** for formatting
-- **Conventional commits** for commit messages
-
-## 📄 License
-
-The app is open source under the MIT License. The forecasting engine (`backend/`), the species calibrations, the models and all forecast data are proprietary, all rights reserved. See [LICENSE](LICENSE) for exactly which parts.
-
-## ⚠️ Safety Notice
-
-**Always consult with local experts before consuming wild edibles.** This app provides educational information but should not be the sole source for identification. Many wild mushrooms and plants have poisonous look-alikes. When in doubt, leave it out.
-
----
-
-**Happy foraging! 🍄🌿🫐**
+**Always check with local experts before eating anything wild.** Fung.es is
+for education and planning, not a sole source for identification. Many wild
+mushrooms and plants have poisonous look-alikes. When in doubt, leave it out.
