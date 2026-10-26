@@ -136,8 +136,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             },
           ]
         : []),
-      // On phones Settings leads the hub in the main list; on desktop it sits
-      // above Help (navHelp).
+      // Add settings to main nav only on mobile
       ...(isMobile
         ? [
             {
@@ -151,16 +150,8 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     ],
     // Four low-frequency utility links under one entry. `#help` is the
     // parent-without-a-destination convention this file already uses.
-    // Settings sits above Help on desktop too: it holds the Huerta account
-    // (sign out, delete) as well as the hub's links.
     navHelp: !isMobile
       ? [
-          {
-            title: t('settings'),
-            url: `${basePath}settings`,
-            icon: Settings,
-            isActive: false,
-          },
           {
             title: t('help'),
             url: '#help',
