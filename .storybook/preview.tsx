@@ -7,7 +7,7 @@ import '../src/lib/fonts';
 import '../src/index.css';
 // Imported after index.css on purpose — it undoes the app's no-scroll body.
 import './preview.css';
-import { withI18n, withTheme } from '@/storybook/decorators';
+import { i18nLoaded, withI18n, withTheme } from '@/storybook/decorators';
 
 const preview: Preview = {
   parameters: {
@@ -58,6 +58,13 @@ const preview: Preview = {
   },
 
   decorators: [withTheme, withI18n],
+  // English loads on demand: every story renders after it.
+  loaders: [
+    async () => {
+      await i18nLoaded;
+      return {};
+    },
+  ],
 };
 
 export default preview;
