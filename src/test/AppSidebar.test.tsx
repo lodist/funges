@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
 import '@/i18n';
 import { AppSidebar } from '@/components/Sidebar/AppSidebar';
@@ -96,6 +96,7 @@ describe('AppSidebar', () => {
       '/data',
       '/recipes',
       '/instructions',
+      '/settings',
     ]);
   });
 
@@ -174,6 +175,15 @@ describe('AppSidebar', () => {
       '/recipes',
       '/settings',
     ]);
+  });
+
+  it('has Settings on desktop too, in both spaces: the Huerta account lives there', () => {
+    renderSidebar();
+    expect(navLinks()).toContain('/settings');
+    cleanup();
+    pathname.current = '/huerta/planner';
+    renderSidebar();
+    expect(navLinks()).toContain('/settings');
   });
 
   it('marks the entry for the current route as active', () => {
