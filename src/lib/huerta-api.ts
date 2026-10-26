@@ -245,7 +245,9 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
     Date.now() - kept.at < YEAR_DAYS * 864e5 &&
     CROPS.every(crop => crop.id in kept.year.crops) &&
     kept.year.temps &&
-    kept.year.soil !== undefined
+    kept.year.soil !== undefined &&
+    // Kept from before the year files carried the climate: ask again.
+    kept.year.climate
   )
     return kept.year;
   const response = await apiFetch('/v1/year', { lat, lon });
