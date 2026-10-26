@@ -106,8 +106,7 @@ export default function HuertaLandingPage() {
                   <Link to='/huerta/year'>{tNav('huertaYear')}</Link>
                 </Button>
               </div>
-              {/* Huerta is new and made by one person: say so, and where to
-                  say what's off. */}
+              {/* Huerta is new: say so, and where to say what's off. */}
               <p className={styles.early}>
                 {t('landing.early')}{' '}
                 <Link to='/support' className='focus-ring'>
