@@ -83,6 +83,9 @@ export default defineConfig({
           '**/splash-screens/**',
           // No page links it (the tab icon is icons/logo_1.png).
           'favicon.png',
+          // Cooked at home, not in the forest: a recipe's photo is kept once
+          // viewed (the image rule below), not downloaded by every visitor.
+          '**/assets/recipes/**',
         ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
@@ -495,6 +498,14 @@ export default defineConfig({
     target: 'es2020',
     rollupOptions: {
       output: {
+        // Recipe photos in a folder of their own, so the precache can leave
+        // them out (globIgnores above).
+        assetFileNames: asset =>
+          asset.originalFileNames.some(name =>
+            name.includes('src/assets/recipes/')
+          )
+            ? 'assets/recipes/[name]-[hash][extname]'
+            : 'assets/[name]-[hash][extname]',
         manualChunks(id) {
           if (id.includes('node_modules/@discourse/heic')) {
             return 'heic-decoder';
