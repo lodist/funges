@@ -1,15 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router';
 import MapPage from '@/pages/MapPage';
-import { z } from 'zod';
+// zod's mini build: the same checks, a fraction of the entry chunk.
+import * as z from 'zod/mini';
 
 export const Route = createFileRoute('/map')({
   component: MapPage,
   validateSearch: z.object({
-    species: z.string().optional(),
-    lat: z.coerce.number().optional(),
-    lng: z.coerce.number().optional(),
-    zoom: z.coerce.number().optional(),
+    species: z.optional(z.string()),
+    lat: z.optional(z.coerce.number()),
+    lng: z.optional(z.coerce.number()),
+    zoom: z.optional(z.coerce.number()),
     // Landing-page deep link: opens the photo identification panel on arrival.
-    identify: z.coerce.boolean().optional(),
+    identify: z.optional(z.coerce.boolean()),
   }),
 });

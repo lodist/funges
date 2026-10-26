@@ -63,6 +63,7 @@ const BOLETE_IDS = [
   'summer_bolete',
   'eastern_king',
   'rocky_king',
+  'bay_bolete',
 ];
 const CHANTERELLE_IDS = [
   'chant',

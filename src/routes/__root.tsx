@@ -1,6 +1,6 @@
 import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useScroll, useMotionValueEvent, MotionConfig } from 'framer-motion';
+import { MotionConfig } from 'framer-motion';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { AppSidebar } from '@/components/Sidebar/AppSidebar';
@@ -77,19 +77,27 @@ function RootComponent() {
   const mainRef = useRef<HTMLDivElement>(null);
   const [hideNavbar, setHideNavbar] = useState(false);
   const lastScrollYRef = useRef(0);
-  const { scrollY } = useScroll(isMapPage ? undefined : { container: mainRef });
 
-  useMotionValueEvent(scrollY, 'change', latest => {
+  // On a phone the nav bar steps aside while scrolling down and comes back on
+  // the way up. A plain listener: motion's useScroll put its animation engine
+  // in the entry chunk for this alone. The map page scrolls the window.
+  useEffect(() => {
     if (!isMobile) return;
-
-    if (latest > lastScrollYRef.current && latest > 100) {
-      setHideNavbar(true);
-    } else if (latest < lastScrollYRef.current) {
-      setHideNavbar(false);
-    }
-
-    lastScrollYRef.current = latest;
-  });
+    const main = mainRef.current;
+    const target: Window | HTMLElement | null = isMapPage ? window : main;
+    if (!target) return;
+    const onScroll = () => {
+      const latest = isMapPage ? window.scrollY : (main?.scrollTop ?? 0);
+      if (latest > lastScrollYRef.current && latest > 100) {
+        setHideNavbar(true);
+      } else if (latest < lastScrollYRef.current) {
+        setHideNavbar(false);
+      }
+      lastScrollYRef.current = latest;
+    };
+    target.addEventListener('scroll', onScroll, { passive: true });
+    return () => target.removeEventListener('scroll', onScroll);
+  }, [isMobile, isMapPage]);
 
   return (
     // Motion (#225): the global CSS reduced-motion rule collapses CSS

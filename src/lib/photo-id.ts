@@ -17,11 +17,7 @@ import {
  * but never shown as if nothing were known.
  */
 export type CandidateKind =
-  | 'catalog'
-  | 'toxic'
-  | 'caution'
-  | 'other'
-  | 'unknown';
+  'catalog' | 'toxic' | 'caution' | 'other' | 'unknown';
 
 export interface Prediction {
   scientificName: string;

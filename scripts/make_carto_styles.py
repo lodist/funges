@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Positron / Dark-Matter map styles from funges_style.json.
+"""Generate Positron / Dark-Matter / Topographic / Dark map styles from funges_style.json.
 
 Both new styles reuse the SAME sources + every forecast/species overlay layer of
 the base style, in the same order (the app drives those by id, and species:generate
@@ -39,6 +39,19 @@ DARKMATTER = dict(
     boundary_country="#2d2d2d", boundary_region="#232323",
     road_major="#2e2e2e", road_medium="#242424", road_minor="#1c1c1c",
     label="#a8a8a8", label_halo="#000000", water_label="#5a7280",
+    sprite="map-assets/sprites/v4/dark",
+    hillshade={"raster-opacity": 0.5},
+)
+# The "Dark" theme, after Decimal (Mapbox community style by Tristen Brown): black land, dark green
+# sea, teal lines, mint labels, like an old control panel. Roads sit above the
+# forecast fills, so they are dimmer than the original to keep scores readable.
+DECIMAL = dict(
+    name="Funges Dark",
+    ocean="#17302a", land="#000000", green="#10241d",
+    water="#17302a", waterway="#2a5548",
+    boundary_country="#3f7565", boundary_region="#2c5246",
+    road_major="#3a6658", road_medium="#2b4d42", road_minor="#1f3830",
+    label="#8fd6bb", label_halo="#000000", water_label="#5f9e88",
     sprite="map-assets/sprites/v4/dark",
     hillshade={"raster-opacity": 0.5},
 )
@@ -261,3 +274,4 @@ def build(theme, out):
 build(POSITRON, "funges_style_positron.json")
 build(DARKMATTER, "funges_style_darkmatter.json")
 build(TOPOGRAPHIC, "funges_style_topographic.json")
+build(DECIMAL, "funges_style_dark.json")

@@ -448,6 +448,56 @@ test('rejects a composite of unknown members or with settings of its own', () =>
   assert.match(errors, /landCover is not allowed in a composite/);
 });
 
+test('a composite region can leave members out', async () => {
+  const root = fixtureRoot();
+  addForecastSpecies(root);
+  fs.mkdirSync(path.join(root, 'content/species/all-kinds'));
+  fs.writeFileSync(
+    path.join(root, 'content/species/all-kinds/species.json'),
+    JSON.stringify(
+      composite(undefined, {
+        NE: { available: true, without: ['new-species'] },
+      })
+    )
+  );
+  fs.writeFileSync(
+    path.join(root, 'src/assets/species/all-kinds.webp'),
+    webp()
+  );
+  await generate(root);
+  const registry = JSON.parse(
+    fs.readFileSync(
+      path.join(root, 'backend/generated/species_registry.json'),
+      'utf8'
+    )
+  );
+  assert.deepEqual(registry.species['all-kinds'].regions.NE.compositeOf, [
+    'chant',
+  ]);
+
+  const chant = manifest({ forecast: forecast() });
+  const stray = composite(['chant'], {
+    NE: { available: true, without: ['parsley'] },
+  });
+  const plain = manifest({
+    id: 'plain',
+    forecast: {
+      ...forecast(),
+      regions: {
+        ...forecast().regions,
+        NE: { ...forecast().regions.NE, without: ['chant'] },
+      },
+    },
+  });
+  const errors = validateManifests(
+    [entry(chant), entry(stray), entry(plain, 'plain')],
+    process.cwd(),
+    { checkImages: false }
+  ).join('\n');
+  assert.match(errors, /without: parsley is not in compositeOf/);
+  assert.match(errors, /without is only for a composite/);
+});
+
 test('route-to-dish requires explicit manifest opt-in', async () => {
   const root = fixtureRoot();
   addForecastSpecies(root);

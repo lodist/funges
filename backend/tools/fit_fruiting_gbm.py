@@ -76,6 +76,9 @@ def predict(model, x: np.ndarray, rounds: int | None = None) -> np.ndarray:
 
 # --- Training run ---------------------------------------------------------------------------
 # python backend/tools/fit_fruiting_gbm.py --out ../era5_training [--export]
+# python backend/tools/fit_fruiting_gbm.py --out ../era5_training --add bay_bolete --export
+#   (a species new to the table, after fit_fruiting.py --add: its gate and models join the
+#   shipped files, every other model in them unchanged)
 #
 # Same strata as fit_fruiting.py. Features: its 13 window features, the daily lags
 # (training_lags/, build_training_table.py --lags), each find cell's ERA5 normals for the
@@ -91,7 +94,7 @@ HELD_BACK = {("chicken-of-the-woods", "USW")}
 R2_FOLDER = "models/fruiting_gbm"    # model files on R2; generated/fruiting_gbm.json points at them
 
 
-def load(out):
+def load(out, keep=None):
     import fit_fruiting as ff
     import pandas as pd
     import pyarrow.parquet as pq
@@ -99,10 +102,13 @@ def load(out):
     import forecast_pipeline as fp
 
     def read(folder):
-        return pd.concat([pd.read_parquet(p) for p in sorted((out / folder).glob("*.parquet"))
+        return pd.concat([pd.read_parquet(p) for p in ff.table_files(out, folder, keep[0] if keep else None)
                           if "case_id" in pq.read_schema(p).names or folder == "training_scores"], ignore_index=True)
 
     table, scores, lags = read("training"), read("training_scores"), read("training_lags")
+    if keep:  # one species and the placebo: its scores are the ones named after it
+        table = table[table["species"].isin(keep)].reset_index(drop=True)
+        scores = scores[scores["species"].isin(keep)]
     cases, raw, mask = ff.strata(table, fp.fruiting_design(table, names=fp.FRUITING_GBM_BASE))
     where = (table[table["offset"] == 0].drop_duplicates("case_id")
              .set_index("case_id")[["cell_lat", "cell_lon"]].reindex(cases["case_id"]))
@@ -265,7 +271,7 @@ def gbm_index(booster, region):
     return index
 
 
-def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
+def export(table_rows, cases, x, mask, loyo, gate, names, out, root, add=False):
     """The shipped species' models on every year, their regions' monthly maps and the regions'
     stored-input corrections -> R2 (R2_FOLDER/<date>/<species>.txt.gz) and
     backend/generated/fruiting_gbm.json, which names each file and its sha256."""
@@ -320,6 +326,12 @@ def export(table_rows, cases, x, mask, loyo, gate, names, out, root):
             "inputs_from_stored": {r: {c: [round(a, 4), round(b, 4)] for c, (a, b) in cols.items()}
                                    for r, cols in corrections.items()},
             "models": models}
+    if add:
+        shipped_file = json.loads(r2.generated(root / "backend" / "generated" / "fruiting_gbm.json").read_text(encoding="utf-8"))
+        shipped_file["models"].update(models)
+        for region, cols in spec["inputs_from_stored"].items():
+            shipped_file["inputs_from_stored"].setdefault(region, cols)
+        spec = shipped_file
     (root / "backend" / "generated" / "fruiting_gbm.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8")
     r2.ship(root / "backend" / "generated" / "fruiting_gbm.json")
 
@@ -339,13 +351,15 @@ def main() -> None:
     parser.add_argument("--reuse", action="store_true", help="take the year-by-year results from gbm_loyo.csv")
     parser.add_argument("--unseen", action="store_true",
                         help="only the transfer test: regions, and Spain's June porcini, never seen in training")
+    parser.add_argument("--add", metavar="SPECIES", help="only this species, its gate and models added to the shipped ones")
     args = parser.parse_args()
     out = Path(args.out)
     root = Path(__file__).resolve().parents[2]
     linear = json.loads((out / "fruiting_report.json").read_text(encoding="utf-8"))
     live = json.loads(r2.generated(root / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8"))["models"]
 
-    table_rows, cases, x, mask, scores, names = load(out)
+    table_rows, cases, x, mask, scores, names = load(out, [args.add, ff.PLACEBO] if args.add else None)
+    suffix = f"_{args.add}" if args.add else ""
     log(f"{len(cases):,} strata, {x.shape[2]} features")
     rng = np.random.default_rng(291)
     if args.unseen:
@@ -368,7 +382,7 @@ def main() -> None:
         (out / "gbm_unseen.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
         return
     rows = []
-    species_list = [] if args.reuse else sorted(set(cases["species"]) - {ff.PLACEBO})
+    species_list = [] if args.reuse else [args.add] if args.add else sorted(set(cases["species"]) - {ff.PLACEBO})
     for species in species_list:
         if (cases["species"] == species).sum() < ff.MIN_TRAIN_STRATA:
             continue
@@ -381,8 +395,8 @@ def main() -> None:
                     rows.append({"species": species, "region": region, "year": year, "gbm": net, "rounds": rounds,
                                  "today": per_year[year]["today"], "linear": per_year[year]["fitted"], "in_use": in_use})
         log(f"{species} done")
-        pd.DataFrame(rows).to_csv(out / "gbm_loyo.csv", index=False)
-    table = pd.read_csv(out / "gbm_loyo.csv") if args.reuse else pd.DataFrame(rows)
+        pd.DataFrame(rows).to_csv(out / f"gbm_loyo{suffix}.csv", index=False)
+    table = pd.read_csv(out / f"gbm_loyo{suffix}.csv") if args.reuse else pd.DataFrame(rows)
     gate = []
     for (species, region), g in table.groupby(["species", "region"]):
         current = g["linear"] if g["in_use"].iloc[0] == "linear" else g["today"]
@@ -394,12 +408,12 @@ def main() -> None:
                      "ships": ff.ships(results) and (species, region) not in HELD_BACK,
                      "rounds": int(g["rounds"].median())})
     gate = pd.DataFrame(gate)
-    gate.to_csv(out / "gbm_gate.csv", index=False)
+    gate.to_csv(out / f"gbm_gate{suffix}.csv", index=False)
     log(f"GBM ships in {gate['ships'].sum()} species-regions "
         f"({(gate['ships'] & (gate['in_use'] == 'linear')).sum()} replacing the linear fit)")
     print(gate[gate["ships"]].to_string(index=False), flush=True)
     if args.export:
-        export(table_rows, cases, x, mask, table, gate, names, out, root)
+        export(table_rows, cases, x, mask, table, gate, names, out, root, add=bool(args.add))
 
 
 if __name__ == "__main__":

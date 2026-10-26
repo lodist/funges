@@ -6,7 +6,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from qa_replay import evaluate, fill_gaps, on_day, percentiles, summarise  # noqa: E402
+from qa_replay import evaluate, fill_gaps, on_day, percentiles, summarise, with_composites  # noqa: E402
 
 
 def test_percentiles_weigh_background_and_count_ties_half():
@@ -87,3 +87,64 @@ def test_on_day_anchors_the_gbm_without_touching_the_settings():
     assert dated["porcini"]["fruiting_gbm"]["booster"] is gbm["booster"]
     assert gbm["anchor"] == "2026-10-16"
     assert dated["nettle"] is params["nettle"]
+
+
+def test_where_absent_leaves_out_spots_where_the_species_was_found_too():
+    days = pd.date_range("2026-10-01", periods=10)
+    # porcini found at p0; a chanterelle at p1 right next to it and one at p2 far away
+    finds = pd.DataFrame({"species_id": ["porcini", "chant", "chant"], "date": ["2026-10-05"] * 3,
+                          "loc": ["p0", "p1", "p2"], "kingdom": ["Fungi"] * 3,
+                          "lat": [46.0, 46.01, 47.0], "lon": [9.0, 9.0, 9.0]})
+    today = pd.DataFrame({"Location_Id": np.repeat(["p0", "p1", "p2"], 10), "Date": np.tile(days, 3)})
+    today["porcini_score"] = np.repeat([5.0, 8.0, 2.0], 10)   # p1, beside the find, scores higher
+    today["chant_score"] = 1.0
+    stored = today.iloc[:0]
+    rows = evaluate("NE", finds, {"today": today, "stored": stored}, days)
+    find = rows[(rows.species == "porcini") & (rows.source == "today")].iloc[0]
+    assert find["where"] == 0.5          # beats p2, loses to p1
+    assert find["where_absent"] == 1.0   # p1 had porcini nearby: only p2 counts
+
+
+def test_a_composite_is_judged_against_other_species_and_never_against_its_members():
+    days = pd.date_range("2026-10-01", periods=10)
+    # porcini at p0, a pine bolete at p1, a parasol (in no composite) at p2
+    finds = pd.DataFrame({"species_id": ["mushroom", "pine_bolete", "parasol"], "date": ["2026-10-05"] * 3,
+                          "loc": ["p0", "p1", "p2"], "kingdom": ["Fungi"] * 3, "region": ["NE"] * 3})
+    finds = with_composites(finds)
+    assert sorted(finds[finds.composite].loc[:, "loc"]) == ["p0", "p1"]
+    today = pd.DataFrame({"Location_Id": np.repeat(["p0", "p1", "p2"], 10), "Date": np.tile(days, 3)})
+    for species in ("mushroom", "pine_bolete", "bronze_bolete", "summer_bolete", "parasol"):
+        today[f"{species}_score"] = 1.0
+    today["mushroom_score"] = np.repeat([6.0, 2.0, 2.0], 10)
+    today["boletus_score"] = np.repeat([6.0, 7.0, 3.0], 10)
+    rows = evaluate("NE", finds, {"today": today, "stored": today.iloc[:0]}, days)
+    rows = rows[rows.source == "today"]
+    # porcini against the pine bolete and the parasol spots, not against its own composite rows
+    assert rows[rows.species == "mushroom"]["where"].iloc[0] == 1.0
+    # the composite only against the parasol spot: both its finds beat it
+    assert list(rows[rows.species == "boletus"]["where"]) == [1.0, 1.0]
+    assert rows[rows.species == "boletus"].composite.all() and not rows[rows.species == "mushroom"].composite.any()
+
+
+def test_the_calendar_takes_the_season_and_leaves_the_weather():
+    days = pd.date_range("2026-06-01", periods=100)
+    # "peak" follows the season alone and is found on its peak; "spike" is flat but for one day of
+    # good weather, when it is found
+    finds = pd.DataFrame({"species_id": ["peak", "spike"], "date": [str(days[50].date()), str(days[70].date())],
+                          "loc": ["p0", "p0"], "kingdom": ["Fungi"] * 2, "lat": [46.0] * 2, "lon": [9.0] * 2})
+    today = pd.DataFrame({"Location_Id": "p0", "Date": days})
+    today["peak_score"] = -np.abs(np.arange(100) - 50.0)
+    today["spike_score"] = np.where(np.arange(100) == 70, 5.0, 1.0)
+    # other years put both on their days 50 and 30; this year's find and a far one do not count
+    past = pd.DataFrame({"species": ["peak", "spike", "spike", "spike"],
+                         "Date": pd.to_datetime([days[50] - pd.DateOffset(years=1), days[30] - pd.DateOffset(years=1),
+                                                 days[70], days[70] - pd.DateOffset(years=1)]),
+                         "lat": [46.1, 46.1, 46.0, 52.0], "lon": [9.0, 9.0, 9.0, 9.0]})
+    past["year"] = past.Date.dt.year
+    rows = evaluate("NE", finds, {"today": today, "stored": today.iloc[:0]}, days, past)
+    rows = rows[rows.source == "today"].set_index("species")
+    assert rows.timing["peak"] == rows.timing_calendar["peak"] == 1.0   # the peak is all calendar
+    assert rows.timing["spike"] == 1.0 and rows.timing_calendar["spike"] == 0.5
+    assert rows.season_calendar["spike"] == 0.5 * 98 / 99
+    summary = summarise(rows.reset_index(), "stored").set_index("species")
+    assert summary.beyond["peak"] == 0.0 and summary.beyond["spike"] == 0.5

@@ -29,6 +29,9 @@ about 1 C of the app's stored temperature (fit_fruiting.stored_corrections), so 
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --spatial   # the picks on summer 2026
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --optima [--spatial]
     python backend/tools/fit_fruiting_parts.py --out ../era5_training --habitat   # -> habitat_years.csv (fit_habitat.py)
+
+--species <id> runs any of them for one species only, into <the csv>_<id>.csv; a species added
+after the training table was built brings its finds in finds_<id>_supplement.parquet.
 """
 import lightgbm  # noqa: F401  before pandas/pyarrow: see tests/conftest.py
 import argparse
@@ -43,7 +46,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "backend" / "tools"), str(ROOT / "backend"), str(ROOT / "scripts")]
 from fit_fruiting import (CONTINENT, MIN_TEST_STRATA, PLACEBO, SHIP_MIN_YEARS, SLOTS, find_day_rank, sign_test,  # noqa: E402
-                          ships, strata, transform)
+                          ships, strata, table_files, transform)
 from species_registry import get_species_params  # noqa: E402
 import r2  # noqa: E402
 
@@ -269,12 +272,12 @@ def spatial(out: Path, picks: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def daily_temps(out: Path, table: pd.DataFrame, cases: pd.DataFrame) -> np.ndarray:
+def daily_temps(out: Path, table: pd.DataFrame, cases: pd.DataFrame, species: str | None = None) -> np.ndarray:
     """[case, 5 days, 12] ERA5 mean temperature of the 12 days before each stratum day
     (training_lags/), a missing day as the day's own, as forecast_pipeline fills it."""
     names = [f"tmean_d{d}" for d in range(1, 13)]
     lags = pd.concat([pd.read_parquet(p, columns=["case_id", "offset", *names])
-                      for p in (out / "training_lags").glob("*.parquet")], ignore_index=True)
+                      for p in table_files(out, "training_lags", species)], ignore_index=True)
     row = pd.Series(np.arange(len(cases)), index=cases["case_id"].to_numpy())
     at = row.reindex(lags["case_id"].to_numpy()).to_numpy()
     ok = np.isfinite(at)
@@ -384,20 +387,27 @@ def main() -> None:
                         help="fit the temperature optimum and width on the place test (fit_temperature)")
     parser.add_argument("--habitat", action="store_true",
                         help="test a habitat factor on held-out years where none ships (fit_habitat.held_out_years)")
+    parser.add_argument("--species", help="only this species, its results in <the csv>_<species>.csv")
+    parser.add_argument("--block-cap", type=int, help="--habitat: train on at most this many finds per block (fit_habitat.capped)")
     args = parser.parse_args()
     out = Path(args.out)
     name = "habitat_years" if args.habitat else "temperature_fruiting" if args.temperature else "optima_fruiting" if args.optima else "parts_fruiting"
+    name += f"_{args.species}" if args.species else ""
     if args.spatial:
         picks = pd.read_csv(out / f"{name}.csv")
         result = spatial(out, picks[picks["ships"].astype(str) == "True"])
         result.to_csv(out / f"{name}_spatial.csv", index=False)
         print(result.to_string(index=False))
         return
-    table = pd.concat([t for t in (pd.read_parquet(p) for p in (out / "training").glob("*.parquet")) if len(t)], ignore_index=True)
-    scores = pd.concat([s for s in (pd.read_parquet(p) for p in (out / "training_scores").glob("*.parquet")) if len(s)],
+    table = pd.concat([t for t in (pd.read_parquet(p) for p in table_files(out, "training", args.species)) if len(t)],
+                      ignore_index=True)
+    scores = pd.concat([s for s in (pd.read_parquet(p) for p in table_files(out, "training_scores", args.species)) if len(s)],
                        ignore_index=True)
+    if args.species:
+        table = table[table["species"].isin([args.species, PLACEBO])].reset_index(drop=True)
+        scores = scores[scores["species"] == args.species]
     cases, _, mask = strata(table, transform(table))
-    temps = daily_temps(out, table, cases) if args.optima or args.temperature or args.habitat else None
+    temps = daily_temps(out, table, cases, args.species) if args.optima or args.temperature or args.habitat else None
     is_placebo = (cases["species"] == PLACEBO).to_numpy()
     fits = json.loads(r2.generated(ROOT / "backend" / "generated" / "fruiting_fit.json").read_text(encoding="utf-8")).get("models", {})
     gbms = json.loads(r2.generated(ROOT / "backend" / "generated" / "fruiting_gbm.json").read_text(encoding="utf-8")).get("models", {})
@@ -421,6 +431,9 @@ def main() -> None:
         from fit_habitat import held_out_years
         shipped = json.loads((ROOT / "backend" / "generated" / "habitat_factor.json").read_text(encoding="utf-8"))["regions"]
         finds = pd.read_parquet(out / "finds_2016_2026.parquet")
+        added = out / f"finds_{args.species}_supplement.parquet"   # a species added after the table was built
+        if args.species and added.exists():
+            finds = pd.concat([finds, pd.read_parquet(added)])
         finds["Date"] = pd.to_datetime(finds["Date"])
         habitat = {r: (finds[finds["region"] == r], pd.read_parquet(out / f"habitat_features_{r}.parquet"))
                    for r in ("NE", "SE", "USE", "USW")}
@@ -431,7 +444,11 @@ def main() -> None:
         parts_all = {name: wide(own, cases, name) for name, _ in PARTS.values()}
         stored_all = wide(own, cases, "weather_part")
         for region in sorted(set(regions[mine_all])):
-            if region not in params or species not in params[region] or not hand_set(species, region, fits, gbms):
+            # A species added after the summer 2026 strata were built (--species) has no 2026 test of
+            # a habitat factor, so where its weather is fitted the held-out years test it as well, on
+            # the hand-set weather the training table stores: the factor only moves the place.
+            added = args.habitat and args.species
+            if region not in params or species not in params[region] or not (hand_set(species, region, fits, gbms) or added):
                 continue
             p = params[region][species]
             today = {k: float(p.get(k, default)) for k, (_, default) in PARTS.items()}
@@ -444,11 +461,13 @@ def main() -> None:
             days = mask[here] & np.isfinite(stored)
             mine, plac = mine_all[here], is_placebo[here]
             if args.habitat:
-                if species in shipped.get(region, {}).get("species", ()):
-                    continue
+                if species in shipped.get(region, {}).get("species", ()) and not args.species:
+                    continue              # a named species is tested again, e.g. with --block-cap
                 if region not in specs:
                     specs[region] = fp._load_species_and_curves(region_config(region))
-                place = place_parts(species, specs[region][0][species], specs[region][1], sites_all[here],
+                # the score without a factor: a species tested again ships one already
+                own = {k: v for k, v in specs[region][0][species].items() if k not in ("fruiting", "fruiting_gbm", "habitat")}
+                place = place_parts(species, own, specs[region][1], sites_all[here],
                                     dates_all[here], base, statics[CONTINENT[region]])
                 index = weather({**parts, "temp": temp_part(temps[here], float(p["optimal_temp"]), float(p["temp_sigma"]))},
                                 today, wind)
@@ -456,10 +475,11 @@ def main() -> None:
 
                 def place_score(s, d):        # the score's place parts on a perfect weather day
                     return full_score(np.ones(len(s)), today, np.ones(len(s)), place_parts(
-                        species, specs[region][0][species], specs[region][1], s, d, base, statics[CONTINENT[region]]))
+                        species, own, specs[region][1], s, d, base, statics[CONTINENT[region]]))
 
                 fit = held_out_years(species, full_score(index[:, 0], today, wind[:, 0], place), at, years, weeks,
-                                     sites_all[here], *habitat[region], place_score) if len(at) >= MIN_POOLED else {}
+                                     sites_all[here], *habitat[region], place_score, block_cap=args.block_cap
+                                     ) if len(at) >= MIN_POOLED else {}
                 if fit:
                     rows.append({"species": species, "region": region, "finds": int(mine.sum()), **fit})
                     print(rows[-1], flush=True)

@@ -65,8 +65,7 @@ export class ImageDecodeError extends Error {
 }
 
 type DecodedPhoto =
-  | { kind: 'bitmap'; image: ImageBitmap }
-  | { kind: 'pixels'; image: ImageData };
+  { kind: 'bitmap'; image: ImageBitmap } | { kind: 'pixels'; image: ImageData };
 
 async function decodePhoto(file: Blob): Promise<DecodedPhoto> {
   try {

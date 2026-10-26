@@ -133,10 +133,10 @@ def test_infer_region_follows_the_generated_boundaries(longitude, latitude, expe
 
 
 def test_a_composite_is_drawn_over_its_members_habitat_but_not_scored_itself():
-    # Boletus (all porcini) is the best of the porcini-type boletes at each place and day.
+    # Boletus (porcini & bay bolete) is the best of those boletes at each place and day.
     assert "boletus" not in species_registry.get_species_params("SE")
     assert species_registry.get_composites("SE")["boletus"] == [
-        "mushroom", "pine_bolete", "bronze_bolete", "summer_bolete"]
+        "mushroom", "pine_bolete", "bronze_bolete", "summer_bolete", "bay_bolete"]
     assert species_registry.get_composites("USE")["boletus"] == ["mushroom", "eastern_king", "rocky_king"]
     covers = species_registry.get_land_cover_mapping("SE")
     assert set(covers["mushroom"]) | set(covers["pine_bolete"]) <= set(covers["boletus"])

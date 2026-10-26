@@ -50,6 +50,7 @@ def _load(tmp_path, monkeypatch, region_curves, zone_curves, capsys):
     )
     monkeypatch.setattr(fp, "HABITAT_PATH", tmp_path / "no_habitat.json")   # curves only, like the empty prior envs
     monkeypatch.setattr(fp, "LOCAL_SEASON_PATH", tmp_path / "no_local_season.json")
+    monkeypatch.setattr(fp, "_scale_file", dict)   # built from the real curves, not these: it would warn
     params, zones = fp._load_species_and_curves(_Config())
     # A silent fallback is the failure mode this file exists to catch.
     assert "[warn]" not in capsys.readouterr().out

@@ -61,13 +61,12 @@ export default defineConfig({
       workbox: {
         // Huerta's morning alerts: show a push, open its garden on a tap.
         importScripts: ['huerta-push.js'],
-        // The entry chunk (mostly React, motion and the router) passed
-        // workbox's default 2 MiB, which throws; every visitor loads it anyway.
-        // ponytail: one ceiling; split the vendors (manualChunks) if it nears 3.
-        maximumFileSizeToCacheInBytes: 3 * 1024 ** 2,
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,webp,avif}',
-          'funges_style*.json',
+          // The default map style and the dark one (dark mode's); the other
+          // three are kept once a visitor picks them (runtimeCaching).
+          'funges_style.json',
+          'funges_style_dark.json',
           'offline-packages.json',
           'map-assets/**/*.{json,png,pbf}',
         ],
@@ -79,6 +78,16 @@ export default defineConfig({
           '**/heic-decoder-*.js',
           '**/landing/hero-*.webp',
           '**/landing/spectacle-*.webp',
+          // Hundreds of season maps; a visitor opens a few of them.
+          '**/season-atlas/**',
+          // Read by iOS when the app is added to the home screen, never
+          // through the service worker.
+          '**/splash-screens/**',
+          // No page links it (the tab icon is icons/logo_1.png).
+          'favicon.png',
+          // Cooked at home, not in the forest: a recipe's photo is kept once
+          // viewed (the image rule below), not downloaded by every visitor.
+          '**/assets/recipes/**',
           // Huerta's crop photos and type icons: fetched by the garden page alone.
           '**/huerta/*/*.webp',
         ],
@@ -88,20 +97,36 @@ export default defineConfig({
             urlPattern: /\.pmtiles$/i,
             handler: 'NetworkOnly',
           },
-          // The photo ID page, kept as the network served it: with the
-          // COOP/COEP headers the edge adds to /identify alone, so the page
-          // stays cross-origin isolated (and multi-threaded) when it is opened
-          // offline. Excluded from navigateFallback for the same reason.
+          // The photo ID page, from the network: the edge adds COOP/COEP to
+          // /identify alone, so the page is cross-origin isolated (and
+          // multi-threaded). Offline, or with no answer in 4 s, it is the
+          // precached shell with those headers added here. A kept network copy
+          // failed on phones: the bar links to /identify, only the 301's target
+          // /identify/ was kept, and a copy named scripts the next update
+          // deleted. Excluded from navigateFallback for the same reason.
           {
             urlPattern: new RegExp(
               `^https?://[^/]+${baseUrl}identify(?:/(?:index\\.html)?)?(?:[?#].*)?$`
             ),
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'identify-page',
-              networkTimeoutSeconds: 4,
-              expiration: { maxEntries: 4 },
-              cacheableResponse: { statuses: [200] },
+            // Serialised into the service worker: no imports, no closures.
+            handler: async ({ request }) => {
+              const network = fetch(request);
+              const answer = await Promise.race([
+                network,
+                new Promise<void>(resolve => setTimeout(resolve, 4000)),
+              ]).catch(() => undefined);
+              if (answer) return answer;
+              // ignoreSearch: precache keys end in ?__WB_REVISION__=…
+              // @ts-expect-error the service worker's CacheStorage, not Node's
+              const shell: Response | undefined = await caches.match(
+                'index.html',
+                { ignoreSearch: true }
+              );
+              if (!shell) return network;
+              const headers = new Headers(shell.headers);
+              headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+              headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
+              return new Response(shell.body, { headers });
             },
           },
           // onnxruntime-web runtime for photo identification. Emitted by Vite as
@@ -173,6 +198,15 @@ export default defineConfig({
                 maxEntries: 4,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
               },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // The map styles not precached: kept from the first time they load.
+          {
+            urlPattern: /\/funges_style[^/]*\.json$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'map-styles',
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -275,8 +309,8 @@ export default defineConfig({
         // /identify is the one page served cross-origin isolated (photo ID's
         // threads need it), and the headers live on the network response.
         // The precached index.html carries none, so serving it here would
-        // quietly drop the page back to one thread — see the identify-page
-        // route below, which keeps the network copy for offline use instead.
+        // quietly drop the page back to one thread — see the identify route
+        // above, which adds them to the shell when it serves it offline.
         navigateFallbackDenylist: [
           /\/data\/.*\.csv$/,
           new RegExp(`^${baseUrl}identify(?:/|$)`),
@@ -468,6 +502,14 @@ export default defineConfig({
     target: 'es2020',
     rollupOptions: {
       output: {
+        // Recipe photos in a folder of their own, so the precache can leave
+        // them out (globIgnores above).
+        assetFileNames: asset =>
+          asset.originalFileNames.some(name =>
+            name.includes('src/assets/recipes/')
+          )
+            ? 'assets/recipes/[name]-[hash][extname]'
+            : 'assets/[name]-[hash][extname]',
         manualChunks(id) {
           if (id.includes('node_modules/@discourse/heic')) {
             return 'heic-decoder';

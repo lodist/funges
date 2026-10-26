@@ -12,8 +12,10 @@ export interface SupportMethod {
   color?: string;
 }
 
-export interface SupportMethodWithTranslations
-  extends Omit<SupportMethod, 'nameKey' | 'descriptionKey'> {
+export interface SupportMethodWithTranslations extends Omit<
+  SupportMethod,
+  'nameKey' | 'descriptionKey'
+> {
   name: string;
   description: string;
 }

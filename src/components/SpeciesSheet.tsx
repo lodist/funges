@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { ScorecardLine } from '@/components/ForecastScorecard';
 import { ConditionsMeter } from '@/components/SpeciesSignals';
 import { getRecipesBySpecies, type Recipe } from '@/data/recipes';
 import type { SpeciesWithTranslations } from '@/data/species';
@@ -134,6 +135,10 @@ function SheetBody({
               )}
             </div>
           ) : null}
+
+          {/* Why to believe the meter: how today's forecast did on this
+              species' recent finds, when there are enough. */}
+          <ScorecardLine speciesId={species.id} />
 
           <div className='flex flex-col gap-2'>
             <p className='type-micro text-muted-foreground'>

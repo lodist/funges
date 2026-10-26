@@ -12,7 +12,7 @@ export interface BioclipLabel {
 
 export const BIOCLIP_EMBEDDING_DIM = 768;
 
-export const BIOCLIP_LABELS: BioclipLabel[] = [
+const LABELS_0: BioclipLabel[] = [
   { scientificName: 'Abrus precatorius', kind: 'toxic' },
   { scientificName: 'Aconitum columbianum', kind: 'toxic' },
   { scientificName: 'Aethusa cynapium', kind: 'toxic' },
@@ -76,6 +76,7 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Hygrophoropsis aurantiaca', kind: 'toxic' },
   { scientificName: 'Hyoscyamus niger', kind: 'toxic' },
   { scientificName: 'Hypholoma fasciculare', kind: 'toxic' },
+  { scientificName: 'Imleria badia', kind: 'catalog' },
   { scientificName: 'Inosperma erubescens', kind: 'toxic' },
   { scientificName: 'Juglans regia', kind: 'catalog' },
   { scientificName: 'Kalmia latifolia', kind: 'toxic' },
@@ -808,6 +809,7 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Atriplex tatarica', kind: 'other' },
   { scientificName: 'Aulacomnium palustre', kind: 'other' },
   { scientificName: 'Aurantioporthe corni', kind: 'other' },
+  { scientificName: 'Aurantiporus croceus', kind: 'other' },
   { scientificName: 'Aureoboletus auriflammeus', kind: 'other' },
   { scientificName: 'Aureoboletus auriporus', kind: 'other' },
   { scientificName: 'Aureoboletus betula', kind: 'other' },
@@ -1011,6 +1013,9 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Bunias orientalis', kind: 'other' },
   { scientificName: 'Buphthalmum salicifolium', kind: 'other' },
   { scientificName: 'Bupleurum fruticosum', kind: 'other' },
+];
+
+const LABELS_1: BioclipLabel[] = [
   { scientificName: 'Bursera microphylla', kind: 'other' },
   { scientificName: 'Bursera simaruba', kind: 'other' },
   { scientificName: 'Butomus umbellatus', kind: 'other' },
@@ -2011,6 +2016,9 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Cystofilobasidium macerans', kind: 'other' },
   { scientificName: 'Cystopteris bulbifera', kind: 'other' },
   { scientificName: 'Cystopteris fragilis', kind: 'other' },
+];
+
+const LABELS_2: BioclipLabel[] = [
   { scientificName: 'Cystopteris protrusa', kind: 'other' },
   { scientificName: 'Cystotheca lanestris', kind: 'other' },
   { scientificName: 'Cytidia salicina', kind: 'other' },
@@ -3011,6 +3019,9 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Hedeoma acinoides', kind: 'other' },
   { scientificName: 'Hedeoma pulegioides', kind: 'other' },
   { scientificName: 'Hedera helix', kind: 'other' },
+];
+
+const LABELS_3: BioclipLabel[] = [
   { scientificName: 'Hedwigia ciliata', kind: 'other' },
   { scientificName: 'Hedypnois rhagadioloides', kind: 'other' },
   { scientificName: 'Hedysarum boreale', kind: 'other' },
@@ -3349,7 +3360,6 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Iliamna rivularis', kind: 'other' },
   { scientificName: 'Illicium floridanum', kind: 'other' },
   { scientificName: 'Illosporiopsis christiansenii', kind: 'other' },
-  { scientificName: 'Imleria badia', kind: 'other' },
   { scientificName: 'Imleria pallida', kind: 'other' },
   { scientificName: 'Impatiens balfourii', kind: 'other' },
   { scientificName: 'Impatiens capensis', kind: 'other' },
@@ -4012,6 +4022,9 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Lysimachia tenella', kind: 'other' },
   { scientificName: 'Lysimachia terrestris', kind: 'other' },
   { scientificName: 'Lysimachia thyrsiflora', kind: 'other' },
+];
+
+const LABELS_4: BioclipLabel[] = [
   { scientificName: 'Lysimachia vulgaris', kind: 'other' },
   { scientificName: 'Lysurus mokusin', kind: 'other' },
   { scientificName: 'Lysurus sphaerocephalus', kind: 'other' },
@@ -5012,6 +5025,9 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Physcomitrium pyriforme', kind: 'other' },
   { scientificName: 'Physconia distorta', kind: 'other' },
   { scientificName: 'Physconia enteroxantha', kind: 'other' },
+];
+
+const LABELS_5: BioclipLabel[] = [
   { scientificName: 'Physconia grisea', kind: 'other' },
   { scientificName: 'Physconia subpallida', kind: 'other' },
   { scientificName: 'Physocarpus capitatus', kind: 'other' },
@@ -6012,6 +6028,9 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Scorzoneroides autumnalis', kind: 'other' },
   { scientificName: 'Scrophularia auriculata', kind: 'other' },
   { scientificName: 'Scrophularia californica', kind: 'other' },
+];
+
+const LABELS_6: BioclipLabel[] = [
   { scientificName: 'Scrophularia lanceolata', kind: 'other' },
   { scientificName: 'Scrophularia marilandica', kind: 'other' },
   { scientificName: 'Scrophularia nodosa', kind: 'other' },
@@ -7012,6 +7031,9 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Viola palustris', kind: 'other' },
   { scientificName: 'Viola pedata', kind: 'other' },
   { scientificName: 'Viola pedatifida', kind: 'other' },
+];
+
+const LABELS_7: BioclipLabel[] = [
   { scientificName: 'Viola pedunculata', kind: 'other' },
   { scientificName: 'Viola praemorsa', kind: 'other' },
   { scientificName: 'Viola primulifolia', kind: 'other' },
@@ -7156,3 +7178,5 @@ export const BIOCLIP_LABELS: BioclipLabel[] = [
   { scientificName: 'Zostera marina', kind: 'other' },
   { scientificName: 'Zythia resinae', kind: 'other' },
 ];
+
+export const BIOCLIP_LABELS: BioclipLabel[] = [...LABELS_0, ...LABELS_1, ...LABELS_2, ...LABELS_3, ...LABELS_4, ...LABELS_5, ...LABELS_6, ...LABELS_7];

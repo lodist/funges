@@ -747,6 +747,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
       'summer_bolete',
       'eastern_king',
       'rocky_king',
+      'bay_bolete',
     ],
   },
   {
@@ -768,6 +769,19 @@ export const GENERATED_SPECIES_DATA: Species[] = [
       'black_chant',
       'winter_chant',
     ],
+  },
+  {
+    id: 'bay_bolete',
+    nameKey: 'bay_bolete.name',
+    scientificName: 'Imleria badia',
+    category: 'mushroom',
+    emoji: '🍄‍🟫',
+    descriptionKey: 'bay_bolete.description',
+    howToKey: 'bay_bolete.howTo',
+    season: 'fall',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
 ];
 

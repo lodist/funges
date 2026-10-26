@@ -7036,7 +7036,7 @@
       }
     },
     "boletus": {
-      "name": "Boletus (all porcini)",
+      "name": "Boletus (porcini & bay bolete)",
       "scientificName": "Boletus",
       "identificationRank": "species",
       "empiricalTaxonKeys": [],
@@ -7050,7 +7050,8 @@
             "mushroom",
             "pine_bolete",
             "bronze_bolete",
-            "summer_bolete"
+            "summer_bolete",
+            "bay_bolete"
           ]
         },
         "SE": {
@@ -7060,7 +7061,8 @@
             "mushroom",
             "pine_bolete",
             "bronze_bolete",
-            "summer_bolete"
+            "summer_bolete",
+            "bay_bolete"
           ]
         },
         "USE": {
@@ -7113,6 +7115,170 @@
             "pacific_chant",
             "black_chant",
             "winter_chant"
+          ]
+        }
+      }
+    },
+    "bay_bolete": {
+      "name": "Bay Bolete",
+      "scientificName": "Imleria badia",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [7832732],
+      "rangeTaxonKeys": [7832732],
+      "dataColumns": ["bay_bolete_score", "Bay Bolete"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 5,
+            "min_temp": 2,
+            "max_temp": 22,
+            "optimal_alt": 20,
+            "alt_sigma": 800,
+            "optimal_humidity": 82,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.5, 6.9],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [7, 8, 9, 10, 11],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "larix",
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7832732",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-10-23-bay-bolete.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 324],
+          "landCoverScheme": "CORINE",
+          "scoring": {
+            "optimal_temp": 12,
+            "temp_sigma": 5,
+            "min_temp": 2,
+            "max_temp": 22,
+            "optimal_alt": 275,
+            "alt_sigma": 800,
+            "optimal_humidity": 78,
+            "humidity_sigma": 17,
+            "optimal_pH": 5.7,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4.7, 7.1],
+            "optimal_soil_temp": 11,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 40,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [8, 9, 10, 11, 12],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "larix",
+              "picea",
+              "pinus",
+              "fagus",
+              "quercus",
+              "other_needleleaf",
+              "other_broadleaf"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7832732",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-10-23-bay-bolete.md"
+          ]
+        },
+        "USE": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 5,
+            "min_temp": 8,
+            "max_temp": 30,
+            "optimal_alt": 375,
+            "alt_sigma": 800,
+            "optimal_humidity": 76,
+            "humidity_sigma": 17,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.4],
+            "optimal_soil_temp": 18,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 55,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [6, 7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": [
+              "white_red_jack_pine",
+              "spruce_fir",
+              "maple_beech_birch",
+              "aspen_birch",
+              "oak_pine"
+            ]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7832732",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-10-23-bay-bolete.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 42, 43],
+          "landCoverScheme": "NLCD",
+          "scoring": {
+            "optimal_temp": 20,
+            "temp_sigma": 5,
+            "min_temp": 8,
+            "max_temp": 30,
+            "optimal_alt": 375,
+            "alt_sigma": 800,
+            "optimal_humidity": 76,
+            "humidity_sigma": 17,
+            "optimal_pH": 5,
+            "pH_sigma_near": 1.5,
+            "pH_sigma_far": 1.5,
+            "pH_range_near": [4, 6.4],
+            "optimal_soil_temp": 18,
+            "soil_temp_sigma": 4.5,
+            "min_cumulative_rain": 55,
+            "weather_preference": {
+              "rain_first": true
+            },
+            "wind_sensitive": true,
+            "season_months": [6, 7, 8, 9, 10],
+            "water_relevance": false,
+            "sea_relevance": false,
+            "hosts": ["white_red_jack_pine", "maple_beech_birch", "oak_pine"]
+          },
+          "scoringReferences": [
+            "https://www.gbif.org/species/7832732",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-10-23-bay-bolete.md"
           ]
         }
       }

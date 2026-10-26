@@ -94,7 +94,7 @@ describe('regional species options', () => {
     useMapStore.setState({ selectedSpecies: 'no-such-species' });
     useMapStore.getState().setCenter(USE_CENTER);
 
-    // Boletus (all porcini), the best of the king boletes: the map opens on it.
+    // Boletus (porcini & bay bolete), the best of those boletes: the map opens on it.
     expect(useMapStore.getState().selectedSpecies).toBe('boletus');
   });
 

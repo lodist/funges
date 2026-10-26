@@ -43,6 +43,8 @@ import {
 } from '@/lib/data';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
+import { DataTabs } from '@/components/DataTabs';
+import { ForecastScorecard } from '@/components/ForecastScorecard';
 import { Route as DataRoute } from '@/routes/data';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
@@ -907,6 +909,8 @@ export default function DataPage() {
         </p>
       </div>
 
+      <DataTabs active='conditions' />
+
       {/* Controls */}
       <div className='flex flex-wrap items-end justify-between gap-4'>
         <div className='flex flex-wrap items-end gap-4'>
@@ -1561,6 +1565,10 @@ export default function DataPage() {
           )}
         </ChartCard>
       </div>
+
+      {/* Last, and outside the controls: all regions together, its own
+          period, as the section's intro says. */}
+      <ForecastScorecard />
     </div>
   );
 }

@@ -27,8 +27,10 @@ export interface SpeciesOption {
   category: Species['category'];
 }
 
-export interface SpeciesWithTranslations
-  extends Omit<Species, 'nameKey' | 'descriptionKey' | 'howToKey'> {
+export interface SpeciesWithTranslations extends Omit<
+  Species,
+  'nameKey' | 'descriptionKey' | 'howToKey'
+> {
   name: string;
   description: string;
   howTo: string;
@@ -91,7 +93,7 @@ export const getSpeciesOptions = (region: ForecastRegion): SpeciesOption[] =>
       showOnMap && forecastRegions?.includes(region)
   ).map(({ id, emoji, category }) => ({ code: id, emoji, category }));
 
-/** Boletus (all porcini), the best of the king boletes: forecast in every region,
+/** Boletus (porcini & bay bolete), the best of those boletes: forecast in every region,
  * so it is always a valid map fallback. */
 export const DEFAULT_MAP_SPECIES = 'boletus';
 

@@ -1,0 +1,58 @@
+{
+  "updated_at": "2026-10-23",
+  "season": {
+    "since": "2026-05-24",
+    "until": "2026-10-15",
+    "spots": 4745,
+    "all": {
+      "finds": 10582,
+      "auc": 0.917
+    },
+    "species": {
+      "black_chant": {
+        "finds": 245,
+        "auc": 0.935
+      },
+      "chant": {
+        "finds": 1713,
+        "auc": 0.809
+      },
+      "hedgehog_mushroom": {
+        "finds": 180,
+        "auc": 0.953
+      },
+      "matsutake": {
+        "finds": 68,
+        "auc": 0.708
+      },
+      "mushroom": {
+        "finds": 2752,
+        "auc": 0.933
+      },
+      "parasol": {
+        "finds": 1405,
+        "auc": 0.894
+      },
+      "pine_bolete": {
+        "finds": 326,
+        "auc": 0.894
+      },
+      "saffron_milk_cap": {
+        "finds": 262,
+        "auc": 0.952
+      },
+      "shaggy_mane": {
+        "finds": 2531,
+        "auc": 0.993
+      },
+      "summer_bolete": {
+        "finds": 655,
+        "auc": 0.855
+      },
+      "winter_chant": {
+        "finds": 445,
+        "auc": 0.966
+      }
+    }
+  }
+}

@@ -75,3 +75,20 @@ test('production app shell reloads and switches every map style offline', async 
     page.getByText('Chanterelle', { exact: true }).first()
   ).toBeVisible();
 });
+
+test('photo ID opens offline, still cross-origin isolated', async ({
+  page,
+  context,
+}) => {
+  await page.goto('/map');
+  await waitForServiceWorker(page);
+  await context.setOffline(true);
+
+  // Never opened online, and the phone bar links to /identify without the
+  // slash the server redirects to.
+  await page.goto('/identify');
+  await expect(
+    page.getByRole('heading', { name: 'Identify a find' })
+  ).toBeVisible();
+  expect(await page.evaluate(() => crossOriginIsolated)).toBe(true);
+});

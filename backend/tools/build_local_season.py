@@ -645,7 +645,10 @@ def run_test(cache, macros, species=None):
     import pickle
     for code in macros:
         rows = test(cache, code, VARIANTS, species)
-        (cache / f"test_rows_{code}.pkl").write_bytes(pickle.dumps(rows))
+        path = cache / f"test_rows_{code}.pkl"
+        if species and path.exists():   # a rerun of some species replaces only their rows
+            rows = [r for r in pickle.loads(path.read_bytes()) if r["species"] not in species] + rows
+        path.write_bytes(pickle.dumps(rows))
         print(f"[{code}] {len(rows)} test rows kept", flush=True)
 
 

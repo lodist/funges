@@ -125,7 +125,7 @@ export interface MapState {
 // no per-layer `dark` variant. All 5 carry the SAME overlay/species layers (only
 // the basemap differs); AdvancedMap's [mapStyle] effect recreates the map
 // (camera preserved from the store) and re-applies species visibility on swap.
-// Regenerate positron/darkmatter/topographic via scripts/make_carto_styles.py.
+// Regenerate dark/positron/darkmatter/topographic via scripts/make_carto_styles.py.
 const MAP_STYLES = [
   '/funges_style.json', // 0 light (olive)
   '/funges_style_dark.json', // 1 dark
@@ -197,18 +197,18 @@ export interface MapThemeOption {
 // Thumbnails are real screenshots, manually captured and committed to
 // public/theme-thumbnails/ once each theme is visually verifiable.
 export const MAP_THEMES: MapThemeOption[] = [
-  { id: 'light', styleIndex: 0, thumbnail: '/theme-thumbnails/light.png' },
-  { id: 'dark', styleIndex: 1, thumbnail: '/theme-thumbnails/dark.png' },
-  { id: 'white', styleIndex: 2, thumbnail: '/theme-thumbnails/white.png' },
+  { id: 'light', styleIndex: 0, thumbnail: '/theme-thumbnails/light.webp' },
+  { id: 'dark', styleIndex: 1, thumbnail: '/theme-thumbnails/dark.webp' },
+  { id: 'white', styleIndex: 2, thumbnail: '/theme-thumbnails/white.webp' },
   {
     id: 'darkmatter',
     styleIndex: 3,
-    thumbnail: '/theme-thumbnails/darkmatter.png',
+    thumbnail: '/theme-thumbnails/darkmatter.webp',
   },
   {
     id: 'topographic',
     styleIndex: 4,
-    thumbnail: '/theme-thumbnails/topographic.png',
+    thumbnail: '/theme-thumbnails/topographic.webp',
   },
 ];
 function readStyleIndex(): number {

@@ -19,6 +19,12 @@ _MONTH_MID_DOY = np.array([15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 3
 # later than the observed one, which is the failure mode being fixed in the first place.
 GATE_OFF = 0.02
 GATE_FULL = 0.10
+# A species whose fitted weather part is on one scale (forecast_pipeline.season_scale) lost the
+# hand-set part's autumn fall, which used to end every place's season with its region's. The local
+# season has to end it on its own, so its gate opens fully only from a quarter of the local peak:
+# in late October that fades southern Sweden (a fifth of its peak) and leaves England and Poland
+# (half of it or more) to the weather.
+ONE_SCALE_GATE_FULL = 0.25
 # Fallback gate floor for species with no empirical ratio, driven by season_months only.
 # Not 0.0: season_months is hand-curated and coarse, so a hard zero there would erase a
 # species on the strength of a month boundary somebody typed.
@@ -252,7 +258,9 @@ def season_gate_for_species(df, specie, params, zone_curves):
     the hand-curated season_months otherwise.
     """
     _multiplier, ratio = _resolve_curve(df, specie, params, zone_curves)
-    gate = np.clip((ratio - GATE_OFF) / (GATE_FULL - GATE_OFF), 0.0, 1.0)
+    fitted = params.get("fruiting_gbm") or params.get("fruiting") or {}
+    full = ONE_SCALE_GATE_FULL if fitted.get("scale") is not None else GATE_FULL
+    gate = np.clip((ratio - GATE_OFF) / (full - GATE_OFF), 0.0, 1.0)
 
     missing = ~np.isfinite(ratio)
     if missing.any():

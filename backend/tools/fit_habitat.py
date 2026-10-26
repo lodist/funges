@@ -10,9 +10,19 @@ ways: the habitat index alone on every 2026 find, and the full score with and wi
 summer 2026's stored-weather strata (qa_spatial_weights.py --placebo-only).
 
     python backend/tools/fit_habitat.py --out ../era5_training
+
+A species added after the finds table was built (its finds in finds_<species>_supplement.parquet)
+is trained on its own with --add, after its held-out years (fit_fruiting_parts.py --habitat
+--species, as it has no summer 2026 strata). With --export its factors join the shipped files,
+every other species' factor copied as it is:
+
+    python backend/tools/fit_habitat.py --out ../era5_training --add bay_bolete --regions SE --export
 """
 import lightgbm as lgb  # before pandas/pyarrow: see tests/conftest.py
 import argparse
+import hashlib
+import io
+import json
 import sys
 from pathlib import Path
 
@@ -34,9 +44,11 @@ PARAMS = {"num_leaves": 15, "min_data_in_leaf": 100}
 # finds; at the 10th percentile the ranking keeps three quarters of the gain (0.645 -> 0.730).
 STRENGTH, FLOOR, REFERENCE_QUANTILE = 0.5, 0.5, 0.10
 R2_FOLDER = "models/habitat"
+SHIPPED = Path(__file__).resolve().parents[1] / "generated" / "habitat_factor.json"
 # Each region's factor also covers its neighbour's places: the nightly run scores the places
 # across the split with the neighbour's model, habitat too (forecast_pipeline.blend_neighbour_settings).
 NEIGHBOUR = {"NE": "SE", "SE": "NE", "USE": "USW", "USW": "USE"}
+BLOCK_DEGREES = 2.0     # the blocks --block-cap counts finds in
 
 
 def factor(eta, reference, mapped):
@@ -46,6 +58,25 @@ def factor(eta, reference, mapped):
 def columns(features: pd.DataFrame) -> list[str]:
     return [c for c in features.columns if c not in ("Location_Id", "Latitude", "Longitude", "region", "tree_map")
             and features[c].notna().mean() > 0.5]
+
+
+def capped(finds, species, features, cap):
+    """At most `cap` of the species' finds per BLOCK_DEGREES block of its places, the same ones on
+    every run (picked by a hash of place and day), so that one heavily recorded country does not
+    decide the habitat. 69% of the bay bolete's North Europe finds are Dutch. Uncapped, its factor
+    lowered 39% of the British and Irish find places and 65% of the Finnish ones; with at most 1,000
+    per block, every area keeps 82-97% of its find places at 1 (2016-2025; 300 cut the Dutch to 34%)."""
+    if not cap:
+        return finds
+    place = features.set_index("Location_Id").reindex(finds["Location_Id"])
+    block = (np.floor(place["Latitude"].to_numpy() / BLOCK_DEGREES) * 1000
+             + np.floor(place["Longitude"].to_numpy() / BLOCK_DEGREES))
+    mine = (finds["species"] == species).to_numpy() & np.isfinite(block)
+    key = pd.Series(pd.util.hash_pandas_object(finds[["Location_Id", "Date"]], index=False).to_numpy()[mine])
+    over = key.groupby(block[mine]).rank(method="first").to_numpy() > cap
+    drop = np.zeros(len(finds), bool)
+    drop[np.flatnonzero(mine)[over]] = True
+    return finds[~drop]
 
 
 def strata(finds, species, features, rng, max_cases=MAX_CASES, background_all=True):
@@ -78,7 +109,8 @@ def strata(finds, species, features, rng, max_cases=MAX_CASES, background_all=Tr
     return values[np.clip(rows, 0, None)], rows >= 0, cases[keep], rows
 
 
-def held_out_years(species, score, at, years, weeks, sites, finds, features, place_score=None, seed=291) -> dict:
+def held_out_years(species, score, at, years, weeks, sites, finds, features, place_score=None, seed=291,
+                   block_cap=None) -> dict:
     """The factor tested on the training table's held-out years, for where 2026 is too thin to
     test it (bronze bolete in South Europe: 26 finds; spring species have no summer strata). For
     each year a model trained on the other years' finds, and each of that year's finds ranked with
@@ -86,7 +118,8 @@ def held_out_years(species, score, at, years, weeks, sites, finds, features, pla
     fit_fruiting_parts.control_sets) on the full score ([case] values), and among the places other
     fungi were found within +-WINDOW_DAYS (strata) on place_score(sites, dates), the score's place
     parts on the find's day (the training table has no weather there). Each change is pooled over
-    the years, its 95% CI resampling whole weeks."""
+    the years, its 95% CI resampling whole weeks. block_cap thins the training years' finds as
+    --block-cap does; every held-out find is still tested."""
     from fit_fruiting_parts import place_ranks, week_ci
     rng = np.random.default_rng(seed)
     index = pd.Series(np.arange(len(features)), index=features["Location_Id"].to_numpy())
@@ -100,13 +133,14 @@ def held_out_years(species, score, at, years, weeks, sites, finds, features, pla
     test_year = years[at[:, 0]]
     for year in np.unique(test_year):
         in_year = finds["Date"].dt.year == year
-        x, mask, *_ = strata(finds[~in_year], species, features, rng)
+        trained = capped(finds[~in_year], species, features, block_cap)
+        x, mask, *_ = strata(trained, species, features, rng)
         if len(x) < MIN_CASES:
             continue
         held = rng.random(len(x)) < 0.15
         model = gbm.fit(x[~held], mask[~held], rounds=1000, params=PARAMS, valid=(x[held], mask[held]))
         eta = model.predict(values, num_iteration=model.best_iteration, raw_score=True)
-        own = index.reindex(finds.loc[~in_year & (finds["species"] == species), "Location_Id"]).dropna().astype(int)
+        own = index.reindex(trained.loc[trained["species"] == species, "Location_Id"]).dropna().astype(int)
         h = factor(eta, float(np.quantile(eta[own.to_numpy()], REFERENCE_QUANTILE)), mapped)
         rows = test_year == year
         change[rows] = place_ranks(score * np.where(listed, h[position], 1.0), at[rows]) - before[rows]
@@ -149,11 +183,12 @@ def ships(table: pd.DataFrame) -> pd.Series:
 
 
 def with_years(table: pd.DataFrame, out: Path) -> pd.DataFrame:
-    """The results with the held-out years' test where it ran (fit_fruiting_parts.py --habitat)."""
-    path = out / "habitat_years.csv"
-    if not path.exists():
+    """The results with the held-out years' test where it ran (fit_fruiting_parts.py --habitat; a
+    species added later ran on its own, into habitat_years_<species>.csv)."""
+    paths = [p for p in (out / "habitat_years.csv", *sorted(out.glob("habitat_years_*.csv"))) if p.exists()]
+    if not paths:
         return table
-    years = pd.read_csv(path)
+    years = pd.concat([pd.read_csv(p) for p in paths]).drop_duplicates(["species", "region"], keep="last")
     names = [c for c in years.columns if c.startswith("years_")]
     return table.drop(columns=names, errors="ignore").merge(years[["species", "region", *names]],
                                                             on=["species", "region"], how="left")
@@ -161,7 +196,7 @@ def with_years(table: pd.DataFrame, out: Path) -> pd.DataFrame:
 
 def from_models(table, finds, out):
     """The shipped factors from habitat_models/, each region's on its own places and then its
-    neighbour's; the reference stays the region's own training finds."""
+    neighbour's; the reference stays the region's own training finds (capped as trained)."""
     factors, ids_by_region = {}, {}
     train = finds[finds["Date"].dt.year < TEST_YEAR]
     for region, rows in table[table["ships"]].groupby("region"):
@@ -171,28 +206,63 @@ def from_models(table, finds, out):
         features = pd.concat([own, other[~other["Location_Id"].isin(own["Location_Id"])]], ignore_index=True)
         ids_by_region[region] = features["Location_Id"].to_numpy()
         where = pd.Series(np.arange(len(own)), index=own["Location_Id"].to_numpy())
-        for species in rows["species"]:
+        caps = rows["block_cap"] if "block_cap" in rows else pd.Series(np.nan, index=rows.index)
+        for species, cap in zip(rows["species"], caps):
             model = lgb.Booster(model_file=str(out / "habitat_models" / f"{species}_{region}.txt"))
             eta_all = model.predict(features[cols].to_numpy(np.float32), raw_score=True)
-            at = where.reindex(train.loc[(train["species"] == species) & (train["region"] == region), "Location_Id"]).dropna().astype(int)
+            trained = capped(train[train["region"] == region], species, own, int(cap) if pd.notna(cap) else None)
+            at = where.reindex(trained.loc[trained["species"] == species, "Location_Id"]).dropna().astype(int)
             factors[(species, region)] = factor(eta_all, float(np.quantile(eta_all[at.to_numpy()], REFERENCE_QUANTILE)),
                                                  features["tree_map"].to_numpy(bool))
     return factors, ids_by_region
 
 
-def export(table, factors, ids_by_region, out) -> None:
-    """Per region one file on R2 (R2_FOLDER/<date>/habitat_<region>.npz: location ids, species,
-    factor x 255 as uint8) and backend/generated/habitat_factor.json naming each with its sha256."""
-    import hashlib
-    import io
-    import json
+def r2_folder():
+    """forecast_pipeline with the R2 credentials loaded, and today's folder for the files."""
     import time
     import forecast_pipeline as fp
     root = Path(__file__).resolve().parents[2]
     fp.load_dotenv(root / ".env")
     fp.load_dotenv(root / ".env.secret")
-    client, bucket = fp._r2_client(), fp.get_required_env("R2_BUCKET_NAME")
-    folder = f"{R2_FOLDER}/{time.strftime('%Y%m%d-%H%M')}"
+    return fp, f"{R2_FOLDER}/{time.strftime('%Y%m%d-%H%M')}"
+
+
+def upload(fp, folder, region, ids, columns: dict) -> dict:
+    """One region's file on R2 (R2_FOLDER/<date>/habitat_<region>.npz: location ids, species,
+    factor x 255 as uint8), and its entry for habitat_factor.json."""
+    species = sorted(columns)
+    buffer = io.BytesIO()
+    np.savez_compressed(buffer, ids=ids.astype(str), species=np.array(species),
+                        factor=np.column_stack([columns[s] for s in species]))
+    data = buffer.getvalue()
+    key = f"{folder}/habitat_{region}.npz"
+    fp._r2_client().put_object(Bucket=fp.get_required_env("R2_BUCKET_NAME"), Key=key, Body=data,
+                               ContentType="application/octet-stream")
+    print(f"uploaded {key}: {len(species)} species, {len(data) / 1e6:.1f} MB", flush=True)
+    return {"file": key, "sha256": hashlib.sha256(data).hexdigest(), "species": species}
+
+
+def add_to_shipped(species, factors, ids_by_region) -> None:
+    """--add: the species' factors join the shipped region files. Every other column is copied as it
+    is, so no other species' factor moves; a file listing other places than today's is refused."""
+    fp, folder = r2_folder()
+    spec = json.loads(SHIPPED.read_text(encoding="utf-8"))
+    for region, ids in ids_by_region.items():
+        entry = spec["regions"][region]
+        data = fp.r2_fetch(entry["file"])
+        assert hashlib.sha256(data).hexdigest() == entry["sha256"], f"{entry['file']} is not the file shipped"
+        with np.load(io.BytesIO(data)) as z:
+            assert np.array_equal(z["ids"], ids.astype(str)), f"{region}: the places changed since {entry['file']}"
+            columns = dict(zip((str(s) for s in z["species"]), z["factor"].T))
+        columns[species] = np.rint(factors[(species, region)] * 255).astype(np.uint8)
+        spec["regions"][region] = upload(fp, folder, region, ids, columns)
+    SHIPPED.write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
+
+
+def export(table, factors, ids_by_region, out) -> None:
+    """Per region one file on R2 (upload) and backend/generated/habitat_factor.json naming each
+    with its sha256."""
+    fp, folder = r2_folder()
     spec = {"strength": STRENGTH, "floor": FLOOR, "reference_quantile": REFERENCE_QUANTILE,
             "trained": f"2016-{TEST_YEAR - 1}",
             "shipped_if": "score x habitat ranks held-out finds better than the score alone: on the training table's "
@@ -201,17 +271,9 @@ def export(table, factors, ids_by_region, out) -> None:
                           "the places searched that week (other fungi's finds), and no worse against bracket fungi",
             "regions": {}}
     for region, rows in table[table["ships"]].groupby("region"):
-        species = sorted(rows["species"])
-        matrix = np.column_stack([np.rint(factors[(s, region)] * 255) for s in species]).astype(np.uint8)
-        buffer = io.BytesIO()
-        np.savez_compressed(buffer, ids=ids_by_region[region].astype(str), species=np.array(species), factor=matrix)
-        data = buffer.getvalue()
-        key = f"{folder}/habitat_{region}.npz"
-        client.put_object(Bucket=bucket, Key=key, Body=data, ContentType="application/octet-stream")
-        spec["regions"][region] = {"file": key, "sha256": hashlib.sha256(data).hexdigest(), "species": species}
-        print(f"uploaded {key}: {len(species)} species, {len(data) / 1e6:.1f} MB", flush=True)
-    (root / "backend" / "generated" / "habitat_factor.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8",
-                                                                       newline="\n")
+        spec["regions"][region] = upload(fp, folder, region, ids_by_region[region],
+                                         {s: np.rint(factors[(s, region)] * 255).astype(np.uint8) for s in rows["species"]})
+    SHIPPED.write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
 
 
 def main() -> None:
@@ -219,10 +281,21 @@ def main() -> None:
     parser.add_argument("--out", required=True)
     parser.add_argument("--export", action="store_true", help="upload the shipped factors, write backend/generated/habitat_factor.json")
     parser.add_argument("--reuse", action="store_true", help="factors from habitat_models/ and habitat_result.csv, no training")
+    parser.add_argument("--add", metavar="SPECIES",
+                        help="train only this species, added after the finds table was built; with --export its "
+                             "factors join the shipped files, every other factor in them unchanged")
+    parser.add_argument("--regions", nargs="+", default=list(NEIGHBOUR), help="the regions to train in")
+    parser.add_argument("--block-cap", type=int,
+                        help="train on at most this many of each species' finds per block (capped); kept in the results")
     args = parser.parse_args()
     out = Path(args.out)
     rng = np.random.default_rng(291)
     finds = pd.read_parquet(out / "finds_2016_2026.parquet")
+    # A species added after the table was built brings its finds, here and in every later run that
+    # trains or exports it (they set its reference).
+    listed = pd.read_csv(out / "habitat_result.csv")["species"] if (out / "habitat_result.csv").exists() else []
+    added = sorted({*listed, *([args.add] if args.add else [])} - set(finds["species"]))
+    finds = pd.concat([finds, *(pd.read_parquet(out / f"finds_{s}_supplement.parquet") for s in added)], ignore_index=True)
     finds["Date"] = pd.to_datetime(finds["Date"])
     if args.reuse:
         table = with_years(pd.read_csv(out / "habitat_result.csv"), out)
@@ -235,26 +308,27 @@ def main() -> None:
                "all": pd.read_parquet(out / "spatial" / "spatial_strata.parquet")}
     (out / "habitat_models").mkdir(exist_ok=True)
     results = []
-    for region in ("NE", "SE", "USE", "USW"):
+    for region in args.regions:
         features = pd.read_parquet(out / f"habitat_features_{region}.parquet")
         cols = columns(features)
         here = finds[finds["region"] == region]
         train, test = here[here["Date"].dt.year < TEST_YEAR], here[here["Date"].dt.year == TEST_YEAR]
-        for species in sorted(set(here["species"]) - {PLACEBO}):
-            x, mask, *_ = strata(train, species, features, rng)
+        for species in [args.add] if args.add else sorted(set(here["species"]) - {PLACEBO}):
+            trained = capped(train, species, features, args.block_cap)
+            x, mask, *_ = strata(trained, species, features, rng)
             if len(x) < MIN_CASES:
                 continue
             held = rng.random(len(x)) < 0.15
             model = gbm.fit(x[~held], mask[~held], rounds=1000, params=PARAMS, valid=(x[held], mask[held]))
             tx, tmask, *_ = strata(test, species, features, rng)
             entry = {"species": species, "region": region, "train": len(x), "test_2026": len(tx),
-                     "rounds": model.best_iteration}
+                     "rounds": model.best_iteration, "block_cap": args.block_cap}
             if len(tx) >= 30:
                 entry["habitat_2026"] = round(float(find_day_rank(gbm.predict(model, tx, model.best_iteration), tmask).mean()), 3)
             model.save_model(str(out / "habitat_models" / f"{species}_{region}.txt"), num_iteration=model.best_iteration)
             eta_all = model.predict(features[cols].to_numpy(np.float32), num_iteration=model.best_iteration, raw_score=True)
             at = pd.Series(np.arange(len(features)), index=features["Location_Id"].to_numpy()).reindex(
-                train.loc[train["species"] == species, "Location_Id"]).dropna().astype(int).to_numpy()
+                trained.loc[trained["species"] == species, "Location_Id"]).dropna().astype(int).to_numpy()
             reference = float(np.quantile(eta_all[at], REFERENCE_QUANTILE))
             for label, summer in summers.items():
                 g = summer[(summer["species"] == species) & (summer["region"] == region)]
@@ -282,8 +356,14 @@ def main() -> None:
             print(entry, flush=True)
     table = with_years(pd.DataFrame(results), out)
     table["ships"] = ships(table)
+    if args.add:
+        old = pd.read_csv(out / "habitat_result.csv")
+        mine = table
+        table = pd.concat([old[~((old["species"] == args.add) & old["region"].isin(args.regions))], mine], ignore_index=True)
     table.to_csv(out / "habitat_result.csv", index=False)
-    if args.export:
+    if args.export and args.add:
+        add_to_shipped(args.add, *from_models(mine, finds, out))
+    elif args.export:
         export(table, *from_models(table, finds, out), out)
     pd.set_option("display.width", 250)
     print(table.drop(columns=["top_features"]).to_string(index=False))
