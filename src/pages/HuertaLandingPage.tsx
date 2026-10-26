@@ -106,6 +106,14 @@ export default function HuertaLandingPage() {
                   <Link to='/huerta/year'>{tNav('huertaYear')}</Link>
                 </Button>
               </div>
+              {/* Huerta is new and made by one person: say so, and where to
+                  say what's off. */}
+              <p className={styles.early}>
+                {t('landing.early')}{' '}
+                <Link to='/support' className='focus-ring'>
+                  {t('landing.feedback')}
+                </Link>
+              </p>
             </div>
             <img
               className={styles.heroPhoto}
@@ -143,13 +151,6 @@ export default function HuertaLandingPage() {
               </Link>
             </Button>
             <p className={styles.coverage}>{t('landing.coverage')}</p>
-            {/* Huerta is new: say so once, and where to tell us. */}
-            <p className={styles.coverage}>
-              {t('landing.early')}{' '}
-              <Link to='/support' className='font-medium underline'>
-                {t('landing.feedback')}
-              </Link>
-            </p>
           </div>
         </section>
 
