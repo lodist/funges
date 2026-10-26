@@ -11,7 +11,9 @@ import {
 } from '@/lib/huerta';
 import type { PlaceYear } from '@/lib/huerta-wire';
 import {
+  AlertTriangle,
   Check,
+  ChevronDown,
   Clock,
   CloudRain,
   Droplets,
@@ -30,6 +32,7 @@ const ICON: Record<string, ComponentType<{ className?: string }>> = {
   rain: CloudRain,
   soil: Shovel,
   tooLate: Clock,
+  fate: AlertTriangle,
 };
 
 interface Job {
@@ -92,6 +95,11 @@ export function GardenThisWeek({
   const holding = (crops: string[]) =>
     plan.sections.flatMap((s, i) =>
       s.crop && crops.includes(s.crop) ? [i] : []
+    );
+  // Where they are in the ground, not only planned.
+  const growing = (crops: string[]) =>
+    plan.sections.flatMap((s, i) =>
+      s.crop && s.planted && crops.includes(s.crop) ? [i] : []
     );
   // How it goes in, as its sheet says: depth, then spacing.
   const how = (id: string) => {
@@ -172,14 +180,24 @@ export function GardenThisWeek({
           text,
           from,
           at:
-            'crop' in task
-              ? holding([task.crop])
-              : 'crops' in task
-                ? holding(task.crops)
-                : [],
-          action: key
-            ? { label: t('week.todo.done'), run: () => onDone(key) }
-            : undefined,
+            task.kind === 'fate'
+              ? growing(task.crops)
+              : 'crop' in task
+                ? holding([task.crop])
+                : 'crops' in task
+                  ? holding(task.crops)
+                  : [],
+          // A crop that won't be ready before it dies: its beds planned
+          // again with what grows now; anything else ticked off once seen to.
+          action:
+            task.kind === 'fate' && !task.ready
+              ? {
+                  label: t('planner.auto'),
+                  run: () => onReplan(growing(task.crops)),
+                }
+              : key
+                ? { label: t('week.todo.done'), run: () => onDone(key) }
+                : undefined,
         },
       ];
     });
@@ -299,11 +317,14 @@ export function GardenThisWeek({
       )}
 
       {done.length ? (
-        <div>
-          <h3 className='type-micro mb-1 text-muted-foreground'>
-            {t('week.done.title')}
-          </h3>
-          <ul className='flex flex-col'>
+        // Folded away: what is done is there only to take back a slip.
+        <details className='group'>
+          <summary className='focus-ring flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-muted-foreground hover:bg-muted [&::-webkit-details-marker]:hidden'>
+            <ChevronDown className='size-4 transition-transform group-open:rotate-180' />
+            <span className='type-micro'>{t('week.done.title')}</span>
+            <span className='text-xs tabular-nums'>{done.length}</span>
+          </summary>
+          <ul className='mt-1 flex flex-col'>
             {done.map(d => (
               <li key={d.key} className='flex items-center gap-3 pl-2 text-sm'>
                 <Check className='size-4 shrink-0 text-primary-text' />
@@ -316,7 +337,7 @@ export function GardenThisWeek({
               </li>
             ))}
           </ul>
-        </div>
+        </details>
       ) : null}
 
       {coming.length ? (
@@ -341,21 +362,14 @@ export function GardenThisWeek({
                     <span className='block font-medium text-foreground'>
                       {c.kind === 'ready'
                         ? t('week.coming.ready', { crop: name(c.crop) })
-                        : c.kind === 'frost'
-                          ? t(
-                              c.lost
-                                ? 'week.coming.frostLost'
-                                : 'week.coming.frostEnd',
-                              { crop: name(c.crop) }
-                            )
-                          : c.kind === 'sow'
-                            ? t(`week.coming.${CROP[c.crop].how}`, {
-                                crop: name(c.crop),
-                              })
-                            : t('week.coming.wait', {
-                                crop: name(c.crop),
-                                reason: t(`status.${c.status}`),
-                              })}
+                        : c.kind === 'sow'
+                          ? t(`week.coming.${CROP[c.crop].how}`, {
+                              crop: name(c.crop),
+                            })
+                          : t('week.coming.wait', {
+                              crop: name(c.crop),
+                              reason: t(`status.${c.status}`),
+                            })}
                     </span>
                     <span className='block text-xs text-muted-foreground'>
                       {beds(c.at)}
@@ -365,7 +379,7 @@ export function GardenThisWeek({
               </li>
             ))}
           </ul>
-          {coming.some(c => c.kind === 'ready' || c.kind === 'frost') ? (
+          {coming.some(c => c.kind === 'ready') ? (
             <p className='mt-2 px-2 text-xs text-muted-foreground'>
               {t('week.coming.note')}
             </p>

@@ -69,7 +69,8 @@
       "from": {
         "forecast": "Según la previsión",
         "plan": "Según tu plan",
-        "soil": "Según tu suelo"
+        "soil": "Según tu suelo",
+        "climate": "Del clima de tu zona"
       },
       "nothing": "Tu huerto no necesita nada de ti esta semana.",
       "noPlan": "Planifica tu huerto y Huerta te dirá qué hacer en él cada semana.",
@@ -158,6 +159,20 @@
       "tooLate": {
         "title": "{{crops}}: ya es tarde",
         "text": "Elige otra cosa para sus bancales, o deja que «Planifícalo por mí» los llene."
+      },
+      "fate": {
+        "lost": "{{crops}}: no sobrevivirá aquí",
+        "soon": "{{crops}}: no pasará del {{date}}",
+        "last": "Cosecha lo último de {{crops}} antes del {{date}}",
+        "frost": "Aquí suele helar para entonces, y no lo soportan.",
+        "frostNow": "Aquí puede helar cualquier noche, y no lo soportan.",
+        "cold": "Para entonces las noches aquí son demasiado frías para ellos.",
+        "coldNow": "Las noches aquí ya son demasiado frías para ellos: no crecerán.",
+        "winter": "Para entonces el invierno aquí es más frío de lo que soportan.",
+        "winterNow": "El invierno aquí ya es más frío de lo que soportan.",
+        "clear": "Aprovecha el bancal para algo que crezca ahora.",
+        "pick": "Cosecha lo que puedas antes.",
+        "replace": "No llegarán a estar listos: aprovecha el bancal para algo que crezca ahora."
       }
     },
     "short": {
@@ -179,9 +194,7 @@
       "plant": "{{crop}}: plantar",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "En espera",
-      "note": "Las fechas de cosecha y de helada son aproximadas, según el tiempo habitual en tu zona.",
-      "frostLost": "{{crop}}: probable helada, no sobrevivirá",
-      "frostEnd": "{{crop}}: probable primera helada, cosecha lo último"
+      "note": "Las fechas de cosecha son aproximadas, según las temperaturas habituales de tu lugar."
     },
     "done": {
       "title": "Hecho esta semana",
@@ -591,19 +604,27 @@
       "ready": "Para cosechar: {{crops}}",
       "growing": "Creciendo: {{crops}}",
       "empty": "Nada en la tierra",
-      "lost": "Perdido por la helada: {{crops}}"
+      "lost": "Perdido: {{crops}}"
     },
     "tab": {
       "week": "Tareas",
       "garden": "Huerto"
     },
-    "frostFirst": "Antes llegará la helada, hacia el {{date}}",
     "warn": {
-      "frost": "Una helada probablemente lo matará hacia el {{date}}, antes de que esté listo: los cultivos sensibles no sobreviven a las heladas.",
-      "frostNow": "Puede helar cualquier noche, y los cultivos sensibles no lo soportan al aire libre.",
-      "frostUntil": "Aún puede helar hasta el {{date}} más o menos: cúbrelo las noches frías.",
       "coldSeeds": "El suelo aún está demasiado frío: sus semillas pueden pudrirse antes de brotar.",
       "warmSeeds": "El suelo está demasiado caliente: sus semillas pueden no brotar."
+    },
+    "fate": {
+      "frost": "Una helada probablemente lo matará hacia el {{date}}, antes de que esté listo.",
+      "frostNow": "Aquí puede helar cualquier noche, y no sobrevivirá a una helada.",
+      "cold": "Las noches aquí se vuelven demasiado frías para él hacia el {{date}}: dejará de crecer y morirá antes de estar listo.",
+      "coldNow": "Las noches aquí ya son demasiado frías para él: no crecerá y morirá en pocas semanas.",
+      "winter": "El invierno aquí es más frío de lo que soporta: probablemente morirá hacia el {{date}}.",
+      "winterNow": "El invierno aquí ya es más frío de lo que soporta: no sobrevivirá.",
+      "ifNow": "Si lo pones hoy",
+      "coverFrost": "Aún puede helar hasta el {{date}} más o menos: cúbrelo las noches frías.",
+      "coverWinter": "Aún pueden caer heladas fuertes hasta el {{date}} más o menos: cúbrelo las noches frías.",
+      "lostAround": "Se pierde hacia el {{date}}"
     }
   },
   "year": {

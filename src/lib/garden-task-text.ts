@@ -8,7 +8,7 @@ import { weekday } from '@/lib/huerta';
 
 /** A translate function on the huerta namespace: i18next's, or the Worker's. */
 export type T = (key: string, options?: Record<string, unknown>) => string;
-export type From = 'forecast' | 'plan' | 'soil';
+export type From = 'forecast' | 'plan' | 'soil' | 'climate';
 
 export function taskText(
   task: Task,
@@ -60,6 +60,26 @@ export function taskText(
         text: t('week.todo.tooLate.text'),
         from: 'plan',
       };
+    case 'fate': {
+      // Lost already, lost by a day to come, or the last to pick before it.
+      const { now } = task;
+      const date = new Intl.DateTimeFormat(lang, {
+        day: 'numeric',
+        month: 'long',
+      }).format(new Date(`${task.day}T12:00:00`));
+      const crops = names(task.crops);
+      return {
+        title: task.ready
+          ? t('week.todo.fate.last', { crops, date })
+          : now
+            ? t('week.todo.fate.lost', { crops })
+            : t('week.todo.fate.soon', { crops, date }),
+        text: `${t(`week.todo.fate.${task.by}${now ? 'Now' : ''}`)} ${t(
+          `week.todo.fate.${task.ready ? 'pick' : now ? 'clear' : 'replace'}`
+        )}`,
+        from: 'climate',
+      };
+    }
     case 'soil':
       return {
         title: t(`week.todo.soil.${task.note}.title`, {

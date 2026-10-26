@@ -15,6 +15,7 @@ export const ALERT_KINDS: AlertKind[] = ['frost', 'care', 'water', 'sow'];
 const KIND: Partial<Record<Task['kind'], AlertKind>> = {
   frost: 'frost',
   laterFrost: 'frost',
+  fate: 'frost',
   stage: 'care',
   water: 'water',
   rain: 'water',
@@ -25,6 +26,7 @@ const KIND: Partial<Record<Task['kind'], AlertKind>> = {
 const RANK: Task['kind'][] = [
   'frost',
   'laterFrost',
+  'fate',
   'water',
   'rain',
   'stage',
@@ -47,6 +49,8 @@ function keys(task: Task, today: string): string[] {
       return [`frost:${task.level}`];
     case 'laterFrost':
       return [`laterFrost:${task.night}`];
+    case 'fate':
+      return [`fate:${task.day}:${task.crops.join(',')}`];
     case 'water':
     case 'rain':
       return [`${task.kind}:${isoWeek(today)}`];

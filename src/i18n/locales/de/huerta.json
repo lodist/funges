@@ -69,7 +69,8 @@
       "from": {
         "forecast": "Laut Vorhersage",
         "plan": "Laut deinem Plan",
-        "soil": "Laut deinem Boden"
+        "soil": "Laut deinem Boden",
+        "climate": "Aus dem Klima deines Ortes"
       },
       "nothing": "Dein Garten braucht diese Woche nichts von dir.",
       "noPlan": "Plane deinen Garten, und Huerta sagt dir jede Woche, was darin zu tun ist.",
@@ -158,6 +159,20 @@
       "tooLate": {
         "title": "{{crops}}: jetzt zu spät",
         "text": "Wähle etwas anderes für die Beete, oder lass „Für mich planen“ sie füllen."
+      },
+      "fate": {
+        "lost": "{{crops}}: überlebt hier nicht",
+        "soon": "{{crops}}: übersteht den {{date}} nicht",
+        "last": "Die letzten {{crops}} vor dem {{date}} ernten",
+        "frost": "Bis dahin kommt hier meist Frost, und den vertragen sie nicht.",
+        "frostNow": "Hier ist jetzt jede Nacht Frost möglich, und den vertragen sie nicht.",
+        "cold": "Bis dahin werden die Nächte hier zu kalt für sie.",
+        "coldNow": "Die Nächte hier sind jetzt zu kalt für sie: Sie wachsen nicht.",
+        "winter": "Bis dahin wird der Winter hier kälter, als sie vertragen.",
+        "winterNow": "Der Winter hier ist schon kälter, als sie vertragen.",
+        "clear": "Nutze das Beet für etwas, das jetzt wächst.",
+        "pick": "Ernte vorher, was du kannst.",
+        "replace": "Sie werden nicht rechtzeitig reif: Nutze das Beet für etwas, das jetzt wächst."
       }
     },
     "short": {
@@ -179,9 +194,7 @@
       "plant": "{{crop}}: pflanzen",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Wartet",
-      "note": "Ernte- und Frosttermine sind ungefähr, nach dem üblichen Wetter an deinem Ort.",
-      "frostLost": "{{crop}}: Frost wahrscheinlich, überlebt nicht",
-      "frostEnd": "{{crop}}: erster Frost wahrscheinlich, Rest ernten"
+      "note": "Erntedaten sind ungefähr, aus den üblichen Temperaturen an deinem Ort."
     },
     "done": {
       "title": "Diese Woche erledigt",
@@ -591,19 +604,27 @@
       "ready": "Erntereif: {{crops}}",
       "growing": "Wächst: {{crops}}",
       "empty": "Nichts in der Erde",
-      "lost": "Erfroren: {{crops}}"
+      "lost": "Verloren: {{crops}}"
     },
     "tab": {
       "week": "Zu tun",
       "garden": "Garten"
     },
-    "frostFirst": "Vorher kommt wohl Frost, um den {{date}}",
     "warn": {
-      "frost": "Frost tötet es wahrscheinlich um den {{date}}, bevor es reif ist: Empfindliche Kulturen überleben keinen Frost.",
-      "frostNow": "Frost ist jetzt jede Nacht möglich, und empfindliche Kulturen überleben ihn draußen nicht.",
-      "frostUntil": "Bis etwa zum {{date}} ist noch Frost möglich: in kalten Nächten abdecken.",
       "coldSeeds": "Der Boden ist noch zu kalt: Die Samen können faulen, bevor sie keimen.",
       "warmSeeds": "Der Boden ist zu warm: Die Samen keimen womöglich nicht."
+    },
+    "fate": {
+      "frost": "Frost tötet es wahrscheinlich um den {{date}}, bevor es reif ist.",
+      "frostNow": "Hier ist jetzt jede Nacht Frost möglich, und es überlebt keinen.",
+      "cold": "Ab etwa {{date}} werden die Nächte hier zu kalt dafür: Es hört auf zu wachsen und stirbt, bevor es reif ist.",
+      "coldNow": "Die Nächte hier sind jetzt zu kalt dafür: Es wächst nicht und stirbt innerhalb weniger Wochen.",
+      "winter": "Der Winter hier wird kälter, als es verträgt: Es stirbt wahrscheinlich um den {{date}}.",
+      "winterNow": "Der Winter hier ist schon kälter, als es verträgt: Es überlebt nicht.",
+      "ifNow": "Wenn es heute in die Erde kommt",
+      "coverFrost": "Bis etwa zum {{date}} ist noch Frost möglich: in kalten Nächten abdecken.",
+      "coverWinter": "Bis etwa zum {{date}} sind noch starke Fröste möglich: in kalten Nächten abdecken.",
+      "lostAround": "Verloren um den {{date}}"
     }
   },
   "year": {
