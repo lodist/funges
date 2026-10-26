@@ -21,23 +21,23 @@
   },
   "rights": {
     "title": "Tus derechos",
-    "intro": "Aunque este servicio no recopila datos directamente, debes conocer tus derechos según la Ley Federal Suiza de Protección de Datos (FADP) y el Reglamento General de Protección de Datos (GDPR) al interactuar con servicios de terceros:",
-    "access": "Acceso: Solicita acceso a tus datos a cualquier servicio de terceros.",
-    "rectification": "Rectificación: Corrige datos inexactos que posean servicios de terceros.",
-    "erasure": "Eliminación: Solicita la eliminación de tus datos si ya no son necesarios.",
-    "restriction": "Restricción: Solicita restricciones en el procesamiento bajo circunstancias específicas.",
-    "objection": "Oposición: Oponte al procesamiento de tus datos, incluso con fines de marketing.",
-    "portability": "Portabilidad de datos: Solicita tus datos en un formato estructurado y legible por máquina.",
-    "exercise": "Para ejercer estos derechos, contacta directamente con el servicio de terceros correspondiente."
+    "intro": "En virtud de la Ley Federal suiza de Protección de Datos (LPD) y del Reglamento General de Protección de Datos de la UE (RGPD), tienes estos derechos sobre los datos personales que Funges guarda de ti (solo cuentas de Huerta) y sobre los datos que tienen los servicios de terceros:",
+    "access": "Acceso: saber qué guardamos de ti y obtener una copia.",
+    "rectification": "Rectificación: que se corrijan los datos inexactos.",
+    "erasure": "Supresión: que se borren tus datos. Con una cuenta de Huerta puedes hacerlo tú mismo en cualquier momento.",
+    "restriction": "Limitación: pedir que limitemos el uso de tus datos en determinadas circunstancias.",
+    "objection": "Oposición: oponerte al uso que hacemos de tus datos.",
+    "portability": "Portabilidad: recibir tus datos en un formato estructurado y legible por máquina.",
+    "exercise": "Para eliminar tu cuenta de Huerta, usa Configuración → Cuenta de Huerta → Eliminar cuenta (ver también fung.es/delete-account). Para cualquier otra cuestión sobre los datos que guardamos, escribe a la dirección de contacto de abajo; para los datos de un servicio de terceros, contacta con ese servicio. También puedes reclamar ante una autoridad de protección de datos: en Suiza, el Comisionado Federal de Protección de Datos y Transparencia (PFPDT); en la UE, la autoridad de tu país."
   },
   "protection": {
     "title": "Protección de datos",
-    "content": "El administrador no procesa datos personales de forma directa. Los servicios de terceros son responsables de garantizar la seguridad de los datos que recopilan.",
+    "content": "Los únicos datos personales que guarda Funges son los de las cuentas de Huerta. Solo viajan por conexiones cifradas, se almacenan en Cloudflare y se usan únicamente para hacer funcionar Huerta. Los servicios de terceros son responsables de la seguridad de los datos que recogen.",
     "security": "Aunque se procura integrar solo servicios confiables, ningún método de transmisión o almacenamiento es completamente seguro."
   },
   "transfers": {
     "title": "Transferencias internacionales",
-    "content": "Los servicios de terceros integrados pueden procesar datos en países fuera de tu jurisdicción. Estos servicios son responsables de garantizar las salvaguardias adecuadas para proteger tus datos."
+    "content": "La base de datos de Huerta está en Europa occidental. Cloudflare, que hace funcionar el servidor de Huerta, y Google, que gestiona el inicio de sesión, son empresas estadounidenses y pueden tratar datos fuera de Suiza y de la UE; lo hacen con las garantías que exige la ley, como el Marco de Privacidad de Datos UE-EE. UU. y Suiza-EE. UU. o cláusulas contractuales tipo. Otros servicios de terceros también pueden tratar datos en otros países."
   },
   "changes": {
     "title": "Cambios en esta Política de Privacidad",
@@ -48,12 +48,32 @@
     "intro": "Para cualquier pregunta o inquietud sobre esta Política de Privacidad, por favor contacta a:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última actualización: 26.07.2026",
+  "lastUpdated": "Última actualización: 26.10.2026",
   "accounts": {
     "title": "Cuentas de Huerta",
     "content": "Inicias sesión en Huerta con tu cuenta de Google. Google nos facilita tu dirección de correo y un número que identifica tu cuenta de Google; guardamos ambos, junto con tu idioma y tu zona horaria, para que puedas iniciar sesión en cualquier dispositivo y recibir los avisos a la hora adecuada. Guardamos tus huertos: sus nombres, sus planes y su ubicación redondeada a aproximadamente 1 km, nunca tu dirección.",
     "alerts": "Si activas los avisos por la mañana, guardamos la dirección de notificaciones que tu navegador o tu teléfono nos da para ello, hasta que los desactives o deje de funcionar.",
-    "storage": "Estos datos se guardan en Cloudflare (base de datos D1), que los trata por cuenta nuestra. Solo los usamos para hacer funcionar Huerta y nunca los vendemos ni los compartimos.",
-    "delete": "Puedes eliminar tu cuenta en cualquier momento en Configuración → Cuenta de Huerta. Tu correo, tus huertos y tus avisos se eliminan entonces de inmediato, en todos los dispositivos."
+    "storage": "Estos datos se guardan en Cloudflare (base de datos Cloudflare D1, Europa occidental), que los trata por cuenta nuestra. Los avisos, si están activados, los entrega el servicio de notificaciones del fabricante de tu navegador o teléfono (Google, Apple o Mozilla); su contenido va cifrado para que solo tu dispositivo pueda leerlo. Solo usamos los datos para hacer funcionar Huerta y nunca los vendemos ni los compartimos.",
+    "delete": "Puedes eliminar tu cuenta en cualquier momento en Configuración → Cuenta de Huerta → Eliminar cuenta, o escribiendo a la dirección de contacto de abajo desde el correo de tu cuenta. Tu correo, tus huertos y tus avisos se eliminan de inmediato, en todos los dispositivos.",
+    "google": "De Google solo recibimos tu dirección de correo, si Google la ha verificado y el número que identifica tu cuenta de Google. Nunca vemos tu contraseña y no tenemos acceso a tus contactos, archivos ni a nada más de tu cuenta de Google. No usamos estos datos para publicidad y nunca los vendemos. También puedes quitar Funges de las aplicaciones conectadas a tu cuenta de Google cuando quieras.",
+    "legal": "Tratamos estos datos para prestarte la cuenta que has pedido (art. 6.1.b RGPD). Los avisos por la mañana solo se envían si los activas, y puedes desactivarlos cuando quieras.",
+    "retention": "Guardamos tus datos mientras tengas una cuenta. Una sesión en un dispositivo termina tras un año sin uso. Los registros de un inicio de sesión en curso se borran en pocos minutos. Cuando eliminas tu cuenta, todo se borra de inmediato; el historial de restauración de nuestro proveedor de base de datos lo conserva hasta 7 días más, y después desaparece para siempre.",
+    "device": "Para mantener tu sesión y funcionar sin conexión, la app guarda tu inicio de sesión y una copia de tus huertos en tu dispositivo (almacenamiento del navegador). Es necesario para que el servicio funcione; Funges no usa cookies de seguimiento.",
+    "age": "Las cuentas de Huerta son para personas de 16 años o más."
+  },
+  "deleteAccount": {
+    "title": "Eliminar tu cuenta de Huerta",
+    "intro": "Puedes eliminar tu cuenta de Funges Huerta, con todos sus datos, en cualquier momento.",
+    "stepsTitle": "En la app o en la web",
+    "steps": [
+      "Abre fung.es (o la app de Funges) y ve a Huerta.",
+      "Inicia sesión con la cuenta de Google que usas para Huerta.",
+      "Abre Configuración → Cuenta de Huerta.",
+      "Pulsa Eliminar cuenta y confirma."
+    ],
+    "what": "Así se borran tu dirección de correo, tus huertos y planes, tus ajustes de avisos y todas tus sesiones, en todos tus dispositivos, de inmediato. El historial de restauración de nuestro proveedor de base de datos guarda una copia hasta 7 días, y después desaparece para siempre.",
+    "other": "¿Ya no puedes iniciar sesión? Escribe a {{email}} desde el correo de tu cuenta y la eliminamos por ti.",
+    "open": "Abrir Huerta",
+    "privacy": "Política de Privacidad"
   }
 }

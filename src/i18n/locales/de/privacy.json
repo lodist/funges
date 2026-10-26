@@ -21,23 +21,23 @@
   },
   "rights": {
     "title": "Deine Rechte",
-    "intro": "Auch wenn dieser Dienst keine Daten direkt erhebt, solltest du deine Rechte nach dem Schweizer Datenschutzgesetz (DSG) und der Datenschutz-Grundverordnung (DSGVO) kennen, wenn du mit Drittanbieterdiensten interagierst:",
-    "access": "Auskunft: Fordere Auskunft über deine Daten bei jedem Drittanbieterdienst an.",
-    "rectification": "Berichtigung: Lasse unrichtige Daten bei Drittanbieterdiensten korrigieren.",
-    "erasure": "Löschung: Fordere die Löschung deiner Daten, wenn sie nicht mehr benötigt werden.",
-    "restriction": "Einschränkung: Beantrage unter bestimmten Umständen eine Einschränkung der Verarbeitung.",
-    "objection": "Widerspruch: Widerspreche der Verarbeitung deiner Daten, auch zu Marketingzwecken.",
-    "portability": "Datenübertragbarkeit: Fordere deine Daten in einem strukturierten, maschinenlesbaren Format an.",
-    "exercise": "Um diese Rechte auszuüben, wende dich bitte direkt an den jeweiligen Drittanbieterdienst."
+    "intro": "Nach dem Schweizer Bundesgesetz über den Datenschutz (DSG) und der Datenschutz-Grundverordnung der EU (DSGVO) hast du diese Rechte an den personenbezogenen Daten, die Funges über dich speichert (nur Huerta-Konten), und an Daten, die Drittanbieterdienste haben:",
+    "access": "Auskunft: erfahren, was wir über dich speichern, und eine Kopie erhalten.",
+    "rectification": "Berichtigung: falsche Daten korrigieren lassen.",
+    "erasure": "Löschung: deine Daten löschen lassen. Ein Huerta-Konto kannst du jederzeit selbst löschen.",
+    "restriction": "Einschränkung: unter bestimmten Umständen verlangen, dass wir deine Daten nur eingeschränkt nutzen.",
+    "objection": "Widerspruch: der Nutzung deiner Daten widersprechen.",
+    "portability": "Datenübertragbarkeit: deine Daten in einem strukturierten, maschinenlesbaren Format erhalten.",
+    "exercise": "Um dein Huerta-Konto zu löschen, nutze Einstellungen → Huerta-Konto → Konto löschen (siehe auch fung.es/delete-account). Für alles andere zu den Daten, die wir speichern, schreib an die Kontaktadresse unten; für Daten eines Drittanbieterdienstes wende dich an diesen Dienst. Du kannst dich auch bei einer Datenschutzbehörde beschweren: in der Schweiz beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB), in der EU bei der Behörde deines Landes."
   },
   "protection": {
     "title": "Datenschutz",
-    "content": "Der Administrator verarbeitet keine personenbezogenen Daten direkt. Drittanbieterdienste sind für die Sicherheit der von ihnen erhobenen Daten verantwortlich.",
+    "content": "Die einzigen personenbezogenen Daten, die Funges speichert, sind die der Huerta-Konten. Sie werden nur über verschlüsselte Verbindungen übertragen, bei Cloudflare gespeichert und nur für den Betrieb von Huerta genutzt. Drittanbieterdienste sind für die Sicherheit der Daten verantwortlich, die sie erheben.",
     "security": "Obwohl wir uns bemühen, nur vertrauenswürdige Dienste zu integrieren, ist keine Übertragungs- oder Speichermethode vollkommen sicher."
   },
   "transfers": {
     "title": "Internationale Datenübermittlung",
-    "content": "Eingebundene Drittanbieterdienste können Daten in Ländern ausserhalb deines Rechtsraums verarbeiten. Diese Dienste sind dafür verantwortlich, angemessene Schutzmassnahmen zum Schutz deiner Daten zu gewährleisten."
+    "content": "Die Datenbank von Huerta liegt in Westeuropa. Cloudflare, das den Server von Huerta betreibt, und Google, das die Anmeldung abwickelt, sind US-Unternehmen und können Daten außerhalb der Schweiz und der EU verarbeiten; sie tun das mit den gesetzlich vorgeschriebenen Garantien, etwa dem EU-US- und dem Swiss-US-Datenschutzrahmen oder Standardvertragsklauseln. Auch andere Drittanbieterdienste können Daten in anderen Ländern verarbeiten."
   },
   "changes": {
     "title": "Änderungen dieser Datenschutzerklärung",
@@ -48,12 +48,32 @@
     "intro": "Bei Fragen oder Anliegen zu dieser Datenschutzerklärung wende dich bitte an:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Letzte Aktualisierung am: 26.07.2026",
+  "lastUpdated": "Letzte Aktualisierung am: 26.10.2026",
   "accounts": {
     "title": "Huerta-Konten",
     "content": "Du meldest dich bei Huerta mit deinem Google-Konto an. Google teilt uns deine E-Mail-Adresse und eine Nummer mit, die dein Google-Konto kennzeichnet; wir speichern beides zusammen mit deiner Sprache und Zeitzone, damit du dich auf jedem Gerät anmelden kannst und die Hinweise zur richtigen Zeit bekommst. Wir speichern deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet, nie deine Adresse.",
     "alerts": "Wenn du die morgendlichen Hinweise einschaltest, speichern wir die Benachrichtigungsadresse, die dein Browser oder Handy uns dafür gibt, bis du sie ausschaltest oder sie nicht mehr funktioniert.",
-    "storage": "Diese Daten liegen bei Cloudflare (Datenbank D1), das sie in unserem Auftrag verarbeitet. Wir nutzen sie nur, um Huerta zu betreiben, und verkaufen oder teilen sie nie.",
-    "delete": "Du kannst dein Konto jederzeit unter Einstellungen → Huerta-Konto löschen. Deine E-Mail-Adresse, deine Gärten und deine Hinweise werden dann sofort gelöscht, auf allen Geräten."
+    "storage": "Diese Daten liegen bei Cloudflare (Datenbank Cloudflare D1, Westeuropa), das sie in unserem Auftrag verarbeitet. Hinweise werden, wenn eingeschaltet, über den Benachrichtigungsdienst des Herstellers deines Browsers oder Handys zugestellt (Google, Apple oder Mozilla); ihr Inhalt ist verschlüsselt, sodass nur dein Gerät ihn lesen kann. Wir nutzen die Daten nur, um Huerta zu betreiben, und verkaufen oder teilen sie nie.",
+    "delete": "Du kannst dein Konto jederzeit unter Einstellungen → Huerta-Konto → Konto löschen löschen oder dafür von der E-Mail-Adresse deines Kontos an die Kontaktadresse unten schreiben. Deine E-Mail-Adresse, deine Gärten und deine Hinweise werden sofort gelöscht, auf allen Geräten.",
+    "google": "Von Google erhalten wir nur deine E-Mail-Adresse, ob Google sie bestätigt hat, und die Nummer, die dein Google-Konto kennzeichnet. Wir sehen nie dein Passwort und haben keinen Zugriff auf deine Kontakte, Dateien oder sonst etwas in deinem Google-Konto. Wir nutzen diese Daten nicht für Werbung und verkaufen sie nie. Du kannst Funges außerdem jederzeit aus den mit deinem Google-Konto verknüpften Apps entfernen.",
+    "legal": "Wir verarbeiten diese Daten, um dir das Konto bereitzustellen, das du angefordert hast (Art. 6 Abs. 1 lit. b DSGVO). Morgendliche Hinweise werden nur gesendet, wenn du sie einschaltest, und du kannst sie jederzeit ausschalten.",
+    "retention": "Wir speichern deine Daten, solange du ein Konto hast. Eine Anmeldung auf einem Gerät endet nach einem Jahr ohne Nutzung. Daten einer laufenden Anmeldung werden innerhalb weniger Minuten gelöscht. Wenn du dein Konto löschst, wird alles sofort gelöscht; der Wiederherstellungsverlauf unseres Datenbankanbieters bewahrt es noch höchstens 7 Tage auf, danach ist es endgültig weg.",
+    "device": "Damit du angemeldet bleibst und die App offline funktioniert, speichert sie deine Anmeldung und eine Kopie deiner Gärten auf deinem Gerät (Browserspeicher). Das ist für den Dienst nötig; Funges verwendet keine Tracking-Cookies.",
+    "age": "Huerta-Konten sind für Personen ab 16 Jahren."
+  },
+  "deleteAccount": {
+    "title": "Dein Huerta-Konto löschen",
+    "intro": "Du kannst dein Funges-Huerta-Konto mit allen Daten jederzeit löschen.",
+    "stepsTitle": "In der App oder auf der Website",
+    "steps": [
+      "Öffne fung.es (oder die Funges-App) und geh zu Huerta.",
+      "Melde dich mit dem Google-Konto an, das du für Huerta nutzt.",
+      "Öffne Einstellungen → Huerta-Konto.",
+      "Tippe auf Konto löschen und bestätige."
+    ],
+    "what": "Damit werden deine E-Mail-Adresse, deine Gärten und Pläne, deine Hinweis-Einstellungen und alle Anmeldungen gelöscht, auf allen deinen Geräten, sofort. Der Wiederherstellungsverlauf unseres Datenbankanbieters bewahrt höchstens 7 Tage lang eine Kopie auf, danach ist sie endgültig weg.",
+    "other": "Du kannst dich nicht mehr anmelden? Schreib von der E-Mail-Adresse deines Kontos an {{email}}, und wir löschen es für dich.",
+    "open": "Huerta öffnen",
+    "privacy": "Datenschutzerklärung"
   }
 }

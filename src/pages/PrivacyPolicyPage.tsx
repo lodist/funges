@@ -80,8 +80,13 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className='space-y-4 text-foreground leading-relaxed'>
               <p>{t('accounts.content')}</p>
-              <p>{t('accounts.alerts')}</p>
+              <p>{t('accounts.google')}</p>
+              <p>{t('accounts.legal')}</p>
               <p>{t('accounts.storage')}</p>
+              <p>{t('accounts.retention')}</p>
+              <p>{t('accounts.alerts')}</p>
+              <p>{t('accounts.device')}</p>
+              <p>{t('accounts.age')}</p>
               <p>{t('accounts.delete')}</p>
             </div>
           </section>

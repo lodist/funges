@@ -19,7 +19,7 @@ export const visibleSpaces = (): Space[] =>
 
 /** Pages every space shares (the phone hub, help, legal): no space of their own. */
 const SHARED =
-  /(^|\/)(settings|support|impressum|privacy-policy|termsuse)(\/|$)/;
+  /(^|\/)(settings|support|impressum|privacy-policy|termsuse|delete-account)(\/|$)/;
 
 /** The space a path belongs to (a `huerta` segment, wherever the base path
  *  puts it; no Terra route has one), or null for a shared page. */
