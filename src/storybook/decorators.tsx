@@ -37,10 +37,11 @@ import { SidebarProvider } from '@/components/ui/sidebar';
  *
  * The language is pinned at module scope rather than per story. The app's
  * detector reads `localStorage`/`navigator`, which would otherwise make story
- * output — and the a11y snapshot taken from it — vary by machine. Resources
- * are bundled, so this resolves without a network round trip.
+ * output — and the a11y snapshot taken from it — vary by machine. The
+ * translations load on demand (src/i18n), so the preview's loader waits for
+ * this before a story renders.
  */
-void i18n.changeLanguage('en');
+export const i18nLoaded = i18n.changeLanguage('en');
 
 export const withI18n: Decorator = Story => (
   <I18nextProvider i18n={i18n}>

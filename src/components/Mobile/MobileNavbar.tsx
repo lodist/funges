@@ -12,8 +12,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
 import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
-import { DURATION_SLOW, EASE_STANDARD } from '@/lib/motion';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 
 const basePath = import.meta.env.BASE_URL || '/';
@@ -55,7 +53,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
   if (!isMobile) return null;
 
   return (
-    <motion.nav
+    <nav
       // Raised + Glass-regular, shared with AppSidebar (#196) — except on
       // Apple mobile (iPhone/iPadOS), which gets the Liquid Glass surface
       // and a pill shape instead (`rounded-full` clamps to a stadium shape
@@ -65,18 +63,15 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       // Carried on the animated element itself rather than an inner
       // wrapper: a backdrop-filter nested inside a transformed ancestor
       // samples the wrong region in Safari.
+      // It steps aside on a CSS transition (the global reduced-motion rule
+      // settles it at once): motion here put its animation engine in the
+      // entry chunk every page loads.
       className={cn(
-        'fixed bottom-4 left-4 right-4 z-10',
+        'fixed bottom-4 left-4 right-4 z-10 transition-transform duration-slow ease-standard',
+        hidden && 'translate-y-[120px]',
         isAppleMobile ? 'rounded-full' : 'rounded-card',
         isAppleMobile ? NAV_SURFACE_CLASS_LIQUID : NAV_SURFACE_CLASS
       )}
-      initial={{ y: 0 }}
-      animate={{ y: hidden ? 120 : 0 }}
-      // Motion (#225): was a spring with `duration: 0.3` beside it, which
-      // framer-motion discards whenever stiffness/damping are set — measured
-      // settle time was ~500ms, not the 300ms the comment promised. A tween
-      // is what actually rides --transition-duration-slow.
-      transition={{ duration: DURATION_SLOW, ease: EASE_STANDARD }}
     >
       <ul className='flex justify-around items-center py-3 px-3'>
         {items.map(item => {
@@ -107,23 +102,19 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
                   isActive ? ACTIVE_ACCENT_CLASS : INACTIVE_ACCENT_CLASS
                 }`}
               >
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={isActive ? { scale: 1.2 } : { scale: 1 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 400,
-                    damping: 25,
-                  }}
+                <span
+                  className={cn(
+                    'block transition-transform duration-fast ease-standard hover:scale-110 active:scale-95',
+                    isActive && 'scale-120'
+                  )}
                 >
                   <Icon className='h-6 w-6' />
-                </motion.div>
+                </span>
               </Link>
             </li>
           );
         })}
       </ul>
-    </motion.nav>
+    </nav>
   );
 }

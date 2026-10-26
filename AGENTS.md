@@ -32,8 +32,9 @@ src/
 
 Everything under `src/assets/**` and `public/icons/**` is precached by the
 service worker, so an oversized image is downloaded by every visitor whether
-they see it or not. Before committing one: species ≤ 512px, recipes ≤ 768px,
-icons at the size the manifest declares, WebP quality ~75.
+they see it or not. Recipe photos are the exception: they are kept once viewed
+(`globIgnores` in `vite.config.ts`). Before committing one: species ≤ 512px,
+recipes ≤ 768px, icons at the size the manifest declares, WebP quality ~75.
 
 ## Environment
 

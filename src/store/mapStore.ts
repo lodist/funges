@@ -197,18 +197,18 @@ export interface MapThemeOption {
 // Thumbnails are real screenshots, manually captured and committed to
 // public/theme-thumbnails/ once each theme is visually verifiable.
 export const MAP_THEMES: MapThemeOption[] = [
-  { id: 'light', styleIndex: 0, thumbnail: '/theme-thumbnails/light.png' },
-  { id: 'dark', styleIndex: 1, thumbnail: '/theme-thumbnails/dark.png' },
-  { id: 'white', styleIndex: 2, thumbnail: '/theme-thumbnails/white.png' },
+  { id: 'light', styleIndex: 0, thumbnail: '/theme-thumbnails/light.webp' },
+  { id: 'dark', styleIndex: 1, thumbnail: '/theme-thumbnails/dark.webp' },
+  { id: 'white', styleIndex: 2, thumbnail: '/theme-thumbnails/white.webp' },
   {
     id: 'darkmatter',
     styleIndex: 3,
-    thumbnail: '/theme-thumbnails/darkmatter.png',
+    thumbnail: '/theme-thumbnails/darkmatter.webp',
   },
   {
     id: 'topographic',
     styleIndex: 4,
-    thumbnail: '/theme-thumbnails/topographic.png',
+    thumbnail: '/theme-thumbnails/topographic.webp',
   },
 ];
 function readStyleIndex(): number {

@@ -61,7 +61,10 @@ export default defineConfig({
       workbox: {
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,webp,avif}',
-          'funges_style*.json',
+          // The default map style and the dark one (dark mode's); the other
+          // three are kept once a visitor picks them (runtimeCaching).
+          'funges_style.json',
+          'funges_style_dark.json',
           'offline-packages.json',
           'map-assets/**/*.{json,png,pbf}',
         ],
@@ -75,6 +78,14 @@ export default defineConfig({
           '**/landing/spectacle-*.webp',
           // Hundreds of season maps; a visitor opens a few of them.
           '**/season-atlas/**',
+          // Read by iOS when the app is added to the home screen, never
+          // through the service worker.
+          '**/splash-screens/**',
+          // No page links it (the tab icon is icons/logo_1.png).
+          'favicon.png',
+          // Cooked at home, not in the forest: a recipe's photo is kept once
+          // viewed (the image rule below), not downloaded by every visitor.
+          '**/assets/recipes/**',
         ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
@@ -183,6 +194,15 @@ export default defineConfig({
                 maxEntries: 4,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
               },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // The map styles not precached: kept from the first time they load.
+          {
+            urlPattern: /\/funges_style[^/]*\.json$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'map-styles',
               cacheableResponse: { statuses: [0, 200] },
             },
           },
@@ -478,6 +498,14 @@ export default defineConfig({
     target: 'es2020',
     rollupOptions: {
       output: {
+        // Recipe photos in a folder of their own, so the precache can leave
+        // them out (globIgnores above).
+        assetFileNames: asset =>
+          asset.originalFileNames.some(name =>
+            name.includes('src/assets/recipes/')
+          )
+            ? 'assets/recipes/[name]-[hash][extname]'
+            : 'assets/[name]-[hash][extname]',
         manualChunks(id) {
           if (id.includes('node_modules/@discourse/heic')) {
             return 'heic-decoder';
