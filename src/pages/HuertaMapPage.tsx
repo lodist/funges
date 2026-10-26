@@ -440,10 +440,9 @@ export default function HuertaMapPage() {
           <div className='pointer-events-auto self-start'>
             <HuertaCropPicker
               crop={crop}
-              onPick={value => {
-                setCrop(value);
-                setLayer('crop');
-              }}
+              // The map stays on the layer being looked at (frost, soil,
+              // water); the crop layer shows the new crop.
+              onPick={setCrop}
               advice={picked ? picked.advice : centre}
               onOpen={lookAround}
             />

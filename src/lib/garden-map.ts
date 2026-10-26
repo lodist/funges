@@ -22,12 +22,7 @@ export type MapLayer = 'crop' | 'frost' | 'soil' | 'water';
  *  coldest hour (cold) and water balance (balance), or, in files from before
  *  those, frost codes (frost) and water still to give (water). */
 export type MapSource =
-  | 'crop'
-  | 'soil'
-  | 'cold'
-  | 'balance'
-  | 'frost'
-  | 'water';
+  'crop' | 'soil' | 'cold' | 'balance' | 'frost' | 'water';
 type RGBA = [number, number, number, number];
 
 const mercator = (lat: number) =>
@@ -472,22 +467,67 @@ function within(r: RingInfo): [number, number] {
 type Polygons = number[][][][];
 
 /** The area inside `outer` but not `inner` (inner within outer, both traced
- *  on the same field) as polygons: their rings, each hole under the smallest
- *  outer ring around it. */
+ *  on the same field) as polygons, each hole under the smallest shell around
+ *  it. The rings are the band's own edges: where the two cuts run together
+ *  (along the forecast's limit where a warmer band reaches it, round a lake)
+ *  their edges are the same points the other way round and cancel. Kept, they
+ *  made a strip of no width along the coast that MapLibre's triangulation
+ *  flooded across a whole tile. */
 function between(
   outer: Polygons,
   inner: Polygons,
   width: number,
   height: number
 ) {
-  const shells = [
-    ...outer.map(p => p[0]),
-    ...inner.flatMap(p => p.slice(1)),
-  ].map(info);
-  const holes = [
-    ...outer.flatMap(p => p.slice(1)),
-    ...inner.map(p => p[0]),
-  ].map(info);
+  // d3-contour winds every ring with its area on the same side: the outer
+  // cut's edges as traced, the inner cut's turned round.
+  const key = (p: number[]) => p[0] * 8192 + p[1];
+  const point = new Map<number, number[]>();
+  const next = new Map<number, number[]>();
+  const add = (a: number[], b: number[]) => {
+    const ka = key(a),
+      kb = key(b);
+    if (ka === kb) return;
+    const back = next.get(kb);
+    const i = back ? back.indexOf(ka) : -1;
+    if (i >= 0) {
+      back!.splice(i, 1);
+      return;
+    }
+    point.set(ka, a);
+    point.set(kb, b);
+    const out = next.get(ka);
+    if (out) out.push(kb);
+    else next.set(ka, [kb]);
+  };
+  for (const ring of outer.flat())
+    for (let i = 0; i < ring.length - 1; i++) add(ring[i], ring[i + 1]);
+  for (const ring of inner.flat())
+    for (let i = ring.length - 1; i > 0; i--) add(ring[i], ring[i - 1]);
+  // The edges left, joined into rings again.
+  const rings: Ring[] = [];
+  for (const [start, outs] of next)
+    while (outs.length) {
+      const ring = [point.get(start)!];
+      let at = start;
+      do {
+        at = next.get(at)!.pop()!;
+        ring.push(point.get(at)!);
+      } while (at !== start && next.get(at)?.length);
+      if (at === start && ring.length >= 4) rings.push(ring);
+    }
+  // A shell winds as the cuts' outer rings do, a hole the other way.
+  const reference = (outer[0] ?? inner[0])?.[0];
+  if (!reference) return [];
+  const sign = (ring: Ring) => {
+    let twice = 0;
+    for (let i = 0; i < ring.length - 1; i++)
+      twice += ring[i][0] * ring[i + 1][1] - ring[i + 1][0] * ring[i][1];
+    return Math.sign(twice);
+  };
+  const way = sign(reference);
+  const shells = rings.filter(r => sign(r) === way).map(info);
+  const holes = rings.filter(r => sign(r) === -way).map(info);
   // The shells by the grid squares they cross, to look up few for each hole.
   const N = 32,
     sw = width / N || 1,
@@ -500,23 +540,9 @@ function between(
       for (let x = square(s.x0, sw); x <= square(s.x1, sw); x++)
         index[y * N + x].push(i);
   });
-  // A ring traced the same in both cuts (a lake with no places, or an
-  // island above both edges) bounds nothing between them: as a shell with
-  // itself for a hole it would be an empty polygon, which MapLibre fills
-  // wrongly across a whole tile. Such pairs go.
-  const key = (r: RingInfo) =>
-    `${r.ring.length}|${r.area.toFixed(4)}|${r.x0.toFixed(4)}|${r.y0.toFixed(4)}|${r.x1.toFixed(4)}|${r.y1.toFixed(4)}`;
-  const same = new Map<string, number[]>();
-  shells.forEach((s, i) => same.set(key(s), [...(same.get(key(s)) ?? []), i]));
-  const gone = new Set<number>();
   const out: Ring[][] = shells.map(s => [s.ring]);
   for (const hole of holes) {
     if (hole.area === 0) continue;
-    const twin = same.get(key(hole))?.find(i => !gone.has(i));
-    if (twin !== undefined) {
-      gone.add(twin);
-      continue;
-    }
     const [x, y] = within(hole);
     let best = -1;
     for (const i of index[square(y, sh) * N + square(x, sw)])
@@ -527,7 +553,7 @@ function between(
         best = i;
     if (best >= 0) out[best].push(hole.ring);
   }
-  return out.filter((_, i) => !gone.has(i));
+  return out;
 }
 
 export type Shapes = FeatureCollection<
