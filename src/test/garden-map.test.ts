@@ -155,6 +155,27 @@ describe('the garden map drawing', () => {
     expect(polygonArea(0) + polygonArea(1)).toBeCloseTo(limit, 2);
   });
 
+  it('no band runs along its own hole where a warmer band reaches the edge of the places', () => {
+    // Nine by eight places, the east half warmer and reaching the block's
+    // edge: the cooler band stops at the warm one instead of running on round
+    // it as a strip of no width (which MapLibre's triangulation flooded).
+    const bytes = new Uint8Array(
+      Array.from({ length: 72 }, (_, i) => 40 + (i % 9 < 4 ? 3 : 9))
+    );
+    const { features } = shapes(grid(block(9, 8)), 'soil', bytes);
+    const edge = (a: number[], b: number[]) => `${a}|${b}`;
+    for (const f of features.filter(f => f.properties.fill))
+      for (const [shell, ...holes] of f.geometry
+        .coordinates as number[][][][]) {
+        const edges = new Set(shell.slice(1).map((p, i) => edge(shell[i], p)));
+        for (const hole of holes)
+          for (let i = 1; i < hole.length; i++) {
+            expect(edges.has(edge(hole[i], hole[i - 1]))).toBe(false);
+            expect(edges.has(edge(hole[i - 1], hole[i]))).toBe(false);
+          }
+      }
+  });
+
   it('winds outer rings counter-clockwise and holes clockwise, as MapLibre reads them', () => {
     // Cold to the west, mild in the middle, cold again to the east: the
     // middle band's outer ring was traced as a hole of the cut above it.
