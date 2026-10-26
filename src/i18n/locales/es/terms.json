@@ -5,7 +5,7 @@
   },
   "useOfService": {
     "title": "Uso del Servicio",
-    "content": "El Servicio proporciona información sobre las condiciones de alimentos silvestres basada en diversos factores. La información es solo orientativa y no se garantiza que sea precisa, completa o actualizada."
+    "content": "El Servicio ofrece información sobre las condiciones para los alimentos silvestres (Terra) y consejos para huertos basados en previsiones meteorológicas y datos climáticos (Huerta). La información es solo orientativa y no se garantiza que sea exacta, completa ni actual."
   },
   "foragingDisclaimer": {
     "title": "Aviso sobre recolección",
@@ -50,5 +50,21 @@
     "intro": "Para preguntas o inquietudes sobre estos Términos, por favor contacta a:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última actualización: 02.04.2025"
+  "lastUpdated": "Última actualización: 26.10.2026",
+  "huerta": {
+    "title": "Consejos de huerto",
+    "content": "Los consejos de Huerta, incluidos los avisos de heladas, las fechas de siembra y plantación, el riego y los cuidados, se calculan a partir de previsiones meteorológicas y datos climáticos a largo plazo de la zona de tu huerto. Las previsiones pueden fallar y las condiciones de tu huerto pueden ser distintas de las de la zona.",
+    "frost": "Los avisos de heladas y otros avisos pueden ser erróneos, llegar tarde o no llegar. Protege las plantas que te importan según tu propio criterio; el administrador no responde de cosechas perdidas o dañadas."
+  },
+  "accounts": {
+    "title": "Cuentas de Huerta",
+    "content": "Huerta necesita una cuenta, que creas al iniciar sesión con una cuenta de Google. Una cuenta es para una sola persona de 16 años o más. Mantén seguros los dispositivos en los que has iniciado sesión.",
+    "conduct": "El administrador puede suspender o eliminar las cuentas que hagan un mal uso del Servicio o incumplan estos Términos.",
+    "delete": "Puedes eliminar tu cuenta en cualquier momento en Configuración → Cuenta de Huerta; la Política de Privacidad explica qué se elimina."
+  },
+  "earlyAccess": {
+    "title": "Acceso anticipado",
+    "content": "Huerta está en acceso anticipado: es gratis, y sus funciones pueden cambiar, ampliarse o desaparecer mientras se desarrolla.",
+    "price": "Si eso cambia, te lo diremos primero en la app, y nunca se cobrará nada sin tu consentimiento."
+  }
 }

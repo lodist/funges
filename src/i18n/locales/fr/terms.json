@@ -5,7 +5,7 @@
   },
   "useOfService": {
     "title": "Utilisation du Service",
-    "content": "Le Service fournit des informations sur les conditions des aliments sauvages en fonction de divers facteurs. Ces informations sont données à titre indicatif uniquement et ne sont pas garanties comme étant exactes, complètes ou à jour."
+    "content": "Le Service fournit des informations sur les conditions pour les produits sauvages comestibles (Terra) et des conseils pour le potager fondés sur les prévisions météo et les données climatiques (Huerta). Ces informations sont données à titre indicatif et leur exactitude, leur exhaustivité ou leur actualité ne sont pas garanties."
   },
   "foragingDisclaimer": {
     "title": "Avertissement sur la cueillette",
@@ -50,5 +50,21 @@
     "intro": "Pour toute question ou préoccupation concernant ces Conditions, veuillez contacter :",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Dernière mise à jour : 02.04.2025"
+  "lastUpdated": "Dernière mise à jour : 26.10.2026",
+  "huerta": {
+    "title": "Conseils de potager",
+    "content": "Les conseils de Huerta, y compris les alertes de gel, les périodes de semis et de plantation, l’arrosage et les soins, sont calculés à partir des prévisions météo et des données climatiques à long terme de la zone de votre potager. Les prévisions peuvent se tromper et les conditions de votre potager peuvent différer de celles de la zone.",
+    "frost": "Les alertes de gel et les autres alertes peuvent être fausses, arriver en retard ou ne pas arriver du tout. Protégez les plantes qui comptent pour vous selon votre propre jugement ; l’administrateur n’est pas responsable des récoltes perdues ou abîmées."
+  },
+  "accounts": {
+    "title": "Comptes Huerta",
+    "content": "Huerta nécessite un compte, que vous créez en vous connectant avec un compte Google. Un compte est destiné à une seule personne de 16 ans ou plus. Protégez les appareils sur lesquels vous êtes connecté.",
+    "conduct": "L’administrateur peut suspendre ou supprimer les comptes qui font un usage abusif du Service ou enfreignent les présentes Conditions.",
+    "delete": "Vous pouvez supprimer votre compte à tout moment dans Paramètres → Compte Huerta ; la Politique de confidentialité explique ce qui est supprimé."
+  },
+  "earlyAccess": {
+    "title": "Accès anticipé",
+    "content": "Huerta est en accès anticipé : il est gratuit, et ses fonctions peuvent changer, s’étoffer ou disparaître pendant son développement.",
+    "price": "Si cela change, vous en serez informé d’abord dans l’application, et rien ne vous sera facturé sans votre accord."
+  }
 }

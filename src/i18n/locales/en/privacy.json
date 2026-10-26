@@ -21,23 +21,23 @@
   },
   "rights": {
     "title": "Your Rights",
-    "intro": "Even though this service does not collect data directly, you should be aware of your rights under the Swiss Federal Act on Data Protection (FADP) and General Data Protection Regulation (GDPR) when interacting with third-party services:",
-    "access": "Access: Request access to your data from any third-party service.",
-    "rectification": "Rectification: Correct inaccurate data held by third-party services.",
-    "erasure": "Erasure: Request the deletion of your data if it is no longer necessary.",
-    "restriction": "Restriction: Request restrictions on processing under specific circumstances.",
-    "objection": "Objection: Object to the processing of your data, including for marketing purposes.",
-    "portability": "Data Portability: Request your data in a structured, machine-readable format.",
-    "exercise": "To exercise these rights, please contact the relevant third-party service directly."
+    "intro": "Under the Swiss Federal Act on Data Protection (FADP) and the EU General Data Protection Regulation (GDPR), you have these rights over the personal data Funges keeps about you (Huerta accounts only) and over data held by third-party services:",
+    "access": "Access: ask what we keep about you and get a copy.",
+    "rectification": "Rectification: have inaccurate data corrected.",
+    "erasure": "Erasure: have your data deleted. For a Huerta account you can do this yourself at any time.",
+    "restriction": "Restriction: ask us to limit how your data is used in certain circumstances.",
+    "objection": "Objection: object to how your data is used.",
+    "portability": "Data Portability: get your data in a structured, machine-readable format.",
+    "exercise": "To delete your Huerta account, use Settings → Huerta account → Delete account (see also fung.es/delete-account). For anything else about the data we keep, write to the contact address below; for data held by a third-party service, contact that service. You can also complain to a data protection authority: in Switzerland the Federal Data Protection and Information Commissioner (FDPIC), in the EU the authority of your country."
   },
   "protection": {
     "title": "Data Protection",
-    "content": "The administrator does not directly process personal data. Third-party services are responsible for ensuring the security of any data they collect.",
+    "content": "The only personal data Funges keeps is that of Huerta accounts. It travels only over encrypted connections, is stored with Cloudflare, and is used only to run Huerta. Third-party services are responsible for the security of the data they collect.",
     "security": "While all efforts are made to integrate only reliable services, no method of transmission or storage is completely secure."
   },
   "transfers": {
     "title": "International Transfers",
-    "content": "Third-party services integrated may process data in countries outside your jurisdiction. These services are responsible for ensuring appropriate safeguards to protect your data."
+    "content": "Huerta’s database is kept in Western Europe. Cloudflare, which runs Huerta’s server, and Google, which handles sign-in, are US companies and may process data outside Switzerland and the EU; they do so under the safeguards the law requires, such as the EU–US and Swiss–US Data Privacy Framework or standard contractual clauses. Other third-party services may also process data in other countries."
   },
   "changes": {
     "title": "Changes to This Privacy Policy",
@@ -48,12 +48,32 @@
     "intro": "For any questions or concerns regarding this Privacy Policy, please contact:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Last updated on: 26.07.2026",
+  "lastUpdated": "Last updated on: 26.10.2026",
   "accounts": {
     "title": "Huerta accounts",
     "content": "You sign in to Huerta with your Google account. Google tells us your email address and a number that identifies your Google account; we keep both, with your language and time zone, so you can sign in on any device and get alerts at the right time. We keep your gardens: their names, their plans and their place rounded to about 1 km, never your address.",
     "alerts": "If you turn on morning alerts, we keep the push address your browser or phone gives us for them, until you turn them off or it stops working.",
-    "storage": "This data is stored with Cloudflare (D1 database), which processes it on our behalf. We use it only to run Huerta, and we never sell or share it.",
-    "delete": "You can delete your account at any time in Settings → Huerta account. Your email, your gardens and your alerts are then deleted at once, on every device."
+    "storage": "This data is stored with Cloudflare (Cloudflare D1 database, Western Europe), which processes it on our behalf. Alerts, when on, are delivered by the push service of your browser or phone maker (Google, Apple or Mozilla); their content is encrypted so that only your device can read it. We use the data only to run Huerta and never sell or share it.",
+    "delete": "You can delete your account at any time in Settings → Huerta account → Delete account, or by writing to the contact address below from the email address of your account. Your email, your gardens and your alerts are deleted at once, on every device.",
+    "google": "From Google we receive only your email address, whether Google has verified it, and the number that identifies your Google account. We never see your password and get no access to your contacts, files or anything else in your Google account. We don’t use this data for advertising and never sell it. You can also remove Funges from the apps connected to your Google account at any time.",
+    "legal": "We process this data to provide the account you asked for (Art. 6(1)(b) GDPR). Morning alerts are sent only if you turn them on, and you can turn them off at any time.",
+    "retention": "We keep your data for as long as you have an account. A sign-in on a device ends after a year without use. Records of a sign-in in progress are deleted within minutes. When you delete your account, everything is deleted at once; our database provider’s restore history keeps it for up to 7 more days, after which it is gone for good.",
+    "device": "To keep you signed in and to work offline, the app stores your sign-in and a copy of your gardens on your device (browser storage). This is needed for the service to work; Funges uses no tracking cookies.",
+    "age": "Huerta accounts are for people aged 16 and over."
+  },
+  "deleteAccount": {
+    "title": "Delete your Huerta account",
+    "intro": "You can delete your Funges Huerta account, and all its data, at any time.",
+    "stepsTitle": "In the app or on the website",
+    "steps": [
+      "Open fung.es (or the Funges app) and go to Huerta.",
+      "Sign in with the Google account you use for Huerta.",
+      "Open Settings → Huerta account.",
+      "Tap Delete account and confirm."
+    ],
+    "what": "This deletes your email address, your gardens and plans, your alert settings and every sign-in, on all your devices, at once. Our database provider’s restore history keeps a copy for up to 7 days, after which it is gone for good.",
+    "other": "Can’t sign in any more? Write to {{email}} from the email address of your account and we’ll delete it for you.",
+    "open": "Open Huerta",
+    "privacy": "Privacy Policy"
   }
 }

@@ -21,23 +21,23 @@
   },
   "rights": {
     "title": "Seus Direitos",
-    "intro": "Mesmo que este serviço não colete dados diretamente, você deve estar ciente dos seus direitos segundo a Lei Federal Suíça de Proteção de Dados (FADP) e o Regulamento Geral de Proteção de Dados (GDPR) ao interagir com serviços de terceiros:",
-    "access": "Acesso: Solicitar acesso aos seus dados junto a qualquer serviço de terceiros.",
-    "rectification": "Retificação: Corrigir dados incorretos mantidos por serviços de terceiros.",
-    "erasure": "Eliminação: Solicitar a exclusão dos seus dados se não forem mais necessários.",
-    "restriction": "Restrição: Solicitar restrições ao processamento em circunstâncias específicas.",
-    "objection": "Oposição: Opor-se ao processamento dos seus dados, inclusive para fins de marketing.",
-    "portability": "Portabilidade de Dados: Solicitar seus dados em formato estruturado e legível por máquina.",
-    "exercise": "Para exercer esses direitos, entre em contato diretamente com o serviço de terceiros relevante."
+    "intro": "Pela Lei Federal suíça de Proteção de Dados (LPD) e pelo Regulamento Geral de Proteção de Dados da UE (RGPD), você tem estes direitos sobre os dados pessoais que o Funges guarda sobre você (apenas contas Huerta) e sobre os dados mantidos por serviços de terceiros:",
+    "access": "Acesso: saber o que guardamos sobre você e receber uma cópia.",
+    "rectification": "Retificação: corrigir dados incorretos.",
+    "erasure": "Exclusão: pedir que seus dados sejam apagados. Com uma conta Huerta, você mesmo pode fazer isso a qualquer momento.",
+    "restriction": "Limitação: pedir que limitemos o uso dos seus dados em certas circunstâncias.",
+    "objection": "Oposição: opor-se ao uso dos seus dados.",
+    "portability": "Portabilidade: receber seus dados em um formato estruturado e legível por máquina.",
+    "exercise": "Para excluir sua conta Huerta, use Configurações → Conta Huerta → Excluir conta (veja também fung.es/delete-account). Para qualquer outra questão sobre os dados que guardamos, escreva para o endereço de contato abaixo; para dados de um serviço de terceiros, fale com esse serviço. Você também pode reclamar a uma autoridade de proteção de dados: na Suíça, o Encarregado Federal de Proteção de Dados e Transparência (PFPDT); na UE, a autoridade do seu país."
   },
   "protection": {
     "title": "Proteção de Dados",
-    "content": "O administrador não processa dados pessoais diretamente. Serviços de terceiros são responsáveis por garantir a segurança dos dados que coletam.",
+    "content": "Os únicos dados pessoais que o Funges guarda são os das contas Huerta. Eles trafegam apenas por conexões criptografadas, ficam armazenados na Cloudflare e são usados apenas para fazer o Huerta funcionar. Os serviços de terceiros são responsáveis pela segurança dos dados que coletam.",
     "security": "Embora todos os esforços sejam feitos para integrar apenas serviços confiáveis, nenhum método de transmissão ou armazenamento é totalmente seguro."
   },
   "transfers": {
     "title": "Transferências Internacionais",
-    "content": "Serviços de terceiros integrados podem processar dados em países fora da sua jurisdição. Esses serviços são responsáveis por garantir salvaguardas adequadas para proteger seus dados."
+    "content": "O banco de dados do Huerta fica na Europa Ocidental. A Cloudflare, que opera o servidor do Huerta, e o Google, que cuida do login, são empresas dos EUA e podem tratar dados fora da Suíça e da UE; fazem isso com as garantias exigidas por lei, como o Data Privacy Framework UE–EUA e Suíça–EUA ou cláusulas contratuais padrão. Outros serviços de terceiros também podem tratar dados em outros países."
   },
   "changes": {
     "title": "Alterações nesta Política de Privacidade",
@@ -48,12 +48,32 @@
     "intro": "Para quaisquer dúvidas ou preocupações sobre esta Política de Privacidade, entre em contato:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última atualização em: 26.07.2026",
+  "lastUpdated": "Última atualização em: 26.10.2026",
   "accounts": {
     "title": "Contas Huerta",
     "content": "Você entra no Huerta com sua conta do Google. O Google nos informa seu endereço de e-mail e um número que identifica sua conta do Google; guardamos os dois, junto com seu idioma e fuso horário, para que você possa entrar em qualquer dispositivo e receber os alertas na hora certa. Guardamos suas hortas: os nomes, os planos e o local arredondado para cerca de 1 km, nunca seu endereço.",
     "alerts": "Se você ativar os alertas da manhã, guardamos o endereço de notificação que seu navegador ou celular nos fornece para isso, até você desativá-los ou ele deixar de funcionar.",
-    "storage": "Esses dados ficam armazenados na Cloudflare (banco de dados D1), que os trata em nosso nome. Usamos esses dados apenas para fazer o Huerta funcionar e nunca os vendemos nem compartilhamos.",
-    "delete": "Você pode excluir sua conta a qualquer momento em Configurações → Conta Huerta. Seu e-mail, suas hortas e seus alertas são então excluídos na hora, em todos os dispositivos."
+    "storage": "Esses dados ficam armazenados na Cloudflare (banco de dados Cloudflare D1, Europa Ocidental), que os trata em nosso nome. Os alertas, quando ativados, são entregues pelo serviço de notificações do fabricante do seu navegador ou celular (Google, Apple ou Mozilla); o conteúdo é criptografado para que só o seu dispositivo possa lê-lo. Usamos os dados apenas para fazer o Huerta funcionar e nunca os vendemos nem compartilhamos.",
+    "delete": "Você pode excluir sua conta a qualquer momento em Configurações → Conta Huerta → Excluir conta, ou escrevendo para o endereço de contato abaixo a partir do e-mail da sua conta. Seu e-mail, suas hortas e seus alertas são excluídos na hora, em todos os dispositivos.",
+    "google": "Do Google recebemos apenas seu endereço de e-mail, se o Google o verificou e o número que identifica sua conta do Google. Nunca vemos sua senha e não temos acesso aos seus contatos, arquivos nem a mais nada da sua conta do Google. Não usamos esses dados para publicidade e nunca os vendemos. Você também pode remover o Funges dos apps conectados à sua conta do Google quando quiser.",
+    "legal": "Tratamos esses dados para fornecer a conta que você pediu (art. 6.º, n.º 1, alínea b, do RGPD). Os alertas da manhã só são enviados se você os ativar, e você pode desativá-los a qualquer momento.",
+    "retention": "Guardamos seus dados enquanto você tiver uma conta. Um login em um dispositivo expira depois de um ano sem uso. Os registros de um login em andamento são apagados em poucos minutos. Quando você exclui sua conta, tudo é apagado na hora; o histórico de restauração do nosso provedor de banco de dados guarda tudo por no máximo mais 7 dias, depois some de vez.",
+    "device": "Para manter você conectado e funcionar offline, o app guarda seu login e uma cópia das suas hortas no seu dispositivo (armazenamento do navegador). Isso é necessário para o serviço funcionar; o Funges não usa cookies de rastreamento.",
+    "age": "As contas Huerta são para pessoas com 16 anos ou mais."
+  },
+  "deleteAccount": {
+    "title": "Excluir sua conta Huerta",
+    "intro": "Você pode excluir sua conta Funges Huerta, com todos os dados, a qualquer momento.",
+    "stepsTitle": "No app ou no site",
+    "steps": [
+      "Abra fung.es (ou o app Funges) e vá para o Huerta.",
+      "Entre com a conta do Google que você usa no Huerta.",
+      "Abra Configurações → Conta Huerta.",
+      "Toque em Excluir conta e confirme."
+    ],
+    "what": "Isso apaga seu endereço de e-mail, suas hortas e planos, suas configurações de alertas e todos os logins, em todos os seus dispositivos, na hora. O histórico de restauração do nosso provedor de banco de dados guarda uma cópia por no máximo 7 dias, depois some de vez.",
+    "other": "Não consegue mais entrar? Escreva para {{email}} a partir do e-mail da sua conta e nós a excluímos para você.",
+    "open": "Abrir o Huerta",
+    "privacy": "Política de Privacidade"
   }
 }

@@ -22,6 +22,7 @@ import { Route as InstructionsRouteImport } from './routes/instructions'
 import { Route as ImpressumRouteImport } from './routes/impressum'
 import { Route as IdentifyRouteImport } from './routes/identify'
 import { Route as HuertaRouteImport } from './routes/huerta'
+import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HuertaYearRouteImport } from './routes/huerta_.year'
@@ -95,6 +96,11 @@ const HuertaRoute = HuertaRouteImport.update({
   path: '/huerta',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeleteAccountRoute = DeleteAccountRouteImport.update({
+  id: '/delete-account',
+  path: '/delete-account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataRoute = DataRouteImport.update({
   id: '/data',
   path: '/data',
@@ -134,6 +140,7 @@ const HuertaInSeasonRoute = HuertaInSeasonRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/delete-account': typeof DeleteAccountRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -203,6 +212,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/data'
+    | '/delete-account'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -225,6 +235,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/data'
+    | '/delete-account'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/data'
+    | '/delete-account'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -270,6 +282,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DataRoute: typeof DataRoute
+  DeleteAccountRoute: typeof DeleteAccountRoute
   HuertaRoute: typeof HuertaRoute
   IdentifyRoute: typeof IdentifyRoute
   ImpressumRoute: typeof ImpressumRoute
@@ -383,6 +396,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HuertaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/delete-account': {
+      id: '/delete-account'
+      path: '/delete-account'
+      fullPath: '/delete-account'
+      preLoaderRoute: typeof DeleteAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/data': {
       id: '/data'
       path: '/data'
@@ -438,6 +458,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DataRoute: DataRoute,
+  DeleteAccountRoute: DeleteAccountRoute,
   HuertaRoute: HuertaRoute,
   IdentifyRoute: IdentifyRoute,
   ImpressumRoute: ImpressumRoute,

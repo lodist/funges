@@ -5,7 +5,7 @@
   },
   "useOfService": {
     "title": "Utilizzo del Servizio",
-    "content": "Il Servizio fornisce informazioni sulle condizioni degli alimenti selvatici basate su vari fattori. Le informazioni sono solo a scopo di orientamento generale e non sono garantite come accurate, complete o aggiornate."
+    "content": "Il Servizio fornisce informazioni sulle condizioni per i prodotti spontanei commestibili (Terra) e consigli per l’orto basati su previsioni meteo e dati climatici (Huerta). Le informazioni sono solo indicative e non se ne garantisce l’esattezza, la completezza o l’aggiornamento."
   },
   "foragingDisclaimer": {
     "title": "Disclaimer per la Raccolta",
@@ -50,5 +50,21 @@
     "intro": "Per domande o preoccupazioni riguardo questi Termini, contatta:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Ultimo aggiornamento: 02.04.2025"
+  "lastUpdated": "Ultimo aggiornamento: 26.10.2026",
+  "huerta": {
+    "title": "Consigli per l’orto",
+    "content": "I consigli di Huerta, compresi gli avvisi di gelata, i periodi di semina e trapianto, l’irrigazione e le cure, sono calcolati da previsioni meteo e dati climatici a lungo termine della zona del tuo orto. Le previsioni possono sbagliare e le condizioni del tuo orto possono essere diverse da quelle della zona.",
+    "frost": "Gli avvisi di gelata e gli altri avvisi possono essere sbagliati, arrivare in ritardo o non arrivare affatto. Proteggi le piante a cui tieni secondo il tuo giudizio; l’amministratore non risponde di raccolti persi o danneggiati."
+  },
+  "accounts": {
+    "title": "Account Huerta",
+    "content": "Huerta richiede un account, che crei accedendo con un account Google. Un account è per una sola persona dai 16 anni in su. Tieni al sicuro i dispositivi su cui hai effettuato l’accesso.",
+    "conduct": "L’amministratore può sospendere o eliminare gli account che fanno un uso improprio del Servizio o violano questi Termini.",
+    "delete": "Puoi eliminare il tuo account in qualsiasi momento in Impostazioni → Account Huerta; l’Informativa sulla Privacy spiega cosa viene cancellato."
+  },
+  "earlyAccess": {
+    "title": "Accesso anticipato",
+    "content": "Huerta è in accesso anticipato: è gratuito e le funzioni possono cambiare, aggiungersi o sparire mentre si sviluppa.",
+    "price": "Se questo cambia, te lo diremo prima nell’app, e non ti verrà addebitato nulla senza il tuo consenso."
+  }
 }

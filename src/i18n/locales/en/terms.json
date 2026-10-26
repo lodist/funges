@@ -5,7 +5,7 @@
   },
   "useOfService": {
     "title": "Use of the Service",
-    "content": "The Service provides information about wild edibles conditions based on various factors. The information is for general guidance only and is not guaranteed to be accurate, complete, or up-to-date."
+    "content": "The Service provides information about conditions for wild edibles (Terra) and advice for vegetable gardens based on weather forecasts and climate data (Huerta). The information is for general guidance only and is not guaranteed to be accurate, complete, or up-to-date."
   },
   "foragingDisclaimer": {
     "title": "Foraging Disclaimer",
@@ -50,5 +50,21 @@
     "intro": "For questions or concerns regarding these Terms, please contact:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Last updated on: 02.04.2025"
+  "lastUpdated": "Last updated on: 26.10.2026",
+  "huerta": {
+    "title": "Gardening Advice",
+    "content": "Huerta’s advice, including frost warnings, sowing and planting times, watering and care steps, is worked out from weather forecasts and long-term climate data for the area around your garden. Forecasts can be wrong, and conditions in your garden may differ from those of the area.",
+    "frost": "Frost warnings and other alerts may be wrong, late, or not arrive at all. Protect the plants that matter to you on your own judgement; the administrator is not liable for lost or damaged crops."
+  },
+  "accounts": {
+    "title": "Huerta Accounts",
+    "content": "Huerta needs an account, which you create by signing in with a Google account. An account is for one person aged 16 or over. Keep the devices you are signed in on secure.",
+    "conduct": "The administrator may suspend or delete accounts that misuse the Service or break these Terms.",
+    "delete": "You can delete your account at any time in Settings → Huerta account; the Privacy Policy explains what is deleted."
+  },
+  "earlyAccess": {
+    "title": "Early Access",
+    "content": "Huerta is in early access: it is free, and features may change, be added or be removed while it develops.",
+    "price": "If that changes, you’ll be told in the app first, and nothing is charged without your agreement."
+  }
 }

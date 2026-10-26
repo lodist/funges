@@ -5,7 +5,7 @@
   },
   "useOfService": {
     "title": "Nutzung des Service",
-    "content": "Der Service stellt Informationen zu Bedingungen für Wildnahrung auf Basis verschiedener Faktoren bereit. Diese Informationen dienen nur als allgemeine Orientierung und sind nicht garantiert korrekt, vollständig oder aktuell."
+    "content": "Der Service bietet Informationen über die Bedingungen für wildwachsende Lebensmittel (Terra) und Ratschläge für Gemüsegärten auf Grundlage von Wettervorhersagen und Klimadaten (Huerta). Die Informationen dienen nur der allgemeinen Orientierung; ihre Richtigkeit, Vollständigkeit oder Aktualität wird nicht garantiert."
   },
   "foragingDisclaimer": {
     "title": "Haftungsausschluss zum Sammeln",
@@ -50,5 +50,21 @@
     "intro": "Bei Fragen oder Anliegen zu diesen Bedingungen kontaktiere bitte:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Letzte Aktualisierung am: 02.04.2025"
+  "lastUpdated": "Letzte Aktualisierung am: 26.10.2026",
+  "huerta": {
+    "title": "Gartenratschläge",
+    "content": "Die Ratschläge von Huerta, einschließlich Frostwarnungen, Saat- und Pflanzzeiten, Gießen und Pflegeschritten, werden aus Wettervorhersagen und langjährigen Klimadaten für die Gegend um deinen Garten berechnet. Vorhersagen können falsch sein, und die Bedingungen in deinem Garten können von denen der Gegend abweichen.",
+    "frost": "Frostwarnungen und andere Hinweise können falsch sein, zu spät kommen oder gar nicht ankommen. Schütze Pflanzen, die dir wichtig sind, nach eigenem Ermessen; der Administrator haftet nicht für verlorene oder beschädigte Ernten."
+  },
+  "accounts": {
+    "title": "Huerta-Konten",
+    "content": "Huerta braucht ein Konto, das du durch die Anmeldung mit einem Google-Konto anlegst. Ein Konto ist für eine Person ab 16 Jahren. Halte die Geräte, auf denen du angemeldet bist, sicher.",
+    "conduct": "Der Administrator kann Konten sperren oder löschen, die den Service missbrauchen oder gegen diese Bedingungen verstoßen.",
+    "delete": "Du kannst dein Konto jederzeit unter Einstellungen → Huerta-Konto löschen; was gelöscht wird, steht in der Datenschutzerklärung."
+  },
+  "earlyAccess": {
+    "title": "Früher Zugang",
+    "content": "Huerta ist im frühen Zugang: Es ist kostenlos, und Funktionen können sich ändern, hinzukommen oder wegfallen, während es sich entwickelt.",
+    "price": "Wenn sich das ändert, erfährst du es zuerst in der App, und ohne deine Zustimmung wird nie etwas berechnet."
+  }
 }
