@@ -61,6 +61,10 @@ export default defineConfig({
       workbox: {
         // Huerta's morning alerts: show a push, open its garden on a tap.
         importScripts: ['huerta-push.js'],
+        // The entry chunk (mostly React, motion and the router) passed
+        // workbox's default 2 MiB, which throws; every visitor loads it anyway.
+        // ponytail: one ceiling; split the vendors (manualChunks) if it nears 3.
+        maximumFileSizeToCacheInBytes: 3 * 1024 ** 2,
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,webp,avif}',
           'funges_style*.json',
