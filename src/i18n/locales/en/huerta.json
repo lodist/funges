@@ -69,7 +69,8 @@
       "from": {
         "forecast": "From the forecast",
         "plan": "From your plan",
-        "soil": "From your soil"
+        "soil": "From your soil",
+        "climate": "From your place's climate"
       },
       "nothing": "Nothing your garden needs from you this week.",
       "noPlan": "Plan your garden, and Huerta will tell you what to do in it each week.",
@@ -158,6 +159,20 @@
       "tooLate": {
         "title": "{{crops}}: too late now",
         "text": "Pick something else for its beds, or let “Plan it for me” fill them."
+      },
+      "fate": {
+        "lost": "{{crops}}: won't survive here",
+        "soon": "{{crops}}: won't make it past {{date}}",
+        "last": "Pick the last {{crops}} before {{date}}",
+        "frost": "Frost usually comes here by then, and they can't take it.",
+        "frostNow": "Frost is likely here any night now, and they can't take it.",
+        "cold": "The nights here get too cold for them by then.",
+        "coldNow": "The nights here are too cold for them now: they won't grow.",
+        "winter": "Winter here gets colder than they can take by then.",
+        "winterNow": "Winter here is already colder than they can take.",
+        "clear": "Use the bed for something that grows now.",
+        "pick": "Pick what you can before then.",
+        "replace": "They won't be ready in time: use the bed for something that grows now."
       }
     },
     "short": {
@@ -179,9 +194,7 @@
       "plant": "{{crop}}: plant",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Waiting",
-      "note": "Harvest and frost dates are approximate, from the usual weather at your place.",
-      "frostLost": "{{crop}}: frost likely, it won't survive",
-      "frostEnd": "{{crop}}: first frost likely, pick the last"
+      "note": "Harvest dates are approximate, from the usual temperatures at your place."
     },
     "done": {
       "title": "Done this week",
@@ -591,19 +604,27 @@
       "ready": "Ready: {{crops}}",
       "growing": "Growing: {{crops}}",
       "empty": "Nothing in the ground",
-      "lost": "Lost to frost: {{crops}}"
+      "lost": "Lost: {{crops}}"
     },
     "tab": {
       "week": "To do",
       "garden": "Garden"
     },
-    "frostFirst": "Frost likely first, around {{date}}",
     "warn": {
-      "frost": "Frost will likely kill it around {{date}}, before it's ready: tender crops don't survive frost.",
-      "frostNow": "Frost is likely any night now, and tender crops don't survive it outdoors.",
-      "frostUntil": "Frost is still likely until about {{date}}: cover it on cold nights.",
       "coldSeeds": "The soil is still too cold: its seeds may rot before they come up.",
       "warmSeeds": "The soil is too warm: its seeds may not come up."
+    },
+    "fate": {
+      "frost": "Frost will likely kill it around {{date}}, before it's ready.",
+      "frostNow": "Frost is likely any night now here, and it won't survive one.",
+      "cold": "The nights here get too cold for it from about {{date}}: it will stop growing and die before it's ready.",
+      "coldNow": "The nights here are too cold for it now: it won't grow, and it will die within weeks.",
+      "winter": "Winter here gets colder than it can take: it will likely die around {{date}}.",
+      "winterNow": "Winter here is already colder than it can take: it won't survive.",
+      "ifNow": "If it goes in today",
+      "coverFrost": "Frost is still likely until about {{date}}: cover it on cold nights.",
+      "coverWinter": "Hard frosts are still likely until about {{date}}: cover it on cold nights.",
+      "lostAround": "Lost around {{date}}"
     }
   },
   "year": {

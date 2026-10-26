@@ -72,18 +72,37 @@ export interface CropYear {
   harvest: number;
 }
 
+/** What a place's climate does to crops in the ground: its frost season
+ *  (0 C) and hard-frost season (-3 C), each its first autumn and last spring
+ *  night as days of the year (null: none in a typical year); its warm-night
+ *  seasons (nights from 10 C, from 13 C), each its first and last day (null:
+ *  never here); and its typical winter low (C, null: not known). */
+export interface Climate {
+  frost: [number, number] | null;
+  hard: [number, number] | null;
+  warm10: [number, number] | null;
+  warm13: [number, number] | null;
+  low: number | null;
+}
+
 /** A place's year: each crop's months, the 12 monthly mean air
- *  temperatures (C, January first), and the soil map's topsoil there (null
- *  where it has none). */
+ *  temperatures (C, January first), the soil map's topsoil there (null
+ *  where it has none), its climate and each crop's hardiness (the lowest
+ *  temperature it lives through, C; null for tender crops), where the year
+ *  files carry them. */
 export interface PlaceYear {
   place: string;
   crops: Record<string, CropYear>;
   temps?: number[];
   soil?: MapSoil | null;
+  climate?: Climate;
+  hardy?: Record<string, number | null>;
 }
 
 export interface YearResponse {
   crops: string[];
+  /** Per crop, as `crops`. */
+  hardy?: (number | null)[];
   place: {
     name: string;
     /** Six hex digits per entry of `crops`: sowing months, harvest months. */
@@ -91,15 +110,47 @@ export interface YearResponse {
     temps?: number[];
     /** Topsoil pH, clay %, sand %. */
     soil?: [number, number, number];
+    /** First frost, last frost, first hard frost, last hard frost, warm
+     *  nights from 10 C start and end, from 13 C start and end (days of the
+     *  year, 0: none), winter low (C or null). */
+    climate?: (number | null)[];
   };
 }
 
-export const decodeYear = ({ crops, place }: YearResponse): PlaceYear => ({
+const days = (first: number | null, last: number | null) =>
+  first && last ? ([first, last] as [number, number]) : null;
+
+export const decodeYear = ({
+  crops,
+  hardy,
+  place,
+}: YearResponse): PlaceYear => ({
   place: place.name,
   temps: place.temps,
   soil: place.soil
     ? { ph: place.soil[0], clay: place.soil[1], sand: place.soil[2] }
     : null,
+  ...(place.climate
+    ? {
+        climate: {
+          frost: days(place.climate[0], place.climate[1]),
+          hard: days(place.climate[2], place.climate[3]),
+          // A warm-night season's start may be day 0; its end is never.
+          warm10: place.climate[5]
+            ? [place.climate[4] ?? 0, place.climate[5]]
+            : null,
+          warm13: place.climate[7]
+            ? [place.climate[6] ?? 0, place.climate[7]]
+            : null,
+          low: place.climate[8] ?? null,
+        },
+      }
+    : {}),
+  ...(hardy
+    ? {
+        hardy: Object.fromEntries(crops.map((id, i) => [id, hardy[i] ?? null])),
+      }
+    : {}),
   crops: Object.fromEntries(
     crops.map((id, i) => {
       const code = place.months.slice(i * 6, i * 6 + 6);

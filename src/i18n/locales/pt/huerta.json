@@ -69,7 +69,8 @@
       "from": {
         "forecast": "Pela previsão",
         "plan": "Pelo seu plano",
-        "soil": "Pelo seu solo"
+        "soil": "Pelo seu solo",
+        "climate": "Do clima do seu local"
       },
       "nothing": "Sua horta não precisa de nada de você esta semana.",
       "noPlan": "Planeje sua horta, e o Huerta dirá o que fazer nela a cada semana.",
@@ -158,6 +159,20 @@
       "tooLate": {
         "title": "{{crops}}: agora é tarde",
         "text": "Escolha outra coisa para os canteiros, ou deixe \"Planejar por mim\" preenchê-los."
+      },
+      "fate": {
+        "lost": "{{crops}}: não vai sobreviver aqui",
+        "soon": "{{crops}}: não passa de {{date}}",
+        "last": "Colha o restante de {{crops}} antes de {{date}}",
+        "frost": "Aqui costuma gear até lá, e eles não aguentam.",
+        "frostNow": "Aqui pode gear em qualquer noite, e eles não aguentam.",
+        "cold": "Até lá as noites aqui ficam frias demais para eles.",
+        "coldNow": "As noites aqui já estão frias demais para eles: não vão crescer.",
+        "winter": "Até lá o inverno aqui fica mais frio do que eles aguentam.",
+        "winterNow": "O inverno aqui já é mais frio do que eles aguentam.",
+        "clear": "Use o canteiro para algo que cresce agora.",
+        "pick": "Colha o que puder antes.",
+        "replace": "Não vão ficar prontos a tempo: use o canteiro para algo que cresce agora."
       }
     },
     "short": {
@@ -179,9 +194,7 @@
       "plant": "{{crop}}: plantar",
       "wait": "{{crop}}: {{reason}}",
       "waiting": "Aguardando",
-      "note": "As datas de colheita e de geada são aproximadas, pelo tempo habitual no seu local.",
-      "frostLost": "{{crop}}: geada provável, não vai sobreviver",
-      "frostEnd": "{{crop}}: primeira geada provável, colha o restante"
+      "note": "As datas de colheita são aproximadas, a partir das temperaturas habituais do seu lugar."
     },
     "done": {
       "title": "Feito esta semana",
@@ -591,19 +604,27 @@
       "ready": "Para colher: {{crops}}",
       "growing": "Crescendo: {{crops}}",
       "empty": "Nada na terra",
-      "lost": "Perdido para a geada: {{crops}}"
+      "lost": "Perdido: {{crops}}"
     },
     "tab": {
       "week": "Tarefas",
       "garden": "Horta"
     },
-    "frostFirst": "A geada deve chegar antes, por volta de {{date}}",
     "warn": {
-      "frost": "A geada provavelmente vai matá-lo por volta de {{date}}, antes de ficar pronto: culturas sensíveis não sobrevivem à geada.",
-      "frostNow": "Pode gear em qualquer noite, e culturas sensíveis não sobrevivem a ela ao ar livre.",
-      "frostUntil": "Ainda pode gear até cerca de {{date}}: cubra-o nas noites frias.",
       "coldSeeds": "O solo ainda está frio demais: as sementes podem apodrecer antes de germinar.",
       "warmSeeds": "O solo está quente demais: as sementes podem não germinar."
+    },
+    "fate": {
+      "frost": "A geada provavelmente vai matá-lo por volta de {{date}}, antes de ficar pronto.",
+      "frostNow": "Aqui pode gear em qualquer noite, e ele não sobrevive a uma geada.",
+      "cold": "As noites aqui ficam frias demais para ele por volta de {{date}}: vai parar de crescer e morrer antes de ficar pronto.",
+      "coldNow": "As noites aqui já estão frias demais para ele: não vai crescer e deve morrer em poucas semanas.",
+      "winter": "O inverno aqui é mais frio do que ele aguenta: deve morrer por volta de {{date}}.",
+      "winterNow": "O inverno aqui já é mais frio do que ele aguenta: não vai sobreviver.",
+      "ifNow": "Se for plantado hoje",
+      "coverFrost": "Ainda pode gear até cerca de {{date}}: cubra-o nas noites frias.",
+      "coverWinter": "Geadas fortes ainda são prováveis até cerca de {{date}}: cubra-o nas noites frias.",
+      "lostAround": "Perdido por volta de {{date}}"
     }
   },
   "year": {

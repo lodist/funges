@@ -69,7 +69,8 @@
       "from": {
         "forecast": "Selon la prévision",
         "plan": "Selon votre plan",
-        "soil": "Selon votre sol"
+        "soil": "Selon votre sol",
+        "climate": "D'après le climat de chez vous"
       },
       "nothing": "Votre potager n'a besoin de rien cette semaine.",
       "noPlan": "Planifiez votre potager, et Huerta vous dira quoi y faire chaque semaine.",
@@ -158,6 +159,20 @@
       "tooLate": {
         "title": "{{crops}} : trop tard maintenant",
         "text": "Choisissez autre chose pour ses planches, ou laissez « Planifiez pour moi » les remplir."
+      },
+      "fate": {
+        "lost": "{{crops}} : ne survivra pas ici",
+        "soon": "{{crops}} : ne passera pas le {{date}}",
+        "last": "Récoltez les derniers {{crops}} avant le {{date}}",
+        "frost": "Il gèle généralement ici d'ici là, et ils ne le supportent pas.",
+        "frostNow": "Il peut geler ici n'importe quelle nuit, et ils ne le supportent pas.",
+        "cold": "D'ici là, les nuits sont trop froides pour eux ici.",
+        "coldNow": "Les nuits sont déjà trop froides pour eux ici : ils ne pousseront pas.",
+        "winter": "D'ici là, l'hiver ici est plus froid qu'ils ne le supportent.",
+        "winterNow": "L'hiver ici est déjà plus froid qu'ils ne le supportent.",
+        "clear": "Utilisez la planche pour une culture qui pousse maintenant.",
+        "pick": "Récoltez ce que vous pouvez avant.",
+        "replace": "Ils ne seront pas prêts à temps : utilisez la planche pour une culture qui pousse maintenant."
       }
     },
     "short": {
@@ -179,9 +194,7 @@
       "plant": "{{crop}} : planter",
       "wait": "{{crop}} : {{reason}}",
       "waiting": "En attente",
-      "note": "Les dates de récolte et de gel sont approximatives, d'après le temps habituel chez vous.",
-      "frostLost": "{{crop}} : gel probable, n'y survivra pas",
-      "frostEnd": "{{crop}} : premier gel probable, récoltez les derniers"
+      "note": "Les dates de récolte sont approximatives, d'après les températures habituelles chez vous."
     },
     "done": {
       "title": "Fait cette semaine",
@@ -591,19 +604,27 @@
       "ready": "À récolter : {{crops}}",
       "growing": "En croissance : {{crops}}",
       "empty": "Rien en terre",
-      "lost": "Perdu au gel : {{crops}}"
+      "lost": "Perdu : {{crops}}"
     },
     "tab": {
       "week": "À faire",
       "garden": "Potager"
     },
-    "frostFirst": "Le gel arrivera avant, vers le {{date}}",
     "warn": {
-      "frost": "Le gel le tuera probablement vers le {{date}}, avant qu'il soit prêt : les cultures frileuses ne survivent pas au gel.",
-      "frostNow": "Il peut geler n'importe quelle nuit, et les cultures frileuses n'y survivent pas en pleine terre.",
-      "frostUntil": "Il peut encore geler jusque vers le {{date}} : couvrez-le les nuits froides.",
       "coldSeeds": "Le sol est encore trop froid : les graines risquent de pourrir avant de lever.",
       "warmSeeds": "Le sol est trop chaud : les graines risquent de ne pas lever."
+    },
+    "fate": {
+      "frost": "Le gel le tuera probablement vers le {{date}}, avant qu'il soit prêt.",
+      "frostNow": "Il peut geler ici n'importe quelle nuit, et il n'y survivra pas.",
+      "cold": "Les nuits deviennent trop froides pour lui ici vers le {{date}} : il cessera de pousser et mourra avant d'être prêt.",
+      "coldNow": "Les nuits sont déjà trop froides pour lui ici : il ne poussera pas et mourra en quelques semaines.",
+      "winter": "L'hiver ici est plus froid qu'il ne le supporte : il mourra probablement vers le {{date}}.",
+      "winterNow": "L'hiver ici est déjà plus froid qu'il ne le supporte : il ne survivra pas.",
+      "ifNow": "Mis en terre aujourd'hui",
+      "coverFrost": "Il peut encore geler jusque vers le {{date}} : couvrez-le les nuits froides.",
+      "coverWinter": "De fortes gelées restent probables jusque vers le {{date}} : couvrez-le les nuits froides.",
+      "lostAround": "Perdu vers le {{date}}"
     }
   },
   "year": {

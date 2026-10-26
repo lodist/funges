@@ -94,14 +94,16 @@ import {
 } from '@/lib/planner';
 import {
   growth,
+  coverUntil,
   due,
-  frostDay,
-  frostUntil,
+  fate,
   pruneDone,
   readyDay,
   stageOn,
+  type Fate,
   type GrowthStage,
 } from '@/lib/garden-week';
+import type { PlaceYear } from '@/lib/huerta-wire';
 import { prefersReducedMotion } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -187,6 +189,8 @@ export default function HuertaPlannerPage() {
   const advice = forSoil(placeAdvice, needs, soil.texture, today());
   // The place's monthly warmth as the garden's soil grows crops (lib/soil).
   const temps = year?.temps && soilTemps(year.temps, soil.texture);
+  // Where the simulator reads what kills a crop at the place.
+  const site = { year, frost: advice };
   // The visitor's own advice, when they chose a place; else the sample at once.
   const [settled, setSettled] = useState(
     () => !(huertaApiConfigured && savedPlace())
@@ -385,15 +389,33 @@ export default function HuertaPlannerPage() {
                 year?.crops[x.crop ?? '']?.harvest ?? 0,
                 addDays(today(), 7 * later),
                 today(),
-                advice
+                site
               )
         )
       : null;
-  const drawn = stages
-    ? plan.sections.map((x, i) =>
-        stages[i] === 'bare' || stages[i] === 'lost' ? { ...x, crop: null } : x
-      )
-    : plan.sections;
+  // Today, a planted crop already lost or over shows bare too.
+  const gone = (x: Section, i: number) =>
+    stages
+      ? stages[i] === 'bare' || stages[i] === 'lost'
+      : Boolean(
+          x.crop &&
+            x.planted &&
+            temps &&
+            ['bare', 'lost'].includes(
+              stageOn(
+                x,
+                needs,
+                temps,
+                year?.crops[x.crop]?.harvest ?? 0,
+                today(),
+                today(),
+                site
+              )
+            )
+        );
+  const drawn = plan.sections.map((x, i) =>
+    gone(x, i) ? { ...x, crop: null } : x
+  );
   const cropsAt = (want: GrowthStage[]) =>
     [
       ...new Set(
@@ -482,13 +504,20 @@ export default function HuertaPlannerPage() {
               onReplan={ids =>
                 update({
                   ...plan,
-                  sections: autoPlan(plan.sections, status, {
-                    north,
-                    style: plan.garden.style,
-                    axis,
-                    only: ids,
-                    sow: today(),
-                  }),
+                  sections: autoPlan(
+                    // A lost crop's beds count as empty again.
+                    plan.sections.map((x, i) =>
+                      ids.includes(i) ? { ...x, planted: undefined } : x
+                    ),
+                    status,
+                    {
+                      north,
+                      style: plan.garden.style,
+                      axis,
+                      only: ids,
+                      sow: today(),
+                    }
+                  ),
                 })
               }
             />
@@ -950,6 +979,7 @@ export default function HuertaPlannerPage() {
                         s.crop ? year?.crops[s.crop]?.harvest : undefined
                       }
                       temps={temps}
+                      year={year}
                       need={s.crop ? needs[s.crop] : undefined}
                       count={count}
                       onSwap={crop => place(chosen, crop)}
@@ -1386,6 +1416,10 @@ function Timeline({
   );
 }
 
+/** A warning in the section's card: what will kill it, or how to keep it. */
+const WARNING =
+  'flex gap-2 rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 text-sm text-status-warning-text';
+
 const COMPASS = ['north', 'east', 'south', 'west'] as const;
 /** The compass side of a bed's first section: its top end, or its left end
  *  when beds run across. */
@@ -1427,6 +1461,7 @@ function SectionPanel({
   need,
   harvest,
   temps,
+  year,
   count,
   onSwap,
   onPlanted,
@@ -1446,6 +1481,8 @@ function SectionPanel({
   harvest?: number;
   /** The place's monthly mean temperatures, when known. */
   temps?: number[];
+  /** The place's year (its climate and the crops' hardiness), when known. */
+  year?: PlaceYear | null;
   count: (s: Section) => string;
   onSwap: (crop: string) => void;
   onPlanted: (day: string | undefined) => void;
@@ -1472,25 +1509,37 @@ function SectionPanel({
   // Put where it can't go in any more: no ready day to promise.
   const gone = !s.planted && !later && (st === 'too_late' || st === 'not_here');
   const start = s.planted ?? (s.sow && s.sow > today() ? s.sow : today());
+  const site = { year, frost: advice };
+  // When the place's climate kills it, going in on `from`, if before it is
+  // ready (a perennial or a bulb: whenever).
+  const lostBy = (from: string) => {
+    const dies = crop ? fate(crop.id, need, from, site) : null;
+    if (!dies || !crop) return null;
+    if (!need?.days) return dies;
+    return temps && growth(crop.id, need, temps, from, dies.day) < 1
+      ? dies
+      : null;
+  };
+  // As planted, or as planned; and, not in yet and not going in now, what
+  // putting it in today would do.
+  const lost = crop && !gone ? lostBy(start) : null;
+  const ifNow =
+    crop && !s.planted && (later || st !== 'now') ? lostBy(today()) : null;
   // The day it is ready, from the warmth since its planted (or planned) day;
-  // none when frost ends a tender crop first.
+  // none when it dies first.
   const readyOn =
     crop && !crop.note && !gone && temps && need?.days
-      ? readyDay(crop.id, need, temps, start, advice)
+      ? readyDay(
+          crop.id,
+          need,
+          temps,
+          start,
+          fate(crop.id, need, start, site)?.day
+        )
       : null;
-  // A tender crop in the ground through the frost: the day frost likely
-  // kills it, when it is not ready by then; or, put in late in the frost
-  // season, the day until when it needs covering on cold nights.
-  const tender = Boolean(crop && !gone && need?.frost === 'tender');
-  const killed = tender ? frostDay(start, advice) : null;
-  const lostOn =
-    killed &&
-    temps &&
-    need?.days &&
-    growth(crop!.id, need, temps, start, killed) < 1
-      ? killed
-      : null;
-  const cover = tender && !lostOn ? frostUntil(start, advice) : null;
+  // Put in late in its cold season: until when it needs covering.
+  const cover =
+    crop && !gone && !lost ? coverUntil(crop.id, need, start, site) : null;
   // Seeds sown in the last two weeks into soil this week's too cold or too
   // warm for: they may not come up.
   const seeds =
@@ -1505,6 +1554,27 @@ function SectionPanel({
       day: 'numeric',
       month: 'long',
     }).format(new Date(`${d}T12:00:00`));
+  // What kills it, and when: now, or a day to come.
+  const fateText = (dies: Fate) =>
+    dies.day <= today()
+      ? t(`planner.fate.${dies.by}Now`)
+      : t(`planner.fate.${dies.by}`, { date: day(dies.day) });
+  const warnings = [
+    lost && fateText(lost),
+    cover &&
+      t(
+        cover.by === 'frost'
+          ? 'planner.fate.coverFrost'
+          : 'planner.fate.coverWinter',
+        { date: day(cover.day) }
+      ),
+    seeds &&
+      t(
+        seeds === 'too_warm'
+          ? 'planner.warn.warmSeeds'
+          : 'planner.warn.coldSeeds'
+      ),
+  ].filter((w): w is string => Boolean(w));
   const options = useMemo(() => {
     const sorted = [...CROPS].sort((a, z) =>
       t(`crops.${a.id}`).localeCompare(t(`crops.${z.id}`))
@@ -1587,10 +1657,10 @@ function SectionPanel({
                 ? t(`sheet.ready.${crop.note}`)
                 : gone
                   ? '–'
-                  : lostOn
-                    ? lostOn <= today()
+                  : lost
+                    ? lost.day <= today()
                       ? '–'
-                      : t('planner.frostFirst', { date: day(lostOn) })
+                      : t('planner.fate.lostAround', { date: day(lost.day) })
                     : readyOn
                       ? t('planner.readyOn', { date: day(readyOn) })
                       : harvest
@@ -1612,20 +1682,19 @@ function SectionPanel({
               {t(`planner.next.${nextYear(crop.id)}`)}
             </dd>
           </dl>
-          {lostOn || cover || seeds ? (
-            <p className='flex gap-2 rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 text-sm text-status-warning-text'>
+          {warnings.map(warning => (
+            <p key={warning} className={WARNING}>
               <AlertTriangle className='mt-0.5 size-4 shrink-0' />
-              {lostOn
-                ? lostOn <= today()
-                  ? t('planner.warn.frostNow')
-                  : t('planner.warn.frost', { date: day(lostOn) })
-                : cover
-                  ? t('planner.warn.frostUntil', { date: day(cover) })
-                  : t(
-                      seeds === 'too_warm'
-                        ? 'planner.warn.warmSeeds'
-                        : 'planner.warn.coldSeeds'
-                    )}
+              {warning}
+            </p>
+          ))}
+          {ifNow ? (
+            <p className={WARNING}>
+              <AlertTriangle className='mt-0.5 size-4 shrink-0' />
+              <span>
+                <strong className='block'>{t('planner.fate.ifNow')}</strong>
+                {fateText(ifNow)}
+              </span>
             </p>
           ) : null}
           {s.planted ? (

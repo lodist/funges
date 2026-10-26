@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import {
   comingUp,
-  frostDay,
-  frostUntil,
+  coverUntil,
+  fate,
   gardenWeek,
   growth,
   jobKey,
@@ -13,6 +13,7 @@ import {
   toSow,
 } from '@/lib/garden-week';
 import { SAMPLE_ADVICE, type CropNeeds } from '@/lib/huerta';
+import type { Climate, PlaceYear } from '@/lib/huerta-wire';
 import { layout, type Plan, type Section } from '@/lib/planner';
 import { soilTemps } from '@/lib/soil';
 
@@ -364,90 +365,175 @@ describe('a bed on the timeline', () => {
   });
 });
 
-describe('frost and the soil', () => {
-  // A typical first frost on 20 October (day 293), the last on 20 April (110).
-  const zurich = { firstFrost: 293, lastFrost: 110 };
+describe('the simulator: what kills a planted crop', () => {
   const temps = [8, 9, 12, 14, 18, 22, 25, 25, 22, 17, 12, 9];
   const all = 0b111111111111;
-  const tomato = (planted: string): Section => ({
-    ...beds[0],
-    crop: 'tomato',
-    planted,
+  const crops = {
+    ...NEEDS,
+    tomato: { ...need('tender'), night: 10, days: 70 },
+    melon: { ...need('tender'), night: 13, days: 80 },
+    leek: need('hardy'),
+  };
+  const hardy = { lettuce: -5, leek: -15, garlic: -35 };
+  const at = (
+    name: string,
+    climate: Climate,
+    t: number[],
+    harvest: Record<string, number> = {}
+  ): { year: PlaceYear } => ({
+    year: {
+      place: name,
+      crops: Object.fromEntries(
+        Object.entries(harvest).map(([id, h]) => [id, { sow: 0, harvest: h }])
+      ),
+      temps: t,
+      climate,
+      hardy,
+    },
+  });
+  // Frost 20 Oct - 20 Apr, hard frost 20 Nov - 1 Mar, nights from 10 C
+  // 20 May - 7 Sep and from 13 C 9 Jun - 23 Aug, winter low -12 C.
+  const zurich = at(
+    'Zurich',
+    {
+      frost: [293, 110],
+      hard: [324, 60],
+      warm10: [140, 250],
+      warm13: [160, 235],
+      low: -12,
+    },
+    [0, 1, 5, 9, 13, 17, 19, 18, 15, 10, 5, 1],
+    { tomato: all }
+  );
+  // No frost; nights from 10 C 3 Apr - 20 Nov, from 13 C 30 Apr - 2 Nov.
+  const valencia = at(
+    'Valencia',
+    { frost: null, hard: null, warm10: [93, 324], warm13: [120, 306], low: 2 },
+    [11, 12, 14, 16, 20, 24, 26, 26, 23, 19, 15, 12]
+  );
+
+  it('frost ends a tender crop at once in autumn, the nights when they turn too cold', () => {
+    expect(fate('tomato', crops.tomato, '2026-11-10', zurich)).toEqual({
+      day: '2026-11-10',
+      by: 'frost',
+    });
+    // Put in in May: its warm nights end before the first frost.
+    expect(fate('tomato', crops.tomato, '2026-05-20', zurich)).toEqual({
+      day: '2026-10-07',
+      by: 'cold',
+    });
   });
 
-  it('frost ends a tender crop at once in autumn, else at the next first frost', () => {
-    expect(frostDay('2026-11-10', zurich)).toBe('2026-11-10');
-    expect(frostDay('2026-04-01', zurich)).toBe('2026-10-20');
-    expect(frostDay('2026-06-01', zurich)).toBe('2026-10-20');
-    expect(frostDay('2026-06-01', { firstFrost: null, lastFrost: null })).toBe(
-      null
-    );
-    expect(frostDay('2026-06-01', {})).toBeNull();
-    // Put in before the last spring frost: cover it on cold nights till then.
-    expect(frostUntil('2026-04-01', zurich)).toBe('2026-04-20');
-    expect(frostUntil('2026-11-10', zurich)).toBeNull();
-    expect(frostUntil('2026-06-01', zurich)).toBeNull();
+  it('a melon put in now in a place without frost dies when the nights turn cold', () => {
+    const melon = (day: string) => fate('melon', crops.melon, day, valencia);
+    expect(melon('2026-10-26')).toEqual({ day: '2026-12-02', by: 'cold' });
+    expect(melon('2026-12-10')).toEqual({ day: '2026-12-31', by: 'cold' });
+    expect(melon('2026-04-25')).toEqual({ day: '2026-12-02', by: 'cold' });
   });
 
-  it('on the timeline a tender crop is lost to frost, or over if it was ready by then', () => {
-    const on = (s: Section, day: string, frost?: typeof zurich) =>
-      stageOn(s, NEEDS, temps, all, day, s.planted!, frost);
-    expect(on(tomato('2026-11-10'), '2026-11-20', zurich)).toBe('lost');
-    expect(on(tomato('2026-05-15'), '2026-10-25', zurich)).toBe('bare');
+  it('a winter colder than a crop lives through ends it; a hardier one lives on', () => {
+    expect(fate('lettuce', crops.lettuce, '2026-10-01', zurich)).toEqual({
+      day: '2026-12-02',
+      by: 'winter',
+    });
+    expect(fate('lettuce', crops.lettuce, '2026-12-10', zurich)).toEqual({
+      day: '2026-12-10',
+      by: 'winter',
+    });
+    expect(fate('leek', crops.leek, '2026-09-01', zurich)).toBeNull();
+    expect(fate('garlic', crops.garlic, '2026-10-20', zurich)).toBeNull();
+    expect(fate('lettuce', crops.lettuce, '2026-10-01', valencia)).toBeNull();
+  });
+
+  it("without the place's climate, the advice's frost dates still end a tender crop", () => {
+    const frost = { frost: { firstFrost: 293, lastFrost: 110 } };
+    expect(fate('tomato', crops.tomato, '2026-11-10', frost)).toEqual({
+      day: '2026-11-10',
+      by: 'frost',
+    });
+    expect(fate('lettuce', crops.lettuce, '2026-10-01', frost)).toBeNull();
+    expect(fate('tomato', crops.tomato, '2026-11-10', {})).toBeNull();
+  });
+
+  it('put in late in its cold season, a crop needs covering until it ends', () => {
+    expect(coverUntil('tomato', crops.tomato, '2026-04-01', zurich)).toEqual({
+      day: '2026-04-20',
+      by: 'frost',
+    });
+    expect(coverUntil('lettuce', crops.lettuce, '2026-02-20', zurich)).toEqual({
+      day: '2026-03-01',
+      by: 'winter',
+    });
+    expect(coverUntil('leek', crops.leek, '2026-02-20', zurich)).toBeNull();
+  });
+
+  it('on the timeline a crop is lost, or over if it was ready by then', () => {
+    const tomato = (planted: string): Section => ({
+      ...beds[0],
+      crop: 'tomato',
+      planted,
+    });
+    const on = (s: Section, day: string, place = zurich) =>
+      stageOn(s, crops, temps, all, day, s.planted!, place);
+    expect(on(tomato('2026-11-10'), '2026-11-20')).toBe('lost');
+    expect(on(tomato('2026-05-15'), '2026-10-25')).toBe('bare');
     expect(
-      on(
-        { ...beds[1], crop: 'garlic', planted: '2026-11-10' },
-        '2026-12-01',
-        zurich
+      stageOn(
+        tomato('2026-11-10'),
+        crops,
+        temps,
+        all,
+        '2026-11-20',
+        '2026-11-10'
       )
-    ).not.toBe('lost');
-    // Without the place's frost dates, as before.
-    expect(on(tomato('2026-11-10'), '2026-11-20')).toBe('seedling');
-    expect(readyDay('tomato', NEEDS.tomato, temps, '2026-11-10', zurich)).toBe(
-      null
-    );
+    ).toBe('seedling');
     expect(
-      readyDay('tomato', NEEDS.tomato, temps, '2026-05-15', zurich)
+      readyDay('tomato', crops.tomato, temps, '2026-11-10', '2026-11-10')
+    ).toBeNull();
+    expect(
+      readyDay('tomato', crops.tomato, temps, '2026-05-15', '2026-10-07')
     ).not.toBeNull();
   });
 
-  it('coming up: the first frost for tender crops still in the ground', () => {
-    const p: Plan = {
+  it('To do warns of a planted crop that will die, or has, and of the last to pick', () => {
+    const one = (crop: string, planted: string): Plan => ({
       garden: { width: 6, length: 4.5, shape: 'rect' },
-      sections: [
-        tomato('2026-05-15'),
-        { ...beds[1], crop: 'courgette', planted: '2026-09-20' },
-      ],
-    };
-    const year = {
-      place: 'Zurich',
-      crops: {
-        tomato: { sow: 0, harvest: all },
-        courgette: { sow: 0, harvest: all },
+      sections: [{ ...beds[0], crop, planted }],
+    });
+    const fates = (p: Plan, today: string, place: { year: PlaceYear }) =>
+      gardenWeek(p, advice, crops, today, place.year).filter(
+        t => t.kind === 'fate'
+      );
+    const melon = one('melon', '2026-10-26');
+    expect(fates(melon, '2026-11-20', valencia)).toEqual([
+      {
+        kind: 'fate',
+        by: 'cold',
+        day: '2026-12-02',
+        now: false,
+        ready: false,
+        crops: ['melon'],
       },
-      temps,
-    };
-    const items = comingUp(
-      p,
-      { ...advice, ...zurich },
-      NEEDS,
-      '2026-10-01',
-      year
+    ]);
+    expect(fates(melon, '2026-12-05', valencia)).toMatchObject([
+      { now: true, ready: false },
+    ]);
+    // Warned of from the day it went in, its death weeks away.
+    expect(fates(melon, '2026-10-27', valencia)).toMatchObject([
+      { day: '2026-12-02', now: false, ready: false },
+    ]);
+    // Ready long before its end: nothing to say yet.
+    expect(fates(one('tomato', '2026-05-15'), '2026-08-01', zurich)).toEqual(
+      []
     );
-    expect(items).toEqual([
+    expect(fates(one('tomato', '2026-05-15'), '2026-09-20', zurich)).toEqual([
       {
-        kind: 'frost',
-        crop: 'tomato',
-        day: '2026-10-20',
-        lost: false,
-        at: [0],
-      },
-      {
-        kind: 'frost',
-        crop: 'courgette',
-        day: '2026-10-20',
-        lost: true,
-        at: [1],
+        kind: 'fate',
+        by: 'cold',
+        day: '2026-10-07',
+        now: false,
+        ready: true,
+        crops: ['tomato'],
       },
     ]);
   });
