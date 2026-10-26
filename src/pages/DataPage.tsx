@@ -43,6 +43,7 @@ import {
 } from '@/lib/data';
 import { useSpeciesData } from '@/data/species';
 import SEO from '@/components/SEO';
+import { DataTabs } from '@/components/DataTabs';
 import { ForecastScorecard } from '@/components/ForecastScorecard';
 import { Route as DataRoute } from '@/routes/data';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
@@ -907,6 +908,8 @@ export default function DataPage() {
           })}
         </p>
       </div>
+
+      <DataTabs active='conditions' />
 
       {/* Controls */}
       <div className='flex flex-wrap items-end justify-between gap-4'>

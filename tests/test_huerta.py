@@ -83,13 +83,16 @@ def test_map_files_hold_one_layer_after_another():
     advice = pd.DataFrame({"garlic": ["now", "too_warm"], "tomato": ["too_late", "not_here"]})
     files = huerta.map_files(places, advice, "2026-10-20")
     index = json.loads(files["index.json"])
-    assert index == {"day": "2026-10-20", "n": 2, "layers": ["frost", "soil", "water", "garlic", "tomato"]}
+    assert index == {"day": "2026-10-20", "n": 2,
+                     "layers": ["frost", "soil", "water", "cold", "balance", "garlic", "tomato"]}
     assert np.frombuffer(files["places.bin"], "<i2").tolist() == [4044, -368, 3986, -402]
-    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(5, 2)
+    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(7, 2)
     assert layers[0].tolist() == [3, 2]                                   # ground frost later in the week; frost now
     assert layers[1].tolist() == [53, 255]                                # 13 C + 40; no reading
     assert layers[2].tolist() == [10, 11]                                 # mm still to water
-    assert bytes(layers[3]).decode() + bytes(layers[4]).decode() == "nhlx"
+    assert layers[3].tolist() == [41, 40]                                 # the week's coldest hour, 1 and -0.5 C, + 40
+    assert layers[4].tolist() == [90, 89]                                 # rain less evaporation, -10 and -11 mm, + 100
+    assert bytes(layers[5]).decode() + bytes(layers[6]).decode() == "nhlx"
 
 
 def test_conditions_find_the_first_frost_night_later_in_the_week():

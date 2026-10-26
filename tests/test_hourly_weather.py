@@ -30,6 +30,27 @@ def test_nearest_cells_find_the_closest_cell_and_drop_points_off_the_grid():
     assert cells[1] == -1
 
 
+def test_a_fine_grid_reads_the_nearest_cell_and_a_coarse_one_blends_four():
+    # 0.0625° (about 7 km, ICON-EU): the nearest cell, as before.
+    lat, lon = np.meshgrid(np.arange(45.0, 46.0, 0.0625), np.arange(5.0, 6.0, 0.0625), indexing="ij")
+    values = (lat * 10).ravel().astype(np.float32)
+    cells, weights = hw.blend_cells(lat.ravel(), lon.ravel(), np.array([45.51]), np.array([5.5]))
+    assert cells.shape == (1, 1)
+    np.testing.assert_allclose(hw.blended(values, cells, weights), [455.0])
+    # 0.25° (ECMWF): between its rows, no step at the halfway line.
+    lat, lon = np.meshgrid(np.arange(45.0, 49.0, 0.25), np.arange(5.0, 9.0, 0.25), indexing="ij")
+    values = (lat * 10).ravel().astype(np.float32)
+    cells, weights = hw.blend_cells(lat.ravel(), lon.ravel(), np.array([47.6, 47.65, 60.0]),
+                                    np.array([7.1, 7.1, 7.1]))
+    south, north, off = hw.blended(values, cells, weights)
+    assert 475 < south < north < 477.5
+    assert north - south < 1.5                   # nearest cell alone: 475 then 477.5
+    assert np.isnan(off)
+    # A cell with no value gives its weight to the others.
+    values[cells[0, 0]] = np.nan
+    assert not np.isnan(hw.blended(values, cells[:1], weights[:1])[0])
+
+
 def test_states_are_linear_between_steps_and_missing_beyond_them():
     out = hw.to_hours("state", _at(0, 3, 6), np.array([[0.0], [3.0], [6.0]]), _hours(1, 8), INIT)
     np.testing.assert_allclose(out[:, 0], [1, 2, 3, 4, 5, 6, np.nan, np.nan])
@@ -124,6 +145,30 @@ def test_prune_deletes_old_files_and_empty_folders(tmp_path):
     new.write_bytes(b"x")
     hw.prune(tmp_path, days=2)
     assert not (tmp_path / "a").exists() and new.exists()
+
+
+def test_upload_sends_every_past_day_then_keeps_only_the_newest(tmp_path, monkeypatch):
+    import r2
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    for day in ("2026-10-20", "2026-10-21", "2026-10-22"):
+        (past / f"{day}.parquet").write_bytes(b"x")
+    monkeypatch.setattr(hw, "OUT_DIR", tmp_path)
+    monkeypatch.setenv("R2_BUCKET_NAME", "bucket")
+
+    class Failing:
+        def upload_file(self, *args):
+            raise ConnectionError
+    monkeypatch.setattr(r2, "client", Failing)
+    with pytest.raises(ConnectionError):
+        hw.upload(tmp_path / "SE")
+    assert len(list(past.iterdir())) == 3          # nothing deleted before R2 has it
+
+    sent = []
+    monkeypatch.setattr(r2, "client", lambda: type("S3", (), {"upload_file": lambda self, *a: sent.append(a[2])})())
+    hw.upload(tmp_path / "SE")
+    assert sent == [f"hourly_weather/SE/past/{d}.parquet" for d in ("2026-10-20", "2026-10-21", "2026-10-22")]
+    assert [p.name for p in past.iterdir()] == ["2026-10-22.parquet"]
 
 
 def test_newest_run_is_the_newest_complete_one():

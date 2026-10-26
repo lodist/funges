@@ -962,8 +962,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       features: [],
     };
     const existingSource = map.current.getSource(ROUTE_SOURCE_ID) as
-      | maplibregl.GeoJSONSource
-      | undefined;
+      maplibregl.GeoJSONSource | undefined;
 
     if (!existingSource) {
       map.current.addSource(ROUTE_SOURCE_ID, {
@@ -1014,8 +1013,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!map.current || !mapLoaded) return;
 
     const source = map.current.getSource(ROUTE_SOURCE_ID) as
-      | maplibregl.GeoJSONSource
-      | undefined;
+      maplibregl.GeoJSONSource | undefined;
     if (!source) return;
 
     source.setData({
@@ -1040,8 +1038,7 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
     if (!map.current || !mapLoaded) return;
 
     const source = map.current.getSource(ROUTE_OFF_TRAIL_SOURCE_ID) as
-      | maplibregl.GeoJSONSource
-      | undefined;
+      maplibregl.GeoJSONSource | undefined;
     if (!source) return;
 
     // Index-aligned with the waypoints, so slicing by the stop reveal count

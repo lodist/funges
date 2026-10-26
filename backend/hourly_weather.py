@@ -7,8 +7,9 @@ it. Passed hours move into daily past files, so an hourly history builds up from
 night: the short-range forecast, as Earth's master keeps its day-0 forecast, until measured
 weather replaces it.
 
-Under HOURLY_WEATHER_DIR (default app_operation/hourly_weather): <REGION>/forecast/<run>.parquet
-(30 days here, for good on R2 under hourly_weather/) and <REGION>/past/<YYYY-MM-DD>.parquet.
+Under HOURLY_WEATHER_DIR (default app_operation/hourly_weather): <REGION>/forecast/<run>.parquet,
+only the newest, which the next night rolls into the past, and <REGION>/past/<YYYY-MM-DD>.parquet,
+each hour at each point once, kept for good on R2 under hourly_weather/ and here only the newest day.
 Downloads stay two days in cache/, so a continent's second region reads the first one's.
 """
 from __future__ import annotations
@@ -36,7 +37,7 @@ VARS = ("t2m_c", "td2m_c", "precip_mm", "wind10_kmh", "swdown_wm2", "cloud_pct",
 DECIMALS = {"t2m_c": 1, "td2m_c": 1, "precip_mm": 2, "wind10_kmh": 1, "swdown_wm2": 0, "cloud_pct": 0,
             "soil_c": 1}
 OUT_DIR = Path(os.getenv("HOURLY_WEATHER_DIR") or Path(__file__).resolve().parents[2] / "hourly_weather")
-KEEP_FORECAST_DAYS, KEEP_CACHE_DAYS = 30, 2
+KEEP_CACHE_DAYS = 2
 MAX_GAP = 6  # hours: the longest stretch between two steps we bridge; past it, the next model
 # A region's whole run. The regions score back to back and the scores upload at 04:10, so a
 # server that hangs must cost one night's hourly file, never the other regions' scores.
@@ -56,6 +57,34 @@ def nearest_cells(grid_lats, grid_lons, lats, lons):
     dist, cell = tree.query(_xyz(lats, lons))
     spacing = np.median(tree.query(_xyz(grid_lats[::997], grid_lons[::997]), k=2)[0][:, 1])
     return np.where(dist <= 2 * spacing, cell, -1)
+
+
+COARSE_KM = 12  # grids coarser than this are blended between their four nearest cells
+
+
+def blend_cells(grid_lats, grid_lons, lats, lons):
+    """Each point's cells and their weights, -1 where the model does not reach it (as
+    nearest_cells). On a fine grid (ICON-EU, NBM) its nearest cell; on a coarse one (ECMWF's
+    0.25°, about 25 km) its four nearest, by inverse distance, so a field does not step in
+    straight lines along the grid's rows and columns (a frost line along 47.625° N)."""
+    tree = cKDTree(_xyz(grid_lats, grid_lons))
+    spacing = np.median(tree.query(_xyz(grid_lats[::997], grid_lons[::997]), k=2)[0][:, 1])
+    k = 4 if spacing * 6371 > COARSE_KM else 1
+    dist, cell = tree.query(_xyz(lats, lons), k=k)
+    dist, cell = dist.reshape(len(lats), k), cell.reshape(len(lats), k)
+    cell = np.where(dist[:, :1] <= 2 * spacing, cell, -1)
+    weights = 1 / np.maximum(dist, 1e-12)
+    return cell, weights / weights.sum(axis=1, keepdims=True)
+
+
+def blended(values, cells, weights):
+    """A field at the points: its cells' values by weight; a cell with no value gives its
+    weight to the others; NaN off the grid."""
+    picked = np.where(cells >= 0, values[cells], np.nan)
+    w = np.where(np.isnan(picked), 0.0, weights)
+    total = w.sum(axis=1)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(total > 0, np.nansum(picked * w, axis=1) / total, np.nan).astype(np.float32)
 
 
 def to_hours(kind, valid, values, hours, init):
@@ -261,8 +290,8 @@ def read_source(source, init, last, lats, lons, session, deadline):
                     path.unlink(missing_ok=True)  # or the next region reads it from the cache
                 continue
             if cells is None:
-                cells = nearest_cells(*grid, lats, lons)
-            fields.setdefault(jobs[job], {})[valid] = np.where(cells >= 0, values[cells], np.nan).astype(np.float32)
+                cells = blend_cells(*grid, lats, lons)
+            fields.setdefault(jobs[job], {})[valid] = blended(values, *cells)
     finally:
         pool.shutdown(wait=False, cancel_futures=True)
     if failed > 0.05 * len(files):
@@ -270,16 +299,18 @@ def read_source(source, init, last, lats, lons, session, deadline):
     return fields
 
 
-def upload(region_dir, days=2):
-    """Copy the region's files written in the last `days` to R2 under hourly_weather/, as
-    they lie under OUT_DIR: a night whose upload failed goes again the next night."""
+def upload(region_dir):
+    """Copy the region's past days to R2 under hourly_weather/, as they lie under OUT_DIR, then
+    keep here only the newest, which roll_past reads and adds to. A failed upload raises before
+    anything is deleted, so those days go again the next night."""
     import r2
     s3 = r2.client()  # loads .env.secret, which holds the bucket name
-    cutoff = time.time() - days * 86400
-    for path in Path(region_dir).rglob("*.parquet"):
-        if path.stat().st_mtime >= cutoff:
-            s3.upload_file(str(path), os.environ["R2_BUCKET_NAME"],
-                           f"hourly_weather/{path.relative_to(OUT_DIR).as_posix()}")
+    days = sorted((Path(region_dir) / "past").glob("*.parquet"))
+    for path in days:
+        s3.upload_file(str(path), os.environ["R2_BUCKET_NAME"],
+                       f"hourly_weather/{path.relative_to(OUT_DIR).as_posix()}")
+    for path in days[:-1]:
+        path.unlink()
 
 
 def summary(frame, seconds):
@@ -337,9 +368,11 @@ def run(region, points, now=None):
     if frame["t2m_c"].isna().all():
         raise RuntimeError("no temperature at any point: nothing written")
     region_dir = OUT_DIR / region
-    write_night(region_dir, frame, start)
+    tonight = write_night(region_dir, frame, start)
     roll_past(region_dir, start)
-    prune(region_dir / "forecast", KEEP_FORECAST_DAYS)
+    for path in (region_dir / "forecast").glob("*.parquet"):
+        if path != tonight:  # only the newest is read again; older runs repeat its hours
+            path.unlink()
     upload(region_dir)
     summary(frame, time.time() - started)
     return frame

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Apply the shared label-band thresholds (src/config/label-bands.json) to the
-hand-authored funges_style.json / funges_style_dark.json place-label layers,
-so those two files and the generated Positron/Dark-Matter/Topographic styles
+hand-authored funges_style.json place-label layers,
+so it and the generated Positron/Dark-Matter/Topographic/Dark styles
 (scripts/make_carto_styles.py) all read from the same zoom-band source of truth.
 
 Run from repo root:  python scripts/apply_label_bands.py
@@ -13,7 +13,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 BANDS = json.loads(
     (ROOT / "src" / "config" / "label-bands.json").read_text(encoding="utf-8")
 )
-STYLE_FILES = ["funges_style.json", "funges_style_dark.json"]
+STYLE_FILES = ["funges_style.json"]
 
 
 def population_step_expr(steps):

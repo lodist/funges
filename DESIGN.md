@@ -227,6 +227,10 @@ Each family member is also staggered **≥0.10 in lightness as well as hue**, an
 Verified on `--card` — light 3.21 / 4.28 / 6.95, dark 8.82 / 5.18 / 3.49 — all clear of the 3:1 floor a plotted line has to hold. `src/test/palette.test.ts` asserts both the stagger and the floor.
 Use `categoryVar()` wherever CSS resolves, and `categoryColor()` only for APIs that need a literal — maplibre's `Marker({ color })` writes into an SVG fill attribute and cannot take a `var()`.
 
+### Season ramp
+
+The Data page's season atlas paints _when_ a mushroom fruits, not a score, so it must never be read as one. It adds no hue: it is the brand scale itself, `--happy-900` (the band's deep green, nothing fruiting) up to `--happy-50` (mint, the local peak), the same in both themes, so the season lights up out of the app's own dark green. Light-to-dark, a hue-170 teal and beetroot (whose dark end sits next to the score ramp's burgundy `#800020`) were tried and dropped. The canvas and the baked map frames need literal colours, so the steps live as `ATLAS_RAMP` (`src/lib/season-atlas.ts`) and `RAMP` (`scripts/build_season_atlas_site.py`); a test keeps them equal. It appears on the atlas map, its legend and its month bars, nowhere else.
+
 ### Status
 
 - **Success** and **Info** (`--status-success`, `--status-info`) both resolve to `--primary-text`. They are not their own hues. The `#4cba73` and `#3b82f6` they used to hold were a fifth green family and a blue measuring 3.61:1 as text.

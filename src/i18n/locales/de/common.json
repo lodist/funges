@@ -336,6 +336,45 @@
         "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}.",
         "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen."
       }
+    },
+    "tabs": {
+      "label": "Datenberichte",
+      "conditions": "Bedingungen",
+      "seasons": "Saisonatlas"
+    },
+    "atlas": {
+      "subtitle": "Wie die Saison jedes Pilzes verläuft, Ort für Ort.",
+      "place": "Ort",
+      "species": "Pilz",
+      "groups": {
+        "continents": "Kontinente",
+        "countries": "Länder",
+        "states": "US-Bundesstaaten"
+      },
+      "title": "{{species}}-Saison: {{place}}",
+      "peak": "Höhepunkt im {{month}}.",
+      "window": "Hauptsaison: {{months}}.",
+      "windows": "Mehr als eine Saison: {{first}} und {{last}}.",
+      "allYear": "Das ganze Jahr über zu finden.",
+      "now": "Gerade ist Saison.",
+      "next": "Gerade keine Saison; die nächste beginnt im {{month}}.",
+      "starting": "Die Saison beginnt gerade.",
+      "ending": "Die Saison geht zu Ende.",
+      "note": "Die Farbe zeigt wann, nicht wie viel: Jede Gegend erreicht ihren Höhepunkt in ihrem besten Monat, auch wo {{species}} selten ist.",
+      "records": "Grundlage: {{formatted}} erfasste Funde seit 2010.",
+      "play": "Abspielen",
+      "pause": "Pause",
+      "day": "Tag des Jahres",
+      "legendLow": "Wenig Aktivität",
+      "legendHigh": "Lokaler Höhepunkt",
+      "curveLabel": "Monat für Monat",
+      "mapLabel": "Saisonkarte: {{species}}, {{place}}, {{date}}",
+      "forecast": "Heutige Vorhersage ansehen",
+      "unavailable": "Der Saisonatlas ist gerade nicht verfügbar. Versuche es später erneut.",
+      "notFound": "Für diesen Ort gibt es noch keine Saisonkarte.",
+      "openEurope": "Europa öffnen",
+      "fewRecords": "Hier gibt es wenige erfasste Funde ({{formatted}} seit 2010), daher stützt sich die Saison auf Orte mit ähnlichem Klima.",
+      "rareRecords": "Hier kaum je erfasst, daher zeigt die Karte die Saison von Orten mit ähnlichem Klima."
     }
   },
   "sidebar": {

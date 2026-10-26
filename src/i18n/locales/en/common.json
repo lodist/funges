@@ -341,6 +341,45 @@
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
         "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice."
       }
+    },
+    "tabs": {
+      "label": "Data reports",
+      "conditions": "Conditions",
+      "seasons": "Season atlas"
+    },
+    "atlas": {
+      "subtitle": "How each mushroom's season plays out, place by place.",
+      "place": "Place",
+      "species": "Mushroom",
+      "groups": {
+        "continents": "Continents",
+        "countries": "Countries",
+        "states": "US states"
+      },
+      "title": "{{species}} season in {{place}}",
+      "peak": "It peaks in {{month}}.",
+      "window": "The main season is {{months}}.",
+      "windows": "It has more than one season: {{first}} and {{last}}.",
+      "allYear": "It is found all year round.",
+      "now": "It is in season now.",
+      "next": "It is out of season now; the next season starts in {{month}}.",
+      "starting": "The season is starting.",
+      "ending": "The season is winding down.",
+      "note": "The colour shows when, not how many: every area peaks in its own best month, even where {{species}} is scarce.",
+      "records": "Based on {{formatted}} recorded finds since 2010.",
+      "play": "Play",
+      "pause": "Pause",
+      "day": "Day of the year",
+      "legendLow": "Quiet",
+      "legendHigh": "Local peak",
+      "curveLabel": "Month by month",
+      "mapLabel": "Season map: {{species}}, {{place}}, {{date}}",
+      "forecast": "See today's forecast",
+      "unavailable": "The season atlas is not available right now. Try again later.",
+      "notFound": "We have no season map for this place yet.",
+      "openEurope": "Open Europe",
+      "fewRecords": "Few local records here ({{formatted}} since 2010), so the season leans on places with a similar climate.",
+      "rareRecords": "Hardly ever recorded here, so the season shown is that of places with a similar climate."
     }
   },
   "theme": {
