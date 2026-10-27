@@ -11,6 +11,7 @@ const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
 
 const routeFullPaths = [
   '/data',
+  '/huerta',
   '/identify',
   '/impressum',
   '/instructions',
