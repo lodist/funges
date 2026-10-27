@@ -90,15 +90,9 @@ export const pathForSpace = (space: Space): string => {
     : SPACE_HOME[space];
 };
 
-/** Where a space's door on the front page leads: the space's own front page,
- *  or for Huerta with a garden planned, the garden. */
-export const spaceDoor = (
-  space: Space,
-  lang: IndexedLanguage = 'en'
-): string =>
-  space === 'huerta' && hasGarden()
-    ? '/huerta/planner'
-    : localizedPath(`/${space}/`, lang);
+/** Where a space's door on the front page leads: the space's own front page. */
+export const spaceDoor = (space: Space, lang: IndexedLanguage = 'en'): string =>
+  localizedPath(`/${space}/`, lang);
 
 /** The door the visitor last went through (the space last used), if any. */
 export const lastDoor = (): string | null => {

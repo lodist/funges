@@ -2129,7 +2129,7 @@
     "forLabel": "Plan for",
     "thisWeek": "Today",
     "forMonth": "Planned for {{month}} around {{place}}.",
-    "forHint": "What isn't in the ground yet goes in at the time picked here, and the timeline shows it growing from then.",
+    "forHint": "What isn't in the ground yet goes in at the time picked here and the timeline shows it growing from then.",
     "readyOn": "Around {{date}}",
     "timeline": {
       "now": "Now",

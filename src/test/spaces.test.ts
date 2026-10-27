@@ -60,11 +60,10 @@ describe('spaces', () => {
     rememberPath('/map');
     expect(lastDoor()).toBe('/terra/');
     rememberPath('/huerta/species');
-    expect(lastDoor()).toBe('/huerta/');
     localStorage.setItem(
       'huerta-gardens',
       JSON.stringify([{ id: 'g', plan: { sections: [] } }])
     );
-    expect(lastDoor()).toBe('/huerta/planner');
+    expect(lastDoor()).toBe('/huerta/'); // the front page, garden or not
   });
 });
