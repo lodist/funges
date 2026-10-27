@@ -19,32 +19,86 @@
     "en": {
       "name": "Common Sorrel",
       "description": "A tangy, lemon-flavored leafy plant often used in salads and soups.",
-      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer."
+      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer.",
+      "guide": {
+        "identify": "Tender, arrow-shaped leaves whose two pointed basal lobes point backwards, down the stalk; the upper leaves clasp the stem, and a thin, papery sheath wraps the stem where each leaf joins it. From May the flowering stems carry loose spikes of small reddish flowers. Lords-and-ladies (Arum maculatum), which is toxic, has young leaves of a similar shape, but they often carry dark spots, have rounded lobes and grow in woods and hedges rather than open grassland. Never taste a leaf to check it: lords-and-ladies burns the mouth.",
+        "habitat": "Meadows, pastures, lawns, verges and open woods, from the lowlands into the mountains; very common throughout Europe. In the US it is introduced and scattered, mainly in the north-east, around the Great Lakes, in Oregon and in Alaska, where the smaller sheep's sorrel is far more common.",
+        "season": "Leaves grow from early spring, in mild places almost all year, and are best young; once the plant flowers, from May, they turn tougher and more bitter, but cut plants send up new ones.",
+        "picking": "Pick single young leaves from each plant and leave the root; choose meadows that are not sprayed or fertilised, away from roads and dog paths.",
+        "kitchen": "Once identified with certainty, the leaves are sharply sour, like lemon peel: shred young ones into salads, or cook them briefly into soups, omelettes and sauces for fish and eggs. The sourness is oxalic acid: eat sorrel in moderation and avoid it if you have kidney stones. Cook it in stainless steel or enamel, not aluminium or cast iron.",
+        "keeps": "Leaves wilt within two or three days in the fridge; cooked down to a purée, sorrel freezes well.",
+        "source": "Identification and look-alikes: Woodland Trust and Wild Food UK. US range: Flora of North America. Oxalic acid: Wild Food UK. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Acetosa Comune",
       "description": "Pianta dal sapore acidulo e limonato, usata in insalate e zuppe.",
-      "howTo": "Raccogli le foglie giovani in prati, pascoli e lungo i sentieri in primavera ed estate."
+      "howTo": "Raccogli le foglie giovani in prati, pascoli e lungo i sentieri in primavera ed estate.",
+      "guide": {
+        "identify": "Foglie tenere a forma di freccia, con due lobi basali appuntiti rivolti all'indietro, verso il picciolo; le foglie alte abbracciano il fusto, e una sottile guaina membranosa avvolge il fusto dove nasce ogni foglia. Da maggio gli steli fioriti portano spighe lasse di piccoli fiori rossastri. Il gigaro (Arum maculatum), tossico, ha foglie giovani di forma simile, ma spesso macchiate di scuro, con lobi arrotondati, e cresce nei boschi e nelle siepi più che nei prati aperti. Non assaggiare mai una foglia per controllare: il gigaro brucia la bocca.",
+        "habitat": "Prati, pascoli, tappeti erbosi, bordi delle strade e boschi radi, dalla pianura alla montagna; molto comune in tutta Europa. Negli Stati Uniti è introdotta e sparsa, soprattutto nel nord-est, intorno ai Grandi Laghi, in Oregon e in Alaska, dove l'acetosella, più piccola, è molto più comune.",
+        "season": "Le foglie crescono da inizio primavera, quasi tutto l'anno nelle zone miti, e sono migliori giovani; quando la pianta fiorisce, da maggio, diventano più dure e amare, ma le piante tagliate ne mettono di nuove.",
+        "picking": "Prendi poche foglie giovani da ogni pianta e lascia la radice; scegli prati non trattati né concimati, lontano da strade e sentieri dei cani.",
+        "kitchen": "Una volta riconosciuta con certezza, le foglie hanno un sapore acidulo deciso, come la scorza di limone: taglia a striscioline le giovani nelle insalate, o cuocile poco in zuppe, frittate e salse per pesce e uova. L'acidità è acido ossalico: mangiala con moderazione ed evitala se soffri di calcoli renali. Cuocila in acciaio inox o smalto, non in alluminio o ghisa.",
+        "keeps": "In frigorifero le foglie appassiscono in due o tre giorni; ridotta in purea si congela bene.",
+        "source": "Riconoscimento e sosia: Woodland Trust e Wild Food UK. Diffusione negli Stati Uniti: Flora of North America. Acido ossalico: Wild Food UK. Stagione: segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Oseille commune",
       "description": "Plante au goût acidulé et citronné, utilisée dans les salades et les soupes.",
-      "howTo": "Récolte les jeunes feuilles dans les prairies, pâturages et le long des sentiers au printemps et en été."
+      "howTo": "Récolte les jeunes feuilles dans les prairies, pâturages et le long des sentiers au printemps et en été.",
+      "guide": {
+        "identify": "Des feuilles tendres en fer de flèche, dont les deux lobes de la base, pointus, sont tournés vers l'arrière, le long du pétiole ; les feuilles du haut embrassent la tige, et une fine gaine membraneuse entoure la tige à la base de chaque feuille. Dès mai, les tiges florales portent des grappes lâches de petites fleurs rougeâtres. Le gouet tacheté (Arum maculatum), toxique, a de jeunes feuilles de forme proche, mais elles portent souvent des taches sombres, ont des lobes arrondis et poussent dans les bois et les haies plutôt qu'en prairie ouverte. Ne goûtez jamais une feuille pour vérifier : le gouet brûle la bouche.",
+        "habitat": "Prairies, pâturages, pelouses, bords de chemins et bois clairs, de la plaine à la montagne ; très commune dans toute l'Europe. Aux États-Unis, elle est introduite et se trouve çà et là, surtout dans le nord-est, autour des Grands Lacs, en Oregon et en Alaska, où la petite oseille est bien plus commune.",
+        "season": "Les feuilles poussent dès le début du printemps, presque toute l'année dans les régions douces, et sont meilleures jeunes ; dès la floraison, à partir de mai, elles deviennent plus dures et plus amères, mais les pieds coupés en refont de nouvelles.",
+        "picking": "Cueillez quelques jeunes feuilles par pied et laissez la racine ; choisissez des prairies ni traitées ni engraissées, loin des routes et des chemins à chiens.",
+        "kitchen": "Une fois l'oseille identifiée avec certitude, ses feuilles ont un goût franchement acide, comme le zeste de citron : émincez les jeunes dans les salades, ou faites-les cuire brièvement dans les soupes, les omelettes et les sauces pour le poisson et les œufs. Cette acidité vient de l'acide oxalique : consommez l'oseille avec modération et évitez-la si vous souffrez de calculs rénaux. Cuisez-la dans l'inox ou l'émail, pas dans l'aluminium ni la fonte.",
+        "keeps": "Au réfrigérateur, les feuilles flétrissent en deux ou trois jours ; réduite en purée, l'oseille se congèle bien.",
+        "source": "Identification et sosies : Woodland Trust et Wild Food UK. Aire aux États-Unis : Flora of North America. Acide oxalique : Wild Food UK. Saison : données GBIF."
+      }
     },
     "de": {
       "name": "Gewöhnlicher Sauerampfer",
       "description": "Pflanze mit säuerlich-zitronigem Geschmack, verwendet in Salaten und Suppen.",
-      "howTo": "Pflücke die jungen Blätter auf Wiesen, Weiden und entlang von Wegen im Frühling und Sommer."
+      "howTo": "Pflücke die jungen Blätter auf Wiesen, Weiden und entlang von Wegen im Frühling und Sommer.",
+      "guide": {
+        "identify": "Zarte, pfeilförmige Blätter, deren zwei spitze Grundlappen nach hinten, den Stiel hinab, zeigen; die oberen Blätter umfassen den Stängel, und eine dünne, häutige Scheide umhüllt den Stängel dort, wo ein Blatt ansetzt. Ab Mai tragen die Blütenstängel lockere Rispen kleiner rötlicher Blüten. Der giftige Gefleckte Aronstab (Arum maculatum) hat ähnlich geformte junge Blätter, die aber oft dunkle Flecken tragen, abgerundete Lappen haben und in Wäldern und Hecken statt auf offenem Grasland wachsen. Probier nie ein Blatt zur Kontrolle: Aronstab brennt im Mund.",
+        "habitat": "Wiesen, Weiden, Rasen, Wegränder und lichte Wälder, vom Tiefland bis in die Berge; sehr häufig in ganz Europa. In den USA ist er eingeschleppt und kommt verstreut vor, vor allem im Nordosten, um die Großen Seen, in Oregon und in Alaska, wo der Kleine Sauerampfer viel häufiger ist.",
+        "season": "Die Blätter wachsen ab dem zeitigen Frühjahr, in milden Lagen fast das ganze Jahr, und sind jung am besten; sobald er ab Mai blüht, werden sie zäher und bitterer, doch geschnittene Pflanzen treiben neue aus.",
+        "picking": "Pflück von jeder Pflanze einzelne junge Blätter und lass die Wurzel stehen; such dir Wiesen, die weder gespritzt noch gedüngt sind, abseits von Straßen und Hundewegen.",
+        "kitchen": "Sicher bestimmt, schmecken die Blätter kräftig sauer, wie Zitronenschale: Schneide junge Blätter fein in den Salat oder gare sie kurz in Suppen, Omeletts und Saucen zu Fisch und Eiern. Die Säure ist Oxalsäure: Iss Sauerampfer in Maßen und meide ihn, wenn du Nierensteine hast. Gare ihn in Edelstahl oder Email, nicht in Aluminium oder Gusseisen.",
+        "keeps": "Im Kühlschrank welken die Blätter nach zwei bis drei Tagen; zu Püree eingekocht lässt er sich gut einfrieren.",
+        "source": "Bestimmung und Doppelgänger: Woodland Trust und Wild Food UK. Verbreitung in den USA: Flora of North America. Oxalsäure: Wild Food UK. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Acedera común",
       "description": "Planta de sabor ácido y cítrico, utilizada en ensaladas y sopas.",
-      "howTo": "Recolecta las hojas jóvenes en praderas, pastizales y a lo largo de los senderos en primavera y verano."
+      "howTo": "Recolecta las hojas jóvenes en praderas, pastizales y a lo largo de los senderos en primavera y verano.",
+      "guide": {
+        "identify": "Hojas tiernas en forma de flecha, con dos lóbulos basales puntiagudos que apuntan hacia atrás, hacia el rabillo; las hojas superiores abrazan el tallo, y una vaina fina y membranosa envuelve el tallo donde nace cada hoja. Desde mayo, los tallos florales llevan espigas sueltas de florecillas rojizas. El aro (Arum maculatum), que es tóxico, tiene hojas jóvenes de forma parecida, pero suelen llevar manchas oscuras, tienen lóbulos redondeados y crecen en bosques y setos y no en prados abiertos. Nunca pruebes una hoja para comprobarlo: el aro quema la boca.",
+        "habitat": "Prados, pastos, céspedes, cunetas y bosques claros, desde el llano hasta la montaña; muy común en toda Europa. En EE. UU. es introducida y aparece dispersa, sobre todo en el noreste, alrededor de los Grandes Lagos, en Oregón y en Alaska, donde la acederilla, más pequeña, es mucho más común.",
+        "season": "Las hojas crecen desde principios de primavera, en zonas templadas casi todo el año, y son mejores jóvenes; cuando la planta florece, desde mayo, se vuelven más duras y amargas, pero las plantas cortadas sacan hojas nuevas.",
+        "picking": "Coge hojas jóvenes sueltas de cada planta y deja la raíz; elige prados que no estén fumigados ni abonados, lejos de carreteras y caminos de perros.",
+        "kitchen": "Una vez identificada con certeza, las hojas tienen un sabor ácido intenso, como la piel de limón: corta las jóvenes en tiras para ensaladas o cocínalas poco en sopas, tortillas y salsas para pescado y huevos. La acidez es ácido oxálico: tómala con moderación y evítala si tienes cálculos renales. Cocínala en acero inoxidable o esmalte, no en aluminio ni hierro fundido.",
+        "keeps": "En la nevera las hojas se mustian en dos o tres días; cocida y hecha puré se congela bien.",
+        "source": "Identificación y dobles: Woodland Trust y Wild Food UK. Área en EE. UU.: Flora of North America. Ácido oxálico: Wild Food UK. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Azedinha-comum",
       "description": "Planta de sabor ácido e cítrico, utilizada em saladas e sopas.",
-      "howTo": "Colha as folhas jovens em prados, pastagens e ao longo dos caminhos na primavera e no verão."
+      "howTo": "Colha as folhas jovens em prados, pastagens e ao longo dos caminhos na primavera e no verão.",
+      "guide": {
+        "identify": "Folhas tenras em forma de seta, com dois lóbulos na base, pontiagudos e virados para trás, ao longo do pé; as folhas de cima abraçam o caule, e uma bainha fina e membranosa envolve o caule onde nasce cada folha. A partir de maio, os caules floridos levam espigas soltas de pequenas flores avermelhadas. O jarro (Arum maculatum), que é tóxico, tem folhas novas de forma parecida, mas muitas vezes com manchas escuras e lóbulos arredondados, e cresce em bosques e sebes e não em prados abertos. Nunca prove uma folha para confirmar: o jarro queima a boca.",
+        "habitat": "Prados, pastagens, relvados, bermas e bosques abertos, da planície à montanha; muito comum em toda a Europa. Nos EUA é introduzida e aparece dispersa, sobretudo no nordeste, à volta dos Grandes Lagos, no Oregon e no Alasca, onde a Rumex acetosella, mais pequena, é muito mais comum.",
+        "season": "As folhas crescem desde o início da primavera, quase todo o ano nas zonas amenas, e são melhores novas; quando a planta floresce, a partir de maio, ficam mais rijas e amargas, mas as plantas cortadas dão folhas novas.",
+        "picking": "Apanhe algumas folhas novas de cada planta e deixe a raiz; escolha prados que não sejam pulverizados nem adubados, longe de estradas e de caminhos de cães.",
+        "kitchen": "Depois de identificada com certeza, as folhas têm um sabor ácido intenso, como casca de limão: corte as novas em tiras para saladas, ou cozinhe-as pouco em sopas, omeletes e molhos para peixe e ovos. A acidez vem do ácido oxálico: coma-a com moderação e evite-a se tiver pedras nos rins. Cozinhe-a em inox ou esmalte, não em alumínio nem ferro fundido.",
+        "keeps": "No frigorífico as folhas murcham em dois ou três dias; cozida em puré, congela bem.",
+        "source": "Identificação e sósias: Woodland Trust e Wild Food UK. Área nos EUA: Flora of North America. Ácido oxálico: Wild Food UK. Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -221,6 +275,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2888951, 2888995] }
+    "rangePrior": {
+      "taxonKeys": [2888951, 2888995]
+    }
   }
 }

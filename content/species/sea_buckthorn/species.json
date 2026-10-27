@@ -19,32 +19,86 @@
     "en": {
       "name": "Sea Buckthorn",
       "description": "Bright orange berries packed along thorny, silver-leaved branches: sour and rich in vitamin C",
-      "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves"
+      "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves",
+      "guide": {
+        "identify": "Sea buckthorn is a thorny, much-branched shrub that forms thickets, with narrow, willow-like leaves covered in silvery scales, above all underneath. Male and female flowers grow on separate bushes, so only female bushes fruit: round, bright orange berries 6 to 8 mm across, packed tightly along the twigs on very short stalks. The berries are juicy and very sour and burst at a touch; rowan and firethorn, by contrast, carry their orange berries in stalked bunches among green leaves.",
+        "habitat": "It needs full sun and open sand or gravel: coastal dunes of the North Sea, the Baltic and eastern England, and dry gravel banks and terraces of rivers in the Alps and their foothills. In southern Europe it is mostly a plant of mountain river gravels, in the Alps and the Pyrenees; it is also planted on embankments and roadsides.",
+        "season": "The berries ripen from August into October and are most aromatic early in ripening. They hang on into winter, but overripe berries taste rancid.",
+        "picking": "Wild stands often grow in dune and riverside nature reserves, where picking is forbidden: check local rules first and never cut branches from wild bushes. Wear gloves, hold a bowl under the twig as you pick because the berries burst, and leave plenty for wintering thrushes.",
+        "kitchen": "Once identified with certainty, the berries can be eaten raw, but they are very sour, slightly bitter and stain; most are cooked briefly with a little water and honey or sugar, then strained for juice, syrup, jelly or purée. Apple or apricot softens the sharpness; the purée suits yoghurt, muesli, ice cream and soups.",
+        "keeps": "Fresh berries spoil quickly: freeze them, or freeze the juice in portions. The pulp left after pressing can be dried for tea.",
+        "source": "Identification and habitat: The Wildlife Trusts and the European Environment Agency (EUNIS). Season, cooking and keeping: Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "it": {
       "name": "Olivello spinoso",
       "description": "Bacche arancione vivo fitte lungo rami spinosi dalle foglie argentate: aspre e ricche di vitamina C",
-      "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata"
+      "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata",
+      "guide": {
+        "identify": "L'olivello spinoso è un arbusto spinoso e molto ramificato che forma macchie fitte, con foglie strette simili a quelle del salice, coperte di squame argentee soprattutto sulla pagina inferiore. Fiori maschili e femminili crescono su piante separate, quindi solo le piante femminili fruttificano: bacche rotonde arancione vivo, di 6-8 mm, fitte lungo i rami su piccioli cortissimi. Sono succose, molto aspre e scoppiano appena le tocchi; il sorbo degli uccellatori e la piracanta portano invece le bacche arancioni in mazzetti con picciolo tra foglie verdi.",
+        "habitat": "Vuole pieno sole e sabbia o ghiaia scoperte: dune costiere del Mare del Nord, del Baltico e dell'Inghilterra orientale, e greti e terrazzi asciutti dei fiumi delle Alpi e delle Prealpi. Nell'Europa meridionale è soprattutto una pianta dei greti dei torrenti di montagna, sulle Alpi e sui Pirenei; si pianta anche su scarpate e bordi delle strade.",
+        "season": "Le bacche maturano da agosto a ottobre e sono più aromatiche all'inizio della maturazione. Restano sulla pianta fino all'inverno, ma troppo mature sanno di rancido.",
+        "picking": "Gli olivelli selvatici crescono spesso in riserve di dune o di greti dove la raccolta è vietata: informati prima sulle regole locali e non tagliare mai rami da piante selvatiche. Usa i guanti, tieni una ciotola sotto il ramo mentre raccogli perché le bacche scoppiano, e lasciane molte ai tordi che svernano.",
+        "kitchen": "Una volta identificate con certezza, le bacche si possono mangiare crude, ma sono molto aspre, un po' amare e macchiano; di solito si cuociono brevemente con poca acqua e miele o zucchero e si filtrano per farne succo, sciroppo, gelatina o purea. Mela o albicocca ne addolciscono l'acidità; la purea si abbina a yogurt, muesli, gelato e zuppe.",
+        "keeps": "Fresche si guastano presto: congelale, oppure congela il succo in porzioni. La polpa che resta dopo la spremitura si può essiccare per tisane.",
+        "source": "Identificazione e habitat: The Wildlife Trusts e Agenzia europea dell'ambiente (EUNIS). Stagione, cucina e conservazione: Bundeszentrum für Ernährung (BZfE, Germania)."
+      }
     },
     "fr": {
       "name": "Argousier",
       "description": "Des baies orange vif serrées le long de rameaux épineux aux feuilles argentées : acides et riches en vitamine C",
-      "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires"
+      "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires",
+      "guide": {
+        "identify": "L'argousier est un arbuste épineux et très ramifié qui forme des fourrés, aux feuilles étroites, semblables à celles du saule, couvertes d'écailles argentées, surtout au revers. Fleurs mâles et femelles poussent sur des pieds séparés, si bien que seuls les pieds femelles fructifient : des baies rondes, orange vif, de 6 à 8 mm, serrées le long des rameaux sur des pédoncules très courts. Elles sont juteuses, très acides et éclatent au moindre contact ; le sorbier des oiseleurs et le buisson ardent portent au contraire leurs baies orange en bouquets pédonculés parmi des feuilles vertes.",
+        "habitat": "Il lui faut le plein soleil et du sable ou du gravier à nu : dunes littorales de la mer du Nord, de la Baltique et de l'est de l'Angleterre, et bancs de graviers et terrasses sèches des rivières des Alpes et de leur piémont. Dans le sud de l'Europe, c'est surtout une plante des graviers des rivières de montagne, dans les Alpes et les Pyrénées ; on le plante aussi sur les talus et les bords de route.",
+        "season": "Les baies mûrissent d'août à octobre et sont plus parfumées en début de maturité. Elles restent sur l'arbuste jusqu'en hiver, mais trop mûres, elles prennent un goût rance.",
+        "picking": "L'argousier sauvage pousse souvent dans des réserves naturelles de dunes ou de bords de rivière où la cueillette est interdite : renseignez-vous d'abord sur les règles locales et ne coupez jamais de branches sur un arbuste sauvage. Portez des gants, tenez un bol sous le rameau en cueillant, car les baies éclatent, et laissez-en beaucoup aux grives qui hivernent.",
+        "kitchen": "Une fois identifiées avec certitude, les baies peuvent se manger crues, mais elles sont très acides, un peu amères et tachent ; on les fait le plus souvent cuire brièvement avec un peu d'eau et de miel ou de sucre, puis on les filtre pour en faire jus, sirop, gelée ou purée. La pomme ou l'abricot adoucissent l'acidité ; la purée accompagne yaourt, muesli, glace et soupes.",
+        "keeps": "Fraîches, elles s'abîment vite : congelez-les, ou congelez le jus en portions. La pulpe qui reste après pressage peut être séchée pour la tisane.",
+        "source": "Identification et habitat : The Wildlife Trusts et Agence européenne pour l'environnement (EUNIS). Saison, cuisine et conservation : Bundeszentrum für Ernährung (BZfE, Allemagne)."
+      }
     },
     "de": {
       "name": "Sanddorn",
       "description": "Leuchtend orange Beeren dicht an dornigen, silbrig belaubten Zweigen: sauer und reich an Vitamin C",
-      "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten"
+      "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten",
+      "guide": {
+        "identify": "Der Sanddorn ist ein dorniger, stark verzweigter Strauch, der Dickichte bildet, mit schmalen, weidenähnlichen Blättern, die vor allem unterseits mit silbrigen Schuppen bedeckt sind. Männliche und weibliche Blüten wachsen an getrennten Sträuchern, deshalb tragen nur weibliche Früchte: runde, leuchtend orange Beeren von 6 bis 8 mm, dicht an den Zweigen auf sehr kurzen Stielen. Die Beeren sind saftig, sehr sauer und platzen bei Berührung; Eberesche und Feuerdorn dagegen tragen ihre orangen Beeren in gestielten Büscheln zwischen grünen Blättern.",
+        "habitat": "Er braucht volle Sonne und offenen Sand oder Kies: Küstendünen an Nord- und Ostsee und in Ostengland sowie trockene Kiesbänke und Terrassen der Flüsse in den Alpen und im Alpenvorland. In Südeuropa wächst er vor allem auf Flussschottern im Gebirge, in den Alpen und den Pyrenäen; außerdem wird er an Böschungen und Straßenrändern gepflanzt.",
+        "season": "Die Beeren reifen von August bis in den Oktober und sind zu Beginn der Reife am aromatischsten. Sie hängen bis in den Winter, doch überreife Beeren schmecken ranzig.",
+        "picking": "Wilder Sanddorn steht oft in Dünen- und Auen-Schutzgebieten, wo Pflücken verboten ist: Prüf vorher die örtlichen Regeln und schneide nie Zweige von wilden Sträuchern ab. Trag Handschuhe, halt beim Pflücken eine Schüssel unter den Zweig, weil die Beeren platzen, und lass den überwinternden Drosseln genug übrig.",
+        "kitchen": "Sicher bestimmt kann man die Beeren roh essen, doch sie sind sehr sauer, leicht bitter und färben stark ab; meist werden sie mit wenig Wasser und Honig oder Zucker kurz aufgekocht und zu Saft, Sirup, Gelee oder Mus abgeseiht. Apfel oder Aprikose mildern die Säure; das Mus passt zu Joghurt, Müsli, Eis und Suppen.",
+        "keeps": "Frische Beeren verderben schnell: Friere sie ein oder friere den Saft portionsweise ein. Der Trester vom Pressen lässt sich für Tee trocknen.",
+        "source": "Bestimmung und Standort: The Wildlife Trusts und Europäische Umweltagentur (EUNIS). Saison, Küche und Lagerung: Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "es": {
       "name": "Espino amarillo",
       "description": "Bayas de un naranja intenso apretadas a lo largo de ramas espinosas de hojas plateadas: ácidas y ricas en vitamina C",
-      "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida"
+      "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida",
+      "guide": {
+        "identify": "El espino amarillo es un arbusto espinoso y muy ramificado que forma espesuras, con hojas estrechas, parecidas a las del sauce, cubiertas de escamas plateadas, sobre todo por el envés. Las flores masculinas y femeninas crecen en matas distintas, así que solo las femeninas dan fruto: bayas redondas de color naranja intenso, de 6 a 8 mm, apretadas a lo largo de las ramas sobre rabillos muy cortos. Son jugosas, muy ácidas y revientan al tocarlas; el serbal de cazadores y el espino de fuego, en cambio, llevan sus bayas naranjas en ramilletes con rabillo entre hojas verdes.",
+        "habitat": "Necesita pleno sol y arena o grava sueltas: dunas costeras del mar del Norte, el Báltico y el este de Inglaterra, y graveras y terrazas secas de los ríos de los Alpes y su piedemonte. En el sur de Europa es sobre todo una planta de las graveras de los ríos de montaña, en los Alpes y el Pirineo, donde en algunos valles lo llaman arto blanco; también se planta en taludes y cunetas.",
+        "season": "Las bayas maduran de agosto a octubre y son más aromáticas al principio de la maduración. Siguen en la mata hasta el invierno, pero pasadas saben a rancio.",
+        "picking": "Muchas matas silvestres crecen en espacios protegidos de dunas y riberas donde está prohibido recolectar: consulta antes las normas locales y no cortes nunca ramas de matas silvestres. Usa guantes, pon un cuenco debajo de la rama al recoger porque las bayas revientan y deja muchas para los zorzales que pasan el invierno.",
+        "kitchen": "Una vez identificadas con certeza, las bayas pueden comerse crudas, pero son muy ácidas, algo amargas y manchan; casi siempre se cuecen un momento con un poco de agua y miel o azúcar y se cuelan para zumo, jarabe, jalea o puré. La manzana o el albaricoque suavizan la acidez; el puré va bien con yogur, muesli, helado y sopas.",
+        "keeps": "Frescas se estropean pronto: congélalas, o congela el zumo en porciones. La pulpa que queda al prensar se puede secar para infusión.",
+        "source": "Identificación y hábitat: The Wildlife Trusts y Agencia Europea de Medio Ambiente (EUNIS). Temporada, cocina y conservación: Bundeszentrum für Ernährung (BZfE, Alemania)."
+      }
     },
     "pt": {
       "name": "Espinheiro-marítimo",
       "description": "Bagas cor de laranja viva apertadas ao longo de ramos espinhosos de folhas prateadas: ácidas e ricas em vitamina C",
-      "howTo": "Procure em dunas costeiras e margens de rio com cascalho de agosto a outubro. Use luvas por causa dos espinhos e informe-se: nas reservas de dunas a apanha é muitas vezes proibida"
+      "howTo": "Procure em dunas costeiras e margens de rio com cascalho de agosto a outubro. Use luvas por causa dos espinhos e informe-se: nas reservas de dunas a apanha é muitas vezes proibida",
+      "guide": {
+        "identify": "O espinheiro-marítimo é um arbusto espinhoso e muito ramificado que forma matagais, com folhas estreitas, parecidas com as do salgueiro, cobertas de escamas prateadas, sobretudo na página inferior. As flores masculinas e femininas crescem em plantas separadas, por isso só as femininas dão fruto: bagas redondas, cor de laranja viva, com 6 a 8 mm, apertadas ao longo dos ramos em pés muito curtos. São sumarentas, muito ácidas e rebentam ao toque; a tramazeira e a piracanta, pelo contrário, têm as bagas cor de laranja em cachos com pé, entre folhas verdes.",
+        "habitat": "Precisa de sol pleno e de areia ou cascalho a descoberto: dunas costeiras do mar do Norte, do Báltico e do leste de Inglaterra, e cascalheiras e terraços secos dos rios dos Alpes e do seu sopé. No sul da Europa é sobretudo uma planta dos cascalhos dos rios de montanha, nos Alpes e nos Pirenéus; também se planta em taludes e bermas.",
+        "season": "As bagas amadurecem de agosto a outubro e têm mais aroma no início da maturação. Ficam no arbusto até ao inverno, mas maduras demais sabem a ranço.",
+        "picking": "Muitas plantas silvestres crescem em reservas de dunas ou de margens de rio onde a apanha é proibida: informe-se primeiro sobre as regras locais e nunca corte ramos de arbustos silvestres. Use luvas, segure uma tigela debaixo do ramo ao apanhar, porque as bagas rebentam, e deixe muitas para os tordos que passam o inverno.",
+        "kitchen": "Depois de identificadas com certeza, as bagas podem comer-se cruas, mas são muito ácidas, um pouco amargas e mancham; quase sempre se cozem um pouco com pouca água e mel ou açúcar e se coam para sumo, xarope, geleia ou puré. A maçã ou o damasco suavizam a acidez; o puré combina com iogurte, muesli, gelado e sopas.",
+        "keeps": "Frescas estragam-se depressa: congele-as, ou congele o sumo em porções. A polpa que sobra depois de espremer pode secar-se para chá.",
+        "source": "Identificação e habitat: The Wildlife Trusts e Agência Europeia do Ambiente (EUNIS). Época, cozinha e conservação: Bundeszentrum für Ernährung (BZfE, Alemanha)."
+      }
     }
   },
   "identification": {

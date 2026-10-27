@@ -19,32 +19,86 @@
     "en": {
       "name": "Black Trumpet (Horn of Plenty)",
       "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
-      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn."
+      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn.",
+      "guide": {
+        "identify": "A thin, hollow horn 4 to 8 cm across, open down to the base, with no separate cap. The inside is grey-brown to black and finely scaly; the outside is ash-grey, smooth or only faintly wrinkled, with no gills or ridges, and turns paler with a whitish bloom as it ripens. The flesh is thin, brittle and grey-black, with a faint, sweet smell. Black trumpets of the eastern US (Craterellus fallax) look the same but give a pinkish-orange spore print rather than white; the ash-grey chanterelle (Craterellus cinereus) has clear forked ridges on the outside.",
+        "habitat": "It lives with broadleaf trees, mainly beech and oak, also hornbeam and hazel, in damp leaf litter and moss, often in large groups on rich, loamy soil, in gullies and on banks. Common across Europe; in the eastern US its counterpart grows under oak and beech, and on the Pacific coast a western black trumpet grows under tanoak, live oak and madrone.",
+        "season": "Mainly autumn: in Europe from late summer to November, into December in mild years and later still around the Mediterranean; in the eastern US from July to October after heavy rain. On the Pacific coast the western black trumpet fruits from midwinter into spring.",
+        "picking": "Pinch or cut at the base, leave the small ones and take only what you will eat; local limits on wild mushrooms apply. It hides well in dark litter: where you find one, look closely around it.",
+        "kitchen": "Once identified with certainty, split each trumpet lengthwise and rinse out leaves, insects and grit, then drain it well. Never eat it raw: cook it well, in butter, cream sauces, risotto or pasta, or with fish and eggs. The taste is deep and smoky, stronger after drying.",
+        "keeps": "Fresh, only a few days in the fridge. It dries quickly and very well; keep it in a closed jar, or grind it to a powder for sauces and soups.",
+        "source": "Identification and habitat: First Nature (UK), MushroomExpert.com and MykoWeb (California Fungi). Season: GBIF records."
+      }
     },
     "it": {
       "name": "Trombetta dei Morti",
       "description": "Un fungo scuro a forma di trombetta, dal sapore intenso e molto apprezzato in cucina.",
-      "howTo": "Si trova nei boschi di latifoglie, specialmente sotto querce e faggi, tra fine estate e autunno."
+      "howTo": "Si trova nei boschi di latifoglie, specialmente sotto querce e faggi, tra fine estate e autunno.",
+      "guide": {
+        "identify": "Un corno sottile e cavo largo da 4 a 8 cm, aperto fino alla base, senza un cappello distinto. All'interno è grigio bruno o nero e finemente squamoso; all'esterno grigio cenere, liscio o appena rugoso, senza lamelle né pieghe, e a maturità schiarisce con una pruina biancastra. La carne è sottile, fragile e grigio nera, con un odore debole e dolciastro. Le trombette dell'est degli Stati Uniti (Craterellus fallax) sono uguali, ma danno una sporata rosa arancio invece che bianca; il Craterellus cinereus ha all'esterno pieghe biforcate ben marcate.",
+        "habitat": "Vive in simbiosi con le latifoglie, soprattutto faggio e quercia, anche carpino e nocciolo, nella lettiera umida e nel muschio, spesso in grandi gruppi su terreno ricco e argilloso, in fossi e scarpate. Comune in tutta Europa; nell'est degli Stati Uniti cresce la sua specie sorella sotto querce e faggi, e sulla costa pacifica una trombetta occidentale sotto tanoak, querce sempreverdi e corbezzoli americani.",
+        "season": "Soprattutto in autunno: in Europa da fine estate a novembre, fino a dicembre negli anni miti e ancora più tardi nel Mediterraneo; nell'est degli Stati Uniti da luglio a ottobre dopo forti piogge. Sulla costa pacifica la trombetta occidentale cresce da pieno inverno fino alla primavera.",
+        "picking": "Staccala con le dita o tagliala alla base, lascia le piccole e prendi solo quello che mangerai; valgono anche per lei le regole locali sui funghi, come il tesserino in molte regioni italiane. Si mimetizza bene nella lettiera scura: dove ne trovi una, cerca con cura intorno.",
+        "kitchen": "Una volta identificata con certezza, apri ogni trombetta per il lungo e sciacqua via foglie, insetti e terra, poi scolala bene. Non mangiarla mai cruda: cuocila bene, nel burro, in salse alla panna, nel risotto o nella pasta, o con pesce e uova. Sapore profondo e affumicato, più forte da secca.",
+        "keeps": "Fresca, solo qualche giorno in frigorifero. Si secca in fretta e benissimo; conservala in un barattolo chiuso o macinala in polvere per salse e zuppe.",
+        "source": "Identificazione e habitat: First Nature (Regno Unito), MushroomExpert.com e MykoWeb (California Fungi). Stagione: dati GBIF."
+      }
     },
     "fr": {
       "name": "Trompette de la mort",
       "description": "Champignon sombre en forme de trompette, au goût intense, très apprécié en cuisine.",
-      "howTo": "Se trouve dans les forêts de feuillus, surtout sous les chênes et les hêtres, de la fin de l'été à l'automne."
+      "howTo": "Se trouve dans les forêts de feuillus, surtout sous les chênes et les hêtres, de la fin de l'été à l'automne.",
+      "guide": {
+        "identify": "Une corne mince et creuse de 4 à 8 cm de large, ouverte jusqu'à la base, sans chapeau distinct. L'intérieur est gris-brun à noir et finement écailleux ; l'extérieur est gris cendré, lisse ou à peine ridé, sans lames ni plis, et pâlit avec une pruine blanchâtre à maturité. La chair est mince, cassante et gris-noir, avec une faible odeur douce. Les trompettes de l'est des États-Unis (Craterellus fallax) sont identiques mais donnent une sporée rose orangé au lieu de blanche ; la chanterelle cendrée (Craterellus cinereus) a des plis fourchus bien nets à l'extérieur.",
+        "habitat": "Elle vit en association avec les feuillus, surtout le hêtre et le chêne, aussi le charme et le noisetier, dans la litière humide et la mousse, souvent en grandes troupes sur sol riche et argileux, dans les ravines et sur les talus. Commune dans toute l'Europe ; dans l'est des États-Unis pousse son espèce sœur sous les chênes et les hêtres, et sur la côte pacifique une trompette de l'Ouest sous le chêne à tan (tanoak), les chênes verts et l'arbousier d'Amérique.",
+        "season": "Surtout en automne : en Europe de la fin de l'été à novembre, jusqu'en décembre les années douces et plus tard encore autour de la Méditerranée ; dans l'est des États-Unis de juillet à octobre après de fortes pluies. Sur la côte pacifique, la trompette de l'Ouest pousse du cœur de l'hiver au printemps.",
+        "picking": "Pincez-la ou coupez-la à la base, laissez les petites et ne prenez que ce que vous mangerez ; les règles locales sur les champignons sauvages s'appliquent aussi. Elle se fond dans la litière sombre : là où vous en trouvez une, cherchez bien autour.",
+        "kitchen": "Une fois identifiée avec certitude, fendez chaque trompette en long et rincez feuilles, insectes et terre, puis égouttez-la bien. Ne la mangez jamais crue : cuisez-la bien, au beurre, en sauce à la crème, en risotto ou avec des pâtes, du poisson ou des œufs. Goût profond et fumé, plus fort une fois séchée.",
+        "keeps": "Fraîche, quelques jours seulement au réfrigérateur. Elle sèche vite et très bien ; gardez-la dans un bocal fermé ou réduisez-la en poudre pour les sauces et les soupes.",
+        "source": "Identification et habitat : First Nature (Royaume-Uni), MushroomExpert.com et MykoWeb (California Fungi). Saison : données GBIF."
+      }
     },
     "de": {
       "name": "Totentrompete",
       "description": "Ein dunkler trompetenförmiger Pilz mit intensivem Geschmack, sehr geschätzt in der Küche.",
-      "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst."
+      "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst.",
+      "guide": {
+        "identify": "Ein dünnes, hohles Horn, 4 bis 8 cm breit, bis zum Grund offen, ohne abgesetzten Hut. Innen ist sie graubraun bis schwarz und fein schuppig; außen aschgrau, glatt oder nur schwach runzelig, ohne Lamellen oder Leisten, und reif heller mit weißlichem Reif. Das Fleisch ist dünn, brüchig und grauschwarz, mit schwachem, süßlichem Geruch. Totentrompeten im Osten der USA (Craterellus fallax) sehen gleich aus, haben aber rosa-orangefarbenes statt weißes Sporenpulver; der nah verwandte Craterellus cinereus hat außen deutliche, gegabelte Leisten.",
+        "habitat": "Sie lebt mit Laubbäumen zusammen, vor allem Buche und Eiche, auch Hainbuche und Hasel, in feuchtem Laub und Moos, oft in großen Gruppen auf nährstoffreichem, lehmigem Boden, in Gräben und an Böschungen. In ganz Europa verbreitet; im Osten der USA wächst ihre Schwesterart unter Eiche und Buche, an der Pazifikküste eine westliche Totentrompete unter Tanoak, immergrünen Eichen und Madrone.",
+        "season": "Vor allem im Herbst: in Europa vom Spätsommer bis November, in milden Jahren bis Dezember und im Mittelmeerraum noch länger; im Osten der USA von Juli bis Oktober nach starkem Regen. An der Pazifikküste fruchtet die westliche Totentrompete vom Hochwinter bis ins Frühjahr.",
+        "picking": "Kneif oder schneide sie am Grund ab, lass die kleinen stehen und nimm nur, was du isst; die Regeln vor Ort für Wildpilze gelten auch für sie. Sie tarnt sich gut im dunklen Laub: wo du eine findest, such die Umgebung genau ab.",
+        "kitchen": "Wenn sie sicher bestimmt ist, schneide jede Trompete längs auf, spül Laub, Insekten und Sand heraus und lass sie gut abtropfen. Iss sie nie roh: gare sie gut durch, in Butter, Sahnesoßen, Risotto oder Nudeln oder zu Fisch und Ei. Der Geschmack ist tief und rauchig, getrocknet noch kräftiger.",
+        "keeps": "Frisch nur ein paar Tage im Kühlschrank. Sie trocknet schnell und sehr gut; bewahre sie im geschlossenen Glas auf oder mahle sie zu Pulver für Soßen und Suppen.",
+        "source": "Bestimmung und Standort: First Nature (UK), MushroomExpert.com und MykoWeb (California Fungi). Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Trompeta de los muertos",
       "description": "Hongo oscuro con forma de trompeta, de sabor intenso y muy apreciado en la cocina.",
-      "howTo": "Se encuentra en bosques de frondosas, especialmente bajo robles y hayas, desde finales del verano hasta el otoño."
+      "howTo": "Se encuentra en bosques de frondosas, especialmente bajo robles y hayas, desde finales del verano hasta el otoño.",
+      "guide": {
+        "identify": "Un cuerno fino y hueco de 4 a 8 cm de ancho, abierto hasta la base, sin sombrero diferenciado. Por dentro es pardo grisáceo a negro y finamente escamoso; por fuera, gris ceniza, liso o apenas arrugado, sin láminas ni pliegues, y al madurar se aclara con una pruina blanquecina. La carne es fina, quebradiza y gris negruzca, con un olor suave y dulzón. Las trompetas del este de EE. UU. (Craterellus fallax) son iguales, pero dan una esporada rosa anaranjada en lugar de blanca; Craterellus cinereus, muy parecida, tiene por fuera pliegues bifurcados bien marcados.",
+        "habitat": "Vive asociada a frondosas, sobre todo hayas y robles, también carpes y avellanos, en hojarasca húmeda y musgo, a menudo en grandes grupos sobre suelo rico y arcilloso, en vaguadas y taludes. Común en toda Europa; en el este de EE. UU. crece su especie hermana bajo robles y hayas, y en la costa del Pacífico una trompeta occidental bajo tanoaks, encinas americanas y madroños.",
+        "season": "Sobre todo en otoño: en Europa, de finales del verano a noviembre, hasta diciembre en años suaves y aún más tarde en el Mediterráneo; en el este de EE. UU., de julio a octubre tras lluvias fuertes. En la costa del Pacífico, la trompeta occidental sale de pleno invierno a la primavera.",
+        "picking": "Pellízcala o córtala por la base, deja las pequeñas y coge solo lo que vayas a comer; las normas locales sobre setas silvestres también se aplican. Se camufla bien en la hojarasca oscura: donde encuentres una, busca con cuidado alrededor.",
+        "kitchen": "Una vez identificada con total seguridad, abre cada trompeta a lo largo y enjuaga hojas, insectos y tierra; luego escúrrela bien. No la comas nunca cruda: cocínala bien, en mantequilla, salsas de nata, arroces o pasta, o con pescado y huevos. Sabor profundo y ahumado, más intenso una vez seca.",
+        "keeps": "Fresca, solo unos días en la nevera. Se seca rápido y muy bien; guárdala en un tarro cerrado o muélela en polvo para salsas y sopas.",
+        "source": "Identificación y hábitat: First Nature (Reino Unido), MushroomExpert.com y MykoWeb (California Fungi). Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Trombeta-da-morte",
       "description": "Cogumelo escuro em forma de trombeta, de sabor intenso, muito apreciado na culinária.",
-      "howTo": "Encontra-se em florestas de folhas largas, especialmente sob carvalhos e faias, do fim do verão ao outono."
+      "howTo": "Encontra-se em florestas de folhas largas, especialmente sob carvalhos e faias, do fim do verão ao outono.",
+      "guide": {
+        "identify": "Um corno fino e oco com 4 a 8 cm de largura, aberto até à base, sem chapéu distinto. Por dentro é castanho-acinzentado a negro e finamente escamoso; por fora é cor de cinza, liso ou só levemente enrugado, sem lâminas nem pregas, e ao amadurecer fica mais claro, com uma pruína esbranquiçada. A carne é fina, quebradiça e cinzento-negra, com um cheiro fraco e adocicado. As trombetas do leste dos EUA (Craterellus fallax) são iguais, mas dão esporada rosa-alaranjada em vez de branca; o Craterellus cinereus tem por fora pregas bifurcadas bem marcadas.",
+        "habitat": "Vive associada a folhosas, sobretudo faias e carvalhos, também carpas e aveleiras, na folhada húmida e no musgo, muitas vezes em grandes grupos sobre solo rico e argiloso, em barrancos e taludes. Comum em toda a Europa; no leste dos EUA cresce a sua espécie irmã debaixo de carvalhos e faias, e na costa do Pacífico uma trombeta ocidental debaixo de tanoaks, carvalhos de folha persistente e medronheiros-americanos.",
+        "season": "Sobretudo no outono: na Europa do fim do verão a novembro, até dezembro em anos amenos e ainda mais tarde no Mediterrâneo; no leste dos EUA de julho a outubro depois de chuva forte. Na costa do Pacífico, a trombeta ocidental aparece do pino do inverno à primavera.",
+        "picking": "Arranque-a com os dedos ou corte-a pela base, deixe as pequenas e apanhe só o que vai comer; as regras locais para cogumelos silvestres também se aplicam. Disfarça-se bem na folhada escura: onde encontrar uma, procure com atenção à volta.",
+        "kitchen": "Depois de identificada com toda a certeza, abra cada trombeta ao comprido e passe-a por água para tirar folhas, insetos e terra; depois escorra-a bem. Nunca a coma crua: cozinhe-a bem, em manteiga, molhos de natas, arroz ou massa, ou com peixe e ovos. Sabor profundo e fumado, mais forte depois de seca.",
+        "keeps": "Fresca, só uns dias no frigorífico. Seca depressa e muito bem; guarde-a num frasco fechado ou moa-a em pó para molhos e sopas.",
+        "source": "Identificação e habitat: First Nature (Reino Unido), MushroomExpert.com e MykoWeb (California Fungi). Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -271,6 +325,8 @@
       "taxonKeys": [2554662],
       "references": ["https://www.gbif.org/species/2554662"]
     },
-    "rangePrior": { "taxonKeys": [2554662] }
+    "rangePrior": {
+      "taxonKeys": [2554662]
+    }
   }
 }

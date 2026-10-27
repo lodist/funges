@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Sammel-Guide",
+    "appDescription": "Was um dich herum wächst und wann",
     "loading": "Lädt...",
     "error": "Ein Fehler ist aufgetreten",
     "success": "Erfolg",
@@ -89,7 +89,9 @@
     "proof": {
       "line": "Geprüft an der Saison {{year}} an {{spots}} Stellen, an denen Menschen Pilze gefunden haben: Die Vorhersage bewertete Tage in der Saison eines Pilzes <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb der Saison.",
       "link": "So prüfen wir"
-    }
+    },
+    "metaTitle": "Funges: Sammelkarte und Gartenplaner",
+    "metaDescription": "Sammelprognosen für wilde Pilze und Pflanzen und ein Planer für deinen Gemüsegarten. Was um dich herum wächst und wann."
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",

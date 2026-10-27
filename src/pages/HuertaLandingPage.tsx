@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
+import { alternates, localizedPath, pathLanguage } from '@/lib/seo-pages';
 import { Logo } from '@/components/Logo';
 import { SpaceTab } from '@/components/SpaceTab';
 import { Button } from '@/components/ui/button';
@@ -63,7 +64,11 @@ export default function HuertaLandingPage() {
       <SEO
         title={t('landing.headline')}
         description={t('landing.intro')}
-        canonicalUrl={`${base}huerta`}
+        canonicalUrl={localizedPath(
+          '/huerta/',
+          pathLanguage(window.location.pathname) ?? 'en'
+        )}
+        alternates={alternates('/huerta/', window.location.origin)}
       />
       <div className={styles.page}>
         <section className={styles.hero} aria-labelledby='landing-title'>

@@ -19,32 +19,86 @@
     "en": {
       "name": "Chestnut",
       "description": "Large sweet nuts encased in spiny green husks that split open when ripe",
-      "howTo": "Found in chestnut groves and mixed forests in autumn, often near paths"
+      "howTo": "Found in chestnut groves and mixed forests in autumn, often near paths",
+      "guide": {
+        "identify": "Long, narrow, glossy leaves 16 to 28 cm long with sharp saw teeth and many straight, parallel veins. The husk is covered all over with long, fine, needle-sharp spines and usually holds two or three nuts, flattened on one or both sides and ending in a small point with a tuft. The toxic horse chestnut (Aesculus hippocastanum) of parks and streets has hand-shaped leaves of five to seven leaflets, a thick green husk with a few short spikes and one or two round, glossy conkers with no point. In North America the buckeyes (other Aesculus) are toxic too: a tree with hand-shaped leaves is never a sweet chestnut.",
+        "habitat": "Native to southern Europe, western Asia and North Africa and long planted for its nuts, it grows on acid, well-drained soil and avoids limestone; large chestnut woods cover hills from northern Portugal and Galicia to the Cévennes, Corsica and the Apennines. In the US most chestnuts are planted, as blight nearly wiped out the native species.",
+        "season": "The nuts fall from late September to early November, mostly in October, earlier in the lowlands than in the mountains.",
+        "picking": "Every few days, gather nuts that have fallen on their own; wear thick gloves or roll the husks open under your boot, and leave nuts with small holes from weevil or moth larvae. Many chestnut woods are private and the nuts on the ground belong to the owner: check local rules.",
+        "kitchen": "Once you are sure they are sweet chestnuts, cook them: raw they are astringent and hard to digest. Discard any that float in water, cut a slit in the shell so they do not burst, then roast them or simmer them for about 30 minutes and peel off the shell and bitter inner skin while warm. Sweet and floury, they go into soups, stuffings and purées.",
+        "keeps": "Fresh chestnuts mould within about two weeks at room temperature; in the fridge they keep about two months, or freeze or dry them.",
+        "source": "Identification: Woodland Trust, ANSES and Oregon State University Extension. Harvest, cooking and storage: Oregon State University Extension."
+      }
     },
     "it": {
       "name": "Castagna",
       "description": "Noci grandi e dolci racchiuse in bucce verdi spinose che si aprono quando mature",
-      "howTo": "Trovate in castagneti e foreste miste in autunno, spesso vicino ai sentieri"
+      "howTo": "Trovate in castagneti e foreste miste in autunno, spesso vicino ai sentieri",
+      "guide": {
+        "identify": "Foglie lunghe, strette e lucide, da 16 a 28 cm, con denti appuntiti e molte nervature diritte e parallele. Il riccio è coperto ovunque da aculei lunghi, sottili e pungenti come aghi e contiene di solito due o tre castagne, appiattite su uno o entrambi i lati e terminanti in una piccola punta con un ciuffetto. L'ippocastano (Aesculus hippocastanum), velenoso e comune in parchi e viali, ha foglie palmate da cinque a sette foglioline, un involucro verde e spesso con poche spine corte e uno o due semi rotondi e lucidi, senza punta: le castagne matte. In Nord America sono velenosi anche i buckeye (altre specie di Aesculus): un albero con foglie palmate non è mai un castagno.",
+        "habitat": "Originario dell'Europa meridionale, dell'Asia occidentale e del Nord Africa e coltivato da tempo per i suoi frutti, il castagno cresce su suoli acidi e ben drenati ed evita il calcare; grandi castagneti coprono le colline dal nord del Portogallo e dalla Galizia alle Cevenne, alla Corsica, all'Appennino e alle valli prealpine. Negli Stati Uniti la maggior parte dei castagni è piantata, perché un cancro della corteccia ha quasi cancellato la specie autoctona.",
+        "season": "Le castagne cadono da fine settembre a inizio novembre, soprattutto in ottobre, prima in pianura e in collina che in montagna.",
+        "picking": "Raccogli ogni pochi giorni le castagne cadute da sole; usa guanti spessi o apri i ricci rotolandoli sotto la scarpa, e lascia quelle con forellini di larve di balanino o di cidia. Molti castagneti sono privati e le castagne a terra appartengono al proprietario: informati sulle regole locali, che variano da zona a zona.",
+        "kitchen": "Quando sei sicuro che siano castagne, cuocile: crude sono astringenti e indigeste. Butta quelle che galleggiano nell'acqua, incidi la buccia perché non scoppino, arrostiscile nella padella bucata o lessale per circa 30 minuti, e sbucciale da calde togliendo buccia e pellicina amara. Dolci e farinose, vanno in zuppe, ripieni e purè, e secche si macinano in farina per castagnaccio e necci.",
+        "keeps": "A temperatura ambiente le castagne fresche ammuffiscono in circa due settimane; in frigorifero durano circa due mesi, oppure congelale o essiccale.",
+        "source": "Riconoscimento: Woodland Trust, ANSES e Oregon State University Extension. Raccolta, cottura e conservazione: Oregon State University Extension."
+      }
     },
     "fr": {
       "name": "Châtaigne",
       "description": "Grosses châtaignes sucrées dans des bogues vertes épineuses qui s'ouvrent à maturité",
-      "howTo": "Se trouve dans les châtaigneraies et forêts mixtes en automne, souvent près des sentiers"
+      "howTo": "Se trouve dans les châtaigneraies et forêts mixtes en automne, souvent près des sentiers",
+      "guide": {
+        "identify": "Des feuilles longues, étroites et luisantes, de 16 à 28 cm, bordées de dents pointues et parcourues de nombreuses nervures droites et parallèles. La bogue est couverte de longues épines fines et piquantes comme des aiguilles et contient en général deux ou trois châtaignes, aplaties sur une face ou les deux et terminées par une petite pointe avec une houppe. Le marronnier d'Inde (Aesculus hippocastanum), toxique et courant dans les parcs et les rues, a des feuilles en forme de main à cinq à sept folioles, une enveloppe verte et épaisse à quelques piquants courts et un ou deux marrons d'Inde ronds et luisants, sans pointe. En Amérique du Nord, les buckeyes (autres Aesculus) sont aussi toxiques : un arbre aux feuilles en forme de main n'est jamais un châtaignier.",
+        "habitat": "Originaire du sud de l'Europe, de l'Asie occidentale et de l'Afrique du Nord, et planté depuis longtemps pour ses fruits, le châtaignier pousse sur sol acide et bien drainé et fuit le calcaire ; de grandes châtaigneraies couvrent les collines du nord du Portugal et de la Galice aux Cévennes, à l'Ardèche, au Limousin, à la Corse et aux Apennins. Aux États-Unis, la plupart des châtaigniers sont plantés, car un chancre a presque fait disparaître l'espèce indigène.",
+        "season": "Les châtaignes tombent de fin septembre à début novembre, surtout en octobre, plus tôt en plaine qu'en montagne.",
+        "picking": "Ramassez tous les deux ou trois jours les châtaignes tombées d'elles-mêmes ; portez des gants épais ou ouvrez les bogues en les roulant sous la chaussure, et laissez celles qui ont de petits trous de larves de balanin ou de carpocapse. Beaucoup de châtaigneraies sont privées et les châtaignes au sol appartiennent au propriétaire : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois sûr que ce sont des châtaignes, faites-les cuire : crues, elles sont âpres et indigestes. Jetez celles qui flottent dans l'eau, entaillez la coque pour qu'elles n'éclatent pas, grillez-les ou faites-les cuire à l'eau environ 30 minutes, et retirez la coque et la peau intérieure amère pendant qu'elles sont chaudes. Douces et farineuses, elles vont dans les soupes, les farces et les purées. Attention au mot marron : les marrons glacés sont faits avec des châtaignes, mais le marron d'Inde est toxique.",
+        "keeps": "À température ambiante, les châtaignes fraîches moisissent en deux semaines environ ; au réfrigérateur, elles se gardent environ deux mois, ou bien congelez-les ou faites-les sécher.",
+        "source": "Identification : Woodland Trust, ANSES et université d'État de l'Oregon (OSU Extension). Récolte, cuisson et conservation : OSU Extension."
+      }
     },
     "de": {
       "name": "Esskastanie",
       "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die bei Reife aufplatzen",
-      "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen"
+      "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen",
+      "guide": {
+        "identify": "Lange, schmale, glänzende Blätter von 16 bis 28 cm mit spitzen Sägezähnen und vielen geraden, parallelen Seitennerven. Die Fruchthülle ist rundum mit langen, feinen, nadelspitzen Stacheln besetzt und enthält meist zwei oder drei Früchte, die auf einer oder beiden Seiten abgeflacht sind und in einer kleinen Spitze mit Haarbüschel enden. Die giftige Rosskastanie (Aesculus hippocastanum) in Parks und an Straßen hat handförmige Blätter aus fünf bis sieben Blättchen, eine dicke grüne Hülle mit wenigen kurzen Stacheln und einen oder zwei runde, glänzende Samen ohne Spitze. In Nordamerika sind auch die Buckeyes (andere Aesculus-Arten) giftig: Ein Baum mit handförmigen Blättern ist nie eine Esskastanie.",
+        "habitat": "Die Esskastanie, auch Edelkastanie oder Marone, stammt aus Südeuropa, Westasien und Nordafrika und wird seit langem wegen ihrer Früchte gepflanzt; sie wächst auf saurem, durchlässigem Boden und meidet Kalk. Große Kastanienwälder bedecken Hügel von Nordportugal und Galicien bis in die Cevennen, nach Korsika, in den Apennin und ins Tessin, in Deutschland vor allem in der Pfalz. In den USA sind die meisten Kastanien gepflanzt, weil ein Rindenkrebs die heimische Art fast ausgelöscht hat.",
+        "season": "Die Früchte fallen von Ende September bis Anfang November, meist im Oktober, im Tiefland früher als im Gebirge.",
+        "picking": "Sammle alle paar Tage die Früchte, die von selbst gefallen sind; trag dicke Handschuhe oder roll die Hüllen mit dem Schuh auf, und lass Früchte mit kleinen Löchern von Rüsselkäfer- oder Wicklerlarven liegen. Viele Kastanienwälder sind privat, und die Früchte am Boden gehören dem Besitzer: Informiere dich über die Regeln vor Ort.",
+        "kitchen": "Wenn du sicher bist, dass es Esskastanien sind, gare sie, denn roh sind sie herb und schwer verdaulich. Wirf die weg, die im Wasser schwimmen, ritze die Schale ein, damit sie nicht platzen, röste die Früchte oder koche sie etwa 30 Minuten und schäle Schale und bittere Innenhaut ab, solange sie warm sind. Süß und mehlig, passen sie in Suppen, Füllungen und Pürees.",
+        "keeps": "Frische Esskastanien schimmeln bei Zimmertemperatur innerhalb von etwa zwei Wochen; im Kühlschrank halten sie sich etwa zwei Monate, oder du frierst sie ein oder trocknest sie.",
+        "source": "Bestimmung: Woodland Trust, ANSES und Oregon State University Extension. Ernte, Zubereitung und Lagerung: Oregon State University Extension."
+      }
     },
     "es": {
       "name": "Castaña",
       "description": "Grandes frutos dulces encerrados en cáscaras verdes espinosas que se abren al madurar",
-      "howTo": "Se encuentra en castañares y bosques mixtos en otoño, a menudo cerca de senderos"
+      "howTo": "Se encuentra en castañares y bosques mixtos en otoño, a menudo cerca de senderos",
+      "guide": {
+        "identify": "Hojas largas, estrechas y brillantes, de 16 a 28 cm, con dientes afilados y muchos nervios rectos y paralelos. El erizo está cubierto por completo de púas largas, finas y punzantes como agujas y suele llevar dos o tres castañas, aplanadas por una o las dos caras y acabadas en una puntita con un penacho. El castaño de Indias (Aesculus hippocastanum), tóxico y frecuente en parques y calles, tiene hojas en forma de mano de cinco a siete folíolos, una cubierta verde y gruesa con pocas púas cortas y una o dos semillas redondas y brillantes, sin punta. En Norteamérica también son tóxicos los buckeyes (otras especies de Aesculus): un árbol con hojas en forma de mano nunca es un castaño.",
+        "habitat": "Originario del sur de Europa, el oeste de Asia y el norte de África y cultivado desde hace mucho por sus castañas, el castaño crece en suelos ácidos y bien drenados y evita la caliza; hay grandes castañares desde el norte de Portugal, Galicia, Asturias y el Bierzo hasta el valle del Genal, las Cevenas, Córcega y los Apeninos. En EE. UU. la mayoría de los castaños son plantados, porque un chancro casi acabó con la especie autóctona.",
+        "season": "Las castañas caen de finales de septiembre a principios de noviembre, sobre todo en octubre, antes en zonas bajas que en la montaña.",
+        "picking": "Recoge cada pocos días las castañas que han caído solas; usa guantes gruesos o abre los erizos pisándolos con la bota, y deja las que tengan agujeritos de larvas de gorgojo o de polilla. Muchos castañares son privados y las castañas del suelo son del dueño: infórmate de las normas locales.",
+        "kitchen": "Cuando estés seguro de que son castañas, cocínalas: crudas son ásperas e indigestas. Tira las que floten en agua, haz un corte en la cáscara para que no estallen, ásalas o cuécelas unos 30 minutos y pélalas aún calientes, quitando la cáscara y la piel interior amarga. Dulces y harinosas, van en sopas, rellenos y purés.",
+        "keeps": "A temperatura ambiente, las castañas frescas se enmohecen en unas dos semanas; en la nevera aguantan unos dos meses, o puedes congelarlas o secarlas.",
+        "source": "Identificación: Woodland Trust, ANSES y extensión de la Universidad Estatal de Oregón. Cosecha, cocina y conservación: extensión de la Universidad Estatal de Oregón."
+      }
     },
     "pt": {
       "name": "Castanha",
       "description": "Grandes castanhas doces envoltas em ouriços verdes espinhosos que se abrem quando maduras",
-      "howTo": "Encontrada em castanheiras e florestas mistas no outono, frequentemente perto de trilhas"
+      "howTo": "Encontrada em castanheiras e florestas mistas no outono, frequentemente perto de trilhas",
+      "guide": {
+        "identify": "Folhas compridas, estreitas e lustrosas, de 16 a 28 cm, com dentes aguçados e muitas nervuras direitas e paralelas. O ouriço está todo coberto de picos compridos, finos e aguçados como agulhas e traz em geral duas ou três castanhas, achatadas de um ou dos dois lados e terminadas numa pequena ponta com um tufo. O castanheiro-da-índia (Aesculus hippocastanum), tóxico e comum em parques e ruas, tem folhas em forma de mão com cinco a sete folíolos, um invólucro verde e grosso com poucos picos curtos e uma ou duas sementes redondas e lustrosas, sem ponta. Na América do Norte, os buckeyes (outras espécies de Aesculus) também são tóxicos: uma árvore com folhas em forma de mão nunca é um castanheiro.",
+        "habitat": "Originário do sul da Europa, da Ásia Ocidental e do norte de África e cultivado há muito pelas castanhas, o castanheiro cresce em solos ácidos e bem drenados e evita o calcário; há grandes soutos de Trás-os-Montes e da Beira Alta à Galiza, às Cevenas, à Córsega e aos Apeninos. Nos EUA, a maioria dos castanheiros é plantada, porque um cancro quase acabou com a espécie nativa.",
+        "season": "As castanhas caem do fim de setembro ao início de novembro, sobretudo em outubro, a tempo do magusto de São Martinho, mais cedo nas terras baixas do que na serra.",
+        "picking": "Apanhe de poucos em poucos dias as castanhas que caíram sozinhas; use luvas grossas ou abra os ouriços rolando-os com a bota, e deixe as que têm furinhos de larvas de gorgulho ou de traça. Muitos soutos são privados e as castanhas no chão pertencem ao dono: informe-se sobre as regras locais.",
+        "kitchen": "Quando tiver a certeza de que são castanhas, cozinhe-as: cruas são adstringentes e indigestas. Deite fora as que boiam na água, dê-lhes um golpe na casca para não rebentarem, asse-as ou coza-as cerca de 30 minutos e descasque-as ainda quentes, tirando a casca e a pele interior amarga. Doces e farinhentas, vão em sopas, recheios e purés.",
+        "keeps": "À temperatura ambiente, as castanhas frescas ganham bolor em cerca de duas semanas; no frigorífico aguentam cerca de dois meses, ou pode congelá-las ou secá-las.",
+        "source": "Identificação: Woodland Trust, ANSES e Oregon State University Extension. Colheita, confeção e conservação: Oregon State University Extension."
+      }
     }
   },
   "identification": {
@@ -145,6 +199,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [5333294] }
+    "rangePrior": {
+      "taxonKeys": [5333294]
+    }
   }
 }

@@ -19,32 +19,86 @@
     "en": {
       "name": "Hen of the Woods",
       "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath",
-      "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe"
+      "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe",
+      "guide": {
+        "identify": "A rosette 15 to 40 cm across of many overlapping, spoon- to fan-shaped grey-brown caps, each 3 to 14 cm wide, branching from a shared white base. The underside is white with tiny pores, not gills; the flesh is white and firm and does not stain when cut or bruised. The black-staining polypore (Meripilus) has larger, thicker caps that bruise black; the umbrella polypore (Polyporus umbellatus) has round caps on small central stems.",
+        "habitat": "At the base of old oaks, sometimes on stumps or other broadleaf trees; it rots the roots and comes back to the same tree for years. It is common in the eastern US and rare in the West; in Europe it is uncommon and declining, under old oaks and sweet chestnuts.",
+        "season": "Late summer to late autumn, mostly September and October, often after the first cool nights that follow rain.",
+        "picking": "Cut the rosette at the base with a knife, take only fresh, firm ones and leave the tree to fruit again. In Europe it is protected by law in Poland, Estonia, Latvia and Lithuania and red-listed in Germany, Austria and elsewhere: check local rules.",
+        "kitchen": "Once identified with certainty, cook it thoroughly. Shake and rinse soil and insects from between the caps and trim the tough core; fried or roasted, the caps crisp at the edges and taste rich, earthy and slightly peppery.",
+        "keeps": "Several days in the fridge in a paper bag. It freezes well after cooking and dries well.",
+        "source": "Identification and habitat: MushroomExpert.com. Status in Europe: IUCN Red List."
+      }
     },
     "it": {
       "name": "Grifola (maitake)",
       "description": "Una grossa rosetta di fronde grigio-brune sovrapposte ai piedi delle vecchie querce, con i pori bianchi sotto",
-      "howTo": "Cercala alla base di querce vecchie o deperienti da fine agosto a ottobre; spesso ricompare sullo stesso albero anno dopo anno. È protetta in parte dell'Europa centrale e settentrionale"
+      "howTo": "Cercala alla base di querce vecchie o deperienti da fine agosto a ottobre; spesso ricompare sullo stesso albero anno dopo anno. È protetta in parte dell'Europa centrale e settentrionale",
+      "guide": {
+        "identify": "Una rosetta da 15 a 40 cm formata da molti cappellini grigio bruni sovrapposti, a cucchiaio o a ventaglio, larghi da 3 a 14 cm, che si diramano da una base bianca comune. La parte inferiore è bianca, con pori minuscoli e non lamelle; la carne è bianca e soda e non si macchia al taglio né alla pressione. Il Meripilus giganteus ha cappelli più grandi e spessi che anneriscono al tocco; il Polyporus umbellatus ha cappellini rotondi su piccoli gambi centrali.",
+        "habitat": "Alla base di vecchie querce, a volte su ceppaie o altre latifoglie; fa marcire le radici e torna sullo stesso albero per anni. È comune nell'est degli Stati Uniti e rara nell'ovest; in Europa è poco comune e in calo, sotto vecchie querce e castagni.",
+        "season": "Dalla fine dell'estate alla fine dell'autunno, soprattutto a settembre e ottobre, spesso dopo le prime notti fresche che seguono la pioggia.",
+        "picking": "Taglia la rosetta alla base con il coltello, prendi solo esemplari freschi e sodi e lascia che l'albero fruttifichi di nuovo. In Europa è protetta per legge in Polonia, Estonia, Lettonia e Lituania e compare nelle liste rosse di Germania, Austria e altri paesi; in Italia molte regioni chiedono il tesserino e fissano limiti giornalieri: informati sulle regole locali.",
+        "kitchen": "Una volta identificata con certezza, cuocila bene. Scuoti e sciacqua via terra e insetti rimasti tra i cappellini e togli la base dura; in padella o al forno i cappellini diventano croccanti ai bordi e hanno un sapore ricco, terroso e un po' pepato.",
+        "keeps": "Alcuni giorni in frigorifero in un sacchetto di carta. Si congela bene da cotta e si essicca bene.",
+        "source": "Riconoscimento e habitat: MushroomExpert.com. Stato in Europa: Lista rossa IUCN."
+      }
     },
     "fr": {
       "name": "Polypore en touffe",
       "description": "Une grosse rosette de lobes gris-brun imbriqués au pied des vieux chênes, aux pores blancs dessous",
-      "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord"
+      "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord",
+      "guide": {
+        "identify": "Une rosette de 15 à 40 cm faite de nombreux petits chapeaux gris-brun superposés, en cuillère ou en éventail, de 3 à 14 cm chacun, qui se ramifient à partir d'une base blanche commune. Le dessous est blanc, avec des pores minuscules et pas de lames ; la chair est blanche et ferme et ne se tache ni à la coupe ni à la pression. Le polypore géant (Meripilus) a des chapeaux plus grands et plus épais qui noircissent au toucher ; le polypore en ombelle (Polyporus umbellatus) a des chapeaux ronds sur de petits pieds centraux.",
+        "habitat": "Au pied des vieux chênes, parfois sur des souches ou d'autres feuillus ; il pourrit les racines et revient sur le même arbre pendant des années. Il est commun dans l'est des États-Unis et rare dans l'ouest ; en Europe, il est peu commun et en déclin, sous les vieux chênes et châtaigniers.",
+        "season": "De la fin de l'été à la fin de l'automne, surtout en septembre et octobre, souvent après les premières nuits fraîches qui suivent la pluie.",
+        "picking": "Coupez la rosette à la base au couteau, ne prenez que des exemplaires frais et fermes et laissez l'arbre en redonner. En Europe, il est protégé par la loi en Pologne, en Estonie, en Lettonie et en Lituanie et inscrit sur la liste rouge de l'Allemagne, de l'Autriche et d'autres pays : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire. Secouez et rincez la terre et les insectes logés entre les chapeaux et retirez la base dure ; poêlés ou rôtis, les chapeaux deviennent croustillants sur les bords et ont un goût riche, terreux et un peu poivré.",
+        "keeps": "Plusieurs jours au réfrigérateur dans un sac en papier. Il se congèle bien une fois cuit et sèche bien.",
+        "source": "Identification et habitat : MushroomExpert.com. Statut en Europe : Liste rouge de l'UICN."
+      }
     },
     "de": {
       "name": "Klapperschwamm",
       "description": "Eine große Rosette aus sich überlappenden, graubraunen Hütchen am Fuß alter Eichen, unterseits mit weißen Poren",
-      "howTo": "Suche am Fuß alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt"
+      "howTo": "Suche am Fuß alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt",
+      "guide": {
+        "identify": "Eine Rosette von 15 bis 40 cm aus vielen dachziegelartig übereinanderliegenden, löffel- bis fächerförmigen, graubraunen Hütchen von je 3 bis 14 cm, die aus einem gemeinsamen weißen Strunk verzweigen. Die Unterseite ist weiß mit winzigen Poren, keine Lamellen; das Fleisch ist weiß und fest und verfärbt sich weder beim Schneiden noch bei Druck. Der Riesenporling (Meripilus) hat größere, dickere Hüte, die bei Druck schwarz anlaufen; der Eichhase (Polyporus umbellatus) hat runde Hütchen auf kleinen, zentralen Stielen.",
+        "habitat": "Am Fuß alter Eichen, manchmal an Stümpfen oder anderen Laubbäumen; er zersetzt die Wurzeln und kommt jahrelang am selben Baum wieder. Im Osten der USA ist er häufig, im Westen selten; in Europa ist er selten und geht zurück, unter alten Eichen und Esskastanien.",
+        "season": "Vom Spätsommer bis in den Spätherbst, meist im September und Oktober, oft nach den ersten kühlen Nächten auf Regen.",
+        "picking": "Schneide die Rosette am Grund mit dem Messer ab, nimm nur frische, feste Exemplare und lass den Baum wieder fruchten. In Europa ist er in Polen, Estland, Lettland und Litauen gesetzlich geschützt und unter anderem in Deutschland und Österreich auf der Roten Liste: Informiere dich über die Regeln vor Ort.",
+        "kitchen": "Erst wenn er sicher bestimmt ist: Gare ihn gründlich durch. Schüttle und spüle Erde und Insekten zwischen den Hütchen heraus und schneide den zähen Strunk weg; gebraten oder geröstet werden die Hütchen an den Rändern knusprig und schmecken kräftig, erdig und leicht pfeffrig.",
+        "keeps": "Einige Tage in einer Papiertüte im Kühlschrank. Gegart lässt er sich gut einfrieren, und er lässt sich gut trocknen.",
+        "source": "Bestimmung und Standort: MushroomExpert.com. Status in Europa: Rote Liste der IUCN."
+      }
     },
     "es": {
       "name": "Maitake",
       "description": "Una gran roseta de lóbulos pardo-grisáceos superpuestos al pie de robles viejos, con poros blancos por debajo",
-      "howTo": "Búscalo en la base de robles viejos o decaídos de finales de agosto a octubre; suele volver al mismo árbol año tras año. Está protegido en parte de Europa central y del norte"
+      "howTo": "Búscalo en la base de robles viejos o decaídos de finales de agosto a octubre; suele volver al mismo árbol año tras año. Está protegido en parte de Europa central y del norte",
+      "guide": {
+        "identify": "Una roseta de 15 a 40 cm formada por muchos sombreritos superpuestos, en forma de cuchara o abanico, gris pardos, de 3 a 14 cm cada uno, que se ramifican de una base blanca común. La cara inferior es blanca, con poros diminutos y no láminas; la carne es blanca y firme y no se mancha al cortarla ni al presionarla. El poliporo gigante (Meripilus) tiene sombreros más grandes y gruesos que se ennegrecen al tocarlos; Polyporus umbellatus tiene sombreritos redondos sobre pequeños pies centrales.",
+        "habitat": "Al pie de robles viejos, a veces en tocones o en otros árboles de hoja ancha; pudre las raíces y vuelve al mismo árbol durante años. Es común en el este de EE. UU. y raro en el oeste; en Europa es escaso y está en declive, bajo robles y castaños viejos.",
+        "season": "De finales de verano a finales de otoño, sobre todo en septiembre y octubre, a menudo tras las primeras noches frescas después de la lluvia.",
+        "picking": "Corta la roseta por la base con navaja, coge solo ejemplares frescos y firmes y deja que el árbol vuelva a dar. En Europa está protegido por ley en Polonia, Estonia, Letonia y Lituania y figura en las listas rojas de Alemania, Austria y otros países: infórmate de las normas locales.",
+        "kitchen": "Una vez identificado con certeza, cocínalo a fondo. Sacude y enjuaga la tierra y los insectos que quedan entre los sombreritos y quita la base dura; fritos o asados, los sombreritos quedan crujientes por los bordes y saben intensos, terrosos y algo picantes.",
+        "keeps": "Varios días en la nevera en una bolsa de papel. Se congela bien una vez cocinado y se seca bien.",
+        "source": "Identificación y hábitat: MushroomExpert.com. Situación en Europa: Lista Roja de la UICN."
+      }
     },
     "pt": {
       "name": "Maitake",
       "description": "Uma grande roseta de lóbulos castanho-acinzentados sobrepostos ao pé de carvalhos velhos, com poros brancos por baixo",
-      "howTo": "Procure na base de carvalhos velhos ou debilitados do fim de agosto a outubro; costuma voltar à mesma árvore ano após ano. É protegido em parte da Europa central e do norte"
+      "howTo": "Procure na base de carvalhos velhos ou debilitados do fim de agosto a outubro; costuma voltar à mesma árvore ano após ano. É protegido em parte da Europa central e do norte",
+      "guide": {
+        "identify": "Uma roseta de 15 a 40 cm formada por muitos chapéus pequenos cinzento-acastanhados, sobrepostos, em forma de colher ou de leque, de 3 a 14 cm cada, que se ramificam de uma base branca comum. A face inferior é branca, com poros minúsculos e não lâminas; a carne é branca e firme e não mancha ao corte nem à pressão. O Meripilus giganteus tem chapéus maiores e mais grossos que ficam negros ao toque; o Polyporus umbellatus tem chapéus redondos em pequenos pés centrais.",
+        "habitat": "Na base de carvalhos velhos, por vezes em cepos ou noutras árvores de folha larga; apodrece as raízes e volta à mesma árvore durante anos. É comum no leste dos EUA e raro no oeste; na Europa é pouco comum e está em declínio, debaixo de carvalhos e castanheiros velhos.",
+        "season": "Do fim do verão ao fim do outono, sobretudo em setembro e outubro, muitas vezes depois das primeiras noites frescas a seguir à chuva.",
+        "picking": "Corte a roseta pela base com uma faca, apanhe só exemplares frescos e firmes e deixe a árvore voltar a dar. Na Europa está protegido por lei na Polónia, na Estónia, na Letónia e na Lituânia e consta das listas vermelhas da Alemanha, da Áustria e de outros países: informe-se sobre as regras locais.",
+        "kitchen": "Depois de identificado com certeza, cozinhe-o bem. Sacuda e passe por água a terra e os insetos que ficam entre os chapéus e corte a base rija; fritos ou assados, os chapéus ficam estaladiços nas pontas e têm um sabor rico, terroso e um pouco apimentado.",
+        "keeps": "Vários dias no frigorífico num saco de papel. Congela bem depois de cozinhado e seca bem.",
+        "source": "Identificação e habitat: MushroomExpert.com. Estatuto na Europa: Lista Vermelha da UICN."
+      }
     }
   },
   "identification": {

@@ -2309,5 +2309,21 @@
     "closing": "Empieza tu huerto",
     "early": "Huerta está en acceso anticipado: sus consejos mejoran cada semana.",
     "feedback": "¡Cuéntame qué falla!"
+  },
+  "page": {
+    "title": "{{name}}: {{start}}, cuidados y {{end}}",
+    "start": {
+      "sow": "siembra",
+      "plant": "plantación"
+    },
+    "end": {
+      "vegetable": "cosecha",
+      "fruit": "cosecha",
+      "herb": "recolección",
+      "flower": "floración",
+      "cover": "incorporación al suelo"
+    },
+    "signIn": "Inicia sesión para planificar tu huerto",
+    "home": "Huerta"
   }
 }

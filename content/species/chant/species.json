@@ -19,32 +19,86 @@
     "en": {
       "name": "Golden Chanterelle",
       "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
-      "howTo": "Look for them in deciduous forests, especially near oak and beech trees"
+      "howTo": "Look for them in deciduous forests, especially near oak and beech trees",
+      "guide": {
+        "identify": "Egg-yolk to golden yellow and up to 10 cm across, the cap a shallow funnel with a wavy, inrolled edge. Underneath are blunt, forking ridges that run down the stem; they cannot be lifted off one by one like gills. The stem is solid, the flesh white to pale yellow and firm, with a faint smell of apricots. Jack-o'-lanterns (Omphalotus) have thin, crowded true gills, grow in clusters from wood or buried roots and are orange right through; the false chanterelle (Hygrophoropsis aurantiaca) is deeper orange and soft, with thin, crowded gills.",
+        "habitat": "It lives with tree roots: under oak, beech, birch, chestnut, spruce and pine, mostly on acid soil in moss, often on banks and beside paths. Common across Europe, from the lowlands to the mountains. In North America the golden chanterelle is several close species, such as Cantharellus flavus in the East, C. californicus under live oaks in California and C. cascadensis in the Pacific Northwest.",
+        "season": "In central and northern Europe from late June to October, after warm, soaking rain; in southern Europe later and longer, into winter in Mediterranean oak woods. In the eastern US it fruits in summer after warm rain; in the West it follows the autumn rains and in California runs on into winter.",
+        "picking": "Cut or twist at the base, brush off soil on the spot and leave the small ones to grow. In Germany it is specially protected and may be picked only in small amounts for your own use; Swiss cantons, Italian regions, parts of France and Spain and US public lands set their own limits or permits, so check the local rules.",
+        "kitchen": "Once identified with certainty, brush chanterelles clean rather than washing them: they soak up water. Never eat them raw; cook them well, first in a dry pan until the water has gone, then in butter. Mild, fruity and slightly peppery, with a firm bite; good with eggs, cream, potatoes, pasta and chicken.",
+        "keeps": "A few days in the fridge in paper, not plastic. Dried chanterelles turn tough, so for longer keeping fry them in butter and freeze them.",
+        "source": "Identification and habitat: First Nature (UK) and MushroomExpert.com. North American species and look-alikes: University of Florida IFAS Extension. Protection: German Federal Species Protection Ordinance. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Galletti",
       "description": "Un fungo giallo dorato con una forma a imbuto distintiva e aroma fruttato",
-      "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi"
+      "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi",
+      "guide": {
+        "identify": "Giallo tuorlo o giallo oro e largo fino a 10 cm, con il cappello a imbuto svasato e il margine ondulato e involuto. Sotto ha pieghe spesse, ottuse e biforcate che scendono sul gambo; non si staccano una per una come le lamelle. Il gambo è pieno, la carne bianca o giallo pallido e soda, con un leggero odore di albicocca. I funghi dell'olivo (Omphalotus) hanno lamelle vere, sottili e fitte, crescono a cespi su legno o radici interrate e sono arancioni anche dentro; il falso gallinaccio (Hygrophoropsis aurantiaca) è di un arancio più carico e molle, con lamelle sottili e fitte.",
+        "habitat": "Vivono in simbiosi con le radici degli alberi: sotto querce, faggi, betulle, castagni, abeti rossi e pini, soprattutto su terreno acido tra il muschio, spesso su scarpate e ai bordi dei sentieri. Comuni in tutta Europa, dalla pianura alla montagna. In Nord America il gallinaccio è un gruppo di specie vicine, come Cantharellus flavus a est, C. californicus sotto le querce sempreverdi in California e C. cascadensis nel Nord-Ovest pacifico.",
+        "season": "Nell'Europa centrale e settentrionale da fine giugno a ottobre, dopo piogge calde e abbondanti; nel Sud Europa più tardi e più a lungo, fino all'inverno nei querceti mediterranei. Nell'est degli Stati Uniti d'estate dopo piogge calde; a ovest dopo le piogge autunnali, e in California fino all'inverno.",
+        "picking": "Tagliali o girali alla base, puliscili dalla terra sul posto e lascia i piccoli. In Germania sono una specie particolarmente protetta e se ne possono raccogliere solo piccole quantità per uso personale; in Italia le regioni chiedono di solito un tesserino e fissano limiti giornalieri, e anche i cantoni svizzeri, zone di Francia e Spagna e i terreni pubblici degli Stati Uniti hanno regole proprie: informati prima di andare.",
+        "kitchen": "Una volta identificati con certezza, pulisci i galletti con un pennello invece di lavarli: assorbono acqua. Non mangiarli mai crudi; cuocili bene, prima in padella senza grassi finché perdono l'acqua, poi nel burro. Sapore delicato, fruttato e un po' pepato, consistenza soda; stanno bene con uova, panna, patate, pasta e pollo.",
+        "keeps": "Qualche giorno in frigorifero nella carta, non nella plastica. Secchi diventano coriacei: per conservarli più a lungo, saltali nel burro e congelali.",
+        "source": "Identificazione e habitat: First Nature (Regno Unito) e MushroomExpert.com. Specie nordamericane e sosia: University of Florida IFAS Extension. Protezione: ordinanza federale tedesca sulla protezione delle specie. Stagione: dati GBIF."
+      }
     },
     "fr": {
       "name": "Girolle",
       "description": "Un champignon jaune doré en forme d'entonnoir avec un arôme fruité distinctif",
-      "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres"
+      "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres",
+      "guide": {
+        "identify": "Jaune d'œuf à jaune doré et jusqu'à 10 cm de large, le chapeau en entonnoir évasé à marge ondulée et enroulée. Dessous, des plis épais, obtus et fourchus descendent sur le pied ; on ne peut pas les détacher un à un comme des lames. Le pied est plein, la chair blanche à jaune pâle et ferme, avec une légère odeur d'abricot. Les clitocybes de l'olivier (Omphalotus) ont de vraies lames fines et serrées, poussent en touffes sur le bois ou des racines enterrées et sont orange jusque dans la chair ; la fausse girolle (Hygrophoropsis aurantiaca) est d'un orange plus vif et molle, avec des lames fines et serrées.",
+        "habitat": "Elle vit en association avec les racines des arbres : sous les chênes, hêtres, bouleaux, châtaigniers, épicéas et pins, surtout sur sol acide dans la mousse, souvent sur les talus et au bord des chemins. Commune dans toute l'Europe, de la plaine à la montagne. En Amérique du Nord, la girolle regroupe plusieurs espèces proches, comme Cantharellus flavus dans l'Est, C. californicus sous les chênes verts en Californie et C. cascadensis dans le Nord-Ouest pacifique.",
+        "season": "En Europe centrale et du Nord, de fin juin à octobre, après des pluies chaudes et abondantes ; dans le sud de l'Europe, plus tard et plus longtemps, jusqu'en hiver dans les chênaies méditerranéennes. Dans l'est des États-Unis, en été après des pluies chaudes ; dans l'Ouest, après les pluies d'automne, et jusqu'en hiver en Californie.",
+        "picking": "Coupez-la ou tournez-la à la base, nettoyez la terre sur place et laissez les petites. En Allemagne, elle est spécialement protégée et seules de petites quantités pour un usage personnel sont permises ; les cantons suisses, les régions italiennes, certaines communes et forêts de France, des zones d'Espagne et les terres publiques américaines fixent leurs propres limites ou permis : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifiées avec certitude, brossez les girolles au lieu de les laver : elles se gorgent d'eau. Ne les mangez jamais crues ; cuisez-les bien, d'abord à la poêle sans matière grasse jusqu'à évaporation de leur eau, puis au beurre. Goût doux, fruité et un peu poivré, texture ferme ; avec les œufs, la crème, les pommes de terre, les pâtes et le poulet.",
+        "keeps": "Quelques jours au réfrigérateur dans du papier, pas dans du plastique. Séchées, elles deviennent coriaces : pour les garder plus longtemps, faites-les revenir au beurre et congelez-les.",
+        "source": "Identification et habitat : First Nature (Royaume-Uni) et MushroomExpert.com. Espèces nord-américaines et sosies : University of Florida IFAS Extension. Protection : ordonnance fédérale allemande sur la protection des espèces. Saison : données GBIF."
+      }
     },
     "de": {
       "name": "Pfifferling",
       "description": "Ein goldgelber Pilz mit charakteristischer Trichterform und fruchtigem Aroma",
-      "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen"
+      "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen",
+      "guide": {
+        "identify": "Eigelb bis goldgelb und bis 10 cm breit, der Hut ein flacher Trichter mit welligem, eingerolltem Rand. Unten laufen stumpfe, gegabelte Leisten am Stiel herab; anders als Lamellen lassen sie sich nicht einzeln abheben. Der Stiel ist voll, das Fleisch weiß bis blassgelb und fest, mit leichtem Aprikosenduft. Ölbaumtrichterlinge (Omphalotus) haben dünne, dichte echte Lamellen, wachsen büschelig aus Holz oder vergrabenen Wurzeln und sind bis ins Fleisch orange; der Falsche Pfifferling (Hygrophoropsis aurantiaca) ist kräftiger orange und weich, mit dünnen, dichten Lamellen.",
+        "habitat": "Er lebt mit Baumwurzeln zusammen: unter Eiche, Buche, Birke, Kastanie, Fichte und Kiefer, meist auf saurem Boden im Moos, oft an Böschungen und Wegrändern. In ganz Europa verbreitet, vom Flachland bis ins Gebirge. In Nordamerika ist der Pfifferling eine Gruppe naher Arten, etwa Cantharellus flavus im Osten, C. californicus unter immergrünen Eichen in Kalifornien und C. cascadensis im pazifischen Nordwesten.",
+        "season": "In Mittel- und Nordeuropa von Ende Juni bis Oktober, nach warmem, durchdringendem Regen; in Südeuropa später und länger, in mediterranen Eichenwäldern bis in den Winter. Im Osten der USA im Sommer nach warmem Regen; im Westen nach den Herbstregen, in Kalifornien bis in den Winter.",
+        "picking": "Schneide oder dreh ihn am Grund ab, putze die Erde gleich vor Ort ab und lass die kleinen stehen. In Deutschland ist er besonders geschützt und darf nur in geringen Mengen für den eigenen Bedarf gesammelt werden; Schweizer Kantone, italienische Regionen, Teile Frankreichs und Spaniens und öffentliches Land in den USA haben eigene Höchstmengen oder Genehmigungen, also prüfe die Regeln vor Ort.",
+        "kitchen": "Wenn sie sicher bestimmt sind, bürste die Pfifferlinge ab, statt sie zu waschen: sie saugen sich mit Wasser voll. Iss sie nie roh; gare sie gut durch, erst in der trockenen Pfanne, bis das Wasser verdampft ist, dann in Butter. Mild, fruchtig und leicht pfeffrig, mit festem Biss; passt zu Ei, Sahne, Kartoffeln, Nudeln und Hähnchen.",
+        "keeps": "Ein paar Tage im Kühlschrank in Papier, nicht in Plastik. Getrocknet werden Pfifferlinge zäh; brate sie für längere Zeit lieber in Butter an und friere sie ein.",
+        "source": "Bestimmung und Standort: First Nature (UK) und MushroomExpert.com. Nordamerikanische Arten und Doppelgänger: University of Florida IFAS Extension. Schutz: Bundesartenschutzverordnung. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Rebozuelo",
       "description": "Un hongo amarillo dorado con forma de embudo distintiva y aroma afrutado",
-      "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas"
+      "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas",
+      "guide": {
+        "identify": "Amarillo yema a dorado y de hasta 10 cm, con el sombrero en embudo poco profundo y el borde ondulado y enrollado. Debajo tiene pliegues gruesos y romos que se bifurcan y bajan por el pie; no se pueden separar uno a uno como las láminas. El pie es macizo y la carne, blanca a amarillo pálido y firme, huele levemente a albaricoque. Las setas del olivo (Omphalotus) tienen láminas verdaderas finas y apretadas, salen en grupos de madera o de raíces enterradas y son anaranjadas también por dentro; el falso rebozuelo (Hygrophoropsis aurantiaca) es más anaranjado y blando, con láminas finas y apretadas.",
+        "habitat": "Vive asociado a las raíces de los árboles: bajo robles, hayas, abedules, castaños, píceas y pinos, sobre todo en suelos ácidos con musgo, a menudo en taludes y junto a caminos. Común en toda Europa, del llano a la montaña. En Norteamérica el rebozuelo es un grupo de especies cercanas, como Cantharellus flavus en el este, C. californicus bajo encinas americanas en California y C. cascadensis en el noroeste del Pacífico.",
+        "season": "En el centro y norte de Europa, de finales de junio a octubre, tras lluvias cálidas y abundantes; en el sur de Europa sale más tarde y dura más, hasta el invierno en los encinares y alcornocales mediterráneos. En el este de EE. UU., en verano tras lluvias cálidas; en el oeste, tras las lluvias de otoño, y en California hasta el invierno.",
+        "picking": "Córtalo o gíralo por la base, límpialo de tierra en el sitio y deja los pequeños. En Alemania está especialmente protegido y solo se permiten pequeñas cantidades para consumo propio; los cantones suizos, las regiones italianas, zonas de Francia y España y los terrenos públicos de EE. UU. fijan sus propios límites o permisos, así que consulta las normas locales.",
+        "kitchen": "Una vez identificados con total seguridad, limpia los rebozuelos con un cepillo en lugar de lavarlos: absorben agua. No los comas nunca crudos; cocínalos bien, primero en la sartén sin grasa hasta que suelten el agua y luego con mantequilla. Sabor suave, afrutado y algo picante, textura firme; van bien con huevos, nata, patatas, pasta y pollo.",
+        "keeps": "Unos días en la nevera, en papel, no en plástico. Secos se vuelven correosos; para guardarlos más tiempo, saltéalos en mantequilla y congélalos.",
+        "source": "Identificación y hábitat: First Nature (Reino Unido) y MushroomExpert.com. Especies norteamericanas y especies parecidas: University of Florida IFAS Extension. Protección: Reglamento federal alemán de protección de especies. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Cantarelo",
       "description": "Um cogumelo amarelo-dourado com formato de funil distinto e aroma frutado",
-      "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias"
+      "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias",
+      "guide": {
+        "identify": "Amarelo-gema a dourado e com até 10 cm, o chapéu em funil pouco fundo, de margem ondulada e enrolada. Por baixo tem pregas grossas, rombas e bifurcadas que descem pelo pé; não se soltam uma a uma como as lâminas. O pé é cheio e a carne branca a amarelo-pálida e firme, com um leve cheiro a alperce. Os cogumelos do género Omphalotus têm lâminas verdadeiras, finas e apertadas, nascem em tufos na madeira ou em raízes enterradas e são cor de laranja também por dentro; o falso-cantarelo (Hygrophoropsis aurantiaca) é de um laranja mais vivo e mole, com lâminas finas e apertadas.",
+        "habitat": "Vive associado às raízes das árvores: debaixo de carvalhos, faias, bétulas, castanheiros, píceas e pinheiros, sobretudo em solo ácido com musgo, muitas vezes em taludes e à beira dos caminhos. Comum em toda a Europa, da planície à montanha. Na América do Norte, o cantarelo é um grupo de espécies próximas, como Cantharellus flavus no leste, C. californicus debaixo de carvalhos de folha persistente na Califórnia e C. cascadensis no noroeste do Pacífico.",
+        "season": "Na Europa central e do norte, do fim de junho a outubro, depois de chuva quente e abundante; no sul da Europa aparece mais tarde e dura mais, até ao inverno nos montados e carvalhais mediterrânicos. No leste dos EUA, no verão depois de chuva quente; no oeste, depois das chuvas de outono, e na Califórnia até ao inverno.",
+        "picking": "Corte-o ou torça-o pela base, limpe a terra no local e deixe os pequenos. Na Alemanha é uma espécie especialmente protegida e só se podem apanhar pequenas quantidades para consumo próprio; cantões suíços, regiões italianas, zonas de França e Espanha e terrenos públicos dos EUA têm limites ou licenças próprios, por isso confirme as regras locais.",
+        "kitchen": "Depois de identificados com toda a certeza, limpe os cantarelos com uma escova em vez de os lavar: absorvem água. Nunca os coma crus; cozinhe-os bem, primeiro numa frigideira sem gordura até largarem a água e depois com manteiga. Sabor suave, frutado e um pouco apimentado, textura firme; ficam bem com ovos, natas, batatas, massa e frango.",
+        "keeps": "Uns dias no frigorífico, em papel, não em plástico. Secos ficam rijos; para os guardar mais tempo, salteie-os em manteiga e congele-os.",
+        "source": "Identificação e habitat: First Nature (Reino Unido) e MushroomExpert.com. Espécies norte-americanas e sósias: University of Florida IFAS Extension. Proteção: regulamento federal alemão de proteção das espécies. Época: registos do GBIF."
+      }
     }
   },
   "identification": {

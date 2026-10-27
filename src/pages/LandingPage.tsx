@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Trans, useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
+import { alternates, localizedPath, pathLanguage } from '@/lib/seo-pages';
 import { Logo } from '@/components/Logo';
 import { SpaceTab } from '@/components/SpaceTab';
 import { Button } from '@/components/ui/button';
@@ -105,9 +106,14 @@ export default function LandingPage() {
   return (
     <>
       <SEO
-        title={t('home.headline')}
-        description={t('home.description')}
-        canonicalUrl={base}
+        title={t('home.metaTitle')}
+        description={t('home.metaDescription')}
+        bare
+        canonicalUrl={localizedPath(
+          '/',
+          pathLanguage(window.location.pathname) ?? 'en'
+        )}
+        alternates={alternates('/', window.location.origin)}
       />
       <div className={styles.page}>
         <section className={styles.hero} aria-labelledby='landing-title'>

@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Guía de recolección",
+    "appDescription": "Lo que crece a tu alrededor y cuándo",
     "loading": "Cargando...",
     "error": "Ocurrió un error",
     "success": "Éxito",
@@ -89,7 +89,9 @@
     "proof": {
       "line": "Probado con la temporada {{year}} en {{spots}} lugares donde la gente encontró setas: la previsión valoró mejor los días de temporada de cada seta que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>.",
       "link": "Cómo lo comprobamos"
-    }
+    },
+    "metaTitle": "Funges: mapa de recolección y planificador de huerto",
+    "metaDescription": "Previsiones de recolección de setas y plantas silvestres y un planificador para tu huerto. Lo que crece a tu alrededor y cuándo."
   },
   "worthForagingNow": {
     "title": "Qué merece la pena recolectar ahora",

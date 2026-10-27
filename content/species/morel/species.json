@@ -19,32 +19,86 @@
     "en": {
       "name": "Morchella",
       "description": "A distinctive mushroom with a honeycomb cap that appears in spring",
-      "howTo": "Look in disturbed areas, burned forests, and near dead trees in spring"
+      "howTo": "Look in disturbed areas, burned forests, and near dead trees in spring",
+      "guide": {
+        "identify": "The cap is a honeycomb of pits and ridges, yellowish, grey-brown or almost black, on a pale stem. Cut every one in half lengthways: a true morel is a single hollow from cap tip to stem base, with the cap joined to the stem at its lower edge. The deadly false morel (Gyromitra esculenta) has a brain-like, reddish-brown head and a chambered or cottony inside; cooking does not make it safe. Verpa bohemica has a cap attached only at the very top, like a thimble, and a stem stuffed with cottony pith.",
+        "habitat": "On the ground in open broadleaf and river woods, old orchards and gardens, often by ash, elm, poplar or apple, on lime-rich soil or bark mulch. In the eastern US, by dying elms, ash and old apple trees; in the western US, in conifer forest the spring after a fire.",
+        "season": "March to May: earlier in the lowlands of southern Europe, later in the north and in the mountains, into June. It follows soaking spring rain once the soil warms, and in the mountains of the western US the melting snow.",
+        "picking": "Cut the stem at ground level with a knife and carry morels in a basket or mesh bag. In Germany all morels are protected: small amounts for your own use only. Elsewhere many regions and US national forests set limits or ask for a permit: check local rules.",
+        "kitchen": "Once identified with certainty, morels must be cooked thoroughly: raw or undercooked, dried ones included, they are toxic. France's food-safety agency ANSES advises 20 to 30 minutes in the pan for wild mushrooms. Large meals have caused dizziness and trembling even when cooked, so keep portions modest; they suit butter, cream, asparagus and chicken.",
+        "keeps": "Two days in the fridge, in a paper bag. They dry very well; soak dried morels, strain the water into the sauce and cook them as long as fresh ones.",
+        "source": "Identification and habitat: Missouri Department of Conservation and First Nature. Toxicity and cooking: ANSES and Lagrange and Vernoux (Toxins, 2020). Rules: German Federal Species Protection Ordinance and US Forest Service. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Morchella",
       "description": "Un fungo distintivo con cappello a nido d'ape che appare in primavera",
-      "howTo": "Cerca in aree disturbate, foreste bruciate e vicino ad alberi morti in primavera"
+      "howTo": "Cerca in aree disturbate, foreste bruciate e vicino ad alberi morti in primavera",
+      "guide": {
+        "identify": "Il cappello delle spugnole è un nido d'ape di alveoli e costolature, giallastro, bruno grigio o quasi nero, su un gambo chiaro. Taglia ogni spugnola a metà per il lungo: una vera spugnola è un'unica cavità vuota dalla punta del cappello alla base del gambo, e il cappello è saldato al gambo con il suo margine inferiore. La falsa spugnola (Gyromitra esculenta), mortale, ha una testa bruno rossiccia ripiegata come un cervello e l'interno diviso in camere o cotonoso; nemmeno cotta è sicura. La Verpa bohemica ha il cappello attaccato solo in cima, come un ditale, su un gambo pieno di un midollo cotonoso.",
+        "habitat": "A terra in boschi chiari di latifoglie e boschi ripariali, vecchi frutteti e giardini, spesso vicino a frassini, olmi, pioppi o meli, su terreno calcareo o su pacciamatura di corteccia. Negli Stati Uniti orientali, vicino a olmi morenti, frassini e vecchi meli; in quelli occidentali, nei boschi di conifere la primavera dopo un incendio.",
+        "season": "Da marzo a maggio: prima nelle pianure dell'Europa meridionale, più tardi al nord e in montagna, fino a giugno. Escono dopo piogge primaverili abbondanti, quando il terreno si scalda, e nelle montagne degli Stati Uniti occidentali con lo scioglimento della neve.",
+        "picking": "Taglia il gambo a filo del terreno con un coltello e porta le spugnole in un cesto o in una rete. In Germania tutte le spugnole sono protette: solo piccole quantità per uso personale. Altrove molte regioni e le foreste nazionali degli Stati Uniti fissano limiti o chiedono un permesso: controlla le regole locali.",
+        "kitchen": "Una volta identificate con certezza, le spugnole vanno cotte a fondo: crude o poco cotte, anche secche, sono tossiche. L'agenzia francese per la sicurezza alimentare ANSES consiglia 20-30 minuti in padella per i funghi selvatici. Pasti abbondanti hanno causato capogiri e tremori anche dopo la cottura, quindi mangiane porzioni moderate; stanno bene con burro, panna, asparagi e pollo.",
+        "keeps": "Due giorni in frigorifero, in un sacchetto di carta. Si seccano molto bene; metti in ammollo quelle secche, filtra l'acqua dell'ammollo nel sugo e cuocile a lungo quanto quelle fresche.",
+        "source": "Identificazione e habitat: Missouri Department of Conservation e First Nature. Tossicità e cottura: ANSES e Lagrange e Vernoux (Toxins, 2020). Regole: ordinanza federale tedesca sulla protezione delle specie (BArtSchV) e US Forest Service. Stagione: segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Morchella",
       "description": "Un champignon distinctif avec un chapeau alvéolé qui apparaît au printemps",
-      "howTo": "Cherchez dans les zones perturbées, les forêts brûlées et près des arbres morts au printemps"
+      "howTo": "Cherchez dans les zones perturbées, les forêts brûlées et près des arbres morts au printemps",
+      "guide": {
+        "identify": "Le chapeau des morilles forme un nid d'abeilles d'alvéoles et de côtes, jaunâtre, brun gris ou presque noir, sur un pied pâle. Coupez chaque morille en deux dans la longueur : une vraie morille est une seule cavité creuse de la pointe du chapeau à la base du pied, et le chapeau est soudé au pied par son bord inférieur. La gyromitre (Gyromitra esculenta), mortelle, a une tête brun rouge plissée comme un cerveau et un intérieur cloisonné ou cotonneux ; même cuite, elle n'est pas sûre. La verpe de Bohême (Verpa bohemica) a un chapeau attaché seulement au sommet, comme un dé à coudre, sur un pied bourré d'une moelle cotonneuse.",
+        "habitat": "Au sol dans les bois clairs de feuillus et les forêts alluviales, les vieux vergers et les jardins, souvent près des frênes, ormes, peupliers ou pommiers, sur sol calcaire ou sur paillis d'écorce. Dans l'est des États-Unis, près des ormes dépérissants, des frênes et des vieux pommiers ; dans l'ouest, dans les forêts de conifères au printemps qui suit un incendie.",
+        "season": "De mars à mai : plus tôt dans les plaines du sud de l'Europe, plus tard au nord et en montagne, jusqu'en juin. Elles sortent après de bonnes pluies de printemps, quand le sol se réchauffe, et dans les montagnes de l'ouest des États-Unis à la fonte des neiges.",
+        "picking": "Coupez le pied au ras du sol avec un couteau et transportez les morilles dans un panier ou un sac en filet. En Allemagne, toutes les morilles sont protégées : seules de petites quantités pour votre usage personnel sont permises. Ailleurs, beaucoup de régions et de forêts nationales américaines fixent des limites ou demandent un permis : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifiées avec certitude, les morilles doivent être bien cuites : crues ou insuffisamment cuites, séchées comprises, elles sont toxiques. L'ANSES conseille de cuire les champignons sauvages 20 à 30 minutes à la poêle. De gros repas ont provoqué vertiges et tremblements même après cuisson, alors mangez-en des portions modérées ; elles vont bien avec le beurre, la crème, les asperges et le poulet.",
+        "keeps": "Deux jours au réfrigérateur, dans un sac en papier. Elles sèchent très bien ; réhydratez les morilles séchées, filtrez l'eau de trempage pour la sauce et cuisez-les aussi longtemps que les fraîches.",
+        "source": "Identification et habitat : Missouri Department of Conservation et First Nature. Toxicité et cuisson : ANSES et Lagrange et Vernoux (Toxins, 2020). Règles : ordonnance fédérale allemande sur la protection des espèces (BArtSchV) et US Forest Service. Saison : observations GBIF."
+      }
     },
     "de": {
       "name": "Morchella",
       "description": "Charakteristischer Pilz mit wabenförmigem Hut, erscheint im Frühling",
-      "howTo": "Suche in gestörten Gebieten, verbrannten Wäldern und bei toten Bäumen im Frühling"
+      "howTo": "Suche in gestörten Gebieten, verbrannten Wäldern und bei toten Bäumen im Frühling",
+      "guide": {
+        "identify": "Der Hut der Morcheln ist ein Wabenmuster aus Gruben und Rippen, gelblich, graubraun oder fast schwarz, auf einem hellen Stiel. Schneide jede Morchel der Länge nach durch: eine echte Morchel ist von der Hutspitze bis zum Stielgrund ein einziger Hohlraum, und der Hut ist mit seinem unteren Rand am Stiel angewachsen. Die tödlich giftige Frühjahrs-Lorchel (Gyromitra esculenta) hat einen hirnartig gewundenen, rotbraunen Kopf und ist innen gekammert oder wattig; auch Kochen macht sie nicht sicher. Bei der Böhmischen Verpel (Verpa bohemica) sitzt der Hut wie ein Fingerhut nur oben auf dem Stiel, und der Stiel ist mit wattigem Mark gefüllt.",
+        "habitat": "Am Boden in lichten Laub- und Auwäldern, alten Obstgärten und Gärten, oft bei Esche, Ulme, Pappel oder Apfelbaum, auf kalkreichem Boden oder Rindenmulch. Im Osten der USA bei absterbenden Ulmen, Eschen und alten Apfelbäumen; im Westen der USA im Nadelwald im Frühjahr nach einem Waldbrand.",
+        "season": "März bis Mai: früher im Tiefland Südeuropas, später im Norden und im Gebirge, dort bis in den Juni. Morcheln folgen auf durchdringenden Frühlingsregen, sobald sich der Boden erwärmt, in den Bergen im Westen der USA auf die Schneeschmelze.",
+        "picking": "Schneide den Stiel mit dem Messer am Boden ab und trag Morcheln im Korb oder im Netzbeutel. In Deutschland sind alle Morcheln besonders geschützt: nur geringe Mengen für den eigenen Bedarf. Anderswo setzen viele Regionen und die National Forests der USA Mengengrenzen oder verlangen eine Genehmigung: prüfe die Regeln vor Ort.",
+        "kitchen": "Sicher bestimmte Morcheln müssen gründlich gegart werden: roh oder zu kurz gegart sind sie giftig, auch getrocknete. Die französische Lebensmittelbehörde ANSES empfiehlt für Wildpilze 20 bis 30 Minuten in der Pfanne. Große Portionen haben auch gegart schon Schwindel und Zittern ausgelöst, iss also nur mäßig; Morcheln passen zu Butter, Sahne, Spargel und Hähnchen.",
+        "keeps": "Zwei Tage im Kühlschrank, in einer Papiertüte. Sie lassen sich sehr gut trocknen; weiche getrocknete Morcheln ein, gieß das Einweichwasser durch ein Sieb in die Soße und gare sie so lange wie frische.",
+        "source": "Bestimmung und Standort: Missouri Department of Conservation und First Nature. Giftigkeit und Zubereitung: ANSES sowie Lagrange und Vernoux (Toxins, 2020). Regeln: Bundesartenschutzverordnung und US Forest Service. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Morchella",
       "description": "Un hongo distintivo con sombrero en forma de panal que aparece en primavera",
-      "howTo": "Busca en áreas alteradas, bosques quemados y cerca de árboles muertos en primavera"
+      "howTo": "Busca en áreas alteradas, bosques quemados y cerca de árboles muertos en primavera",
+      "guide": {
+        "identify": "Las colmenillas tienen el sombrero como un panal de alvéolos y costillas, amarillento, pardo grisáceo o casi negro, sobre un pie claro. Córtalas todas por la mitad a lo largo: una colmenilla verdadera es un único hueco desde la punta del sombrero hasta la base del pie, y el sombrero está unido al pie por su borde inferior. La falsa colmenilla (Gyromitra esculenta), mortal, tiene una cabeza rojiza con pliegues como un cerebro y el interior tabicado o algodonoso; ni cocinada es segura. Verpa bohemica lleva el sombrero sujeto solo por la punta, como un dedal, sobre un pie relleno de una médula algodonosa.",
+        "habitat": "En el suelo de bosques claros de frondosas y de ribera, huertos viejos y jardines, a menudo junto a fresnos, olmos, chopos o manzanos, en suelo calizo o sobre corteza triturada. En el este de EE. UU., junto a olmos moribundos, fresnos y manzanos viejos; en el oeste, en bosques de coníferas la primavera siguiente a un incendio.",
+        "season": "De marzo a mayo: antes en las zonas bajas del sur de Europa, más tarde en el norte y en la montaña, hasta junio. Salen tras lluvias primaverales abundantes cuando el suelo se templa, y en las montañas del oeste de EE. UU. con el deshielo.",
+        "picking": "Corta el pie a ras de suelo con navaja y lleva las colmenillas en cesta o en bolsa de malla. En Alemania todas están protegidas: solo pequeñas cantidades para consumo propio. En otros sitios, muchas regiones y los bosques nacionales de EE. UU. fijan límites o piden permiso: consulta las normas locales.",
+        "kitchen": "Una vez identificadas con certeza, hay que cocinarlas a fondo: crudas o poco hechas, también las secas, son tóxicas. La agencia francesa de seguridad alimentaria ANSES aconseja de 20 a 30 minutos en la sartén para las setas silvestres. Comidas abundantes han causado mareo y temblores incluso cocinadas, así que toma raciones moderadas; van bien con mantequilla, nata, espárragos y pollo.",
+        "keeps": "Dos días en la nevera, en bolsa de papel. Se secan muy bien; hidrata las secas, cuela el agua del remojo para la salsa y cocínalas tanto tiempo como las frescas.",
+        "source": "Identificación y hábitat: Missouri Department of Conservation y First Nature. Toxicidad y cocina: ANSES y Lagrange y Vernoux (Toxins, 2020). Normas: Ordenanza Federal alemana de Protección de Especies (BArtSchV) y US Forest Service. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Morchella",
       "description": "Cogumelo distinto com chapéu em formato de colmeia que aparece na primavera",
-      "howTo": "Procure em áreas perturbadas, florestas queimadas e perto de árvores mortas na primavera"
+      "howTo": "Procure em áreas perturbadas, florestas queimadas e perto de árvores mortas na primavera",
+      "guide": {
+        "identify": "O chapéu das morchelas é um favo de alvéolos e nervuras, amarelado, castanho-acinzentado ou quase negro, sobre um pé claro. Corte cada morchela ao meio, no sentido do comprimento: uma morchela verdadeira é uma única cavidade oca da ponta do chapéu à base do pé, e o chapéu está unido ao pé pela sua orla inferior. A falsa-morchela (Gyromitra esculenta), mortal, tem uma cabeça castanho-avermelhada, enrugada como um cérebro, e o interior dividido em câmaras ou algodoado; nem cozinhada é segura. A Verpa bohemica tem o chapéu preso só no topo, como um dedal, sobre um pé cheio de uma medula algodoada.",
+        "habitat": "No chão de bosques claros de folhosas e matas ribeirinhas, pomares velhos e jardins, muitas vezes junto a freixos, ulmeiros, choupos ou macieiras, em solo calcário ou sobre casca triturada. No leste dos EUA, junto a ulmeiros a morrer, freixos e macieiras velhas; no oeste, em florestas de coníferas na primavera a seguir a um incêndio.",
+        "season": "De março a maio: mais cedo nas terras baixas do sul da Europa, mais tarde no norte e na montanha, até junho. Aparecem depois de chuvas fortes de primavera, quando o solo aquece, e nas montanhas do oeste dos EUA com o degelo.",
+        "picking": "Corte o pé rente ao chão com uma faca e leve as morchelas num cesto ou num saco de rede. Na Alemanha todas as morchelas são protegidas: só pequenas quantidades para consumo próprio. Noutros sítios, muitas regiões e as florestas nacionais dos EUA fixam limites ou pedem licença: informe-se sobre as regras locais.",
+        "kitchen": "Depois de identificadas com certeza, as morchelas têm de ser bem cozinhadas: cruas ou mal cozinhadas, mesmo secas, são tóxicas. A agência francesa de segurança alimentar ANSES aconselha 20 a 30 minutos na frigideira para os cogumelos silvestres. Refeições grandes já causaram tonturas e tremores mesmo depois de cozinhadas, por isso coma porções moderadas; ficam bem com manteiga, natas, espargos e frango.",
+        "keeps": "Dois dias no frigorífico, num saco de papel. Secam muito bem; demolhe as secas, coe a água da demolha para o molho e cozinhe-as tanto tempo como as frescas.",
+        "source": "Identificação e habitat: Missouri Department of Conservation e First Nature. Toxicidade e confeção: ANSES e Lagrange e Vernoux (Toxins, 2020). Regras: regulamento federal alemão de proteção de espécies (BArtSchV) e US Forest Service. Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -217,6 +271,8 @@
       "taxonKeys": [2594601],
       "references": ["https://www.gbif.org/species/2594601"]
     },
-    "rangePrior": { "taxonKeys": [2594601] }
+    "rangePrior": {
+      "taxonKeys": [2594601]
+    }
   }
 }

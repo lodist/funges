@@ -61,297 +61,828 @@
     "chant": {
       "name": "Girolle",
       "description": "Un champignon jaune doré en forme d'entonnoir avec un arôme fruité distinctif",
-      "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres"
+      "howTo": "Cherchez-les dans les forêts de feuillus, surtout près des chênes et des hêtres",
+      "guide": {
+        "identify": "Jaune d'œuf à jaune doré et jusqu'à 10 cm de large, le chapeau en entonnoir évasé à marge ondulée et enroulée. Dessous, des plis épais, obtus et fourchus descendent sur le pied ; on ne peut pas les détacher un à un comme des lames. Le pied est plein, la chair blanche à jaune pâle et ferme, avec une légère odeur d'abricot. Les clitocybes de l'olivier (Omphalotus) ont de vraies lames fines et serrées, poussent en touffes sur le bois ou des racines enterrées et sont orange jusque dans la chair ; la fausse girolle (Hygrophoropsis aurantiaca) est d'un orange plus vif et molle, avec des lames fines et serrées.",
+        "habitat": "Elle vit en association avec les racines des arbres : sous les chênes, hêtres, bouleaux, châtaigniers, épicéas et pins, surtout sur sol acide dans la mousse, souvent sur les talus et au bord des chemins. Commune dans toute l'Europe, de la plaine à la montagne. En Amérique du Nord, la girolle regroupe plusieurs espèces proches, comme Cantharellus flavus dans l'Est, C. californicus sous les chênes verts en Californie et C. cascadensis dans le Nord-Ouest pacifique.",
+        "season": "En Europe centrale et du Nord, de fin juin à octobre, après des pluies chaudes et abondantes ; dans le sud de l'Europe, plus tard et plus longtemps, jusqu'en hiver dans les chênaies méditerranéennes. Dans l'est des États-Unis, en été après des pluies chaudes ; dans l'Ouest, après les pluies d'automne, et jusqu'en hiver en Californie.",
+        "picking": "Coupez-la ou tournez-la à la base, nettoyez la terre sur place et laissez les petites. En Allemagne, elle est spécialement protégée et seules de petites quantités pour un usage personnel sont permises ; les cantons suisses, les régions italiennes, certaines communes et forêts de France, des zones d'Espagne et les terres publiques américaines fixent leurs propres limites ou permis : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifiées avec certitude, brossez les girolles au lieu de les laver : elles se gorgent d'eau. Ne les mangez jamais crues ; cuisez-les bien, d'abord à la poêle sans matière grasse jusqu'à évaporation de leur eau, puis au beurre. Goût doux, fruité et un peu poivré, texture ferme ; avec les œufs, la crème, les pommes de terre, les pâtes et le poulet.",
+        "keeps": "Quelques jours au réfrigérateur dans du papier, pas dans du plastique. Séchées, elles deviennent coriaces : pour les garder plus longtemps, faites-les revenir au beurre et congelez-les.",
+        "source": "Identification et habitat : First Nature (Royaume-Uni) et MushroomExpert.com. Espèces nord-américaines et sosies : University of Florida IFAS Extension. Protection : ordonnance fédérale allemande sur la protection des espèces. Saison : données GBIF."
+      }
     },
     "mushroom": {
       "name": "Cèpe de Bordeaux",
       "description": "Le roi des cèpes : chapeau brun, pied trapu et réticulé, pores blancs qui ne bleuissent jamais",
-      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des épicéas et des hêtres, de la fin de l'été à l'automne"
+      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des épicéas et des hêtres, de la fin de l'été à l'automne",
+      "guide": {
+        "identify": "Un bolet trapu au chapeau brun clair à brun châtain, lisse et gras mais jamais velouté, souvent bordé d'une fine marge blanchâtre. Les pores sont blancs chez le jeune, puis jaunes et olive, et ne changent pas de couleur à la pression. Le pied clair porte un fin réseau blanc en haut, et la chair blanche ne change pas de couleur à la coupe. Des pores roses et un réseau brun foncé signalent le bolet amer (Tylopilus felleus) ; des pores rouges ou orange ou une chair qui bleuit signalent un autre bolet, peut-être toxique.",
+        "habitat": "Avec l'épicéa, le pin, le hêtre, le chêne, le châtaignier et le bouleau sur sol acide, de la plaine à la limite des arbres, dans toute l'Europe. En Amérique du Nord, il pousse surtout dans les États du Pacifique ; dans le sud des Rocheuses, le cèpe des Rocheuses, plus rouge, est plus fréquent.",
+        "season": "Surtout d'août à octobre, dès juin en montagne et jusqu'en novembre dans le sud ; sur la côte pacifique des États-Unis, avec les pluies d'automne. Une poussée vient en général deux semaines environ après une bonne pluie qui suit une période chaude et sèche.",
+        "picking": "Dégagez-le en le tournant ou coupez-le à la base ; laissez les petits ainsi que les vieux ou véreux. En France, les champignons appartiennent au propriétaire du terrain et la cueillette peut être limitée par arrêté ; certains cantons suisses fixent des quantités et des jours sans cueillette.",
+        "kitchen": "Après une identification certaine, brossez-le, coupez-le en long pour repérer les vers, puis poêlez-le ou mettez-le dans un risotto, des pâtes ou une soupe. Cuisez-le bien : tout le monde ne le digère pas cru, et les sujets vieux ou mal conservés rendent malade.",
+        "keeps": "Au frais, dans du papier et non du plastique, un ou deux jours. Il se sèche très bien en tranches fines et se congèle bien.",
+        "source": "Identification et habitat : Regione Piemonte, First Nature et MushroomExpert. Saison : données GBIF. Règles : BArtSchV (Allemagne) et US Forest Service. Cuisine : Regione Piemonte et VIDAL."
+      }
     },
     "morel": {
       "name": "Morchella",
       "description": "Un champignon distinctif avec un chapeau alvéolé qui apparaît au printemps",
-      "howTo": "Cherchez dans les zones perturbées, les forêts brûlées et près des arbres morts au printemps"
+      "howTo": "Cherchez dans les zones perturbées, les forêts brûlées et près des arbres morts au printemps",
+      "guide": {
+        "identify": "Le chapeau des morilles forme un nid d'abeilles d'alvéoles et de côtes, jaunâtre, brun gris ou presque noir, sur un pied pâle. Coupez chaque morille en deux dans la longueur : une vraie morille est une seule cavité creuse de la pointe du chapeau à la base du pied, et le chapeau est soudé au pied par son bord inférieur. La gyromitre (Gyromitra esculenta), mortelle, a une tête brun rouge plissée comme un cerveau et un intérieur cloisonné ou cotonneux ; même cuite, elle n'est pas sûre. La verpe de Bohême (Verpa bohemica) a un chapeau attaché seulement au sommet, comme un dé à coudre, sur un pied bourré d'une moelle cotonneuse.",
+        "habitat": "Au sol dans les bois clairs de feuillus et les forêts alluviales, les vieux vergers et les jardins, souvent près des frênes, ormes, peupliers ou pommiers, sur sol calcaire ou sur paillis d'écorce. Dans l'est des États-Unis, près des ormes dépérissants, des frênes et des vieux pommiers ; dans l'ouest, dans les forêts de conifères au printemps qui suit un incendie.",
+        "season": "De mars à mai : plus tôt dans les plaines du sud de l'Europe, plus tard au nord et en montagne, jusqu'en juin. Elles sortent après de bonnes pluies de printemps, quand le sol se réchauffe, et dans les montagnes de l'ouest des États-Unis à la fonte des neiges.",
+        "picking": "Coupez le pied au ras du sol avec un couteau et transportez les morilles dans un panier ou un sac en filet. En Allemagne, toutes les morilles sont protégées : seules de petites quantités pour votre usage personnel sont permises. Ailleurs, beaucoup de régions et de forêts nationales américaines fixent des limites ou demandent un permis : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifiées avec certitude, les morilles doivent être bien cuites : crues ou insuffisamment cuites, séchées comprises, elles sont toxiques. L'ANSES conseille de cuire les champignons sauvages 20 à 30 minutes à la poêle. De gros repas ont provoqué vertiges et tremblements même après cuisson, alors mangez-en des portions modérées ; elles vont bien avec le beurre, la crème, les asperges et le poulet.",
+        "keeps": "Deux jours au réfrigérateur, dans un sac en papier. Elles sèchent très bien ; réhydratez les morilles séchées, filtrez l'eau de trempage pour la sauce et cuisez-les aussi longtemps que les fraîches.",
+        "source": "Identification et habitat : Missouri Department of Conservation et First Nature. Toxicité et cuisson : ANSES et Lagrange et Vernoux (Toxins, 2020). Règles : ordonnance fédérale allemande sur la protection des espèces (BArtSchV) et US Forest Service. Saison : observations GBIF."
+      }
     },
     "blackberry": {
       "name": "Mûre",
       "description": "Baies sucrées, pourpre foncé, poussant sur des buissons épineux",
-      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été"
+      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été",
+      "guide": {
+        "identify": "La ronce est un arbuste aux longues tiges arquées, armées d'aiguillons crochus ; ses feuilles ont trois ou cinq folioles dentées disposées en éventail, vert foncé dessus et plus pâles dessous. Ses fleurs blanches ou roses à cinq pétales donnent des fruits formés de nombreuses petites drupéoles rondes, vertes, puis rouges, puis d'un noir brillant à maturité. Une mûre à point se détache avec son cœur blanc à l'intérieur ; une framboise laisse son cœur sur la plante et reste creuse. Rubus fruticosus regroupe des centaines de ronces très proches, qui s'utilisent toutes de la même façon.",
+        "habitat": "Haies, lisières et clairières, fourrés, friches et talus de voies ferrées, sur presque tous les sols, dans toute l'Europe sauf l'extrême nord. Aux États-Unis, des ronces indigènes poussent dans les vieux champs et en lisière, et la ronce d'Arménie (ronce de l'Himalaya), introduite, forme des fourrés denses dans le nord-ouest Pacifique et en Californie.",
+        "season": "Mûrit dès juillet dans le sud de l'Europe et des États-Unis, dès fin juillet ou août plus au nord, et continue jusqu'aux premières gelées de septembre et d'octobre ; fleurs, fruits verts et fruits mûrs se côtoient souvent sur le même roncier.",
+        "picking": "Cueillez seulement les mûres bien noires qui se détachent d'une légère traction, laissez les rouges et une part pour la faune et évitez les bords de routes passantes et les lisières traitées aux désherbants. En Europe centrale, l'office bavarois de la santé (LGL) indique que la consommation de baies sauvages n'a pas été identifiée comme un facteur de risque d'échinococcose (ténia du renard), mais conseille de bien les laver ; seule une cuisson au-dessus de 60 °C tue les œufs, la congélation domestique non.",
+        "kitchen": "Une fois identifiées avec certitude, les mûres se mangent crues ou cuites : en crumble et en tarte avec des pommes, en confiture, gelée, sirop ou vinaigre. Rincez-les juste avant usage et vérifiez qu'il n'y a pas d'insectes. Le goût va du doux à l'acidulé selon le roncier.",
+        "keeps": "Non lavées et étalées dans une boîte plate, elles se gardent un ou deux jours au réfrigérateur. Pour les congeler, étalez-les sur un plateau puis mettez-les en sachet une fois dures ; congelées, elles servent pour la cuisson.",
+        "source": "Identification, habitat et usages : Woodland Trust. Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "elderberry": {
       "name": "Sureau noir",
       "description": "Petites baies pourpre foncé poussant en grappes sur les sureaux",
-      "howTo": "Cherchez les sureaux dans les haies et lisières de bois en automne"
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois en automne",
+      "guide": {
+        "identify": "Arbuste ou petit arbre à l'écorce gris-brun, liégeuse et crevassée, avec une moelle blanche et tendre dans les rameaux. Les feuilles sont opposées et composées de cinq à sept folioles dentées (jusqu'à onze chez le sureau du Canada) ; les ombelles plates de fleurs blanc crème et parfumées du début de l'été deviennent de larges grappes de petites baies noir violacé sur des pédicelles rougeâtres, qui pendent sous leur poids à maturité. Le sureau yèble (Sambucus ebulus) est une plante herbacée qui disparaît chaque hiver, aux grappes dressées au-dessus des feuilles ; le sureau rouge (Sambucus racemosa) porte des baies rouges en grappes dressées en forme de dôme. Le raisin d'Amérique (Phytolacca americana) est une grande herbacée aux tiges lisses rouge pourpre, dont les baies s'alignent sur de longs épis, pas en ombelles plates.",
+        "habitat": "Haies, lisières, fourrés, berges, friches et abords des villages, sur sol riche et frais, dans toute l'Europe sauf l'extrême nord. Dans l'est des États-Unis pousse le sureau du Canada, indigène, le long des ruisseaux, des fossés humides et des bords de champs ; dans l'ouest, sur les pentes ouvertes et dans les vallées, le sureau bleu, dont les baies mûres portent une pruine bleu poudré.",
+        "season": "Les baies mûrissent au début de l'automne : dès fin août dans les plaines chaudes, en septembre et jusqu'en octobre plus au nord et en montagne. Les ombelles de fleurs viennent plus tôt, dès fin mai.",
+        "picking": "Coupez des ombelles entières aux ciseaux quand toutes les baies sont noir violacé, et laissez celles qui portent des baies vertes ou rouges. Évitez les routes passantes et laissez-en largement sur chaque arbuste pour les oiseaux.",
+        "kitchen": "Les baies de sureau doivent être cuites : les baies crues ou vertes, les pédicelles, les feuilles et les graines contiennent des composés qui libèrent du cyanure pendant la digestion et peuvent provoquer nausées, vomissements et crampes d'estomac ; une cuisson complète les dégrade. Une fois identifiées avec certitude, égrenez les baies à la fourchette, retirez les baies vertes et tout reste de tige, puis faites-les cuire en jus, sirop, gelée, soupe ou garniture de tarte. Leur goût est sombre, terreux et acidulé et s'accorde avec la pomme, la poire, la cannelle et le citron ; n'utilisez jamais les baies du sureau rouge en cuisine.",
+        "keeps": "Les ombelles fraîches se gardent un ou deux jours au réfrigérateur. Congelées entières, les baies se détachent facilement des tiges ; congelées ou séchées, elles doivent quand même être cuites avant d'être mangées.",
+        "source": "Identification et habitat : Woodland Trust. Toxicité, cuisson et conservation : service d'extension de l'Oregon State University."
+      }
     },
     "nettle": {
       "name": "Ortie",
       "description": "Plante verte nutritive avec des poils urticants, à cuire avant consommation",
-      "howTo": "Se trouve dans les zones perturbées, haies et lisières de bois au printemps et en été"
+      "howTo": "Se trouve dans les zones perturbées, haies et lisières de bois au printemps et en été",
+      "guide": {
+        "identify": "Une plante dressée aux tiges carrées et aux feuilles opposées : en cœur ou ovales, grossièrement dentées et pointues. Tiges et feuilles portent des poils urticants, et dès le début de l'été de fines grappes de minuscules fleurs verdâtres pendent à l'aisselle des feuilles. Les lamiers lui ressemblent, mais ne piquent pas et ont des fleurs en lèvres voyantes, blanches, jaunes ou pourpres.",
+        "habitat": "Forme des massifs denses sur sol riche et frais : lisières, berges, fossés, haies et abords des fermes et des ruines. Commune dans toute l'Europe, dans le Sud surtout dans les lieux humides et ombragés, et dans la plus grande partie des États-Unis, surtout au bord des ruisseaux et dans les bois clairs et humides.",
+        "season": "Les jeunes pousses apparaissent dès février dans les régions douces et dès mars plus au nord ; cueillez-les jusqu'à la floraison, vers juin. Les massifs coupés ou fauchés repoussent et donnent une seconde récolte en fin d'été et en automne.",
+        "picking": "Mettez des gants, coupez aux ciseaux les premières paires de feuilles du sommet et laissez les racines. Évitez les bords de route, les bordures de champs traités et les chemins à chiens ; les orties nourrissent aussi les chenilles de nombreux papillons.",
+        "kitchen": "Faites toujours cuire ou blanchir les orties avant de les manger : la chaleur supprime la piqûre, un séchage complet aussi. Plongez les sommités lavées quelques minutes dans l'eau bouillante salée, puis utilisez-les comme des épinards dans les soupes, risottos, omelettes et pestos ; elles ont le goût d'un épinard aux notes terreuses.",
+        "keeps": "Blanchies, essorées et congelées en portions, elles se gardent des mois ; les feuilles séchées à l'ombre, dans un endroit aéré, font des tisanes.",
+        "source": "Identification, habitat et cuisine : NC State Extension et Woodland Trust. Saison : Woodland Trust et données GBIF."
+      }
     },
     "dandelion": {
       "name": "Pissenlit",
       "description": "Mauvaise herbe commune à fleurs jaunes vives et feuilles comestibles",
-      "howTo": "Se trouve dans les prairies, pelouses et zones perturbées pendant la saison de croissance"
+      "howTo": "Se trouve dans les prairies, pelouses et zones perturbées pendant la saison de croissance",
+      "guide": {
+        "identify": "Le pissenlit forme une rosette plaquée au sol de feuilles glabres, profondément et irrégulièrement découpées, aux dents tournées vers le centre. Feuilles et tiges laissent couler un latex blanc quand on les casse ; chaque hampe florale est creuse, sans feuilles ni ramifications, et porte un seul capitule de fleurs jaunes en languette, qui devient ensuite la boule blanche des graines. La porcelle enracinée a des tiges ramifiées et pleines et des feuilles velues, les liondents ont des poils fourchus sur les feuilles, et les laiterons portent plusieurs fleurs sur des tiges feuillées : ne cueillez que les plantes qui correspondent en tout point.",
+        "habitat": "Pelouses, prés, pâtures, bords de chemin et friches, au soleil, de la plaine à la montagne. Il pousse presque partout en Europe et, venu d'Europe, dans tous les États-Unis.",
+        "season": "Une grande floraison arrive au début du printemps, surtout en avril et mai et plus tôt dans le sud de l'Europe, puis des fleurs apparaissent çà et là jusqu'à l'automne. Les feuilles sont les moins amères au début du printemps, avant les premiers boutons.",
+        "picking": "Coupez les jeunes feuilles à la base et cueillez les fleurs par temps ensoleillé, bien ouvertes, en en laissant beaucoup aux premières abeilles. Évitez les pelouses traitées au désherbant, les bords de route et les lieux de promenade des chiens, et ne déterrez les racines que là où le propriétaire le permet, comme dans votre jardin.",
+        "kitchen": "Une fois le pissenlit identifié avec certitude, les jeunes feuilles se mangent crues en salade, agréablement amères, comme dans la salade de pissenlit aux lardons ; les feuilles plus âgées se blanchissent une dizaine de minutes pour perdre de l'amertume, puis se font revenir à l'ail et à l'huile. Les fleurs s'utilisent cuites, en beignets ou en cramaillotte, cuites avec sucre et citron jusqu'à une gelée épaisse, et les racines nettoyées et torréfiées donnent un succédané de café ; en quantité, les racines sont laxatives. Le latex peut irriter la peau et les personnes allergiques aux astéracées peuvent réagir : goûtez d'abord une petite quantité.",
+        "keeps": "Les feuilles se gardent quelques jours en sachet au réfrigérateur. Utilisez les fleurs aussitôt cueillies, car elles se referment vite ; les racines torréfiées se gardent dans un bocal hermétique.",
+        "source": "Identification : BSBI et service d'extension de NC State. Cueillette et cuisine : services d'extension des universités du Wisconsin-Madison et de Colorado State. Sécurité : National Center for Complementary and Integrative Health (États-Unis)."
+      }
     },
     "hazelnut": {
       "name": "Noisette",
       "description": "Noix rondes et sucrées poussant sur les noisetiers",
-      "howTo": "Cherchez les noisetiers dans les haies et lisières de bois en automne"
+      "howTo": "Cherchez les noisetiers dans les haies et lisières de bois en automne",
+      "guide": {
+        "identify": "Un arbuste à plusieurs tiges ou un petit arbre aux feuilles rondes, doublement dentées, pointues au bout, douces et duveteuses dessous ; à la fin de l'hiver, des chatons jaunes pendent des rameaux nus. Les noisettes poussent par grappes de une à quatre, chacune dans une enveloppe verte et foliacée, frangée, qui la couvre aux trois quarts environ, et brunissent en mûrissant. Les noisetiers sauvages d'Amérique du Nord sont proches parents ; chez le noisetier à long bec, l'enveloppe forme un long tube hérissé.",
+        "habitat": "Sous-bois, haies et fourrés de toute l'Europe, dans le sud surtout en colline et en montagne ; le noisetier fructifie le mieux au soleil, en lisière. Aux États-Unis, le noisetier européen pousse surtout en vergers dans l'Oregon ; les espèces sauvages poussent dans les fourrés, les clairières et les lisières.",
+        "season": "De fin août à octobre : les noisettes sont prêtes quand l'enveloppe brunit et qu'elles tombent ou se détachent en secouant doucement la branche. Écureuils, geais et muscardins passent souvent avant vous.",
+        "picking": "Ramassez les noisettes tombées ou secouez doucement les branches, et laissez-en assez pour les animaux. Écartez celles qui ont un petit trou rond (une larve de balanin a mangé l'amande) et celles qui sont légères, et évitez les bords de routes passantes et les bords de champs traités.",
+        "kitchen": "Une fois sûr de la plante, mangez-les crues ou faites-les griller jusqu'à ce que la peau se fendille, puis frottez-les dans un torchon rêche pour l'enlever. Elles vont dans les gâteaux, le praliné, le pesto et les salades. La noisette est une cause fréquente d'allergie aux fruits à coque.",
+        "keeps": "Faites-les sécher dans leur coque dans un endroit aéré jusqu'à ce que l'amande soit crème jusqu'au cœur, puis gardez-les au frais et au sec ; sèches, elles se gardent jusqu'à un an au réfrigérateur.",
+        "source": "Identification et habitat : Woodland Trust et Minnesota Department of Natural Resources. Séchage et conservation : université d'État de l'Oregon (OSU Extension)."
+      }
     },
     "garlic": {
       "name": "Ail des ours",
       "description": "Herbe à l'odeur forte, larges feuilles et fleurs blanches",
-      "howTo": "Se trouve dans les forêts de feuillus au printemps, souvent en grandes colonies"
+      "howTo": "Se trouve dans les forêts de feuillus au printemps, souvent en grandes colonies",
+      "guide": {
+        "identify": "Chaque feuille sort seule du sol sur son propre pétiole fin : un limbe souple, vert clair, ovale et pointu, aux nervures parallèles, mat dessous ; dès avril, une tige sans feuilles porte une ombelle ronde de fleurs blanches étoilées. Froissez une feuille : l'ail des ours sent fortement l'ail et ses sosies mortels non, mais l'odeur reste sur les doigts, si bien qu'après les premières feuilles le test ne prouve plus rien ; vérifiez aussi le pétiole et la forme de chaque feuille. Le muguet a deux ou trois feuilles qui s'enveloppent à la base ; le colchique d'automne, des feuilles coriaces sans pétiole, en touffe ; le gouet tacheté (arum), des feuilles en fer de flèche aux nervures en réseau ; le vérâtre blanc, des feuilles plissées le long d'une tige dressée ; le sceau-de-Salomon, des feuilles alternes sur une tige arquée.",
+        "habitat": "Forme des tapis dans les bois de feuillus frais et ombragés, surtout hêtraies et forêts alluviales sur sol riche, et le long des ruisseaux ombragés. Commun en Europe centrale et du Nord, y compris en Grande-Bretagne ; en Europe du Sud, surtout dans les forêts de montagne.",
+        "season": "Les feuilles sortent dès février dans les régions douces, en mars et avril ailleurs, et sont meilleures avant l'ouverture des fleurs. Il fleurit d'avril à juin, plus tard en montagne ; au début de l'été, les feuilles ont disparu.",
+        "picking": "Cueillez feuille par feuille, jamais par poignées, pour qu'aucun sosie poussant dans le même tapis ne finisse dans votre panier, et laissez les bulbes. La Grande-Bretagne interdit d'arracher une plante sauvage sans l'accord du propriétaire, l'Allemagne ne permet qu'une petite quantité pour son propre usage et de nombreuses réserves naturelles interdisent la cueillette : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois l'ail des ours identifié avec certitude, utilisez les feuilles crues ou ajoutez-les en fin de cuisson : pesto, soupes, risottos, beurre et œufs ; les fleurs se parsèment sur les salades. Lavez chaque feuille sous l'eau courante : en Europe centrale, les autorités le recommandent à cause du ténia du renard (échinocoque), dont les œufs résistent à la congélation mais pas à la cuisson.",
+        "keeps": "Les feuilles se gardent deux ou trois jours au réfrigérateur dans un linge humide. Les feuilles hachées et le pesto se congèlent bien ; gardez au réfrigérateur tout ce qui est dans l'huile et consommez-le en quelques jours.",
+        "source": "Identification et sosies : Agence autrichienne pour la santé et la sécurité alimentaire (AGES), Institut fédéral allemand d'évaluation des risques (BfR) et Woodland Trust. Saison : Woodland Trust et données GBIF."
+      }
     },
     "chickenOfTheWoods": {
       "name": "Polypore soufré",
       "description": "Champignon en console jaune orangé vif poussant sur les arbres",
-      "howTo": "Cherchez-le sur les arbres morts ou mourants, surtout les chênes"
+      "howTo": "Cherchez-le sur les arbres morts ou mourants, surtout les chênes",
+      "guide": {
+        "identify": "Des consoles en éventail, superposées, de 10 à 40 cm et sans pied : jeunes, tendres, juteuses et jaune vif à orange ; avec l'âge, elles pâlissent jusqu'au crème et deviennent crayeuses. Le dessous est jaune soufre, avec des pores minuscules et pas de lames ; la chair est blanche à jaune pâle et ne change pas de couleur à la coupe. Une touffe orange sur du bois avec des lames dessous est le clitocybe de l'olivier (Omphalotus), toxique. Dans l'ouest des États-Unis, ses proches parents Laetiporus gilbertsonii et Laetiporus conifericola lui ressemblent beaucoup.",
+        "habitat": "Un champignon lignivore des feuillus vivants ou morts, le plus souvent le chêne, aussi le châtaignier, le cerisier, le saule et le hêtre, et parfois l'if. Il est commun en plaine en Europe et dans l'est des États-Unis, dans les bois, les parcs et les rues ; dans l'ouest des États-Unis, ses parents poussent sur les chênes, les eucalyptus et les conifères.",
+        "season": "De la fin du printemps à l'automne, surtout en été, quelques jours après une pluie chaude ; dans l'ouest des États-Unis, surtout en automne. Le même arbre en produit souvent plusieurs années de suite.",
+        "picking": "Coupez au couteau les bords tendres des jeunes consoles et laissez la base dure et les consoles vieilles et crayeuses. Ne le cueillez jamais sur un if, très toxique, ni sur des arbres au bord des routes passantes ; la cueillette est souvent encadrée par arrêté municipal ou préfectoral : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire : cru ou pas assez cuit, il dérange l'estomac, et même bien cuit il ne convient pas à tout le monde (nausées, vertiges, vomissements) ; goûtez-en d'abord une petite quantité. En tranches poêlées ou braisées, sa chair ferme rappelle le poulet et s'accorde avec le citron, l'ail et les herbes.",
+        "keeps": "Quelques jours au réfrigérateur dans un sac en papier. Il se congèle bien, cru ou cuit.",
+        "source": "Identification et arbres hôtes : Woodland Trust, First Nature et MushroomExpert.com. Espèces de l'ouest des États-Unis : Bay Area Mycological Society. Réactions : université de Floride (IFAS Extension)."
+      }
     },
     "oysterMushroom": {
       "name": "Pleurote",
       "description": "Champignon blanc-gris à chapeau en éventail poussant en touffes sur le bois mort",
-      "howTo": "Cherchez-les sur les arbres morts, surtout hêtre et chêne, en automne et hiver"
+      "howTo": "Cherchez-les sur les arbres morts, surtout hêtre et chêne, en automne et hiver",
+      "guide": {
+        "identify": "Un chapeau en forme de coquille ou d'éventail, de 5 à 18 cm, gris bleuté, gris-brun ou crème, en étages superposés sur le bois. Les lames, blanches à crème, descendent sur un pied court et latéral, parfois absent ; la chair est blanche et ferme, l'odeur douce, la sporée blanche à lilas pâle. Le clitocybe de l'olivier (Omphalotus), toxique et parfois appelé à tort pleurote de l'olivier, est orange vif, lames comprises, et pousse en touffes au pied des arbres ; l'hypholome en touffe (Hypholoma fasciculare) a des chapeaux jaune soufre sur des pieds centraux, des lames jaune verdâtre qui virent au brun pourpre et un goût amer. Pleurocybella porrigens, associée à des décès au Japon, est d'un blanc pur, mince et translucide, et ne pousse que sur du bois de conifère pourri.",
+        "habitat": "Sur les feuillus morts ou dépérissants, surtout le hêtre, aussi le peuplier, le saule, le chêne et le frêne : troncs debout, souches et troncs à terre, rarement les conifères. Commun dans toute l'Europe et en Amérique du Nord.",
+        "season": "De la fin de l'automne à l'hiver, après une vague de froid ou les premières gelées qui suivent la pluie ; jusqu'en janvier ou février dans le sud de l'Europe et d'octobre à début avril dans l'est des États-Unis.",
+        "picking": "Coupez la touffe à la base au couteau, prenez les chapeaux fermes et jeunes et laissez les vieux ou ceux mangés par les coléoptères. La cueillette est souvent encadrée par arrêté municipal ou préfectoral : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire ; ne le mangez pas cru. Coupez la base dure, déchirez les chapeaux en lanières et faites-les sauter à feu vif jusqu'à ce que les bords dorent ; son goût doux, un peu sucré, va avec l'ail, le beurre, la sauce soja et les œufs.",
+        "keeps": "Il s'abîme vite : gardez-le quelques jours au réfrigérateur dans un sac en papier, ou congelez-le cuit.",
+        "source": "Identification et saison : First Nature et MushroomExpert.com. Pleurocybella porrigens : Beaty Biodiversity Museum, université de la Colombie-Britannique."
+      }
     },
     "shiitake": {
       "name": "Shiitaké",
       "description": "Champignon à chapeau brun et lames blanches, très prisé en cuisine asiatique",
-      "howTo": "Se trouve sur le bois mort de feuillus, surtout chêne et hêtre, au printemps et en automne"
+      "howTo": "Se trouve sur le bois mort de feuillus, surtout chêne et hêtre, au printemps et en automne",
+      "guide": {
+        "identify": "Un chapeau brun à brun rouge foncé qui s'aplatit avec l'âge, souvent orné de flocons blanchâtres près de la marge et craquelé par temps sec. Les lames sont blanches à crème et brunissent au toucher ; le pied est dur, fibreux et souvent excentré ; la sporée est blanche. La galère marginée (Galerina marginata), mortelle, pousse aussi sur les bûches : elle est plus petite et brun miel, avec un anneau sur le pied et une sporée brun rouille.",
+        "habitat": "Originaire d'Asie de l'Est, sur le bois mort de feuillus comme le chêne et le Castanopsis. En Europe et en Amérique du Nord, il est cultivé sur bûches de chêne ou blocs de sciure et n'a été trouvé hors culture que quelques fois (par exemple aux Pays-Bas) : un champignon brun sur un tronc tombé en forêt est donc presque sûrement autre chose.",
+        "season": "Les bûches en plein air produisent au printemps et à l'automne, quelques jours après une bonne pluie par temps doux ; les cultivateurs déclenchent aussi une poussée en faisant tremper une bûche dans l'eau froide.",
+        "picking": "Récoltez les chapeaux tant que la marge est encore enroulée : tournez-les ou coupez le pied au ras de la bûche. Ne récoltez que sur des bûches que vous cultivez ou là où vous en avez la permission.",
+        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire : cru ou peu cuit, le shiitaké peut provoquer la dermatite au shiitaké, une éruption qui démange, en traînées comme des coups de fouet, environ un jour après. Les pieds sont trop durs à manger mais parfument un bouillon ; faites sauter ou mijoter les chapeaux, au goût profond et savoureux, avec sauce soja, gingembre et ail.",
+        "keeps": "Quelques jours au réfrigérateur dans un sac en papier. Il sèche très bien : réhydratez les chapeaux secs avant usage et gardez l'eau comme bouillon.",
+        "source": "Origine et répartition : Naturalis Biodiversity Center. Culture sur bûches : Cornell Cooperative Extension. Dermatite au shiitaké : DermNet."
+      }
     },
     "raspberry": {
       "name": "Framboise sauvage",
       "description": "Baies rouges sucrées poussant sur des tiges épineuses à feuilles composées",
-      "howTo": "Cherchez les framboisiers dans les haies, lisières de bois et zones perturbées en été"
+      "howTo": "Cherchez les framboisiers dans les haies, lisières de bois et zones perturbées en été",
+      "guide": {
+        "identify": "Des cannes dressées, souvent à hauteur d'homme, couvertes de petits aiguillons fins plutôt que des épines crochues de la ronce. Les feuilles ont trois à sept folioles dentées le long d'un pétiole, vertes dessus et feutrées de blanc dessous. Les petites fleurs blanches pendent vers le bas ; le fruit rouge se détache en laissant son cœur blanc sur la plante, si bien qu'une framboise cueillie est un petit capuchon creux.",
+        "habitat": "Clairières et lisières, coupes et brûlis, fourrés, landes, éboulis et haies, de la plaine à la montagne dans toute l'Europe ; le framboisier colonise les nouvelles clairières et disparaît quand la forêt repousse. Aux États-Unis, le framboisier d'Amérique pousse dans le nord et dans les montagnes de l'ouest, et le framboisier noir, aux fruits creux noir violacé, dans l'est.",
+        "season": "Mûrit en été : dès juin dans le sud de l'Europe et en plaine, en juillet et août dans le nord et en montagne, parfois jusqu'en septembre en altitude.",
+        "picking": "Cueillez les framboises bien rouges qui se détachent de leur cœur sans tirer, dans un récipient plat, car elles s'écrasent facilement. En Europe centrale, l'office bavarois de la santé (LGL) indique que la consommation de baies sauvages n'a pas été identifiée comme un facteur de risque d'échinococcose (ténia du renard), mais conseille de bien les laver ; seule une cuisson au-dessus de 60 °C tue les œufs, la congélation domestique non.",
+        "kitchen": "Une fois identifiées avec certitude, mangez-les crues ou utilisez-les en confiture, sirop, gâteaux et desserts ; les framboises sauvages sont plus petites et plus parfumées que celles du jardin. Rincez-les juste avant usage et vérifiez qu'elles ne contiennent pas les petites larves blanches du ver des framboises (byture).",
+        "keeps": "Très fragiles : mangez-les le jour même ou gardez-les non lavées un ou deux jours au réfrigérateur. Congelez-les étalées sur un plateau, puis en sachet ; congelées, elles servent pour les coulis et la pâtisserie.",
+        "source": "Identification et habitat : Woodland Trust. Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "blueberry": {
       "name": "Myrtille sauvage",
       "description": "Petites baies bleues sucrées poussant sur des arbustes bas en sol acide",
-      "howTo": "Se trouve dans les landes, tourbières et forêts acides en été et début d'automne"
+      "howTo": "Se trouve dans les landes, tourbières et forêts acides en été et début d'automne",
+      "guide": {
+        "identify": "Le myrtillier est un sous-arbrisseau bas à feuilles caduques, en général sous la hauteur du genou, aux tiges vertes et anguleuses et aux petites feuilles ovales finement dentées. Au printemps pendent des fleurs isolées rosées en forme de grelot ; chacune donne une seule baie bleu-noir pruineuse, avec une petite couronne au sommet, et la chair est rouge violacé jusqu'au cœur (les myrtilles de culture, d'origine américaine, ont la chair claire). Ses sosies toxiques sont des plantes herbacées, pas des sous-arbrisseaux ligneux : la belladone (Atropa bella-donna) est haute et porte des baies noires brillantes posées dans une étoile verte de cinq sépales ; la parisette (Paris quadrifolia) porte une seule baie au sommet d'une tige à quatre feuilles en verticille ; le sceau-de-Salomon (Polygonatum) suspend des baies bleu-noir sous une tige arquée et non ramifiée.",
+        "habitat": "Sol acide et pauvre : forêts de conifères, de bouleaux et de chênes, landes et tourbières, de la plaine jusqu'au-dessus de la limite des arbres ; commune dans le nord et le centre de l'Europe et dans les montagnes du sud, absente des sols calcaires. En Amérique du Nord, elle pousse à l'état sauvage dans les montagnes de l'ouest ; dans l'est, les myrtilles sauvages cueillies sont les bleuets nains et en corymbe (Vaccinium angustifolium, Vaccinium corymbosum), proches parents à chair claire.",
+        "season": "Mûrit dès juillet en plaine ; en montagne et dans le nord, la saison se poursuit en août et jusqu'en septembre. Une gelée tardive à la floraison peut réduire la récolte.",
+        "picking": "Cueillez à la main : les peignes arrachent les feuilles et abîment les plants, et certains territoires les interdisent ou fixent des quantités maximales par jour, comme les Vosges en France et la Toscane en Italie : renseignez-vous sur les règles locales. En Europe centrale, l'office bavarois de la santé (LGL) indique que la consommation de baies sauvages n'a pas été identifiée comme un facteur de risque d'échinococcose (ténia du renard), mais conseille de bien les laver ; seule une cuisson au-dessus de 60 °C tue les œufs, la congélation domestique non.",
+        "kitchen": "Une fois identifiées avec certitude, mangez-les crues ou en tarte, crêpes, confiture et compote ; elles sont sucrées et acidulées et tachent doigts, dents et vêtements. Rincez-les juste avant usage et retirez feuilles et baies vertes.",
+        "keeps": "Non lavées et étalées, elles se gardent quelques jours au réfrigérateur. Congelez-les sur un plateau, puis en sachet ; elles se sèchent aussi très bien.",
+        "source": "Identification et habitat : Woodland Trust ; sosies toxiques : Yle (radiotélévision publique finlandaise). Règles de cueillette : préfecture des Vosges et Région Toscane. Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "strawberry": {
       "name": "Fraise des bois",
       "description": "Petites fraises rouges au goût intense, fleurs blanches et feuilles trifoliées",
-      "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été"
+      "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été",
+      "guide": {
+        "identify": "Une plante basse aux feuilles longuement pétiolées à trois folioles dentées, vert vif et un peu luisantes, qui s'étend par des stolons s'enracinant au sol ; la dent terminale de chaque foliole est aussi longue que ses voisines ou plus. Les fleurs sont blanches, à cinq pétales arrondis et cœur jaune ; le fruit est un petit cône rouge portant de minuscules graines en surface, pendant au bout d'un fin pédoncule. La potentille faux-fraisier (Potentilla sterilis) fleurit plus tôt et montre des espaces entre ses pétales échancrés, une dent terminale plus courte que ses voisines et aucun fruit charnu ; le fraisier des Indes (Potentilla indica) a des fleurs jaunes et des fruits ronds, spongieux et fades.",
+        "habitat": "Lisières, clairières, talus ensoleillés, bords de chemins, pieds de haies et vieilles prairies, souvent sur sol sec, caillouteux ou calcaire, de la plaine à la montagne dans toute l'Europe. Aux États-Unis, elle pousse dans les bois clairs et les clairières du nord et dans les montagnes de l'ouest ; le fraisier de Virginie (Fragaria virginiana), plus grand, y est la fraise sauvage habituelle des champs et des prés.",
+        "season": "Fleurit dès avril ; les fruits mûrissent dès fin mai dans le sud de l'Europe et dès juin ailleurs, et la plante continue à produire tout l'été, jusqu'en août en montagne et dans le nord.",
+        "picking": "Cueillez seulement les fraises bien rouges en pinçant le pédoncule et n'arrachez jamais les plants ; en Angleterre, où la fraise des bois est classée quasi menacée, cueillez avec modération. En Europe centrale, l'office bavarois de la santé (LGL) indique que la consommation de baies sauvages n'a pas été identifiée comme un facteur de risque d'échinococcose (ténia du renard), mais conseille de bien les laver ; seule une cuisson au-dessus de 60 °C tue les œufs, la congélation domestique non.",
+        "kitchen": "Une fois identifiées avec certitude, mangez-les crues et vite, rincées juste avant. Leur goût est plus intense que celui des fraises du jardin mais varie d'une plante à l'autre ; une poignée suffit pour parfumer une crème, un yaourt ou une tarte.",
+        "keeps": "Dans un panier au chaud, elles s'abîment vite : gardez-les au frais et mangez-les le jour même. On peut les congeler, mais elles ramollissent à la décongélation.",
+        "source": "Identification et habitat : Woodland Trust et Botanical Society of Britain and Ireland (BSBI). Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "wildMint": {
       "name": "Menthes sauvages",
       "description": "Toute menthe sauvage : menthe aquatique, menthe à longues feuilles, menthe à feuilles rondes, menthe des champs et menthe pouliot. Tiges carrées, feuilles opposées et odeur de menthe quand on les froisse",
-      "howTo": "Se trouve sur les sols humides, dans les fossés et au bord des ruisseaux. La menthe pouliot convient en tisane légère, mais elle est toxique en huile ou en grande quantité : à éviter pendant la grossesse"
+      "howTo": "Se trouve sur les sols humides, dans les fossés et au bord des ruisseaux. La menthe pouliot convient en tisane légère, mais elle est toxique en huile ou en grande quantité : à éviter pendant la grossesse",
+      "guide": {
+        "identify": "Toutes les menthes ont des tiges carrées, des feuilles opposées et une nette odeur de menthe quand on froisse une feuille ; les petites fleurs lilas, roses ou blanches forment des verticilles ou des têtes et des épis au sommet des tiges. La menthe aquatique a des feuilles poilues et ovales et une tête de fleurs arrondie ; la menthe à longues feuilles, des feuilles longues et grisâtres, velues ; la menthe à feuilles rondes, des feuilles rondes, gaufrées et douces ; la menthe des champs ne fleurit qu'en verticilles le long de la tige ; la menthe pouliot est petite et rampante, avec de toutes petites feuilles et une odeur piquante. Des plantes à tige carrée sans odeur, comme le lycope d'Europe, poussent parmi elles, et l'odeur reste sur les doigts : sentez chaque tige séparément et laissez celles qui ne sentent pas la menthe.",
+        "habitat": "La plupart des menthes sauvages aiment les sols mouillés : bords de ruisseaux et de mares, fossés, marais et prairies humides ; la menthe des champs pousse aussi dans les cultures humides et la menthe pouliot dans les prairies inondées l'hiver, surtout dans le sud et l'ouest de l'Europe. Aux États-Unis, la menthe du Canada, indigène, pousse dans les lieux humides de presque tout le pays, et la menthe verte, la menthe poivrée et la menthe pouliot se sont échappées des jardins.",
+        "season": "Les pousses apparaissent au printemps et sont plus tendres avant la floraison ; la plupart fleurissent du plein été jusqu'en automne, et la pousse commence plus tôt dans le sud de l'Europe.",
+        "picking": "Pincez les premières paires de feuilles juste au-dessus d'un nœud et laissez les racines. Cueillez tige par tige, pas par poignées : l'œnanthe safranée et la ciguë vireuse, mortelles, poussent dans les mêmes lieux humides ; évitez l'eau en aval de fermes ou de rejets d'eaux usées.",
+        "kitchen": "Une fois identifiées avec certitude, les feuilles font des tisanes et vont dans les salades, les sauces au yaourt et les plats de petits pois, de pommes de terre et d'agneau. La menthe des ruisseaux, des fossés ou des prairies humides pâturées peut porter la douve du foie, comme le cresson sauvage : réservez-la aux tisanes chaudes et aux plats cuits. La menthe pouliot contient de la pulégone, toxique pour le foie : une tisane légère est traditionnelle en Espagne et au Portugal, mais n'utilisez jamais l'huile essentielle, ne la buvez jamais forte ni souvent et n'en donnez jamais aux bébés, aux enfants, aux femmes enceintes ou allaitantes ni aux personnes atteintes d'une maladie du foie.",
+        "keeps": "Les bouquets suspendus dans un endroit sombre et aéré sèchent bien pour la tisane ; les feuilles hachées se congèlent en glaçons.",
+        "source": "Identification et habitat : Botanical Society of Britain and Ireland, The Wildlife Trusts et Native Plant Trust (Go Botany). Menthe pouliot : Agence européenne des médicaments et National Capital Poison Center. Douve du foie : Organisation panaméricaine de la santé. Saison : données GBIF."
+      }
     },
     "chickweed": {
       "name": "Mouron des oiseaux",
       "description": "Plante basse à petites fleurs blanches et feuilles ovales, très nutritive",
-      "howTo": "Commune dans les jardins, zones perturbées et prairies pendant la saison de croissance"
+      "howTo": "Commune dans les jardins, zones perturbées et prairies pendant la saison de croissance",
+      "guide": {
+        "identify": "Une plante basse et étalée, aux tiges fragiles, rondes et juteuses, et aux petites feuilles ovales et pointues, opposées, celles du bas portées par un court pétiole. Une seule ligne de poils fins court le long de la tige et change de côté à chaque paire de feuilles. Les fleurs blanches, en étoile, ont cinq pétales si profondément fendus qu'on en croirait dix. Deux sosies toxiques : le mouron rouge (Anagallis arvensis) a des tiges carrées et glabres, des feuilles sans pétiole ponctuées de noir dessous et des fleurs rouge orangé ou bleues ; les euphorbes laissent couler un latex blanc quand on casse une tige, ce que le mouron des oiseaux ne fait jamais.",
+        "habitat": "Jardins, potagers, bords de champs, cours de ferme et autres sols remués, riches et frais, souvent à mi-ombre. L'une des plantes les plus communes d'Europe, présente dans tous les États-Unis.",
+        "season": "Il pousse le mieux par temps frais et humide : au printemps et en automne dans le Nord, de l'automne au printemps dans les régions douces comme le sud de l'Europe et le sud des États-Unis. La chaleur et la sécheresse de l'été le font disparaître jusqu'aux pluies d'automne.",
+        "picking": "Coupez ou pincez les premiers centimètres feuillus ; la plante repousse. Ne cueillez que là où aucun désherbant n'a été pulvérisé, loin des routes et des endroits fréquentés par les chiens et les chats.",
+        "kitchen": "Une fois le mouron des oiseaux identifié avec certitude, ses feuilles, tiges et fleurs se mangent crues ou à peine cuites ; leur goût est doux et frais, un peu comme les petits pois nouveaux. Ajoutez-les aux salades, sandwiches et pestos, ou en fin de cuisson aux soupes, et lavez-les bien.",
+        "keeps": "Le mouron des oiseaux flétrit vite : gardez-le dans un sac au réfrigérateur et mangez-le sous un ou deux jours.",
+        "source": "Identification : UC Statewide IPM Program et Woodland Trust. Mouron rouge : ministère de l'Agriculture de l'Ontario. Saison : Woodland Trust et données GBIF."
+      }
     },
     "plantain": {
       "name": "Plantain majeur",
       "description": "Plante basse à larges feuilles ovales et longues hampes florales",
-      "howTo": "Se trouve dans les pelouses, prairies et zones perturbées pendant la saison de croissance"
+      "howTo": "Se trouve dans les pelouses, prairies et zones perturbées pendant la saison de croissance",
+      "guide": {
+        "identify": "Le plantain majeur forme une rosette plate de feuilles larges et ovales sur des pétioles courts et larges ; chaque feuille porte trois à sept nervures marquées et parallèles, et si vous cassez un pétiole, elles sortent comme des fils coriaces. Dès le début de l'été, des tiges sans feuilles portent de longs épis étroits en queue de rat, faits de minuscules fleurs verdâtres, puis remplis de petites graines brunes. La rosette de première année de la digitale pourpre, mortelle, a des feuilles molles, velues et gaufrées, aux nervures en réseau et sans fils ; des feuilles de digitale ont déjà été vendues par erreur comme plantain.",
+        "habitat": "Pelouses, chemins, sentiers de ferme, bords de champs, prairies et jardins : partout où le sol est piétiné et tassé. Originaire d'Europe et d'Asie, il est commun dans toute l'Europe et dans tous les États-Unis, où il est arrivé avec les colons européens.",
+        "season": "Les nouvelles feuilles poussent du début du printemps à l'automne, plus tendres au printemps et après la tonte. Les épis montent dès le début de l'été et les graines mûrissent jusqu'à l'automne.",
+        "picking": "Cueillez les jeunes feuilles au centre de la rosette, quelques-unes par plante, et laissez la racine en terre. Évitez les bords de route, les chemins où passent les chiens et les pelouses ou talus qui ont pu être traités au désherbant.",
+        "kitchen": "Une fois le plantain identifié avec certitude, les jeunes feuilles se mangent crues en salade ; les plus vieilles sont dures et filandreuses : blanchissez-les ou faites-les cuire comme des épinards et retirez les fils. Le goût est doux, herbacé et un peu amer. NC State Extension signale que de très grandes quantités peuvent faire baisser la tension : mangez-le comme une verdure parmi d'autres.",
+        "keeps": "Les feuilles fanent vite : gardez-les un jour ou deux dans un sac au réfrigérateur, ou faites-les sécher à l'ombre pour les tisanes.",
+        "source": "Identification, habitat et saison : NC State Extension, Michigan State University Extension et UC IPM. Confusion avec la digitale : FDA américaine (1997). Cuisine : NC State Extension."
+      }
     },
     "walnut": {
       "name": "Noyer",
       "description": "Grosses noix rondes à coque dure et saveur riche et huileuse",
-      "howTo": "Cherchez les noyers dans les parcs, jardins et lisières de bois en automne"
+      "howTo": "Cherchez les noyers dans les parcs, jardins et lisières de bois en automne",
+      "guide": {
+        "identify": "Un grand arbre à l'écorce lisse et brun olive, qui devient grise et crevassée avec l'âge, aux feuilles de cinq à neuf folioles ovales à bord lisse, qui sentent l'encaustique quand on les froisse. La noix est enfermée dans le brou, une enveloppe verte, épaisse et lisse, qui noircit et s'ouvre à maturité. Le noyer noir de l'est des États-Unis a plus de folioles, plus étroites et dentées, et un brou rond qui ne s'ouvre pas, autour d'une coque très dure et sillonnée.",
+        "habitat": "Originaire d'une zone allant du sud-est de l'Europe au sud-ouest de la Chine, le noyer a été planté partout en Europe et s'est naturalisé dans les haies, les bords de champs, les berges et les jeunes bois, surtout à basse altitude, sur sols profonds et fertiles. Aux États-Unis, les vergers sont surtout en Californie ; dans les forêts de l'est, l'espèce sauvage est le noyer noir.",
+        "season": "Septembre et octobre, quand le brou se fend et que les noix tombent. Les noix vertes pour le vin de noix ou les conserves se cueillent fin juin ou début juillet, tant qu'une brochette les traverse encore sans résistance.",
+        "picking": "Ramassez les noix tombées tous les jours ou tous les deux jours, avant que moisissures et insectes ne les abîment, et portez des gants : le brou tache la peau en brun pendant des jours. Retirez le brou rapidement ; la plupart des noyers appartiennent à quelqu'un, demandez avant.",
+        "kitchen": "Une fois sûr de l'arbre, mangez les noix fraîches débarrassées de leur peau amère, ou faites-les sécher pour le pain, les gâteaux, les salades et les sauces. Jetez les cerneaux moisis, ratatinés ou rances. La noix est une cause fréquente d'allergie aux fruits à coque.",
+        "keeps": "Faites-les sécher dans leur coque dans un endroit aéré et ombragé jusqu'à ce que la cloison entre les deux moitiés casse net ; sèches, elles se gardent jusqu'à un an au réfrigérateur.",
+        "source": "Identification et aire de répartition : Woodland Trust. Récolte et conservation : universités d'État de l'Oregon et du Kansas (services d'extension)."
+      }
     },
     "chestnut": {
       "name": "Châtaigne",
       "description": "Grosses châtaignes sucrées dans des bogues vertes épineuses qui s'ouvrent à maturité",
-      "howTo": "Se trouve dans les châtaigneraies et forêts mixtes en automne, souvent près des sentiers"
+      "howTo": "Se trouve dans les châtaigneraies et forêts mixtes en automne, souvent près des sentiers",
+      "guide": {
+        "identify": "Des feuilles longues, étroites et luisantes, de 16 à 28 cm, bordées de dents pointues et parcourues de nombreuses nervures droites et parallèles. La bogue est couverte de longues épines fines et piquantes comme des aiguilles et contient en général deux ou trois châtaignes, aplaties sur une face ou les deux et terminées par une petite pointe avec une houppe. Le marronnier d'Inde (Aesculus hippocastanum), toxique et courant dans les parcs et les rues, a des feuilles en forme de main à cinq à sept folioles, une enveloppe verte et épaisse à quelques piquants courts et un ou deux marrons d'Inde ronds et luisants, sans pointe. En Amérique du Nord, les buckeyes (autres Aesculus) sont aussi toxiques : un arbre aux feuilles en forme de main n'est jamais un châtaignier.",
+        "habitat": "Originaire du sud de l'Europe, de l'Asie occidentale et de l'Afrique du Nord, et planté depuis longtemps pour ses fruits, le châtaignier pousse sur sol acide et bien drainé et fuit le calcaire ; de grandes châtaigneraies couvrent les collines du nord du Portugal et de la Galice aux Cévennes, à l'Ardèche, au Limousin, à la Corse et aux Apennins. Aux États-Unis, la plupart des châtaigniers sont plantés, car un chancre a presque fait disparaître l'espèce indigène.",
+        "season": "Les châtaignes tombent de fin septembre à début novembre, surtout en octobre, plus tôt en plaine qu'en montagne.",
+        "picking": "Ramassez tous les deux ou trois jours les châtaignes tombées d'elles-mêmes ; portez des gants épais ou ouvrez les bogues en les roulant sous la chaussure, et laissez celles qui ont de petits trous de larves de balanin ou de carpocapse. Beaucoup de châtaigneraies sont privées et les châtaignes au sol appartiennent au propriétaire : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois sûr que ce sont des châtaignes, faites-les cuire : crues, elles sont âpres et indigestes. Jetez celles qui flottent dans l'eau, entaillez la coque pour qu'elles n'éclatent pas, grillez-les ou faites-les cuire à l'eau environ 30 minutes, et retirez la coque et la peau intérieure amère pendant qu'elles sont chaudes. Douces et farineuses, elles vont dans les soupes, les farces et les purées. Attention au mot marron : les marrons glacés sont faits avec des châtaignes, mais le marron d'Inde est toxique.",
+        "keeps": "À température ambiante, les châtaignes fraîches moisissent en deux semaines environ ; au réfrigérateur, elles se gardent environ deux mois, ou bien congelez-les ou faites-les sécher.",
+        "source": "Identification : Woodland Trust, ANSES et université d'État de l'Oregon (OSU Extension). Récolte, cuisson et conservation : OSU Extension."
+      }
     },
     "elderflower": {
       "name": "Fleur de sureau",
       "description": "Fleurs blanches crémeuses en larges ombelles sur les sureaux",
-      "howTo": "Cherchez les sureaux dans les haies et lisières de bois à la fin du printemps et au début de l'été"
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois à la fin du printemps et au début de l'été",
+      "guide": {
+        "identify": "Le sureau noir est un arbuste ou petit arbre ligneux à l'écorce gris-brun, liégeuse et crevassée, aux feuilles opposées de 5 à 7 folioles dentées qui sentent mauvais quand on les froisse. À la fin du printemps, il porte de larges corymbes plats et ramifiés de minuscules fleurs blanc crème, aux anthères jaune pâle et au parfum doux et musqué. L'hièble (sureau yèble) est une plante herbacée qui meurt chaque hiver, aux inflorescences dressées et aux anthères violettes, et le sureau rouge fleurit plus tôt en grappes ovoïdes ou en dôme ; tous deux sont toxiques. La grande ciguë, la ciguë vireuse et la berce du Caucase, dont la sève brûle la peau au soleil, sont des herbes vertes et tendres, pas des arbustes : la grande ciguë a une tige lisse, creuse, tachée de pourpre et une odeur d'urine de souris, et chez les trois, les rayons de l'inflorescence partent d'un même point comme les baleines d'un parapluie.",
+        "habitat": "Haies, lisières, fourrés, berges et friches, souvent près des maisons sur sol riche ; commun dans toute l'Europe, de la plaine à la moyenne montagne. Aux États-Unis, le sureau du Canada à l'est et le sureau bleu à l'ouest poussent dans des lieux semblables.",
+        "season": "Le sureau fleurit de fin mai à juin dans le nord et le centre de l'Europe, plus tôt dans le sud chaud. Dans l'est des États-Unis, le sureau du Canada fleurit plus tard et plus longtemps, surtout en juin et juillet.",
+        "picking": "Cueillez par une matinée sèche et ensoleillée des corymbes bien ouverts, crème et parfumés, et laissez ceux qui brunissent. Coupez-les ou cassez-les à la base, n'en prenez que quelques-uns par arbuste pour qu'il donne encore des baies, et secouez doucement les insectes.",
+        "kitchen": "Une fois identifiées avec certitude, seules les fleurs s'utilisent : détachez-les des pédoncules, car tiges, feuilles, écorce, racines et baies vertes sont toxiques. Faites-les infuser dans un sirop de sucre chaud avec du citron pour un sirop de sureau, trempez des corymbes entiers dans la pâte et faites-les frire en beignets sans manger la grosse tige, ou séchez-les pour la tisane ; leur goût est doux et floral et va bien avec les groseilles à maquereau et les fraises. Les baies qui suivent à l'automne doivent être cuites.",
+        "keeps": "Les fleurs fanent vite : utilisez-les le jour même. Séchés à l'ombre, les corymbes se gardent pour la tisane dans un bocal hermétique ; le sirop se garde quelques semaines au réfrigérateur ou se congèle.",
+        "source": "Identification et habitat : Woodland Trust et BSBI. Espèces ressemblantes : service d'extension de l'université du Minnesota. Cueillette et cuisine : services d'extension de Penn State et de UMass."
+      }
     },
     "daisy": {
       "name": "Pâquerette",
       "description": "Petites fleurs blanches à cœur jaune poussant près du sol",
-      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été"
+      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été",
+      "guide": {
+        "identify": "La pâquerette est une petite plante à rosette plaquée au sol, aux feuilles en spatule, légèrement velues. Chaque tige sans feuilles, velue, porte un seul capitule d'environ 2 cm : des ligules blanches, souvent teintées de rose, autour d'un cœur jaune ; les capitules se ferment la nuit et par temps couvert. Les fleurs semblables plus grandes sur des tiges feuillées, comme la grande marguerite, et les matricaires et camomilles aux feuilles finement découpées sont d'autres plantes.",
+        "habitat": "Pelouses, gazons ras, pâtures, bords de chemin et sentiers, au soleil sur sol frais ; elle pousse presque partout en Europe. Venue d'Europe, elle pousse aux États-Unis dans les pelouses et les sols frais et remués, surtout là où les étés sont frais.",
+        "season": "Là où les hivers sont doux, elle fleurit presque toute l'année, surtout du printemps au début de l'été. Dans les régions froides et une grande partie des États-Unis, elle fleurit du printemps au début de l'été, avec quelques fleurs jusqu'aux gelées.",
+        "picking": "Pincez les capitules et quelques jeunes feuilles, sur de nombreuses plantes, en laissant les rosettes en place. Évitez les pelouses traitées au désherbant ou à l'engrais, les lieux de promenade des chiens et les bords de route.",
+        "kitchen": "Une fois identifiées avec certitude, les fleurs et les jeunes feuilles se mangent crues en petite quantité, en salade, en tartine ou en décoration ; leur goût est doux à légèrement amer, et les vieilles feuilles sont coriaces. Rincez-les doucement à l'eau froide. Goûtez d'abord très peu, car les personnes allergiques aux astéracées peuvent réagir et de grandes quantités peuvent dérégler l'estomac ; évitez-la pendant la grossesse et l'allaitement.",
+        "keeps": "Cueillez-la juste avant de l'utiliser, car la fleur fane vite ; en attendant, gardez-la entre deux feuilles de papier absorbant humide au réfrigérateur.",
+        "source": "Identification et habitat : The Wildlife Trusts et service d'extension de NC State. Cuisine et sécurité : services d'extension de Colorado State University et de NC State."
+      }
     },
     "violets": {
       "name": "Violette odorante",
       "description": "Petites fleurs violettes à feuilles en cœur et parfum doux",
-      "howTo": "Se trouve en lisière de bois, haies et zones ombragées au début du printemps"
+      "howTo": "Se trouve en lisière de bois, haies et zones ombragées au début du printemps",
+      "guide": {
+        "identify": "La violette odorante est une petite plante en rosette aux feuilles en cœur, longuement pétiolées, à base arrondie, bord crénelé et poils courts ; elle s'étend par de longs stolons qui s'enracinent. Chaque fleur naît de la rosette sur son propre pédoncule : cinq pétales inégaux, l'inférieur prolongé vers l'arrière par un court éperon, le plus souvent violet foncé, parfois blanche, avec des sépales obtus et un parfum sucré ; les violettes des bois sans parfum se ressemblent mais ne sentent rien. La ficaire, toxique, qui pousse aux mêmes endroits, a des feuilles luisantes, charnues et glabres et des fleurs de 8 à 12 pétales jaunes brillants ; le gouet tacheté (arum), toxique lui aussi, a des feuilles luisantes en fer de flèche aux lobes tournés vers l'arrière.",
+        "habitat": "Lisières, talus de haies, herbe ombragée, cimetières, parcs et vieux jardins, sur sol frais et riche à mi-ombre. Elle pousse dans presque toute l'Europe et s'est échappée des jardins en bien des endroits ; aux États-Unis, elle pousse çà et là à l'état sauvage dans les pelouses et les lisières.",
+        "season": "Elle fleurit de février à mai, plus tôt dans le sud de l'Europe, et en avril et mai dans une grande partie des États-Unis. Quelques fleurs réapparaissent parfois en fin d'été, et les feuilles sont meilleures jeunes, au printemps.",
+        "picking": "Ne cueillez que quelques fleurs et jeunes feuilles par touffe et laissez la rosette et les racines en terre ; n'arrachez jamais de plantes. Évitez les pelouses traitées, les bords de route et les lieux de promenade des chiens.",
+        "kitchen": "Une fois identifiées avec certitude, les fleurs se mangent crues sur les salades et les desserts, se cristallisent au blanc d'œuf pasteurisé et au sucre fin, ou s'infusent dans l'eau bouillante qu'on sucre ensuite pour un sirop de violette. Les jeunes feuilles se mangent crues en salade ou cuites comme des épinards ; douces, elles épaississent un peu les soupes. Ne mangez jamais les racines ni les graines, qui peuvent faire vomir, et goûtez d'abord une petite quantité.",
+        "keeps": "Les fleurs fanent vite : gardez-les entre deux feuilles de papier absorbant humide au réfrigérateur et utilisez-les le jour même. Les fleurs cristallisées se gardent dans une boîte hermétique, au frais et à l'obscurité.",
+        "source": "Identification et habitat : NatureSpot et service d'extension de NC State. Cuisine : services d'extension de Colorado State University et de NC State."
+      }
     },
     "amaranth": {
       "name": "Amarante",
       "description": "Plante herbacée aux feuilles et graines comestibles, riche en nutriments.",
-      "howTo": "Pousse sur sols perturbés, potagers et champs pendant l'été. Récolte les jeunes feuilles avant la floraison."
+      "howTo": "Pousse sur sols perturbés, potagers et champs pendant l'été. Récolte les jeunes feuilles avant la floraison.",
+      "guide": {
+        "identify": "L'amarante réfléchie est une plante annuelle robuste et dressée, à tige couverte de fins poils blancs et rougeâtre à la base, avec une racine pivotante rose à rouge. Ses feuilles alternes sont ovales à losangiques, à bord lisse et long pétiole, souvent avec une petite encoche ou une minuscule pointe au sommet ; les minuscules fleurs vertes forment des épis denses, hérissés et piquants, puis de minuscules graines noires et brillantes. Deux mauvaises herbes toxiques poussent sur le même sol : le datura stramoine, aux grandes feuilles grossièrement dentées et malodorantes, aux fleurs blanches en trompette et aux capsules épineuses, et la morelle noire, aux feuilles à bord ondulé, aux petites fleurs blanches en étoile et aux baies noires.",
+        "habitat": "Jardins, cultures, cours de ferme et friches : sol nu, riche et remué, en plein soleil. Originaire du centre et de l'est de l'Amérique du Nord, c'est une mauvaise herbe commune dans tous les États-Unis et dans une grande partie de l'Europe, surtout dans les plaines chaudes.",
+        "season": "Annuelle d'été : elle lève à la fin du printemps quand le sol se réchauffe, fleurit environ de juillet à septembre et mûrit ses graines d'août à octobre, jusqu'aux premières gelées. Les feuilles sont meilleures jeunes, avant la floraison.",
+        "picking": "Cueillez à la main les jeunes feuilles et les pousses tendres avant la floraison, et égrenez les épis quand les graines sont noires. Évitez les bords de route et les champs traités, et laissez de côté les sols très fumés ou fertilisés et les plantes souffrant de la sécheresse, qui accumulent le plus de nitrates.",
+        "kitchen": "Une fois l'amarante identifiée avec certitude, faites cuire les feuilles comme des épinards : faites-les bouillir brièvement et jetez l'eau, ce qui réduit les nitrates et l'acide oxalique. Mangez-en avec modération, et pas du tout en cas de calculs rénaux ou de maladie des reins ; son goût est doux et terreux, bon avec l'ail, les haricots et les œufs. Les graines se font griller ou cuire comme une céréale.",
+        "keeps": "Les feuilles flétrissent en un jour : gardez-les dans un sac au réfrigérateur, ou blanchissez-les et congelez-les. Faites sécher les épis dans un sac en papier, frottez et vannez les graines, puis gardez-les dans un bocal fermé.",
+        "source": "Identification et saison : Cornell University et NC State Extension. Nitrates et oxalates : NC State Extension et Michigan State University Extension. Confusion avec le datura : centre antipoison de Marseille."
+      }
     },
     "artichoke": {
       "name": "Artichaut sauvage",
       "description": "Plante épineuse ressemblant à l'artichaut cultivé, avec capitules et tiges comestibles.",
-      "howTo": "Se trouve dans les prairies et champs ; récolte les jeunes capitules et les tiges tendres au printemps et au début de l'été."
+      "howTo": "Se trouve dans les prairies et champs ; récolte les jeunes capitules et les tiges tendres au printemps et au début de l'été.",
+      "guide": {
+        "identify": "L'artichaut sauvage (cardon sauvage) forme une grande rosette de feuilles profondément découpées, gris-vert argenté dessus et presque blanches dessous sous un épais feutre de poils, chaque lobe se terminant par une épine jaune et raide. À la fin du printemps, une tige raide et ramifiée, jusqu'à hauteur d'homme, porte des capitules comme de petits artichauts, entourés de bractées à pointe épineuse, qui s'ouvrent en fleurs de chardon bleu violet. Le chardon à glu (Atractylis gummifera), chardon méditerranéen mortel déjà confondu avec l'artichaut sauvage et qui a tué au Maroc, n'a pas de tige : son capitule rose est posé à plat au centre de la rosette épineuse, il fleurit de la fin de l'été à l'automne et sa racine laisse couler une gomme collante. Ne mangez jamais une rosette de chardon sans tige ni une racine de chardon.",
+        "habitat": "Terrains ouverts, secs et ensoleillés : pâtures, bords de champs et de routes, friches et maquis, souvent sur argile. Originaire de la Méditerranée, du Portugal à la Grèce et à l'Afrique du Nord ; dans le nord et le centre de l'Europe, on ne le trouve qu'échappé des jardins. En Californie, c'est une mauvaise herbe envahissante des prairies et des broussailles côtières en dessous de 500 m ; ailleurs aux États-Unis, c'est une plante de jardin.",
+        "season": "La rosette pousse après les pluies d'automne et pendant l'hiver doux : les côtes se récoltent de la fin de l'hiver au printemps, les capitules à la fin du printemps et au début de l'été. Il fleurit surtout en juin et juillet, puis se dessèche avec la sécheresse estivale.",
+        "picking": "Mettez des gants épais et coupez les côtes ou les capitules au couteau ; laissez la racine et, dans son aire d'origine, laissez quelques capitules fleurir. En Californie, où il est envahissant, prenez les capitules avant qu'ils ne grainent et ne les transportez pas ailleurs ; vérifiez les règles locales sur les terrains publics.",
+        "kitchen": "Une fois l'artichaut sauvage identifié avec certitude, épluchez les côtes pour ôter épines et fils, plongez les morceaux dans de l'eau citronnée, car ils noircissent, et faites-les bouillir jusqu'à ce qu'ils soient tendres ; ils ont le goût d'un artichaut amer et se mangent en ragoût ou en beignets. Sur les capitules, retirez les bractées épineuses et mangez la base tendre et le cœur. Les fleurs séchées font cailler le lait de fromages comme le Serra da Estrela et la Torta del Casar.",
+        "keeps": "Les côtes se gardent quelques jours au réfrigérateur dans un linge humide ; cuites, elles se congèlent bien.",
+        "source": "Identification, répartition et saison : IUCN Global Invasive Species Database et California Invasive Plant Council. Intoxications par l'Atractylis : données du centre antipoison du Maroc."
+      }
     },
     "asparagus": {
       "name": "Asperge sauvage",
       "description": "Plante vivace aux pousses fines et comestibles apparaissant au printemps.",
-      "howTo": "Cherche les jeunes pousses dans les champs ouverts, prairies et le long des haies au printemps."
+      "howTo": "Cherche les jeunes pousses dans les champs ouverts, prairies et le long des haies au printemps.",
+      "guide": {
+        "identify": "L'asperge sauvage (asperge à feuilles aiguës) est un arbrisseau enchevêtré, toujours vert et ligneux, jusqu'à environ 1,5 m, sans vraies feuilles, seulement des touffes de courts rameaux verts, raides, en aiguilles, terminés chacun par une épine ; ses baies noires ne se mangent pas. Au printemps, des pousses fines, vert foncé à violacées, souvent plus minces qu'un crayon, sortent du pied du vieil arbrisseau épineux, avec de petites écailles pointues plaquées sur la tige et pas de feuilles. Le tamier commun et la bryone dioïque, lianes toxiques des mêmes haies, font aussi des pousses au printemps : le tamier déploie vite des feuilles luisantes en cœur, la bryone est velue, avec des feuilles lobées et des vrilles. Ne cueillez que des pousses qui sortent d'un pied d'asperge bien visible.",
+        "habitat": "Maquis et garrigue, lisières de chênaies vertes et de pinèdes, oliveraies, haies, murets de pierre et bords de chemin, du littoral jusqu'aux collines du Portugal, de l'Espagne, du sud de la France, de l'Italie, des Balkans et de la Grèce. Elle ne pousse pas à l'état sauvage dans le nord et le centre de l'Europe : les asperges qu'on y trouve sont des asperges cultivées ensauvagées, surtout sur sol sableux.",
+        "season": "Les pousses sortent de la fin de l'hiver au printemps, après les pluies d'automne et d'hiver : dès février sur les côtes chaudes, jusqu'en avril et mai dans les collines. Une pluie suivie de journées douces et ensoleillées amène une nouvelle poussée.",
+        "picking": "Cassez chaque pousse à la main là où elle se rompt facilement, laissez-en quelques-unes sur chaque pied et ne coupez ni n'arrachez jamais le pied. En Italie, chaque région fixe ses règles (la Toscane n'autorise la cueillette que jusqu'au 31 mai) ; en Espagne, ce sont le propriétaire et la région qui décident, et dans les espaces protégés c'est souvent interdit : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois l'asperge identifiée avec certitude, ne gardez que la partie tendre au-dessus du point de cassure ; elle est plus amère que l'asperge cultivée. Faites-la cuire peu : en omelette ou en œufs brouillés, en risotto, avec des pâtes ou poêlée à l'ail et à l'huile d'olive.",
+        "keeps": "Mieux vaut la manger le jour même ; debout dans un peu d'eau, elle se garde quelques jours au réfrigérateur, ou blanchissez-la et congelez-la.",
+        "source": "Identification, habitat et saison : flores méditerranéennes et herbier virtuel de l'université des îles Baléares. Tamier et bryone : RHS. Règles de cueillette : Regione Toscana."
+      }
     },
     "black_chant": {
       "name": "Trompette de la mort",
       "description": "Champignon sombre en forme de trompette, au goût intense, très apprécié en cuisine.",
-      "howTo": "Se trouve dans les forêts de feuillus, surtout sous les chênes et les hêtres, de la fin de l'été à l'automne."
+      "howTo": "Se trouve dans les forêts de feuillus, surtout sous les chênes et les hêtres, de la fin de l'été à l'automne.",
+      "guide": {
+        "identify": "Une corne mince et creuse de 4 à 8 cm de large, ouverte jusqu'à la base, sans chapeau distinct. L'intérieur est gris-brun à noir et finement écailleux ; l'extérieur est gris cendré, lisse ou à peine ridé, sans lames ni plis, et pâlit avec une pruine blanchâtre à maturité. La chair est mince, cassante et gris-noir, avec une faible odeur douce. Les trompettes de l'est des États-Unis (Craterellus fallax) sont identiques mais donnent une sporée rose orangé au lieu de blanche ; la chanterelle cendrée (Craterellus cinereus) a des plis fourchus bien nets à l'extérieur.",
+        "habitat": "Elle vit en association avec les feuillus, surtout le hêtre et le chêne, aussi le charme et le noisetier, dans la litière humide et la mousse, souvent en grandes troupes sur sol riche et argileux, dans les ravines et sur les talus. Commune dans toute l'Europe ; dans l'est des États-Unis pousse son espèce sœur sous les chênes et les hêtres, et sur la côte pacifique une trompette de l'Ouest sous le chêne à tan (tanoak), les chênes verts et l'arbousier d'Amérique.",
+        "season": "Surtout en automne : en Europe de la fin de l'été à novembre, jusqu'en décembre les années douces et plus tard encore autour de la Méditerranée ; dans l'est des États-Unis de juillet à octobre après de fortes pluies. Sur la côte pacifique, la trompette de l'Ouest pousse du cœur de l'hiver au printemps.",
+        "picking": "Pincez-la ou coupez-la à la base, laissez les petites et ne prenez que ce que vous mangerez ; les règles locales sur les champignons sauvages s'appliquent aussi. Elle se fond dans la litière sombre : là où vous en trouvez une, cherchez bien autour.",
+        "kitchen": "Une fois identifiée avec certitude, fendez chaque trompette en long et rincez feuilles, insectes et terre, puis égouttez-la bien. Ne la mangez jamais crue : cuisez-la bien, au beurre, en sauce à la crème, en risotto ou avec des pâtes, du poisson ou des œufs. Goût profond et fumé, plus fort une fois séchée.",
+        "keeps": "Fraîche, quelques jours seulement au réfrigérateur. Elle sèche vite et très bien ; gardez-la dans un bocal fermé ou réduisez-la en poudre pour les sauces et les soupes.",
+        "source": "Identification et habitat : First Nature (Royaume-Uni), MushroomExpert.com et MykoWeb (California Fungi). Saison : données GBIF."
+      }
     },
     "lingonb": {
       "name": "Airelle rouge",
       "description": "Petites baies rouges et acidulées poussant sur des arbustes persistants dans les sols acides.",
-      "howTo": "Cherche dans les forêts de conifères, landes et tourbières de la fin de l'été à l'automne."
+      "howTo": "Cherche dans les forêts de conifères, landes et tourbières de la fin de l'été à l'automne.",
+      "guide": {
+        "identify": "L'airelle rouge, ou airelle vigne-d'Ida, est un sous-arbrisseau rampant à feuilles persistantes, épaisses, vert foncé et luisantes, aux bords enroulés vers le dessous ; la face inférieure, pâle, est parsemée de minuscules points sombres. Ses petites fleurs en clochette, blanches à roses, en courtes grappes au bout des pousses, donnent des baies rondes, rouges et brillantes qui pendent en petits bouquets. La busserole ou raisin d'ours (Arctostaphylos uva-ursi), un sous-arbrisseau rampant des mêmes milieux, a des feuilles aux nervures en réseau, sans points, et des baies sèches et farineuses. Les baies rouges et noires toxiques ne poussent pas sur un tapis bas et persistant : l'if (Taxus) est un arbre ou un grand arbuste aux aiguilles plates, avec une cupule rouge ouverte au bout autour d'une graine sombre ; le bois-joli (Daphne mezereum) est un arbuste dressé aux baies collées le long des rameaux ; la belladone (Atropa bella-donna) est une grande herbacée aux baies noires ; l'actée à fruits rouges (Actaea) et le muguet (Convallaria majalis) sont des plantes herbacées.",
+        "habitat": "Sol acide et pauvre des pinèdes et pessières, des bois de bouleaux, des landes, des tourbières et des pentes au-dessus de la limite des arbres ; très commune en Scandinavie et dans les pays baltes, et présente dans les Alpes et d'autres montagnes. En Amérique du Nord, elle pousse surtout au Canada et en Alaska et n'atteint les États-Unis qu'à l'extrême nord, du Minnesota au Maine, où elle est rare (menacée dans le Wisconsin).",
+        "season": "Les baies rougissent dès août et sont à point quand elles sont rouge foncé, de septembre à octobre ; elles restent sur les plants jusqu'en hiver.",
+        "picking": "Cueillez les baies rouge foncé à la main ou, là où c'est permis, avec un peigne à baies ; en Suède, en Finlande et en Norvège, le droit d'accès à la nature permet à chacun de cueillir les baies sauvages loin des maisons et des jardins, mais les réserves naturelles peuvent avoir leurs propres règles. En Europe centrale, l'office bavarois de la santé (LGL) indique que la consommation de baies sauvages n'a pas été identifiée comme un facteur de risque d'échinococcose (ténia du renard), mais conseille de bien les laver ; seule une cuisson au-dessus de 60 °C tue les œufs, la congélation domestique non.",
+        "kitchen": "Crues, les baies sont acides et un peu amères ; une fois identifiées avec certitude, on les cuit le plus souvent avec du sucre en sauce ou en confiture, ou on les mélange crues avec du sucre, comme en Suède. Elles accompagnent le gibier, les rôtis, les boulettes de viande, les galettes de pommes de terre ou le porridge.",
+        "keeps": "Au réfrigérateur, elles se gardent plus longtemps que la plupart des baies, et mélangées au sucre elles se conservent longtemps au frais grâce à leur acide benzoïque naturel. Elles se congèlent bien telles quelles.",
+        "source": "Identification et répartition : Minnesota Wildflowers et CREA Mont-Blanc. Droit de cueillette : Agence suédoise de protection de l'environnement (Naturvårdsverket). Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "masterwort": {
       "name": "Impératoire",
       "description": "Plante vivace aux feuilles aromatiques et ombelles de fleurs blanches, utilisée en médecine traditionnelle et comme épice.",
-      "howTo": "Se trouve dans les prairies de montagne et les clairières forestières ; récolte feuilles et racines au printemps et en été."
+      "howTo": "Se trouve dans les prairies de montagne et les clairières forestières ; récolte feuilles et racines au printemps et en été.",
+      "guide": {
+        "identify": "L'impératoire est une ombellifère glabre de 30 à 100 cm, à tige ronde, cannelée et creuse ; ses feuilles se divisent en trois puis encore en trois, en folioles larges, ovales et doublement dentées de 5 à 10 cm, et les feuilles du haut naissent de grandes gaines renflées. Les ombelles plates, blanches ou rosées, ont jusqu'à 50 rayons, les fruits sont ronds, plats et largement ailés, et une feuille froissée ou l'épaisse souche brune sent fort et épicé, le céleri et la carotte. Ses sosies mortels ont des feuilles finement divisées, plumeuses ou comme des fougères : la grande ciguë, à tige lisse tachée de pourpre et à odeur de souris ; la petite ciguë, avec de longues bractées pendantes sous chaque petite ombelle ; la ciguë vireuse, à souche cloisonnée en chambres creuses quand on la coupe en long ; l'œnanthe safranée, à tubercules pâles en sol humide. La berce du Caucase est bien plus grande, avec une tige hérissée tachée de pourpre et une sève qui brûle la peau au soleil ; la sève de l'impératoire peut elle aussi rendre la peau sensible au soleil.",
+        "habitat": "Prairies humides de montagne, mégaphorbiaies, bords de ruisseaux, éboulis et aulnaies vertes, surtout entre 1400 et 2700 m, dans les Alpes, les Pyrénées, les Carpates et d'autres montagnes d'Europe centrale et du Sud. Plus bas, elle est rare et le plus souvent échappée de vieux jardins, comme en Grande-Bretagne et en Scandinavie.",
+        "season": "Les feuilles poussent à la fonte des neiges et sont meilleures jeunes, au début de l'été. Elle fleurit de fin juin à août ; les fruits mûrissent en septembre et octobre.",
+        "picking": "Avec des gants, prenez quelques feuilles dans une grande station et laissez la souche en terre ; arracher la racine demande souvent une autorisation (au Tyrol, de l'autorité de district), et beaucoup de réserves et de parcs nationaux interdisent la cueillette. Elle pousse parmi l'aconit napel et le vératre blanc, tous deux mortels : cueillez feuille par feuille sur une plante identifiée en entier.",
+        "kitchen": "Une fois identifiée avec certitude, employez-la comme aromate, pas comme légume : son goût est très amer et épicé, comme la livèche. Dans les Alpes, la racine parfume l'eau-de-vie (Meisterwurzbrand) et des fromages aux herbes ; quelques jeunes feuilles finement hachées s'ajoutent avec parcimonie aux soupes et au fromage frais. Lavez-vous les mains après l'avoir touchée.",
+        "keeps": "Faites sécher les feuilles, ou des rondelles de racine, dans un endroit aéré et ombragé et gardez-les dans un bocal fermé.",
+        "source": "Identification, habitat et saison : Botanical Society of Britain and Ireland et flores alpines. Arrachage de la racine et eau-de-vie : ministère autrichien de l'Agriculture (registre des aliments traditionnels). Réactions cutanées : Botanical Dermatology Database."
+      }
     },
     "parasol": {
       "name": "Coulemelle",
       "description": "Grand champignon au large chapeau écailleux semblable à un parapluie, comestible lorsqu'il est jeune.",
-      "howTo": "Cherche dans les prairies, pâturages et lisières de forêt de la fin de l'été à l'automne."
+      "howTo": "Cherche dans les prairies, pâturages et lisières de forêt de la fin de l'été à l'automne.",
+      "guide": {
+        "identify": "Un grand champignon : le chapeau passe d'une baguette de tambour fermée, en forme d'œuf, à une ombrelle plate de 10 à 25 cm, crème à écailles brunes, avec un mamelon lisse et brun au centre. Les lames sont blanches, libres et serrées ; le pied élancé, jusqu'à 30 cm de haut et bulbeux à la base, est chiné de brun comme une peau de serpent et porte un anneau épais et double qui coulisse ; la sporée est blanche. Les lépiotes mortelles sont petites, avec des chapeaux de quelques centimètres ; Chlorophyllum molybdites donne une sporée verdâtre ; les lépiotes déguenillées (Chlorophyllum rhacodes et C. brunneum), mal tolérées par beaucoup de gens, ont un pied lisse et une chair qui rougit à la coupe ; l'amanite panthère (Amanita pantherina) a des verrues blanches sur le chapeau, un anneau fixe et un bulbe à rebord.",
+        "habitat": "Dans les prés et en lisière de bois : pâtures, clairières, allées forestières et dunes, sur sol bien drainé, de la plaine à la montagne. Commune dans toute l'Europe.",
+        "season": "De l'été à l'automne, surtout de juillet à octobre, et jusqu'en novembre dans le sud de l'Europe. Elle sort après une période chaude et humide.",
+        "picking": "Ne cueillez que des chapeaux ouverts, de taille adulte, dont vous pouvez vérifier chaque caractère ; sortez le champignon entier pour voir la base du pied, et laissez tout champignon d'aspect semblable dont le chapeau fait moins de 10 cm. Laissez les vieux exemplaires coriaces et renseignez-vous sur les règles locales : beaucoup de régions limitent la quantité.",
+        "kitchen": "Une fois identifiée avec certitude, ne mangez que le chapeau, et cuit : comme la plupart des champignons sauvages, crue, elle peut donner des troubles digestifs. Panée et frite comme une escalope, ou grillée au beurre et à l'ail, elle a un goût doux de noisette. Les pieds, coriaces, peuvent être séchés et moulus pour les soupes.",
+        "keeps": "Deux jours au réfrigérateur. Les chapeaux en lamelles sèchent bien.",
+        "source": "Identification et habitat : First Nature. Espèces proches et intoxications : ANSES. Saison : observations GBIF."
+      }
     },
     "sorrel": {
       "name": "Oseille commune",
       "description": "Plante au goût acidulé et citronné, utilisée dans les salades et les soupes.",
-      "howTo": "Récolte les jeunes feuilles dans les prairies, pâturages et le long des sentiers au printemps et en été."
+      "howTo": "Récolte les jeunes feuilles dans les prairies, pâturages et le long des sentiers au printemps et en été.",
+      "guide": {
+        "identify": "Des feuilles tendres en fer de flèche, dont les deux lobes de la base, pointus, sont tournés vers l'arrière, le long du pétiole ; les feuilles du haut embrassent la tige, et une fine gaine membraneuse entoure la tige à la base de chaque feuille. Dès mai, les tiges florales portent des grappes lâches de petites fleurs rougeâtres. Le gouet tacheté (Arum maculatum), toxique, a de jeunes feuilles de forme proche, mais elles portent souvent des taches sombres, ont des lobes arrondis et poussent dans les bois et les haies plutôt qu'en prairie ouverte. Ne goûtez jamais une feuille pour vérifier : le gouet brûle la bouche.",
+        "habitat": "Prairies, pâturages, pelouses, bords de chemins et bois clairs, de la plaine à la montagne ; très commune dans toute l'Europe. Aux États-Unis, elle est introduite et se trouve çà et là, surtout dans le nord-est, autour des Grands Lacs, en Oregon et en Alaska, où la petite oseille est bien plus commune.",
+        "season": "Les feuilles poussent dès le début du printemps, presque toute l'année dans les régions douces, et sont meilleures jeunes ; dès la floraison, à partir de mai, elles deviennent plus dures et plus amères, mais les pieds coupés en refont de nouvelles.",
+        "picking": "Cueillez quelques jeunes feuilles par pied et laissez la racine ; choisissez des prairies ni traitées ni engraissées, loin des routes et des chemins à chiens.",
+        "kitchen": "Une fois l'oseille identifiée avec certitude, ses feuilles ont un goût franchement acide, comme le zeste de citron : émincez les jeunes dans les salades, ou faites-les cuire brièvement dans les soupes, les omelettes et les sauces pour le poisson et les œufs. Cette acidité vient de l'acide oxalique : consommez l'oseille avec modération et évitez-la si vous souffrez de calculs rénaux. Cuisez-la dans l'inox ou l'émail, pas dans l'aluminium ni la fonte.",
+        "keeps": "Au réfrigérateur, les feuilles flétrissent en deux ou trois jours ; réduite en purée, l'oseille se congèle bien.",
+        "source": "Identification et sosies : Woodland Trust et Wild Food UK. Aire aux États-Unis : Flora of North America. Acide oxalique : Wild Food UK. Saison : données GBIF."
+      }
     },
     "st_george": {
       "name": "Tricholome de la Saint-Georges",
       "description": "Champignon blanc et ferme à odeur de farine, apparaissant autour de la Saint-Georges au printemps.",
-      "howTo": "Se trouve dans les prairies, pâturages et lisières de forêt au printemps."
+      "howTo": "Se trouve dans les prairies, pâturages et lisières de forêt au printemps.",
+      "guide": {
+        "identify": "Le tricholome de la Saint-Georges, ou mousseron, est un champignon trapu et charnu, blanc à crème, au chapeau de 5 à 15 cm, souvent bosselé, à marge enroulée. Les lames sont blanches, étroites et très serrées ; le pied, épais et plein, n'a ni anneau ni volve à la base ; la chair, ferme et blanche, ne change pas de couleur et sent fortement la farine fraîche ; la sporée est blanche. L'inocybe de Patouillard (Inosperma erubescens), mortel, a un chapeau conique et fibrilleux, rougit au toucher et donne une sporée brune ; l'entolome livide (Entoloma sinuatum) peut aussi sentir la farine, mais ses lames deviennent roses et sa sporée est rose. Les amanites blanches, comme l'amanite printanière (Amanita verna), mortelle et elle aussi de printemps, ont un anneau et une volve à la base.",
+        "habitat": "Dans l'herbe : pâtures, bords de chemin fauchés, parcs et lisières, souvent près des aubépines, prunelliers et autres arbustes de haie, surtout sur sol calcaire. Il revient aux mêmes endroits pendant des années, souvent en ronds de sorcière ; présent dans toute l'Europe, il est très recherché dans le nord de l'Espagne et le centre de l'Italie.",
+        "season": "Au printemps, surtout en avril et mai, et jusqu'en juin au nord et en montagne ; il doit son nom à la Saint-Georges, le 23 avril. Un printemps doux et humide le fait sortir.",
+        "picking": "Coupez le pied à la base et laissez les petits ; prenez des chapeaux jeunes et fermes, car les vieux sont souvent véreux. Évitez les bords de routes fréquentées et renseignez-vous sur les règles locales : certaines régions exigent un permis ou fixent une quantité par jour.",
+        "kitchen": "Une fois identifié avec certitude, mangez-le cuit : il perd presque toute son odeur de farine, et sa chair ferme et douce convient aux omelettes, œufs brouillés, risottos et sauces à la crème. Coupez-le d'abord en deux dans la longueur pour vérifier qu'il n'est pas véreux.",
+        "keeps": "Jusqu'à deux jours au réfrigérateur, enveloppé de papier. Rapidement poêlé, il se congèle bien.",
+        "source": "Identification et habitat : First Nature. Espèces proches : First Nature et ANSES. Saison : observations GBIF."
+      }
     },
     "truffle_b": {
       "name": "Truffe noire du Périgord",
       "description": "Champignon souterrain très recherché au parfum intense, utilisé en cuisine gastronomique.",
-      "howTo": "Se trouve sous terre près des racines de chênes et de noisetiers, récolté avec des animaux dressés en hiver."
+      "howTo": "Se trouve sous terre près des racines de chênes et de noisetiers, récolté avec des animaux dressés en hiver.",
+      "guide": {
+        "identify": "La truffe noire est un tubercule rond et bosselé, de la taille d'une noix à celle d'un poing, qui pousse sous terre. La peau noire, rougeâtre quand elle est jeune, est couverte de petites verrues dures à plusieurs faces. Coupez-la en deux : la chair mûre est noir violacé, marbrée de fines veines blanches qui virent au brun rouge à l'air, et elle a une odeur forte et terreuse. Les sclérodermes (Scleroderma), toxiques, ont une peau épaisse, jaunâtre à brune et écailleuse, une odeur de gaz et un intérieur ferme et sombre ; la truffe musquée (Tuber brumale) et la truffe de Chine importée (Tuber indicum) lui ressemblent mais valent beaucoup moins.",
+        "habitat": "Sous terre, parmi les racines des chênes, surtout chêne vert et chêne pubescent, et des noisetiers, sur sol calcaire bien drainé, dans les collines ensoleillées ; une tache de terre nue autour de l'arbre, le brûlé, signale souvent sa présence. Elle est indigène dans le sud de la France, l'est de l'Espagne et le centre de l'Italie ; une grande partie de la récolte vient aujourd'hui de truffières plantées.",
+        "season": "En hiver : elle mûrit de décembre à mars, et les marchés battent leur plein en janvier. Les orages de fin juillet et d'août, pendant qu'elle grossit, décident de l'importance de la récolte.",
+        "picking": "On la cherche avec un chien dressé : ne creusez qu'à l'endroit qu'il marque, avec une petite pioche à truffes, ne prenez que des truffes mûres et rebouchez le trou. La récolte est réglementée : en Italie, il faut une licence obtenue après un examen et les régions fixent les saisons ; en Espagne, chaque région fixe saisons et permis ; en France, les truffes appartiennent au propriétaire du terrain, et en Allemagne les truffes sauvages sont protégées. Renseignez-vous sur les règles locales avant de chercher.",
+        "kitchen": "Une fois identifiée avec certitude, brossez-la sous l'eau froide juste avant de l'utiliser. Râpez-la ou taillez-la en lamelles, crue, sur des plats chauds, ou chauffez-la doucement dans un corps gras : avec les œufs, le beurre, les pâtes, le risotto ou les pommes de terre. Une longue cuisson détruit son arôme.",
+        "keeps": "Enveloppez-la dans du papier absorbant, dans un bocal fermé au réfrigérateur ; changez le papier chaque jour et utilisez-la en quelques jours, car son arôme faiblit. Des œufs gardés dans le bocal prennent son parfum. La congélation garde mieux l'arôme que le séchage.",
+        "source": "Identification et habitat : CRPF Languedoc-Roussillon et Trufamania. Règles : loi italienne sur les truffes 752/1985, règles régionales espagnoles et ordonnance fédérale allemande sur la protection des espèces (BArtSchV). Saison : observations GBIF."
+      }
     },
     "bronze_bolete": {
       "name": "Cèpe Bronzé",
       "description": "Un cèpe au chapeau bronze foncé presque noir, au pied clair réticulé et à la chair blanche et ferme",
-      "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été"
+      "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été",
+      "guide": {
+        "identify": "Le plus sombre des cèpes, appelé aussi cèpe noir : le chapeau est brun châtain foncé à presque noir, souvent taché de bronze, et reste sec et finement velouté même par temps humide. Les pores sont blancs, puis jaunes à olive, et ne bleuissent pas. Le pied brun clair porte un fin réseau brun, plus dense en haut, et la chair blanche, très ferme, ne change pas de couleur à la coupe. Le cèpe d'été est plus clair, avec un réseau qui descend plus bas ; le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae), qui partagent ses chênaies, ont des pores rouges et une chair qui bleuit.",
+        "habitat": "Pentes chaudes et ensoleillées avec chênes, châtaigniers et hêtres, surtout entre 200 et 1000 m. Commun autour de la Méditerranée, en Italie le long des Apennins et dans les îles ; rare en Grande-Bretagne et en Allemagne.",
+        "season": "Dès juillet après les orages d'été, mais surtout en septembre et octobre, plus tard que le cèpe d'été, et jusqu'en novembre dans le sud. Il fructifie quand une bonne pluie et un sol qui se refroidit suivent une période de chaleur.",
+        "picking": "Coupez-le ou dégagez-le en le tournant et laissez grandir les jeunes. La cueillette peut être limitée par arrêté en France ; en Allemagne, il est rare et spécialement protégé : ne l'y cueillez pas.",
+        "kitchen": "C'est le plus ferme des cèpes, au goût de noisette qui se renforce au séchage. Après une identification certaine, brossez-le, vérifiez les vers et cuisez-le bien, comme le cèpe de Bordeaux.",
+        "keeps": "Il se sèche et se congèle très bien en tranches.",
+        "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Protection : BArtSchV (Allemagne). Cuisine : Regione Piemonte."
+      }
     },
     "pine_bolete": {
       "name": "Cèpe des Pins",
       "description": "Un cèpe au chapeau brun-rouge des pinèdes, au pied trapu réticulé rougeâtre et à la chair ferme",
-      "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne"
+      "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne",
+      "guide": {
+        "identify": "Le cèpe rouge, appelé aussi cèpe acajou : le chapeau est rouge vineux à acajou, souvent bosselé, velouté chez le jeune et gras à visqueux par temps humide, avec une pruine blanchâtre à la marge. Le pied, court et trapu, est lavé de brun rouge et porte un fin réseau blanchâtre à rougeâtre, et la chair blanche est rouge vineux juste sous la cuticule. Les pores passent du blanc au jaune et à l'olive et changent à peine de couleur à la pression. Le cèpe bronzé est sépia à noir, sans rouge ; des pores rouges ou orange (Rubroboletus satanas) ou roses avec un réseau sombre (Tylopilus felleus) l'excluent.",
+        "habitat": "Surtout avec le pin sylvestre et l'épicéa sur sol acide, souvent dans la mousse, et en montagne aussi avec le châtaignier, le hêtre et le sapin, surtout entre 400 et 1400 m. Commun en Scandinavie, dans les pinèdes d'Écosse et dans les montagnes d'Europe centrale et méridionale.",
+        "season": "Souvent le premier cèpe de l'année et le dernier : une poussée en mai et juin là où il fait frais et humide, et la principale en septembre et octobre, jusqu'en novembre et après les premières gelées.",
+        "picking": "Coupez-le ou dégagez-le en le tournant et ne ratissez pas la mousse, qui protège le mycélium. La cueillette peut être limitée par arrêté en France, et certains cantons suisses fixent des quantités : renseignez-vous sur les règles locales.",
+        "kitchen": "Après une identification certaine, cuisez-le bien comme le cèpe de Bordeaux ; il est plus doux, un peu résineux, et les jeunes très fermes demandent plus de cuisson. Il teinte l'eau de cuisson en vert et convient aux sauces, au vinaigre et au séchage.",
+        "keeps": "Il se sèche bien en tranches ; frais, utilisez-le sous un ou deux jours.",
+        "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
+      }
     },
     "summer_bolete": {
       "name": "Cèpe d'Été",
       "description": "Le premier cèpe de la saison, au chapeau brun clair finement craquelé et au pied réticulé sur toute sa hauteur",
-      "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes"
+      "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes",
+      "guide": {
+        "identify": "Le cèpe d'été, ou cèpe réticulé, a un chapeau mat, sec et velouté, noisette pâle à brun moyen, qui se craquelle en un fin réseau par temps sec ; il n'est jamais gras et sa marge n'est pas plus claire que le centre. Son trait le plus net est un réseau en relief qui descend presque jusqu'à la base du pied. Les pores sont blancs, puis jaune olive, et ne changent pas de couleur ; la chair blanche est plus tendre que celle du cèpe de Bordeaux. Le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae) partagent ses chênaies mais ont des pores rouges et une chair qui bleuit ; le bolet amer (Tylopilus felleus) a des pores roses et un réseau sombre.",
+        "habitat": "Chênes et châtaigniers, aussi hêtres, tilleuls et bouleaux, en lisière, dans les parcs et sur les pentes ensoleillées, de la plaine à 1000 m environ. Commun en Europe centrale et méridionale, en particulier dans le sud-ouest de la France et au Portugal ; rare en Grande-Bretagne.",
+        "season": "Le premier cèpe de l'année : dès mai en plaine et en juin en montagne, surtout de juillet à début septembre après des pluies chaudes, jusqu'aux premiers froids d'automne.",
+        "picking": "Coupez-le ou dégagez-le en le tournant et laissez les petits. Par temps chaud, beaucoup sont véreux : coupez-les en deux sur place et laissez les sujets atteints en forêt. La cueillette peut être limitée par arrêté.",
+        "kitchen": "Beaucoup le jugent le meilleur des cèpes : doux, au goût de noisette et parfumé, pour le séchage, les sauces et les omelettes. Après une identification certaine, retirez les parties véreuses et cuisez-le bien.",
+        "keeps": "C'est le cèpe qui se garde le moins bien : cuisez-le ou séchez-le le jour même.",
+        "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
+      }
     },
     "pacific_chant": {
       "name": "Girolle du Pacifique",
       "description": "Une grande girolle dorée du Nord-Ouest pacifique, plus pâle et plus rosée que sa cousine européenne",
-      "howTo": "Cherchez-la dans les forêts moussues de douglas et de pruche, une fois les pluies d'automne installées"
+      "howTo": "Cherchez-la dans les forêts moussues de douglas et de pruche, une fois les pluies d'automne installées",
+      "guide": {
+        "identify": "Une grande girolle, plus pâle et plus rosée que l'européenne : le chapeau est jaune orangé à abricot, et les jeunes chapeaux portent souvent de fines écailles brunâtres et un reflet rosé, qui peuvent disparaître par temps humide. Les plis obtus et fourchus descendent sur le pied et sont jaune orangé pâle, le plus souvent teintés de rose ; le pied s'amincit vers le bas, la chair est blanchâtre et ferme, et le chapeau jaunit au toucher. Les Omphalotus et la fausse girolle ont de vraies lames fines et serrées ; Turbinellus floccosus, une trompette profonde, creuse, rouge orangé, à grosses écailles, dérange l'estomac de beaucoup de gens.",
+        "habitat": "Elle vit en association avec les conifères, surtout le douglas et la pruche de l'Ouest, aussi l'épicéa de Sitka, dans la mousse et les aiguilles des forêts jeunes et anciennes, surtout en plaine et sur les contreforts. On la trouve de la Colombie-Britannique jusqu'au nord de la Californie, en passant par l'État de Washington et l'Oregon, dont elle est le champignon officiel.",
+        "season": "De septembre à décembre, parfois jusqu'en janvier, une fois que les pluies d'automne ont détrempé le sol ; un automne sec la retarde. Chaque champignon pousse lentement et peut continuer à grandir pendant des semaines par temps frais et humide.",
+        "picking": "Coupez-la à la base et laissez les petites continuer à pousser ; ne prenez que ce que vous mangerez. Les règles varient selon la forêt nationale, l'État et le parc : certains exigent un permis gratuit et fixent des limites par jour, beaucoup de parcs d'État interdisent la cueillette et la vente exige un permis commercial ; renseignez-vous auprès du gestionnaire.",
+        "kitchen": "Une fois identifiée avec certitude, brossez les aiguilles et la terre ; rincez-la seulement si elle est sableuse, puis séchez-la, car après la pluie elle est gorgée d'eau. Ne la mangez jamais crue : faites-la d'abord sauter à sec pour chasser l'eau, puis finissez au beurre. Douce, fruitée et ferme ; avec les œufs, la crème, les pâtes, le saumon et le gibier.",
+        "keeps": "Plusieurs jours au réfrigérateur dans un sac en papier. Séchée, elle devient coriace : pour la garder plus longtemps, faites-la revenir au beurre et congelez-la.",
+        "source": "Identification : MushroomExpert.com et UBC Beaty Biodiversity Museum. Règles de cueillette : Service des forêts des États-Unis. Saison : données GBIF."
+      }
     },
     "smooth_chant": {
       "name": "Girolle Lisse",
       "description": "Une girolle orangée dont le dessous est presque lisse au lieu d'être plissé, à forte odeur d'abricot",
-      "howTo": "Cherchez-la dans les chênaies du sud-est américain pendant l'été humide, souvent en troupes sur sol nu"
+      "howTo": "Cherchez-la dans les chênaies du sud-est américain pendant l'été humide, souvent en troupes sur sol nu",
+      "guide": {
+        "identify": "Jaune orangé vif à jaune d'œuf, de 2,5 à 8 cm, d'abord plate, puis en vase peu profond à bord ondulé. C'est son dessous qui la distingue : lisse ou à peine ridé, plus pâle que le chapeau et souvent rosé, descendant sur le pied, sans vraies lames. Le pied s'amincit vers la base, la chair est blanche et ne change pas à la coupe, et l'odeur est en général forte et douce, d'abricot. Omphalotus illudens, proche du clitocybe de l'olivier et commun dans les mêmes chênaies, a de vraies lames fines et serrées, pousse en touffes serrées sur le bois ou des racines enterrées et est orange à l'intérieur.",
+        "habitat": "Elle vit en association avec les chênes et parfois les caryers, dans les forêts de feuillus et de chênes et pins de l'est des États-Unis, à l'est des Rocheuses, et elle est surtout commune dans le Sud-Est. Elle sort souvent en troupes sur sol nu ou moussu au bord des chemins, des ruisseaux et des talus.",
+        "season": "En été, de juin à septembre et surtout à partir de juillet, peu après une pluie chaude et forte par temps humide.",
+        "picking": "Coupez-la à la base, laissez les petites et ne prenez que ce que vous mangerez. Les règles varient selon l'État, le parc et la forêt nationale, et beaucoup de parcs d'État interdisent la cueillette : renseignez-vous avant de partir.",
+        "kitchen": "Une fois identifiée avec certitude, brossez la terre ; son dessous lisse retient peu de sable. Ne la mangez jamais crue : cuisez-la bien, doucement au beurre ou dans une sauce à la crème. Fruitée et douce comme les autres girolles ; avec les œufs, le gruau de maïs (grits), les pâtes, le poulet et le porc.",
+        "keeps": "Quelques jours au réfrigérateur dans un sac en papier. Séchée, elle devient coriace : pour la garder plus longtemps, faites-la revenir au beurre et congelez-la.",
+        "source": "Identification et habitat : MushroomExpert.com et University of Florida IFAS Extension. Saison : données GBIF."
+      }
     },
     "winter_chant": {
       "name": "Chanterelle en Tube",
       "description": "Une petite chanterelle au chapeau brun sur un pied jaune et creux, qui fructifie jusqu'aux premières gelées",
-      "howTo": "Cherchez-la dans la litière moussue des conifères en fin de saison, souvent en troupes denses sur bois pourri"
+      "howTo": "Cherchez-la dans la litière moussue des conifères en fin de saison, souvent en troupes denses sur bois pourri",
+      "guide": {
+        "identify": "Petite et élancée : le chapeau mesure de 1 à 4 cm, brun à brun jaunâtre, un entonnoir mince dont le centre s'ouvre dans le pied creux. Dessous, des plis obtus et fourchus, gris à gris jaunâtre, descendent sur le pied ; le pied est jaune à jaune orangé, creux et souvent aplati ou sillonné. Le cortinaire très joli (Cortinarius rubellus) pousse dans les mêmes bois de conifères moussus : il a un chapeau brun rouge à mamelon pointu, de vraies lames brun rouille et un pied plein à faibles bandes jaunes, et il détruit les reins. Vérifiez chaque champignon à la cueillette et encore au nettoyage : le centre antipoison norvégien conseille de jeter tout le panier s'il contient ne serait-ce qu'un cortinaire.",
+        "habitat": "Sur sol humide et acide dans les bois de conifères, surtout sous les épicéas et les pins, dans la mousse, au bord des tourbières et sur le bois pourri moussu. Commune en Europe du Nord et centrale et en montagne dans le Sud ; en Amérique du Nord, dans le Nord-Ouest pacifique, le nord de la Californie et les forêts de conifères du nord et de l'est.",
+        "season": "Tard dans l'année : en Europe de septembre jusqu'aux fortes gelées, souvent encore en novembre et décembre ; sur la côte pacifique des États-Unis, de l'automne et pendant tout l'hiver. Elle a besoin d'un automne humide, et les petites gelées ne l'arrêtent pas.",
+        "picking": "Coupez les pieds au-dessus de la mousse pour garder le panier propre, laissez les plus petites et respectez les règles locales, comme les petites quantités pour un usage personnel en Allemagne. Dans le sud de la Bavière et la forêt bavaroise, elle contient encore du césium de Tchernobyl : n'en mangez là-bas que de temps en temps.",
+        "kitchen": "Une fois identifiée avec certitude, fendez les pieds creux et rincez les aiguilles et la terre. Ne la mangez jamais crue : cuisez-la bien, au beurre, en sauce ou en soupe, ou avec du gibier. Goût de sous-bois, plus puissant que sa taille ne le laisse penser.",
+        "keeps": "Quelques jours au réfrigérateur dans du papier. Elle sèche très bien et garde son arôme des mois dans un bocal fermé ; on peut aussi la congeler cuite.",
+        "source": "Identification : MykoWeb (California Fungi) et First Nature (Royaume-Uni). Cortinaire très joli : Institut norvégien de santé publique. Césium : Office fédéral allemand de radioprotection (BfS). Saison : données GBIF."
+      }
     },
     "eastern_king": {
       "name": "Cèpe de l'Est Américain",
       "description": "Les cèpes des chênaies de l'est américain : chapeau fauve à brun lilacin, pores blancs jaunissant avec l'âge et pied réticulé, jamais bleuissants",
-      "howTo": "Cherchez-le sous les chênes et les hêtres des forêts feuillues de l'est, dès juin, quelques jours après une pluie d'été chaude"
+      "howTo": "Cherchez-le sous les chênes et les hêtres des forêts feuillues de l'est, dès juin, quelques jours après une pluie d'été chaude",
+      "guide": {
+        "identify": "Un petit groupe de cèpes de l'est de l'Amérique du Nord : Boletus variipes a un chapeau sec, velouté, fauve à brun grisâtre, souvent craquelé ; Boletus separans un chapeau brun lilacin à rouge foie qui pâlit en brun jaunâtre, avec du lilas sur le pied. Tous deux ont des pores blancs chez le jeune, puis jaunâtres, un réseau net blanc à brunâtre sur le pied et une chair blanche qui ne change pas de couleur. Les Tylopilus amers, comme Tylopilus plumbeoviolaceus aux tons violets, ont des pores qui deviennent roses. Des pores rouges ou orange (Neoboletus subvelutipes), ou des pores et une chair qui bleuissent (Boletus sensibilis, Boletus huronensis), signalent un bolet toxique.",
+        "habitat": "Avec les chênes, aussi les hêtres et d'autres feuillus, à l'est des Rocheuses : surtout de New York et des Grands Lacs à la Géorgie et aux monts Ozarks, en passant par la Pennsylvanie et les Appalaches. Boletus nobilis et Boletus atkinsonii appartiennent au même groupe.",
+        "season": "De juin à septembre, surtout en juillet et août, après des pluies d'été chaudes et abondantes.",
+        "picking": "Coupez-le ou dégagez-le en le tournant et coupez-le sur place, car les cèpes d'été sont souvent véreux. Certaines forêts nationales demandent un permis gratuit et fixent des limites par jour ; les parcs ont leurs propres règles, souvent plus strictes.",
+        "kitchen": "Après une identification certaine, cuisez-le bien comme le cèpe de Bordeaux : poêlé, avec des pâtes, en soupe ou en ragoût, ou séché pour plus de goût. N'utilisez que des sujets fermes et frais.",
+        "keeps": "Il se sèche très bien en tranches fines ; frais, utilisez-le sous un ou deux jours.",
+        "source": "Identification et habitat : MushroomExpert (Michael Kuo). Saison : données GBIF et iNaturalist. Règles : US Forest Service."
+      }
     },
     "rocky_king": {
       "name": "Cèpe des Rocheuses",
       "description": "Un cèpe trapu de haute montagne, au chapeau rouge brique à brun-rouge, aux pores blancs et au gros pied clair réticulé au sommet",
-      "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre"
+      "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre",
+      "guide": {
+        "identify": "Un grand cèpe trapu des hautes Rocheuses au chapeau rouge brique à brun rouge, collant à l'état frais et souvent pruineux chez le jeune, plus rouge que le cèpe de Bordeaux (Boletus edulis), qui pousse aussi dans la région. Les pores sont blancs et comme bouchés chez le jeune, puis jaunes et olive, et ne changent pas de couleur. Le pied épais et clair porte un fin réseau blanc au moins en haut, et la chair blanche ne bleuit pas. Les bolets des trembles (Leccinum) ont des mèches sombres sur le pied, et ceux à chapeau orange ont causé de graves intoxications digestives au Colorado ; des pores rouges ou orange signalent un bolet toxique.",
+        "habitat": "Surtout avec l'épicéa d'Engelmann, aussi avec le sapin et le douglas, d'environ 2400 m jusqu'à la limite des arbres, au Colorado, au Nouveau-Mexique et dans les montagnes de l'Arizona.",
+        "season": "De juillet à septembre, parfois jusqu'en octobre : il démarre avec les orages de la mousson et monte en altitude au fil de la saison ; les étés secs, il pousse à peine.",
+        "picking": "Dégagez-le doucement en le tournant, car une bonne partie du pied est sous terre, et laissez les sujets très véreux. Chaque forêt nationale fixe ses règles, parfois avec un permis gratuit et des limites par jour.",
+        "kitchen": "Après une identification certaine, retirez les pores jaunes et mous des chapeaux âgés, qui peuvent devenir amers et visqueux, puis cuisez-le bien comme le cèpe de Bordeaux ou séchez-le.",
+        "keeps": "Séchez-le en tranches fines ou congelez-le après l'avoir poêlé.",
+        "source": "Identification et habitat : Arora et Frank (2014), MushroomExpert et Forage Colorado. Saison : données GBIF. Règles : US Forest Service."
+      }
     },
     "lions_mane": {
       "name": "Hydne hérisson",
       "description": "Une touffe blanche et hirsute de longs aiguillons pendants qui pousse sur les feuillus et rappelle le crabe une fois cuite",
-      "howTo": "Cherchez-le sur les chênes, hêtres et érables blessés ou morts, de la fin de l'été à l'automne, souvent haut sur le tronc. En Europe il est rare et protégé par endroits : laissez-le en place"
+      "howTo": "Cherchez-le sur les chênes, hêtres et érables blessés ou morts, de la fin de l'été à l'automne, souvent haut sur le tronc. En Europe il est rare et protégé par endroits : laissez-le en place",
+      "guide": {
+        "identify": "Une seule masse blanche et arrondie de 8 à 24 cm, sans chapeau ni lames : des aiguillons mous de 1 à 5 cm en pendent comme des stalactites. Il jaunit avec l'âge ; la chair est blanche et molle et ne change pas de couleur à la coupe, et la sporée est blanche. Ses proches, l'hydne corail (Hericium coralloides) et, en Amérique du Nord, Hericium americanum, sont ramifiés, avec des aiguillons plus courts.",
+        "habitat": "Il sort des blessures de feuillus vivants et pousse sur les troncs morts, surtout le chêne, aussi le hêtre et l'érable, souvent haut sur le tronc. Aux États-Unis, on le trouve dans tout le pays, plus souvent dans l'est ; en Europe il est rare, sur les vieux hêtres et chênes des forêts anciennes.",
+        "season": "De la fin de l'été à la fin de l'automne, après la pluie ; tout l'hiver dans les régions chaudes comme la Californie. Il revient souvent sur le même arbre.",
+        "picking": "En Europe, laissez-le en place : il est rare et protégé par la loi dans plusieurs pays, dont le Royaume-Uni, la Pologne, la Hongrie, la Croatie, la Slovénie et la Suède, et inscrit sur la liste rouge en France ; photographiez-le et signalez la découverte. Aux États-Unis, coupez au couteau à la base les exemplaires blancs et frais ; dans les forêts nationales et les parcs, la cueillette peut demander un permis ou être interdite : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le cuire : coupez-le en tranches, faites-le revenir à sec pour chasser l'eau, puis dorez-le au beurre. Son goût doux et sucré et sa texture filandreuse rappellent le crabe ; les exemplaires jaunis ont un goût aigre.",
+        "keeps": "Quelques jours au réfrigérateur dans un sac en papier ; congelez-le cuit.",
+        "source": "Identification et saison : MushroomExpert.com et Wild Food UK. Protection : Liste rouge de l'UICN et Wildlife and Countryside Act 1981 (Royaume-Uni)."
+      }
     },
     "hen_of_the_woods": {
       "name": "Polypore en touffe",
       "description": "Une grosse rosette de lobes gris-brun imbriqués au pied des vieux chênes, aux pores blancs dessous",
-      "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord"
+      "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord",
+      "guide": {
+        "identify": "Une rosette de 15 à 40 cm faite de nombreux petits chapeaux gris-brun superposés, en cuillère ou en éventail, de 3 à 14 cm chacun, qui se ramifient à partir d'une base blanche commune. Le dessous est blanc, avec des pores minuscules et pas de lames ; la chair est blanche et ferme et ne se tache ni à la coupe ni à la pression. Le polypore géant (Meripilus) a des chapeaux plus grands et plus épais qui noircissent au toucher ; le polypore en ombelle (Polyporus umbellatus) a des chapeaux ronds sur de petits pieds centraux.",
+        "habitat": "Au pied des vieux chênes, parfois sur des souches ou d'autres feuillus ; il pourrit les racines et revient sur le même arbre pendant des années. Il est commun dans l'est des États-Unis et rare dans l'ouest ; en Europe, il est peu commun et en déclin, sous les vieux chênes et châtaigniers.",
+        "season": "De la fin de l'été à la fin de l'automne, surtout en septembre et octobre, souvent après les premières nuits fraîches qui suivent la pluie.",
+        "picking": "Coupez la rosette à la base au couteau, ne prenez que des exemplaires frais et fermes et laissez l'arbre en redonner. En Europe, il est protégé par la loi en Pologne, en Estonie, en Lettonie et en Lituanie et inscrit sur la liste rouge de l'Allemagne, de l'Autriche et d'autres pays : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire. Secouez et rincez la terre et les insectes logés entre les chapeaux et retirez la base dure ; poêlés ou rôtis, les chapeaux deviennent croustillants sur les bords et ont un goût riche, terreux et un peu poivré.",
+        "keeps": "Plusieurs jours au réfrigérateur dans un sac en papier. Il se congèle bien une fois cuit et sèche bien.",
+        "source": "Identification et habitat : MushroomExpert.com. Statut en Europe : Liste rouge de l'UICN."
+      }
     },
     "saffron_milk_cap": {
       "name": "Lactaire délicieux",
       "description": "Un chapeau orange à cercles plus foncés, qui saigne un lait orange carotte et verdit au toucher ; très prisé en Espagne et en Italie",
-      "howTo": "Cherchez-le sous les pins et les épicéas de la fin de l'été à novembre, jusqu'en hiver sur les côtes de la Méditerranée et sur la côte pacifique des États-Unis. Cassez une lame : le lait doit être orange à rouge, jamais blanc"
+      "howTo": "Cherchez-le sous les pins et les épicéas de la fin de l'été à novembre, jusqu'en hiver sur les côtes de la Méditerranée et sur la côte pacifique des États-Unis. Cassez une lame : le lait doit être orange à rouge, jamais blanc",
+      "guide": {
+        "identify": "Un chapeau orange aux zones concentriques plus foncées, à marge enroulée quand il est jeune, puis en entonnoir et souvent taché de vert. Les lames serrées, orange, descendent un peu sur le pied court, creux et orange, souvent marqué de fossettes orange plus foncé. Cassez une lame : le lait est orange carotte et peut virer lentement au rouge vin, et lames et chair verdissent au toucher. Un lait blanc ou qui jaunit signale un autre lactaire, comme le lactaire à toison (Lactarius torminosus), plus rose, à la marge laineuse et barbue, qui pousse sous les bouleaux.",
+        "habitat": "Sous les pins, sur sol sableux ou calcaire, souvent dans les jeunes plantations et les clairières herbeuses ; des espèces très proches poussent sous les épicéas (Lactarius deterrimus) et les sapins (Lactarius salmonicolor). Commun dans toute l'Europe, surtout dans les pinèdes d'Espagne, du Portugal et d'Italie ; en Amérique du Nord, plusieurs espèces voisines à lait orange poussent sous les conifères.",
+        "season": "En automne : de la fin de l'été à novembre en Europe centrale et du Nord. Dans les pinèdes méditerranéennes, il suit les pluies d'automne, d'octobre jusqu'en janvier, et sur la côte pacifique des États-Unis il fructifie pendant l'hiver pluvieux.",
+        "picking": "Coupez le pied à la base, vérifiez qu'il n'est pas véreux et laissez les petits. Dans beaucoup de régions d'Espagne et d'Italie, il faut un permis ou respecter une quantité par jour : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, cuisez-le bien : grillé avec ail, huile d'olive et persil, en ragoût avec des pommes de terre ou du riz, ou avec de la viande. Sa chair ferme, un peu granuleuse, a un goût doux et résineux ; une cuisson lente enlève l'amertume éventuelle. Les taches vertes sont sans danger, et son pigment peut colorer l'urine en rouge, ce qui est aussi sans danger.",
+        "keeps": "Deux jours au réfrigérateur. Il sèche mal ; cuisez-le puis congelez-le, ou conservez-le à l'huile ou au vinaigre.",
+        "source": "Identification et habitat : First Nature. Conservation : ANSES. Saison : observations GBIF."
+      }
     },
     "hedgehog_mushroom": {
       "name": "Pied-de-mouton",
       "description": "Un chapeau chamois à orangé avec de petits aiguillons tendres au lieu de lames : l'un des champignons sauvages les plus sûrs à apprendre",
-      "howTo": "Cherchez-le dans les bois moussus de conifères et de feuillus de la fin de l'été à la fin de l'automne, souvent en cercles ou en lignes ; tout l'hiver sur la côte pacifique des États-Unis. Retournez-le : des aiguillons, pas des lames"
+      "howTo": "Cherchez-le dans les bois moussus de conifères et de feuillus de la fin de l'été à la fin de l'automne, souvent en cercles ou en lignes ; tout l'hiver sur la côte pacifique des États-Unis. Retournez-le : des aiguillons, pas des lames",
+      "guide": {
+        "identify": "Retournez-le : sous le chapeau pendent des aiguillons mous et cassants de 2 à 6 mm, comme de petites stalactites, pas des lames ni des plis ; ils se détachent facilement. Le chapeau mesure de 4 à 15 cm, crème à chamois ou orange pâle, sec, velouté et souvent bosselé ; le pied est blanc, plein et souvent excentré, et la chair blanche et ferme jaunit lentement puis roussit au toucher. L'hydne roussissant (Hydnum rufescens), plus petit et plus orangé, et les Hydnum américains ont les mêmes aiguillons mous. Les autres champignons à aiguillons, comme les Hydnellum et les Sarcodon, sont durs, subéreux ou bruns et écailleux, et beaucoup sont amers.",
+        "habitat": "Il vit en association aussi bien avec les conifères qu'avec les feuillus, comme l'épicéa, le pin, le hêtre, le chêne et le bouleau, dans la mousse et la litière, souvent en cercles ou en lignes. Commun dans toute l'Europe, de la plaine à la montagne, et dans toute l'Amérique du Nord ; sur la côte pacifique des États-Unis, plusieurs espèces d'Hydnum poussent sous les douglas, les chênes à tan (tanoaks) et d'autres arbres.",
+        "season": "En Europe centrale et du Nord, de la fin de l'été à la fin de l'automne, souvent jusqu'aux fortes gelées ; plus tard et plus longtemps dans le sud de l'Europe, jusqu'en hiver. Sur la côte pacifique des États-Unis, il arrive avec les pluies d'automne et dure tout l'hiver.",
+        "picking": "Coupez-le à la base, nettoyez la terre et les débris sur place pour qu'ils ne se logent pas entre les aiguillons et laissez les petits. Dans le sud de la Bavière et la forêt bavaroise, il contient encore du césium de Tchernobyl : n'en mangez là-bas que de temps en temps.",
+        "kitchen": "Une fois identifié avec certitude, brossez le chapeau ; sur les gros, ôtez les aiguillons, qui se détachent dans la poêle et peuvent être amers. Ne le mangez jamais cru : cuisez-le bien, poêlé au beurre ou mijoté. Doux, avec un goût de noisette un peu sucré et une texture ferme et charnue ; avec les œufs, les pommes de terre, le gibier et en sauce.",
+        "keeps": "Ferme, il se garde mieux que la plupart des champignons sauvages : plusieurs jours au réfrigérateur dans du papier. Pour le garder plus longtemps, cuisez-le et congelez-le.",
+        "source": "Identification : First Nature (Royaume-Uni) et MykoWeb (California Fungi). Césium : Office fédéral allemand de radioprotection (BfS). Saison : données GBIF."
+      }
     },
     "shaggy_mane": {
       "name": "Coprin chevelu",
       "description": "Un haut cylindre blanc couvert de mèches, sur les pelouses et les bords de route, qui se change en encre noire dans la journée qui suit la cueillette",
-      "howTo": "Cherchez-le sur les pelouses, les bas-côtés et les sols remués quelques jours après les pluies d'automne, et aussi après celles du printemps. Ne cueillez que des jeunes, entièrement blancs, et cuisinez-les le jour même ; évitez les routes passantes, où il absorbe des métaux lourds"
+      "howTo": "Cherchez-le sur les pelouses, les bas-côtés et les sols remués quelques jours après les pluies d'automne, et aussi après celles du printemps. Ne cueillez que des jeunes, entièrement blancs, et cuisinez-les le jour même ; évitez les routes passantes, où il absorbe des métaux lourds",
+      "guide": {
+        "identify": "Un haut cylindre blanc de 5 à 15 cm, couvert d'écailles laineuses et retroussées, au sommet brun pâle ; en vieillissant, il s'ouvre en cloche. Les lames serrées passent du blanc au rose puis au noir et se liquéfient en encre noire depuis le bord du chapeau ; le pied blanc est lisse et creux, avec un anneau mince qui coulisse et tombe souvent à la base ; la sporée est noire. Le coprin noir d'encre (Coprinopsis atramentaria) a un chapeau lisse, gris brun et finement strié, sans écailles laineuses, et pousse en touffes sur du bois enterré. Sur les pelouses des États-Unis, de jeunes Chlorophyllum molybdites peuvent lui ressembler, mais leurs lames ne noircissent jamais.",
+        "habitat": "Pelouses, bords de route, parcs, chemins, chantiers et autres terrains herbeux remués, souvent en lignes ou en groupes. Commun dans toute l'Europe et en Amérique du Nord.",
+        "season": "Surtout de la fin de l'été à l'automne, quelques jours après la pluie, et de nouveau au printemps ; sur la côte pacifique des États-Unis, il continue pendant l'hiver doux et pluvieux.",
+        "picking": "Ne prenez que des exemplaires jeunes et fermés, entièrement blancs, aux lames blanches, et seulement ce que vous cuisinerez le jour même. Évitez les routes fréquentées, les décharges et les sols pollués : il accumule les métaux lourds.",
+        "kitchen": "Une fois identifié avec certitude, cuisez-le dans les heures qui suivent et retirez toute partie rose ou noire, qui devient amère. Poêlé au beurre, en soupe ou en omelette, il est doux et délicat. On ne lui connaît pas de réaction avec l'alcool, mais le coprin noir d'encre en provoque une, même avec de l'alcool bu plusieurs jours avant ou après le repas : si vous n'êtes pas sûr de votre coprin, ne le mangez pas.",
+        "keeps": "Il ne se garde pas : en moins d'une journée, il tourne en encre, même au réfrigérateur. Cuisez-le aussitôt ; cuit, il se garde un ou deux jours au réfrigérateur ou se congèle.",
+        "source": "Identification et habitat : First Nature et Missouri Department of Conservation. Réaction à l'alcool : First Nature. Saison : observations GBIF."
+      }
     },
     "giant_puffball": {
       "name": "Vesse-de-loup géante",
       "description": "Une boule blanche et lisse, grosse comme un ballon ou plus, dans les prés et les pâtures, à la chair ferme et blanche comme une mozzarella fraîche",
-      "howTo": "Cherchez-la dans les prés, les pâtures, les parcs et les lisières de la fin de l'été à l'automne, souvent là où poussent les orties. Coupez-la toujours en deux de haut en bas : l'intérieur doit être d'un blanc pur, sans trace de chapeau ni de pied"
+      "howTo": "Cherchez-la dans les prés, les pâtures, les parcs et les lisières de la fin de l'été à l'automne, souvent là où poussent les orties. Coupez-la toujours en deux de haut en bas : l'intérieur doit être d'un blanc pur, sans trace de chapeau ni de pied",
+      "guide": {
+        "identify": "Une boule blanche et lisse, souvent de 20 à 50 cm, à peau fine comme du cuir et sans pied, reliée au sol par un cordon semblable à une racine. Coupez-les toutes en deux de haut en bas : l'intérieur doit être ferme et d'un blanc pur et uniforme, comme une mozzarella fraîche. Le moindre contour de chapeau, de lames ou de pied peut signaler une jeune amanite encore dans son œuf, parfois mortelle ; une peau épaisse, écailleuse et jaunâtre et un intérieur sombre, violet noir, signalent un scléroderme (Scleroderma), toxique. Une chair jaune, olive ou brune signifie que les spores mûrissent : elle n'est plus comestible.",
+        "habitat": "Prés, pâtures, parcs, jardins, haies et lisières sur sol riche, souvent parmi les orties et souvent au même endroit chaque année. Répandue en Europe et dans l'est des États-Unis ; dans l'intérieur sec de l'Ouest américain pousse une espèce voisine, Calvatia booniana, dans les steppes d'armoise et les prairies ouvertes.",
+        "season": "De l'été à l'automne : surtout de juillet à octobre en Europe, et de la fin de l'été au début de l'automne dans l'est des États-Unis. Elle grossit vite après des pluies chaudes et abondantes.",
+        "picking": "Coupez-la à la base et ne prenez que des exemplaires fermes et blancs à l'intérieur ; un seul suffit souvent pour plusieurs personnes. Laissez les vieux qui jaunissent répandre leurs spores, et évitez les bords de route et les pelouses traitées.",
+        "kitchen": "Une fois identifiée avec certitude, pelez la peau, parfois indigeste, et faites-la cuire : en tranches épaisses poêlées au beurre ou panées, elle a un goût doux et prend les saveurs. La première fois, goûtez-en peu.",
+        "keeps": "À manger dans les deux jours, au réfrigérateur ; jetez-la dès que la chair jaunit. Les tranches poêlées se congèlent bien.",
+        "source": "Identification et habitat : Missouri Department of Conservation et First Nature. Conservation : ANSES. Saison : observations GBIF."
+      }
     },
     "matsutake": {
       "name": "Matsutake",
       "description": "Un champignon ferme, blanc et brun, à l'odeur épicée de cannelle, le plus prisé de tous au Japon",
-      "howTo": "Cherchez-le dans les pinèdes sèches et sableuses dès le mois d'août dans les pays nordiques, et sous les conifères et les tanoaks de septembre à novembre dans l'ouest des États-Unis. Ne ratissez jamais le sol. Il est sur la liste rouge en Suède et en Norvège à cause des coupes forestières, pas de la cueillette ; dans les forêts nationales américaines, un permis est nécessaire"
+      "howTo": "Cherchez-le dans les pinèdes sèches et sableuses dès le mois d'août dans les pays nordiques, et sous les conifères et les tanoaks de septembre à novembre dans l'ouest des États-Unis. Ne ratissez jamais le sol. Il est sur la liste rouge en Suède et en Norvège à cause des coupes forestières, pas de la cueillette ; dans les forêts nationales américaines, un permis est nécessaire",
+      "guide": {
+        "identify": "Un champignon ferme et lourd : le chapeau mesure de 6 à 20 cm, blanc à fibres et écailles brunes (plus brun en Europe et en Asie), la marge enroulée chez le jeune. Les lames serrées, blanches à crème, sont attachées au pied ; un épais voile blanc laisse un anneau évasé sous lequel le pied est gainé d'écailles brunes, et le pied plein s'amincit vers la base, sans bulbe ni volve en sac. L'odeur est forte et épicée, de cannelle avec une note de chaussette sale : sans elle, ce n'est pas un matsutake, mais l'odeur seule ne prouve rien. Amanita smithiana et les amanites blanches mortelles (l'amanite vireuse, Amanita virosa, en Europe ; A. bisporigera dans l'Est et A. ocreata dans l'Ouest des États-Unis) sont blanches elles aussi, mais ont à la base un bulbe, une volve ou des anneaux de verrues, un anneau déchiré ou en jupe et aucune odeur épicée ; elles détruisent les reins ou le foie.",
+        "habitat": "Il vit en association avec des arbres sur sol pauvre et bien drainé. En Europe surtout en Finlande, en Suède et en Norvège, dans les landes à pins sèches et riches en lichens, sur sable ou gravier ; dans l'ouest de l'Amérique du Nord sous les pins, les douglas, les pruches, les sapins et les chênes à tan (tanoaks), souvent sur sol sableux ou de ponce ; dans l'Est sous le pin gris, le pin rouge et la pruche du Canada, dans le nord et les Appalaches.",
+        "season": "Dans les pays nordiques, d'août à octobre, après les pluies de fin d'été quand les nuits fraîchissent ; en Amérique du Nord, de septembre à novembre, et jusqu'en décembre sur la côte pacifique.",
+        "picking": "Dégagez-le doucement en le faisant tourner, puis rebouchez le trou et remettez la mousse et les aiguilles ; ne ratissez et ne creusez jamais, cela abîme le champignon et les récoltes à venir. L'UICN le classe vulnérable à l'échelle mondiale et il est sur la liste rouge en Suède et en Norvège, où la menace est la perte des vieilles pinèdes, pas la cueillette ; les forêts nationales américaines fixent leurs propres permis et limites pour le matsutake : renseignez-vous auprès du district forestier.",
+        "kitchen": "Une fois identifié avec certitude, essuyez-le et coupez la base du pied ; ne le lavez pas. Ne le mangez jamais cru ; cuisez-le doucement et brièvement pour garder son arôme : en tranches grillées, cuit avec du riz ou dans un bouillon clair. Ferme et un peu élastique, au parfum épicé de pin.",
+        "keeps": "Enveloppé de papier au réfrigérateur ; utilisez-le en quelques jours, avant que son odeur ne s'estompe.",
+        "source": "Identification : UBC Beaty Biodiversity Museum et MushroomExpert.com. Sosies : rapports d'intoxications de la North American Mycological Association. Statut : Liste rouge de l'UICN. Règles de cueillette : Service des forêts des États-Unis. Saison : données GBIF."
+      }
     },
     "ramps": {
       "name": "Ail des bois",
       "description": "L'ail sauvage d'Amérique : de larges feuilles vertes et lisses sur des tiges violacées, à forte odeur d'oignon et d'ail",
-      "howTo": "Cherchez-le dans les forêts de feuillus riches et humides de l'est des États-Unis de mars à mai, avant la feuillaison des arbres. Prenez une feuille par plant et laissez le bulbe ; certains parcs en interdisent la cueillette et le Québec en interdit la vente"
+      "howTo": "Cherchez-le dans les forêts de feuillus riches et humides de l'est des États-Unis de mars à mai, avant la feuillaison des arbres. Prenez une feuille par plant et laissez le bulbe ; certains parcs en interdisent la cueillette et le Québec en interdit la vente",
+      "guide": {
+        "identify": "Deux ou trois feuilles larges, lisses et plates sortent directement du sol depuis un petit bulbe, chacune sur son propre pétiole, souvent rouge violacé à la base ; elles fanent au début de l'été, avant qu'une tige sans feuilles porte une ombelle ronde de petites fleurs blanches. Froissez une feuille : l'ail des bois sent fortement l'oignon et l'ail et ses sosies mortels non, mais l'odeur reste sur les doigts, si bien qu'après les premières feuilles le test ne prouve plus rien ; vérifiez aussi les feuilles et les pétioles de chaque plant. Le vérâtre vert a des feuilles plissées le long d'une tige dressée et pousse en sol détrempé ; le muguet a deux ou trois feuilles qui s'enveloppent à la base ; le colchique, échappé des jardins, a des feuilles sans pétiole en touffe ; Melanthium parviflorum a des feuilles basales semblables, mais sans odeur d'oignon.",
+        "habitat": "Forêt de feuillus riche et fraîche, à épaisse litière, sur les pentes ombragées et dans les fonds de vallon, du Québec et de la Nouvelle-Angleterre aux Appalaches jusqu'en Géorgie, et vers l'ouest jusqu'au Minnesota.",
+        "season": "Les feuilles sortent dès mars dans le sud des Appalaches, en avril et mai plus au nord, pendant les quelques semaines qui précèdent la feuillaison des arbres ; fin mai ou en juin, elles jaunissent et disparaissent.",
+        "picking": "Prenez une feuille par plant, coupée au couteau, et laissez le bulbe : l'arracher tue la plante, qui met au moins cinq ans depuis la graine pour atteindre la taille de récolte. L'espèce a reculé dans une partie de son aire : le parc national des Great Smoky Mountains en interdit la cueillette, certaines forêts nationales la limitent et interdisent la vente, et le Québec la désigne comme vulnérable et en interdit la vente ; renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois l'ail des bois identifié avec certitude, ses feuilles ont un goût puissant d'ail et d'oignon : utilisez-en quelques-unes crues, ou faites-les tomber brièvement avec des œufs, des pommes de terre, des pâtes et du beurre.",
+        "keeps": "Les feuilles se gardent quelques jours au réfrigérateur dans un linge humide ; les feuilles hachées, le beurre aromatisé et le pesto se congèlent bien.",
+        "source": "Identification, habitat et cueillette : NC State Extension et United Plant Savers. Sosies : Département de la santé du Vermont. Règles : National Park Service, Service des forêts des États-Unis (USDA) et ministère de l'Environnement du Québec. Saison : données GBIF."
+      }
     },
     "fiddleheads": {
       "name": "Têtes de violon",
       "description": "Les jeunes frondes enroulées de la fougère-à-l'autruche : lisses, d'un vert vif, avec des écailles brunes comme du papier",
-      "howTo": "Cherchez-les dans les plaines inondables et les bois humides de fin avril à mai, tant que les frondes sont enroulées. Faites-les toujours bouillir avant de les manger et ne prenez pas plus de la moitié des crosses d'une touffe"
+      "howTo": "Cherchez-les dans les plaines inondables et les bois humides de fin avril à mai, tant que les frondes sont enroulées. Faites-les toujours bouillir avant de les manger et ne prenez pas plus de la moitié des crosses d'une touffe",
+      "guide": {
+        "identify": "Seule la matteuccie fougère-à-l'autruche se cueille. Elle pousse en touffes (couronnes) d'environ trois à douze crosses : des spirales vertes et serrées d'environ 2,5 cm de diamètre, sur une tige lisse creusée sur sa face interne d'un sillon profond en U, couvertes de fines écailles brunes comme du papier, qui partent en frottant. Les frondes fertiles de l'an passé, brun foncé, raides et en forme de plume, restent souvent debout dans la touffe. La fougère aigle, cancérogène, sort une par une de tiges souterraines rampantes, avec une tige ronde et duveteuse, sans écailles de papier et une pointe qui se divise en trois ; d'autres fougères ont des crosses laineuses et ne sont pas conseillées.",
+        "habitat": "Plaines inondables ombragées, bancs de sable et bois humides et riches, souvent sous les érables et les frênes. Aux États-Unis, elle est commune dans le Nord-Est et autour des Grands Lacs, au sud jusqu'à la Pennsylvanie et à l'ouest jusqu'aux Dakotas, et rare dans l'Ouest hors de l'Alaska ; en Europe, elle pousse le long des ruisseaux du nord et du centre.",
+        "season": "Les crosses sortent au printemps, quand le sol se réchauffe après la fonte des neiges et les crues : fin avril dans le sud du Maine, de mi-mai à fin mai tout au nord, par endroits jusqu'au début juin. Cueillez-les quand elles mesurent 5 à 15 cm et sont bien enroulées ; en quelques jours elles se déroulent et ne se mangent plus.",
+        "picking": "Ne cueillez que sur des touffes vigoureuses qui ont au moins quatre crosses, prenez-en au plus la moitié et ne revenez pas dans la saison : tout cueillir affaiblit ou tue la fougère. Demandez d'abord l'accord du propriétaire ; en Allemagne, la fougère-à-l'autruche sauvage est protégée par la loi : laissez-la.",
+        "kitchen": "Ne mangez jamais les têtes de violon crues ou peu cuites : elles ont provoqué des intoxications alimentaires collectives (nausées, vomissements, diarrhée et crampes) étudiées par les CDC américains. Une fois identifiées avec certitude, frottez les écailles brunes, lavez-les dans plusieurs eaux froides, puis faites-les bouillir par petites quantités 15 minutes dans beaucoup d'eau salée, ou cuire 10 à 12 minutes à la vapeur, et jetez l'eau. Ensuite seulement, faites-les sauter ou ajoutez-les à d'autres plats ; leur goût rappelle l'asperge et le haricot vert.",
+        "keeps": "Gardez-les au réfrigérateur et consommez-les dans la semaine. Pour les congeler, blanchissez-les par petites quantités 2 minutes, refroidissez-les dans de l'eau glacée, égouttez et congelez ; elles demandent quand même les 15 minutes d'ébullition complètes avant d'être mangées.",
+        "source": "Identification, saison, cueillette et cuisine : University of Maine Cooperative Extension. Intoxications : CDC américains. Répartition aux États-Unis : Penn State Extension. Protection en Allemagne : Bundesartenschutzverordnung."
+      }
     },
     "cloudberry": {
       "name": "Plaquebière",
       "description": "Une baie orange ambré des tourbières du Nord, semblable à une framboise tendre, très prisée dans les pays nordiques",
-      "howTo": "Cherchez-la dans les tourbières ouvertes et les landes humides de Fennoscandie en juillet et août, quand les baies passent du rouge dur au jaune ambré et tendre. Une gelée pendant la floraison peut ruiner la récolte d'une année"
+      "howTo": "Cherchez-la dans les tourbières ouvertes et les landes humides de Fennoscandie en juillet et août, quand les baies passent du rouge dur au jaune ambré et tendre. Une gelée pendant la floraison peut ruiner la récolte d'une année",
+      "guide": {
+        "identify": "Une petite plante herbacée, pas un arbuste, haute d'environ une main, qui pousse à partir de tiges souterraines rampantes ; chaque pousse dressée porte une à trois feuilles rondes et ridées à cinq à sept lobes peu marqués et une seule fleur blanche. Les fleurs mâles et femelles poussent sur des pieds différents, si bien que seules certaines pousses donnent un fruit. La baie ressemble à une framboise faite de quelques grosses drupéoles : d'abord dure et rouge, elle devient tendre et orange ambré à maturité.",
+        "habitat": "Tourbières ouvertes, landes humides, marais et toundra, souvent parmi les sphaignes et les bouleaux nains ; commune en Norvège, en Suède, en Finlande, dans les pays baltes et en Russie, et présente sur les hautes landes d'Écosse et du nord de l'Angleterre. En Allemagne, en Pologne et en République tchèque, elle ne survit que dans quelques tourbières, relique de l'époque glaciaire, et y est protégée ou classée menacée.",
+        "season": "Fleurit en juin ; les baies mûrissent dès la mi-juillet dans le sud de la Scandinavie et dans les pays baltes, en août dans l'extrême nord et en montagne. Une gelée pendant la floraison peut ruiner la récolte de toute une année.",
+        "picking": "Cueillez seulement les baies tendres et ambrées qui se détachent facilement ; les rouges et dures ne sont pas mûres. En Suède, en Finlande et en Norvège, le droit d'accès à la nature permet à chacun de les cueillir, mais dans le Nordland, le Troms et le Finnmark le propriétaire peut interdire la cueillette sur les tourbières productives, par des panneaux ou une annonce dans la presse ; vous pouvez alors toujours manger les baies sur place, et sur les terres publiques du Finnmark seuls les habitants peuvent les cueillir pour les vendre. Les réserves naturelles peuvent avoir leurs propres règles, et en Europe centrale il faut laisser la plante tranquille : renseignez-vous sur les règles locales avant de partir.",
+        "kitchen": "Une fois identifiées avec certitude, mangez-les fraîches avec de la crème ou sur des gaufres, ou faites-en de la confiture ; en Finlande, la confiture accompagne un fromage tiède qui crisse sous la dent (leipäjuusto), en Suède on la sert sur de la glace. Leur goût est acidulé et parfumé.",
+        "keeps": "Les baies mûres ne se gardent qu'un ou deux jours au réfrigérateur ; elles se congèlent bien, et leur acide benzoïque naturel aide la confiture à se conserver.",
+        "source": "Identification et habitat : University of Alberta et Minnesota Wildflowers. Règles de cueillette : Agence norvégienne de l'environnement (Miljødirektoratet) et Agence suédoise de protection de l'environnement (Naturvårdsverket). Statut en Europe centrale : listes rouges tchèque et allemande."
+      }
     },
     "huckleberry": {
       "name": "Huckleberry",
       "description": "Une baie de montagne noir violacé du nord-ouest des États-Unis, plus sucrée et plus acidulée qu'une myrtille",
-      "howTo": "Cherchez-la sur les pentes subalpines et les anciens brûlis entre 1 000 et 2 000 m au Montana, en Idaho et dans les Cascades de juillet à septembre. C'est le pays des ours : faites du bruit et emportez du gaz anti-ours"
+      "howTo": "Cherchez-la sur les pentes subalpines et les anciens brûlis entre 1 000 et 2 000 m au Montana, en Idaho et dans les Cascades de juillet à septembre. C'est le pays des ours : faites du bruit et emportez du gaz anti-ours",
+      "guide": {
+        "identify": "Un arbuste à feuilles caduques, en général de la hauteur de la taille à celle de l'épaule, aux jeunes rameaux un peu anguleux, vert jaunâtre, et aux feuilles fines, ovales, terminées en pointe et finement dentées. Au début de l'été pendent, isolées à l'aisselle des feuilles, des fleurs en grelot blanc crème rosé ; chacune donne une seule baie pourpre à noir rougeâtre, en général sans pruine claire, avec une petite couronne au sommet. Les baies à ne pas manger dans ces mêmes forêts poussent autrement : le chèvrefeuille involucré (Lonicera involucrata) porte des baies noires par paires dans des bractées rouges, et l'actée rouge (Actaea rubra) est une herbacée aux baies rouges ou blanches en grappes.",
+        "habitat": "Forêts de conifères de montagne, pentes subalpines ouvertes et anciens brûlis, où les arbustes fructifient mieux au soleil ; de la Colombie-Britannique vers le sud par les Cascades et les Rocheuses du nord (Washington, Oregon, Idaho, Montana, Wyoming) jusqu'en Californie, avec des stations isolées à l'est jusqu'aux Black Hills et à la région des Grands Lacs. Dans l'est des États-Unis, le nom huckleberry désigne le plus souvent Gaylussacia, un autre arbuste dont les baies contiennent dix petites graines dures.",
+        "season": "Mûrit dès juillet aux altitudes basses et jusqu'en septembre plus haut, et sur chaque arbuste les baies mûrissent peu à peu. Une gelée tardive à la floraison peut réduire la récolte.",
+        "picking": "Cueillez à la main, baie par baie, sans casser les branches. Dans les forêts nationales américaines, la cueillette pour sa propre consommation est souvent autorisée, parfois avec un permis gratuit et des limites par jour et par saison ; la cueillette commerciale exige un permis ou est fermée, et certains champs de baies sont réservés aux tribus, comme une partie des Sawtooth Berry Fields dans l'État de Washington : renseignez-vous sur les règles de chaque forêt. Les zones à huckleberries sont le territoire des ours : faites du bruit et emportez un spray anti-ours.",
+        "kitchen": "Une fois identifiées avec certitude, mangez-les crues ou faites-en des tartes, de la confiture, du sirop, des pancakes et des sauces pour le gibier ; elles sont plus intenses que les myrtilles de culture, sucrées avec une pointe d'acidité. Rincez-les juste avant usage.",
+        "keeps": "Non lavées et étalées, elles se gardent quelques jours au réfrigérateur ; pour les congeler, étalez-les sur un plateau puis mettez-les en sachet.",
+        "source": "Identification et répartition : Service des forêts des États-Unis (Fire Effects Information System) et University of British Columbia. Règles de cueillette : Gifford Pinchot National Forest. Baies semblables : Service des parcs nationaux des États-Unis."
+      }
     },
     "pawpaw": {
       "name": "Asimine",
       "description": "Le plus gros fruit indigène d'Amérique du Nord : vert, en forme de mangue, à la chair crémeuse au goût de banane et de mangue",
-      "howTo": "Cherchez-la dans le sous-bois des forêts alluviales de l'est des États-Unis de fin août à octobre, quand le fruit ramollit et tombe. Ne mangez que la chair : la peau et les graines sont toxiques"
+      "howTo": "Cherchez-la dans le sous-bois des forêts alluviales de l'est des États-Unis de fin août à octobre, quand le fruit ramollit et tombe. Ne mangez que la chair : la peau et les graines sont toxiques",
+      "guide": {
+        "identify": "L'asiminier, qui donne l'asimine, est un petit arbre de sous-bois qui forme souvent des bosquets par drageons, aux grandes feuilles pendantes, plus larges au-delà du milieu, qui sentent le poivron vert quand on les froisse. Au printemps, avant les feuilles, apparaissent des fleurs pourpre foncé à six pétales. Le fruit est allongé, vert à vert jaunâtre, isolé ou en grappes de deux à neuf, avec une chair jaune, tendre et crémeuse comme une crème pâtissière autour de deux rangées de grosses graines plates et brunes.",
+        "habitat": "Bois humides et riches des plaines inondables, berges de ruisseaux et bas de pentes ombragés ; indigène dans tout l'est des États-Unis, du nord de la Floride aux Grands Lacs et au sud de l'Ontario, et à l'ouest jusqu'à l'est du Nebraska, au Kansas, à l'Oklahoma et au Texas. L'asiminier ne pousse pas à l'état sauvage dans l'ouest des États-Unis.",
+        "season": "Le fruit mûrit dès fin août dans le sud, en septembre et octobre dans le nord ; la récolte d'un arbre mûrit sur une à deux semaines, et les fruits mûrs tombent.",
+        "picking": "Un fruit mûr cède un peu sous une légère pression, comme une pêche, et sent fortement le fruit ; la couleur de la peau n'est pas un signe fiable. Ramassez les fruits fraîchement tombés ou secouez doucement le tronc, passez tous les un ou deux jours en saison et manipulez les fruits avec soin, car ils se meurtrissent facilement.",
+        "kitchen": "Une fois l'asimine identifiée avec certitude, ne mangez que la chair : coupez le fruit en deux dans la longueur et prélevez la chair à la cuillère en laissant la peau et les graines, qui ne doivent être ni mangées ni croquées. La chair a un goût de banane et de mangue et peut remplacer la banane dans les cakes, les glaces et les desserts ; les fruits sauvages peuvent laisser un arrière-goût amer. Certaines personnes réagissent par des vomissements ou une réaction allergique : goûtez d'abord une petite quantité ; les sources médicales déconseillent aussi d'en manger beaucoup sur de longues périodes, car la chair contient de l'annonacine, un composé toxique pour les neurones dans les études en laboratoire.",
+        "keeps": "Le fruit mûr ne se garde que quelques jours à température ambiante et environ une semaine au réfrigérateur ; cueilli juste avant d'être tout à fait mûr, il se garde jusqu'à trois semaines au réfrigérateur puis finit de mûrir à température ambiante. La chair prélevée se congèle jusqu'à un an.",
+        "source": "Identification et répartition : University of Kentucky, Center for Crop Diversification. Maturité, préparation et conservation : service d'extension de Purdue. Réactions : Memorial Sloan Kettering Cancer Center."
+      }
     },
     "rose_hips": {
       "name": "Cynorrhodons",
       "description": "Les fruits rouges d'automne des rosiers sauvages, riches en vitamine C et pleins de graines entourées de poils irritants",
-      "howTo": "Cherchez-les dans les haies, les fourrés et les lisières de fin août à novembre ; ils sont plus tendres après les premières gelées. Retirez les graines et les poils, qui irritent la bouche et l'intestin"
+      "howTo": "Cherchez-les dans les haies, les fourrés et les lisières de fin août à novembre ; ils sont plus tendres après les premières gelées. Retirez les graines et les poils, qui irritent la bouche et l'intestin",
+      "guide": {
+        "identify": "L'églantier (rosier des chiens) est un arbuste aux longues tiges arquées, armées d'aiguillons robustes et crochus, aux feuilles de 5 à 7 folioles dentées. Ses cynorrhodons sont ovales, lisses, d'un rouge écarlate brillant et longs de 1 à 2 cm, et n'ont plus de sépales une fois mûrs ; à l'intérieur, des graines dures sont enveloppées de poils fins et irritants, le fameux « poil à gratter ». Dans les mêmes haies, le tamier, la bryone dioïque et la morelle douce-amère portent des baies rouges, brillantes et toxiques, en grappes, sur des tiges grimpantes sans aiguillons ; un cynorrhodon pousse sur une tige de rosier épineuse et est rempli de graines poilues.",
+        "habitat": "Haies, fourrés, lisières et friches herbeuses dans toute l'Europe, de la plaine à la montagne. Aux États-Unis, l'églantier s'est naturalisé par endroits, et les fruits des rosiers sauvages indigènes et du rosier rugueux s'utilisent de la même façon.",
+        "season": "Les cynorrhodons mûrissent de septembre à novembre et beaucoup restent sur l'arbuste jusqu'en hiver. Le gel les rend plus tendres et plus sucrés, mais plus ils restent sur la branche, moins ils contiennent de vitamine C.",
+        "picking": "Cueillez des fruits fermes et bien colorés qui cèdent un peu sous le doigt, quelques-uns par arbuste, et laissez-en beaucoup aux oiseaux. Portez des gants et évitez les bords de route et les haies traitées.",
+        "kitchen": "Une fois identifiés avec certitude, on n'en mange que la pulpe : les graines et leurs poils irritent la bouche, l'intestin et la peau. Coupez la queue et la pointe, ouvrez les fruits en deux et grattez toutes les graines et les poils, ou faites-les cuire entiers puis passez-les au tamis fin ; filtrez ensuite le jus une seconde fois dans un linge. On en fait confiture, gelée, sirop et tisane ; la pomme s'y marie bien.",
+        "keeps": "Frais, ils se gardent environ une semaine au réfrigérateur. Ils se congèlent bien ; les moitiés épépinées, séchées à 50 °C au plus, se gardent de longs mois dans un bocal hermétique.",
+        "source": "Identification et habitat : Woodland Trust et The Wildlife Trusts. Saison, cueillette et cuisine : service d'extension de l'université d'Alaska Fairbanks et Bundeszentrum für Ernährung (BZfE, Allemagne)."
+      }
     },
     "sloes": {
       "name": "Prunelles",
       "description": "Les petits fruits bleu-noir du prunellier épineux, couverts de pruine et d'une âpreté redoutable",
-      "howTo": "Cherchez-les dans les haies et les coteaux broussailleux de septembre à novembre ; elles s'adoucissent après les premières gelées. N'écrasez pas les noyaux et méfiez-vous des sosies noirs et brillants comme le nerprun et la belladone"
+      "howTo": "Cherchez-les dans les haies et les coteaux broussailleux de septembre à novembre ; elles s'adoucissent après les premières gelées. N'écrasez pas les noyaux et méfiez-vous des sosies noirs et brillants comme le nerprun et la belladone",
+      "guide": {
+        "identify": "Les prunelles poussent sur le prunellier (épine noire), un arbuste ligneux et touffu à l'écorce sombre, dont les rameaux latéraux se terminent en épines acérées ; il fleurit blanc en mars et avril, avant les feuilles. Le fruit est rond, d'environ 1 cm, bleu-noir, couvert d'une pruine bleutée qui s'efface au frottement, isolé ou par deux le long des rameaux ; à l'intérieur, une chair verdâtre et très âpre entoure un seul noyau. Le nerprun purgatif porte des baies noires luisantes en grappes, sans pruine ; la belladone est une plante herbacée et feuillue, pas un arbuste épineux, aux baies noires luisantes isolées, chacune posée sur une étoile verte de sépales.",
+        "habitat": "Haies, fourrés, lisières et coteaux pierreux ensoleillés, souvent en massifs qui s'étendent par drageons. Il pousse dans presque toute l'Europe, au nord comme au sud, de la plaine aux collines.",
+        "season": "Les prunelles mûrissent de septembre à novembre et sont prêtes quand elles sont sombres et s'écrasent entre les doigts. On les cueille traditionnellement après les premières gelées, qui fendent la peau et ramollissent le fruit pour que le jus s'écoule ; les cueillir plus tôt et les congeler une nuit donne le même résultat.",
+        "picking": "Portez des gants : les épines sont longues et acérées. Cueillez sur plusieurs arbustes, laissez-en beaucoup aux oiseaux et évitez les haies de bord de route et les bordures de champs traitées.",
+        "kitchen": "Une fois identifiées avec certitude, les prunelles sont trop âpres crues, mais elles donnent la liqueur de prunelle, le sloe gin, le pacharán espagnol à l'anis et, avec des pommes, une gelée. Pour une liqueur, piquez-les ou congelez-les, couvrez-les de sucre et d'eau-de-vie ou de gin, laissez macérer quelques mois à l'obscurité en secouant de temps en temps, puis filtrez. N'écrasez et ne cassez jamais les noyaux : l'amande contient de l'amygdaline, qui libère du cyanure.",
+        "keeps": "Fraîches, elles se gardent quelques jours au réfrigérateur ; congelées en sacs fermés, elles tiennent des mois et passent directement du congélateur au bocal.",
+        "source": "Identification, habitat et tradition des gelées : Woodland Trust. Noyaux : bases de données phytochimiques et ethnobotaniques de l'USDA."
+      }
     },
     "sea_buckthorn": {
       "name": "Argousier",
       "description": "Des baies orange vif serrées le long de rameaux épineux aux feuilles argentées : acides et riches en vitamine C",
-      "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires"
+      "howTo": "Cherchez-le sur les dunes littorales et les berges caillouteuses d'août à octobre. Portez des gants contre les épines et renseignez-vous : la cueillette est souvent interdite dans les réserves dunaires",
+      "guide": {
+        "identify": "L'argousier est un arbuste épineux et très ramifié qui forme des fourrés, aux feuilles étroites, semblables à celles du saule, couvertes d'écailles argentées, surtout au revers. Fleurs mâles et femelles poussent sur des pieds séparés, si bien que seuls les pieds femelles fructifient : des baies rondes, orange vif, de 6 à 8 mm, serrées le long des rameaux sur des pédoncules très courts. Elles sont juteuses, très acides et éclatent au moindre contact ; le sorbier des oiseleurs et le buisson ardent portent au contraire leurs baies orange en bouquets pédonculés parmi des feuilles vertes.",
+        "habitat": "Il lui faut le plein soleil et du sable ou du gravier à nu : dunes littorales de la mer du Nord, de la Baltique et de l'est de l'Angleterre, et bancs de graviers et terrasses sèches des rivières des Alpes et de leur piémont. Dans le sud de l'Europe, c'est surtout une plante des graviers des rivières de montagne, dans les Alpes et les Pyrénées ; on le plante aussi sur les talus et les bords de route.",
+        "season": "Les baies mûrissent d'août à octobre et sont plus parfumées en début de maturité. Elles restent sur l'arbuste jusqu'en hiver, mais trop mûres, elles prennent un goût rance.",
+        "picking": "L'argousier sauvage pousse souvent dans des réserves naturelles de dunes ou de bords de rivière où la cueillette est interdite : renseignez-vous d'abord sur les règles locales et ne coupez jamais de branches sur un arbuste sauvage. Portez des gants, tenez un bol sous le rameau en cueillant, car les baies éclatent, et laissez-en beaucoup aux grives qui hivernent.",
+        "kitchen": "Une fois identifiées avec certitude, les baies peuvent se manger crues, mais elles sont très acides, un peu amères et tachent ; on les fait le plus souvent cuire brièvement avec un peu d'eau et de miel ou de sucre, puis on les filtre pour en faire jus, sirop, gelée ou purée. La pomme ou l'abricot adoucissent l'acidité ; la purée accompagne yaourt, muesli, glace et soupes.",
+        "keeps": "Fraîches, elles s'abîment vite : congelez-les, ou congelez le jus en portions. La pulpe qui reste après pressage peut être séchée pour la tisane.",
+        "source": "Identification et habitat : The Wildlife Trusts et Agence européenne pour l'environnement (EUNIS). Saison, cuisine et conservation : Bundeszentrum für Ernährung (BZfE, Allemagne)."
+      }
     },
     "boletus": {
       "name": "Boletus (cèpes et bolet bai)",
       "description": "Les cèpes et le bolet bai en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, le bolet bai en Europe et les bolets royaux d'Amérique du Nord",
-      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie"
+      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie",
+      "guide": {
+        "identify": "Le groupe réunit le cèpe de Bordeaux (Boletus edulis), les cèpes des pins, bronzé et d'été d'Europe, le cèpe de l'Est américain et le cèpe des Rocheuses d'Amérique du Nord, et le bolet bai (Imleria badia). Les cèpes ont des pores blancs chez le jeune, un réseau sur le pied et une chair blanche qui ne bleuit pas ; le bolet bai a des pores jaunes qui bleuissent et un pied strié sans réseau. Le chapeau les sépare : brun et gras (cèpe de Bordeaux), rouge vineux (cèpe des pins), presque noir et velouté (cèpe bronzé), clair et craquelé (cèpe d'été), fauve à brun lilacin (cèpe de l'Est américain), rouge brique (cèpe des Rocheuses), brun châtaigne et visqueux (bolet bai). Des pores rouges ou orange signalent un bolet toxique comme le bolet Satan (Rubroboletus satanas) ; des pores roses et un réseau sombre, le bolet amer (Tylopilus felleus).",
+        "habitat": "Tous vivent avec des arbres : le cèpe de Bordeaux avec les conifères, le hêtre et le chêne ; le cèpe des pins avec le pin et l'épicéa ; les cèpes bronzé et d'été avec le chêne et le châtaignier dans les bois chauds ; le bolet bai avec les conifères sur sable acide ; le cèpe de l'Est américain dans les chênaies de l'est des États-Unis ; le cèpe des Rocheuses sous les épicéas d'altitude.",
+        "season": "Ensemble, ils vont de mai, avec le cèpe d'été, aux premières gelées, avec le bolet bai, au plus fort en octobre et novembre ; le cèpe de Bordeaux sort surtout d'août à octobre. Chaque poussée suit une bonne pluie de deux à trois semaines.",
+        "picking": "Ne cueillez que ce que vous savez nommer avec certitude et séparez les espèces dans le panier. En France, la cueillette peut être limitée par arrêté ; en Allemagne, le cèpe de Bordeaux n'est permis qu'en petite quantité pour son propre usage et le cèpe bronzé est protégé.",
+        "kitchen": "Après une identification certaine, tous se brossent, se vérifient pour les vers et se cuisent bien. Le bolet bai accumule du césium radioactif : dans certaines régions de Bavière et d'Autriche, n'en mangez que de temps en temps.",
+        "keeps": "Tous se sèchent bien en tranches fines.",
+        "source": "Identification et habitat : Regione Piemonte, First Nature et MushroomExpert. Saison : données GBIF. Règles : BArtSchV (Allemagne). Césium : Office fédéral allemand de radioprotection (BfS)."
+      }
     },
     "cantharellus": {
       "name": "Chanterelles (toutes)",
       "description": "Toutes les chanterelles en un seul score : les girolles, la trompette de la mort et la chanterelle en tube et, en Amérique du Nord, la girolle lisse et la girolle du Pacifique",
-      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; les girolles sur les pentes moussues sous les chênes, hêtres et conifères après une pluie chaude, les trompettes de la mort dans la litière humide sous les feuillus, les chanterelles en tube sur la mousse mouillée sous les conifères en fin de saison"
+      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; les girolles sur les pentes moussues sous les chênes, hêtres et conifères après une pluie chaude, les trompettes de la mort dans la litière humide sous les feuillus, les chanterelles en tube sur la mousse mouillée sous les conifères en fin de saison",
+      "guide": {
+        "identify": "Cinq espèces : la girolle, la girolle lisse et la girolle du Pacifique d'Amérique du Nord, la trompette de la mort et la chanterelle en tube (ces deux dernières appartiennent au genre voisin Craterellus). Toutes ont des plis obtus et fourchus ou un dessous presque lisse qui descend sur le pied, jamais de lames fines. La girolle, la girolle lisse et celle du Pacifique sont jaunes à orange et charnues, au pied plein ; la chanterelle en tube est petite, à chapeau brun et pied jaune creux ; la trompette de la mort est une corne mince, creuse, gris-noir. Leurs sosies dangereux diffèrent : les clitocybes de l'olivier (Omphalotus), à vraies lames et en touffes sur le bois, pour les jaunes, et le cortinaire très joli (Cortinarius rubellus), à lames brun rouille, parmi les chanterelles en tube.",
+        "habitat": "Toutes vivent en association avec les racines des arbres. La girolle pousse sous feuillus et conifères dans toute l'Europe et l'Amérique du Nord ; la trompette de la mort dans la litière humide, surtout sous les hêtres et les chênes ; la chanterelle en tube sur la mousse mouillée et le bois pourri sous les conifères. La girolle lisse vit dans les chênaies de l'est des États-Unis, celle du Pacifique dans les forêts de douglas et de pruche du Nord-Ouest pacifique.",
+        "season": "Ensemble, elles vont du début de l'été à l'hiver : la girolle et la girolle lisse dès le début de l'été après des pluies chaudes, la trompette de la fin de l'été à l'automne, la girolle du Pacifique et la chanterelle en tube de l'automne à l'hiver, jusqu'aux fortes gelées. Dans l'ouest des États-Unis, elles suivent les pluies d'automne et d'hiver.",
+        "picking": "Coupez-les ou tournez-les à la base, laissez les petites et ne prenez que ce que vous mangerez. En Allemagne, la girolle est spécialement protégée et seules de petites quantités pour un usage personnel sont permises ; d'autres pays, régions et les terres publiques américaines fixent leurs propres limites ou permis : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois chaque champignon identifié avec certitude, cuisez-les tous bien et ne les mangez jamais crus. La girolle, la girolle lisse et celle du Pacifique sont fruitées et fermes, idéales revenues doucement au beurre ; la trompette a un goût fumé et la chanterelle en tube un goût de sous-bois, toutes deux bonnes en sauce, en risotto et avec les œufs. Fendez les trompettes et les chanterelles en tube en long pour rincer la terre.",
+        "keeps": "Fraîches, quelques jours au réfrigérateur dans du papier, pas dans du plastique. Les trompettes et les chanterelles en tube sèchent très bien ; la girolle devient coriace séchée et se garde mieux revenue puis congelée.",
+        "source": "Identification et habitat : First Nature (Royaume-Uni), MushroomExpert.com et MykoWeb (California Fungi). Cortinaire très joli : Institut norvégien de santé publique. Protection : ordonnance fédérale allemande sur la protection des espèces. Saison : données GBIF."
+      }
     },
     "bay_bolete": {
       "name": "Bolet Bai",
       "description": "Un bolet au chapeau brun châtaigne, visqueux par temps humide, aux pores crème à jaune olive qui bleuissent au toucher et au pied strié sans réseau",
-      "howTo": "Cherchez-le dans la mousse sous les pins et les épicéas, mais aussi sous les hêtres et les chênes, sur sol acide et sableux d'août aux premières gelées ; il culmine en octobre, quand les cèpes déclinent. Il accumule plus de césium de Tchernobyl que la plupart des champignons : en Bavière et en Autriche, n'en mangez qu'occasionnellement"
+      "howTo": "Cherchez-le dans la mousse sous les pins et les épicéas, mais aussi sous les hêtres et les chênes, sur sol acide et sableux d'août aux premières gelées ; il culmine en octobre, quand les cèpes déclinent. Il accumule plus de césium de Tchernobyl que la plupart des champignons : en Bavière et en Autriche, n'en mangez qu'occasionnellement",
+      "guide": {
+        "identify": "Un bolet sans le réseau sur le pied des cèpes : le chapeau est brun châtaigne, comme du daim par temps sec et visqueux par temps humide. Les pores sont crème à jaune pâle, puis olive, et bleuissent à la pression ; la chair blanche à jaune pâle peut bleuir légèrement à la coupe. Le pied, plus mince, est strié de brun sur fond plus clair. Des pores rouges ou orange (Rubroboletus satanas, Neoboletus subvelutipes) ou roses avec un pied réticulé (Tylopilus felleus) l'excluent ; dans l'est de l'Amérique du Nord, Boletus sensibilis bleuit aussitôt et partout et a un pied jaune, et Boletus huronensis est dense, en forme de cèpe, avec un pied jaunâtre.",
+        "habitat": "Avec les pins et les épicéas, aussi les hêtres, chênes et châtaigniers, sur sol acide et sableux, souvent dans la mousse près de vieilles souches ; commun en plaine dans le nord et le centre de l'Europe. En Amérique du Nord, dans le nord-est, autour des Grands Lacs et dans les Appalaches, sous les pins et les pruches.",
+        "season": "En Europe, d'août aux premières fortes gelées, au plus fort en octobre, après les cèpes, et jusqu'en décembre dans le sud. Dans le nord-est de l'Amérique du Nord, plus tôt, surtout de juillet à septembre.",
+        "picking": "Dégagez-le en le tournant ou coupez-le et laissez les jeunes et les vieux. Renseignez-vous sur les règles locales : la cueillette peut être limitée par arrêté et elle est souvent interdite dans les réserves naturelles.",
+        "kitchen": "Après une identification certaine, essuyez le chapeau, pelez-le s'il est visqueux, retirez les tubes mous des vieux sujets et cuisez-le bien ; le bleu disparaît à la cuisson et le goût est doux. Il accumule plus de césium radioactif que la plupart des champignons : dans certaines régions de Bavière et d'Autriche, n'en mangez que de temps en temps.",
+        "keeps": "Il se sèche bien en tranches fines et se congèle une fois cuit.",
+        "source": "Identification et habitat : First Nature et MushroomExpert. Saison : données GBIF. Césium : Office fédéral allemand de radioprotection (BfS) et LGL de Bavière."
+      }
     }
   },
   "place": {
@@ -386,5 +917,19 @@
     "testedLabel": "Vérifié · saison {{year}}",
     "tested": "Au même endroit, la prévision a mieux noté les jours de sa saison que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
     "howWeCheck": "Comment nous vérifions"
+  },
+  "guide": {
+    "identify": "Comment le reconnaître",
+    "habitat": "Où il pousse",
+    "season": "Quand",
+    "picking": "Cueillette",
+    "kitchen": "Préparation",
+    "keeps": "Conservation",
+    "source": "Sources"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}) : saison, habitat et sosies",
+    "description": "Reconnaître {{name}} ({{latin}}) : habitat, saison, sosies toxiques et conseils en cuisine.",
+    "allSpecies": "Toutes les espèces"
   }
 }

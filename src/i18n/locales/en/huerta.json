@@ -2309,5 +2309,21 @@
     "closing": "Start your garden",
     "early": "Huerta is in early release: its advice gets better every week.",
     "feedback": "Tell me what's off!"
+  },
+  "page": {
+    "title": "{{name}}: {{start}}, care and {{end}}",
+    "start": {
+      "sow": "sowing",
+      "plant": "planting"
+    },
+    "end": {
+      "vegetable": "harvest",
+      "fruit": "harvest",
+      "herb": "picking",
+      "flower": "flowering",
+      "cover": "digging in"
+    },
+    "signIn": "Sign in to plan your garden",
+    "home": "Huerta"
   }
 }

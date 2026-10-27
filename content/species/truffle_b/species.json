@@ -19,32 +19,86 @@
     "en": {
       "name": "Black Truffle",
       "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
-      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter."
+      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter.",
+      "guide": {
+        "identify": "A round, lumpy tuber, from walnut to fist size, that grows underground. The black skin, reddish when young, is covered in small, hard, many-sided warts. Cut it in half: ripe flesh is purplish-black, marbled with fine white veins that turn reddish-brown in the air, and it smells strong and earthy. Earthballs (Scleroderma), which are poisonous, have a thick, yellowish to brown, scaly skin, a smell of gas and a firm, dark inside; the winter truffle (Tuber brumale) and the imported Chinese truffle (Tuber indicum) look similar but are worth far less.",
+        "habitat": "Underground among the roots of oaks, above all holm and downy oak, and of hazel, on well-drained, lime-rich soil in sunny hill country; a patch of bare, burnt-looking ground around a tree often shows where it grows. Native to southern France, eastern Spain and central Italy; much of the crop now comes from planted truffle orchards.",
+        "season": "Winter: it ripens from December to March, and markets peak in January. Storms in late July and August, as it swells, decide the size of the crop.",
+        "picking": "It is found with a trained dog: dig only where the dog marks, with a small truffle spade, take only ripe truffles and fill the hole again. Truffle hunting is regulated: Italy requires a licence after an exam and its regions set the seasons; Spanish regions set seasons and permits; in France truffles belong to the landowner, and in Germany wild truffles are protected. Check local rules before you look.",
+        "kitchen": "Once identified with certainty, brush it clean under cold water just before use. Shave or grate it raw over warm dishes, or warm it gently in fat: with eggs, butter, pasta, risotto or potatoes. Long cooking kills the aroma.",
+        "keeps": "Wrap it in kitchen paper in a closed jar in the fridge, change the paper daily and use it within days, as the aroma fades; eggs kept in the jar take on its scent. Freezing keeps the aroma better than drying.",
+        "source": "Identification and habitat: CRPF Languedoc-Roussillon and Trufamania. Rules: Italian truffle law 752/1985, Spanish regional rules and German Federal Species Protection Ordinance. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Tartufo Nero Pregiato",
       "description": "Fungo ipogeo molto pregiato dal profumo intenso, usato in cucina gourmet.",
-      "howTo": "Si trova sottoterra vicino alle radici di querce e noccioli, raccolto con animali addestrati in inverno."
+      "howTo": "Si trova sottoterra vicino alle radici di querce e noccioli, raccolto con animali addestrati in inverno.",
+      "guide": {
+        "identify": "Il tartufo nero è un tubero tondo e bitorzoluto, dalla grandezza di una noce a quella di un pugno, che cresce sotto terra. La scorza nera, rossiccia da giovane, è coperta di piccole verruche dure a più facce. Taglialo a metà: la polpa matura è nero violacea, marmorizzata da sottili venature bianche che all'aria diventano bruno rossicce, e ha un odore forte e terroso. Gli Scleroderma, tossici, hanno una scorza spessa, da giallastra a bruna e squamosa, odore di gas e l'interno sodo e scuro; il tartufo nero invernale o brumale (Tuber brumale) e il tartufo cinese importato (Tuber indicum) gli somigliano ma valgono molto meno.",
+        "habitat": "Sotto terra, tra le radici delle querce, soprattutto leccio e roverella, e dei noccioli, su terreno calcareo e ben drenato, in collina al sole; una chiazza di terra nuda intorno alla pianta, il pianello o bruciata, spesso rivela dove cresce. È originario della Francia meridionale, della Spagna orientale e dell'Italia centrale; gran parte del raccolto oggi viene da tartufaie coltivate.",
+        "season": "In inverno: matura da dicembre a marzo, e i mercati sono al culmine a gennaio. I temporali di fine luglio e di agosto, mentre si ingrossa, decidono quanto sarà abbondante il raccolto.",
+        "picking": "Si cerca con un cane addestrato: scava solo dove il cane segnala, con il vanghetto, raccogli solo tartufi maturi e richiudi la buca. La raccolta è regolata: in Italia serve un tesserino rilasciato dopo un esame e le regioni fissano il calendario; in Spagna ogni regione fissa stagione e permessi; in Francia i tartufi appartengono al proprietario del terreno, e in Germania i tartufi selvatici sono protetti. Controlla le regole locali prima di cercare.",
+        "kitchen": "Una volta identificato con certezza, spazzolalo sotto l'acqua fredda poco prima di usarlo. Affettalo o grattugialo crudo su piatti caldi, o scaldalo appena in un grasso: con uova, burro, pasta, risotto o patate. Una cottura lunga ne distrugge l'aroma.",
+        "keeps": "Avvolgilo in carta da cucina e tienilo in un barattolo chiuso in frigorifero; cambia la carta ogni giorno e usalo entro pochi giorni, perché l'aroma cala. Le uova tenute nel barattolo ne prendono il profumo. Il congelamento conserva l'aroma meglio dell'essiccazione.",
+        "source": "Identificazione e habitat: CRPF Languedoc-Roussillon e Trufamania. Regole: legge italiana sui tartufi 752/1985, norme regionali spagnole e ordinanza federale tedesca sulla protezione delle specie (BArtSchV). Stagione: segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Truffe noire du Périgord",
       "description": "Champignon souterrain très recherché au parfum intense, utilisé en cuisine gastronomique.",
-      "howTo": "Se trouve sous terre près des racines de chênes et de noisetiers, récolté avec des animaux dressés en hiver."
+      "howTo": "Se trouve sous terre près des racines de chênes et de noisetiers, récolté avec des animaux dressés en hiver.",
+      "guide": {
+        "identify": "La truffe noire est un tubercule rond et bosselé, de la taille d'une noix à celle d'un poing, qui pousse sous terre. La peau noire, rougeâtre quand elle est jeune, est couverte de petites verrues dures à plusieurs faces. Coupez-la en deux : la chair mûre est noir violacé, marbrée de fines veines blanches qui virent au brun rouge à l'air, et elle a une odeur forte et terreuse. Les sclérodermes (Scleroderma), toxiques, ont une peau épaisse, jaunâtre à brune et écailleuse, une odeur de gaz et un intérieur ferme et sombre ; la truffe musquée (Tuber brumale) et la truffe de Chine importée (Tuber indicum) lui ressemblent mais valent beaucoup moins.",
+        "habitat": "Sous terre, parmi les racines des chênes, surtout chêne vert et chêne pubescent, et des noisetiers, sur sol calcaire bien drainé, dans les collines ensoleillées ; une tache de terre nue autour de l'arbre, le brûlé, signale souvent sa présence. Elle est indigène dans le sud de la France, l'est de l'Espagne et le centre de l'Italie ; une grande partie de la récolte vient aujourd'hui de truffières plantées.",
+        "season": "En hiver : elle mûrit de décembre à mars, et les marchés battent leur plein en janvier. Les orages de fin juillet et d'août, pendant qu'elle grossit, décident de l'importance de la récolte.",
+        "picking": "On la cherche avec un chien dressé : ne creusez qu'à l'endroit qu'il marque, avec une petite pioche à truffes, ne prenez que des truffes mûres et rebouchez le trou. La récolte est réglementée : en Italie, il faut une licence obtenue après un examen et les régions fixent les saisons ; en Espagne, chaque région fixe saisons et permis ; en France, les truffes appartiennent au propriétaire du terrain, et en Allemagne les truffes sauvages sont protégées. Renseignez-vous sur les règles locales avant de chercher.",
+        "kitchen": "Une fois identifiée avec certitude, brossez-la sous l'eau froide juste avant de l'utiliser. Râpez-la ou taillez-la en lamelles, crue, sur des plats chauds, ou chauffez-la doucement dans un corps gras : avec les œufs, le beurre, les pâtes, le risotto ou les pommes de terre. Une longue cuisson détruit son arôme.",
+        "keeps": "Enveloppez-la dans du papier absorbant, dans un bocal fermé au réfrigérateur ; changez le papier chaque jour et utilisez-la en quelques jours, car son arôme faiblit. Des œufs gardés dans le bocal prennent son parfum. La congélation garde mieux l'arôme que le séchage.",
+        "source": "Identification et habitat : CRPF Languedoc-Roussillon et Trufamania. Règles : loi italienne sur les truffes 752/1985, règles régionales espagnoles et ordonnance fédérale allemande sur la protection des espèces (BArtSchV). Saison : observations GBIF."
+      }
     },
     "de": {
       "name": "Schwarzer Trüffel",
       "description": "Sehr geschätzter unterirdischer Pilz mit intensivem Aroma, in der Gourmetküche verwendet.",
-      "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt."
+      "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt.",
+      "guide": {
+        "identify": "Der Schwarze Trüffel ist rundlich und knollig, von Walnuss- bis Faustgröße, und wächst unter der Erde. Die schwarze, jung rötliche Haut ist mit kleinen, harten, vieleckigen Warzen besetzt. Schneide ihn durch: reifes Fleisch ist violettschwarz und von feinen weißen Adern marmoriert, die sich an der Luft rotbraun färben, und er riecht stark und erdig. Die giftigen Kartoffelboviste (Scleroderma) haben eine dicke, gelbliche bis braune, schuppige Haut, riechen nach Gas und sind innen fest und dunkel; der Wintertrüffel (Tuber brumale) und der importierte Chinesische Trüffel (Tuber indicum) sehen ähnlich aus, sind aber viel weniger wert.",
+        "habitat": "Unter der Erde zwischen den Wurzeln von Eichen, vor allem Stein- und Flaumeiche, und von Haseln, auf durchlässigem, kalkreichem Boden in sonnigem Hügelland; ein Fleck kahler, wie verbrannter Erde um einen Baum zeigt oft, wo er wächst. Heimisch in Südfrankreich, Ostspanien und Mittelitalien; ein großer Teil der Ernte stammt heute aus angelegten Trüffelplantagen.",
+        "season": "Winter: er reift von Dezember bis März, und die Märkte haben im Januar Hochsaison. Gewitter Ende Juli und im August, wenn er heranwächst, entscheiden über die Größe der Ernte.",
+        "picking": "Gesucht wird er mit einem ausgebildeten Hund: grab nur dort, wo der Hund anzeigt, mit einer kleinen Trüffelhacke, nimm nur reife Trüffel und füll das Loch wieder auf. Die Trüffelsuche ist geregelt: Italien verlangt eine Lizenz nach einer Prüfung, und die Regionen legen die Saison fest; in Spanien bestimmen die Regionen Saison und Genehmigungen; in Frankreich gehören Trüffel dem Grundbesitzer, und in Deutschland sind wilde Trüffel geschützt. Prüfe die Regeln vor Ort, bevor du suchst.",
+        "kitchen": "Ist er sicher bestimmt, bürste ihn kurz vor der Verwendung unter kaltem Wasser sauber. Hobel oder reib ihn roh über warme Gerichte, oder erwärme ihn sanft in Fett: zu Eiern, Butter, Pasta, Risotto oder Kartoffeln. Langes Kochen zerstört das Aroma.",
+        "keeps": "Wickle ihn in Küchenpapier und bewahre ihn in einem geschlossenen Glas im Kühlschrank auf; wechsle das Papier täglich und verbrauche ihn innerhalb weniger Tage, denn das Aroma lässt nach. Eier im selben Glas nehmen seinen Duft an. Einfrieren erhält das Aroma besser als Trocknen.",
+        "source": "Bestimmung und Standort: CRPF Languedoc-Roussillon und Trufamania. Regeln: italienisches Trüffelgesetz 752/1985, spanische Regionalvorschriften und Bundesartenschutzverordnung. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Trufa negra",
       "description": "Hongo subterráneo muy apreciado, de aroma intenso, utilizado en la cocina gourmet.",
-      "howTo": "Se encuentra bajo tierra cerca de las raíces de robles y avellanos, recolectado con animales adiestrados en invierno."
+      "howTo": "Se encuentra bajo tierra cerca de las raíces de robles y avellanos, recolectado con animales adiestrados en invierno.",
+      "guide": {
+        "identify": "La trufa negra es un tubérculo redondo y abultado, del tamaño de una nuez al de un puño, que crece bajo tierra. La piel negra, rojiza de joven, está cubierta de verrugas pequeñas, duras y de varias caras. Córtala por la mitad: la carne madura es negra violácea, jaspeada de finas venas blancas que se vuelven pardo rojizas al aire, y tiene un olor fuerte y terroso. Los Scleroderma, tóxicos, tienen una piel gruesa, amarillenta a parda y escamosa, huelen a gas y son firmes y oscuros por dentro; la trufa de invierno o machenca (Tuber brumale) y la trufa china importada (Tuber indicum) se parecen, pero valen mucho menos.",
+        "habitat": "Bajo tierra, entre las raíces de encinas, quejigos y robles pubescentes y de avellanos, en suelo calizo y bien drenado de colinas soleadas; un calvero sin hierba alrededor del árbol, el quemado, suele delatarla. Es autóctona del sur de Francia, del este de España y del centro de Italia; gran parte de la cosecha procede hoy de plantaciones truferas.",
+        "season": "En invierno: madura de diciembre a marzo, y los mercados alcanzan su punto álgido en enero. Las tormentas de finales de julio y de agosto, mientras engorda, deciden el tamaño de la cosecha.",
+        "picking": "Se busca con un perro adiestrado: cava solo donde marque el perro, con un machete trufero, coge solo trufas maduras y tapa el hoyo. La recolección está regulada: en Italia hace falta una licencia tras un examen y las regiones fijan la temporada; en España cada comunidad autónoma fija temporada y permisos; en Francia las trufas pertenecen al dueño del terreno, y en Alemania las trufas silvestres están protegidas. Consulta las normas locales antes de buscar.",
+        "kitchen": "Una vez identificada con certeza, cepíllala bajo agua fría justo antes de usarla. Lamínala o rállala en crudo sobre platos calientes, o caliéntala suavemente en grasa: con huevos, mantequilla, pasta, arroz o patatas. Una cocción larga destruye el aroma.",
+        "keeps": "Envuélvela en papel de cocina y guárdala en un tarro cerrado en la nevera; cambia el papel cada día y úsala en pocos días, porque el aroma se pierde. Los huevos guardados en el tarro toman su aroma. Congelarla conserva el aroma mejor que secarla.",
+        "source": "Identificación y hábitat: CRPF Languedoc-Roussillon y Trufamania. Normas: ley italiana de trufas 752/1985, normas autonómicas españolas y Ordenanza Federal alemana de Protección de Especies (BArtSchV). Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Trufa-preta",
       "description": "Cogumelo subterrâneo muito apreciado, de aroma intenso, usado na culinária gourmet.",
-      "howTo": "Encontra-se debaixo da terra, próximo às raízes de carvalhos e aveleiras, colhido com animais treinados no inverno."
+      "howTo": "Encontra-se debaixo da terra, próximo às raízes de carvalhos e aveleiras, colhido com animais treinados no inverno.",
+      "guide": {
+        "identify": "A trufa-preta é um tubérculo redondo e irregular, do tamanho de uma noz ao de um punho, que cresce debaixo da terra. A casca negra, avermelhada quando jovem, está coberta de pequenas verrugas duras com várias faces. Corte-a ao meio: a carne madura é negro-arroxeada, marmoreada de finas veias brancas que ficam castanho-avermelhadas ao ar, e tem um cheiro forte e terroso. Os Scleroderma, tóxicos, têm uma casca grossa, amarelada a castanha e escamosa, cheiro a gás e o interior firme e escuro; a trufa-de-inverno (Tuber brumale) e a trufa-chinesa importada (Tuber indicum) parecem-se com ela, mas valem muito menos.",
+        "habitat": "Debaixo da terra, entre as raízes de carvalhos, sobretudo azinheira e carvalho-pubescente, e de aveleiras, em solo calcário e bem drenado de colinas soalheiras; uma mancha de terra nua à volta da árvore, o queimado, mostra muitas vezes onde cresce. É nativa do sul de França, do leste de Espanha e do centro de Itália; grande parte da colheita vem hoje de trufeiras plantadas.",
+        "season": "No inverno: amadurece de dezembro a março, e os mercados atingem o auge em janeiro. As trovoadas do fim de julho e de agosto, enquanto engorda, decidem o tamanho da colheita.",
+        "picking": "Procura-se com um cão treinado: cave só onde o cão marcar, com um sacho pequeno, apanhe só trufas maduras e volte a tapar o buraco. A apanha é regulada: em Itália é preciso uma licença obtida após exame e as regiões fixam a época; em Espanha cada comunidade autónoma fixa época e licenças; em França as trufas pertencem ao dono do terreno, e na Alemanha as trufas silvestres são protegidas. Informe-se sobre as regras locais antes de procurar.",
+        "kitchen": "Depois de identificada com certeza, escove-a debaixo de água fria pouco antes de a usar. Lamine-a ou rale-a crua sobre pratos quentes, ou aqueça-a suavemente numa gordura: com ovos, manteiga, massa, risoto ou batatas. Uma cozedura longa destrói o aroma.",
+        "keeps": "Embrulhe-a em papel de cozinha e guarde-a num frasco fechado no frigorífico; troque o papel todos os dias e use-a em poucos dias, porque o aroma vai-se perdendo. Ovos guardados no frasco ganham o seu aroma. Congelar conserva o aroma melhor do que secar.",
+        "source": "Identificação e habitat: CRPF Languedoc-Roussillon e Trufamania. Regras: lei italiana das trufas 752/1985, normas regionais espanholas e regulamento federal alemão de proteção de espécies (BArtSchV). Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -113,6 +167,8 @@
       "taxonKeys": [5258468],
       "references": ["https://www.gbif.org/species/5258468"]
     },
-    "rangePrior": { "taxonKeys": [5258468] }
+    "rangePrior": {
+      "taxonKeys": [5258468]
+    }
   }
 }

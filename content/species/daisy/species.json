@@ -19,32 +19,86 @@
     "en": {
       "name": "Common Daisy",
       "description": "Small white flowers with yellow centers that grow close to the ground",
-      "howTo": "Common in lawns, meadows, and grassy areas during spring and summer"
+      "howTo": "Common in lawns, meadows, and grassy areas during spring and summer",
+      "guide": {
+        "identify": "The common daisy is a low plant with a flat rosette of spoon-shaped, slightly hairy leaves pressed to the ground. Each leafless, hairy stalk carries one flower head about 2 cm across: white rays, often tipped with pink, around a yellow centre; the heads close at night and in dull weather. Bigger daisy-like flowers on leafy stems, such as oxeye daisy, and the mayweeds and chamomiles with feathery leaves are different plants.",
+        "habitat": "Lawns, short turf, grazed pastures, verges and paths, in sun on moist soil; it grows almost everywhere in Europe. In the US it came from Europe and now grows in lawns and damp, disturbed ground, most of all where summers are cool.",
+        "season": "It flowers almost all year where winters are mild, with the main flush from spring into early summer. In cold regions and much of the US it flowers from spring to early summer, with scattered flowers until frost.",
+        "picking": "Pinch off flower heads and a few young leaves, taking from many plants and leaving the rosettes in place. Avoid lawns treated with weedkiller or fertiliser, places where dogs are walked and roadsides.",
+        "kitchen": "Once identified with certainty, the flowers and young leaves are eaten raw in small amounts, in salads and sandwiches or as a garnish; they taste mild to slightly bitter, and older leaves are tough. Rinse them gently in cool water. Try only a little at first, since people allergic to the daisy family can react and large amounts can upset the stomach, and avoid it in pregnancy and while breastfeeding.",
+        "keeps": "Pick just before use, as the flowers wilt quickly; until then keep them between damp paper towels in the fridge.",
+        "source": "Identification and habitat: The Wildlife Trusts and NC State Extension. Cooking and safety: Colorado State University Extension and NC State Extension."
+      }
     },
     "it": {
       "name": "Margherita Comune",
       "description": "Piccoli fiori bianchi con centri gialli che crescono vicino al terreno",
-      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate"
+      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate",
+      "guide": {
+        "identify": "La margherita comune, o pratolina, è una pianta bassa con una rosetta piatta di foglie a spatola, un po' pelose, aderenti al suolo. Ogni stelo senza foglie e peloso porta un solo capolino di circa 2 cm: linguette bianche, spesso sfumate di rosa, attorno a un centro giallo; i capolini si chiudono di notte e con il tempo coperto. I fiori simili più grandi su fusti fogliosi, come la margheritona (Leucanthemum vulgare), e le camomille dalle foglie finemente divise sono altre piante.",
+        "habitat": "Prati rasati, tappeti erbosi, pascoli, bordi delle strade e sentieri, al sole su terreno fresco; cresce quasi ovunque in Europa. Negli Stati Uniti è arrivata dall'Europa e oggi cresce nei prati e nei terreni umidi e smossi, soprattutto dove le estati sono fresche.",
+        "season": "Dove gli inverni sono miti fiorisce quasi tutto l'anno, soprattutto dalla primavera all'inizio dell'estate. Nelle zone fredde e in gran parte degli Stati Uniti fiorisce dalla primavera all'inizio dell'estate, con qualche fiore fino alle gelate.",
+        "picking": "Stacca con le dita i capolini e qualche foglia giovane, da molte piante, lasciando le rosette al loro posto. Evita i prati trattati con diserbanti o concimi, i posti dove si portano i cani e i bordi delle strade.",
+        "kitchen": "Una volta identificati con certezza, fiori e foglie giovani si mangiano crudi in piccole quantità, in insalata, nei panini o come decorazione; il sapore è delicato o un po' amaro, e le foglie vecchie sono coriacee. Sciacquali delicatamente in acqua fredda. Assaggiane prima poca, perché chi è allergico alle composite può reagire e grandi quantità possono disturbare lo stomaco; evitala in gravidanza e durante l'allattamento.",
+        "keeps": "Raccoglila appena prima dell'uso, perché il fiore appassisce presto; nel frattempo tienila tra fogli di carta da cucina umida in frigorifero.",
+        "source": "Identificazione e habitat: The Wildlife Trusts e NC State Extension. Cucina e sicurezza: Colorado State University Extension e NC State Extension."
+      }
     },
     "fr": {
       "name": "Pâquerette",
       "description": "Petites fleurs blanches à cœur jaune poussant près du sol",
-      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été"
+      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été",
+      "guide": {
+        "identify": "La pâquerette est une petite plante à rosette plaquée au sol, aux feuilles en spatule, légèrement velues. Chaque tige sans feuilles, velue, porte un seul capitule d'environ 2 cm : des ligules blanches, souvent teintées de rose, autour d'un cœur jaune ; les capitules se ferment la nuit et par temps couvert. Les fleurs semblables plus grandes sur des tiges feuillées, comme la grande marguerite, et les matricaires et camomilles aux feuilles finement découpées sont d'autres plantes.",
+        "habitat": "Pelouses, gazons ras, pâtures, bords de chemin et sentiers, au soleil sur sol frais ; elle pousse presque partout en Europe. Venue d'Europe, elle pousse aux États-Unis dans les pelouses et les sols frais et remués, surtout là où les étés sont frais.",
+        "season": "Là où les hivers sont doux, elle fleurit presque toute l'année, surtout du printemps au début de l'été. Dans les régions froides et une grande partie des États-Unis, elle fleurit du printemps au début de l'été, avec quelques fleurs jusqu'aux gelées.",
+        "picking": "Pincez les capitules et quelques jeunes feuilles, sur de nombreuses plantes, en laissant les rosettes en place. Évitez les pelouses traitées au désherbant ou à l'engrais, les lieux de promenade des chiens et les bords de route.",
+        "kitchen": "Une fois identifiées avec certitude, les fleurs et les jeunes feuilles se mangent crues en petite quantité, en salade, en tartine ou en décoration ; leur goût est doux à légèrement amer, et les vieilles feuilles sont coriaces. Rincez-les doucement à l'eau froide. Goûtez d'abord très peu, car les personnes allergiques aux astéracées peuvent réagir et de grandes quantités peuvent dérégler l'estomac ; évitez-la pendant la grossesse et l'allaitement.",
+        "keeps": "Cueillez-la juste avant de l'utiliser, car la fleur fane vite ; en attendant, gardez-la entre deux feuilles de papier absorbant humide au réfrigérateur.",
+        "source": "Identification et habitat : The Wildlife Trusts et service d'extension de NC State. Cuisine et sécurité : services d'extension de Colorado State University et de NC State."
+      }
     },
     "de": {
       "name": "Gänseblümchen",
       "description": "Kleine weisse Blüten mit gelber Mitte, wachsen bodennah",
-      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer"
+      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer",
+      "guide": {
+        "identify": "Das Gänseblümchen ist eine niedrige Pflanze mit einer flach am Boden liegenden Rosette aus spatelförmigen, leicht behaarten Blättern. Jeder blattlose, behaarte Stiel trägt ein einzelnes Blütenköpfchen von etwa 2 cm: weiße, oft rosa überlaufene Zungenblüten um eine gelbe Mitte; nachts und bei trübem Wetter schließen sich die Köpfchen. Größere, ähnliche Blüten an beblätterten Stängeln, etwa die Margerite, sowie Kamillen mit fein gefiederten Blättern sind andere Pflanzen.",
+        "habitat": "Rasen, kurzes Grasland, Weiden, Wegränder und Pfade, sonnig auf feuchtem Boden; es wächst fast überall in Europa. In die USA kam es aus Europa und wächst dort in Rasen und auf feuchtem, gestörtem Boden, vor allem wo die Sommer kühl sind.",
+        "season": "Wo die Winter mild sind, blüht es fast das ganze Jahr, am stärksten vom Frühling bis in den Frühsommer. In kalten Gegenden und in weiten Teilen der USA blüht es vom Frühling bis zum Frühsommer und vereinzelt bis zum Frost.",
+        "picking": "Knipse Blütenköpfchen und ein paar junge Blätter ab, von vielen Pflanzen, und lass die Rosetten stehen. Meide mit Unkrautvernichter oder Dünger behandelte Rasen, Plätze, an denen Hunde ausgeführt werden, und Straßenränder.",
+        "kitchen": "Sicher bestimmt werden Blüten und junge Blätter in kleinen Mengen roh gegessen, im Salat, auf Brot oder als Garnitur; sie schmecken mild bis leicht bitter, ältere Blätter sind zäh. Wasch sie vorsichtig in kaltem Wasser. Probier zuerst nur wenig, denn Menschen mit Allergie gegen Korbblütler können reagieren und große Mengen können den Magen verstimmen; in Schwangerschaft und Stillzeit besser meiden.",
+        "keeps": "Erst kurz vor dem Essen pflücken, weil die Blüten schnell welken; bis dahin zwischen feuchtem Küchenpapier im Kühlschrank aufbewahren.",
+        "source": "Bestimmung und Standort: The Wildlife Trusts und NC State Extension. Küche und Sicherheit: Colorado State University Extension und NC State Extension."
+      }
     },
     "es": {
       "name": "Margarita común",
       "description": "Pequeñas flores blancas con centro amarillo que crecen cerca del suelo",
-      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano"
+      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano",
+      "guide": {
+        "identify": "La margarita común (maya o chiribita) es una planta baja con una roseta plana de hojas en forma de espátula, algo peludas, pegadas al suelo. Cada tallo sin hojas y peludo lleva una sola cabezuela de unos 2 cm: lígulas blancas, a menudo con la punta rosada, alrededor de un centro amarillo; las cabezuelas se cierran de noche y con tiempo nublado. Las flores parecidas más grandes sobre tallos con hojas, como la margarita mayor, y las manzanillas de hojas finamente divididas son otras plantas.",
+        "habitat": "Céspedes, prados de hierba corta, pastos, cunetas y caminos, al sol y en suelo húmedo; crece en casi toda Europa. A Estados Unidos llegó desde Europa y hoy crece en céspedes y en suelos húmedos y removidos, sobre todo donde los veranos son frescos.",
+        "season": "Donde los inviernos son suaves florece casi todo el año, con la floración principal de primavera a principios de verano. En zonas frías y en gran parte de Estados Unidos florece de primavera a principios de verano, con flores sueltas hasta las heladas.",
+        "picking": "Pellizca las cabezuelas y unas pocas hojas tiernas, de muchas plantas, y deja las rosetas en su sitio. Evita los céspedes tratados con herbicida o abono, los sitios donde se pasea a perros y las cunetas.",
+        "kitchen": "Una vez identificada con certeza, la flor y las hojas tiernas se comen crudas en poca cantidad, en ensaladas, bocadillos o como adorno; saben suaves o algo amargas, y las hojas viejas son duras. Lávalas con cuidado en agua fría. Prueba primero muy poco, porque quien tiene alergia a las compuestas puede reaccionar y en grandes cantidades puede sentar mal al estómago; evítala en el embarazo y la lactancia.",
+        "keeps": "Cógela justo antes de usarla, porque la flor se mustia pronto; mientras, guárdala entre papel de cocina húmedo en la nevera.",
+        "source": "Identificación y hábitat: The Wildlife Trusts y extensión de NC State. Cocina y seguridad: extensión de la Universidad Estatal de Colorado y de NC State."
+      }
     },
     "pt": {
       "name": "Margarida-comum",
       "description": "Pequenas flores brancas com centros amarelos que crescem rente ao solo",
-      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão"
+      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão",
+      "guide": {
+        "identify": "A margarida-comum (bonina) é uma planta baixa com uma roseta achatada de folhas em forma de espátula, um pouco peludas, encostadas ao chão. Cada pé sem folhas e peludo tem um só capítulo com cerca de 2 cm: lígulas brancas, muitas vezes com a ponta rosada, à volta de um centro amarelo; os capítulos fecham-se à noite e com tempo encoberto. As flores parecidas maiores em caules com folhas, como a margarida-maior (Leucanthemum vulgare), e as camomilas de folhas finamente recortadas são outras plantas.",
+        "habitat": "Relvados, prados de erva rasa, pastagens, bermas e caminhos, ao sol em solo fresco; cresce quase por toda a Europa. Nos Estados Unidos chegou da Europa e hoje cresce em relvados e em solos húmidos e revolvidos, sobretudo onde os verões são frescos.",
+        "season": "Onde os invernos são amenos floresce quase todo o ano, sobretudo da primavera ao início do verão. Nas regiões frias e em grande parte dos Estados Unidos floresce da primavera ao início do verão, com algumas flores até às geadas.",
+        "picking": "Apanhe com os dedos os capítulos e algumas folhas novas, de muitas plantas, deixando as rosetas no lugar. Evite relvados tratados com herbicida ou adubo, sítios onde se passeiam cães e bermas de estrada.",
+        "kitchen": "Depois de identificadas com certeza, as flores e as folhas novas comem-se cruas em pouca quantidade, em saladas, sanduíches ou como decoração; o sabor é suave a ligeiramente amargo, e as folhas velhas são duras. Passe-as por água fria com cuidado. Prove primeiro muito pouco, porque quem tem alergia às compostas pode reagir e em grande quantidade pode fazer mal ao estômago; evite-a na gravidez e na amamentação.",
+        "keeps": "Apanhe-a mesmo antes de usar, porque a flor murcha depressa; até lá, guarde-a entre papel de cozinha húmido no frigorífico.",
+        "source": "Identificação e habitat: The Wildlife Trusts e extensão da NC State. Cozinha e segurança: extensão da Colorado State University e da NC State."
+      }
     }
   },
   "identification": {
@@ -210,6 +264,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [3117424] }
+    "rangePrior": {
+      "taxonKeys": [3117424]
+    }
   }
 }

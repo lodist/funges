@@ -1,6 +1,7 @@
 import i18n, { type BackendModule, type ResourceKey } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { pathLanguage } from '@/lib/seo-pages';
 
 // Every translation file, each loaded on demand as its own small chunk: the
 // visitor's language (and English, the fallback) before the first render, any
@@ -33,9 +34,19 @@ const lazyLocales: BackendModule = {
   },
 };
 
+// A /de/… page is German whatever the visitor stored, and stores it.
+const detector = new LanguageDetector();
+detector.addDetector({
+  name: 'indexedPath',
+  lookup: () =>
+    typeof window === 'undefined'
+      ? undefined
+      : (pathLanguage(window.location.pathname) ?? undefined),
+});
+
 /** Settles once the visitor's language is loaded: render after it. */
 export const i18nReady = i18n
-  .use(LanguageDetector)
+  .use(detector)
   .use(lazyLocales)
   .use(initReactI18next)
   .init({
@@ -49,7 +60,7 @@ export const i18nReady = i18n
     },
 
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      order: ['indexedPath', 'localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
     },
   });
