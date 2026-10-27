@@ -25,8 +25,10 @@ import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SpeciesRouteImport } from './routes/species'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsuseRouteImport } from './routes/termsuse'
+import { Route as TerraRouteImport } from './routes/terra'
 import { Route as WorthForagingNowRouteImport } from './routes/worth-foraging-now'
 import { Route as DeHuertaRouteImport } from './routes/de_.huerta'
+import { Route as DeTerraRouteImport } from './routes/de_.terra'
 import { Route as HuertaAccountRouteImport } from './routes/huerta_.account'
 import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
 import { Route as HuertaPlannerRouteImport } from './routes/huerta_.planner'
@@ -120,6 +122,11 @@ const TermsuseRoute = TermsuseRouteImport.update({
   path: '/termsuse',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TerraRoute = TerraRouteImport.update({
+  id: '/terra',
+  path: '/terra',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
   id: '/worth-foraging-now',
   path: '/worth-foraging-now',
@@ -128,6 +135,11 @@ const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
 const DeHuertaRoute = DeHuertaRouteImport.update({
   id: '/de_/huerta',
   path: '/de/huerta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeTerraRoute = DeTerraRouteImport.update({
+  id: '/de_/terra',
+  path: '/de/terra',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HuertaAccountRoute = HuertaAccountRouteImport.update({
@@ -208,8 +220,10 @@ export interface FileRoutesByFullPath {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/de/huerta': typeof DeHuertaRoute
+  '/de/terra': typeof DeTerraRoute
   '/huerta/account': typeof HuertaAccountRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
@@ -240,8 +254,10 @@ export interface FileRoutesByTo {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/de/huerta': typeof DeHuertaRoute
+  '/de/terra': typeof DeTerraRoute
   '/huerta/account': typeof HuertaAccountRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
@@ -273,8 +289,10 @@ export interface FileRoutesById {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/de_/huerta': typeof DeHuertaRoute
+  '/de_/terra': typeof DeTerraRoute
   '/huerta_/account': typeof HuertaAccountRoute
   '/huerta_/map': typeof HuertaMapRoute
   '/huerta_/planner': typeof HuertaPlannerRoute
@@ -307,8 +325,10 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
     | '/de/huerta'
+    | '/de/terra'
     | '/huerta/account'
     | '/huerta/map'
     | '/huerta/planner'
@@ -339,8 +359,10 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
     | '/de/huerta'
+    | '/de/terra'
     | '/huerta/account'
     | '/huerta/map'
     | '/huerta/planner'
@@ -371,8 +393,10 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
     | '/de_/huerta'
+    | '/de_/terra'
     | '/huerta_/account'
     | '/huerta_/map'
     | '/huerta_/planner'
@@ -404,8 +428,10 @@ export interface RootRouteChildren {
   SpeciesRoute: typeof SpeciesRoute
   SupportRoute: typeof SupportRoute
   TermsuseRoute: typeof TermsuseRoute
+  TerraRoute: typeof TerraRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
   DeHuertaRoute: typeof DeHuertaRoute
+  DeTerraRoute: typeof DeTerraRoute
   HuertaAccountRoute: typeof HuertaAccountRoute
   HuertaMapRoute: typeof HuertaMapRoute
   HuertaPlannerRoute: typeof HuertaPlannerRoute
@@ -534,6 +560,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsuseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terra': {
+      id: '/terra'
+      path: '/terra'
+      fullPath: '/terra'
+      preLoaderRoute: typeof TerraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/worth-foraging-now': {
       id: '/worth-foraging-now'
       path: '/worth-foraging-now'
@@ -546,6 +579,13 @@ declare module '@tanstack/react-router' {
       path: '/de/huerta'
       fullPath: '/de/huerta'
       preLoaderRoute: typeof DeHuertaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de_/terra': {
+      id: '/de_/terra'
+      path: '/de/terra'
+      fullPath: '/de/terra'
+      preLoaderRoute: typeof DeTerraRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/huerta_/account': {
@@ -652,8 +692,10 @@ const rootRouteChildren: RootRouteChildren = {
   SpeciesRoute: SpeciesRoute,
   SupportRoute: SupportRoute,
   TermsuseRoute: TermsuseRoute,
+  TerraRoute: TerraRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
   DeHuertaRoute: DeHuertaRoute,
+  DeTerraRoute: DeTerraRoute,
   HuertaAccountRoute: HuertaAccountRoute,
   HuertaMapRoute: HuertaMapRoute,
   HuertaPlannerRoute: HuertaPlannerRoute,

@@ -19,6 +19,7 @@
   "huertaWeek": "Arten",
   "spaces": {
     "switch": "Bereich: {{space}}. Bereich wechseln",
+    "open": "{{space}} öffnen",
     "terra": {
       "name": "Terra",
       "tagline": "Wilde Pilze und Pflanzen"

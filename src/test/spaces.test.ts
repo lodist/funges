@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import {
   currentSpace,
+  lastDoor,
   pathForSpace,
   rememberPath,
   spaceForPath,
@@ -16,8 +17,10 @@ describe('spaces', () => {
     expect(spaceForPath('/app/huerta')).toBe('huerta'); // under a base path
     expect(spaceForPath('/huertas')).toBe('terra');
     expect(spaceForPath('/map')).toBe('terra');
-    expect(spaceForPath('/')).toBe('terra');
+    expect(spaceForPath('/terra')).toBe('terra');
     expect(spaceForPath('/settings')).toBeNull(); // shared
+    expect(spaceForPath('/')).toBeNull(); // the front page, shared
+    expect(spaceForPath('/de/')).toBeNull();
   });
 
   it('keeps the space a visitor came from on a shared page', () => {
@@ -48,5 +51,20 @@ describe('spaces', () => {
       JSON.stringify([{ id: 'g', plan: { sections: [] } }])
     );
     expect(pathForSpace('huerta')).toBe('/huerta/planner');
+  });
+
+  it("opens the front page's door into the space last used", () => {
+    expect(lastDoor()).toBeNull();
+    rememberPath('/');
+    expect(lastDoor()).toBeNull(); // the front page itself is no space
+    rememberPath('/map');
+    expect(lastDoor()).toBe('/terra/');
+    rememberPath('/huerta/species');
+    expect(lastDoor()).toBe('/huerta/');
+    localStorage.setItem(
+      'huerta-gardens',
+      JSON.stringify([{ id: 'g', plan: { sections: [] } }])
+    );
+    expect(lastDoor()).toBe('/huerta/planner');
   });
 });

@@ -87,9 +87,16 @@ function RootComponent() {
       location.pathname.replace(/\/+$/, '') ===
       `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
   );
-  // The front pages (Terra's and Huerta's) are the other full-bleed routes: no
-  // sidebar, no padding.
-  const isLandingPage = ['', 'huerta'].some(
+  // The front pages (the shared one, Terra's and Huerta's, in English and
+  // German) are the other full-bleed routes: no sidebar, no padding.
+  const isLandingPage = [
+    '',
+    'terra',
+    'huerta',
+    'de',
+    'de/terra',
+    'de/huerta',
+  ].some(
     page =>
       location.pathname.replace(/\/+$/, '') ===
       `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')

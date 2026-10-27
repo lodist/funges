@@ -19,6 +19,7 @@
   "huertaWeek": "Espèces",
   "spaces": {
     "switch": "Espace : {{space}}. Changer d'espace",
+    "open": "Ouvrir {{space}}",
     "terra": {
       "name": "Terra",
       "tagline": "Champignons et plantes sauvages"

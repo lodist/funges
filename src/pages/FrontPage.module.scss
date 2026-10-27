@@ -1,0 +1,113 @@
+// The shared front page: the space front pages' world (colour blocks, hard
+// edges, Space Grotesk 700 uppercase), with what Funges is on sand on top.
+.page {
+  --page-gutter: max(
+    clamp(1.25rem, 5vw, 5rem),
+    calc((100vw - 112rem) / 2 + 5rem)
+  );
+  --sand: oklch(0.89 0.05 90);
+  --ink-green: oklch(0.24 0.07 150);
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.shout {
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.hero {
+  --logo: var(--ink-green);
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: 1.75rem var(--page-gutter) clamp(2rem, 4vw, 3.5rem);
+  background: var(--sand);
+  h1 {
+    max-width: 18ch;
+    color: var(--ink-green);
+    font-size: clamp(3rem, 6vw, 6rem);
+  }
+}
+
+// One column per space, however many there are.
+.doors {
+  display: grid;
+  @media (min-width: 768px) {
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+  }
+}
+.door {
+  display: flex;
+  flex-direction: column;
+  background: var(--band);
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    // Short enough on a desktop that the doors' words show in the first
+    // screen, under the promise.
+    @media (min-width: 768px) {
+      aspect-ratio: 16 / 9;
+      max-height: 28vh;
+    }
+  }
+}
+.doorBody {
+  flex: 1;
+  padding: clamp(2rem, 4vw, 3.5rem) var(--page-gutter) clamp(3rem, 6vw, 5rem);
+  @media (min-width: 768px) {
+    padding-inline: clamp(1.5rem, 4vw, 4rem);
+  }
+}
+
+// A door's words, on its space's band.
+.name {
+  @extend .shout;
+  color: var(--band-foreground);
+  font-size: clamp(3.25rem, 8vw, 7rem);
+}
+.tagline {
+  margin-top: 0.75rem;
+  color: var(--happy-100);
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-weight: 600;
+}
+.line {
+  max-width: 34rem;
+  margin-top: 1.5rem;
+  color: var(--happy-50);
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+.cta {
+  margin-top: 2rem;
+}
+
+// The close: the legal pages, as on the space front pages.
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem var(--page-gutter) calc(2rem + var(--mobile-navbar-height, 0px));
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      color: var(--muted-foreground);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ export function SpaceTab({ to }: { to: Space }) {
   const Arrow = huerta ? ArrowRight : ArrowLeft;
   return (
     <Link
-      to={huerta ? '/huerta' : '/'}
+      to={huerta ? '/huerta' : '/terra'}
       viewTransition={{ types: [huerta ? 'to-huerta' : 'to-terra'] }}
       data-space={to}
       className={`${styles.spaceTab} ${huerta ? '' : styles.spaceTabLeft} focus-ring`}

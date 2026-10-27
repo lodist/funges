@@ -1,4 +1,9 @@
 import { shouldShowHuerta } from '@/lib/feature-flags';
+import {
+  localizedPath,
+  stripLanguage,
+  type IndexedLanguage,
+} from '@/lib/seo-pages';
 
 /**
  * Funges is one site with spaces a visitor moves between: Terra, the foraging
@@ -22,11 +27,12 @@ const SHARED =
   /(^|\/)(settings|support|impressum|privacy-policy|termsuse|delete-account)(\/|$)/;
 
 /** The space a path belongs to (a `huerta` segment, wherever the base path
- *  puts it; no Terra route has one), or null for a shared page. */
+ *  puts it; no Terra route has one), or null for a shared page: the front
+ *  page every space opens from is one. */
 export const spaceForPath = (pathname: string): Space | null =>
   /(^|\/)huerta(\/|$)/.test(pathname)
     ? 'huerta'
-    : SHARED.test(pathname)
+    : SHARED.test(pathname) || stripLanguage(pathname) === '/'
       ? null
       : 'terra';
 
@@ -40,13 +46,16 @@ export const currentSpace = (pathname: string): Space => {
 };
 
 const lastPathKey = (space: Space) => `space-last-path:${space}`;
+const LAST_SPACE = 'space-last';
 
-/** Remember the page a visitor is on, so switching back returns them to it. */
+/** Remember the page a visitor is on, so switching back returns them to it,
+ *  and its space, so the front page can open straight into it next time. */
 export const rememberPath = (pathname: string) => {
   const space = spaceForPath(pathname);
   if (!space) return;
   try {
     localStorage.setItem(lastPathKey(space), pathname);
+    localStorage.setItem(LAST_SPACE, space);
   } catch {
     // Private mode or blocked storage: switching opens the space's home.
   }
@@ -79,4 +88,24 @@ export const pathForSpace = (space: Space): string => {
   return space === 'huerta' && hasGarden()
     ? '/huerta/planner'
     : SPACE_HOME[space];
+};
+
+/** Where a space's door on the front page leads: the space's own front page,
+ *  or for Huerta with a garden planned, the garden. */
+export const spaceDoor = (
+  space: Space,
+  lang: IndexedLanguage = 'en'
+): string =>
+  space === 'huerta' && hasGarden()
+    ? '/huerta/planner'
+    : localizedPath(`/${space}/`, lang);
+
+/** The door the visitor last went through (the space last used), if any. */
+export const lastDoor = (): string | null => {
+  try {
+    const space = localStorage.getItem(LAST_SPACE);
+    return space === 'terra' || space === 'huerta' ? spaceDoor(space) : null;
+  } catch {
+    return null;
+  }
 };
