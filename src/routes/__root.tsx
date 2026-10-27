@@ -1,4 +1,9 @@
-import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router';
+import {
+  createRootRoute,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from '@tanstack/react-router';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { MotionConfig } from 'framer-motion';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
@@ -11,6 +16,8 @@ import { recordPath } from '@/lib/nav-history';
 import { crossesIsolationBoundary } from '@/lib/isolation';
 import { activateUpdate, isOutdated } from '@/lib/pwa';
 import { currentSpace, rememberPath } from '@/lib/spaces';
+import { pathLanguage, stripLanguage } from '@/lib/seo-pages';
+import i18n from '@/i18n';
 
 // Evaluated once per document load: the route this document was served for.
 const DOCUMENT_PATH =
@@ -55,11 +62,24 @@ function RootComponent() {
 
   // The space's colours hang off <html>, so dialogs and menus portalled out of
   // the page wear them too; set before paint, so a page never flashes green.
-  const space = currentSpace(location.pathname);
+  const space = currentSpace(stripLanguage(location.pathname));
   useLayoutEffect(() => {
     document.documentElement.dataset.space = space;
   }, [space]);
   useEffect(() => rememberPath(location.pathname), [location.pathname]);
+
+  // A /de/… page is German; choosing another language there moves to the same
+  // page without the prefix, which then shows the language just chosen.
+  const navigate = useNavigate();
+  useEffect(() => {
+    const moved = (language: string) => {
+      const prefix = pathLanguage(window.location.pathname);
+      if (prefix && !language.startsWith(prefix))
+        void navigate({ to: stripLanguage(window.location.pathname) });
+    };
+    i18n.on('languageChanged', moved);
+    return () => i18n.off('languageChanged', moved);
+  }, [navigate]);
 
   // The maps (Terra's and Huerta's garden map) own the viewport (no document scroll).
   const isMapPage = ['map', 'huerta/map'].some(

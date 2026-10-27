@@ -461,7 +461,8 @@ function SeasonBand({
 }
 
 /** A species plate: its photo, today's conditions or its months, and its
- *  worst look-alike. Opens the full sheet. */
+ *  worst look-alike. Opens the full sheet; it is a link to the species' own
+ *  page, so a new tab (or a crawler) gets that page. */
 function SpeciesTile({
   species,
   score,
@@ -479,7 +480,16 @@ function SpeciesTile({
   const seasons = speciesSeasons(species.season);
 
   return (
-    <button type='button' onClick={onOpen} className={TILE_CLASS}>
+    <a
+      href={`${import.meta.env.BASE_URL}species/${species.id}/`}
+      onClick={event => {
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+          return;
+        event.preventDefault();
+        onOpen();
+      }}
+      className={TILE_CLASS}
+    >
       <TileFace
         image={getSpeciesImage(species.id)}
         name={species.name}
@@ -501,7 +511,7 @@ function SpeciesTile({
           />
         ) : null}
       </TileFace>
-    </button>
+    </a>
   );
 }
 

@@ -2309,5 +2309,21 @@
     "closing": "Commencez votre potager",
     "early": "Huerta est en accès anticipé : ses conseils s'améliorent chaque semaine.",
     "feedback": "Dites-moi ce qui cloche !"
+  },
+  "page": {
+    "title": "{{name}} : {{start}}, entretien et {{end}}",
+    "start": {
+      "sow": "semis",
+      "plant": "plantation"
+    },
+    "end": {
+      "vegetable": "récolte",
+      "fruit": "récolte",
+      "herb": "cueillette",
+      "flower": "floraison",
+      "cover": "enfouissement"
+    },
+    "signIn": "Connectez-vous pour planifier votre potager",
+    "home": "Huerta"
   }
 }

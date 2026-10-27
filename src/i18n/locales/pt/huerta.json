@@ -2309,5 +2309,21 @@
     "closing": "Comece sua horta",
     "early": "A Huerta está em acesso antecipado: os conselhos melhoram a cada semana.",
     "feedback": "Conte-me o que está errado!"
+  },
+  "page": {
+    "title": "{{name}}: {{start}}, cuidados e {{end}}",
+    "start": {
+      "sow": "sementeira",
+      "plant": "plantação"
+    },
+    "end": {
+      "vegetable": "colheita",
+      "fruit": "colheita",
+      "herb": "colheita",
+      "flower": "floração",
+      "cover": "incorporação no solo"
+    },
+    "signIn": "Inicie sessão para planear a sua horta",
+    "home": "Huerta"
   }
 }

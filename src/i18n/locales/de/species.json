@@ -386,5 +386,19 @@
     "testedLabel": "Geprüft · Saison {{year}}",
     "tested": "An derselben Stelle bewertete die Vorhersage Tage in seiner Saison <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb.",
     "howWeCheck": "So prüfen wir"
+  },
+  "guide": {
+    "identify": "So erkennst du ihn",
+    "habitat": "Wo er wächst",
+    "season": "Wann",
+    "picking": "Sammeln",
+    "kitchen": "In der Küche",
+    "keeps": "Aufbewahren",
+    "source": "Quellen"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}): Saison, Standort und Doppelgänger",
+    "description": "{{name}} ({{latin}}) erkennen: Merkmale, Standort, Saison, Doppelgänger und Tipps für die Küche.",
+    "allSpecies": "Alle Arten"
   }
 }

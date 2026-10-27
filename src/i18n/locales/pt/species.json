@@ -386,5 +386,19 @@
     "testedLabel": "Testado · temporada {{year}}",
     "tested": "No mesmo ponto, a previsão avaliou melhor os dias da sua temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
     "howWeCheck": "Como verificamos"
+  },
+  "guide": {
+    "identify": "Como reconhecer",
+    "habitat": "Onde cresce",
+    "season": "Quando",
+    "picking": "Apanha",
+    "kitchen": "Na cozinha",
+    "keeps": "Conservação",
+    "source": "Fontes"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}): época, habitat e espécies parecidas",
+    "description": "Como reconhecer {{name}} ({{latin}}): habitat, época, espécies parecidas e dicas de cozinha.",
+    "allSpecies": "Todas as espécies"
   }
 }

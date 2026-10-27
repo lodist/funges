@@ -54,7 +54,7 @@ export function CropSheet({
   return (
     <Dialog open={crop !== null} onOpenChange={open => !open && onClose()}>
       {crop ? (
-        <SheetBody
+        <CropBody
           crop={crop}
           advice={advice}
           year={year}
@@ -66,17 +66,30 @@ export function CropSheet({
   );
 }
 
-function SheetBody({
+/** The sheet's content: in the dialog for a garden, or as the public page
+ *  /huerta/species/$id, which has no place (no advice): then it says how to
+ *  grow the crop and nothing about this week or a garden. */
+export function CropBody({
   crop,
   advice,
   year,
   plan,
   image,
-}: Omit<CropSheetProps, 'crop' | 'onClose'> & { crop: Crop }) {
+  asPage = false,
+}: Omit<CropSheetProps, 'crop' | 'onClose' | 'advice'> & {
+  crop: Crop;
+  advice?: PlaceAdvice;
+  /** A page of its own instead of the dialog (Radix's title parts need one). */
+  asPage?: boolean;
+}) {
   const { t, i18n } = useTranslation('huerta');
+  const Shell = asPage ? 'article' : DialogContent;
+  const Title = asPage ? 'h1' : DialogTitle;
+  const Latin = asPage ? 'p' : DialogDescription;
   const [need, setNeed] = useState<CropNeeds | undefined>();
   useEffect(() => {
-    if (!huertaApiConfigured) return;
+    // The public page asks nothing of the account's API.
+    if (!huertaApiConfigured || !advice) return;
     let live = true;
     fetchNeeds()
       .then(needs => live && setNeed(needs[crop.id]))
@@ -84,17 +97,19 @@ function SheetBody({
     return () => {
       live = false;
     };
-  }, [crop.id]);
+  }, [crop.id, advice]);
 
-  const status = advice.crops[crop.id];
-  const reasons = cropReasons(status, advice, need);
+  const status = advice?.crops[crop.id];
+  const reasons = advice
+    ? cropReasons(advice.crops[crop.id], advice, need)
+    : [];
   const label =
     status === 'now' ? t(`sheet.${crop.how}Now`) : t(`status.${status}`);
   const months = year?.crops[crop.id];
   const guide = GUIDES[crop.id];
 
   return (
-    <DialogContent className='sm:max-w-3xl'>
+    <Shell className={asPage ? 'flex flex-col gap-6' : 'sm:max-w-3xl'}>
       <div className='grid gap-6 sm:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]'>
         <img
           src={image(crop)}
@@ -104,61 +119,70 @@ function SheetBody({
         <div className='flex min-w-0 flex-col gap-5'>
           {/* The close button floats over the top right; the header keeps
               clear of it. */}
-          <DialogHeader className='gap-1 pr-12 text-left sm:text-left'>
-            <DialogTitle className='text-3xl leading-tight font-semibold hyphens-auto break-words'>
+          <DialogHeader
+            className={cn('gap-1 text-left sm:text-left', !asPage && 'pr-12')}
+          >
+            <Title className='text-3xl leading-tight font-semibold hyphens-auto break-words'>
               {t(`crops.${crop.id}`)}
-            </DialogTitle>
-            <DialogDescription className='text-base italic'>
+            </Title>
+            <Latin className='text-base text-muted-foreground italic'>
               {crop.scientific}
-            </DialogDescription>
+            </Latin>
           </DialogHeader>
           {guide ? (
             <p className='text-foreground'>{t(`grow.${crop.id}.about`)}</p>
           ) : null}
-          <Badge
-            variant={status === 'now' ? 'default' : 'secondary'}
-            className='self-start'
-          >
-            {label}
-          </Badge>
-          <section className='flex flex-col gap-2'>
-            <p className='type-micro text-muted-foreground'>
-              {t('sheet.week', { place: advice.place })}
-            </p>
-            <ul className='flex flex-col gap-2'>
-              {reasons.map(reason => {
-                const Icon = reason.ok ? Check : Clock;
-                return (
-                  <li key={reason.key} className='flex gap-2 text-foreground'>
-                    <Icon
-                      className={cn(
-                        'mt-0.5 size-4 shrink-0',
-                        reason.ok
-                          ? 'text-primary-text'
-                          : 'text-muted-foreground'
-                      )}
-                    />
-                    <span>
-                      {t(
-                        `sheet.why.${reason.key}`,
-                        reason.key === 'frostLater'
-                          ? {
-                              night: weekday(
-                                String(reason.values?.night),
-                                i18n.language
-                              ),
-                            }
-                          : reason.values
-                      )}
-                    </span>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
+          {advice ? (
+            <>
+              <Badge
+                variant={status === 'now' ? 'default' : 'secondary'}
+                className='self-start'
+              >
+                {label}
+              </Badge>
+              <section className='flex flex-col gap-2'>
+                <p className='type-micro text-muted-foreground'>
+                  {t('sheet.week', { place: advice.place })}
+                </p>
+                <ul className='flex flex-col gap-2'>
+                  {reasons.map(reason => {
+                    const Icon = reason.ok ? Check : Clock;
+                    return (
+                      <li
+                        key={reason.key}
+                        className='flex gap-2 text-foreground'
+                      >
+                        <Icon
+                          className={cn(
+                            'mt-0.5 size-4 shrink-0',
+                            reason.ok
+                              ? 'text-primary-text'
+                              : 'text-muted-foreground'
+                          )}
+                        />
+                        <span>
+                          {t(
+                            `sheet.why.${reason.key}`,
+                            reason.key === 'frostLater'
+                              ? {
+                                  night: weekday(
+                                    String(reason.values?.night),
+                                    i18n.language
+                                  ),
+                                }
+                              : reason.values
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            </>
+          ) : null}
         </div>
       </div>
-      {plan ? (
+      {plan && advice ? (
         <InGarden
           crop={crop}
           need={need}
@@ -167,7 +191,9 @@ function SheetBody({
           advice={advice}
         />
       ) : null}
-      {months ? <YearStrip year={months} place={advice.place} /> : null}
+      {months && advice ? (
+        <YearStrip year={months} place={advice.place} />
+      ) : null}
       <Facts crop={crop} need={need} />
       <Weather
         crop={crop}
@@ -182,7 +208,7 @@ function SheetBody({
         {t('sheet.source')}
         {guide ? ` ${t(`grow.${crop.id}.source`)}` : null}
       </p>
-    </DialogContent>
+    </Shell>
   );
 }
 
@@ -190,7 +216,7 @@ function SheetBody({
 function Part({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className='flex flex-col gap-3'>
-      <h3 className='text-base font-semibold text-foreground'>{title}</h3>
+      <h2 className='text-base font-semibold text-foreground'>{title}</h2>
       {children}
     </section>
   );
@@ -462,9 +488,9 @@ function Facts({ crop, need }: { crop: Crop; need?: CropNeeds }) {
   ];
   return (
     <section className='flex flex-col gap-3'>
-      <h3 className='text-base font-semibold text-foreground'>
+      <h2 className='text-base font-semibold text-foreground'>
         {t(`sheet.how.${crop.how}`)}
-      </h3>
+      </h2>
       <dl className='grid grid-cols-2 gap-4 text-sm sm:grid-cols-3'>
         {facts.map(fact => (
           <div key={fact.key}>

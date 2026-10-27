@@ -386,5 +386,19 @@
     "testedLabel": "Vérifié · saison {{year}}",
     "tested": "Au même endroit, la prévision a mieux noté les jours de sa saison que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
     "howWeCheck": "Comment nous vérifions"
+  },
+  "guide": {
+    "identify": "Comment le reconnaître",
+    "habitat": "Où il pousse",
+    "season": "Quand",
+    "picking": "Cueillette",
+    "kitchen": "En cuisine",
+    "keeps": "Conservation",
+    "source": "Sources"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}) : saison, habitat et sosies",
+    "description": "Reconnaître {{name}} ({{latin}}) : habitat, saison, sosies toxiques et conseils en cuisine.",
+    "allSpecies": "Toutes les espèces"
   }
 }

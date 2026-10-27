@@ -386,5 +386,19 @@
     "testedLabel": "Verificato · stagione {{year}}",
     "tested": "Nello stesso punto, la previsione ha valutato i giorni della sua stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>.",
     "howWeCheck": "Come verifichiamo"
+  },
+  "guide": {
+    "identify": "Come riconoscerlo",
+    "habitat": "Dove cresce",
+    "season": "Quando",
+    "picking": "Raccolta",
+    "kitchen": "In cucina",
+    "keeps": "Conservazione",
+    "source": "Fonti"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}): stagione, habitat e sosia",
+    "description": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, specie simili e consigli in cucina.",
+    "allSpecies": "Tutte le specie"
   }
 }

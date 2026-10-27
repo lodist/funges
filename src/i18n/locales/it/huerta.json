@@ -2309,5 +2309,21 @@
     "closing": "Inizia il tuo orto",
     "early": "Huerta è in accesso anticipato: i suoi consigli migliorano ogni settimana.",
     "feedback": "Dimmi cosa non va!"
+  },
+  "page": {
+    "title": "{{name}}: {{start}}, cura e {{end}}",
+    "start": {
+      "sow": "semina",
+      "plant": "messa a dimora"
+    },
+    "end": {
+      "vegetable": "raccolta",
+      "fruit": "raccolta",
+      "herb": "raccolta",
+      "flower": "fioritura",
+      "cover": "interramento"
+    },
+    "signIn": "Accedi per pianificare il tuo orto",
+    "home": "Huerta"
   }
 }

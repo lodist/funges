@@ -386,5 +386,19 @@
     "testedLabel": "Tested · {{year}} season",
     "tested": "At the same spot, the forecast rated days in its season above days out of season <strong>{{times}} times in 10</strong>.",
     "howWeCheck": "How we check"
+  },
+  "guide": {
+    "identify": "How to recognise it",
+    "habitat": "Where it grows",
+    "season": "When",
+    "picking": "Picking",
+    "kitchen": "In the kitchen",
+    "keeps": "Keeping",
+    "source": "Sources"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}): season, habitat and look-alikes",
+    "description": "How to recognise {{name}} ({{latin}}): where and when it grows, its look-alikes and tips for the kitchen.",
+    "allSpecies": "All species"
   }
 }
