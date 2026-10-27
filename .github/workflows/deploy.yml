@@ -131,7 +131,10 @@ jobs:
       - name: Create SPA route directories for GitHub Pages
         run: |
           echo "Creating route subdirectories so GitHub Pages serves them with HTTP 200..."
-          routes=(data identify impressum instructions map offline privacy-policy recipes settings species support termsuse worth-foraging-now)
+          # Huerta's pages behind sign-in get one too, or a reload, a shared link
+          # or a morning alert lands on 404.html, which sends it to the home page;
+          # only /huerta itself is in the sitemap.
+          routes=(data delete-account huerta huerta/account huerta/map huerta/planner huerta/signin huerta/species huerta/year identify impressum instructions map offline privacy-policy recipes settings species support termsuse worth-foraging-now)
           for route in "${routes[@]}"; do
             mkdir -p dist/$route
             cp dist/index.html dist/$route/index.html
