@@ -1,12 +1,12 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CROP_DRAG, GardenModel, type Stage } from '@/components/GardenModel';
 import { GardenGuide } from '@/components/GardenGuide';
 import { GardenPicker } from '@/components/GardenPicker';
 import { GardenThisWeek } from '@/components/GardenThisWeek';
+import { PlacePicker } from '@/components/PlacePicker';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import SEO from '@/components/SEO';
 import { Badge } from '@/components/ui/badge';
@@ -42,11 +42,13 @@ import {
   fetchNeeds,
   huertaApiConfigured,
   savedPlace,
+  savePlace,
 } from '@/lib/huerta-api';
 import {
   AlertTriangle,
   Check,
   ChevronDown,
+  MapPinned,
   Minus,
   Plus,
   Search,
@@ -157,6 +159,12 @@ const chip = (on: boolean) =>
 /** Huerta's garden planner: your plot in beds, filled for this season at your
  *  place, drawn as a model, and what you planted when. */
 export default function HuertaPlannerPage() {
+  // Another place: the page starts afresh, as for another garden (HuertaGate).
+  const [moves, setMoves] = useState(0);
+  return <Planner key={moves} onMoved={() => setMoves(n => n + 1)} />;
+}
+
+function Planner({ onMoved }: { onMoved: () => void }) {
   const { t, i18n } = useTranslation('huerta');
   const [placeAdvice, setAdvice] = useState<PlaceAdvice>(SAMPLE_ADVICE);
   const [sample, setSample] = useState(true);
@@ -169,6 +177,8 @@ export default function HuertaPlannerPage() {
   // A deleted bed's patch of earth, when one is picked instead of a section.
   const [patch, setPatch] = useState<number | null>(null);
   const isMobile = useIsMobile();
+  // Choosing the garden's place, open under the header.
+  const [picking, setPicking] = useState(false);
   // The garden's setup on a phone: folded until opened.
   const [setupOpen, setSetupOpen] = useState(false);
   // Earlier plans, for Undo; kept while the page is open.
@@ -304,6 +314,28 @@ export default function HuertaPlannerPage() {
       setFresh(withCrop);
       setTimeout(() => setFresh([]), 2500);
     }
+  };
+  // A month to plan for: the timeline goes there, and the crops still waiting
+  // to go in (not in, and not going in this week) go in then if they can.
+  const planFor = (k: number) => {
+    const first = monthAhead(today(), k);
+    setForMonths(k);
+    setWeeks(
+      k ? Math.ceil((Date.parse(first) - Date.parse(today())) / (7 * 864e5)) : 0
+    );
+    if (!plan || !k) return;
+    const month = Number(first.slice(5, 7)) - 1;
+    edit(
+      plan.sections.flatMap((x, i) =>
+        x.crop &&
+        !x.planted &&
+        status(x.crop) !== 'now' &&
+        inMonth(year?.crops[x.crop]?.sow, month) === 'now'
+          ? [i]
+          : []
+      ),
+      x => ({ ...x, sow: first })
+    );
   };
   // A job on This week ticked off.
   const tick = (key: string) =>
@@ -453,14 +485,23 @@ export default function HuertaPlannerPage() {
             action={
               <div className='flex flex-wrap gap-2'>
                 {huertaApiConfigured ? <GardenPicker /> : null}
-                {sample ? (
-                  <Button variant='outline' asChild>
-                    <Link to='/huerta/species'>{t('planner.choosePlace')}</Link>
+                {huertaApiConfigured ? (
+                  <Button variant='outline' onClick={() => setPicking(p => !p)}>
+                    <MapPinned />
+                    {sample ? t('planner.choosePlace') : t('change')}
                   </Button>
                 ) : null}
               </div>
             }
           />
+          {picking ? (
+            <PlacePicker
+              onPick={chosen => {
+                savePlace(chosen);
+                onMoved();
+              }}
+            />
+          ) : null}
         </header>
 
         <div className='mb-8 flex flex-col gap-6 empty:hidden'>
@@ -685,7 +726,7 @@ export default function HuertaPlannerPage() {
               ) : null}
               <Select
                 value={String(forMonths)}
-                onValueChange={v => setForMonths(Number(v))}
+                onValueChange={v => planFor(Number(v))}
                 disabled={!year}
               >
                 <SelectTrigger
