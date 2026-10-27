@@ -13,6 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as DeRouteImport } from './routes/de'
 import { Route as DeleteAccountRouteImport } from './routes/delete-account'
+import { Route as FrontARouteImport } from './routes/front-a'
+import { Route as FrontBRouteImport } from './routes/front-b'
+import { Route as FrontCRouteImport } from './routes/front-c'
 import { Route as HuertaRouteImport } from './routes/huerta'
 import { Route as IdentifyRouteImport } from './routes/identify'
 import { Route as ImpressumRouteImport } from './routes/impressum'
@@ -58,6 +61,21 @@ const DeRoute = DeRouteImport.update({
 const DeleteAccountRoute = DeleteAccountRouteImport.update({
   id: '/delete-account',
   path: '/delete-account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrontARoute = FrontARouteImport.update({
+  id: '/front-a',
+  path: '/front-a',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrontBRoute = FrontBRouteImport.update({
+  id: '/front-b',
+  path: '/front-b',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FrontCRoute = FrontCRouteImport.update({
+  id: '/front-c',
+  path: '/front-c',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HuertaRoute = HuertaRouteImport.update({
@@ -196,6 +214,9 @@ export interface FileRoutesByFullPath {
   '/data': typeof DataRoute
   '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
+  '/front-a': typeof FrontARoute
+  '/front-b': typeof FrontBRoute
+  '/front-c': typeof FrontCRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -228,6 +249,9 @@ export interface FileRoutesByTo {
   '/data': typeof DataRoute
   '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
+  '/front-a': typeof FrontARoute
+  '/front-b': typeof FrontBRoute
+  '/front-c': typeof FrontCRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -261,6 +285,9 @@ export interface FileRoutesById {
   '/data': typeof DataRoute
   '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
+  '/front-a': typeof FrontARoute
+  '/front-b': typeof FrontBRoute
+  '/front-c': typeof FrontCRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -295,6 +322,9 @@ export interface FileRouteTypes {
     | '/data'
     | '/de'
     | '/delete-account'
+    | '/front-a'
+    | '/front-b'
+    | '/front-c'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -327,6 +357,9 @@ export interface FileRouteTypes {
     | '/data'
     | '/de'
     | '/delete-account'
+    | '/front-a'
+    | '/front-b'
+    | '/front-c'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -359,6 +392,9 @@ export interface FileRouteTypes {
     | '/data'
     | '/de'
     | '/delete-account'
+    | '/front-a'
+    | '/front-b'
+    | '/front-c'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -392,6 +428,9 @@ export interface RootRouteChildren {
   DataRoute: typeof DataRoute
   DeRoute: typeof DeRoute
   DeleteAccountRoute: typeof DeleteAccountRoute
+  FrontARoute: typeof FrontARoute
+  FrontBRoute: typeof FrontBRoute
+  FrontCRoute: typeof FrontCRoute
   HuertaRoute: typeof HuertaRoute
   IdentifyRoute: typeof IdentifyRoute
   ImpressumRoute: typeof ImpressumRoute
@@ -448,6 +487,27 @@ declare module '@tanstack/react-router' {
       path: '/delete-account'
       fullPath: '/delete-account'
       preLoaderRoute: typeof DeleteAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/front-a': {
+      id: '/front-a'
+      path: '/front-a'
+      fullPath: '/front-a'
+      preLoaderRoute: typeof FrontARouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/front-b': {
+      id: '/front-b'
+      path: '/front-b'
+      fullPath: '/front-b'
+      preLoaderRoute: typeof FrontBRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/front-c': {
+      id: '/front-c'
+      path: '/front-c'
+      fullPath: '/front-c'
+      preLoaderRoute: typeof FrontCRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/huerta': {
@@ -640,6 +700,9 @@ const rootRouteChildren: RootRouteChildren = {
   DataRoute: DataRoute,
   DeRoute: DeRoute,
   DeleteAccountRoute: DeleteAccountRoute,
+  FrontARoute: FrontARoute,
+  FrontBRoute: FrontBRoute,
+  FrontCRoute: FrontCRoute,
   HuertaRoute: HuertaRoute,
   IdentifyRoute: IdentifyRoute,
   ImpressumRoute: ImpressumRoute,
