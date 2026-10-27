@@ -87,6 +87,36 @@ const part = (title: string, text: string) =>
     ? `<section><h2>${escape(title)}</h2><p>${escape(text)}</p></section>`
     : '';
 
+/** Links to every species or crop page, A to Z: what lets a crawler reach
+ *  them all from any one page. */
+const links = (title: string, items: { href: string; name: string }[]) =>
+  `<nav><h2>${escape(title)}</h2><ul>${items
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(item => `<li><a href="${item.href}">${escape(item.name)}</a></li>`)
+    .join('')}</ul></nav>`;
+
+function speciesLinks(lang: IndexedLanguage) {
+  const { t } = translator(lang);
+  return links(
+    t('species', 'page.allSpecies'),
+    GENERATED_SPECIES_DATA.map(species => ({
+      href: localizedPath(`/species/${species.id}/`, lang),
+      name: t('species', `list_of_species.${species.nameKey}`),
+    }))
+  );
+}
+
+function cropLinks(lang: IndexedLanguage) {
+  const { t } = translator(lang);
+  return links(
+    t('huerta', 'page.allCrops'),
+    CROPS.map(crop => ({
+      href: localizedPath(`/huerta/species/${crop.id}/`, lang),
+      name: t('huerta', `crops.${crop.id}`),
+    }))
+  );
+}
+
 const SEVERITY_LABEL = {
   lethal: 'results.lethalLabel',
   toxic: 'results.toxicLabel',
@@ -140,6 +170,7 @@ function speciesPage(
       ? `<p>${escape(`${t('species', 'guide.source')}: ${guide('source')}`)}</p>`
       : '',
     `<p>${escape(t('species', 'safetyWarning'))}</p>`,
+    speciesLinks(lang),
   ];
   return {
     path: localizedPath(`/species/${species.id}/`, lang),
@@ -182,6 +213,7 @@ function cropPage(crop: (typeof CROPS)[number], lang: IndexedLanguage): Page {
       `${t('huerta', 'sheet.source')} ${t('huerta', `grow.${crop.id}.source`)}`.trim()
     )}</p>`,
     `<p>${escape(t('huerta', 'page.signIn'))}</p>`,
+    cropLinks(lang),
   ];
   return {
     path: localizedPath(`/huerta/species/${crop.id}/`, lang),
@@ -223,7 +255,9 @@ function frontPage(path_: '/' | '/huerta/', lang: IndexedLanguage): Page {
     lang,
     title: pageTitle(t(ns, title), { bare: home }),
     description: t(ns, text),
-    body: `<main data-static><h1>${escape(t(ns, heading))}</h1><p>${escape(t(ns, intro))}</p></main>`,
+    body: `<main data-static><h1>${escape(t(ns, heading))}</h1><p>${escape(t(ns, intro))}</p>${
+      home ? speciesLinks(lang) + cropLinks(lang) : cropLinks(lang)
+    }</main>`,
   };
 }
 

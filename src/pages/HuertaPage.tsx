@@ -33,6 +33,7 @@ import {
 import { MapPinned, Navigation, Search } from '@/lib/icons';
 import { chooseGarden, gardenLabel, useGardens } from '@/lib/gardens';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
+import { indexedLanguage, localizedPath } from '@/lib/seo-pages';
 import { cn } from '@/lib/utils';
 
 type Load =
@@ -480,7 +481,8 @@ function SectionTitle({ title, count }: { title: string; count: number }) {
   );
 }
 
-/** The Species page's plate, as a button that opens the crop's sheet. */
+/** The Species page's plate: a link to the crop's own page that, on a plain
+ *  click, opens its sheet here instead. */
 const TILE_CLASS =
   'focus-ring flex h-full w-full flex-col overflow-hidden rounded-card bg-card text-left elevation-raised elevation-interactive';
 
@@ -500,16 +502,29 @@ function CropGrid({
   /** Whether it says how it goes in (sow or plant); not for the harvest. */
   how?: boolean;
 }) {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
   return (
     <ul className='grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6'>
       {crops.map(crop => {
         const line = note?.(crop);
         return (
           <li key={crop.id}>
-            <button
-              type='button'
-              onClick={() => onOpen(crop)}
+            <a
+              href={localizedPath(
+                `/huerta/species/${crop.id}/`,
+                indexedLanguage(i18n.language)
+              )}
+              onClick={event => {
+                if (
+                  event.metaKey ||
+                  event.ctrlKey ||
+                  event.shiftKey ||
+                  event.altKey
+                )
+                  return;
+                event.preventDefault();
+                onOpen(crop);
+              }}
               className={TILE_CLASS}
             >
               <img
@@ -542,7 +557,7 @@ function CropGrid({
                   </Badge>
                 )}
               </span>
-            </button>
+            </a>
           </li>
         );
       })}

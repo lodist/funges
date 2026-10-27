@@ -1,5 +1,6 @@
 import { Link, useParams } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PageLinks } from '@/components/PageLinks';
 import SEO from '@/components/SEO';
 import { SpeciesBody } from '@/components/SpeciesSheet';
 import { useRecipesData } from '@/data/recipes';
@@ -11,7 +12,8 @@ import { alternates, localizedPath, pathLanguage } from '@/lib/seo-pages';
  *  sheet shows, for links and search. */
 export default function SpeciesDetailPage() {
   const { id } = useParams({ strict: false }) as { id: string };
-  const species = useSpeciesData().find(s => s.id === id);
+  const all = useSpeciesData();
+  const species = all.find(s => s.id === id);
   const recipes = useRecipesData();
   const { t } = useTranslation('species');
   if (!species) return null;
@@ -37,6 +39,15 @@ export default function SpeciesDetailPage() {
           {t('page.allSpecies')}
         </Link>
         <SpeciesBody species={species} recipes={recipes} asPage />
+        <PageLinks
+          title={t('page.allSpecies')}
+          links={[...all]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map(s => ({
+              href: localizedPath(`/species/${s.id}/`, lang),
+              name: s.name,
+            }))}
+        />
       </div>
     </>
   );

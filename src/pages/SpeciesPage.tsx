@@ -42,6 +42,7 @@ import {
   type SeasonPlace,
 } from '@/lib/seasons';
 import { BAND_SURFACE_CLASS as BAND } from '@/lib/band-surface';
+import { indexedLanguage, localizedPath } from '@/lib/seo-pages';
 import { cn, getSpeciesImage } from '@/lib/utils';
 import {
   getWorstLookalike,
@@ -481,7 +482,10 @@ function SpeciesTile({
 
   return (
     <a
-      href={`${import.meta.env.BASE_URL}species/${species.id}/`}
+      href={localizedPath(
+        `/species/${species.id}/`,
+        indexedLanguage(i18n.language)
+      )}
       onClick={event => {
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
           return;
