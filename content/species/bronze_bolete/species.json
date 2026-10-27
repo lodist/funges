@@ -32,28 +32,28 @@
     },
     "it": {
       "name": "Porcino Nero",
-      "description": "Un porcino dal cappello bronzeo scuro, quasi nero, con gambo reticolato chiaro e polpa bianca e soda",
+      "description": "Un porcino con il cappello bronzo scuro, a volte quasi nero. Ha il gambo chiaro con il reticolo e la carne bianca e soda.",
       "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo",
       "guide": {
-        "identify": "Il più scuro dei porcini, detto anche bronzino: il cappello va dal castano scuro al quasi nero, spesso con chiazze bronzee, e resta asciutto e finemente vellutato anche con l'umidità. I pori sono bianchi, poi gialli fino all'oliva, e non virano al blu. Il gambo nocciola chiaro porta un fine reticolo bruno, più fitto in alto, e la carne bianca, sodissima, non cambia colore al taglio. Il porcino estivo è più chiaro, con il reticolo più esteso; il porcino malefico (Rubroboletus satanas) e Rubroboletus legaliae, che crescono negli stessi querceti, hanno pori rossi e carne che vira al blu.",
-        "habitat": "Versanti caldi e soleggiati con querce, castagni e faggi, di solito tra 200 e 1000 m. Comune nell'area mediterranea, in Italia lungo l'Appennino e nelle isole; raro in Gran Bretagna e in Germania.",
-        "season": "Da luglio dopo i temporali estivi, ma soprattutto a settembre e ottobre, più tardi del porcino estivo, e fino a novembre al sud. Fruttifica quando, dopo un periodo caldo, arrivano una pioggia abbondante e il raffreddamento del suolo.",
-        "picking": "Taglialo o estrailo ruotandolo e lascia crescere i giovani. In Italia la maggior parte delle regioni chiede il tesserino e fissa un limite giornaliero; in Germania è raro e particolarmente protetto, quindi lì non va raccolto.",
-        "kitchen": "È il più sodo dei porcini, con un sapore di nocciola che cresce con l'essiccazione. Una volta riconosciuto con certezza, spazzolalo, controlla le larve e cuocilo bene, come il porcino.",
-        "keeps": "Si essicca e si surgela benissimo a fette.",
+        "identify": "È il più scuro dei porcini, quello che molti chiamano bronzino. Il cappello va dal castano scuro al quasi nero, spesso con chiazze color bronzo. Resta asciutto e finemente vellutato anche col bagnato. I pori sono bianchi, poi gialli fino all'oliva. Non virano al blu. Il gambo è nocciola chiaro, con un fine reticolo marrone più fitto in alto. La carne è bianca e sodissima e al taglio non cambia colore. Il porcino estivo è più chiaro e ha il reticolo che scende più in basso sul gambo. Negli stessi querceti crescono altri due boleti. Sono il porcino malefico (Rubroboletus satanas) e il boleto di Le Gal (Rubroboletus legaliae). Tutti e due hanno pori rossi e carne che vira al blu.",
+        "habitat": "Ama i pendii caldi e soleggiati con querce, castagni e faggi, per lo più tra 200 e 1.000 m. È comune intorno al Mediterraneo. In Italia lo trovi lungo l'Appennino e nelle isole. In Gran Bretagna e in Germania è raro.",
+        "season": "Può uscire già da luglio, dopo i temporali estivi. La stagione vera è settembre e ottobre, più tardi del porcino estivo. Al sud va avanti fino a novembre. Esce quando, dopo un periodo caldo, arriva una pioggia abbondante e il terreno si rinfresca.",
+        "picking": "Taglialo o staccalo con una torsione. Lascia crescere quelli giovani. In Germania è raro e particolarmente protetto, quindi lì non raccoglierlo. In Italia e in Spagna ci sono permessi regionali e limiti giornalieri.",
+        "kitchen": "È il più sodo dei porcini. Ha un sapore di nocciola che da secco diventa più forte. Una volta riconosciuto con certezza, trattalo come un porcino. Spazzolalo, controlla che non sia bacato e cuocilo bene.",
+        "keeps": "A fette si secca e si congela benissimo.",
         "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Tutela: BArtSchV (Germania). Cucina: Regione Piemonte."
       }
     },
     "fr": {
       "name": "Cèpe Bronzé",
-      "description": "Un cèpe au chapeau bronze foncé presque noir, au pied clair réticulé et à la chair blanche et ferme",
+      "description": "Un cèpe au chapeau bronze foncé, presque noir. Son pied clair porte un réseau et sa chair est blanche et ferme.",
       "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été",
       "guide": {
-        "identify": "Le plus sombre des cèpes, appelé aussi cèpe noir : le chapeau est brun châtain foncé à presque noir, souvent taché de bronze, et reste sec et finement velouté même par temps humide. Les pores sont blancs, puis jaunes à olive, et ne bleuissent pas. Le pied brun clair porte un fin réseau brun, plus dense en haut, et la chair blanche, très ferme, ne change pas de couleur à la coupe. Le cèpe d'été est plus clair, avec un réseau qui descend plus bas ; le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae), qui partagent ses chênaies, ont des pores rouges et une chair qui bleuit.",
-        "habitat": "Pentes chaudes et ensoleillées avec chênes, châtaigniers et hêtres, surtout entre 200 et 1000 m. Commun autour de la Méditerranée, en Italie le long des Apennins et dans les îles ; rare en Grande-Bretagne et en Allemagne.",
-        "season": "Dès juillet après les orages d'été, mais surtout en septembre et octobre, plus tard que le cèpe d'été, et jusqu'en novembre dans le sud. Il fructifie quand une bonne pluie et un sol qui se refroidit suivent une période de chaleur.",
-        "picking": "Coupez-le ou dégagez-le en le tournant et laissez grandir les jeunes. La cueillette peut être limitée par arrêté en France ; en Allemagne, il est rare et spécialement protégé : ne l'y cueillez pas.",
-        "kitchen": "C'est le plus ferme des cèpes, au goût de noisette qui se renforce au séchage. Après une identification certaine, brossez-le, vérifiez les vers et cuisez-le bien, comme le cèpe de Bordeaux.",
+        "identify": "C'est le plus sombre des cèpes. Le chapeau est brun châtaigne foncé à presque noir, souvent avec des taches bronze. Il reste sec et finement velouté, même par temps humide. Les pores sont blancs, puis jaunes à olive, et ils ne bleuissent pas. Le pied brun clair porte un fin réseau brun, plus serré en haut. La chair blanche, très ferme, ne change pas de couleur à la coupe. Le cèpe d'été est plus clair, et son réseau descend plus bas sur le pied. Deux autres bolets partagent ses chênaies. Ce sont le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae). Tous deux ont des pores rouges et une chair qui bleuit.",
+        "habitat": "Il aime les pentes chaudes et ensoleillées, avec des chênes, des châtaigniers et des hêtres, surtout entre 200 et 1000 m. Il est commun autour de la Méditerranée. En Italie, on le trouve le long des Apennins et dans les îles. Il est rare en Grande-Bretagne et en Allemagne.",
+        "season": "Il peut apparaître dès juillet, après les orages d'été. Sa grande saison, c'est septembre et octobre, plus tard que le cèpe d'été. Dans le sud, il continue jusqu'en novembre. Il sort quand une bonne pluie et un sol qui se rafraîchit suivent une période de chaleur.",
+        "picking": "Coupez-le ou dégagez-le en le tournant, et laissez grandir les jeunes. En Allemagne, il est rare et spécialement protégé, donc ne le cueillez pas là-bas. L'Italie et l'Espagne ont des permis régionaux et des limites par jour.",
+        "kitchen": "C'est le plus ferme des cèpes. Il a un goût de noisette qui se renforce au séchage. Une fois identifié avec certitude, traitez-le comme un cèpe de Bordeaux. Brossez-le, vérifiez qu'il n'est pas véreux et faites-le bien cuire.",
         "keeps": "Il se sèche et se congèle très bien en tranches.",
         "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Protection : BArtSchV (Allemagne). Cuisine : Regione Piemonte."
       }

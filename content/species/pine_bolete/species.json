@@ -32,29 +32,29 @@
     },
     "it": {
       "name": "Porcino Rosso",
-      "description": "Un porcino dal cappello bruno-rossiccio dei boschi di pino, con gambo tozzo reticolato e polpa soda",
+      "description": "Un porcino delle pinete. Ha il cappello bruno rossastro, il gambo tozzo rossiccio con il reticolo e la carne soda.",
       "howTo": "Cercalo nelle pinete e peccete muscose su suolo acido e sabbioso, a fine primavera e di nuovo in autunno",
       "guide": {
-        "identify": "Il porcino rosso, o porcino dei pini: il cappello va dal rosso vinoso al mogano, spesso bitorzoluto, vellutato da giovane e da untuoso a viscido con l'umidità, con una pruina biancastra al margine. Il gambo, corto e tozzo, è sfumato di bruno-rossastro con un fine reticolo da biancastro a rossastro, e la carne bianca è rossastra subito sotto la cuticola. I pori passano dal bianco al giallo e all'oliva e cambiano appena colore se premuti. Il porcino nero è color seppia o quasi nero, senza rosso; pori rossi o arancioni (Rubroboletus satanas) o rosa con un reticolo scuro (Tylopilus felleus) lo escludono.",
-        "habitat": "Soprattutto con pino silvestre e abete rosso su suoli acidi, spesso nel muschio, e in montagna anche con castagno, faggio e abete bianco, di solito tra 400 e 1400 m. Comune in Scandinavia, nelle pinete scozzesi, sulle Alpi e lungo tutto l'Appennino.",
-        "season": "Spesso è il primo porcino dell'anno e l'ultimo: una buttata a maggio e giugno dove resta fresco e umido, e quella principale a settembre e ottobre, fino a novembre e oltre le prime gelate.",
-        "picking": "Taglialo o estrailo ruotandolo e non rastrellare il muschio, che protegge il micelio. In Italia la maggior parte delle regioni chiede il tesserino e fissa un limite giornaliero: informati sulle regole locali.",
-        "kitchen": "Una volta riconosciuto con certezza, cuocilo bene come il porcino; è più delicato e un po' resinoso, e i giovani sodissimi richiedono più cottura. Tinge di verde l'acqua di cottura ed è ottimo nei sughi, sott'aceto o essiccato.",
-        "keeps": "Si essicca bene a fette; fresco, usalo entro uno o due giorni.",
+        "identify": "È il porcino rosso, detto anche porcino dei pini. Il cappello va dal rosso vino al mogano ed è spesso bitorzoluto. Da giovane è vellutato, con l'umido diventa untuoso o viscido. Al margine ha una pruina biancastra. Il gambo è corto e tozzo, sfumato di bruno-rossastro, con un fine reticolo da biancastro a rossastro. La carne è bianca, ma subito sotto la pellicina del cappello è rosso vino. I pori passano dal bianco al giallo e al verde oliva. Se li premi cambiano appena colore. Il porcino nero è color seppia fino a nero, senza rosso. Pori rossi o arancioni (Rubroboletus satanas) lo escludono. Lo stesso vale per pori rosa con un reticolo scuro (Tylopilus felleus).",
+        "habitat": "Cresce soprattutto con il pino silvestre e l'abete rosso, su terreno acido, spesso nel muschio. In montagna cresce anche con castagno, faggio e abete bianco, di solito tra 400 e 1.400 m. È comune in Scandinavia, nelle pinete della Scozia e sulle montagne dell'Europa centrale e meridionale.",
+        "season": "Spesso è il primo porcino dell'anno e anche l'ultimo. Una prima buttata arriva a maggio e giugno, dove resta fresco e umido. Il grosso arriva a settembre e ottobre. Continua fino a novembre, anche dopo le prime gelate.",
+        "picking": "Taglialo o staccalo ruotandolo, e non rastrellare il muschio, che protegge il micelio. In molte regioni italiane e spagnole serve il tesserino. Alcuni cantoni svizzeri limitano le quantità. Informati sulle regole del posto.",
+        "kitchen": "Se l'hai riconosciuto con certezza, cuocilo bene come il porcino. È più delicato e un po' resinoso. I giovani molto sodi hanno bisogno di cuocere più a lungo. Colora di verde l'acqua di cottura. È buono nei sughi, sott'aceto ed essiccato.",
+        "keeps": "A fette si secca bene. Fresco, usalo entro un giorno o due.",
         "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Cucina: Regione Piemonte."
       }
     },
     "fr": {
       "name": "Cèpe des Pins",
-      "description": "Un cèpe au chapeau brun-rouge des pinèdes, au pied trapu réticulé rougeâtre et à la chair ferme",
+      "description": "Un cèpe des pinèdes au chapeau brun-rouge. Son pied trapu et rougeâtre porte un réseau et sa chair est ferme.",
       "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne",
       "guide": {
-        "identify": "Le cèpe rouge, appelé aussi cèpe acajou : le chapeau est rouge vineux à acajou, souvent bosselé, velouté chez le jeune et gras à visqueux par temps humide, avec une pruine blanchâtre à la marge. Le pied, court et trapu, est lavé de brun rouge et porte un fin réseau blanchâtre à rougeâtre, et la chair blanche est rouge vineux juste sous la cuticule. Les pores passent du blanc au jaune et à l'olive et changent à peine de couleur à la pression. Le cèpe bronzé est sépia à noir, sans rouge ; des pores rouges ou orange (Rubroboletus satanas) ou roses avec un réseau sombre (Tylopilus felleus) l'excluent.",
-        "habitat": "Surtout avec le pin sylvestre et l'épicéa sur sol acide, souvent dans la mousse, et en montagne aussi avec le châtaignier, le hêtre et le sapin, surtout entre 400 et 1400 m. Commun en Scandinavie, dans les pinèdes d'Écosse et dans les montagnes d'Europe centrale et méridionale.",
-        "season": "Souvent le premier cèpe de l'année et le dernier : une poussée en mai et juin là où il fait frais et humide, et la principale en septembre et octobre, jusqu'en novembre et après les premières gelées.",
-        "picking": "Coupez-le ou dégagez-le en le tournant et ne ratissez pas la mousse, qui protège le mycélium. La cueillette peut être limitée par arrêté en France, et certains cantons suisses fixent des quantités : renseignez-vous sur les règles locales.",
-        "kitchen": "Après une identification certaine, cuisez-le bien comme le cèpe de Bordeaux ; il est plus doux, un peu résineux, et les jeunes très fermes demandent plus de cuisson. Il teinte l'eau de cuisson en vert et convient aux sauces, au vinaigre et au séchage.",
-        "keeps": "Il se sèche bien en tranches ; frais, utilisez-le sous un ou deux jours.",
+        "identify": "C'est le cèpe rouge des pins, qu'on appelle aussi cèpe acajou. Son chapeau est rouge vineux à acajou, souvent bosselé. Il est velouté chez le jeune et gras à visqueux par temps humide. Sa marge porte une pruine blanchâtre. Le pied est court et trapu, teinté de brun rouge. Il porte un fin réseau blanchâtre à rougeâtre. La chair est blanche, mais rouge vineux juste sous la peau du chapeau. Les pores passent du blanc au jaune puis à l'olive. Ils changent à peine de couleur quand on appuie dessus. Le cèpe bronzé est sépia à noir, sans rouge. Des pores rouges ou orange (Rubroboletus satanas) excluent le cèpe des pins. Des pores roses avec un réseau sombre (Tylopilus felleus) aussi.",
+        "habitat": "Il pousse surtout avec le pin sylvestre et l'épicéa, sur sol acide, souvent dans la mousse. En montagne, il pousse aussi avec le châtaignier, le hêtre et le sapin, surtout entre 400 et 1400 m. Il est commun en Scandinavie, dans les pinèdes d'Écosse et dans les montagnes d'Europe centrale et du Sud.",
+        "season": "C'est souvent le premier cèpe de l'année et aussi le dernier. Une première poussée arrive en mai et juin, là où il fait frais et humide. La grosse récolte suit en septembre et octobre. Elle continue jusqu'en novembre, après les premières gelées.",
+        "picking": "Coupez-le ou dégagez-le en le tournant. Ne ratissez pas la mousse, qui protège le champignon. Beaucoup de régions d'Italie et d'Espagne exigent un permis. Certains cantons suisses limitent les quantités. Renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire, comme les autres cèpes. Il est plus doux et un peu résineux. Les jeunes très fermes demandent une cuisson plus longue. Il colore l'eau de cuisson en vert. Il convient aux sauces, aux conserves au vinaigre et au séchage.",
+        "keeps": "Il sèche bien en tranches. Frais, utilisez-le dans un ou deux jours.",
         "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
       }
     },

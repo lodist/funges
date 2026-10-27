@@ -32,29 +32,29 @@
     },
     "it": {
       "name": "Porcino Estivo",
-      "description": "Il primo porcino della stagione, con cappello bruno chiaro finemente screpolato e gambo reticolato per intero",
+      "description": "Il primo porcino della stagione. Il cappello è marrone chiaro e finemente screpolato. Il gambo è reticolato da cima a fondo.",
       "howTo": "Cercalo sotto querce e faggi da fine primavera, molto prima degli altri porcini",
       "guide": {
-        "identify": "Il porcino estivo, o reticolato, ha il cappello opaco, asciutto e vellutato, da nocciola chiaro a bruno medio, che con la siccità si screpola in un fine reticolo; non è mai untuoso e il margine non è più chiaro del centro. Il suo segno più chiaro è un reticolo in rilievo che scende quasi fino alla base del gambo. I pori sono bianchi, poi giallo oliva, e non cambiano colore; la carne bianca è più tenera che nel porcino. Il porcino malefico (Rubroboletus satanas) e Rubroboletus legaliae crescono negli stessi querceti ma hanno pori rossi e carne che vira al blu; il porcino amaro (Tylopilus felleus) ha pori rosa e un reticolo scuro.",
-        "habitat": "Querce e castagni, anche faggi, tigli e betulle, ai margini del bosco, nei parchi e sui versanti soleggiati, dalla pianura a circa 1000 m. Comune nell'Europa centrale e meridionale, in particolare nella Francia sud-occidentale e in Portogallo; raro in Gran Bretagna.",
-        "season": "Il primo porcino dell'anno: da maggio in collina e da giugno nelle valli alpine, soprattutto da luglio a inizio settembre dopo piogge calde, fino ai primi freddi d'autunno.",
-        "picking": "Taglialo o estrailo ruotandolo e lascia i piccoli. Con il caldo molti sono bacati: tagliali a metà sul posto e lascia nel bosco quelli colpiti. La maggior parte delle regioni chiede il tesserino.",
-        "kitchen": "Per molti è il porcino migliore: dolce, di nocciola e profumato, da essiccare, per i sughi e con le uova. Una volta riconosciuto con certezza, togli le parti bacate e cuocilo bene.",
-        "keeps": "È il porcino che si conserva peggio: cuocilo o essiccalo il giorno stesso.",
+        "identify": "Il porcino estivo, detto anche reticolato, ha il cappello opaco, asciutto e vellutato, da nocciola chiaro a marrone medio. Con il tempo secco il cappello si screpola in un fine reticolo. Non è mai untuoso e il bordo non è più chiaro del centro. Il segno più sicuro è il reticolo in rilievo che scende lungo il gambo quasi fino alla base. I pori sono bianchi, poi giallo oliva, e non cambiano colore. La carne è bianca e più tenera di quella del porcino. Il porcino malefico (Rubroboletus satanas) e il Rubroboletus legaliae crescono negli stessi querceti. Però hanno pori rossi e carne che vira al blu. Il porcino amaro (Tylopilus felleus) ha pori rosa e un reticolo scuro.",
+        "habitat": "Cresce con querce e castagni. Lo trovi anche con faggi, tigli e betulle. Cercalo ai margini del bosco, nei parchi e sui versanti al sole, dalla pianura fino a circa 1.000 m. È comune nell'Europa centrale e meridionale, soprattutto nel sud-ovest della Francia e in Portogallo. In Gran Bretagna è raro.",
+        "season": "È il primo porcino dell'anno. Comincia a maggio in basso e a giugno in montagna. La stagione buona va da luglio a inizio settembre, dopo le piogge calde. Dura fino ai primi freddi d'autunno.",
+        "picking": "Taglialo o staccalo ruotandolo e lascia i piccoli. Con il caldo molti sono bacati. Tagliali a metà sul posto e lascia nel bosco quelli con i vermi. In molte regioni italiane e spagnole serve il tesserino.",
+        "kitchen": "Per molti cuochi è il porcino più buono. È dolce, sa di nocciola ed è profumato. È ottimo da seccare, nei sughi e con le uova. Quando l'hai riconosciuto con certezza, togli le parti bacate e cuocilo bene.",
+        "keeps": "Di tutti i porcini è quello che si conserva peggio. Cuocilo o seccalo il giorno stesso.",
         "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Cucina: Regione Piemonte."
       }
     },
     "fr": {
       "name": "Cèpe d'Été",
-      "description": "Le premier cèpe de la saison, au chapeau brun clair finement craquelé et au pied réticulé sur toute sa hauteur",
+      "description": "Le plus précoce des cèpes. Son chapeau brun clair est finement craquelé. Son pied porte un réseau de haut en bas.",
       "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes",
       "guide": {
-        "identify": "Le cèpe d'été, ou cèpe réticulé, a un chapeau mat, sec et velouté, noisette pâle à brun moyen, qui se craquelle en un fin réseau par temps sec ; il n'est jamais gras et sa marge n'est pas plus claire que le centre. Son trait le plus net est un réseau en relief qui descend presque jusqu'à la base du pied. Les pores sont blancs, puis jaune olive, et ne changent pas de couleur ; la chair blanche est plus tendre que celle du cèpe de Bordeaux. Le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae) partagent ses chênaies mais ont des pores rouges et une chair qui bleuit ; le bolet amer (Tylopilus felleus) a des pores roses et un réseau sombre.",
-        "habitat": "Chênes et châtaigniers, aussi hêtres, tilleuls et bouleaux, en lisière, dans les parcs et sur les pentes ensoleillées, de la plaine à 1000 m environ. Commun en Europe centrale et méridionale, en particulier dans le sud-ouest de la France et au Portugal ; rare en Grande-Bretagne.",
-        "season": "Le premier cèpe de l'année : dès mai en plaine et en juin en montagne, surtout de juillet à début septembre après des pluies chaudes, jusqu'aux premiers froids d'automne.",
-        "picking": "Coupez-le ou dégagez-le en le tournant et laissez les petits. Par temps chaud, beaucoup sont véreux : coupez-les en deux sur place et laissez les sujets atteints en forêt. La cueillette peut être limitée par arrêté.",
-        "kitchen": "Beaucoup le jugent le meilleur des cèpes : doux, au goût de noisette et parfumé, pour le séchage, les sauces et les omelettes. Après une identification certaine, retirez les parties véreuses et cuisez-le bien.",
-        "keeps": "C'est le cèpe qui se garde le moins bien : cuisez-le ou séchez-le le jour même.",
+        "identify": "Le cèpe d'été, qu'on appelle aussi cèpe réticulé, a un chapeau mat, sec et velouté, noisette pâle à brun moyen. Par temps sec, le chapeau se craquelle en un fin réseau. Il n'est jamais gras. Sa marge n'est pas plus claire que le centre. Son signe le plus net est un réseau en relief qui descend sur le pied presque jusqu'à la base. Les pores sont blancs, puis jaune olive. Ils ne changent pas de couleur. La chair blanche est plus tendre que celle du cèpe de Bordeaux. Le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae) poussent dans les mêmes chênaies. Mais ils ont des pores rouges et une chair qui bleuit. Le bolet amer (Tylopilus felleus) a des pores roses et un réseau sombre.",
+        "habitat": "Il pousse avec le chêne et le châtaignier. On le trouve aussi sous le hêtre, le tilleul et le bouleau. Cherchez-le en lisière de bois, dans les parcs et sur les pentes ensoleillées, de la plaine jusqu'à 1000 m environ. Il est commun en Europe centrale et du Sud, surtout dans le sud-ouest de la France et au Portugal. En Grande-Bretagne, il est rare.",
+        "season": "C'est le premier cèpe de l'année. Il commence en mai en plaine et en juin en montagne. La pleine saison va de juillet à début septembre, après des pluies chaudes. Il dure jusqu'aux premiers froids de l'automne.",
+        "picking": "Coupez-le ou dégagez-le en le tournant. Laissez les petits. Par temps chaud, beaucoup sont véreux. Coupez-les en deux sur place et laissez les véreux en forêt. Beaucoup de régions d'Italie et d'Espagne exigent un permis.",
+        "kitchen": "Beaucoup de cuisiniers le tiennent pour le meilleur des cèpes. Il est doux et parfumé, avec un goût de noisette. Il est parfait pour le séchage, les sauces et les plats aux œufs. Une fois identifié avec certitude, retirez les parties véreuses et faites-le bien cuire.",
+        "keeps": "C'est le cèpe qui se garde le moins bien. Faites-le cuire ou sécher le jour de la cueillette.",
         "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
       }
     },

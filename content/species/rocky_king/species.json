@@ -32,29 +32,29 @@
     },
     "it": {
       "name": "Porcino delle Rocciose",
-      "description": "Un porcino tozzo d'alta montagna, con cappello rosso mattone o bruno-rossastro, pori bianchi e gambo chiaro e grosso reticolato in alto",
+      "description": "Un porcino tozzo d'alta montagna. Ha il cappello da rosso mattone a bruno rossastro, i pori bianchi e un gambo grosso e chiaro, con il reticolo in alto.",
       "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre",
       "guide": {
-        "identify": "Un porcino grande e tozzo delle alte Rocciose, dal cappello rosso mattone o bruno-rossastro, appiccicoso da fresco e spesso pruinoso da giovane, più rosso del porcino (Boletus edulis), che cresce anche lì. I pori sono bianchi e chiusi da giovane, poi gialli e oliva, e non cambiano colore. Il gambo grosso e chiaro porta un fine reticolo bianco almeno in alto, e la carne bianca non vira al blu. I porcinelli dei pioppi tremuli (Leccinum) hanno squamette scure sul gambo, e quelli a cappello arancione hanno causato gravi intossicazioni gastrointestinali in Colorado; pori rossi o arancioni indicano un boleto tossico.",
-        "habitat": "Soprattutto con l'abete rosso di Engelmann, anche con abeti e douglasie, da circa 2400 m al limite degli alberi, in Colorado, New Mexico e sulle montagne dell'Arizona.",
-        "season": "Da luglio a settembre, a volte fino a ottobre: comincia con i temporali del monsone e sale di quota con la stagione; nelle estati secche quasi non esce.",
-        "picking": "Estrailo ruotandolo con delicatezza, perché buona parte del gambo è sottoterra, e lascia quelli molto bacati. Ogni foresta nazionale fissa le proprie regole, a volte con permesso gratuito e limiti giornalieri.",
-        "kitchen": "Una volta riconosciuto con certezza, togli i pori gialli e molli dei cappelli maturi, che possono diventare amari e viscidi, poi cuocilo bene come il porcino o essiccalo.",
-        "keeps": "Essiccalo a fette sottili o surgelalo dopo averlo saltato.",
+        "identify": "È un porcino grande e tozzo delle alte Montagne Rocciose. Il cappello va dal rosso mattone al bruno-rossastro e da fresco è appiccicoso. Da giovane ha spesso una pruina biancastra. È più rosso dei porcini (Boletus edulis) che crescono anche lì. I pori da giovani sono bianchi e chiusi, poi diventano gialli e verde oliva. Al tocco non cambiano colore. Il gambo è grosso e chiaro, con un fine reticolo bianco almeno nella parte alta. La carne è bianca e non vira al blu. I porcinelli dei pioppi tremuli (Leccinum) hanno squamette scure sul gambo. In Colorado quelli con il cappello arancione hanno causato gravi intossicazioni gastrointestinali. Pori rossi o arancioni indicano un boleto tossico.",
+        "habitat": "Cresce soprattutto con l'abete rosso di Engelmann. Lo trovi anche con abeti e abeti di Douglas. Lo trovi da circa 2.400 m fino al limite degli alberi. Cresce in Colorado, nel New Mexico e sulle montagne dell'Arizona.",
+        "season": "Esce da luglio a settembre, a volte fino a ottobre. Comincia con i temporali del monsone e con il passare della stagione sale di quota. Nelle estati secche esce pochissimo.",
+        "picking": "Staccalo ruotandolo con delicatezza, perché buona parte del gambo è sottoterra. Lascia quelli molto bacati. Ogni foresta nazionale ha le sue regole. Alcune chiedono un permesso gratuito e fissano limiti giornalieri.",
+        "kitchen": "Prima riconoscilo con certezza. Sui cappelli maturi togli i pori gialli e molli. Possono essere amari e diventare viscidi. Poi cuocilo bene come il porcino, oppure seccalo.",
+        "keeps": "Seccalo a fette sottili, oppure saltalo in padella e congelalo.",
         "source": "Identificazione e habitat: Arora e Frank (2014), MushroomExpert e Forage Colorado. Stagione: dati GBIF. Regole: US Forest Service."
       }
     },
     "fr": {
       "name": "Cèpe des Rocheuses",
-      "description": "Un cèpe trapu de haute montagne, au chapeau rouge brique à brun-rouge, aux pores blancs et au gros pied clair réticulé au sommet",
+      "description": "Un cèpe trapu de haute montagne. Il a un chapeau rouge brique à brun-rouge, des pores blancs et un gros pied clair avec un réseau dans le haut.",
       "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre",
       "guide": {
-        "identify": "Un grand cèpe trapu des hautes Rocheuses au chapeau rouge brique à brun rouge, collant à l'état frais et souvent pruineux chez le jeune, plus rouge que le cèpe de Bordeaux (Boletus edulis), qui pousse aussi dans la région. Les pores sont blancs et comme bouchés chez le jeune, puis jaunes et olive, et ne changent pas de couleur. Le pied épais et clair porte un fin réseau blanc au moins en haut, et la chair blanche ne bleuit pas. Les bolets des trembles (Leccinum) ont des mèches sombres sur le pied, et ceux à chapeau orange ont causé de graves intoxications digestives au Colorado ; des pores rouges ou orange signalent un bolet toxique.",
-        "habitat": "Surtout avec l'épicéa d'Engelmann, aussi avec le sapin et le douglas, d'environ 2400 m jusqu'à la limite des arbres, au Colorado, au Nouveau-Mexique et dans les montagnes de l'Arizona.",
-        "season": "De juillet à septembre, parfois jusqu'en octobre : il démarre avec les orages de la mousson et monte en altitude au fil de la saison ; les étés secs, il pousse à peine.",
-        "picking": "Dégagez-le doucement en le tournant, car une bonne partie du pied est sous terre, et laissez les sujets très véreux. Chaque forêt nationale fixe ses règles, parfois avec un permis gratuit et des limites par jour.",
-        "kitchen": "Après une identification certaine, retirez les pores jaunes et mous des chapeaux âgés, qui peuvent devenir amers et visqueux, puis cuisez-le bien comme le cèpe de Bordeaux ou séchez-le.",
-        "keeps": "Séchez-le en tranches fines ou congelez-le après l'avoir poêlé.",
+        "identify": "C'est un grand cèpe trapu des hautes Rocheuses. Le chapeau est rouge brique à brun rouge. Il est collant quand il est frais. Les jeunes chapeaux portent souvent une pruine blanchâtre. Il est plus rouge que le cèpe de Bordeaux (Boletus edulis), qui pousse aussi dans la région. Les pores sont blancs et comme bouchés chez le jeune, puis deviennent jaunes et olive. Ils ne changent pas de couleur au toucher. Le pied, épais et clair, porte un fin réseau blanc, au moins dans le haut. La chair blanche ne bleuit pas. Les bolets rudes (Leccinum) ont des mèches sombres sur le pied. Ceux à chapeau orange ont causé de graves intoxications digestives au Colorado. Des pores rouges ou orange signalent un bolet toxique.",
+        "habitat": "Il pousse surtout avec l'épicéa d'Engelmann. On le trouve aussi sous le sapin et le douglas. Il vit d'environ 2400 m jusqu'à la limite des arbres. Il pousse au Colorado, au Nouveau-Mexique et dans les montagnes de l'Arizona.",
+        "season": "Il sort de juillet à septembre, parfois jusqu'en octobre. Il démarre avec les orages de la mousson et monte en altitude au fil de la saison. Les étés secs, il ne pousse presque pas.",
+        "picking": "Dégagez-le doucement en le tournant, car une bonne partie du pied est sous terre. Laissez les très véreux. Chaque forêt nationale fixe ses propres règles. Certaines demandent un permis gratuit et fixent des limites par jour.",
+        "kitchen": "Assurez-vous d'abord de l'identification. Sur les chapeaux âgés, retirez les pores jaunes et mous. Ils peuvent être amers et devenir visqueux. Ensuite, faites-le bien cuire comme les autres cèpes ou faites-le sécher.",
+        "keeps": "Faites-le sécher en tranches fines. Vous pouvez aussi le faire sauter et le congeler.",
         "source": "Identification et habitat : Arora et Frank (2014), MushroomExpert et Forage Colorado. Saison : données GBIF. Règles : US Forest Service."
       }
     },
