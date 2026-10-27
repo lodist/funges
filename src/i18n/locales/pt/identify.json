@@ -154,14 +154,18 @@
       "stemMarkings": "Se o caule é oco, canelado ou manchado de púrpura - e se cheira mal quando esmagado.",
       "berryArrangement": "Se os cachos de bagas pendem por baixo dos ramos ou se mantêm eretos acima da folhagem.",
       "plantHabit": "Se a planta é um arbusto lenhoso ou uma erva tenra que seca todos os anos.",
-      "interiorPattern": "Corta-o ao meio. Uma trufa verdadeira é marmoreada com veias pálidas ramificadas. Uma falsa trufa é uma massa escura e compacta, arroxeada a negra, sem padrão.",
+      "interiorPattern": "Observe a pele e corte-o ao meio. A trufa-negra tem uma pele negra de pequenas verrugas em forma de pirâmide e um interior escuro percorrido por finas veias brancas, com um cheiro forte e agradável. O escleroderma tem uma pele amarelada a castanha, gretada ou escamosa, uma casca grossa e um interior negro-violáceo, e cheira de forma intensa e desagradável.",
       "berryColour": "Cor das bagas maduras: o sabugueiro-negro tem bagas negro-arroxeadas. Bagas vermelhas em cachos eretos em forma de cúpula são de sabugueiro-vermelho, tóxico cru.",
       "flowerShape": "Forma da flor: as violetas têm cinco pétalas desiguais com um esporão atrás; a ficária tem 8 a 12 pétalas amarelas e brilhantes.",
       "latexColour": "Parte uma lâmina ou a borda do chapéu e observa o leite que sai. As sanchas vertem um leite cor de cenoura a vermelho-vinho; um leite branco ou que amarelece indica outro Lactarius.",
       "capMargin": "Se a borda do chapéu está enrolada e franjada de pelos longos e lanosos.",
       "capScales": "Se o chapéu está coberto de escamas brancas, desgrenhadas e levantadas, ou é liso, castanho-acinzentado e finamente estriado.",
       "fernStem": "Observa o caule jovem. Os rebentos do feto-de-avestruz são lisos, com escamas castanhas como papel e um sulco profundo em U na face interna do caule. O feto-comum é peludo, de caule redondo e com o topo que se divide em três.",
-      "berryBloom": "Os abrunhos crescem isolados no abrunheiro espinhoso e têm uma pruína azulada que sai ao esfregar. As bagas do espinheiro-cerval são negras e brilhantes, em cachos ao longo dos raminhos, sem pruína."
+      "berryBloom": "Os abrunhos crescem isolados no abrunheiro espinhoso e têm uma pruína azulada que sai ao esfregar. As bagas do espinheiro-cerval são negras e brilhantes, em cachos ao longo dos raminhos, sem pruína.",
+      "jackOLantern": "Cor e crescimento: os pleurotos são cinzentos, castanhos ou cor de creme e crescem em prateleiras sobre madeira morta, sem pé ou com um pé curto e lateral. O cogumelo-da-oliveira é laranja-vivo por dentro e por fora, cresce em tufos com um pé central verdadeiro, muitas vezes junto à base de carvalhos ou oliveiras, e as lâminas descem pelo pé.",
+      "angelWing": "Espessura, cor e madeira: a orelha-de-anjo é branca pura, fina e frágil, e cresce em madeira podre de coníferas. Os pleurotos são mais grossos e carnudos, cinzentos, castanhos ou cor de creme, e crescem sobretudo em madeira de folhosas.",
+      "puffballInterior": "Corte-o ao meio de cima a baixo. O bufa-de-lobo-gigante é branco puro e macio por inteiro, como um marshmallow, sem contorno de chapéu, lâminas ou pé no interior. O escleroderma tem uma pele grossa, escamosa e amarelada e escurece por dentro a partir do centro até um negro-violáceo, marmoreado de branco quando jovem.",
+      "sulphurTuft": "Cor, pé e esporada: o hifoloma-amarelo é amarelo-enxofre e cresce em tufos densos com pés verdadeiros; as lâminas são amarelo-esverdeadas e ficam negro-violáceas, e a esporada é castanho-púrpura. Os pleurotos são cinzentos, castanhos ou cor de creme, quase sem pé, com lâminas brancas a creme e esporada branca a lilás-pálido."
     },
     "critical": {
       "lepiotaMacrolepiota": "As Lepiota mortais estão entre os sósias mais perigosos do frade, e nos nossos testes foi o erro mais frequente de todos. Um frade verdadeiro é grande, com um anel que se move e um pé com padrão de pele de cobra. Os exemplares pequenos com o pé liso devem ser deixados onde estão, mesmo que pareçam os corretos.",

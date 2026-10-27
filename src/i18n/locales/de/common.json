@@ -36,7 +36,7 @@
     "email": "E-Mail",
     "score": "Bewertung",
     "copied": "Kopiert!",
-    "enlargeImage": "Bild vergrößern",
+    "enlargeImage": "Bild vergrössern",
     "shrinkImage": "Bild verkleinern"
   },
   "offline": {
@@ -87,7 +87,7 @@
       "link": "Daten ansehen"
     },
     "proof": {
-      "line": "Geprüft an der Saison {{year}} an {{spots}} Stellen, an denen Menschen Pilze gefunden haben: Die Vorhersage bewertete Tage in der Saison eines Pilzes <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb der Saison.",
+      "line": "Geprüft an der Saison {{year}} an {{spots}} Stellen, an denen Menschen Pilze gefunden haben: Die Vorhersage bewertete Tage in der Saison eines Pilzes <strong>{{times}} von 10 Mal</strong> besser als Tage ausserhalb der Saison.",
       "link": "So prüfen wir"
     },
     "metaTitle": "Funges: Sammelkarte und Gartenplaner",
@@ -147,7 +147,7 @@
     "conditions": {
       "high": "Ausgezeichnete Bedingungen",
       "medium": "Gute Bedingungen",
-      "low": "Mäßige Bedingungen"
+      "low": "Mässige Bedingungen"
     },
     "lookalikeBadge": {
       "lethal": "Tödlicher Doppelgänger",
@@ -328,7 +328,7 @@
     },
     "scorecard": {
       "title": "Wie gut die Vorhersage war",
-      "intro": "Die aktuelle Vorhersage vom {{since}} bis zum {{until}}, an {{spots}} Stellen, an denen Menschen Pilze gefunden haben. Jeder Balken zeigt, wie oft sie an derselben Stelle einen Tag in der Saison des Pilzes besser bewertete als einen Tag außerhalb.",
+      "intro": "Die aktuelle Vorhersage vom {{since}} bis zum {{until}}, an {{spots}} Stellen, an denen Menschen Pilze gefunden haben. Jeder Balken zeigt, wie oft sie an derselben Stelle einen Tag in der Saison des Pilzes besser bewertete als einen Tag ausserhalb.",
       "all": "Alle Pilze",
       "finds_one": "{{finds}} Fund",
       "finds_other": "{{finds}} Funde",

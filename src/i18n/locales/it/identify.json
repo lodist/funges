@@ -154,14 +154,18 @@
       "stemMarkings": "Se il fusto è cavo, scanalato o macchiato di porpora - e se ha un odore sgradevole quando lo strofini.",
       "berryArrangement": "Se i grappoli di bacche pendono sotto i rami o restano eretti sopra il fogliame.",
       "plantHabit": "Se la pianta è un arbusto legnoso o un'erba tenera che secca ogni anno.",
-      "interiorPattern": "Taglialo a metà. Un tartufo vero è marmorizzato da venature chiare ramificate. Un falso tartufo è una massa scura e compatta, dal violaceo al nero, senza disegno.",
+      "interiorPattern": "Guarda la scorza e taglialo a metà. Il tartufo nero ha una scorza nera di piccole verruche piramidali e un interno scuro percorso da sottili venature bianche, con un profumo forte e gradevole. Lo scleroderma ha una scorza giallastra o bruna, screpolata o squamosa e spessa, e un interno nero violaceo, con un odore pungente e sgradevole.",
       "berryColour": "Colore delle bacche mature: il sambuco nero ha bacche nero-violacee. Bacche rosse in grappoli eretti a cupola sono di sambuco rosso, velenose crude.",
       "flowerShape": "Forma del fiore: le viole hanno cinque petali disuguali con uno sperone sul retro; il favagello ha 8–12 petali gialli e lucidi.",
       "latexColour": "Spezza una lamella o il bordo del cappello e osserva il latte che esce. I sanguinelli stillano latte arancio carota o rosso vino; un latte bianco o che ingiallisce indica un altro lattario.",
       "capMargin": "Se il bordo del cappello è arrotolato verso il basso e frangiato di lunghi peli lanosi.",
       "capScales": "Se il cappello è coperto di squame bianche arruffate e rivolte all'insù, oppure è liscio, grigio-bruno e finemente striato.",
       "fernStem": "Guarda il fusto giovane. I germogli della felce penna di struzzo sono lisci, con squame brune cartacee e una profonda scanalatura a U sul lato interno del fusto. La felce aquilina è pelosa, con il fusto tondo e la cima che si divide in tre.",
-      "berryBloom": "Le prugnole crescono isolate sul prugnolo spinoso e hanno una pruina azzurra che si toglie strofinando. Le bacche dello spincervino sono nere lucide, a grappoli lungo i rametti, senza pruina."
+      "berryBloom": "Le prugnole crescono isolate sul prugnolo spinoso e hanno una pruina azzurra che si toglie strofinando. Le bacche dello spincervino sono nere lucide, a grappoli lungo i rametti, senza pruina.",
+      "jackOLantern": "Colore e crescita: i pleurotus sono grigi, bruni o color crema e crescono a mensola sul legno morto, senza gambo o con un gambo corto e laterale. Il fungo dell'olivo è arancione vivo dentro e fuori, cresce a cespi con un vero gambo centrale, spesso alla base di querce o ulivi, e le sue lamelle scendono lungo il gambo.",
+      "angelWing": "Spessore, colore e legno: la Pleurocybella è bianca pura, sottile e fragile, e cresce su legno marcio di conifere. I pleurotus sono più spessi e carnosi, grigi, bruni o color crema, e crescono soprattutto su legno di latifoglie.",
+      "puffballInterior": "Taglialo a metà dall'alto in basso. La vescia gigante è bianca pura e morbida in tutta la massa, come un marshmallow, senza sagoma di cappello, lamelle o gambo all'interno. Lo scleroderma ha una scorza spessa, squamosa e giallastra e all'interno diventa nero violaceo a partire dal centro, marmorizzato di bianco da giovane.",
+      "sulphurTuft": "Colore, gambo e sporata: l'hypholoma fascicolare è giallo zolfo e cresce in cespi fitti con veri gambi; le lamelle sono giallo verdastre e diventano nero violacee, la sporata è bruno porpora. I pleurotus sono grigi, bruni o color crema, quasi senza gambo, con lamelle da bianche a crema e sporata da bianca a lilla pallido."
     },
     "critical": {
       "lepiotaMacrolepiota": "Le Lepiota mortali sono tra i sosia più pericolosi della mazza di tamburo, e nei nostri test è stato l'errore più frequente in assoluto. Una vera mazza di tamburo è grande, con un anello scorrevole e un gambo con disegno a pelle di serpente. Gli esemplari piccoli con il gambo liscio vanno lasciati dove sono, anche se sembrano quelli giusti.",

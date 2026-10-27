@@ -81,6 +81,9 @@ export default defineConfig({
           '**/landing/spectacle-*.webp',
           // Hundreds of season maps; a visitor opens a few of them.
           '**/season-atlas/**',
+          // Translations: a visitor needs one language, not six. Each file is
+          // kept once loaded (runtimeCaching below, and src/lib/pwa.ts).
+          '**/assets/locales/**',
           // Each species and crop page's own HTML, for search engines (the
           // root index.html, the app shell, stays for the offline fallback).
           '**/*/index.html',
@@ -146,6 +149,20 @@ export default defineConfig({
               cacheName: 'ort-runtime-cache',
               expiration: {
                 maxEntries: 6,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // One namespace of one language per file, content-hashed: a new
+          // text is a new URL.
+          {
+            urlPattern: /\/assets\/locales\/.*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'locales-cache',
+              expiration: {
+                maxEntries: 120,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: { statuses: [0, 200] },
@@ -510,6 +527,16 @@ export default defineConfig({
           )
             ? 'assets/recipes/[name]-[hash][extname]'
             : 'assets/[name]-[hash][extname]',
+        // Translations in a folder of their own (assets/locales/de-species-…),
+        // so the precache can leave them out.
+        chunkFileNames: chunk => {
+          const locale = chunk.facadeModuleId?.match(
+            /[\\/]i18n[\\/]locales[\\/]([^\\/]+)[\\/]([^\\/]+)\.json$/
+          );
+          return locale
+            ? `assets/locales/${locale[1]}-${locale[2]}-[hash].js`
+            : 'assets/[name]-[hash].js';
+        },
         manualChunks(id) {
           if (id.includes('node_modules/@discourse/heic')) {
             return 'heic-decoder';

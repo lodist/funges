@@ -154,14 +154,18 @@
       "stemMarkings": "Whether the stem is hollow, ridged, or blotched with purple - and whether it smells unpleasant when crushed.",
       "berryArrangement": "Whether berry clusters droop below the branches or stand upright above the foliage.",
       "plantHabit": "Whether the plant is a woody shrub or a soft green herb dying back each year.",
-      "interiorPattern": "Cut it in half. A true truffle is marbled with pale branching veins. A false truffle is a solid dark mass, purple to black, with no pattern.",
+      "interiorPattern": "Look at the skin and cut it in half. A black truffle has a black skin of small pyramid-shaped warts and a dark inside laced with fine white veins, with a strong, pleasant smell. An earthball has a yellowish to brown, cracked or scaly skin, a thick rind and a purple-black inside, and smells sharp and unpleasant.",
       "berryColour": "Ripe berry colour: elderberries for eating are purple-black. Red berries in upright, dome-shaped clusters are red elder, poisonous raw.",
       "flowerShape": "Flower shape: violets have five uneven petals with a spur at the back; lesser celandine has 8–12 glossy yellow petals.",
       "latexColour": "Break a gill or the cap edge and watch the milk that appears. Saffron milk caps bleed carrot-orange to wine-red milk; white or yellowing milk means another milk cap.",
       "capMargin": "Whether the cap edge is rolled under and fringed with long, woolly hairs.",
       "capScales": "Whether the cap is covered in shaggy, upturned white scales, or is smooth, grey-brown and finely grooved.",
       "fernStem": "Look at the young stem. Ostrich fern fiddleheads are smooth, with brown papery scales and a deep U-shaped groove along the inside of the stem. Bracken is fuzzy, with a round stem and a top that branches in three.",
-      "berryBloom": "Sloes grow singly on thorny blackthorn and have a dusty blue bloom that rubs off. Buckthorn berries are shiny black, in clusters along the twigs, with no bloom."
+      "berryBloom": "Sloes grow singly on thorny blackthorn and have a dusty blue bloom that rubs off. Buckthorn berries are shiny black, in clusters along the twigs, with no bloom.",
+      "jackOLantern": "Colour and growth: oysters are grey, brown or cream and grow in shelves on dead wood, with no stem or a short one at the side. The jack-o'-lantern is bright orange through and through, grows in tufts with a real central stem, often at the base of oak or olive trees, and its gills run down that stem.",
+      "angelWing": "Thickness, colour and wood: angel wings are pure white, thin and fragile, and grow on rotting conifer wood. Oysters are thicker and fleshier, grey, brown or cream, and mostly grow on broadleaf wood.",
+      "puffballInterior": "Cut it in half from top to bottom. A giant puffball is pure white and soft all through, like marshmallow, with no outline of a cap, gills or stem inside. An earthball has a thick, scaly, yellowish skin and darkens to purple-black inside from the centre, marbled white while young.",
+      "sulphurTuft": "Colour, stem and spore print: sulphur tuft is sulphur-yellow and grows in dense tufts with real stems; its gills are greenish-yellow, turning purple-black, and its spore print is purple-brown. Oysters are grey, brown or cream, almost stemless, with white to cream gills and a white to pale lilac spore print."
     },
     "critical": {
       "lepiotaMacrolepiota": "Deadly Lepiota species are among the most dangerous look-alikes for the Parasol mushroom, and this was the single most frequent mistake in our testing. A true Parasol is large, with a movable ring and a snakeskin-patterned stem. Small specimens with a plain stem should be left alone even if they look right.",

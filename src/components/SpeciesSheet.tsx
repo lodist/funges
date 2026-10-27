@@ -98,7 +98,13 @@ export function SpeciesBody({
     [species.id]
   );
   // Several look-alikes share a check; say each one once.
-  const checks = [...new Set(lookalikes.flatMap(toxic => toxic.checkKeys))];
+  const checks = [
+    ...new Set(
+      lookalikes.flatMap(
+        toxic => toxic.checksFor?.[species.id] ?? toxic.checkKeys
+      )
+    ),
+  ];
   const criticalNotes = [
     ...new Set(
       lookalikes.flatMap(toxic =>

@@ -154,14 +154,18 @@
       "stemMarkings": "Si la tige est creuse, cannelée ou tachée de pourpre - et si elle sent mauvais quand on la froisse.",
       "berryArrangement": "Si les grappes de baies pendent sous les rameaux ou se tiennent dressées au-dessus du feuillage.",
       "plantHabit": "Si la plante est un arbuste ligneux ou une herbe tendre qui disparaît chaque année.",
-      "interiorPattern": "Coupe-la en deux. Une vraie truffe est marbrée de veines pâles ramifiées. Une fausse truffe est une masse sombre et compacte, violacée à noire, sans motif.",
+      "interiorPattern": "Regardez la peau et coupez-le en deux. La truffe noire a une peau noire faite de petites verrues pyramidales et un intérieur sombre veiné de fines lignes blanches, avec une odeur forte et agréable. Le scléroderme a une peau jaunâtre à brune, craquelée ou écailleuse, une écorce épaisse et un intérieur noir violacé, et sent fort et désagréable.",
       "berryColour": "Couleur des baies mûres : le sureau noir a des baies noir violacé. Des baies rouges en grappes dressées en dôme sont du sureau rouge, toxique cru.",
       "flowerShape": "Forme de la fleur : les violettes ont cinq pétales inégaux avec un éperon à l'arrière ; la ficaire a 8 à 12 pétales jaunes et brillants.",
       "latexColour": "Casse une lame ou le bord du chapeau et observe le lait qui en sort. Les lactaires délicieux saignent un lait orange carotte à rouge vineux ; un lait blanc ou qui jaunit indique un autre lactaire.",
       "capMargin": "Si le bord du chapeau est enroulé et frangé de longs poils laineux.",
       "capScales": "Si le chapeau est couvert de mèches blanches retroussées, ou lisse, gris-brun et finement strié.",
       "fernStem": "Regarde la jeune tige. Les têtes de violon de la fougère-à-l'autruche sont lisses, avec des écailles brunes comme du papier et un sillon profond en U sur la face interne de la tige. La fougère aigle est duveteuse, à tige ronde et à sommet qui se divise en trois.",
-      "berryBloom": "Les prunelles poussent isolément sur le prunellier épineux et portent une pruine bleutée qui s'efface au toucher. Les baies du nerprun sont d'un noir brillant, en grappes le long des rameaux, sans pruine."
+      "berryBloom": "Les prunelles poussent isolément sur le prunellier épineux et portent une pruine bleutée qui s'efface au toucher. Les baies du nerprun sont d'un noir brillant, en grappes le long des rameaux, sans pruine.",
+      "jackOLantern": "Couleur et port : les pleurotes sont gris, bruns ou crème et poussent en consoles sur du bois mort, sans pied ou avec un pied court et latéral. Le clitocybe de l'olivier est orange vif dans toute sa chair, pousse en touffes avec un vrai pied central, souvent au pied des chênes ou des oliviers, et ses lames descendent sur le pied.",
+      "angelWing": "Épaisseur, couleur et bois : le pleurote en oreille est blanc pur, mince et fragile, et pousse sur du bois de conifère pourri. Les pleurotes en huître sont plus épais et charnus, gris, bruns ou crème, et poussent surtout sur du bois de feuillus.",
+      "puffballInterior": "Coupez-la en deux de haut en bas. La vesse-de-loup géante est d'un blanc pur et tendre dans toute sa masse, comme une guimauve, sans contour de chapeau, de lames ni de pied à l'intérieur. Le scléroderme a une peau épaisse, écailleuse et jaunâtre et noircit à l'intérieur depuis le centre jusqu'au noir violacé, marbré de blanc quand il est jeune.",
+      "sulphurTuft": "Couleur, pied et sporée : l'hypholome en touffe est jaune soufre et pousse en touffes serrées avec de vrais pieds ; ses lames sont jaune verdâtre puis noir violacé, et sa sporée est brun pourpre. Les pleurotes sont gris, bruns ou crème, presque sans pied, avec des lames blanches à crème et une sporée blanche à lilas pâle."
     },
     "critical": {
       "lepiotaMacrolepiota": "Les lépiotes mortelles figurent parmi les sosies les plus dangereux de la coulemelle, et c'était l'erreur la plus fréquente de tous nos tests. Une vraie coulemelle est grande, avec un anneau coulissant et un pied à motif de peau de serpent. Les petits spécimens à pied lisse doivent être laissés sur place, même s'ils semblent corrects.",
