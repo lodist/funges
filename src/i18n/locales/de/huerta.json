@@ -1109,7 +1109,7 @@
           "fix": "Knospen und Blüten fallen ohne Frucht ab, wenn der Boden austrocknet, bei großer Hitze oder in kalten Nächten. Den Boden gleichmäßig feucht halten und das Gewächshaus an heißen Tagen lüften und schattieren."
         }
       ],
-      "source": "Paprikapflege: RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: University of Maryland Extension. Lagern: Kansas State und University of Missouri Extension."
+      "source": "Paprikapflege: RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "chilli": {
       "about": "Angebaut für scharfe Früchte, frisch, getrocknet oder eingelegt. Chili braucht den ganzen Sommer Wärme: Gewächshaus, sonnige Fensterbank oder ein warmer, geschützter Platz draußen. Eine Pflanze im Topf kann vor der Kälte ins Haus und hell und warm überwintern, mit wenig Wasser.",
@@ -1131,7 +1131,7 @@
           "fix": "Über etwa 30 °C fallen Blüten ab und es setzen wenige Früchte an. Das Gewächshaus lüften und schattieren und den Boden täglich befeuchten."
         }
       ],
-      "source": "Chilipflege und Lagern: RHS. pH: University of Maryland Extension (Paprika)."
+      "source": "Chilipflege und Lagern: RHS. pH: Virginia Tech Extension (Paprika)."
     },
     "aubergine": {
       "about": "Angebaut für die glänzenden Früchte, violett, weiß oder gestreift. Sie braucht mehr Wärme als die Tomate und etwa fünf Monate von der Aussaat bis zur Ernte: in kühlen Sommern gehört sie ins Gewächshaus oder an den sonnigsten, geschütztesten Platz. Kappe die Spitze bei etwa 30 cm für eine buschigere Pflanze und lass bei großfrüchtigen Sorten fünf oder sechs Früchte.",
@@ -1153,7 +1153,7 @@
           "fix": "Saugende Insekten an den Blattunterseiten; die Blätter werden klebrig und blass. Kontrolliere die Unterseiten oft und wasche kleine Kolonien ab; im Gewächshaus fangen Gelbtafeln die Weiße Fliege."
         }
       ],
-      "source": "Auberginenpflege: RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: University of Maryland Extension. Lagern: Kansas State und University of Missouri Extension."
+      "source": "Auberginenpflege: RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "cucumber": {
       "about": "Angebaut für die Früchte, die ab Hochsommer geerntet werden. Die meisten Sorten ranken: zieh sie an einem Stab, Netz oder Spalier hoch, das spart Platz und hält die Früchte sauber. Gewächshausgurken sind meist rein weiblich, entferne dort männliche Blüten; Freilandgurken brauchen ihre männlichen Blüten zur Bestäubung.",
@@ -1175,7 +1175,7 @@
           "fix": "Sie fressen junge Pflanzen, vor allem bei feuchtem Wetter. Pflanzen nach dem Auspflanzen schützen und abends kontrollieren; hochgezogene Pflanzen halten die Früchte außer Reichweite."
         }
       ],
-      "source": "Gurkenpflege: RHS. Wie viele: Virginia Tech Extension. pH: University of Maryland Extension. Lagern: Kansas State und University of Missouri Extension."
+      "source": "Gurkenpflege: RHS. Wie viele: Virginia Tech Extension. pH: Cornell Cooperative Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "courgette": {
       "about": "Angebaut für die jungen Früchte, den ganzen Sommer klein geerntet; auch die Blüten sind essbar. Eine Pflanze wird breit und trägt reichlich. Ernte oft: eine Frucht, die ein paar Tage hängen bleibt, wird riesig und bremst die Pflanze.",
@@ -1197,7 +1197,7 @@
           "fix": "Kleine Früchte faulen von der Spitze her im kühlen Frühsommer, wenn wenige Insekten bestäuben. Das gibt sich, wenn es wärmer wird; du kannst auch mit einer männlichen Blüte von Hand bestäuben."
         }
       ],
-      "source": "Zucchinipflege: RHS. Wie viele: Virginia Tech Extension. pH: University of Maryland Extension. Lagern: Kansas State und University of Missouri Extension."
+      "source": "Zucchinipflege: RHS. Wie viele: Virginia Tech Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "pumpkin": {
       "about": "Angebaut für große Früchte, die im Herbst reifen und sich bis in den Winter lagern lassen. Die rankenden Triebe brauchen viel Platz. Für große Früchte zwei oder drei pro Pflanze lassen, für einen Riesenkürbis nur einen.",
@@ -1219,7 +1219,7 @@
           "fix": "Sie fressen junge Pflanzen und Blüten. Pflanzen nach dem Auspflanzen schützen, vor allem bei feuchtem Wetter."
         }
       ],
-      "source": "Kürbispflege und Lagern: RHS. Reife: University of Minnesota Extension. Wie viele: Kansas State und Virginia Tech Extension. pH: University of Maryland Extension."
+      "source": "Kürbispflege und Lagern: RHS. Reife: University of Minnesota Extension. Wie viele: Kansas State und Virginia Tech Extension. pH: Virginia Tech Extension."
     },
     "winter_squash": {
       "about": "Angebaut für hartschalige Früchte wie Butternut, Acorn oder Hokkaido, die sich über den Winter lagern lassen. Rankende Sorten breiten sich weit aus; kleinere kannst du an einem stabilen Gerüst hochziehen. Lass die Früchte an der Pflanze voll ausreifen: unreife Kürbisse halten sich nicht.",
@@ -1241,7 +1241,7 @@
           "fix": "Kleine Früchte schrumpfen oder faulen bei kühlem Wetter, wenn wenige Insekten bestäuben. Von Hand bestäuben: Pollen einer männlichen Blüte in die weibliche Blüte streichen, die eine kleine Frucht hinter sich trägt."
         }
       ],
-      "source": "Kürbispflege: RHS. Reife und Lagern: University of Minnesota Extension und RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: University of Maryland Extension."
+      "source": "Kürbispflege: RHS. Reife und Lagern: University of Minnesota Extension und RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: Virginia Tech Extension."
     },
     "green_beans": {
       "about": "Angebaut für zarte, jung gepflückte Hülsen. Buschbohnen werden etwa 45 cm hoch und passen in Töpfe; Stangenbohnen brauchen hohe Stangen, tragen aber länger. Frost tötet sie und in kaltem, nassem Boden faulen sie, darum erst säen, wenn der Boden warm ist.",
@@ -1307,7 +1307,7 @@
           "fix": "Im Topf welken und kippen die Pflanzen, weil weiße, gekrümmte Larven die Wurzeln fressen. Im Spätsommer Nematoden als Nützlinge in die Erde gießen."
         }
       ],
-      "source": "Erdbeerpflege: RHS. Topfgröße: Iowa State University Extension. pH: University of Massachusetts und University of Maryland Extension. Lagern: Kansas State und University of Missouri Extension."
+      "source": "Erdbeerpflege: RHS. Topfgröße: Iowa State University Extension. pH: Cornell Cooperative Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "melon": {
       "about": "Angebaut für süße Früchte im Spätsommer. Sie braucht echte Wärme: in kühlen Gegenden gehört sie ins Gewächshaus, in einen Folientunnel oder ein Frühbeet. Damit die Früchte reifen, im Freien bis zu vier pro Pflanze lassen, unter Glas vier bis sechs, und die übrigen entfernen, wenn sie etwa 2,5 cm groß sind.",
@@ -1329,7 +1329,7 @@
           "fix": "Feine helle Sprenkel auf den Blättern und dünne Gespinste, bei trockener Luft unter Glas. Den Gewächshausboden befeuchten und die Pflanzen bei Hitze besprühen."
         }
       ],
-      "source": "Melonenpflege: RHS. Reife: University of Minnesota Extension. Wie viele: Virginia Tech und Kansas State Extension. pH: University of Maryland Extension. Lagern: Kansas State und University of Missouri Extension."
+      "source": "Melonenpflege: RHS. Reife: University of Minnesota Extension. Wie viele: Virginia Tech und Kansas State Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "watermelon": {
       "about": "Angebaut für die großen, süßen Früchte. Sie braucht einen langen, heißen Sommer: in kühlen Gegenden wähle eine kleine, frühe Sorte und zieh sie unter Glas oder Folie. Anders als andere Melonen reift sie nach der Ernte nicht nach, also beurteile die Reife an der Pflanze.",
