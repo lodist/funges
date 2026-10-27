@@ -89,7 +89,7 @@ function RootComponent() {
   );
   // The front pages (Terra's and Huerta's) are the other full-bleed routes: no
   // sidebar, no padding.
-  const isLandingPage = ['', 'huerta'].some(
+  const isLandingPage = ['', 'huerta', 'front-a', 'front-b', 'front-c'].some(
     page =>
       location.pathname.replace(/\/+$/, '') ===
       `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
