@@ -7,6 +7,9 @@ import {
   pathLanguage,
   stripLanguage,
 } from '@/lib/seo-pages';
+import { SPECIES_DATA } from '@/data/species';
+import { CROPS } from '@/lib/huerta';
+import { buildPages, renderPage } from '../../scripts/seo-pages';
 
 describe('seo-pages', () => {
   it('puts English at the root and German under /de, always with a slash', () => {
@@ -52,5 +55,50 @@ describe('seo-pages', () => {
     expect(cropPageDescription(short)).toBe(short);
     const long = `${'A'.repeat(100)}. ${'B'.repeat(100)}.`;
     expect(cropPageDescription(long)).toBe(`${'A'.repeat(100)}.`);
+  });
+});
+
+describe('buildPages', () => {
+  const pages = buildPages();
+
+  it('has every species and crop in English and German', () => {
+    for (const lang of ['en', 'de'] as const) {
+      for (const s of SPECIES_DATA)
+        expect(
+          pages.some(p => p.path === localizedPath(`/species/${s.id}/`, lang)),
+          `${lang} ${s.id}`
+        ).toBe(true);
+      for (const c of CROPS)
+        expect(
+          pages.some(
+            p => p.path === localizedPath(`/huerta/species/${c.id}/`, lang)
+          ),
+          `${lang} ${c.id}`
+        ).toBe(true);
+    }
+  });
+
+  it('gives each page a unique title and a description under 160 characters', () => {
+    const titles = pages.map(p => p.title);
+    expect(titles.filter((t, i) => titles.indexOf(t) !== i)).toEqual([]);
+    for (const p of pages) {
+      expect(p.title, p.path).not.toMatch(/^ ·|\{\{/);
+      expect(p.description.length, p.path).toBeGreaterThan(0);
+      expect(p.description.length, p.path).toBeLessThanOrEqual(160);
+    }
+  });
+
+  it('writes each page in its language with its links and text', () => {
+    const shell =
+      '<html lang="en"><head><title>x</title>\n<meta name="description" content="y" />\n</head><body><div id="root"></div></body></html>';
+    const page = pages.find(p => p.path === '/de/species/mushroom/')!;
+    const html = renderPage(shell, page, 'https://www.fung.es');
+    expect(html).toContain('<html lang="de"');
+    expect(html).toContain('<h1>Steinpilz</h1>');
+    expect(html).toContain(
+      'rel="canonical" href="https://www.fung.es/de/species/mushroom/"'
+    );
+    expect(html).toContain('hreflang="x-default"');
+    expect(html).not.toContain('<title>x</title>');
   });
 });

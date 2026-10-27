@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Foraging Guide",
+    "appDescription": "What grows around you and when",
     "loading": "Loading...",
     "error": "An error occurred",
     "success": "Success",
@@ -89,7 +89,9 @@
     "proof": {
       "line": "Tested on the {{year}} season at {{spots}} spots where people found mushrooms: the forecast rated days in a mushroom's season above days out of season <strong>{{times}} times in 10</strong>.",
       "link": "How we check"
-    }
+    },
+    "metaTitle": "Funges: foraging map and garden planner",
+    "metaDescription": "Foraging forecasts for wild mushrooms and plants, and a planner for your vegetable garden. What grows around you and when."
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",

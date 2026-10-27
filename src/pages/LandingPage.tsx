@@ -106,8 +106,9 @@ export default function LandingPage() {
   return (
     <>
       <SEO
-        title={t('home.headline')}
-        description={t('home.description')}
+        title={t('home.metaTitle')}
+        description={t('home.metaDescription')}
+        bare
         canonicalUrl={localizedPath(
           '/',
           pathLanguage(window.location.pathname) ?? 'en'

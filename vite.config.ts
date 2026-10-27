@@ -2,9 +2,9 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import Sitemap from 'vite-plugin-sitemap';
 import removeConsole from 'vite-plugin-remove-console';
 import checker from 'vite-plugin-checker';
+import { seoPages } from './scripts/seo-pages';
 
 const baseUrl = process.env.VITE_BASE_URL || '/';
 const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
@@ -81,6 +81,9 @@ export default defineConfig({
           '**/landing/spectacle-*.webp',
           // Hundreds of season maps; a visitor opens a few of them.
           '**/season-atlas/**',
+          // Each species and crop page's own HTML, for search engines (the
+          // root index.html, the app shell, stays for the offline fallback).
+          '**/*/index.html',
           // Read by iOS when the app is added to the home screen, never
           // through the service worker.
           '**/splash-screens/**',
@@ -118,7 +121,6 @@ export default defineConfig({
               ]).catch(() => undefined);
               if (answer) return answer;
               // ignoreSearch: precache keys end in ?__WB_REVISION__=…
-              // @ts-expect-error the service worker's CacheStorage, not Node's
               const shell: Response | undefined = await caches.match(
                 'index.html',
                 { ignoreSearch: true }
@@ -323,10 +325,10 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
       },
       manifest: {
-        name: 'Funges - Wild Mushroom & Edible Plants Foraging Map',
+        name: 'Funges: foraging map and garden planner',
         short_name: 'Funges',
         description:
-          'Real-time map of wild mushrooms and edible plants using weather and geospatial data.',
+          'Foraging forecasts for wild mushrooms and plants, and a planner for your vegetable garden. What grows around you and when.',
         theme_color: '#3d7e40',
         background_color: '#ffffff',
         display: 'standalone',
@@ -423,12 +425,9 @@ export default defineConfig({
         ],
       },
     }),
-    Sitemap({
-      hostname: `${hostname}${baseUrl}`,
-      dynamicRoutes: routeFullPaths,
-      // Trailing slashes are added in deploy.yml (see there why).
-      exclude: ['/404'],
-    }),
+    // The indexed pages' own HTML and sitemap.xml (every URL with its slash:
+    // GitHub Pages serves folders, so /species 301s to /species/).
+    seoPages({ origin: hostname, others: routeFullPaths }),
     removeConsole({
       includes: [
         'log',

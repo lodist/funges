@@ -141,7 +141,6 @@
     "vite-plugin-checker": "^0.10.3",
     "vite-plugin-pwa": "^1.0.2",
     "vite-plugin-remove-console": "^2.2.0",
-    "vite-plugin-sitemap": "^0.8.2",
     "vitest": "^4.1.12"
   },
   "lint-staged": {
