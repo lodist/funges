@@ -50,7 +50,7 @@
     "ctaSecondary": "See what's in season",
     "forecast": {
       "heading": "Is it worth going out today?",
-      "body": "See how season and weather shape your chances, and compare nearby areas before you head out",
+      "body": "See how season and weather shape your chances and compare nearby areas before you head out",
       "link": "Open the forecast"
     },
     "identify": {
@@ -91,7 +91,7 @@
       "link": "How we check"
     },
     "metaTitle": "Funges: foraging map and garden planner",
-    "metaDescription": "Foraging forecasts for wild mushrooms and plants, and a planner for your vegetable garden. What grows around you and when."
+    "metaDescription": "Foraging forecasts for wild mushrooms and plants, plus a planner for your vegetable garden. What grows around you and when."
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",

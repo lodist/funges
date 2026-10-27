@@ -345,7 +345,7 @@ export default defineConfig({
         name: 'Funges: foraging map and garden planner',
         short_name: 'Funges',
         description:
-          'Foraging forecasts for wild mushrooms and plants, and a planner for your vegetable garden. What grows around you and when.',
+          'Foraging forecasts for wild mushrooms and plants, plus a planner for your vegetable garden. What grows around you and when.',
         theme_color: '#3d7e40',
         background_color: '#ffffff',
         display: 'standalone',

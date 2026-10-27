@@ -144,7 +144,7 @@
         },
         "scab": {
           "title": "{{crops}}: no lime this year",
-          "text": "On alkaline soil potatoes get scab. Leave out lime and fresh manure, and keep the soil moist while the tubers form."
+          "text": "On alkaline soil potatoes get scab. Leave out lime and fresh manure and keep the soil moist while the tubers form."
         },
         "forking": {
           "title": "{{crops}}: loosen the clay",
@@ -170,8 +170,8 @@
         "lost": "{{crops}}: won't survive here",
         "soon": "{{crops}}: won't make it past {{date}}",
         "last": "Pick the last {{crops}} before {{date}}",
-        "frost": "Frost usually comes here by then, and they can't take it.",
-        "frostNow": "Frost is likely here any night now, and they can't take it.",
+        "frost": "Frost usually comes here by then and they can't take it.",
+        "frostNow": "Frost is likely here any night now and they can't take it.",
         "cold": "The nights here get too cold for them by then.",
         "coldNow": "The nights here are too cold for them now: they won't grow.",
         "winter": "Winter here gets colder than they can take by then.",
@@ -493,7 +493,7 @@
       "about": "This small salad stands the cold and gives mild leaves in autumn, winter and early spring, when little else is fresh. It grows slowly and stays low, so keep the bed weeded. The seed won't come up in warm soil. That's why most sowing is done in late summer and early autumn.",
       "water": "Lamb's lettuce needs normal watering. Water it regularly in dry weather, because uneven moisture makes the leaves tough. Outdoors in winter it rarely needs watering.",
       "feed": "It needs very little feeding. Any reasonable soil will do without extra feed, especially after a summer crop that was well fed.",
-      "harvest": "Cut whole plants at the base. Or pick a few outer leaves from each plant, and new ones grow from the centre. Keep picking through winter in mild spells. Under a cloche or fleece it keeps growing for longer.",
+      "harvest": "Cut whole plants at the base. Or pick a few outer leaves from each plant and new ones grow from the centre. Keep picking through winter in mild spells. Under a cloche or fleece it keeps growing for longer.",
       "keeps": "The leaves keep 5 to 7 days in the fridge. Wash them just before you use them.",
       "problems": [
         {
@@ -537,7 +537,7 @@
       "about": "You can pick spinach as baby leaves about a month after sowing, or full-size after about two. It likes cool weather and runs to seed in heat and long summer days. So sow it in spring and late summer. For summer, choose a bolt-resistant variety, one that is slow to run to seed.",
       "water": "Spinach needs a lot of water. Water it regularly in dry weather and never let a pot dry out, or it bolts and runs to seed. Water in the morning.",
       "feed": "Its food needs are average. Dig in compost or well-rotted manure before sowing. On poor soil, rake in a general fertiliser as well.",
-      "harvest": "Pick a few outer leaves from each plant every week or so. That keeps new ones coming. Or cut the whole crop just above the base, and it will grow back once. Pull out any plants that start to flower.",
+      "harvest": "Pick a few outer leaves from each plant every week or so. That keeps new ones coming. Or cut the whole crop just above the base and it will grow back once. Pull out any plants that start to flower.",
       "keeps": "Spinach is best eaten fresh, but it keeps a few days in a bag in the fridge. To freeze it, blanch the leaves in boiling water for 2 minutes. Cool them in iced water, then pack them.",
       "problems": [
         {
@@ -622,7 +622,7 @@
       "source": "Carrot care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Pot size: University of Illinois extension. Keeping: University of Missouri extension."
     },
     "parsnip": {
-      "about": "Parsnips stay in the ground from spring into winter, and they taste sweeter after frost. Buy fresh seed every year, because old seed comes up poorly. Even fresh seed takes two to four weeks to appear. In sunshine the leaves can blister your skin, so wear gloves and long sleeves when you weed.",
+      "about": "Parsnips stay in the ground from spring into winter and they taste sweeter after frost. Buy fresh seed every year, because old seed comes up poorly. Even fresh seed takes two to four weeks to appear. In sunshine the leaves can blister your skin, so wear gloves and long sleeves when you weed.",
       "water": "Once settled in, they cope well with dry spells. Until then, water young plants when the weather is dry. After that, their deep roots get them through. Keep the moisture even, though, because a soaking after a drought splits the roots.",
       "feed": "Parsnips need very little. Don't feed them. Use ground manured for an earlier crop, because fresh manure or compost makes the roots fork.",
       "harvest": "Dig the roots from autumn, once the leaves die down, ideally after the first hard frost. The roots are long, so loosen the soil deeply with a fork first. Mark the row so you can find it in winter.",
@@ -644,7 +644,7 @@
       "source": "Parsnip care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Keeping: University of Missouri extension."
     },
     "beetroot": {
-      "about": "Beetroot gives you sweet roots, and young leaves for salads. Each seed is really a cluster that comes up as several seedlings. Pull out the extras early, or let them grow on as a small group for baby beets. Sow a little every few weeks from spring to midsummer. The roots from summer sowings are the ones that keep.",
+      "about": "Beetroot gives you sweet roots and young leaves for salads. Each seed is really a cluster that comes up as several seedlings. Pull out the extras early, or let them grow on as a small group for baby beets. Sow a little every few weeks from spring to midsummer. The roots from summer sowings are the ones that keep.",
       "water": "Beetroot needs normal watering. Water seedlings in dry spells. Once the plants are settled, they need water only every 10 to 14 days in dry weather. Too little water makes the roots woody and uneven watering splits them. Too much gives you leaves instead of roots.",
       "feed": "Its food needs are average. Soil improved with compost needs no extra feed. If the plants grow poorly, give them a high-nitrogen liquid feed. Keep weeds away, because they take food and water.",
       "harvest": "Once the roots reach golf-ball size, pull every other one and leave the rest to grow. Don't let any get bigger than about 7 cm across. Twist the leaves off instead of cutting them, so the roots don't bleed.",
@@ -678,7 +678,7 @@
         },
         {
           "name": "Clubroot",
-          "fix": "The roots are swollen and misshapen, and the plants wilt on warm days. It stays in the soil for many years. Add lime to acid soil and don't grow turnips or other cabbages where it has appeared."
+          "fix": "The roots are swollen and misshapen and the plants wilt on warm days. It stays in the soil for many years. Add lime to acid soil and don't grow turnips or other cabbages where it has appeared."
         },
         {
           "name": "Slugs",
@@ -688,10 +688,10 @@
       "source": "Turnip care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension."
     },
     "chard": {
-      "about": "Chard has big leaves on thick white, red or yellow stalks. You pick it from summer until the cold stops it, and again in spring. One sowing keeps giving for months. It is also slower than spinach to run to seed, which makes it one of the easiest leafy crops.",
+      "about": "Chard has big leaves on thick white, red or yellow stalks. You pick it from summer until the cold stops it and again in spring. One sowing keeps giving for months. It is also slower than spinach to run to seed, which makes it one of the easiest leafy crops.",
       "water": "Normal watering is enough. Water young plants regularly until they are settled. After that, chard copes with short dry spells, but water it in long ones. In a pot, water whenever the compost starts to dry.",
-      "feed": "Little food is needed, and usually no feeding at all. It grows well in most soils and in fresh potting compost.",
-      "harvest": "Cut the outer leaves with their stalks at the base, and leave the centre to keep growing. Small young leaves can go raw into salads. Cook bigger ones like spinach, giving the stalks a little longer.",
+      "feed": "Little food is needed and usually no feeding at all. It grows well in most soils and in fresh potting compost.",
+      "harvest": "Cut the outer leaves with their stalks at the base and leave the centre to keep growing. Small young leaves can go raw into salads. Cook bigger ones like spinach, giving the stalks a little longer.",
       "keeps": "The leaves keep a few days in the fridge. To freeze them, blanch them in boiling water for 2 minutes, cool them in iced water and pack them.",
       "problems": [
         {
@@ -732,7 +732,7 @@
       "source": "Radicchio and endive care: RHS. How many to grow: University of Missouri extension. pH: University of Arkansas extension."
     },
     "kale": {
-      "about": "From autumn right through winter, kale keeps giving leaves, and frost makes them sweeter. It is the toughest and least fussy member of the cabbage family. Keep caterpillars and pigeons off it, and each plant gives you many pickings.",
+      "about": "From autumn right through winter, kale keeps giving leaves and frost makes them sweeter. It is the toughest and least fussy member of the cabbage family. Keep caterpillars and pigeons off it and each plant gives you many pickings.",
       "water": "Kale needs normal watering. Water young plants regularly so the soil never dries out. Once they are settled, water only in long dry spells. A pot needs regular watering in summer.",
       "feed": "It needs an average amount of food. Plant it into ground that has had compost dug in. Feed it only on poor soil or in a pot, where a nitrogen-rich fertiliser gives it a boost.",
       "harvest": "Pick two or three of the lower leaves from each plant at a time, working your way up the stem. Leave the top to keep growing. Regular picking keeps new leaves coming until spring.",
@@ -820,7 +820,7 @@
       "source": "Broccoli care and keeping: RHS. How many to grow: Kansas State and University of Missouri extension. pH: Washington State University extension. Pot size: Texas A&M AgriLife extension."
     },
     "brussels_sprouts": {
-      "about": "The sprouts grow up the tall stem, and you pick them through autumn and winter. They taste sweetest after frost. The plants stay in the ground a long time and need firm soil. Tread the ground before planting and press each plant in firmly, or the sprouts grow loose.",
+      "about": "The sprouts grow up the tall stem and you pick them through autumn and winter. They taste sweetest after frost. The plants stay in the ground a long time and need firm soil. Tread the ground before planting and press each plant in firmly, or the sprouts grow loose.",
       "water": "Brussels sprouts need normal watering. Water young plants regularly so the soil never dries out. Once they are settled, water only in dry weather. A thick mulch keeps the soil moist.",
       "feed": "They need rich soil. Dig in compost the autumn before. On poor soil, or if growth is slow, give a fertiliser rich in nitrogen in early to mid summer.",
       "harvest": "Start with the lowest sprouts, once they are firm and about the size of a walnut. Snap them off with a downward tug and work your way up the stem. When the sprouts are done, cook the top like spring greens.",
@@ -836,7 +836,7 @@
         },
         {
           "name": "Club root",
-          "fix": "The plants stay small and wilt on warm days, and their roots are swollen and knotted. There is no cure and it stays in the soil for years, so add lime to acid soil until it reaches at least pH 6.5. Move these crops to a new bed each year and start plants in pots, so they go out with strong roots."
+          "fix": "The plants stay small and wilt on warm days. Their roots are swollen and knotted. There is no cure and it stays in the soil for years, so add lime to acid soil until it reaches at least pH 6.5. Move these crops to a new bed each year and start plants in pots, so they go out with strong roots."
         }
       ],
       "source": "Brussels sprouts care and keeping: RHS. How many to grow: Kansas State extension. pH: University of Georgia extension. Freezing: National Center for Home Food Preservation (University of Georgia)."
@@ -864,7 +864,7 @@
       "source": "Kohlrabi care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Keeping: University of Missouri extension."
     },
     "onion_sets": {
-      "about": "Sets are small onions grown the year before. You plant them and they swell into full-size bulbs. It's the easiest way to grow onions. Push each one in with the tip just showing, and firm the soil so birds don't pull them out.",
+      "about": "Sets are small onions grown the year before. You plant them and they swell into full-size bulbs. It's the easiest way to grow onions. Push each one in with the tip just showing and firm the soil so birds don't pull them out.",
       "water": "Onions need normal watering. Water them in long dry spells, mainly while the plants are young. Stop once the bulbs have swollen in midsummer. Late watering means the onions won't keep as long.",
       "feed": "Their food needs are average. Compost dug in before planting is usually enough. On poor soil, give autumn-planted sets a nitrogen-rich feed in late winter.",
       "harvest": "When the leaves turn yellow and flop over, dig up the bulbs before the leaves die off completely. That's June to July for autumn sets and July to October for spring ones. Dry them in the sun for about two weeks.",
@@ -886,7 +886,7 @@
       "source": "Onion care: RHS. How many to grow: Kansas State extension. pH: University of Connecticut extension."
     },
     "onion": {
-      "about": "Onions from seed keep through winter. They cost less than sets, the small bulbs you plant instead, and come in more varieties. They are also less likely to bolt, or flower too early. Sow in early spring, indoors or in the row. Thin the seedlings in two steps so each bulb has room.",
+      "about": "Onions from seed keep through winter. They cost less than sets (the small bulbs you plant instead) and come in more varieties. They are also less likely to bolt, or flower too early. Sow in early spring, indoors or in the row. Thin the seedlings in two steps so each bulb has room.",
       "water": "Onions need normal watering. Keep the seedlings moist. Later on, water only in long dry spells. Stop once the bulbs have swollen in midsummer, so they keep longer.",
       "feed": "Average feeding is fine. Compost dug in before sowing is usually enough. Extra nitrogen late on gives soft bulbs that keep badly.",
       "harvest": "From July to October the leaves turn yellow and fall over. Then lift the bulbs, before the leaves die off completely. Dry them in the sun for about two weeks.",
@@ -916,7 +916,7 @@
       "problems": [
         {
           "name": "Leek rust",
-          "fix": "Raised orange spots appear on the leaves, worst in late summer. Water the soil, not the leaves, and grow a resistant variety if it comes back. Leeks with a little rust are fine to eat."
+          "fix": "Raised orange spots appear on the leaves, worst in late summer. Water the soil rather than the leaves and grow a resistant variety if it comes back. Leeks with a little rust are fine to eat."
         },
         {
           "name": "Allium leaf miner",
@@ -978,11 +978,11 @@
       "problems": [
         {
           "name": "Blight",
-          "fix": "In warm, wet weather, brown patches spread fast over the leaves and then rot the potatoes. As soon as you see it, cut off the tops and take them away. Wait two to three weeks before you dig, and grow resistant varieties."
+          "fix": "In warm, wet weather, brown patches spread fast over the leaves and then rot the potatoes. As soon as you see it, cut off the tops and take them away. Wait two to three weeks before you dig and grow resistant varieties."
         },
         {
           "name": "Scab",
-          "fix": "Rough, corky patches appear on the skin, but the potatoes are still good to eat once peeled. Water in dry spells while the potatoes form, and don't add lime before planting. Grow resistant varieties."
+          "fix": "Rough, corky patches appear on the skin, but the potatoes are still good to eat once peeled. Water in dry spells while the potatoes form and don't add lime before planting. Grow resistant varieties."
         },
         {
           "name": "Green potatoes",
@@ -993,9 +993,9 @@
     },
     "asparagus": {
       "about": "Asparagus comes back every year. A good bed gives spears every spring for 20 years or more. Plant the crowns, the young root clumps, in a weed-free bed where they can stay for good. Don't cut any spears for the first two years, so the roots can build up strength.",
-      "water": "Once settled, it copes with dry spells. Water new crowns regularly through their first summer. After that the roots go deep, and the plants need water only in long dry spells.",
+      "water": "Once settled, it copes with dry spells. Water new crowns regularly through their first summer. After that the roots go deep and the plants need water only in long dry spells.",
       "feed": "Asparagus needs an average amount of feeding. Every late winter, spread 5 cm of compost or well-rotted manure over the bed. If growth is weak, scatter a general fertiliser in early spring, before the spears appear.",
-      "harvest": "Cut the spears with a sharp knife just below the soil when they are about 18 cm tall. In warm weather, that means every two or three days. In the first year you cut, stop after six weeks. In later years, stop after eight. Then let the ferny leaves grow, and cut them down only when they turn yellow in autumn.",
+      "harvest": "Cut the spears with a sharp knife just below the soil when they are about 18 cm tall. In warm weather, that means every two or three days. In the first year you cut, stop after six weeks. In later years, stop after eight. Then let the ferny leaves grow and cut them down only when they turn yellow in autumn.",
       "keeps": "Spears keep a few days in the fridge. Stand them in a little water or wrap the cut ends in damp paper. They freeze well after a quick dip in boiling water.",
       "problems": [
         {
@@ -1014,7 +1014,7 @@
       "source": "Asparagus care: RHS. How many to grow: University of Missouri and Kansas State extension. pH: Cornell and University of Maryland extension."
     },
     "rhubarb": {
-      "about": "Rhubarb comes back year after year, and you pick its tart stalks from spring to early summer. Only eat the stalks. The leaves contain oxalic acid and must never be eaten. One clump keeps going for many years. Every five years or so, dig it up, cut it into a few pieces and replant them to keep it strong.",
+      "about": "Rhubarb comes back year after year and you pick its tart stalks from spring to early summer. Only eat the stalks. The leaves contain oxalic acid and must never be eaten. One clump keeps going for many years. Every five years or so, dig it up, cut it into a few pieces and replant them to keep it strong.",
       "water": "Normal watering is all rhubarb needs. Water new plants in dry spells right through their first season. After that, a settled clump only needs water in long, dry summers. Never let the crown, the base of the plant, sit in soggy soil.",
       "feed": "Rhubarb needs an average amount of feeding. Each spring, spread a 7 cm layer of well-rotted manure or compost around the plant. Keep it off the crown, though. On poor soil, also give a high-nitrogen feed in spring.",
       "harvest": "In the second year, pull only a few stalks. From the third year on, pick stalks about 30 cm long. Hold each one at the base and twist it off instead of cutting it. Never take more than a third of the stalks at a time. Stop in early July so the plant can recover.",
@@ -1039,7 +1039,7 @@
       "about": "With artichokes, you eat the flower buds before they open. They grow on a large plant with silver leaves that comes back every year. Give it space, sun and soil that drains quickly. Cold, wet winters kill it more often than frost on its own. In the first summer, cut off the flower stalks so the plant can settle in.",
       "water": "Artichokes need normal watering. Water regularly in the first season and while the buds are forming. In dry soil you get fewer, smaller buds. Once the plant is settled, it copes with short dry spells.",
       "feed": "It needs average feeding. Dig in plenty of compost before planting and mulch around it each spring. On poor soil or in a pot, add a high-potassium feed in spring.",
-      "harvest": "Cut the buds when they are full size but still tightly closed, with a few centimetres of stem. Cut the main bud first, and the smaller side buds will follow. In warm weather, check every few days, because the buds open fast.",
+      "harvest": "Cut the buds when they are full size but still tightly closed, with a few centimetres of stem. Cut the main bud first and the smaller side buds will follow. In warm weather, check every few days, because the buds open fast.",
       "keeps": "The buds keep 3 to 5 days in a bag in the fridge.",
       "problems": [
         {
@@ -1059,7 +1059,7 @@
     },
     "tomato": {
       "about": "From midsummer until the first frost, tomatoes keep ripening. Tie tall types to a cane and keep them to one stem by pinching off the side shoots. Bush types stay compact and suit pots.",
-      "water": "Tomatoes need a lot of water, and they need it evenly. Uneven watering splits the fruit and causes blossom end rot. In hot weather a pot can need water every day.",
+      "water": "Tomatoes need a lot of water and they need it evenly. Uneven watering splits the fruit and causes blossom end rot. In hot weather a pot can need water every day.",
       "feed": "Tomatoes need a lot of feeding. Once the first fruits swell, give a liquid tomato feed, high in potassium, every 10 to 14 days. Rich ground needs less, but a feed every two weeks still gives a bigger crop.",
       "harvest": "Pick each tomato with its stalk once it is fully coloured. At the end of the season, ripen green ones somewhere warm and dark, or in a drawer with a banana.",
       "keeps": "Ripe tomatoes keep a few days at room temperature, out of the sun. The fridge spoils their taste.",
@@ -1088,7 +1088,7 @@
       "problems": [
         {
           "name": "Aphids",
-          "fix": "Small green or black insects gather on shoot tips and under the leaves, which curl, and the plant stops growing well. Check often and rub or hose off small groups. Ladybirds and other insects that eat them help."
+          "fix": "Small green or black insects gather on shoot tips and under the leaves. The leaves curl and the plant stops growing well. Check often and rub or hose off small groups. Ladybirds and other insects that eat them help."
         },
         {
           "name": "Blossom end rot",
@@ -1110,7 +1110,7 @@
       "problems": [
         {
           "name": "Aphids",
-          "fix": "Small green or black insects sit on the shoot tips and under the leaves, which curl. Check often, especially indoors, and rub or hose off small groups. Ladybirds and other insects that eat them help too."
+          "fix": "Small green or black insects sit on the shoot tips and under the leaves, which curl. Check often (especially indoors) and rub or hose off small groups. Ladybirds and other insects that eat them help too."
         },
         {
           "name": "Red spider mite",
@@ -1124,10 +1124,10 @@
       "source": "Chilli care and keeping: RHS. pH: Virginia Tech extension (peppers)."
     },
     "aubergine": {
-      "about": "Aubergines come in purple, white or striped. They need more heat than tomatoes, and about five months from sowing to harvest. In a cool summer, grow them in a greenhouse or your sunniest, most sheltered spot. Pinch off the tip at about 30 cm for a bushier plant. On large-fruited types, keep five or six fruits.",
+      "about": "Aubergines come in purple, white or striped. They need more heat than tomatoes and about five months from sowing to harvest. In a cool summer, grow them in a greenhouse or your sunniest, most sheltered spot. Pinch off the tip at about 30 cm for a bushier plant. On large-fruited types, keep five or six fruits.",
       "water": "Aubergines need a lot of water, so keep the soil steadily moist. In hot weather a pot can need water every day. Under cover, misting the leaves twice a day also keeps red spider mite away.",
       "feed": "They need a lot of feeding. Once the first flowers open, give a high-potassium liquid feed every two weeks. Rich ground needs less, but feeding still gives a bigger crop.",
-      "harvest": "Cut each fruit with a few centimetres of stalk once it is full size, glossy and well coloured. Dull skin means it is over-ripe and may taste bitter. Pick regularly, and watch out for the small spines on the stalk.",
+      "harvest": "Cut each fruit with a few centimetres of stalk once it is full size, glossy and well coloured. Dull skin means it is over-ripe and may taste bitter. Pick regularly and watch out for the small spines on the stalk.",
       "keeps": "Aubergines keep best at cool room temperature, so eat them within days. In the fridge they last 1 to 3 days, if you cook them soon after.",
       "problems": [
         {
@@ -1158,7 +1158,7 @@
         },
         {
           "name": "Mosaic virus",
-          "fix": "The leaves turn mottled yellow and puckered, and the plants stay stunted. Pull up affected plants and throw them away, not on the compost heap. Keep aphids down, because they spread it."
+          "fix": "The leaves turn mottled yellow and puckered and the plants stay stunted. Pull up affected plants and throw them away, not on the compost heap. Keep aphids down, because they spread it."
         },
         {
           "name": "Slugs and snails",
@@ -1168,9 +1168,9 @@
       "source": "Cucumber care: RHS. How many to grow: Virginia Tech extension. pH: Cornell Cooperative Extension. Keeping: Kansas State and University of Missouri extension."
     },
     "courgette": {
-      "about": "You pick courgettes small, all summer long, and the flowers are good to eat too. One plant spreads wide and gives a lot of fruit. Pick often. A courgette left for a few days grows into a marrow and slows the plant down.",
+      "about": "You pick courgettes small all summer long and the flowers are good to eat too. One plant spreads wide and gives a lot of fruit. Pick often. A courgette left for a few days grows into a marrow and slows the plant down.",
       "water": "Courgettes need a lot of water, so keep the soil moist all summer. Water the base, not the leaves. A small pot buried next to each plant and filled with water sends it straight to the roots.",
-      "feed": "Rich soil is a must. Dig plenty of compost or well-rotted manure in before planting, and in good soil they need little more. In a pot, give a high-potassium liquid feed every 10 to 14 days once the first fruits swell.",
+      "feed": "Rich soil is a must. Dig plenty of compost or well-rotted manure in before planting and in good soil they need little more. In a pot, give a high-potassium liquid feed every 10 to 14 days once the first fruits swell.",
       "harvest": "Cut them at 10 to 12 cm long, while they are small and tender. In good weather, check every day or two, because one plant can give three or four a week. You can pick the male flowers without losing any fruit.",
       "keeps": "Courgettes keep a few days in the fridge. Eat them while still firm.",
       "problems": [
@@ -1192,7 +1192,7 @@
     "pumpkin": {
       "about": "Pumpkins ripen in autumn and keep well into winter. The plants trail a long way, so give them plenty of space. For big pumpkins, leave two or three on each plant. For one giant, leave only one.",
       "water": "Pumpkins need a lot of water, especially once the fruit starts to grow. Water the ground, not the leaves. A good trick: bury a pot next to the plant and fill that, so the water goes straight to the roots.",
-      "feed": "Rich soil is what pumpkins need. Dig plenty of compost or well-rotted manure into the planting spot, and most plants then need nothing more. For very large fruit, give a high-potassium liquid feed every 10 to 14 days once the fruit swells.",
+      "feed": "Rich soil is what pumpkins need. Dig plenty of compost or well-rotted manure into the planting spot and most plants then need nothing more. For very large fruit, give a high-potassium liquid feed every 10 to 14 days once the fruit swells.",
       "harvest": "Leave the fruit on the plant until it has fully coloured. The skin should be hard and not dent when you press a fingernail into it. Cut it before the first frost with at least 10 cm of stalk. Then leave it in the sun for a week to 10 days to harden the skin.",
       "keeps": "Store hardened pumpkins in an airy place at 10 to 15 °C, not touching. They keep at least three months, up to six in good conditions. Frosted fruit won't keep.",
       "problems": [
@@ -1236,7 +1236,7 @@
     "green_beans": {
       "about": "Pick green beans young, while the pods are tender. Dwarf types grow to about 45 cm and suit pots. Climbing types need tall canes but keep giving beans for longer. Frost kills them and cold, wet soil rots them, so sow only once the soil is warm.",
       "water": "Green beans need normal watering. Water in dry weather, most of all once they flower and set pods. Dry soil makes the flowers drop. Pots need water often.",
-      "feed": "They need little food. In the ground they need no feed at all, and too much nitrogen gives you leaves instead of pods. In a pot, give a high-potassium liquid feed every two weeks from the first flowers.",
+      "feed": "They need little food. In the ground they need no feed at all and too much nitrogen gives you leaves instead of pods. In a pot, give a high-potassium liquid feed every two weeks from the first flowers.",
       "harvest": "Pick the pods at 15 to 20 cm, when they snap cleanly and before the beans show through. Pick every few days. The more you pick, the more pods come.",
       "keeps": "The pods keep a few days in a bag in the fridge. For winter, blanch and freeze them.",
       "problems": [
@@ -1256,7 +1256,7 @@
       "source": "Bean care: RHS and Virginia Tech extension. How many to grow: Kansas State and Texas A&M extension. pH: Virginia Tech and Penn State extension."
     },
     "sweetcorn": {
-      "about": "Plant sweetcorn in a block of short rows, not one long row. The wind carries the pollen, and only a block gets the cobs well filled. Keep supersweet varieties away from other sweetcorn, or the kernels turn starchy.",
+      "about": "Plant sweetcorn in a block of short rows, not one long row. The wind carries the pollen and only a block gets the cobs well filled. Keep supersweet varieties away from other sweetcorn, or the kernels turn starchy.",
       "water": "Normal watering is enough. Water young plants until they are settled, then in dry spells. It matters most when the tassels appear at the top and while the cobs swell.",
       "feed": "Sweetcorn needs rich soil, so grow it in ground full of compost or manure. A nitrogen feed when the plants are about knee-high gives a bigger crop.",
       "harvest": "Once the silky threads at the end of each cob turn brown, check the cobs. Peel back a little husk and press a kernel with your fingernail. Creamy juice means it's ready, watery juice means wait. Twist the cob off and eat it soon, because its sugar turns to starch.",
@@ -1301,9 +1301,9 @@
     },
     "melon": {
       "about": "Melons ripen in late summer and need real heat. Where summers are cool, grow them in a greenhouse, tunnel or cold frame. To make sure the fruits ripen, keep up to four on each plant outdoors and four to six under cover. Remove the rest when they are about 2.5 cm across.",
-      "water": "Melons need normal watering. Keep the soil evenly moist but not soggy, and water at the base in the morning. Water less once the fruit starts to ripen in late summer.",
+      "water": "Melons need normal watering. Keep the soil evenly moist but not soggy and water at the base in the morning. Water less once the fruit starts to ripen in late summer.",
       "feed": "An average amount of food suits melons. In a pot, give a general liquid feed every 10 to 14 days in early summer. Once the fruits are the size of a walnut, switch to a high-potassium feed. Stop feeding as they ripen.",
-      "harvest": "A ripe melon smells sweet, and the stalk starts to crack where it meets the fruit. The end opposite the stalk gives a little when you press it. Cantaloupe types then come away from the stalk with a light push.",
+      "harvest": "A ripe melon smells sweet and the stalk starts to crack where it meets the fruit. The end opposite the stalk gives a little when you press it. Cantaloupe types then come away from the stalk with a light push.",
       "keeps": "A ripe melon keeps a few days at room temperature. Once you cut it, cover it and keep it in the fridge.",
       "problems": [
         {
@@ -1348,7 +1348,7 @@
       "water": "Normal watering is right for basil. Keep the soil evenly moist. Water in the morning, at the foot of the plant rather than over the leaves. It hates having wet roots overnight. In hot weather a pot may need water every day.",
       "feed": "It needs very little feeding. In the ground, give it none at all. In a pot, give a balanced liquid feed every few weeks in summer. Don't use tomato feed, because it pushes basil into flower.",
       "harvest": "Pick the shoot tips just above a pair of leaves, a few from each plant. New side shoots then grow from there. Pinch out flower buds as soon as they appear, so the leaves stay tender.",
-      "keeps": "In the fridge, basil turns black. Stand the stems in a glass of water at room temperature instead, and it keeps for a few days. For longer, freeze the chopped leaves in oil or make pesto.",
+      "keeps": "In the fridge, basil turns black. Stand the stems in a glass of water at room temperature instead and it keeps for a few days. For longer, freeze the chopped leaves in oil or make pesto.",
       "problems": [
         {
           "name": "Downy mildew",
@@ -1382,13 +1382,13 @@
         },
         {
           "name": "Slow to come up",
-          "fix": "Nothing shows for weeks, and people often dig the row over by mistake. Soak the seed overnight before sowing. Keep the soil moist and give it up to six weeks."
+          "fix": "Nothing shows for weeks and people often dig the row over by mistake. Soak the seed overnight before sowing. Keep the soil moist and give it up to six weeks."
         }
       ],
       "source": "Parsley care: RHS. pH: Cornell and University of Maryland extension."
     },
     "coriander": {
-      "about": "Coriander leaves (cilantro) are ready fast, and the seeds come later. In heat or dry soil the plants soon shoot up and flower. So sow a small batch every month or so from spring, rather than one big sowing. It grows well in a pot.",
+      "about": "Coriander leaves (cilantro) are ready fast and the seeds come later. In heat or dry soil the plants soon shoot up and flower. So sow a small batch every month or so from spring, rather than one big sowing. It grows well in a pot.",
       "water": "It needs a normal amount of water. In dry spells keep the soil moist, because dry roots make it flower early. In warm weather, check pots every day.",
       "feed": "Coriander needs very little. It's a quick crop, so garden soil or fresh compost is enough without any feed.",
       "harvest": "Start cutting leaves when the plants are 10 to 15 cm tall. Take a few from each plant, then give them about two weeks to grow back. For seed, let some plants flower. Cut the stems when the seeds turn brown and dry them in a paper bag.",
@@ -1436,7 +1436,7 @@
       "water": "Chervil needs normal watering. Keep the soil evenly damp but not soggy, as dry soil makes it flower early. Pots need extra water in warm weather.",
       "feed": "It needs very little food. Garden soil or fresh compost is enough, so don't feed it.",
       "harvest": "The leaves are ready about eight weeks after sowing, once the plants are 10 cm tall. Pick a few young leaves from each plant. Or cut whole stems back to 5 cm and let them grow again.",
-      "keeps": "Use chervil fresh. It wilts within a day or two, and it loses most of its flavour when dried.",
+      "keeps": "Use chervil fresh. It wilts within a day or two and it loses most of its flavour when dried.",
       "problems": [
         {
           "name": "Bolting",
@@ -1450,7 +1450,7 @@
       "source": "Chervil care: RHS. pH: University of Connecticut extension."
     },
     "chives": {
-      "about": "The leaves taste mildly of onion, and you can eat the purple flowers too. The clump comes back every spring. Every three or four years, dig it up, pull it into smaller clumps and replant them to keep it strong.",
+      "about": "The leaves taste mildly of onion and you can eat the purple flowers too. The clump comes back every spring. Every three or four years, dig it up, pull it into smaller clumps and replant them to keep it strong.",
       "water": "Chives need normal watering. In the first summer, water them in dry spells. After that, chives in the ground manage on their own. In a pot, keep the compost evenly moist.",
       "feed": "They need little food. In the ground, some compost at planting time is enough. In a pot, a general liquid feed now and then in summer keeps new leaves coming.",
       "harvest": "Snip leaves just above the base whenever you need them. The more often you cut, the more you get. After flowering, cut the whole clump back to about 5 cm and it will send up lots of fresh leaves.",
@@ -1498,7 +1498,7 @@
       "problems": [
         {
           "name": "Rosemary beetle",
-          "fix": "From late summer to spring, small beetles with metallic green and purple stripes eat the leaves, and so do their grey grubs. Pick them off by hand or shake the plant over a sheet of paper."
+          "fix": "From late summer to spring, small beetles with metallic green and purple stripes eat the leaves and so do their grey grubs. Pick them off by hand or shake the plant over a sheet of paper."
         },
         {
           "name": "Frost and wet damage",
@@ -1512,7 +1512,7 @@
       "source": "Rosemary care: RHS. pH: Texas A&M AgriLife extension."
     },
     "oregano": {
-      "about": "You can use oregano fresh or dried. It spreads out over time and comes back every year. Most of the top dies back in winter, and new shoots come up in spring. It has the most flavour in full sun and in poor soil that drains quickly. It's best picked just before the flowers open.",
+      "about": "You can use oregano fresh or dried. It spreads out over time and comes back every year. Most of the top dies back in winter and new shoots come up in spring. It has the most flavour in full sun and in poor soil that drains quickly. It's best picked just before the flowers open.",
       "water": "Once settled, oregano copes with dry spells. Water new plants when it's dry. Settled plants in the ground need no extra water. In a pot, water it in hot, dry weather, but never let the compost stay soggy.",
       "feed": "Oregano needs very little food. Plants in the ground need no feeding. A plant that has been in the same pot for more than a year can have a sprinkle of general fertiliser granules in late spring or early summer.",
       "harvest": "Pick shoots from late spring to autumn and strip off the leaves. The flavour is best before the flowers open. After flowering, cut the plant back and it will grow a fresh batch of leaves. Clear away the old stems in late winter.",
@@ -1520,7 +1520,7 @@
       "problems": [
         {
           "name": "Mint rust",
-          "fix": "Orange or brown powdery spots appear under the leaves, and shoots come up twisted in spring. Cut the affected stems down to the ground. Put them in the bin, not on the compost."
+          "fix": "Orange or brown powdery spots appear under the leaves and shoots come up twisted in spring. Cut the affected stems down to the ground. Put them in the bin, not on the compost."
         },
         {
           "name": "Leafhoppers",
@@ -1564,7 +1564,7 @@
       "problems": [
         {
           "name": "Mint rust",
-          "fix": "Orange powdery spots appear under the leaves, and in spring the shoots come up twisted and swollen. Cut affected stems to the ground and put them in the bin. If it comes back every year, start again with healthy plants in a new spot."
+          "fix": "Orange powdery spots appear under the leaves and in spring the shoots come up twisted and swollen. Cut affected stems to the ground and put them in the bin. If it comes back every year, start again with healthy plants in a new spot."
         },
         {
           "name": "Spreading everywhere",
@@ -1612,7 +1612,7 @@
         },
         {
           "name": "Bulb fly",
-          "fix": "Thin, grassy leaves come up but no flowers, and the bulb is soft with a fat grub inside. Throw away soft bulbs. As the leaves die back, firm the soil over the holes so the fly can't reach the bulbs."
+          "fix": "Thin, grassy leaves come up but no flowers and the bulb is soft with a fat grub inside. Throw away soft bulbs. As the leaves die back, firm the soil over the holes so the fly can't reach the bulbs."
         },
         {
           "name": "Rotting bulbs",
@@ -1622,9 +1622,9 @@
       "source": "Daffodil care: RHS. pH: University of Connecticut soil testing lab. Pot size: Purdue University extension."
     },
     "crocus": {
-      "about": "Crocuses grow from corms, which are like small bulbs, and flower in late winter and early spring. They are among the first food of the year for bees. They come back every year and spread into wide patches in borders and short grass. Let the leaves die back after flowering. In a lawn, don't mow until they have.",
+      "about": "Crocuses grow from corms (like small bulbs) and flower in late winter and early spring. They are among the first food of the year for bees. They come back every year and spread into wide patches in borders and short grass. Let the leaves die back after flowering. In a lawn, don't mow until they have.",
       "water": "Crocuses cope with dry spells and in the ground rarely need water. In a pot, keep the compost moist a few centimetres down while the leaves are up.",
-      "feed": "They need little food, and none at all in the ground. In a pot, give a high-potassium liquid feed while the leaves are up. It helps next year's flowers.",
+      "feed": "They need little food and none at all in the ground. In a pot, give a high-potassium liquid feed while the leaves are up. It helps next year's flowers.",
       "harvest": "There's no need to snip off the faded flowers. Leave the leaves until they die back. In a lawn, wait to mow until then, so the corms can build up and spread. Once the leaves have died, you can dig up crocuses in pots. Keep them in paper bags somewhere cool and dry until autumn.",
       "problems": [
         {
@@ -1633,7 +1633,7 @@
         },
         {
           "name": "Birds pecking flowers",
-          "fix": "Sparrows peck the flowers, often the yellow ones, and leave them torn and shredded. Black thread or netting over the clump protects them while they flower."
+          "fix": "Sparrows peck the flowers (often the yellow ones) and leave them torn and shredded. Black thread or netting over the clump protects them while they flower."
         },
         {
           "name": "Few flowers",
@@ -1731,10 +1731,10 @@
       "source": "Nasturtium care: RHS and University of Maryland extension."
     },
     "zinnia": {
-      "about": "These cut flowers come in bold colours from midsummer to the first frost. The more you cut, the more they flower. Zinnias love heat and sun, and they struggle in cold, wet weather. They don't like their roots being disturbed, so sow them where they will flower or in small pots.",
+      "about": "These cut flowers come in bold colours from midsummer to the first frost. The more you cut, the more they flower. Zinnias love heat and sun and they struggle in cold, wet weather. They don't like their roots being disturbed, so sow them where they will flower or in small pots.",
       "water": "Zinnias need normal watering. In dry spells, water deeply at the base of the plant, because wet leaves bring mildew. Check plants in pots every day in summer.",
-      "feed": "They need little food. Ordinary soil with some compost is enough, and too much feed gives soft growth. In pots, give a liquid feed every two weeks once flowering starts.",
-      "harvest": "Cut a flower when it's fully open and the stem is stiff just below the head. A simple test: shake it, and the stem shouldn't bend. Cut low down, just above a pair of leaves. Snip off the faded flowers on the rest so new buds keep coming.",
+      "feed": "They need little food. Ordinary soil with some compost is enough and too much feed gives soft growth. In pots, give a liquid feed every two weeks once flowering starts.",
+      "harvest": "Cut a flower when it's fully open and the stem is stiff just below the head. A simple test: shake it and the stem shouldn't bend. Cut low down, just above a pair of leaves. Snip off the faded flowers on the rest so new buds keep coming.",
       "keeps": "Cut zinnias last about a week in a vase. Give them fresh water every couple of days.",
       "problems": [
         {
@@ -1753,7 +1753,7 @@
       "source": "Zinnia care: RHS. pH: University of Florida IFAS extension."
     },
     "cosmos": {
-      "about": "This tall, airy plant lives for one season. It has feathery leaves and daisy-like flowers from midsummer to the first frost, and they're good for cutting. It flowers best in poor to average soil. Rich soil gives tall, leafy plants with few flowers. Dwarf types suit pots.",
+      "about": "This tall, airy plant lives for one season. It has feathery leaves and daisy-like flowers from midsummer to the first frost and they're good for cutting. It flowers best in poor to average soil. Rich soil gives tall, leafy plants with few flowers. Dwarf types suit pots.",
       "water": "Once it's settled, cosmos copes with dry spells. Water seedlings, new plants and pots. Too much water, like too much feed, gives you more leaves than flowers.",
       "feed": "Cosmos needs very little. Don't feed it in the ground. Plants in pots can have a high-potassium liquid feed, such as tomato feed, once a month.",
       "harvest": "For the vase, cut stems when the buds are just opening, back to a side shoot. Pick off faded flowers every few days, or the plant sets seed and stops flowering.",
@@ -1775,7 +1775,7 @@
       "source": "Cosmos care: RHS. pH: University of Connecticut soil testing lab."
     },
     "sweet_pea": {
-      "about": "Sweet peas climb and give scented flowers to cut from early summer. Give them canes, netting or a fence to climb. Pinch out the tip when they are about 10 cm tall, and the plants grow bushier. The one rule: keep picking, because once seed pods form they stop flowering. The pods look like garden peas, but they are poisonous.",
+      "about": "Sweet peas climb and give scented flowers to cut from early summer. Give them canes, netting or a fence to climb. Pinch out the tip when they are about 10 cm tall and the plants grow bushier. The one rule: keep picking, because once seed pods form they stop flowering. The pods look like garden peas, but they are poisonous.",
       "water": "They need a lot of water. Keep the soil moist all season and water well in dry spells. Dry roots cut the flowering short. In warm weather, pots need water every day.",
       "feed": "Average feeding is right for sweet peas. Before sowing or planting, dig in plenty of compost or well-rotted manure. Once they are growing, a liquid feed every week or two keeps the flowers coming.",
       "harvest": "Every few days, cut stems in the morning when the lowest flowers on them are open. Take off any seed pods you find, or the plant stops flowering.",
@@ -1819,9 +1819,9 @@
       "source": "Lavender care: RHS. pH: University of California IPM and UMass extension."
     },
     "field_beans": {
-      "about": "Field beans are a winter green manure, a crop you grow to dig back into the soil. Sown in autumn, they cover bare ground through winter. Their roots open up heavy soil, and like all beans they add nitrogen. Dig them in during spring, before the next crop.",
+      "about": "Field beans are a winter green manure, a crop you grow to dig back into the soil. Sown in autumn, they cover bare ground through winter. Their roots open up heavy soil and like all beans they add nitrogen. Dig them in during spring, before the next crop.",
       "water": "Field beans need very little water. Autumn and winter rain is enough, so only water if the soil is dry when you sow.",
-      "feed": "They need no feeding at all. They make their own nitrogen, and it stays in the soil for the next crop.",
+      "feed": "They need no feeding at all. They make their own nitrogen and it stays in the soil for the next crop.",
       "harvest": "In spring, any time up to flowering, cut the plants down. Chop them up and let them wilt, then dig them into the top 25 cm of soil. Wait about a month before you sow or plant anything in that bed.",
       "problems": [
         {
@@ -1837,9 +1837,9 @@
     },
     "winter_rye": {
       "about": "Winter rye is the hardiest green manure, a crop you grow to dig back into the soil. Sown from late summer to autumn, it keeps growing through winter. It holds the soil and smothers weeds. Its thick roots improve the soil too. Dig it in when spring comes.",
-      "water": "Rye needs little water, and rain is enough. Water only to get the seed going in a dry autumn.",
+      "water": "Rye needs little water and rain is enough. Water only to get the seed going in a dry autumn.",
       "feed": "It needs no feeding. Rye grows even on poor, sandy or acid soil. It also takes up nitrogen that winter rain would otherwise wash away.",
-      "harvest": "In spring, cut it down while it is still short and soft. Chop it, let it wilt and then dig it into the top 25 cm of soil. Older rye is tough and grows back, and it holds back the next crop.",
+      "harvest": "In spring, cut it down while it is still short and soft. Chop it, let it wilt and then dig it into the top 25 cm of soil. Older rye is tough and grows back. It holds back the next crop.",
       "problems": [
         {
           "name": "Small seeds won't come up",
@@ -1871,7 +1871,7 @@
     },
     "phacelia": {
       "about": "This fast green manure has feathery leaves and blue flowers that bees love. You grow it for the soil and dig it in later. It covers bare soil, holds on to leftover nutrients and adds organic matter when dug in. It isn't related to any of the usual vegetables, so it fits anywhere when you rotate crops.",
-      "water": "Phacelia needs little water, and rain is usually enough. Only water to get a sowing going in dry soil.",
+      "water": "Phacelia needs little water and rain is usually enough. Only water to get a sowing going in dry soil.",
       "feed": "It needs no feeding. It takes up the nutrients left in the soil and gives them back when you dig it in.",
       "harvest": "Cut it down when it starts to flower. If you're leaving it for the bees, cut just after, but always before it sets seed. Chop it up and leave it to wilt for a few days. Then dig it into the top of the soil and wait two to three weeks before sowing. An autumn sowing can stay over winter and be dug in when spring comes.",
       "problems": [
@@ -1888,7 +1888,7 @@
     },
     "white_mustard": {
       "about": "On bare ground, white mustard covers the soil in a few weeks. It's a fast green manure, a crop you grow and then dig into the soil. It smothers weeds and adds organic matter when you dig it in. Sow it from spring to late summer in gaps between crops. It belongs to the cabbage family, so don't grow it where clubroot, a root disease of cabbages, is a problem. When you rotate crops between beds, count it as a cabbage.",
-      "water": "It needs little water, and rain is usually enough. Water the seedbed only in a dry spell, so the seed comes up evenly.",
+      "water": "It needs little water and rain is usually enough. Water the seedbed only in a dry spell, so the seed comes up evenly.",
       "feed": "Mustard needs no feeding at all. It takes up the nutrients left in the soil and gives them back when you dig it in.",
       "harvest": "Cut it down before it flowers, usually four to eight weeks after sowing. Chop the stems and let them wilt for a few days. Then dig them into the top layer of soil. Wait two to three weeks before sowing or planting there.",
       "problems": [
@@ -1898,7 +1898,7 @@
         },
         {
           "name": "Going to seed",
-          "fix": "In warm weather it flowers within weeks, and the seed comes up as weeds. Check it often in summer and cut it down at the first flowers."
+          "fix": "In warm weather it flowers within weeks and the seed comes up as weeds. Check it often in summer and cut it down at the first flowers."
         }
       ],
       "source": "Green manure: RHS. pH: University of Connecticut extension."
@@ -1946,7 +1946,7 @@
   },
   "planner": {
     "title": "My garden",
-    "description": "Your garden bed by bed, and what it needs from you each week: what to sow where, care, watering and harvest, worked out for your place.",
+    "description": "Your garden bed by bed and what it needs from you each week: what to sow where, care, watering and harvest, worked out for your place.",
     "sample": "Planned for a sample place, {{place}}.",
     "choosePlace": "Choose your place",
     "for": "Planned for this week around {{place}}.",
@@ -2150,9 +2150,9 @@
     },
     "fate": {
       "frost": "Frost will likely kill it around {{date}}, before it's ready.",
-      "frostNow": "Frost is likely any night now here, and it won't survive one.",
+      "frostNow": "Frost is likely any night now here and it won't survive one.",
       "cold": "The nights here get too cold for it from about {{date}}: it will stop growing and die before it's ready.",
-      "coldNow": "The nights here are too cold for it now: it won't grow, and it will die within weeks.",
+      "coldNow": "The nights here are too cold for it now: it won't grow and it will die within weeks.",
       "winter": "Winter here gets colder than it can take: it will likely die around {{date}}.",
       "winterNow": "Winter here is already colder than it can take: it won't survive.",
       "ifNow": "If it goes in today",
@@ -2192,9 +2192,9 @@
   "early": "Early access",
   "signin": {
     "title": "Funges Huerta",
-    "pitch": "Funges tells you what to grow, where to put it, when to plant it, and what your garden needs this week, based on the actual climate where your garden is.",
+    "pitch": "Funges tells you what to grow, where to put it, when to plant it and what your garden needs this week, based on the actual climate where your garden is.",
     "button": "Sign in with Google",
-    "small": "Free while in early access. We keep your email and your gardens, nothing else, and you can delete them any time from your account.",
+    "small": "Free while in early access. We keep your email and your gardens, nothing else. You can delete them any time from your account.",
     "privacy": "Privacy",
     "working": "Signing you in…",
     "doneElsewhere": "You're signed in. Go back to the Funges app.",
@@ -2241,7 +2241,7 @@
     },
     "sow": {
       "title": "Sow and tick off",
-      "text": "This week's list says what to sow, where and how. Tick each one off when it's in, and Huerta follows it from there."
+      "text": "This week's list says what to sow, where and how. Tick each one off when it's in and Huerta follows it from there."
     },
     "step": "Step {{n}} of 3"
   },

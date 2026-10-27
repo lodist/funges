@@ -124,7 +124,7 @@
       ],
       "instructions": [
         "Cook the amaranth: Cook the amaranth seeds in water until fully absorbed (15–20 min). Let cool slightly.",
-        "Mix: Combine cooked amaranth with greens, egg, flour, salt, and pepper.",
+        "Mix: Combine cooked amaranth with greens, egg, flour, salt and pepper.",
         "Form: Shape small patties with wet hands.",
         "Sauté: Cook in a pan with oil for 3–4 min per side until golden.",
         "Serve: With yogurt sauce, pesto, or as a vegetarian burger alternative."
@@ -137,7 +137,7 @@
         },
         {
           "step": 2,
-          "instruction": "Mix: Combine cooked amaranth with greens, egg, flour, salt, and pepper."
+          "instruction": "Mix: Combine cooked amaranth with greens, egg, flour, salt and pepper."
         },
         {
           "step": 3,
@@ -232,7 +232,7 @@
       "instructions": [
         "Clean the mushrooms: Clean chanterelles with a brush or damp cloth.",
         "Sauté base: Heat oil in a pan, cook leek until soft. Add chanterelles and sauté for 5 minutes. Season with salt.",
-        "Prepare filling: Beat eggs with cream, herbs, salt, and pepper.",
+        "Prepare filling: Beat eggs with cream, herbs, salt and pepper.",
         "Assemble: Place puff pastry in a baking dish, add mushrooms and leeks, pour egg mixture on top.",
         "Bake: Bake at 180°C for 25–30 minutes until golden.",
         "Serve: Hot or cold, perfect for a woodland brunch."
@@ -249,7 +249,7 @@
         },
         {
           "step": 3,
-          "instruction": "Prepare filling: Beat eggs with cream, herbs, salt, and pepper."
+          "instruction": "Prepare filling: Beat eggs with cream, herbs, salt and pepper."
         },
         {
           "step": 4,
@@ -288,8 +288,8 @@
       "instructions": [
         "Toast the walnuts: In a dry pan, toast walnuts for 3–4 minutes until fragrant. Let cool.",
         "Wash the greens: Rinse chickweed and sorrel, then gently dry with a clean cloth.",
-        "Prepare vinaigrette: In a small bowl, whisk oil, vinegar, honey, salt, and pepper.",
-        "Toss the salad: In a large bowl, combine chickweed, sorrel, and walnuts. Dress with vinaigrette and toss gently.",
+        "Prepare vinaigrette: In a small bowl, whisk oil, vinegar, honey, salt and pepper.",
+        "Toss the salad: In a large bowl, combine chickweed, sorrel and walnuts. Dress with vinaigrette and toss gently.",
         "Serve: Enjoy immediately as a fresh, slightly tangy salad."
       ],
       "species": ["chickweed", "sorrel", "walnut"],
@@ -304,11 +304,11 @@
         },
         {
           "step": 3,
-          "instruction": "Prepare vinaigrette: In a small bowl, whisk oil, vinegar, honey, salt, and pepper."
+          "instruction": "Prepare vinaigrette: In a small bowl, whisk oil, vinegar, honey, salt and pepper."
         },
         {
           "step": 4,
-          "instruction": "Toss the salad: In a large bowl, combine chickweed, sorrel, and walnuts. Dress with vinaigrette and toss gently."
+          "instruction": "Toss the salad: In a large bowl, combine chickweed, sorrel and walnuts. Dress with vinaigrette and toss gently."
         },
         {
           "step": 5,
@@ -509,7 +509,7 @@
       ],
       "instructions": [
         "Clean the mushrooms: Wipe the caps with a damp cloth. Do not wash under water.",
-        "Prepare the coating: Beat the egg in a bowl. In another, mix breadcrumbs, salt, pepper, and Parmesan.",
+        "Prepare the coating: Beat the egg in a bowl. In another, mix breadcrumbs, salt, pepper and Parmesan.",
         "Bread: Dip each cap in egg, then in the breadcrumb mixture.",
         "Fry: Heat oil or butter in a pan. Fry the caps over medium heat until golden and crispy (about 3 minutes per side).",
         "Serve: With lemon wedges and fresh salad. A vegetarian classic."
@@ -522,7 +522,7 @@
         },
         {
           "step": 2,
-          "instruction": "Prepare the coating: Beat the egg in a bowl. In another, mix breadcrumbs, salt, pepper, and Parmesan."
+          "instruction": "Prepare the coating: Beat the egg in a bowl. In another, mix breadcrumbs, salt, pepper and Parmesan."
         },
         {
           "step": 3,
@@ -603,13 +603,13 @@
         "3 slices rustic bread, cubed",
         "100 ml vegetable broth",
         "1 tablespoon butter",
-        "Fresh thyme, salt, and pepper"
+        "Fresh thyme, salt and pepper"
       ],
       "instructions": [
         "Sauté base: In a pan, melt butter and cook onion and garlic until soft.",
         "Add mushrooms and chestnuts: Add morels and chestnuts, cook for 5 minutes.",
         "Add bread: Add bread cubes and mix gently. Pour in broth and stir.",
-        "Season: Add thyme, salt, and pepper. Let the liquid absorb.",
+        "Season: Add thyme, salt and pepper. Let the liquid absorb.",
         "Bake: Transfer to a baking dish and bake at 180°C for 20 minutes until golden.",
         "Serve as a side for roast meats or as a main vegetarian dish."
       ],
@@ -629,7 +629,7 @@
         },
         {
           "step": 4,
-          "instruction": "Season: Add thyme, salt, and pepper. Let the liquid absorb."
+          "instruction": "Season: Add thyme, salt and pepper. Let the liquid absorb."
         },
         {
           "step": 5,
@@ -717,7 +717,7 @@
       "instructions": [
         "Prepare the mushrooms: Clean thoroughly and slice.",
         "Sauté: Cook onion in oil until soft, add mushrooms and cook for 5–7 minutes. Add blanched nettles.",
-        "Beat the eggs: In a bowl, beat eggs with cheese, salt, and pepper.",
+        "Beat the eggs: In a bowl, beat eggs with cheese, salt and pepper.",
         "Combine: Pour eggs over mushrooms in the pan. Cook over low heat until almost set.",
         "Finish: Place in oven or under grill for 5 minutes to brown (or carefully flip).",
         "Serve: Hot or at room temperature — perfect for spring picnics or brunch."
@@ -734,7 +734,7 @@
         },
         {
           "step": 3,
-          "instruction": "Beat the eggs: In a bowl, beat eggs with cheese, salt, and pepper."
+          "instruction": "Beat the eggs: In a bowl, beat eggs with cheese, salt and pepper."
         },
         {
           "step": 4,
@@ -774,7 +774,7 @@
       ],
       "instructions": [
         "Toast the walnuts: Lightly toast walnuts in a pan until golden. Let cool.",
-        "Blend: Combine all ingredients in a food processor: walnuts, garlic, lingonberry, herbs, and oil.",
+        "Blend: Combine all ingredients in a food processor: walnuts, garlic, lingonberry, herbs and oil.",
         "Season: Adjust salt and pepper. Pulse until a coarse, spreadable paste forms.",
         "Serve: Ideal on bread, as a sauce, or with cheese and grilled vegetables."
       ],
@@ -786,7 +786,7 @@
         },
         {
           "step": 2,
-          "instruction": "Blend: Combine all ingredients in a food processor: walnuts, garlic, lingonberry, herbs, and oil."
+          "instruction": "Blend: Combine all ingredients in a food processor: walnuts, garlic, lingonberry, herbs and oil."
         },
         {
           "step": 3,
@@ -820,8 +820,8 @@
         "Prepare the artichokes: Remove outer leaves and choke. Thinly slice the hearts.",
         "Sauté: Gently cook garlic and artichokes in oil for 10 minutes until tender.",
         "Cook the pasta: Boil pasta in salted water until al dente. Reserve ½ cup cooking water.",
-        "Toss: Mix pasta with artichokes, lemon juice and zest, and the cooking water.",
-        "Serve: Add salt, pepper, and garnish with fresh herbs. Fresh, wild, Mediterranean."
+        "Toss: Mix pasta with the artichokes, lemon juice, lemon zest and the cooking water.",
+        "Serve: Add salt and pepper, then garnish with fresh herbs. Fresh, wild, Mediterranean."
       ],
       "species": ["artichoke", "garlic"],
       "steps": [
@@ -839,11 +839,11 @@
         },
         {
           "step": 4,
-          "instruction": "Toss: Mix pasta with artichokes, lemon juice and zest, and the cooking water."
+          "instruction": "Toss: Mix pasta with the artichokes, lemon juice, lemon zest and the cooking water."
         },
         {
           "step": 5,
-          "instruction": "Serve: Add salt, pepper, and garnish with fresh herbs. Fresh, wild, Mediterranean."
+          "instruction": "Serve: Add salt and pepper, then garnish with fresh herbs. Fresh, wild, Mediterranean."
         }
       ],
       "warnings": [],
@@ -869,7 +869,7 @@
         "Blanch the asparagus: Boil asparagus for 1 minute. Drain and cool in cold water.",
         "Sauté garlic: In a pan, heat oil, add garlic and optional chili, cook until fragrant.",
         "Add greens: Add asparagus and dandelion, sauté 2–3 minutes until tender and bright.",
-        "Finish: Season with salt, pepper, and lemon zest.",
+        "Finish: Season with salt, pepper and lemon zest.",
         "Serve: Great on toast, grains, or as a wild side dish."
       ],
       "species": ["asparagus", "dandelion", "garlic"],
@@ -888,7 +888,7 @@
         },
         {
           "step": 4,
-          "instruction": "Finish: Season with salt, pepper, and lemon zest."
+          "instruction": "Finish: Season with salt, pepper and lemon zest."
         },
         {
           "step": 5,
@@ -916,7 +916,7 @@
       "instructions": [
         "Prepare the leaves: Wash wild garlic thoroughly and dry.",
         "Toast the nuts: Lightly toast walnuts in a pan. Let cool.",
-        "Blend: Place wild garlic, nuts, Parmesan, and lemon juice in a food processor. Blend coarsely.",
+        "Blend: Place wild garlic, nuts, Parmesan and lemon juice in a food processor. Blend coarsely.",
         "Add oil: Pour in oil while blending until creamy.",
         "Season: Adjust salt.",
         "Store: In a closed jar in the fridge for a week. Great for pasta, sandwiches, or roasted vegetables."
@@ -933,7 +933,7 @@
         },
         {
           "step": 3,
-          "instruction": "Blend: Place wild garlic, nuts, Parmesan, and lemon juice in a food processor. Blend coarsely."
+          "instruction": "Blend: Place wild garlic, nuts, Parmesan and lemon juice in a food processor. Blend coarsely."
         },
         {
           "step": 4,
@@ -967,7 +967,7 @@
         "Ice cubes"
       ],
       "instructions": [
-        "Muddle: In a glass or shaker, gently crush strawberries, sorrel, and honey.",
+        "Muddle: In a glass or shaker, gently crush strawberries, sorrel and honey.",
         "Add lemon: Add lemon juice and stir.",
         "Finish: Fill the glass with ice, then pour in sparkling water.",
         "Strain (optional): Strain for a clear drink or serve with the pulp.",
@@ -977,7 +977,7 @@
       "steps": [
         {
           "step": 1,
-          "instruction": "Muddle: In a glass or shaker, gently crush strawberries, sorrel, and honey."
+          "instruction": "Muddle: In a glass or shaker, gently crush strawberries, sorrel and honey."
         },
         {
           "step": 2,
@@ -1057,8 +1057,8 @@
       "servings": "2–3",
       "tags": ["vegetarian", "main", "easy"],
       "safetyNotes": [
-        "Cook lion's mane through, and eat a small portion the first time: a few people react to it.",
-        "It is illegal to pick wild lion's mane in Britain, and it is red-listed across much of Europe. Forage it only where it is common, as in North America."
+        "Cook lion's mane through and eat a small portion the first time: a few people react to it.",
+        "It is illegal to pick wild lion's mane in Britain and it is red-listed across much of Europe. Forage it only where it is common, as in North America."
       ]
     },
     "crispy-roasted-hen-of-the-woods": {
@@ -1074,7 +1074,7 @@
       ],
       "instructions": [
         "Clean: Brush the soil and grit out from between the fronds and trim the tough core at the base. Do not soak it.",
-        "Season: Toss the clusters with the olive oil, soy sauce, garlic and thyme, and add pepper. The soy sauce brings the salt.",
+        "Season: Toss the clusters with the olive oil, soy sauce, garlic and thyme. Add pepper. The soy sauce brings the salt.",
         "Roast: Spread them on a baking tray in a single layer and roast at 220 °C for 20–25 minutes, turning once, until the edges are brown and crisp.",
         "Serve: Hot, with lemon wedges, over rice, polenta or toast."
       ],
@@ -1086,7 +1086,7 @@
         },
         {
           "step": 2,
-          "instruction": "Season: Toss the clusters with the olive oil, soy sauce, garlic and thyme, and add pepper. The soy sauce brings the salt."
+          "instruction": "Season: Toss the clusters with the olive oil, soy sauce, garlic and thyme. Add pepper. The soy sauce brings the salt."
         },
         {
           "step": 3,
@@ -1161,7 +1161,7 @@
       "tags": ["vegetarian", "vegan", "side", "easy"],
       "safetyNotes": [
         "Before cooking, cut a cap or stem: a saffron milk cap bleeds carrot-orange to red milk. White or yellow milk means another milk cap. The woolly milk cap (Lactarius torminosus: a pinkish cap with a woolly, rolled-in edge and white milk) and similar white-milk species cause severe stomach upsets.",
-        "Saffron milk caps bruise green where handled, and they can turn your urine reddish after the meal. Both are harmless."
+        "Saffron milk caps bruise green where handled and they can turn your urine reddish after the meal. Both are harmless."
       ]
     },
     "saffron-milk-cap-potato-stew": {
@@ -1218,7 +1218,7 @@
       "tags": ["vegetarian", "vegan", "main", "easy"],
       "safetyNotes": [
         "Before cooking, cut a cap or stem: a saffron milk cap bleeds carrot-orange to red milk. White or yellow milk means another milk cap. The woolly milk cap (Lactarius torminosus: a pinkish cap with a woolly, rolled-in edge and white milk) and similar white-milk species cause severe stomach upsets.",
-        "Saffron milk caps bruise green where handled, and they can turn your urine reddish after the meal. Both are harmless."
+        "Saffron milk caps bruise green where handled and they can turn your urine reddish after the meal. Both are harmless."
       ]
     },
     "hedgehog-mushroom-risotto": {
@@ -1295,7 +1295,7 @@
         "Sort: Cook them within a few hours of picking. Use only firm, young caps that are white all the way up the gills: pink or black edges mean they are turning to ink. Trim the stem bases, wipe off any soil and slice them.",
         "Soften: Melt the butter in a pot and cook the onion gently for 5 minutes. Add the potato and the mushrooms and cook, stirring, for 5 minutes, until the mushrooms collapse.",
         "Simmer: Pour in the stock, season and simmer for 15 minutes, until the potato is soft.",
-        "Blend: Blend until smooth, stir in the cream and the lemon juice, and heat through without boiling. Adjust the salt and pepper.",
+        "Blend: Blend until smooth, stir in the cream and the lemon juice, then heat through without boiling. Adjust the salt and pepper.",
         "Serve: Hot, sprinkled with chives, with toasted bread. Drink water or juice with it, not wine or beer."
       ],
       "species": ["shaggy_mane"],
@@ -1314,7 +1314,7 @@
         },
         {
           "step": 4,
-          "instruction": "Blend: Blend until smooth, stir in the cream and the lemon juice, and heat through without boiling. Adjust the salt and pepper."
+          "instruction": "Blend: Blend until smooth, stir in the cream and the lemon juice, then heat through without boiling. Adjust the salt and pepper."
         },
         {
           "step": 5,
@@ -1443,8 +1443,8 @@
       "servings": "2–4",
       "tags": ["vegetarian", "vegan", "main", "easy"],
       "safetyNotes": [
-        "In North America's Pacific Northwest, matsutake has a deadly look-alike, Amanita smithiana: white, with a swollen stem base that tapers into the soil like a root and is ringed with white scraps of veil, and without the spicy cinnamon smell. It destroys the kidneys, so check the base and the smell of every mushroom.",
-        "Pick matsutake without raking the ground or disturbing the soil: raking destroys the mycelium, and it is banned in many US national forests, where you also need a permit to pick."
+        "In North America's Pacific Northwest, matsutake has a deadly look-alike, Amanita smithiana: white, with a swollen stem base that tapers into the soil like a root and is ringed with white scraps of veil. It has none of the spicy cinnamon smell. It destroys the kidneys, so check the base and the smell of every mushroom.",
+        "Pick matsutake without raking the ground or disturbing the soil: raking destroys the mycelium and it is banned in many US national forests, where you also need a permit to pick."
       ]
     },
     "pickled-ramps": {
@@ -1497,9 +1497,9 @@
       "servings": "2–4",
       "tags": ["vegetarian", "vegan", "side", "easy"],
       "safetyNotes": [
-        "Harvest sustainably. Ramps grow slowly, taking years from seed to harvest, and over-harvesting has wiped out whole patches. Take one leaf per plant and leave the bulb, or at most a few bulbs from a large, dense patch. Never clear a patch.",
+        "Harvest sustainably. Ramps take years from seed to harvest and over-harvesting has wiped out whole patches. Take one leaf per plant and leave the bulb, or at most a few bulbs from a large, dense patch. Never clear a patch.",
         "Picking is banned in some parks, including Great Smoky Mountains National Park. Quebec bans selling wild ramps and limits personal harvest to 200 g, or 50 bulbs or plants, per person per year.",
-        "Look-alikes are poisonous: lily of the valley, and false hellebore (Veratrum viride). Crush a leaf of every plant: ramps smell strongly of onion or garlic, and the look-alikes don't. The smell lingers on your fingers, so don't trust it once your hands already smell."
+        "Look-alikes are poisonous: lily of the valley and false hellebore (Veratrum viride). Crush a leaf of every plant: ramps smell strongly of onion or garlic and the look-alikes don't. The smell lingers on your fingers, so don't trust it once your hands already smell."
       ]
     },
     "sauteed-fiddleheads": {
@@ -1517,7 +1517,7 @@
         "Clean: Trim the brown ends of the stems. Rub off the brown papery scales with your fingers, then wash the fiddleheads in several changes of cold water, until the water stays clear.",
         "Boil: Bring a large pan of salted water to the boil, add the fiddleheads and boil them for 15 minutes (or steam them for 10–12 minutes). Drain them and throw the cooking water away.",
         "Sauté: Heat the butter and oil in a wide frying pan, add the garlic and cook gently for 1 minute. Add the fiddleheads and sauté over a medium-high heat for 3–4 minutes, until lightly browned.",
-        "Season: Take the pan off the heat, add the lemon zest and juice, and season with salt and pepper.",
+        "Season: Take the pan off the heat, add the lemon zest and juice, then season with salt and pepper.",
         "Serve: Straight away, as a side with fish or eggs, or piled on buttered toast."
       ],
       "species": ["fiddleheads"],
@@ -1536,7 +1536,7 @@
         },
         {
           "step": 4,
-          "instruction": "Season: Take the pan off the heat, add the lemon zest and juice, and season with salt and pepper."
+          "instruction": "Season: Take the pan off the heat, add the lemon zest and juice, then season with salt and pepper."
         },
         {
           "step": 5,
@@ -1550,9 +1550,9 @@
       "servings": "2–4",
       "tags": ["vegetarian", "side", "easy"],
       "safetyNotes": [
-        "Pick only the ostrich fern. Its fiddleheads are smooth and bright green, with brown papery scales, and a deep U-shaped groove runs along the inside of the stem. Never pick bracken, which is fuzzy, has a branched top and is carcinogenic.",
+        "Pick only the ostrich fern. Its fiddleheads are smooth and bright green with brown papery scales. A deep U-shaped groove runs along the inside of the stem. Never pick bracken, which is fuzzy, has a branched top and is carcinogenic.",
         "Never eat fiddleheads raw or undercooked: they have caused outbreaks of food poisoning. Wash them, then boil them for 15 minutes (or steam for 10–12 minutes) and throw the water away, before sautéing.",
-        "Pick no more than half of the fiddleheads from one crown, so the plant survives. In Germany the ostrich fern is protected, and picking it in the wild is forbidden."
+        "Pick no more than half of the fiddleheads from one crown, so the plant survives. In Germany the ostrich fern is protected and picking it in the wild is forbidden."
       ]
     },
     "cloudberry-cream": {
@@ -1702,7 +1702,7 @@
       "servings": "6–8",
       "tags": ["vegetarian", "dessert", "easy"],
       "safetyNotes": [
-        "Eat only ripe fruit, and never the skin or the large seeds. The seeds are poisonous: don't crush or blend them.",
+        "Eat only ripe fruit and never the skin or the large seeds. The seeds are poisonous: don't crush or blend them.",
         "Some people react to pawpaw with a stomach upset or a skin rash, so try a little first."
       ]
     },
@@ -1713,10 +1713,10 @@
         "3 litres water",
         "500 g sugar",
         "Juice of 1 lemon (optional)",
-        "A jelly bag or fine cloth, and sterilised bottles"
+        "A jelly bag or fine cloth and sterilised bottles"
       ],
       "instructions": [
-        "Prepare: Wash the hips, pull off the stalks and the dry tips, and chop them roughly in a food processor or with a knife.",
+        "Prepare: Wash the hips, pull off the stalks and the dry tips, then chop them roughly in a food processor or with a knife.",
         "First infusion: Bring 2 litres of the water to the boil, add the hips and bring back to the boil, then take off the heat and leave for 15 minutes. Pour into a scalded jelly bag or fine cloth and let the juice drip through.",
         "Second infusion: Put the pulp back in the pan with the remaining litre of water, bring to the boil, leave for 10 minutes and strain again. Then pour all the juice through a clean, fine cloth once more, to catch every last hair.",
         "Reduce: Boil the juice until it has reduced to about 1 litre. Add the sugar and lemon juice, stir until the sugar dissolves and boil for 5 minutes.",
@@ -1726,7 +1726,7 @@
       "steps": [
         {
           "step": 1,
-          "instruction": "Prepare: Wash the hips, pull off the stalks and the dry tips, and chop them roughly in a food processor or with a knife."
+          "instruction": "Prepare: Wash the hips, pull off the stalks and the dry tips, then chop them roughly in a food processor or with a knife."
         },
         {
           "step": 2,
@@ -1802,7 +1802,7 @@
       "servings": "2–4",
       "tags": ["vegetarian", "vegan", "sauce", "medium"],
       "safetyNotes": [
-        "Sloes are blue-black with a dusty bloom, and grow singly on the thorny blackthorn. They are very sour raw. Their stones contain amygdalin, which can release cyanide, so don't crush the stones.",
+        "Sloes are blue-black with a dusty bloom and grow singly on the thorny blackthorn. They are very sour raw. Their stones contain amygdalin, which can release cyanide, so don't crush the stones.",
         "Look-alikes are poisonous: deadly nightshade has shiny black berries sitting on a green star, on a soft, non-woody plant; buckthorn (Rhamnus cathartica) has shiny black berries in clusters and is strongly purgative."
       ]
     },
@@ -1854,7 +1854,7 @@
       "servings": "2–4",
       "tags": ["vegetarian", "dessert", "medium"],
       "safetyNotes": [
-        "Pick bright orange, juicy berries from late summer on, by hand or into a bowl. Don't break or cut branches off wild shrubs: it damages them, and in Finland it is forbidden.",
+        "Pick bright orange, juicy berries from late summer on, by hand or into a bowl. Don't break or cut branches off wild shrubs: it damages them and in Finland it is forbidden.",
         "Picking may be forbidden in protected dunes and nature reserves, so check local rules. The shrub is very thorny: wear gloves."
       ]
     },
@@ -2054,7 +2054,7 @@
       "servings": "About 500 ml",
       "tags": ["drink", "easy"],
       "safetyNotes": [
-        "Never eat elderberries raw. Raw berries and seeds, and above all green berries, stalks and leaves, cause nausea and vomiting. Simmering the ripe berries for at least 20 minutes makes them safe.",
+        "Never eat elderberries raw. Raw berries and seeds cause nausea and vomiting. Green berries, stalks and leaves are worse still. Simmering the ripe berries for at least 20 minutes makes them safe.",
         "Use only black elder (Sambucus nigra) or American elder (S. canadensis), shrubs with flat clusters of berries. Red elder (S. racemosa) and dwarf elder (S. ebulus) are not used."
       ]
     },
@@ -2201,7 +2201,7 @@
       "tags": ["dessert", "vegetarian", "easy"],
       "safetyNotes": [
         "Hazelnuts are a common allergen: tell anyone you share this with.",
-        "Gather only nuts that have ripened and fallen in late summer and autumn. Throw away nuts with holes, which weevils have bored, and any that taste mouldy or bitter."
+        "Gather only nuts that have ripened and fallen in late summer and autumn. Throw away nuts with weevil holes and any that taste mouldy or bitter."
       ]
     },
     "wild-mint-pea-soup": {
