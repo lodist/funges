@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Porcino Nero",
-      "description": "Un porcino dal cappello bronzeo scuro, quasi nero, con gambo reticolato chiaro e polpa bianca e soda",
+      "description": "Un porcino con il cappello bronzo scuro, a volte quasi nero. Ha il gambo chiaro con il reticolo e la carne bianca e soda.",
       "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo",
       "guide": {
-        "identify": "Il più scuro dei porcini, detto anche bronzino: il cappello va dal castano scuro al quasi nero, spesso con chiazze bronzee, e resta asciutto e finemente vellutato anche con l'umidità. I pori sono bianchi, poi gialli fino all'oliva, e non virano al blu. Il gambo nocciola chiaro porta un fine reticolo bruno, più fitto in alto, e la carne bianca, sodissima, non cambia colore al taglio. Il porcino estivo è più chiaro, con il reticolo più esteso; il porcino malefico (Rubroboletus satanas) e Rubroboletus legaliae, che crescono negli stessi querceti, hanno pori rossi e carne che vira al blu.",
-        "habitat": "Versanti caldi e soleggiati con querce, castagni e faggi, di solito tra 200 e 1000 m. Comune nell'area mediterranea, in Italia lungo l'Appennino e nelle isole; raro in Gran Bretagna e in Germania.",
-        "season": "Da luglio dopo i temporali estivi, ma soprattutto a settembre e ottobre, più tardi del porcino estivo, e fino a novembre al sud. Fruttifica quando, dopo un periodo caldo, arrivano una pioggia abbondante e il raffreddamento del suolo.",
-        "picking": "Taglialo o estrailo ruotandolo e lascia crescere i giovani. In Italia la maggior parte delle regioni chiede il tesserino e fissa un limite giornaliero; in Germania è raro e particolarmente protetto, quindi lì non va raccolto.",
-        "kitchen": "È il più sodo dei porcini, con un sapore di nocciola che cresce con l'essiccazione. Una volta riconosciuto con certezza, spazzolalo, controlla le larve e cuocilo bene, come il porcino.",
-        "keeps": "Si essicca e si surgela benissimo a fette.",
+        "identify": "È il più scuro dei porcini, quello che molti chiamano bronzino. Il cappello va dal castano scuro al quasi nero, spesso con chiazze color bronzo. Resta asciutto e finemente vellutato anche col bagnato. I pori sono bianchi, poi gialli fino all'oliva. Non virano al blu. Il gambo è nocciola chiaro, con un fine reticolo marrone più fitto in alto. La carne è bianca e sodissima e al taglio non cambia colore. Il porcino estivo è più chiaro e ha il reticolo che scende più in basso sul gambo. Negli stessi querceti crescono altri due boleti. Sono il porcino malefico (Rubroboletus satanas) e il boleto di Le Gal (Rubroboletus legaliae). Tutti e due hanno pori rossi e carne che vira al blu.",
+        "habitat": "Ama i pendii caldi e soleggiati con querce, castagni e faggi, per lo più tra 200 e 1.000 m. È comune intorno al Mediterraneo. In Italia lo trovi lungo l'Appennino e nelle isole. In Gran Bretagna e in Germania è raro.",
+        "season": "Può uscire già da luglio, dopo i temporali estivi. La stagione vera è settembre e ottobre, più tardi del porcino estivo. Al sud va avanti fino a novembre. Esce quando, dopo un periodo caldo, arriva una pioggia abbondante e il terreno si rinfresca.",
+        "picking": "Taglialo o staccalo con una torsione. Lascia crescere quelli giovani. In Germania è raro e particolarmente protetto, quindi lì non raccoglierlo. In Italia e in Spagna ci sono permessi regionali e limiti giornalieri.",
+        "kitchen": "È il più sodo dei porcini. Ha un sapore di nocciola che da secco diventa più forte. Una volta riconosciuto con certezza, trattalo come un porcino. Spazzolalo, controlla che non sia bacato e cuocilo bene.",
+        "keeps": "A fette si secca e si congela benissimo.",
         "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Tutela: BArtSchV (Germania). Cucina: Regione Piemonte."
       }
     },

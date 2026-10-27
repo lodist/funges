@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Centocchio",
-      "description": "Una pianta bassa con piccoli fiori bianchi e foglie ovali, molto nutriente",
+      "description": "Una pianta bassa con piccoli fiori bianchi e foglie ovali. È molto nutriente.",
       "howTo": "Comune in giardini, aree disturbate e praterie durante la stagione di crescita",
       "guide": {
-        "identify": "Pianta bassa e prostrata, con fusti deboli, tondi e succosi e piccole foglie ovali e appuntite, opposte, quelle basse con un breve picciolo. Una sola fila di peli sottili corre lungo il fusto e cambia lato a ogni coppia di foglie. I fiori bianchi, a stella, hanno cinque petali divisi così a fondo che sembrano dieci. Due sosia tossici: l'anagallide o mordigallina (Anagallis arvensis) ha fusti quadrati e glabri, foglie senza picciolo con puntini neri sotto e fiori rosso arancio o blu; le euforbie emettono un lattice bianco quando si spezza un fusto, cosa che il centocchio non fa mai.",
-        "habitat": "Orti, giardini, margini dei campi, aie e altri terreni smossi, ricchi e umidi, spesso a mezz'ombra. Una delle piante più comuni d'Europa e diffusa in tutti gli Stati Uniti.",
-        "season": "Cresce meglio con tempo fresco e umido: in primavera e in autunno al nord, dall'autunno alla primavera nelle zone miti come l'Europa meridionale e il sud degli Stati Uniti. Con il caldo e la siccità estivi secca fino alle piogge d'autunno.",
-        "picking": "Taglia o pizzica i primi centimetri con le foglie; la pianta ributta. Raccogli solo dove non sono stati usati diserbanti, lontano dalle strade e dai punti frequentati da cani e gatti.",
-        "kitchen": "Una volta riconosciuto con certezza, se ne mangiano foglie, fusti e fiori, crudi o appena cotti; hanno un sapore delicato e fresco, un po' di piselli novelli. Aggiungili a insalate, panini e pesto, o a fine cottura nelle minestre, e lavali bene.",
-        "keeps": "Il centocchio appassisce in fretta: tienilo in un sacchetto in frigorifero e mangialo entro un giorno o due.",
+        "identify": "Il centocchio, detto anche erba paperina, è una pianta bassa e sdraiata, con fusti deboli, tondi e succosi. Le foglie sono piccoli ovali appuntiti, a coppie opposte. Quelle in basso hanno un picciolo corto. Lungo il fusto corre una sola fila di peletti sottili. A ogni coppia di foglie la fila cambia lato. I fiori sono bianchi, a stella, con cinque petali. Ogni petalo è diviso così a fondo che sembrano dieci. Ci sono due sosia tossici. L'anagallide ha fusti quadrati e senza peli e foglie senza picciolo, con puntini neri sotto. I suoi fiori sono rosso arancio o blu. Le euforbie, se spezzi un fusto, perdono un lattice bianco. Il centocchio non lo fa mai.",
+        "habitat": "Cercalo negli orti, nei giardini, ai bordi dei campi e nelle aie. Ama la terra smossa, ricca e umida, spesso a mezz'ombra. È una delle piante più comuni d'Europa e si trova in tutti gli Stati Uniti.",
+        "season": "Cresce meglio col tempo fresco e umido. Al nord vuol dire primavera e autunno. Nelle zone miti, come il sud Europa e il sud degli Stati Uniti, cresce dall'autunno alla primavera. Col caldo e la siccità d'estate secca, fino alle piogge d'autunno.",
+        "picking": "Taglia o pizzica via i primi centimetri con le foglie. La pianta ricresce. Raccogli solo dove non è stato dato diserbante. Stai lontano dalle strade e dai posti dove vanno cani e gatti.",
+        "kitchen": "Quando sei sicuro che sia lui, puoi mangiare foglie, fusti e fiori, crudi o appena cotti. Hanno un sapore delicato e fresco, un po' di piselli novelli. Mettili in insalate, panini e pesto. Puoi anche aggiungerli alle minestre a fine cottura. Lavali bene.",
+        "keeps": "Il centocchio appassisce in fretta. Tienilo in frigo in un sacchetto e mangialo entro un giorno o due.",
         "source": "Riconoscimento: UC Statewide IPM Program e Woodland Trust. Anagallide: Ministero dell'Agricoltura dell'Ontario. Stagione: Woodland Trust e segnalazioni GBIF."
       }
     },

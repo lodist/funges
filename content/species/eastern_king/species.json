@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Porcino dell'Est Americano",
-      "description": "I porcini dei querceti dell'est americano: cappello da nocciola a bruno-lilla, pori bianchi che ingialliscono con l'età e gambo reticolato, mai viranti al blu",
+      "description": "Il porcino dei boschi di querce dell'est degli Stati Uniti. Il cappello va dal nocciola al bruno lilla. I pori sono bianchi e poi ingialliscono. Non vira mai al blu.",
       "howTo": "Cercalo sotto querce e faggi nei boschi di latifoglie dell'est, da giugno, pochi giorni dopo una pioggia estiva calda",
       "guide": {
-        "identify": "Un piccolo gruppo di porcini dell'est americano: Boletus variipes ha il cappello asciutto, vellutato, da nocciola a bruno-grigiastro, spesso screpolato; Boletus separans un cappello da bruno-lilla a rosso fegato che sbiadisce in bruno-giallastro, con toni lilla sul gambo. Entrambi hanno pori bianchi da giovani, poi giallastri, un reticolo netto da bianco a brunastro sul gambo e carne bianca che non cambia colore. I Tylopilus amari, come Tylopilus plumbeoviolaceus dai toni violetti, hanno pori che diventano rosa. Pori rossi o arancioni (Neoboletus subvelutipes) o pori e carne che virano al blu (Boletus sensibilis, Boletus huronensis) indicano un boleto tossico.",
-        "habitat": "Con le querce, anche faggi e altre latifoglie, a est delle Rocciose: soprattutto da New York e dai Grandi Laghi, attraverso Pennsylvania e Appalachi, fino alla Georgia e agli Ozark. Boletus nobilis e Boletus atkinsonii fanno parte dello stesso gruppo.",
-        "season": "Da giugno a settembre, soprattutto a luglio e agosto, dopo piogge estive calde e abbondanti.",
-        "picking": "Taglialo o estrailo ruotandolo e taglialo sul posto, perché i porcini estivi sono spesso bacati. Alcune foreste nazionali chiedono un permesso gratuito e fissano limiti giornalieri; i parchi hanno regole proprie, spesso più severe.",
-        "kitchen": "Una volta riconosciuto con certezza, cuocilo bene come il porcino: trifolato, con la pasta, nelle zuppe e negli stufati, o essiccato per un sapore più intenso. Usa solo esemplari sodi e freschi.",
-        "keeps": "Si essicca benissimo a fette sottili; fresco, usalo entro uno o due giorni.",
+        "identify": "È un piccolo gruppo di porcini dell'est americano. Boletus variipes ha il cappello asciutto e vellutato, da nocciola a grigio-bruno, che spesso si screpola. Boletus separans ha il cappello da marrone-lilla a rosso fegato, che sbiadisce verso il giallo-bruno. Ha toni lilla anche sul gambo. Tutti e due hanno pori bianchi da giovani, che poi diventano giallastri. Tutti e due hanno sul gambo un reticolo ben visibile, da bianco a brunastro. La loro carne bianca non cambia colore. I Tylopilus amari hanno pori che diventano rosa. Un esempio è il Tylopilus plumbeoviolaceus, grigio-violetto. Pori rossi o arancioni (Neoboletus subvelutipes) vogliono dire un boleto tossico. Lo stesso vale per pori e carne che virano al blu (Boletus sensibilis, Boletus huronensis).",
+        "habitat": "Cresce con le querce, ma anche con faggi e altre latifoglie, a est delle Montagne Rocciose. È più comune da New York e dai Grandi Laghi, attraverso la Pennsylvania e gli Appalachi, fino alla Georgia e agli Ozark. Anche Boletus nobilis e Boletus atkinsonii fanno parte di questo gruppo.",
+        "season": "Esce da giugno a settembre, soprattutto a luglio e agosto. Cercalo dopo piogge estive calde e abbondanti.",
+        "picking": "Taglialo o staccalo con una torsione e taglialo a metà già sul posto. D'estate questi porcini sono spesso bacati. Alcune foreste nazionali chiedono un permesso gratuito e mettono limiti giornalieri. I parchi hanno regole proprie, spesso più severe.",
+        "kitchen": "Assicurati di averlo riconosciuto bene, poi cuocilo bene come un porcino. Fallo trifolato, oppure mettilo nella pasta, nelle zuppe e negli stufati. Puoi anche seccarlo, per un sapore più intenso. Usa solo quelli sodi e freschi.",
+        "keeps": "A fette sottili si secca benissimo. Fresco, usalo entro un giorno o due.",
         "source": "Identificazione e habitat: MushroomExpert (Michael Kuo). Stagione: dati GBIF e iNaturalist. Regole: US Forest Service."
       }
     },

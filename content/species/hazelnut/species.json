@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Nocciola",
-      "description": "Noci dolci e rotonde che crescono sui noccioli",
+      "description": "Frutti tondi e dolci dei cespugli di nocciolo.",
       "howTo": "Cerca noccioli in siepi e bordi boschivi in autunno",
       "guide": {
-        "identify": "Arbusto con molti fusti o piccolo albero, con foglie rotonde, doppiamente dentate, appuntite, morbide e pelose sotto; a fine inverno dai rami spogli pendono amenti gialli. Le nocciole crescono in gruppi da una a quattro, ciascuna in un involucro verde e fogliaceo, sfrangiato, che la avvolge per circa tre quarti, e diventano marroni maturando. I noccioli selvatici del Nord America sono parenti stretti; nel nocciolo dal becco l'involucro forma un lungo tubo ispido.",
-        "habitat": "Sottobosco, siepi e boscaglie di tutta Europa, al sud soprattutto in collina e in montagna; il nocciolo fruttifica di più al sole, ai margini del bosco. Negli Stati Uniti il nocciolo europeo cresce soprattutto nei noccioleti dell'Oregon; le specie selvatiche crescono in boscaglie, radure e margini di bosco.",
-        "season": "Da fine agosto a ottobre: le nocciole sono pronte quando l'involucro diventa marrone e cadono o si staccano scuotendo appena il ramo. Scoiattoli, ghiandaie e moscardini spesso arrivano prima.",
-        "picking": "Raccogli quelle cadute o scuoti appena i rami, e lasciane abbastanza per gli animali. Scarta quelle con un forellino rotondo (la larva del balanino ha mangiato il seme) e quelle leggere, ed evita i bordi di strade trafficate e di campi trattati.",
-        "kitchen": "Quando sei sicuro della pianta, mangiale crude o tostale finché la pellicina si crepa, poi strofinale in un canovaccio ruvido per toglierla. Vanno in torte, gianduia, pesto e insalate. Le nocciole sono una causa frequente di allergia alla frutta a guscio.",
-        "keeps": "Falle asciugare nel guscio in un luogo arieggiato finché il seme diventa color crema fino al centro, poi conservale al fresco e all'asciutto; secche durano fino a un anno in frigorifero.",
+        "identify": "Il nocciolo è un arbusto con tanti fusti o un alberello. Le foglie sono tonde e a doppia dentatura, appuntite in cima e morbide e pelose sotto. A fine inverno dai rami ancora spogli pendono gli amenti gialli. Le nocciole crescono a gruppi da una a quattro. Ognuna sta in un involucro verde e frastagliato, simile a una foglia, che la copre per circa tre quarti. Maturando diventano marroni. I noccioli selvatici del Nord America sono parenti stretti. Nel nocciolo cornuto l'involucro forma un lungo tubo ispido.",
+        "habitat": "Cresce nel sottobosco, nelle siepi e nelle boscaglie di tutta Europa. Al sud lo trovi soprattutto in collina e in montagna. Fa più frutti al sole, ai margini del bosco. Negli Stati Uniti il nocciolo europeo cresce soprattutto nei noccioleti dell'Oregon. Le specie selvatiche crescono nelle boscaglie, nelle radure e ai margini dei boschi.",
+        "season": "Le nocciole arrivano da fine agosto a ottobre. Sono pronte quando l'involucro diventa marrone. A quel punto cadono da sole o si staccano scuotendo appena il ramo. Scoiattoli, ghiandaie e moscardini spesso ci arrivano prima di te.",
+        "picking": "Raccogli quelle cadute o scuoti appena i rami. Lasciane tante per gli animali. Scarta quelle con un forellino rotondo, perché la larva del balanino ha mangiato il seme. Scarta anche quelle leggere. Evita i bordi delle strade trafficate e dei campi trattati.",
+        "kitchen": "Quando sei sicuro della pianta, mangiale crude o tostale finché la pellicina si spacca. Poi strofinale in un canovaccio ruvido per toglierla. Usale in torte, praline, pesto e insalate. Le nocciole sono una causa frequente di allergia alla frutta a guscio.",
+        "keeps": "Falle asciugare nel guscio in un posto arieggiato, finché il seme è color crema fino al centro. Poi conservale al fresco e all'asciutto. Secche durano fino a un anno in frigo.",
         "source": "Riconoscimento e habitat: Woodland Trust e Minnesota Department of Natural Resources. Essiccazione e conservazione: Oregon State University Extension."
       }
     },

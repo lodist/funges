@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Lampone Selvatico",
-      "description": "Bacche rosse dolci che crescono su canne spinose con foglie composte distintive",
+      "description": "Frutti rossi e dolci su fusti spinosi.",
       "howTo": "Cerca canne di lampone in siepi, bordi boschivi e aree disturbate in estate",
       "guide": {
-        "identify": "Canne erette, spesso alte quanto una persona, coperte di piccoli aculei sottili invece delle spine uncinate del rovo. Le foglie hanno da tre a sette foglioline dentate lungo un picciolo, verdi sopra e bianco-feltrose sotto. I piccoli fiori bianchi pendono verso il basso; il frutto rosso si stacca lasciando il cuore bianco sulla pianta, così un lampone raccolto è un cappuccio cavo.",
-        "habitat": "Radure e margini dei boschi, tagli e aree bruciate, arbusteti, brughiere, ghiaioni e siepi, dalla pianura alla montagna in tutta Europa; colonizza le radure nuove e scompare quando il bosco ricresce. Negli Stati Uniti il lampone americano cresce nel nord e nelle montagne dell'ovest, e il lampone nero, dai frutti cavi nero-violacei, nell'est.",
-        "season": "Matura in estate: da giugno nel sud dell'Europa e in pianura, a luglio e agosto nel nord e in montagna, a volte fino a settembre in quota.",
-        "picking": "Raccogli i lamponi ben rossi che si staccano dal cuore senza tirare, in un contenitore basso, perché si schiacciano facilmente. In Europa centrale l'autorità sanitaria bavarese (LGL) indica che mangiare bacche selvatiche non è stato finora riconosciuto come fattore di rischio per l'echinococco della volpe, ma consiglia di lavarle bene; solo la cottura sopra i 60 °C uccide le uova, il congelatore di casa no.",
-        "kitchen": "Una volta identificati con certezza, mangiali crudi o usali per marmellata, sciroppo, torte e dolci; i lamponi selvatici sono più piccoli e profumati di quelli dell'orto. Sciacquali poco prima di usarli e controlla che non contengano le piccole larve bianche del verme del lampone (Byturus).",
-        "keeps": "Molto deperibili: mangiali in giornata o tienili non lavati uno o due giorni in frigorifero. Congelali stesi su un vassoio e poi in sacchetti; congelati vanno bene per salse e dolci.",
+        "identify": "Il lampone cresce su fusti dritti, spesso alti quanto una persona. I fusti sono coperti di piccole spine sottili, non delle spine a uncino del rovo. Ogni foglia ha da tre a sette foglioline dentate lungo un picciolo. Sono verdi sopra e bianche e feltrose sotto. I piccoli fiori bianchi pendono verso il basso. Quando cogli un lampone rosso, il cuore bianco resta sulla pianta. Per questo il lampone raccolto è un cappuccio vuoto.",
+        "habitat": "Cercalo nelle radure e ai margini dei boschi, nei tagli del bosco e nelle zone bruciate e sui pendii sassosi. Cresce anche tra gli arbusti, nelle brughiere e lungo le siepi, dalla pianura alla montagna, in tutta Europa. Occupa le radure nuove e sparisce man mano che il bosco ricresce. Negli Stati Uniti il lampone rosso americano cresce al nord e sulle montagne dell'ovest. Nell'est cresce il lampone nero, con frutti cavi nero-violacei.",
+        "season": "I lamponi maturano d'estate. Nel sud Europa e in pianura cominciano a giugno. Al nord e in montagna maturano a luglio e agosto. In alta quota a volte durano fino a settembre.",
+        "picking": "Raccogli i lamponi ben rossi, che si staccano dal cuore senza tirare. Mettili in un contenitore basso, perché si schiacciano facilmente. Per l'Europa centrale, l'autorità sanitaria bavarese (LGL) dice che non è dimostrato che mangiare frutti di bosco selvatici sia un rischio per l'echinococco della volpe. Consiglia comunque di lavarli bene. Solo scaldandoli sopra i 60 °C si uccidono le uova del parassita. Il congelatore di casa non basta.",
+        "kitchen": "Quando li hai riconosciuti con certezza, mangiali crudi o usali per marmellate, sciroppi, torte e dolci. I lamponi selvatici sono più piccoli e più profumati di quelli dell'orto. Sciacquali un attimo appena prima di usarli. Controlla che dentro non ci siano i piccoli vermetti bianchi, le larve del coleottero del lampone.",
+        "keeps": "I lamponi si rovinano molto in fretta. Mangiali in giornata, oppure tienili in frigo senza lavarli per un giorno o due. Per congelarli, prima stendili su un vassoio, poi mettili nei sacchetti. Congelati vanno bene per salse e dolci.",
         "source": "Identificazione e habitat: Woodland Trust. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
       }
     },

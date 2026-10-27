@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Shiitake",
-      "description": "Un fungo con cappello marrone e lamelle bianche, molto apprezzato nella cucina asiatica",
+      "description": "Un fungo con il cappello marrone e le lamelle bianche, molto apprezzato nella cucina asiatica.",
       "howTo": "Trovato che cresce su alberi di legno duro morti, specialmente querce e faggi, in primavera e autunno",
       "guide": {
-        "identify": "Cappello da bruno a bruno rossiccio scuro che si appiana con l'età, spesso con fiocchi biancastri vicino al margine e screpolato col secco. Le lamelle sono da bianche a crema e si macchiano di bruno al tocco; il gambo è duro, fibroso e spesso eccentrico; la sporata è bianca. Anche la mortale Galerina marginata cresce sui tronchi: è più piccola e bruno miele, con un anello sul gambo e sporata bruno ruggine.",
-        "habitat": "Originario dell'Asia orientale, su legno morto di latifoglie come querce e Castanopsis. In Europa e in Nord America si coltiva su tronchetti di quercia o blocchi di segatura ed è stato trovato fuori dalla coltivazione solo poche volte (per esempio nei Paesi Bassi): un fungo bruno su un tronco caduto nel bosco è quasi certamente un'altra specie.",
-        "season": "I tronchetti all'aperto fruttificano in primavera e in autunno, pochi giorni dopo una pioggia abbondante con clima mite; i coltivatori provocano anche una buttata immergendo il tronchetto in acqua fredda.",
-        "picking": "Raccogli i cappelli quando il margine è ancora arrotolato: ruotali o taglia il gambo rasente al tronco. Raccogli solo da tronchetti che coltivi tu o dove hai il permesso.",
-        "kitchen": "Una volta identificato con certezza, cuocilo a fondo: crudo o poco cotto può causare la dermatite da shiitake, un'eruzione che prude, a strisce simili a frustate, circa un giorno dopo. I gambi sono troppo duri da mangiare ma insaporiscono il brodo; salta o cuoci in umido i cappelli, dal sapore profondo e saporito, con salsa di soia, zenzero e aglio.",
-        "keeps": "Pochi giorni in frigorifero in un sacchetto di carta. Si essicca molto bene: metti in ammollo i cappelli secchi prima dell'uso e usa l'acqua come brodo.",
+        "identify": "Lo shiitake ha il cappello da bruno a bruno-rossastro scuro, che con l'età si appiattisce. Spesso ha dei fiocchetti biancastri vicino al bordo e con il secco si screpola. Le lamelle vanno dal bianco al crema e, se le tocchi, si macchiano di bruno. Il gambo è duro, fibroso e spesso spostato di lato. La sporata è bianca. Anche la Galerina marginata, che è mortale, cresce sui tronchi. È più piccola e color miele, con un anello sul gambo e la sporata bruno ruggine.",
+        "habitat": "Lo shiitake viene dall'Asia orientale, dove cresce sul legno morto di latifoglie come la quercia e il Castanopsis. In Europa e in Nord America si coltiva su tronchetti di quercia o su blocchi di segatura. Fuori dalle coltivazioni è stato trovato solo poche volte, per esempio nei Paesi Bassi. Quindi un fungo bruno su un tronco caduto nel bosco è quasi di sicuro qualcos'altro.",
+        "season": "I tronchetti tenuti all'aperto fruttificano in primavera e in autunno. La buttata arriva pochi giorni dopo una pioggia abbondante, con il tempo mite. I coltivatori la provocano anche mettendo il tronchetto a bagno in acqua fredda.",
+        "picking": "Raccogli i cappelli quando il bordo è ancora arrotolato in sotto. Staccali ruotandoli o taglia il gambo rasente al tronco. Raccogli solo dai tronchetti che coltivi tu o dove hai il permesso.",
+        "kitchen": "Assicurati di averlo riconosciuto, poi cuocilo a fondo. Crudo o poco cotto può dare la dermatite da shiitake. È un'eruzione che prude, a strisce come frustate, e compare circa un giorno dopo. I gambi sono troppo duri da mangiare, ma danno sapore al brodo. Fai i cappelli in padella o in umido con salsa di soia, zenzero e aglio. Hanno un sapore pieno e intenso.",
+        "keeps": "In frigo, in un sacchetto di carta, dura qualche giorno. Si secca benissimo. Metti a bagno i cappelli secchi prima di usarli e tieni l'acqua come brodo.",
         "source": "Origine e diffusione: Naturalis Biodiversity Center. Coltivazione su tronchetti: Cornell Cooperative Extension. Dermatite da shiitake: DermNet."
       }
     },

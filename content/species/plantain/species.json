@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Piantaggine Comune",
-      "description": "Una pianta bassa con foglie larghe e ovali e alte spighe di fiori",
+      "description": "Una pianta bassa dalle foglie larghe e ovali, con alte spighe di fiori.",
       "howTo": "Trovata in prati, praterie e aree disturbate durante la stagione di crescita",
       "guide": {
-        "identify": "La piantaggine comune forma una rosetta piatta di foglie larghe e ovali su piccioli corti e larghi; ogni foglia ha da tre a sette nervature marcate e parallele, e se spezzi un picciolo escono come fili tenaci. Da inizio estate, steli senza foglie portano spighe lunghe e strette, a coda di topo, di minuscoli fiori verdastri, poi piene di piccoli semi bruni. La rosetta del primo anno della digitale purpurea, mortale, ha foglie morbide, pelose e rugose, con nervature a rete e senza fili; foglie di digitale sono già state vendute per errore come piantaggine.",
-        "habitat": "Tappeti erbosi, sentieri, carrarecce, bordi dei campi, prati e orti: ovunque il terreno sia calpestato e compatto. Originaria di Europa e Asia, è comune in tutta Europa e in tutti gli Stati Uniti, dove è arrivata con i coloni europei.",
-        "season": "Le foglie nuove spuntano da inizio primavera all'autunno, più tenere in primavera e dopo lo sfalcio. Le spighe salgono da inizio estate e i semi maturano fino all'autunno.",
-        "picking": "Raccogli le foglie giovani al centro della rosetta, poche per pianta, e lascia la radice nel terreno. Evita i bordi delle strade, i sentieri dove passano i cani e i prati o le scarpate che possono essere stati trattati con diserbanti.",
-        "kitchen": "Una volta identificata con certezza, le foglie giovani si mangiano crude in insalata; quelle vecchie sono dure e fibrose: sbollentale o cuocile come gli spinaci e togli i fili. Il sapore è delicato, erbaceo e un po' amaro. La NC State Extension segnala che quantità molto grandi possono abbassare la pressione: mangiala come una verdura tra le altre.",
-        "keeps": "Le foglie appassiscono in fretta: tienile un giorno o due in un sacchetto in frigorifero, oppure seccale all'ombra per le tisane.",
+        "identify": "La piantaggine comune forma una rosetta piatta di foglie larghe e ovali, su piccioli corti e larghi. Ogni foglia ha da tre a sette nervature marcate. Corrono parallele dalla base alla punta. Se spezzi un picciolo, vengono fuori come fili resistenti. Da inizio estate spuntano steli senza foglie con spighe lunghe e strette, a coda di topo, di minuscoli fiori verdastri. Poi si riempiono di piccoli semi bruni. La digitale è mortale. Fai attenzione soprattutto alla sua rosetta del primo anno. Ha foglie morbide, pelose e rugose, con nervature a rete e senza fili. Foglie di digitale sono già state vendute per sbaglio come piantaggine.",
+        "habitat": "Cercala nei tappeti erbosi, sui sentieri, sulle carrarecce, ai bordi dei campi, nei prati e nei giardini. Cresce dovunque il terreno sia calpestato e battuto. È originaria di Europa e Asia ed è comune in tutta Europa. È comune anche in tutti gli Stati Uniti, dove è arrivata con i coloni europei.",
+        "season": "Le foglie nuove spuntano da inizio primavera all'autunno. Sono più tenere in primavera e dopo lo sfalcio. Le spighe di fiori salgono da inizio estate e i semi maturano fino all'autunno.",
+        "picking": "Raccogli le foglie giovani al centro della rosetta, poche per pianta. Lascia la radice nel terreno. Evita i bordi delle strade e i sentieri dove passano i cani. Evita anche i prati e le scarpate che potrebbero essere stati trattati con il diserbante.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, puoi mettere le foglie giovani crude in insalata. Quelle più vecchie sono dure e filacciose. Sbollentale o cuocile come gli spinaci e togli i fili. Il sapore è delicato, erbaceo e un po' amaro. La NC State Extension segnala che quantità molto grandi possono abbassare la pressione. Quindi usala mescolata ad altre verdure.",
+        "keeps": "Le foglie appassiscono in fretta. Tienile in frigo in un sacchetto per un giorno o due, oppure seccale all'ombra per le tisane.",
         "source": "Identificazione, habitat e stagione: NC State Extension, Michigan State University Extension e UC IPM. Scambio con la digitale: FDA statunitense (1997). Cucina: NC State Extension."
       }
     },

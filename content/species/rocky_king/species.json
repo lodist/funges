@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Porcino delle Rocciose",
-      "description": "Un porcino tozzo d'alta montagna, con cappello rosso mattone o bruno-rossastro, pori bianchi e gambo chiaro e grosso reticolato in alto",
+      "description": "Un porcino tozzo d'alta montagna. Ha il cappello da rosso mattone a bruno rossastro, i pori bianchi e un gambo grosso e chiaro, con il reticolo in alto.",
       "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre",
       "guide": {
-        "identify": "Un porcino grande e tozzo delle alte Rocciose, dal cappello rosso mattone o bruno-rossastro, appiccicoso da fresco e spesso pruinoso da giovane, più rosso del porcino (Boletus edulis), che cresce anche lì. I pori sono bianchi e chiusi da giovane, poi gialli e oliva, e non cambiano colore. Il gambo grosso e chiaro porta un fine reticolo bianco almeno in alto, e la carne bianca non vira al blu. I porcinelli dei pioppi tremuli (Leccinum) hanno squamette scure sul gambo, e quelli a cappello arancione hanno causato gravi intossicazioni gastrointestinali in Colorado; pori rossi o arancioni indicano un boleto tossico.",
-        "habitat": "Soprattutto con l'abete rosso di Engelmann, anche con abeti e douglasie, da circa 2400 m al limite degli alberi, in Colorado, New Mexico e sulle montagne dell'Arizona.",
-        "season": "Da luglio a settembre, a volte fino a ottobre: comincia con i temporali del monsone e sale di quota con la stagione; nelle estati secche quasi non esce.",
-        "picking": "Estrailo ruotandolo con delicatezza, perché buona parte del gambo è sottoterra, e lascia quelli molto bacati. Ogni foresta nazionale fissa le proprie regole, a volte con permesso gratuito e limiti giornalieri.",
-        "kitchen": "Una volta riconosciuto con certezza, togli i pori gialli e molli dei cappelli maturi, che possono diventare amari e viscidi, poi cuocilo bene come il porcino o essiccalo.",
-        "keeps": "Essiccalo a fette sottili o surgelalo dopo averlo saltato.",
+        "identify": "È un porcino grande e tozzo delle alte Montagne Rocciose. Il cappello va dal rosso mattone al bruno-rossastro e da fresco è appiccicoso. Da giovane ha spesso una pruina biancastra. È più rosso dei porcini (Boletus edulis) che crescono anche lì. I pori da giovani sono bianchi e chiusi, poi diventano gialli e verde oliva. Al tocco non cambiano colore. Il gambo è grosso e chiaro, con un fine reticolo bianco almeno nella parte alta. La carne è bianca e non vira al blu. I porcinelli dei pioppi tremuli (Leccinum) hanno squamette scure sul gambo. In Colorado quelli con il cappello arancione hanno causato gravi intossicazioni gastrointestinali. Pori rossi o arancioni indicano un boleto tossico.",
+        "habitat": "Cresce soprattutto con l'abete rosso di Engelmann. Lo trovi anche con abeti e abeti di Douglas. Lo trovi da circa 2.400 m fino al limite degli alberi. Cresce in Colorado, nel New Mexico e sulle montagne dell'Arizona.",
+        "season": "Esce da luglio a settembre, a volte fino a ottobre. Comincia con i temporali del monsone e con il passare della stagione sale di quota. Nelle estati secche esce pochissimo.",
+        "picking": "Staccalo ruotandolo con delicatezza, perché buona parte del gambo è sottoterra. Lascia quelli molto bacati. Ogni foresta nazionale ha le sue regole. Alcune chiedono un permesso gratuito e fissano limiti giornalieri.",
+        "kitchen": "Prima riconoscilo con certezza. Sui cappelli maturi togli i pori gialli e molli. Possono essere amari e diventare viscidi. Poi cuocilo bene come il porcino, oppure seccalo.",
+        "keeps": "Seccalo a fette sottili, oppure saltalo in padella e congelalo.",
         "source": "Identificazione e habitat: Arora e Frank (2014), MushroomExpert e Forage Colorado. Stagione: dati GBIF. Regole: US Forest Service."
       }
     },

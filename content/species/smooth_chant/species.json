@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Galletto Liscio",
-      "description": "Un gallinaccio arancione con la faccia inferiore quasi liscia invece che costolata, dal forte odore di albicocca",
+      "description": "Un galletto arancione con la parte di sotto quasi liscia al posto delle pieghe. Ha un forte profumo di albicocca.",
       "howTo": "Cercalo nei querceti del sud-est americano durante l'estate umida, spesso in gruppi su terreno nudo",
       "guide": {
-        "identify": "Giallo arancio vivo o giallo tuorlo, largo da 2,5 a 8 cm, prima piatto, poi a vaso poco profondo con il margine ondulato. Lo distingue la superficie inferiore: liscia o appena rugosa, più chiara del cappello e spesso rosata, che scende sul gambo, senza lamelle vere. Il gambo si assottiglia verso la base, la carne è bianca e non cambia al taglio e l'odore di solito è forte e dolce, di albicocca. Omphalotus illudens, parente del fungo dell'olivo e comune negli stessi querceti, ha lamelle vere sottili e fitte, cresce a cespi fitti su legno o radici interrate ed è arancione dentro.",
-        "habitat": "Vive in simbiosi con le querce e a volte con i carya (hickory), in boschi di latifoglie e di querce e pini dell'est degli Stati Uniti, a est delle Montagne Rocciose, ed è più comune nel sud-est. Spesso spunta a gruppi su terreno nudo o muschioso lungo sentieri, rive di ruscelli e scarpate.",
-        "season": "D'estate, da giugno a settembre e soprattutto da luglio, poco dopo piogge calde e forti con tempo umido.",
-        "picking": "Taglialo alla base, lascia i piccoli e prendi solo quello che mangerai. Le regole cambiano secondo lo stato, il parco e la foresta nazionale, e molti parchi statali vietano la raccolta: informati prima di andare.",
-        "kitchen": "Una volta identificato con certezza, togli la terra con un pennello; la superficie inferiore liscia trattiene poca sabbia. Non mangiarlo mai crudo: cuocilo bene, piano nel burro o in una salsa alla panna. Fruttato e delicato come gli altri gallinacci; sta bene con uova, polenta, pasta, pollo e maiale.",
-        "keeps": "Qualche giorno in frigorifero in un sacchetto di carta. Secco diventa coriaceo: per conservarlo più a lungo, saltalo nel burro e congelalo.",
+        "identify": "Il galletto liscio è giallo arancio vivo o giallo tuorlo, largo da 2,5 a 8 cm. Prima è piatto, poi diventa un vaso poco profondo con il bordo ondulato. Lo riconosci da sotto. La parte inferiore è liscia o appena rugosa, senza vere lamelle. È più chiara del cappello, spesso rosata, e scende lungo il gambo. Il gambo si assottiglia verso la base. La carne è bianca e al taglio non cambia. Di solito ha un odore forte e dolce, di albicocca. Negli stessi querceti è comune il fungo dell'olivo americano (Omphalotus illudens). Ha lamelle vere, fitte e affilate e cresce a cespi stretti dal legno o da radici sepolte. Anche dentro è arancione.",
+        "habitat": "Vive in simbiosi con le querce e a volte con i carya (hickory). Cercalo nei boschi di latifoglie e nei boschi misti di querce e pini dell'est degli Stati Uniti, a est delle Montagne Rocciose. È più comune nel sud-est. Spesso spunta a gruppi su terra nuda o muschiosa, lungo i sentieri, sulle rive dei ruscelli e nelle scarpate delle strade.",
+        "season": "È un galletto estivo, da giugno a settembre, soprattutto da luglio. Esce poco dopo piogge calde e forti, con il tempo afoso.",
+        "picking": "Taglialo alla base, lascia i piccoli e prendi solo quello che mangerai. Le regole cambiano da stato a stato, da parco a parco e tra le foreste nazionali. Molti parchi statali vietano la raccolta, quindi informati prima di andare.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, togli la terra con un pennello. Sotto è liscio e trattiene poca sabbia. Non mangiarlo mai crudo. Cuocilo bene, piano nel burro o in una salsa alla panna. È fruttato e delicato come gli altri galletti. Sta bene con uova, polenta, pasta, pollo e maiale.",
+        "keeps": "In frigo, in un sacchetto di carta, dura qualche giorno. Secco diventa duro. Per tenerlo più a lungo, saltalo nel burro e congelalo.",
         "source": "Identificazione e habitat: MushroomExpert.com e University of Florida IFAS Extension. Stagione: dati GBIF."
       }
     },

@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Acetosa Comune",
-      "description": "Pianta dal sapore acidulo e limonato, usata in insalate e zuppe.",
+      "description": "Una pianta a foglia dal sapore acidulo che ricorda il limone. È buona in insalata e nelle zuppe.",
       "howTo": "Raccogli le foglie giovani in prati, pascoli e lungo i sentieri in primavera ed estate.",
       "guide": {
-        "identify": "Foglie tenere a forma di freccia, con due lobi basali appuntiti rivolti all'indietro, verso il picciolo; le foglie alte abbracciano il fusto, e una sottile guaina membranosa avvolge il fusto dove nasce ogni foglia. Da maggio gli steli fioriti portano spighe lasse di piccoli fiori rossastri. Il gigaro (Arum maculatum), tossico, ha foglie giovani di forma simile, ma spesso macchiate di scuro, con lobi arrotondati, e cresce nei boschi e nelle siepi più che nei prati aperti. Non assaggiare mai una foglia per controllare: il gigaro brucia la bocca.",
-        "habitat": "Prati, pascoli, tappeti erbosi, bordi delle strade e boschi radi, dalla pianura alla montagna; molto comune in tutta Europa. Negli Stati Uniti è introdotta e sparsa, soprattutto nel nord-est, intorno ai Grandi Laghi, in Oregon e in Alaska, dove l'acetosella, più piccola, è molto più comune.",
-        "season": "Le foglie crescono da inizio primavera, quasi tutto l'anno nelle zone miti, e sono migliori giovani; quando la pianta fiorisce, da maggio, diventano più dure e amare, ma le piante tagliate ne mettono di nuove.",
-        "picking": "Prendi poche foglie giovani da ogni pianta e lascia la radice; scegli prati non trattati né concimati, lontano da strade e sentieri dei cani.",
-        "kitchen": "Una volta riconosciuta con certezza, le foglie hanno un sapore acidulo deciso, come la scorza di limone: taglia a striscioline le giovani nelle insalate, o cuocile poco in zuppe, frittate e salse per pesce e uova. L'acidità è acido ossalico: mangiala con moderazione ed evitala se soffri di calcoli renali. Cuocila in acciaio inox o smalto, non in alluminio o ghisa.",
-        "keeps": "In frigorifero le foglie appassiscono in due o tre giorni; ridotta in purea si congela bene.",
+        "identify": "L'acetosa ha foglie tenere a forma di freccia. I due lobi alla base sono appuntiti e rivolti all'indietro, verso il picciolo. Le foglie in alto abbracciano il fusto. Dove ogni foglia si attacca al fusto, una guaina sottile come carta lo avvolge. Da maggio gli steli fioriti portano spighe rade di piccoli fiori rossastri. Il gigaro (Arum maculatum) è tossico e le sue foglie giovani hanno una forma simile. Però hanno spesso macchie scure e lobi arrotondati. E crescono nei boschi e nelle siepi più che nei prati aperti. Non assaggiare mai una foglia per controllare, perché il gigaro brucia la bocca.",
+        "habitat": "Cercala nei prati, nei pascoli, nei tappeti erbosi, sui bordi delle strade e nei boschi radi, dalla pianura alla montagna. È molto comune in tutta Europa. Negli Stati Uniti è stata introdotta e si trova sparsa. Cresce soprattutto nel nord-est, intorno ai Grandi Laghi, in Oregon e in Alaska. Lì è molto più comune l'acetosella, più piccola.",
+        "season": "Le foglie crescono da inizio primavera, e nelle zone miti quasi tutto l'anno. Sono migliori da giovani. Quando la pianta fiorisce, da maggio, diventano più dure e amare. Le piante tagliate però ne rimettono di nuove.",
+        "picking": "Prendi da ogni pianta qualche foglia giovane, una per una, e lascia la radice. Scegli prati non trattati e non concimati, lontani dalle strade e dai sentieri dei cani.",
+        "kitchen": "Prima riconoscila con certezza. Le foglie hanno un'acidità decisa, come la scorza di limone. Taglia a striscioline quelle giovani nell'insalata, oppure cuocile un attimo in minestre, frittate e salse per pesce e uova. L'acidità viene dall'acido ossalico. Mangiane con moderazione ed evitala se soffri di calcoli renali. Cuocila in pentole d'acciaio o smaltate, non di alluminio o di ghisa.",
+        "keeps": "In frigo le foglie appassiscono in due o tre giorni. Cotta e ridotta in purea, l'acetosa si congela bene.",
         "source": "Riconoscimento e sosia: Woodland Trust e Wild Food UK. Diffusione negli Stati Uniti: Flora of North America. Acido ossalico: Wild Food UK. Stagione: segnalazioni GBIF."
       }
     },

@@ -32,15 +32,15 @@
     },
     "it": {
       "name": "Ortica",
-      "description": "Una pianta verde nutriente con peli urticanti che deve essere cotta",
+      "description": "Una pianta verde nutriente con peli urticanti. Va sempre cotta prima di mangiarla.",
       "howTo": "Trovata in aree disturbate, siepi e bordi boschivi in primavera ed estate",
       "guide": {
-        "identify": "Pianta eretta con fusti quadrangolari e foglie opposte: da cuoriformi a ovali, a denti grossi e appuntite. Fusti e foglie sono coperti di peli urticanti, e da inizio estate pendono dall'ascella delle foglie sottili grappoli di minuscoli fiori verdastri. Le false ortiche (Lamium) le somigliano, ma non pungono e hanno vistosi fiori a labbro bianchi, gialli o porpora.",
-        "habitat": "Forma macchie fitte su terreni ricchi e umidi: margini dei boschi, rive, fossi, siepi e dintorni di cascine e ruderi. Comune in tutta Europa, al sud soprattutto in luoghi umidi e ombrosi, e in gran parte degli Stati Uniti, specie lungo i torrenti e nei boschi radi e umidi.",
-        "season": "I germogli spuntano da febbraio nelle zone miti e da marzo più a nord; raccoglili finché la pianta non fiorisce, verso giugno. Le piante tagliate o falciate ributtano e danno un secondo raccolto a fine estate e in autunno.",
-        "picking": "Metti i guanti, taglia con le forbici le prime coppie di foglie in cima e lascia le radici. Evita i bordi delle strade, i margini dei campi trattati e i sentieri dei cani; le ortiche nutrono anche i bruchi di molte farfalle.",
-        "kitchen": "Cuoci o sbollenta sempre le ortiche prima di mangiarle: il calore elimina l'effetto urticante, e così l'essiccazione completa. Tuffa le cime lavate per qualche minuto in acqua bollente salata e usale come gli spinaci in minestre, risotti, frittate e pesto; sanno di spinacio con una nota terrosa.",
-        "keeps": "Sbollentate, strizzate e congelate a porzioni durano mesi; le foglie essiccate all'ombra in un luogo arieggiato servono per le tisane.",
+        "identify": "Le ortiche crescono dritte, con il fusto quadrato e le foglie a coppie, una di fronte all'altra. Le foglie sono a cuore o ovali, appuntite e con denti grossi. Fusto e foglie sono coperti di peli urticanti. Da inizio estate, dove la foglia si attacca al fusto, pendono sottili grappoli di minuscoli fiori verdastri. Le false ortiche le somigliano, ma non pungono. In più hanno vistosi fiori a labbro, bianchi, gialli o viola.",
+        "habitat": "Le ortiche formano macchie fitte su terreno ricco e umido. Cercale ai margini dei boschi, sulle rive, nei fossi e lungo le siepi. Le trovi anche intorno a cascine e ruderi. Sono comuni in tutta Europa. Al sud stanno soprattutto in posti umidi e ombrosi. Crescono anche in quasi tutti gli Stati Uniti, soprattutto lungo i torrenti e nei boschi radi e umidi.",
+        "season": "I germogli spuntano da febbraio nelle zone miti e da marzo più a nord. Puoi raccoglierle finché la pianta non fiorisce, più o meno da giugno. Le macchie tagliate o falciate rimettono germogli nuovi. Così fai un secondo raccolto a fine estate e in autunno.",
+        "picking": "Metti i guanti. Taglia con le forbici le prime coppie di foglie in cima e lascia le radici. Evita i bordi delle strade, i margini dei campi trattati e i sentieri dove si portano i cani. Le ortiche danno da mangiare anche ai bruchi di molte farfalle.",
+        "kitchen": "Le ortiche vanno sempre cotte o sbollentate prima di mangiarle. Il calore toglie il pizzicore. Anche una buona essiccazione lo toglie. Butta le cime lavate in acqua bollente salata per qualche minuto. Poi usale come gli spinaci, in minestre, risotti, frittate o pesto. Sanno di spinaci, ma un po' più terrosi.",
+        "keeps": "Sbollentale, strizzale e congelale a porzioni: così durano mesi. Per le tisane, secca le foglie all'ombra in un posto arieggiato.",
         "source": "Riconoscimento, habitat e cucina: NC State Extension e Woodland Trust. Stagione: Woodland Trust e segnalazioni GBIF."
       }
     },
