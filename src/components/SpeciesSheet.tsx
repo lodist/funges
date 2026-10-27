@@ -86,16 +86,21 @@ export function SpeciesBody({
     month: 'narrow',
   });
 
+  // A composite (Chanterelles, Boletus) warns of its members' look-alikes.
+  const ids = useMemo(
+    () => [species.id, ...(species.compositeOf ?? [])],
+    [species.id, species.compositeOf]
+  );
   const lookalikes = useMemo(
     () =>
       TOXIC_SPECIES.filter(toxic =>
-        toxic.confusedWithSpeciesIds.includes(species.id)
+        toxic.confusedWithSpeciesIds.some(id => ids.includes(id))
       ).sort(
         (a, b) =>
           SEVERITY_ORDER.indexOf(a.severity) -
           SEVERITY_ORDER.indexOf(b.severity)
       ),
-    [species.id]
+    [ids]
   );
   // Several look-alikes share a check; say each one once.
   const checks = [
@@ -109,7 +114,7 @@ export function SpeciesBody({
     ...new Set(
       lookalikes.flatMap(toxic =>
         (toxic.criticalConfusions ?? [])
-          .filter(confusion => confusion.catalogId === species.id)
+          .filter(confusion => ids.includes(confusion.catalogId))
           .map(confusion => confusion.noteKey)
       )
     ),

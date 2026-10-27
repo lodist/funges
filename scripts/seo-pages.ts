@@ -92,6 +92,7 @@ const SEVERITY_LABEL = {
   toxic: 'results.toxicLabel',
   inedible: 'results.inedibleLabel',
 } as const;
+const SEVERITY_ORDER = ['lethal', 'toxic', 'inedible'];
 const GUIDE_PARTS = [
   'identify',
   'habitat',
@@ -111,8 +112,14 @@ function speciesPage(
   const vars = { name, latin: species.scientificName };
   const guide = (p: string) =>
     t('species', `list_of_species.${key}.guide.${p}`);
+  // A composite (Chanterelles, Boletus) warns of its members' look-alikes.
+  const ids = [species.id, ...(species.compositeOf ?? [])];
+  // Deadliest first, as the sheet lists them.
   const lookalikes = TOXIC_SPECIES.filter(toxic =>
-    toxic.confusedWithSpeciesIds.includes(species.id)
+    toxic.confusedWithSpeciesIds.some(id => ids.includes(id))
+  ).sort(
+    (a, b) =>
+      SEVERITY_ORDER.indexOf(a.severity) - SEVERITY_ORDER.indexOf(b.severity)
   );
   const body = [
     `<h1>${escape(name)}</h1>`,
