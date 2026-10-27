@@ -200,7 +200,7 @@ function cropPage(crop: (typeof CROPS)[number], lang: IndexedLanguage): Page {
     guide
       ? part(
           t('huerta', 'grow.care'),
-          `${t('huerta', 'grow.facts.water')}: ${t('huerta', `grow.water.${guide.water}`)}. ${t('huerta', `grow.${crop.id}.water`)} ${t('huerta', 'grow.facts.feed')}: ${t('huerta', `grow.feed.${guide.feed}`)}. ${t('huerta', `grow.${crop.id}.feed`)}`
+          `${t('huerta', 'grow.facts.water')}: ${t('huerta', `grow.${crop.id}.water`)} ${t('huerta', 'grow.facts.feed')}: ${t('huerta', `grow.${crop.id}.feed`)}`
         )
       : '',
     part(t('huerta', `grow.harvest.${crop.kind}`), harvest),

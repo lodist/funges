@@ -585,11 +585,6 @@ function Weather({
 /** Water, feeding and pots. */
 function Care({ crop, guide }: { crop: Crop; guide: CropGuide }) {
   const { t } = useTranslation('huerta');
-  const lead = (level: string, text: string) => (
-    <>
-      <span className='font-semibold'>{level}.</span> {text}
-    </>
-  );
   return (
     <Part title={t('grow.care')}>
       <Rows
@@ -597,18 +592,12 @@ function Care({ crop, guide }: { crop: Crop; guide: CropGuide }) {
           {
             key: 'water',
             label: t('grow.facts.water'),
-            value: lead(
-              t(`grow.water.${guide.water}`),
-              t(`grow.${crop.id}.water`)
-            ),
+            value: t(`grow.${crop.id}.water`),
           },
           {
             key: 'feed',
             label: t('grow.facts.feed'),
-            value: lead(
-              t(`grow.feed.${guide.feed}`),
-              t(`grow.${crop.id}.feed`)
-            ),
+            value: t(`grow.${crop.id}.feed`),
           },
           {
             key: 'pot',
