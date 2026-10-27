@@ -105,21 +105,40 @@ export default function LandingPage() {
 
   return (
     <>
-      <SEO
-        title={t('home.metaTitle')}
-        description={t('home.metaDescription')}
-        bare
-        canonicalUrl={localizedPath(
-          '/',
-          pathLanguage(window.location.pathname) ?? 'en'
-        )}
-        alternates={alternates('/', window.location.origin)}
-      />
+      {/* Terra's own page once the shared front page holds `/`. */}
+      {shouldShowHuerta ? (
+        <SEO
+          title={t('home.headline')}
+          description={t('home.description')}
+          canonicalUrl={localizedPath(
+            '/terra/',
+            pathLanguage(window.location.pathname) ?? 'en'
+          )}
+          alternates={alternates('/terra/', window.location.origin)}
+        />
+      ) : (
+        <SEO
+          title={t('home.metaTitle')}
+          description={t('home.metaDescription')}
+          bare
+          canonicalUrl={localizedPath(
+            '/',
+            pathLanguage(window.location.pathname) ?? 'en'
+          )}
+          alternates={alternates('/', window.location.origin)}
+        />
+      )}
       <div className={styles.page}>
         <section className={styles.hero} aria-labelledby='landing-title'>
           {shouldShowHuerta ? <SpaceTab to='huerta' /> : null}
           <header className={styles.header}>
-            <Logo className='h-10 md:h-12' />
+            {/* Logo = home, as in the sidebar: the front page the spaces open from. */}
+            <Link
+              to='/'
+              className='focus-ring inline-flex min-h-11 items-center rounded-md'
+            >
+              <Logo className='h-10 md:h-12' />
+            </Link>
             <Link
               to='/worth-foraging-now'
               className={`${styles.textLink} focus-ring`}

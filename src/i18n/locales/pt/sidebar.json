@@ -19,6 +19,7 @@
   "huertaWeek": "Espécies",
   "spaces": {
     "switch": "Espaço: {{space}}. Mudar de espaço",
+    "open": "Abrir {{space}}",
     "terra": {
       "name": "Terra",
       "tagline": "Cogumelos e plantas silvestres"

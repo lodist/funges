@@ -19,6 +19,7 @@
   "huertaWeek": "Especies",
   "spaces": {
     "switch": "Espacio: {{space}}. Cambiar de espacio",
+    "open": "Abrir {{space}}",
     "terra": {
       "name": "Terra",
       "tagline": "Setas y plantas silvestres"

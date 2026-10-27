@@ -230,34 +230,42 @@ function cropPage(crop: (typeof CROPS)[number], lang: IndexedLanguage): Page {
   };
 }
 
-function frontPage(path_: '/' | '/huerta/', lang: IndexedLanguage): Page {
+/** The front pages: the shared one every space opens from, then each
+ *  space's own. Each says what it is and links the pages it leads to. */
+function frontPage(
+  path_: '/' | '/terra/' | '/huerta/',
+  lang: IndexedLanguage
+): Page {
   const { t } = translator(lang);
-  const home = path_ === '/';
-  // The front page's title names Funges and what it does; its heading is the
-  // headline the page shows.
-  const [ns, title, text, heading, intro] = home
-    ? [
-        'common',
-        'home.metaTitle',
-        'home.metaDescription',
-        'home.headline',
-        'home.description',
-      ]
-    : [
-        'huerta',
-        'landing.headline',
-        'landing.intro',
-        'landing.headline',
-        'landing.intro',
-      ];
+  const [title, description, heading, intro, links] = {
+    '/': [
+      pageTitle(t('common', 'home.metaTitle'), { bare: true }),
+      t('common', 'home.metaDescription'),
+      t('common', 'common.appDescription'),
+      t('common', 'home.metaDescription'),
+      speciesLinks(lang) + cropLinks(lang),
+    ],
+    '/terra/': [
+      pageTitle(t('common', 'home.headline')),
+      t('common', 'home.description'),
+      t('common', 'home.headline'),
+      t('common', 'home.description'),
+      speciesLinks(lang),
+    ],
+    '/huerta/': [
+      pageTitle(t('huerta', 'landing.headline')),
+      t('huerta', 'landing.intro'),
+      t('huerta', 'landing.headline'),
+      t('huerta', 'landing.intro'),
+      cropLinks(lang),
+    ],
+  }[path_];
   return {
     path: localizedPath(path_, lang),
     lang,
-    title: pageTitle(t(ns, title), { bare: home }),
-    description: t(ns, text),
-    body: `<main data-static><h1>${escape(t(ns, heading))}</h1><p>${escape(t(ns, intro))}</p>${
-      home ? speciesLinks(lang) + cropLinks(lang) : cropLinks(lang)
-    }</main>`,
+    title,
+    description,
+    body: `<main data-static><h1>${escape(heading)}</h1><p>${escape(intro)}</p>${links}</main>`,
   };
 }
 
@@ -265,6 +273,7 @@ function frontPage(path_: '/' | '/huerta/', lang: IndexedLanguage): Page {
 export function buildPages(): Page[] {
   return INDEXED_LANGUAGES.flatMap(lang => [
     frontPage('/', lang),
+    frontPage('/terra/', lang),
     frontPage('/huerta/', lang),
     ...GENERATED_SPECIES_DATA.map(species => speciesPage(species, lang)),
     ...CROPS.map(crop => cropPage(crop, lang)),

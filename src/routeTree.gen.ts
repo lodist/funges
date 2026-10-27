@@ -13,9 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DataRouteImport } from './routes/data'
 import { Route as DeRouteImport } from './routes/de'
 import { Route as DeleteAccountRouteImport } from './routes/delete-account'
-import { Route as FrontARouteImport } from './routes/front-a'
-import { Route as FrontBRouteImport } from './routes/front-b'
-import { Route as FrontCRouteImport } from './routes/front-c'
 import { Route as HuertaRouteImport } from './routes/huerta'
 import { Route as IdentifyRouteImport } from './routes/identify'
 import { Route as ImpressumRouteImport } from './routes/impressum'
@@ -28,8 +25,10 @@ import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SpeciesRouteImport } from './routes/species'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsuseRouteImport } from './routes/termsuse'
+import { Route as TerraRouteImport } from './routes/terra'
 import { Route as WorthForagingNowRouteImport } from './routes/worth-foraging-now'
 import { Route as DeHuertaRouteImport } from './routes/de_.huerta'
+import { Route as DeTerraRouteImport } from './routes/de_.terra'
 import { Route as HuertaAccountRouteImport } from './routes/huerta_.account'
 import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
 import { Route as HuertaPlannerRouteImport } from './routes/huerta_.planner'
@@ -61,21 +60,6 @@ const DeRoute = DeRouteImport.update({
 const DeleteAccountRoute = DeleteAccountRouteImport.update({
   id: '/delete-account',
   path: '/delete-account',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FrontARoute = FrontARouteImport.update({
-  id: '/front-a',
-  path: '/front-a',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FrontBRoute = FrontBRouteImport.update({
-  id: '/front-b',
-  path: '/front-b',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FrontCRoute = FrontCRouteImport.update({
-  id: '/front-c',
-  path: '/front-c',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HuertaRoute = HuertaRouteImport.update({
@@ -138,6 +122,11 @@ const TermsuseRoute = TermsuseRouteImport.update({
   path: '/termsuse',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TerraRoute = TerraRouteImport.update({
+  id: '/terra',
+  path: '/terra',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
   id: '/worth-foraging-now',
   path: '/worth-foraging-now',
@@ -146,6 +135,11 @@ const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
 const DeHuertaRoute = DeHuertaRouteImport.update({
   id: '/de_/huerta',
   path: '/de/huerta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeTerraRoute = DeTerraRouteImport.update({
+  id: '/de_/terra',
+  path: '/de/terra',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HuertaAccountRoute = HuertaAccountRouteImport.update({
@@ -214,9 +208,6 @@ export interface FileRoutesByFullPath {
   '/data': typeof DataRoute
   '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
-  '/front-a': typeof FrontARoute
-  '/front-b': typeof FrontBRoute
-  '/front-c': typeof FrontCRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -229,8 +220,10 @@ export interface FileRoutesByFullPath {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/de/huerta': typeof DeHuertaRoute
+  '/de/terra': typeof DeTerraRoute
   '/huerta/account': typeof HuertaAccountRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
@@ -249,9 +242,6 @@ export interface FileRoutesByTo {
   '/data': typeof DataRoute
   '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
-  '/front-a': typeof FrontARoute
-  '/front-b': typeof FrontBRoute
-  '/front-c': typeof FrontCRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -264,8 +254,10 @@ export interface FileRoutesByTo {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/de/huerta': typeof DeHuertaRoute
+  '/de/terra': typeof DeTerraRoute
   '/huerta/account': typeof HuertaAccountRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
@@ -285,9 +277,6 @@ export interface FileRoutesById {
   '/data': typeof DataRoute
   '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
-  '/front-a': typeof FrontARoute
-  '/front-b': typeof FrontBRoute
-  '/front-c': typeof FrontCRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
@@ -300,8 +289,10 @@ export interface FileRoutesById {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/de_/huerta': typeof DeHuertaRoute
+  '/de_/terra': typeof DeTerraRoute
   '/huerta_/account': typeof HuertaAccountRoute
   '/huerta_/map': typeof HuertaMapRoute
   '/huerta_/planner': typeof HuertaPlannerRoute
@@ -322,9 +313,6 @@ export interface FileRouteTypes {
     | '/data'
     | '/de'
     | '/delete-account'
-    | '/front-a'
-    | '/front-b'
-    | '/front-c'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -337,8 +325,10 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
     | '/de/huerta'
+    | '/de/terra'
     | '/huerta/account'
     | '/huerta/map'
     | '/huerta/planner'
@@ -357,9 +347,6 @@ export interface FileRouteTypes {
     | '/data'
     | '/de'
     | '/delete-account'
-    | '/front-a'
-    | '/front-b'
-    | '/front-c'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -372,8 +359,10 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
     | '/de/huerta'
+    | '/de/terra'
     | '/huerta/account'
     | '/huerta/map'
     | '/huerta/planner'
@@ -392,9 +381,6 @@ export interface FileRouteTypes {
     | '/data'
     | '/de'
     | '/delete-account'
-    | '/front-a'
-    | '/front-b'
-    | '/front-c'
     | '/huerta'
     | '/identify'
     | '/impressum'
@@ -407,8 +393,10 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
     | '/de_/huerta'
+    | '/de_/terra'
     | '/huerta_/account'
     | '/huerta_/map'
     | '/huerta_/planner'
@@ -428,9 +416,6 @@ export interface RootRouteChildren {
   DataRoute: typeof DataRoute
   DeRoute: typeof DeRoute
   DeleteAccountRoute: typeof DeleteAccountRoute
-  FrontARoute: typeof FrontARoute
-  FrontBRoute: typeof FrontBRoute
-  FrontCRoute: typeof FrontCRoute
   HuertaRoute: typeof HuertaRoute
   IdentifyRoute: typeof IdentifyRoute
   ImpressumRoute: typeof ImpressumRoute
@@ -443,8 +428,10 @@ export interface RootRouteChildren {
   SpeciesRoute: typeof SpeciesRoute
   SupportRoute: typeof SupportRoute
   TermsuseRoute: typeof TermsuseRoute
+  TerraRoute: typeof TerraRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
   DeHuertaRoute: typeof DeHuertaRoute
+  DeTerraRoute: typeof DeTerraRoute
   HuertaAccountRoute: typeof HuertaAccountRoute
   HuertaMapRoute: typeof HuertaMapRoute
   HuertaPlannerRoute: typeof HuertaPlannerRoute
@@ -487,27 +474,6 @@ declare module '@tanstack/react-router' {
       path: '/delete-account'
       fullPath: '/delete-account'
       preLoaderRoute: typeof DeleteAccountRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/front-a': {
-      id: '/front-a'
-      path: '/front-a'
-      fullPath: '/front-a'
-      preLoaderRoute: typeof FrontARouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/front-b': {
-      id: '/front-b'
-      path: '/front-b'
-      fullPath: '/front-b'
-      preLoaderRoute: typeof FrontBRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/front-c': {
-      id: '/front-c'
-      path: '/front-c'
-      fullPath: '/front-c'
-      preLoaderRoute: typeof FrontCRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/huerta': {
@@ -594,6 +560,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsuseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terra': {
+      id: '/terra'
+      path: '/terra'
+      fullPath: '/terra'
+      preLoaderRoute: typeof TerraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/worth-foraging-now': {
       id: '/worth-foraging-now'
       path: '/worth-foraging-now'
@@ -606,6 +579,13 @@ declare module '@tanstack/react-router' {
       path: '/de/huerta'
       fullPath: '/de/huerta'
       preLoaderRoute: typeof DeHuertaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de_/terra': {
+      id: '/de_/terra'
+      path: '/de/terra'
+      fullPath: '/de/terra'
+      preLoaderRoute: typeof DeTerraRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/huerta_/account': {
@@ -700,9 +680,6 @@ const rootRouteChildren: RootRouteChildren = {
   DataRoute: DataRoute,
   DeRoute: DeRoute,
   DeleteAccountRoute: DeleteAccountRoute,
-  FrontARoute: FrontARoute,
-  FrontBRoute: FrontBRoute,
-  FrontCRoute: FrontCRoute,
   HuertaRoute: HuertaRoute,
   IdentifyRoute: IdentifyRoute,
   ImpressumRoute: ImpressumRoute,
@@ -715,8 +692,10 @@ const rootRouteChildren: RootRouteChildren = {
   SpeciesRoute: SpeciesRoute,
   SupportRoute: SupportRoute,
   TermsuseRoute: TermsuseRoute,
+  TerraRoute: TerraRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
   DeHuertaRoute: DeHuertaRoute,
+  DeTerraRoute: DeTerraRoute,
   HuertaAccountRoute: HuertaAccountRoute,
   HuertaMapRoute: HuertaMapRoute,
   HuertaPlannerRoute: HuertaPlannerRoute,

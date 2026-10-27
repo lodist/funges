@@ -19,6 +19,7 @@
   "huertaWeek": "Species",
   "spaces": {
     "switch": "Space: {{space}}. Switch space",
+    "open": "Open {{space}}",
     "terra": {
       "name": "Terra",
       "tagline": "Wild mushrooms and plants"

@@ -19,6 +19,7 @@
   "huertaWeek": "Specie",
   "spaces": {
     "switch": "Spazio: {{space}}. Cambia spazio",
+    "open": "Apri {{space}}",
     "terra": {
       "name": "Terra",
       "tagline": "Funghi e piante selvatiche"
