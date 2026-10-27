@@ -434,7 +434,7 @@
     "perPerson": "{{from}}–{{to}} plantas por persona para comer en fresco",
     "perPersonKeep": "{{from}}–{{to}} plantas por persona para comer en fresco, {{keepFrom}}–{{keepTo}} para guardar también para el invierno",
     "garlic": {
-      "about": "Se cultiva por sus cabezas, que se dividen en dientes. Planta dientes sueltos en otoño o a principios de primavera; la mayoría de variedades necesita un periodo de frío para formar dientes, así que la plantación de otoño da las cabezas más grandes.",
+      "about": "De cada diente que plantas sale una cabeza entera. Planta dientes sueltos en otoño o a principios de primavera; la mayoría de variedades necesita un periodo de frío para formar dientes, así que la plantación de otoño da las cabezas más grandes.",
       "water": "Riega en los periodos secos de primavera y principios de verano, mientras engordan las cabezas. Deja de regar cuando las hojas empiecen a amarillear, y riega la tierra, no las hojas.",
       "feed": "Antes de plantar, incorpora unos dos cubos de estiércol bien descompuesto o compost por metro cuadrado; normalmente no necesita más.",
       "harvest": "Saca las cabezas con una horca cuando las hojas amarilleen: a principios de verano si plantaste en otoño, más tarde si plantaste en primavera. No esperes demasiado, o las cabezas se abren y se conservan mal.",
@@ -456,7 +456,7 @@
       "source": "Cuidados del ajo: RHS. Cuántos plantar: extensión de Kansas State. pH: extensión de la Universidad de Minnesota."
     },
     "broad_beans": {
-      "about": "Se cultiva por los granos grandes de sus vainas, las primeras legumbres del año. Siembra en otoño o desde finales de invierno hasta la primavera; las variedades altas necesitan una estaca en cada esquina de la fila con un cordel alrededor, y despuntar las plantas cuando se forman las primeras vainas aleja el pulgón negro.",
+      "about": "Las habas son las primeras legumbres del año, con granos grandes y tiernos en vainas gordas. Siembra en otoño o desde finales de invierno hasta la primavera; las variedades altas necesitan una estaca en cada esquina de la fila con un cordel alrededor, y despuntar las plantas cuando se forman las primeras vainas aleja el pulgón negro.",
       "water": "En tierra, da un buen riego al empezar la floración y otro dos semanas después. Las macetas se secan rápido y necesitan agua a menudo.",
       "feed": "Como todas las legumbres, aporta nitrógeno al suelo y en tierra no necesita abono. En maceta, da un abono líquido rico en potasio cada dos semanas desde las primeras flores.",
       "harvest": "Recoge las vainas cuando estén llenas pero los granos aún sean pequeños; la marca de cada grano debe ser blanca o verde, no negra. Revisa las vainas de abajo cada pocos días, porque maduran rápido.",
@@ -478,7 +478,7 @@
       "source": "Cuidados de las habas: RHS. pH: extensión de Oregon State University y de la Universidad de Connecticut."
     },
     "lettuce": {
-      "about": "Se cultiva por sus hojas: las de hoja suelta se cosechan unas pocas hojas cada vez durante semanas, las de cogollo se cortan enteras cuando el cogollo está firme. Crece rápido con tiempo fresco y se espiga con el calor, así que siembra una fila corta cada dos o tres semanas en lugar de todo a la vez.",
+      "about": "La lechuga de hoja suelta se va cogiendo durante semanas, unas pocas hojas cada vez; las de cogollo se cortan enteras cuando el cogollo está firme. La lechuga crece rápido con tiempo fresco y se espiga con el calor, así que siembra una fila corta cada dos o tres semanas en lugar de todo a la vez.",
       "water": "Mantén el suelo siempre húmedo: una sequía amarga las hojas y hace que se espiguen. Riega por la mañana, no por la tarde, para frenar babosas y mohos.",
       "feed": "En tierra no necesita abono si se echó compost antes de sembrar. En maceta, da un abono líquido universal cada dos semanas en verano.",
       "harvest": "En las de hoja suelta, recoge las hojas de fuera cuando midan unos 10 cm, o corta la planta entera a 2,5 cm del suelo para que rebrote. Corta las de cogollo por la base cuando el cogollo esté firme; mejor por la mañana, cuando las hojas están tersas.",
@@ -500,7 +500,7 @@
       "source": "Cuidados de la lechuga: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de Washington State University."
     },
     "lambs_lettuce": {
-      "about": "Una ensalada pequeña y resistente que se cultiva por sus rosetas de hojas suaves en otoño, invierno y principios de primavera, cuando hay poco fresco en el huerto. Crece despacio y se queda baja, así que mantén el bancal sin hierbas; la semilla no nace en suelo cálido, por eso casi siempre se siembra a finales de verano y principios de otoño.",
+      "about": "Los canónigos son una ensalada pequeña y resistente, de hojas suaves, para otoño, invierno y principios de primavera, cuando apenas hay otra cosa fresca en el huerto. Crecen despacio y se quedan bajos, así que mantén el bancal sin hierbas; la semilla no nace en suelo cálido, por eso casi siempre se siembran a finales de verano y principios de otoño.",
       "water": "Riega con regularidad cuando haga seco: la humedad irregular endurece las hojas. Al aire libre en invierno casi nunca necesita riego.",
       "feed": "Poco exigente: crece en cualquier suelo normal y no necesita abono extra, sobre todo después de un cultivo de verano bien abonado.",
       "harvest": "Corta las rosetas enteras por la base, o recoge unas hojas de fuera de cada planta para que salgan nuevas del centro. Cosecha todo el invierno en los días suaves; bajo una campana o un velo sigue creciendo más tiempo.",
@@ -522,7 +522,7 @@
       "source": "Cuidados de los canónigos: RHS y extensión de Utah State University. pH y conservación: extensión de Utah State University."
     },
     "rocket": {
-      "about": "Se cultiva por sus hojas picantes, listas de cuatro a seis semanas después de sembrar. La rúcula común es anual y florece pronto, así que siembra un poco cada pocas semanas; la rúcula silvestre es vivaz y sigue dando hojas todo el verano y el otoño.",
+      "about": "Las hojas picantes de la rúcula están listas entre cuatro y seis semanas después de sembrar. La rúcula común es anual y florece pronto, así que siembra un poco cada pocas semanas; la rúcula silvestre es vivaz y sigue dando hojas todo el verano y el otoño.",
       "water": "Mantén el suelo húmedo cuando haga seco: en suelo seco se espiga pronto. Con calor, una maceta puede necesitar agua cada día.",
       "feed": "No necesita abono: crece rápido en casi cualquier suelo y en sustrato nuevo.",
       "harvest": "Recoge unas pocas hojas de cada planta, poco y a menudo, para que siga sacando nuevas. Cuando florece, las hojas se vuelven duras y picantes; las flores se pueden comer en ensalada.",
@@ -544,7 +544,7 @@
       "source": "Cuidados de la rúcula: RHS. pH: extensión de la Universidad de Delaware y de Oregon State University."
     },
     "spinach": {
-      "about": "Se cultiva por sus hojas tiernas, que se recogen como brotes un mes después de sembrar o como hojas grandes a los dos meses. Es un cultivo de tiempo fresco que se espiga con el calor y los días largos de verano, así que siémbrala en primavera y a finales de verano, y elige una variedad resistente a la subida a flor para el verano.",
+      "about": "Puedes coger la espinaca en brotes tiernos más o menos al mes de sembrarla, o ya con la hoja grande hacia los dos meses. Es un cultivo de tiempo fresco que se espiga con el calor y los días largos de verano, así que siémbrala en primavera y a finales de verano, y elige una variedad resistente a la subida a flor para el verano.",
       "water": "Es exigente en agua: riega con regularidad cuando haga seco y no dejes nunca que una maceta se seque, o se espigará. Riega por la mañana.",
       "feed": "Antes de sembrar, incorpora compost o estiércol bien hecho; en suelo pobre, añade también un abono completo con el rastrillo.",
       "harvest": "Recoge unas hojas de fuera de cada planta más o menos cada semana, para que siga sacando nuevas, o corta todo el cultivo justo por encima de la base para que rebrote una vez. Arranca las plantas que empiecen a florecer.",
@@ -566,7 +566,7 @@
       "source": "Cuidados de la espinaca: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de Washington State University. Congelación: National Center for Home Food Preservation (Universidad de Georgia)."
     },
     "peas": {
-      "about": "Se cultivan por los guisantes dulces de la vaina, o por las vainas comestibles (tirabeques). Siembra desde principios de primavera; salvo las más bajas, todas trepan con zarcillos y necesitan malla o ramas desde el principio.",
+      "about": "Los guisantes se desgranan, pero los tirabeques se comen con vaina y todo. Siembra desde principios de primavera; salvo las más bajas, todas trepan con zarcillos y necesitan malla o ramas desde el principio.",
       "water": "Riega bien cuando empiecen a florecer y otra vez dos semanas después, para que engorden las vainas. Riega la tierra, no las hojas; las macetas necesitan agua a menudo.",
       "feed": "Los guisantes fabrican su propio nitrógeno y en tierra no necesitan abono. En maceta, da un abono líquido rico en potasio cada dos semanas desde las primeras flores.",
       "harvest": "Recoge los guisantes para desgranar cuando las vainas estén bien llenas, y los tirabeques cuando midan unos 7,5 cm. Empieza por abajo y cosecha cada pocos días, o las plantas dejan de producir.",
@@ -588,7 +588,7 @@
       "source": "Cuidados del guisante: RHS. Cuántos plantar: extensión de Kansas State. pH: extensión de la Universidad de Minnesota."
     },
     "radish": {
-      "about": "Se cultiva por sus raíces crujientes y picantes, listas de cuatro a seis semanas después de sembrar. Siembra una fila corta cada dos semanas para tener siempre; las siembras de primavera y finales de verano salen mejor, porque el calor del verano hace que florezcan y piquen. Cabe en los huecos entre hortalizas más lentas.",
+      "about": "Los rábanos son la hortaliza de raíz más rápida: crujientes, picantes y listos de cuatro a seis semanas después de sembrar. Siembra una fila corta cada dos semanas para tener siempre; las siembras de primavera y finales de verano salen mejor, porque el calor del verano hace que florezcan y piquen. Caben en los huecos entre hortalizas más lentas.",
       "water": "Mantén el suelo húmedo de forma regular para que crezcan rápido y suaves: la tierra seca los vuelve leñosos y picantes, y un riego fuerte tras una sequía los agrieta.",
       "feed": "No necesita abono: crece tan rápido que basta con la tierra normal del huerto.",
       "harvest": "Arráncalos unos pocos cada vez cuando la raíz tenga unos 2,5 cm de ancho. Si se quedan en la tierra, pronto se vuelven leñosos, amargos y muy picantes.",
@@ -610,7 +610,7 @@
       "source": "Cuidados del rábano: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de las universidades de Connecticut y Maryland. Conservación: extensión de la Universidad de Missouri."
     },
     "carrot": {
-      "about": "Se cultiva por sus raíces dulces. Siémbrala clara en su sitio definitivo, en tierra suelta y sin piedras: las piedras, los terrones y el estiércol fresco hacen que las raíces se bifurquen. Las plántulas son lentas y pequeñas al principio, así que mantén la fila sin hierbas.",
+      "about": "La zanahoria pide tierra suelta y sin piedras: las piedras, los terrones y el estiércol fresco hacen que las raíces se bifurquen. Siémbrala clara en su sitio definitivo. Las plántulas son lentas y pequeñas al principio, así que mantén la fila sin hierbas.",
       "water": "La zanahoria aguanta la sequía y rara vez necesita riego; en una sequía larga, dale un buen riego cada dos semanas. Importa más la regularidad que la cantidad: un riego fuerte tras una sequía agrieta las raíces.",
       "feed": "No necesita abono. No entierres estiércol ni compost fresco justo antes de sembrar, porque bifurca las raíces; usa un terreno abonado para un cultivo anterior.",
       "harvest": "Arranca las zanahorias en cuanto tengan tamaño para usarlas, aflojando antes la tierra con una horca para que no se rompan; las muy grandes pierden sabor. Al aclarar, toca las hojas lo menos posible, porque su olor atrae a la mosca de la zanahoria.",
@@ -632,7 +632,7 @@
       "source": "Cuidados de la zanahoria: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de las universidades de Connecticut y Maryland. Tamaño de maceta: extensión de la Universidad de Illinois. Conservación: extensión de la Universidad de Missouri."
     },
     "parsnip": {
-      "about": "Se cultiva por sus raíces largas y dulces, que pasan en la tierra de la primavera al invierno y saben más dulces tras las heladas. Compra semilla nueva cada año: la vieja nace mal, y hasta la nueva tarda de dos a cuatro semanas en salir. Las hojas pueden levantar ampollas en la piel con el sol, así que usa guantes y manga larga al escardar.",
+      "about": "La chirivía se queda en la tierra de la primavera al invierno, y tras las heladas sabe más dulce. Compra semilla nueva cada año: la vieja nace mal, y hasta la nueva tarda de dos a cuatro semanas en salir. Las hojas pueden levantar ampollas en la piel con el sol, así que usa guantes y manga larga al escardar.",
       "water": "Riega las plantas jóvenes en las sequías hasta que arraiguen; después, sus raíces profundas aguantan el tiempo seco. Mantén la humedad regular, porque un riego fuerte tras una sequía agrieta las raíces.",
       "feed": "No necesita abono. Usa un terreno estercolado para un cultivo anterior: el estiércol o el compost frescos bifurcan las raíces.",
       "harvest": "Arráncalas desde el otoño, cuando se secan las hojas, mejor después de la primera helada fuerte; afloja antes la tierra a fondo con una horca, porque las raíces son largas. Marca la fila para encontrarla en invierno.",
@@ -654,7 +654,7 @@
       "source": "Cuidados de la chirivía: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de las universidades de Connecticut y Maryland. Conservación: extensión de la Universidad de Missouri."
     },
     "beetroot": {
-      "about": "Se cultiva por sus raíces dulces, y sus hojas tiernas para ensalada. Cada semilla es un glomérulo que da varias plántulas, así que acláralas pronto o déjalas crecer en grupito para remolachas mini. Siembra poco cada pocas semanas de primavera a pleno verano; las raíces de las siembras de verano son las que se guardan.",
+      "about": "La remolacha da raíces dulces y, para ensalada, hojas tiernas. Cada semilla es un glomérulo que da varias plántulas, así que acláralas pronto o déjalas crecer en grupito para remolachas mini. Siembra poco cada pocas semanas de primavera a pleno verano; las raíces de las siembras de verano son las que se guardan.",
       "water": "Riega las plántulas en las sequías; las plantas ya arraigadas solo necesitan agua cada 10 a 14 días cuando hace seco. Poca agua vuelve la raíz leñosa, el riego irregular la agrieta y demasiada da hojas en vez de raíz.",
       "feed": "Un suelo mejorado con compost no necesita abono; si las plantas crecen mal, da un abono líquido rico en nitrógeno. Quita las hierbas, que le roban alimento y agua.",
       "harvest": "Saca una raíz sí y otra no cuando lleguen al tamaño de una pelota de golf y deja crecer el resto, sin pasar de unos 7 cm de ancho. Retuerce las hojas en vez de cortarlas, para que la raíz no sangre.",
@@ -676,7 +676,7 @@
       "source": "Cuidados de la remolacha: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de las universidades de Connecticut y Maryland. Conservación: extensión de la Universidad de Missouri."
     },
     "turnip": {
-      "about": "Se cultiva por sus raíces redondas y sus hojas tiernas. Las variedades tempranas están listas en unas seis semanas: siembra poco y a menudo en primavera, y otra vez a finales de verano para tener nabos en otoño e invierno. Necesita humedad constante; en suelo seco las raíces quedan pequeñas y leñosas y la planta florece antes de tiempo.",
+      "about": "Del nabo se aprovechan las raíces redondas y también las hojas tiernas. Las variedades tempranas están listas en unas seis semanas: siembra poco y a menudo en primavera, y otra vez a finales de verano para tener nabos en otoño e invierno. Necesita humedad constante; en suelo seco las raíces quedan pequeñas y leñosas y la planta florece antes de tiempo.",
       "water": "Riega cuando haga seco para que las raíces crezcan rápido y queden tiernas. Una maceta se seca enseguida y en verano necesita riego frecuente.",
       "feed": "Basta con un suelo mejorado con compost o estiércol bien hecho, mejor desde el otoño anterior; no necesita más abono.",
       "harvest": "Arranca los nabos tempranos al tamaño de una pelota de golf para comerlos crudos, o de una de tenis para cocinarlos; más grandes se vuelven leñosos y amargos. Las hojas tiernas de hasta 15 cm se cocinan como las espinacas.",
@@ -698,7 +698,7 @@
       "source": "Cuidados del nabo: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de las universidades de Connecticut y Maryland."
     },
     "chard": {
-      "about": "Se cultiva por sus hojas grandes y sus pencas gruesas, blancas, rojas o amarillas, que se cosechan desde el verano hasta que el frío la para y otra vez en primavera. Una sola siembra da durante meses y se espiga menos que la espinaca, por eso es una de las hortalizas de hoja más fáciles.",
+      "about": "La acelga tiene hojas grandes con pencas gruesas, blancas, rojas o amarillas; se va cogiendo desde el verano hasta que el frío la para y otra vez en primavera. Una sola siembra da durante meses y se espiga menos que la espinaca, por eso es una de las hortalizas de hoja más fáciles.",
       "water": "Riega las plantas jóvenes con regularidad hasta que arraiguen; después aguanta sequías cortas, pero riégala en las largas. En maceta, riega cuando el sustrato empiece a secarse.",
       "feed": "Normalmente no necesita abono: crece bien en casi cualquier suelo y en sustrato nuevo.",
       "harvest": "Corta las hojas de fuera con su penca por la base y deja que el centro siga creciendo. Las hojas pequeñas y tiernas van crudas en ensalada; las grandes se cocinan como la espinaca, y las pencas un poco más.",
@@ -742,7 +742,7 @@
       "source": "Cuidados del radicchio y la escarola: RHS. Cuántas plantar: extensión de la Universidad de Missouri. pH: extensión de la Universidad de Arkansas."
     },
     "kale": {
-      "about": "Se cultiva por sus hojas, que se cosechan desde el otoño y durante todo el invierno; la helada las endulza. Es la más resistente y menos exigente de las coles; protégela de orugas y palomas y cada planta dará muchas cosechas.",
+      "about": "La col rizada da hojas desde el otoño y durante todo el invierno, y las heladas las endulzan. Es la más resistente y menos exigente de las coles; protégela de orugas y palomas y cada planta dará muchas cosechas.",
       "water": "Riega las plantas jóvenes con regularidad para que el suelo nunca se seque. Ya arraigada, riega solo en sequías largas; en maceta necesita riego regular en verano.",
       "feed": "Plántala en tierra mejorada con compost. Solo necesita abono en suelo pobre o en maceta: un abono rico en nitrógeno le da impulso.",
       "harvest": "Recoge dos o tres hojas bajas de cada planta cada vez, subiendo por el tallo, y deja crecer la punta. Cosechar a menudo hace que siga sacando hojas hasta la primavera.",
@@ -764,7 +764,7 @@
       "source": "Cuidados de la col rizada: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de Washington State University. Congelación: National Center for Home Food Preservation (Universidad de Georgia)."
     },
     "cabbage": {
-      "about": "Se cultiva por sus cabezas firmes; con variedades de primavera, verano, otoño e invierno puedes cortar coles casi todo el año. Quiere un suelo firme y fértil y protección contra orugas, palomas y mosca de la col; no la plantes donde hubo coles o parientes en los dos últimos años.",
+      "about": "Con variedades de primavera, verano, otoño e invierno, puedes cortar coles casi todo el año. La col quiere un suelo firme y fértil y protección contra orugas, palomas y mosca de la col; no la plantes donde hubo coles o parientes en los dos últimos años.",
       "water": "Riega las plantas jóvenes con regularidad; ya arraigadas, dales un riego a fondo cada 10 días más o menos en las sequías, y más cuando empiecen a formar la cabeza. Un acolchado de compost mantiene el suelo húmedo.",
       "feed": "Un cultivo exigente: incorpora compost el otoño anterior. En suelo pobre, da un abono rico en nitrógeno cuando las plantas estén asentadas y antes de que formen la cabeza.",
       "harvest": "Corta la cabeza justo por encima del suelo con un cuchillo afilado cuando esté firme. En las coles de primavera y verano, haz una cruz poco profunda en el tronco: a menudo sale una segunda cabeza más pequeña.",
@@ -786,7 +786,7 @@
       "source": "Cuidados y conservación de la col: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de Washington State University."
     },
     "cauliflower": {
-      "about": "Se cultiva por su pella blanca, la cabeza que se forma en el centro de la planta. Es la más delicada de las coles: cualquier parón en el crecimiento, por suelo seco, tierra suelta o trasplante tardío, da pellas pequeñas y prematuras, así que mantenla creciendo sin pausa. En maceta, cultiva una variedad mini.",
+      "about": "La coliflor forma una sola cabeza blanca, la pella, en el centro de la planta. Es la más delicada de las coles: cualquier parón en el crecimiento, por suelo seco, tierra suelta o trasplante tardío, da pellas pequeñas y prematuras, así que mantenla creciendo sin pausa. En maceta, cultiva una variedad mini.",
       "water": "Mantén el suelo siempre húmedo pero sin encharcar, sobre todo mientras se forman las pellas. Acolcha para conservar la humedad; una maceta necesita agua en cuanto el sustrato empieza a secarse.",
       "feed": "Incorpora compost antes de plantar. En suelo pobre, abona las plantas jóvenes con un abono rico en nitrógeno antes de que formen la pella.",
       "harvest": "Corta la pella con unas hojas cuando esté firme, antes de que empiece a abrirse. Con el sol de verano, dobla unas hojas sobre la pella para que siga blanca, y en invierno átalas encima contra las heladas fuertes.",
@@ -808,7 +808,7 @@
       "source": "Cuidados y conservación de la coliflor: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de la Universidad de Minnesota."
     },
     "broccoli": {
-      "about": "Se cultiva por sus cabezas verdes de botones florales: tras cortar la cabeza principal, salen brotes laterales durante semanas. Cosecha antes de que los botones se abran en flores amarillas, algo que pasa rápido con calor. El brócoli de brotes es un tipo más resistente que pasa el invierno y produce en primavera.",
+      "about": "Las cabezas del brócoli son botones florales verdes: cortas la principal y siguen saliendo brotes laterales durante semanas. Cosecha antes de que los botones se abran en flores amarillas, algo que pasa rápido con calor. El brócoli de brotes es un tipo más resistente que pasa el invierno y produce en primavera.",
       "water": "Riega las plantas jóvenes con regularidad hasta que arraiguen, y luego en las sequías: un parón en el crecimiento la hace florecer antes de tiempo. Un acolchado de compost mantiene el suelo húmedo.",
       "feed": "Un cultivo exigente: incorpora compost o estiércol antes de plantar. En suelo pobre, o si crece despacio, da un abono rico en nitrógeno cuando las plantas midan unos 20 cm.",
       "harvest": "Corta la cabeza principal con algo de tallo cuando esté firme y con los botones aún cerrados. Después revisa cada pocos días y corta los brotes laterales antes de que florezcan; cosechar a menudo los mantiene saliendo hasta dos meses.",
@@ -830,7 +830,7 @@
       "source": "Cuidados y conservación del brócoli: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de Washington State University. Tamaño de maceta: extensión de Texas A&M AgriLife."
     },
     "brussels_sprouts": {
-      "about": "Se cultivan por los pequeños cogollos que se forman a lo largo del tallo alto y se recogen en otoño e invierno; tras una helada están más dulces. Es un cultivo largo que pide suelo firme: pisa la tierra antes de plantar y aprieta bien cada planta, o los cogollos saldrán sueltos.",
+      "about": "Las coles de Bruselas son cogollos que se forman a lo largo del tallo alto; se recogen en otoño e invierno y después de una helada están más dulces. Es un cultivo largo que pide suelo firme: pisa la tierra antes de plantar y aprieta bien cada planta, o los cogollos saldrán sueltos.",
       "water": "Riega las plantas jóvenes con regularidad para que el suelo nunca se seque; ya arraigadas, riega solo cuando haga seco. Un acolchado grueso mantiene el suelo húmedo.",
       "feed": "Incorpora compost el otoño anterior. En suelo pobre, o si crecen despacio, da un abono rico en nitrógeno entre principios y mediados del verano.",
       "harvest": "Empieza por los cogollos de abajo cuando estén firmes y del tamaño de una nuez, arrancándolos con un tirón hacia abajo, y sube por el tallo. Cuando se acaben, cocina la punta de la planta como verdura de hoja.",
@@ -852,7 +852,7 @@
       "source": "Cuidados y conservación de las coles de Bruselas: RHS. Cuántas plantar: extensión de Kansas State. pH: extensión de la Universidad de Georgia. Congelación: National Center for Home Food Preservation (Universidad de Georgia)."
     },
     "kohlrabi": {
-      "about": "Se cultiva por su tallo engrosado, una bola crujiente que queda justo sobre la tierra y sabe a col suave y dulce. Crece rápido, así que siembra una fila corta cada pocas semanas de primavera a finales de verano en vez de todo a la vez. Cógelo joven: si se hace grande, se vuelve leñoso.",
+      "about": "El colinabo es un tallo engrosado, una bola crujiente que queda justo sobre la tierra y sabe a col suave y dulce. Crece rápido, así que siembra una fila corta cada pocas semanas de primavera a finales de verano en vez de todo a la vez. Cógelo joven: si se hace grande, se vuelve leñoso.",
       "water": "Mantén el suelo húmedo de forma regular: la sequía frena el crecimiento y endurece el bulbo. Riega las plantas jóvenes con regularidad hasta que enraícen bien.",
       "feed": "Incorpora compost antes de sembrar y acolcha cuando las plantas crezcan. Necesita menos nitrógeno que otras coles, así que no hace falta más abono.",
       "harvest": "Corta el tallo bajo el bulbo cuando tenga entre el tamaño de una pelota de golf y el de una de tenis. Las hojas jóvenes se cocinan como la col rizada.",
@@ -896,7 +896,7 @@
       "source": "Cuidados de la cebolla: RHS. Cuántas plantar: extensión de Kansas State. pH: extensión de la Universidad de Connecticut."
     },
     "onion": {
-      "about": "Se cultiva de semilla para tener cebollas que se guardan todo el invierno; sale más barata que el bulbillo, hay más variedades y se sube menos a flor. Siembra a principios de primavera, en interior o directamente en la fila, y aclara las plántulas en dos veces para que cada cebolla tenga sitio.",
+      "about": "Las cebollas de semilla se guardan todo el invierno y salen más baratas que los bulbillos; además, hay más variedades y se suben menos a flor. Siembra a principios de primavera, en interior o directamente en la fila, y aclara las plántulas en dos veces para que cada cebolla tenga sitio.",
       "water": "Mantén húmedas las plántulas; después, riega solo en los periodos secos largos. Deja de regar cuando los bulbos hayan engordado a mitad de verano, y se conservarán más.",
       "feed": "Con compost incorporado antes de sembrar suele bastar; el nitrógeno de más al final da cebollas blandas que se conservan mal.",
       "harvest": "Cuando las hojas amarilleen y se doblen, de julio a octubre, saca las cebollas antes de que se sequen del todo. Sécalas al sol unas dos semanas.",
@@ -918,7 +918,7 @@
       "source": "Cuidados de la cebolla: RHS. Cuántas plantar: extensión de Kansas State. pH: extensión de la Universidad de Connecticut."
     },
     "leek": {
-      "about": "Se cultiva por su largo tallo blanco, que se cosecha desde finales de verano hasta el invierno. Siembra en semillero o en macetas, y cuando las plantas tengan el grosor de un lápiz pásalas a agujeros hondos hechos con un plantador y llena cada agujero de agua; plantar hondo da un tallo blanco largo.",
+      "about": "Los puerros se van arrancando desde finales de verano y durante todo el invierno. Siembra en semillero o en macetas, y cuando las plantas tengan el grosor de un lápiz pásalas a agujeros hondos hechos con un plantador y llena cada agujero de agua; plantar hondo da un tallo blanco largo.",
       "water": "Riega las plantas jóvenes hasta que crezcan bien, y después en los periodos secos largos. Riega al pie y no mojes las hojas, así frenas la roya.",
       "feed": "El puerro pasa meses en la tierra y le gusta el suelo rico: incorpora bastante compost o estiércol antes de plantar. En tierra pobre ayuda un abono nitrogenado a mitad de verano.",
       "harvest": "Saca los puerros con una horca según los necesites desde finales de verano; si coges uno sí y uno no, los demás engordan más. Las variedades tardías aguantan todo el invierno, y la helada los endulza.",
@@ -940,7 +940,7 @@
       "source": "Cuidados del puerro: RHS. pH: extensión de la Universidad de Connecticut."
     },
     "celery": {
-      "about": "Se cultiva por sus pencas crujientes. Las variedades autoblanqueantes son las más fáciles: plántalas en bloque, no en fila, para que se den sombra en los tallos. El apio necesita calor y agua constante: las plantas jóvenes que pasan mucho tiempo por debajo de 10 °C pueden espigarse, así que trasplanta solo cuando las noches sean suaves.",
+      "about": "Lo más fácil es el apio autoblanqueante: plántalo en bloque, no en fila, para que unas plantas den sombra a los tallos de otras. El apio necesita calor y agua constante: las plantas jóvenes que pasan mucho tiempo por debajo de 10 °C pueden espigarse, así que trasplanta solo cuando las noches sean suaves.",
       "water": "No dejes nunca que la tierra se seque: la sequía vuelve las pencas fibrosas y de sabor demasiado fuerte. En verano riega con generosidad, por la mañana o al atardecer, con agua de lluvia si puedes.",
       "feed": "Plántalo en tierra rica en compost o estiércol. En suelo pobre, da en verano un poco de abono rico en nitrógeno; en maceta, un abono líquido equilibrado cada dos semanas.",
       "harvest": "Arranca plantas enteras desde finales de verano, antes de que amarilleen las hojas y antes de la primera helada; cúbrelas con manta térmica cuando refresquen las noches. Úsalas pronto tras cosecharlas.",
@@ -962,7 +962,7 @@
       "source": "Cuidados del apio: RHS. pH: extensión de las universidades de Connecticut y Maryland."
     },
     "fennel": {
-      "about": "El hinojo de Florencia se cultiva por la base engrosada de sus hojas, con sabor anisado: el bulbo. Su gran problema es que se espigue, es decir, que florezca en vez de formar bulbo: siémbralo a principios de verano y no en primavera, elige una variedad resistente y siembra en alvéolos para no tocar las raíces. Cuando la base empiece a engordar, apórcala para que quede blanca y dulce.",
+      "about": "El hinojo de Florencia forma un bulbo abultado, con sabor a anís, en la base de las hojas. Su gran problema es que se espigue, es decir, que florezca en vez de formar bulbo: siémbralo a principios de verano y no en primavera, elige una variedad resistente y siembra en alvéolos para no tocar las raíces. Cuando la base empiece a engordar, apórcala para que quede blanca y dulce.",
       "water": "Mantén la tierra siempre húmeda: la sequía es una de las principales causas de que se espigue. Riega con generosidad por la mañana y revisa la maceta cada día en verano.",
       "feed": "Incorpora compost antes de sembrar y acolcha cuando las plantas crezcan; no necesita otro abono.",
       "harvest": "Corta el bulbo justo por encima de la tierra cuando tenga de 10 a 15 cm de ancho, o desde 5 cm para bulbos pequeños. No esperes a que se alargue y eche un tallo, porque se vuelve leñoso.",
@@ -980,7 +980,7 @@
       "source": "Cuidados del hinojo: RHS. pH: extensión de Utah State University y de la Universidad de Arkansas."
     },
     "potato": {
-      "about": "Se cultiva por sus tubérculos. Las tempranas se cosechan a principios de verano; las de temporada, en otoño, y se guardan todo el invierno. A medida que crecen los brotes, apórcalos con tierra: los protege de las heladas y evita que las patatas se pongan verdes.",
+      "about": "Las patatas tempranas se sacan a principios de verano, y las de temporada en otoño, que son las que se guardan todo el invierno. A medida que crecen los brotes, apórcalos con tierra: los protege de las heladas y evita que las patatas se pongan verdes.",
       "water": "Riega en las sequías, sobre todo desde la floración, cuando se forman los tubérculos; la humedad constante entonces también ayuda contra la sarna. Una maceta necesita riego regular incluso con lluvia, porque las hojas no dejan que la lluvia llegue a la tierra.",
       "feed": "Cultívala en tierra mejorada con compost o estiércol. En suelo pobre, da un abono rico en nitrógeno en el segundo aporcado; en maceta, mezcla un abono completo al plantar o da un abono líquido a las seis semanas más o menos.",
       "harvest": "Saca las tempranas cuando abran las flores y las patatas tengan el tamaño de un huevo. Para las de guardar, corta las matas cuando amarilleen, espera 10 días y cava empezando a 30 cm del tallo para no pinchar patatas.",
@@ -1002,7 +1002,7 @@
       "source": "Cuidados de la patata: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de la Universidad de Georgia. Tamaño de maceta: Cornell Cooperative Extension. Conservación: extensión de la Universidad de Missouri."
     },
     "asparagus": {
-      "about": "Planta perenne que se cultiva por sus turiones de primavera; una buena esparraguera produce 20 años o más. Planta las garras en un bancal fijo y limpio de hierbas, y no cortes ningún turión los dos primeros años para que las raíces cojan fuerza.",
+      "about": "El espárrago es perenne: una buena esparraguera da turiones cada primavera durante 20 años o más. Planta las garras en un bancal fijo y limpio de hierbas, y no cortes ningún turión los dos primeros años para que las raíces cojan fuerza.",
       "water": "Riega con regularidad las garras nuevas durante su primer verano. Una vez asentadas, enraízan hondo y solo necesitan agua en sequías largas.",
       "feed": "Cada final de invierno, cubre el bancal con 5 cm de compost o estiércol bien hecho. Si crece débil, esparce un abono completo a principios de primavera, antes de que salgan los turiones.",
       "harvest": "Corta los turiones con un cuchillo afilado justo bajo la tierra cuando midan unos 18 cm, cada dos o tres días si hace calor. Para a las seis semanas el primer año de cosecha y a las ocho los siguientes; luego deja crecer las ramas y córtalas solo cuando amarilleen en otoño.",
@@ -1024,7 +1024,7 @@
       "source": "Cuidados del espárrago: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de Cornell y de la Universidad de Maryland."
     },
     "rhubarb": {
-      "about": "Planta perenne y longeva que se cultiva por sus pencas ácidas, que se cosechan de primavera a principios de verano. Solo se comen las pencas: las hojas tienen ácido oxálico y no se comen. Una mata produce muchos años; sácala y divídela cada cinco años más o menos para que siga vigorosa.",
+      "about": "El ruibarbo es una perenne longeva; sus pencas ácidas se recogen de la primavera a principios de verano. Solo se comen las pencas: las hojas tienen ácido oxálico y no se comen. Una mata produce muchos años; sácala y divídela cada cinco años más o menos para que siga vigorosa.",
       "water": "Riega las plantas nuevas en los periodos secos de su primera temporada. Las matas asentadas solo necesitan agua en veranos secos y largos; la corona nunca debe quedar encharcada.",
       "feed": "Cada primavera, extiende 7 cm de estiércol bien hecho o compost alrededor de la planta, sin cubrir la corona. En suelo pobre, añade en primavera un abono rico en nitrógeno.",
       "harvest": "El segundo año arranca solo unas pocas pencas; desde el tercero, las de unos 30 cm. Sujeta cada una por la base y gírala para separarla en vez de cortarla, no quites más de un tercio a la vez y para a principios de julio para que la planta se recupere.",
@@ -1046,7 +1046,7 @@
       "source": "Cuidados del ruibarbo: RHS. Cuántas plantar: extensión de la Universidad de Missouri. pH: extensión de Cornell y de la Universidad de Maryland."
     },
     "artichoke": {
-      "about": "Planta perenne grande, de hojas plateadas, que se cultiva por sus capítulos florales, que se comen antes de abrirse. Necesita espacio, sol y suelo que drene bien; los inviernos fríos y húmedos la matan más a menudo que la helada sola. El primer verano, corta los tallos florales para que la planta arraigue.",
+      "about": "Las alcachofas son los botones florales de una perenne grande de hojas plateadas, y se comen antes de que se abran. La planta necesita espacio, sol y suelo que drene bien; los inviernos fríos y húmedos la matan más a menudo que la helada sola. El primer verano, corta los tallos florales para que la planta arraigue.",
       "water": "Riega con regularidad la primera temporada y mientras se forman las alcachofas: el suelo seco da menos y más pequeñas. Una vez asentada, aguanta sequías cortas.",
       "feed": "Incorpora mucho compost antes de plantar y acolcha cada primavera. En suelo pobre o en maceta, da un abono rico en potasio en primavera.",
       "harvest": "Corta las alcachofas cuando tengan su tamaño pero sigan bien cerradas, con unos centímetros de tallo; primero la principal y luego vienen las laterales, más pequeñas. Revisa cada pocos días con calor, porque se abren deprisa.",
@@ -1068,7 +1068,7 @@
       "source": "Cuidados de la alcachofa: RHS y extensión de Utah State. pH: extensión de Cornell. Conservación: extensión de Utah State."
     },
     "tomato": {
-      "about": "Se cultiva por sus frutos, que maduran desde pleno verano hasta la primera helada. Las variedades altas se atan a una caña y se dejan a un tallo quitando los chupones; las de mata baja quedan compactas y van bien en maceta.",
+      "about": "Los tomates maduran desde pleno verano hasta la primera helada. Las variedades altas se atan a una caña y se dejan a un tallo quitando los chupones; las de mata baja quedan compactas y van bien en maceta.",
       "water": "Mantén el suelo húmedo de forma regular: el riego irregular agrieta los frutos y causa la podredumbre apical. Con calor, una maceta puede necesitar agua cada día.",
       "feed": "Cuando empiecen a engordar los primeros frutos, da un abono líquido rico en potasio (abono para tomates) cada 10 a 14 días. En tierra rica necesita menos, pero abonar cada dos semanas sigue aumentando la cosecha.",
       "harvest": "Recoge cada fruto con su rabillo cuando tenga todo el color. Al final de la temporada, madura los frutos verdes en un sitio cálido y oscuro, o en un cajón con un plátano.",
@@ -1090,7 +1090,7 @@
       "source": "Cuidados del tomate: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de la Universidad de Georgia. Conservación: extensión de la Universidad de Arizona."
     },
     "pepper": {
-      "about": "Se cultiva por sus frutos dulces, que se comen verdes o maduros en rojo, amarillo o naranja. Necesita un verano largo y cálido: en zonas frescas va mejor en invernadero o en un rincón soleado y resguardado. Ata cada planta a una caña, porque los tallos son quebradizos y se parten con mucha carga.",
+      "about": "El pimiento se come verde o, si lo dejas en la planta, rojo, amarillo o naranja. Necesita un verano largo y cálido: en zonas frescas va mejor en invernadero o en un rincón soleado y resguardado. Ata cada planta a una caña, porque los tallos son quebradizos y se parten con mucha carga.",
       "water": "Mantén el suelo húmedo de forma regular: si se seca, se caen los botones florales. Con calor, una maceta puede necesitar agua cada día.",
       "feed": "Cuando florezca, da cada semana un abono líquido rico en potasio (abono para tomates) a las plantas en maceta. En tierra rica necesita menos, pero abonar sigue aumentando la cosecha.",
       "harvest": "Recoge el fruto cuando tenga su tamaño y brillo, verde o ya coloreado; se vuelve más dulce al colorearse, pero dejarlo madurar frena los nuevos. Corta el rabillo con tijeras en lugar de arrancarlo.",
@@ -1112,7 +1112,7 @@
       "source": "Cuidados del pimiento: RHS. Cuántas plantar: extensión de Kansas State y de Virginia Tech. pH: extensión de Virginia Tech. Conservación: extensión de Kansas State y de la Universidad de Missouri."
     },
     "chilli": {
-      "about": "Se cultiva por sus frutos picantes, para usar frescos, secos o en encurtido. Necesita calor todo el verano: invernadero, una ventana soleada o un rincón cálido y resguardado al aire libre. En maceta puede entrar en casa antes del frío y pasar el invierno en un sitio luminoso y cálido, con poco riego.",
+      "about": "Las guindillas se usan frescas, secas o en encurtido. Necesitan calor todo el verano: invernadero, una ventana soleada o un rincón cálido y resguardado al aire libre. Una planta en maceta puede entrar en casa antes del frío y pasar el invierno en un sitio luminoso y cálido, con poco riego.",
       "water": "Mantén el sustrato húmedo de forma regular: si se seca, se caen los botones. Una maceta a pleno sol puede necesitar agua cada día con calor.",
       "feed": "Cuando florezca, da cada semana un abono líquido rico en potasio (abono para tomates) a las plantas en maceta. En tierra rica necesita menos.",
       "harvest": "Recógelas verdes para la mayor cosecha: las que se dejan enrojecer pican más, pero la planta da entonces menos flores nuevas. Al final de la temporada deja colorear las últimas. Córtalas con el rabillo y lávate las manos tras tocar las variedades picantes.",
@@ -1134,7 +1134,7 @@
       "source": "Cuidados y conservación de la guindilla: RHS. pH: extensión de Virginia Tech (pimientos)."
     },
     "aubergine": {
-      "about": "Se cultiva por sus frutos brillantes, morados, blancos o rayados. Necesita más calor que el tomate y unos cinco meses de la siembra a la cosecha: en un verano fresco, cultívala en invernadero o en el rincón más soleado y resguardado. Despúntala a unos 30 cm para que ramifique, y deja cinco o seis frutos en las variedades de fruto grande.",
+      "about": "Hay berenjenas moradas, blancas y rayadas. Necesitan más calor que el tomate y unos cinco meses de la siembra a la cosecha: en un verano fresco, cultívalas en invernadero o en el rincón más soleado y resguardado. Despunta cada planta a unos 30 cm para que ramifique, y deja cinco o seis frutos en las variedades de fruto grande.",
       "water": "Mantén el suelo siempre húmedo; con calor, una maceta puede necesitar agua cada día. Bajo cubierta, pulverizar las hojas dos veces al día también aleja la araña roja.",
       "feed": "Cuando abran las primeras flores, da cada dos semanas un abono líquido rico en potasio. En tierra rica necesita menos, pero abonar sigue aumentando la cosecha.",
       "harvest": "Corta cada fruto con unos centímetros de rabillo cuando tenga su tamaño, brillo y buen color; la piel mate indica que está pasado y puede amargar. Cosecha con regularidad y cuidado con las espinas del cáliz.",
@@ -1156,7 +1156,7 @@
       "source": "Cuidados de la berenjena: RHS. Cuántas plantar: extensión de Kansas State y de Virginia Tech. pH: extensión de Virginia Tech. Conservación: extensión de Kansas State y de la Universidad de Missouri."
     },
     "cucumber": {
-      "about": "Se cultiva por sus frutos, que se recogen desde pleno verano. La mayoría de las variedades trepan: guíalas por una caña, una malla o un enrejado para ahorrar sitio y mantener limpios los frutos. Las de invernadero suelen dar solo flores femeninas, así que quita las masculinas que salgan; las de exterior necesitan sus flores masculinas para la polinización.",
+      "about": "Los pepinos empiezan a cogerse a pleno verano. La mayoría de las variedades trepan: guíalas por una caña, una malla o un enrejado para ahorrar sitio y mantener limpios los frutos. Las de invernadero suelen dar solo flores femeninas, así que quita las masculinas que salgan; las de exterior necesitan sus flores masculinas para la polinización.",
       "water": "Mantén el suelo húmedo de forma regular, sobre todo cuando empiecen los frutos. Riega al pie por la mañana sin mojar las hojas; con mucho calor, una maceta puede necesitar agua cada día.",
       "feed": "En tierra rara vez necesita abono, salvo en suelo pobre. En maceta, da un abono líquido universal cada 10 a 14 días, y pasa a uno rico en potasio (abono para tomates) cuando florezca.",
       "harvest": "Corta los frutos con un cuchillo cuando tengan su tamaño: unos 15 cm en las variedades pequeñas, de 20 a 25 cm en las grandes. Revisa cada pocos días, porque crecen rápido y recoger a menudo da más; los frutos amarillos e hinchados están pasados.",
@@ -1178,7 +1178,7 @@
       "source": "Cuidados del pepino: RHS. Cuántas plantar: extensión de Virginia Tech. pH: extensión de la Universidad Cornell. Conservación: extensión de Kansas State y de la Universidad de Missouri."
     },
     "courgette": {
-      "about": "Se cultiva por sus frutos tiernos, que se recogen pequeños todo el verano; las flores también se comen. Una planta ocupa mucho y produce en abundancia. Recoge a menudo: un fruto que se queda unos días se hace enorme y frena la planta.",
+      "about": "El calabacín se coge pequeño durante todo el verano, y sus flores también están buenas. Una planta ocupa mucho y produce en abundancia. Recoge a menudo: un fruto que se queda unos días se hace enorme y frena la planta.",
       "water": "Mantén el suelo húmedo todo el verano y riega al pie, no sobre las hojas. Una maceta pequeña enterrada junto a la planta y llena de agua la lleva directa a las raíces.",
       "feed": "Antes de plantar, mezcla mucho compost o estiércol bien hecho con la tierra; en buen suelo luego necesita poco más. En maceta, da un abono líquido rico en potasio cada 10 a 14 días cuando engorden los primeros frutos.",
       "harvest": "Corta los frutos con 10 a 12 cm de largo, pequeños y tiernos. Con buen tiempo, revisa cada día o cada dos: una planta puede dar tres o cuatro frutos por semana. Puedes coger las flores masculinas sin perder frutos.",
@@ -1200,7 +1200,7 @@
       "source": "Cuidados del calabacín: RHS. Cuántas plantar: extensión de Virginia Tech. pH: extensión de Virginia Tech. Conservación: extensión de Kansas State y de la Universidad de Missouri."
     },
     "pumpkin": {
-      "about": "Se cultiva por sus frutos grandes, que maduran en otoño y se guardan hasta el invierno. Los tallos rastreros necesitan mucho sitio. Para frutos grandes deja dos o tres por planta; para una calabaza gigante, solo una.",
+      "about": "La calabaza madura en otoño y se conserva hasta el invierno. Los tallos rastreros necesitan mucho sitio. Para frutos grandes deja dos o tres por planta; para una calabaza gigante, solo una.",
       "water": "Riega en abundancia, sobre todo cuando se formen los frutos, al pie y no sobre las hojas. Una maceta enterrada junto a la planta y llena de agua la lleva a las raíces.",
       "feed": "Mezcla mucho compost o estiércol bien hecho en el hoyo de plantación; la mayoría de las plantas no necesitan nada más. Para frutos muy grandes, da un abono líquido rico en potasio cada 10 a 14 días cuando el fruto engorde.",
       "harvest": "Deja que el fruto tome todo su color en la planta; la piel debe estar dura y no marcarse con la uña. Córtalo antes de la primera helada con al menos 10 cm de pedúnculo y déjalo al sol de una semana a 10 días para endurecer la piel.",
@@ -1222,7 +1222,7 @@
       "source": "Cuidados y conservación de la calabaza: RHS. Madurez: extensión de la Universidad de Minnesota. Cuántas plantar: extensión de Kansas State y de Virginia Tech. pH: extensión de Virginia Tech."
     },
     "winter_squash": {
-      "about": "Se cultiva por sus frutos de piel dura, como la violín (butternut), la bellota o la potimarrón, que se guardan todo el invierno. Las rastreras se extienden mucho; las pequeñas pueden guiarse por un soporte firme. Deja el fruto en la planta hasta que madure del todo: una calabaza verde no se conserva.",
+      "about": "Las calabazas de invierno, como la violín (butternut), la bellota o la potimarrón, tienen la piel dura y se guardan todo el invierno. Las rastreras se extienden mucho; las pequeñas pueden guiarse por un soporte firme. Deja el fruto en la planta hasta que madure del todo: una calabaza verde no se conserva.",
       "water": "Riega en abundancia mientras engorde el fruto, al pie y no sobre las hojas. Un acolchado alrededor de las plantas mantiene la humedad del suelo.",
       "feed": "Mezcla mucho compost o estiércol bien hecho en el hoyo de plantación. En suelo pobre, da un abono líquido rico en potasio cada 10 a 14 días cuando engorde el fruto.",
       "harvest": "Cosecha cuando la piel esté dura y mate, no se marque con la uña y el pedúnculo esté firme. Córtala antes de la primera helada con un buen trozo de pedúnculo y déjala al sol unos 10 días para que endurezca.",
@@ -1244,7 +1244,7 @@
       "source": "Cuidados de la calabaza: RHS. Madurez y conservación: extensión de la Universidad de Minnesota y RHS. Cuántas plantar: extensión de Kansas State y de Virginia Tech. pH: extensión de Virginia Tech."
     },
     "green_beans": {
-      "about": "Se cultivan por sus vainas tiernas, que se cogen jóvenes. Las de mata baja crecen unos 45 cm y van bien en maceta; las de enrame necesitan cañas altas pero producen durante más tiempo. Mueren con la helada y se pudren en tierra fría y húmeda, así que siembra solo cuando la tierra esté templada.",
+      "about": "Las judías verdes se cogen jóvenes, mientras la vaina está tierna. Las de mata baja crecen unos 45 cm y van bien en maceta; las de enrame necesitan cañas altas pero producen durante más tiempo. Mueren con la helada y se pudren en tierra fría y húmeda, así que siembra solo cuando la tierra esté templada.",
       "water": "Riega con tiempo seco, sobre todo cuando florecen y cuajan las vainas; con la tierra seca se caen las flores. Las macetas necesitan agua a menudo.",
       "feed": "En tierra las judías no necesitan abono, y el exceso de nitrógeno da hojas en vez de vainas. En maceta, da un abono líquido rico en potasio cada dos semanas desde las primeras flores.",
       "harvest": "Recoge las vainas de 15 a 20 cm, cuando se parten limpias y antes de que se marquen los granos. Cosecha cada pocos días: cuanto más coges, más vainas salen.",
@@ -1266,7 +1266,7 @@
       "source": "Cuidados de la judía: RHS y extensión de Virginia Tech. Cuántas plantar: extensión de Kansas State y Texas A&M. pH: extensión de Virginia Tech y Penn State."
     },
     "sweetcorn": {
-      "about": "Se cultiva por sus mazorcas dulces. Plántalo en un bloque de filas cortas y no en una fila larga: el polen lo reparte el viento, y solo en bloque se llenan bien las mazorcas. Mantén las variedades supersweet lejos de otro maíz dulce, o los granos quedan harinosos.",
+      "about": "Planta el maíz dulce en un bloque de filas cortas y no en una fila larga: el polen lo reparte el viento, y solo en bloque se llenan bien las mazorcas. Mantén las variedades supersweet lejos de otro maíz dulce, o los granos quedan harinosos.",
       "water": "Riega las plantas jóvenes hasta que arraiguen y luego en las sequías, sobre todo cuando salen los penachos y mientras engordan las mazorcas.",
       "feed": "Cultívalo en tierra rica en compost o estiércol. Un abono nitrogenado cuando las plantas lleguen a la altura de la rodilla aumenta la cosecha.",
       "harvest": "Revisa las mazorcas cuando las barbas se pongan marrones: abre un poco las hojas y aprieta un grano con la uña. Si sale un jugo lechoso está lista; si es acuoso, espera. Arranca la mazorca girándola y cómela pronto, porque su azúcar se convierte en almidón.",
@@ -1288,7 +1288,7 @@
       "source": "Cuidados del maíz dulce: RHS. Cuántas plantar: extensión de Kansas State y de la Universidad de Missouri. pH: extensión de las universidades de Connecticut y Maryland. Conservación: extensión de la Universidad de Missouri."
     },
     "strawberry": {
-      "about": "Una planta vivaz que se cultiva por sus frutos: las variedades de una cosecha dan a principios de verano, las reflorecientes desde el verano hasta el otoño. Un bancal produce bien tres o cuatro años; después replanta en otro sitio, con estolones enraizados, para evitar enfermedades del suelo.",
+      "about": "Las fresas son vivaces: las de una cosecha dan fruto a principios de verano y las reflorecientes, desde el verano hasta el otoño. Un bancal produce bien tres o cuatro años; después replanta en otro sitio, con estolones enraizados, para evitar enfermedades del suelo.",
       "water": "Riega con regularidad en épocas secas, y a menudo en macetas y cestas colgantes, que se secan rápido. Riega al pie por la mañana, sin mojar la corona ni los frutos.",
       "feed": "En tierra acolchada con compost cada primavera rara vez necesita más. En maceta, da un abono líquido universal cada dos semanas, y uno rico en potasio cuando salgan los botones florales.",
       "harvest": "Recoge las fresas cuando estén rojas del todo, en la hora más cálida del día; no maduran después de cogerlas. Pon paja bajo las plantas cuando se formen los frutos para mantenerlos limpios, y retírala en otoño.",
@@ -1310,7 +1310,7 @@
       "source": "Cuidados de las fresas: RHS. Tamaño de maceta: extensión de la Universidad Estatal de Iowa. pH: extensión de la Universidad Cornell. Conservación: extensión de Kansas State y de la Universidad de Missouri."
     },
     "melon": {
-      "about": "Se cultiva por sus frutos dulces de finales de verano. Necesita calor de verdad: en zonas frescas, cultívalo en invernadero, túnel o cajonera. Para que maduren, deja hasta cuatro frutos por planta al aire libre y de cuatro a seis bajo cubierta, y quita los demás cuando midan unos 2,5 cm.",
+      "about": "Los melones maduran a finales de verano y piden calor de verdad: en zonas frescas, cultívalos en invernadero, túnel o cajonera. Para que maduren, deja hasta cuatro frutos por planta al aire libre y de cuatro a seis bajo cubierta, y quita los demás cuando midan unos 2,5 cm.",
       "water": "Mantén el suelo húmedo de forma regular pero sin encharcar, regando al pie por la mañana. Riega menos cuando los frutos empiecen a madurar a finales de verano.",
       "feed": "En maceta, da un abono líquido universal cada 10 a 14 días a principios de verano, y uno rico en potasio cuando los frutos tengan el tamaño de una nuez. Deja de abonar cuando maduren.",
       "harvest": "Un melón maduro huele dulce, el pedúnculo empieza a agrietarse donde se une al fruto y el extremo opuesto cede un poco al apretar. Los cantalupos se sueltan entonces del pedúnculo con un leve empujón.",
@@ -1332,7 +1332,7 @@
       "source": "Cuidados del melón: RHS. Madurez: extensión de la Universidad de Minnesota. Cuántas plantar: extensión de Virginia Tech y de Kansas State. pH: extensión de Virginia Tech. Conservación: extensión de Kansas State y de la Universidad de Missouri."
     },
     "watermelon": {
-      "about": "Se cultiva por sus frutos grandes y dulces. Necesita un verano largo y caluroso: en zonas frescas, elige una variedad pequeña y temprana y cultívala bajo cubierta. A diferencia de otros melones, no madura después de cortarla, así que juzga la madurez en la planta.",
+      "about": "La sandía necesita un verano largo y caluroso: en zonas frescas, elige una variedad pequeña y temprana y cultívala bajo cubierta. A diferencia de otros melones, no madura después de cortarla, así que juzga la madurez en la planta.",
       "water": "Riega a fondo y con regularidad mientras crecen las guías y engordan los frutos, al pie y por la mañana. Riega menos cuando el fruto esté cerca de su tamaño final.",
       "feed": "Mezcla compost con la tierra antes de plantar. Demasiado nitrógeno da hojas en lugar de frutos, así que si abonas, usa un abono rico en potasio cuando se formen los frutos.",
       "harvest": "Está madura cuando el zarcillo más cercano al fruto está marrón y seco, la mancha donde apoya en el suelo pasa de blanca a amarillo crema y la piel pasa de brillante a mate. Comprueba las tres cosas y córtala con un cuchillo.",
@@ -1354,7 +1354,7 @@
       "source": "Cuidados de la sandía: RHS. Madurez y conservación: extensión de la Universidad de Minnesota. Cuántas plantar: extensión de Virginia Tech y de Kansas State. pH: extensión de la Universidad de Maryland."
     },
     "basil": {
-      "about": "Hierba anual que no tolera el frío, cultivada por sus hojas aromáticas desde principios de verano hasta las primeras noches frías. Despuntar los brotes mantiene la planta tupida y con hojas. Va bien en maceta en un sitio cálido, resguardado y soleado.",
+      "about": "La albahaca es una anual friolera: sus hojas aromáticas duran desde principios de verano hasta las primeras noches frías. Despuntar los brotes mantiene la planta tupida y con hojas. Va bien en maceta en un sitio cálido, resguardado y soleado.",
       "water": "Mantén la tierra húmeda de forma regular, regando por la mañana y al pie, no sobre las hojas: la albahaca no soporta las raíces mojadas por la noche. Con calor, una maceta puede necesitar agua cada día.",
       "feed": "En el suelo no necesita abono. En maceta, da un abono líquido equilibrado cada pocas semanas en verano; evita el abono para tomates, que la hace florecer.",
       "harvest": "Corta las puntas justo por encima de un par de hojas, unas pocas de cada planta, para que salgan brotes laterales. Quita los botones florales en cuanto aparezcan para que las hojas sigan tiernas.",
@@ -1376,7 +1376,7 @@
       "source": "Cuidados de la albahaca: RHS. pH: extensión de Clemson y de la Universidad de Connecticut."
     },
     "parsley": {
-      "about": "Hierba bienal que se cultiva como anual por sus hojas rizadas o lisas. La semilla es lenta: fuera puede tardar hasta seis semanas en nacer, así que marca la línea y mantenla húmeda. El segundo año florece y las hojas pierden calidad, así que siembra de nuevo cada año.",
+      "about": "El perejil, rizado o liso, vive dos años, aunque se cultiva solo durante uno. La semilla es lenta: fuera puede tardar hasta seis semanas en nacer, así que marca la línea y mantenla húmeda. El segundo año florece y las hojas pierden calidad, así que siembra de nuevo cada año.",
       "water": "Mantén el suelo húmedo pero sin encharcar, sobre todo mientras las plántulas son pequeñas y con calor seco. Las macetas se secan deprisa; en pleno verano, ponlas en semisombra.",
       "feed": "En el suelo no necesita abono. En maceta, da un abono líquido equilibrado cada pocas semanas durante la temporada.",
       "harvest": "Corta unos pocos tallos exteriores por la base y deja el centro para que siga creciendo; cosechar a menudo da hojas nuevas desde finales de primavera hasta otoño.",
@@ -1398,7 +1398,7 @@
       "source": "Cuidados del perejil: RHS. pH: extensión de Cornell y de la Universidad de Maryland."
     },
     "coriander": {
-      "about": "Anual rápida que se cultiva por sus hojas y, más tarde, por sus semillas. Con calor y suelo seco se espiga enseguida, así que siembra poco cada mes más o menos desde la primavera en vez de una sola siembra grande. Va bien en maceta.",
+      "about": "Del cilantro coges primero las hojas, que salen rápido, y después las semillas. Con calor y suelo seco se espiga enseguida, así que siembra poco cada mes más o menos desde la primavera en vez de una sola siembra grande. Va bien en maceta.",
       "water": "Mantén el suelo húmedo en los periodos secos: las raíces secas lo hacen florecer antes. Revisa las macetas cada día cuando hace calor.",
       "feed": "No necesita abono en tierra de huerto o sustrato nuevo: es un cultivo rápido.",
       "harvest": "Empieza a cortar hojas cuando las plantas midan de 10 a 15 cm, unas pocas de cada una, y deja que rebroten unas dos semanas. Para semilla, deja florecer algunas plantas y corta los tallos cuando las semillas se pongan marrones; sécalas en una bolsa de papel.",
@@ -1420,7 +1420,7 @@
       "source": "Cuidados del cilantro: RHS. pH: extensión de la Universidad de Connecticut. Tamaño de maceta: extensión de Oregon State."
     },
     "dill": {
-      "about": "Hierba anual que se cultiva por sus hojas finas como plumas y por sus semillas. Tiene raíz pivotante y no le gusta que la muevan, así que siémbralo en su sitio, poco cada pocas semanas desde mediados de primavera hasta pleno verano. Como el cilantro, se espiga con calor y sequía.",
+      "about": "El eneldo da hojas finas como plumas y, más tarde, semillas. Tiene raíz pivotante y no le gusta que lo muevan, así que siémbralo en su sitio, poco cada pocas semanas desde mediados de primavera hasta pleno verano. Como el cilantro, se espiga con calor y sequía.",
       "water": "Riega en los periodos secos: el suelo seco lo hace florecer pronto y dejar de dar hojas. Las macetas se secan deprisa cuando hace calor.",
       "feed": "No necesita abono en tierra de huerto o sustrato nuevo.",
       "harvest": "Coge hojas desde unas seis semanas después de sembrar, pocas cada vez, y deja al menos un tercio de la planta. Para semilla, corta las umbelas a finales de verano, cuando estén secas y marrones, y cuélgalas boca abajo en una bolsa de papel.",
@@ -1442,7 +1442,7 @@
       "source": "Cuidados del eneldo: RHS. pH: extensión de la Universidad de Connecticut."
     },
     "chervil": {
-      "about": "Hierba anual pequeña y delicada, con un suave sabor anisado, que se cultiva por sus hojas. Le gustan el fresco y la sombra ligera, y con sol fuerte se espiga, así que va mejor en primavera y otoño. Siembra poco cada pocas semanas para tener hojas siempre.",
+      "about": "El perifollo es una hierba pequeña y delicada, con un suave sabor anisado. Le gustan el fresco y la sombra ligera, y con sol fuerte se espiga, así que va mejor en primavera y otoño. Siembra poco cada pocas semanas para tener hojas siempre.",
       "water": "Mantén el suelo húmedo de forma regular, sin encharcar: el suelo seco lo hace florecer antes. Las macetas necesitan más agua cuando hace calor.",
       "feed": "No necesita abono en tierra de huerto o sustrato nuevo.",
       "harvest": "Las hojas están listas unas ocho semanas después de sembrar, cuando las plantas miden 10 cm. Coge unas pocas hojas jóvenes de cada planta, o corta los tallos a 5 cm y deja que rebroten.",
@@ -1460,7 +1460,7 @@
       "source": "Cuidados del perifollo: RHS. pH: extensión de la Universidad de Connecticut."
     },
     "chives": {
-      "about": "Una hierba perenne que se cultiva por sus hojas de sabor suave a cebolla y sus flores moradas comestibles. La mata rebrota cada primavera; sácala y divídela cada tres o cuatro años para que siga vigorosa.",
+      "about": "El cebollino tiene hojas de sabor suave a cebolla y flores moradas comestibles. La mata rebrota cada primavera; sácala y divídela cada tres o cuatro años para que siga vigorosa.",
       "water": "Riega en los periodos secos de su primer verano; después se apaña sola en la tierra. En maceta, mantén el sustrato húmedo de forma regular.",
       "feed": "Necesita poco: en tierra basta el compost al plantar. En maceta, un abono líquido general de vez en cuando en verano mantiene la salida de hojas nuevas.",
       "harvest": "Corta las hojas justo por encima de la base cuando las necesites; cortar a menudo hace que salgan más. Tras la floración, corta toda la mata a unos 5 cm para que rebrote con hojas frescas.",
@@ -1478,7 +1478,7 @@
       "source": "Cuidados del cebollino: RHS. pH: extensión de la Universidad de Minnesota."
     },
     "thyme": {
-      "about": "Una pequeña mata de hoja perenne que se cultiva por sus hojas aromáticas, que se cogen frescas todo el año o se secan. Necesita sol y un suelo que drene bien: la humedad del invierno la mata más a menudo que el frío. Con los años se vuelve leñosa; sustitúyela por plantas nuevas de esqueje.",
+      "about": "El tomillo, una mata pequeña de hoja perenne, se coge fresco todo el año o se seca. Necesita sol y un suelo que drene bien: la humedad del invierno lo mata más a menudo que el frío. Con los años se vuelve leñoso; sustitúyelo por plantas nuevas de esqueje.",
       "water": "Riega las plantas nuevas en épocas secas hasta que arraiguen; después, en tierra casi nunca necesita agua. En maceta, riega con calor y sequía y deja que el sustrato se seque un poco entre riegos.",
       "feed": "El tomillo crece mejor en suelo pobre y en tierra no necesita abono; un suelo rico da brotes blandos con menos aroma. Si lleva más de un año en la misma maceta, dale un poco de abono universal a finales de primavera.",
       "harvest": "Corta ramitas cuando las necesites; los brotes tiernos de finales de primavera y del verano tienen el mejor sabor. Cortar a menudo mantiene la mata compacta; recórtala un poco tras la floración, sin llegar a la madera desnuda.",
@@ -1500,7 +1500,7 @@
       "source": "Cuidados del tomillo: RHS. pH: laboratorio de suelos de la Universidad de Connecticut."
     },
     "rosemary": {
-      "about": "Un arbusto de hoja perenne que se cultiva por sus hojas aromáticas, que puedes coger todo el año. Necesita pleno sol y un suelo que drene bien; la tierra pesada y húmeda lo mata antes que el frío. En zonas frías plántalo junto a una pared soleada, o en una maceta que puedas poner a cubierto.",
+      "about": "El romero es un arbusto de hoja perenne que puedes coger todo el año. Necesita pleno sol y un suelo que drene bien; la tierra pesada y húmeda lo mata antes que el frío. En zonas frías plántalo junto a una pared soleada, o en una maceta que puedas poner a cubierto.",
       "water": "Riega en épocas secas durante el primer año; después, en tierra casi nunca necesita agua. En maceta necesita agua con calor, pero no dejes nunca que el sustrato se encharque.",
       "feed": "En tierra no necesita abono. Si lleva más de un año en la misma maceta, dale un poco de abono granulado universal a finales de primavera o principios de verano.",
       "harvest": "Corta brotes cuando los necesites, todo el año; los brotes tiernos de finales de primavera y del verano saben mejor. Recórtalo tras la floración para que quede tupido, pero no cortes la madera vieja y desnuda, que casi nunca rebrota.",
@@ -1522,7 +1522,7 @@
       "source": "Cuidados del romero: RHS. pH: extensión de Texas A&M AgriLife."
     },
     "oregano": {
-      "about": "Una planta vivaz que se extiende y se cultiva por sus hojas, frescas o secas. En invierno pierde casi toda la parte aérea y en primavera echa brotes nuevos. Tiene más aroma a pleno sol y en suelo pobre que drene bien, y se recoge mejor justo antes de que abran las flores.",
+      "about": "El orégano es una planta vivaz que se va extendiendo, y se usa fresco o seco. En invierno pierde casi toda la parte aérea y en primavera echa brotes nuevos. Tiene más aroma a pleno sol y en suelo pobre que drene bien, y se recoge mejor justo antes de que abran las flores.",
       "water": "Riega las plantas nuevas en épocas secas; ya asentado, en tierra no necesita más agua. En maceta, riega con calor y sequía, pero no dejes que el sustrato quede empapado.",
       "feed": "En tierra no necesita abono. Si lleva más de un año en la misma maceta, dale un poco de abono granulado universal a finales de primavera o principios de verano.",
       "harvest": "Corta brotes de finales de primavera a otoño y desgrana las hojas; el sabor es mejor antes de que abran las flores. Recórtalo tras la floración para que saque hojas nuevas y quita los tallos viejos a finales de invierno.",
@@ -1544,7 +1544,7 @@
       "source": "Cuidados del orégano: RHS. pH: laboratorio de suelos de la Universidad de Connecticut (mejorana) y extensión de NC State."
     },
     "sage": {
-      "about": "Un arbusto de hoja perenne que se cultiva por sus hojas suaves, verde grisáceo, que puedes coger todo el año. Necesita sol y un suelo que nunca se encharque. A los seis o siete años se vuelve leñosa y desgarbada; sustitúyela por plantas nuevas de esqueje.",
+      "about": "La salvia es un arbusto perenne de hojas suaves, verde grisáceo, que puedes coger todo el año. Necesita sol y un suelo que nunca se encharque. A los seis o siete años se vuelve leñosa y desgarbada; sustitúyela por plantas nuevas de esqueje.",
       "water": "Riega en épocas secas durante el primer año; después, en tierra aguanta la sequía. En maceta mantén el sustrato apenas húmedo, no empapado, y en invierno ponla junto a una pared, al abrigo de la lluvia.",
       "feed": "En tierra no necesita abono. Si lleva más de un año en la misma maceta, dale un poco de abono granulado universal a finales de primavera o principios de verano.",
       "harvest": "Coge hojas jóvenes o brotes enteros cuando los necesites; los de primavera y verano saben mejor, y cosechar a menudo la mantiene tupida. Pódala un poco cada año a mediados o finales de primavera.",
@@ -1566,7 +1566,7 @@
       "source": "Cuidados de la salvia: RHS. pH: UC Master Gardeners, Universidad de California."
     },
     "mint": {
-      "about": "Una vivaz vigorosa que se cultiva por sus hojas, para infusiones, bebidas y cocina. Sus raíces corren rápido bajo tierra e invaden el bancal, así que cultívala en maceta, o en una maceta sin fondo enterrada con el borde por encima del suelo. En invierno se seca y en primavera rebrota.",
+      "about": "La menta es una vivaz vigorosa, buena para infusiones, bebidas y cocina. Sus raíces corren rápido bajo tierra e invaden el bancal, así que cultívala en maceta, o en una maceta sin fondo enterrada con el borde por encima del suelo. En invierno se seca y en primavera rebrota.",
       "water": "Mantén el suelo húmedo de forma regular: la menta se marchita enseguida en una maceta seca. Revisa las macetas a menudo en verano y ponlas a media sombra cuando haga calor.",
       "feed": "En tierra necesita poco abono. En maceta, dale abono líquido en primavera y luego cada 4 a 6 semanas mientras crece.",
       "harvest": "Coge a menudo las puntas tiernas de finales de primavera a otoño; cosechar con frecuencia la mantiene compacta y llena de brotes nuevos. Corta los tallos con flor para que saque hojas nuevas.",
@@ -1588,7 +1588,7 @@
       "source": "Cuidados de la menta: RHS. pH: Departamento de Industrias Primarias de Nueva Gales del Sur. Abono en maceta: extensión de la Universidad de Arizona."
     },
     "tulip": {
-      "about": "Se cultivan por sus flores grandes y vivas de mediados a finales de primavera. Planta los bulbos tarde en otoño, lo que reduce el riesgo de fuego del tulipán, en un suelo que drene bien y no quede húmedo. Muchos tulipanes solo florecen bien el primer año, así que pon bulbos nuevos en los sitios que más te importan.",
+      "about": "Los tulipanes dan flores grandes y de colores vivos de mediados a finales de primavera. Planta los bulbos tarde en otoño, lo que reduce el riesgo de fuego del tulipán, en un suelo que drene bien y no quede húmedo. Muchos tulipanes solo florecen bien el primer año, así que pon bulbos nuevos en los sitios que más te importan.",
       "water": "En tierra solo necesitan agua tras dos o tres semanas sin lluvia, una vez han salido los brotes. Riega las macetas desde que asoman las hojas, porque la sequía acorta la floración, y ponlas a cubierto si el sustrato sigue empapado en invierno.",
       "feed": "Desde principios de primavera, da a las macetas un abono líquido rico en potasio (abono para tomates) cada semana, hasta que las hojas amarilleen.",
       "harvest": "Para el jarrón, córtalos cuando el capullo muestre color pero aún no se haya abierto. En el jardín, corta las flores pasadas justo por encima de las hojas y deja las hojas hasta que tengan color paja; para guardar los bulbos, sácalos unas seis semanas tras la floración, sécalos y guárdalos en un sitio cálido, oscuro y ventilado hasta el otoño.",
@@ -1610,7 +1610,7 @@
       "source": "Cuidados del tulipán: RHS. pH: laboratorio de suelos de la Universidad de Connecticut. Tamaño de maceta: extensión de la Universidad Purdue."
     },
     "daffodil": {
-      "about": "Se cultivan por sus flores amarillas y blancas desde finales de invierno hasta mediados de primavera. Vuelven durante muchos años y forman matas poco a poco, al sol o a media sombra. Lo que debes saber: deja que las hojas se sequen solas tras la floración, porque alimentan las flores del año siguiente.",
+      "about": "Los narcisos florecen en amarillo y blanco desde finales de invierno hasta mediados de primavera. Vuelven durante muchos años y forman matas poco a poco, al sol o a media sombra. Lo que debes saber: deja que las hojas se sequen solas tras la floración, porque alimentan las flores del año siguiente.",
       "water": "En tierra casi nunca necesitan agua, solo en sequías largas mientras crecen. Las macetas se secan rápido: riégalas hasta que se sequen las hojas.",
       "feed": "En tierra no necesitan abono. En maceta, da un abono líquido rico en potasio (abono para tomates) desde que salen los brotes hasta que las hojas empiezan a secarse.",
       "harvest": "Quita las flores pasadas para que la energía vuelva al bulbo. Deja las hojas hasta que amarilleen, unas seis semanas tras la floración, sin cortarlas, atarlas ni anudarlas; para el jarrón, córtalos cuando el capullo esté a punto de abrir.",
@@ -1653,7 +1653,7 @@
       "source": "Cuidados del crocus: RHS. pH: laboratorio de suelos de la Universidad de Connecticut. Tamaño de maceta: extensión de la Universidad Purdue."
     },
     "sunflower": {
-      "about": "Se cultiva por sus grandes flores de verano y por las pipas, para ti o para los pájaros. Las variedades altas necesitan una caña fuerte o una pared donde atarlas; las enanas quedan bajas y van bien en maceta. Protege las plántulas de las babosas hasta que estén fuertes.",
+      "about": "El girasol da grandes flores de verano y pipas para ti o para los pájaros. Las variedades altas necesitan una caña fuerte o una pared donde atarlas; las enanas quedan bajas y van bien en maceta. Protege las plántulas de las babosas hasta que estén fuertes.",
       "water": "Riega bien en épocas secas, al pie del tallo: las variedades altas no deben secarse. En maceta necesita agua más a menudo, cada día con calor.",
       "feed": "Incorpora compost al bancal antes de sembrar. Cuando aparezcan los botones, un abono líquido rico en potasio (abono para tomates) cada dos semanas da flores más grandes.",
       "harvest": "Corta para el jarrón por la mañana, cuando los pétalos empiezan a abrirse. Para las pipas, deja la cabeza en la planta hasta que el dorso se vuelva marrón, cúbrela con una bolsa de papel o una malla contra los pájaros, y luego córtala y sécala bajo techo.",
@@ -1675,7 +1675,7 @@
       "source": "Cuidados del girasol: RHS. pH: extensión de la Universidad de Minnesota."
     },
     "marigold": {
-      "about": "Las tagetes (clavel de moro y clavelón) se cultivan por sus flores naranjas y amarillas desde principios de verano hasta la primera helada, en arriates, macetas y entre las hortalizas. Son fáciles, pero a las babosas les encantan las plantas jóvenes. Si quitas las flores marchitas, siguen saliendo nuevas.",
+      "about": "Las tagetes (clavel de moro y clavelón) dan flores de un naranja y un amarillo intensos desde principios de verano hasta la primera helada, en arriates, macetas y entre las hortalizas. Son fáciles, pero a las babosas les encantan las plantas jóvenes. Si quitas las flores marchitas, siguen saliendo nuevas.",
       "water": "Riega en épocas secas, al pie de la planta y no sobre las flores. Las macetas se secan rápido en verano y conviene mirarlas cada día.",
       "feed": "Basta con una tierra de huerto normal; la tierra rica o el exceso de abono dan hojas en vez de flores. En maceta, un abono líquido cada pocas semanas mantiene la floración.",
       "harvest": "Quita las flores marchitas cada pocos días pinzándolas por debajo de la cabeza. Corta para el jarrón cuando las flores estén del todo abiertas.",
@@ -1697,7 +1697,7 @@
       "source": "Cuidados de la tagete: RHS. pH: laboratorio de suelos de la Universidad de Connecticut."
     },
     "calendula": {
-      "about": "Una anual rústica que se cultiva por sus flores naranjas y amarillas desde principios de verano hasta el otoño; los pétalos son comestibles y dan color a ensaladas y arroces. Crece en casi cualquier suelo y se resiembra sola. Sembrada en otoño, pasa el invierno y florece pronto al año siguiente.",
+      "about": "La caléndula es una anual rústica con flores naranjas y amarillas desde principios de verano hasta el otoño; los pétalos son comestibles y dan color a ensaladas y arroces. Crece en casi cualquier suelo y se resiembra sola. Sembrada en otoño, pasa el invierno y florece pronto al año siguiente.",
       "water": "Una vez arraigada aguanta la sequía; riega las plántulas y las plantas en maceta. No mojes las hojas para frenar el oídio.",
       "feed": "Necesita poco: la tierra rica o mucho abono dan hojas blandas y menos flores. En maceta, un abono líquido una vez al mes.",
       "harvest": "Corta las flores para el jarrón o para los pétalos por la mañana, cuando estén del todo abiertas. Quita las demás flores marchitas cada pocos días, o la planta hace semilla y deja de florecer.",
@@ -1719,7 +1719,7 @@
       "source": "Cuidados de la caléndula: RHS. pH: extensión de la Universidad Estatal de Utah."
     },
     "nasturtium": {
-      "about": "Se cultiva por sus flores vivas y sus hojas picantes, ambas comestibles, en plantas rastreras o trepadoras. Va mejor en suelo pobre y bien drenado: la tierra rica da mucha hoja y poca flor. Es fácil de sembrar, incluso para niños.",
+      "about": "La capuchina puede ser rastrera o trepadora, y tanto sus flores de colores vivos como sus hojas picantes se comen. Va mejor en suelo pobre y bien drenado: la tierra rica da mucha hoja y poca flor. Es fácil de sembrar, incluso para niños.",
       "water": "Riega las plántulas y las plantas en maceta; en el suelo aguanta la sequía una vez que crece. Una sequía muy larga corta la floración.",
       "feed": "No la abones: el abono da hojas a costa de las flores. Cultívala en tierra normal o pobre, sin compost ni estiércol.",
       "harvest": "Coge hojas tiernas y flores abiertas según las necesites, por la mañana. Las semillas verdes, cogidas antes de endurecer, se encurten como alcaparras; quitar las flores marchitas mantiene la floración.",
@@ -1741,7 +1741,7 @@
       "source": "Cuidados de la capuchina: RHS y extensión de la Universidad de Maryland."
     },
     "zinnia": {
-      "about": "Una flor de corte que se cultiva por sus colores intensos desde mediados de verano hasta la primera helada: cuanto más cortas, más florece. Le encantan el calor y el sol y se estanca con tiempo frío y húmedo. No le gusta que le toquen las raíces, así que siémbrala en su sitio o en macetas pequeñas.",
+      "about": "Las zinnias son flores de corte de colores intensos, desde mediados de verano hasta la primera helada: cuanto más cortas, más florecen. Les encantan el calor y el sol, y con tiempo frío y húmedo se estancan. No les gusta que les toquen las raíces, así que siémbralas en su sitio o en macetas pequeñas.",
       "water": "Riega a fondo en épocas secas, al pie: las hojas mojadas traen oídio. En verano mira las macetas cada día.",
       "feed": "Basta con tierra normal y algo de compost; el exceso de abono da brotes blandos. En maceta, un abono líquido cada dos semanas desde que empieza a florecer.",
       "harvest": "Corta cuando la flor esté del todo abierta y el tallo firme justo debajo de la cabeza (no debe doblarse al sacudirlo), bajo, por encima de un par de hojas. Quita las demás flores marchitas para que sigan saliendo botones.",
@@ -1763,7 +1763,7 @@
       "source": "Cuidados de la zinnia: RHS. pH: extensión IFAS de la Universidad de Florida."
     },
     "cosmos": {
-      "about": "Una anual alta y ligera de hojas plumosas que se cultiva por sus flores de margarita desde mediados de verano hasta la primera helada, y para corte. Florece mejor en suelo pobre o normal; la tierra rica da plantas altas y frondosas con pocas flores. Las variedades enanas van bien en maceta.",
+      "about": "El cosmos es una anual alta y ligera, de hojas plumosas y flores como margaritas desde mediados de verano hasta la primera helada, buenas para cortar. Florece mejor en suelo pobre o normal; la tierra rica da plantas altas y frondosas con pocas flores. Las variedades enanas van bien en maceta.",
       "water": "Una vez arraigado aguanta la sequía; riega las plántulas, las plantas recién puestas y las macetas. El exceso de agua, como el de abono, da más hojas que flores.",
       "feed": "En el suelo no necesita abono. En maceta, un abono líquido rico en potasio (abono para tomates) una vez al mes.",
       "harvest": "Corta para el jarrón cuando los botones empiezan a abrirse, hasta un brote lateral. Quita las flores marchitas cada pocos días, o la planta hace semilla y se para.",
@@ -1785,7 +1785,7 @@
       "source": "Cuidados del cosmos: RHS. pH: laboratorio de suelos de la Universidad de Connecticut."
     },
     "sweet_pea": {
-      "about": "Una trepadora que se cultiva por sus flores perfumadas para cortar, desde principios de verano. Necesita un soporte de cañas, malla o una valla, y despuntarla a unos 10 cm da plantas más ramificadas. La regla: sigue cortando, porque cuando forma vainas deja de florecer. Las vainas parecen guisantes, pero son venenosas.",
+      "about": "El guisante de olor trepa y da flores perfumadas para cortar desde principios de verano. Necesita un soporte de cañas, malla o una valla, y despuntarlo a unos 10 cm da plantas más ramificadas. La regla: sigue cortando, porque cuando forma vainas deja de florecer. Las vainas parecen guisantes, pero son venenosas.",
       "water": "Mantén el suelo húmedo toda la temporada y riega bien en épocas secas: las raíces secas acortan la floración. Con calor, las macetas necesitan agua cada día.",
       "feed": "Incorpora mucho compost o estiércol bien hecho antes de sembrar o plantar. Una vez que crece, un abono líquido cada una o dos semanas mantiene la floración.",
       "harvest": "Corta tallos cada pocos días, por la mañana, cuando estén abiertas las flores más bajas del tallo. Quita las vainas que encuentres, o la planta deja de florecer.",
@@ -1807,7 +1807,7 @@
       "source": "Cuidados del guisante de olor: RHS. pH: extensión de la Universidad de Missouri. Oídio: extensión de la Universidad Estatal de Oregón."
     },
     "lavender": {
-      "about": "Un pequeño arbusto de hoja perenne que se cultiva por sus flores perfumadas de verano, que atraen a las abejas y se secan bien. Necesita pleno sol y un suelo pobre que drene bien; los suelos calizos le van bien. Lo que debes saber: recórtala cada año tras la floración o se vuelve larguirucha y leñosa.",
+      "about": "La lavanda es un arbusto pequeño de hoja perenne, con flores perfumadas de verano que encantan a las abejas y se secan bien. Necesita pleno sol y un suelo pobre que drene bien; los suelos calizos le van bien. Lo que debes saber: recórtala cada año tras la floración o se vuelve larguirucha y leñosa.",
       "water": "Riega con regularidad las plantas nuevas el primer verano; ya asentada, en tierra casi nunca necesita agua. Una maceta se seca rápido y necesita riego regular en verano.",
       "feed": "La lavanda prefiere suelos pobres y no necesita abono; el abono le da tallos blandos que se caen.",
       "harvest": "Corta las varas para secar cuando se abran las primeras flores de la espiga, una mañana seca. A finales de verano, tras la floración, corta las varas secas con unos 2,5 cm de brote con hojas, pero nunca en la madera desnuda.",
