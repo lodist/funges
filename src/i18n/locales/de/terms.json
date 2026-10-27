@@ -53,13 +53,13 @@
   "lastUpdated": "Letzte Aktualisierung am: 26.10.2026",
   "huerta": {
     "title": "Gartenratschläge",
-    "content": "Die Ratschläge von Huerta, einschließlich Frostwarnungen, Saat- und Pflanzzeiten, Gießen und Pflegeschritten, werden aus Wettervorhersagen und langjährigen Klimadaten für die Gegend um deinen Garten berechnet. Vorhersagen können falsch sein, und die Bedingungen in deinem Garten können von denen der Gegend abweichen.",
+    "content": "Die Ratschläge von Huerta, einschliesslich Frostwarnungen, Saat- und Pflanzzeiten, Giessen und Pflegeschritten, werden aus Wettervorhersagen und langjährigen Klimadaten für die Gegend um deinen Garten berechnet. Vorhersagen können falsch sein, und die Bedingungen in deinem Garten können von denen der Gegend abweichen.",
     "frost": "Frostwarnungen und andere Hinweise können falsch sein, zu spät kommen oder gar nicht ankommen. Schütze Pflanzen, die dir wichtig sind, nach eigenem Ermessen; der Administrator haftet nicht für verlorene oder beschädigte Ernten."
   },
   "accounts": {
     "title": "Huerta-Konten",
     "content": "Huerta braucht ein Konto, das du durch die Anmeldung mit einem Google-Konto anlegst. Ein Konto ist für eine Person ab 16 Jahren. Halte die Geräte, auf denen du angemeldet bist, sicher.",
-    "conduct": "Der Administrator kann Konten sperren oder löschen, die den Service missbrauchen oder gegen diese Bedingungen verstoßen.",
+    "conduct": "Der Administrator kann Konten sperren oder löschen, die den Service missbrauchen oder gegen diese Bedingungen verstossen.",
     "delete": "Du kannst dein Konto jederzeit auf deiner Kontoseite löschen (Hilfe → Konto am Computer, Einstellungen am Handy); was gelöscht wird, steht in der Datenschutzerklärung."
   },
   "earlyAccess": {

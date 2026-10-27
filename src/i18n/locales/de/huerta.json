@@ -36,7 +36,7 @@
     "soil": "Boden",
     "nights": "Nächte",
     "rain": "Regen diese Woche",
-    "water": "Gießbedarf",
+    "water": "Giessbedarf",
     "noWater": "Keiner",
     "lastFrost": "Letzter Frost hier meist um den {{date}}",
     "firstFrost": "Erster Frost meist um den {{date}}",
@@ -57,14 +57,14 @@
         "title": "Frost möglich: {{night}}nacht"
       },
       "water": {
-        "title": "Diese Woche etwa {{mm}} L/m² gießen",
-        "text": "Der Regen ersetzt nicht, was Sonne und Wind nehmen. Zweimal gründlich gießen ist besser als täglich ein bisschen.",
+        "title": "Diese Woche etwa {{mm}} L/m² giessen",
+        "text": "Der Regen ersetzt nicht, was Sonne und Wind nehmen. Zweimal gründlich giessen ist besser als täglich ein bisschen.",
         "sandy": "Sandboden trocknet schnell aus: lieber drei, vier kleinere Gaben über die Woche verteilt.",
-        "clay": "Tonboden hält Wasser: einmal gründlich gießen, dann warten, bis die obersten Zentimeter trocken sind."
+        "clay": "Tonboden hält Wasser: einmal gründlich giessen, dann warten, bis die obersten Zentimeter trocken sind."
       },
       "rain": {
         "title": "Regen diese Woche, etwa {{mm}} mm",
-        "text": "Die Beete brauchen kein Gießen."
+        "text": "Die Beete brauchen kein Giessen."
       },
       "plantNow": {
         "title": "Aus deinem Plan, bereit für die Erde"
@@ -100,11 +100,11 @@
         },
         "blanch": {
           "title": "{{crop}}: Schäfte anhäufeln",
-          "text": "Zieh nach und nach Erde an, für längere weiße Schäfte."
+          "text": "Zieh nach und nach Erde an, für längere weisse Schäfte."
         },
         "net": {
           "title": "{{crop}}: unter Netz halten",
-          "text": "Ein feines Netz hält Kohlweißlinge und Tauben fern."
+          "text": "Ein feines Netz hält Kohlweisslinge und Tauben fern."
         },
         "pinchBeans": {
           "title": "{{crop}}: Spitzen auskneifen",
@@ -128,7 +128,7 @@
           "text": "Berechnet aus der Wärme seit der Aussaat oder Pflanzung."
         },
         "ripen": {
-          "title": "{{crop}}: weniger gießen",
+          "title": "{{crop}}: weniger giessen",
           "text_one": "Lass sie ausreifen. In etwa einer Woche kannst du sie ernten, wenn das Laub gelb wird.",
           "text_other": "Lass sie ausreifen. In etwa {{count}} Wochen kannst du sie ernten, wenn das Laub gelb wird."
         },
@@ -185,7 +185,7 @@
       "soil": "Boden",
       "nights": "Nächte",
       "rain": "Regen",
-      "water": "Gießbedarf",
+      "water": "Giessbedarf",
       "lastFrost": "Letzter Frost ~{{date}}",
       "firstFrost": "Erster Frost ~{{date}}"
     },
@@ -434,19 +434,19 @@
     "perPerson": "{{from}}–{{to}} Pflanzen pro Person zum Frischessen",
     "perPersonKeep": "{{from}}–{{to}} Pflanzen pro Person zum Frischessen, {{keepFrom}}–{{keepTo}}, um auch für den Winter einzumachen",
     "garlic": {
-      "about": "Angebaut für die Knollen, die sich in Zehen teilen. Einzelne Zehen im Herbst oder zeitig im Frühjahr stecken; die meisten Sorten brauchen eine Kälteperiode, um Zehen zu bilden, darum gibt die Herbstpflanzung die größten Knollen.",
-      "water": "Bei Trockenheit im Frühjahr und Frühsommer gießen, solange die Knollen dicker werden. Aufhören, sobald die Blätter gelb werden, und auf den Boden gießen, nicht über die Blätter.",
+      "about": "Angebaut für die Knollen, die sich in Zehen teilen. Einzelne Zehen im Herbst oder zeitig im Frühjahr stecken; die meisten Sorten brauchen eine Kälteperiode, um Zehen zu bilden, darum gibt die Herbstpflanzung die grössten Knollen.",
+      "water": "Bei Trockenheit im Frühjahr und Frühsommer giessen, solange die Knollen dicker werden. Aufhören, sobald die Blätter gelb werden, und auf den Boden giessen, nicht über die Blätter.",
       "feed": "Vor dem Pflanzen etwa zwei Eimer gut verrotteten Mist oder Kompost pro Quadratmeter einarbeiten; mehr braucht er meist nicht.",
       "harvest": "Die Knollen mit der Grabegabel herausheben, sobald die Blätter gelb werden: im Frühsommer bei Herbstpflanzung, später bei Frühjahrspflanzung. Nicht zu lange warten, sonst platzen die Knollen und halten sich schlecht.",
       "keeps": "Die Knollen zwei bis vier Wochen in einer Lage in der Sonne oder in einem luftigen Schuppen trocknen, dann kühl und trocken lagern. Hardneck-Sorten halten vier bis sechs Monate, Softneck-Sorten bis zu einem Jahr.",
       "problems": [
         {
           "name": "Rost",
-          "fix": "Orange, erhabene Pusteln auf den Blättern, am schlimmsten bei feuchtem Wetter. Mit Abstand pflanzen, auf den Boden statt über die Blätter gießen und das Laub bei der Ernte entfernen."
+          "fix": "Orange, erhabene Pusteln auf den Blättern, am schlimmsten bei feuchtem Wetter. Mit Abstand pflanzen, auf den Boden statt über die Blätter giessen und das Laub bei der Ernte entfernen."
         },
         {
           "name": "Mehlkrankheit",
-          "fix": "Die Blätter vergilben und welken, an der Knollenbasis wächst ein weißer, watteartiger Pilz. Es gibt kein Mittel: Befallene Pflanzen herausnehmen und in den Restmüll geben, und auf diesem Beet viele Jahre keinen Knoblauch, keine Zwiebeln und keinen Lauch anbauen."
+          "fix": "Die Blätter vergilben und welken, an der Knollenbasis wächst ein weisser, watteartiger Pilz. Es gibt kein Mittel: Befallene Pflanzen herausnehmen und in den Restmüll geben, und auf diesem Beet viele Jahre keinen Knoblauch, keine Zwiebeln und keinen Lauch anbauen."
         },
         {
           "name": "Knollen ohne Zehen",
@@ -456,10 +456,10 @@
       "source": "Knoblauchpflege: RHS. Wie viele: Kansas State Extension. pH: University of Minnesota Extension."
     },
     "broad_beans": {
-      "about": "Angebaut für die großen Bohnenkerne in den Hülsen, die ersten Bohnen des Jahres. Im Herbst oder vom Spätwinter bis ins Frühjahr säen; hohe Sorten brauchen an jeder Ecke der Reihe einen Pfahl mit umlaufender Schnur, und das Entspitzen, sobald sich die ersten Hülsen bilden, hält die Schwarze Bohnenlaus fern.",
+      "about": "Angebaut für die grossen Bohnenkerne in den Hülsen, die ersten Bohnen des Jahres. Im Herbst oder vom Spätwinter bis ins Frühjahr säen; hohe Sorten brauchen an jeder Ecke der Reihe einen Pfahl mit umlaufender Schnur, und das Entspitzen, sobald sich die ersten Hülsen bilden, hält die Schwarze Bohnenlaus fern.",
       "water": "Im Beet zu Blühbeginn kräftig wässern und zwei Wochen später noch einmal. Töpfe trocknen schnell aus und brauchen oft Wasser.",
       "feed": "Wie alle Bohnen reichert sie den Boden mit Stickstoff an und braucht im Beet keinen Dünger. Im Topf ab den ersten Blüten alle zwei Wochen einen kaliumreichen Flüssigdünger geben.",
-      "harvest": "Pflücken, wenn die Hülsen prall, die Kerne aber noch klein sind; die Ansatzstelle am Kern soll weiß oder grün sein, nicht schwarz. Die unteren Hülsen alle paar Tage prüfen, sie reifen schnell.",
+      "harvest": "Pflücken, wenn die Hülsen prall, die Kerne aber noch klein sind; die Ansatzstelle am Kern soll weiss oder grün sein, nicht schwarz. Die unteren Hülsen alle paar Tage prüfen, sie reifen schnell.",
       "keeps": "Ausgepalte Bohnen bald nach dem Pflücken essen. Zum Aufheben blanchieren und einfrieren.",
       "problems": [
         {
@@ -478,32 +478,32 @@
       "source": "Pflege der Dicken Bohne: RHS. pH: Oregon State University und University of Connecticut Extension."
     },
     "lettuce": {
-      "about": "Angebaut für die Blätter: Pflücksalat erntest du wochenlang Blatt für Blatt, Kopfsalat schneidest du ganz, sobald der Kopf fest ist. Er wächst schnell bei kühlem Wetter und schießt bei Hitze, also säe lieber alle zwei bis drei Wochen eine kurze Reihe als alles auf einmal.",
-      "water": "Halte den Boden immer feucht: Trockenheit macht die Blätter bitter und lässt die Pflanzen schießen. Gieß morgens, nicht abends, damit Schnecken und Schimmel weniger Chancen haben.",
+      "about": "Angebaut für die Blätter: Pflücksalat erntest du wochenlang Blatt für Blatt, Kopfsalat schneidest du ganz, sobald der Kopf fest ist. Er wächst schnell bei kühlem Wetter und schiesst bei Hitze, also säe lieber alle zwei bis drei Wochen eine kurze Reihe als alles auf einmal.",
+      "water": "Halte den Boden immer feucht: Trockenheit macht die Blätter bitter und lässt die Pflanzen schiessen. Giess morgens, nicht abends, damit Schnecken und Schimmel weniger Chancen haben.",
       "feed": "Im Beet braucht er keinen Dünger, wenn vor der Saat Kompost eingearbeitet wurde. Im Topf im Sommer alle zwei Wochen einen Universal-Flüssigdünger geben.",
-      "harvest": "Bei Pflücksalat die äußeren Blätter ernten, sobald sie etwa 10 cm lang sind, oder die ganze Pflanze auf 2,5 cm zurückschneiden, dann treibt sie neu aus. Kopfsalat am Grund abschneiden, wenn sich der Kopf fest anfühlt; am besten morgens, wenn die Blätter knackig sind.",
+      "harvest": "Bei Pflücksalat die äusseren Blätter ernten, sobald sie etwa 10 cm lang sind, oder die ganze Pflanze auf 2,5 cm zurückschneiden, dann treibt sie neu aus. Kopfsalat am Grund abschneiden, wenn sich der Kopf fest anfühlt; am besten morgens, wenn die Blätter knackig sind.",
       "keeps": "Butterkopfsalat bald essen; Eissalat hält sich in einer Tüte im Kühlschrank länger.",
       "problems": [
         {
           "name": "Schnecken",
-          "fix": "Ausgefressene Löcher und Schleimspuren, am schlimmsten bei Sämlingen und feuchtem Wetter. In der Dämmerung absammeln und morgens gießen."
+          "fix": "Ausgefressene Löcher und Schleimspuren, am schlimmsten bei Sämlingen und feuchtem Wetter. In der Dämmerung absammeln und morgens giessen."
         },
         {
           "name": "Schossen",
-          "fix": "Aus der Mitte wächst ein hoher Blütenstiel und die Blätter werden bitter, nach Hitze oder trockenem Boden. Regelmäßig gießen, Sommersaaten in lichten Schatten setzen und ernten, bevor die Pflanzen alt werden."
+          "fix": "Aus der Mitte wächst ein hoher Blütenstiel und die Blätter werden bitter, nach Hitze oder trockenem Boden. Regelmässig giessen, Sommersaaten in lichten Schatten setzen und ernten, bevor die Pflanzen alt werden."
         },
         {
           "name": "Falscher Mehltau",
-          "fix": "Gelbe, eckige Flecken oben auf dem Blatt und weißer Belag darunter, bei kühlem, feuchtem Wetter. Mit Abstand pflanzen, den Boden statt der Blätter gießen und befallene Blätter entfernen."
+          "fix": "Gelbe, eckige Flecken oben auf dem Blatt und weisser Belag darunter, bei kühlem, feuchtem Wetter. Mit Abstand pflanzen, den Boden statt der Blätter giessen und befallene Blätter entfernen."
         }
       ],
       "source": "Salatpflege: RHS. Wie viele: University of Missouri und Kansas State Extension. pH: Washington State University Extension."
     },
     "lambs_lettuce": {
       "about": "Ein kleiner, winterharter Salat, angebaut für seine Rosetten aus milden Blättern im Herbst, Winter und zeitigen Frühjahr, wenn sonst kaum etwas frisch ist. Er wächst langsam und bleibt flach, also halte das Beet unkrautfrei; in warmem Boden keimt die Saat nicht, deshalb wird meist im Spätsommer und Frühherbst gesät.",
-      "water": "Bei Trockenheit regelmäßig gießen: ungleichmäßige Feuchte macht die Blätter zäh. Im Winter draußen muss er kaum gegossen werden.",
+      "water": "Bei Trockenheit regelmässig giessen: ungleichmässige Feuchte macht die Blätter zäh. Im Winter draussen muss er kaum gegossen werden.",
       "feed": "Ein Schwachzehrer: Er wächst in jedem ordentlichen Boden und braucht keinen zusätzlichen Dünger, besonders nach einer gut gedüngten Sommerkultur.",
-      "harvest": "Ganze Rosetten am Grund abschneiden oder von jeder Pflanze ein paar äußere Blätter pflücken, damit aus der Mitte neue nachwachsen. In milden Phasen den ganzen Winter ernten; unter Vlies oder einer Folienhaube wächst er länger weiter.",
+      "harvest": "Ganze Rosetten am Grund abschneiden oder von jeder Pflanze ein paar äussere Blätter pflücken, damit aus der Mitte neue nachwachsen. In milden Phasen den ganzen Winter ernten; unter Vlies oder einer Folienhaube wächst er länger weiter.",
       "keeps": "Die Blätter halten sich 5 bis 7 Tage im Kühlschrank; erst kurz vor dem Essen waschen.",
       "problems": [
         {
@@ -523,7 +523,7 @@
     },
     "rocket": {
       "about": "Angebaut für die scharf-würzigen Blätter, vier bis sechs Wochen nach der Saat erntereif. Salatrauke ist einjährig und blüht bald, also säe alle paar Wochen ein wenig nach; Wilde Rauke ist mehrjährig und liefert den ganzen Sommer und Herbst.",
-      "water": "Halte den Boden bei Trockenheit feucht: in trockenem Boden schießt sie früh. Ein Topf braucht bei warmem Wetter manchmal jeden Tag Wasser.",
+      "water": "Halte den Boden bei Trockenheit feucht: in trockenem Boden schiesst sie früh. Ein Topf braucht bei warmem Wetter manchmal jeden Tag Wasser.",
       "feed": "Sie braucht keinen Dünger: Sie wächst schnell in den meisten Böden und in frischer Blumenerde.",
       "harvest": "Von jeder Pflanze ein paar Blätter pflücken, oft und wenig, dann wachsen neue nach. Sobald sie blüht, werden die Blätter zäh und scharf; die Blüten kannst du im Salat essen.",
       "keeps": "Am besten bald essen; die Blätter halten sich ein paar Tage in einer Tüte im Kühlschrank.",
@@ -534,7 +534,7 @@
         },
         {
           "name": "Schossen",
-          "fix": "Bei Hitze, Trockenheit oder zu dichtem Stand schieben früh Blütenstiele. Sämlinge vereinzeln, gut gießen und Sommersaaten in lichten Schatten setzen."
+          "fix": "Bei Hitze, Trockenheit oder zu dichtem Stand schieben früh Blütenstiele. Sämlinge vereinzeln, gut giessen und Sommersaaten in lichten Schatten setzen."
         },
         {
           "name": "Schnecken",
@@ -544,10 +544,10 @@
       "source": "Rucolapflege: RHS. pH: University of Delaware und Oregon State University Extension."
     },
     "spinach": {
-      "about": "Angebaut für die zarten Blätter, als Babyblätter etwa einen Monat nach der Saat oder ausgewachsen nach etwa zwei Monaten geerntet. Er ist eine Kühlwetterkultur und schießt bei Hitze und langen Sommertagen, also säe ihn im Frühjahr und Spätsommer und nimm für den Sommer eine schossfeste Sorte.",
-      "water": "Er ist durstig: Bei Trockenheit regelmäßig gießen und einen Topf nie austrocknen lassen, sonst schießt er. Morgens gießen.",
+      "about": "Angebaut für die zarten Blätter, als Babyblätter etwa einen Monat nach der Saat oder ausgewachsen nach etwa zwei Monaten geerntet. Er ist eine Kühlwetterkultur und schiesst bei Hitze und langen Sommertagen, also säe ihn im Frühjahr und Spätsommer und nimm für den Sommer eine schossfeste Sorte.",
+      "water": "Er ist durstig: Bei Trockenheit regelmässig giessen und einen Topf nie austrocknen lassen, sonst schiesst er. Morgens giessen.",
       "feed": "Vor der Saat Kompost oder gut verrotteten Mist einarbeiten; auf magerem Boden zusätzlich einen Volldünger einharken.",
-      "harvest": "Von jeder Pflanze etwa wöchentlich ein paar äußere Blätter pflücken, dann wachsen neue nach, oder den ganzen Bestand knapp über dem Grund abschneiden, er treibt einmal neu aus. Pflanzen, die zu blühen beginnen, herausziehen.",
+      "harvest": "Von jeder Pflanze etwa wöchentlich ein paar äussere Blätter pflücken, dann wachsen neue nach, oder den ganzen Bestand knapp über dem Grund abschneiden, er treibt einmal neu aus. Pflanzen, die zu blühen beginnen, herausziehen.",
       "keeps": "Am besten frisch essen; in einer Tüte im Kühlschrank hält er ein paar Tage. Zum Einfrieren die Blätter 2 Minuten blanchieren, in Eiswasser abkühlen und verpacken.",
       "problems": [
         {
@@ -556,21 +556,21 @@
         },
         {
           "name": "Falscher Mehltau",
-          "fix": "Gelbe Flecken auf den Blättern und grau-violetter Belag darunter, bei kühlem, feuchtem Wetter. Pflanzen auslichten, morgens gießen und befallene Blätter entfernen."
+          "fix": "Gelbe Flecken auf den Blättern und grau-violetter Belag darunter, bei kühlem, feuchtem Wetter. Pflanzen auslichten, morgens giessen und befallene Blätter entfernen."
         },
         {
           "name": "Schnecken",
-          "fix": "Sie fressen die weichen jungen Blätter. In der Dämmerung absammeln, morgens gießen und Unkraut kurz halten."
+          "fix": "Sie fressen die weichen jungen Blätter. In der Dämmerung absammeln, morgens giessen und Unkraut kurz halten."
         }
       ],
       "source": "Spinatpflege: RHS. Wie viele: University of Missouri und Kansas State Extension. pH: Washington State University Extension. Einfrieren: National Center for Home Food Preservation (University of Georgia)."
     },
     "peas": {
-      "about": "Angebaut für süße Erbsen aus der Hülse oder für essbare Hülsen (Zuckererbsen und Zuckerschoten). Ab dem zeitigen Frühjahr säen; außer den niedrigsten Sorten ranken alle und brauchen von Anfang an ein Netz oder Reisig.",
-      "water": "Gut gießen, sobald die Pflanzen blühen, und zwei Wochen später noch einmal, damit die Hülsen schwellen. Auf den Boden gießen, nicht über die Blätter; Töpfe brauchen oft Wasser.",
+      "about": "Angebaut für süsse Erbsen aus der Hülse oder für essbare Hülsen (Zuckererbsen und Zuckerschoten). Ab dem zeitigen Frühjahr säen; ausser den niedrigsten Sorten ranken alle und brauchen von Anfang an ein Netz oder Reisig.",
+      "water": "Gut giessen, sobald die Pflanzen blühen, und zwei Wochen später noch einmal, damit die Hülsen schwellen. Auf den Boden giessen, nicht über die Blätter; Töpfe brauchen oft Wasser.",
       "feed": "Erbsen bilden ihren eigenen Stickstoff und brauchen im Beet keinen Dünger. Im Topf ab den ersten Blüten alle zwei Wochen einen kaliumreichen Flüssigdünger geben.",
       "harvest": "Palerbsen pflücken, wenn die Hülsen gut gefüllt sind, Zuckererbsen und Zuckerschoten bei etwa 7,5 cm Länge. Unten anfangen und alle paar Tage pflücken, sonst hören die Pflanzen auf zu tragen.",
-      "keeps": "Erbsen verlieren schnell ihre Süße: am Pflücktag essen oder sofort blanchieren und einfrieren.",
+      "keeps": "Erbsen verlieren schnell ihre Süsse: am Pflücktag essen oder sofort blanchieren und einfrieren.",
       "problems": [
         {
           "name": "Erbsenwickler",
@@ -578,7 +578,7 @@
         },
         {
           "name": "Echter Mehltau",
-          "fix": "Ein weißer, mehliger Belag auf den Blättern, vor allem bei Trockenheit im Spätsommer. Den Boden feucht halten, Abstand zwischen den Reihen lassen und abgetragene Pflanzen entfernen."
+          "fix": "Ein weisser, mehliger Belag auf den Blättern, vor allem bei Trockenheit im Spätsommer. Den Boden feucht halten, Abstand zwischen den Reihen lassen und abgetragene Pflanzen entfernen."
         },
         {
           "name": "Mäuse und Vögel",
@@ -589,7 +589,7 @@
     },
     "radish": {
       "about": "Angebaut für die knackigen, scharfen Knollen, die vier bis sechs Wochen nach der Saat fertig sind. Säe alle zwei Wochen eine kurze Reihe, dann hast du laufend welche; Saaten im Frühjahr und Spätsommer gelingen am besten, denn Sommerhitze lässt sie blühen und macht sie scharf. Sie passen in die Lücken zwischen langsameren Gemüsen.",
-      "water": "Halte den Boden gleichmäßig feucht, damit die Knollen schnell und mild wachsen: Trockenheit macht sie holzig und scharf, und viel Wasser nach Trockenheit lässt sie platzen.",
+      "water": "Halte den Boden gleichmässig feucht, damit die Knollen schnell und mild wachsen: Trockenheit macht sie holzig und scharf, und viel Wasser nach Trockenheit lässt sie platzen.",
       "feed": "Kein Dünger nötig: Radieschen wachsen so schnell, dass normaler Gartenboden reicht.",
       "harvest": "Zieh sie nach und nach, wenn die Knollen etwa 2,5 cm dick sind. Bleiben sie im Boden, werden sie bald holzig, bitter und sehr scharf.",
       "keeps": "Blätter und die dünne Wurzelspitze abschneiden; in einer Plastiktüte im Kühlschrank halten sie bis zu einem Monat.",
@@ -600,25 +600,25 @@
         },
         {
           "name": "Schossen",
-          "fix": "Die Pflanzen bilden einen Blütenstängel und die Knolle wächst nicht weiter, bei heißem, trockenem Wetter. Im Frühjahr und Spätsommer säen, gießen und geschossene Pflanzen ziehen; ihre jungen Schoten sind essbar."
+          "fix": "Die Pflanzen bilden einen Blütenstängel und die Knolle wächst nicht weiter, bei heissem, trockenem Wetter. Im Frühjahr und Spätsommer säen, giessen und geschossene Pflanzen ziehen; ihre jungen Schoten sind essbar."
         },
         {
           "name": "Geplatzte oder holzige Knollen",
-          "fix": "Unregelmäßiges Gießen lässt sie platzen, Alter macht sie holzig. Regelmäßig gießen und bei etwa 2,5 cm ernten; geplatzte Radieschen kann man noch essen."
+          "fix": "Unregelmässiges Giessen lässt sie platzen, Alter macht sie holzig. Regelmässig giessen und bei etwa 2,5 cm ernten; geplatzte Radieschen kann man noch essen."
         }
       ],
       "source": "Radieschenpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension. Lagern: University of Missouri Extension."
     },
     "carrot": {
-      "about": "Angebaut für die süßen Wurzeln. Säe Möhren dünn direkt an ihren Platz, in lockeren, steinfreien Boden: Steine, Klumpen und frischer Mist lassen die Wurzeln beinig werden. Die Sämlinge sind anfangs langsam und klein, halte die Reihe deshalb unkrautfrei.",
-      "water": "Möhren vertragen Trockenheit und brauchen selten Wasser; bei langer Dürre alle zwei Wochen kräftig wässern. Gleichmäßige Feuchte zählt mehr als viel Wasser: kräftiges Gießen nach Trockenheit lässt die Wurzeln platzen.",
+      "about": "Angebaut für die süssen Wurzeln. Säe Möhren dünn direkt an ihren Platz, in lockeren, steinfreien Boden: Steine, Klumpen und frischer Mist lassen die Wurzeln beinig werden. Die Sämlinge sind anfangs langsam und klein, halte die Reihe deshalb unkrautfrei.",
+      "water": "Möhren vertragen Trockenheit und brauchen selten Wasser; bei langer Dürre alle zwei Wochen kräftig wässern. Gleichmässige Feuchte zählt mehr als viel Wasser: kräftiges Giessen nach Trockenheit lässt die Wurzeln platzen.",
       "feed": "Kein Dünger nötig. Kurz vor der Saat keinen frischen Mist oder Kompost einarbeiten, sonst werden die Wurzeln beinig; nimm ein Beet, das für eine Vorkultur gedüngt wurde.",
-      "harvest": "Zieh Möhren, sobald sie groß genug sind, und lockere den Boden vorher mit der Grabegabel, damit sie nicht abbrechen; sehr große Wurzeln verlieren Geschmack. Beim Ausdünnen das Laub möglichst wenig berühren, denn sein Duft lockt die Möhrenfliege an.",
+      "harvest": "Zieh Möhren, sobald sie gross genug sind, und lockere den Boden vorher mit der Grabegabel, damit sie nicht abbrechen; sehr grosse Wurzeln verlieren Geschmack. Beim Ausdünnen das Laub möglichst wenig berühren, denn sein Duft lockt die Möhrenfliege an.",
       "keeps": "Laub auf etwa 1 cm kürzen; im gelochten Beutel im Kühlschrank oder in einer Kiste mit feuchtem Sand an einem kühlen Ort halten sie 2 bis 4 Monate. Lagermöhren können auch unter Stroh im Beet bleiben, bis du sie brauchst.",
       "problems": [
         {
           "name": "Möhrenfliege",
-          "fix": "Rostbraune Fraßgänge in den Wurzeln, von kleinen Maden. Die ganze Kultur ab der Saat mit einem feinen Kulturschutznetz abdecken."
+          "fix": "Rostbraune Frassgänge in den Wurzeln, von kleinen Maden. Die ganze Kultur ab der Saat mit einem feinen Kulturschutznetz abdecken."
         },
         {
           "name": "Beinige Möhren",
@@ -626,14 +626,14 @@
         },
         {
           "name": "Geplatzte Möhren",
-          "fix": "Längsrisse, wenn nach Trockenheit starker Regen oder viel Gießwasser kommt. Bei langer Trockenheit gründlich und regelmäßig gießen."
+          "fix": "Längsrisse, wenn nach Trockenheit starker Regen oder viel Giesswasser kommt. Bei langer Trockenheit gründlich und regelmässig giessen."
         }
       ],
-      "source": "Möhrenpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension. Topfgröße: University of Illinois Extension. Lagern: University of Missouri Extension."
+      "source": "Möhrenpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension. Topfgrösse: University of Illinois Extension. Lagern: University of Missouri Extension."
     },
     "parsnip": {
-      "about": "Angebaut für die langen, süßen Wurzeln, die vom Frühjahr bis in den Winter im Beet stehen und nach Frost süßer schmecken. Kauf jedes Jahr frisches Saatgut: altes keimt schlecht, und selbst frisches braucht zwei bis vier Wochen. Das Laub kann bei Sonne Hautblasen verursachen; trag beim Jäten Handschuhe und lange Ärmel.",
-      "water": "Jungpflanzen bei Trockenheit gießen, bis sie angewachsen sind; danach kommen die tiefen Wurzeln mit Trockenheit zurecht. Die Feuchte gleichmäßig halten, denn viel Wasser nach Dürre lässt die Wurzeln platzen.",
+      "about": "Angebaut für die langen, süssen Wurzeln, die vom Frühjahr bis in den Winter im Beet stehen und nach Frost süsser schmecken. Kauf jedes Jahr frisches Saatgut: altes keimt schlecht, und selbst frisches braucht zwei bis vier Wochen. Das Laub kann bei Sonne Hautblasen verursachen; trag beim Jäten Handschuhe und lange Ärmel.",
+      "water": "Jungpflanzen bei Trockenheit giessen, bis sie angewachsen sind; danach kommen die tiefen Wurzeln mit Trockenheit zurecht. Die Feuchte gleichmässig halten, denn viel Wasser nach Dürre lässt die Wurzeln platzen.",
       "feed": "Kein Dünger nötig. Nimm ein Beet, das für eine Vorkultur gedüngt wurde: frischer Mist oder Kompost macht die Wurzeln beinig.",
       "harvest": "Ab Herbst ernten, wenn das Laub einzieht, am besten nach dem ersten starken Frost; den Boden vorher mit der Grabegabel tief lockern, denn die Wurzeln sind lang. Markiere die Reihe, damit du sie im Winter findest.",
       "keeps": "Am besten halten sie im Boden über den Winter; vor starkem Frost ein paar mehr ernten oder die Reihe mit Stroh abdecken. Geerntete Wurzeln halten 2 bis 4 Monate im gelochten Beutel im Kühlschrank.",
@@ -644,7 +644,7 @@
         },
         {
           "name": "Möhrenfliege",
-          "fix": "Rostbraune Fraßgänge in den Wurzeln, von kleinen Maden. Die Kultur mit einem feinen Kulturschutznetz abdecken und nicht dort säen, wo kürzlich Möhren oder Pastinaken standen."
+          "fix": "Rostbraune Frassgänge in den Wurzeln, von kleinen Maden. Die Kultur mit einem feinen Kulturschutznetz abdecken und nicht dort säen, wo kürzlich Möhren oder Pastinaken standen."
         },
         {
           "name": "Schlechte Keimung",
@@ -654,15 +654,15 @@
       "source": "Pastinakenpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension. Lagern: University of Missouri Extension."
     },
     "beetroot": {
-      "about": "Angebaut für die süßen Knollen, die jungen Blätter für Salat. Jedes Samenkorn ist ein Knäuel, aus dem mehrere Sämlinge kommen; dünne früh aus oder lass sie als kleine Gruppe für Mini-Knollen wachsen. Säe von Frühjahr bis Hochsommer alle paar Wochen ein wenig; die Knollen aus Sommersaaten sind die, die sich lagern lassen.",
-      "water": "Sämlinge bei Trockenheit gießen; eingewachsene Pflanzen brauchen bei trockenem Wetter nur alle 10 bis 14 Tage Wasser. Zu wenig Wasser macht die Knollen holzig, unregelmäßiges Gießen lässt sie platzen, und zu viel gibt Blätter statt Knollen.",
+      "about": "Angebaut für die süssen Knollen, die jungen Blätter für Salat. Jedes Samenkorn ist ein Knäuel, aus dem mehrere Sämlinge kommen; dünne früh aus oder lass sie als kleine Gruppe für Mini-Knollen wachsen. Säe von Frühjahr bis Hochsommer alle paar Wochen ein wenig; die Knollen aus Sommersaaten sind die, die sich lagern lassen.",
+      "water": "Sämlinge bei Trockenheit giessen; eingewachsene Pflanzen brauchen bei trockenem Wetter nur alle 10 bis 14 Tage Wasser. Zu wenig Wasser macht die Knollen holzig, unregelmässiges Giessen lässt sie platzen, und zu viel gibt Blätter statt Knollen.",
       "feed": "Ein mit Kompost verbesserter Boden braucht keinen Dünger; wachsen die Pflanzen schwach, einen stickstoffreichen Flüssigdünger geben. Unkraut fernhalten, es nimmt Nährstoffe und Wasser.",
-      "harvest": "Ab Golfballgröße jede zweite Knolle ernten und die übrigen weiterwachsen lassen; keine größer als etwa 7 cm werden lassen. Die Blätter abdrehen statt abschneiden, damit die Knollen nicht ausbluten.",
+      "harvest": "Ab Golfballgrösse jede zweite Knolle ernten und die übrigen weiterwachsen lassen; keine grösser als etwa 7 cm werden lassen. Die Blätter abdrehen statt abschneiden, damit die Knollen nicht ausbluten.",
       "keeps": "Blätter 2,5 cm über der Knolle abdrehen; im gelochten Beutel im Kühlschrank oder in Kisten mit trockenem Sand in einem kühlen Schuppen halten sie 2 bis 4 Monate.",
       "problems": [
         {
           "name": "Schossen",
-          "fix": "Die Pflanzen blühen, statt Knollen zu bilden, nach heißem, trockenem Wetter oder einer sehr frühen, kalten Saat. Schossfeste Sorten wählen und nicht zu früh säen."
+          "fix": "Die Pflanzen blühen, statt Knollen zu bilden, nach heissem, trockenem Wetter oder einer sehr frühen, kalten Saat. Schossfeste Sorten wählen und nicht zu früh säen."
         },
         {
           "name": "Rübenfliege",
@@ -670,21 +670,21 @@
         },
         {
           "name": "Falscher Mehltau",
-          "fix": "Hellgelbe Flecken auf den Blättern mit grauviolettem Belag darunter, bei feuchtem Wetter. Befallene Blätter entfernen, Platz zwischen den Pflanzen lassen und den Boden gießen, nicht die Blätter."
+          "fix": "Hellgelbe Flecken auf den Blättern mit grauviolettem Belag darunter, bei feuchtem Wetter. Befallene Blätter entfernen, Platz zwischen den Pflanzen lassen und den Boden giessen, nicht die Blätter."
         }
       ],
       "source": "Rote-Bete-Pflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension. Lagern: University of Missouri Extension."
     },
     "turnip": {
-      "about": "Angebaut für die runden Rüben und die jungen Blätter. Frühe Sorten sind nach etwa sechs Wochen reif: säe im Frühjahr wenig und oft, und im Spätsommer noch einmal für Rüben im Herbst und Winter. Sie braucht gleichmäßige Feuchte; in trockenem Boden bleiben die Rüben klein und holzig und die Pflanzen blühen früh.",
-      "water": "Bei Trockenheit gießen, damit die Rüben schnell wachsen und zart bleiben. Ein Topf trocknet schnell aus und braucht im Sommer oft Wasser.",
+      "about": "Angebaut für die runden Rüben und die jungen Blätter. Frühe Sorten sind nach etwa sechs Wochen reif: säe im Frühjahr wenig und oft, und im Spätsommer noch einmal für Rüben im Herbst und Winter. Sie braucht gleichmässige Feuchte; in trockenem Boden bleiben die Rüben klein und holzig und die Pflanzen blühen früh.",
+      "water": "Bei Trockenheit giessen, damit die Rüben schnell wachsen und zart bleiben. Ein Topf trocknet schnell aus und braucht im Sommer oft Wasser.",
       "feed": "Ein mit Kompost oder gut verrottetem Mist verbesserter Boden, am besten im Herbst davor, genügt; zusätzlicher Dünger ist nicht nötig.",
-      "harvest": "Frühe Rüben bei Golfballgröße zum Rohessen ziehen, bei Tennisballgröße zum Kochen; größere werden holzig und bitter. Junge Blätter bis 15 cm Länge kannst du wie Spinat kochen.",
+      "harvest": "Frühe Rüben bei Golfballgrösse zum Rohessen ziehen, bei Tennisballgrösse zum Kochen; grössere werden holzig und bitter. Junge Blätter bis 15 cm Länge kannst du wie Spinat kochen.",
       "keeps": "Blätter abdrehen; Herbstrüben halten sich einige Wochen in Kisten mit feuchtem Sand, kühl und frostfrei. In milden Gegenden können sie unter Vlies im Beet bleiben.",
       "problems": [
         {
           "name": "Kohlfliege",
-          "fix": "Jungpflanzen welken und kleine weiße Maden bohren Gänge in die Rüben. Die Kultur ab der Saat mit einem feinen Kulturschutznetz abdecken."
+          "fix": "Jungpflanzen welken und kleine weisse Maden bohren Gänge in die Rüben. Die Kultur ab der Saat mit einem feinen Kulturschutznetz abdecken."
         },
         {
           "name": "Kohlhernie",
@@ -698,10 +698,10 @@
       "source": "Speiserübenpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension."
     },
     "chard": {
-      "about": "Angebaut für die großen Blätter und dicken Stiele in Weiß, Rot oder Gelb, geerntet vom Sommer, bis die Kälte ihn bremst, und wieder im Frühjahr. Eine Aussaat liefert monatelang, und er schießt weniger leicht als Spinat; damit gehört er zu den einfachsten Blattgemüsen.",
-      "water": "Junge Pflanzen regelmäßig gießen, bis sie angewachsen sind; danach verträgt er kurze Trockenphasen, bei langen aber gießen. Im Topf gießen, sobald die Erde abzutrocknen beginnt.",
+      "about": "Angebaut für die grossen Blätter und dicken Stiele in Weiss, Rot oder Gelb, geerntet vom Sommer, bis die Kälte ihn bremst, und wieder im Frühjahr. Eine Aussaat liefert monatelang, und er schiesst weniger leicht als Spinat; damit gehört er zu den einfachsten Blattgemüsen.",
+      "water": "Junge Pflanzen regelmässig giessen, bis sie angewachsen sind; danach verträgt er kurze Trockenphasen, bei langen aber giessen. Im Topf giessen, sobald die Erde abzutrocknen beginnt.",
       "feed": "Meist braucht er keinen Dünger: Er wächst gut in den meisten Böden und in frischer Blumenerde.",
-      "harvest": "Die äußeren Blätter samt Stiel am Grund abschneiden und das Herz weiterwachsen lassen. Kleine junge Blätter passen roh in den Salat; größere wie Spinat garen, die Stiele etwas länger.",
+      "harvest": "Die äusseren Blätter samt Stiel am Grund abschneiden und das Herz weiterwachsen lassen. Kleine junge Blätter passen roh in den Salat; grössere wie Spinat garen, die Stiele etwas länger.",
       "keeps": "Die Blätter halten sich ein paar Tage im Kühlschrank. Zum Einfrieren 2 Minuten blanchieren, in Eiswasser abkühlen und verpacken.",
       "problems": [
         {
@@ -720,15 +720,15 @@
       "source": "Mangoldpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: Washington State University Extension. Einfrieren: National Center for Home Food Preservation (University of Georgia)."
     },
     "chicory": {
-      "about": "Eine Familie bitterer Salate: Radicchio bildet einen festen roten Kopf, Zuckerhut ein hohes grünes Herz, Endivie und Escariol eine lockere Rosette, die man bleicht, damit sie milder wird. Im Frühsommer gesät, liefern sie vom Spätsommer bis in den Herbst; im Frühjahr zu früh ins Freie gesät, schießen sie gern.",
-      "water": "Bei Trockenheit gründlich gießen: trockener Boden macht die Blätter bitterer und lässt die Pflanzen schießen. Das Beet unkrautfrei halten, damit nichts um Wasser konkurriert.",
+      "about": "Eine Familie bitterer Salate: Radicchio bildet einen festen roten Kopf, Zuckerhut ein hohes grünes Herz, Endivie und Escariol eine lockere Rosette, die man bleicht, damit sie milder wird. Im Frühsommer gesät, liefern sie vom Spätsommer bis in den Herbst; im Frühjahr zu früh ins Freie gesät, schiessen sie gern.",
+      "water": "Bei Trockenheit gründlich giessen: trockener Boden macht die Blätter bitterer und lässt die Pflanzen schiessen. Das Beet unkrautfrei halten, damit nichts um Wasser konkurriert.",
       "feed": "Im Beet braucht er meist keinen Dünger. Im Topf oder auf leichtem Boden im Sommer alle zwei Wochen einen Universal-Flüssigdünger geben.",
       "harvest": "Radicchio und Zuckerhut am Grund abschneiden, sobald die Köpfe fest sind; der Strunk treibt oft einen zweiten, kleineren Kopf. Endivie bleichst du, indem du das trockene Herz etwa zwei Wochen mit einem Teller oder Eimer abdeckst; dann schneiden und bald verbrauchen.",
       "keeps": "Köpfe halten sich mehrere Tage im Kühlschrank. Gebleichte Herzen dunkel lagern: Licht macht sie wieder grün und bitter.",
       "problems": [
         {
           "name": "Schossen",
-          "fix": "Blütenstiele schieben nach Kälte im Jungstadium oder bei Hitze und Trockenheit. Nicht zu früh ins Freie säen, bei Trockenheit gießen und für frühe Saaten schossfeste Sorten nehmen."
+          "fix": "Blütenstiele schieben nach Kälte im Jungstadium oder bei Hitze und Trockenheit. Nicht zu früh ins Freie säen, bei Trockenheit giessen und für frühe Saaten schossfeste Sorten nehmen."
         },
         {
           "name": "Schnecken",
@@ -742,14 +742,14 @@
       "source": "Pflege von Radicchio und Endivie: RHS. Wie viele: University of Missouri Extension. pH: University of Arkansas Extension."
     },
     "kale": {
-      "about": "Angebaut für die Blätter, die vom Herbst bis tief in den Winter geerntet werden; Frost macht sie süßer. Er ist der härteste und anspruchsloseste Kohl; halte Raupen und Tauben fern, dann liefert jede Pflanze viele Ernten.",
-      "water": "Junge Pflanzen regelmäßig gießen, damit der Boden nie austrocknet. Eingewachsen nur bei längerer Trockenheit gießen; ein Topf braucht im Sommer regelmäßig Wasser.",
+      "about": "Angebaut für die Blätter, die vom Herbst bis tief in den Winter geerntet werden; Frost macht sie süsser. Er ist der härteste und anspruchsloseste Kohl; halte Raupen und Tauben fern, dann liefert jede Pflanze viele Ernten.",
+      "water": "Junge Pflanzen regelmässig giessen, damit der Boden nie austrocknet. Eingewachsen nur bei längerer Trockenheit giessen; ein Topf braucht im Sommer regelmässig Wasser.",
       "feed": "In mit Kompost verbesserten Boden pflanzen. Dünger braucht er nur auf magerem Boden oder im Topf: ein stickstoffreicher Dünger gibt ihm Schwung.",
-      "harvest": "Pro Pflanze jeweils zwei oder drei untere Blätter pflücken, am Stiel nach oben arbeiten und die Spitze weiterwachsen lassen. Regelmäßiges Pflücken bringt bis zum Frühjahr neue Blätter.",
+      "harvest": "Pro Pflanze jeweils zwei oder drei untere Blätter pflücken, am Stiel nach oben arbeiten und die Spitze weiterwachsen lassen. Regelmässiges Pflücken bringt bis zum Frühjahr neue Blätter.",
       "keeps": "Die Blätter halten sich ein paar Tage im Kühlschrank, aber die Pflanzen stehen den ganzen Winter im Beet, also pflück nach Bedarf. Zum Einfrieren 2 Minuten blanchieren und in Eiswasser abkühlen.",
       "problems": [
         {
-          "name": "Kohlweißling-Raupen",
+          "name": "Kohlweissling-Raupen",
           "fix": "Löcher in den Blättern und grüne Raupen, vom Frühsommer bis zum Herbst. Pflanzen ab dem Setzen mit feinem Insektenschutznetz abdecken und gelbe Eigelege unter den Blättern abstreifen."
         },
         {
@@ -758,25 +758,25 @@
         },
         {
           "name": "Tauben",
-          "fix": "Sie zerreißen im Winter die Blätter, bis nur Stiele und Rippen bleiben. Pflanzen mit einem Netz abdecken, das auf Bögen oder Stäben Abstand zu den Blättern hält."
+          "fix": "Sie zerreissen im Winter die Blätter, bis nur Stiele und Rippen bleiben. Pflanzen mit einem Netz abdecken, das auf Bögen oder Stäben Abstand zu den Blättern hält."
         }
       ],
       "source": "Grünkohlpflege: RHS. Wie viele: University of Missouri und Kansas State Extension. pH: Washington State University Extension. Einfrieren: National Center for Home Food Preservation (University of Georgia)."
     },
     "cabbage": {
       "about": "Angebaut für die festen Köpfe; mit Frühjahrs-, Sommer-, Herbst- und Wintersorten kannst du fast das ganze Jahr Kohl schneiden. Er will festen, nährstoffreichen Boden und Schutz vor Raupen, Tauben und Kohlfliege; bau ihn nicht dort an, wo in den letzten zwei Jahren Kohlgewächse standen.",
-      "water": "Junge Pflanzen regelmäßig gießen; eingewachsen bei Trockenheit etwa alle 10 Tage durchdringend wässern, und mehr, sobald sich die Köpfe bilden. Eine Mulchschicht aus Kompost hält den Boden feucht.",
+      "water": "Junge Pflanzen regelmässig giessen; eingewachsen bei Trockenheit etwa alle 10 Tage durchdringend wässern, und mehr, sobald sich die Köpfe bilden. Eine Mulchschicht aus Kompost hält den Boden feucht.",
       "feed": "Ein Starkzehrer: Kompost schon im Herbst davor einarbeiten. Auf magerem Boden einen stickstoffreichen Dünger geben, wenn die Pflanzen angewachsen sind und bevor sich die Köpfe bilden.",
       "harvest": "Den Kopf mit einem scharfen Messer knapp über dem Boden abschneiden, sobald er fest ist. Bei Frühjahrs- und Sommerkohl ein flaches Kreuz in den Strunk schneiden: oft wächst ein zweiter, kleinerer Kopf nach.",
       "keeps": "Ein Kopf hält sich mindestens eine Woche im Kühlschrank. Winterkohl lagert monatelang kühl, trocken und frostfrei, oder bleibt im Beet stehen, bis du ihn brauchst.",
       "problems": [
         {
-          "name": "Kohlweißling-Raupen",
+          "name": "Kohlweissling-Raupen",
           "fix": "Löcher in den Blättern und grüne Raupen, vom Frühsommer bis zum Herbst. Pflanzen ab dem Setzen mit feinem Insektenschutznetz abdecken und gelbe Eigelege unter den Blättern abstreifen."
         },
         {
           "name": "Kohlfliege",
-          "fix": "Junge Pflanzen welken und sterben, weil weiße Maden die Wurzeln fressen. Frisch gesetzte Pflanzen mit feinem Insektenschutznetz abdecken, das am Boden befestigt ist, und den Standort jedes Jahr wechseln."
+          "fix": "Junge Pflanzen welken und sterben, weil weisse Maden die Wurzeln fressen. Frisch gesetzte Pflanzen mit feinem Insektenschutznetz abdecken, das am Boden befestigt ist, und den Standort jedes Jahr wechseln."
         },
         {
           "name": "Kohlhernie",
@@ -786,22 +786,22 @@
       "source": "Kohlpflege und Lagern: RHS. Wie viele: University of Missouri und Kansas State Extension. pH: Washington State University Extension."
     },
     "cauliflower": {
-      "about": "Angebaut für die weiße Blume, den Kopf, der sich in der Mitte der Pflanze bildet. Er ist der anspruchsvollste Kohl: Jeder Wachstumsstopp, durch trockenen Boden, lockere Erde oder spätes Pflanzen, bringt kleine, verfrühte Köpfe, also halte ihn gleichmäßig im Wachsen. Im Topf eine Mini-Sorte ziehen.",
+      "about": "Angebaut für die weisse Blume, den Kopf, der sich in der Mitte der Pflanze bildet. Er ist der anspruchsvollste Kohl: Jeder Wachstumsstopp, durch trockenen Boden, lockere Erde oder spätes Pflanzen, bringt kleine, verfrühte Köpfe, also halte ihn gleichmässig im Wachsen. Im Topf eine Mini-Sorte ziehen.",
       "water": "Den Boden stets feucht, aber nicht nass halten, vor allem während sich die Köpfe bilden. Mulchen hält die Feuchte; ein Topf braucht Wasser, sobald die Erde abzutrocknen beginnt.",
       "feed": "Vor dem Pflanzen Kompost einarbeiten. Auf magerem Boden junge Pflanzen vor der Kopfbildung mit stickstoffreichem Dünger versorgen.",
-      "harvest": "Den Kopf mit ein paar Blättern abschneiden, sobald er fest ist und bevor er auseinanderfällt. In der Sommersonne ein paar Blätter über die Blume knicken, damit sie weiß bleibt; im Winter die Blätter gegen starken Frost darüberbinden.",
+      "harvest": "Den Kopf mit ein paar Blättern abschneiden, sobald er fest ist und bevor er auseinanderfällt. In der Sommersonne ein paar Blätter über die Blume knicken, damit sie weiss bleibt; im Winter die Blätter gegen starken Frost darüberbinden.",
       "keeps": "Am besten frisch essen: Mit ein paar Blättern hält er sich mehrere Tage im Kühlschrank. Röschen lassen sich blanchieren und einfrieren.",
       "problems": [
         {
           "name": "Kleine Köpfe",
-          "fix": "Winzige Köpfe, die sich zu früh bilden, nach einem Wachstumsstopp. Jungpflanzen rechtzeitig in festen Boden setzen und gleichmäßig gießen."
+          "fix": "Winzige Köpfe, die sich zu früh bilden, nach einem Wachstumsstopp. Jungpflanzen rechtzeitig in festen Boden setzen und gleichmässig giessen."
         },
         {
           "name": "Kohlhernie",
           "fix": "Die Pflanzen bleiben klein und welken an warmen Tagen; die Wurzeln sind geschwollen und knotig. Es gibt keine Heilung und der Erreger bleibt jahrelang im Boden: sauren Boden auf etwa pH 6,5 kalken, Fruchtfolge einhalten und Pflanzen im Topf vorziehen, damit sie mit kräftigen Wurzeln ins Beet kommen."
         },
         {
-          "name": "Kohlweißling-Raupen",
+          "name": "Kohlweissling-Raupen",
           "fix": "Löcher in den Blättern und grüne Raupen, vom Frühsommer bis zum Herbst. Pflanzen ab dem Setzen mit feinem Insektenschutznetz abdecken und gelbe Eigelege unter den Blättern abstreifen."
         }
       ],
@@ -809,31 +809,31 @@
     },
     "broccoli": {
       "about": "Angebaut für die grünen Köpfe aus Blütenknospen: Ist der Hauptkopf geschnitten, kommen wochenlang Seitentriebe nach. Ernte, bevor die Knospen zu gelben Blüten aufgehen, was bei Wärme schnell geht. Sprossenbrokkoli ist eine härtere Form, die überwintert und im Frühjahr trägt.",
-      "water": "Junge Pflanzen regelmäßig gießen, bis sie eingewachsen sind, danach bei Trockenheit: Ein Wachstumsstopp lässt ihn früh blühen. Eine Mulchschicht aus Kompost hält den Boden feucht.",
+      "water": "Junge Pflanzen regelmässig giessen, bis sie eingewachsen sind, danach bei Trockenheit: Ein Wachstumsstopp lässt ihn früh blühen. Eine Mulchschicht aus Kompost hält den Boden feucht.",
       "feed": "Ein Starkzehrer: Vor dem Pflanzen Kompost oder Mist einarbeiten. Auf magerem Boden oder bei langsamem Wuchs einen stickstoffreichen Dünger geben, wenn die Pflanzen etwa 20 cm hoch sind.",
-      "harvest": "Den Hauptkopf mit etwas Stiel schneiden, solange er fest ist und die Knospen geschlossen sind. Danach alle paar Tage nachsehen und die Seitentriebe vor der Blüte schneiden; regelmäßiges Ernten hält sie bis zu zwei Monate in Gang.",
+      "harvest": "Den Hauptkopf mit etwas Stiel schneiden, solange er fest ist und die Knospen geschlossen sind. Danach alle paar Tage nachsehen und die Seitentriebe vor der Blüte schneiden; regelmässiges Ernten hält sie bis zu zwei Monate in Gang.",
       "keeps": "Er hält sich ein paar Tage im Kühlschrank und lässt sich blanchiert gut einfrieren.",
       "problems": [
         {
           "name": "Frühe Blüte",
-          "fix": "Die Köpfe bleiben klein und gehen zu gelben Blüten auf, bei Hitze oder nach einem Wachstumsstopp. Bei Trockenheit gießen, in heißen Gegenden schossfeste Sorten wählen und Köpfe schneiden, sobald sie reif sind."
+          "fix": "Die Köpfe bleiben klein und gehen zu gelben Blüten auf, bei Hitze oder nach einem Wachstumsstopp. Bei Trockenheit giessen, in heissen Gegenden schossfeste Sorten wählen und Köpfe schneiden, sobald sie reif sind."
         },
         {
-          "name": "Kohlweißling-Raupen",
+          "name": "Kohlweissling-Raupen",
           "fix": "Löcher in den Blättern und grüne Raupen, vom Frühsommer bis zum Herbst. Pflanzen ab dem Setzen mit feinem Insektenschutznetz abdecken und gelbe Eigelege unter den Blättern abstreifen."
         },
         {
           "name": "Tauben",
-          "fix": "Sie zerreißen die Blätter, bis nur Stiele und Rippen bleiben. Pflanzen mit einem Netz abdecken, das auf Bögen oder Stäben Abstand zu den Blättern hält."
+          "fix": "Sie zerreissen die Blätter, bis nur Stiele und Rippen bleiben. Pflanzen mit einem Netz abdecken, das auf Bögen oder Stäben Abstand zu den Blättern hält."
         }
       ],
-      "source": "Brokkolipflege und Lagern: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: Washington State University Extension. Topfgröße: Texas A&M AgriLife Extension."
+      "source": "Brokkolipflege und Lagern: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: Washington State University Extension. Topfgrösse: Texas A&M AgriLife Extension."
     },
     "brussels_sprouts": {
-      "about": "Angebaut für die kleinen Röschen, die am hohen Stiel wachsen und den ganzen Herbst und Winter geerntet werden; nach Frost schmecken sie am süßesten. Er ist eine lange Kultur und will festen Boden: Tritt die Erde vor dem Pflanzen fest und drück jede Pflanze gut an, sonst bleiben die Röschen locker.",
-      "water": "Junge Pflanzen regelmäßig gießen, damit der Boden nie austrocknet; eingewachsen nur bei Trockenheit gießen. Eine dicke Mulchschicht hält den Boden feucht.",
+      "about": "Angebaut für die kleinen Röschen, die am hohen Stiel wachsen und den ganzen Herbst und Winter geerntet werden; nach Frost schmecken sie am süssesten. Er ist eine lange Kultur und will festen Boden: Tritt die Erde vor dem Pflanzen fest und drück jede Pflanze gut an, sonst bleiben die Röschen locker.",
+      "water": "Junge Pflanzen regelmässig giessen, damit der Boden nie austrocknet; eingewachsen nur bei Trockenheit giessen. Eine dicke Mulchschicht hält den Boden feucht.",
       "feed": "Kompost schon im Herbst davor einarbeiten. Auf magerem Boden oder bei langsamem Wuchs im Früh- bis Hochsommer einen stickstoffreichen Dünger geben.",
-      "harvest": "Mit den untersten Röschen beginnen, sobald sie fest und etwa walnussgroß sind, mit einem Ruck nach unten abbrechen und am Stiel nach oben arbeiten. Sind die Röschen geerntet, kannst du den Schopf wie Blattkohl kochen.",
+      "harvest": "Mit den untersten Röschen beginnen, sobald sie fest und etwa walnussgross sind, mit einem Ruck nach unten abbrechen und am Stiel nach oben arbeiten. Sind die Röschen geerntet, kannst du den Schopf wie Blattkohl kochen.",
       "keeps": "Ganze abgeschnittene Stiele halten sich ein paar Tage in Wasser gestellt oder in einem kühlen, frostfreien Schuppen aufgehängt; Röschen nach Bedarf abbrechen. Blanchiert lassen sie sich auch einfrieren.",
       "problems": [
         {
@@ -852,14 +852,14 @@
       "source": "Rosenkohlpflege und Lagern: RHS. Wie viele: Kansas State Extension. pH: University of Georgia Extension. Einfrieren: National Center for Home Food Preservation (University of Georgia)."
     },
     "kohlrabi": {
-      "about": "Angebaut für die verdickte Sprossknolle, die knapp über dem Boden sitzt und mild und süßlich nach Kohl schmeckt. Kohlrabi wächst schnell; säe deshalb von Frühjahr bis Spätsommer alle paar Wochen eine kurze Reihe statt alles auf einmal. Ernte jung: große Knollen werden holzig.",
-      "water": "Halte den Boden gleichmäßig feucht: Trockenheit bremst das Wachstum und macht die Knollen zäh. Jungpflanzen regelmäßig gießen, bis sie gut eingewurzelt sind.",
+      "about": "Angebaut für die verdickte Sprossknolle, die knapp über dem Boden sitzt und mild und süsslich nach Kohl schmeckt. Kohlrabi wächst schnell; säe deshalb von Frühjahr bis Spätsommer alle paar Wochen eine kurze Reihe statt alles auf einmal. Ernte jung: grosse Knollen werden holzig.",
+      "water": "Halte den Boden gleichmässig feucht: Trockenheit bremst das Wachstum und macht die Knollen zäh. Jungpflanzen regelmässig giessen, bis sie gut eingewurzelt sind.",
       "feed": "Vor der Saat Kompost einarbeiten und mulchen, sobald die Pflanzen wachsen. Kohlrabi braucht weniger Stickstoff als andere Kohlarten, zusätzlicher Dünger ist nicht nötig.",
-      "harvest": "Schneide die Knolle unten ab, wenn sie zwischen Golfball- und Tennisballgröße ist. Die jungen Blätter kannst du wie Grünkohl kochen.",
+      "harvest": "Schneide die Knolle unten ab, wenn sie zwischen Golfball- und Tennisballgrösse ist. Die jungen Blätter kannst du wie Grünkohl kochen.",
       "keeps": "Blätter und Wurzel abschneiden; in einer Plastiktüte im Kühlschrank hält er 2 bis 4 Wochen.",
       "problems": [
         {
-          "name": "Kohlweißlingsraupen",
+          "name": "Kohlweisslingsraupen",
           "fix": "Grüne Raupen fressen Löcher in die Blätter. Pflanzen mit einem feinen Kulturschutznetz abdecken oder die Blattunterseiten auf Eier und Raupen absuchen und sie absammeln."
         },
         {
@@ -868,25 +868,25 @@
         },
         {
           "name": "Holzige Knollen",
-          "fix": "Zähes, faseriges Fleisch nach heißem, trockenem Wetter oder zu später Ernte. Bei Trockenheit gießen und spätestens bei Tennisballgröße ernten."
+          "fix": "Zähes, faseriges Fleisch nach heissem, trockenem Wetter oder zu später Ernte. Bei Trockenheit giessen und spätestens bei Tennisballgrösse ernten."
         }
       ],
       "source": "Kohlrabipflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension. Lagern: University of Missouri Extension."
     },
     "onion_sets": {
       "about": "Steckzwiebeln sind kleine, im Vorjahr gezogene Zwiebeln, die zu ganzen Zwiebeln heranwachsen. So gelingen Zwiebeln am leichtesten: so tief stecken, dass die Spitze gerade herausschaut, und die Erde andrücken, damit Vögel sie nicht herausziehen.",
-      "water": "Bei längerer Trockenheit gießen, vor allem solange die Pflanzen jung sind. Aufhören, sobald die Zwiebeln im Hochsommer dick sind: spätes Gießen verkürzt die Lagerzeit.",
+      "water": "Bei längerer Trockenheit giessen, vor allem solange die Pflanzen jung sind. Aufhören, sobald die Zwiebeln im Hochsommer dick sind: spätes Giessen verkürzt die Lagerzeit.",
       "feed": "Vor dem Pflanzen eingearbeiteter Kompost reicht meist. Auf magerem Boden im Herbst gesteckte Zwiebeln im Spätwinter mit einem stickstoffreichen Dünger versorgen.",
       "harvest": "Wenn das Laub vergilbt und umfällt, die Zwiebeln herausnehmen, bevor es ganz abgestorben ist: Juni bis Juli bei Herbstpflanzung, Juli bis Oktober bei Frühjahrspflanzung. Etwa zwei Wochen in der Sonne trocknen.",
       "keeps": "Trockene Zwiebeln in Netzen oder Lattenkisten kühl, trocken, luftig und hell lagern; im Dunkeln treiben sie aus. Herbstgesteckte halten bis zum Frühwinter, im Frühjahr gesteckte bis ins nächste Frühjahr.",
       "problems": [
         {
           "name": "Schossen",
-          "fix": "Aus der Mitte wächst ein Blütenstiel, oft nach einem kalten Frühjahr. Abknicken und diese Zwiebel zuerst essen, denn sie hält sich nicht; wärmebehandelte Steckzwiebeln schießen seltener."
+          "fix": "Aus der Mitte wächst ein Blütenstiel, oft nach einem kalten Frühjahr. Abknicken und diese Zwiebel zuerst essen, denn sie hält sich nicht; wärmebehandelte Steckzwiebeln schiessen seltener."
         },
         {
           "name": "Mehlkrankheit",
-          "fix": "Die Blätter vergilben und welken, an der Zwiebelbasis wächst ein weißer, watteartiger Pilz. Es gibt kein Mittel: Befallene Pflanzen herausnehmen und in den Restmüll geben, und auf diesem Beet viele Jahre keine Zwiebeln, keinen Knoblauch und keinen Lauch anbauen."
+          "fix": "Die Blätter vergilben und welken, an der Zwiebelbasis wächst ein weisser, watteartiger Pilz. Es gibt kein Mittel: Befallene Pflanzen herausnehmen und in den Restmüll geben, und auf diesem Beet viele Jahre keine Zwiebeln, keinen Knoblauch und keinen Lauch anbauen."
         },
         {
           "name": "Zwiebelfliege",
@@ -897,7 +897,7 @@
     },
     "onion": {
       "about": "Aus Samen gezogen für Zwiebeln, die sich über den Winter halten; billiger als Steckzwiebeln, mit mehr Sorten und weniger anfällig fürs Schossen. Zeitig im Frühjahr drinnen oder direkt in die Reihe säen und die Sämlinge in zwei Schritten ausdünnen, damit jede Zwiebel Platz hat.",
-      "water": "Sämlinge feucht halten; später nur bei längerer Trockenheit gießen. Aufhören, sobald die Zwiebeln im Hochsommer dick sind, dann halten sie länger.",
+      "water": "Sämlinge feucht halten; später nur bei längerer Trockenheit giessen. Aufhören, sobald die Zwiebeln im Hochsommer dick sind, dann halten sie länger.",
       "feed": "Vor der Saat eingearbeiteter Kompost reicht meist; später zusätzlicher Stickstoff macht die Zwiebeln weich, und sie halten sich schlecht.",
       "harvest": "Wenn das Laub von Juli bis Oktober vergilbt und umfällt, die Zwiebeln herausnehmen, bevor es ganz abgestorben ist. Etwa zwei Wochen in der Sonne trocknen.",
       "keeps": "Zwiebeln aus Samen halten bis ins nächste Frühjahr, in Netzen oder Lattenkisten kühl, trocken, luftig und hell gelagert; im Dunkeln treiben sie aus.",
@@ -918,30 +918,30 @@
       "source": "Zwiebelpflege: RHS. Wie viele: Kansas State Extension. pH: University of Connecticut Extension."
     },
     "leek": {
-      "about": "Angebaut für die langen weißen Schäfte, geerntet vom Spätsommer bis in den Winter. In ein Saatbeet oder Töpfe säen, die bleistiftdicken Jungpflanzen in tiefe, mit dem Pflanzholz gestochene Löcher setzen und jedes Loch mit Wasser füllen; tiefes Pflanzen gibt einen langen weißen Schaft.",
-      "water": "Jungpflanzen gießen, bis sie gut wachsen, danach bei längerer Trockenheit. Von unten gießen und die Blätter trocken halten, das bremst den Rost.",
+      "about": "Angebaut für die langen weissen Schäfte, geerntet vom Spätsommer bis in den Winter. In ein Saatbeet oder Töpfe säen, die bleistiftdicken Jungpflanzen in tiefe, mit dem Pflanzholz gestochene Löcher setzen und jedes Loch mit Wasser füllen; tiefes Pflanzen gibt einen langen weissen Schaft.",
+      "water": "Jungpflanzen giessen, bis sie gut wachsen, danach bei längerer Trockenheit. Von unten giessen und die Blätter trocken halten, das bremst den Rost.",
       "feed": "Lauch steht monatelang im Beet und mag nährstoffreichen Boden: vor dem Pflanzen reichlich Kompost oder Mist einarbeiten. Auf magerem Boden hilft im Hochsommer eine Stickstoffgabe.",
-      "harvest": "Ab dem Spätsommer nach Bedarf mit der Grabegabel herausheben; nimmst du jede zweite Stange, werden die übrigen dicker. Späte Sorten bleiben über den Winter stehen, und Frost macht sie süßer.",
+      "harvest": "Ab dem Spätsommer nach Bedarf mit der Grabegabel herausheben; nimmst du jede zweite Stange, werden die übrigen dicker. Späte Sorten bleiben über den Winter stehen, und Frost macht sie süsser.",
       "keeps": "Lauch hält sich am besten im Beet, bis du ihn brauchst. Geerntet ungewaschen in den Kühlschrank legen und bald verbrauchen.",
       "problems": [
         {
           "name": "Lauchrost",
-          "fix": "Orange, erhabene Pusteln auf den Blättern, am schlimmsten im Spätsommer. Von unten gießen und bei wiederholtem Befall eine resistente Sorte wählen; leicht befallener Lauch ist noch gut essbar."
+          "fix": "Orange, erhabene Pusteln auf den Blättern, am schlimmsten im Spätsommer. Von unten giessen und bei wiederholtem Befall eine resistente Sorte wählen; leicht befallener Lauch ist noch gut essbar."
         },
         {
           "name": "Lauchminierfliege",
-          "fix": "Kleine Maden bohren sich in die Schäfte, die sich verdrehen und faulen; Reihen winziger weißer Punkte auf den Blättern sind das erste Zeichen. Den Lauch ab dem Pflanzen mit feinem Kulturschutznetz abdecken."
+          "fix": "Kleine Maden bohren sich in die Schäfte, die sich verdrehen und faulen; Reihen winziger weisser Punkte auf den Blättern sind das erste Zeichen. Den Lauch ab dem Pflanzen mit feinem Kulturschutznetz abdecken."
         },
         {
           "name": "Lauchmotte",
-          "fix": "Raupen fressen Gänge in die Blätter und hinterlassen weiße, papierartige Stellen. Beschädigte Blätter abschneiden; dasselbe feine Netz hält die Motte fern."
+          "fix": "Raupen fressen Gänge in die Blätter und hinterlassen weisse, papierartige Stellen. Beschädigte Blätter abschneiden; dasselbe feine Netz hält die Motte fern."
         }
       ],
       "source": "Lauchpflege: RHS. pH: University of Connecticut Extension."
     },
     "celery": {
-      "about": "Angebaut für die knackigen Stangen. Selbstbleichende Sorten sind am einfachsten: setze sie im Block statt in einer Reihe, damit sie sich gegenseitig die Stiele beschatten. Sellerie braucht Wärme und gleichmäßige Feuchte: Jungpflanzen, die lange unter 10 °C stehen, können schossen; pflanze erst aus, wenn die Nächte mild bleiben.",
-      "water": "Den Boden nie austrocknen lassen: Trockenheit macht die Stangen faserig und zu streng im Geschmack. Im Sommer reichlich gießen, morgens oder abends, wenn möglich mit Regenwasser.",
+      "about": "Angebaut für die knackigen Stangen. Selbstbleichende Sorten sind am einfachsten: setze sie im Block statt in einer Reihe, damit sie sich gegenseitig die Stiele beschatten. Sellerie braucht Wärme und gleichmässige Feuchte: Jungpflanzen, die lange unter 10 °C stehen, können schossen; pflanze erst aus, wenn die Nächte mild bleiben.",
+      "water": "Den Boden nie austrocknen lassen: Trockenheit macht die Stangen faserig und zu streng im Geschmack. Im Sommer reichlich giessen, morgens oder abends, wenn möglich mit Regenwasser.",
       "feed": "In Boden pflanzen, der reich an Kompost oder Mist ist. Auf magerem Boden im Sommer etwas stickstoffreichen Dünger streuen; im Topf alle zwei Wochen einen Volldünger flüssig geben.",
       "harvest": "Ab Spätsommer ganze Pflanzen ernten, bevor die Blätter gelb werden und vor dem ersten Frost; bei kühlen Nächten mit Vlies abdecken. Nach der Ernte bald verbrauchen.",
       "keeps": "In ein feuchtes Tuch oder einen Beutel gewickelt bleibt er im Kühlschrank kurze Zeit knackig; bald verbrauchen.",
@@ -962,15 +962,15 @@
       "source": "Selleriepflege: RHS. pH: University of Connecticut und University of Maryland Extension."
     },
     "fennel": {
-      "about": "Knollenfenchel wird für die verdickte, nach Anis schmeckende Blattbasis angebaut, die Knolle. Sein Hauptproblem ist das Schossen, wenn er blüht statt eine Knolle zu bilden: säe im Frühsommer statt im Frühjahr, wähle schossfeste Sorten und säe in Multitopfplatten, damit die Wurzeln nicht gestört werden. Sobald die Basis anschwillt, häufle Erde an, damit sie weiß und süß bleibt.",
-      "water": "Den Boden immer feucht halten: Trockenheit ist eine der Hauptursachen für das Schossen. Morgens reichlich gießen und einen Topf im Sommer täglich prüfen.",
+      "about": "Knollenfenchel wird für die verdickte, nach Anis schmeckende Blattbasis angebaut, die Knolle. Sein Hauptproblem ist das Schossen, wenn er blüht statt eine Knolle zu bilden: säe im Frühsommer statt im Frühjahr, wähle schossfeste Sorten und säe in Multitopfplatten, damit die Wurzeln nicht gestört werden. Sobald die Basis anschwillt, häufle Erde an, damit sie weiss und süss bleibt.",
+      "water": "Den Boden immer feucht halten: Trockenheit ist eine der Hauptursachen für das Schossen. Morgens reichlich giessen und einen Topf im Sommer täglich prüfen.",
       "feed": "Vor der Saat Kompost einarbeiten und mulchen, sobald die Pflanzen wachsen; weiterer Dünger ist nicht nötig.",
       "harvest": "Schneide die Knolle knapp über dem Boden ab, wenn sie 10 bis 15 cm breit ist, kleine schon ab 5 cm. Warte nicht, bis sie sich streckt und einen Stängel treibt, sonst wird sie holzig.",
       "keeps": "Frisch am besten; im Beutel im Kühlschrank hält er ein paar Tage.",
       "problems": [
         {
           "name": "Schossen",
-          "fix": "Ein Blütenstängel schießt hoch und die Knolle bleibt flach und zäh, nach Kälte, Trockenheit oder gestörten Wurzeln. Später säen, gleichmäßig gießen und schossende Pflanzen sofort verbrauchen."
+          "fix": "Ein Blütenstängel schiesst hoch und die Knolle bleibt flach und zäh, nach Kälte, Trockenheit oder gestörten Wurzeln. Später säen, gleichmässig giessen und schossende Pflanzen sofort verbrauchen."
         },
         {
           "name": "Schnecken",
@@ -981,9 +981,9 @@
     },
     "potato": {
       "about": "Angebaut für die Knollen. Frühkartoffeln werden im Frühsommer geerntet, späte Sorten im Herbst, und sie lagern über den Winter. Häufle die Triebe beim Wachsen mit Erde an: das schützt sie vor Frost und verhindert, dass die Knollen grün werden.",
-      "water": "Bei Trockenheit gießen, vor allem ab der Blüte, wenn sich die Knollen bilden; gleichmäßige Feuchte hilft dann auch gegen Schorf. Ein Topf braucht auch bei Regen regelmäßig Wasser, denn das Laub hält den Regen von der Erde ab.",
+      "water": "Bei Trockenheit giessen, vor allem ab der Blüte, wenn sich die Knollen bilden; gleichmässige Feuchte hilft dann auch gegen Schorf. Ein Topf braucht auch bei Regen regelmässig Wasser, denn das Laub hält den Regen von der Erde ab.",
       "feed": "In Boden setzen, der mit Kompost oder Mist verbessert ist. Auf magerem Boden beim zweiten Anhäufeln stickstoffreichen Dünger geben; im Topf beim Pflanzen einen Volldünger untermischen oder nach etwa sechs Wochen flüssig düngen.",
-      "harvest": "Frühkartoffeln ernten, wenn die Blüten aufgehen und die Knollen hühnereigroß sind. Für Lagerkartoffeln das Kraut abschneiden, sobald es gelb wird, 10 Tage warten und dann graben, 30 cm vom Stängel entfernt, damit du keine Knollen ansticht.",
+      "harvest": "Frühkartoffeln ernten, wenn die Blüten aufgehen und die Knollen hühnereigross sind. Für Lagerkartoffeln das Kraut abschneiden, sobald es gelb wird, 10 Tage warten und dann graben, 30 cm vom Stängel entfernt, damit du keine Knollen ansticht.",
       "keeps": "Knollen ein paar Stunden abtrocknen lassen und die Erde abbürsten. Gesunde Knollen halten 2 bis 4 Monate in Papier- oder Jutesäcken, dunkel, kühl und frostfrei; alle paar Wochen nachsehen und faulende entfernen.",
       "problems": [
         {
@@ -992,18 +992,18 @@
         },
         {
           "name": "Kartoffelschorf",
-          "fix": "Raue, korkige Stellen auf der Schale; geschält sind die Kartoffeln noch gut. Bei Trockenheit während der Knollenbildung gießen, vor dem Pflanzen nicht kalken und resistente Sorten wählen."
+          "fix": "Raue, korkige Stellen auf der Schale; geschält sind die Kartoffeln noch gut. Bei Trockenheit während der Knollenbildung giessen, vor dem Pflanzen nicht kalken und resistente Sorten wählen."
         },
         {
           "name": "Grüne Kartoffeln",
           "fix": "Knollen, die ans Licht kommen, werden grün und sind giftig. Gut anhäufeln, dunkel lagern und grüne Knollen wegwerfen."
         }
       ],
-      "source": "Kartoffelpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Georgia Extension. Topfgröße: Cornell Cooperative Extension. Lagern: University of Missouri Extension."
+      "source": "Kartoffelpflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Georgia Extension. Topfgrösse: Cornell Cooperative Extension. Lagern: University of Missouri Extension."
     },
     "asparagus": {
       "about": "Eine Staude, angebaut für die Stangen im Frühjahr; ein gutes Beet trägt 20 Jahre und länger. Setz die Pflanzen in ein festes, unkrautfreies Beet und stich in den ersten zwei Jahren keine Stangen, damit die Wurzeln kräftig werden.",
-      "water": "Neue Pflanzen im ersten Sommer regelmäßig gießen. Eingewachsener Spargel wurzelt tief und braucht nur bei langer Trockenheit Wasser.",
+      "water": "Neue Pflanzen im ersten Sommer regelmässig giessen. Eingewachsener Spargel wurzelt tief und braucht nur bei langer Trockenheit Wasser.",
       "feed": "Das Beet jeden Spätwinter 5 cm dick mit Kompost oder gut verrottetem Mist abdecken. Wächst er schwach, im zeitigen Frühjahr vor dem Austrieb einen Volldünger streuen.",
       "harvest": "Stich die Stangen mit einem scharfen Messer knapp unter der Erde, wenn sie etwa 18 cm hoch sind, bei warmem Wetter alle zwei bis drei Tage. Im ersten Erntejahr nach sechs Wochen aufhören, später nach acht; danach das Laub wachsen lassen und erst abschneiden, wenn es im Herbst gelb wird.",
       "keeps": "Die Stangen halten sich ein paar Tage im Kühlschrank, aufrecht in etwas Wasser oder mit den Schnittenden in feuchtem Papier. Blanchiert lassen sie sich gut einfrieren.",
@@ -1025,7 +1025,7 @@
     },
     "rhubarb": {
       "about": "Eine langlebige Staude, angebaut für die säuerlichen Stiele, die vom Frühjahr bis Frühsommer geerntet werden. Nur die Stiele sind essbar: die Blätter enthalten Oxalsäure und werden nicht gegessen. Ein Horst trägt viele Jahre; etwa alle fünf Jahre ausgraben und teilen, damit er kräftig bleibt.",
-      "water": "Neue Pflanzen im ersten Jahr bei Trockenheit gießen. Eingewachsene Horste brauchen nur in langen trockenen Sommern Wasser; der Wurzelstock darf nie im Nassen stehen.",
+      "water": "Neue Pflanzen im ersten Jahr bei Trockenheit giessen. Eingewachsene Horste brauchen nur in langen trockenen Sommern Wasser; der Wurzelstock darf nie im Nassen stehen.",
       "feed": "Jeden Frühling 7 cm gut verrotteten Mist oder Kompost um die Pflanze verteilen, aber nicht auf den Wurzelstock. Auf magerem Boden im Frühjahr einen stickstoffreichen Dünger geben.",
       "harvest": "Im zweiten Jahr nur ein paar Stiele ernten; ab dem dritten Stiele von etwa 30 cm Länge. Fass jeden Stiel unten und dreh ihn heraus statt ihn abzuschneiden, nimm nie mehr als ein Drittel auf einmal und hör Anfang Juli auf, damit die Pflanze sich erholt.",
       "keeps": "Die Stiele halten sich etwa eine Woche im Kühlschrank in einem Beutel; die Blätter kommen auf den Kompost. Klein geschnitten lassen sie sich gut einfrieren.",
@@ -1036,7 +1036,7 @@
         },
         {
           "name": "Blütenstände",
-          "fix": "Hohe, dicke Stängel mit großem Blütenstand kosten die Pflanze Kraft. Gleich an der Basis abschneiden, sobald du sie siehst."
+          "fix": "Hohe, dicke Stängel mit grossem Blütenstand kosten die Pflanze Kraft. Gleich an der Basis abschneiden, sobald du sie siehst."
         },
         {
           "name": "Schnecken",
@@ -1046,8 +1046,8 @@
       "source": "Rhabarberpflege: RHS. Wie viele: University of Missouri Extension. pH: Cornell und University of Maryland Extension."
     },
     "artichoke": {
-      "about": "Eine große Staude mit silbrigen Blättern, angebaut für die Blütenknospen, die man vor dem Aufblühen isst. Sie braucht Platz, Sonne und durchlässigen Boden; kalte, nasse Winter töten sie öfter als Frost allein. Im ersten Sommer die Blütenstiele abschneiden, damit die Pflanze einwurzelt.",
-      "water": "Im ersten Jahr und während die Knospen wachsen regelmäßig gießen: trockener Boden gibt weniger und kleinere Knospen. Eingewachsen übersteht sie kurze Trockenheit.",
+      "about": "Eine grosse Staude mit silbrigen Blättern, angebaut für die Blütenknospen, die man vor dem Aufblühen isst. Sie braucht Platz, Sonne und durchlässigen Boden; kalte, nasse Winter töten sie öfter als Frost allein. Im ersten Sommer die Blütenstiele abschneiden, damit die Pflanze einwurzelt.",
+      "water": "Im ersten Jahr und während die Knospen wachsen regelmässig giessen: trockener Boden gibt weniger und kleinere Knospen. Eingewachsen übersteht sie kurze Trockenheit.",
       "feed": "Vor dem Pflanzen reichlich Kompost einarbeiten und jeden Frühling mulchen. Auf magerem Boden oder im Topf im Frühjahr einen kaliumreichen Dünger geben.",
       "harvest": "Schneide die Knospen, wenn sie voll ausgewachsen, aber noch fest geschlossen sind, mit ein paar Zentimetern Stiel; zuerst die Hauptknospe, danach folgen kleinere Seitenknospen. Bei warmem Wetter alle paar Tage nachsehen, denn die Knospen öffnen sich schnell.",
       "keeps": "Die Knospen halten sich 3 bis 5 Tage im Kühlschrank in einem Beutel.",
@@ -1069,7 +1069,7 @@
     },
     "tomato": {
       "about": "Angebaut für die Früchte, die vom Hochsommer bis zum ersten Frost reifen. Hohe Sorten werden an einen Stab gebunden und durch Ausgeizen auf einen Trieb gezogen; Buschtomaten bleiben kompakt und eignen sich für Töpfe.",
-      "water": "Halte den Boden gleichmäßig feucht: unregelmäßiges Gießen lässt Früchte platzen und verursacht Blütenendfäule. Bei Hitze braucht ein Topf manchmal jeden Tag Wasser.",
+      "water": "Halte den Boden gleichmässig feucht: unregelmässiges Giessen lässt Früchte platzen und verursacht Blütenendfäule. Bei Hitze braucht ein Topf manchmal jeden Tag Wasser.",
       "feed": "Sobald die ersten Früchte schwellen, alle 10 bis 14 Tage einen kaliumreichen Flüssigdünger (Tomatendünger) geben. Reicher Boden braucht weniger, aber alle zwei Wochen gedüngt trägt sie trotzdem mehr.",
       "harvest": "Pflück jede Frucht mit dem Stiel, sobald sie voll ausgefärbt ist. Am Saisonende grüne Früchte warm und dunkel nachreifen lassen, oder in einer Schublade mit einer Banane.",
       "keeps": "Reife Früchte halten sich ein paar Tage bei Zimmertemperatur, ohne Sonne; im Kühlschrank verlieren sie Geschmack.",
@@ -1080,20 +1080,20 @@
         },
         {
           "name": "Blütenendfäule",
-          "fix": "Ein dunkler, eingesunkener Fleck unten an der Frucht, von unregelmäßigem Gießen. Regelmäßig gießen und einen Topf nie austrocknen lassen."
+          "fix": "Ein dunkler, eingesunkener Fleck unten an der Frucht, von unregelmässigem Giessen. Regelmässig giessen und einen Topf nie austrocknen lassen."
         },
         {
           "name": "Geplatzte Früchte",
-          "fix": "Risse in reifenden Früchten, wenn nach Trockenheit starker Regen oder viel Gießwasser kommt. Den Boden gleichmäßig feucht halten und geplatzte Früchte bald essen."
+          "fix": "Risse in reifenden Früchten, wenn nach Trockenheit starker Regen oder viel Giesswasser kommt. Den Boden gleichmässig feucht halten und geplatzte Früchte bald essen."
         }
       ],
       "source": "Tomatenpflege: RHS. Wie viele: University of Missouri und Kansas State Extension. pH: University of Georgia Extension. Lagern: University of Arizona Extension."
     },
     "pepper": {
-      "about": "Angebaut für die süßen Früchte, grün geerntet oder ausgereift rot, gelb oder orange. Paprika braucht einen langen, warmen Sommer: in kühlen Gegenden gedeiht sie am besten im Gewächshaus oder an einem sonnigen, geschützten Platz. Binde jede Pflanze an einen Stab, denn die Triebe sind spröde und brechen unter schwerem Behang.",
-      "water": "Halte den Boden gleichmäßig feucht: trocknet er aus, fallen die Blütenknospen ab. Bei Hitze braucht ein Topf manchmal jeden Tag Wasser.",
+      "about": "Angebaut für die süssen Früchte, grün geerntet oder ausgereift rot, gelb oder orange. Paprika braucht einen langen, warmen Sommer: in kühlen Gegenden gedeiht sie am besten im Gewächshaus oder an einem sonnigen, geschützten Platz. Binde jede Pflanze an einen Stab, denn die Triebe sind spröde und brechen unter schwerem Behang.",
+      "water": "Halte den Boden gleichmässig feucht: trocknet er aus, fallen die Blütenknospen ab. Bei Hitze braucht ein Topf manchmal jeden Tag Wasser.",
       "feed": "Sobald sie blüht, Pflanzen im Topf jede Woche einen kaliumreichen Flüssigdünger (Tomatendünger) geben. Reicher Boden braucht weniger, aber Düngen bringt trotzdem mehr Ertrag.",
-      "harvest": "Ernte die Früchte, wenn sie voll ausgewachsen sind und glänzen, grün oder ausgefärbt; mit der Farbe werden sie süßer, aber ausreifende Früchte bremsen neue. Schneide den Stiel mit der Schere ab, statt zu reißen.",
+      "harvest": "Ernte die Früchte, wenn sie voll ausgewachsen sind und glänzen, grün oder ausgefärbt; mit der Farbe werden sie süsser, aber ausreifende Früchte bremsen neue. Schneide den Stiel mit der Schere ab, statt zu reissen.",
       "keeps": "Hält sich am besten kühl bei Zimmertemperatur; im Kühlschrank 1 bis 3 Tage, wenn du sie bald nach dem Herausnehmen isst.",
       "problems": [
         {
@@ -1102,20 +1102,20 @@
         },
         {
           "name": "Blütenendfäule",
-          "fix": "Ein dunkler, eingesunkener Fleck unten an der Frucht, von unregelmäßigem Gießen. Regelmäßig gießen; die übrigen Früchte sind meist in Ordnung."
+          "fix": "Ein dunkler, eingesunkener Fleck unten an der Frucht, von unregelmässigem Giessen. Regelmässig giessen; die übrigen Früchte sind meist in Ordnung."
         },
         {
           "name": "Blütenabwurf",
-          "fix": "Knospen und Blüten fallen ohne Frucht ab, wenn der Boden austrocknet, bei großer Hitze oder in kalten Nächten. Den Boden gleichmäßig feucht halten und das Gewächshaus an heißen Tagen lüften und schattieren."
+          "fix": "Knospen und Blüten fallen ohne Frucht ab, wenn der Boden austrocknet, bei grosser Hitze oder in kalten Nächten. Den Boden gleichmässig feucht halten und das Gewächshaus an heissen Tagen lüften und schattieren."
         }
       ],
       "source": "Paprikapflege: RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "chilli": {
-      "about": "Angebaut für scharfe Früchte, frisch, getrocknet oder eingelegt. Chili braucht den ganzen Sommer Wärme: Gewächshaus, sonnige Fensterbank oder ein warmer, geschützter Platz draußen. Eine Pflanze im Topf kann vor der Kälte ins Haus und hell und warm überwintern, mit wenig Wasser.",
-      "water": "Halte die Erde gleichmäßig feucht: trockene Erde lässt die Knospen abfallen. Ein Topf in voller Sonne braucht bei Hitze manchmal jeden Tag Wasser.",
+      "about": "Angebaut für scharfe Früchte, frisch, getrocknet oder eingelegt. Chili braucht den ganzen Sommer Wärme: Gewächshaus, sonnige Fensterbank oder ein warmer, geschützter Platz draussen. Eine Pflanze im Topf kann vor der Kälte ins Haus und hell und warm überwintern, mit wenig Wasser.",
+      "water": "Halte die Erde gleichmässig feucht: trockene Erde lässt die Knospen abfallen. Ein Topf in voller Sonne braucht bei Hitze manchmal jeden Tag Wasser.",
       "feed": "Sobald sie blüht, Pflanzen im Topf jede Woche einen kaliumreichen Flüssigdünger (Tomatendünger) geben. Im reichen Gartenboden braucht sie weniger.",
-      "harvest": "Grün geerntet gibt sie die größte Ernte: rot ausgereifte Früchte sind schärfer, aber die Pflanze bildet dann weniger neue Blüten. Gegen Saisonende die letzten Früchte ausfärben lassen. Mit Stiel abschneiden und nach scharfen Sorten die Hände waschen.",
+      "harvest": "Grün geerntet gibt sie die grösste Ernte: rot ausgereifte Früchte sind schärfer, aber die Pflanze bildet dann weniger neue Blüten. Gegen Saisonende die letzten Früchte ausfärben lassen. Mit Stiel abschneiden und nach scharfen Sorten die Hände waschen.",
       "keeps": "Frische Chilis kühl lagern und bald verbrauchen, oder für den Winter trocknen, einfrieren oder einlegen.",
       "problems": [
         {
@@ -1124,7 +1124,7 @@
         },
         {
           "name": "Spinnmilben",
-          "fix": "Feine helle Sprenkel auf den Blättern und dünne Gespinste, bei heißer, trockener Luft, vor allem unter Glas. Pflanzen besprühen und den Gewächshausboden befeuchten, um die Luftfeuchte zu erhöhen."
+          "fix": "Feine helle Sprenkel auf den Blättern und dünne Gespinste, bei heisser, trockener Luft, vor allem unter Glas. Pflanzen besprühen und den Gewächshausboden befeuchten, um die Luftfeuchte zu erhöhen."
         },
         {
           "name": "Wenig Früchte bei Hitze",
@@ -1134,63 +1134,63 @@
       "source": "Chilipflege und Lagern: RHS. pH: Virginia Tech Extension (Paprika)."
     },
     "aubergine": {
-      "about": "Angebaut für die glänzenden Früchte, violett, weiß oder gestreift. Sie braucht mehr Wärme als die Tomate und etwa fünf Monate von der Aussaat bis zur Ernte: in kühlen Sommern gehört sie ins Gewächshaus oder an den sonnigsten, geschütztesten Platz. Kappe die Spitze bei etwa 30 cm für eine buschigere Pflanze und lass bei großfrüchtigen Sorten fünf oder sechs Früchte.",
+      "about": "Angebaut für die glänzenden Früchte, violett, weiss oder gestreift. Sie braucht mehr Wärme als die Tomate und etwa fünf Monate von der Aussaat bis zur Ernte: in kühlen Sommern gehört sie ins Gewächshaus oder an den sonnigsten, geschütztesten Platz. Kappe die Spitze bei etwa 30 cm für eine buschigere Pflanze und lass bei grossfrüchtigen Sorten fünf oder sechs Früchte.",
       "water": "Halte den Boden stetig feucht; bei Hitze braucht ein Topf manchmal jeden Tag Wasser. Unter Glas hält zweimal tägliches Besprühen der Blätter auch Spinnmilben fern.",
       "feed": "Sobald die ersten Blüten offen sind, alle zwei Wochen einen kaliumreichen Flüssigdünger geben. Reicher Boden braucht weniger, aber Düngen bringt trotzdem mehr Ertrag.",
-      "harvest": "Schneide jede Frucht mit ein paar Zentimetern Stiel ab, sobald sie voll ausgewachsen, glänzend und gut ausgefärbt ist; matte Haut heißt überreif und oft bitter. Regelmäßig ernten und auf die kleinen Stacheln am Stiel achten.",
+      "harvest": "Schneide jede Frucht mit ein paar Zentimetern Stiel ab, sobald sie voll ausgewachsen, glänzend und gut ausgefärbt ist; matte Haut heisst überreif und oft bitter. Regelmässig ernten und auf die kleinen Stacheln am Stiel achten.",
       "keeps": "Hält sich am besten kühl bei Zimmertemperatur und wird bald gegessen; im Kühlschrank 1 bis 3 Tage, wenn du sie danach bald kochst.",
       "problems": [
         {
           "name": "Wenig oder keine Früchte",
-          "fix": "Meist ein kühler Sommer oder ein kalter Platz. Gib ihr den heißesten, sonnigsten Platz und gleichmäßige Feuchte und entferne Blüten, die nach dem Spätsommer aufgehen: ihre Früchte reifen nicht mehr."
+          "fix": "Meist ein kühler Sommer oder ein kalter Platz. Gib ihr den heissesten, sonnigsten Platz und gleichmässige Feuchte und entferne Blüten, die nach dem Spätsommer aufgehen: ihre Früchte reifen nicht mehr."
         },
         {
           "name": "Spinnmilben",
-          "fix": "Feine helle Sprenkel auf den Blättern und dünne Gespinste, bei heißer, trockener Luft unter Glas. Die Blätter besprühen und an heißen Morgen den Gewächshausboden befeuchten."
+          "fix": "Feine helle Sprenkel auf den Blättern und dünne Gespinste, bei heisser, trockener Luft unter Glas. Die Blätter besprühen und an heissen Morgen den Gewächshausboden befeuchten."
         },
         {
-          "name": "Blattläuse und Weiße Fliege",
-          "fix": "Saugende Insekten an den Blattunterseiten; die Blätter werden klebrig und blass. Kontrolliere die Unterseiten oft und wasche kleine Kolonien ab; im Gewächshaus fangen Gelbtafeln die Weiße Fliege."
+          "name": "Blattläuse und Weisse Fliege",
+          "fix": "Saugende Insekten an den Blattunterseiten; die Blätter werden klebrig und blass. Kontrolliere die Unterseiten oft und wasche kleine Kolonien ab; im Gewächshaus fangen Gelbtafeln die Weisse Fliege."
         }
       ],
       "source": "Auberginenpflege: RHS. Wie viele: Kansas State und Virginia Tech Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "cucumber": {
       "about": "Angebaut für die Früchte, die ab Hochsommer geerntet werden. Die meisten Sorten ranken: zieh sie an einem Stab, Netz oder Spalier hoch, das spart Platz und hält die Früchte sauber. Gewächshausgurken sind meist rein weiblich, entferne dort männliche Blüten; Freilandgurken brauchen ihre männlichen Blüten zur Bestäubung.",
-      "water": "Halte den Boden gleichmäßig feucht, vor allem sobald Früchte ansetzen. Morgens an den Fuß gießen und die Blätter trocken halten; bei Hitze braucht ein Topf manchmal jeden Tag Wasser.",
-      "feed": "Im Beet braucht sie selten Dünger, außer der Boden ist arm. Im Topf alle 10 bis 14 Tage einen Universal-Flüssigdünger geben und ab der Blüte auf kaliumreichen Dünger (Tomatendünger) wechseln.",
-      "harvest": "Schneide die Früchte mit dem Messer, wenn sie ihre Größe haben: etwa 15 cm bei kleinen Sorten, 20 bis 25 cm bei großen. Alle paar Tage nachsehen, denn sie wachsen schnell und regelmäßiges Ernten bringt neue; gelbe, dicke Früchte sind überreif.",
+      "water": "Halte den Boden gleichmässig feucht, vor allem sobald Früchte ansetzen. Morgens an den Fuss giessen und die Blätter trocken halten; bei Hitze braucht ein Topf manchmal jeden Tag Wasser.",
+      "feed": "Im Beet braucht sie selten Dünger, ausser der Boden ist arm. Im Topf alle 10 bis 14 Tage einen Universal-Flüssigdünger geben und ab der Blüte auf kaliumreichen Dünger (Tomatendünger) wechseln.",
+      "harvest": "Schneide die Früchte mit dem Messer, wenn sie ihre Grösse haben: etwa 15 cm bei kleinen Sorten, 20 bis 25 cm bei grossen. Alle paar Tage nachsehen, denn sie wachsen schnell und regelmässiges Ernten bringt neue; gelbe, dicke Früchte sind überreif.",
       "keeps": "Hält sich am besten kühl bei Zimmertemperatur; im Kühlschrank 1 bis 3 Tage, wenn du sie bald nach dem Herausnehmen isst.",
       "problems": [
         {
           "name": "Echter Mehltau",
-          "fix": "Ein weißer Belag auf den Blättern, schlimmer wenn die Wurzeln trocken stehen. An den Fuß gießen, Blätter trocken und den Boden feucht halten und resistente Sorten wählen."
+          "fix": "Ein weisser Belag auf den Blättern, schlimmer wenn die Wurzeln trocken stehen. An den Fuss giessen, Blätter trocken und den Boden feucht halten und resistente Sorten wählen."
         },
         {
           "name": "Gurkenmosaikvirus",
-          "fix": "Gelb gescheckte, gewellte Blätter und kümmernde Pflanzen. Befallene Pflanzen ausreißen und entsorgen (nicht auf den Kompost) und Blattläuse kleinhalten, die das Virus übertragen."
+          "fix": "Gelb gescheckte, gewellte Blätter und kümmernde Pflanzen. Befallene Pflanzen ausreissen und entsorgen (nicht auf den Kompost) und Blattläuse kleinhalten, die das Virus übertragen."
         },
         {
           "name": "Schnecken",
-          "fix": "Sie fressen junge Pflanzen, vor allem bei feuchtem Wetter. Pflanzen nach dem Auspflanzen schützen und abends kontrollieren; hochgezogene Pflanzen halten die Früchte außer Reichweite."
+          "fix": "Sie fressen junge Pflanzen, vor allem bei feuchtem Wetter. Pflanzen nach dem Auspflanzen schützen und abends kontrollieren; hochgezogene Pflanzen halten die Früchte ausser Reichweite."
         }
       ],
       "source": "Gurkenpflege: RHS. Wie viele: Virginia Tech Extension. pH: Cornell Cooperative Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "courgette": {
       "about": "Angebaut für die jungen Früchte, den ganzen Sommer klein geerntet; auch die Blüten sind essbar. Eine Pflanze wird breit und trägt reichlich. Ernte oft: eine Frucht, die ein paar Tage hängen bleibt, wird riesig und bremst die Pflanze.",
-      "water": "Halte den Boden den ganzen Sommer feucht und gieß an den Fuß, nicht über die Blätter. Ein kleiner Topf, neben der Pflanze eingegraben und mit Wasser gefüllt, bringt es direkt an die Wurzeln.",
+      "water": "Halte den Boden den ganzen Sommer feucht und giess an den Fuss, nicht über die Blätter. Ein kleiner Topf, neben der Pflanze eingegraben und mit Wasser gefüllt, bringt es direkt an die Wurzeln.",
       "feed": "Arbeite vor dem Pflanzen reichlich Kompost oder gut verrotteten Mist in den Boden; in gutem Boden braucht sie dann wenig mehr. Im Topf alle 10 bis 14 Tage einen kaliumreichen Flüssigdünger geben, sobald die ersten Früchte schwellen.",
       "harvest": "Schneide die Früchte bei 10 bis 12 cm Länge, solange sie klein und zart sind. Bei gutem Wetter jeden oder jeden zweiten Tag nachsehen: eine Pflanze bringt drei oder vier Früchte pro Woche. Männliche Blüten kannst du pflücken, ohne Früchte zu verlieren.",
       "keeps": "Hält sich ein paar Tage im Kühlschrank; iss sie, solange sie fest sind.",
       "problems": [
         {
           "name": "Echter Mehltau",
-          "fix": "Weißer Belag auf den Blättern ab Hochsommer, schlimmer bei trockenem Boden. Den Boden feucht halten, an den Fuß gießen und die schlimmsten Blätter abschneiden."
+          "fix": "Weisser Belag auf den Blättern ab Hochsommer, schlimmer bei trockenem Boden. Den Boden feucht halten, an den Fuss giessen und die schlimmsten Blätter abschneiden."
         },
         {
           "name": "Schnecken",
-          "fix": "Sie fressen junge Pflanzen, Blüten und kleine Früchte. Pflanzen nach dem Auspflanzen schützen oder drinnen vorziehen, damit sie größer ins Beet kommen."
+          "fix": "Sie fressen junge Pflanzen, Blüten und kleine Früchte. Pflanzen nach dem Auspflanzen schützen oder drinnen vorziehen, damit sie grösser ins Beet kommen."
         },
         {
           "name": "Früchte faulen oder setzen nicht an",
@@ -1200,9 +1200,9 @@
       "source": "Zucchinipflege: RHS. Wie viele: Virginia Tech Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "pumpkin": {
-      "about": "Angebaut für große Früchte, die im Herbst reifen und sich bis in den Winter lagern lassen. Die rankenden Triebe brauchen viel Platz. Für große Früchte zwei oder drei pro Pflanze lassen, für einen Riesenkürbis nur einen.",
-      "water": "Gieß reichlich, vor allem sobald Früchte ansetzen, an den Fuß und nicht über die Blätter. Ein neben der Pflanze eingegrabener Topf, mit Wasser gefüllt, bringt es an die Wurzeln.",
-      "feed": "Arbeite reichlich Kompost oder gut verrotteten Mist in das Pflanzloch; die meisten Pflanzen brauchen dann nichts mehr. Für sehr große Früchte alle 10 bis 14 Tage einen kaliumreichen Flüssigdünger geben, sobald die Frucht schwillt.",
+      "about": "Angebaut für grosse Früchte, die im Herbst reifen und sich bis in den Winter lagern lassen. Die rankenden Triebe brauchen viel Platz. Für grosse Früchte zwei oder drei pro Pflanze lassen, für einen Riesenkürbis nur einen.",
+      "water": "Giess reichlich, vor allem sobald Früchte ansetzen, an den Fuss und nicht über die Blätter. Ein neben der Pflanze eingegrabener Topf, mit Wasser gefüllt, bringt es an die Wurzeln.",
+      "feed": "Arbeite reichlich Kompost oder gut verrotteten Mist in das Pflanzloch; die meisten Pflanzen brauchen dann nichts mehr. Für sehr grosse Früchte alle 10 bis 14 Tage einen kaliumreichen Flüssigdünger geben, sobald die Frucht schwillt.",
       "harvest": "Lass die Frucht an der Pflanze voll ausfärben; die Schale soll hart sein und sich mit dem Fingernagel nicht eindrücken lassen. Vor dem ersten Frost mit mindestens 10 cm Stiel abschneiden und eine Woche bis 10 Tage in der Sonne nachhärten lassen.",
       "keeps": "Gehärtete Früchte luftig bei 10 bis 15 °C lagern, ohne dass sie sich berühren: mindestens drei Monate, bei guten Bedingungen bis zu sechs. Erfrorene Früchte halten nicht.",
       "problems": [
@@ -1212,7 +1212,7 @@
         },
         {
           "name": "Echter Mehltau",
-          "fix": "Weißer Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmäßig gießen und den Pflanzen Platz lassen, damit Luft durchkommt."
+          "fix": "Weisser Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmässig giessen und den Pflanzen Platz lassen, damit Luft durchkommt."
         },
         {
           "name": "Schnecken",
@@ -1223,14 +1223,14 @@
     },
     "winter_squash": {
       "about": "Angebaut für hartschalige Früchte wie Butternut, Acorn oder Hokkaido, die sich über den Winter lagern lassen. Rankende Sorten breiten sich weit aus; kleinere kannst du an einem stabilen Gerüst hochziehen. Lass die Früchte an der Pflanze voll ausreifen: unreife Kürbisse halten sich nicht.",
-      "water": "Gieß reichlich, solange die Früchte wachsen, an den Fuß und nicht über die Blätter. Mulch um die Pflanzen hält die Feuchte im Boden.",
+      "water": "Giess reichlich, solange die Früchte wachsen, an den Fuss und nicht über die Blätter. Mulch um die Pflanzen hält die Feuchte im Boden.",
       "feed": "Arbeite reichlich Kompost oder gut verrotteten Mist in das Pflanzloch. Auf armem Boden alle 10 bis 14 Tage einen kaliumreichen Flüssigdünger geben, sobald die Früchte schwellen.",
       "harvest": "Ernte, wenn die Schale hart und matt ist, sich mit dem Fingernagel nicht eindrücken lässt und der Stiel fest ist. Vor dem ersten Frost mit einem langen Stück Stiel abschneiden und etwa 10 Tage in der Sonne nachhärten lassen.",
       "keeps": "Gehärtete Früchte trocken und luftig bei 10 bis 15 °C lagern: je nach Sorte ein bis sechs Monate. Oft nachsehen und weich werdende bald verbrauchen.",
       "problems": [
         {
           "name": "Echter Mehltau",
-          "fix": "Weißer Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmäßig gießen und den Pflanzen Platz lassen, damit Luft durchkommt."
+          "fix": "Weisser Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmässig giessen und den Pflanzen Platz lassen, damit Luft durchkommt."
         },
         {
           "name": "Schnecken",
@@ -1245,7 +1245,7 @@
     },
     "green_beans": {
       "about": "Angebaut für zarte, jung gepflückte Hülsen. Buschbohnen werden etwa 45 cm hoch und passen in Töpfe; Stangenbohnen brauchen hohe Stangen, tragen aber länger. Frost tötet sie und in kaltem, nassem Boden faulen sie, darum erst säen, wenn der Boden warm ist.",
-      "water": "Bei Trockenheit gießen, vor allem wenn die Pflanzen blühen und Hülsen ansetzen; in trockenem Boden fallen die Blüten ab. Töpfe brauchen oft Wasser.",
+      "water": "Bei Trockenheit giessen, vor allem wenn die Pflanzen blühen und Hülsen ansetzen; in trockenem Boden fallen die Blüten ab. Töpfe brauchen oft Wasser.",
       "feed": "Im Beet brauchen Bohnen keinen Dünger, und zu viel Stickstoff gibt Blätter statt Hülsen. Im Topf ab den ersten Blüten alle zwei Wochen einen kaliumreichen Flüssigdünger geben.",
       "harvest": "Die Hülsen mit 15 bis 20 cm pflücken, wenn sie glatt brechen und bevor sich die Kerne abzeichnen. Alle paar Tage pflücken: je mehr du erntest, desto mehr Hülsen kommen nach.",
       "keeps": "Im Beutel halten sich die Hülsen ein paar Tage im Kühlschrank. Für den Winter blanchieren und einfrieren.",
@@ -1260,16 +1260,16 @@
         },
         {
           "name": "Blütenabwurf",
-          "fix": "Bei heißem, trockenem oder windigem Wetter fallen die Blüten ab, ohne Hülsen anzusetzen. Den Boden feucht halten, besonders zur Blüte."
+          "fix": "Bei heissem, trockenem oder windigem Wetter fallen die Blüten ab, ohne Hülsen anzusetzen. Den Boden feucht halten, besonders zur Blüte."
         }
       ],
       "source": "Bohnenpflege: RHS und Virginia Tech Extension. Wie viele: Kansas State und Texas A&M Extension. pH: Virginia Tech und Penn State Extension."
     },
     "sweetcorn": {
-      "about": "Angebaut für die süßen Kolben. Pflanze ihn im Block aus kurzen Reihen statt in einer langen Reihe: der Pollen wird vom Wind verteilt, und nur im Block werden die Kolben gut gefüllt. Halte Supersweet-Sorten von anderem Zuckermais fern, sonst werden die Körner mehlig.",
-      "water": "Jungpflanzen gießen, bis sie angewachsen sind, danach bei Trockenheit, vor allem wenn die Fahnen erscheinen und die Kolben schwellen.",
+      "about": "Angebaut für die süssen Kolben. Pflanze ihn im Block aus kurzen Reihen statt in einer langen Reihe: der Pollen wird vom Wind verteilt, und nur im Block werden die Kolben gut gefüllt. Halte Supersweet-Sorten von anderem Zuckermais fern, sonst werden die Körner mehlig.",
+      "water": "Jungpflanzen giessen, bis sie angewachsen sind, danach bei Trockenheit, vor allem wenn die Fahnen erscheinen und die Kolben schwellen.",
       "feed": "In Boden setzen, der reich an Kompost oder Mist ist. Eine Stickstoffgabe, wenn die Pflanzen etwa kniehoch sind, steigert die Ernte.",
-      "harvest": "Prüfe die Kolben, sobald die Fäden braun werden: etwas Hüllblatt zurückziehen und ein Korn mit dem Fingernagel eindrücken. Milchiger Saft heißt reif, wässriger heißt warten; den Kolben abdrehen und bald essen, denn der Zucker wird zu Stärke.",
+      "harvest": "Prüfe die Kolben, sobald die Fäden braun werden: etwas Hüllblatt zurückziehen und ein Korn mit dem Fingernagel eindrücken. Milchiger Saft heisst reif, wässriger heisst warten; den Kolben abdrehen und bald essen, denn der Zucker wird zu Stärke.",
       "keeps": "Kolben im Kühlschrank aufbewahren und innerhalb von 2 Tagen essen; Supersweet-Sorten halten etwa eine Woche. Überschuss einfrieren.",
       "problems": [
         {
@@ -1282,21 +1282,21 @@
         },
         {
           "name": "Maisbeulenbrand",
-          "fix": "Große grauweiße Beulen an Kolben und Stängeln, die zu schwarzem Pulver aufplatzen. Vor dem Aufplatzen abschneiden und entsorgen und den Mais im nächsten Jahr woanders anbauen."
+          "fix": "Grosse grauweisse Beulen an Kolben und Stängeln, die zu schwarzem Pulver aufplatzen. Vor dem Aufplatzen abschneiden und entsorgen und den Mais im nächsten Jahr woanders anbauen."
         }
       ],
       "source": "Zuckermaispflege: RHS. Wie viele: Kansas State und University of Missouri Extension. pH: University of Connecticut und University of Maryland Extension. Lagern: University of Missouri Extension."
     },
     "strawberry": {
       "about": "Eine Staude, angebaut für ihre Beeren: einmaltragende Sorten fruchten im Frühsommer, immertragende vom Sommer bis in den Herbst. Ein Beet trägt drei bis vier Jahre gut; dann an neuer Stelle mit bewurzelten Ausläufern neu pflanzen, um Bodenkrankheiten zu vermeiden.",
-      "water": "Bei Trockenheit regelmäßig gießen, in Töpfen und Ampeln oft, denn sie trocknen schnell aus. Morgens an den Fuß gießen und Herz und Früchte trocken halten.",
+      "water": "Bei Trockenheit regelmässig giessen, in Töpfen und Ampeln oft, denn sie trocknen schnell aus. Morgens an den Fuss giessen und Herz und Früchte trocken halten.",
       "feed": "Im Beet, das jedes Frühjahr mit Kompost gemulcht wird, braucht sie selten mehr. Im Topf alle zwei Wochen einen Universal-Flüssigdünger geben, dann kaliumreichen, sobald sich Blütenknospen zeigen.",
       "harvest": "Pflück die Beeren, wenn sie rundum rot sind, am besten in der wärmsten Tageszeit; nach dem Pflücken reifen sie nicht nach. Leg Stroh unter die Pflanzen, wenn Früchte ansetzen, damit sie sauber bleiben, und nimm es im Herbst wieder weg.",
       "keeps": "Am besten am Erntetag essen; im Kühlschrank lagern und erst kurz vor dem Essen waschen. Eingefroren verlieren sie ihre Form und eignen sich für Smoothies und Desserts.",
       "problems": [
         {
           "name": "Grauschimmel",
-          "fix": "Grauer, pelziger Belag und Fäulnis an den Früchten bei nassem Wetter. Morgens gießen, ohne zu spritzen, Früchte auf Stroh legen und faule Beeren sofort entfernen."
+          "fix": "Grauer, pelziger Belag und Fäulnis an den Früchten bei nassem Wetter. Morgens giessen, ohne zu spritzen, Früchte auf Stroh legen und faule Beeren sofort entfernen."
         },
         {
           "name": "Vögel",
@@ -1304,16 +1304,16 @@
         },
         {
           "name": "Dickmaulrüssler",
-          "fix": "Im Topf welken und kippen die Pflanzen, weil weiße, gekrümmte Larven die Wurzeln fressen. Im Spätsommer Nematoden als Nützlinge in die Erde gießen."
+          "fix": "Im Topf welken und kippen die Pflanzen, weil weisse, gekrümmte Larven die Wurzeln fressen. Im Spätsommer Nematoden als Nützlinge in die Erde giessen."
         }
       ],
-      "source": "Erdbeerpflege: RHS. Topfgröße: Iowa State University Extension. pH: Cornell Cooperative Extension. Lagern: Kansas State und University of Missouri Extension."
+      "source": "Erdbeerpflege: RHS. Topfgrösse: Iowa State University Extension. pH: Cornell Cooperative Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "melon": {
-      "about": "Angebaut für süße Früchte im Spätsommer. Sie braucht echte Wärme: in kühlen Gegenden gehört sie ins Gewächshaus, in einen Folientunnel oder ein Frühbeet. Damit die Früchte reifen, im Freien bis zu vier pro Pflanze lassen, unter Glas vier bis sechs, und die übrigen entfernen, wenn sie etwa 2,5 cm groß sind.",
-      "water": "Halte den Boden gleichmäßig feucht, aber nicht nass, und gieß morgens an den Fuß. Weniger gießen, sobald die Früchte im Spätsommer reifen.",
-      "feed": "Im Topf im Frühsommer alle 10 bis 14 Tage einen Universal-Flüssigdünger geben, dann einen kaliumreichen, sobald die Früchte walnussgroß sind. Mit der Reife das Düngen einstellen.",
-      "harvest": "Eine reife Melone duftet süß, der Stiel reißt am Ansatz ein, und das Ende gegenüber dem Stiel gibt auf Druck leicht nach. Cantaloupe-Melonen lösen sich dann mit leichtem Druck vom Stiel.",
+      "about": "Angebaut für süsse Früchte im Spätsommer. Sie braucht echte Wärme: in kühlen Gegenden gehört sie ins Gewächshaus, in einen Folientunnel oder ein Frühbeet. Damit die Früchte reifen, im Freien bis zu vier pro Pflanze lassen, unter Glas vier bis sechs, und die übrigen entfernen, wenn sie etwa 2,5 cm gross sind.",
+      "water": "Halte den Boden gleichmässig feucht, aber nicht nass, und giess morgens an den Fuss. Weniger giessen, sobald die Früchte im Spätsommer reifen.",
+      "feed": "Im Topf im Frühsommer alle 10 bis 14 Tage einen Universal-Flüssigdünger geben, dann einen kaliumreichen, sobald die Früchte walnussgross sind. Mit der Reife das Düngen einstellen.",
+      "harvest": "Eine reife Melone duftet süss, der Stiel reisst am Ansatz ein, und das Ende gegenüber dem Stiel gibt auf Druck leicht nach. Cantaloupe-Melonen lösen sich dann mit leichtem Druck vom Stiel.",
       "keeps": "Eine reife Melone hält sich ein paar Tage bei Zimmertemperatur; angeschnitten abdecken und in den Kühlschrank stellen.",
       "problems": [
         {
@@ -1322,7 +1322,7 @@
         },
         {
           "name": "Echter Mehltau",
-          "fix": "Weißer Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmäßig gießen und die Blätter trocken halten."
+          "fix": "Weisser Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmässig giessen und die Blätter trocken halten."
         },
         {
           "name": "Spinnmilben",
@@ -1332,10 +1332,10 @@
       "source": "Melonenpflege: RHS. Reife: University of Minnesota Extension. Wie viele: Virginia Tech und Kansas State Extension. pH: Virginia Tech Extension. Lagern: Kansas State und University of Missouri Extension."
     },
     "watermelon": {
-      "about": "Angebaut für die großen, süßen Früchte. Sie braucht einen langen, heißen Sommer: in kühlen Gegenden wähle eine kleine, frühe Sorte und zieh sie unter Glas oder Folie. Anders als andere Melonen reift sie nach der Ernte nicht nach, also beurteile die Reife an der Pflanze.",
-      "water": "Gieß tief und regelmäßig, solange die Ranken wachsen und die Früchte schwellen, morgens an den Fuß. Weniger gießen, wenn die Früchte fast ausgewachsen sind.",
+      "about": "Angebaut für die grossen, süssen Früchte. Sie braucht einen langen, heissen Sommer: in kühlen Gegenden wähle eine kleine, frühe Sorte und zieh sie unter Glas oder Folie. Anders als andere Melonen reift sie nach der Ernte nicht nach, also beurteile die Reife an der Pflanze.",
+      "water": "Giess tief und regelmässig, solange die Ranken wachsen und die Früchte schwellen, morgens an den Fuss. Weniger giessen, wenn die Früchte fast ausgewachsen sind.",
       "feed": "Arbeite vor dem Pflanzen Kompost in den Boden. Zu viel Stickstoff bringt Blätter statt Früchte; wenn du düngst, dann kaliumreich, sobald Früchte ansetzen.",
-      "harvest": "Reif ist sie, wenn die Ranke neben der Frucht braun und trocken ist, die Stelle, auf der sie liegt, von Weiß zu Cremegelb wechselt und die Schale von glänzend zu matt wird. Prüf alle drei Zeichen und schneide sie dann mit dem Messer ab.",
+      "harvest": "Reif ist sie, wenn die Ranke neben der Frucht braun und trocken ist, die Stelle, auf der sie liegt, von Weiss zu Cremegelb wechselt und die Schale von glänzend zu matt wird. Prüf alle drei Zeichen und schneide sie dann mit dem Messer ab.",
       "keeps": "Eine ganze Wassermelone hält sich 2 bis 3 Wochen kühl bei 10 bis 15 °C, fern von Äpfeln, Bananen und Tomaten. Angeschnitten abgedeckt in den Kühlschrank.",
       "problems": [
         {
@@ -1344,7 +1344,7 @@
         },
         {
           "name": "Echter Mehltau",
-          "fix": "Weißer Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmäßig an den Fuß gießen und die Blätter trocken halten."
+          "fix": "Weisser Belag auf den Blättern, schlimmer wenn die Pflanzen trocken stehen. Gleichmässig an den Fuss giessen und die Blätter trocken halten."
         },
         {
           "name": "Schnecken",
@@ -1355,14 +1355,14 @@
     },
     "basil": {
       "about": "Ein frostempfindliches einjähriges Kraut, angebaut für die duftenden Blätter, vom Frühsommer bis zu den ersten kalten Nächten. Wenn du die Triebspitzen auskneifst, bleibt die Pflanze buschig und blattreich. Im Topf an einem warmen, geschützten, sonnigen Platz wächst es gut.",
-      "water": "Halte die Erde gleichmäßig feucht, gieß morgens und von unten statt über die Blätter: Basilikum mag über Nacht keine nassen Wurzeln. Töpfe brauchen bei Hitze manchmal jeden Tag Wasser.",
+      "water": "Halte die Erde gleichmässig feucht, giess morgens und von unten statt über die Blätter: Basilikum mag über Nacht keine nassen Wurzeln. Töpfe brauchen bei Hitze manchmal jeden Tag Wasser.",
       "feed": "Im Beet braucht es keinen Dünger. Im Topf im Sommer alle paar Wochen einen ausgewogenen Flüssigdünger geben; keinen Tomatendünger, der bringt es zum Blühen.",
       "harvest": "Pflück Triebspitzen knapp über einem Blattpaar, von jeder Pflanze ein paar, damit neue Seitentriebe wachsen. Blütenknospen gleich auskneifen, dann bleiben die Blätter zart.",
       "keeps": "Im Kühlschrank wird Basilikum schwarz: die Stiele ein paar Tage bei Zimmertemperatur in ein Glas Wasser stellen. Für länger die gehackten Blätter in Öl einfrieren oder Pesto machen.",
       "problems": [
         {
           "name": "Falscher Mehltau",
-          "fix": "Blätter vergilben zwischen den Adern, unten mit grau-violettem Belag, vor allem bei feuchtem Wetter. Morgens von unten gießen, Pflanzen nicht zu eng stellen und befallene Pflanzen entfernen."
+          "fix": "Blätter vergilben zwischen den Adern, unten mit grau-violettem Belag, vor allem bei feuchtem Wetter. Morgens von unten giessen, Pflanzen nicht zu eng stellen und befallene Pflanzen entfernen."
         },
         {
           "name": "Kälteschäden",
@@ -1376,10 +1376,10 @@
       "source": "Basilikumpflege: RHS. pH: Clemson und University of Connecticut Extension."
     },
     "parsley": {
-      "about": "Ein zweijähriges Kraut, das man für die krausen oder glatten Blätter einjährig zieht. Die Samen sind langsam: draußen kann es bis zu sechs Wochen dauern, bis sie aufgehen, also die Reihe markieren und feucht halten. Im zweiten Jahr blüht sie und die Blätter werden schlechter, darum jedes Jahr neu säen.",
+      "about": "Ein zweijähriges Kraut, das man für die krausen oder glatten Blätter einjährig zieht. Die Samen sind langsam: draussen kann es bis zu sechs Wochen dauern, bis sie aufgehen, also die Reihe markieren und feucht halten. Im zweiten Jahr blüht sie und die Blätter werden schlechter, darum jedes Jahr neu säen.",
       "water": "Den Boden feucht, aber nicht nass halten, vor allem solange die Sämlinge klein sind und bei Hitze und Trockenheit. Töpfe trocknen schnell aus; im Hochsommer in den Halbschatten stellen.",
       "feed": "Im Beet braucht sie keinen Dünger. Im Topf während der Wachstumszeit alle paar Wochen einen ausgewogenen Flüssigdünger geben.",
-      "harvest": "Schneide ein paar äußere Stängel an der Basis ab und lass das Herz weiterwachsen; regelmäßiges Ernten bringt vom späten Frühjahr bis in den Herbst neue Blätter.",
+      "harvest": "Schneide ein paar äussere Stängel an der Basis ab und lass das Herz weiterwachsen; regelmässiges Ernten bringt vom späten Frühjahr bis in den Herbst neue Blätter.",
       "keeps": "Ein Bund hält sich mehrere Tage im Kühlschrank, die Stiele in Wasser. Gehackt lassen sich die Blätter gut in Eiswürfelformen einfrieren und behalten mehr Aroma als getrocknet.",
       "problems": [
         {
@@ -1398,7 +1398,7 @@
       "source": "Petersilienpflege: RHS. pH: Cornell und University of Maryland Extension."
     },
     "coriander": {
-      "about": "Ein schnelles einjähriges Kraut, angebaut für die Blätter und später für die Samen. Bei Hitze und trockenem Boden schießt er schnell in die Blüte, darum ab dem Frühjahr etwa jeden Monat ein wenig säen statt einmal viel. Im Topf wächst er gut.",
+      "about": "Ein schnelles einjähriges Kraut, angebaut für die Blätter und später für die Samen. Bei Hitze und trockenem Boden schiesst er schnell in die Blüte, darum ab dem Frühjahr etwa jeden Monat ein wenig säen statt einmal viel. Im Topf wächst er gut.",
       "water": "Bei Trockenheit den Boden feucht halten: trockene Wurzeln lassen ihn früh blühen. Töpfe bei warmem Wetter jeden Tag prüfen.",
       "feed": "In Gartenerde oder frischer Blumenerde braucht er keinen Dünger: er ist schnell fertig.",
       "harvest": "Schneide Blätter, sobald die Pflanzen 10 bis 15 cm hoch sind, von jeder Pflanze ein paar, und lass sie dann etwa zwei Wochen nachwachsen. Für Samen ein paar Pflanzen blühen lassen und die Stängel abschneiden, wenn die Samen braun werden; in einer Papiertüte trocknen.",
@@ -1406,7 +1406,7 @@
       "problems": [
         {
           "name": "Schossen",
-          "fix": "Die Pflanzen bilden einen Blütenstängel und keine Blätter mehr, bei Hitze und Trockenheit oder nach dem Umpflanzen. Direkt an Ort und Stelle säen, an einen mittags schattigen Platz, bei Trockenheit gießen und eine schossfeste Sorte wählen."
+          "fix": "Die Pflanzen bilden einen Blütenstängel und keine Blätter mehr, bei Hitze und Trockenheit oder nach dem Umpflanzen. Direkt an Ort und Stelle säen, an einen mittags schattigen Platz, bei Trockenheit giessen und eine schossfeste Sorte wählen."
         },
         {
           "name": "Schnecken",
@@ -1417,18 +1417,18 @@
           "fix": "Kleine grüne oder schwarze Insekten sitzen an den Triebspitzen und schwächen die Pflanze. Abstreifen oder abspülen und Marienkäfer arbeiten lassen."
         }
       ],
-      "source": "Korianderpflege: RHS. pH: University of Connecticut Extension. Topfgröße: Oregon State Extension."
+      "source": "Korianderpflege: RHS. pH: University of Connecticut Extension. Topfgrösse: Oregon State Extension."
     },
     "dill": {
-      "about": "Ein einjähriges Kraut, angebaut für die fedrigen Blätter und die Samen. Er hat eine Pfahlwurzel und mag nicht umgesetzt werden, darum direkt an Ort und Stelle säen, von Mitte Frühling bis Hochsommer alle paar Wochen ein wenig. Wie Koriander schießt er bei Hitze und Trockenheit in die Blüte.",
-      "water": "Bei Trockenheit gießen: trockener Boden lässt ihn früh blühen und keine Blätter mehr bilden. Töpfe trocknen bei warmem Wetter schnell aus.",
+      "about": "Ein einjähriges Kraut, angebaut für die fedrigen Blätter und die Samen. Er hat eine Pfahlwurzel und mag nicht umgesetzt werden, darum direkt an Ort und Stelle säen, von Mitte Frühling bis Hochsommer alle paar Wochen ein wenig. Wie Koriander schiesst er bei Hitze und Trockenheit in die Blüte.",
+      "water": "Bei Trockenheit giessen: trockener Boden lässt ihn früh blühen und keine Blätter mehr bilden. Töpfe trocknen bei warmem Wetter schnell aus.",
       "feed": "In Gartenerde oder frischer Blumenerde braucht er keinen Dünger.",
       "harvest": "Pflück etwa sechs Wochen nach der Aussaat die ersten Blätter, immer nur ein paar, und lass mindestens ein Drittel der Pflanze stehen. Für Samen die Dolden im Spätsommer abschneiden, wenn sie trocken und braun sind, und kopfüber in einer Papiertüte aufhängen.",
       "keeps": "Frische Blätter welken schnell und halten sich schlecht, auch im Kühlschrank: bald verwenden oder trocknen. Getrocknete Blätter und Samen halten sich in einem dichten Glas.",
       "problems": [
         {
           "name": "Schossen",
-          "fix": "Bei Hitze und Trockenheit blühen die Pflanzen früh und bilden keine Blätter mehr. Bei Trockenheit gießen, alle paar Wochen nachsäen und Blütenstängel abschneiden, wenn du nur Blätter willst."
+          "fix": "Bei Hitze und Trockenheit blühen die Pflanzen früh und bilden keine Blätter mehr. Bei Trockenheit giessen, alle paar Wochen nachsäen und Blütenstängel abschneiden, wenn du nur Blätter willst."
         },
         {
           "name": "Blattläuse",
@@ -1442,15 +1442,15 @@
       "source": "Dillpflege: RHS. pH: University of Connecticut Extension."
     },
     "chervil": {
-      "about": "Ein kleines, zartes einjähriges Kraut mit mildem Anisgeschmack, angebaut für die Blätter. Er mag kühles Wetter und lichten Schatten und schießt in praller Sonne in die Blüte, darum gelingt er im Frühling und Herbst am besten. Säe alle paar Wochen ein wenig, dann hast du laufend Blätter.",
-      "water": "Den Boden gleichmäßig feucht, aber nicht nass halten: trockener Boden lässt ihn früh blühen. Töpfe brauchen bei warmem Wetter mehr Wasser.",
+      "about": "Ein kleines, zartes einjähriges Kraut mit mildem Anisgeschmack, angebaut für die Blätter. Er mag kühles Wetter und lichten Schatten und schiesst in praller Sonne in die Blüte, darum gelingt er im Frühling und Herbst am besten. Säe alle paar Wochen ein wenig, dann hast du laufend Blätter.",
+      "water": "Den Boden gleichmässig feucht, aber nicht nass halten: trockener Boden lässt ihn früh blühen. Töpfe brauchen bei warmem Wetter mehr Wasser.",
       "feed": "In Gartenerde oder frischer Blumenerde braucht er keinen Dünger.",
       "harvest": "Die Blätter sind etwa acht Wochen nach der Aussaat bereit, wenn die Pflanzen 10 cm hoch sind. Pflück von jeder Pflanze ein paar junge Blätter, oder schneide ganze Stängel auf 5 cm zurück und lass sie nachwachsen.",
       "keeps": "Kerbel schmeckt frisch am besten: er welkt in ein, zwei Tagen und verliert getrocknet fast sein ganzes Aroma.",
       "problems": [
         {
           "name": "Schossen",
-          "fix": "In praller Sonne und trockenem Boden blühen die Pflanzen früh und die Blätter verlieren Geschmack. Im lichten Schatten ziehen, regelmäßig gießen und alle paar Wochen nachsäen."
+          "fix": "In praller Sonne und trockenem Boden blühen die Pflanzen früh und die Blätter verlieren Geschmack. Im lichten Schatten ziehen, regelmässig giessen und alle paar Wochen nachsäen."
         },
         {
           "name": "Blattläuse",
@@ -1461,7 +1461,7 @@
     },
     "chives": {
       "about": "Ein mehrjähriges Kraut, angebaut für die mild nach Zwiebel schmeckenden Blätter und die essbaren violetten Blüten. Der Horst treibt jedes Frühjahr neu aus; alle drei bis vier Jahre ausgraben und teilen, damit er kräftig bleibt.",
-      "water": "Im ersten Sommer bei Trockenheit gießen; danach kommt er im Beet allein zurecht. Im Topf die Erde gleichmäßig feucht halten.",
+      "water": "Im ersten Sommer bei Trockenheit giessen; danach kommt er im Beet allein zurecht. Im Topf die Erde gleichmässig feucht halten.",
       "feed": "Braucht wenig: im Beet reicht Kompost beim Pflanzen. Im Topf hält ab und zu ein Flüssigdünger im Sommer den Austrieb in Gang.",
       "harvest": "Die Halme nach Bedarf knapp über dem Boden abschneiden; häufiges Schneiden bringt mehr. Nach der Blüte den ganzen Horst auf etwa 5 cm zurückschneiden, dann treibt er frisch aus.",
       "keeps": "Geschnittener Schnittlauch welkt in wenigen Tagen. Klein schneiden und einfrieren, im Beutel oder in der Eiswürfelform, für den Winter.",
@@ -1479,10 +1479,10 @@
     },
     "thyme": {
       "about": "Ein kleiner immergrüner Strauch, angebaut für die duftenden Blätter, das ganze Jahr frisch gepflückt oder getrocknet. Er braucht Sonne und durchlässigen Boden: Nässe im Winter tötet ihn öfter als Kälte. Nach ein paar Jahren verholzt er; ersetze alte Pflanzen durch neue aus Stecklingen.",
-      "water": "Neue Pflanzen bei Trockenheit gießen, bis sie angewachsen sind; danach brauchen Pflanzen im Beet kaum Wasser. Im Topf bei Hitze und Trockenheit gießen und die Erde dazwischen etwas abtrocknen lassen.",
+      "water": "Neue Pflanzen bei Trockenheit giessen, bis sie angewachsen sind; danach brauchen Pflanzen im Beet kaum Wasser. Im Topf bei Hitze und Trockenheit giessen und die Erde dazwischen etwas abtrocknen lassen.",
       "feed": "Thymian wächst am besten in magerem Boden und braucht im Beet keinen Dünger; reicher Boden gibt weiches Wachstum mit weniger Aroma. Eine Pflanze, die über ein Jahr im selben Topf steht, bekommt im späten Frühjahr etwas Volldünger.",
-      "harvest": "Schneide Zweige nach Bedarf; die weichen neuen Triebe im späten Frühjahr und Sommer schmecken am besten. Regelmäßiges Schneiden hält die Pflanze kompakt; nach der Blüte leicht zurückschneiden, aber nicht ins kahle Holz.",
-      "keeps": "Frische Zweige halten sich ein paar Tage in einer Tüte im Kühlschrank. Zum Trocknen Bündel ein paar Wochen warm, dunkel und luftig aufhängen und die Blätter dann in einem dicht schließenden Glas aufbewahren.",
+      "harvest": "Schneide Zweige nach Bedarf; die weichen neuen Triebe im späten Frühjahr und Sommer schmecken am besten. Regelmässiges Schneiden hält die Pflanze kompakt; nach der Blüte leicht zurückschneiden, aber nicht ins kahle Holz.",
+      "keeps": "Frische Zweige halten sich ein paar Tage in einer Tüte im Kühlschrank. Zum Trocknen Bündel ein paar Wochen warm, dunkel und luftig aufhängen und die Blätter dann in einem dicht schliessenden Glas aufbewahren.",
       "problems": [
         {
           "name": "Wurzelfäule",
@@ -1501,10 +1501,10 @@
     },
     "rosemary": {
       "about": "Ein immergrüner Strauch, angebaut für die aromatischen Blätter, die du das ganze Jahr pflücken kannst. Er braucht volle Sonne und durchlässigen Boden; nasser, schwerer Boden bringt ihn schneller um als Kälte. In kalten Lagen an eine sonnige Mauer setzen oder in einen Topf, den du geschützt stellen kannst.",
-      "water": "Im ersten Jahr bei Trockenheit gießen; danach brauchen Pflanzen im Beet kaum Wasser. Ein Topf braucht bei Hitze Wasser, aber die Erde darf nie nass stehen.",
+      "water": "Im ersten Jahr bei Trockenheit giessen; danach brauchen Pflanzen im Beet kaum Wasser. Ein Topf braucht bei Hitze Wasser, aber die Erde darf nie nass stehen.",
       "feed": "Im Beet braucht er keinen Dünger. Eine Pflanze, die über ein Jahr im selben Topf steht, bekommt im späten Frühjahr oder Frühsommer etwas gekörnten Volldünger.",
       "harvest": "Schneide das ganze Jahr Triebe nach Bedarf; die weichen neuen Triebe im späten Frühjahr und Sommer schmecken am besten. Nach der Blüte zurückschneiden, damit er buschig bleibt, aber nicht ins alte, kahle Holz: Es treibt selten wieder aus.",
-      "keeps": "Frische Zweige halten sich einige Tage im Kühlschrank. Zum Trocknen warm, dunkel und luftig aufhängen und die Blätter dann in ein dicht schließendes Glas streifen.",
+      "keeps": "Frische Zweige halten sich einige Tage im Kühlschrank. Zum Trocknen warm, dunkel und luftig aufhängen und die Blätter dann in ein dicht schliessendes Glas streifen.",
       "problems": [
         {
           "name": "Rosmarinkäfer",
@@ -1516,17 +1516,17 @@
         },
         {
           "name": "Schaumzikade (Kuckucksspeichel)",
-          "fix": "Weiße Schaumklümpchen an den Trieben im späten Frühjahr, in jedem ein kleines saugendes Insekt. Sie schadet kaum; abwischen oder mit Wasser abspülen."
+          "fix": "Weisse Schaumklümpchen an den Trieben im späten Frühjahr, in jedem ein kleines saugendes Insekt. Sie schadet kaum; abwischen oder mit Wasser abspülen."
         }
       ],
       "source": "Rosmarinpflege: RHS. pH: Texas A&M AgriLife Extension."
     },
     "oregano": {
       "about": "Eine ausbreitende Staude, angebaut für die Blätter, frisch oder getrocknet. Im Winter zieht das meiste Laub ein, im Frühjahr kommen neue Triebe. Am meisten Aroma hat er in voller Sonne und magerem, durchlässigem Boden, am besten kurz vor der Blüte gepflückt.",
-      "water": "Neue Pflanzen bei Trockenheit gießen; eingewachsene Pflanzen im Beet brauchen kein zusätzliches Wasser. Im Topf bei Hitze und Trockenheit gießen, aber die Erde nie nass stehen lassen.",
+      "water": "Neue Pflanzen bei Trockenheit giessen; eingewachsene Pflanzen im Beet brauchen kein zusätzliches Wasser. Im Topf bei Hitze und Trockenheit giessen, aber die Erde nie nass stehen lassen.",
       "feed": "Im Beet braucht er keinen Dünger. Eine Pflanze, die über ein Jahr im selben Topf steht, bekommt im späten Frühjahr oder Frühsommer etwas gekörnten Volldünger.",
       "harvest": "Von spätem Frühjahr bis Herbst Triebe schneiden und die Blätter abstreifen; vor der Blüte ist das Aroma am besten. Nach der Blüte zurückschneiden, damit frisches Laub kommt, und die alten Stängel im Spätwinter entfernen.",
-      "keeps": "Oregano lässt sich gut trocknen: Zweige ein paar Wochen dunkel und luftig aufhängen und die Blätter dann in ein dicht schließendes Glas streifen.",
+      "keeps": "Oregano lässt sich gut trocknen: Zweige ein paar Wochen dunkel und luftig aufhängen und die Blätter dann in ein dicht schliessendes Glas streifen.",
       "problems": [
         {
           "name": "Minzrost",
@@ -1545,10 +1545,10 @@
     },
     "sage": {
       "about": "Ein immergrüner Strauch, angebaut für die weichen graugrünen Blätter, die du das ganze Jahr pflücken kannst. Er braucht Sonne und einen Boden, der nie nass steht. Nach sechs oder sieben Jahren verholzt er und wird sparrig; ersetze ihn dann durch neue Pflanzen aus Stecklingen.",
-      "water": "Im ersten Jahr bei Trockenheit gießen; danach verträgt er im Beet Trockenheit. Im Topf die Erde nur leicht feucht halten, nicht nass, und im Winter den Topf an eine Mauer stellen, geschützt vor Regen.",
+      "water": "Im ersten Jahr bei Trockenheit giessen; danach verträgt er im Beet Trockenheit. Im Topf die Erde nur leicht feucht halten, nicht nass, und im Winter den Topf an eine Mauer stellen, geschützt vor Regen.",
       "feed": "Im Beet braucht er keinen Dünger. Eine Pflanze, die über ein Jahr im selben Topf steht, bekommt im späten Frühjahr oder Frühsommer etwas gekörnten Volldünger.",
-      "harvest": "Pflück junge Blätter oder ganze Triebe nach Bedarf; Frühjahrs- und Sommertriebe schmecken am besten, und regelmäßiges Pflücken hält die Pflanze buschig. Jedes Jahr im mittleren bis späten Frühjahr leicht zurückschneiden.",
-      "keeps": "Zum Trocknen Zweige warm, dunkel und luftig aufhängen und die Blätter dann in einem dicht schließenden Glas aufbewahren. Gehackte Blätter lassen sich auch im Eiswürfelbehälter einfrieren.",
+      "harvest": "Pflück junge Blätter oder ganze Triebe nach Bedarf; Frühjahrs- und Sommertriebe schmecken am besten, und regelmässiges Pflücken hält die Pflanze buschig. Jedes Jahr im mittleren bis späten Frühjahr leicht zurückschneiden.",
+      "keeps": "Zum Trocknen Zweige warm, dunkel und luftig aufhängen und die Blätter dann in einem dicht schliessenden Glas aufbewahren. Gehackte Blätter lassen sich auch im Eiswürfelbehälter einfrieren.",
       "problems": [
         {
           "name": "Rosmarinkäfer",
@@ -1567,9 +1567,9 @@
     },
     "mint": {
       "about": "Eine wüchsige Staude, angebaut für die Blätter, für Tee, Getränke und die Küche. Die Wurzeln laufen schnell unterirdisch und erobern das ganze Beet; setze sie deshalb in einen Topf oder in einen eingegrabenen Topf ohne Boden, dessen Rand über die Erde ragt. Im Winter zieht sie ein, im Frühjahr kommt sie wieder.",
-      "water": "Halte den Boden gleichmäßig feucht: In einem trockenen Topf welkt Minze schnell. Töpfe im Sommer oft prüfen und bei Hitze in den lichten Schatten stellen.",
+      "water": "Halte den Boden gleichmässig feucht: In einem trockenen Topf welkt Minze schnell. Töpfe im Sommer oft prüfen und bei Hitze in den lichten Schatten stellen.",
       "feed": "Im Beet braucht sie wenig Dünger. Eine Topfpflanze bekommt im Frühjahr Flüssigdünger, dann alle 4 bis 6 Wochen, solange sie wächst.",
-      "harvest": "Pflück von spätem Frühjahr bis Herbst oft die jungen Triebspitzen; regelmäßiges Pflücken hält die Pflanze kompakt und voller frischer Triebe. Blühende Stängel zurückschneiden, damit neue Blätter kommen.",
+      "harvest": "Pflück von spätem Frühjahr bis Herbst oft die jungen Triebspitzen; regelmässiges Pflücken hält die Pflanze kompakt und voller frischer Triebe. Blühende Stängel zurückschneiden, damit neue Blätter kommen.",
       "keeps": "Frische Zweige halten sich ein paar Tage in einem Glas Wasser oder im Kühlschrank. Einfrieren erhält das Aroma besser als Trocknen: Blätter in Eiswürfeln einfrieren.",
       "problems": [
         {
@@ -1588,8 +1588,8 @@
       "source": "Minzpflege: RHS. pH: NSW Department of Primary Industries. Düngen im Topf: University of Arizona Extension."
     },
     "tulip": {
-      "about": "Angebaut für große, leuchtende Blüten im mittleren bis späten Frühjahr. Setze die Zwiebeln spät im Herbst, das senkt das Risiko für Tulpenfeuer, in durchlässigen Boden, der nicht nass bleibt. Viele Tulpen blühen nur im ersten Jahr richtig gut; für die wichtigsten Plätze daher frische Zwiebeln nehmen.",
-      "water": "Zwiebeln im Beet brauchen erst nach zwei bis drei Wochen ohne Regen Wasser, sobald die Triebe da sind. Töpfe ab dem Austrieb gießen, denn Trockenheit verkürzt die Blüte, und bei dauernd nasser Erde im Winter vor Regen geschützt stellen.",
+      "about": "Angebaut für grosse, leuchtende Blüten im mittleren bis späten Frühjahr. Setze die Zwiebeln spät im Herbst, das senkt das Risiko für Tulpenfeuer, in durchlässigen Boden, der nicht nass bleibt. Viele Tulpen blühen nur im ersten Jahr richtig gut; für die wichtigsten Plätze daher frische Zwiebeln nehmen.",
+      "water": "Zwiebeln im Beet brauchen erst nach zwei bis drei Wochen ohne Regen Wasser, sobald die Triebe da sind. Töpfe ab dem Austrieb giessen, denn Trockenheit verkürzt die Blüte, und bei dauernd nasser Erde im Winter vor Regen geschützt stellen.",
       "feed": "Ab dem zeitigen Frühjahr Töpfen jede Woche einen kaliumreichen Flüssigdünger (Tomatendünger) geben, bis die Blätter gelb werden.",
       "harvest": "Für die Vase schneiden, wenn die Knospe Farbe zeigt, aber noch nicht offen ist. Im Garten Verblühtes knapp über den Blättern abschneiden und die Blätter stehen lassen, bis sie strohfarben sind; zum Aufheben die Zwiebeln etwa sechs Wochen nach der Blüte ausgraben, trocknen und bis zum Herbst warm, dunkel und luftig lagern.",
       "keeps": "Geschnittene Tulpen halten einige Tage in der Vase und wachsen weiter, zum Licht hin geneigt; kaltes Wasser nachfüllen.",
@@ -1600,18 +1600,18 @@
         },
         {
           "name": "Eichhörnchen und Mäuse",
-          "fix": "Zwiebeln werden im Herbst und Winter ausgegraben und gefressen. Beet oder Topf mit Hasendraht abdecken, bis die Blätter draußen sind; Narzissen dazwischen helfen, Eichhörnchen meiden sie."
+          "fix": "Zwiebeln werden im Herbst und Winter ausgegraben und gefressen. Beet oder Topf mit Hasendraht abdecken, bis die Blätter draussen sind; Narzissen dazwischen helfen, Eichhörnchen meiden sie."
         },
         {
           "name": "Wenige oder keine Blüten",
           "fix": "Ab dem zweiten Jahr Blätter, aber keine oder nur kleine Blüten. Mindestens dreimal so tief wie die Zwiebel hoch ist pflanzen, Töpfe düngen, solange sie Blätter haben, und müde Zwiebeln durch frische ersetzen."
         }
       ],
-      "source": "Tulpenpflege: RHS. pH: Bodenlabor der University of Connecticut. Topfgröße: Purdue University Extension."
+      "source": "Tulpenpflege: RHS. pH: Bodenlabor der University of Connecticut. Topfgrösse: Purdue University Extension."
     },
     "daffodil": {
-      "about": "Angebaut für gelbe und weiße Blüten vom Spätwinter bis zum mittleren Frühjahr. Sie kommen viele Jahre wieder und breiten sich langsam zu Horsten aus, in Sonne oder lichtem Schatten. Das Wichtigste: Die Blätter nach der Blüte von selbst einziehen lassen, denn sie nähren die Blüten des nächsten Jahres.",
-      "water": "Zwiebeln im Beet brauchen selten Wasser, nur bei langer Trockenheit, während sie wachsen. Töpfe trocknen schnell aus: gießen, bis die Blätter einziehen.",
+      "about": "Angebaut für gelbe und weisse Blüten vom Spätwinter bis zum mittleren Frühjahr. Sie kommen viele Jahre wieder und breiten sich langsam zu Horsten aus, in Sonne oder lichtem Schatten. Das Wichtigste: Die Blätter nach der Blüte von selbst einziehen lassen, denn sie nähren die Blüten des nächsten Jahres.",
+      "water": "Zwiebeln im Beet brauchen selten Wasser, nur bei langer Trockenheit, während sie wachsen. Töpfe trocknen schnell aus: giessen, bis die Blätter einziehen.",
       "feed": "Im Beet brauchen sie keinen Dünger. In Töpfen ab dem Austrieb einen kaliumreichen Flüssigdünger (Tomatendünger) geben, bis die Blätter einziehen.",
       "harvest": "Verblühte Blüten abknipsen, damit die Kraft in die Zwiebel zurückgeht. Die Blätter stehen lassen, bis sie gelb sind, etwa sechs Wochen nach der Blüte, und nicht abschneiden, zusammenbinden oder verknoten; für die Vase schneiden, wenn die Knospe kurz vor dem Aufgehen ist.",
       "keeps": "Geschnittene Narzissen geben einen Schleim ab, der anderen Blumen schadet: über Nacht allein ins Wasser stellen, bevor du sie mischst, und die Stiele nicht neu anschneiden.",
@@ -1629,7 +1629,7 @@
           "fix": "Zwiebeln werden von unten weich und faulen, in nassem Boden oder im Lager. Nur feste Zwiebeln in durchlässigen Boden setzen und weiche wegwerfen."
         }
       ],
-      "source": "Narzissenpflege: RHS. pH: Bodenlabor der University of Connecticut. Topfgröße: Purdue University Extension."
+      "source": "Narzissenpflege: RHS. pH: Bodenlabor der University of Connecticut. Topfgrösse: Purdue University Extension."
     },
     "crocus": {
       "about": "Kleine Knollen, die im Spätwinter und zeitigen Frühjahr blühen, eine der ersten Nahrungsquellen des Jahres für Bienen. Sie kommen jedes Jahr wieder und breiten sich in Beeten und kurzem Rasen zu Teppichen aus. Lass die Blätter nach der Blüte einziehen und mäh den Rasen erst danach.",
@@ -1639,7 +1639,7 @@
       "problems": [
         {
           "name": "Eichhörnchen und Mäuse",
-          "fix": "Knollen werden nach dem Pflanzen ausgegraben und gefressen. Neue Pflanzungen mit Hasendraht abdecken oder unter einem Drahtgitter setzen, bis die Triebe draußen sind."
+          "fix": "Knollen werden nach dem Pflanzen ausgegraben und gefressen. Neue Pflanzungen mit Hasendraht abdecken oder unter einem Drahtgitter setzen, bis die Triebe draussen sind."
         },
         {
           "name": "Vögel zerpflücken Blüten",
@@ -1650,12 +1650,12 @@
           "fix": "Jedes Jahr weniger Blüten, oft weil die Blätter vor dem Einziehen gemäht oder abgeschnitten wurden oder der Platz zu schattig wurde. Blätter stehen lassen und Horste in der Ruhezeit an einen sonnigeren Platz setzen."
         }
       ],
-      "source": "Krokuspflege: RHS. pH: Bodenlabor der University of Connecticut. Topfgröße: Purdue University Extension."
+      "source": "Krokuspflege: RHS. pH: Bodenlabor der University of Connecticut. Topfgrösse: Purdue University Extension."
     },
     "sunflower": {
-      "about": "Angebaut für die großen Sommerblüten und für Kerne, die du oder die Vögel essen können. Hohe Sorten brauchen einen kräftigen Stab oder eine Wand zum Anbinden; Zwergsorten bleiben niedrig und eignen sich für Töpfe. Schütze die Sämlinge vor Schnecken, bis sie kräftig sind.",
-      "water": "Bei Trockenheit kräftig gießen, direkt am Stängel: hohe Sorten dürfen nicht austrocknen. Pflanzen im Topf brauchen öfter Wasser, bei Hitze täglich.",
-      "feed": "Vor der Aussaat Kompost ins Beet einarbeiten. Sobald sich Knospen bilden, alle zwei Wochen ein kaliumreicher Flüssigdünger (Tomatendünger) für größere Blüten.",
+      "about": "Angebaut für die grossen Sommerblüten und für Kerne, die du oder die Vögel essen können. Hohe Sorten brauchen einen kräftigen Stab oder eine Wand zum Anbinden; Zwergsorten bleiben niedrig und eignen sich für Töpfe. Schütze die Sämlinge vor Schnecken, bis sie kräftig sind.",
+      "water": "Bei Trockenheit kräftig giessen, direkt am Stängel: hohe Sorten dürfen nicht austrocknen. Pflanzen im Topf brauchen öfter Wasser, bei Hitze täglich.",
+      "feed": "Vor der Aussaat Kompost ins Beet einarbeiten. Sobald sich Knospen bilden, alle zwei Wochen ein kaliumreicher Flüssigdünger (Tomatendünger) für grössere Blüten.",
       "harvest": "Für die Vase morgens schneiden, wenn sich die Blütenblätter gerade öffnen. Für Kerne den Kopf an der Pflanze lassen, bis seine Rückseite braun wird, gegen Vögel mit einer Papiertüte oder einem Netz schützen, dann abschneiden und drinnen trocknen.",
       "keeps": "Geschnitten hält sie etwa eine Woche in der Vase; wechsle alle zwei Tage das Wasser. Trockene Kerne halten sich monatelang kühl, trocken und dunkel.",
       "problems": [
@@ -1676,7 +1676,7 @@
     },
     "marigold": {
       "about": "Studentenblumen werden für leuchtend orange und gelbe Blüten vom Frühsommer bis zum ersten Frost angebaut, in Beeten, Töpfen und zwischen Gemüse. Sie sind einfach, aber Schnecken lieben die jungen Pflanzen. Entfernst du Verblühtes, kommen immer neue Blüten.",
-      "water": "Bei Trockenheit gießen, am Fuß der Pflanze statt über die Blüten. Töpfe trocknen im Sommer schnell aus und sollten täglich geprüft werden.",
+      "water": "Bei Trockenheit giessen, am Fuss der Pflanze statt über die Blüten. Töpfe trocknen im Sommer schnell aus und sollten täglich geprüft werden.",
       "feed": "Normaler Gartenboden reicht; reicher Boden oder zu viel Dünger bringt Blätter statt Blüten. Im Topf hält ein Flüssigdünger alle paar Wochen die Blüte in Gang.",
       "harvest": "Alle paar Tage Verblühtes unterhalb des Blütenkopfs abknipsen. Für die Vase schneiden, wenn die Blüten ganz offen sind.",
       "keeps": "Geschnitten halten sie etwa eine Woche in der Vase; entferne die Blätter, die im Wasser stehen würden.",
@@ -1691,21 +1691,21 @@
         },
         {
           "name": "Spinnmilben",
-          "fix": "Blasse, gesprenkelte Blätter und feine Gespinste bei heißem, trockenem Wetter, vor allem im Gewächshaus und im Topf. Gut gießen und die Blattunterseiten besprühen oder abbrausen."
+          "fix": "Blasse, gesprenkelte Blätter und feine Gespinste bei heissem, trockenem Wetter, vor allem im Gewächshaus und im Topf. Gut giessen und die Blattunterseiten besprühen oder abbrausen."
         }
       ],
       "source": "Studentenblumenpflege: RHS. pH: Bodenlabor der University of Connecticut."
     },
     "calendula": {
       "about": "Eine winterharte Einjährige, angebaut für orange und gelbe Blüten vom Frühsommer bis in den Herbst; die Blütenblätter sind essbar und färben Salate und Reis. Sie wächst in fast jedem Boden und sät sich selbst aus. Im Herbst gesät, überwintert sie und blüht im nächsten Jahr früh.",
-      "water": "Eingewachsen übersteht sie Trockenheit; gieße Sämlinge und Pflanzen im Topf. Halte die Blätter trocken, das bremst den Mehltau.",
+      "water": "Eingewachsen übersteht sie Trockenheit; giesse Sämlinge und Pflanzen im Topf. Halte die Blätter trocken, das bremst den Mehltau.",
       "feed": "Sie braucht wenig: reicher Boden oder viel Dünger bringt weiche Blätter und weniger Blüten. Im Topf einmal im Monat flüssig düngen.",
       "harvest": "Blüten für die Vase oder für die Blütenblätter morgens schneiden, wenn sie ganz offen sind. Den Rest alle paar Tage ausputzen, sonst setzt sie Samen an und hört auf zu blühen.",
       "keeps": "Geschnitten hält sie etwa eine Woche in der Vase. Auf Papier warm und luftig getrocknete Blütenblätter halten sich im Glas monatelang.",
       "problems": [
         {
           "name": "Echter Mehltau",
-          "fix": "Ein weißer, mehliger Belag auf den Blättern ab Hochsommer, am stärksten in trockenem Boden. Bei Trockenheit gießen, Abstand lassen und stark befallene Pflanzen ausreißen; späte Saaten bleiben gesünder."
+          "fix": "Ein weisser, mehliger Belag auf den Blättern ab Hochsommer, am stärksten in trockenem Boden. Bei Trockenheit giessen, Abstand lassen und stark befallene Pflanzen ausreissen; späte Saaten bleiben gesünder."
         },
         {
           "name": "Schwarze Bohnenlaus",
@@ -1720,7 +1720,7 @@
     },
     "nasturtium": {
       "about": "Angebaut für leuchtende Blüten und pfeffrige Blätter, beide essbar, an Pflanzen, die ranken oder klettern. Sie gedeiht am besten in magerem, durchlässigem Boden: reicher Boden bringt viel Laub und wenig Blüten. Leicht aus Samen zu ziehen, auch für Kinder.",
-      "water": "Sämlinge und Pflanzen im Topf gießen; im Beet übersteht sie Trockenheit, sobald sie wächst. Sehr lange Trockenheit beendet die Blüte.",
+      "water": "Sämlinge und Pflanzen im Topf giessen; im Beet übersteht sie Trockenheit, sobald sie wächst. Sehr lange Trockenheit beendet die Blüte.",
       "feed": "Nicht düngen: Dünger bringt Blätter statt Blüten. In normalem oder magerem Boden ziehen, ohne Kompost oder Mist.",
       "harvest": "Junge Blätter und offene Blüten nach Bedarf morgens pflücken. Grüne Samen, gepflückt bevor sie hart werden, lassen sich wie Kapern einlegen; Verblühtes abpflücken hält neue Blüten in Gang.",
       "keeps": "Blätter und Blüten welken schnell: im Beutel im Kühlschrank aufbewahren und in ein, zwei Tagen verbrauchen.",
@@ -1730,30 +1730,30 @@
           "fix": "Dichte Kolonien schwarzer Insekten unter den Blättern und an den Triebspitzen. Die schlimmsten Triebe abknipsen oder abspritzen; Marienkäfer und Schwebfliegen kommen bald."
         },
         {
-          "name": "Kohlweißlingsraupen",
+          "name": "Kohlweisslingsraupen",
           "fix": "Grüne Raupen, die im Spätsommer Blätter kahl fressen, dieselben wie am Kohl. Blattunterseiten absuchen und die Raupen von Hand absammeln."
         },
         {
           "name": "Viel Laub, wenig Blüten",
-          "fix": "Große, üppige Blätter mit wenigen Blüten darunter, von reichem Boden oder Dünger. Nicht mehr düngen; nächstes Jahr an einen magereren, sonnigen Platz säen."
+          "fix": "Grosse, üppige Blätter mit wenigen Blüten darunter, von reichem Boden oder Dünger. Nicht mehr düngen; nächstes Jahr an einen magereren, sonnigen Platz säen."
         }
       ],
       "source": "Kapuzinerkressenpflege: RHS und University of Maryland Extension."
     },
     "zinnia": {
       "about": "Eine Schnittblume, angebaut für kräftige Farben vom Hochsommer bis zum ersten Frost: je mehr du schneidest, desto mehr blüht sie. Sie liebt Wärme und Sonne und kümmert bei kaltem, nassem Wetter. Sie mag keine Störung der Wurzeln, also säe sie an Ort und Stelle oder in kleine Töpfe.",
-      "water": "Bei Trockenheit durchdringend gießen, am Fuß der Pflanze: nasse Blätter bringen Mehltau. Töpfe im Sommer täglich prüfen.",
+      "water": "Bei Trockenheit durchdringend giessen, am Fuss der Pflanze: nasse Blätter bringen Mehltau. Töpfe im Sommer täglich prüfen.",
       "feed": "Normaler Boden mit etwas Kompost reicht; zu viel Dünger macht weiche Triebe. Im Topf ab Blühbeginn alle zwei Wochen flüssig düngen.",
       "harvest": "Schneiden, wenn die Blüte ganz offen und der Stängel direkt unter dem Kopf fest ist (er darf beim Schütteln nicht wackeln), tief über einem Blattpaar. Den Rest ausputzen, damit neue Knospen kommen.",
       "keeps": "Geschnitten hält sie etwa eine Woche in der Vase; alle zwei Tage frisches Wasser geben.",
       "problems": [
         {
           "name": "Echter Mehltau",
-          "fix": "Ein weißer, mehliger Belag auf den Blättern im Spätsommer. Den Boden statt der Blätter gießen, Platz für Luft lassen und die schlimmsten Blätter entfernen; mehltauresistente Sorten helfen."
+          "fix": "Ein weisser, mehliger Belag auf den Blättern im Spätsommer. Den Boden statt der Blätter giessen, Platz für Luft lassen und die schlimmsten Blätter entfernen; mehltauresistente Sorten helfen."
         },
         {
           "name": "Blattflecken",
-          "fix": "Braune oder dunkle Flecken mit hellem Rand auf den Blättern bei nassem Wetter. Befleckte Blätter entfernen, am Fuß gießen und die Pflanzen am Saisonende abräumen."
+          "fix": "Braune oder dunkle Flecken mit hellem Rand auf den Blättern bei nassem Wetter. Befleckte Blätter entfernen, am Fuss giessen und die Pflanzen am Saisonende abräumen."
         },
         {
           "name": "Schnecken",
@@ -1764,7 +1764,7 @@
     },
     "cosmos": {
       "about": "Eine hohe, luftige Einjährige mit fedrigem Laub, angebaut für Margeritenblüten vom Hochsommer bis zum ersten Frost und zum Schneiden. Sie blüht am besten in magerem bis normalem Boden; reicher Boden gibt hohe, blattreiche Pflanzen mit wenig Blüten. Zwergsorten eignen sich für Töpfe.",
-      "water": "Eingewachsen übersteht es Trockenheit; gieße Sämlinge, frische Pflanzen und Töpfe. Zu viel Wasser bringt wie zu viel Dünger mehr Blätter als Blüten.",
+      "water": "Eingewachsen übersteht es Trockenheit; giesse Sämlinge, frische Pflanzen und Töpfe. Zu viel Wasser bringt wie zu viel Dünger mehr Blätter als Blüten.",
       "feed": "Im Beet kein Dünger nötig. Pflanzen im Topf einmal im Monat mit kaliumreichem Flüssigdünger (Tomatendünger) versorgen.",
       "harvest": "Für die Vase schneiden, wenn sich die Knospen gerade öffnen, bis zu einem Seitentrieb zurück. Verblühtes alle paar Tage entfernen, sonst setzt die Pflanze Samen an und hört auf.",
       "keeps": "Geschnitten halten die Blüten einige Tage bis eine Woche in der Vase; schneide sie morgens, wenn es kühl ist.",
@@ -1786,7 +1786,7 @@
     },
     "sweet_pea": {
       "about": "Eine Kletterpflanze, angebaut für duftende Schnittblumen ab Frühsommer. Sie braucht eine Stütze aus Stäben, Netz oder einem Zaun, und Auskneifen der Spitze bei etwa 10 cm macht die Pflanzen buschiger. Die eine Regel: weiter schneiden, denn sobald sich Schoten bilden, hört sie auf zu blühen. Die Schoten sehen aus wie Erbsen, sind aber giftig.",
-      "water": "Den Boden die ganze Saison feucht halten und bei Trockenheit kräftig gießen: trockene Wurzeln verkürzen die Blüte. Töpfe brauchen bei warmem Wetter täglich Wasser.",
+      "water": "Den Boden die ganze Saison feucht halten und bei Trockenheit kräftig giessen: trockene Wurzeln verkürzen die Blüte. Töpfe brauchen bei warmem Wetter täglich Wasser.",
       "feed": "Vor der Saat oder Pflanzung reichlich Kompost oder gut verrotteten Mist einarbeiten. Sobald sie wächst, hält ein Flüssigdünger alle ein bis zwei Wochen die Blüte in Gang.",
       "harvest": "Alle paar Tage morgens Stiele schneiden, wenn die untersten Blüten am Stiel offen sind. Gefundene Schoten entfernen, sonst hört die Pflanze auf zu blühen.",
       "keeps": "Geschnittene Stiele halten einige Tage in der Vase; je mehr du schneidest, desto mehr Blüten kommen nach.",
@@ -1797,7 +1797,7 @@
         },
         {
           "name": "Echter Mehltau",
-          "fix": "Ein weißer, mehliger Belag auf den Blättern im Spätsommer, stärker in trockenem Boden und an engen, windstillen Plätzen. Bei Trockenheit gießen, für Luft sorgen und befallene Triebe herausschneiden."
+          "fix": "Ein weisser, mehliger Belag auf den Blättern im Spätsommer, stärker in trockenem Boden und an engen, windstillen Plätzen. Bei Trockenheit giessen, für Luft sorgen und befallene Triebe herausschneiden."
         },
         {
           "name": "Knospenfall",
@@ -1808,7 +1808,7 @@
     },
     "lavender": {
       "about": "Ein kleiner immergrüner Strauch, angebaut für die duftenden Sommerblüten, die Bienen lieben und die sich gut trocknen lassen. Er braucht volle Sonne und mageren, durchlässigen Boden; kalkhaltiger Boden passt ihm. Das Wichtigste: jedes Jahr nach der Blüte schneiden, sonst wird er lang und verholzt.",
-      "water": "Neue Pflanzen im ersten Sommer regelmäßig gießen; eingewachsene Pflanzen im Beet brauchen kaum Wasser. Ein Topf trocknet schnell aus und braucht im Sommer regelmäßig Wasser.",
+      "water": "Neue Pflanzen im ersten Sommer regelmässig giessen; eingewachsene Pflanzen im Beet brauchen kaum Wasser. Ein Topf trocknet schnell aus und braucht im Sommer regelmässig Wasser.",
       "feed": "Lavendel mag nährstoffarmen Boden und braucht keinen Dünger; Dünger gibt weiche, umfallende Triebe.",
       "harvest": "Stiele zum Trocknen schneiden, wenn sich die ersten Blüten an der Ähre öffnen, an einem trockenen Morgen. Im Spätsommer nach der Blüte die verblühten Stiele mit etwa 2,5 cm beblättertem Trieb abschneiden, aber nie ins kahle Holz.",
       "keeps": "Kleine Bündel kopfüber dunkel und luftig aufhängen, bis sie trocken sind; in einem geschlossenen Glas duften die Blüten monatelang.",
@@ -1830,7 +1830,7 @@
     },
     "field_beans": {
       "about": "Eine Gründüngung für den Winter: im Herbst gesät, bedeckt sie den Boden über den Winter, ihre Wurzeln lockern schweren Boden, und wie alle Bohnen reichert sie Stickstoff an. Im Frühjahr vor der nächsten Kultur einarbeiten.",
-      "water": "Herbst- und Winterregen reicht; nur gießen, wenn der Boden bei der Aussaat trocken ist.",
+      "water": "Herbst- und Winterregen reicht; nur giessen, wenn der Boden bei der Aussaat trocken ist.",
       "feed": "Braucht keinen Dünger: sie bildet ihren eigenen Stickstoff, der für die nächste Kultur im Boden bleibt.",
       "harvest": "Im Frühjahr, spätestens zur Blüte, die Pflanzen abschneiden, zerkleinern und anwelken lassen, dann in die oberen 25 cm Boden einarbeiten. Etwa einen Monat warten, bevor du auf dem Beet säst oder pflanzt.",
       "problems": [
@@ -1847,13 +1847,13 @@
     },
     "winter_rye": {
       "about": "Die winterhärteste Gründüngung: vom Spätsommer bis in den Herbst gesät, wächst er durch den Winter, hält den Boden fest, unterdrückt Unkraut, und seine dichten Wurzeln verbessern den Boden. Im Frühjahr einarbeiten.",
-      "water": "Regen reicht; nur gießen, damit die Saat in einem trockenen Herbst aufläuft.",
+      "water": "Regen reicht; nur giessen, damit die Saat in einem trockenen Herbst aufläuft.",
       "feed": "Braucht keinen Dünger; er wächst auch auf magerem, sandigem oder saurem Boden und nimmt Stickstoff auf, den der Winterregen sonst auswaschen würde.",
       "harvest": "Im Frühjahr abschneiden, solange er noch niedrig und weich ist, zerkleinern, anwelken lassen und in die oberen 25 cm einarbeiten. Älterer Roggen ist zäh, treibt wieder aus und bremst die nächste Kultur.",
       "problems": [
         {
           "name": "Hemmt kleine Samen",
-          "fix": "Verrottender Roggen hindert kleine Samen wie Möhren und Zwiebeln am Keimen. Nach dem Einarbeiten etwa einen Monat bis zur Aussaat warten oder Jungpflanzen und große Samen wie Bohnen setzen."
+          "fix": "Verrottender Roggen hindert kleine Samen wie Möhren und Zwiebeln am Keimen. Nach dem Einarbeiten etwa einen Monat bis zur Aussaat warten oder Jungpflanzen und grosse Samen wie Bohnen setzen."
         },
         {
           "name": "Zu spät geschnitten",
@@ -1881,13 +1881,13 @@
     },
     "phacelia": {
       "about": "Eine schnelle Gründüngung mit fedrigem Laub und blauen Blüten, die Bienen lieben. Sie bedeckt offenen Boden, hält übrige Nährstoffe fest und bringt beim Einarbeiten organische Masse. Sie ist mit keinem der üblichen Gemüse verwandt und passt daher überall in die Fruchtfolge.",
-      "water": "Regen reicht meist; nur gießen, damit eine Saat in trockenem Boden aufgeht.",
+      "water": "Regen reicht meist; nur giessen, damit eine Saat in trockenem Boden aufgeht.",
       "feed": "Braucht keinen Dünger: sie nimmt die im Boden verbliebenen Nährstoffe auf und gibt sie beim Einarbeiten zurück.",
       "harvest": "Abschneiden, wenn sie zu blühen beginnt, oder kurz danach, wenn du sie für die Bienen stehen lässt, aber immer bevor sie Samen ansetzt. Zerkleinern, ein paar Tage welken lassen, dann flach einarbeiten und zwei bis drei Wochen bis zur nächsten Saat warten; eine Herbstsaat kann über Winter stehen bleiben und im Frühjahr eingearbeitet werden.",
       "problems": [
         {
           "name": "Selbstaussaat",
-          "fix": "Überall im Beet keimende Pflanzen, wenn sie Samen bilden durfte. Vor dem Verblühen abschneiden; Sämlinge klein ausreißen oder weghacken."
+          "fix": "Überall im Beet keimende Pflanzen, wenn sie Samen bilden durfte. Vor dem Verblühen abschneiden; Sämlinge klein ausreissen oder weghacken."
         },
         {
           "name": "Hautreizung",
@@ -1898,7 +1898,7 @@
     },
     "white_mustard": {
       "about": "Eine schnelle Gründüngung: auf freiem Boden gesät, bedeckt Gelbsenf den Boden in wenigen Wochen, unterdrückt Unkraut und bringt beim Einarbeiten organische Substanz. Säe ihn von Frühjahr bis Spätsommer in Lücken zwischen den Kulturen. Er gehört zu den Kreuzblütlern; lass ihn weg, wo Kohlhernie auftritt, und zähle ihn in der Fruchtfolge wie Kohl.",
-      "water": "Regen reicht meist. Das Saatbeet nur bei Trockenheit gießen, damit die Saat gleichmäßig aufgeht.",
+      "water": "Regen reicht meist. Das Saatbeet nur bei Trockenheit giessen, damit die Saat gleichmässig aufgeht.",
       "feed": "Kein Dünger nötig: er nimmt Nährstoffe auf, die im Boden übrig sind, und gibt sie beim Einarbeiten zurück.",
       "harvest": "Vor der Blüte abmähen, meist vier bis acht Wochen nach der Saat; die Stängel zerkleinern, ein paar Tage welken lassen und dann flach in den Boden einarbeiten. Zwei bis drei Wochen warten, bevor du dort säst oder pflanzt.",
       "problems": [
@@ -1916,7 +1916,7 @@
   },
   "map": {
     "title": "Karte",
-    "description": "Wo jede Kultur diese Woche in die Erde kommt, Frost in den nächsten drei Tagen, Bodentemperatur und Gießen, Ort für Ort.",
+    "description": "Wo jede Kultur diese Woche in die Erde kommt, Frost in den nächsten drei Tagen, Bodentemperatur und Giessen, Ort für Ort.",
     "crop": "Kultur",
     "layer": "Kartenebene",
     "place": "Rund um {{place}}",
@@ -1941,11 +1941,11 @@
       "coldLow": "−6 °C",
       "coldHigh": "14 °C",
       "balance": "Regen gegen Sonne und Wind, nächste 7 Tage",
-      "balanceLow": "Gießen nötig",
+      "balanceLow": "Giessen nötig",
       "balanceHigh": "Regen reicht"
     },
     "use": "Als meinen Garten nehmen",
-    "close": "Schließen",
+    "close": "Schliessen",
     "loadingPlace": "Ort wird gesucht…",
     "noPlace": "Hier gibt es keine Huerta-Ratschläge.",
     "failed": "Die Karte konnte nicht laden. Versuch es gleich noch einmal.",
@@ -1956,7 +1956,7 @@
   },
   "planner": {
     "title": "Mein Garten",
-    "description": "Dein Garten Beet für Beet, und was er jede Woche von dir braucht: was wohin gesät wird, Pflege, Gießen und Ernte, berechnet für deinen Ort.",
+    "description": "Dein Garten Beet für Beet, und was er jede Woche von dir braucht: was wohin gesät wird, Pflege, Giessen und Ernte, berechnet für deinen Ort.",
     "sample": "Geplant für einen Beispielort, {{place}}.",
     "choosePlace": "Wähle deinen Ort",
     "for": "Geplant für diese Woche rund um {{place}}.",
@@ -1970,7 +1970,7 @@
     },
     "auto": "Für mich planen",
     "model": "Dein Garten, gezeichnet",
-    "noRoom": "Bei dieser Größe passt kein Beet hinein.",
+    "noRoom": "Bei dieser Grösse passt kein Beet hinein.",
     "beds_one": "{{count}} Beet",
     "beds_other": "{{count}} Beete",
     "plants_one": "{{count}} Pflanze",
@@ -2081,7 +2081,7 @@
     "whereNorth": "Wo ist Norden?",
     "northLeft": "Norden nach links drehen",
     "northRight": "Norden nach rechts drehen",
-    "zoomIn": "Vergrößern",
+    "zoomIn": "Vergrössern",
     "zoomOut": "Verkleinern",
     "zoomFit": "Ganzen Garten zeigen",
     "styleLabel": "Was du anbauen willst",
@@ -2191,7 +2191,7 @@
     "kinds": {
       "frost": "Frost kommt",
       "care": "Pflege",
-      "water": "Gießen und Regen",
+      "water": "Giessen und Regen",
       "sow": "Zeit zum Säen"
     },
     "homeScreen": "Füge Funges auf dem iPhone zuerst zum Home-Bildschirm hinzu (Teilen, dann Zum Home-Bildschirm) und schalte die Hinweise dort ein.",
@@ -2264,19 +2264,19 @@
   },
   "landing": {
     "headline": "Dein Garten, Woche für Woche",
-    "intro": "Was du an deinem Ort säen, pflanzen, gießen und ernten kannst, nach der Vorhersage von heute Nacht",
+    "intro": "Was du an deinem Ort säen, pflanzen, giessen und ernten kannst, nach der Vorhersage von heute Nacht",
     "headerLink": "Was jetzt gesät wird",
     "cta": "Meinen Garten planen",
     "week": {
       "heading": "Sagt dir, was diese Woche zu tun ist",
-      "body": "Jede Arbeit mit Datum für deinen eigenen Garten: wann säen, wann pflanzen, wann gießen und wann vor Frost schützen. Abhaken, wenn es erledigt ist",
+      "body": "Jede Arbeit mit Datum für deinen eigenen Garten: wann säen, wann pflanzen, wann giessen und wann vor Frost schützen. Abhaken, wenn es erledigt ist",
       "title": "Diese Woche",
       "plant": {
         "job": "Knoblauch stecken",
         "why": "Der Boden ist auf 12 °C abgekühlt, genau richtig"
       },
       "water": {
-        "job": "Salat gießen",
+        "job": "Salat giessen",
         "why": "Seit sechs Tagen kein Regen"
       },
       "frost": {
