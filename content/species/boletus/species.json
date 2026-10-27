@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Boletus (porcini & bay bolete)",
-      "description": "Porcini and the bay bolete in one score: porcini, pine, bronze and summer boletes, the bay bolete in Europe and the North American kings",
+      "description": "Porcini and the bay bolete together: porcino, pine, bronze and summer bolete, the bay bolete in Europe and the North American kings.",
       "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain",
       "guide": {
         "identify": "This group brings together several boletes. In Europe there are the porcini (Boletus edulis) and the pine, bronze and summer boletes. North America adds the eastern king bolete and the Rocky Mountain king. The bay bolete (Imleria badia) belongs here too. The porcini and kings have white pores when young, a net on the stem and white flesh that does not turn blue. The bay bolete has yellow pores that bruise blue-green and a streaky stem without a net. The cap tells them apart. It is brown and greasy on the porcino, wine-red on the pine bolete and near-black and velvety on the bronze bolete. The summer bolete's cap is pale and cracked, and the eastern king's is tan to lilac-brown. The Rocky Mountain king has a brick-red cap and the bay bolete a chestnut, tacky one. Red or orange pores mean a toxic bolete, such as the devil's bolete (Rubroboletus satanas). Pink pores and a dark stem net mean the bitter bolete (Tylopilus felleus).",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Boletus (Steinpilze & Maronen)",
-      "description": "Steinpilze und Maronen in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz, in Europa der Maronen-Röhrling und die nordamerikanischen Königsröhrlinge",
+      "description": "Steinpilze und Maronen zusammen: Fichten-, Kiefern-, Bronze- und Sommersteinpilz, in Europa der Maronenröhrling und die nordamerikanischen Steinpilze.",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen",
       "guide": {
         "identify": "In dieser Gruppe stecken mehrere Röhrlinge. In Europa sind das der Steinpilz (Boletus edulis) sowie Kiefern-, Bronze- und Sommersteinpilz. In Nordamerika kommen der Ostamerika-Steinpilz und der Rocky-Mountains-Steinpilz hinzu. Auch der Maronenröhrling (Imleria badia) gehört in die Gruppe. Die Steinpilze haben jung weisse Poren, ein Netz am Stiel und weisses Fleisch, das nicht blau wird. Der Maronenröhrling hat gelbe Poren, die blaugrün anlaufen, und einen gestreiften Stiel ohne Netz. Am Hut erkennst du sie. Beim Steinpilz ist er braun und fettig, beim Kiefern-Steinpilz weinrot und beim Bronze-Steinpilz fast schwarz und samtig. Der Sommersteinpilz hat einen hellen, rissigen Hut, der Ostamerika-Steinpilz einen hellbraunen bis lilabraunen. Der Rocky-Mountains-Steinpilz hat einen ziegelroten Hut, der Maronenröhrling einen kastanienbraunen, klebrigen. Rote oder orange Poren zeigen einen giftigen Röhrling, etwa den Satansröhrling (Rubroboletus satanas). Rosa Poren und ein dunkles Stielnetz zeigen den bitteren Gallenröhrling (Tylopilus felleus).",

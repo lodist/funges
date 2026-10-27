@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Wild Artichoke",
-      "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
+      "description": "A thistle-like plant, related to the garden artichoke. You eat its flower buds and stems.",
       "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer.",
       "guide": {
         "identify": "Wild artichoke, also called wild cardoon, forms a large rosette of deeply cut leaves. They are silvery grey-green on top and almost white underneath, felted with hairs. Each lobe ends in a stiff yellow spine. In late spring a stiff, branched stem grows up to head height. It carries heads like small artichokes, wrapped in spine-tipped bracts. These open into blue-purple thistle flowers. Watch out for Atractylis gummifera, a deadly Mediterranean thistle. People have mistaken it for wild artichoke, and it has killed people in Morocco. It has no stem. Its pink flower head sits flat in the middle of the spiny rosette. It flowers in late summer and autumn, and its root oozes a sticky gum. Never eat a stemless thistle rosette or a thistle root.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Wilde Artischocke",
-      "description": "Dornige Pflanze ähnlich der kultivierten Artischocke, mit essbaren Blütenköpfen und Stängeln.",
+      "description": "Eine distelartige Pflanze, verwandt mit der Gartenartischocke. Du isst die Blütenknospen und die Stängel.",
       "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer.",
       "guide": {
         "identify": "Die Wilde Artischocke, auch Wilde Kardone genannt, bildet eine grosse Rosette aus tief eingeschnittenen Blättern. Oben sind sie silbrig graugrün, unten durch dichten Filz fast weiss. Jeder Blattlappen endet in einem starren gelben Dorn. Im späten Frühjahr wächst ein steifer, verzweigter Stängel bis etwa auf Kopfhöhe. Er trägt Köpfe wie kleine Artischocken, umhüllt von Hüllblättern mit Dornspitzen. Sie öffnen sich zu blauvioletten Distelblüten. Pass auf Atractylis gummifera auf, eine tödlich giftige Distel aus dem Mittelmeerraum. Sie wurde schon mit der Wilden Artischocke verwechselt und hat in Marokko Menschen getötet. Sie hat keinen Stängel. Ihr rosa Blütenkopf sitzt flach in der Mitte der stacheligen Rosette. Sie blüht im Spätsommer und Herbst, und aus ihrer Wurzel tritt ein klebriger Saft. Iss nie eine stängellose Distelrosette oder eine Distelwurzel.",

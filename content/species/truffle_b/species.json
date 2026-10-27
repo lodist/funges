@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Black Truffle",
-      "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
+      "description": "A highly prized fungus that grows underground and smells strongly. Cooks use it sparingly.",
       "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter.",
       "guide": {
         "identify": "This truffle is a round, lumpy tuber that grows underground. It ranges from walnut to fist size. The black skin is reddish when young and covered in small, hard, many-sided warts. Cut it in half. Ripe flesh is purplish-black, marbled with fine white veins that turn reddish-brown in the air. It smells strong and earthy. Earthballs (Scleroderma) are poisonous. They have a thick, yellowish to brown, scaly skin and smell of gas. Inside they are firm and dark. The winter truffle (Tuber brumale) and the imported Chinese truffle (Tuber indicum) look similar. But they are worth far less.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Schwarzer Trüffel",
-      "description": "Sehr geschätzter unterirdischer Pilz mit intensivem Aroma, in der Gourmetküche verwendet.",
+      "description": "Ein sehr begehrter Pilz, der unter der Erde wächst und kräftig duftet. In der Küche nimmt man ihn sparsam.",
       "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt.",
       "guide": {
         "identify": "Der Schwarze Trüffel ist rundlich und knollig und wächst unter der Erde. Er wird walnuss- bis faustgross. Die schwarze Haut ist jung rötlich und mit kleinen, harten, vieleckigen Warzen besetzt. Schneide ihn durch. Reifes Fleisch ist violettschwarz und von feinen weissen Adern marmoriert, die sich an der Luft rotbraun färben. Er riecht stark und erdig. Kartoffelboviste (Scleroderma) sind giftig. Sie haben eine dicke, gelbliche bis braune, schuppige Haut und riechen nach Gas. Innen sind sie fest und dunkel. Der Wintertrüffel (Tuber brumale) und der importierte Chinesische Trüffel (Tuber indicum) sehen ähnlich aus. Sie sind aber viel weniger wert.",

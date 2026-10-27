@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Dandelion",
-      "description": "A common weed with bright yellow flowers and edible leaves",
+      "description": "A common weed with bright yellow flowers. Its leaves are edible.",
       "howTo": "Found in meadows, grasslands, and disturbed areas during growing season",
       "guide": {
         "identify": "Dandelion grows as a rosette at ground level. The leaves are hairless and deeply, raggedly lobed. Their teeth point back towards the centre. Leaves and stalks bleed white milky sap when you break them. Each flower stalk is leafless, unbranched and hollow. It carries one head of yellow, strap-shaped florets. Later comes a round white seed clock. Cat's-ear has branched, solid stalks and hairy leaves. Hawkbits have forked hairs on the leaves. Sow-thistles carry several flowers on leafy stems. Only pick plants that match every point.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Löwenzahn",
-      "description": "Häufiges Wildkraut mit leuchtend gelben Blüten und essbaren Blättern",
+      "description": "Ein häufiges Wildkraut mit leuchtend gelben Blüten. Die Blätter sind essbar.",
       "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit",
       "guide": {
         "identify": "Der Löwenzahn wächst als Rosette dicht am Boden. Die Blätter sind kahl und tief und unregelmässig eingeschnitten. Ihre Zähne zeigen zurück zur Mitte. Blätter und Stiele geben weissen Milchsaft ab, wenn du sie abbrichst. Jeder Blütenstiel ist blattlos, unverzweigt und hohl. Er trägt ein einzelnes Köpfchen aus gelben Zungenblüten. Später wird daraus die runde weisse Pusteblume. Das Ferkelkraut hat verzweigte, markige Stiele und behaarte Blätter. Leontodon-Arten wie der Herbst-Löwenzahn haben gegabelte Haare auf den Blättern. Gänsedisteln tragen mehrere Blüten an beblätterten Stängeln. Pflück nur Pflanzen, die in jedem Punkt passen.",

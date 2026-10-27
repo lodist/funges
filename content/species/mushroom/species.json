@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Porcini",
-      "description": "The king bolete: a stout brown-capped mushroom with a pale netted stem and white pores that never bruise blue",
+      "description": "The porcino: a stout mushroom with a brown cap, a pale netted stem and white pores that never bruise blue.",
       "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn",
       "guide": {
         "identify": "This is a stout bolete with a pale to chestnut-brown cap. The cap is smooth and greasy but never velvety. It often has a thin whitish rim. The pores are white when young, then turn yellow and olive. They do not change colour when you press them. The pale stem has a fine white net near the top. The white flesh does not change colour when cut. Pink pores and a dark brown net mean the bitter bolete (Tylopilus felleus). Red or orange pores mean another bolete that may be toxic. So does flesh that turns blue.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Steinpilz",
-      "description": "Der Herrenpilz: brauner Hut, gedrungener genetzter Stiel und weisse Röhren, die sich nie blau verfärben",
+      "description": "Der Steinpilz: ein kräftiger Pilz mit braunem Hut, hellem, genetztem Stiel und weissen Poren, die nie blau anlaufen.",
       "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst",
       "guide": {
         "identify": "Der Steinpilz ist ein kräftiger Röhrling mit hell- bis kastanienbraunem Hut. Der Hut ist glatt und fettig, aber nie samtig. Oft hat er einen schmalen weisslichen Rand. Die Poren sind jung weiss, später gelb und oliv. Auf Druck verfärben sie sich nicht. Der helle Stiel trägt oben ein feines weisses Netz. Das weisse Fleisch verfärbt sich beim Schneiden nicht. Rosa Poren und ein dunkelbraunes Netz bedeuten Gallenröhrling (Tylopilus felleus). Rote oder orange Poren zeigen einen anderen Röhrling, der giftig sein kann. Das gilt auch für Fleisch, das blau anläuft.",
