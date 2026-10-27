@@ -399,19 +399,19 @@ export default function HuertaPlannerPage() {
       ? stages[i] === 'bare' || stages[i] === 'lost'
       : Boolean(
           x.crop &&
-            x.planted &&
-            temps &&
-            ['bare', 'lost'].includes(
-              stageOn(
-                x,
-                needs,
-                temps,
-                year?.crops[x.crop]?.harvest ?? 0,
-                today(),
-                today(),
-                site
-              )
+          x.planted &&
+          temps &&
+          ['bare', 'lost'].includes(
+            stageOn(
+              x,
+              needs,
+              temps,
+              year?.crops[x.crop]?.harvest ?? 0,
+              today(),
+              today(),
+              site
             )
+          )
         );
   const drawn = plan.sections.map((x, i) =>
     gone(x, i) ? { ...x, crop: null } : x
@@ -455,9 +455,7 @@ export default function HuertaPlannerPage() {
                 {huertaApiConfigured ? <GardenPicker /> : null}
                 {sample ? (
                   <Button variant='outline' asChild>
-                    <Link to='/huerta/in-season'>
-                      {t('planner.choosePlace')}
-                    </Link>
+                    <Link to='/huerta/species'>{t('planner.choosePlace')}</Link>
                   </Button>
                 ) : null}
               </div>

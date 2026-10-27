@@ -1,6 +1,6 @@
 {
-  "title": "In Season",
-  "description": "What to sow and plant this week, frost warnings and watering for your town.",
+  "title": "Species",
+  "description": "Every crop: whether it goes in this week around your town, how to grow it and what to watch for.",
   "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
   "around": "Around {{place}}, {{day}}",
   "change": "Change place",
@@ -342,7 +342,9 @@
       "depth": "Depth",
       "spacing": "Spacing",
       "place": "Place",
-      "ready": "Ready"
+      "ready": "Ready",
+      "height": "Height",
+      "howMany": "How many"
     },
     "depthCm": "{{value}} cm deep",
     "depthPot": "As deep as it sat in its pot",
@@ -370,6 +372,81 @@
     },
     "source": "Growing facts: RHS, UC ANR and seed-company sowing guides.",
     "year": "Its year around {{place}}"
+  },
+  "grow": {
+    "inGarden": "In your garden",
+    "plannedFor": "Planned for {{date}}",
+    "readyOn": "Ready around {{date}}",
+    "readyNow": "Ready to pick",
+    "weather": "Cold, warmth and soil",
+    "care": "Looking after it",
+    "goodWith": "Good next to",
+    "apartFrom": "Keep apart from",
+    "harvest": "Harvest and keeping",
+    "problems": "What can go wrong",
+    "facts": {
+      "frost": "Frost",
+      "warmth": "Warmth",
+      "ph": "Soil pH",
+      "water": "Water",
+      "feed": "Feeding",
+      "pot": "In a pot",
+      "nextYear": "Next year in its bed"
+    },
+    "frost": {
+      "tender": "A frost kills it.",
+      "half_hardy": "It takes a light frost.",
+      "hardy": "It takes hard frost.",
+      "to": "It takes frost down to about {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Comes up in soil from {{min}} °C.",
+      "sowRange": "Comes up in soil from {{min}} to {{max}} °C.",
+      "plant": "Plant it out once the soil reaches {{min}} °C.",
+      "nights": "It needs nights above {{night}} °C."
+    },
+    "ph": {
+      "range": "Best at pH {{from}} to {{to}}.",
+      "acid": "Your soil is more acid than it likes: spread garden lime a few weeks before planting.",
+      "alkaline": "Your soil is more alkaline than it likes: dig in plenty of compost.",
+      "fits": "Your soil suits it."
+    },
+    "water": {
+      "high": "Thirsty",
+      "medium": "Average",
+      "low": "Copes with dry spells"
+    },
+    "feed": {
+      "high": "Hungry",
+      "medium": "Average",
+      "low": "Light feeder"
+    },
+    "pot": "A pot at least {{value}} cm across.",
+    "noPot": "Better in the ground.",
+    "perPerson": "{{from}}–{{to}} plants per person to eat fresh",
+    "perPersonKeep": "{{from}}–{{to}} plants per person to eat fresh, {{keepFrom}}–{{keepTo}} to keep some for winter",
+    "tomato": {
+      "about": "Grown for its fruit, which ripens from midsummer until the first frost. Tall types are tied to a cane and kept to one stem by pinching out the side shoots; bush types stay compact and suit pots.",
+      "water": "Keep the soil evenly moist: uneven watering splits the fruit and causes blossom end rot. In hot weather a pot can need water every day.",
+      "feed": "Once the first fruits swell, give a high-potassium liquid feed (tomato feed) every 10 to 14 days. Rich ground needs less, but a feed every two weeks still raises the crop.",
+      "harvest": "Pick each fruit with its stalk once it is fully coloured. At the end of the season, ripen green fruit somewhere warm and dark, or in a drawer with a banana.",
+      "keeps": "Ripe fruit keeps a few days at room temperature, out of the sun; the fridge spoils its taste.",
+      "problems": [
+        {
+          "name": "Blight",
+          "fix": "Brown patches that spread fast over leaves and fruit in warm, wet weather. Remove affected leaves and fruit as soon as you see them, and grow tomatoes away from potatoes, which share it."
+        },
+        {
+          "name": "Blossom end rot",
+          "fix": "A dark, sunken patch at the bottom of the fruit, from uneven watering. Water regularly and never let a pot dry out."
+        },
+        {
+          "name": "Split fruit",
+          "fix": "Cracks in ripening fruit when heavy rain or a big watering follows a dry spell. Keep the soil evenly moist and eat split fruit soon."
+        }
+      ],
+      "source": "Tomato care: RHS. How many to grow: University of Missouri and Kansas State extension. pH: University of Georgia extension. Keeping: University of Arizona extension."
+    }
   },
   "map": {
     "title": "Map",

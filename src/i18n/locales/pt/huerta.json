@@ -1,6 +1,6 @@
 {
-  "title": "Da época",
-  "description": "O que semear e plantar esta semana, alertas de geada e rega para a sua cidade.",
+  "title": "Espécies",
+  "description": "Cada cultura: se vai para a terra esta semana na sua cidade, como cultivá-la e o que vigiar.",
   "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
   "around": "Arredores de {{place}}, {{day}}",
   "change": "Mudar de lugar",
@@ -342,7 +342,9 @@
       "depth": "Profundidade",
       "spacing": "Espaçamento",
       "place": "Local",
-      "ready": "Colheita"
+      "ready": "Colheita",
+      "height": "Altura",
+      "howMany": "Quantas"
     },
     "depthCm": "A {{value}} cm",
     "depthPot": "Na mesma profundidade do vaso",
@@ -370,6 +372,81 @@
     },
     "source": "Dados de cultivo: RHS, UC ANR e guias de semeadura das empresas de sementes.",
     "year": "O ano dele em {{place}}"
+  },
+  "grow": {
+    "inGarden": "Na sua horta",
+    "plannedFor": "Previsto para {{date}}",
+    "readyOn": "Pronta por volta de {{date}}",
+    "readyNow": "Pronta a colher",
+    "weather": "Frio, calor e solo",
+    "care": "Cuidados",
+    "goodWith": "Bem ao lado de",
+    "apartFrom": "Longe de",
+    "harvest": "Colheita e conservação",
+    "problems": "O que pode correr mal",
+    "facts": {
+      "frost": "Geada",
+      "warmth": "Calor",
+      "ph": "pH do solo",
+      "water": "Rega",
+      "feed": "Adubação",
+      "pot": "Em vaso",
+      "nextYear": "No próximo ano no seu canteiro"
+    },
+    "frost": {
+      "tender": "Uma geada mata-a.",
+      "half_hardy": "Aguenta geadas ligeiras.",
+      "hardy": "Aguenta geadas fortes.",
+      "to": "Aguenta geada até cerca de {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Germina com o solo a partir de {{min}} °C.",
+      "sowRange": "Germina com o solo entre {{min}} e {{max}} °C.",
+      "plant": "Transplante quando o solo chegar a {{min}} °C.",
+      "nights": "Precisa de noites acima de {{night}} °C."
+    },
+    "ph": {
+      "range": "Melhor com pH de {{from}} a {{to}}.",
+      "acid": "O seu solo é mais ácido do que ela gosta: espalhe calcário agrícola umas semanas antes de plantar.",
+      "alkaline": "O seu solo é mais alcalino do que ela gosta: incorpore bastante composto.",
+      "fits": "O seu solo convém-lhe."
+    },
+    "water": {
+      "high": "Sedenta",
+      "medium": "Normal",
+      "low": "Aguenta a secura"
+    },
+    "feed": {
+      "high": "Exigente",
+      "medium": "Normal",
+      "low": "Pouco exigente"
+    },
+    "pot": "Um vaso com pelo menos {{value}} cm de diâmetro.",
+    "noPot": "Melhor na terra.",
+    "perPerson": "{{from}}–{{to}} plantas por pessoa para comer fresco",
+    "perPersonKeep": "{{from}}–{{to}} plantas por pessoa para comer fresco, {{keepFrom}}–{{keepTo}} para guardar também para o inverno",
+    "tomato": {
+      "about": "Cultiva-se pelos frutos, que amadurecem do pleno verão até à primeira geada. As variedades altas atam-se a uma cana e conduzem-se num só caule tirando os rebentos laterais; as de porte baixo ficam compactas e dão-se bem em vaso.",
+      "water": "Mantenha o solo húmido de forma regular: a rega irregular racha os frutos e causa a podridão apical. Com calor, um vaso pode precisar de água todos os dias.",
+      "feed": "Quando os primeiros frutos engrossarem, dê um adubo líquido rico em potássio (adubo para tomate) a cada 10 a 14 dias. Em terra rica precisa de menos, mas adubar a cada duas semanas ainda aumenta a colheita.",
+      "harvest": "Colha cada fruto com o pé quando estiver todo colorido. No fim da época, amadureça os frutos verdes num sítio quente e escuro, ou numa gaveta com uma banana.",
+      "keeps": "O fruto maduro aguenta uns dias à temperatura ambiente, longe do sol; o frigorífico estraga-lhe o sabor.",
+      "problems": [
+        {
+          "name": "Míldio",
+          "fix": "Manchas castanhas que se espalham depressa por folhas e frutos com tempo quente e húmido. Tire as folhas e frutos afetados mal os veja, e cultive os tomates longe das batatas, que têm a mesma doença."
+        },
+        {
+          "name": "Podridão apical",
+          "fix": "Uma mancha escura e afundada na base do fruto, por rega irregular. Regue com regularidade e nunca deixe um vaso secar."
+        },
+        {
+          "name": "Frutos rachados",
+          "fix": "Rachas nos frutos a amadurecer quando chuva forte ou uma grande rega vem depois de um período seco. Mantenha o solo húmido de forma regular e coma cedo os frutos rachados."
+        }
+      ],
+      "source": "Cuidados do tomate: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: University of Georgia. Conservação: University of Arizona."
+    }
   },
   "map": {
     "title": "Mapa",

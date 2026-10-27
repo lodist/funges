@@ -96,7 +96,7 @@ export default function HuertaPage() {
       <SEO
         title={t('title')}
         description={t('description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta/in-season`}
+        canonicalUrl={`${import.meta.env.BASE_URL}huerta/species`}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>
@@ -308,7 +308,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   );
   const until = (id: string) => {
     let last = month;
-    for (let k = 1; k < 12 && (picked(id) >> (month + k) % 12) & 1; k++)
+    for (let k = 1; k < 12 && (picked(id) >> ((month + k) % 12)) & 1; k++)
       last = (month + k) % 12;
     return picked(id) === 0xfff
       ? t('views.allYear')
@@ -418,7 +418,8 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
       <CropSheet
         crop={open}
         advice={advice}
-        year={open && year ? year.crops[open.id] : undefined}
+        year={year}
+        plan={current?.plan}
         image={crop => image(`crops/${crop.id}`)}
         onClose={() => setOpen(null)}
       />

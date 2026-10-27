@@ -7,7 +7,6 @@ import {
   Database,
   Settings as SettingsIcon,
   ScanSearch,
-  Sprout,
 } from '@/lib/icons';
 import { currentSpace, visibleSpaces } from '@/lib/spaces';
 import { SpaceNavButton } from '@/components/SpaceSwitcher';
@@ -49,7 +48,7 @@ const items = [
 const huertaItems: typeof items = [
   { url: `${basePath}huerta/map`, icon: Map },
   { url: `${basePath}huerta/planner`, icon: LayoutGrid },
-  { url: `${basePath}huerta/in-season`, icon: Sprout },
+  { url: `${basePath}huerta/species`, icon: Database },
   { url: `${basePath}huerta/year`, icon: CalendarRange },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];

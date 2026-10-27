@@ -36,11 +36,21 @@ export interface Crop {
   sun: 'full' | 'part';
   /** When it gives its first harvest, where that is not a matter of weeks. */
   note?:
-    | 'spring_flowers'
-    | 'next_year'
-    | 'second_year'
-    | 'third_year'
-    | 'perennial';
+    'spring_flowers' | 'next_year' | 'second_year' | 'third_year' | 'perennial';
+  /** How to look after it once it is in; its words are under `grow.<id>`. */
+  guide?: CropGuide;
+}
+
+/** A crop's care in numbers and levels; the sheet says them in words. */
+export interface CropGuide {
+  water: 'high' | 'medium' | 'low';
+  feed: 'high' | 'medium' | 'low';
+  /** The soil pH it grows best in. */
+  ph: [number, number];
+  /** Plants per person: to eat fresh, and to keep (bottled, frozen) too. */
+  perPerson: { fresh: [number, number]; keep?: [number, number] };
+  /** The smallest pot it grows in, cm across; null: not for pots. */
+  pot: number | null;
 }
 
 /** The crops the advice covers, in the order the page lists them. */
@@ -347,6 +357,15 @@ export const CROPS: Crop[] = [
     spacing: 50,
     rows: 75,
     sun: 'full',
+    // ponytail: the one crop with a guide, as a trial of the fuller sheet.
+    // RHS; Missouri G6461 and K-State MF315 (plants per person); UGA B1271 (pH).
+    guide: {
+      water: 'high',
+      feed: 'high',
+      ph: [6.2, 6.8],
+      perPerson: { fresh: [3, 5], keep: [5, 10] },
+      pot: 30,
+    },
   },
   {
     id: 'pepper',

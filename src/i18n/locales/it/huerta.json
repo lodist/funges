@@ -1,6 +1,6 @@
 {
-  "title": "Di stagione",
-  "description": "Cosa seminare e piantare questa settimana, avvisi di gelo e irrigazione per il tuo comune.",
+  "title": "Specie",
+  "description": "Ogni coltura: se va in terra questa settimana nel tuo comune, come coltivarla e a cosa fare attenzione.",
   "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
   "around": "Dintorni di {{place}}, {{day}}",
   "change": "Cambia luogo",
@@ -342,7 +342,9 @@
       "depth": "Profondità",
       "spacing": "Distanze",
       "place": "Posizione",
-      "ready": "Raccolto"
+      "ready": "Raccolto",
+      "height": "Altezza",
+      "howMany": "Quante"
     },
     "depthCm": "A {{value}} cm",
     "depthPot": "Alla stessa profondità del vaso",
@@ -370,6 +372,81 @@
     },
     "source": "Dati di coltivazione: RHS, UC ANR e guide di semina delle ditte sementiere.",
     "year": "Il suo anno a {{place}}"
+  },
+  "grow": {
+    "inGarden": "Nel tuo orto",
+    "plannedFor": "Previsto per il {{date}}",
+    "readyOn": "Pronta verso il {{date}}",
+    "readyNow": "Pronta da raccogliere",
+    "weather": "Freddo, caldo e terreno",
+    "care": "Cure",
+    "goodWith": "Bene accanto a",
+    "apartFrom": "Lontano da",
+    "harvest": "Raccolta e conservazione",
+    "problems": "Cosa può andare storto",
+    "facts": {
+      "frost": "Gelo",
+      "warmth": "Caldo",
+      "ph": "pH del terreno",
+      "water": "Acqua",
+      "feed": "Concime",
+      "pot": "In vaso",
+      "nextYear": "L'anno prossimo nella sua aiuola"
+    },
+    "frost": {
+      "tender": "Una gelata la uccide.",
+      "half_hardy": "Sopporta gelate leggere.",
+      "hardy": "Sopporta gelate forti.",
+      "to": "Sopporta il gelo fino a circa {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Germina con il terreno da {{min}} °C.",
+      "sowRange": "Germina con il terreno tra {{min}} e {{max}} °C.",
+      "plant": "Trapiantala quando il terreno arriva a {{min}} °C.",
+      "nights": "Ha bisogno di notti sopra i {{night}} °C."
+    },
+    "ph": {
+      "range": "Ideale a pH da {{from}} a {{to}}.",
+      "acid": "Il tuo terreno è più acido di quanto le piaccia: spargi calce agricola qualche settimana prima di piantare.",
+      "alkaline": "Il tuo terreno è più alcalino di quanto le piaccia: interra molto compost.",
+      "fits": "Il tuo terreno le va bene."
+    },
+    "water": {
+      "high": "Assetata",
+      "medium": "Normale",
+      "low": "Sopporta la siccità"
+    },
+    "feed": {
+      "high": "Esigente",
+      "medium": "Normale",
+      "low": "Poco esigente"
+    },
+    "pot": "Un vaso di almeno {{value}} cm di diametro.",
+    "noPot": "Meglio in piena terra.",
+    "perPerson": "{{from}}–{{to}} piante a persona da mangiare fresche",
+    "perPersonKeep": "{{from}}–{{to}} piante a persona da mangiare fresche, {{keepFrom}}–{{keepTo}} per conservarne anche per l'inverno",
+    "tomato": {
+      "about": "Si coltiva per i frutti, che maturano da piena estate fino alla prima gelata. Le varietà alte si legano a un tutore e si allevano a un solo fusto togliendo le femminelle; quelle a cespuglio restano compatte e vanno bene in vaso.",
+      "water": "Tieni il terreno umido in modo costante: le annaffiature irregolari spaccano i frutti e causano il marciume apicale. Col caldo un vaso può aver bisogno d'acqua ogni giorno.",
+      "feed": "Quando i primi frutti si ingrossano, dai un concime liquido ricco di potassio (concime per pomodori) ogni 10-14 giorni. In un terreno ricco ne serve meno, ma concimare ogni due settimane aumenta comunque il raccolto.",
+      "harvest": "Raccogli ogni frutto con il suo peduncolo quando è del tutto colorato. A fine stagione fai maturare i frutti verdi al caldo e al buio, o in un cassetto con una banana.",
+      "keeps": "Il frutto maturo si conserva qualche giorno a temperatura ambiente, al riparo dal sole; il frigorifero ne rovina il sapore.",
+      "problems": [
+        {
+          "name": "Peronospora",
+          "fix": "Macchie marroni che si allargano in fretta su foglie e frutti con tempo caldo e umido. Togli foglie e frutti colpiti appena li vedi, e coltiva i pomodori lontano dalle patate, che hanno la stessa malattia."
+        },
+        {
+          "name": "Marciume apicale",
+          "fix": "Una macchia scura e infossata sul fondo del frutto, dovuta alle annaffiature irregolari. Annaffia con regolarità e non lasciare mai seccare un vaso."
+        },
+        {
+          "name": "Frutti spaccati",
+          "fix": "Spaccature nei frutti in maturazione quando una pioggia forte o una grande annaffiatura segue un periodo secco. Tieni il terreno umido in modo costante e mangia presto i frutti spaccati."
+        }
+      ],
+      "source": "Cura del pomodoro: RHS. Quante piantarne: servizi di extension della University of Missouri e di Kansas State. pH: University of Georgia. Conservazione: University of Arizona."
+    }
   },
   "map": {
     "title": "Mappa",

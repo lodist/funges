@@ -1,6 +1,6 @@
 {
-  "title": "Saison",
-  "description": "Was du diese Woche säen und pflanzen kannst, Frostwarnungen und Gießen für deinen Ort.",
+  "title": "Arten",
+  "description": "Jede Kultur: ob sie diese Woche an deinem Ort in die Erde kann, wie man sie anbaut und worauf du achten musst.",
   "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
   "around": "Rund um {{place}}, {{day}}",
   "change": "Ort ändern",
@@ -342,7 +342,9 @@
       "depth": "Tiefe",
       "spacing": "Abstand",
       "place": "Standort",
-      "ready": "Ernte"
+      "ready": "Ernte",
+      "height": "Höhe",
+      "howMany": "Wie viele"
     },
     "depthCm": "{{value}} cm tief",
     "depthPot": "So tief wie im Topf",
@@ -370,6 +372,81 @@
     },
     "source": "Anbaudaten: RHS, UC ANR und Aussaatanleitungen der Saatgutfirmen.",
     "year": "Sein Jahr rund um {{place}}"
+  },
+  "grow": {
+    "inGarden": "In deinem Garten",
+    "plannedFor": "Geplant für den {{date}}",
+    "readyOn": "Erntereif um den {{date}}",
+    "readyNow": "Erntereif",
+    "weather": "Kälte, Wärme und Boden",
+    "care": "Pflege",
+    "goodWith": "Gut neben",
+    "apartFrom": "Fernhalten von",
+    "harvest": "Ernte und Lagern",
+    "problems": "Was schiefgehen kann",
+    "facts": {
+      "frost": "Frost",
+      "warmth": "Wärme",
+      "ph": "Boden-pH",
+      "water": "Wasser",
+      "feed": "Düngen",
+      "pot": "Im Topf",
+      "nextYear": "Nächstes Jahr im Beet"
+    },
+    "frost": {
+      "tender": "Frost tötet es.",
+      "half_hardy": "Es verträgt leichten Frost.",
+      "hardy": "Es verträgt starken Frost.",
+      "to": "Es verträgt Frost bis etwa {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Keimt ab {{min}} °C Bodentemperatur.",
+      "sowRange": "Keimt bei {{min}} bis {{max}} °C Bodentemperatur.",
+      "plant": "Auspflanzen, sobald der Boden {{min}} °C erreicht.",
+      "nights": "Es braucht Nächte über {{night}} °C."
+    },
+    "ph": {
+      "range": "Am besten bei pH {{from}} bis {{to}}.",
+      "acid": "Dein Boden ist saurer, als es mag: streu ein paar Wochen vor dem Pflanzen Gartenkalk.",
+      "alkaline": "Dein Boden ist kalkhaltiger, als es mag: arbeite reichlich Kompost ein.",
+      "fits": "Dein Boden passt."
+    },
+    "water": {
+      "high": "Durstig",
+      "medium": "Mittel",
+      "low": "Verträgt Trockenheit"
+    },
+    "feed": {
+      "high": "Starkzehrer",
+      "medium": "Mittelzehrer",
+      "low": "Schwachzehrer"
+    },
+    "pot": "Ein Topf mit mindestens {{value}} cm Durchmesser.",
+    "noPot": "Besser im Beet.",
+    "perPerson": "{{from}}–{{to}} Pflanzen pro Person zum Frischessen",
+    "perPersonKeep": "{{from}}–{{to}} Pflanzen pro Person zum Frischessen, {{keepFrom}}–{{keepTo}}, um auch für den Winter einzumachen",
+    "tomato": {
+      "about": "Angebaut für die Früchte, die vom Hochsommer bis zum ersten Frost reifen. Hohe Sorten werden an einen Stab gebunden und durch Ausgeizen auf einen Trieb gezogen; Buschtomaten bleiben kompakt und eignen sich für Töpfe.",
+      "water": "Halte den Boden gleichmäßig feucht: unregelmäßiges Gießen lässt Früchte platzen und verursacht Blütenendfäule. Bei Hitze braucht ein Topf manchmal jeden Tag Wasser.",
+      "feed": "Sobald die ersten Früchte schwellen, alle 10 bis 14 Tage einen kaliumreichen Flüssigdünger (Tomatendünger) geben. Reicher Boden braucht weniger, aber alle zwei Wochen gedüngt trägt sie trotzdem mehr.",
+      "harvest": "Pflück jede Frucht mit dem Stiel, sobald sie voll ausgefärbt ist. Am Saisonende grüne Früchte warm und dunkel nachreifen lassen, oder in einer Schublade mit einer Banane.",
+      "keeps": "Reife Früchte halten sich ein paar Tage bei Zimmertemperatur, ohne Sonne; im Kühlschrank verlieren sie Geschmack.",
+      "problems": [
+        {
+          "name": "Kraut- und Braunfäule",
+          "fix": "Braune Flecken, die sich bei warmem, nassem Wetter schnell über Blätter und Früchte ausbreiten. Befallene Blätter und Früchte sofort entfernen und Tomaten nicht neben Kartoffeln setzen, die dieselbe Krankheit haben."
+        },
+        {
+          "name": "Blütenendfäule",
+          "fix": "Ein dunkler, eingesunkener Fleck unten an der Frucht, von unregelmäßigem Gießen. Regelmäßig gießen und einen Topf nie austrocknen lassen."
+        },
+        {
+          "name": "Geplatzte Früchte",
+          "fix": "Risse in reifenden Früchten, wenn nach Trockenheit starker Regen oder viel Gießwasser kommt. Den Boden gleichmäßig feucht halten und geplatzte Früchte bald essen."
+        }
+      ],
+      "source": "Tomatenpflege: RHS. Wie viele: University of Missouri und Kansas State Extension. pH: University of Georgia Extension. Lagern: University of Arizona Extension."
+    }
   },
   "map": {
     "title": "Karte",

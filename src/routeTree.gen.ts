@@ -26,10 +26,10 @@ import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsuseRouteImport } from './routes/termsuse'
 import { Route as WorthForagingNowRouteImport } from './routes/worth-foraging-now'
 import { Route as HuertaAccountRouteImport } from './routes/huerta_.account'
-import { Route as HuertaInSeasonRouteImport } from './routes/huerta_.in-season'
 import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
 import { Route as HuertaPlannerRouteImport } from './routes/huerta_.planner'
 import { Route as HuertaSigninRouteImport } from './routes/huerta_.signin'
+import { Route as HuertaSpeciesRouteImport } from './routes/huerta_.species'
 import { Route as HuertaYearRouteImport } from './routes/huerta_.year'
 import { Route as DataSeasonsIndexRouteImport } from './routes/data_.seasons.index'
 import { Route as DataSeasonsPlaceSpeciesRouteImport } from './routes/data_.seasons.$place.$species'
@@ -119,11 +119,6 @@ const HuertaAccountRoute = HuertaAccountRouteImport.update({
   path: '/huerta/account',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HuertaInSeasonRoute = HuertaInSeasonRouteImport.update({
-  id: '/huerta_/in-season',
-  path: '/huerta/in-season',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const HuertaMapRoute = HuertaMapRouteImport.update({
   id: '/huerta_/map',
   path: '/huerta/map',
@@ -137,6 +132,11 @@ const HuertaPlannerRoute = HuertaPlannerRouteImport.update({
 const HuertaSigninRoute = HuertaSigninRouteImport.update({
   id: '/huerta_/signin',
   path: '/huerta/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaSpeciesRoute = HuertaSpeciesRouteImport.update({
+  id: '/huerta_/species',
+  path: '/huerta/species',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HuertaYearRoute = HuertaYearRouteImport.update({
@@ -173,10 +173,10 @@ export interface FileRoutesByFullPath {
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta/account': typeof HuertaAccountRoute
-  '/huerta/in-season': typeof HuertaInSeasonRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
   '/huerta/signin': typeof HuertaSigninRoute
+  '/huerta/species': typeof HuertaSpeciesRoute
   '/huerta/year': typeof HuertaYearRoute
   '/data/seasons/': typeof DataSeasonsIndexRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
@@ -199,10 +199,10 @@ export interface FileRoutesByTo {
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta/account': typeof HuertaAccountRoute
-  '/huerta/in-season': typeof HuertaInSeasonRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planner': typeof HuertaPlannerRoute
   '/huerta/signin': typeof HuertaSigninRoute
+  '/huerta/species': typeof HuertaSpeciesRoute
   '/huerta/year': typeof HuertaYearRoute
   '/data/seasons': typeof DataSeasonsIndexRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
@@ -226,10 +226,10 @@ export interface FileRoutesById {
   '/termsuse': typeof TermsuseRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
   '/huerta_/account': typeof HuertaAccountRoute
-  '/huerta_/in-season': typeof HuertaInSeasonRoute
   '/huerta_/map': typeof HuertaMapRoute
   '/huerta_/planner': typeof HuertaPlannerRoute
   '/huerta_/signin': typeof HuertaSigninRoute
+  '/huerta_/species': typeof HuertaSpeciesRoute
   '/huerta_/year': typeof HuertaYearRoute
   '/data_/seasons/': typeof DataSeasonsIndexRoute
   '/data_/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
@@ -254,10 +254,10 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/worth-foraging-now'
     | '/huerta/account'
-    | '/huerta/in-season'
     | '/huerta/map'
     | '/huerta/planner'
     | '/huerta/signin'
+    | '/huerta/species'
     | '/huerta/year'
     | '/data/seasons/'
     | '/data/seasons/$place/$species'
@@ -280,10 +280,10 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/worth-foraging-now'
     | '/huerta/account'
-    | '/huerta/in-season'
     | '/huerta/map'
     | '/huerta/planner'
     | '/huerta/signin'
+    | '/huerta/species'
     | '/huerta/year'
     | '/data/seasons'
     | '/data/seasons/$place/$species'
@@ -306,10 +306,10 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/worth-foraging-now'
     | '/huerta_/account'
-    | '/huerta_/in-season'
     | '/huerta_/map'
     | '/huerta_/planner'
     | '/huerta_/signin'
+    | '/huerta_/species'
     | '/huerta_/year'
     | '/data_/seasons/'
     | '/data_/seasons/$place/$species'
@@ -333,10 +333,10 @@ export interface RootRouteChildren {
   TermsuseRoute: typeof TermsuseRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
   HuertaAccountRoute: typeof HuertaAccountRoute
-  HuertaInSeasonRoute: typeof HuertaInSeasonRoute
   HuertaMapRoute: typeof HuertaMapRoute
   HuertaPlannerRoute: typeof HuertaPlannerRoute
   HuertaSigninRoute: typeof HuertaSigninRoute
+  HuertaSpeciesRoute: typeof HuertaSpeciesRoute
   HuertaYearRoute: typeof HuertaYearRoute
   DataSeasonsIndexRoute: typeof DataSeasonsIndexRoute
   DataSeasonsPlaceSpeciesRoute: typeof DataSeasonsPlaceSpeciesRoute
@@ -463,13 +463,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HuertaAccountRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/huerta_/in-season': {
-      id: '/huerta_/in-season'
-      path: '/huerta/in-season'
-      fullPath: '/huerta/in-season'
-      preLoaderRoute: typeof HuertaInSeasonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/huerta_/map': {
       id: '/huerta_/map'
       path: '/huerta/map'
@@ -489,6 +482,13 @@ declare module '@tanstack/react-router' {
       path: '/huerta/signin'
       fullPath: '/huerta/signin'
       preLoaderRoute: typeof HuertaSigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/species': {
+      id: '/huerta_/species'
+      path: '/huerta/species'
+      fullPath: '/huerta/species'
+      preLoaderRoute: typeof HuertaSpeciesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/huerta_/year': {
@@ -533,10 +533,10 @@ const rootRouteChildren: RootRouteChildren = {
   TermsuseRoute: TermsuseRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
   HuertaAccountRoute: HuertaAccountRoute,
-  HuertaInSeasonRoute: HuertaInSeasonRoute,
   HuertaMapRoute: HuertaMapRoute,
   HuertaPlannerRoute: HuertaPlannerRoute,
   HuertaSigninRoute: HuertaSigninRoute,
+  HuertaSpeciesRoute: HuertaSpeciesRoute,
   HuertaYearRoute: HuertaYearRoute,
   DataSeasonsIndexRoute: DataSeasonsIndexRoute,
   DataSeasonsPlaceSpeciesRoute: DataSeasonsPlaceSpeciesRoute,

@@ -16,6 +16,7 @@ import {
   nextYear,
   northness,
   notes,
+  partners,
   ready,
   removeBed,
   reshape,
@@ -379,8 +380,26 @@ describe('planning for a later month', () => {
     );
     const planned = out.filter(s => s.crop);
     expect(planned.length).toBeGreaterThan(0);
-    expect(planned.every(s => s.crop === 'tomato' && s.sow === '2027-03-01')).toBe(
-      true
-    );
+    expect(
+      planned.every(s => s.crop === 'tomato' && s.sow === '2027-03-01')
+    ).toBe(true);
+  });
+});
+
+describe('partners', () => {
+  it("lists a crop's pairings from either side of a rule", () => {
+    const tomato = partners('tomato');
+    expect(tomato.find(p => p.key === 'blight')).toMatchObject({
+      bad: true,
+      with: ['potato'],
+    });
+    expect(tomato.find(p => p.key === 'basil')).toMatchObject({
+      bad: false,
+      with: ['basil'],
+    });
+    expect(partners('basil').find(p => p.key === 'basil')?.with).toEqual([
+      'tomato',
+      'pepper',
+    ]);
   });
 });
