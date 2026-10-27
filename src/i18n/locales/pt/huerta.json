@@ -246,25 +246,25 @@
     "carrot": "Cenoura",
     "beetroot": "Beterraba",
     "chard": "Acelga",
-    "kale": "Couve kale",
+    "kale": "Couve-frisada",
     "cabbage": "Repolho",
-    "broccoli": "Brócolis",
-    "onion_sets": "Bulbinhos de cebola",
+    "broccoli": "Brócolos",
+    "onion_sets": "Bolbinhos de cebola",
     "potato": "Batata",
     "tomato": "Tomate",
-    "pepper": "Pimentão",
-    "aubergine": "Berinjela",
+    "pepper": "Pimento",
+    "aubergine": "Beringela",
     "cucumber": "Pepino",
-    "courgette": "Abobrinha",
+    "courgette": "Curgete",
     "pumpkin": "Abóbora",
     "melon": "Melão",
-    "green_beans": "Vagem",
+    "green_beans": "Feijão-verde",
     "sweetcorn": "Milho doce",
     "basil": "Manjericão",
-    "parsley": "Salsinha",
+    "parsley": "Salsa",
     "coriander": "Coentro",
     "sunflower": "Girassol",
-    "marigold": "Cravo-de-defunto",
+    "marigold": "Tagetes",
     "sweet_pea": "Ervilha-de-cheiro",
     "onion": "Cebola de semente",
     "leek": "Alho-poró",
@@ -275,22 +275,22 @@
     "lambs_lettuce": "Alface-de-cordeiro",
     "chicory": "Radicchio e escarola",
     "fennel": "Funcho",
-    "parsnip": "Pastinaca",
+    "parsnip": "Pastinaga",
     "turnip": "Nabo",
-    "celery": "Salsão",
-    "chilli": "Pimenta",
+    "celery": "Aipo",
+    "chilli": "Malagueta",
     "winter_squash": "Abóbora-de-inverno",
     "watermelon": "Melancia",
     "strawberry": "Morangos",
-    "asparagus": "Aspargo",
+    "asparagus": "Espargo",
     "rhubarb": "Ruibarbo",
     "artichoke": "Alcachofra",
     "dill": "Endro",
     "chervil": "Cerefólio",
-    "chives": "Cebolinha",
+    "chives": "Cebolinho",
     "thyme": "Tomilho",
     "rosemary": "Alecrim",
-    "oregano": "Orégano",
+    "oregano": "Orégãos",
     "sage": "Sálvia",
     "mint": "Hortelã",
     "tulip": "Tulipas",
@@ -639,19 +639,19 @@
       "keeps": "As raízes conservam-se melhor na terra durante todo o inverno; antes das geadas fortes arranque algumas a mais ou cubra a fila com palha. Arrancadas, aguentam 2 a 4 meses num saco perfurado no frigorífico.",
       "problems": [
         {
-          "name": "Cancro da pastinaca",
+          "name": "Cancro da pastinaga",
           "fix": "Manchas ásperas castanho-alaranjadas ou negras no topo da raiz, muitas vezes onde foi ferida. Escolha variedades resistentes e não fira as raízes ao sachar."
         },
         {
           "name": "Mosca-da-cenoura",
-          "fix": "Galerias cor de ferrugem nas raízes, feitas por pequenas larvas. Cubra a cultura com rede anti-insetos fina e não semeie onde houve cenouras ou pastinacas há pouco."
+          "fix": "Galerias cor de ferrugem nas raízes, feitas por pequenas larvas. Cubra a cultura com rede anti-insetos fina e não semeie onde houve cenouras ou pastinagas há pouco."
         },
         {
           "name": "Má germinação",
           "fix": "Falhas na fila, por semente velha ou terra fria e encharcada. Use semente nova, espere que o solo aqueça e ponha algumas sementes em cada ponto, deixando a mais forte."
         }
       ],
-      "source": "Cuidados da pastinaca: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
+      "source": "Cuidados da pastinaga: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
     },
     "beetroot": {
       "about": "Cultiva-se pelas raízes doces, e pelas folhas novas para saladas. Cada semente é um glomérulo que dá várias plântulas, por isso desbaste cedo ou deixe-as crescer em pequenos grupos para beterrabas mini. Semeie pouco a cada poucas semanas, da primavera ao pleno verão; as raízes das sementeiras de verão são as que se guardam.",
@@ -761,7 +761,7 @@
           "fix": "No inverno rasgam as folhas e deixam só os talos e as nervuras. Cubra as plantas com rede apoiada em arcos ou canas, afastada das folhas."
         }
       ],
-      "source": "Cuidados da couve kale: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Washington State University. Congelação: National Center for Home Food Preservation (University of Georgia)."
+      "source": "Cuidados da couve-frisada: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Washington State University. Congelação: National Center for Home Food Preservation (University of Georgia)."
     },
     "cabbage": {
       "about": "Cultiva-se pelas cabeças firmes; com variedades de primavera, verão, outono e inverno pode cortar repolho quase todo o ano. Quer solo firme e fértil e proteção contra lagartas, pombos e mosca-da-couve; não o plante onde houve couves nos dois últimos anos.",
@@ -874,15 +874,15 @@
       "source": "Cuidados da couve-rábano: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
     },
     "onion_sets": {
-      "about": "Os bulbinhos são cebolas pequenas criadas no ano anterior, que se plantam para engordarem até cebolas inteiras. É a forma mais fácil de cultivar cebola: enterre-os com a ponta à vista e calque a terra para que as aves não os arranquem.",
+      "about": "Os bolbinhos são cebolas pequenas criadas no ano anterior, que se plantam para engordarem até cebolas inteiras. É a forma mais fácil de cultivar cebola: enterre-os com a ponta à vista e calque a terra para que as aves não os arranquem.",
       "water": "Regue nos períodos secos longos, sobretudo enquanto as plantas são novas. Pare quando os bolbos tiverem engordado a meio do verão: a rega tardia encurta o tempo de conservação.",
-      "feed": "Composto incorporado antes de plantar costuma bastar. Em terra pobre, dê aos bulbinhos plantados no outono um adubo rico em azoto no fim do inverno.",
+      "feed": "Composto incorporado antes de plantar costuma bastar. Em terra pobre, dê aos bolbinhos plantados no outono um adubo rico em azoto no fim do inverno.",
       "harvest": "Quando as folhas amarelarem e tombarem, arranque as cebolas antes de as folhas secarem por completo: de junho a julho as de outono, de julho a outubro as de primavera. Seque-as ao sol cerca de duas semanas.",
       "keeps": "Guarde as cebolas secas em redes ou caixas de ripas num local fresco, seco, arejado e com luz; no escuro grelam. As plantadas no outono aguentam até ao início do inverno; as de primavera, até à primavera seguinte.",
       "problems": [
         {
           "name": "Espigamento",
-          "fix": "Sai uma haste floral do centro, muitas vezes depois de uma primavera fria. Parta-a e coma essa cebola primeiro, porque não se conserva; os bulbinhos tratados pelo calor espigam menos."
+          "fix": "Sai uma haste floral do centro, muitas vezes depois de uma primavera fria. Parta-a e coma essa cebola primeiro, porque não se conserva; os bolbinhos tratados pelo calor espigam menos."
         },
         {
           "name": "Podridão-branca",
@@ -896,7 +896,7 @@
       "source": "Cuidados da cebola: RHS. Quantas plantar: extensão da Kansas State. pH: University of Connecticut."
     },
     "onion": {
-      "about": "Cultiva-se a partir de semente para ter cebolas que se guardam todo o inverno; é mais barata do que os bulbinhos, há mais variedades e espiga menos. Semeie no início da primavera, dentro de casa ou diretamente na linha, e desbaste as plântulas em duas vezes para que cada cebola tenha espaço.",
+      "about": "Cultiva-se a partir de semente para ter cebolas que se guardam todo o inverno; é mais barata do que os bolbinhos, há mais variedades e espiga menos. Semeie no início da primavera, dentro de casa ou diretamente na linha, e desbaste as plântulas em duas vezes para que cada cebola tenha espaço.",
       "water": "Mantenha as plântulas húmidas; depois, regue só nos períodos secos longos. Pare quando os bolbos tiverem engordado a meio do verão, e conservam-se mais tempo.",
       "feed": "Composto incorporado antes de semear costuma bastar; azoto a mais no fim dá cebolas moles que se conservam mal.",
       "harvest": "Quando as folhas amarelarem e tombarem, de julho a outubro, arranque as cebolas antes de as folhas secarem por completo. Seque-as ao sol cerca de duas semanas.",
@@ -940,7 +940,7 @@
       "source": "Cuidados do alho-poró: RHS. pH: University of Connecticut."
     },
     "celery": {
-      "about": "Cultiva-se pelos talos estaladiços. As variedades autobranqueadoras são as mais fáceis: plante-as em bloco, não em fila, para se darem sombra umas às outras nos talos. O salsão precisa de calor e de água constante: plantas jovens muito tempo abaixo de 10 °C podem espigar, por isso plante só quando as noites estiverem amenas.",
+      "about": "Cultiva-se pelos talos estaladiços. As variedades autobranqueadoras são as mais fáceis: plante-as em bloco, não em fila, para se darem sombra umas às outras nos talos. O aipo precisa de calor e de água constante: plantas jovens muito tempo abaixo de 10 °C podem espigar, por isso plante só quando as noites estiverem amenas.",
       "water": "Nunca deixe o solo secar: a secura torna os talos fibrosos e de sabor forte demais. No verão regue com generosidade, de manhã ou ao fim da tarde, com água da chuva se puder.",
       "feed": "Plante em terra rica em composto ou estrume. Em solo pobre, dê no verão um pouco de adubo rico em azoto; em vaso, um adubo líquido equilibrado a cada duas semanas.",
       "harvest": "Arranque plantas inteiras a partir do fim do verão, antes de as folhas amarelecerem e antes da primeira geada; cubra-as com manta térmica quando as noites arrefecerem. Use-as pouco depois de colher.",
@@ -952,14 +952,14 @@
         },
         {
           "name": "Septoriose",
-          "fix": "Pequenas manchas castanhas com pontinhos negros que se espalham pelas folhas com tempo húmido. Tire as folhas manchadas e não cultive salsão nem aipo-rábano na mesma terra durante alguns anos."
+          "fix": "Pequenas manchas castanhas com pontinhos negros que se espalham pelas folhas com tempo húmido. Tire as folhas manchadas e não cultive aipo nem aipo-rábano na mesma terra durante alguns anos."
         },
         {
           "name": "Lesmas e caracóis",
-          "fix": "Adoram o salsão e comem as plantas jovens e os talos. Proteja as plantas, sobretudo com tempo húmido."
+          "fix": "Adoram o aipo e comem as plantas jovens e os talos. Proteja as plantas, sobretudo com tempo húmido."
         }
       ],
-      "source": "Cuidados do salsão: RHS. pH: University of Connecticut e University of Maryland."
+      "source": "Cuidados do aipo: RHS. pH: University of Connecticut e University of Maryland."
     },
     "fennel": {
       "about": "O funcho de Florença cultiva-se pela base engrossada das folhas, com sabor a anis: o bolbo. O principal problema é espigar, florir em vez de formar bolbo: semeie no início do verão e não na primavera, escolha uma variedade resistente e semeie em alvéolos para não mexer nas raízes. Quando a base começar a engrossar, amontoe terra à volta para ficar branca e doce.",
@@ -1009,7 +1009,7 @@
       "keeps": "Os turiões aguentam uns dias no frigorífico, de pé num pouco de água ou com a base embrulhada em papel húmido. Escaldados, congelam bem.",
       "problems": [
         {
-          "name": "Criocero-do-aspargo",
+          "name": "Criocero-do-espargo",
           "fix": "Escaravelhos vermelhos e pretos com manchas claras, e as suas larvas cinzentas, comem caules e rama no verão. Apanhe-os à mão a partir do fim da primavera e retire no outono os caules velhos, onde os adultos passam o inverno."
         },
         {
@@ -1018,10 +1018,10 @@
         },
         {
           "name": "Podridão da raiz",
-          "fix": "As plantas amarelecem e secam aos bocados em solo pesado e encharcado. Em terra pesada, cultive o aspargo num canteiro elevado, e nunca plante garras novas onde já houve aspargos."
+          "fix": "As plantas amarelecem e secam aos bocados em solo pesado e encharcado. Em terra pesada, cultive o espargo num canteiro elevado, e nunca plante garras novas onde já houve espargos."
         }
       ],
-      "source": "Cuidados do aspargo: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Cornell e University of Maryland."
+      "source": "Cuidados do espargo: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Cornell e University of Maryland."
     },
     "rhubarb": {
       "about": "Planta perene e duradoura cultivada pelos talos ácidos, colhidos da primavera ao início do verão. Só se comem os talos: as folhas têm ácido oxálico e não se comem. Uma touceira produz muitos anos; arranque-a e divida-a mais ou menos a cada cinco anos para se manter vigorosa.",
@@ -1109,14 +1109,14 @@
           "fix": "Os botões e as flores caem sem vingar quando o solo seca, com muito calor ou em noites frias. Mantenha o solo húmido de forma regular, e areje e sombreie a estufa nos dias quentes."
         }
       ],
-      "source": "Cuidados do pimentão: RHS. Quantas plantar: extensão da Kansas State e da Virginia Tech. pH: University of Maryland. Conservação: Kansas State e University of Missouri."
+      "source": "Cuidados do pimento: RHS. Quantas plantar: extensão da Kansas State e da Virginia Tech. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
     },
     "chilli": {
       "about": "Cultiva-se pelos frutos picantes, para usar frescos, secos ou em conserva. Precisa de calor todo o verão: estufa, um parapeito soalheiro ou um canto quente e abrigado ao ar livre. Em vaso pode entrar em casa antes do frio e passar o inverno num sítio claro e quente, com pouca rega.",
       "water": "Mantenha o substrato húmido de forma regular: se secar, os botões caem. Um vaso em pleno sol pode precisar de água todos os dias com calor.",
       "feed": "Quando florir, dê todas as semanas um adubo líquido rico em potássio (adubo para tomate) às plantas em vaso. Em terra rica precisa de menos.",
       "harvest": "Colha-as verdes para a maior colheita: as que ficam a corar são mais picantes, mas a planta dá então menos flores novas. No fim da época deixe corar as últimas. Corte-as com o pé e lave as mãos depois de mexer nas variedades picantes.",
-      "keeps": "Guarde as pimentas frescas num sítio fresco e use-as cedo, ou seque-as, congele-as ou ponha-as em conserva para o inverno.",
+      "keeps": "Guarde as malaguetas frescas num sítio fresco e use-as cedo, ou seque-as, congele-as ou ponha-as em conserva para o inverno.",
       "problems": [
         {
           "name": "Afídeos (piolhos)",
@@ -1131,7 +1131,7 @@
           "fix": "Acima de uns 30 °C as flores caem e vingam poucos frutos. Areje e sombreie a estufa e molhe o chão todos os dias."
         }
       ],
-      "source": "Cuidados e conservação da pimenta: RHS. pH: University of Maryland (pimentos)."
+      "source": "Cuidados e conservação da malagueta: RHS. pH: Virginia Tech (pimentos)."
     },
     "aubergine": {
       "about": "Cultiva-se pelos frutos brilhantes, roxos, brancos ou riscados. Precisa de mais calor do que o tomate e de uns cinco meses da sementeira à colheita: num verão fresco, cultive-a em estufa ou no sítio mais soalheiro e abrigado. Corte a ponta por volta dos 30 cm para ramificar, e deixe cinco ou seis frutos nas variedades de fruto grande.",
@@ -1153,7 +1153,7 @@
           "fix": "Insetos sugadores por baixo das folhas, que ficam pegajosas e pálidas. Vigie a página inferior com frequência e lave as pequenas colónias; em estufa, as armadilhas amarelas com cola apanham a mosca-branca."
         }
       ],
-      "source": "Cuidados da berinjela: RHS. Quantas plantar: extensão da Kansas State e da Virginia Tech. pH: University of Maryland. Conservação: Kansas State e University of Missouri."
+      "source": "Cuidados da beringela: RHS. Quantas plantar: extensão da Kansas State e da Virginia Tech. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
     },
     "cucumber": {
       "about": "Cultiva-se pelos frutos, colhidos a partir do pleno verão. A maioria das variedades trepa: conduza-as por uma cana, rede ou treliça para poupar espaço e manter os frutos limpos. As de estufa são muitas vezes só femininas, por isso tire as flores masculinas que apareçam; as de ar livre precisam das flores masculinas para a polinização.",
@@ -1175,7 +1175,7 @@
           "fix": "Comem as plantas novas, sobretudo com tempo húmido. Proteja as plantas depois da plantação e veja-as ao anoitecer; conduzidas em altura, os frutos ficam fora do alcance."
         }
       ],
-      "source": "Cuidados do pepino: RHS. Quantas plantar: Virginia Tech. pH: University of Maryland. Conservação: Kansas State e University of Missouri."
+      "source": "Cuidados do pepino: RHS. Quantas plantar: Virginia Tech. pH: Cornell Cooperative Extension. Conservação: Kansas State e University of Missouri."
     },
     "courgette": {
       "about": "Cultiva-se pelos frutos novos, colhidos pequenos todo o verão; as flores também se comem. Uma planta alastra muito e produz em abundância. Colha com frequência: um fruto esquecido uns dias fica enorme e atrasa a planta.",
@@ -1197,7 +1197,7 @@
           "fix": "Os frutos pequenos apodrecem pela ponta no início de um verão fresco, quando poucos insetos polinizam. Passa com o calor; também pode polinizar à mão com uma flor masculina."
         }
       ],
-      "source": "Cuidados da abobrinha: RHS. Quantas plantar: Virginia Tech. pH: University of Maryland. Conservação: Kansas State e University of Missouri."
+      "source": "Cuidados da curgete: RHS. Quantas plantar: Virginia Tech. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
     },
     "pumpkin": {
       "about": "Cultiva-se pelos frutos grandes, que amadurecem no outono e se guardam até ao inverno. Os caules rasteiros precisam de muito espaço. Para frutos grandes deixe dois ou três por planta; para uma abóbora gigante, só um.",
@@ -1219,7 +1219,7 @@
           "fix": "Comem as plantas novas e as flores. Proteja as plantas depois da plantação, sobretudo com tempo húmido."
         }
       ],
-      "source": "Cuidados e conservação da abóbora: RHS. Maturação: University of Minnesota. Quantas plantar: Kansas State e Virginia Tech. pH: University of Maryland."
+      "source": "Cuidados e conservação da abóbora: RHS. Maturação: University of Minnesota. Quantas plantar: Kansas State e Virginia Tech. pH: Virginia Tech."
     },
     "winter_squash": {
       "about": "Cultiva-se pelos frutos de casca dura, como a manteiga (butternut), a bolota ou a hokkaido, que se guardam todo o inverno. As rasteiras alastram muito; as pequenas podem conduzir-se num suporte firme. Deixe o fruto na planta até estar bem maduro: uma abóbora verde não se guarda.",
@@ -1241,7 +1241,7 @@
           "fix": "Os frutos pequenos murcham ou apodrecem com tempo fresco, quando poucos insetos polinizam. Polinize à mão levando o pólen de uma flor masculina à feminina, que tem um pequeno fruto na base."
         }
       ],
-      "source": "Cuidados da abóbora: RHS. Maturação e conservação: University of Minnesota e RHS. Quantas plantar: Kansas State e Virginia Tech. pH: University of Maryland."
+      "source": "Cuidados da abóbora: RHS. Maturação e conservação: University of Minnesota e RHS. Quantas plantar: Kansas State e Virginia Tech. pH: Virginia Tech."
     },
     "green_beans": {
       "about": "Cultiva-se pelas vagens tenras, colhidas novas. As variedades anãs crescem cerca de 45 cm e dão-se bem em vaso; as de trepar precisam de canas altas mas produzem durante mais tempo. Morrem com a geada e apodrecem em terra fria e encharcada, por isso semeie só quando a terra estiver quente.",
@@ -1263,7 +1263,7 @@
           "fix": "As flores caem sem vingar com calor, secura ou vento. Mantenha a terra húmida, sobretudo na floração."
         }
       ],
-      "source": "Cuidados da vagem: RHS e Virginia Tech. Quantas plantar: extensão da Kansas State e da Texas A&M. pH: Virginia Tech e Penn State."
+      "source": "Cuidados do feijão-verde: RHS e Virginia Tech. Quantas plantar: extensão da Kansas State e da Texas A&M. pH: Virginia Tech e Penn State."
     },
     "sweetcorn": {
       "about": "Cultiva-se pelas maçarocas doces. Plante-o num bloco de filas curtas e não numa fila comprida: o pólen é levado pelo vento, e só em bloco as maçarocas enchem bem. Mantenha as variedades supersweet longe de outro milho doce, ou os grãos ficam farinhentos.",
@@ -1307,7 +1307,7 @@
           "fix": "Em vaso, as plantas murcham e tombam porque larvas brancas, curvadas em C, comem as raízes. No fim do verão, regue o substrato com nemátodes como luta biológica."
         }
       ],
-      "source": "Cuidados dos morangos: RHS. Tamanho do vaso: Iowa State University. pH: University of Massachusetts e University of Maryland. Conservação: Kansas State e University of Missouri."
+      "source": "Cuidados dos morangos: RHS. Tamanho do vaso: Iowa State University. pH: Cornell Cooperative Extension. Conservação: Kansas State e University of Missouri."
     },
     "melon": {
       "about": "Cultiva-se pelos frutos doces do fim do verão. Precisa de calor a sério: em zonas frescas, cultive-o em estufa, túnel ou alfobre coberto. Para os frutos amadurecerem, deixe até quatro por planta ao ar livre e quatro a seis em estufa, e tire os outros quando tiverem uns 2,5 cm.",
@@ -1329,7 +1329,7 @@
           "fix": "Um ponteado fino e claro nas folhas e teias finas, com ar seco em estufa. Molhe o chão da estufa e pulverize as plantas com calor."
         }
       ],
-      "source": "Cuidados do melão: RHS. Maturação: University of Minnesota. Quantas plantar: Virginia Tech e Kansas State. pH: University of Maryland. Conservação: Kansas State e University of Missouri."
+      "source": "Cuidados do melão: RHS. Maturação: University of Minnesota. Quantas plantar: Virginia Tech e Kansas State. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
     },
     "watermelon": {
       "about": "Cultiva-se pelos frutos grandes e doces. Precisa de um verão longo e quente: em zonas frescas, escolha uma variedade pequena e precoce e cultive-a em estufa. Ao contrário do melão, não amadurece depois de colhida, por isso avalie a maturação na planta.",
@@ -1395,7 +1395,7 @@
           "fix": "Durante semanas não aparece nada e muitas vezes a linha é cavada por engano. Demolhe a semente uma noite antes de semear, mantenha a terra húmida e espere até seis semanas."
         }
       ],
-      "source": "Cuidados da salsinha: RHS. pH: Cornell e University of Maryland."
+      "source": "Cuidados da salsa: RHS. pH: Cornell e University of Maryland."
     },
     "coriander": {
       "about": "Anual rápida cultivada pelas folhas e, mais tarde, pelas sementes. Com calor e solo seco espiga depressa, por isso semeie pouco mais ou menos todos os meses a partir da primavera, em vez de uma só sementeira grande. Dá-se bem em vaso.",
@@ -1464,7 +1464,7 @@
       "water": "Regue nos períodos secos do primeiro verão; depois, na terra, aguenta-se sozinha. Em vaso, mantenha o substrato húmido de forma regular.",
       "feed": "Precisa de pouco: na terra basta o composto na plantação. Em vaso, um adubo líquido geral de vez em quando no verão mantém a saída de folhas novas.",
       "harvest": "Corte as folhas logo acima da base sempre que precisar; cortar com frequência faz sair mais. Depois da floração, corte toda a touceira a cerca de 5 cm para rebentar com folhas novas.",
-      "keeps": "A cebolinha cortada murcha em poucos dias. Pique-a e congele-a, num saco ou em cuvetes de gelo, para usar no inverno.",
+      "keeps": "O cebolinho cortado murcha em poucos dias. Pique-o e congele-o, num saco ou em cuvetes de gelo, para usar no inverno.",
       "problems": [
         {
           "name": "Ferrugem",
@@ -1475,7 +1475,7 @@
           "fix": "Pequenos pulgões verdes agrupados nas folhas e hastes florais. Tire-os com os dedos ou com um jato de água."
         }
       ],
-      "source": "Cuidados da cebolinha: RHS. pH: University of Minnesota."
+      "source": "Cuidados do cebolinho: RHS. pH: University of Minnesota."
     },
     "thyme": {
       "about": "Um pequeno arbusto de folha perene cultivado pelas folhas aromáticas, colhidas frescas todo o ano ou secas. Precisa de sol e de solo bem drenado: a humidade do inverno mata-o mais vezes do que o frio. Com os anos fica lenhoso; substitua as plantas velhas por novas feitas de estaca.",
@@ -1526,7 +1526,7 @@
       "water": "Regue as plantas novas em períodos secos; depois de instalada, na terra não precisa de mais água. Em vaso, regue com calor e secura, mas nunca deixe o substrato encharcado.",
       "feed": "Na terra não precisa de adubo. Uma planta há mais de um ano no mesmo vaso pode levar um pouco de adubo granulado universal no fim da primavera ou no início do verão.",
       "harvest": "Corte rebentos do fim da primavera ao outono e desfolhe-os; o sabor é melhor antes de as flores abrirem. Corte-o depois da floração para dar folhas novas e retire os caules velhos no fim do inverno.",
-      "keeps": "O orégano seca bem: pendure os raminhos umas semanas num sítio escuro e arejado, e guarde as folhas num frasco bem fechado.",
+      "keeps": "Os orégãos secam bem: pendure os raminhos umas semanas num sítio escuro e arejado, e guarde as folhas num frasco bem fechado.",
       "problems": [
         {
           "name": "Ferrugem da hortelã",
@@ -1541,7 +1541,7 @@
           "fix": "Pequenas lagartas comem as folhas no verão e prendem-nas com seda. O dano costuma ser pequeno; retire as lagartas à mão se o incomodar."
         }
       ],
-      "source": "Cuidados do orégano: RHS. pH: laboratório de solos da University of Connecticut (manjerona) e extensão da NC State."
+      "source": "Cuidados dos orégãos: RHS. pH: laboratório de solos da University of Connecticut (manjerona) e extensão da NC State."
     },
     "sage": {
       "about": "Um arbusto de folha perene cultivado pelas folhas macias, verde-acinzentadas, que pode colher todo o ano. Precisa de sol e de um solo que nunca fique encharcado. Aos seis ou sete anos fica lenhosa e desengonçada; substitua-a por plantas novas feitas de estaca.",
@@ -1675,7 +1675,7 @@
       "source": "Cuidados do girassol: RHS. pH: University of Minnesota."
     },
     "marigold": {
-      "about": "O cravo-de-defunto cultiva-se pelas flores cor de laranja e amarelas do início do verão até à primeira geada, em canteiros, vasos e entre as hortícolas. É fácil, mas as lesmas adoram as plantas jovens. Tirando as flores murchas, continuam a surgir novas.",
+      "about": "Os tagetes cultivam-se pelas flores cor de laranja e amarelas do início do verão até à primeira geada, em canteiros, vasos e entre as hortícolas. São fáceis, mas as lesmas adoram as plantas jovens. Tirando as flores murchas, continuam a surgir novas.",
       "water": "Regue em períodos secos, junto ao pé e não por cima das flores. Os vasos secam depressa no verão e devem ser vistos todos os dias.",
       "feed": "Uma terra de horta normal chega; terra rica ou adubo a mais dá folhas em vez de flores. Em vaso, um adubo líquido de poucas em poucas semanas mantém a floração.",
       "harvest": "De poucos em poucos dias tire as flores murchas, beliscando-as abaixo da cabeça. Corte para a jarra quando as flores estiverem bem abertas.",
@@ -1694,7 +1694,7 @@
           "fix": "Folhas pálidas e pintalgadas com teias finas com tempo quente e seco, sobretudo em estufa e vaso. Regue bem e pulverize ou molhe a página inferior das folhas."
         }
       ],
-      "source": "Cuidados do cravo-de-defunto: RHS. pH: laboratório de solos da University of Connecticut."
+      "source": "Cuidados dos tagetes: RHS. pH: laboratório de solos da University of Connecticut."
     },
     "calendula": {
       "about": "Uma anual rústica cultivada pelas flores cor de laranja e amarelas do início do verão até ao outono; as pétalas comem-se e dão cor a saladas e arroz. Cresce em quase todos os solos e ressemeia-se sozinha. Semeada no outono, passa o inverno e floresce cedo no ano seguinte.",
@@ -1993,8 +1993,8 @@
       "plants_other": "{{count}} plantas",
       "cloves_one": "{{count}} dente",
       "cloves_other": "{{count}} dentes",
-      "sets_one": "{{count}} bulbinho",
-      "sets_other": "{{count}} bulbinhos",
+      "sets_one": "{{count}} bolbinho",
+      "sets_other": "{{count}} bolbinhos",
       "seedPotatoes_one": "{{count}} batata-semente",
       "seedPotatoes_other": "{{count}} batatas-semente",
       "bulbs_one": "{{count}} bulbo",
