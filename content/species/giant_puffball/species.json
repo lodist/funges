@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Bejín gigante",
-      "description": "Una bola blanca y lisa, del tamaño de un balón o mayor, en prados y pastos, de carne firme y blanca como la mozzarella fresca",
+      "description": "Una bola blanca y lisa, del tamaño de un balón de fútbol o más grande, en prados y pastos. Su carne es firme y blanca, como la mozzarella fresca.",
       "howTo": "Búscalo en prados, pastos, parques y lindes de bosque desde finales del verano hasta el otoño, a menudo junto a las ortigas. Córtalo siempre por la mitad de arriba abajo: por dentro debe ser blanco puro, sin rastro de sombrero ni pie",
       "guide": {
-        "identify": "Una bola blanca y lisa, a menudo de 20 a 50 cm, con una piel fina como de cuero y sin pie, unida al suelo por un cordón parecido a una raíz. Córtalos todos por la mitad de arriba abajo: por dentro deben ser firmes y de un blanco puro y uniforme, como una mozzarella fresca. Si se ve el contorno de un sombrero, láminas o pie, puede ser una amanita joven aún dentro de su huevo, que puede ser mortal; una piel gruesa, escamosa y amarillenta con el interior oscuro, morado negruzco, indica un Scleroderma, que es tóxico. La carne amarilla, oliva o parda indica que maduran las esporas: ya no es comestible.",
-        "habitat": "Prados, pastos, parques, jardines, setos y lindes de bosque en suelo rico, a menudo entre ortigas y a menudo en el mismo sitio cada año. Extendido en Europa y en el este de EE. UU.; en el interior seco del oeste crece un pariente parecido, Calvatia booniana, entre artemisas y pastizales abiertos.",
-        "season": "De verano a otoño: sobre todo de julio a octubre en Europa, y a finales de verano y principios de otoño en el este de EE. UU. Crece deprisa tras lluvias fuertes con calor.",
-        "picking": "Córtalo por la base y coge solo los firmes y blancos por dentro; uno suele bastar para varias personas. Deja los viejos que amarillean para que suelten sus esporas y evita cunetas y céspedes tratados con productos químicos.",
-        "kitchen": "Una vez identificado con certeza, quítale la piel, que puede ser indigesta, y cocínalo: en filetes gruesos a la plancha con mantequilla o rebozados, tiene un sabor suave y absorbe otros sabores. La primera vez, prueba solo un poco.",
-        "keeps": "Cómelo en dos días, guardado en la nevera, y tíralo en cuanto la carne amarillee. Los filetes ya fritos se congelan bien.",
+        "identify": "El bejín gigante es una bola blanca y lisa, a menudo de 20 a 50 cm. Tiene una piel fina como de cuero y no tiene pie. Un cordón parecido a una raíz lo une al suelo. Corta cada uno por la mitad, de arriba abajo. Por dentro tiene que ser firme y de un blanco puro de punta a punta, como una mozzarella fresca. Si se ve el contorno de un sombrero, de láminas o de un pie, puede ser una amanita joven todavía dentro de su huevo. Eso puede ser mortal. Una piel gruesa, escamosa y amarillenta con el interior oscuro, negro morado, indica un Scleroderma, que es venenoso. Si la carne es amarilla, oliva o parda, las esporas están madurando. Entonces ya no se puede comer.",
+        "habitat": "Búscalo en prados, pastos, parques, jardines, setos y bordes de bosque con suelo rico. A menudo sale entre ortigas, y muchas veces en el mismo sitio cada año. Está extendido por Europa y el este de EE. UU. En el interior seco del oeste crece el bejín gigante occidental (Calvatia booniana), muy parecido, entre artemisas y pastizales abiertos.",
+        "season": "Sale de verano a otoño. En Europa, sobre todo de julio a octubre. En el este de EE. UU., de finales de verano a principios de otoño. Crece deprisa después de lluvias fuertes y cálidas.",
+        "picking": "Córtalo por la base y coge solo los firmes y blancos por dentro. Con uno suelen comer varias personas. Deja los viejos que amarillean para que suelten sus esporas. Evita las cunetas y los céspedes tratados con productos químicos.",
+        "kitchen": "Cuando lo tengas bien identificado, quítale la piel, que puede sentar mal. Después cocínalo. Fríe rodajas gruesas en mantequilla. También puedes empanarlas antes. Tiene un sabor suave y coge el gusto de lo que lo acompaña. La primera vez, prueba solo un poco.",
+        "keeps": "Guárdalo en la nevera y cómelo en dos días. Tíralo en cuanto la carne se ponga amarilla. Las rodajas fritas se congelan bien.",
         "source": "Identificación y hábitat: Missouri Department of Conservation y First Nature. Conservación: ANSES. Temporada: registros de GBIF."
       }
     },

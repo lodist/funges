@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Boleto de Pino",
-      "description": "Un boleto de sombrero pardo rojizo de los pinares, con pie robusto reticulado y carne firme",
+      "description": "Un boleto de los pinares con el sombrero pardo rojizo, un pie robusto y rojizo con red y la carne firme.",
       "howTo": "Búscalo en pinares y abetales con musgo sobre suelo ácido y arenoso, a finales de primavera y de nuevo en otoño",
       "guide": {
-        "identify": "El porcino rojo, llamado también boleto pinícola: el sombrero es de rojo vinoso a caoba, a menudo abollado, aterciopelado de joven y de graso a viscoso con la humedad, con una pruina blanquecina en el borde. El pie, corto y robusto, está teñido de pardo rojizo y lleva un fino retículo de blanquecino a rojizo, y la carne blanca es rojo vinoso justo bajo la cutícula. Los poros pasan de blancos a amarillos y oliva y apenas cambian de color al presionarlos. El boleto bronceado es de sepia a negro, sin rojo; poros rojos o naranjas (Rubroboletus satanas) o rosados con un retículo oscuro (Tylopilus felleus) lo descartan.",
-        "habitat": "Sobre todo con pino silvestre y pícea en suelo ácido, a menudo entre musgo, y en la montaña también con castaños, hayas y abetos, sobre todo entre 400 y 1400 m. Común en Escandinavia, en los pinares de Escocia y en las montañas del centro y el sur de Europa.",
-        "season": "A menudo es el primer boleto del año y el último: una salida en mayo y junio donde sigue fresco y húmedo, y la principal en septiembre y octubre, hasta noviembre y pasadas las primeras heladas.",
-        "picking": "Córtalo o gíralo y no rastrilles el musgo, que protege el micelio. En muchas comunidades autónomas y montes públicos hace falta un permiso de recolección y hay un límite diario: infórmate de las normas del lugar.",
-        "kitchen": "Una vez identificado con certeza, cocínalo bien como el boleto comestible; es más suave y algo resinoso, y los jóvenes muy firmes necesitan más cocción. Tiñe de verde el agua de cocción y va bien en salsas, en escabeche o seco.",
-        "keeps": "Se seca bien en láminas; fresco, úsalo en uno o dos días.",
+        "identify": "Es el boleto pinícola, el boleto rojo. El sombrero va de rojo vino a caoba y a menudo está abollado. De joven es aterciopelado. Con humedad se vuelve de grasiento a viscoso. En el borde tiene una pruina blanquecina. El pie es corto y robusto, teñido de pardo rojizo, con un fino retículo de blanquecino a rojizo. La carne es blanca, pero justo bajo la piel del sombrero es rojo vino. Los poros pasan de blancos a amarillos y verde oliva. Apenas cambian de color al apretarlos. El boleto negro va de color sepia a negro, sin nada de rojo. Los poros rojos o naranjas (Rubroboletus satanas) lo descartan. También los poros rosados con un retículo oscuro (Tylopilus felleus).",
+        "habitat": "Crece sobre todo con pino silvestre y con pícea, en terreno ácido y a menudo entre el musgo. En la montaña sale también con castaños, hayas y abetos, sobre todo entre 400 y 1400 m. Es común en Escandinavia, en los pinares de Escocia y en las montañas del centro y el sur de Europa.",
+        "season": "A menudo es el primer boleto del año y también el último. Una primera salida llega en mayo y junio, donde el tiempo sigue fresco y húmedo. La cosecha principal viene en septiembre y octubre. Sigue hasta noviembre, pasadas las primeras heladas.",
+        "picking": "Córtalo o sácalo girándolo, y no rastrilles el musgo, que protege el hongo. En muchas comunidades autónomas y regiones de Italia hace falta un permiso. Algunos cantones suizos limitan la cantidad. Infórmate de las normas del lugar.",
+        "kitchen": "Si lo tienes identificado con total seguridad, cocínalo bien, como el boleto comestible. Es más suave y algo resinoso. Los jóvenes muy firmes necesitan más tiempo de cocción. Tiñe de verde el agua de cocción. Va bien en salsas, en escabeche y seco.",
+        "keeps": "Se seca bien en láminas. Fresco, úsalo en uno o dos días.",
         "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Cocina: Regione Piemonte."
       }
     },

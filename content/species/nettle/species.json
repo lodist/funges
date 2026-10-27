@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Ortiga",
-      "description": "Planta verde nutritiva con pelos urticantes que debe cocinarse",
+      "description": "Una planta verde y nutritiva con pelos que pican. Siempre hay que cocinarla antes de comerla.",
       "howTo": "Se encuentra en áreas alteradas, setos y bordes de bosques en primavera y verano",
       "guide": {
-        "identify": "Planta erguida de tallos cuadrados y hojas opuestas: de acorazonadas a ovaladas, con dientes gruesos y punta aguda. Tallos y hojas están cubiertos de pelos urticantes, y desde principios del verano cuelgan de las axilas de las hojas finos racimos de flores verdosas diminutas. Los lamios (ortigas muertas) se le parecen, pero no pican y tienen flores labiadas vistosas, blancas, amarillas o púrpuras.",
-        "habitat": "Forma rodales densos en suelo rico y húmedo: bordes de bosque, riberas, acequias, setos y alrededores de granjas y ruinas. Común en toda Europa, en el sur sobre todo en sitios húmedos y sombríos, y en la mayor parte de EE. UU., sobre todo junto a arroyos y en bosques húmedos y abiertos.",
-        "season": "Los brotes tiernos salen desde febrero en zonas templadas y desde marzo más al norte; recógelos hasta que la planta florezca, hacia junio. Las matas cortadas o segadas rebrotan y dan una segunda cosecha a finales del verano y en otoño.",
-        "picking": "Ponte guantes, corta con tijeras los primeros pares de hojas de arriba y deja las raíces. Evita cunetas, lindes de campos fumigados y caminos de perros; las ortigas alimentan además a las orugas de muchas mariposas.",
-        "kitchen": "Cocina o escalda siempre las ortigas antes de comerlas: el calor elimina el picor, y el secado completo también. Echa las puntas lavadas unos minutos en agua hirviendo con sal y úsalas como espinacas en sopas, risottos, tortillas y pesto; saben a espinaca con un fondo terroso.",
-        "keeps": "Escaldadas, escurridas y congeladas en porciones duran meses; las hojas secadas a la sombra en un sitio aireado sirven para infusión.",
+        "identify": "Las ortigas crecen erguidas, con el tallo cuadrado y las hojas opuestas, de dos en dos. Las hojas van de acorazonadas a ovaladas, con dientes gruesos y la punta aguda. Tallos y hojas están cubiertos de pelos urticantes. Desde principios del verano cuelgan unos racimos finos de florecillas verdosas, justo donde la hoja se une al tallo. Los lamios, u ortigas muertas, se les parecen, pero no pican. Además tienen flores vistosas en forma de labio, blancas, amarillas o moradas.",
+        "habitat": "Las ortigas forman rodales densos en suelo rico y húmedo. Búscalas en bordes de bosque, riberas, zanjas y setos. También alrededor de granjas y casas viejas. Son comunes en toda Europa. En el sur se quedan sobre todo en sitios húmedos y a la sombra. También crecen en casi todo EE. UU., sobre todo junto a arroyos y en bosques húmedos y abiertos.",
+        "season": "Los brotes tiernos salen desde febrero en las zonas templadas y desde marzo más al norte. Puedes cogerlas hasta que la planta florece, más o menos a partir de junio. Las matas que se han cortado o segado vuelven a brotar. Así tienes una segunda cosecha a finales del verano y en otoño.",
+        "picking": "Ponte guantes. Corta con tijeras los primeros pares de hojas de arriba y deja las raíces. Evita las cunetas, los bordes de campos fumigados y los caminos donde la gente pasea perros. Además, las ortigas dan de comer a las orugas de muchas mariposas.",
+        "kitchen": "Cuece o escalda siempre las ortigas antes de comerlas. El calor les quita el picor, y secarlas bien también. Echa las puntas lavadas unos minutos en agua hirviendo con sal. Luego úsalas como espinacas, en sopa, risotto, tortilla o pesto. Saben a espinaca, solo que algo más a tierra.",
+        "keeps": "Escaldadas, escurridas y congeladas en porciones aguantan meses. Para infusión, seca las hojas en un sitio aireado y a la sombra.",
         "source": "Identificación, hábitat y cocina: NC State Extension y Woodland Trust. Temporada: Woodland Trust y registros de GBIF."
       }
     },

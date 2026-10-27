@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Seta de San Jorge",
-      "description": "Hongo blanco y firme con olor a harina, que aparece alrededor de la festividad de San Jorge en primavera.",
+      "description": "Una seta blanca y firme que huele a harina fresca. Sale en primavera, hacia el día de San Jorge.",
       "howTo": "Se encuentra en praderas, pastizales y bordes de bosques en primavera.",
       "guide": {
-        "identify": "Una seta robusta y carnosa, blanca a crema, con el sombrero de 5 a 15 cm, a menudo irregular y abollado, con el borde enrollado. Las láminas son blancas, estrechas y muy apretadas; el pie, grueso y macizo, no tiene anillo ni volva en la base; la carne, firme y blanca, no cambia de color y huele mucho a harina fresca; la esporada es blanca. La mortal Inosperma erubescens tiene el sombrero cónico y fibroso, enrojece al tocarla y da esporada parda; Entoloma sinuatum también puede oler a harina, pero sus láminas se vuelven rosas y su esporada es rosa. Las amanitas blancas, como la mortal Amanita verna, que también sale en primavera, tienen anillo y volva en la base.",
-        "habitat": "En la hierba: pastos, cunetas segadas, parques y lindes de bosque, a menudo junto a espinos albares, endrinos y otros arbustos de seto, sobre todo en suelo calizo. Vuelve a los mismos sitios durante años, a menudo en corros; está en toda Europa y es muy apreciada en el País Vasco, Navarra y el centro de Italia, donde la llaman perretxiko y prugnolo.",
-        "season": "En primavera, sobre todo en abril y mayo, y hasta junio en el norte y en la montaña; debe su nombre al día de San Jorge, el 23 de abril. Una primavera suave y lluviosa la hace salir.",
-        "picking": "Corta el pie por la base y deja las pequeñas; coge sombreros jóvenes y firmes, porque los viejos suelen estar agusanados. Evita las cunetas con mucho tráfico y consulta las normas locales: algunas comunidades exigen permiso o fijan un cupo diario.",
-        "kitchen": "Una vez identificada con certeza, cómela cocinada: pierde casi todo el olor a harina, y su carne firme y suave va bien en tortillas, revueltos, arroces y salsas con nata. Córtala antes a lo largo para ver si tiene gusanos.",
-        "keeps": "Hasta dos días en la nevera, envuelta en papel. Salteada un momento, se congela bien.",
+        "identify": "La seta de San Jorge es robusta y carnosa, de blanca a crema. El sombrero mide de 5 a 15 cm, a menudo es abollado y tiene el borde enrollado hacia dentro. Las láminas son blancas, estrechas y muy apretadas. El pie es grueso y macizo, sin anillo y sin volva en la base. La carne es blanca y firme, y no cambia de color. Huele mucho a harina fresca. La esporada es blanca. La mortal Inosperma erubescens tiene el sombrero puntiagudo y con vetas. Enrojece donde la tocas y da una esporada parda. Entoloma sinuatum también puede oler a harina. Pero sus láminas se vuelven rosas y su esporada es rosa. Las amanitas blancas, como la mortal Amanita verna, también salen en primavera. Tienen anillo y volva en la base.",
+        "habitat": "Crece en la hierba, en pastos, cunetas segadas, parques y lindes de bosque. A menudo sale junto a espinos albares, endrinos y otros arbustos de seto, sobre todo en terreno calizo. Vuelve a los mismos sitios durante años, a menudo en corros. Crece en toda Europa y es muy buscada en el norte de España, donde la llaman perretxiko, y en el centro de Italia.",
+        "season": "Sale en primavera, sobre todo en abril y mayo. En el norte y en la montaña dura hasta junio. Debe su nombre al día de San Jorge, el 23 de abril. Una primavera suave y lluviosa la hace salir.",
+        "picking": "Corta el pie por la base y deja las pequeñas. Coge sombreros jóvenes y firmes, porque los viejos suelen estar llenos de gusanos. Evita las cunetas con mucho tráfico. Infórmate también de las normas del lugar, porque algunas regiones exigen permiso o fijan un cupo diario.",
+        "kitchen": "Cuando no tengas ninguna duda de que es ella, cómela cocinada. Al cocinarla pierde casi todo el olor a harina. Su carne, firme y suave, va bien en tortillas, revueltos, risotto y salsas con nata. Antes, córtala a lo largo para ver si tiene gusanos.",
+        "keeps": "Aguanta hasta dos días en la nevera, envuelta en papel. Si la salteas un momento, se congela bien.",
         "source": "Identificación y hábitat: First Nature. Especies parecidas: First Nature y ANSES. Temporada: registros de GBIF."
       }
     },

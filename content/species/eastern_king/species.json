@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Boleto Rey del Este",
-      "description": "Los boletos de los robledales del este americano: sombrero pardo claro a pardo lila, poros blancos que amarillean con la edad y pie reticulado, sin azulear nunca",
+      "description": "El boleto de los robledales del este de Estados Unidos. El sombrero va de pardo claro a pardo lila. Los poros son blancos y amarillean. Nunca se mancha de azul.",
       "howTo": "Búscalo bajo robles, hayas y nogales americanos en los bosques caducifolios del este, desde junio, pocos días después de una lluvia cálida de verano",
       "guide": {
-        "identify": "Un pequeño grupo de boletos reyes del este: Boletus variipes tiene el sombrero seco, aterciopelado, de pardo claro a pardo grisáceo, que a menudo se agrieta; Boletus separans, un sombrero de pardo lila a rojo hígado que se aclara a pardo amarillento, con lila en el pie. Los dos tienen poros blancos de jóvenes que amarillean, un retículo bien marcado de blanco a parduzco en el pie y carne blanca que no cambia de color. Los Tylopilus amargos, como Tylopilus plumbeoviolaceus, de tonos violetas, tienen poros que se vuelven rosados. Poros rojos o naranjas (Neoboletus subvelutipes) o poros y carne que azulean (Boletus sensibilis, Boletus huronensis) indican un boleto tóxico.",
-        "habitat": "Con robles, también hayas y otras frondosas, al este de las Rocosas: sobre todo desde Nueva York y los Grandes Lagos, por Pensilvania y los Apalaches, hasta Georgia y los Ozarks. Boletus nobilis y Boletus atkinsonii son del mismo grupo.",
-        "season": "De junio a septiembre, sobre todo en julio y agosto, tras lluvias de verano cálidas y abundantes.",
-        "picking": "Córtalo o gíralo y pártelo en el sitio, porque los boletos de verano suelen tener gusanos. Algunos bosques nacionales piden un permiso gratuito y fijan límites diarios; los parques tienen sus propias normas, a menudo más estrictas.",
-        "kitchen": "Una vez identificado con certeza, cocínalo bien como el boleto comestible: salteado, en pasta, sopas y guisos, o seco para un sabor más intenso. Usa solo ejemplares firmes y frescos.",
-        "keeps": "Se seca muy bien en láminas finas; fresco, úsalo en uno o dos días.",
+        "identify": "Es un pequeño grupo de boletos reyes del este. Boletus variipes tiene el sombrero seco y aterciopelado, de pardo claro a pardo grisáceo, y a menudo agrietado. Boletus separans tiene el sombrero de pardo lila a rojo hígado, y con el tiempo se aclara a pardo amarillento. También tiene tonos lila en el pie. Los dos tienen poros blancos de jóvenes, que luego amarillean. Los dos tienen en el pie una redecilla bien visible, de blanca a parduzca. Su carne blanca no cambia de color. Los Tylopilus amargos tienen poros que se vuelven rosados. Un ejemplo es Tylopilus plumbeoviolaceus, de color gris violeta. Los poros rojos o naranjas (Neoboletus subvelutipes) indican un boleto tóxico. También lo indican los poros y la carne que azulean (Boletus sensibilis, Boletus huronensis).",
+        "habitat": "Crece con robles, y también con hayas y otras frondosas, al este de las Rocosas. Es más común desde Nueva York y los Grandes Lagos, pasando por Pensilvania y los Apalaches, hasta Georgia y los Ozarks. Boletus nobilis y Boletus atkinsonii son del mismo grupo.",
+        "season": "Sale de junio a septiembre, sobre todo en julio y agosto. Búscalo después de lluvias de verano cálidas y abundantes.",
+        "picking": "Córtalo o sácalo girándolo y ábrelo allí mismo. Los reyes de verano suelen tener gusanos. Algunos bosques nacionales piden un permiso gratuito y ponen límites diarios. Los parques tienen sus propias normas, a menudo más estrictas.",
+        "kitchen": "Asegúrate bien de que lo has identificado. Luego cocínalo bien, como el boleto comestible. Saltéalo o échalo a la pasta, las sopas y los guisos. También puedes secarlo para que tenga un sabor más intenso. Usa solo ejemplares firmes y frescos.",
+        "keeps": "Se seca muy bien en láminas finas. Fresco, úsalo en uno o dos días.",
         "source": "Identificación y hábitat: MushroomExpert (Michael Kuo). Temporada: registros de GBIF e iNaturalist. Normas: Servicio Forestal de EE. UU."
       }
     },

@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Boleto Rey de las Rocosas",
-      "description": "Un boleto robusto de alta montaña, de sombrero rojo ladrillo a pardo rojizo, poros blancos y pie grueso y claro reticulado en lo alto",
+      "description": "Un boleto robusto de alta montaña. Tiene el sombrero de rojo ladrillo a pardo rojizo, los poros blancos y un pie grueso y claro con red en la parte de arriba.",
       "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre",
       "guide": {
-        "identify": "Un boleto grande y robusto de lo alto de las Rocosas, de sombrero rojo ladrillo a pardo rojizo, pegajoso en fresco y a menudo con una pruina blanquecina de joven, más rojo que el boleto comestible (Boletus edulis), que también crece allí. Los poros son blancos y cerrados de jóvenes, luego amarillos y oliva, y no cambian de color. El pie, grueso y claro, lleva un fino retículo blanco al menos en lo alto, y la carne blanca no azulea. Los boletos de álamo temblón (Leccinum) tienen escamas oscuras en el pie, y los de sombrero naranja han causado intoxicaciones digestivas graves en Colorado; poros rojos o naranjas indican un boleto tóxico.",
-        "habitat": "Sobre todo con la pícea de Engelmann, también con abetos y abetos de Douglas, desde unos 2400 m hasta el límite del arbolado, en Colorado, Nuevo México y las montañas de Arizona.",
-        "season": "De julio a septiembre, a veces hasta octubre: empieza con las tormentas del monzón y sube de altitud a lo largo de la temporada; en veranos secos apenas sale.",
-        "picking": "Gíralo con cuidado, porque buena parte del pie está bajo tierra, y deja los muy agusanados. Cada bosque nacional fija sus normas, algunos con permiso gratuito y límites diarios.",
-        "kitchen": "Una vez identificado con certeza, quita los poros amarillos y blandos de los ejemplares maduros, que pueden amargar y volverse viscosos, y cocínalo bien como el boleto comestible o sécalo.",
-        "keeps": "Sécalo en láminas finas o congélalo salteado.",
+        "identify": "Es un boleto grande y robusto de lo alto de las Montañas Rocosas. El sombrero va de rojo ladrillo a pardo rojizo y está pegajoso cuando es fresco. Los jóvenes suelen tener una pruina blanquecina. Es más rojo que el boleto comestible (Boletus edulis), que también crece allí. Los poros son blancos y como taponados de joven, y luego se vuelven amarillos y verde oliva. No cambian de color al tocarlos. El pie es grueso y claro, con un fino retículo blanco, al menos en la parte de arriba. La carne es blanca y no azulea. Los boletos de los álamos temblones (Leccinum) tienen escamas oscuras en el pie. Los de sombrero naranja han causado intoxicaciones digestivas graves en Colorado. Los poros rojos o naranjas indican un boleto tóxico.",
+        "habitat": "Crece sobre todo con la pícea de Engelmann. También sale con abetos y abetos de Douglas. Lo encuentras desde unos 2400 m hasta el límite del bosque. Crece en Colorado, Nuevo México y las montañas de Arizona.",
+        "season": "Sale de julio a septiembre, a veces hasta octubre. Empieza con las tormentas del monzón y va subiendo de altitud a lo largo de la temporada. En los veranos secos apenas sale.",
+        "picking": "Sácalo girándolo con cuidado, porque buena parte del pie está bajo tierra. Deja los que tengan muchos gusanos. Cada bosque nacional fija sus propias normas. Algunos piden un permiso gratuito y fijan límites diarios.",
+        "kitchen": "Asegúrate primero de que lo has identificado sin ninguna duda. En los sombreros maduros, quita los poros amarillos y blandos. Pueden amargar y volverse babosos. Luego cocínalo bien, como el boleto comestible, o sécalo.",
+        "keeps": "Sécalo en láminas finas, o saltéalo y congélalo.",
         "source": "Identificación y hábitat: Arora y Frank (2014), MushroomExpert y Forage Colorado. Temporada: registros de GBIF. Normas: Servicio Forestal de EE. UU."
       }
     },

@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Boleto de Verano",
-      "description": "El primer boleto de la temporada, de sombrero pardo claro finamente agrietado y pie reticulado por completo",
+      "description": "El boleto más temprano. Su sombrero es pardo claro y está finamente agrietado. Su pie tiene red de arriba abajo.",
       "howTo": "Búscalo bajo robles y hayas desde finales de primavera, mucho antes que los demás boletos",
       "guide": {
-        "identify": "El boleto de verano, o boleto reticulado, tiene el sombrero mate, seco y aterciopelado, de avellana pálido a pardo medio, que con tiempo seco se agrieta en una fina red; nunca es graso y el borde no es más claro que el centro. Su rasgo más claro es un retículo en relieve que baja por el pie casi hasta la base. Los poros son blancos, luego amarillo oliva, y no cambian de color; la carne blanca es más blanda que en el boleto comestible. El boleto de Satanás (Rubroboletus satanas) y Rubroboletus legaliae comparten sus robledales pero tienen poros rojos y carne que azulea; el boleto amargo (Tylopilus felleus) tiene poros rosados y un retículo oscuro.",
-        "habitat": "Robles y castaños, también hayas, tilos y abedules, en bordes de bosque, parques y laderas soleadas, desde el llano hasta unos 1000 m. Común en el centro y el sur de Europa, en especial en el suroeste de Francia y en Portugal; raro en Gran Bretaña.",
-        "season": "El primer boleto del año: desde mayo en zonas bajas y junio en la montaña, sobre todo de julio a principios de septiembre tras lluvias cálidas, hasta el primer frío del otoño.",
-        "picking": "Córtalo o gíralo y deja los pequeños. Con calor muchos tienen gusanos: pártelos en el monte y deja allí los afectados. En muchas comunidades autónomas hace falta un permiso de recolección.",
-        "kitchen": "Muchos lo consideran el mejor boleto: dulce, con sabor a avellana y aromático, para secar, para salsas y con huevos. Una vez identificado con certeza, quita las partes con gusanos y cocínalo bien.",
-        "keeps": "Es el que peor se conserva: cocínalo o sécalo el mismo día.",
+        "identify": "El boleto de verano tiene el sombrero mate, seco y aterciopelado, de color avellana claro a pardo medio. Con tiempo seco se agrieta en una red fina. Nunca es grasiento, y el borde no es más claro que el centro. Lo que mejor lo distingue es un retículo en relieve que baja por el pie casi hasta la base. Los poros son blancos y luego amarillo oliva, y no cambian de color. La carne es blanca y más blanda que en el boleto comestible. El boleto de Satanás (Rubroboletus satanas) y el boleto de Le Gal (Rubroboletus legaliae) comparten sus robledales. Pero tienen los poros rojos y la carne les azulea. El boleto amargo (Tylopilus felleus) tiene poros rosados y un retículo oscuro.",
+        "habitat": "Crece con robles y castaños. También sale con hayas, tilos y abedules. Búscalo en bordes de bosque, en parques y en laderas soleadas, desde el llano hasta unos 1000 m. Es común en el centro y el sur de Europa, sobre todo en el suroeste de Francia y en Portugal. En Gran Bretaña es raro.",
+        "season": "Es el primer boleto del año. Empieza en mayo en las zonas bajas y en junio en la montaña. La temporada fuerte va de julio a principios de septiembre, después de lluvias cálidas. Dura hasta el primer frío del otoño.",
+        "picking": "Córtalo o sácalo girándolo, y deja los pequeños. Con calor muchos tienen gusanos. Pártelos allí mismo y deja en el bosque los que estén agusanados. En muchas comunidades autónomas y regiones de Italia hace falta un permiso.",
+        "kitchen": "Muchos cocineros lo tienen por el mejor de los boletos. Es dulce, aromático y sabe a frutos secos. Va bien seco, en salsas y con huevos. Cuando lo tengas identificado sin ninguna duda, quita las partes con gusanos y cocínalo bien.",
+        "keeps": "De todos los boletos, es el que peor se conserva. Cocínalo o sécalo el mismo día que lo cojas.",
         "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Cocina: Regione Piemonte."
       }
     },

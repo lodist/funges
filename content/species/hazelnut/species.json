@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Avellana",
-      "description": "Frutos secos dulces y redondos que crecen en avellanos",
+      "description": "Frutos dulces y redondos del avellano.",
       "howTo": "Busca avellanos en setos y bordes de bosques en otoño",
       "guide": {
-        "identify": "Arbusto de muchos tallos o arbolito con hojas redondeadas, doblemente dentadas, acabadas en punta, suaves y vellosas por el envés; a finales de invierno cuelgan amentos amarillos de las ramas desnudas. Las avellanas crecen en grupos de una a cuatro, cada una en una cubierta verde y foliácea con flecos que la envuelve en unas tres cuartas partes, y se vuelven pardas al madurar. Los avellanos silvestres de Norteamérica son parientes cercanos; en el avellano de pico la cubierta forma un tubo largo y erizado.",
-        "habitat": "Sotobosque, setos y matorrales de toda Europa, en el sur sobre todo en zonas de montaña y junto a arroyos; da más fruto al sol, en los bordes del bosque. En EE. UU. el avellano europeo se cultiva sobre todo en plantaciones de Oregón; las especies silvestres crecen en matorrales, claros y lindes de bosque.",
-        "season": "De finales de agosto a octubre: están listas cuando la cubierta se vuelve parda y caen o se sueltan al sacudir un poco la rama. Ardillas, arrendajos y lirones suelen llegar antes.",
-        "picking": "Recoge las que han caído o sacude un poco las ramas, y deja bastantes para los animales. Descarta las que tienen un agujerito redondo (una larva de gorgojo se ha comido el fruto) y las que pesan poco, y evita los bordes de carreteras con tráfico y las lindes de campos fumigados.",
-        "kitchen": "Cuando estés seguro de la planta, cómelas crudas o tuéstalas hasta que la piel se agriete, y quítasela frotándolas con un paño áspero. Van en bizcochos, turrones, pesto y ensaladas. Las avellanas son una causa frecuente de alergia a los frutos secos.",
-        "keeps": "Sécalas con cáscara en un sitio aireado hasta que el fruto sea color crema hasta el centro, y guárdalas en un lugar fresco y seco; secas aguantan hasta un año en la nevera.",
+        "identify": "El avellano es un arbusto de muchos tallos o un arbolito. Sus hojas son redondeadas, con doble dentado y acabadas en punta. Por debajo son suaves y vellosas. A finales de invierno cuelgan de las ramas desnudas unos amentos amarillos. Las avellanas crecen en grupos de una a cuatro. Cada una va metida en una cubierta verde con flecos, como de hojas, que la tapa en unas tres cuartas partes. Al madurar se vuelven pardas. Los avellanos silvestres de Norteamérica son parientes cercanos. En el avellano de pico, la cubierta forma un tubo largo y erizado.",
+        "habitat": "Crece en el sotobosque, en setos y en matorrales de toda Europa. En el sur se encuentra sobre todo en colinas y montañas. Da más fruto al sol, en los bordes del bosque. En EE. UU. el avellano europeo crece sobre todo en plantaciones de Oregón. Las especies silvestres crecen en matorrales, claros y bordes de bosque.",
+        "season": "Las avellanas salen de finales de agosto a octubre. Están listas cuando la cubierta se pone parda y caen o se sueltan al sacudir un poco la rama. Ardillas, arrendajos y lirones suelen llegar antes.",
+        "picking": "Recoge las que han caído o sacude un poco las ramas. Deja bastantes para los animales. Descarta las que tengan un agujerito redondo, porque una larva de gorgojo se ha comido el fruto. Descarta también las que pesen poco. Evita los bordes de carreteras con mucho tráfico y las lindes de campos fumigados.",
+        "kitchen": "Cuando tengas clara la planta, cómelas crudas o tuéstalas hasta que la piel se agriete. Luego quítales la piel frotándolas con un paño áspero. Úsalas en bizcochos, praliné, pesto y ensaladas. Las avellanas son una causa frecuente de alergia a los frutos secos.",
+        "keeps": "Sécalas con cáscara en un sitio aireado hasta que el fruto sea color crema hasta el centro. Luego guárdalas en un sitio fresco y seco. Secas, aguantan hasta un año en la nevera.",
         "source": "Identificación y hábitat: Woodland Trust y Departamento de Recursos Naturales de Minnesota. Secado y conservación: extensión de la Universidad Estatal de Oregón."
       }
     },

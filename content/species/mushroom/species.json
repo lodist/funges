@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Boleto Comestible",
-      "description": "El rey de los boletos: sombrero pardo, pie robusto y reticulado, y poros blancos que nunca azulean",
+      "description": "El boleto comestible: una seta robusta de sombrero pardo, pie claro con red y poros blancos que nunca se manchan de azul.",
       "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de abetos y hayas, de finales de verano al otoño",
       "guide": {
-        "identify": "Un boleto robusto, al que en muchas zonas llaman hongo, de sombrero pardo claro a castaño, liso y graso pero nunca aterciopelado, a menudo con un fino borde blanquecino. Los poros son blancos de joven, luego amarillos y oliva, y no cambian de color al presionarlos. El pie, claro, lleva un fino retículo blanco en la parte alta, y la carne blanca no cambia de color al cortarla. Poros rosados y un retículo pardo oscuro indican el boleto amargo (Tylopilus felleus); poros rojos o naranjas o carne que azulea indican otro boleto, quizá tóxico.",
-        "habitat": "Con píceas, pinos, hayas, robles, castaños y abedules en suelo ácido, desde el llano hasta el límite del arbolado, en toda Europa. En Norteamérica crece sobre todo en los estados del Pacífico; en el sur de las Rocosas es más común el boleto rey de las Rocosas, más rojo.",
-        "season": "Sobre todo de agosto a octubre, desde junio en la montaña y hasta noviembre en el sur; en la costa del Pacífico de Estados Unidos, con las lluvias de otoño. Suele salir unas dos semanas después de una lluvia abundante que sigue a un periodo cálido y seco.",
-        "picking": "Gíralo o córtalo por la base; deja los pequeños y los viejos o agusanados. En muchas comunidades autónomas y montes públicos hace falta permiso y hay un límite diario; en Alemania solo se permiten pequeñas cantidades para consumo propio.",
-        "kitchen": "Una vez identificado con certeza, cepíllalo, córtalo a lo largo para ver si tiene gusanos y hazlo a la plancha o en arroces, pasta y sopas. Cocínalo bien: no todo el mundo lo tolera crudo, y los ejemplares viejos o mal conservados sientan mal.",
-        "keeps": "Guárdalo fresco, en papel y no en plástico, uno o dos días. Se seca muy bien en láminas finas y se congela bien.",
+        "identify": "Es un boleto robusto, al que en muchos sitios llaman simplemente hongo. El sombrero va de pardo claro a castaño. Es liso y grasiento, pero nunca aterciopelado. A menudo tiene un fino borde blanquecino. Los poros son blancos de joven y luego amarillos y verde oliva. No cambian de color al apretarlos. El pie es claro y lleva un fino retículo blanco en la parte de arriba. La carne es blanca y no cambia de color al cortarla. Si tiene poros rosados y un retículo pardo oscuro, es el boleto amargo (Tylopilus felleus). Si los poros son rojos o naranjas, es otro boleto que puede ser tóxico. Lo mismo si la carne azulea.",
+        "habitat": "Crece con píceas, pinos, hayas, robles, castaños y abedules, en suelo ácido. Lo encuentras desde el llano hasta el límite del bosque, en toda Europa. En Norteamérica sale sobre todo en los estados del Pacífico. En el sur de las Montañas Rocosas es más común el boleto rey de las Rocosas, que es más rojo.",
+        "season": "La temporada fuerte va de agosto a octubre. En la montaña empieza en junio, y en el sur dura hasta noviembre. En la costa del Pacífico de EE. UU. sale con las lluvias de otoño. Suele brotar unas dos semanas después de una buena lluvia que llega tras una racha cálida y seca.",
+        "picking": "Sácalo girándolo o córtalo por la base. Deja los pequeños y los viejos o agusanados. En Alemania solo se permiten pequeñas cantidades para consumo propio. La mayoría de las regiones italianas exigen un permiso. Cada bosque nacional de EE. UU. tiene sus propias normas.",
+        "kitchen": "Primero asegúrate de que lo has identificado sin ninguna duda. Límpialo con un cepillo y córtalo a lo largo para ver si tiene gusanos. Hazlo en la sartén o úsalo en risotto, pasta y sopas. Cocínalo bien. No todo el mundo lo tolera crudo, y los ejemplares viejos o mal guardados sientan mal al estómago.",
+        "keeps": "Guárdalo en un sitio fresco, en papel y no en plástico, uno o dos días. Se seca muy bien en láminas finas, y también se congela bien.",
         "source": "Identificación y hábitat: Regione Piemonte, First Nature y MushroomExpert. Temporada: registros de GBIF. Normas: BArtSchV (Alemania) y Servicio Forestal de EE. UU. Cocina: Regione Piemonte y VIDAL."
       }
     },

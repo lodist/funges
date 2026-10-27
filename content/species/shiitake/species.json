@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Shiitake",
-      "description": "Hongo con sombrero marrón y láminas blancas, muy apreciado en la cocina asiática",
+      "description": "Una seta de sombrero marrón y láminas blancas, muy apreciada en la cocina asiática.",
       "howTo": "Se encuentra creciendo en maderas duras muertas, especialmente roble y haya, en primavera y otoño",
       "guide": {
-        "identify": "Sombrero pardo a pardo rojizo oscuro que se aplana con la edad, a menudo con escamas blanquecinas cerca del borde y agrietado en tiempo seco. Las láminas son blancas a crema y se manchan de pardo al tocarlas; el pie es duro, fibroso y a menudo excéntrico; la esporada es blanca. La mortal Galerina marginata también crece sobre troncos: es más pequeña y de color pardo miel, con anillo en el pie y esporada pardo herrumbre.",
-        "habitat": "Originario de Asia oriental, sobre madera muerta de frondosas como robles y Castanopsis. En Europa y Norteamérica se cultiva en troncos de roble o bloques de serrín y solo se ha encontrado fuera del cultivo unas pocas veces (por ejemplo en los Países Bajos), así que una seta parda en un tronco caído del bosque es casi seguro otra cosa.",
-        "season": "Los troncos al aire libre fructifican en primavera y otoño, pocos días después de una lluvia abundante con tiempo suave; los cultivadores también provocan una tanda remojando el tronco en agua fría.",
-        "picking": "Cosecha los sombreros cuando el borde aún está enrollado: gíralos o corta el pie junto al tronco. Recoge solo de troncos que cultives tú o donde tengas permiso.",
-        "kitchen": "Una vez identificado con certeza, cocínalo a fondo: crudo o poco hecho puede causar la dermatitis por shiitake, un sarpullido con picor en forma de latigazos que aparece más o menos un día después. Los pies son demasiado duros para comer pero dan sabor al caldo; saltea o cuece los sombreros, de sabor profundo y sabroso, con salsa de soja, jengibre y ajo.",
-        "keeps": "Unos días en la nevera en una bolsa de papel. Se seca muy bien: remoja los sombreros secos antes de usarlos y aprovecha el agua como caldo.",
+        "identify": "El sombrero es de pardo a pardo rojizo oscuro y se aplana con la edad. A menudo tiene motas blanquecinas cerca del borde, y con tiempo seco se agrieta. Las láminas son de blancas a crema y se manchan de pardo al tocarlas. El pie es duro, fibroso y a menudo descentrado. La esporada es blanca. La mortal Galerina marginata también crece sobre troncos. Es más pequeña y de color pardo miel, con anillo en el pie y esporada pardo óxido.",
+        "habitat": "El shiitake es originario de Asia oriental, donde crece sobre madera muerta de frondosas como robles y Castanopsis. En Europa y Norteamérica se cultiva en troncos de roble o en bloques de serrín. Fuera del cultivo solo se ha encontrado unas pocas veces, por ejemplo en los Países Bajos. Así que una seta parda en un tronco caído del bosque es casi seguro otra cosa.",
+        "season": "Los troncos al aire libre dan setas en primavera y en otoño. Salen unos días después de una lluvia abundante con tiempo suave. Los cultivadores también provocan una salida metiendo el tronco en agua fría.",
+        "picking": "Coge los sombreros cuando el borde todavía está enrollado hacia abajo. Gíralos o corta el pie junto al tronco. Coge solo de troncos que cultives tú o en los que tengas permiso para coger.",
+        "kitchen": "Asegúrate bien de la identificación y luego cocínalo a fondo. Crudo o poco hecho puede provocar la dermatitis por shiitake. Es un sarpullido que pica, con rayas como latigazos, y aparece más o menos un día después. Los pies son demasiado duros para comerlos, pero dan sabor al caldo. Saltea o cuece los sombreros con salsa de soja, jengibre y ajo. Tienen un sabor profundo y sabroso.",
+        "keeps": "Aguanta unos días en la nevera en una bolsa de papel. Se seca muy bien. Pon los sombreros secos en remojo antes de usarlos y guarda el agua como caldo.",
         "source": "Origen y distribución: Naturalis Biodiversity Center. Cultivo en troncos: extensión de la Universidad de Cornell. Dermatitis por shiitake: DermNet."
       }
     },
