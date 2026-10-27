@@ -540,6 +540,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                 update({ ...plan, done });
               }}
               onShow={show}
+              folded={!isMobile}
               onReplan={ids =>
                 update({
                   ...plan,

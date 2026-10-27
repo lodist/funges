@@ -51,7 +51,8 @@ interface Job {
 /** "This week" on My garden: the week at the place in one line, the garden's
  *  jobs (what, where and how, each with its tick), and the next four weeks.
  *  `advice` is the place's week as the Worker gives it; the soil's shift is
- *  applied inside, as for the morning alert. */
+ *  applied inside, as for the morning alert. Folded (a wide screen), it opens
+ *  from its heading, so the garden comes first. */
 export function GardenThisWeek({
   plan,
   advice,
@@ -65,6 +66,7 @@ export function GardenThisWeek({
   onUndo,
   onShow,
   onReplan,
+  folded = false,
 }: {
   plan: Plan;
   advice: PlaceAdvice;
@@ -85,6 +87,7 @@ export function GardenThisWeek({
   onShow: (at: number[]) => void;
   /** Plan it for me, for just these sections. */
   onReplan: (at: number[]) => void;
+  folded?: boolean;
 }) {
   const { t, i18n } = useTranslation('huerta');
   const name = (id: string) => t(`crops.${id}`);
@@ -249,17 +252,16 @@ export function GardenThisWeek({
     }),
   ];
 
-  return (
-    <section aria-labelledby='garden-week' className='flex flex-col gap-4'>
-      <div>
-        <h2 id='garden-week' className='text-xl font-semibold'>
-          {t('week.todo.title')}
-        </h2>
-        <p className='mt-1 text-sm text-muted-foreground'>
-          {facts.join(' · ')}
-        </p>
-      </div>
-
+  const title = (
+    <h2 id='garden-week' className='text-xl font-semibold'>
+      {t('week.todo.title')}
+    </h2>
+  );
+  const week = (
+    <p className='mt-1 text-sm text-muted-foreground'>{facts.join(' · ')}</p>
+  );
+  const body = (
+    <>
       {jobs.length ? (
         <ul className='flex flex-col gap-3'>
           {jobs.map(job => {
@@ -387,6 +389,33 @@ export function GardenThisWeek({
           ) : null}
         </div>
       ) : null}
+    </>
+  );
+
+  return folded ? (
+    // As Done this week: the jobs' count says when there is something to do.
+    <details aria-labelledby='garden-week' className='group/week'>
+      <summary className='focus-ring block cursor-pointer list-none rounded-lg [&::-webkit-details-marker]:hidden'>
+        <div className='flex items-center gap-2'>
+          {title}
+          {jobs.length ? (
+            <span className='text-sm text-muted-foreground tabular-nums'>
+              {jobs.length}
+            </span>
+          ) : null}
+          <ChevronDown className='size-5 text-muted-foreground transition-transform group-open/week:rotate-180' />
+        </div>
+        {week}
+      </summary>
+      <div className='mt-4 flex flex-col gap-4'>{body}</div>
+    </details>
+  ) : (
+    <section aria-labelledby='garden-week' className='flex flex-col gap-4'>
+      <div>
+        {title}
+        {week}
+      </div>
+      {body}
     </section>
   );
 }
