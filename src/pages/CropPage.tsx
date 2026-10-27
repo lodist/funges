@@ -1,5 +1,6 @@
 import { Link, useParams } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
+import { PageLinks } from '@/components/PageLinks';
 import SEO from '@/components/SEO';
 import { CropBody } from '@/components/CropSheet';
 import { Button } from '@/components/ui/button';
@@ -53,6 +54,13 @@ export default function CropPage() {
         <Button asChild className='self-start'>
           <Link to='/huerta/signin'>{t('page.signIn')}</Link>
         </Button>
+        <PageLinks
+          title={t('page.allCrops')}
+          links={CROPS.map(c => ({
+            href: localizedPath(`/huerta/species/${c.id}/`, lang),
+            name: t(`crops.${c.id}`),
+          })).sort((a, b) => a.name.localeCompare(b.name))}
+        />
       </div>
     </>
   );

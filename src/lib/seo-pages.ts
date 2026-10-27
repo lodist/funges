@@ -15,6 +15,11 @@ export function pathLanguage(pathname: string): IndexedLanguage | null {
   return INDEXED_LANGUAGES.find(l => l !== 'en' && l === first) ?? null;
 }
 
+/** The indexed language a page's links use for an app language: its own, or
+ *  English. */
+export const indexedLanguage = (lang: string): IndexedLanguage =>
+  INDEXED_LANGUAGES.find(l => l === lang) ?? 'en';
+
 /** The path without its language prefix, ending in a slash. */
 export function stripLanguage(pathname: string): string {
   const lang = pathLanguage(pathname);
