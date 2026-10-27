@@ -1,7 +1,7 @@
 import type { ComponentType, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
-import { weekday, type PlaceAdvice } from '@/lib/huerta';
+import { frostLines, type PlaceAdvice } from '@/lib/huerta';
 import {
   CloudRain,
   Droplets,
@@ -52,7 +52,8 @@ export function HuertaWeek({
   const card = tone === 'card';
   const small = card && compact;
   const { t, i18n } = useTranslation('huerta');
-  const FrostIcon = advice.frost === 'none' ? Sun : Snowflake;
+  const frost = frostLines(advice, t, i18n.language);
+  const FrostIcon = frost.calm ? Sun : Snowflake;
   const value = (number: number | null, unit: 'celsius' | 'mm' | 'litres') =>
     number === null ? '–' : t(`units.${unit}`, { value: Math.round(number) });
   const dates = [
@@ -79,20 +80,16 @@ export function HuertaWeek({
         <FrostIcon
           className={cn('shrink-0 text-happy-300', small ? 'size-4' : 'size-5')}
         />
-        {t(`frost.${advice.frost}`)}
+        {frost.head}
       </p>
-      {advice.laterFrost &&
-      advice.laterFrost !== 'none' &&
-      advice.laterNight ? (
+      {frost.then ? (
         <p
           className={cn(
             'mt-1 text-happy-100',
             small ? 'pl-6 text-xs' : 'pl-7 text-sm'
           )}
         >
-          {t(`week.later.${advice.laterFrost}`, {
-            night: weekday(advice.laterNight, i18n.language),
-          })}
+          {frost.then}
         </p>
       ) : null}
     </>

@@ -13,10 +13,10 @@ import {
   cropReasons,
   weekday,
   type Crop,
-  type CropGuide,
   type CropNeeds,
   type PlaceAdvice,
 } from '@/lib/huerta';
+import { GUIDES, type CropGuide } from '@/lib/crop-guides';
 import { fetchNeeds, huertaApiConfigured } from '@/lib/huerta-api';
 import type { CropYear } from '@/lib/huerta-api';
 import type { PlaceYear } from '@/lib/huerta-wire';
@@ -91,6 +91,7 @@ function SheetBody({
   const label =
     status === 'now' ? t(`sheet.${crop.how}Now`) : t(`status.${status}`);
   const months = year?.crops[crop.id];
+  const guide = GUIDES[crop.id];
 
   return (
     <DialogContent className='sm:max-w-3xl'>
@@ -111,7 +112,7 @@ function SheetBody({
               {crop.scientific}
             </DialogDescription>
           </DialogHeader>
-          {crop.guide ? (
+          {guide ? (
             <p className='text-foreground'>{t(`grow.${crop.id}.about`)}</p>
           ) : null}
           <Badge
@@ -174,12 +175,12 @@ function SheetBody({
         hardy={year?.hardy?.[crop.id]}
         soil={plan ? gardenSoil(plan.garden, year?.soil).acidity : null}
       />
-      {crop.guide ? <Care crop={crop} guide={crop.guide} /> : null}
+      {guide ? <Care crop={crop} guide={guide} /> : null}
       <Neighbours crop={crop} />
-      {crop.guide ? <Harvest crop={crop} /> : null}
+      {guide ? <Harvest crop={crop} /> : null}
       <p className='text-xs text-muted-foreground'>
         {t('sheet.source')}
-        {crop.guide ? ` ${t(`grow.${crop.id}.source`)}` : null}
+        {guide ? ` ${t(`grow.${crop.id}.source`)}` : null}
       </p>
     </DialogContent>
   );
@@ -408,7 +409,7 @@ function Facts({ crop, need }: { crop: Crop; need?: CropNeeds }) {
             ? t('sheet.ready.months', { count: Math.round(days / 30) })
             : t('sheet.ready.weeks', { count: Math.round(days / 7) });
   const height = PLANT_LOOK[crop.id]?.height;
-  const each = crop.guide?.perPerson;
+  const each = GUIDES[crop.id]?.perPerson;
   const facts = [
     {
       key: 'depth',
@@ -535,7 +536,7 @@ function Weather({
         value: warmth.join(' '),
       });
   }
-  const ph = crop.guide?.ph;
+  const ph = GUIDES[crop.id]?.ph;
   if (ph)
     rows.push({
       key: 'ph',
@@ -650,15 +651,17 @@ function Neighbours({ crop }: { crop: Crop }) {
 
 /** When and how to pick it, how it keeps, and what goes wrong. */
 function Harvest({ crop }: { crop: Crop }) {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
+  const keeps = `grow.${crop.id}.keeps`;
   const problems = t(`grow.${crop.id}.problems`, {
     returnObjects: true,
   }) as { name: string; fix: string }[];
   return (
     <>
-      <Part title={t('grow.harvest')}>
+      <Part title={t(`grow.harvest.${crop.kind}`)}>
         <p className='text-sm text-foreground'>
-          {t(`grow.${crop.id}.harvest`)} {t(`grow.${crop.id}.keeps`)}
+          {t(`grow.${crop.id}.harvest`)}
+          {i18n.exists(keeps) ? ` ${t(keeps)}` : null}
         </p>
       </Part>
       <Part title={t('grow.problems')}>

@@ -5,6 +5,7 @@ import { taskText, type From } from '@/lib/garden-task-text';
 import { comingUp, gardenWeek, jobKey, toSow } from '@/lib/garden-week';
 import {
   CROPS,
+  frostLines,
   huertaImage,
   type CropNeeds,
   type PlaceAdvice,
@@ -118,7 +119,7 @@ export function GardenThisWeek({
   const value = (n: number | null, unit: 'celsius' | 'mm' | 'litres') =>
     n === null ? '–' : t(`units.${unit}`, { value: Math.round(n) });
   const facts = [
-    t(`frost.${advice.frost}`),
+    frostLines(advice, t, i18n.language).head,
     `${t('week.short.soil')} ${value(advice.soil, 'celsius')}`,
     `${t('week.short.nights')} ${value(advice.nights, 'celsius')}`,
     `${t('week.short.rain')} ${value(advice.rain, 'mm')}`,

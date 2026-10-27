@@ -4,6 +4,12 @@
   "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
   "around": "Dintorni di {{place}}, {{day}}",
   "change": "Cambia luogo",
+  "find": {
+    "placeholder": "Cerca una coltura",
+    "none": "Nessuna coltura trovata",
+    "noneHelp": "Prova un altro nome, o cancella la ricerca e i filtri.",
+    "clear": "Cancella"
+  },
   "noPlace": "Huerta non ha ancora consigli per questo punto: copre l'Europa e gli Stati Uniti continentali.",
   "loadFailed": "Non è stato possibile caricare i consigli. Riprova tra poco.",
   "picker": {
@@ -22,7 +28,8 @@
   "frost": {
     "none": "Nessuna gelata nei prossimi 3 giorni",
     "ground_frost": "Possibile brina nei prossimi 3 giorni: copri le piante delicate",
-    "frost": "Gelata nei prossimi 3 giorni: proteggi le piante delicate"
+    "frost": "Gelata nei prossimi 3 giorni: proteggi le piante delicate",
+    "noneWeek": "Nessuna gelata nei prossimi 7 giorni"
   },
   "week": {
     "label": "Questa settimana",
@@ -73,7 +80,6 @@
         "climate": "Dal clima della tua zona"
       },
       "nothing": "Questa settimana il tuo orto non ti chiede nulla.",
-      "noPlan": "Pianifica il tuo orto, e Huerta ti dirà cosa fare ogni settimana.",
       "openPlanner": "Apri Il mio orto",
       "stage": {
         "thin": {
@@ -182,10 +188,6 @@
       "water": "Acqua da dare",
       "lastFrost": "Ultima gelata ~{{date}}",
       "firstFrost": "Prima gelata ~{{date}}"
-    },
-    "garden": {
-      "some": "Il tuo orto ha cose da fare questa settimana.",
-      "none": "Niente per il tuo orto questa settimana."
     },
     "coming": {
       "title": "In arrivo",
@@ -382,7 +384,13 @@
     "care": "Cure",
     "goodWith": "Bene accanto a",
     "apartFrom": "Lontano da",
-    "harvest": "Raccolta e conservazione",
+    "harvest": {
+      "vegetable": "Raccolta e conservazione",
+      "fruit": "Raccolta e conservazione",
+      "herb": "Raccolta e conservazione",
+      "flower": "Taglio e dopo la fioritura",
+      "cover": "Sfalcio e interramento"
+    },
     "problems": "Cosa può andare storto",
     "facts": {
       "frost": "Gelo",
@@ -425,6 +433,640 @@
     "noPot": "Meglio in piena terra.",
     "perPerson": "{{from}}–{{to}} piante a persona da mangiare fresche",
     "perPersonKeep": "{{from}}–{{to}} piante a persona da mangiare fresche, {{keepFrom}}–{{keepTo}} per conservarne anche per l'inverno",
+    "garlic": {
+      "about": "Si coltiva per le teste, divise in spicchi. Pianta i singoli spicchi in autunno o a inizio primavera; quasi tutte le varietà hanno bisogno di un periodo di freddo per formare gli spicchi, perciò la piantagione autunnale dà le teste più grosse.",
+      "water": "Annaffia nei periodi secchi di primavera e inizio estate, mentre le teste si ingrossano. Smetti quando le foglie iniziano a ingiallire, e bagna il terreno, non le foglie.",
+      "feed": "Prima di piantare interra circa due secchi di letame ben maturo o compost per metro quadro; di solito non serve altro.",
+      "harvest": "Estrai le teste con una forca quando le foglie ingialliscono: a inizio estate se hai piantato in autunno, più tardi se hai piantato in primavera. Non aspettare troppo, o le teste si aprono e si conservano male.",
+      "keeps": "Fai asciugare le teste in un solo strato al sole o in un riparo arieggiato per due-quattro settimane, poi tienile al fresco e all'asciutto. Le varietà a collo duro durano da quattro a sei mesi, quelle a collo morbido fino a un anno.",
+      "problems": [
+        {
+          "name": "Ruggine",
+          "fix": "Pustole arancioni in rilievo sulle foglie, peggiori col tempo umido. Lascia spazio tra le piante, bagna il terreno anziché le foglie e togli il fogliame alla raccolta."
+        },
+        {
+          "name": "Marciume bianco",
+          "fix": "Le foglie ingialliscono e appassiscono, e alla base della testa cresce una muffa bianca cotonosa. Non c'è cura: estirpa le piante colpite e buttale nell'indifferenziato, e non coltivare aglio, cipolle o porri in quell'aiuola per molti anni."
+        },
+        {
+          "name": "Teste senza spicchi",
+          "fix": "Una testa tonda senza spicchi, di solito per troppo poco freddo in inverno. La prossima volta pianta in autunno; la testa si mangia lo stesso."
+        }
+      ],
+      "source": "Cura dell'aglio: RHS. Quanti piantarne: servizio di extension di Kansas State. pH: University of Minnesota."
+    },
+    "broad_beans": {
+      "about": "Si coltiva per i grossi semi nei baccelli, i primi legumi dell'anno. Semina in autunno o da fine inverno a primavera; le varietà alte vogliono un paletto a ogni angolo della fila con uno spago intorno, e cimare le piante quando si formano i primi baccelli tiene lontano l'afide nero.",
+      "water": "In piena terra, dai una bella bagnata quando inizia la fioritura e un'altra due settimane dopo. I vasi si asciugano in fretta e vanno annaffiati spesso.",
+      "feed": "Come tutti i legumi arricchisce il terreno di azoto e in piena terra non ha bisogno di concime. In vaso, dai un concime liquido ricco di potassio ogni due settimane dai primi fiori.",
+      "harvest": "Raccogli i baccelli quando sono pieni ma i semi ancora piccoli; l'ilo di ogni seme deve essere bianco o verde, non nero. Controlla i baccelli bassi ogni pochi giorni, perché maturano in fretta.",
+      "keeps": "Mangia le fave sgranate poco dopo la raccolta. Per conservarle, sbollentale e congelale.",
+      "problems": [
+        {
+          "name": "Afide nero",
+          "fix": "Colonie fitte di afidi neri sulle punte tenere a fine primavera. Cima le piante quando si formano i primi baccelli, e schiaccia o lava via il resto."
+        },
+        {
+          "name": "Macchia cioccolato",
+          "fix": "Macchie marrone scuro su foglie e steli, peggiori col tempo umido e le piante fitte. Lascia spazio tra le piante, non dare azoto ed elimina le piante vecchie dopo la raccolta."
+        },
+        {
+          "name": "Topi",
+          "fix": "I topi dissotterrano e mangiano i semi seminati fuori in autunno e inverno. Semina in vasetti al riparo e poi trapianta."
+        }
+      ],
+      "source": "Cura delle fave: RHS. pH: Oregon State University e University of Connecticut."
+    },
+    "lettuce": {
+      "about": "Si coltiva per le foglie: quella da taglio si raccoglie poche foglie alla volta per settimane, quella a cespo si taglia intera quando il cespo è sodo. Cresce in fretta col fresco e va a seme col caldo, quindi semina una fila corta ogni due o tre settimane invece che tutta insieme.",
+      "water": "Tieni il terreno sempre umido: la siccità rende amare le foglie e fa andare a seme le piante. Annaffia al mattino, non la sera, per limitare lumache e muffe.",
+      "feed": "In piena terra non serve concime se prima della semina hai interrato del compost. In vaso, dai un concime liquido universale ogni due settimane d'estate.",
+      "harvest": "Nella lattuga da taglio raccogli le foglie esterne quando sono lunghe circa 10 cm, oppure taglia tutta la pianta a 2,5 cm da terra perché ricacci. Taglia quella a cespo alla base quando il cespo è sodo; meglio al mattino, quando le foglie sono croccanti.",
+      "keeps": "La lattuga cappuccina va mangiata presto; le iceberg durano di più in un sacchetto in frigorifero.",
+      "problems": [
+        {
+          "name": "Lumache e limacce",
+          "fix": "Buchi irregolari e scie di bava, soprattutto sulle piantine e col tempo umido. Toglile al tramonto e annaffia al mattino."
+        },
+        {
+          "name": "Prefioritura",
+          "fix": "Dal centro sale un alto stelo fiorale e le foglie diventano amare, dopo il caldo o con il terreno secco. Annaffia con regolarità, semina quelle estive a mezz'ombra e raccogli prima che le piante invecchino."
+        },
+        {
+          "name": "Peronospora",
+          "fix": "Macchie gialle e angolose sulla pagina superiore e muffa bianca sotto, con tempo fresco e umido. Distanzia le piante, bagna il terreno e non le foglie, e togli le foglie colpite."
+        }
+      ],
+      "source": "Cura della lattuga: RHS. Quante piantarne: servizi di extension della University of Missouri e di Kansas State. pH: Washington State University."
+    },
+    "lambs_lettuce": {
+      "about": "Un'insalata piccola e rustica, coltivata per le rosette di foglie delicate in autunno, inverno e inizio primavera, quando nell'orto c'è poco di fresco. Cresce piano e resta bassa, quindi tieni l'aiuola pulita dalle erbacce; il seme non germina nel terreno caldo, perciò si semina soprattutto a fine estate e a inizio autunno.",
+      "water": "Annaffia con regolarità quando è secco: l'umidità irregolare rende dure le foglie. In inverno all'aperto non ha quasi mai bisogno d'acqua.",
+      "feed": "Poco esigente: cresce in qualsiasi terreno discreto e non vuole concime in più, soprattutto dopo una coltura estiva ben concimata.",
+      "harvest": "Taglia le rosette intere alla base, oppure raccogli qualche foglia esterna da ogni pianta perché ne crescano di nuove dal centro. Raccogli tutto l'inverno nei periodi miti; sotto un tunnel o un telo di tessuto non tessuto cresce più a lungo.",
+      "keeps": "Le foglie durano da 5 a 7 giorni in frigorifero; lavale appena prima di mangiarle.",
+      "problems": [
+        {
+          "name": "Lumache e limacce",
+          "fix": "Mangiano le rosette basse, soprattutto col tempo umido. Toglile al tramonto e tieni l'aiuola libera dalle erbacce, dove si nascondono."
+        },
+        {
+          "name": "Afidi",
+          "fix": "Piccoli insetti verdi o neri sulle foglie giovani, che si accartocciano e si indeboliscono. Toglili con le dita o con un getto d'acqua forte."
+        },
+        {
+          "name": "Il seme non nasce",
+          "fix": "Sopra i 21 °C circa il seme resta dormiente. Risemina quando rinfresca e tieni il terreno umido finché spuntano le piantine."
+        }
+      ],
+      "source": "Cura della valerianella: RHS e Utah State University. pH e conservazione: Utah State University."
+    },
+    "rocket": {
+      "about": "Si coltiva per le foglie piccanti, pronte da quattro a sei settimane dopo la semina. La rucola coltivata è annuale e fiorisce presto, quindi seminane un po' ogni qualche settimana; la rucola selvatica è perenne e produce per tutta l'estate e l'autunno.",
+      "water": "Tieni il terreno umido nei periodi secchi: nel terreno asciutto va presto a seme. Col caldo un vaso può aver bisogno d'acqua ogni giorno.",
+      "feed": "Non serve concime: cresce in fretta nella maggior parte dei terreni e nel terriccio nuovo.",
+      "harvest": "Raccogli poche foglie da ogni pianta, poco e spesso, così ne fa di nuove. Quando fiorisce le foglie diventano dure e piccanti; i fiori si mangiano in insalata.",
+      "keeps": "Meglio mangiarla presto; le foglie durano qualche giorno in un sacchetto in frigorifero.",
+      "problems": [
+        {
+          "name": "Altica",
+          "fix": "Tanti piccoli fori tondi nelle foglie, peggio col tempo caldo e secco. Il danno è soprattutto estetico: tieni annaffiate le piantine e coprile con una rete antinsetto fine."
+        },
+        {
+          "name": "Prefioritura",
+          "fix": "Gli steli fiorali salgono presto col caldo, la siccità o le piante troppo fitte. Dirada le piantine, annaffia bene e semina quella estiva a mezz'ombra."
+        },
+        {
+          "name": "Lumache e limacce",
+          "fix": "Mangiano le piantine e le piante giovani. Toglile al tramonto e proteggi le piantine col tempo umido."
+        }
+      ],
+      "source": "Cura della rucola: RHS. pH: servizi di extension della University of Delaware e di Oregon State University."
+    },
+    "spinach": {
+      "about": "Si coltivano per le foglie tenere, raccolte come foglie baby un mese dopo la semina o grandi dopo circa due mesi. Sono una coltura della stagione fresca e vanno a seme col caldo e con le giornate lunghe d'estate, quindi seminali in primavera e a fine estate, e per l'estate scegli una varietà resistente alla prefioritura.",
+      "water": "Hanno sete: annaffia con regolarità quando è secco e non lasciare mai seccare un vaso, altrimenti vanno a seme. Annaffia al mattino.",
+      "feed": "Prima della semina interra compost o letame maturo; in un terreno povero aggiungi anche un concime completo con il rastrello.",
+      "harvest": "Raccogli qualche foglia esterna da ogni pianta più o meno ogni settimana, così ne fanno di nuove, oppure taglia tutta la coltura appena sopra la base perché ricacci una volta. Estirpa le piante che iniziano a fiorire.",
+      "keeps": "Meglio mangiarli freschi; durano qualche giorno in un sacchetto in frigorifero. Per congelarli, sbollenta le foglie 2 minuti, raffreddale in acqua e ghiaccio e confezionale.",
+      "problems": [
+        {
+          "name": "Prefioritura",
+          "fix": "Spunta uno stelo fiorale e le foglie diventano amare, dopo il caldo, il terreno secco o le giornate lunghe. Tieni il terreno umido, scegli varietà resistenti ed estirpa le piante andate a seme."
+        },
+        {
+          "name": "Peronospora",
+          "fix": "Macchie gialle sulle foglie e muffa grigio-violacea sotto, con tempo fresco e umido. Dirada le piante, annaffia al mattino e togli le foglie colpite."
+        },
+        {
+          "name": "Lumache e limacce",
+          "fix": "Mangiano le foglie giovani e tenere. Toglile al tramonto, annaffia al mattino e tieni basse le erbacce."
+        }
+      ],
+      "source": "Cura degli spinaci: RHS. Quanti piantarne: servizi di extension della University of Missouri e di Kansas State. pH: Washington State University. Congelamento: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "peas": {
+      "about": "Si coltivano per i piselli dolci da sgranare, o per i baccelli da mangiare interi (taccole e piselli mangiatutto). Semina da inizio primavera; tranne le varietà più basse, tutte si arrampicano con i viticci e vogliono una rete o delle frasche fin dall'inizio.",
+      "water": "Annaffia bene quando inizia la fioritura e di nuovo due settimane dopo, perché i baccelli si riempiano. Bagna il terreno, non le foglie; i vasi vanno annaffiati spesso.",
+      "feed": "I piselli producono da sé l'azoto e in piena terra non hanno bisogno di concime. In vaso, dai un concime liquido ricco di potassio ogni due settimane dai primi fiori.",
+      "harvest": "Raccogli i piselli da sgranare quando i baccelli sono ben pieni, taccole e mangiatutto a circa 7,5 cm. Comincia dal basso e raccogli ogni pochi giorni, o le piante smettono di produrre.",
+      "keeps": "I piselli perdono presto la dolcezza: mangiali il giorno della raccolta, oppure sbollentali e congelali subito.",
+      "problems": [
+        {
+          "name": "Tignola del pisello",
+          "fix": "Piccoli bruchi dentro i baccelli, che spesso si scoprono solo sgranando. Le semine molto precoci o tardive evitano la farfalla di inizio estate; una rete antinsetto fitta la tiene fuori."
+        },
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Una polvere bianca sulle foglie, soprattutto col tempo secco di fine estate. Tieni il terreno umido, lascia spazio tra le file ed estirpa le piante esaurite."
+        },
+        {
+          "name": "Topi e uccelli",
+          "fix": "I topi dissotterrano i semi e i piccioni mangiano le piante giovani. Semina in vasetti al riparo e proteggi le file con una rete."
+        }
+      ],
+      "source": "Cura dei piselli: RHS. Quanti piantarne: servizio di extension di Kansas State. pH: University of Minnesota."
+    },
+    "radish": {
+      "about": "Si coltiva per le radici croccanti e piccanti, pronte da quattro a sei settimane dopo la semina. Semina una fila corta ogni due settimane per averne sempre; le semine di primavera e di fine estate riescono meglio, perché il caldo estivo li fa fiorire e li rende piccanti. Trova posto tra ortaggi più lenti.",
+      "water": "Tieni il terreno umido in modo costante perché crescano in fretta e restino delicati: il terreno secco li rende legnosi e piccanti, e una grande annaffiatura dopo la siccità li spacca.",
+      "feed": "Non serve concime: cresce così in fretta che basta il normale terreno dell’orto.",
+      "harvest": "Raccoglili pochi alla volta quando la radice è larga circa 2,5 cm. Lasciati nel terreno diventano presto legnosi, amari e molto piccanti.",
+      "keeps": "Togli le foglie e la punta sottile della radice; in un sacchetto di plastica in frigorifero si conservano fino a un mese.",
+      "problems": [
+        {
+          "name": "Altica",
+          "fix": "Minuscoli fori rotondi nelle foglie, soprattutto con tempo caldo e asciutto; di solito solo un danno estetico. Tieni annaffiate le piantine e coprile con una rete antinsetto fine."
+        },
+        {
+          "name": "Prefioritura",
+          "fix": "La pianta fa uno stelo fiorale e la radice smette di ingrossare, col caldo secco. Semina in primavera e a fine estate, annaffia e togli le piante andate a seme; i loro baccelli giovani si mangiano."
+        },
+        {
+          "name": "Radici spaccate o legnose",
+          "fix": "Le annaffiature irregolari le spaccano, l’età le rende legnose. Annaffia con regolarità e raccogli a circa 2,5 cm; i ravanelli spaccati si possono mangiare."
+        }
+      ],
+      "source": "Cura del ravanello: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Connecticut e University of Maryland. Conservazione: University of Missouri."
+    },
+    "carrot": {
+      "about": "Si coltiva per le radici dolci. Seminala rada a dimora, in terreno sciolto e senza sassi: sassi, zolle e letame fresco fanno biforcare le radici. Le piantine all’inizio sono lente e piccole, quindi tieni la fila pulita dalle erbacce.",
+      "water": "La carota sopporta la siccità e raramente va annaffiata; in una siccità lunga dai una buona bagnatura ogni due settimane. Conta più la costanza che la quantità: una grande annaffiatura dopo un periodo secco spacca le radici.",
+      "feed": "Non serve concime. Non interrare letame o compost fresco subito prima della semina, fa biforcare le radici; usa un terreno concimato per una coltura precedente.",
+      "harvest": "Raccogli le carote appena sono abbastanza grandi, smuovendo prima il terreno con la forca perché non si spezzino; quelle molto grandi perdono sapore. Quando diradi, tocca il fogliame il meno possibile: il suo odore attira la mosca della carota.",
+      "keeps": "Taglia le foglie a 1 cm; in un sacchetto forato in frigorifero o in una cassetta di sabbia umida al fresco si conservano da 2 a 4 mesi. Le carote da serbo possono anche restare nel terreno sotto la paglia fino all’uso.",
+      "problems": [
+        {
+          "name": "Mosca della carota",
+          "fix": "Gallerie color ruggine nelle radici, scavate da piccole larve. Copri tutta la coltura con una rete antinsetto fine dalla semina."
+        },
+        {
+          "name": "Radici biforcute",
+          "fix": "Radici divise in più gambe, in terreno sassoso, zolloso o appena letamato. Lavora bene l’aiuola e togli i sassi, o semina varietà corte e tonde."
+        },
+        {
+          "name": "Radici spaccate",
+          "fix": "Spaccature lungo la radice quando una pioggia forte o una grande annaffiatura segue un periodo secco. Nei lunghi periodi secchi annaffia a fondo e con regolarità."
+        }
+      ],
+      "source": "Cura della carota: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Connecticut e University of Maryland. Misura del vaso: University of Illinois. Conservazione: University of Missouri."
+    },
+    "parsnip": {
+      "about": "Si coltiva per le radici lunghe e dolci, che restano nel terreno dalla primavera all’inverno e diventano più dolci dopo il gelo. Compra seme nuovo ogni anno: quello vecchio nasce male, e anche il seme nuovo impiega da due a quattro settimane a spuntare. Al sole le foglie possono far venire vesciche sulla pelle: usa guanti e maniche lunghe quando sarchi.",
+      "water": "Annaffia le piante giovani nei periodi secchi finché non attecchiscono; poi le radici profonde sopportano la siccità. Tieni l’umidità costante, perché una grande annaffiatura dopo la siccità spacca le radici.",
+      "feed": "Non serve concime. Usa un terreno letamato per una coltura precedente: letame o compost freschi fanno biforcare le radici.",
+      "harvest": "Raccogli le radici dall’autunno, quando le foglie seccano, meglio dopo la prima gelata forte; smuovi prima il terreno in profondità con la forca, perché le radici sono lunghe. Segna la fila per ritrovarla d’inverno.",
+      "keeps": "Le radici si conservano meglio nel terreno per tutto l’inverno; prima delle gelate forti raccoglile in anticipo o copri la fila con la paglia. Raccolte, durano da 2 a 4 mesi in un sacchetto forato in frigorifero.",
+      "problems": [
+        {
+          "name": "Cancro della pastinaca",
+          "fix": "Chiazze ruvide bruno arancio o nere sulla parte alta della radice, spesso dove è stata ferita. Scegli varietà resistenti e non ferire le radici quando sarchi."
+        },
+        {
+          "name": "Mosca della carota",
+          "fix": "Gallerie color ruggine nelle radici, scavate da piccole larve. Copri la coltura con una rete antinsetto fine e non seminare dove da poco c’erano carote o pastinache."
+        },
+        {
+          "name": "Germinazione scarsa",
+          "fix": "Vuoti nella fila, per seme vecchio o terreno freddo e bagnato. Usa seme nuovo, aspetta che il terreno si scaldi e metti pochi semi in ogni punto, lasciando il più forte."
+        }
+      ],
+      "source": "Cura della pastinaca: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Connecticut e University of Maryland. Conservazione: University of Missouri."
+    },
+    "beetroot": {
+      "about": "Si coltiva per le radici dolci, e le foglie giovani per l’insalata. Ogni seme è un glomerulo che dà più piantine, quindi dirada presto o lasciale crescere a gruppetti per barbabietole piccole. Semina poco ogni qualche settimana dalla primavera a piena estate; le radici delle semine estive sono quelle che si conservano.",
+      "water": "Annaffia le piantine nei periodi secchi; le piante affermate vogliono acqua solo ogni 10-14 giorni quando è secco. Poca acqua rende la radice legnosa, le annaffiature irregolari la spaccano e troppa dà foglie invece di radici.",
+      "feed": "Un terreno migliorato con compost non ha bisogno di concime; se le piante crescono stentate, dai un concime liquido ricco di azoto. Tieni lontane le erbacce, che rubano cibo e acqua.",
+      "harvest": "Raccogli una radice sì e una no quando arrivano alla grandezza di una pallina da golf e lascia crescere le altre, senza superare circa 7 cm di diametro. Torci le foglie invece di tagliarle, così la radice non sanguina.",
+      "keeps": "Torci le foglie a 2,5 cm dalla radice; in un sacchetto forato in frigorifero, o in cassette di sabbia asciutta in un ripostiglio fresco, si conservano da 2 a 4 mesi.",
+      "problems": [
+        {
+          "name": "Prefioritura",
+          "fix": "La pianta fiorisce invece di ingrossare la radice, dopo un periodo caldo e secco o una semina molto precoce e fredda. Scegli varietà resistenti alla prefioritura e non seminare troppo presto."
+        },
+        {
+          "name": "Mosca della bietola",
+          "fix": "Macchie bruno chiaro nelle foglie, dove piccole larve si nutrono all’interno. Togli le foglie colpite; la radice ne soffre di rado."
+        },
+        {
+          "name": "Peronospora",
+          "fix": "Macchie giallo pallido sulle foglie con muffa grigio violacea sotto, col tempo umido. Togli le foglie colpite, lascia aria tra le piante e annaffia il terreno, non le foglie."
+        }
+      ],
+      "source": "Cura della barbabietola: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Connecticut e University of Maryland. Conservazione: University of Missouri."
+    },
+    "turnip": {
+      "about": "Si coltiva per le radici tonde e per le foglie giovani. Le varietà precoci sono pronte in circa sei settimane: semina poco e spesso in primavera, e di nuovo a fine estate per avere rape in autunno e in inverno. Vuole umidità costante; nel terreno secco le radici restano piccole e legnose e la pianta fiorisce presto.",
+      "water": "Annaffia quando è secco, così le radici crescono in fretta e restano tenere. Un vaso si asciuga presto e d’estate va annaffiato spesso.",
+      "feed": "Basta un terreno migliorato con compost o letame maturo, meglio dall’autunno prima; non serve altro concime.",
+      "harvest": "Raccogli le rape precoci grandi come una pallina da golf per mangiarle crude, o da tennis per cuocerle; più grandi diventano legnose e amare. Le foglie giovani fino a 15 cm si cucinano come gli spinaci.",
+      "keeps": "Togli le foglie torcendole; le rape d’autunno si conservano alcune settimane in cassette di sabbia umida, al fresco e al riparo dal gelo. Nelle zone miti possono restare nel terreno sotto il tessuto non tessuto.",
+      "problems": [
+        {
+          "name": "Mosca del cavolo",
+          "fix": "Le piantine appassiscono e piccole larve bianche scavano gallerie nelle radici. Copri la coltura con una rete antinsetto fine dalla semina."
+        },
+        {
+          "name": "Ernia del cavolo",
+          "fix": "Radici gonfie e deformi e piante che appassiscono nelle giornate calde. Correggi con calce il terreno acido e non coltivare rape o altri cavoli dove è comparsa; resta nel terreno per molti anni."
+        },
+        {
+          "name": "Lumache",
+          "fix": "Piantine mangiate in una notte e tracce di bava. Proteggi le piante giovani, soprattutto col tempo umido."
+        }
+      ],
+      "source": "Cura della rapa: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Connecticut e University of Maryland."
+    },
+    "chard": {
+      "about": "Si coltiva per le foglie grandi e le coste spesse, bianche, rosse o gialle, raccolte dall'estate finché il freddo la ferma e di nuovo in primavera. Una sola semina produce per mesi e va a seme meno facilmente degli spinaci, perciò è uno degli ortaggi da foglia più facili.",
+      "water": "Annaffia regolarmente le piante giovani finché attecchiscono; poi sopporta brevi periodi secchi, ma annaffiala in quelli lunghi. In vaso, annaffia appena il terriccio comincia ad asciugarsi.",
+      "feed": "Di solito non serve concime: cresce bene nella maggior parte dei terreni e nel terriccio nuovo.",
+      "harvest": "Taglia alla base le foglie esterne con la loro costa e lascia crescere il centro. Le foglie piccole e tenere vanno crude in insalata; cuoci le grandi come gli spinaci, e le coste un po' di più.",
+      "keeps": "Le foglie durano qualche giorno in frigorifero. Per congelarle, sbollentale 2 minuti, raffreddale in acqua e ghiaccio e confezionale.",
+      "problems": [
+        {
+          "name": "Minatrice fogliare",
+          "fix": "Chiazze marrone chiaro dove piccole larve scavano gallerie nella foglia. Stacca e butta le foglie colpite; una rete antinsetto fine tiene lontana la mosca."
+        },
+        {
+          "name": "Lumache e limacce",
+          "fix": "Bucano le piante giovani, soprattutto col tempo umido. Toglile al tramonto e proteggi le piantine."
+        },
+        {
+          "name": "Peronospora",
+          "fix": "Chiazze pallide con muffa grigia sotto, su piante fitte col tempo umido. Distanzia bene le piante e togli le foglie colpite."
+        }
+      ],
+      "source": "Cura della bietola: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: Washington State University. Congelamento: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "chicory": {
+      "about": "Una famiglia di insalate amare: il radicchio forma un cespo rosso e compatto, il pan di zucchero un cuore verde e alto, l'indivia riccia e la scarola una rosetta aperta che si imbianca per renderla più dolce. Seminate a inizio estate producono da fine estate all'autunno; seminate all'aperto troppo presto in primavera, tendono ad andare a seme.",
+      "water": "Annaffia a fondo quando è secco: il terreno asciutto rende le foglie più amare e fa andare a seme le piante. Tieni l'aiuola pulita perché nulla le rubi l'acqua.",
+      "feed": "In piena terra di solito non serve concime. In vaso o in un terreno leggero, dai un concime liquido universale ogni due settimane d'estate.",
+      "harvest": "Taglia alla base i cespi di radicchio e di pan di zucchero quando sono sodi; il ceppo spesso ributta un secondo cespo più piccolo. Imbianca l'indivia coprendo il cuore asciutto con un piatto o un secchio per circa due settimane, poi tagliala e consumala presto.",
+      "keeps": "I cespi durano diversi giorni in frigorifero. Tieni al buio i cuori imbianchiti: la luce li fa tornare verdi e amari.",
+      "problems": [
+        {
+          "name": "Prefioritura",
+          "fix": "Gli steli fiorali salgono dopo un freddo sulle piante giovani, o col caldo e la siccità. Non seminare all'aperto troppo presto, annaffia nei periodi secchi e per le semine precoci usa varietà resistenti."
+        },
+        {
+          "name": "Lumache e limacce",
+          "fix": "Mangiano le piantine e si nascondono sotto le coperture per l'imbianchimento. Guarda sotto ogni pochi giorni e toglile."
+        },
+        {
+          "name": "Marciume nell'imbianchimento",
+          "fix": "Le foglie interne marciscono se il cuore è bagnato sotto la copertura. Copri solo piante asciutte, imbiancane poche alla volta e controllale spesso."
+        }
+      ],
+      "source": "Cura di radicchio e indivia: RHS. Quante piantarne: servizio di extension della University of Missouri. pH: University of Arkansas."
+    },
+    "kale": {
+      "about": "Si coltiva per le foglie, raccolte dall'autunno per tutto l'inverno; il gelo le rende più dolci. È il più rustico e il meno esigente dei cavoli; tienilo al riparo da bruchi e piccioni e ogni pianta darà molti raccolti.",
+      "water": "Annaffia regolarmente le piante giovani perché il terreno non si secchi mai. Una volta attecchito, annaffia solo nei lunghi periodi secchi; un vaso vuole acqua regolare d'estate.",
+      "feed": "Piantalo in un terreno arricchito di compost. Il concime serve solo nei terreni poveri o in vaso: un concime ricco di azoto gli dà una spinta.",
+      "harvest": "Raccogli due o tre foglie basse per pianta alla volta, salendo lungo il fusto, e lascia crescere la cima. Raccogliere spesso fa nascere foglie nuove fino alla primavera.",
+      "keeps": "Le foglie durano qualche giorno in frigorifero, ma le piante restano nell'orto tutto l'inverno, quindi raccogli quando serve. Per congelarlo, sbollenta 2 minuti e raffredda in acqua e ghiaccio.",
+      "problems": [
+        {
+          "name": "Cavolaia",
+          "fix": "Buchi nelle foglie e bruchi verdi, da inizio estate all'autunno. Copri le piante con una rete antinsetto fine dal trapianto e togli i gruppetti di uova gialle sotto le foglie."
+        },
+        {
+          "name": "Afide grigio del cavolo",
+          "fix": "Colonie grigie e cerose sulle foglie giovani, che si accartocciano e si rovinano. Schiaccia o lava via presto le colonie piccole e togli le foglie molto colpite."
+        },
+        {
+          "name": "Piccioni",
+          "fix": "D'inverno strappano le foglie lasciando solo coste e nervature. Copri le piante con una rete sostenuta da archetti o canne, staccata dalle foglie."
+        }
+      ],
+      "source": "Cura del cavolo riccio: RHS. Quanti piantarne: servizi di extension della University of Missouri e di Kansas State. pH: Washington State University. Congelamento: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "cabbage": {
+      "about": "Si coltiva per i cespi sodi; con varietà primaverili, estive, autunnali e invernali puoi tagliare cavoli quasi tutto l'anno. Vuole un terreno compatto e fertile e protezione da bruchi, piccioni e mosca del cavolo; non coltivarlo dove negli ultimi due anni sono cresciuti cavoli o parenti.",
+      "water": "Annaffia regolarmente le piante giovani; una volta attecchite, nei periodi secchi dai una bagnatura abbondante ogni 10 giorni circa, e di più quando i cespi iniziano a formarsi. Una pacciamatura di compost tiene umido il terreno.",
+      "feed": "Una coltura esigente: interra il compost già nell'autunno prima. Nei terreni poveri dai un concime ricco di azoto quando le piante hanno attecchito e prima che formino il cespo.",
+      "harvest": "Taglia il cespo appena sopra il terreno con un coltello affilato quando è sodo. Nei cavoli primaverili ed estivi incidi una croce poco profonda sul torsolo: spesso ne nasce un secondo cespo più piccolo.",
+      "keeps": "Un cespo dura almeno una settimana in frigorifero. I cavoli invernali si conservano per mesi in un luogo fresco, asciutto e al riparo dal gelo, o possono restare nell'orto finché servono.",
+      "problems": [
+        {
+          "name": "Cavolaia",
+          "fix": "Buchi nelle foglie e bruchi verdi, da inizio estate all'autunno. Copri le piante con una rete antinsetto fine dal trapianto e togli i gruppetti di uova gialle sotto le foglie."
+        },
+        {
+          "name": "Mosca del cavolo",
+          "fix": "Le piante giovani appassiscono e muoiono mentre larve bianche mangiano le radici. Copri le piante appena trapiantate con una rete antinsetto fine fissata a terra e cambia posto alla coltura ogni anno."
+        },
+        {
+          "name": "Ernia del cavolo",
+          "fix": "Le piante restano piccole e appassiscono nelle ore calde; le radici sono gonfie e nodose. Non c'è cura e la malattia resta per anni nel terreno: correggi con calce il terreno acido, ruota le colture, alleva le piantine in vaso perché vadano a dimora con radici forti, o scegli varietà resistenti."
+        }
+      ],
+      "source": "Cura e conservazione del cavolo: RHS. Quanti piantarne: servizi di extension della University of Missouri e di Kansas State. pH: Washington State University."
+    },
+    "cauliflower": {
+      "about": "Si coltiva per la testa bianca, il corimbo che si forma al centro della pianta. È il più esigente dei cavoli: ogni arresto della crescita, per terreno secco, terra smossa o trapianto tardivo, dà teste piccole e precoci, quindi fallo crescere senza interruzioni. In vaso, coltiva una varietà mini.",
+      "water": "Tieni il terreno sempre umido ma non fradicio, soprattutto mentre si formano le teste. Pacciama per trattenere l'umidità; un vaso vuole acqua appena il terriccio comincia ad asciugarsi.",
+      "feed": "Interra del compost prima del trapianto. Nei terreni poveri, concima le piante giovani con un concime ricco di azoto prima che formino la testa.",
+      "harvest": "Taglia la testa con qualche foglia quando è soda, prima che cominci ad aprirsi. Col sole estivo ripiega alcune foglie sopra la testa perché resti bianca, e d'inverno legale sopra contro le gelate forti.",
+      "keeps": "Meglio mangiarlo fresco: dura diversi giorni in frigorifero con qualche foglia attaccata. Le cimette si possono sbollentare e congelare.",
+      "problems": [
+        {
+          "name": "Teste piccole",
+          "fix": "Teste minuscole che si formano troppo presto, dopo un arresto della crescita. Trapianta le piantine per tempo in un terreno compatto e annaffia con regolarità."
+        },
+        {
+          "name": "Ernia del cavolo",
+          "fix": "Le piante restano piccole e appassiscono nelle ore calde; le radici sono gonfie e nodose. Non c'è cura e la malattia resta per anni nel terreno: correggi con calce il terreno acido fino a pH 6,5 circa, ruota le colture e alleva le piantine in vaso perché vadano a dimora con radici forti."
+        },
+        {
+          "name": "Cavolaia",
+          "fix": "Buchi nelle foglie e bruchi verdi, da inizio estate all'autunno. Copri le piante con una rete antinsetto fine dal trapianto e togli i gruppetti di uova gialle sotto le foglie."
+        }
+      ],
+      "source": "Cura e conservazione del cavolfiore: RHS. Quanti piantarne: servizi di extension della University of Missouri e di Kansas State. pH: University of Minnesota."
+    },
+    "broccoli": {
+      "about": "Si coltivano per le teste verdi di boccioli: tagliata la testa principale, i getti laterali continuano a uscire per settimane. Raccogli prima che i boccioli si aprano in fiori gialli, cosa che col caldo succede in fretta. Il broccolo a getti è un tipo più rustico che passa l'inverno e produce in primavera.",
+      "water": "Annaffia regolarmente le piante giovani finché attecchiscono, poi nei periodi secchi: un arresto della crescita le fa fiorire presto. Una pacciamatura di compost tiene umido il terreno.",
+      "feed": "Una coltura esigente: interra compost o letame prima del trapianto. Nei terreni poveri, o se crescono piano, dai un concime ricco di azoto quando le piante sono alte circa 20 cm.",
+      "harvest": "Taglia la testa principale con un po' di gambo quando è soda e i boccioli sono ancora chiusi. Poi controlla ogni pochi giorni e taglia i getti laterali prima che fioriscano; raccogliendo spesso continuano fino a due mesi.",
+      "keeps": "Durano qualche giorno in frigorifero e si congelano bene dopo averli sbollentati.",
+      "problems": [
+        {
+          "name": "Fioritura precoce",
+          "fix": "Le teste restano piccole e si aprono in fiori gialli, col caldo o dopo un arresto della crescita. Annaffia nei periodi secchi, dove l'estate è calda scegli varietà resistenti e taglia le teste appena sono pronte."
+        },
+        {
+          "name": "Cavolaia",
+          "fix": "Buchi nelle foglie e bruchi verdi, da inizio estate all'autunno. Copri le piante con una rete antinsetto fine dal trapianto e togli i gruppetti di uova gialle sotto le foglie."
+        },
+        {
+          "name": "Piccioni",
+          "fix": "Strappano le foglie lasciando solo coste e nervature. Copri le piante con una rete sostenuta da archetti o canne, staccata dalle foglie."
+        }
+      ],
+      "source": "Cura e conservazione dei broccoli: RHS. Quanti piantarne: servizi di extension di Kansas State e della University of Missouri. pH: Washington State University. Misura del vaso: Texas A&M AgriLife."
+    },
+    "brussels_sprouts": {
+      "about": "Si coltivano per le piccole palline che si formano lungo il fusto alto, raccolte in autunno e inverno; dopo il gelo sono più dolci. È una coltura lunga che vuole terreno compatto: calpesta la terra prima del trapianto e rincalza bene ogni pianta, altrimenti i cavolini restano aperti.",
+      "water": "Annaffia regolarmente le piante giovani perché il terreno non si secchi mai; una volta attecchite, annaffia solo quando è secco. Una pacciamatura spessa tiene umido il terreno.",
+      "feed": "Interra il compost già nell'autunno prima. Nei terreni poveri, o se crescono piano, dai un concime ricco di azoto tra l'inizio e la metà dell'estate.",
+      "harvest": "Comincia dai cavolini più bassi quando sono sodi e grandi come una noce, staccandoli con uno strappo verso il basso, e sali lungo il fusto. Finiti i cavolini, cucina la cima come verdura a foglia.",
+      "keeps": "I fusti interi tagliati durano qualche giorno messi in acqua, o appesi in un locale fresco e al riparo dal gelo; stacca i cavolini quando servono. Si congelano anche dopo averli sbollentati.",
+      "problems": [
+        {
+          "name": "Cavolini aperti",
+          "fix": "Cavolini aperti e fogliosi invece di palline compatte, per il terreno smosso. Compatta il terreno prima del trapianto, rincalza i fusti a fine estate e metti un tutore alle piante alte nei posti ventosi."
+        },
+        {
+          "name": "Afide grigio del cavolo",
+          "fix": "Afidi grigi e cerosi sulle foglie e dentro i cavolini. Schiaccia o lava via presto le colonie piccole e togli le foglie molto colpite."
+        },
+        {
+          "name": "Ernia del cavolo",
+          "fix": "Le piante restano piccole e appassiscono nelle ore calde; le radici sono gonfie e nodose. Non c'è cura e la malattia resta per anni nel terreno: correggi con calce il terreno acido fino ad almeno pH 6,5, ruota le colture e alleva le piantine in vaso perché vadano a dimora con radici forti."
+        }
+      ],
+      "source": "Cura e conservazione dei cavolini di Bruxelles: RHS. Quanti piantarne: servizio di extension di Kansas State. pH: University of Georgia. Congelamento: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "kohlrabi": {
+      "about": "Si coltiva per il fusto ingrossato, una palla croccante che sta appena sopra il terreno e sa di cavolo dolce e delicato. Cresce in fretta: semina una fila corta ogni poche settimane dalla primavera a fine estate invece che tutto insieme. Raccoglilo giovane: se lo lasci crescere troppo diventa legnoso.",
+      "water": "Tieni il terreno umido in modo costante: la siccità rallenta la crescita e indurisce il cavolo. Annaffia con regolarità le piantine finché non hanno radicato bene.",
+      "feed": "Interra del compost prima della semina e pacciama quando le piante crescono. Vuole meno azoto degli altri cavoli, quindi non serve altro concime.",
+      "harvest": "Taglia il fusto sotto la palla quando è tra la grandezza di una pallina da golf e quella di una da tennis. Le foglie giovani si cucinano come il cavolo riccio.",
+      "keeps": "Togli foglie e radice; in un sacchetto di plastica in frigorifero si conserva da 2 a 4 settimane.",
+      "problems": [
+        {
+          "name": "Cavolaia",
+          "fix": "Bruchi verdi che bucano le foglie. Copri le piante con una rete antinsetto fine, oppure controlla il rovescio delle foglie e togli uova e bruchi."
+        },
+        {
+          "name": "Altica",
+          "fix": "Tanti minuscoli fori rotondi sulle foglie giovani con tempo caldo e asciutto. Tieni annaffiate le piantine e coprile con una rete fine finché non si irrobustiscono."
+        },
+        {
+          "name": "Cavoli legnosi",
+          "fix": "Polpa dura e fibrosa dopo un periodo caldo e secco o una raccolta tardiva. Annaffia nei periodi secchi e raccogli al massimo alla grandezza di una pallina da tennis."
+        }
+      ],
+      "source": "Cura del cavolo rapa: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Connecticut e University of Maryland. Conservazione: University of Missouri."
+    },
+    "onion_sets": {
+      "about": "I bulbilli sono piccole cipolle coltivate l'anno prima, che si piantano perché diventino cipolle intere. È il modo più facile di coltivare cipolle: interrali lasciando appena fuori la punta e premi il terreno, così gli uccelli non li strappano.",
+      "water": "Annaffia nei lunghi periodi secchi, soprattutto finché le piante sono giovani. Smetti quando i bulbi si sono ingrossati a metà estate: le annaffiature tardive accorciano la conservazione.",
+      "feed": "Di solito basta il compost interrato prima di piantare. In un terreno povero, dai ai bulbilli piantati in autunno un concime ricco di azoto a fine inverno.",
+      "harvest": "Quando le foglie ingialliscono e si piegano, estrai le cipolle prima che secchino del tutto: da giugno a luglio quelle autunnali, da luglio a ottobre quelle primaverili. Falle asciugare al sole per circa due settimane.",
+      "keeps": "Conserva le cipolle secche in reti o cassette a listelli in un luogo fresco, asciutto, arieggiato e luminoso; al buio germogliano. Quelle piantate in autunno durano fino all'inizio dell'inverno, quelle primaverili fino alla primavera dopo.",
+      "problems": [
+        {
+          "name": "Salita a seme",
+          "fix": "Dal centro spunta uno stelo fiorale, spesso dopo una primavera fredda. Spezzalo e mangia quella cipolla per prima, perché non si conserva; i bulbilli trattati col calore vanno a seme meno."
+        },
+        {
+          "name": "Marciume bianco",
+          "fix": "Le foglie ingialliscono e appassiscono, e alla base del bulbo cresce una muffa bianca cotonosa. Non c'è cura: estirpa le piante colpite e buttale nell'indifferenziato, e non coltivare cipolle, aglio o porri in quell'aiuola per molti anni."
+        },
+        {
+          "name": "Mosca della cipolla",
+          "fix": "Le larve mangiano radici e bulbo; le piante giovani ingialliscono, appassiscono e muoiono. Estirpa e distruggi le piante colpite e copri la coltura con una rete antinsetto fitta."
+        }
+      ],
+      "source": "Cura della cipolla: RHS. Quante piantarne: servizio di extension di Kansas State. pH: University of Connecticut."
+    },
+    "onion": {
+      "about": "Si coltiva da seme per avere cipolle che si conservano tutto l'inverno; costa meno dei bulbilli, ci sono più varietà e va a seme meno spesso. Semina a inizio primavera, al chiuso o direttamente nella fila, e dirada le piantine in due volte perché ogni cipolla abbia spazio.",
+      "water": "Tieni umide le piantine; poi annaffia solo nei lunghi periodi secchi. Smetti quando i bulbi si sono ingrossati a metà estate, così si conservano più a lungo.",
+      "feed": "Di solito basta il compost interrato prima della semina; l'azoto in più verso la fine dà bulbi molli che si conservano male.",
+      "harvest": "Quando le foglie ingialliscono e si piegano, da luglio a ottobre, estrai le cipolle prima che secchino del tutto. Falle asciugare al sole per circa due settimane.",
+      "keeps": "Le cipolle da seme durano fino alla primavera dopo, in reti o cassette a listelli in un luogo fresco, asciutto, arieggiato e luminoso; al buio germogliano.",
+      "problems": [
+        {
+          "name": "Peronospora",
+          "fix": "Macchie chiare sulle foglie con una muffa grigio-violacea, con tempo fresco e umido; le foglie si afflosciano. Togli le foglie colpite, lascia spazio tra le piante e l'anno dopo coltiva le cipolle in un'altra aiuola."
+        },
+        {
+          "name": "Mosca della cipolla",
+          "fix": "Le larve mangiano radici e bulbo; le piantine ingialliscono, appassiscono e muoiono. Estirpa e distruggi le piante colpite e copri la coltura con una rete antinsetto fitta."
+        },
+        {
+          "name": "Erbe infestanti",
+          "fix": "Le piantine di cipolla sono sottili e lente, e le erbacce le soffocano presto. Sarchia spesso a mano finché sono piccole."
+        }
+      ],
+      "source": "Cura della cipolla: RHS. Quante piantarne: servizio di extension di Kansas State. pH: University of Connecticut."
+    },
+    "leek": {
+      "about": "Si coltiva per il lungo fusto bianco, raccolto da fine estate fino all'inverno. Semina in semenzaio o in vasetti, poi trapianta le piantine, grosse come una matita, in buche profonde fatte col piantatoio e riempi ogni buca d'acqua; il trapianto profondo dà un fusto bianco lungo.",
+      "water": "Annaffia le piantine finché non crescono bene, poi nei lunghi periodi secchi. Bagna alla base e tieni asciutte le foglie, così freni la ruggine.",
+      "feed": "Il porro resta mesi nell'orto e ama il terreno ricco: interra molto compost o letame prima del trapianto. In un terreno povero aiuta un concime azotato a metà estate.",
+      "harvest": "Estrai i porri con una forca quando ti servono, da fine estate; prendendone uno sì e uno no, gli altri si ingrossano. Le varietà tardive restano nell'orto tutto l'inverno, e il gelo le rende più dolci.",
+      "keeps": "Il porro si conserva meglio nell'orto finché non ti serve. Una volta raccolto, tienilo non lavato in frigorifero e usalo presto.",
+      "problems": [
+        {
+          "name": "Ruggine del porro",
+          "fix": "Pustole arancioni in rilievo sulle foglie, peggiori a fine estate. Bagna alla base e scegli una varietà resistente se torna; i porri poco colpiti si mangiano senza problemi."
+        },
+        {
+          "name": "Mosca minatrice del porro",
+          "fix": "Piccole larve scavano gallerie nel fusto, che si torce e marcisce; i primi segni sono file di minuscoli puntini bianchi sulle foglie. Copri i porri con una rete antinsetto fitta dal trapianto."
+        },
+        {
+          "name": "Tignola del porro",
+          "fix": "I bruchi scavano le foglie e lasciano chiazze bianche come carta. Taglia le foglie rovinate; la stessa rete fitta tiene lontana la tignola."
+        }
+      ],
+      "source": "Cura del porro: RHS. pH: University of Connecticut."
+    },
+    "celery": {
+      "about": "Si coltiva per le coste croccanti. Le varietà autoimbiancanti sono le più facili: trapiantale a blocco, non in fila, così si ombreggiano gli steli a vicenda. Il sedano vuole caldo e acqua costante: le piantine rimaste a lungo sotto i 10 °C possono andare a seme, quindi trapianta solo quando le notti restano miti.",
+      "water": "Non lasciare mai seccare il terreno: la siccità rende le coste fibrose e dal sapore troppo forte. D’estate annaffia in abbondanza, al mattino o alla sera, con acqua piovana se puoi.",
+      "feed": "Trapianta in un terreno ricco di compost o letame. Su terreno povero dai d’estate un po’ di concime ricco di azoto; in vaso, un concime liquido bilanciato ogni due settimane.",
+      "harvest": "Raccogli le piante intere da fine estate, prima che le foglie ingialliscano e prima della prima gelata; coprile con tessuto non tessuto quando le notti si rinfrescano. Usale presto dopo la raccolta.",
+      "keeps": "Avvolto in un panno umido o in un sacchetto in frigorifero resta croccante per poco; usalo presto.",
+      "problems": [
+        {
+          "name": "Mosca del sedano",
+          "fix": "Macchie marroni e secche nelle foglie, dove piccole larve si nutrono all’interno. Togli le foglie colpite e copri le piante giovani con una rete antinsetto fine."
+        },
+        {
+          "name": "Septoriosi",
+          "fix": "Piccole macchie marroni con minuscoli puntini neri che si allargano sulle foglie col tempo umido. Togli le foglie macchiate e non coltivare sedano o sedano rapa nello stesso terreno per qualche anno."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Amano il sedano e mangiano piantine e coste. Proteggi le piante, soprattutto col tempo umido."
+        }
+      ],
+      "source": "Cura del sedano: RHS. pH: University of Connecticut e University of Maryland."
+    },
+    "fennel": {
+      "about": "Il finocchio si coltiva per la base ingrossata delle foglie, dal sapore di anice: il grumolo. Il suo problema principale è la salita a seme, quando fiorisce invece di formare il grumolo: semina a inizio estate invece che in primavera, scegli una varietà resistente e semina in alveoli per non disturbare le radici. Quando la base comincia a ingrossare, rincalzala perché resti bianca e dolce.",
+      "water": "Tieni il terreno sempre umido: la siccità è una delle cause principali della salita a seme. Annaffia in abbondanza al mattino e d’estate controlla il vaso ogni giorno.",
+      "feed": "Interra del compost prima della semina e pacciama quando le piante crescono; non serve altro concime.",
+      "harvest": "Taglia il grumolo appena sopra il terreno quando è largo da 10 a 15 cm, o già da 5 cm per quelli piccoli. Non aspettare che si allunghi e butti uno stelo, perché diventa legnoso.",
+      "keeps": "Meglio fresco; si conserva qualche giorno in un sacchetto in frigorifero.",
+      "problems": [
+        {
+          "name": "Salita a seme",
+          "fix": "Spunta uno stelo fiorale e il grumolo resta piatto e duro, dopo freddo, siccità o radici disturbate. Semina più tardi, annaffia con costanza e usa subito le piante che salgono a seme."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Mangiano le piantine e le piante giovani. Proteggi le piante col tempo umido e togli a mano le erbacce vicino, perché nascondono le lumache."
+        }
+      ],
+      "source": "Cura del finocchio: RHS. pH: Utah State University e University of Arkansas."
+    },
+    "potato": {
+      "about": "Si coltiva per i tuberi. Le precoci si raccolgono a inizio estate; le tardive si raccolgono in autunno e si conservano per l’inverno. Man mano che i getti crescono, rincalzali con la terra: li protegge dal gelo e impedisce ai tuberi di diventare verdi.",
+      "water": "Annaffia nei periodi secchi, soprattutto dalla fioritura, quando si formano i tuberi; un’umidità costante in quel momento aiuta anche contro la scabbia. Un vaso va annaffiato con regolarità anche quando piove, perché le foglie non lasciano arrivare la pioggia al terriccio.",
+      "feed": "Coltivala in un terreno migliorato con compost o letame. Su terreno povero dai un concime ricco di azoto alla seconda rincalzatura; in vaso, mescola un concime completo all’impianto o dai un concime liquido dopo circa sei settimane.",
+      "harvest": "Raccogli le precoci quando si aprono i fiori e i tuberi sono grandi come un uovo. Per quelle da conservare, taglia le piante quando ingialliscono, aspetta 10 giorni e poi scava, partendo a 30 cm dal fusto per non infilzare i tuberi.",
+      "keeps": "Lascia asciugare i tuberi qualche ora e togli la terra. I tuberi sani si conservano da 2 a 4 mesi in sacchi di carta o di juta, al buio, al fresco e al riparo dal gelo; controllali ogni qualche settimana e togli quelli che marciscono.",
+      "problems": [
+        {
+          "name": "Peronospora",
+          "fix": "Macchie marroni che si allargano in fretta sulle foglie col tempo caldo e umido e poi fanno marcire i tuberi. Taglia e togli le piante appena la vedi, aspetta due o tre settimane e poi raccogli; scegli varietà resistenti."
+        },
+        {
+          "name": "Scabbia",
+          "fix": "Chiazze ruvide e sugherose sulla buccia; sbucciate, le patate sono ancora buone. Annaffia nei periodi secchi mentre si formano i tuberi, non dare calce prima dell’impianto e scegli varietà resistenti."
+        },
+        {
+          "name": "Patate verdi",
+          "fix": "I tuberi esposti alla luce diventano verdi e sono tossici. Rincalza bene, conserva al buio e butta via i tuberi verdi."
+        }
+      ],
+      "source": "Cura della patata: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Georgia. Misura del vaso: Cornell Cooperative Extension. Conservazione: University of Missouri."
+    },
+    "asparagus": {
+      "about": "Una pianta perenne coltivata per i turioni primaverili; una buona asparagiaia produce per 20 anni e più. Metti a dimora le zampe in un'aiuola fissa e pulita dalle erbacce, e non raccogliere nulla per i primi due anni, così le radici si rinforzano.",
+      "water": "Annaffia con regolarità le zampe nuove durante la prima estate. Una volta affermate radicano in profondità e vogliono acqua solo nei lunghi periodi secchi.",
+      "feed": "Ogni fine inverno pacciama l'aiuola con 5 cm di compost o letame ben maturo. Se cresce debole, spargi un concime completo a inizio primavera, prima che spuntino i turioni.",
+      "harvest": "Taglia i turioni con un coltello affilato appena sotto terra quando sono alti circa 18 cm, ogni due o tre giorni col caldo. Fermati dopo sei settimane il primo anno di raccolta e dopo otto negli anni seguenti; poi lascia crescere le fronde e tagliale solo quando ingialliscono in autunno.",
+      "keeps": "Gli asparagi durano qualche giorno in frigorifero, in piedi in un po' d'acqua o con la base avvolta in carta umida. Sbollentati si congelano bene.",
+      "problems": [
+        {
+          "name": "Criocera dell'asparago",
+          "fix": "Coleotteri rossi e neri a macchie chiare, e le loro larve grigie, spogliano steli e fronde in estate. Raccoglili a mano dalla tarda primavera e in autunno togli gli steli vecchi, dove gli adulti svernano."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Rosicchiano i turioni giovani col tempo umido di primavera. Controlla al buio e toglile, e tieni l'aiuola pulita da erbacce e residui dove si nascondono."
+        },
+        {
+          "name": "Marciume radicale",
+          "fix": "Le piante ingialliscono e seccano a chiazze nel terreno pesante e zuppo. Su terra pesante coltiva l'asparago in un'aiuola rialzata, e non piantare mai zampe nuove dove c'erano già asparagi."
+        }
+      ],
+      "source": "Cura dell'asparago: RHS. Quante piantarne: servizi di extension della University of Missouri e di Kansas State. pH: Cornell e University of Maryland."
+    },
+    "rhubarb": {
+      "about": "Una perenne longeva coltivata per i piccioli acidi, raccolti dalla primavera all'inizio dell'estate. Si mangiano solo i piccioli: le foglie contengono acido ossalico e non vanno mangiate. Un cespo produce per molti anni; estirpalo e dividilo più o meno ogni cinque anni perché resti vigoroso.",
+      "water": "Annaffia le piante nuove nei periodi secchi della prima stagione. I cespi affermati vogliono acqua solo nelle estati lunghe e secche; il colletto non deve mai stare in terreno zuppo.",
+      "feed": "Ogni primavera stendi 7 cm di letame ben maturo o compost attorno alla pianta, senza coprire il colletto. Su terreno povero aggiungi in primavera un concime ricco di azoto.",
+      "harvest": "Il secondo anno stacca solo pochi piccioli; dal terzo, quelli lunghi circa 30 cm. Tieni ogni picciolo alla base e staccalo con una torsione invece di tagliarlo, non prenderne più di un terzo alla volta e smetti a inizio luglio perché la pianta si riprenda.",
+      "keeps": "I piccioli durano circa una settimana in frigorifero in un sacchetto; le foglie vanno nel compost. A pezzi si congelano bene.",
+      "problems": [
+        {
+          "name": "Marciume del colletto",
+          "fix": "Il colletto diventa molle e bruno e le gemme muoiono, soprattutto in terreno zuppo d'inverno. Taglia subito le parti marce; se è colpito tutto, ripianta pezzi sani in terra nuova e ben drenata."
+        },
+        {
+          "name": "Steli fiorali",
+          "fix": "Steli alti e grossi con una grande infiorescenza tolgono forza alla pianta. Tagliali alla base appena li vedi."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Mangiano i germogli giovani in primavera. Controlla al buio e toglile."
+        }
+      ],
+      "source": "Cura del rabarbaro: RHS. Quante piantarne: servizio di extension della University of Missouri. pH: Cornell e University of Maryland."
+    },
+    "artichoke": {
+      "about": "Una grande perenne dalle foglie argentate, coltivata per i capolini, che si mangiano prima che si aprano. Vuole spazio, sole e terreno ben drenato; gli inverni freddi e umidi la uccidono più spesso del gelo da solo. Nella prima estate taglia gli steli fiorali perché la pianta si affermi.",
+      "water": "Annaffia con regolarità nella prima stagione e mentre si formano i capolini: il terreno secco ne dà meno e più piccoli. Una volta affermato sopporta brevi periodi secchi.",
+      "feed": "Interra molto compost prima dell'impianto e pacciama ogni primavera. Su terreno povero o in vaso, dai in primavera un concime ricco di potassio.",
+      "harvest": "Taglia i capolini quando hanno raggiunto la loro grandezza ma sono ancora ben chiusi, con qualche centimetro di gambo; prima il capolino principale, poi seguono i secondari, più piccoli. Controlla ogni pochi giorni col caldo, perché si aprono in fretta.",
+      "keeps": "I carciofi durano da 3 a 5 giorni in frigorifero in un sacchetto.",
+      "problems": [
+        {
+          "name": "Afidi",
+          "fix": "Colonie di piccoli insetti neri o verdi sui capolini e sugli apici. Lavali via con un getto d'acqua forte e lascia lavorare le coccinelle e le loro larve."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Mangiano piante giovani e germogli nuovi in primavera. Proteggi le piante giovani e togli le lumache al buio."
+        },
+        {
+          "name": "Perdite invernali",
+          "fix": "Le piante marciscono o muoiono negli inverni freddi e umidi, soprattutto quelle giovani. A fine autunno taglia gli steli e copri la ceppaia con uno strato spesso di paglia o foglie; scoprila in primavera."
+        }
+      ],
+      "source": "Cura del carciofo: RHS e servizio di extension della Utah State. pH: Cornell. Conservazione: Utah State."
+    },
     "tomato": {
       "about": "Si coltiva per i frutti, che maturano da piena estate fino alla prima gelata. Le varietà alte si legano a un tutore e si allevano a un solo fusto togliendo le femminelle; quelle a cespuglio restano compatte e vanno bene in vaso.",
       "water": "Tieni il terreno umido in modo costante: le annaffiature irregolari spaccano i frutti e causano il marciume apicale. Col caldo un vaso può aver bisogno d'acqua ogni giorno.",
@@ -446,6 +1088,830 @@
         }
       ],
       "source": "Cura del pomodoro: RHS. Quante piantarne: servizi di extension della University of Missouri e di Kansas State. pH: University of Georgia. Conservazione: University of Arizona."
+    },
+    "pepper": {
+      "about": "Si coltiva per i frutti dolci, raccolti verdi o maturi rossi, gialli o arancioni. Ha bisogno di un'estate lunga e calda: nelle zone fresche riesce meglio in serra o in un angolo soleggiato e riparato. Lega ogni pianta a un tutore, perché i rami sono fragili e si spezzano sotto un carico pesante.",
+      "water": "Tieni il terreno umido in modo costante: se si asciuga, i boccioli cadono. Col caldo un vaso può aver bisogno d'acqua ogni giorno.",
+      "feed": "Dalla fioritura, dai ogni settimana un concime liquido ricco di potassio (concime per pomodori) alle piante in vaso. In un terreno ricco ne serve meno, ma concimare aumenta comunque il raccolto.",
+      "harvest": "Raccogli i frutti quando sono ben formati e lucidi, verdi o colorati; colorandosi diventano più dolci, ma lasciarli maturare rallenta i nuovi. Taglia il peduncolo con le forbici invece di strappare.",
+      "keeps": "Si conserva meglio in un luogo fresco a temperatura ambiente; in frigorifero 1-3 giorni, se lo mangi poco dopo averlo tirato fuori.",
+      "problems": [
+        {
+          "name": "Afidi",
+          "fix": "Piccoli insetti verdi o neri sulle punte e sotto le foglie, che si accartocciano; la pianta rallenta. Controlla spesso ed elimina le piccole colonie a mano o con un getto d'acqua; coccinelle e altri predatori aiutano."
+        },
+        {
+          "name": "Marciume apicale",
+          "fix": "Una macchia scura e infossata sul fondo del frutto, dovuta alle annaffiature irregolari. Annaffia con regolarità; il resto del raccolto di solito è sano."
+        },
+        {
+          "name": "Cascola dei fiori",
+          "fix": "Boccioli e fiori cadono senza allegare quando il terreno si asciuga, con il gran caldo o con notti fredde. Tieni il terreno umido in modo costante, e arieggia e ombreggia la serra nei giorni caldi."
+        }
+      ],
+      "source": "Cura del peperone: RHS. Quante piantarne: servizi di extension di Kansas State e Virginia Tech. pH: University of Maryland. Conservazione: Kansas State e University of Missouri."
+    },
+    "chilli": {
+      "about": "Si coltiva per i frutti piccanti, da usare freschi, essiccati o sott'aceto. Vuole caldo per tutta l'estate: serra, davanzale soleggiato o un angolo caldo e riparato all'aperto. In vaso può rientrare in casa prima del freddo e svernare in un luogo luminoso e caldo, con poca acqua.",
+      "water": "Tieni il terriccio umido in modo costante: se si asciuga, i boccioli cadono. Un vaso in pieno sole col caldo può aver bisogno d'acqua ogni giorno.",
+      "feed": "Dalla fioritura, dai ogni settimana un concime liquido ricco di potassio (concime per pomodori) alle piante in vaso. In un terreno ricco ne serve meno.",
+      "harvest": "Raccoglili verdi per il raccolto più grande: i frutti lasciati arrossare sono più piccanti, ma la pianta fa poi meno fiori nuovi. A fine stagione lascia colorare gli ultimi. Tagliali col peduncolo e lavati le mani dopo aver toccato le varietà piccanti.",
+      "keeps": "Tieni i peperoncini freschi al fresco e usali presto, oppure essiccali, congelali o mettili sott'aceto per l'inverno.",
+      "problems": [
+        {
+          "name": "Afidi",
+          "fix": "Piccoli insetti verdi o neri sulle punte e sotto le foglie, che si accartocciano. Controlla spesso, soprattutto in casa, ed elimina le piccole colonie a mano o con un getto d'acqua; coccinelle e altri predatori aiutano."
+        },
+        {
+          "name": "Ragnetto rosso",
+          "fix": "Una fine punteggiatura chiara sulle foglie e sottili ragnatele, con aria calda e secca, soprattutto al coperto. Nebulizza le piante e bagna il pavimento della serra per alzare l'umidità."
+        },
+        {
+          "name": "Pochi frutti col gran caldo",
+          "fix": "Sopra i 30 °C circa i fiori cadono e allegano pochi frutti. Arieggia e ombreggia la serra e bagna il pavimento ogni giorno."
+        }
+      ],
+      "source": "Cura e conservazione del peperoncino: RHS. pH: University of Maryland (peperoni)."
+    },
+    "aubergine": {
+      "about": "Si coltiva per i frutti lucidi, viola, bianchi o striati. Vuole più caldo del pomodoro e circa cinque mesi dalla semina al raccolto: in un'estate fresca coltivala in serra o nel posto più soleggiato e riparato. Cima la punta a circa 30 cm perché si ramifichi, e lascia cinque o sei frutti nelle varietà a frutto grosso.",
+      "water": "Tieni il terreno sempre umido; col caldo un vaso può aver bisogno d'acqua ogni giorno. Al coperto, nebulizzare le foglie due volte al giorno tiene lontano anche il ragnetto rosso.",
+      "feed": "Quando si aprono i primi fiori, dai ogni due settimane un concime liquido ricco di potassio. In un terreno ricco ne serve meno, ma concimare aumenta comunque il raccolto.",
+      "harvest": "Taglia ogni frutto con qualche centimetro di peduncolo quando ha la sua grandezza, è lucido e ben colorato; la buccia opaca indica un frutto troppo maturo, che può essere amaro. Raccogli spesso e attento alle piccole spine del calice.",
+      "keeps": "Si conserva meglio al fresco a temperatura ambiente e va mangiata in pochi giorni; in frigorifero 1-3 giorni, se la cucini poco dopo.",
+      "problems": [
+        {
+          "name": "Pochi o nessun frutto",
+          "fix": "Di solito un'estate fresca o un posto freddo. Dalle il punto più caldo e soleggiato e un'umidità costante, e togli i fiori che si aprono dopo la fine dell'estate: i loro frutti non maturano."
+        },
+        {
+          "name": "Ragnetto rosso",
+          "fix": "Una fine punteggiatura chiara sulle foglie e sottili ragnatele, con aria calda e secca al coperto. Nebulizza le foglie e bagna il pavimento della serra nelle mattine calde."
+        },
+        {
+          "name": "Afidi e mosca bianca",
+          "fix": "Insetti succhiatori sotto le foglie, che diventano appiccicose e pallide. Controlla spesso la pagina inferiore e lava via le piccole colonie; in serra le trappole cromotropiche gialle catturano la mosca bianca."
+        }
+      ],
+      "source": "Cura della melanzana: RHS. Quante piantarne: servizi di extension di Kansas State e Virginia Tech. pH: University of Maryland. Conservazione: Kansas State e University of Missouri."
+    },
+    "cucumber": {
+      "about": "Si coltiva per i frutti, che si raccolgono da piena estate. Quasi tutte le varietà si arrampicano: guidale su un tutore, una rete o un graticcio per risparmiare spazio e tenere puliti i frutti. Le varietà da serra sono spesso solo femminili, quindi togli i fiori maschili che compaiono; quelle da pieno campo hanno bisogno dei fiori maschili per l'impollinazione.",
+      "water": "Tieni il terreno umido in modo costante, soprattutto quando si formano i frutti. Annaffia al piede la mattina senza bagnare le foglie; col gran caldo un vaso può aver bisogno d'acqua ogni giorno.",
+      "feed": "In piena terra raramente serve concime, a meno che il terreno sia povero. In vaso, dai un concime liquido universale ogni 10-14 giorni, e passa a uno ricco di potassio (concime per pomodori) dalla fioritura.",
+      "harvest": "Taglia i frutti col coltello quando hanno la loro misura: circa 15 cm per le varietà piccole, 20-25 cm per quelle grandi. Controlla ogni pochi giorni, perché crescono in fretta e raccogliere spesso ne fa venire altri; i frutti gialli e gonfi sono troppo maturi.",
+      "keeps": "Si conserva meglio al fresco a temperatura ambiente; in frigorifero 1-3 giorni, se lo mangi poco dopo averlo tirato fuori.",
+      "problems": [
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Una polvere bianca sulle foglie, peggiore quando le radici sono all'asciutto. Annaffia al piede, tieni asciutte le foglie e umido il terreno, e scegli varietà resistenti."
+        },
+        {
+          "name": "Virus del mosaico del cetriolo",
+          "fix": "Foglie screziate di giallo e bollose, piante nane. Estirpa ed elimina le piante colpite (non nel compost) e tieni a bada gli afidi, che lo trasmettono."
+        },
+        {
+          "name": "Lumache",
+          "fix": "Mangiano le piantine, soprattutto col tempo umido. Proteggi le piante dopo il trapianto e controllale al tramonto; le piante guidate in alto tengono i frutti fuori portata."
+        }
+      ],
+      "source": "Cura del cetriolo: RHS. Quante piantarne: Virginia Tech. pH: University of Maryland. Conservazione: Kansas State e University of Missouri."
+    },
+    "courgette": {
+      "about": "Si coltiva per i frutti giovani, raccolti piccoli tutta l'estate; anche i fiori si mangiano. Una pianta si allarga molto e produce in abbondanza. Raccogli spesso: un frutto lasciato qualche giorno diventa enorme e rallenta la pianta.",
+      "water": "Tieni il terreno umido per tutta l'estate, annaffiando al piede e non sulle foglie. Un vasetto interrato accanto alla pianta e riempito d'acqua la porta dritta alle radici.",
+      "feed": "Prima di piantare, interra molto compost o letame ben maturo; in un buon terreno poi serve poco altro. In vaso, dai un concime liquido ricco di potassio ogni 10-14 giorni quando i primi frutti si ingrossano.",
+      "harvest": "Taglia i frutti a 10-12 cm, piccoli e teneri. Col bel tempo controlla ogni giorno o due: una pianta può dare tre o quattro frutti a settimana. I fiori maschili si possono cogliere senza perdere frutti.",
+      "keeps": "Si conserva qualche giorno in frigorifero; mangiala finché è soda.",
+      "problems": [
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Polvere bianca sulle foglie da piena estate, peggiore col terreno secco. Tieni umido il terreno, annaffia al piede e taglia le foglie più colpite."
+        },
+        {
+          "name": "Lumache",
+          "fix": "Mangiano piantine, fiori e frutticini. Proteggi le piante dopo il trapianto, o semina al coperto per metterle fuori più grandi."
+        },
+        {
+          "name": "Frutti che marciscono o non allegano",
+          "fix": "I frutticini marciscono dalla punta all'inizio di un'estate fresca, quando pochi insetti impollinano. Passa col caldo; puoi anche impollinare a mano con un fiore maschile."
+        }
+      ],
+      "source": "Cura della zucchina: RHS. Quante piantarne: Virginia Tech. pH: University of Maryland. Conservazione: Kansas State e University of Missouri."
+    },
+    "pumpkin": {
+      "about": "Si coltiva per i grossi frutti, che maturano in autunno e si conservano fino all'inverno. I fusti striscianti vogliono molto spazio. Per frutti grandi lasciane due o tre per pianta; per una zucca gigante, una sola.",
+      "water": "Annaffia abbondantemente, soprattutto quando si formano i frutti, al piede e non sulle foglie. Un vaso interrato accanto alla pianta e riempito d'acqua la porta alle radici.",
+      "feed": "Interra molto compost o letame ben maturo nella buca d'impianto; la maggior parte delle piante poi non chiede altro. Per frutti molto grandi, dai un concime liquido ricco di potassio ogni 10-14 giorni quando il frutto si ingrossa.",
+      "harvest": "Lascia che il frutto si colori del tutto sulla pianta; la buccia deve essere dura e non segnarsi con l'unghia. Taglialo prima della prima gelata con almeno 10 cm di peduncolo, poi lascialo al sole da una settimana a 10 giorni perché la buccia indurisca.",
+      "keeps": "Conserva i frutti induriti in un luogo arieggiato a 10-15 °C, senza che si tocchino: almeno tre mesi, fino a sei in buone condizioni. Un frutto gelato non si conserva.",
+      "problems": [
+        {
+          "name": "Marciume dei frutti",
+          "fix": "I frutti appoggiati sulla terra umida, o tagliati con il peduncolo troppo corto, marciscono. Metti ogni frutto su una tegola, un mattone o un'asse, e non trasportarlo mai per il peduncolo."
+        },
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Polvere bianca sulle foglie, peggiore quando la pianta soffre la sete. Annaffia con regolarità e distanzia le piante perché circoli l'aria."
+        },
+        {
+          "name": "Lumache",
+          "fix": "Mangiano piantine e fiori. Proteggi le piante dopo il trapianto, soprattutto col tempo umido."
+        }
+      ],
+      "source": "Cura e conservazione della zucca: RHS. Maturazione: University of Minnesota. Quante piantarne: Kansas State e Virginia Tech. pH: University of Maryland."
+    },
+    "winter_squash": {
+      "about": "Si coltiva per i frutti dalla buccia dura, come la butternut, la zucca ghianda o la Hokkaido, che si conservano tutto l'inverno. Le varietà striscianti si allargano molto; quelle piccole si possono guidare su un sostegno robusto. Lascia il frutto sulla pianta finché è del tutto maturo: una zucca acerba non si conserva.",
+      "water": "Annaffia abbondantemente mentre i frutti si ingrossano, al piede e non sulle foglie. Una pacciamatura intorno alle piante trattiene l'umidità nel terreno.",
+      "feed": "Interra molto compost o letame ben maturo nella buca d'impianto. In un terreno povero, dai un concime liquido ricco di potassio ogni 10-14 giorni quando i frutti si ingrossano.",
+      "harvest": "Raccogli quando la buccia è dura e opaca, non si segna con l'unghia e il peduncolo è sodo. Taglia prima della prima gelata con un bel pezzo di peduncolo e lascia al sole una decina di giorni perché indurisca.",
+      "keeps": "Conserva i frutti induriti in un luogo asciutto e arieggiato a 10-15 °C: da uno a sei mesi secondo il tipo. Controllali spesso e usa presto quelli che si ammorbidiscono.",
+      "problems": [
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Polvere bianca sulle foglie, peggiore quando la pianta soffre la sete. Annaffia con regolarità e distanzia le piante perché circoli l'aria."
+        },
+        {
+          "name": "Lumache",
+          "fix": "Mangiano piantine e fiori. Proteggi le piante dopo il trapianto, soprattutto col tempo umido."
+        },
+        {
+          "name": "Frutti che non allegano",
+          "fix": "I frutticini avvizziscono o marciscono col tempo fresco, quando pochi insetti impollinano. Impollina a mano portando il polline di un fiore maschile nel fiore femminile, che ha un piccolo frutto alla base."
+        }
+      ],
+      "source": "Cura della zucca: RHS. Maturazione e conservazione: University of Minnesota e RHS. Quante piantarne: Kansas State e Virginia Tech. pH: University of Maryland."
+    },
+    "green_beans": {
+      "about": "Si coltivano per i baccelli teneri, raccolti giovani. Le varietà nane arrivano a circa 45 cm e vanno bene in vaso; quelle rampicanti vogliono canne alte ma producono più a lungo. Il gelo li uccide e marciscono nel terreno freddo e bagnato, quindi semina solo quando il terreno è caldo.",
+      "water": "Annaffia col tempo secco, soprattutto quando le piante fioriscono e allegano i baccelli; col terreno secco i fiori cadono. I vasi vanno annaffiati spesso.",
+      "feed": "In piena terra i fagiolini non vogliono concime, e troppo azoto dà foglie invece di baccelli. In vaso, dai un concime liquido ricco di potassio ogni due settimane dai primi fiori.",
+      "harvest": "Raccogli i baccelli a 15-20 cm, quando si spezzano netti e prima che si vedano i semi. Raccogli ogni pochi giorni: più ne prendi, più ne vengono.",
+      "keeps": "I baccelli durano qualche giorno in frigorifero in un sacchetto. Per l'inverno, sbollentali e congelali.",
+      "problems": [
+        {
+          "name": "Lumache",
+          "fix": "Divorano le piantine in una notte. Alleva le piante in vasetto, trapiantale quando sono robuste e controlla nelle sere umide."
+        },
+        {
+          "name": "Afide nero",
+          "fix": "Colonie fitte di afidi neri sulle punte. Schiacciali o lavali via con un getto d'acqua."
+        },
+        {
+          "name": "Cascola dei fiori",
+          "fix": "I fiori cadono senza allegare col caldo, la siccità o il vento. Tieni il terreno umido, soprattutto in fioritura."
+        }
+      ],
+      "source": "Cura dei fagiolini: RHS e Virginia Tech. Quanti piantarne: servizi di extension di Kansas State e Texas A&M. pH: Virginia Tech e Penn State."
+    },
+    "sweetcorn": {
+      "about": "Si coltiva per le pannocchie dolci. Piantalo a blocco in file corte invece che in una fila lunga: il polline lo porta il vento, e solo a blocco le pannocchie si riempiono bene. Tieni le varietà supersweet lontane da altro mais dolce, o i chicchi diventano farinosi.",
+      "water": "Annaffia le piante giovani finché non attecchiscono, poi nei periodi secchi, soprattutto quando spuntano i pennacchi e mentre le pannocchie si ingrossano.",
+      "feed": "Coltivalo in un terreno ricco di compost o letame. Un concime azotato quando le piante arrivano circa al ginocchio aumenta il raccolto.",
+      "harvest": "Controlla le pannocchie quando le sete diventano marroni: apri un po’ le brattee e premi un chicco con l’unghia. Un succo lattiginoso vuol dire che è pronta, acquoso che devi aspettare; stacca la pannocchia girandola e mangiala presto, perché lo zucchero diventa amido.",
+      "keeps": "Tieni le pannocchie in frigorifero e mangiale entro 2 giorni; le supersweet durano circa una settimana. Congela quelle in più.",
+      "problems": [
+        {
+          "name": "Pannocchie mal riempite",
+          "fix": "Pannocchie con vuoti dove i chicchi non si sono formati, per una cattiva impollinazione. Pianta a blocco e, in una giornata senza vento, scuoti i pennacchi per far cadere il polline."
+        },
+        {
+          "name": "Uccelli e topi",
+          "fix": "Uccelli, topi e scoiattoli mangiano i semi e le pannocchie in maturazione. Semina al riparo o copri l’aiuola con una rete, e proteggi le pannocchie appena si formano."
+        },
+        {
+          "name": "Carbone del mais",
+          "fix": "Grosse escrescenze grigio biancastre su pannocchie e fusti che scoppiano in una polvere nera. Tagliale prima che scoppino e buttale, e l’anno dopo coltiva il mais in un altro posto."
+        }
+      ],
+      "source": "Cura del mais dolce: RHS. Quante piantarne: servizi di extension di Kansas State e della University of Missouri. pH: University of Connecticut e University of Maryland. Conservazione: University of Missouri."
+    },
+    "strawberry": {
+      "about": "Una pianta perenne coltivata per i frutti: le varietà unifere producono a inizio estate, le rifiorenti dall'estate all'autunno. Un'aiuola produce bene per tre o quattro anni; poi ripianta in un altro posto, con stoloni radicati, per evitare le malattie del terreno.",
+      "water": "Annaffia con regolarità nei periodi secchi, e spesso in vasi e cesti appesi, che si asciugano in fretta. Annaffia al piede la mattina, senza bagnare il colletto e i frutti.",
+      "feed": "In piena terra pacciamata con compost ogni primavera raramente serve altro. In vaso, dai un concime liquido universale ogni due settimane, poi uno ricco di potassio quando compaiono i boccioli.",
+      "harvest": "Raccogli le fragole quando sono rosse dappertutto, nelle ore più calde; dopo la raccolta non maturano più. Stendi della paglia sotto le piante quando si formano i frutti per tenerli puliti, e toglila in autunno.",
+      "keeps": "Sono più buone mangiate il giorno stesso; tienile in frigorifero e lavale solo prima di mangiarle. Congelate perdono la forma e vanno bene per frullati e dolci.",
+      "problems": [
+        {
+          "name": "Muffa grigia",
+          "fix": "Una muffa grigia e lanuginosa che fa marcire i frutti col tempo umido. Annaffia la mattina senza schizzi, tieni i frutti sulla paglia e togli subito le fragole marce."
+        },
+        {
+          "name": "Uccelli",
+          "fix": "Gli uccelli si prendono i frutti che maturano. Copri le piante con una rete ben tesa e fissata su un telaio prima che i frutti si colorino."
+        },
+        {
+          "name": "Oziorrinco",
+          "fix": "In vaso le piante appassiscono e crollano perché larve bianche, curve a C, mangiano le radici. A fine estate annaffia il terriccio con nematodi come lotta biologica."
+        }
+      ],
+      "source": "Cura delle fragole: RHS. Misura del vaso: Iowa State University. pH: University of Massachusetts e University of Maryland. Conservazione: Kansas State e University of Missouri."
+    },
+    "melon": {
+      "about": "Si coltiva per i frutti dolci di fine estate. Vuole caldo vero: nelle zone fresche coltivalo in serra, in tunnel o in cassone. Perché i frutti maturino, lasciane fino a quattro per pianta all'aperto e da quattro a sei al coperto, togliendo gli altri quando misurano circa 2,5 cm.",
+      "water": "Tieni il terreno umido in modo costante ma non zuppo, annaffiando al piede la mattina. Annaffia meno quando i frutti iniziano a maturare a fine estate.",
+      "feed": "In vaso, dai un concime liquido universale ogni 10-14 giorni a inizio estate, poi uno ricco di potassio quando i frutti sono grandi come una noce. Smetti di concimare quando maturano.",
+      "harvest": "Un melone maturo profuma di dolce, il peduncolo comincia a screpolarsi dove si attacca al frutto e l'estremità opposta cede un poco se premuta. I cantalupi si staccano allora dal peduncolo con una leggera spinta.",
+      "keeps": "Un melone maturo si conserva qualche giorno a temperatura ambiente; una volta tagliato, coprilo e mettilo in frigorifero.",
+      "problems": [
+        {
+          "name": "Frutti che non allegano",
+          "fix": "Al coperto arrivano pochi insetti ai fiori. Apri finestre e porte nelle giornate miti e impollina a mano con un pennellino, dai fiori maschili a quelli femminili, che hanno un piccolo frutto alla base."
+        },
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Polvere bianca sulle foglie, peggiore quando la pianta soffre la sete. Annaffia con regolarità e tieni asciutte le foglie."
+        },
+        {
+          "name": "Ragnetto rosso",
+          "fix": "Una fine punteggiatura chiara sulle foglie e sottili ragnatele, con aria secca al coperto. Bagna il pavimento della serra e nebulizza le piante col caldo."
+        }
+      ],
+      "source": "Cura del melone: RHS. Maturazione: University of Minnesota. Quante piantarne: Virginia Tech e Kansas State. pH: University of Maryland. Conservazione: Kansas State e University of Missouri."
+    },
+    "watermelon": {
+      "about": "Si coltiva per i grossi frutti dolci. Vuole un'estate lunga e calda: nelle zone fresche scegli una varietà piccola e precoce e coltivala al coperto. A differenza del melone, non matura dopo la raccolta: giudica la maturazione sulla pianta.",
+      "water": "Annaffia a fondo e con regolarità mentre crescono i fusti e si ingrossano i frutti, al piede e la mattina. Annaffia meno quando il frutto è vicino alla sua grandezza finale.",
+      "feed": "Interra del compost prima di piantare. Troppo azoto dà foglie invece di frutti: se concimi, usa un concime ricco di potassio quando si formano i frutti.",
+      "harvest": "È matura quando il viticcio più vicino al frutto è marrone e secco, la macchia dove poggia a terra passa da bianca a giallo crema e la buccia da lucida diventa opaca. Controlla tutti e tre i segni, poi tagliala col coltello.",
+      "keeps": "Un'anguria intera si conserva 2-3 settimane in un luogo fresco a 10-15 °C, lontano da mele, banane e pomodori. Una volta tagliata, tienila coperta in frigorifero.",
+      "problems": [
+        {
+          "name": "Raccolta acerba",
+          "fix": "Raccolta troppo presto resta pallida e insipida, perché non matura fuori dalla pianta. Aspetta che viticcio secco, macchia gialla e buccia opaca ci siano insieme."
+        },
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Polvere bianca sulle foglie, peggiore quando la pianta soffre la sete. Annaffia con regolarità al piede e tieni asciutte le foglie."
+        },
+        {
+          "name": "Lumache",
+          "fix": "Mangiano le piantine. Proteggi le piante dopo il trapianto, soprattutto col tempo umido."
+        }
+      ],
+      "source": "Cura dell'anguria: RHS. Maturazione e conservazione: University of Minnesota. Quante piantarne: Virginia Tech e Kansas State. pH: University of Maryland."
+    },
+    "basil": {
+      "about": "Un'erba annuale che teme il freddo, coltivata per le foglie profumate dall'inizio dell'estate alle prime notti fredde. Cimare le punte mantiene la pianta folta e piena di foglie. Cresce bene in vaso, in un posto caldo, riparato e soleggiato.",
+      "water": "Tieni il terriccio umido in modo costante, annaffiando al mattino e alla base invece che sulle foglie: il basilico odia le radici bagnate durante la notte. Col caldo un vaso può aver bisogno d'acqua ogni giorno.",
+      "feed": "In piena terra non ha bisogno di concime. In vaso, dai un concime liquido bilanciato ogni poche settimane d'estate; evita il concime per pomodori, che lo spinge a fiorire.",
+      "harvest": "Cogli le punte appena sopra una coppia di foglie, poche per pianta, così spuntano nuovi getti laterali. Togli i boccioli appena compaiono perché le foglie restino tenere.",
+      "keeps": "In frigorifero il basilico annerisce: tieni i rametti in un bicchiere d'acqua a temperatura ambiente per qualche giorno. Per conservarlo più a lungo, congela le foglie tritate nell'olio o fai il pesto.",
+      "problems": [
+        {
+          "name": "Peronospora",
+          "fix": "Le foglie ingialliscono tra le nervature, con una muffa grigio-violacea sotto, soprattutto col tempo umido. Annaffia alla base al mattino, lascia spazio tra le piante ed estirpa quelle colpite."
+        },
+        {
+          "name": "Danni da freddo",
+          "fix": "Le foglie diventano nere e molli dopo notti fredde. Tieni il basilico al chiuso finché le notti restano tiepide, e in autunno ritira i vasi o copri le piante."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Possono mangiare una piantina in una notte. Coltivalo in vaso, controlla al buio e toglile."
+        }
+      ],
+      "source": "Cura del basilico: RHS. pH: servizi di extension di Clemson e della University of Connecticut."
+    },
+    "parsley": {
+      "about": "Un'erba biennale coltivata come annuale per le foglie ricce o lisce. Il seme è lento: in piena terra può metterci fino a sei settimane a spuntare, quindi segna la fila e tienila umida. Il secondo anno fiorisce e le foglie peggiorano, perciò seminalo ogni anno.",
+      "water": "Tieni il terreno umido ma non zuppo, soprattutto finché le piantine sono piccole e nei periodi caldi e secchi. I vasi asciugano in fretta; in piena estate mettili a mezz'ombra.",
+      "feed": "In piena terra non ha bisogno di concime. In vaso, dai un concime liquido bilanciato ogni poche settimane durante la stagione.",
+      "harvest": "Taglia alla base alcuni steli esterni e lascia crescere il cuore; raccolte regolari danno foglie nuove dalla tarda primavera all'autunno.",
+      "keeps": "Un mazzetto dura diversi giorni in frigorifero con i gambi in acqua. Tritato si congela bene nelle vaschette del ghiaccio e conserva più aroma che secco.",
+      "problems": [
+        {
+          "name": "Mosca della carota",
+          "fix": "Le larve scavano gallerie nelle radici; le piante si arrossano, appassiscono e smettono di crescere. Copri la fila con una rete antinsetto fine dalla semina."
+        },
+        {
+          "name": "Mosca del sedano",
+          "fix": "Bolle marrone chiaro sulle foglie, dove le larve si nutrono all'interno. Togli le foglie colpite e buttale nell'indifferenziato; la pianta ne rifà di nuove."
+        },
+        {
+          "name": "Germinazione lenta",
+          "fix": "Per settimane non spunta nulla e spesso la fila viene vangata per errore. Metti i semi a bagno una notte prima della semina, tieni il terreno umido e aspetta fino a sei settimane."
+        }
+      ],
+      "source": "Cura del prezzemolo: RHS. pH: Cornell e University of Maryland."
+    },
+    "coriander": {
+      "about": "Un'annuale veloce coltivata per le foglie e, più avanti, per i semi. Col caldo e il terreno secco va a seme in fretta, quindi semina poco circa ogni mese dalla primavera invece di una sola semina abbondante. Cresce bene in vaso.",
+      "water": "Tieni il terreno umido nei periodi secchi: le radici asciutte lo fanno fiorire prima. Col caldo controlla i vasi ogni giorno.",
+      "feed": "Non ha bisogno di concime in terra da orto o terriccio nuovo: è una coltura rapida.",
+      "harvest": "Inizia a tagliare le foglie quando le piante sono alte 10-15 cm, poche per pianta, poi lasciale ricrescere per circa due settimane. Per i semi, lascia fiorire qualche pianta e taglia gli steli quando i semi diventano marroni; falli seccare in un sacchetto di carta.",
+      "keeps": "Un mazzetto fresco dura qualche giorno in frigorifero. I semi secchi si conservano per mesi in un vasetto ermetico.",
+      "problems": [
+        {
+          "name": "Prefioritura",
+          "fix": "La pianta alza uno stelo fiorale e smette di fare foglie, col caldo secco o dopo un trapianto. Seminalo a dimora, in un punto ombreggiato a mezzogiorno, annaffia nei periodi secchi e scegli una varietà lenta ad andare a seme."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Mangiano le piantine col tempo umido. Controlla al buio e toglile."
+        },
+        {
+          "name": "Afidi",
+          "fix": "Piccoli insetti verdi o neri si ammassano sulle punte e indeboliscono la pianta. Toglili con le dita o con l'acqua e lascia lavorare le coccinelle."
+        }
+      ],
+      "source": "Cura del coriandolo: RHS. pH: University of Connecticut. Misura del vaso: servizio di extension della Oregon State."
+    },
+    "dill": {
+      "about": "Un'erba annuale coltivata per le foglie piumose e per i semi. Ha una radice a fittone e non ama essere spostata, quindi seminala a dimora, poco ogni poche settimane da metà primavera a piena estate. Come il coriandolo, va a seme col caldo secco.",
+      "water": "Annaffia nei periodi secchi: il terreno secco la fa fiorire presto e smettere di fare foglie. Col caldo i vasi asciugano in fretta.",
+      "feed": "Non ha bisogno di concime in terra da orto o terriccio nuovo.",
+      "harvest": "Cogli le foglie da circa sei settimane dopo la semina, poche alla volta, lasciando almeno un terzo della pianta. Per i semi, taglia le ombrelle a fine estate quando sono secche e marroni e appendile a testa in giù in un sacchetto di carta.",
+      "keeps": "Le foglie fresche appassiscono in fretta e si conservano male, anche in frigorifero: usale presto o falle seccare. Foglie e semi secchi si conservano in un vasetto ermetico.",
+      "problems": [
+        {
+          "name": "Prefioritura",
+          "fix": "Col caldo secco la pianta fiorisce presto e smette di fare foglie. Annaffia nei periodi secchi, semina ogni poche settimane e taglia gli steli fiorali se vuoi solo le foglie."
+        },
+        {
+          "name": "Afidi",
+          "fix": "Piccoli insetti verdi o neri si ammassano sui germogli teneri e sulle foglie. Toglili con le dita o con l'acqua e lascia lavorare le coccinelle."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Mangiano le piantine delicate col tempo umido. Controlla al buio e toglile."
+        }
+      ],
+      "source": "Cura dell'aneto: RHS. pH: University of Connecticut."
+    },
+    "chervil": {
+      "about": "Una piccola erba annuale delicata, dal leggero sapore di anice, coltivata per le foglie. Ama il fresco e la mezz'ombra e va a seme in pieno sole, quindi rende meglio in primavera e in autunno. Semina poco ogni poche settimane per averne sempre.",
+      "water": "Tieni il terreno umido in modo costante ma non zuppo: il terreno secco lo fa fiorire prima. Col caldo i vasi vogliono più acqua.",
+      "feed": "Non ha bisogno di concime in terra da orto o terriccio nuovo.",
+      "harvest": "Le foglie sono pronte circa otto settimane dopo la semina, quando le piante sono alte 10 cm. Cogli poche foglie giovani per pianta, oppure taglia gli steli a 5 cm e lasciali ricrescere.",
+      "keeps": "Il cerfoglio è migliore fresco: appassisce in un giorno o due e secco perde quasi tutto l'aroma.",
+      "problems": [
+        {
+          "name": "Prefioritura",
+          "fix": "In pieno sole e terreno secco fiorisce presto e le foglie perdono sapore. Coltivalo a mezz'ombra, annaffia con regolarità e risemina ogni poche settimane."
+        },
+        {
+          "name": "Afidi",
+          "fix": "Piccoli insetti verdi si ammassano sulle foglie e sui germogli teneri. Toglili con le dita o con l'acqua e lascia lavorare le coccinelle."
+        }
+      ],
+      "source": "Cura del cerfoglio: RHS. pH: University of Connecticut."
+    },
+    "chives": {
+      "about": "Un'erba aromatica perenne coltivata per le foglie dal sapore delicato di cipolla e i fiori viola commestibili. Il cespo ricaccia ogni primavera; estrailo e dividilo ogni tre o quattro anni perché resti vigoroso.",
+      "water": "Annaffia nei periodi secchi della prima estate; poi in piena terra se la cava da sola. In vaso tieni il terriccio umido in modo costante.",
+      "feed": "Chiede poco: in piena terra basta il compost all'impianto. In vaso, un concime liquido generico ogni tanto d'estate mantiene la crescita di foglie nuove.",
+      "harvest": "Taglia le foglie appena sopra la base quando ti servono; tagliare spesso ne fa crescere di più. Dopo la fioritura, accorcia tutto il cespo a circa 5 cm per avere foglie nuove.",
+      "keeps": "L'erba cipollina tagliata appassisce in pochi giorni. Tritala e congelala, in un sacchetto o nelle formine del ghiaccio, per l'inverno.",
+      "problems": [
+        {
+          "name": "Ruggine",
+          "fix": "Pustole arancioni in rilievo sulle foglie. Taglia il cespo raso terra e butta le foglie nell'indifferenziato; la ricrescita di solito è sana."
+        },
+        {
+          "name": "Afidi",
+          "fix": "Piccoli afidi verdi raggruppati su foglie e steli fiorali. Toglili con le dita o con un getto d'acqua."
+        }
+      ],
+      "source": "Cura dell'erba cipollina: RHS. pH: University of Minnesota."
+    },
+    "thyme": {
+      "about": "Un piccolo arbusto sempreverde coltivato per le foglie profumate, da raccogliere fresche tutto l'anno o da essiccare. Vuole sole e terreno ben drenato: l'umidità invernale lo uccide più spesso del freddo. Dopo qualche anno diventa legnoso; sostituisci le piante vecchie con piante nuove da talea.",
+      "water": "Annaffia le piante nuove nei periodi secchi finché attecchiscono; poi in piena terra non ha quasi mai bisogno d'acqua. In vaso annaffia col caldo secco e lascia asciugare un po' il terriccio tra un'annaffiatura e l'altra.",
+      "feed": "Il timo cresce meglio in terreno povero e in piena terra non va concimato; un terreno ricco dà getti molli e meno aromatici. Una pianta che sta nello stesso vaso da più di un anno può ricevere un po' di concime universale a fine primavera.",
+      "harvest": "Taglia i rametti quando ti servono; i getti teneri di fine primavera ed estate hanno il sapore migliore. Tagliare spesso mantiene la pianta compatta; dopo la fioritura accorciala un poco, senza tagliare nel legno spoglio.",
+      "keeps": "I rametti freschi si conservano qualche giorno in frigorifero in un sacchetto. Per essiccarlo appendi i mazzetti per qualche settimana in un luogo caldo, buio e arieggiato, poi conserva le foglie in un barattolo chiuso.",
+      "problems": [
+        {
+          "name": "Marciume radicale",
+          "fix": "La pianta appassisce e imbrunisce dalla base mentre il terreno è bagnato. Coltivala in terreno drenante, in un'aiuola rialzata o in vaso con ghiaia, e non lasciare mai il vaso nell'acqua."
+        },
+        {
+          "name": "Pianta legnosa e spoglia",
+          "fix": "Dopo qualche anno il centro si spoglia e diventa legnoso. Accorciala un poco ogni anno dopo la fioritura e sostituisci le piante vecchie con talee prese a fine primavera."
+        },
+        {
+          "name": "Crisomela del rosmarino",
+          "fix": "Piccoli coleotteri a strisce verdi e viola metallizzate, e le loro larve grigie, mangiano le foglie da fine estate a primavera. Toglili a mano o scuoti la pianta sopra un foglio di carta."
+        }
+      ],
+      "source": "Cura del timo: RHS. pH: laboratorio di analisi del suolo della University of Connecticut."
+    },
+    "rosemary": {
+      "about": "Un arbusto sempreverde coltivato per le foglie aromatiche, che puoi raccogliere tutto l'anno. Vuole pieno sole e terreno ben drenato; un terreno pesante e bagnato lo uccide prima del freddo. Nelle zone fredde mettilo contro un muro soleggiato, o in un vaso da spostare al riparo.",
+      "water": "Annaffia nei periodi secchi il primo anno; poi in piena terra non ha quasi mai bisogno d'acqua. In vaso serve acqua col caldo, ma il terriccio non deve mai restare zuppo.",
+      "feed": "In piena terra non va concimato. Una pianta che sta nello stesso vaso da più di un anno può ricevere un po' di concime granulare universale a fine primavera o inizio estate.",
+      "harvest": "Taglia i rametti quando ti servono, tutto l'anno; i getti teneri di fine primavera ed estate sono i più saporiti. Accorcialo dopo la fioritura perché resti folto, ma non tagliare nel legno vecchio spoglio, che raramente ributta.",
+      "keeps": "I rametti freschi si conservano diversi giorni in frigorifero. Per essiccarlo appendili in un luogo caldo, buio e arieggiato, poi conserva le foglie in un barattolo chiuso.",
+      "problems": [
+        {
+          "name": "Crisomela del rosmarino",
+          "fix": "Piccoli coleotteri a strisce verdi e viola metallizzate, e le loro larve grigie, mangiano le foglie da fine estate a primavera. Toglili a mano o scuoti la pianta sopra un foglio di carta."
+        },
+        {
+          "name": "Danni da gelo e umidità",
+          "fix": "I getti imbruniscono e seccano dopo una forte gelata, vento freddo o un inverno piovoso. Coprilo con tessuto non tessuto quando fa molto freddo, sposta i vasi al riparo e taglia i getti secchi in primavera."
+        },
+        {
+          "name": "Sputacchina",
+          "fix": "Grumi di schiuma bianca sui getti a fine primavera, ognuno con dentro un piccolo insetto che succhia la linfa. Fa pochi danni; puliscila o sciacquala via con l'acqua."
+        }
+      ],
+      "source": "Cura del rosmarino: RHS. pH: Texas A&M AgriLife Extension."
+    },
+    "oregano": {
+      "about": "Una perenne che si allarga, coltivata per le foglie, fresche o essiccate. In inverno perde gran parte della parte aerea e in primavera ributta. È più aromatico in pieno sole e in terreno povero e drenante, e si raccoglie al meglio appena prima che si aprano i fiori.",
+      "water": "Annaffia le piante nuove nei periodi secchi; una volta attecchito, in piena terra non serve altra acqua. In vaso annaffia col caldo secco, ma il terriccio non deve mai restare zuppo.",
+      "feed": "In piena terra non va concimato. Una pianta che sta nello stesso vaso da più di un anno può ricevere un po' di concime granulare universale a fine primavera o inizio estate.",
+      "harvest": "Taglia i rametti da fine primavera all'autunno e sfoglia le foglie; il sapore è migliore prima che si aprano i fiori. Accorcialo dopo la fioritura per avere foglie nuove e togli i fusti vecchi a fine inverno.",
+      "keeps": "L'origano si essicca bene: appendi i rametti per qualche settimana in un luogo buio e arieggiato, poi conserva le foglie in un barattolo chiuso.",
+      "problems": [
+        {
+          "name": "Ruggine della menta",
+          "fix": "Pustole polverose arancioni o marroni sotto le foglie, e getti contorti in primavera. Taglia i fusti colpiti rasoterra e buttali nell'indifferenziata, non nel compost."
+        },
+        {
+          "name": "Cicaline",
+          "fix": "Zone chiare e marezzate sulle foglie, causate da piccoli insetti saltatori che succhiano la linfa. Il danno è solo estetico; puoi lasciarle stare."
+        },
+        {
+          "name": "Piralide della menta",
+          "fix": "Piccoli bruchi mangiano le foglie d'estate e le legano con la seta. Di solito il danno è poco; togli i bruchi a mano se ti danno fastidio."
+        }
+      ],
+      "source": "Cura dell'origano: RHS. pH: laboratorio di analisi del suolo della University of Connecticut (maggiorana) e NC State Extension."
+    },
+    "sage": {
+      "about": "Un arbusto sempreverde coltivato per le foglie morbide, verde grigio, che puoi raccogliere tutto l'anno. Vuole sole e un terreno che non resti mai zuppo. Dopo sei o sette anni diventa legnosa e disordinata; sostituiscila con piante nuove da talea.",
+      "water": "Annaffia nei periodi secchi il primo anno; poi in piena terra sopporta la siccità. In vaso tieni il terriccio appena umido, non zuppo, e d'inverno metti il vaso contro un muro, al riparo dalla pioggia.",
+      "feed": "In piena terra non va concimata. Una pianta che sta nello stesso vaso da più di un anno può ricevere un po' di concime granulare universale a fine primavera o inizio estate.",
+      "harvest": "Raccogli foglie giovani o getti interi quando ti servono; quelli di primavera ed estate sono i più saporiti, e raccogliere spesso la mantiene folta. Potala leggermente ogni anno tra metà e fine primavera.",
+      "keeps": "Per essiccarla appendi i rametti in un luogo caldo, buio e arieggiato, poi conserva le foglie in un barattolo chiuso. Puoi anche congelare le foglie tritate in una vaschetta per il ghiaccio.",
+      "problems": [
+        {
+          "name": "Crisomela del rosmarino",
+          "fix": "Piccoli coleotteri a strisce verdi e viola metallizzate, e le loro larve grigie, mangiano le foglie da fine estate a primavera. Toglili a mano o scuoti la pianta sopra un foglio di carta."
+        },
+        {
+          "name": "Cicaline",
+          "fix": "Zone chiare e marezzate sulle foglie, causate da piccoli insetti saltatori che succhiano la linfa. Raramente è grave; togli le foglie più rovinate."
+        },
+        {
+          "name": "Pianta legnosa e spoglia",
+          "fix": "Le piante vecchie fanno fusti lunghi e spogli con poche foglie. Potala leggermente ogni primavera e fai talee erbacee a fine primavera per rinnovarla ogni pochi anni."
+        }
+      ],
+      "source": "Cura della salvia: RHS. pH: UC Master Gardeners, University of California."
+    },
+    "mint": {
+      "about": "Una perenne vigorosa coltivata per le foglie, per tisane, bevande e cucina. Le radici corrono veloci sottoterra e invadono l'aiuola, quindi coltivala in vaso, o in un vaso senza fondo interrato con il bordo sopra il terreno. D'inverno secca e in primavera ributta.",
+      "water": "Tieni il terreno umido in modo costante: la menta appassisce presto in un vaso secco. D'estate controlla spesso i vasi e col caldo spostali a mezz'ombra.",
+      "feed": "In piena terra serve poco concime. In vaso dai un concime liquido in primavera, poi ogni 4-6 settimane mentre cresce.",
+      "harvest": "Raccogli spesso le cime tenere da fine primavera all'autunno; raccogliere con regolarità la mantiene compatta e piena di getti nuovi. Taglia i fusti fioriti per avere foglie nuove.",
+      "keeps": "I rametti freschi si conservano qualche giorno in un bicchiere d'acqua o in frigorifero. Congelata conserva il sapore meglio che essiccata: congela le foglie nei cubetti di ghiaccio.",
+      "problems": [
+        {
+          "name": "Ruggine della menta",
+          "fix": "Pustole polverose arancioni sotto le foglie, e getti contorti e ingrossati in primavera. Taglia i fusti colpiti rasoterra e buttali nell'indifferenziata; se torna ogni anno, ricomincia con piante sane in un altro punto."
+        },
+        {
+          "name": "Invade tutto",
+          "fix": "Gli stoloni spuntano in tutta l'aiuola. Tieni la menta in vaso, con il bordo sopra il terreno perché gli stoloni non lo scavalchino, e dividila e rinvasala ogni pochi anni."
+        },
+        {
+          "name": "Crisomela della menta",
+          "fix": "Piccoli coleotteri blu-verdi lucidi e le loro larve bucano le foglie d'estate. Toglili a mano; di solito la pianta ributta."
+        }
+      ],
+      "source": "Cura della menta: RHS. pH: NSW Department of Primary Industries. Concime in vaso: University of Arizona."
+    },
+    "tulip": {
+      "about": "Si coltivano per i fiori grandi e vivaci tra metà e fine primavera. Pianta i bulbi tardi in autunno, così si riduce il rischio di fuoco del tulipano, in un terreno drenante che non resti bagnato. Molti tulipani fioriscono bene solo il primo anno, quindi metti bulbi nuovi nei punti a cui tieni di più.",
+      "water": "In piena terra serve acqua solo dopo due o tre settimane senza pioggia, quando i getti sono spuntati. Annaffia i vasi da quando compaiono le foglie, perché la siccità accorcia la fioritura, e spostali al riparo se d'inverno il terriccio resta zuppo.",
+      "feed": "Da inizio primavera dai ai vasi un concime liquido ricco di potassio (concime per pomodori) ogni settimana, finché le foglie ingialliscono.",
+      "harvest": "Per il vaso, taglia quando il bocciolo mostra il colore ma non è ancora aperto. In giardino taglia i fiori sfioriti appena sopra le foglie e lascia le foglie finché diventano color paglia; per conservare i bulbi, estraili circa sei settimane dopo la fioritura, asciugali e tienili in un luogo caldo, buio e arieggiato fino all'autunno.",
+      "keeps": "I tulipani recisi durano diversi giorni in vaso e continuano a crescere, piegandosi verso la luce; rabbocca con acqua fredda.",
+      "problems": [
+        {
+          "name": "Fuoco del tulipano",
+          "fix": "Macchie marroni e foglie e fiori contorti e secchi, a volte con muffa grigia. Estirpa le piante colpite con il bulbo e buttale nell'indifferenziata, pianta tardi in autunno e coltiva i tulipani altrove per almeno tre anni."
+        },
+        {
+          "name": "Scoiattoli e topi",
+          "fix": "Bulbi dissotterrati e mangiati in autunno e inverno. Copri l'aiuola o il vaso con rete da pollaio finché spuntano le foglie; piantare narcisi in mezzo aiuta, perché gli scoiattoli li evitano."
+        },
+        {
+          "name": "Pochi o nessun fiore",
+          "fix": "Foglie ma niente fiori, o fiori piccoli, dal secondo anno. Pianta ad almeno tre volte l'altezza del bulbo, concima i vasi finché hanno foglie e sostituisci i bulbi esausti con bulbi nuovi."
+        }
+      ],
+      "source": "Cura dei tulipani: RHS. pH: laboratorio di analisi del suolo della University of Connecticut. Misura del vaso: Purdue University."
+    },
+    "daffodil": {
+      "about": "Si coltivano per i fiori gialli e bianchi da fine inverno a metà primavera. Tornano per molti anni e pian piano formano cespi, al sole o a mezz'ombra. La cosa da sapere: lascia seccare le foglie da sole dopo la fioritura, perché nutrono i fiori dell'anno dopo.",
+      "water": "In piena terra non hanno quasi mai bisogno d'acqua, solo nei lunghi periodi secchi mentre crescono. I vasi si asciugano in fretta: annaffiali finché le foglie seccano.",
+      "feed": "In piena terra non vanno concimati. In vaso dai un concime liquido ricco di potassio (concime per pomodori) da quando spuntano i getti finché le foglie cominciano a seccare.",
+      "harvest": "Spezza i fiori sfioriti perché l'energia torni al bulbo. Lascia le foglie finché ingialliscono, circa sei settimane dopo la fioritura, senza tagliarle, legarle o annodarle; per il vaso, taglia quando il bocciolo sta per aprirsi.",
+      "keeps": "I narcisi recisi rilasciano una linfa che accorcia la vita degli altri fiori: tienili una notte da soli in acqua prima di mescolarli e non ritagliare gli steli.",
+      "problems": [
+        {
+          "name": "Narcisi senza fiori",
+          "fix": "Tante foglie ma nessun fiore, per cespi troppo fitti, bulbi piantati poco profondi o foglie tagliate troppo presto. Estrai e dividi i cespi fitti quando le foglie sono secche e ripiantali più in profondità."
+        },
+        {
+          "name": "Mosca del narciso",
+          "fix": "Foglie sottili come erba e niente fiori; il bulbo è molle, con una grossa larva dentro. Butta i bulbi molli e, quando le foglie seccano, pressa la terra sui buchi perché la mosca non arrivi ai bulbi."
+        },
+        {
+          "name": "Marciume basale",
+          "fix": "I bulbi si ammorbidiscono e marciscono dalla base, nel terreno bagnato o durante la conservazione. Pianta solo bulbi sodi in terreno drenante e butta quelli molli."
+        }
+      ],
+      "source": "Cura dei narcisi: RHS. pH: laboratorio di analisi del suolo della University of Connecticut. Misura del vaso: Purdue University."
+    },
+    "crocus": {
+      "about": "Piccoli cormi che fioriscono a fine inverno e inizio primavera, tra i primi cibi dell'anno per le api. Tornano ogni anno e si allargano a macchie nelle aiuole e nel prato basso. Lascia seccare le foglie dopo la fioritura e, nel prato, non tagliare l'erba prima.",
+      "water": "In piena terra i crochi non hanno quasi mai bisogno d'acqua. In vaso tieni il terriccio umido a qualche centimetro di profondità finché hanno foglie.",
+      "feed": "In piena terra non vanno concimati. In vaso un concime liquido ricco di potassio, finché hanno foglie, aiuta i fiori dell'anno dopo.",
+      "harvest": "Non serve togliere i fiori sfioriti. Lascia le foglie finché seccano; nel prato aspetta fino ad allora per tagliare l'erba, così i cormi si rinforzano e si moltiplicano. I crochi in vaso si possono estrarre quando le foglie sono secche e tenere in sacchetti di carta al fresco e all'asciutto fino all'autunno.",
+      "problems": [
+        {
+          "name": "Scoiattoli e topi",
+          "fix": "Cormi dissotterrati e mangiati dopo la messa a dimora. Copri i nuovi impianti con rete da pollaio o pianta sotto una rete metallica finché spuntano i getti."
+        },
+        {
+          "name": "Uccelli che beccano i fiori",
+          "fix": "Fiori strappati e sfilacciati, spesso quelli gialli, beccati dai passeri. Un filo nero o una rete sopra il cespo li protegge durante la fioritura."
+        },
+        {
+          "name": "Pochi fiori",
+          "fix": "Sempre meno fiori, spesso perché le foglie sono state tagliate prima di seccare o il punto è diventato troppo ombroso. Lascia stare le foglie e sposta i cespi in un punto più soleggiato durante il riposo."
+        }
+      ],
+      "source": "Cura dei crochi: RHS. pH: laboratorio di analisi del suolo della University of Connecticut. Misura del vaso: Purdue University."
+    },
+    "sunflower": {
+      "about": "Si coltiva per i grandi fiori estivi e per i semi, da mangiare o da lasciare agli uccelli. Le varietà alte hanno bisogno di un tutore robusto o di un muro a cui legarle; quelle nane restano basse e vanno bene in vaso. Proteggi le piantine dalle lumache finché non sono robuste.",
+      "water": "Annaffia abbondantemente nei periodi secchi, alla base del fusto: le varietà alte non devono restare all'asciutto. In vaso serve acqua più spesso, ogni giorno col caldo.",
+      "feed": "Interra del compost prima di seminare. Quando compaiono i boccioli, un concime liquido ricco di potassio (concime per pomodori) ogni due settimane dà fiori più grandi.",
+      "harvest": "Taglia per il vaso al mattino, quando i petali iniziano ad aprirsi. Per i semi lascia il capolino sulla pianta finché il retro diventa marrone, coprilo con un sacchetto di carta o una rete contro gli uccelli, poi taglialo e fallo seccare al coperto.",
+      "keeps": "Reciso dura circa una settimana in vaso; cambia l'acqua ogni due giorni. I semi secchi si conservano per mesi in un luogo fresco, asciutto e buio.",
+      "problems": [
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Piantine mangiate fino al fusto in una notte. Proteggi le piantine con un collare o seminale in vasetti e trapiantale quando sono robuste."
+        },
+        {
+          "name": "Uccelli",
+          "fix": "Semi dissotterrati dopo la semina o capolini maturi svuotati. Copri le semine con una rete e insacchetta i capolini che vuoi tenere."
+        },
+        {
+          "name": "Fusti piegati",
+          "fix": "Fusti alti che si piegano o si spezzano col vento o dopo la pioggia. Legali presto a un tutore robusto, o coltivali contro un muro o una recinzione."
+        }
+      ],
+      "source": "Cura del girasole: RHS. pH: University of Minnesota."
+    },
+    "marigold": {
+      "about": "Le tagete si coltivano per i fiori arancioni e gialli dall'inizio dell'estate fino alla prima gelata, in aiuola, in vaso e tra gli ortaggi. Sono facili, ma le lumache adorano le piante giovani. Se togli i fiori appassiti, ne arrivano sempre di nuovi.",
+      "water": "Annaffia nei periodi secchi, alla base e non sui fiori. In estate i vasi si asciugano in fretta e vanno controllati ogni giorno.",
+      "feed": "Basta un normale terreno da orto; un terreno ricco o troppo concime danno foglie invece di fiori. In vaso, un concime liquido ogni poche settimane mantiene la fioritura.",
+      "harvest": "Ogni pochi giorni togli i fiori appassiti pizzicandoli sotto il capolino. Taglia per il vaso quando i fiori sono del tutto aperti.",
+      "keeps": "I fiori recisi durano circa una settimana in vaso; togli le foglie che resterebbero nell'acqua.",
+      "problems": [
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Foglie bucate e piantine mangiate in una notte. Trapianta piantine già robuste invece di piccolissime e proteggile di notte col tempo umido."
+        },
+        {
+          "name": "Muffa grigia",
+          "fix": "Una peluria grigia su fiori e fusti col tempo fresco e umido. Togli i fiori che marciscono e lascia spazio tra le piante perché si asciughino presto."
+        },
+        {
+          "name": "Ragnetto rosso",
+          "fix": "Foglie pallide e puntinate con sottili ragnatele col caldo secco, soprattutto in serra e in vaso. Annaffia bene e nebulizza o bagna la pagina inferiore delle foglie."
+        }
+      ],
+      "source": "Cura della tagete: RHS. pH: laboratorio del suolo della University of Connecticut."
+    },
+    "calendula": {
+      "about": "Un'annuale rustica coltivata per i fiori arancioni e gialli dall'inizio dell'estate all'autunno; i petali sono commestibili e colorano insalate e risotti. Cresce in quasi ogni terreno e si risemina da sola. Seminata in autunno, passa l'inverno e fiorisce presto l'anno dopo.",
+      "water": "Una volta attecchita sopporta la siccità; annaffia le piantine e le piante in vaso. Non bagnare le foglie, così rallenti l'oidio.",
+      "feed": "Le serve poco: un terreno ricco o molto concime danno foglie molli e meno fiori. In vaso, un concime liquido una volta al mese.",
+      "harvest": "Taglia i fiori per il vaso o per i petali al mattino, quando sono del tutto aperti. Togli gli altri fiori appassiti ogni pochi giorni, altrimenti la pianta va a seme e smette di fiorire.",
+      "keeps": "I fiori recisi durano circa una settimana in vaso. I petali seccati su carta in un luogo caldo e arieggiato si conservano per mesi in un barattolo.",
+      "problems": [
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Una patina bianca e polverosa sulle foglie da metà estate, peggiore nel terreno secco. Annaffia nei periodi secchi, distanzia le piante ed estirpa quelle molto colpite; le semine tardive restano più sane."
+        },
+        {
+          "name": "Afide nero",
+          "fix": "Gruppi di piccoli insetti neri sulle punte e sui boccioli. Toglili con le dita o con un getto d'acqua; coccinelle e altri predatori arrivano presto."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Piantine mangiate in una notte col tempo umido. Proteggi le piante giovani di notte finché non sono ben cresciute."
+        }
+      ],
+      "source": "Cura della calendula: RHS. pH: Utah State University."
+    },
+    "nasturtium": {
+      "about": "Si coltiva per i fiori vivaci e le foglie piccanti, entrambi commestibili, su piante ricadenti o rampicanti. Il nasturzio cresce meglio in terreno povero e ben drenato: un terreno ricco dà tante foglie e pochi fiori. Facile da seminare, anche per i bambini.",
+      "water": "Annaffia le piantine e le piante in vaso; in piena terra sopporta la siccità una volta avviato. Una siccità molto lunga ferma la fioritura.",
+      "feed": "Non concimarlo: il concime dà foglie a scapito dei fiori. Coltivalo in terreno normale o povero, senza compost né letame.",
+      "harvest": "Raccogli foglie giovani e fiori aperti quando ti servono, al mattino. I semi verdi, colti prima che induriscano, si mettono sott'aceto come capperi; togliere i fiori appassiti mantiene la fioritura.",
+      "keeps": "Foglie e fiori appassiscono in fretta: tienili in un sacchetto in frigorifero e usali entro uno o due giorni.",
+      "problems": [
+        {
+          "name": "Afide nero",
+          "fix": "Colonie fitte di insetti neri sotto le foglie e sulle punte. Taglia o lava con un getto d'acqua i germogli peggiori; coccinelle e sirfidi arrivano presto."
+        },
+        {
+          "name": "Bruchi della cavolaia",
+          "fix": "Bruchi verdi che spogliano le foglie a fine estate, gli stessi dei cavoli. Controlla la pagina inferiore delle foglie e toglili a mano."
+        },
+        {
+          "name": "Tante foglie, pochi fiori",
+          "fix": "Foglie grandi e rigogliose che nascondono pochi fiori, per terreno ricco o concime. Smetti di concimare; l'anno prossimo semina in un punto più povero e soleggiato."
+        }
+      ],
+      "source": "Cura del nasturzio: RHS e University of Maryland."
+    },
+    "zinnia": {
+      "about": "Un fiore da recidere coltivato per i colori vivaci da piena estate alla prima gelata: più tagli, più fiorisce. Ama caldo e sole e si blocca col tempo freddo e umido. Non ama che si disturbino le radici, quindi seminala a dimora o in vasetti.",
+      "water": "Annaffia a fondo nei periodi secchi, alla base: le foglie bagnate portano l'oidio. D'estate controlla i vasi ogni giorno.",
+      "feed": "Basta un terreno normale con un po' di compost; troppo concime dà getti molli. In vaso, un concime liquido ogni due settimane da inizio fioritura.",
+      "harvest": "Taglia quando il fiore è del tutto aperto e lo stelo è rigido appena sotto il capolino (non deve piegarsi se lo scuoti), in basso sopra una coppia di foglie. Togli i fiori appassiti perché continuino a spuntare boccioli.",
+      "keeps": "I fiori recisi durano circa una settimana in vaso; cambia l'acqua ogni due giorni.",
+      "problems": [
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Una patina bianca e polverosa sulle foglie a fine estate. Annaffia il terreno e non le foglie, lascia circolare l'aria e togli le foglie peggiori; le varietà resistenti aiutano."
+        },
+        {
+          "name": "Macchie fogliari",
+          "fix": "Macchie marroni o scure con bordo chiaro sulle foglie col tempo umido. Togli le foglie macchiate, annaffia alla base ed estirpa le piante a fine stagione."
+        },
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Piantine mangiate in una notte. Proteggile di notte o allevale in vasetti e trapiantale quando sono robuste."
+        }
+      ],
+      "source": "Cura della zinnia: RHS. pH: University of Florida IFAS."
+    },
+    "cosmos": {
+      "about": "Un'annuale alta e leggera dalle foglie piumose, coltivata per i fiori a margherita da piena estate alla prima gelata, e da recidere. Il cosmos fiorisce meglio in terreno povero o normale; un terreno ricco dà piante alte e frondose con pochi fiori. Le varietà nane vanno bene in vaso.",
+      "water": "Una volta attecchito sopporta la siccità; annaffia le piantine, le piante appena messe a dimora e i vasi. Troppa acqua, come troppo concime, dà più foglie che fiori.",
+      "feed": "In piena terra non serve concime. In vaso, un concime liquido ricco di potassio (concime per pomodori) una volta al mese.",
+      "harvest": "Taglia per il vaso quando i boccioli iniziano ad aprirsi, sopra un getto laterale. Togli i fiori appassiti ogni pochi giorni, altrimenti la pianta va a seme e si ferma.",
+      "keeps": "I fiori recisi durano da qualche giorno a una settimana in vaso; tagliali al fresco del mattino.",
+      "problems": [
+        {
+          "name": "Lumache e chiocciole",
+          "fix": "Piantine e piante giovani mangiate in una notte. Trapianta piante robuste e proteggile di notte finché non sono ben cresciute."
+        },
+        {
+          "name": "Tante foglie, pochi fiori",
+          "fix": "Piante alte e rigogliose che fioriscono tardi e poco, per terreno ricco, concime o ombra. Smetti di concimare e continua a togliere i fiori appassiti; l'anno prossimo, un punto più soleggiato e povero."
+        },
+        {
+          "name": "Piante piegate",
+          "fix": "Piante alte che si piegano con vento e pioggia. Cima la punta a circa 30 cm per piante più cespugliose e sostienile con canne o rametti."
+        }
+      ],
+      "source": "Cura del cosmos: RHS. pH: laboratorio del suolo della University of Connecticut."
+    },
+    "sweet_pea": {
+      "about": "Una rampicante coltivata per i fiori profumati da recidere, dall'inizio dell'estate. Ha bisogno di un sostegno di canne, rete o una recinzione, e cimare la punta a circa 10 cm dà piante più cespugliose. La regola: continua a tagliare, perché quando si formano i baccelli smette di fiorire. I baccelli sembrano piselli ma sono velenosi.",
+      "water": "Tieni il terreno umido per tutta la stagione e annaffia abbondantemente nei periodi secchi: le radici asciutte accorciano la fioritura. Col caldo i vasi hanno bisogno d'acqua ogni giorno.",
+      "feed": "Interra molto compost o letame ben maturo prima di seminare o trapiantare. Una volta avviato, un concime liquido ogni una o due settimane mantiene la fioritura.",
+      "harvest": "Taglia gli steli ogni pochi giorni, al mattino, quando i fiori più bassi dello stelo sono aperti. Togli i baccelli che trovi, altrimenti la pianta smette di fiorire.",
+      "keeps": "Gli steli recisi durano qualche giorno in vaso; più tagli, più fiori nuovi arrivano.",
+      "problems": [
+        {
+          "name": "Afidi",
+          "fix": "Insetti verdi sulle punte e sui boccioli; possono trasmettere virus che striano e deformano la pianta. Schiacciali o lavali via presto; estirpa le piante striate e stentate."
+        },
+        {
+          "name": "Oidio (mal bianco)",
+          "fix": "Una patina bianca e polverosa sulle foglie a fine estate, peggiore nel terreno secco e nei punti fitti e senza aria. Annaffia nei periodi secchi, fai circolare l'aria e taglia le parti colpite."
+        },
+        {
+          "name": "Caduta dei boccioli",
+          "fix": "I boccioli ingialliscono e cadono prima di aprirsi, dopo notti fredde o con le radici asciutte. Tieni il terreno umido; di solito smette quando il tempo si stabilizza."
+        }
+      ],
+      "source": "Cura del pisello odoroso: RHS. pH: University of Missouri. Oidio: Oregon State University."
+    },
+    "lavender": {
+      "about": "Un piccolo arbusto sempreverde coltivato per i fiori estivi profumati, molto visitati dalle api e ottimi da essiccare. Vuole pieno sole e terreno povero e ben drenato; i terreni calcarei le vanno bene. La cosa da sapere: accorciala ogni anno dopo la fioritura, altrimenti si allunga e diventa legnosa.",
+      "water": "Annaffia con regolarità le piante nuove la prima estate; una volta attecchita, in piena terra non ha quasi mai bisogno d'acqua. Un vaso si asciuga in fretta e d'estate va annaffiato con regolarità.",
+      "feed": "La lavanda ama i terreni poveri e non va concimata; il concime dà getti molli che si piegano.",
+      "harvest": "Taglia gli steli da essiccare quando si aprono i primi fiori della spiga, in una mattina asciutta. A fine estate, dopo la fioritura, taglia le spighe sfiorite con circa 2,5 cm di getto con foglie, ma mai nel legno spoglio.",
+      "keeps": "Appendi piccoli mazzi a testa in giù in un luogo buio e arieggiato finché sono secchi; in un barattolo chiuso i fiori secchi restano profumati per mesi.",
+      "problems": [
+        {
+          "name": "Marciume radicale",
+          "fix": "In terreno pesante e bagnato la pianta ingrigisce e secca, spesso d'inverno. Piantala su un rialzo o in un'aiuola rialzata, aggiungi ghiaia nei vasi e non lasciare mai il vaso nell'acqua."
+        },
+        {
+          "name": "Pianta allungata e legnosa",
+          "fix": "Fusti legnosi e spogli con fiori solo in cima. Accorciala ogni anno dopo la fioritura; una pianta vecchia e spoglia non ributta dal legno vecchio ed è meglio sostituirla."
+        },
+        {
+          "name": "Crisomela del rosmarino",
+          "fix": "Piccoli coleotteri a strisce verdi e viola metallizzate, e le loro larve grigie, mangiano foglie e fiori da fine estate a primavera. Toglili a mano o scuoti la pianta sopra un foglio di carta."
+        }
+      ],
+      "source": "Cura della lavanda: RHS. pH: UC IPM (University of California) e UMass Extension."
+    },
+    "field_beans": {
+      "about": "Un sovescio invernale: seminato in autunno, copre il terreno nudo durante l'inverno, le sue radici smuovono i terreni pesanti e, come tutte le fave, arricchisce il suolo di azoto. Interralo in primavera, prima della coltura successiva.",
+      "water": "Bastano le piogge di autunno e inverno; annaffia solo se il terreno è secco alla semina.",
+      "feed": "Non vuole concime: produce da sé l'azoto, che resta nel terreno per la coltura successiva.",
+      "harvest": "In primavera, al più tardi alla fioritura, taglia le piante, sminuzzale e lasciale appassire, poi interrale nei primi 25 cm di terreno. Aspetta circa un mese prima di seminare o trapiantare in quell'aiuola.",
+      "problems": [
+        {
+          "name": "Afide nero",
+          "fix": "Colonie fitte di afidi neri sulle punte in primavera. Di solito non serve fare nulla, perché le piante vengono presto interrate; se si diffonde, taglia un po' prima."
+        },
+        {
+          "name": "Lumache",
+          "fix": "La copertura fitta le ripara, e poi passano alla coltura successiva. Dopo l'interramento proteggi le piante giovani e controlla nelle sere umide."
+        }
+      ],
+      "source": "Sovesci: RHS. pH: Oregon State University."
+    },
+    "winter_rye": {
+      "about": "Il sovescio più resistente al freddo: seminata da fine estate all'autunno, cresce durante l'inverno, trattiene il terreno, soffoca le infestanti e le sue radici fitte migliorano il suolo. Interrala in primavera.",
+      "water": "Basta la pioggia; annaffia solo per far nascere il seme in un autunno secco.",
+      "feed": "Non vuole concime; cresce anche in terreni poveri, sabbiosi o acidi e trattiene l'azoto che la pioggia invernale porterebbe via.",
+      "harvest": "Tagliala in primavera finché è ancora bassa e tenera, sminuzzala, lasciala appassire e interrala nei primi 25 cm. La segale più vecchia è dura, ricresce e frena la coltura successiva.",
+      "problems": [
+        {
+          "name": "Frena i semi piccoli",
+          "fix": "La segale che si decompone impedisce ai semi piccoli come carote e cipolle di germinare. Dopo l'interramento aspetta circa un mese prima di seminare, oppure metti piantine o semi grossi come i fagioli."
+        },
+        {
+          "name": "Tagliata tardi",
+          "fix": "Lasciata troppo, la segale diventa alta e dura, ricresce dopo il taglio e può riseminarsi. Tagliala prima che superi circa 30 cm."
+        }
+      ],
+      "source": "Cura della segale: RHS e SARE. pH: University of Vermont."
+    },
+    "crimson_clover": {
+      "about": "Un sovescio che arricchisce il terreno di azoto e lo copre di foglie e di fiori rossi visitati dalle api. Semina da primavera a fine estate; seminato sei-otto settimane prima della prima gelata, passa l'inverno e riprende a crescere in primavera.",
+      "water": "Tieni umido il letto di semina finché non spuntano le piantine; dopo di solito basta la pioggia.",
+      "feed": "Non vuole concime: produce da sé l'azoto e lo lascia nel terreno.",
+      "harvest": "Taglialo in fioritura, prima che faccia seme; tagliato raso terra non ricresce. Interralo nei primi 25 cm o lascialo decomporre in superficie, e aspetta circa un mese prima di seminare.",
+      "problems": [
+        {
+          "name": "Autosemina",
+          "fix": "Se lo lasci andare a seme, torna come infestante tra le colture successive. Taglialo in fioritura."
+        },
+        {
+          "name": "Lumache",
+          "fix": "Il fogliame fitto le ripara, e poi passano alla coltura successiva. Dopo il taglio proteggi le piante giovani e controlla nelle sere umide."
+        }
+      ],
+      "source": "Cura del trifoglio incarnato: RHS e SARE. pH: SAREP della University of California."
+    },
+    "phacelia": {
+      "about": "Un sovescio rapido dalle foglie piumose e dai fiori azzurri amati dalle api. Copre il terreno nudo, trattiene i nutrienti rimasti e apporta sostanza organica quando si interra. Non è parente di nessun ortaggio comune, quindi si inserisce ovunque nella rotazione.",
+      "water": "Di solito basta la pioggia; annaffia solo per far nascere una semina in terreno secco.",
+      "feed": "Non serve concime: assorbe i nutrienti rimasti nel terreno e li restituisce quando la interri.",
+      "harvest": "Falciala quando inizia a fiorire, o poco dopo se la lasci alle api, ma sempre prima che vada a seme. Triturala, lasciala appassire qualche giorno, interrala nello strato superficiale e aspetta due o tre settimane prima di seminare; una semina autunnale può passare l'inverno ed essere interrata in primavera.",
+      "problems": [
+        {
+          "name": "Autosemina",
+          "fix": "Piantine in tutta l'aiuola se è stata lasciata andare a seme. Falciala prima che sfioriscano i fiori; estirpa o zappetta le piantine da piccole."
+        },
+        {
+          "name": "Irritazione della pelle",
+          "fix": "Fusti e foglie ispidi possono dare prurito o arrossamento ad alcune persone. Usa guanti e maniche lunghe quando la falci e la interri."
+        }
+      ],
+      "source": "La facelia come sovescio: RHS. pH: USDA NRCS e Ministero dell'Agricoltura della British Columbia."
+    },
+    "white_mustard": {
+      "about": "Un sovescio rapido: seminata su terreno nudo, lo copre in poche settimane, soffoca le erbacce e apporta sostanza organica quando la si interra. Seminala dalla primavera a fine estate negli spazi tra una coltura e l’altra. È della famiglia dei cavoli: evitala dove c’è l’ernia del cavolo e contala come un cavolo nella rotazione.",
+      "water": "Di solito basta la pioggia. Annaffia il letto di semina solo se è secco, perché nasca in modo uniforme.",
+      "feed": "Non serve concime: assorbe i nutrienti rimasti nel terreno e li restituisce quando la interri.",
+      "harvest": "Tagliala prima della fioritura, di solito da quattro a otto settimane dopo la semina; trita gli steli, lasciali appassire qualche giorno e interrali nello strato superficiale. Aspetta due o tre settimane prima di seminare o trapiantare lì.",
+      "problems": [
+        {
+          "name": "Ernia del cavolo",
+          "fix": "Parente dei cavoli, può portare l’ernia e mantenerla nel terreno. Non seminarla dove è comparsa né subito prima di cavoli, rape o ravanelli."
+        },
+        {
+          "name": "Andata a seme",
+          "fix": "Col caldo fiorisce in poche settimane e i semi rinascono come erbacce. D’estate controllala spesso e tagliala ai primi fiori."
+        }
+      ],
+      "source": "Sovescio: RHS. pH: University of Connecticut."
     }
   },
   "map": {
