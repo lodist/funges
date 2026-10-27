@@ -1,6 +1,6 @@
 {
-  "title": "De saison",
-  "description": "Quoi semer et planter cette semaine, alertes gel et arrosage pour votre commune.",
+  "title": "Espèces",
+  "description": "Chaque culture : si elle se met en terre cette semaine dans votre commune, comment la cultiver et ce qu'il faut surveiller.",
   "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
   "around": "Environs de {{place}}, {{day}}",
   "change": "Changer de lieu",
@@ -342,7 +342,9 @@
       "depth": "Profondeur",
       "spacing": "Espacement",
       "place": "Exposition",
-      "ready": "Récolte"
+      "ready": "Récolte",
+      "height": "Hauteur",
+      "howMany": "Combien"
     },
     "depthCm": "À {{value}} cm",
     "depthPot": "À la même profondeur que dans son pot",
@@ -370,6 +372,81 @@
     },
     "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers.",
     "year": "Son année autour de {{place}}"
+  },
+  "grow": {
+    "inGarden": "Dans votre potager",
+    "plannedFor": "Prévu pour le {{date}}",
+    "readyOn": "Prête vers le {{date}}",
+    "readyNow": "Prête à récolter",
+    "weather": "Froid, chaleur et sol",
+    "care": "Entretien",
+    "goodWith": "Bien à côté de",
+    "apartFrom": "À tenir loin de",
+    "harvest": "Récolte et conservation",
+    "problems": "Ce qui peut mal tourner",
+    "facts": {
+      "frost": "Gel",
+      "warmth": "Chaleur",
+      "ph": "pH du sol",
+      "water": "Arrosage",
+      "feed": "Engrais",
+      "pot": "En pot",
+      "nextYear": "L'an prochain dans sa planche"
+    },
+    "frost": {
+      "tender": "Une gelée la tue.",
+      "half_hardy": "Elle supporte une gelée légère.",
+      "hardy": "Elle supporte les fortes gelées.",
+      "to": "Elle supporte le gel jusqu'à environ {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Lève dans un sol à partir de {{min}} °C.",
+      "sowRange": "Lève dans un sol de {{min}} à {{max}} °C.",
+      "plant": "Plantez-la dehors quand le sol atteint {{min}} °C.",
+      "nights": "Il lui faut des nuits au-dessus de {{night}} °C."
+    },
+    "ph": {
+      "range": "Idéal à pH {{from}} à {{to}}.",
+      "acid": "Votre sol est plus acide qu'elle ne l'aime : épandez de la chaux quelques semaines avant de planter.",
+      "alkaline": "Votre sol est plus calcaire qu'elle ne l'aime : incorporez beaucoup de compost.",
+      "fits": "Votre sol lui convient."
+    },
+    "water": {
+      "high": "Gourmande en eau",
+      "medium": "Moyen",
+      "low": "Supporte la sécheresse"
+    },
+    "feed": {
+      "high": "Gourmande",
+      "medium": "Moyennement gourmande",
+      "low": "Peu gourmande"
+    },
+    "pot": "Un pot d’au moins {{value}} cm de diamètre.",
+    "noPot": "Mieux en pleine terre.",
+    "perPerson": "{{from}} à {{to}} plants par personne pour manger frais",
+    "perPersonKeep": "{{from}} à {{to}} plants par personne pour manger frais, {{keepFrom}} à {{keepTo}} pour en garder aussi pour l'hiver",
+    "tomato": {
+      "about": "Cultivée pour ses fruits, qui mûrissent du plein été jusqu'aux premières gelées. Les variétés hautes s'attachent à un tuteur et se conduisent sur une tige en ôtant les gourmands ; les variétés buissonnantes restent compactes et vont bien en pot.",
+      "water": "Gardez le sol régulièrement humide : un arrosage irrégulier fait éclater les fruits et provoque la nécrose apicale. Par forte chaleur, un pot peut demander de l'eau chaque jour.",
+      "feed": "Dès que les premiers fruits grossissent, donnez un engrais liquide riche en potasse (engrais tomates) tous les 10 à 14 jours. Une terre riche en demande moins, mais un apport toutes les deux semaines augmente encore la récolte.",
+      "harvest": "Cueillez chaque fruit avec son pédoncule quand il est bien coloré. En fin de saison, faites mûrir les fruits verts au chaud et à l'obscurité, ou dans un tiroir avec une banane.",
+      "keeps": "Le fruit mûr se garde quelques jours à température ambiante, à l’abri du soleil ; le réfrigérateur lui fait perdre son goût.",
+      "problems": [
+        {
+          "name": "Mildiou",
+          "fix": "Des taches brunes qui gagnent vite feuilles et fruits par temps chaud et humide. Retirez les feuilles et fruits atteints dès que vous les voyez, et cultivez les tomates loin des pommes de terre, qui ont la même maladie."
+        },
+        {
+          "name": "Nécrose apicale",
+          "fix": "Une tache sombre et creusée au bas du fruit, due à un arrosage irrégulier. Arrosez régulièrement et ne laissez jamais un pot se dessécher."
+        },
+        {
+          "name": "Fruits éclatés",
+          "fix": "Des fentes dans les fruits qui mûrissent quand une forte pluie ou un gros arrosage suit une période sèche. Gardez le sol régulièrement humide et mangez vite les fruits éclatés."
+        }
+      ],
+      "source": "Culture de la tomate : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : université de Géorgie. Conservation : université de l'Arizona."
+    }
   },
   "map": {
     "title": "Carte",

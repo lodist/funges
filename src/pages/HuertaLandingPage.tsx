@@ -39,7 +39,7 @@ const heroPhoto = (date: Date) =>
 // The year from seed to plate, each step opening the page that does it.
 const STEPS = [
   { id: 'plan', to: '/huerta/planner' },
-  { id: 'plant', to: '/huerta/in-season' },
+  { id: 'plant', to: '/huerta/species' },
   { id: 'care', to: '/huerta/map' },
   { id: 'harvest', to: '/huerta/year' },
 ] as const;
@@ -71,7 +71,7 @@ export default function HuertaLandingPage() {
           <header className={styles.header}>
             <Logo className='h-10 md:h-12' />
             <Link
-              to='/huerta/in-season'
+              to='/huerta/species'
               className={`${styles.textLink} focus-ring`}
             >
               {t('landing.headerLink')}

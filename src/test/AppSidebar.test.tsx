@@ -251,10 +251,10 @@ describe('AppSidebar', () => {
   // Last: a shared page keeps the space a visitor came from (lib/spaces), so a
   // Huerta route here would carry into a later test's /privacy-policy.
   it('lists only its own pages in the Huerta space', () => {
-    pathname.current = '/huerta/in-season';
+    pathname.current = '/huerta/species';
     renderSidebar();
 
-    expect(navLinks()).toContain('/huerta/in-season');
+    expect(navLinks()).toContain('/huerta/species');
     expect(navLinks()).not.toContain('/map');
     expect(navLinks()).not.toContain('/species');
   });

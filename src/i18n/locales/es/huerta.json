@@ -1,6 +1,6 @@
 {
-  "title": "En temporada",
-  "description": "Qué sembrar y plantar esta semana, avisos de helada y riego para tu localidad.",
+  "title": "Especies",
+  "description": "Cada cultivo: si va a la tierra esta semana en tu localidad, cómo cultivarlo y qué vigilar.",
   "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
   "around": "Alrededores de {{place}}, {{day}}",
   "change": "Cambiar de lugar",
@@ -342,7 +342,9 @@
       "depth": "Profundidad",
       "spacing": "Marco",
       "place": "Lugar",
-      "ready": "Cosecha"
+      "ready": "Cosecha",
+      "height": "Altura",
+      "howMany": "Cuántas"
     },
     "depthCm": "A {{value}} cm",
     "depthPot": "A la misma profundidad que en la maceta",
@@ -370,6 +372,81 @@
     },
     "source": "Datos de cultivo: RHS, UC ANR y guías de siembra de casas de semillas.",
     "year": "Su año en {{place}}"
+  },
+  "grow": {
+    "inGarden": "En tu huerto",
+    "plannedFor": "Previsto para el {{date}}",
+    "readyOn": "Lista hacia el {{date}}",
+    "readyNow": "Lista para cosechar",
+    "weather": "Frío, calor y suelo",
+    "care": "Cuidados",
+    "goodWith": "Bien junto a",
+    "apartFrom": "Lejos de",
+    "harvest": "Cosecha y conservación",
+    "problems": "Qué puede salir mal",
+    "facts": {
+      "frost": "Heladas",
+      "warmth": "Calor",
+      "ph": "pH del suelo",
+      "water": "Riego",
+      "feed": "Abonado",
+      "pot": "En maceta",
+      "nextYear": "El año que viene en su bancal"
+    },
+    "frost": {
+      "tender": "Una helada la mata.",
+      "half_hardy": "Aguanta heladas ligeras.",
+      "hardy": "Aguanta heladas fuertes.",
+      "to": "Aguanta heladas hasta unos {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Nace con el suelo a partir de {{min}} °C.",
+      "sowRange": "Nace con el suelo entre {{min}} y {{max}} °C.",
+      "plant": "Trasplántala cuando el suelo llegue a {{min}} °C.",
+      "nights": "Necesita noches por encima de {{night}} °C."
+    },
+    "ph": {
+      "range": "Mejor con pH de {{from}} a {{to}}.",
+      "acid": "Tu suelo es más ácido de lo que le gusta: echa cal agrícola unas semanas antes de plantar.",
+      "alkaline": "Tu suelo es más alcalino de lo que le gusta: incorpora mucho compost.",
+      "fits": "Tu suelo le va bien."
+    },
+    "water": {
+      "high": "Sedienta",
+      "medium": "Normal",
+      "low": "Aguanta la sequía"
+    },
+    "feed": {
+      "high": "Exigente",
+      "medium": "Normal",
+      "low": "Poco exigente"
+    },
+    "pot": "Una maceta de al menos {{value}} cm de diámetro.",
+    "noPot": "Mejor en tierra.",
+    "perPerson": "{{from}}–{{to}} plantas por persona para comer en fresco",
+    "perPersonKeep": "{{from}}–{{to}} plantas por persona para comer en fresco, {{keepFrom}}–{{keepTo}} para guardar también para el invierno",
+    "tomato": {
+      "about": "Se cultiva por sus frutos, que maduran desde pleno verano hasta la primera helada. Las variedades altas se atan a una caña y se dejan a un tallo quitando los chupones; las de mata baja quedan compactas y van bien en maceta.",
+      "water": "Mantén el suelo húmedo de forma regular: el riego irregular agrieta los frutos y causa la podredumbre apical. Con calor, una maceta puede necesitar agua cada día.",
+      "feed": "Cuando empiecen a engordar los primeros frutos, da un abono líquido rico en potasio (abono para tomates) cada 10 a 14 días. En tierra rica necesita menos, pero abonar cada dos semanas sigue aumentando la cosecha.",
+      "harvest": "Recoge cada fruto con su rabillo cuando tenga todo el color. Al final de la temporada, madura los frutos verdes en un sitio cálido y oscuro, o en un cajón con un plátano.",
+      "keeps": "El fruto maduro aguanta unos días a temperatura ambiente, sin sol; la nevera le quita el sabor.",
+      "problems": [
+        {
+          "name": "Mildiu",
+          "fix": "Manchas marrones que se extienden rápido por hojas y frutos con tiempo cálido y húmedo. Quita las hojas y frutos afectados en cuanto los veas, y cultiva los tomates lejos de las patatas, que comparten la enfermedad."
+        },
+        {
+          "name": "Podredumbre apical",
+          "fix": "Una mancha oscura y hundida en la base del fruto, por el riego irregular. Riega con regularidad y no dejes nunca que una maceta se seque."
+        },
+        {
+          "name": "Frutos agrietados",
+          "fix": "Grietas en los frutos que maduran cuando llega mucha lluvia o un riego fuerte tras una sequía. Mantén el suelo húmedo de forma regular y come pronto los frutos agrietados."
+        }
+      ],
+      "source": "Cuidados del tomate: RHS. Cuántas plantar: extensión de la Universidad de Missouri y de Kansas State. pH: extensión de la Universidad de Georgia. Conservación: extensión de la Universidad de Arizona."
+    }
   },
   "map": {
     "title": "Mapa",

@@ -3,7 +3,7 @@ import { HuertaGate } from '@/components/HuertaGate';
 import HuertaPage from '@/pages/HuertaPage';
 import { shouldShowHuerta } from '@/lib/feature-flags';
 
-export const Route = createFileRoute('/huerta_/in-season')({
+export const Route = createFileRoute('/huerta_/species')({
   beforeLoad: () => {
     if (!shouldShowHuerta) {
       throw redirect({ to: '/map' });

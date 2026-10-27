@@ -31,11 +31,7 @@ export type Axis = 'x' | 'y';
  *  flowers), vegetables only, vegetables with flowers at each bed's sunny
  *  end, fruit first, or herbs and flowers. */
 export type PlanStyle =
-  | 'mixed'
-  | 'veg'
-  | 'vegFlowers'
-  | 'fruit'
-  | 'herbsFlowers';
+  'mixed' | 'veg' | 'vegFlowers' | 'fruit' | 'herbsFlowers';
 
 export interface Garden {
   width: number;
@@ -349,7 +345,7 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
   const a = [...groups];
   if (!clash(a)) return a;
   const c = new Array<number>(a.length).fill(0);
-  for (let i = 0; i < a.length; ) {
+  for (let i = 0; i < a.length;) {
     if (c[i] < i) {
       const j = i % 2 ? c[i] : 0;
       [a[j], a[i]] = [a[i], a[j]];
@@ -678,12 +674,7 @@ const VEG = new Set(
 
 /** What a pairing rests on: shown with each note, so it can be weighed. */
 export type Basis =
-  | 'tradition'
-  | 'disease'
-  | 'someTrials'
-  | 'trials'
-  | 'system'
-  | 'sun';
+  'tradition' | 'disease' | 'someTrials' | 'trials' | 'system' | 'sun';
 
 const RULES: {
   bad: boolean;
@@ -725,6 +716,24 @@ const RULES: {
     basis: 'tradition',
   },
 ];
+
+/** A crop's pairings wherever it grows: each rule it is in, with the crops on
+ *  the other side. */
+export function partners(id: string) {
+  return RULES.flatMap(r => {
+    const other = r.a.has(id) ? r.b : r.b.has(id) ? r.a : null;
+    return other
+      ? [
+          {
+            bad: r.bad,
+            key: r.key,
+            basis: r.basis,
+            with: [...other].filter(c => c !== id && CROP[c]),
+          },
+        ]
+      : [];
+  });
+}
 
 export interface Note {
   bad: boolean;

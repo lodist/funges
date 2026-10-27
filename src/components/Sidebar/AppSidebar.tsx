@@ -17,7 +17,6 @@ import {
   LifeBuoy,
   Smartphone,
   ScanSearch,
-  Sprout,
   User,
 } from '@/lib/icons';
 import { currentSpace } from '@/lib/spaces';
@@ -68,8 +67,8 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     },
     {
       title: t('huertaWeek'),
-      url: `${basePath}huerta/in-season`,
-      icon: Sprout,
+      url: `${basePath}huerta/species`,
+      icon: Database,
       isActive: false,
     },
     {
