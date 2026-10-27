@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Cèpe d'Été",
-      "description": "Le premier cèpe de la saison, au chapeau brun clair finement craquelé et au pied réticulé sur toute sa hauteur",
+      "description": "Le plus précoce des cèpes. Son chapeau brun clair est finement craquelé. Son pied porte un réseau de haut en bas.",
       "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes",
       "guide": {
-        "identify": "Le cèpe d'été, ou cèpe réticulé, a un chapeau mat, sec et velouté, noisette pâle à brun moyen, qui se craquelle en un fin réseau par temps sec ; il n'est jamais gras et sa marge n'est pas plus claire que le centre. Son trait le plus net est un réseau en relief qui descend presque jusqu'à la base du pied. Les pores sont blancs, puis jaune olive, et ne changent pas de couleur ; la chair blanche est plus tendre que celle du cèpe de Bordeaux. Le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae) partagent ses chênaies mais ont des pores rouges et une chair qui bleuit ; le bolet amer (Tylopilus felleus) a des pores roses et un réseau sombre.",
-        "habitat": "Chênes et châtaigniers, aussi hêtres, tilleuls et bouleaux, en lisière, dans les parcs et sur les pentes ensoleillées, de la plaine à 1000 m environ. Commun en Europe centrale et méridionale, en particulier dans le sud-ouest de la France et au Portugal ; rare en Grande-Bretagne.",
-        "season": "Le premier cèpe de l'année : dès mai en plaine et en juin en montagne, surtout de juillet à début septembre après des pluies chaudes, jusqu'aux premiers froids d'automne.",
-        "picking": "Coupez-le ou dégagez-le en le tournant et laissez les petits. Par temps chaud, beaucoup sont véreux : coupez-les en deux sur place et laissez les sujets atteints en forêt. La cueillette peut être limitée par arrêté.",
-        "kitchen": "Beaucoup le jugent le meilleur des cèpes : doux, au goût de noisette et parfumé, pour le séchage, les sauces et les omelettes. Après une identification certaine, retirez les parties véreuses et cuisez-le bien.",
-        "keeps": "C'est le cèpe qui se garde le moins bien : cuisez-le ou séchez-le le jour même.",
+        "identify": "Le cèpe d'été, qu'on appelle aussi cèpe réticulé, a un chapeau mat, sec et velouté, noisette pâle à brun moyen. Par temps sec, le chapeau se craquelle en un fin réseau. Il n'est jamais gras. Sa marge n'est pas plus claire que le centre. Son signe le plus net est un réseau en relief qui descend sur le pied presque jusqu'à la base. Les pores sont blancs, puis jaune olive. Ils ne changent pas de couleur. La chair blanche est plus tendre que celle du cèpe de Bordeaux. Le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae) poussent dans les mêmes chênaies. Mais ils ont des pores rouges et une chair qui bleuit. Le bolet amer (Tylopilus felleus) a des pores roses et un réseau sombre.",
+        "habitat": "Il pousse avec le chêne et le châtaignier. On le trouve aussi sous le hêtre, le tilleul et le bouleau. Cherchez-le en lisière de bois, dans les parcs et sur les pentes ensoleillées, de la plaine jusqu'à 1000 m environ. Il est commun en Europe centrale et du Sud, surtout dans le sud-ouest de la France et au Portugal. En Grande-Bretagne, il est rare.",
+        "season": "C'est le premier cèpe de l'année. Il commence en mai en plaine et en juin en montagne. La pleine saison va de juillet à début septembre, après des pluies chaudes. Il dure jusqu'aux premiers froids de l'automne.",
+        "picking": "Coupez-le ou dégagez-le en le tournant. Laissez les petits. Par temps chaud, beaucoup sont véreux. Coupez-les en deux sur place et laissez les véreux en forêt. Beaucoup de régions d'Italie et d'Espagne exigent un permis.",
+        "kitchen": "Beaucoup de cuisiniers le tiennent pour le meilleur des cèpes. Il est doux et parfumé, avec un goût de noisette. Il est parfait pour le séchage, les sauces et les plats aux œufs. Une fois identifié avec certitude, retirez les parties véreuses et faites-le bien cuire.",
+        "keeps": "C'est le cèpe qui se garde le moins bien. Faites-le cuire ou sécher le jour de la cueillette.",
         "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
       }
     },

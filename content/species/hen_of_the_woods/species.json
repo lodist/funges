@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Polypore en touffe",
-      "description": "Une grosse rosette de lobes gris-brun imbriqués au pied des vieux chênes, aux pores blancs dessous",
+      "description": "Une grosse rosette de lobes gris-brun qui se chevauchent, au pied des vieux chênes. Dessous, les pores sont blancs.",
       "howTo": "Cherchez au pied des chênes vieux ou dépérissants de fin août à octobre ; il revient souvent au même arbre d'une année sur l'autre. Il est protégé dans une partie de l'Europe centrale et du Nord",
       "guide": {
-        "identify": "Une rosette de 15 à 40 cm faite de nombreux petits chapeaux gris-brun superposés, en cuillère ou en éventail, de 3 à 14 cm chacun, qui se ramifient à partir d'une base blanche commune. Le dessous est blanc, avec des pores minuscules et pas de lames ; la chair est blanche et ferme et ne se tache ni à la coupe ni à la pression. Le polypore géant (Meripilus) a des chapeaux plus grands et plus épais qui noircissent au toucher ; le polypore en ombelle (Polyporus umbellatus) a des chapeaux ronds sur de petits pieds centraux.",
-        "habitat": "Au pied des vieux chênes, parfois sur des souches ou d'autres feuillus ; il pourrit les racines et revient sur le même arbre pendant des années. Il est commun dans l'est des États-Unis et rare dans l'ouest ; en Europe, il est peu commun et en déclin, sous les vieux chênes et châtaigniers.",
-        "season": "De la fin de l'été à la fin de l'automne, surtout en septembre et octobre, souvent après les premières nuits fraîches qui suivent la pluie.",
-        "picking": "Coupez la rosette à la base au couteau, ne prenez que des exemplaires frais et fermes et laissez l'arbre en redonner. En Europe, il est protégé par la loi en Pologne, en Estonie, en Lettonie et en Lituanie et inscrit sur la liste rouge de l'Allemagne, de l'Autriche et d'autres pays : renseignez-vous sur les règles locales.",
-        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire. Secouez et rincez la terre et les insectes logés entre les chapeaux et retirez la base dure ; poêlés ou rôtis, les chapeaux deviennent croustillants sur les bords et ont un goût riche, terreux et un peu poivré.",
-        "keeps": "Plusieurs jours au réfrigérateur dans un sac en papier. Il se congèle bien une fois cuit et sèche bien.",
+        "identify": "Le polypore en touffe forme une rosette de 15 à 40 cm. Elle est faite de nombreux chapeaux gris-brun qui se chevauchent, en forme de cuillère ou d'éventail, de 3 à 14 cm chacun. Ils se ramifient à partir d'une base blanche commune. Le dessous est blanc, avec de minuscules pores et pas de lames. La chair est blanche et ferme et ne se tache ni à la coupe ni au toucher. Le polypore géant (Meripilus) a des chapeaux plus grands et plus épais qui noircissent au toucher. Le polypore en ombelle (Polyporus umbellatus) a des chapeaux ronds posés sur de petits pieds au centre.",
+        "habitat": "Cherchez-le au pied des vieux chênes. Il pousse parfois sur des souches ou sur d'autres feuillus. Il fait pourrir les racines et revient sur le même arbre pendant des années. Il est commun dans l'est des États-Unis et rare dans l'Ouest. En Europe, il est peu commun et en déclin, sous les vieux chênes et les vieux châtaigniers.",
+        "season": "Il sort de la fin de l'été à la fin de l'automne, surtout en septembre et octobre. Il apparaît souvent après les premières nuits fraîches qui suivent la pluie.",
+        "picking": "Coupez la rosette à la base, au couteau. Ne prenez que des exemplaires frais et fermes, et laissez l'arbre en redonner. En Europe, il est protégé par la loi en Pologne, en Estonie, en Lettonie et en Lituanie. Il est sur la liste rouge en Allemagne, en Autriche et ailleurs. Renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois qu'il est identifié avec certitude, faites-le bien cuire. Secouez et rincez la terre et les insectes coincés entre les chapeaux, et retirez le cœur dur. Faites-le poêler ou rôtir. Les chapeaux deviennent croustillants sur les bords et ont un goût riche, terreux et un peu poivré.",
+        "keeps": "Il se garde plusieurs jours au réfrigérateur, dans un sac en papier. Il se congèle bien une fois cuit, et il sèche bien.",
         "source": "Identification et habitat : MushroomExpert.com. Statut en Europe : Liste rouge de l'UICN."
       }
     },

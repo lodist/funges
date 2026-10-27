@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Ortie",
-      "description": "Plante verte nutritive avec des poils urticants, à cuire avant consommation",
+      "description": "Une plante verte nourrissante, couverte de poils qui piquent. On la cuit toujours avant de la manger.",
       "howTo": "Se trouve dans les zones perturbées, haies et lisières de bois au printemps et en été",
       "guide": {
-        "identify": "Une plante dressée aux tiges carrées et aux feuilles opposées : en cœur ou ovales, grossièrement dentées et pointues. Tiges et feuilles portent des poils urticants, et dès le début de l'été de fines grappes de minuscules fleurs verdâtres pendent à l'aisselle des feuilles. Les lamiers lui ressemblent, mais ne piquent pas et ont des fleurs en lèvres voyantes, blanches, jaunes ou pourpres.",
-        "habitat": "Forme des massifs denses sur sol riche et frais : lisières, berges, fossés, haies et abords des fermes et des ruines. Commune dans toute l'Europe, dans le Sud surtout dans les lieux humides et ombragés, et dans la plus grande partie des États-Unis, surtout au bord des ruisseaux et dans les bois clairs et humides.",
-        "season": "Les jeunes pousses apparaissent dès février dans les régions douces et dès mars plus au nord ; cueillez-les jusqu'à la floraison, vers juin. Les massifs coupés ou fauchés repoussent et donnent une seconde récolte en fin d'été et en automne.",
-        "picking": "Mettez des gants, coupez aux ciseaux les premières paires de feuilles du sommet et laissez les racines. Évitez les bords de route, les bordures de champs traités et les chemins à chiens ; les orties nourrissent aussi les chenilles de nombreux papillons.",
-        "kitchen": "Faites toujours cuire ou blanchir les orties avant de les manger : la chaleur supprime la piqûre, un séchage complet aussi. Plongez les sommités lavées quelques minutes dans l'eau bouillante salée, puis utilisez-les comme des épinards dans les soupes, risottos, omelettes et pestos ; elles ont le goût d'un épinard aux notes terreuses.",
-        "keeps": "Blanchies, essorées et congelées en portions, elles se gardent des mois ; les feuilles séchées à l'ombre, dans un endroit aéré, font des tisanes.",
+        "identify": "Les orties poussent droites, avec des tiges carrées et des feuilles opposées par paires. Les feuilles sont en cœur ou ovales, grossièrement dentées et pointues. Tiges et feuilles sont couvertes de poils urticants. Dès le début de l'été, de fines grappes de minuscules fleurs verdâtres pendent à l'aisselle des feuilles. Les lamiers leur ressemblent, mais ils ne piquent pas. Ils ont aussi des fleurs voyantes en forme de lèvres, blanches, jaunes ou pourpres.",
+        "habitat": "Les orties forment des massifs denses sur sol riche et frais. Cherchez-les en lisière de bois, sur les berges, dans les fossés et les haies. Elles aiment aussi les abords des fermes et des vieux bâtiments. Elles sont communes dans toute l'Europe. Dans le sud, elles se cantonnent surtout aux lieux humides et ombragés. On les trouve aussi dans la plupart des États-Unis, surtout au bord des ruisseaux et dans les bois clairs et humides.",
+        "season": "Les jeunes pousses sortent dès février dans les régions douces et dès mars plus au nord. Vous pouvez les cueillir jusqu'à la floraison, vers juin. Les massifs coupés ou fauchés repoussent. Cela vous donne une seconde récolte en fin d'été et en automne.",
+        "picking": "Mettez des gants. Coupez aux ciseaux les premières paires de feuilles du haut et laissez les racines. Évitez les bords de route, les bordures de champs traitées et les chemins où l'on promène les chiens. Les orties nourrissent aussi les chenilles de nombreux papillons.",
+        "kitchen": "Faites toujours cuire ou blanchir les orties avant de les manger. La chaleur leur enlève leur piqûre, un bon séchage aussi. Plongez les sommités lavées quelques minutes dans l'eau bouillante salée. Utilisez-les ensuite comme des épinards, en soupe, en risotto, en omelette ou en pesto. Elles ont le goût des épinards, en un peu plus terreux.",
+        "keeps": "Blanchies, essorées et congelées en portions, elles se gardent des mois. Pour la tisane, faites sécher les feuilles à l'ombre, dans un endroit aéré.",
         "source": "Identification, habitat et cuisine : NC State Extension et Woodland Trust. Saison : Woodland Trust et données GBIF."
       }
     },

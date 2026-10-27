@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Cèpe des Pins",
-      "description": "Un cèpe au chapeau brun-rouge des pinèdes, au pied trapu réticulé rougeâtre et à la chair ferme",
+      "description": "Un cèpe des pinèdes au chapeau brun-rouge. Son pied trapu et rougeâtre porte un réseau et sa chair est ferme.",
       "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne",
       "guide": {
-        "identify": "Le cèpe rouge, appelé aussi cèpe acajou : le chapeau est rouge vineux à acajou, souvent bosselé, velouté chez le jeune et gras à visqueux par temps humide, avec une pruine blanchâtre à la marge. Le pied, court et trapu, est lavé de brun rouge et porte un fin réseau blanchâtre à rougeâtre, et la chair blanche est rouge vineux juste sous la cuticule. Les pores passent du blanc au jaune et à l'olive et changent à peine de couleur à la pression. Le cèpe bronzé est sépia à noir, sans rouge ; des pores rouges ou orange (Rubroboletus satanas) ou roses avec un réseau sombre (Tylopilus felleus) l'excluent.",
-        "habitat": "Surtout avec le pin sylvestre et l'épicéa sur sol acide, souvent dans la mousse, et en montagne aussi avec le châtaignier, le hêtre et le sapin, surtout entre 400 et 1400 m. Commun en Scandinavie, dans les pinèdes d'Écosse et dans les montagnes d'Europe centrale et méridionale.",
-        "season": "Souvent le premier cèpe de l'année et le dernier : une poussée en mai et juin là où il fait frais et humide, et la principale en septembre et octobre, jusqu'en novembre et après les premières gelées.",
-        "picking": "Coupez-le ou dégagez-le en le tournant et ne ratissez pas la mousse, qui protège le mycélium. La cueillette peut être limitée par arrêté en France, et certains cantons suisses fixent des quantités : renseignez-vous sur les règles locales.",
-        "kitchen": "Après une identification certaine, cuisez-le bien comme le cèpe de Bordeaux ; il est plus doux, un peu résineux, et les jeunes très fermes demandent plus de cuisson. Il teinte l'eau de cuisson en vert et convient aux sauces, au vinaigre et au séchage.",
-        "keeps": "Il se sèche bien en tranches ; frais, utilisez-le sous un ou deux jours.",
+        "identify": "C'est le cèpe rouge des pins, qu'on appelle aussi cèpe acajou. Son chapeau est rouge vineux à acajou, souvent bosselé. Il est velouté chez le jeune et gras à visqueux par temps humide. Sa marge porte une pruine blanchâtre. Le pied est court et trapu, teinté de brun rouge. Il porte un fin réseau blanchâtre à rougeâtre. La chair est blanche, mais rouge vineux juste sous la peau du chapeau. Les pores passent du blanc au jaune puis à l'olive. Ils changent à peine de couleur quand on appuie dessus. Le cèpe bronzé est sépia à noir, sans rouge. Des pores rouges ou orange (Rubroboletus satanas) excluent le cèpe des pins. Des pores roses avec un réseau sombre (Tylopilus felleus) aussi.",
+        "habitat": "Il pousse surtout avec le pin sylvestre et l'épicéa, sur sol acide, souvent dans la mousse. En montagne, il pousse aussi avec le châtaignier, le hêtre et le sapin, surtout entre 400 et 1400 m. Il est commun en Scandinavie, dans les pinèdes d'Écosse et dans les montagnes d'Europe centrale et du Sud.",
+        "season": "C'est souvent le premier cèpe de l'année et aussi le dernier. Une première poussée arrive en mai et juin, là où il fait frais et humide. La grosse récolte suit en septembre et octobre. Elle continue jusqu'en novembre, après les premières gelées.",
+        "picking": "Coupez-le ou dégagez-le en le tournant. Ne ratissez pas la mousse, qui protège le champignon. Beaucoup de régions d'Italie et d'Espagne exigent un permis. Certains cantons suisses limitent les quantités. Renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire, comme les autres cèpes. Il est plus doux et un peu résineux. Les jeunes très fermes demandent une cuisson plus longue. Il colore l'eau de cuisson en vert. Il convient aux sauces, aux conserves au vinaigre et au séchage.",
+        "keeps": "Il sèche bien en tranches. Frais, utilisez-le dans un ou deux jours.",
         "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
       }
     },

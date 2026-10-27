@@ -46,14 +46,14 @@
     },
     "fr": {
       "name": "Cèpe Bronzé",
-      "description": "Un cèpe au chapeau bronze foncé presque noir, au pied clair réticulé et à la chair blanche et ferme",
+      "description": "Un cèpe au chapeau bronze foncé, presque noir. Son pied clair porte un réseau et sa chair est blanche et ferme.",
       "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été",
       "guide": {
-        "identify": "Le plus sombre des cèpes, appelé aussi cèpe noir : le chapeau est brun châtain foncé à presque noir, souvent taché de bronze, et reste sec et finement velouté même par temps humide. Les pores sont blancs, puis jaunes à olive, et ne bleuissent pas. Le pied brun clair porte un fin réseau brun, plus dense en haut, et la chair blanche, très ferme, ne change pas de couleur à la coupe. Le cèpe d'été est plus clair, avec un réseau qui descend plus bas ; le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae), qui partagent ses chênaies, ont des pores rouges et une chair qui bleuit.",
-        "habitat": "Pentes chaudes et ensoleillées avec chênes, châtaigniers et hêtres, surtout entre 200 et 1000 m. Commun autour de la Méditerranée, en Italie le long des Apennins et dans les îles ; rare en Grande-Bretagne et en Allemagne.",
-        "season": "Dès juillet après les orages d'été, mais surtout en septembre et octobre, plus tard que le cèpe d'été, et jusqu'en novembre dans le sud. Il fructifie quand une bonne pluie et un sol qui se refroidit suivent une période de chaleur.",
-        "picking": "Coupez-le ou dégagez-le en le tournant et laissez grandir les jeunes. La cueillette peut être limitée par arrêté en France ; en Allemagne, il est rare et spécialement protégé : ne l'y cueillez pas.",
-        "kitchen": "C'est le plus ferme des cèpes, au goût de noisette qui se renforce au séchage. Après une identification certaine, brossez-le, vérifiez les vers et cuisez-le bien, comme le cèpe de Bordeaux.",
+        "identify": "C'est le plus sombre des cèpes. Le chapeau est brun châtaigne foncé à presque noir, souvent avec des taches bronze. Il reste sec et finement velouté, même par temps humide. Les pores sont blancs, puis jaunes à olive, et ils ne bleuissent pas. Le pied brun clair porte un fin réseau brun, plus serré en haut. La chair blanche, très ferme, ne change pas de couleur à la coupe. Le cèpe d'été est plus clair, et son réseau descend plus bas sur le pied. Deux autres bolets partagent ses chênaies. Ce sont le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae). Tous deux ont des pores rouges et une chair qui bleuit.",
+        "habitat": "Il aime les pentes chaudes et ensoleillées, avec des chênes, des châtaigniers et des hêtres, surtout entre 200 et 1000 m. Il est commun autour de la Méditerranée. En Italie, on le trouve le long des Apennins et dans les îles. Il est rare en Grande-Bretagne et en Allemagne.",
+        "season": "Il peut apparaître dès juillet, après les orages d'été. Sa grande saison, c'est septembre et octobre, plus tard que le cèpe d'été. Dans le sud, il continue jusqu'en novembre. Il sort quand une bonne pluie et un sol qui se rafraîchit suivent une période de chaleur.",
+        "picking": "Coupez-le ou dégagez-le en le tournant, et laissez grandir les jeunes. En Allemagne, il est rare et spécialement protégé, donc ne le cueillez pas là-bas. L'Italie et l'Espagne ont des permis régionaux et des limites par jour.",
+        "kitchen": "C'est le plus ferme des cèpes. Il a un goût de noisette qui se renforce au séchage. Une fois identifié avec certitude, traitez-le comme un cèpe de Bordeaux. Brossez-le, vérifiez qu'il n'est pas véreux et faites-le bien cuire.",
         "keeps": "Il se sèche et se congèle très bien en tranches.",
         "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Protection : BArtSchV (Allemagne). Cuisine : Regione Piemonte."
       }

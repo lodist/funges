@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Mouron des oiseaux",
-      "description": "Plante basse à petites fleurs blanches et feuilles ovales, très nutritive",
+      "description": "Une plante basse aux petites fleurs blanches et aux feuilles ovales. Elle est très nourrissante.",
       "howTo": "Commune dans les jardins, zones perturbées et prairies pendant la saison de croissance",
       "guide": {
-        "identify": "Une plante basse et étalée, aux tiges fragiles, rondes et juteuses, et aux petites feuilles ovales et pointues, opposées, celles du bas portées par un court pétiole. Une seule ligne de poils fins court le long de la tige et change de côté à chaque paire de feuilles. Les fleurs blanches, en étoile, ont cinq pétales si profondément fendus qu'on en croirait dix. Deux sosies toxiques : le mouron rouge (Anagallis arvensis) a des tiges carrées et glabres, des feuilles sans pétiole ponctuées de noir dessous et des fleurs rouge orangé ou bleues ; les euphorbes laissent couler un latex blanc quand on casse une tige, ce que le mouron des oiseaux ne fait jamais.",
-        "habitat": "Jardins, potagers, bords de champs, cours de ferme et autres sols remués, riches et frais, souvent à mi-ombre. L'une des plantes les plus communes d'Europe, présente dans tous les États-Unis.",
-        "season": "Il pousse le mieux par temps frais et humide : au printemps et en automne dans le Nord, de l'automne au printemps dans les régions douces comme le sud de l'Europe et le sud des États-Unis. La chaleur et la sécheresse de l'été le font disparaître jusqu'aux pluies d'automne.",
-        "picking": "Coupez ou pincez les premiers centimètres feuillus ; la plante repousse. Ne cueillez que là où aucun désherbant n'a été pulvérisé, loin des routes et des endroits fréquentés par les chiens et les chats.",
-        "kitchen": "Une fois le mouron des oiseaux identifié avec certitude, ses feuilles, tiges et fleurs se mangent crues ou à peine cuites ; leur goût est doux et frais, un peu comme les petits pois nouveaux. Ajoutez-les aux salades, sandwiches et pestos, ou en fin de cuisson aux soupes, et lavez-les bien.",
-        "keeps": "Le mouron des oiseaux flétrit vite : gardez-le dans un sac au réfrigérateur et mangez-le sous un ou deux jours.",
+        "identify": "Le mouron des oiseaux est une plante basse et étalée, aux tiges fragiles, rondes et juteuses. Les feuilles sont petites, ovales et pointues, opposées par paires. Celles du bas ont un court pétiole. Une seule ligne de poils fins court le long de la tige. Elle change de côté à chaque paire de feuilles. Les fleurs blanches sont en étoile, avec cinq pétales. Chaque pétale est fendu si profondément qu'on croirait en voir dix. Il y a deux sosies toxiques. Le mouron rouge a des tiges carrées et sans poils. Ses feuilles n'ont pas de pétiole et sont ponctuées de noir dessous. Ses fleurs sont rouge orangé ou bleues. Les euphorbes laissent couler un lait blanc quand on casse la tige. Le mouron des oiseaux ne le fait jamais.",
+        "habitat": "Cherchez-le dans les jardins, les potagers, en bordure de champs et dans les cours de ferme. Il aime la terre remuée, riche et fraîche, souvent à mi-ombre. C'est l'une des plantes les plus communes d'Europe, et on le trouve dans tous les États-Unis.",
+        "season": "Il pousse le mieux par temps frais et humide. Dans le nord, cela veut dire au printemps et en automne. Dans les régions douces comme le sud de l'Europe et le sud des États-Unis, il pousse de l'automne au printemps. La chaleur et la sécheresse de l'été le font disparaître jusqu'aux pluies d'automne.",
+        "picking": "Coupez ou pincez les quelques centimètres feuillus du haut. La plante repousse. Ne cueillez que là où aucun désherbant n'a été pulvérisé. Restez loin des routes et des coins où passent les chiens et les chats.",
+        "kitchen": "Une fois la plante reconnue avec certitude, vous pouvez manger les feuilles, les tiges et les fleurs crues ou à peine cuites. Leur goût est doux et frais, un peu comme celui des petits pois nouveaux. Ajoutez-les aux salades, aux sandwiches et au pesto, ou mettez-les dans les soupes en fin de cuisson. Lavez-les bien.",
+        "keeps": "Le mouron des oiseaux flétrit vite. Gardez-le dans un sac au réfrigérateur et mangez-le dans un jour ou deux.",
         "source": "Identification : UC Statewide IPM Program et Woodland Trust. Mouron rouge : ministère de l'Agriculture de l'Ontario. Saison : Woodland Trust et données GBIF."
       }
     },

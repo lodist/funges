@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Shiitaké",
-      "description": "Champignon à chapeau brun et lames blanches, très prisé en cuisine asiatique",
+      "description": "Un champignon au chapeau brun et aux lames blanches, très prisé dans la cuisine asiatique.",
       "howTo": "Se trouve sur le bois mort de feuillus, surtout chêne et hêtre, au printemps et en automne",
       "guide": {
-        "identify": "Un chapeau brun à brun rouge foncé qui s'aplatit avec l'âge, souvent orné de flocons blanchâtres près de la marge et craquelé par temps sec. Les lames sont blanches à crème et brunissent au toucher ; le pied est dur, fibreux et souvent excentré ; la sporée est blanche. La galère marginée (Galerina marginata), mortelle, pousse aussi sur les bûches : elle est plus petite et brun miel, avec un anneau sur le pied et une sporée brun rouille.",
-        "habitat": "Originaire d'Asie de l'Est, sur le bois mort de feuillus comme le chêne et le Castanopsis. En Europe et en Amérique du Nord, il est cultivé sur bûches de chêne ou blocs de sciure et n'a été trouvé hors culture que quelques fois (par exemple aux Pays-Bas) : un champignon brun sur un tronc tombé en forêt est donc presque sûrement autre chose.",
-        "season": "Les bûches en plein air produisent au printemps et à l'automne, quelques jours après une bonne pluie par temps doux ; les cultivateurs déclenchent aussi une poussée en faisant tremper une bûche dans l'eau froide.",
-        "picking": "Récoltez les chapeaux tant que la marge est encore enroulée : tournez-les ou coupez le pied au ras de la bûche. Ne récoltez que sur des bûches que vous cultivez ou là où vous en avez la permission.",
-        "kitchen": "Une fois identifié avec certitude, faites-le bien cuire : cru ou peu cuit, le shiitaké peut provoquer la dermatite au shiitaké, une éruption qui démange, en traînées comme des coups de fouet, environ un jour après. Les pieds sont trop durs à manger mais parfument un bouillon ; faites sauter ou mijoter les chapeaux, au goût profond et savoureux, avec sauce soja, gingembre et ail.",
-        "keeps": "Quelques jours au réfrigérateur dans un sac en papier. Il sèche très bien : réhydratez les chapeaux secs avant usage et gardez l'eau comme bouillon.",
+        "identify": "Le chapeau est brun à brun rouge foncé et s'aplatit avec l'âge. Il porte souvent des flocons blanchâtres près de la marge. Par temps sec, il se craquelle. Les lames sont blanches à crème et brunissent au toucher. Le pied est dur, fibreux et souvent décentré. La sporée est blanche. La galère marginée (Galerina marginata) est mortelle et pousse aussi sur les bûches. Elle est plus petite et brun miel, avec un anneau sur le pied et une sporée brun rouille.",
+        "habitat": "Le shiitaké est originaire d'Asie de l'Est. Il y pousse sur le bois mort de feuillus, comme le chêne et le Castanopsis. En Europe et en Amérique du Nord, on le cultive sur des bûches de chêne ou des blocs de sciure. Hors culture, on ne l'a trouvé que quelques fois, par exemple aux Pays-Bas. Un champignon brun sur un tronc tombé en forêt est donc presque sûrement autre chose.",
+        "season": "Les bûches en plein air produisent au printemps et en automne. Une poussée arrive quelques jours après une bonne pluie par temps doux. Les cultivateurs déclenchent aussi une poussée en faisant tremper une bûche dans l'eau froide.",
+        "picking": "Récoltez les chapeaux tant que la marge est encore enroulée. Tournez-les ou coupez le pied au ras de la bûche. Ne récoltez que sur vos propres bûches ou là où on vous l'a permis.",
+        "kitchen": "Assurez-vous de l'identification, puis faites-le bien cuire. Cru ou peu cuit, le shiitaké peut provoquer la dermatite au shiitaké. C'est une éruption qui démange, en traînées comme des coups de fouet, environ un jour après. Les pieds sont trop durs pour être mangés, mais ils parfument un bouillon. Faites sauter ou mijoter les chapeaux avec de la sauce soja, du gingembre et de l'ail. Ils ont un goût profond et savoureux.",
+        "keeps": "Il se garde quelques jours au réfrigérateur dans un sac en papier. Il sèche très bien. Faites tremper les chapeaux secs avant de les utiliser et gardez l'eau comme bouillon.",
         "source": "Origine et répartition : Naturalis Biodiversity Center. Culture sur bûches : Cornell Cooperative Extension. Dermatite au shiitaké : DermNet."
       }
     },

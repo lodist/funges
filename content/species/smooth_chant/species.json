@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Girolle Lisse",
-      "description": "Une girolle orangée dont le dessous est presque lisse au lieu d'être plissé, à forte odeur d'abricot",
+      "description": "Une girolle orangée dont le dessous est presque lisse au lieu d'être plissé. Elle sent fort l'abricot.",
       "howTo": "Cherchez-la dans les chênaies du sud-est américain pendant l'été humide, souvent en troupes sur sol nu",
       "guide": {
-        "identify": "Jaune orangé vif à jaune d'œuf, de 2,5 à 8 cm, d'abord plate, puis en vase peu profond à bord ondulé. C'est son dessous qui la distingue : lisse ou à peine ridé, plus pâle que le chapeau et souvent rosé, descendant sur le pied, sans vraies lames. Le pied s'amincit vers la base, la chair est blanche et ne change pas à la coupe, et l'odeur est en général forte et douce, d'abricot. Omphalotus illudens, proche du clitocybe de l'olivier et commun dans les mêmes chênaies, a de vraies lames fines et serrées, pousse en touffes serrées sur le bois ou des racines enterrées et est orange à l'intérieur.",
-        "habitat": "Elle vit en association avec les chênes et parfois les caryers, dans les forêts de feuillus et de chênes et pins de l'est des États-Unis, à l'est des Rocheuses, et elle est surtout commune dans le Sud-Est. Elle sort souvent en troupes sur sol nu ou moussu au bord des chemins, des ruisseaux et des talus.",
-        "season": "En été, de juin à septembre et surtout à partir de juillet, peu après une pluie chaude et forte par temps humide.",
-        "picking": "Coupez-la à la base, laissez les petites et ne prenez que ce que vous mangerez. Les règles varient selon l'État, le parc et la forêt nationale, et beaucoup de parcs d'État interdisent la cueillette : renseignez-vous avant de partir.",
-        "kitchen": "Une fois identifiée avec certitude, brossez la terre ; son dessous lisse retient peu de sable. Ne la mangez jamais crue : cuisez-la bien, doucement au beurre ou dans une sauce à la crème. Fruitée et douce comme les autres girolles ; avec les œufs, le gruau de maïs (grits), les pâtes, le poulet et le porc.",
-        "keeps": "Quelques jours au réfrigérateur dans un sac en papier. Séchée, elle devient coriace : pour la garder plus longtemps, faites-la revenir au beurre et congelez-la.",
+        "identify": "La girolle lisse est jaune orangé vif à jaune d'œuf. Elle mesure de 2,5 à 8 cm. D'abord plate, elle devient ensuite un vase peu profond au bord ondulé. C'est son dessous qui la distingue. Il est lisse ou à peine ridé, sans vraies lames. Il est plus pâle que le chapeau et souvent rosé. Il descend sur le pied. Le pied s'amincit vers la base. La chair est blanche et ne change pas à la coupe. L'odeur est en général forte et douce, comme l'abricot. Omphalotus illudens est commun dans les mêmes chênaies. Il a de vraies lames serrées, à l'arête nette. Il pousse en touffes serrées sur le bois ou sur des racines enterrées. Il est aussi orange à l'intérieur.",
+        "habitat": "Elle vit avec les chênes et parfois avec les caryers. Cherchez-la dans les forêts de feuillus et les forêts mêlées de chênes et de pins, dans tout l'est des États-Unis, à l'est des Rocheuses. Elle est surtout commune dans le Sud-Est. Elle sort souvent en troupes sur sol nu ou moussu, au bord des chemins, des ruisseaux et des talus de route.",
+        "season": "C'est une girolle d'été. On la trouve de juin à septembre, le plus souvent à partir de juillet. Elle sort peu après une pluie chaude et forte, par temps lourd et humide.",
+        "picking": "Coupez-la à la base, laissez les petites et ne prenez que ce que vous mangerez. Les règles varient selon l'État, le parc et la forêt nationale. Beaucoup de parcs d'État interdisent la cueillette. Renseignez-vous donc avant de partir.",
+        "kitchen": "Une fois identifiée avec certitude, brossez la terre. Son dessous lisse retient peu de sable. Ne la mangez jamais crue. Faites-la bien cuire, doucement au beurre ou dans une sauce à la crème. Elle est fruitée et douce comme les autres girolles. Elle va bien avec les œufs, le gruau de maïs (grits), les pâtes, le poulet et le porc.",
+        "keeps": "Elle se garde quelques jours au réfrigérateur dans un sac en papier. Séchée, elle devient coriace. Pour la garder plus longtemps, faites-la revenir au beurre et congelez-la.",
         "source": "Identification et habitat : MushroomExpert.com et University of Florida IFAS Extension. Saison : données GBIF."
       }
     },

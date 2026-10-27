@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Cèpe de l'Est Américain",
-      "description": "Les cèpes des chênaies de l'est américain : chapeau fauve à brun lilacin, pores blancs jaunissant avec l'âge et pied réticulé, jamais bleuissants",
+      "description": "Le cèpe des chênaies de l'est des États-Unis. Son chapeau va du fauve au brun teinté de lilas. Ses pores sont blancs puis jaunissent. Il ne bleuit jamais.",
       "howTo": "Cherchez-le sous les chênes et les hêtres des forêts feuillues de l'est, dès juin, quelques jours après une pluie d'été chaude",
       "guide": {
-        "identify": "Un petit groupe de cèpes de l'est de l'Amérique du Nord : Boletus variipes a un chapeau sec, velouté, fauve à brun grisâtre, souvent craquelé ; Boletus separans un chapeau brun lilacin à rouge foie qui pâlit en brun jaunâtre, avec du lilas sur le pied. Tous deux ont des pores blancs chez le jeune, puis jaunâtres, un réseau net blanc à brunâtre sur le pied et une chair blanche qui ne change pas de couleur. Les Tylopilus amers, comme Tylopilus plumbeoviolaceus aux tons violets, ont des pores qui deviennent roses. Des pores rouges ou orange (Neoboletus subvelutipes), ou des pores et une chair qui bleuissent (Boletus sensibilis, Boletus huronensis), signalent un bolet toxique.",
-        "habitat": "Avec les chênes, aussi les hêtres et d'autres feuillus, à l'est des Rocheuses : surtout de New York et des Grands Lacs à la Géorgie et aux monts Ozarks, en passant par la Pennsylvanie et les Appalaches. Boletus nobilis et Boletus atkinsonii appartiennent au même groupe.",
-        "season": "De juin à septembre, surtout en juillet et août, après des pluies d'été chaudes et abondantes.",
-        "picking": "Coupez-le ou dégagez-le en le tournant et coupez-le sur place, car les cèpes d'été sont souvent véreux. Certaines forêts nationales demandent un permis gratuit et fixent des limites par jour ; les parcs ont leurs propres règles, souvent plus strictes.",
-        "kitchen": "Après une identification certaine, cuisez-le bien comme le cèpe de Bordeaux : poêlé, avec des pâtes, en soupe ou en ragoût, ou séché pour plus de goût. N'utilisez que des sujets fermes et frais.",
-        "keeps": "Il se sèche très bien en tranches fines ; frais, utilisez-le sous un ou deux jours.",
+        "identify": "C'est un petit groupe de cèpes de l'est de l'Amérique du Nord. Boletus variipes a un chapeau sec et velouté, fauve à brun grisâtre, qui se craquelle souvent. Boletus separans a un chapeau brun lilas à rouge foie, qui pâlit en brun jaunâtre. Son pied a aussi des tons lilas. Chez les deux, les pores sont blancs quand ils sont jeunes, puis deviennent jaunâtres. Tous deux ont un réseau net, blanc à brunâtre, sur le pied. Leur chair blanche ne change pas de couleur. Les Tylopilus, amers, ont des pores qui deviennent roses. Tylopilus plumbeoviolaceus, gris violacé, en est un exemple. Des pores rouges ou orange (Neoboletus subvelutipes) signalent un bolet toxique. Même chose si les pores et la chair bleuissent (Boletus sensibilis, Boletus huronensis).",
+        "habitat": "Il pousse avec les chênes, mais aussi avec les hêtres et d'autres feuillus, à l'est des Rocheuses. Il est le plus commun de New York et des Grands Lacs jusqu'à la Géorgie et aux monts Ozarks, en passant par la Pennsylvanie et les Appalaches. Boletus nobilis et Boletus atkinsonii font partie du même groupe.",
+        "season": "Il sort de juin à septembre, surtout en juillet et août. Cherchez-le après des pluies d'été chaudes et abondantes.",
+        "picking": "Coupez-le ou dégagez-le en le tournant, puis tranchez-le sur place. En été, ces cèpes sont souvent véreux. Certaines forêts nationales demandent un permis gratuit et fixent des limites par jour. Les parcs ont leurs propres règles, souvent plus strictes.",
+        "kitchen": "Assurez-vous de votre identification, puis faites-le bien cuire, comme un cèpe de Bordeaux. Faites-le sauter, ou ajoutez-le aux pâtes, aux soupes et aux ragoûts. Vous pouvez aussi le sécher pour un goût plus profond. N'utilisez que des exemplaires fermes et frais.",
+        "keeps": "Il sèche très bien en tranches fines. Frais, utilisez-le dans un jour ou deux.",
         "source": "Identification et habitat : MushroomExpert (Michael Kuo). Saison : données GBIF et iNaturalist. Règles : US Forest Service."
       }
     },

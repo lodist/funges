@@ -46,15 +46,15 @@
     },
     "fr": {
       "name": "Cèpe des Rocheuses",
-      "description": "Un cèpe trapu de haute montagne, au chapeau rouge brique à brun-rouge, aux pores blancs et au gros pied clair réticulé au sommet",
+      "description": "Un cèpe trapu de haute montagne. Il a un chapeau rouge brique à brun-rouge, des pores blancs et un gros pied clair avec un réseau dans le haut.",
       "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre",
       "guide": {
-        "identify": "Un grand cèpe trapu des hautes Rocheuses au chapeau rouge brique à brun rouge, collant à l'état frais et souvent pruineux chez le jeune, plus rouge que le cèpe de Bordeaux (Boletus edulis), qui pousse aussi dans la région. Les pores sont blancs et comme bouchés chez le jeune, puis jaunes et olive, et ne changent pas de couleur. Le pied épais et clair porte un fin réseau blanc au moins en haut, et la chair blanche ne bleuit pas. Les bolets des trembles (Leccinum) ont des mèches sombres sur le pied, et ceux à chapeau orange ont causé de graves intoxications digestives au Colorado ; des pores rouges ou orange signalent un bolet toxique.",
-        "habitat": "Surtout avec l'épicéa d'Engelmann, aussi avec le sapin et le douglas, d'environ 2400 m jusqu'à la limite des arbres, au Colorado, au Nouveau-Mexique et dans les montagnes de l'Arizona.",
-        "season": "De juillet à septembre, parfois jusqu'en octobre : il démarre avec les orages de la mousson et monte en altitude au fil de la saison ; les étés secs, il pousse à peine.",
-        "picking": "Dégagez-le doucement en le tournant, car une bonne partie du pied est sous terre, et laissez les sujets très véreux. Chaque forêt nationale fixe ses règles, parfois avec un permis gratuit et des limites par jour.",
-        "kitchen": "Après une identification certaine, retirez les pores jaunes et mous des chapeaux âgés, qui peuvent devenir amers et visqueux, puis cuisez-le bien comme le cèpe de Bordeaux ou séchez-le.",
-        "keeps": "Séchez-le en tranches fines ou congelez-le après l'avoir poêlé.",
+        "identify": "C'est un grand cèpe trapu des hautes Rocheuses. Le chapeau est rouge brique à brun rouge. Il est collant quand il est frais. Les jeunes chapeaux portent souvent une pruine blanchâtre. Il est plus rouge que le cèpe de Bordeaux (Boletus edulis), qui pousse aussi dans la région. Les pores sont blancs et comme bouchés chez le jeune, puis deviennent jaunes et olive. Ils ne changent pas de couleur au toucher. Le pied, épais et clair, porte un fin réseau blanc, au moins dans le haut. La chair blanche ne bleuit pas. Les bolets rudes (Leccinum) ont des mèches sombres sur le pied. Ceux à chapeau orange ont causé de graves intoxications digestives au Colorado. Des pores rouges ou orange signalent un bolet toxique.",
+        "habitat": "Il pousse surtout avec l'épicéa d'Engelmann. On le trouve aussi sous le sapin et le douglas. Il vit d'environ 2400 m jusqu'à la limite des arbres. Il pousse au Colorado, au Nouveau-Mexique et dans les montagnes de l'Arizona.",
+        "season": "Il sort de juillet à septembre, parfois jusqu'en octobre. Il démarre avec les orages de la mousson et monte en altitude au fil de la saison. Les étés secs, il ne pousse presque pas.",
+        "picking": "Dégagez-le doucement en le tournant, car une bonne partie du pied est sous terre. Laissez les très véreux. Chaque forêt nationale fixe ses propres règles. Certaines demandent un permis gratuit et fixent des limites par jour.",
+        "kitchen": "Assurez-vous d'abord de l'identification. Sur les chapeaux âgés, retirez les pores jaunes et mous. Ils peuvent être amers et devenir visqueux. Ensuite, faites-le bien cuire comme les autres cèpes ou faites-le sécher.",
+        "keeps": "Faites-le sécher en tranches fines. Vous pouvez aussi le faire sauter et le congeler.",
         "source": "Identification et habitat : Arora et Frank (2014), MushroomExpert et Forage Colorado. Saison : données GBIF. Règles : US Forest Service."
       }
     },
