@@ -1,0 +1,4 @@
+# Netlify (staging) only: keep the staging copy out of search engines. GitHub
+# Pages, which serves www.fung.es, ignores this file.
+/*
+  X-Robots-Tag: noindex
