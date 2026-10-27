@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Boleto do Pinheiro",
-      "description": "Um cogumelo boleto de chapéu castanho-avermelhado dos pinhais, com pé robusto reticulado e carne firme",
+      "description": "Um porcini dos pinhais, com o chapéu castanho-avermelhado e a carne firme. O pé é robusto e avermelhado, com uma rede.",
       "howTo": "Procure em pinhais e abetais com musgo sobre solo ácido e arenoso, no fim da primavera e de novo no outono",
       "guide": {
-        "identify": "O porcini vermelho: o chapéu vai de vermelho-vinho a cor de mogno, muitas vezes irregular, aveludado no exemplar jovem e de gorduroso a viscoso com a humidade, com uma pruína esbranquiçada na margem. O pé, curto e robusto, é tingido de castanho-avermelhado e tem uma fina rede esbranquiçada a avermelhada, e a carne branca é vermelho-vinho logo por baixo da cutícula. Os poros passam de brancos a amarelos e verde-oliva e quase não mudam de cor quando pressionados. O boleto bronzeado é cor de sépia a preto, sem vermelho; poros vermelhos ou cor de laranja (Rubroboletus satanas) ou rosados com uma rede escura (Tylopilus felleus) excluem-no.",
-        "habitat": "Sobretudo com pinheiro-silvestre e espruce em solo ácido, muitas vezes no musgo, e na montanha também com castanheiros, faias e abetos, sobretudo entre 400 e 1400 m. Comum na Escandinávia, nos pinhais da Escócia e nas montanhas da Europa central e do sul.",
-        "season": "Muitas vezes é o primeiro boleto do ano e o último: uma vaga em maio e junho onde se mantém fresco e húmido, e a principal em setembro e outubro, até novembro e depois das primeiras geadas.",
-        "picking": "Corte-o ou rode-o para o tirar e não ancinhe o musgo, que protege o micélio. Em áreas protegidas a apanha pode ser proibida e em muitas zonas de Espanha é preciso licença e há um limite diário.",
-        "kitchen": "Depois de identificado com certeza, cozinhe-o bem como o boleto comestível; é mais suave e um pouco resinoso, e os jovens muito firmes precisam de mais cozedura. Tinge de verde a água da cozedura e fica bem em molhos, em escabeche ou seco.",
-        "keeps": "Seca bem em fatias; fresco, use-o em um ou dois dias.",
+        "identify": "O boleto do pinheiro é o porcini vermelho. O chapéu vai do vermelho-vinho à cor de mogno e é muitas vezes irregular. Em novo é aveludado. Com humidade fica gorduroso a viscoso. Na margem tem uma pruína esbranquiçada. O pé é curto e robusto, tingido de castanho-avermelhado, com uma rede fina esbranquiçada a avermelhada. A carne é branca, mas logo debaixo da pele do chapéu é vermelho-vinho. Os poros passam de brancos a amarelos e verde-azeitona. Quase não mudam de cor quando se carrega neles. O boleto bronzeado vai do sépia ao negro, sem vermelho. Se tiver poros vermelhos ou cor de laranja (Rubroboletus satanas), não é este boleto. O mesmo se tiver poros cor-de-rosa com uma rede escura (Tylopilus felleus).",
+        "habitat": "Cresce sobretudo com pinheiro-silvestre e espruce, em solo ácido, muitas vezes no musgo. Na montanha também cresce com castanheiros, faias e abetos, sobretudo entre os 400 e os 1400 m. É comum na Escandinávia, nos pinhais da Escócia e nas montanhas da Europa central e do sul.",
+        "season": "Muitas vezes é o primeiro boleto do ano e também o último. Uma primeira vaga aparece em maio e junho, onde o tempo se mantém fresco e húmido. A colheita principal vem em setembro e outubro. Continua em novembro, mesmo depois das primeiras geadas.",
+        "picking": "Corte-o ou rode-o para o tirar. Não raspe o musgo, que abriga o fungo. Em muitas regiões de Itália e de Espanha é preciso licença. Alguns cantões suíços limitam as quantidades. Informe-se sobre as regras locais.",
+        "kitchen": "Se o identificou com certeza, cozinhe-o bem, como o boleto comestível. É mais suave e um pouco resinoso. Os novos muito firmes precisam de cozinhar mais tempo. Tinge de verde a água da cozedura. É bom para molhos, para conservar em vinagre e para secar.",
+        "keeps": "Seca bem às fatias. Fresco, use-o em um ou dois dias.",
         "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Cozinha: Regione Piemonte."
       }
     }

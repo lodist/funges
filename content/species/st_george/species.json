@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Cogumelo-de-São-Jorge",
-      "description": "Cogumelo branco e firme com cheiro de farinha, que surge por volta da festa de São Jorge na primavera.",
+      "description": "Um cogumelo branco e firme que cheira a farinha fresca. Aparece na primavera, por volta do dia de São Jorge.",
       "howTo": "Encontra-se em prados, pastagens e nas bordas das florestas na primavera.",
       "guide": {
-        "identify": "Um cogumelo robusto e carnudo, branco a creme, com o chapéu de 5 a 15 cm, muitas vezes irregular e encaroçado, de margem enrolada. As lâminas são brancas, estreitas e muito apertadas; o pé, grosso e maciço, não tem anel nem volva na base; a carne, firme e branca, não muda de cor e cheira muito a farinha fresca; a esporada é branca. A mortal Inosperma erubescens tem o chapéu cónico e fibroso, avermelha ao toque e dá esporada castanha; o Entoloma sinuatum também pode cheirar a farinha, mas tem lâminas que ficam cor-de-rosa e esporada cor-de-rosa. As amanitas brancas, como a mortal Amanita verna, que também aparece na primavera, têm anel e volva na base.",
-        "habitat": "Na erva: pastagens, bermas ceifadas, parques e orlas de bosque, muitas vezes junto a pilriteiros, abrunheiros-bravos e outros arbustos de sebe, sobretudo em solo calcário. Volta aos mesmos sítios durante anos, muitas vezes em círculos; existe em toda a Europa e é muito apreciado no norte de Espanha e no centro de Itália.",
-        "season": "Na primavera, sobretudo em abril e maio, e até junho no norte e na montanha; deve o nome ao dia de São Jorge, 23 de abril. Uma primavera amena e chuvosa fá-lo aparecer.",
-        "picking": "Corte o pé pela base e deixe os pequenos; apanhe chapéus jovens e firmes, porque os velhos costumam ter larvas. Evite bermas de estradas movimentadas e informe-se sobre as regras locais: algumas regiões exigem licença ou fixam um limite diário.",
-        "kitchen": "Depois de identificado com certeza, coma-o cozinhado: perde quase todo o cheiro a farinha, e a carne firme e suave fica bem em omeletes, ovos mexidos, risotos e molhos com natas. Corte-o antes ao comprido para ver se tem larvas.",
-        "keeps": "Até dois dias no frigorífico, embrulhado em papel. Salteado rapidamente, congela bem.",
+        "identify": "O cogumelo-de-São-Jorge é robusto e carnudo, branco a creme. O chapéu mede 5 a 15 cm, é muitas vezes irregular e tem a margem enrolada para dentro. As lâminas são brancas, estreitas e muito apertadas. O pé é grosso e maciço, sem anel e sem volva na base. A carne é firme e branca e não muda de cor. Tem um cheiro forte a farinha fresca. A esporada é branca. A Inosperma erubescens é mortal. Tem o chapéu em bico e com riscas, fica vermelha onde se mexe e dá esporada castanha. O Entoloma sinuatum também pode cheirar a farinha. Mas as lâminas ficam cor-de-rosa e a esporada é cor-de-rosa. Na primavera também aparecem amanitas brancas, como a mortal Amanita verna. Essas têm anel e volva na base.",
+        "habitat": "Cresce na erva, em pastagens, bermas ceifadas, parques e orlas de bosques. Aparece muitas vezes junto a pilriteiros, abrunheiros-bravos e outros arbustos de sebe, sobretudo em solo calcário. Volta aos mesmos sítios durante anos, muitas vezes em círculos. Existe em toda a Europa e é muito procurado no norte de Espanha e no centro de Itália.",
+        "season": "Aparece na primavera, sobretudo em abril e maio. No norte e na montanha dura até junho. Deve o nome ao dia de São Jorge, 23 de abril. Uma primavera amena e chuvosa fá-lo sair.",
+        "picking": "Corte o pé pela base e deixe os pequenos. Apanhe chapéus novos e firmes, porque os velhos têm muitas vezes larvas. Evite bermas de estradas movimentadas. Informe-se também sobre as regras locais, porque algumas regiões exigem licença ou fixam um limite diário.",
+        "kitchen": "Quando tiver a certeza, coma-o cozinhado. Ao cozinhar perde quase todo o cheiro a farinha. A carne, firme e suave, fica bem em omeletes, ovos mexidos, risotos e molhos de natas. Antes, corte cada um ao comprido para ver se tem larvas.",
+        "keeps": "Aguenta até dois dias no frigorífico, embrulhado em papel. Depois de salteado uns minutos, congela bem.",
         "source": "Identificação e habitat: First Nature. Espécies parecidas: First Nature e ANSES. Época: registos do GBIF."
       }
     }

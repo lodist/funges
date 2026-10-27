@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Boleto Comestível",
-      "description": "O rei dos boletos: chapéu castanho, pé robusto e reticulado, e poros brancos que nunca azulam",
+      "description": "O porcini: um cogumelo robusto, de chapéu castanho, pé claro com rede e poros brancos que nunca azulam.",
       "howTo": "Encontrado em florestas de coníferas e decíduas, muitas vezes perto de abetos e faias, do fim do verão ao outono",
       "guide": {
-        "identify": "Um boleto robusto de chapéu castanho-claro a castanho-escuro, liso e gorduroso mas nunca aveludado, muitas vezes com uma fina orla esbranquiçada. Os poros são brancos no exemplar jovem, depois amarelos e verde-oliva, e não mudam de cor quando pressionados. O pé claro tem uma fina rede branca em cima, e a carne branca não muda de cor ao corte. Poros rosados e uma rede castanho-escura indicam o boleto-amargo (Tylopilus felleus); poros vermelhos ou cor de laranja ou carne que azula indicam outro boleto, talvez tóxico.",
-        "habitat": "Com espruces, pinheiros, faias, carvalhos, castanheiros e bétulas em solo ácido, da planície ao limite das árvores, em toda a Europa. Na América do Norte cresce sobretudo nos estados do Pacífico; no sul das Rochosas é mais comum o boleto rei das Rochosas, mais vermelho.",
-        "season": "Sobretudo de agosto a outubro, a partir de junho na montanha e até novembro no sul; na costa do Pacífico dos Estados Unidos, com as chuvas de outono. Costuma surgir cerca de duas semanas depois de uma chuva forte que se segue a um período quente e seco.",
-        "picking": "Rode-o ou corte-o pela base; deixe os pequenos e os velhos ou com bicho. Informe-se das regras locais: em áreas protegidas a apanha pode ser proibida, em muitas zonas de Espanha é preciso licença e na Alemanha só se permitem pequenas quantidades para consumo próprio.",
-        "kitchen": "Depois de identificado com certeza, escove-o, corte-o ao comprido para ver se tem bicho e salteie-o ou use-o em arroz, massa e sopas. Cozinhe-o bem: nem toda a gente o tolera cru, e os exemplares velhos ou mal conservados fazem mal.",
-        "keeps": "Num sítio fresco, em papel e não em plástico, um ou dois dias. Seca muito bem em fatias finas e congela bem.",
+        "identify": "É um boleto robusto, de chapéu castanho-claro a cor de castanha. O chapéu é liso e gorduroso, mas nunca aveludado. Tem muitas vezes uma orla fina esbranquiçada. Os poros são brancos no cogumelo novo e depois passam a amarelos e verde-azeitona. Não mudam de cor quando se carrega neles. O pé é claro e tem em cima uma rede branca e fina. A carne é branca e não muda de cor ao corte. Poros cor-de-rosa e uma rede castanho-escura indicam o boleto-amargo (Tylopilus felleus). Poros vermelhos ou cor de laranja indicam outro boleto, que pode ser tóxico. O mesmo vale para carne que fica azul.",
+        "habitat": "Cresce com espruces, pinheiros, faias, carvalhos, castanheiros e vidoeiros, em solo ácido. Encontra-se em toda a Europa, da planície ao limite das árvores. Na América do Norte cresce sobretudo nos estados do Pacífico. No sul das Montanhas Rochosas é mais comum o boleto rei das Rochosas, que é mais vermelho.",
+        "season": "A época principal vai de agosto a outubro. Na montanha começa em junho e no sul dura até novembro. Na costa do Pacífico dos EUA aparece com as chuvas de outono. Uma vaga costuma surgir umas duas semanas depois de uma chuvada forte que se segue a um período quente e seco.",
+        "picking": "Rode-o para o soltar ou corte-o pela base. Deixe os pequenos e os chapéus velhos ou com bicho. Na Alemanha só se podem apanhar pequenas quantidades para consumo próprio. Na maior parte das regiões de Itália é preciso licença. Cada floresta nacional dos EUA tem as suas regras.",
+        "kitchen": "Primeiro confirme que o identificou com toda a certeza. Limpe-o com uma escova e corte-o ao comprido para ver se tem bicho. Salteie-o ou use-o em risotos, massas e sopas. Cozinhe-o bem. Nem toda a gente o tolera cru. Os velhos ou mal guardados fazem mal ao estômago.",
+        "keeps": "Guarde-o num sítio fresco, em papel e não em plástico, durante um ou dois dias. Seca muito bem em fatias finas. Também congela bem.",
         "source": "Identificação e habitat: Regione Piemonte, First Nature e MushroomExpert. Época: registos do GBIF. Regras: BArtSchV (Alemanha) e Serviço Florestal dos EUA. Cozinha: Regione Piemonte e VIDAL."
       }
     }

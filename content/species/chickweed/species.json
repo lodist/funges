@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Morugem",
-      "description": "Planta rasteira com pequenas flores brancas e folhas ovais, muito nutritiva",
+      "description": "Uma planta baixa com florinhas brancas e folhas ovais. É muito nutritiva.",
       "howTo": "Comum em jardins, áreas perturbadas e prados durante a estação de crescimento",
       "guide": {
-        "identify": "A morugem é uma planta baixa e rasteira, de caules fracos, redondos e suculentos, com folhinhas ovais e pontiagudas opostas, as de baixo com um pé curto. Uma única linha de pelos finos percorre o caule e muda de lado em cada par de folhas. As flores brancas, em estrela, têm cinco pétalas tão fendidas que parecem dez. Dois sósias tóxicos: o morrião (Anagallis arvensis) tem caules quadrados e sem pelos, folhas sem pé com pontos pretos por baixo e flores vermelho-alaranjadas ou azuis; as eufórbias deitam um látex branco quando se parte o caule, o que a morugem nunca faz.",
-        "habitat": "Hortas, jardins, bordas de campos, quintais e outros solos revolvidos, ricos e húmidos, muitas vezes à meia-sombra. Uma das plantas mais comuns da Europa e presente em todos os EUA.",
-        "season": "Cresce melhor com tempo fresco e húmido: na primavera e no outono no norte, e do outono à primavera em zonas amenas como o sul da Europa e o sul dos EUA. Com o calor e a secura do verão seca até às chuvas de outono.",
-        "picking": "Corte ou belisque os primeiros centímetros com folhas; a planta volta a rebentar. Apanhe só onde não se tenham aplicado herbicidas, longe de estradas e de sítios por onde passam cães e gatos.",
-        "kitchen": "Depois de identificado com certeza, comem-se as folhas, os caules e as flores, crus ou ligeiramente cozinhados; sabem a fresco e suave, um pouco a ervilhas novas. Junte-os a saladas, sanduíches e pesto, ou no fim a sopas, e lave-os bem.",
-        "keeps": "A morugem murcha depressa: guarde-a num saco no frigorífico e coma-a em um ou dois dias.",
+        "identify": "A morugem é uma planta baixa e rasteira, de caules fracos, redondos e suculentos. As folhas são pequenas, ovais e pontiagudas, aos pares, uma em frente da outra. As de baixo têm um pé curto. Ao longo do caule corre uma única fila de pelos finos. Essa fila muda de lado a cada par de folhas. As flores são brancas, em estrela, com cinco pétalas. As pétalas são tão fendidas que parecem dez. Há dois sósias tóxicos. O morrião tem caules quadrados e sem pelos e folhas sem pé, com pontinhos pretos por baixo. As flores são vermelho-alaranjadas ou azuis. As eufórbias deitam um leite branco quando se parte o caule. A morugem nunca faz isso.",
+        "habitat": "Procure em jardins, canteiros da horta, bordas de campos e quintais. Gosta de terra mexida, rica e húmida, muitas vezes à meia-sombra. É uma das plantas mais comuns da Europa e encontra-se em todos os EUA.",
+        "season": "Cresce melhor com tempo fresco e húmido. No norte, isso quer dizer primavera e outono. Em zonas amenas, como o sul da Europa e o sul dos EUA, cresce do outono à primavera. Com o calor e a seca do verão, seca até voltarem as chuvas de outono.",
+        "picking": "Corte ou arranque com os dedos as pontas com folhas, só os primeiros centímetros. A planta volta a rebentar. Apanhe só onde não se tenha aplicado herbicida. Afaste-se das estradas e dos sítios por onde andam cães e gatos.",
+        "kitchen": "Quando tiver a certeza, pode comer as folhas, os caules e as flores, crus ou cozinhados por pouco tempo. Sabem a fresco e suave, um pouco a ervilhas novas. Junte-os a saladas, sandes e pesto. Também os pode deitar na sopa, já no fim. Lave-os bem.",
+        "keeps": "A morugem murcha depressa. Guarde-a num saco no frigorífico e coma-a em um ou dois dias.",
         "source": "Identificação: UC Statewide IPM Program e Woodland Trust. Morrião: Ministério da Agricultura do Ontário. Época: Woodland Trust e registos do GBIF."
       }
     }

@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Avelã",
-      "description": "Nozes doces e arredondadas que crescem em aveleiras",
+      "description": "Frutos secos doces e redondos, das aveleiras.",
       "howTo": "Procure aveleiras em cercas vivas e bordas de bosques no outono",
       "guide": {
-        "identify": "Arbusto com muitos caules ou pequena árvore, com folhas redondas, duplamente serradas, pontiagudas, macias e penugentas na página inferior; no fim do inverno pendem amentilhos amarelos dos ramos nus. As avelãs crescem em cachos de uma a quatro, cada uma num invólucro verde e folhoso, franjado, que a cobre em cerca de três quartos, e ficam castanhas ao amadurecer. As aveleiras silvestres da América do Norte são parentes próximas; na aveleira-de-bico, o invólucro forma um tubo comprido e áspero.",
-        "habitat": "Sub-bosque, sebes e matagais de toda a Europa, no sul sobretudo em zonas de serra e junto a linhas de água; a aveleira frutifica mais ao sol, na orla das matas. Nos EUA, a aveleira europeia cresce sobretudo em pomares no Oregon; as espécies silvestres crescem em matagais, clareiras e orlas de mata.",
-        "season": "Do fim de agosto a outubro: as avelãs estão prontas quando o invólucro fica castanho e caem ou se soltam ao abanar levemente o ramo. Esquilos, gaios e outros animais chegam muitas vezes primeiro.",
-        "picking": "Apanhe as que caíram ou abane levemente os ramos, e deixe bastantes para os animais. Ponha de parte as que têm um pequeno furo redondo (uma larva de gorgulho comeu o miolo) e as que pesam pouco, e evite bermas de estradas movimentadas e bordas de campos pulverizados.",
-        "kitchen": "Quando tiver a certeza da planta, coma-as cruas ou torre-as até a pele estalar e esfregue-as num pano áspero para a tirar. Vão em bolos, pralinés, pesto e saladas. As avelãs são uma causa frequente de alergia aos frutos de casca rija.",
-        "keeps": "Seque-as com casca num sítio arejado até o miolo ficar cor de creme até ao centro e guarde-as num sítio fresco e seco; secas aguentam até um ano no frigorífico.",
+        "identify": "A aveleira é um arbusto ou uma pequena árvore com muitos troncos. As folhas são redondas e duplamente dentadas, acabam em bico e são macias e penugentas por baixo. No fim do inverno pendem amentilhos amarelos dos ramos nus. As avelãs crescem em cachos de uma a quatro. Cada uma está metida num invólucro verde, folhoso e franjado, que lhe cobre uns três quartos. Ficam castanhas ao amadurecer. As aveleiras silvestres da América do Norte são parentes próximas. Na aveleira-de-bico, o invólucro forma um tubo comprido e áspero.",
+        "habitat": "Cresce por baixo das árvores maiores nos bosques, em sebes e em matagais por toda a Europa. No sul encontra-se sobretudo nas serras. Dá mais fruto ao sol, nas orlas dos bosques. Nos EUA, a aveleira europeia cresce sobretudo em pomares do Oregon. As espécies silvestres crescem em matagais, clareiras e orlas de bosque.",
+        "season": "As avelãs vêm do fim de agosto a outubro. Estão prontas quando o invólucro fica castanho e elas caem ou se soltam ao abanar levemente o ramo. Os esquilos, os gaios e os arganazes chegam lá muitas vezes primeiro.",
+        "picking": "Apanhe as que caíram ou abane levemente os ramos. Deixe bastantes para os animais. Ponha de parte as que têm um furinho redondo, porque uma larva de gorgulho comeu o miolo. Ponha de parte também as que pesam pouco. Evite bermas de estradas movimentadas e bordas de campos pulverizados.",
+        "kitchen": "Quando tiver a certeza da planta, coma-as cruas ou torre-as até a pele estalar. Depois esfregue-as num pano áspero para lhes tirar a pele. Use-as em bolos, pralinés, pesto e saladas. As avelãs são uma causa frequente de alergia aos frutos de casca rija.",
+        "keeps": "Seque-as com casca num sítio arejado, até o miolo ficar cor de creme até ao centro. Depois guarde-as num sítio fresco e seco. Secas, aguentam até um ano no frigorífico.",
         "source": "Identificação e habitat: Woodland Trust e Departamento de Recursos Naturais do Minnesota. Secagem e conservação: Oregon State University Extension."
       }
     }

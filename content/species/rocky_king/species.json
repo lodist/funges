@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Boleto Rei das Rochosas",
-      "description": "Um cogumelo boleto robusto de alta montanha, de chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e pé grosso e claro reticulado no alto",
+      "description": "Um porcini robusto da alta montanha. Tem o chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e um pé grosso e claro, com rede na parte de cima.",
       "howTo": "Procure sob píceas e abetos nas altitudes das Montanhas Rochosas do sul, quando chegam as chuvas de monção de verão, de julho a setembro",
       "guide": {
-        "identify": "Um boleto grande e robusto das altas Rochosas, de chapéu vermelho-tijolo a castanho-avermelhado, pegajoso quando fresco e muitas vezes com pruína esbranquiçada no exemplar jovem, mais vermelho do que o boleto comestível (Boletus edulis), que também cresce lá. Os poros são brancos e fechados no exemplar jovem, depois amarelos e verde-oliva, e não mudam de cor. O pé, grosso e claro, tem uma fina rede branca pelo menos em cima, e a carne branca não azula. Os boletos dos choupos-tremedores (Leccinum) têm escamas escuras no pé, e os de chapéu cor de laranja já causaram intoxicações digestivas graves no Colorado; poros vermelhos ou cor de laranja indicam um boleto tóxico.",
-        "habitat": "Sobretudo com o espruce-de-engelmann, também com abetos e o abeto-de-douglas, desde cerca de 2400 m até ao limite das árvores, no Colorado, no Novo México e nas montanhas do Arizona.",
-        "season": "De julho a setembro, por vezes até outubro: começa com as trovoadas da monção e sobe de altitude ao longo da época; nos verões secos quase não aparece.",
-        "picking": "Rode-o com cuidado para o tirar, porque boa parte do pé está debaixo da terra, e deixe os que tiverem muito bicho. Cada floresta nacional define as suas regras, algumas com licença gratuita e limites diários.",
-        "kitchen": "Depois de identificado com certeza, retire os poros amarelos e moles dos chapéus maduros, que podem ficar amargos e viscosos, e cozinhe-o bem como o boleto comestível ou seque-o.",
-        "keeps": "Seque-o em fatias finas ou congele-o depois de salteado.",
+        "identify": "É um boleto grande e robusto das altas Montanhas Rochosas. O chapéu é vermelho-tijolo a castanho-avermelhado e pegajoso quando fresco. Os novos têm muitas vezes uma pruína esbranquiçada. É mais vermelho do que o boleto comestível (Boletus edulis), que também cresce lá. Os poros são brancos e fechados em novo e depois passam a amarelos e verde-azeitona. Não mudam de cor ao toque. O pé, grosso e claro, tem uma rede branca e fina, pelo menos em cima. A carne branca não azula. Os boletos dos choupos-tremedores (Leccinum) têm escamas escuras no pé. Os de chapéu cor de laranja já causaram intoxicações graves de estômago no Colorado. Poros vermelhos ou cor de laranja indicam um boleto tóxico.",
+        "habitat": "Cresce sobretudo com o espruce-de-engelmann e também com abetos e abetos-de-douglas. Encontra-se desde cerca de 2400 m até ao limite das árvores. Cresce no Colorado, no Novo México e nas montanhas do Arizona.",
+        "season": "Frutifica de julho a setembro, às vezes até outubro. Começa com as trovoadas da monção e vai subindo a encosta ao longo da época. Nos verões secos quase não aparece.",
+        "picking": "Rode-o com cuidado para o tirar, porque boa parte do pé está enterrada. Deixe os que tiverem muito bicho. Cada floresta nacional tem as suas regras. Algumas pedem uma licença gratuita e fixam limites diários.",
+        "kitchen": "Primeiro tenha a certeza da identificação. Nos chapéus maduros, tire os poros amarelos e moles. Podem saber a amargo e ficar viscosos. Depois cozinhe-o bem como o boleto comestível. Também o pode secar.",
+        "keeps": "Seque-o em fatias finas. Também o pode saltear e congelar.",
         "source": "Identificação e habitat: Arora e Frank (2014), MushroomExpert e Forage Colorado. Época: registos do GBIF. Regras: Serviço Florestal dos EUA."
       }
     }

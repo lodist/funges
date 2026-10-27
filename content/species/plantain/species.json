@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Tanchagem",
-      "description": "Planta rasteira com folhas ovais largas e longas hastes florais",
+      "description": "Uma planta baixa com folhas largas e ovais e espigas altas de flores.",
       "howTo": "Encontrada em gramados, prados e áreas perturbadas durante a estação de crescimento",
       "guide": {
-        "identify": "A tanchagem forma uma roseta rasteira de folhas largas e ovais, com pecíolos curtos e largos; cada folha tem três a sete nervuras fortes e paralelas e, se partir um pecíolo, saem como fios rijos. A partir do início do verão, hastes sem folhas levam espigas longas e estreitas, como caudas de rato, de flores esverdeadas minúsculas, depois cheias de pequenas sementes castanhas. A roseta do primeiro ano da dedaleira, que é mortal, tem folhas moles, peludas e enrugadas, com nervuras em rede e sem fios; já se venderam folhas de dedaleira por engano como tanchagem.",
-        "habitat": "Relvados, caminhos, carreiros, bordas dos campos, prados e hortas: onde quer que o solo seja pisado e compactado. Nativa da Europa e da Ásia, é comum em toda a Europa e em todos os EUA, aonde chegou com os colonos europeus.",
-        "season": "As folhas novas nascem do início da primavera ao outono, mais tenras na primavera e depois do corte da relva. As espigas surgem a partir do início do verão e as sementes amadurecem até ao outono.",
-        "picking": "Colha as folhas novas do centro da roseta, poucas de cada planta, e deixe a raiz na terra. Evite as bermas de estrada, os caminhos por onde passam cães e os relvados ou taludes que possam ter sido tratados com herbicida.",
-        "kitchen": "Depois de identificada com certeza, as folhas novas comem-se cruas em salada; as mais velhas são rijas e fibrosas: escalde-as ou cozinhe-as como espinafres e tire os fios. O sabor é suave, a erva, e um pouco amargo. A NC State Extension avisa que quantidades muito grandes podem baixar a tensão arterial: coma-a como uma verdura entre outras.",
-        "keeps": "As folhas murcham depressa: guarde-as um ou dois dias num saco no frigorífico, ou seque-as à sombra para chá.",
+        "identify": "A tanchagem forma uma roseta rente ao chão, de folhas largas e ovais com pés curtos e largos. Cada folha tem três a sete nervuras fortes. Correm lado a lado, da base à ponta. Se partir o pé de uma folha, as nervuras saem como fios rijos. A partir do início do verão, hastes sem folhas levam espigas compridas e estreitas, como caudas de rato, de florzinhas esverdeadas. Mais tarde enchem-se de pequenas sementes castanhas. A dedaleira é mortal. Atenção sobretudo à roseta do primeiro ano. Tem folhas moles, peludas e enrugadas, com nervuras em rede e sem fios. Já se venderam folhas de dedaleira por engano como tanchagem.",
+        "habitat": "Procure em relvados, caminhos, carreiros agrícolas, bordas de campos, prados e jardins. Cresce onde quer que o chão seja pisado e calcado. É nativa da Europa e da Ásia e comum em toda a Europa. Também é comum em todos os EUA, onde chegou com os colonos europeus.",
+        "season": "As folhas novas nascem do início da primavera ao outono. São mais tenras na primavera e depois de a relva ser cortada. As espigas sobem a partir do início do verão e as sementes amadurecem até ao outono.",
+        "picking": "Apanhe as folhas novas do centro da roseta, poucas de cada planta. Deixe a raiz na terra. Evite as bermas das estradas e os caminhos por onde passam cães. Evite também relvados ou bermas que possam ter sido tratados com herbicida.",
+        "kitchen": "Quando tiver a certeza de que é tanchagem, pode pôr as folhas novas cruas em saladas. As folhas mais velhas são rijas e fibrosas. Escalde-as ou cozinhe-as como espinafres e tire-lhes os fios. O sabor é suave e herbáceo, um pouco amargo. A NC State Extension avisa que quantidades muito grandes podem baixar a tensão arterial. Por isso coma-a como uma verdura entre outras.",
+        "keeps": "As folhas murcham depressa. Guarde-as um ou dois dias no frigorífico, num saco. Para chá, seque-as à sombra.",
         "source": "Identificação, habitat e época: NC State Extension, Michigan State University Extension e UC IPM. Confusão com a dedaleira: FDA dos EUA (1997). Cozinha: NC State Extension."
       }
     }

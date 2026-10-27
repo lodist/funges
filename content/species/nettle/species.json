@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Urtiga",
-      "description": "Planta verde nutritiva com pelos urticantes que deve ser cozida",
+      "description": "Uma planta verde e nutritiva, com pelos que picam. Cozinhe-a sempre antes de a comer.",
       "howTo": "Encontrada em áreas perturbadas, cercas vivas e bordas de bosques na primavera e verão",
       "guide": {
-        "identify": "Planta ereta de caules quadrangulares e folhas opostas: em forma de coração a ovais, com dentes grossos e ponta aguda. Caules e folhas estão cobertos de pelos urticantes, e a partir do início do verão pendem das axilas das folhas cachos finos de flores esverdeadas minúsculas. As urtigas-mortas (Lamium) são parecidas, mas não picam e têm flores vistosas em forma de lábio, brancas, amarelas ou púrpura.",
-        "habitat": "Forma manchas densas em solo rico e húmido: orlas de bosques, margens de rios, valas, sebes e arredores de quintas e ruínas. Comum em toda a Europa, no sul sobretudo em locais húmidos e sombrios, e na maior parte dos EUA, sobretudo junto a ribeiros e em bosques abertos e húmidos.",
-        "season": "Os rebentos novos aparecem a partir de fevereiro nas zonas amenas e de março mais a norte; apanhe-os até a planta florir, por volta de junho. As manchas cortadas ou ceifadas voltam a rebentar e dão uma segunda colheita no fim do verão e no outono.",
-        "picking": "Use luvas, corte com uma tesoura os primeiros pares de folhas do topo e deixe as raízes. Evite bermas de estrada, orlas de campos pulverizados e caminhos de cães; as urtigas alimentam também as lagartas de muitas borboletas.",
-        "kitchen": "Coza ou escalde sempre as urtigas antes de as comer: o calor elimina a picada, e a secagem completa também. Mergulhe as pontas lavadas alguns minutos em água a ferver com sal e use-as como espinafres em sopas, risotos, omeletes e pesto; sabem a espinafre com um fundo terroso.",
-        "keeps": "Escaldadas, espremidas e congeladas em porções duram meses; as folhas secas à sombra, num sítio arejado, servem para chá.",
+        "identify": "A urtiga cresce direita, com caules quadrados e folhas opostas, aos pares. As folhas são em forma de coração ou ovais, com dentes grossos e ponta aguçada. Caules e folhas estão cobertos de pelos que picam. A partir do início do verão, pendem cachos finos de florzinhas esverdeadas no sítio onde as folhas se ligam ao caule. As urtigas-mortas são parecidas, mas não picam. Além disso têm flores vistosas em forma de lábio, brancas, amarelas ou roxas.",
+        "habitat": "As urtigas formam manchas densas em solo rico e húmido. Procure nas orlas dos bosques, nas margens dos rios, nas valas e nas sebes. Também crescem à volta de quintas e de casas velhas. São comuns em toda a Europa. No sul ficam-se sobretudo pelos sítios húmidos e à sombra. Nos EUA existem na maior parte do país, sobretudo junto a ribeiros e em bosques abertos e húmidos.",
+        "season": "Os rebentos novos aparecem a partir de fevereiro nas zonas amenas e a partir de março mais a norte. Pode apanhá-los até a planta florir, mais ou menos a partir de junho. As manchas cortadas ou ceifadas voltam a rebentar. Assim tem uma segunda apanha no fim do verão e no outono.",
+        "picking": "Use luvas. Corte com uma tesoura os primeiros pares de folhas do topo e deixe as raízes. Evite as bermas das estradas, as orlas de campos pulverizados e os caminhos onde se passeiam cães. As urtigas também alimentam as lagartas de muitas borboletas.",
+        "kitchen": "Coza ou escalde sempre as urtigas antes de as comer. O calor tira-lhes a picada. Secá-las bem também. Mergulhe as pontas lavadas uns minutos em água a ferver com sal. Depois use-as como espinafres, em sopa, risoto, omelete ou pesto. Sabem a espinafres, mas um pouco mais a terra.",
+        "keeps": "Escalde-as, esprema-as e congele-as em porções. Assim duram meses. Para chá, seque as folhas num sítio arejado e à sombra.",
         "source": "Identificação, habitat e cozinha: NC State Extension e Woodland Trust. Época: Woodland Trust e registos do GBIF."
       }
     }
