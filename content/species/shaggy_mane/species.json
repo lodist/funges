@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Shaggy Mane",
-      "description": "A tall white cylinder of shaggy scales on lawns and roadsides that dissolves into black ink within a day of picking",
+      "description": "A tall white cylinder covered in shaggy scales, on lawns and roadsides. Within a day of picking it melts into black ink.",
       "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals",
       "guide": {
         "identify": "The shaggy mane is a tall white cylinder, 5 to 15 cm high. It is covered in shaggy, upturned scales, with a pale brown top. With age it opens into a bell. The crowded gills turn from white to pink to black. Then they dissolve into black ink, from the cap edge upwards. The white stem is smooth and hollow. Its thin ring slides and often drops to the base. The spore print is black. The common ink cap (Coprinopsis atramentaria) has a smooth, grey-brown, finely grooved cap with no shaggy scales. It grows in clusters from buried wood. On US lawns, young green-spored parasols (Chlorophyllum molybdites) can look similar. Their gills never turn black.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Schopf-Tintling",
-      "description": "Ein hoher weisser, zottig beschuppter Zylinder auf Rasen und an Wegrändern, der sich binnen eines Tages nach dem Pflücken in schwarze Tinte auflöst",
+      "description": "Ein hoher weisser Zylinder mit zottigen Schuppen, auf Rasen und an Wegrändern. Innerhalb eines Tages nach dem Pflücken zerfliesst er zu schwarzer Tinte.",
       "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weisse Exemplare und koche sie noch am selben Tag; meide stark befahrene Strassen, dort nimmt er Schwermetalle auf",
       "guide": {
         "identify": "Der Schopftintling ist ein hoher weisser Zylinder, 5 bis 15 cm hoch. Er ist mit zottigen, abstehenden Schuppen bedeckt und hat einen blassbraunen Scheitel. Im Alter öffnet er sich zu einer Glocke. Die dicht stehenden Lamellen werden von weiss über rosa zu schwarz. Dann zerfliessen sie vom Hutrand her nach oben zu schwarzer Tinte. Der weisse Stiel ist glatt und hohl. Sein dünner Ring lässt sich verschieben und rutscht oft bis zum Grund. Das Sporenpulver ist schwarz. Der Falten-Tintling (Coprinopsis atramentaria) hat einen glatten, graubraunen, fein gerieften Hut ohne zottige Schuppen. Er wächst büschelig aus vergrabenem Holz. Auf Rasen in den USA kann der junge Chlorophyllum molybdites mit grünem Sporenpulver ähnlich aussehen. Seine Lamellen werden aber nie schwarz.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Barbuda",
-      "description": "Un alto cilindro blanco de escamas desgreñadas en céspedes y cunetas que se deshace en tinta negra en menos de un día tras cogerlo",
+      "description": "Un cilindro alto y blanco cubierto de escamas desgreñadas, en céspedes y cunetas. En menos de un día desde que se coge, se deshace en una tinta negra.",
       "howTo": "Búscala en céspedes, cunetas y suelos removidos unos días después de las lluvias de otoño, y también tras las de primavera. Coge solo ejemplares jóvenes y completamente blancos y cocínalos el mismo día; evita las carreteras con mucho tráfico, donde absorbe metales pesados",
       "guide": {
-        "identify": "Un cilindro blanco y alto, de 5 a 15 cm, cubierto de escamas lanosas y levantadas, con la punta parda clara; al envejecer se abre en campana. Las láminas, apretadas, pasan de blanco a rosa y a negro, y se deshacen en tinta negra desde el borde del sombrero hacia arriba; el pie es blanco, liso y hueco, con un anillo fino que se desliza y a menudo cae a la base; la esporada es negra. El coprino entintado (Coprinopsis atramentaria) tiene el sombrero liso, gris pardo y finamente estriado, sin escamas lanosas, y crece en grupos sobre madera enterrada. En céspedes de EE. UU., los ejemplares jóvenes de Chlorophyllum molybdites pueden parecerse, pero sus láminas nunca se vuelven negras.",
-        "habitat": "Céspedes, cunetas, parques, caminos, obras y otros terrenos removidos con hierba, a menudo en filas o grupos. Común en toda Europa y Norteamérica.",
-        "season": "Sobre todo a finales de verano y en otoño, pocos días después de llover, y otra vez en primavera; en la costa del Pacífico de EE. UU. sigue durante el invierno suave y lluvioso.",
-        "picking": "Coge solo ejemplares jóvenes y cerrados, blancos por completo y con las láminas blancas, y solo los que vayas a cocinar ese mismo día. Evita carreteras con tráfico, vertederos y suelos contaminados: acumula metales pesados.",
-        "kitchen": "Una vez identificada con certeza, cocínala en pocas horas y quita cualquier parte rosa o negra, que amarga. Salteada con mantequilla, en sopas o en tortilla, es suave y delicada. No se le conoce reacción con el alcohol, pero al coprino entintado sí, incluso con bebidas tomadas días antes o después de la comida: si no sabes seguro qué coprino tienes, no lo comas.",
-        "keeps": "No se conserva: en menos de un día se convierte en tinta, incluso en la nevera. Cocínala enseguida; cocinada, aguanta uno o dos días en la nevera o se puede congelar.",
+        "identify": "La barbuda es un cilindro blanco y alto, de 5 a 15 cm. Está cubierta de escamas lanosas y levantadas, con la punta parda clara. Con la edad se abre en forma de campana. Las láminas, apretadas, pasan de blancas a rosas y luego a negras. Después se deshacen en tinta negra, desde el borde del sombrero hacia arriba. El pie es blanco, liso y hueco. Tiene un anillo fino que se desliza y a menudo cae hasta la base. La esporada es negra. El coprino entintado (Coprinopsis atramentaria) tiene el sombrero liso, gris pardo y con estrías finas, sin escamas lanosas. Crece en grupos desde madera enterrada. En los céspedes de EE. UU. se le pueden parecer los ejemplares jóvenes de la parasol de esporada verde (Chlorophyllum molybdites). Sus láminas nunca se vuelven negras.",
+        "habitat": "Búscala en céspedes, cunetas, parques, caminos, obras y otros terrenos removidos con hierba. Suele salir en filas o en grupos. Es común en toda Europa y Norteamérica.",
+        "season": "Sale sobre todo a finales del verano y en otoño, a los pocos días de llover. Vuelve a salir en primavera. En la costa del Pacífico de EE. UU. sigue durante todo el invierno, que allí es suave y lluvioso.",
+        "picking": "Coge solo ejemplares jóvenes y cerrados, blancos por completo y con las láminas blancas. Coge solo lo que vayas a cocinar ese mismo día. Evita las carreteras con mucho tráfico, los vertederos y los suelos contaminados, porque absorbe metales pesados.",
+        "kitchen": "Cuando la tengas identificada sin ninguna duda, cocínala en pocas horas. Quita cualquier parte rosa o negra, porque amarga. Saltéala con mantequilla o échala a sopas y tortillas. Es suave y delicada. No se le conoce ninguna reacción con el alcohol. Pero el coprino entintado sí reacciona, incluso con bebidas tomadas días antes o después de la comida. Si no sabes seguro qué coprino tienes, no te lo comas.",
+        "keeps": "No se conserva. En menos de un día se convierte en tinta, incluso en la nevera. Cocínala enseguida. Ya cocinada aguanta uno o dos días en la nevera, o la puedes congelar.",
         "source": "Identificación y hábitat: First Nature y Missouri Department of Conservation. Reacción con el alcohol: First Nature. Temporada: registros de GBIF."
       }
     },

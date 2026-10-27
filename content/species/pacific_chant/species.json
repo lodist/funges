@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Pacific Chanterelle",
-      "description": "A large golden chanterelle of the Pacific Northwest, paler and pinker than its European cousin",
+      "description": "A big golden chanterelle from the Pacific Northwest. It is paler and pinker than the European one.",
       "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in",
       "guide": {
         "identify": "This is a large chanterelle, paler and pinker than the European one. The cap is orange-yellow to apricot. Young caps often have fine brownish scales and a pinkish cast, which can vanish in wet weather. Underneath are blunt, forking ridges that run down the stem. They are pale orange-yellow and usually tinged pink. The stem tapers downward, and the flesh is whitish and firm. The cap bruises yellowish. Jack-o'-lanterns (Omphalotus) and the false chanterelle have thin, crowded true gills. The scaly vase chanterelle (Turbinellus floccosus) is a deep, hollow, orange-red trumpet with coarse scales. It upsets many people's stomachs.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Pazifik-Pfifferling",
-      "description": "Ein grosser goldener Pfifferling des pazifischen Nordwestens, blasser und rosiger als sein europäischer Verwandter",
+      "description": "Ein grosser goldener Pfifferling aus dem pazifischen Nordwesten. Er ist blasser und rosiger als der europäische.",
       "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben",
       "guide": {
         "identify": "Das ist ein grosser Pfifferling, blasser und rosiger als der europäische. Der Hut ist orangegelb bis aprikosenfarben. Junge Hüte haben oft feine bräunliche Schüppchen und einen rosa Schimmer. Bei nassem Wetter können beide verschwinden. Darunter sitzen stumpfe, gegabelte Leisten, die am Stiel herablaufen. Sie sind blass orangegelb und meist rosa überhaucht. Der Stiel wird nach unten schmaler, das Fleisch ist weisslich und fest. Auf Druck färbt sich der Hut gelblich. Ölbaumtrichterlinge (Omphalotus) und der Falsche Pfifferling haben dünne, dicht stehende echte Lamellen. Turbinellus floccosus ist eine tiefe, hohle, orangerote Trompete mit groben Schuppen. Vielen Menschen schlägt er auf den Magen.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Rebozuelo del Pacífico",
-      "description": "Un rebozuelo dorado y grande del noroeste del Pacífico, más pálido y rosado que su primo europeo",
+      "description": "Un rebozuelo dorado y grande del noroeste del Pacífico. Es más pálido y más rosado que el europeo.",
       "howTo": "Búscalo en bosques con musgo de abeto de Douglas y tsuga, una vez llegadas las lluvias de otoño",
       "guide": {
-        "identify": "Un rebozuelo grande, más pálido y rosado que el europeo: el sombrero es amarillo anaranjado a color albaricoque, y los jóvenes suelen tener finas escamas parduscas y un tono rosado que pueden desaparecer con tiempo húmedo. Los pliegues romos y bifurcados bajan por el pie y son amarillo anaranjado pálido, casi siempre con un tinte rosado; el pie se estrecha hacia abajo, la carne es blanquecina y firme, y el sombrero amarillea al rozarlo. Las especies de Omphalotus y el falso rebozuelo tienen láminas verdaderas finas y apretadas; Turbinellus floccosus, una trompeta honda, hueca y rojo anaranjada con escamas gruesas, causa trastornos digestivos a mucha gente.",
-        "habitat": "Vive asociado a coníferas, sobre todo el abeto de Douglas y la tsuga occidental, también la pícea de Sitka, entre el musgo y la hojarasca de coníferas en bosques jóvenes y viejos, sobre todo en llanuras y estribaciones. Va de la Columbia Británica, por Washington y Oregón, donde es la seta oficial del estado, hasta el norte de California.",
-        "season": "De septiembre a diciembre, a veces hasta enero, cuando las lluvias de otoño han empapado el suelo; un otoño seco lo retrasa. Cada ejemplar crece despacio y puede seguir creciendo semanas con tiempo fresco y húmedo.",
-        "picking": "Córtalo por la base y deja los pequeños para que sigan creciendo; coge solo lo que vayas a comer. Las normas cambian según el bosque nacional, el estado y el parque: algunos piden un permiso gratuito y fijan límites diarios, muchos parques estatales prohíben recoger y para vender hace falta un permiso comercial, así que consulta a la administración del lugar.",
-        "kitchen": "Una vez identificado con total seguridad, quítale las acículas y la tierra con un cepillo; enjuágalo solo si tiene arena y sécalo, porque tras la lluvia retiene agua. No lo comas nunca crudo: saltéalo primero en la sartén sin grasa hasta que suelte el agua y termina con mantequilla. Suave, afrutado y firme; va bien con huevos, nata, pasta, salmón y caza.",
-        "keeps": "Varios días en la nevera en una bolsa de papel. Seco se vuelve correoso: para guardarlo más tiempo, saltéalo en mantequilla y congélalo.",
+        "identify": "Es un rebozuelo grande, más pálido y rosado que el europeo. El sombrero va de amarillo anaranjado a color albaricoque. Los jóvenes suelen tener finas escamas parduscas y un tono rosado, que pueden desaparecer con tiempo húmedo. Por debajo tiene pliegues romos y bifurcados que bajan por el pie. Son de un amarillo anaranjado pálido y casi siempre tienen un tinte rosado. El pie se estrecha hacia abajo, y la carne es blanquecina y firme. El sombrero amarillea al rozarlo. Las setas de olivo (Omphalotus) y el falso rebozuelo tienen láminas verdaderas, finas y apretadas. El rebozuelo escamoso (Turbinellus floccosus) es una trompeta honda y hueca, rojo anaranjada, con escamas gruesas. A mucha gente le sienta mal al estómago.",
+        "habitat": "Vive con coníferas, sobre todo con el abeto de Douglas y la tsuga occidental. También sale con la pícea de Sitka. Búscalo entre el musgo y las acículas caídas, en bosques que han vuelto a crecer y en bosques viejos. Sale sobre todo en zonas bajas y en el pie de monte. Su área va de la Columbia Británica, por Washington y Oregón, hasta el norte de California. En Oregón es la seta oficial del estado.",
+        "season": "Lo encuentras de septiembre a diciembre, a veces hasta enero. Necesita que las lluvias de otoño empapen antes el suelo, así que un otoño seco lo retrasa. Cada seta crece despacio. Con tiempo fresco y húmedo puede seguir creciendo durante semanas.",
+        "picking": "Córtalo por la base y deja los pequeños para que sigan creciendo. Coge solo lo que vayas a comer. Las normas cambian según el bosque nacional, el estado y el parque. Algunos piden un permiso gratuito y fijan límites diarios. Muchos parques estatales prohíben recogerlo. Para venderlo hace falta un permiso comercial. Pregunta a quien gestione el terreno.",
+        "kitchen": "Cuando no tengas ninguna duda de qué es, quítale las acículas y la tierra con un cepillo. Lávalo solo si tiene arena y luego sécalo, porque los que han cogido lluvia retienen agua. No lo comas nunca crudo. Primero saltéalo en la sartén sin grasa para que suelte el agua, y luego termínalo con mantequilla. Es suave, afrutado y firme. Va bien con huevos, nata, pasta, salmón y caza.",
+        "keeps": "Aguanta varios días en la nevera, en una bolsa de papel. Seco se queda correoso. Para guardarlo más tiempo, saltéalo en mantequilla y congélalo.",
         "source": "Identificación: MushroomExpert.com y UBC Beaty Biodiversity Museum. Normas de recogida: Servicio Forestal de EE. UU. Temporada: registros de GBIF."
       }
     },

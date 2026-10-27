@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Sweet Violet",
-      "description": "Small purple flowers with heart-shaped leaves and a sweet fragrance",
+      "description": "Small purple flowers with heart-shaped leaves and a sweet scent.",
       "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring",
       "guide": {
         "identify": "Sweet violet is a low plant with a rosette of long-stalked leaves. They are heart-shaped with a rounded base, scalloped edges and short hairs. It spreads by long runners that root. Each flower rises on its own stalk from the rosette. It has five uneven petals, and the lowest has a short spur at the back. The flowers are usually deep violet, sometimes white, with blunt sepals and a sweet scent. Dog violets look similar but have no scent. Lesser celandine is poisonous and grows in the same places. It has glossy, fleshy, hairless leaves and flowers with 8 to 12 shiny yellow petals. Lords-and-ladies is poisonous too. It has glossy, arrow-shaped leaves with lobes pointing backwards.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Duftveilchen",
-      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft",
+      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft.",
       "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling",
       "guide": {
         "identify": "Das Duftveilchen ist eine niedrige Pflanze mit einer Rosette aus lang gestielten Blättern. Sie sind herzförmig mit rundem Grund, gekerbtem Rand und kurzen Haaren. Es breitet sich mit langen Ausläufern aus, die Wurzeln schlagen. Jede Blüte steht auf einem eigenen Stiel, der aus der Rosette kommt. Sie hat fünf ungleiche Blütenblätter, und das unterste hat hinten einen kurzen Sporn. Die Blüten sind meist tief violett, manchmal weiss, haben stumpfe Kelchblätter und duften süss. Hundsveilchen sehen ähnlich aus, duften aber nicht. Das Scharbockskraut ist giftig und wächst an denselben Stellen. Es hat glänzende, fleischige, kahle Blätter und Blüten mit 8 bis 12 glänzend gelben Blütenblättern. Auch der Aronstab ist giftig. Er hat glänzende, pfeilförmige Blätter, deren Lappen nach hinten zeigen.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Violeta dulce",
-      "description": "Pequeñas flores moradas con hojas en forma de corazón y fragancia dulce",
+      "description": "Florecillas moradas con hojas en forma de corazón y un olor dulce.",
       "howTo": "Se encuentra en bordes de bosques, setos y zonas sombrías a principios de primavera",
       "guide": {
-        "identify": "La violeta dulce (violeta de olor) es una planta baja con una roseta de hojas acorazonadas de pecíolo largo, base redondeada, borde festoneado y pelillos cortos; se extiende con estolones largos que enraízan. Cada flor sale de la roseta en su propio rabillo: cinco pétalos desiguales, el inferior con un espolón corto hacia atrás, casi siempre violeta oscuro, a veces blanca, con sépalos romos y un aroma dulce; las violetas silvestres sin olor, como Viola riviniana, se parecen pero no huelen. La celidonia menor, que es venenosa y crece en los mismos sitios, tiene hojas brillantes, carnosas y sin pelos y flores de 8 a 12 pétalos amarillos y brillantes; el aro (Arum maculatum), también venenoso, tiene hojas brillantes en forma de punta de flecha con lóbulos que apuntan hacia atrás.",
-        "habitat": "Bordes de bosque, taludes de setos, hierba a la sombra, cementerios, parques y jardines antiguos, en suelo húmedo y rico, a media sombra. Crece en casi toda Europa y se ha escapado de los jardines en muchos sitios; en Estados Unidos crece silvestre aquí y allá en céspedes y bordes de bosque.",
-        "season": "Florece de febrero a mayo, antes en el sur templado, y en gran parte de Estados Unidos en abril y mayo. A veces vuelven a salir algunas flores a finales de verano, y las hojas son mejores tiernas, en primavera.",
-        "picking": "Coge de cada mancha solo unas pocas flores y hojas tiernas y deja la roseta y las raíces en el suelo; no arranques nunca plantas. Evita los céspedes fumigados, las cunetas y los sitios donde se pasea a perros.",
-        "kitchen": "Una vez identificada con certeza, la flor se usa cruda en ensaladas y postres, se escarcha con clara de huevo pasteurizada y azúcar fino, o se infusiona en agua hirviendo que luego se endulza para hacer jarabe de violetas. Las hojas tiernas se comen crudas en ensalada o cocidas como espinacas; son suaves y espesan un poco las sopas. No comas nunca las raíces ni las semillas, que pueden provocar vómitos, y prueba primero una pequeña cantidad.",
-        "keeps": "La flor se mustia pronto: guárdala entre papel de cocina húmedo en la nevera y úsala el mismo día. Las flores escarchadas se conservan en un recipiente hermético en un lugar fresco y oscuro.",
+        "identify": "La violeta dulce o de olor es una planta baja con una roseta de hojas de rabillo largo. Son acorazonadas, de base redondeada, con el borde festoneado y pelillos cortos. Se extiende con estolones largos que echan raíces. Cada flor sale de la roseta en su propio rabillo. Tiene cinco pétalos desiguales, y el de abajo lleva un espolón corto hacia atrás. Las flores suelen ser violeta oscuro, a veces blancas, con sépalos romos y un olor dulce. Las violetas de perro se parecen, pero no huelen. La celidonia menor es venenosa y crece en los mismos sitios. Sus hojas son brillantes, carnosas y sin pelo. Sus flores tienen de 8 a 12 pétalos amarillos y brillantes. El aro también es venenoso. Tiene hojas brillantes en forma de flecha, con los lóbulos hacia atrás.",
+        "habitat": "Búscala en bordes de bosque, taludes de setos y hierba a la sombra. También en cementerios, parques y jardines antiguos. Le gusta el suelo húmedo y rico, a media sombra. Crece en casi toda Europa y en muchos sitios se ha escapado de los jardines. En EE. UU. crece silvestre aquí y allá, en céspedes y bordes de bosque.",
+        "season": "Florece de febrero a mayo, antes en el sur, donde el clima es suave. En gran parte de EE. UU. florece en abril y mayo. A veces vuelven a salir algunas flores a finales del verano. Las hojas son mejores jóvenes, en primavera.",
+        "picking": "Coge unas pocas flores y hojas jóvenes de cada mancha. Deja la roseta y las raíces en el suelo, y no arranques nunca plantas. Evita los céspedes fumigados, las cunetas y los sitios donde se pasea a perros.",
+        "kitchen": "Cuando la tengas identificada sin ninguna duda, puedes echar las flores crudas en ensaladas y postres. También puedes escarcharlas con clara de huevo pasteurizada y azúcar fino. O ponlas en agua hirviendo, déjalas reposar y endulza el agua para hacer jarabe de violetas. Las hojas jóvenes se comen crudas en ensalada o cocidas como espinacas. Son suaves y espesan un poco las sopas. No comas nunca las raíces ni las semillas, que pueden provocar vómitos. Prueba primero una pequeña cantidad.",
+        "keeps": "Las flores se mustian enseguida. Guárdalas entre papel de cocina húmedo en la nevera y úsalas el mismo día. Las flores escarchadas se conservan en un recipiente hermético, en un sitio fresco y oscuro.",
         "source": "Identificación y hábitat: NatureSpot y extensión de NC State. Cocina: extensión de la Universidad Estatal de Colorado y de NC State."
       }
     },

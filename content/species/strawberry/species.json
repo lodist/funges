@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Wild Strawberry",
-      "description": "Small red berries with intense flavor, with white flowers and trifoliate leaves",
+      "description": "Small red berries full of flavour, with white flowers and leaves in threes.",
       "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer",
       "guide": {
         "identify": "Wild strawberry is a low plant. Its long-stalked leaves have three toothed leaflets, bright green and slightly glossy. It spreads by runners that root along the ground. The end tooth of each leaflet is as long as its neighbours, or longer. The flowers are white, with five rounded petals and a yellow centre. The fruit is a small red cone with tiny seeds on the surface, hanging from a thin stalk. Barren strawberry (Potentilla sterilis) flowers earlier. It has gaps between its notched petals and an end tooth shorter than its neighbours. It has no fleshy fruit. Mock strawberry (Potentilla indica) has yellow flowers and round, spongy, tasteless berries.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Walderdbeere",
-      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern",
+      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern.",
       "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer",
       "guide": {
         "identify": "Die Walderdbeere ist eine niedrige Pflanze. Ihre langgestielten Blätter haben drei gezähnte Blättchen, hellgrün und leicht glänzend. Sie breitet sich mit Ausläufern aus, die am Boden Wurzeln schlagen. Der Endzahn jedes Blättchens ist so lang wie seine Nachbarn oder länger. Die Blüten sind weiss, mit fünf runden Blütenblättern und gelber Mitte. Die Frucht ist ein kleiner roter Kegel mit winzigen Nüsschen auf der Oberfläche und hängt an einem dünnen Stiel. Das Erdbeer-Fingerkraut (Potentilla sterilis) blüht früher. Es hat Lücken zwischen den eingekerbten Blütenblättern, und sein Endzahn ist kürzer als die Nachbarn. Eine fleischige Frucht hat es nicht. Die Indische Scheinerdbeere (Potentilla indica) hat gelbe Blüten und runde, schwammige Früchte ohne Geschmack.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Fresa silvestre",
-      "description": "Pequeñas bayas rojas de sabor intenso, con flores blancas y hojas trifoliadas",
+      "description": "Fresas pequeñas y rojas llenas de sabor, con flores blancas y hojas de tres en tres.",
       "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano",
       "guide": {
-        "identify": "Planta baja de hojas con rabillo largo y tres folíolos dentados, verde vivo y algo brillantes, que se extiende con estolones que enraízan; el diente final de cada folíolo es tan largo como sus vecinos o más. Las flores son blancas, de cinco pétalos redondos y centro amarillo; el fruto es un pequeño cono rojo con diminutas semillas en la superficie, que cuelga de un rabillo fino. La fresa estéril (Potentilla sterilis) florece antes y tiene huecos entre los pétalos escotados, un diente final más corto que sus vecinos y ningún fruto carnoso; la fresa de la India (Potentilla indica) tiene flores amarillas y frutos redondos, esponjosos e insípidos.",
-        "habitat": "Bordes de bosque, claros, taludes soleados, orillas de caminos, pies de seto y prados viejos, a menudo en suelo seco, pedregoso o calizo, desde las tierras bajas hasta la montaña en toda Europa. En EE. UU. crece en bosques claros y claros del norte y en las montañas del oeste; allí la fresa de Virginia (Fragaria virginiana), más grande, es la fresa silvestre habitual de campos y prados.",
-        "season": "Florece desde abril; los frutos maduran desde finales de mayo en el sur de Europa y desde junio en el resto, y la planta sigue dando fruto todo el verano, hasta agosto en la montaña y en el norte.",
-        "picking": "Coge solo fresas bien rojas pellizcando el rabillo y nunca arranques las plantas; en Inglaterra, donde la fresa silvestre está catalogada como casi amenazada, recoge con moderación. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
-        "kitchen": "Una vez identificadas con certeza, cómelas crudas y pronto, lavadas justo antes. Saben más intensas que las fresas de huerto, aunque varían de una planta a otra; un puñado basta para perfumar nata, yogur o una tarta.",
-        "keeps": "En una cesta al calor se estropean enseguida: tenlas al fresco y cómelas el mismo día. Se pueden congelar, pero al descongelarse quedan blandas.",
+        "identify": "La fresa silvestre es una planta baja. Sus hojas tienen un rabillo largo y tres folíolos dentados, de un verde vivo y algo brillantes. Se extiende con estolones que echan raíces en el suelo. El diente de la punta de cada folíolo es tan largo como los de al lado, o más. Las flores son blancas, con cinco pétalos redondeados y el centro amarillo. El fruto es un conito rojo con semillitas en la superficie, que cuelga de un rabillo fino. La fresa estéril (Potentilla sterilis) florece antes. Sus pétalos están escotados y dejan huecos entre ellos. El diente de la punta es más corto que los de al lado. No da fruto carnoso. La fresa de la India (Potentilla indica) tiene flores amarillas y frutos redondos, esponjosos y sin sabor.",
+        "habitat": "Búscala en bordes y claros de bosque, en taludes soleados, en orillas de caminos, al pie de los setos y en prados viejos. Suele crecer en suelo seco, pedregoso o calizo, desde las zonas bajas hasta la montaña en toda Europa. En EE. UU. crece en bosques abiertos y claros del norte y en las montañas del oeste. Allí la fresa silvestre habitual de campos y prados es la fresa de Virginia (Fragaria virginiana), que es más grande.",
+        "season": "Florece desde abril. En el sur de Europa los frutos maduran desde finales de mayo, y en el resto desde junio. Las plantas siguen dando fruto todo el verano. En la montaña y en el norte duran hasta agosto.",
+        "picking": "Coge solo las fresas bien rojas, pellizcando el rabillo. No arranques nunca las plantas. En Inglaterra la fresa silvestre está catalogada como casi amenazada, así que allí coge con moderación. En Europa central, la autoridad sanitaria de Baviera (LGL) dice que no se ha demostrado que comer bayas silvestres sea un factor de riesgo para la tenia del zorro. Aun así, aconseja lavarlas bien. Solo calentarlas por encima de 60 °C mata los huevos de la tenia. Congelarlas en casa no los mata.",
+        "kitchen": "Con la planta identificada sin ninguna duda, come las fresas crudas y pronto. Lávalas un momento justo antes de comerlas. Saben más intensas que las fresas de cultivo, aunque cambian de una planta a otra. Con un puñado basta para perfumar nata, yogur o una tarta.",
+        "keeps": "En una cesta al calor se estropean enseguida. Tenlas al fresco y cómelas el mismo día. Se pueden congelar, pero al descongelarlas quedan blandas.",
         "source": "Identificación y hábitat: Woodland Trust y Botanical Society of Britain and Ireland (BSBI). Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
       }
     },

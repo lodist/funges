@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Amaranth",
-      "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
+      "description": "A leafy plant often taken for a weed. Its leaves and seeds are edible and full of nutrients.",
       "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering.",
       "guide": {
         "identify": "Redroot amaranth, or pigweed, is a stout, upright annual. Its stem is covered in fine white hairs and is red at the base. The taproot is pink to red. The leaves grow alternately and are oval to diamond-shaped, smooth-edged and long-stalked. They often have a small notch or a tiny point at the tip. The tiny green flowers sit in dense, bristly, prickly spikes. Later these hold tiny, shiny black seeds. Two toxic weeds share its ground. Thorn apple (Datura) has large, coarsely toothed leaves that smell foul, white trumpet flowers and spiny pods. Black nightshade has wavy-edged leaves, small white star flowers and black berries.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Amarant",
-      "description": "Eine krautige Pflanze mit essbaren Blättern und Samen, reich an Nährstoffen.",
+      "description": "Eine Blattpflanze, die oft als Unkraut gilt. Blätter und Samen sind essbar und stecken voller Nährstoffe.",
       "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte.",
       "guide": {
         "identify": "Der Zurückgekrümmte Amarant ist eine kräftige, aufrechte einjährige Pflanze. Der Stängel ist fein weiss behaart und unten rot. Die Pfahlwurzel ist rosa bis rot. Die Blätter stehen wechselständig. Sie sind eiförmig bis rautenförmig, ganzrandig und lang gestielt. An der Spitze haben sie oft eine kleine Kerbe oder ein winziges Spitzchen. Die winzigen grünen Blüten sitzen in dichten, borstigen, stechenden Ähren. Später stecken darin winzige, glänzend schwarze Samen. Auf demselben Boden wachsen zwei giftige Unkräuter. Der Stechapfel (Datura) hat grosse, grob gezähnte Blätter, die unangenehm riechen, weisse Trichterblüten und stachelige Kapseln. Der Schwarze Nachtschatten hat Blätter mit welligem Rand, kleine weisse Sternblüten und schwarze Beeren.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Amaranto",
-      "description": "Planta herbácea con hojas y semillas comestibles, rica en nutrientes.",
+      "description": "Una planta de hoja que muchos toman por mala hierba. Sus hojas y sus semillas se comen y son muy nutritivas.",
       "howTo": "Crece en suelos alterados, huertos y campos durante el verano. Recolecta las hojas jóvenes antes de la floración.",
       "guide": {
-        "identify": "El amaranto o bledo (Amaranthus retroflexus) es una planta anual robusta y erguida, con el tallo cubierto de pelos blancos finos y rojizo en la base, y una raíz pivotante rosada o roja. Sus hojas alternas son ovaladas o romboidales, de borde liso y peciolo largo, a menudo con una pequeña muesca o una puntita en el ápice; las flores, verdes y diminutas, forman espigas densas, ásperas y pinchudas, y luego dan semillas negras, brillantes y diminutas. En el mismo suelo crecen dos malas hierbas tóxicas: el estramonio, con hojas grandes de dientes irregulares y olor desagradable, flores blancas en trompeta y frutos espinosos, y la hierba mora, con hojas de borde ondulado, flores pequeñas blancas en estrella y bayas negras.",
-        "habitat": "Huertos, campos de cultivo, corrales y solares: suelo removido, rico y desnudo, a pleno sol. Es nativo del centro y el este de Norteamérica y es una mala hierba común en todo EE. UU. y en gran parte de Europa, sobre todo en las zonas bajas y cálidas.",
-        "season": "Es anual y de verano: nace a finales de primavera, cuando la tierra se calienta, florece más o menos de julio a septiembre y madura las semillas de agosto a octubre, hasta la primera helada. Las hojas son mejores jóvenes, antes de la floración.",
-        "picking": "Coge a mano las hojas jóvenes y los brotes tiernos antes de que florezca, y desgrana las espigas cuando las semillas estén negras. Evita las cunetas y los campos tratados, y descarta las tierras muy abonadas o estercoladas y las plantas castigadas por la sequía, que acumulan más nitratos.",
-        "kitchen": "Una vez identificado con certeza, cocina las hojas como espinacas: hiérvelas un poco y tira el agua, lo que reduce los nitratos y el oxalato. Cómelo con moderación, y nada si tienes cálculos o enfermedad renal; sabe suave y terroso y va bien con ajo, legumbres y huevo. Las semillas se pueden tostar o cocer como un cereal.",
-        "keeps": "Las hojas se mustian en un día: guárdalas en una bolsa en la nevera, o escáldalas y congélalas. Seca las espigas en una bolsa de papel, desgrana y aventa las semillas y guárdalas en un tarro cerrado.",
+        "identify": "El bledo, o amaranto, es una planta anual robusta y derecha. El tallo está cubierto de pelillos blancos finos y es rojo en la base. La raíz principal es de rosa a roja. Las hojas salen alternas. Son ovaladas o en forma de rombo, de borde liso y con un rabillo largo. A menudo tienen una pequeña muesca o una puntita en el extremo. Las flores son verdes y diminutas y forman espigas densas, ásperas y que pinchan. Más tarde esas espigas guardan semillas negras, brillantes y diminutas. En el mismo terreno crecen dos malas hierbas tóxicas. El estramonio (Datura) tiene hojas grandes con dientes gruesos que huelen mal, flores blancas en forma de trompeta y frutos con espinas. La hierba mora tiene hojas de borde ondulado, florecillas blancas en estrella y bayas negras.",
+        "habitat": "Búscalo en huertos, campos, corrales y solares. Quiere tierra removida, rica y desnuda, a pleno sol. Es originario del centro y el este de Norteamérica. Hoy es una mala hierba común en todo EE. UU. y en gran parte de Europa, sobre todo en las zonas bajas y cálidas.",
+        "season": "Es una planta anual de verano. Nace a finales de primavera, cuando la tierra se calienta. Florece más o menos de julio a septiembre. La semilla madura de agosto a octubre, hasta la primera helada. Las hojas son mejores jóvenes, antes de que la planta florezca.",
+        "picking": "Coge a mano las hojas jóvenes y las puntas tiernas antes de que florezca. Cuando las semillas estén negras, sácalas frotando las espigas. Aléjate de las cunetas y de los campos fumigados. Descarta la tierra muy abonada o estercolada y las plantas castigadas por la sequía. Son las que más nitratos acumulan.",
+        "kitchen": "Primero asegúrate bien de que lo has identificado. Luego cocina las hojas como si fueran espinacas. Hiérvelas un poco y tira el agua. Así tienen menos nitratos y oxalato. Cómelas con moderación. Si tienes piedras en el riñón o una enfermedad renal, no las comas. Tienen un sabor suave y terroso. Van bien con ajo, legumbres y huevos. Las semillas puedes tostarlas o cocerlas como un cereal.",
+        "keeps": "Las hojas se mustian en un día. Guárdalas en la nevera dentro de una bolsa. También puedes escaldarlas y congelarlas. Seca las espigas en una bolsa de papel. Después desgrana las semillas, aviéntalas y guárdalas en un tarro cerrado.",
         "source": "Identificación y temporada: Cornell University y NC State Extension. Nitratos y oxalatos: NC State Extension y Michigan State University Extension. Confusión con estramonio: centro antitóxico de Marsella."
       }
     },

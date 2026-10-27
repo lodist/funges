@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Chestnut",
-      "description": "Large sweet nuts encased in spiny green husks that split open when ripe",
+      "description": "Big, sweet nuts in spiny green husks that split open when they are ripe.",
       "howTo": "Found in chestnut groves and mixed forests in autumn, often near paths",
       "guide": {
         "identify": "Sweet chestnut leaves are long, narrow and glossy, 16 to 28 cm long. They have sharp saw teeth and many straight, parallel veins. The husk is covered all over in long, fine spines as sharp as needles. It usually holds two or three nuts. They are flattened on one or both sides and end in a small point with a tuft. Don't confuse it with the toxic horse chestnut (Aesculus hippocastanum) of parks and streets. That tree has hand-shaped leaves of five to seven leaflets. Its thick green husk has only a few short spikes. Inside are one or two round, glossy conkers with no point. In North America the buckeyes (other Aesculus) are toxic too. A tree with hand-shaped leaves is never a sweet chestnut.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Esskastanie",
-      "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die bei Reife aufplatzen",
+      "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die aufplatzen, wenn sie reif sind.",
       "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen",
       "guide": {
         "identify": "Die Blätter der Esskastanie sind lang, schmal und glänzend, 16 bis 28 cm lang. Sie haben spitze Sägezähne und viele gerade, parallele Nerven. Die Fruchthülle ist rundum mit langen, feinen Stacheln besetzt, spitz wie Nadeln. Meist stecken zwei oder drei Kastanien darin. Sie sind auf einer oder beiden Seiten abgeflacht und enden in einer kleinen Spitze mit einem Haarbüschel. Verwechsle sie nicht mit der giftigen Rosskastanie (Aesculus hippocastanum) in Parks und an Strassen. Sie hat handförmige Blätter aus fünf bis sieben Blättchen. Ihre dicke grüne Hülle hat nur wenige kurze Stacheln. Darin stecken eine oder zwei runde, glänzende Kastanien ohne Spitze. In Nordamerika sind auch die Buckeyes (andere Aesculus-Arten) giftig. Ein Baum mit handförmigen Blättern ist nie eine Esskastanie.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Castaña",
-      "description": "Grandes frutos dulces encerrados en cáscaras verdes espinosas que se abren al madurar",
+      "description": "Frutos grandes y dulces dentro de erizos verdes llenos de pinchos que se abren al madurar.",
       "howTo": "Se encuentra en castañares y bosques mixtos en otoño, a menudo cerca de senderos",
       "guide": {
-        "identify": "Hojas largas, estrechas y brillantes, de 16 a 28 cm, con dientes afilados y muchos nervios rectos y paralelos. El erizo está cubierto por completo de púas largas, finas y punzantes como agujas y suele llevar dos o tres castañas, aplanadas por una o las dos caras y acabadas en una puntita con un penacho. El castaño de Indias (Aesculus hippocastanum), tóxico y frecuente en parques y calles, tiene hojas en forma de mano de cinco a siete folíolos, una cubierta verde y gruesa con pocas púas cortas y una o dos semillas redondas y brillantes, sin punta. En Norteamérica también son tóxicos los buckeyes (otras especies de Aesculus): un árbol con hojas en forma de mano nunca es un castaño.",
-        "habitat": "Originario del sur de Europa, el oeste de Asia y el norte de África y cultivado desde hace mucho por sus castañas, el castaño crece en suelos ácidos y bien drenados y evita la caliza; hay grandes castañares desde el norte de Portugal, Galicia, Asturias y el Bierzo hasta el valle del Genal, las Cevenas, Córcega y los Apeninos. En EE. UU. la mayoría de los castaños son plantados, porque un chancro casi acabó con la especie autóctona.",
-        "season": "Las castañas caen de finales de septiembre a principios de noviembre, sobre todo en octubre, antes en zonas bajas que en la montaña.",
-        "picking": "Recoge cada pocos días las castañas que han caído solas; usa guantes gruesos o abre los erizos pisándolos con la bota, y deja las que tengan agujeritos de larvas de gorgojo o de polilla. Muchos castañares son privados y las castañas del suelo son del dueño: infórmate de las normas locales.",
-        "kitchen": "Cuando estés seguro de que son castañas, cocínalas: crudas son ásperas e indigestas. Tira las que floten en agua, haz un corte en la cáscara para que no estallen, ásalas o cuécelas unos 30 minutos y pélalas aún calientes, quitando la cáscara y la piel interior amarga. Dulces y harinosas, van en sopas, rellenos y purés.",
-        "keeps": "A temperatura ambiente, las castañas frescas se enmohecen en unas dos semanas; en la nevera aguantan unos dos meses, o puedes congelarlas o secarlas.",
+        "identify": "Las hojas del castaño son largas, estrechas y brillantes, de 16 a 28 cm. Tienen dientes afilados como de sierra y muchos nervios rectos y paralelos. El erizo está cubierto entero de púas largas y finas, que pinchan como agujas. Suele llevar dos o tres castañas. Son planas por una o por las dos caras y acaban en una puntita con un penacho. No lo confundas con el castaño de Indias (Aesculus hippocastanum) de parques y calles, que es tóxico. Ese árbol tiene las hojas en forma de mano, con cinco a siete hojuelas. Su cubierta verde y gruesa solo tiene unos pocos pinchos cortos. Dentro hay una o dos castañas de Indias redondas y brillantes, sin punta. En Norteamérica los buckeyes (otros Aesculus) también son tóxicos. Un árbol con hojas en forma de mano nunca es un castaño.",
+        "habitat": "Es originario del sur de Europa, el oeste de Asia y el norte de África. Se planta desde hace mucho tiempo por sus castañas. Crece en suelo ácido y bien drenado y evita la caliza. Hay grandes castañares en las sierras desde el norte de Portugal y Galicia hasta las Cevenas, Córcega y los Apeninos. En EE. UU. la mayoría de los castaños son plantados. El chancro casi acabó con la especie autóctona.",
+        "season": "Las castañas caen de finales de septiembre a principios de noviembre, sobre todo en octubre. En las zonas bajas caen antes que en la montaña.",
+        "picking": "Pasa cada pocos días y recoge las castañas que han caído solas. Ponte guantes gruesos o abre los erizos pisándolos con la bota. Deja las que tengan agujeritos, que son de larvas de gorgojo o de polilla. Muchos castañares son privados, y las castañas del suelo son del dueño. Consulta las normas locales.",
+        "kitchen": "Cuando tengas claro que son castañas comestibles, cocínalas. Crudas son ásperas y cuesta digerirlas. Tira las que floten en el agua. Hazles un corte en la cáscara para que no revienten. Luego ásalas o cuécelas a fuego lento unos 30 minutos. Pélalas aún calientes. Quita la cáscara y también la piel de dentro, que amarga. Son dulces y harinosas. Van bien en sopas, rellenos y purés.",
+        "keeps": "A temperatura ambiente, las castañas frescas se enmohecen en unas dos semanas. En la nevera aguantan unos dos meses. También puedes congelarlas o secarlas.",
         "source": "Identificación: Woodland Trust, ANSES y extensión de la Universidad Estatal de Oregón. Cosecha, cocina y conservación: extensión de la Universidad Estatal de Oregón."
       }
     },

@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Pawpaw",
-      "description": "North America's largest native fruit: green and mango-shaped, with custardy flesh that tastes of banana and mango",
+      "description": "North America's biggest native fruit. It is green and shaped like a mango, with custard-soft flesh that tastes of banana and mango.",
       "howTo": "Look in the understory of river-bottom forests in the eastern US from late August to October, when the fruit softens and drops. Eat only the flesh: the skin and seeds are poisonous",
       "guide": {
         "identify": "Pawpaw is a small understory tree. It often forms patches from root suckers. The leaves are large and drooping, and widest beyond the middle. Crushed, they smell of green pepper. In spring, deep maroon flowers with six petals open before the leaves. The fruit is oblong and green to yellow-green. It grows singly or in clusters of two to nine. Inside, soft yellow, custard-like flesh surrounds two rows of large, flat brown seeds.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Indianerbanane",
-      "description": "Die grösste heimische Frucht Nordamerikas: grün, mangoförmig, mit cremigem Fruchtfleisch, das nach Banane und Mango schmeckt",
+      "description": "Die grösste heimische Frucht Nordamerikas. Sie ist grün und geformt wie eine Mango, mit puddingweichem Fruchtfleisch, das nach Banane und Mango schmeckt.",
       "howTo": "Suche von Ende August bis Oktober im Unterholz der Auwälder im Osten der USA, wenn die Früchte weich werden und fallen. Iss nur das Fruchtfleisch: Schale und Samen sind giftig",
       "guide": {
         "identify": "Die Indianerbanane ist ein kleiner Baum im Unterholz. Durch Wurzelausläufer bildet sie oft ganze Gruppen. Die Blätter sind gross, hängen herab und sind oberhalb der Mitte am breitesten. Zerrieben riechen sie nach grüner Paprika. Im Frühjahr öffnen sich vor den Blättern tief weinrote Blüten mit sechs Blütenblättern. Die Frucht ist länglich und grün bis gelbgrün. Sie wächst einzeln oder in Büscheln von zwei bis neun Früchten. Innen umgibt weiches, gelbes Fruchtfleisch wie Pudding zwei Reihen grosser, flacher brauner Samen.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Asimina",
-      "description": "La mayor fruta nativa de Norteamérica: verde y con forma de mango, de pulpa cremosa que sabe a plátano y mango",
+      "description": "La fruta autóctona más grande de Norteamérica. Es verde y tiene forma de mango. Su pulpa es blanda como unas natillas y sabe a plátano y a mango.",
       "howTo": "Búscala en el sotobosque de los bosques de ribera del este de EE. UU. de finales de agosto a octubre, cuando la fruta se ablanda y cae. Come solo la pulpa: la piel y las semillas son venenosas",
       "guide": {
-        "identify": "Árbol pequeño de sotobosque que suele formar rodales a partir de brotes de raíz, con hojas grandes y colgantes, más anchas por encima de la mitad, que huelen a pimiento verde al estrujarlas. En primavera, antes que las hojas, salen flores granate oscuro de seis pétalos. El fruto es alargado, de verde a verde amarillento, solo o en racimos de dos a nueve, con pulpa amarilla, blanda y cremosa como unas natillas alrededor de dos hileras de semillas grandes, planas y marrones.",
-        "habitat": "Bosques húmedos y ricos de llanuras de inundación, orillas de arroyos y faldas de ladera sombrías; autóctona en todo el este de EE. UU., del norte de Florida a los Grandes Lagos y el sur de Ontario, y al oeste hasta el este de Nebraska, Kansas, Oklahoma y Texas. No crece silvestre en el oeste de EE. UU.",
-        "season": "El fruto madura desde finales de agosto en el sur hasta septiembre y octubre en el norte; la cosecha de un árbol madura a lo largo de una o dos semanas, y la fruta madura cae.",
-        "picking": "Una fruta madura cede un poco al apretarla suavemente, como un melocotón, y huele intensamente a fruta; el color de la piel no es una señal fiable. Recoge la fruta recién caída o sacude el tronco con suavidad, revisa cada uno o dos días en temporada y trata la fruta con cuidado, porque se magulla con facilidad.",
-        "kitchen": "Una vez identificada con certeza, come solo la pulpa: corta la fruta a lo largo y saca la pulpa con una cuchara, separándola de la piel y de las semillas, que no se deben comer ni masticar. La pulpa sabe a plátano y mango y puede sustituir al plátano en bizcochos, helados y postres; la fruta silvestre puede dejar un regusto amargo. Algunas personas reaccionan con vómitos o una reacción alérgica, así que prueba primero una cantidad pequeña; las fuentes médicas desaconsejan además comer grandes cantidades durante mucho tiempo, porque la pulpa contiene anonacina, un compuesto que en estudios de laboratorio daña las neuronas.",
-        "keeps": "La fruta madura dura solo unos días a temperatura ambiente y una semana en la nevera; si se recoge justo antes de estar del todo madura aguanta hasta tres semanas en la nevera y luego termina de madurar a temperatura ambiente. La pulpa se congela hasta un año.",
+        "identify": "La asimina es un árbol pequeño de sotobosque. Suele formar rodales con los brotes que salen de la raíz. Las hojas son grandes y colgantes, y más anchas por encima de la mitad. Si las estrujas, huelen a pimiento verde. En primavera, antes que las hojas, salen flores granate oscuro de seis pétalos. El fruto es alargado y va de verde a verde amarillento. Crece suelto o en racimos de dos a nueve. Dentro tiene una pulpa amarilla y blanda, como unas natillas, alrededor de dos hileras de semillas grandes, planas y marrones.",
+        "habitat": "La asimina crece en bosques húmedos y ricos, en las vegas que inundan los ríos, en orillas de arroyos y en la parte baja de laderas a la sombra. Es autóctona de todo el este de EE. UU., del norte de Florida a los Grandes Lagos y el sur de Ontario. Hacia el oeste llega al este de Nebraska, Kansas, Oklahoma y Texas. En el oeste de EE. UU. no crece silvestre.",
+        "season": "El fruto madura desde finales de agosto en el sur, y en septiembre y octubre en el norte. La cosecha de un mismo árbol madura en una o dos semanas. La fruta madura cae al suelo.",
+        "picking": "Una fruta madura cede un poco si la aprietas con suavidad, como un melocotón. Además huele mucho a fruta. El color de la piel no es una señal fiable. Recoge la fruta recién caída o sacude el tronco con suavidad. En temporada, pásate cada uno o dos días. Trata la fruta con cuidado, porque se magulla con facilidad.",
+        "kitchen": "Cuando no tengas ninguna duda del árbol, come solo la pulpa. Parte la fruta por la mitad a lo largo y saca la pulpa con una cuchara, separándola de la piel y de las semillas. No comas ni mastiques nunca la piel ni las semillas. La pulpa sabe a plátano y a mango. Puede sustituir al plátano en bizcochos, helados y postres. La fruta silvestre puede dejar un regusto amargo. Algunas personas reaccionan con vómitos o con una reacción alérgica, así que prueba primero un poco. Las fuentes médicas también desaconsejan comerla en grandes cantidades durante mucho tiempo. La pulpa contiene anonacina, un compuesto que resultó tóxico para las neuronas en estudios de laboratorio.",
+        "keeps": "La fruta madura solo dura unos días a temperatura ambiente, y una semana más o menos en la nevera. Si la coges justo antes de que esté madura del todo, aguanta hasta tres semanas en la nevera. Luego termina de madurar a temperatura ambiente. La pulpa sacada con la cuchara se puede congelar hasta un año.",
         "source": "Identificación y distribución: University of Kentucky, Center for Crop Diversification. Madurez, preparación y conservación: extensión de Purdue. Reacciones: Memorial Sloan Kettering Cancer Center."
       }
     },

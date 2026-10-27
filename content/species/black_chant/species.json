@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Black Trumpet (Horn of Plenty)",
-      "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
+      "description": "A dark, funnel-shaped mushroom with a rich, smoky taste. Cooks prize it.",
       "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn.",
       "guide": {
         "identify": "You're looking for a thin, hollow horn 4 to 8 cm across. It is open right down to the base and has no separate cap. The inside is grey-brown to black and finely scaly. The outside is ash-grey and smooth or only faintly wrinkled, with no gills or ridges. As it ripens it turns paler, with a whitish bloom. The flesh is thin, brittle and grey-black, with a faint, sweet smell. Black trumpets of the eastern US (Craterellus fallax) look the same. They give a pinkish-orange spore print rather than a white one. The ash-grey chanterelle (Craterellus cinereus) has clear forked ridges on the outside.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Totentrompete",
-      "description": "Ein dunkler trompetenförmiger Pilz mit intensivem Geschmack, sehr geschätzt in der Küche.",
+      "description": "Ein dunkler, trichterförmiger Pilz mit kräftigem, rauchigem Geschmack. In der Küche ist er sehr begehrt.",
       "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst.",
       "guide": {
         "identify": "Du suchst ein dünnes, hohles Horn, 4 bis 8 cm breit. Es ist bis ganz unten offen und hat keinen abgesetzten Hut. Innen ist die Totentrompete graubraun bis schwarz und fein schuppig. Aussen ist sie aschgrau und glatt oder nur leicht runzelig, ohne Lamellen oder Leisten. Wenn sie reift, wird sie heller und bekommt einen weisslichen Reif. Das Fleisch ist dünn, brüchig und grauschwarz und riecht schwach süsslich. Die Totentrompeten im Osten der USA (Craterellus fallax) sehen genauso aus. Ihr Sporenpulver ist aber rosa-orange statt weiss. Die Graue Kraterelle (Craterellus cinereus) hat aussen deutliche, gegabelte Leisten.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Trompeta de los muertos",
-      "description": "Hongo oscuro con forma de trompeta, de sabor intenso y muy apreciado en la cocina.",
+      "description": "Una seta oscura en forma de embudo, de sabor intenso y ahumado. En la cocina se aprecia mucho.",
       "howTo": "Se encuentra en bosques de frondosas, especialmente bajo robles y hayas, desde finales del verano hasta el otoño.",
       "guide": {
-        "identify": "Un cuerno fino y hueco de 4 a 8 cm de ancho, abierto hasta la base, sin sombrero diferenciado. Por dentro es pardo grisáceo a negro y finamente escamoso; por fuera, gris ceniza, liso o apenas arrugado, sin láminas ni pliegues, y al madurar se aclara con una pruina blanquecina. La carne es fina, quebradiza y gris negruzca, con un olor suave y dulzón. Las trompetas del este de EE. UU. (Craterellus fallax) son iguales, pero dan una esporada rosa anaranjada en lugar de blanca; Craterellus cinereus, muy parecida, tiene por fuera pliegues bifurcados bien marcados.",
-        "habitat": "Vive asociada a frondosas, sobre todo hayas y robles, también carpes y avellanos, en hojarasca húmeda y musgo, a menudo en grandes grupos sobre suelo rico y arcilloso, en vaguadas y taludes. Común en toda Europa; en el este de EE. UU. crece su especie hermana bajo robles y hayas, y en la costa del Pacífico una trompeta occidental bajo tanoaks, encinas americanas y madroños.",
-        "season": "Sobre todo en otoño: en Europa, de finales del verano a noviembre, hasta diciembre en años suaves y aún más tarde en el Mediterráneo; en el este de EE. UU., de julio a octubre tras lluvias fuertes. En la costa del Pacífico, la trompeta occidental sale de pleno invierno a la primavera.",
-        "picking": "Pellízcala o córtala por la base, deja las pequeñas y coge solo lo que vayas a comer; las normas locales sobre setas silvestres también se aplican. Se camufla bien en la hojarasca oscura: donde encuentres una, busca con cuidado alrededor.",
-        "kitchen": "Una vez identificada con total seguridad, abre cada trompeta a lo largo y enjuaga hojas, insectos y tierra; luego escúrrela bien. No la comas nunca cruda: cocínala bien, en mantequilla, salsas de nata, arroces o pasta, o con pescado y huevos. Sabor profundo y ahumado, más intenso una vez seca.",
-        "keeps": "Fresca, solo unos días en la nevera. Se seca rápido y muy bien; guárdala en un tarro cerrado o muélela en polvo para salsas y sopas.",
+        "identify": "Buscas un cuerno fino y hueco de 4 a 8 cm de ancho. Está abierto hasta la base y no tiene un sombrero aparte. Por dentro es de pardo grisáceo a negro, con escamitas finas. Por fuera es gris ceniza y liso o apenas arrugado, sin láminas ni pliegues. Al madurar se aclara y se cubre de un polvillo blanquecino. La carne es fina, quebradiza y gris negruzca, con un olor suave y dulzón. Las trompetas del este de EE. UU. (Craterellus fallax) son iguales. Su esporada es rosa anaranjada, en vez de blanca. El rebozuelo ceniciento (Craterellus cinereus) tiene por fuera pliegues ramificados bien marcados.",
+        "habitat": "Vive con frondosas, sobre todo hayas y robles, y también carpes y avellanos. Búscala en la hojarasca húmeda y el musgo, en tierra rica y franca, en vaguadas y taludes. A menudo sale en grupos grandes. Es común en toda Europa. En el este de EE. UU. crece su pariente bajo robles y hayas. En la costa del Pacífico crece una trompeta occidental bajo tanoaks, encinas americanas y madroños.",
+        "season": "Es sobre todo una seta de otoño. En Europa sale de finales de verano a noviembre. En los años suaves llega a diciembre, y en el Mediterráneo aún más tarde. En el este de EE. UU. sale de julio a octubre, después de lluvias fuertes. En la costa del Pacífico, la trompeta occidental sale de pleno invierno hasta la primavera.",
+        "picking": "Pellízcala o córtala por la base. Deja las pequeñas y coge solo lo que vayas a comer. Respeta los límites locales para setas silvestres. Se camufla bien en la hojarasca oscura. Donde encuentres una, mira bien alrededor.",
+        "kitchen": "Asegúrate bien de lo que has encontrado antes de echarla a la sartén. Abre cada trompeta a lo largo y enjuágala para quitarle hojas, bichos y tierra. Luego escúrrela bien. No la comas nunca cruda. Cocínala bien. Queda muy rica con mantequilla, en salsas de nata, arroces o pasta. También va bien con pescado y huevos. El sabor es profundo y ahumado. Seca, sabe todavía más.",
+        "keeps": "Fresca aguanta solo unos días en la nevera. Se seca rápido y muy bien. Guárdala en un tarro cerrado. También puedes molerla y usar el polvo en salsas y sopas.",
         "source": "Identificación y hábitat: First Nature (Reino Unido), MushroomExpert.com y MykoWeb (California Fungi). Temporada: registros de GBIF."
       }
     },

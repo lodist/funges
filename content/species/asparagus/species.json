@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Wild Asparagus",
-      "description": "A perennial plant with slender, edible shoots that appear in spring.",
+      "description": "A perennial whose slender shoots come up in spring.",
       "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring.",
       "guide": {
         "identify": "Wild asparagus is a tangled, evergreen, woody shrub up to about 1.5 m tall. It has no true leaves. Instead it has tufts of short, stiff, needle-like green branchlets, each ending in a sharp spine. Its black berries are not eaten. In spring, thin shoots push up from the base of the old spiny bush. They are dark green to purplish and often thinner than a pencil. Small pointed scales lie pressed to the stem, and there are no leaves. Black bryony and white bryony are poisonous climbers of the same hedges, and they also sprout in spring. Black bryony soon unfolds glossy heart-shaped leaves. White bryony is hairy, with lobed leaves and tendrils. Only pick shoots that rise from an asparagus bush you can see.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Wilder Spargel",
-      "description": "Mehrjährige Pflanze mit dünnen, essbaren Trieben, die im Frühling erscheinen.",
+      "description": "Eine mehrjährige Pflanze, deren dünne Triebe im Frühling aus dem Boden kommen.",
       "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling.",
       "guide": {
         "identify": "Der Wilde Spargel ist ein verworrener, immergrüner, verholzter Strauch, bis etwa 1,5 m hoch. Echte Blätter hat er nicht. Stattdessen trägt er Büschel kurzer, steifer, nadelartiger grüner Zweiglein. Jedes endet in einem spitzen Dorn. Seine schwarzen Beeren isst man nicht. Im Frühling schieben sich dünne Triebe aus dem Fuss des alten, stacheligen Strauchs. Sie sind dunkelgrün bis violett und oft dünner als ein Bleistift. Kleine spitze Schuppen liegen dem Trieb an, Blätter gibt es keine. Schmerwurz und Zaunrübe sind giftige Kletterpflanzen in denselben Hecken und treiben ebenfalls im Frühling aus. Die Schmerwurz entfaltet bald glänzende, herzförmige Blätter. Die Zaunrübe ist behaart und hat gelappte Blätter und Ranken. Pflück nur Triebe, die sichtbar aus einem Spargelstrauch kommen.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Espárrago silvestre",
-      "description": "Planta perenne con brotes delgados y comestibles que aparecen en primavera.",
+      "description": "Una planta perenne que echa unos brotes finos en primavera.",
       "howTo": "Busca los brotes jóvenes en campos abiertos, praderas y a lo largo de setos en primavera.",
       "guide": {
-        "identify": "La esparraguera silvestre (Asparagus acutifolius) es una mata enmarañada, perenne y leñosa de hasta 1,5 m, sin hojas verdaderas, solo con manojos de ramitas verdes cortas, rígidas y como agujas, cada una terminada en una espina; sus bayas negras no se comen. En primavera, de la base de la mata vieja y espinosa salen brotes finos, de verde oscuro a morado, a menudo más delgados que un lápiz, con pequeñas escamas puntiagudas pegadas al tallo y sin hojas. La nueza negra y la nueza blanca, trepadoras venenosas de los mismos setos, también brotan en primavera: la negra despliega pronto hojas brillantes en forma de corazón y la blanca es peluda, con hojas lobuladas y zarcillos. Coge solo brotes que salgan de una esparraguera que veas.",
-        "habitat": "Matorral mediterráneo, bordes de encinares y pinares, olivares, setos, muros de piedra y cunetas, desde la costa hasta las sierras de Portugal, España, el sur de Francia, Italia, los Balcanes y Grecia. No crece silvestre en el norte y el centro de Europa: allí los espárragos son de huerta asilvestrados, sobre todo en suelos arenosos.",
-        "season": "Los brotes salen de finales de invierno a primavera, tras las lluvias de otoño e invierno: desde febrero en las costas cálidas hasta abril y mayo en la sierra. La lluvia seguida de días templados y soleados trae una nueva tanda.",
-        "picking": "Parte cada brote con la mano por donde se quiebra fácilmente, deja algunos en cada mata y no cortes ni arranques nunca la mata. En España deciden el dueño del terreno y la comunidad autónoma, y en los espacios protegidos suele estar prohibido; en Italia cada región pone sus reglas (la Toscana solo lo permite hasta el 31 de mayo): consulta las normas locales.",
-        "kitchen": "Una vez identificado con certeza, usa solo la parte tierna por encima de donde se quiebra; es más amargo que el espárrago de huerta. Cocínalo poco: en tortilla o revuelto, en arroz o pasta, o salteado con ajo y aceite de oliva.",
-        "keeps": "Mejor comerlo el mismo día; de pie en un poco de agua aguanta unos días en la nevera, o escáldalo y congélalo.",
+        "identify": "La esparraguera silvestre es una mata enmarañada, perenne y leñosa, de hasta 1,5 m más o menos. No tiene hojas de verdad. En su lugar tiene manojos de ramitas verdes, cortas y rígidas, como agujas. Cada una acaba en una punta que pincha. Sus bayas negras no se comen. En primavera, de la base de la mata vieja y espinosa salen espárragos finos. Son de verde oscuro a morados y a menudo más delgados que un lápiz. Tienen pequeñas escamas puntiagudas pegadas al tallo y ninguna hoja. La nueza negra y la nueza blanca son trepadoras venenosas de los mismos setos. También brotan en primavera. La nueza negra despliega pronto hojas brillantes en forma de corazón. La nueza blanca es peluda, con hojas lobuladas y zarcillos. Coge solo espárragos que salgan de una esparraguera que estés viendo.",
+        "habitat": "Crece en el matorral mediterráneo, en los bordes de encinares y pinares, en olivares y setos y junto a muros de piedra y cunetas. Lo encuentras desde la costa hasta las sierras de Portugal, España, el sur de Francia, Italia, los Balcanes y Grecia. En el norte y el centro de Europa no crece silvestre. Allí los espárragos son de huerta asilvestrados, sobre todo en suelos arenosos.",
+        "season": "Los espárragos salen de finales de invierno a primavera, después de las lluvias de otoño e invierno. En las costas cálidas empiezan en febrero. En la sierra siguen hasta abril y mayo. Una lluvia seguida de días templados y soleados trae una nueva tanda.",
+        "picking": "Parte cada espárrago con la mano por donde se quiebra fácilmente. Deja algunos en cada mata. No cortes ni arranques nunca la mata. En Italia cada región pone sus propias normas. La Toscana, por ejemplo, solo permite cogerlos hasta el 31 de mayo. En España deciden el dueño del terreno y la comunidad autónoma. En los parques suele estar prohibido. Consulta las normas locales.",
+        "kitchen": "Cuando los tengas bien identificados, usa solo la parte tierna, por encima de donde se quiebran. Amargan más que los espárragos de huerta. Cocínalos poco. Están buenos en tortilla, revuelto, arroz o pasta. También están buenos salteados con ajo y aceite de oliva.",
+        "keeps": "Lo mejor es comerlos el mismo día. De pie en un poco de agua, aguantan unos días en la nevera. También puedes escaldarlos y congelarlos.",
         "source": "Identificación, hábitat y temporada: floras mediterráneas y el herbario virtual de la Universitat de les Illes Balears. Nuezas: RHS. Normas de recolección: Regione Toscana."
       }
     },

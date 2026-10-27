@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Bronze Bolete",
-      "description": "A dark bronze to almost black-capped porcino with a pale netted stem and firm white flesh",
+      "description": "A porcino with a dark bronze to almost black cap, a pale netted stem and firm white flesh.",
       "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete",
       "guide": {
         "identify": "This is the darkest porcino. The cap is dark chestnut to almost black, often with bronze patches. It stays dry and finely velvety, even when wet. The pores are white, then yellow to olive, and they don't turn blue. The pale brown stem has a fine brown net, densest at the top. The very firm white flesh does not change colour when you cut it. The summer bolete is paler, and its net runs further down the stem. Two other boletes share its oak woods. These are the devil's bolete (Rubroboletus satanas) and Le Gal's bolete (Rubroboletus legaliae). Both have red pores and flesh that turns blue.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Bronze-Steinpilz",
-      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hell genetztem Stiel und festem weissem Fleisch",
+      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hellem, genetztem Stiel und festem weissem Fleisch.",
       "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz",
       "guide": {
         "identify": "Das ist der dunkelste Steinpilz. Der Hut ist dunkel kastanienbraun bis fast schwarz, oft mit bronzefarbenen Flecken. Er bleibt trocken und fein samtig, auch bei Nässe. Die Poren sind erst weiss, dann gelb bis oliv, und sie laufen nicht blau an. Der hellbraune Stiel trägt ein feines braunes Netz, oben am dichtesten. Das sehr feste weisse Fleisch verfärbt sich beim Anschneiden nicht. Der Sommersteinpilz ist heller, und sein Netz reicht weiter den Stiel hinunter. Zwei andere Röhrlinge wachsen in denselben Eichenwäldern. Das sind der Satansröhrling (Rubroboletus satanas) und der Falsche Satansröhrling (Rubroboletus legaliae). Beide haben rote Poren und Fleisch, das blau anläuft.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Boleto Bronceado",
-      "description": "Un boleto de sombrero bronceado oscuro casi negro, con pie claro reticulado y carne blanca y firme",
+      "description": "Un boleto de sombrero bronce oscuro, casi negro. Tiene el pie claro con red y la carne blanca y firme.",
       "howTo": "Búscalo en laderas cálidas de baja altitud bajo robles y castaños, más tarde que el boleto de verano",
       "guide": {
-        "identify": "El más oscuro de los boletos tipo porcini, llamado también boleto negro: el sombrero es de castaño oscuro a casi negro, a menudo con manchas bronceadas, y sigue seco y finamente aterciopelado incluso con humedad. Los poros son blancos, luego amarillos a oliva, y no azulean. El pie, pardo claro, tiene un fino retículo pardo, más denso arriba, y la carne blanca, muy firme, no cambia de color al cortarla. El boleto de verano es más claro y su retículo baja más; el boleto de Satanás (Rubroboletus satanas) y Rubroboletus legaliae, que comparten sus robledales, tienen poros rojos y carne que azulea.",
-        "habitat": "Laderas cálidas y soleadas con robles, castaños y hayas, sobre todo entre 200 y 1000 m. Común en torno al Mediterráneo, en Italia a lo largo de los Apeninos y en las islas; raro en Gran Bretaña y Alemania.",
-        "season": "Desde julio tras las tormentas de verano, pero sobre todo en septiembre y octubre, más tarde que el boleto de verano, y hasta noviembre en el sur. Fructifica cuando, tras una época de calor, llega una lluvia abundante y el suelo se enfría.",
-        "picking": "Córtalo o gíralo y deja crecer los jóvenes. En muchas comunidades autónomas hace falta permiso y hay un límite diario; en Alemania es raro y está especialmente protegido, así que allí no se puede recoger.",
-        "kitchen": "Es el más firme de los boletos tipo porcini, con un sabor a avellana que crece al secarlo. Una vez identificado con certeza, cepíllalo, revisa si tiene gusanos y cocínalo bien, como el boleto comestible.",
-        "keeps": "Se seca y se congela muy bien en láminas.",
+        "identify": "Es el más oscuro de los boletus del grupo edulis. El sombrero va de castaño oscuro a casi negro, a menudo con manchas color bronce. Se mantiene seco y finamente aterciopelado, incluso con humedad. Los poros son blancos, luego de amarillos a oliva, y no azulean. El pie es pardo claro, con una redecilla parda fina, más densa arriba. La carne es blanca y muy firme. No cambia de color al cortarla. El boleto de verano es más claro y su redecilla baja más por el pie. En sus robledales salen otros dos boletos. Son el boleto de Satanás (Rubroboletus satanas) y el boleto de Le Gal (Rubroboletus legaliae). Los dos tienen poros rojos y carne que azulea.",
+        "habitat": "Le gustan las laderas cálidas y soleadas con robles, castaños y hayas, sobre todo entre 200 y 1000 m. Es común en todo el Mediterráneo. En Italia lo encuentras a lo largo de los Apeninos y en las islas. En Gran Bretaña y Alemania es raro.",
+        "season": "Puede salir desde julio, después de las tormentas de verano. Su temporada fuerte es septiembre y octubre, más tarde que el boleto de verano. En el sur sigue hasta noviembre. Sale cuando, tras una racha de calor, llega una lluvia que empapa y la tierra se enfría.",
+        "picking": "Córtalo o sácalo girándolo. Deja crecer los jóvenes. En Alemania es raro y está especialmente protegido, así que allí no lo cojas. En Italia y España hay permisos regionales y límites diarios.",
+        "kitchen": "Es el más firme de los boletus del grupo edulis. Tiene un sabor a frutos secos que se intensifica al secarlo. Cuando lo tengas identificado con certeza, trátalo como el boleto comestible. Cepíllalo, mira si tiene gusanos y cocínalo bien.",
+        "keeps": "En láminas se seca y se congela muy bien.",
         "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Protección: BArtSchV (Alemania). Cocina: Regione Piemonte."
       }
     },

@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Walnut",
-      "description": "Large round nuts with hard shells and rich, oily flavor",
+      "description": "Big round nuts with hard shells and a rich, oily taste.",
       "howTo": "Look for walnut trees in parks, gardens, and woodland edges in autumn",
       "guide": {
         "identify": "The walnut is a large tree. Its bark is smooth and olive-brown, turning grey and fissured with age. The leaves have five to nine smooth-edged oval leaflets. Crushed, they smell of polish. The nut sits in a thick, smooth green husk that darkens and splits when ripe. The black walnut of the eastern US has more leaflets, and they are narrower and toothed. Its round husk does not split. Inside is a very hard, ridged shell.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Walnuss",
-      "description": "Grosse, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
+      "description": "Grosse, runde Nüsse mit harter Schale und einem aromatischen, öligen Kern.",
       "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst",
       "guide": {
         "identify": "Der Walnussbaum ist ein grosser Baum. Seine Rinde ist glatt und olivbraun und wird im Alter grau und rissig. Die Blätter haben fünf bis neun ganzrandige, ovale Fiederblättchen. Zerrieben riechen sie nach Möbelpolitur. Die Nuss steckt in einer dicken, glatten grünen Hülle, die beim Reifen dunkel wird und aufplatzt. Die Schwarznuss im Osten der USA hat mehr Fiederblättchen, und die sind schmaler und gesägt. Ihre runde Hülle platzt nicht auf. Darin steckt eine sehr harte, gefurchte Schale.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Nuez",
-      "description": "Frutos grandes y redondos con cáscara dura y sabor rico y aceitoso",
+      "description": "Nueces grandes y redondas de cáscara dura, con un sabor intenso y aceitoso.",
       "howTo": "Busca nogales en parques, jardines y bordes de bosques en otoño",
       "guide": {
-        "identify": "Árbol grande de corteza lisa y pardo oliva que con la edad se vuelve gris y agrietada, con hojas de cinco a nueve folíolos ovalados de borde liso que huelen a cera de muebles al estrujarlos. La nuez va dentro de una cubierta verde, gruesa y lisa, que se oscurece y se abre al madurar. El nogal negro del este de EE. UU. tiene más folíolos, más estrechos y dentados, y una cubierta redonda que no se abre, alrededor de una cáscara muy dura y surcada.",
-        "habitat": "Originario de una zona que va del sureste de Europa al suroeste de China, el nogal se ha plantado en toda Europa y se ha asilvestrado en setos, lindes, riberas y bosques jóvenes, sobre todo a baja altitud y en suelos profundos y fértiles. En EE. UU. las plantaciones están sobre todo en California; en los bosques del este la especie silvestre es el nogal negro.",
-        "season": "Septiembre y octubre, cuando las cubiertas se abren y las nueces caen. Las nueces verdes para encurtir o para licor se cogen a finales de junio o principios de julio, mientras una brocheta aún las atraviesa sin esfuerzo.",
-        "picking": "Recoge las nueces caídas cada uno o dos días, antes de que las estropeen el moho y los insectos, y ponte guantes: la cubierta tiñe la piel de marrón durante días. Quita las cubiertas pronto; la mayoría de los nogales tienen dueño, así que pregunta antes.",
-        "kitchen": "Cuando estés seguro del árbol, come las nueces frescas quitándoles la piel amarga, o sécalas para pan, bizcochos, ensaladas y salsas. Tira las nueces con moho, arrugadas o rancias. Las nueces son una causa frecuente de alergia a los frutos secos.",
-        "keeps": "Sécalas con cáscara en un sitio aireado y a la sombra hasta que el tabique entre las dos mitades se parta con un chasquido; secas aguantan hasta un año en la nevera.",
+        "identify": "El nogal es un árbol grande. Su corteza es lisa y de color pardo oliva, y con la edad se vuelve gris y agrietada. Las hojas tienen de cinco a nueve folíolos ovalados de borde liso. Si las estrujas, huelen a cera de muebles. La nuez va dentro de una cáscara verde, gruesa y lisa, que se oscurece y se abre al madurar. El nogal negro del este de EE. UU. tiene más folíolos. Son más estrechos y dentados. Su cáscara verde es redonda y no se abre. Dentro hay una cáscara muy dura y con surcos.",
+        "habitat": "El nogal es originario de una zona que va del sureste de Europa al suroeste de China. Se ha plantado por toda Europa y se ha asilvestrado en setos, lindes de campos, riberas y bosques jóvenes. Crece sobre todo a poca altitud, en suelos profundos y fértiles. En EE. UU. las plantaciones están sobre todo en California. En los bosques del este, la especie silvestre es el nogal negro.",
+        "season": "Las nueces se cogen en septiembre y octubre, cuando las cáscaras verdes se abren y las nueces caen. Las nueces verdes para encurtir o para licor se cogen a finales de junio o principios de julio. En ese momento una brocheta todavía las atraviesa de lado a lado.",
+        "picking": "Recoge las nueces caídas cada uno o dos días, antes de que las estropeen el moho y los bichos. Ponte guantes, porque la cáscara verde tiñe la piel de marrón durante días. Quítales pronto la cáscara verde. Casi todos los nogales tienen dueño, así que pregunta antes.",
+        "kitchen": "Cuando no tengas ninguna duda del árbol, come las nueces frescas quitándoles la piel amarga. O sécalas para pan, bizcochos, ensaladas y salsas. Tira las que tengan moho o estén arrugadas o rancias. Las nueces son una causa frecuente de alergia a los frutos secos.",
+        "keeps": "Sécalas con cáscara en un sitio aireado y a la sombra, hasta que el tabique entre las dos mitades se parta con un chasquido. Secas aguantan hasta un año en la nevera.",
         "source": "Identificación y distribución: Woodland Trust. Cosecha y conservación: extensión de las universidades estatales de Oregón y Kansas."
       }
     },

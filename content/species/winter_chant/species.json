@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Winter Chanterelle",
-      "description": "A small brown-capped chanterelle on a hollow yellow stem, fruiting on through the first frosts",
+      "description": "A small chanterelle with a brown cap on a hollow yellow stem. It keeps fruiting through the first frosts.",
       "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood",
       "guide": {
         "identify": "The winter chanterelle is small and slim. The cap is 1 to 4 cm, brown to yellow-brown. It is a thin funnel, and its centre opens into the hollow stem. Underneath are blunt, forking ridges, grey to yellowish-grey, that run down the stem. The stem is yellow to orange-yellow, hollow and often flattened or grooved. The deadly webcap (Cortinarius rubellus) grows in the same mossy conifer woods. It has a pointed red-brown cap and true rusty-brown gills. Its stem is solid, with faint yellow bands. It destroys the kidneys. Check every mushroom as you pick and again as you clean. Norway's poison centre advises throwing away the whole basket if you find even one webcap in it.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Trompetenpfifferling",
-      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel, der bis in die ersten Fröste fruchtet",
+      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel. Er wächst bis in die ersten Fröste.",
       "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz",
       "guide": {
         "identify": "Der Trompetenpfifferling ist klein und schlank. Der Hut misst 1 bis 4 cm und ist braun bis gelbbraun. Er ist ein dünner Trichter, dessen Mitte sich zum hohlen Stiel hin öffnet. Darunter laufen stumpfe, gegabelte Leisten am Stiel herab, grau bis gelblichgrau. Der Stiel ist gelb bis orangegelb, hohl und oft zusammengedrückt oder gefurcht. Der Spitzgebuckelte Raukopf (Cortinarius rubellus) wächst in denselben moosigen Nadelwäldern. Er hat einen spitzen, rotbraunen Hut und echte rostbraune Lamellen. Sein Stiel ist voll und hat schwache gelbe Bänder. Er zerstört die Nieren. Prüf jeden Pilz beim Sammeln und noch einmal beim Putzen. Die norwegische Giftinformation rät, den ganzen Korb wegzuwerfen, wenn auch nur ein Raukopf darin ist.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Rebozuelo de Invierno",
-      "description": "Un rebozuelo pequeño de sombrero pardo sobre pie amarillo y hueco, que fructifica hasta las primeras heladas",
+      "description": "Un rebozuelo pequeño de sombrero pardo sobre un pie amarillo y hueco. Sigue saliendo con las primeras heladas.",
       "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida",
       "guide": {
-        "identify": "Pequeño y esbelto: el sombrero mide de 1 a 4 cm, es pardo a pardo amarillento, un embudo fino cuyo centro se abre al pie hueco. Debajo tiene pliegues romos y bifurcados, grises a gris amarillentos, que bajan por el pie; el pie es amarillo a amarillo anaranjado, hueco y a menudo aplastado o acanalado. El cortinario Cortinarius rubellus crece en los mismos bosques de coníferas con musgo: tiene el sombrero pardo rojizo con un mamelón puntiagudo, láminas verdaderas pardo óxido y el pie macizo con bandas amarillas tenues, y destruye los riñones. Revisa cada seta al cogerla y otra vez al limpiarla: el centro de toxicología de Noruega aconseja tirar la cesta entera si aparece aunque sea un solo cortinario.",
-        "habitat": "En suelo húmedo y ácido de bosques de coníferas, sobre todo bajo píceas y pinos, en el musgo, en bordes de turberas y sobre troncos podridos cubiertos de musgo. Común en el norte y centro de Europa y en las montañas del sur; en Norteamérica, en el noroeste del Pacífico, el norte de California y los bosques de coníferas del norte y el este.",
-        "season": "Tarde en el año: en Europa, de septiembre hasta las heladas fuertes, a menudo aún en noviembre y diciembre; en la costa del Pacífico de EE. UU., del otoño a todo el invierno. Necesita un otoño húmedo, y las heladas ligeras no lo detienen.",
-        "picking": "Corta los pies por encima del musgo para que la cesta quede limpia, deja los más pequeños y respeta las normas locales, como las pequeñas cantidades para consumo propio en Alemania. En el sur de Baviera y el Bosque Bávaro todavía acumula cesio de Chernóbil, así que allí cómelo solo de vez en cuando.",
-        "kitchen": "Una vez identificado con total seguridad, abre los pies huecos y enjuaga las acículas y la arena. No lo comas nunca crudo: cocínalo bien, en mantequilla, en salsas o sopas, o con caza. Sabe a tierra y es más intenso de lo que su tamaño sugiere.",
-        "keeps": "Unos días en la nevera, en papel. Se seca muy bien y en un tarro cerrado conserva el aroma durante meses; también se puede cocinar y congelar.",
+        "identify": "El rebozuelo de invierno es pequeño y esbelto. El sombrero mide de 1 a 4 cm y va de pardo a pardo amarillento. Es un embudo fino, y su centro se abre hacia el pie hueco. Por debajo tiene pliegues romos y bifurcados, de grises a gris amarillento, que bajan por el pie. El pie es de amarillo a amarillo anaranjado, hueco y a menudo aplastado o acanalado. El cortinario mortal (Cortinarius rubellus) crece en los mismos bosques de coníferas con musgo. Tiene el sombrero puntiagudo y pardo rojizo. Sus láminas son verdaderas y de color pardo óxido. Su pie es macizo, con unas bandas amarillas tenues. Destroza los riñones. Revisa cada seta al cogerla y otra vez al limpiarla. El centro de toxicología de Noruega aconseja tirar la cesta entera si encuentras aunque sea un solo cortinario.",
+        "habitat": "Crece en suelo húmedo y ácido de bosques de coníferas, sobre todo bajo píceas y pinos. Búscalo en el musgo, en bordes de turberas y sobre troncos podridos cubiertos de musgo. Es común en el norte y el centro de Europa y en las montañas del sur. En Norteamérica crece en el noroeste del Pacífico y el norte de California. También crece en los bosques de coníferas del norte y del este.",
+        "season": "Sale tarde en el año. En Europa da setas de septiembre hasta las heladas fuertes, y a menudo sigue en noviembre y diciembre. En la costa del Pacífico de EE. UU. sale del otoño a todo el invierno. Necesita un otoño húmedo, y las heladas ligeras no lo paran.",
+        "picking": "Corta los pies por encima del musgo para que la cesta vaya limpia. Deja los más pequeños. Respeta los límites del lugar, como las pequeñas cantidades para consumo propio en Alemania. En el sur de Baviera y en el Bosque Bávaro todavía lleva cesio de Chernóbil. Allí, cómelo solo de vez en cuando.",
+        "kitchen": "Asegúrate primero de la identificación. Luego abre los pies huecos y enjuaga las acículas y la arena. No lo comas nunca crudo. Cocínalo bien. Puedes hacerlo con mantequilla, en salsas y sopas o con caza. Sabe a tierra y es más intenso de lo que su tamaño hace pensar.",
+        "keeps": "Aguanta unos días en la nevera, envuelto en papel. Se seca muy bien y en un tarro cerrado conserva el sabor durante meses. También puedes cocinarlo y congelarlo.",
         "source": "Identificación: MykoWeb (California Fungi) y First Nature (Reino Unido). Cortinarius rubellus: Instituto Noruego de Salud Pública. Cesio: Oficina Federal alemana de Protección Radiológica (BfS). Temporada: registros de GBIF."
       }
     },

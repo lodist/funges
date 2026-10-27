@@ -60,7 +60,7 @@
   "list_of_species": {
     "chant": {
       "name": "Pfifferling",
-      "description": "Ein goldgelber Pilz mit charakteristischer Trichterform und fruchtigem Aroma",
+      "description": "Ein goldgelber Pilz in Trichterform. Er riecht fruchtig, ein bisschen nach Aprikose.",
       "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen",
       "guide": {
         "identify": "Pfifferlinge sind eigelb bis goldgelb und werden bis 10 cm breit. Der Hut ist ein flacher Trichter mit welligem Rand, der nach unten eingerollt ist. Darunter sitzen keine echten Lamellen, sondern stumpfe, gegabelte Leisten, die am Stiel herablaufen. Anders als Lamellen kannst du sie nicht einzeln abheben. Der Stiel ist voll, das Fleisch fest und weiss bis blassgelb. Er riecht leicht nach Aprikose. Zwei Doppelgänger musst du kennen. Ölbaumtrichterlinge (Omphalotus) haben dünne, dicht stehende echte Lamellen, wachsen büschelig aus Holz oder vergrabenen Wurzeln und sind bis ins Fleisch orange. Der Falsche Pfifferling (Hygrophoropsis aurantiaca) ist kräftiger orange, weich und hat ebenfalls dünne, dichte Lamellen.",
@@ -74,7 +74,7 @@
     },
     "mushroom": {
       "name": "Steinpilz",
-      "description": "Der Herrenpilz: brauner Hut, gedrungener genetzter Stiel und weisse Röhren, die sich nie blau verfärben",
+      "description": "Der Steinpilz: ein kräftiger Pilz mit braunem Hut, hellem, genetztem Stiel und weissen Poren, die nie blau anlaufen.",
       "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst",
       "guide": {
         "identify": "Der Steinpilz ist ein kräftiger Röhrling mit hell- bis kastanienbraunem Hut. Der Hut ist glatt und fettig, aber nie samtig. Oft hat er einen schmalen weisslichen Rand. Die Poren sind jung weiss, später gelb und oliv. Auf Druck verfärben sie sich nicht. Der helle Stiel trägt oben ein feines weisses Netz. Das weisse Fleisch verfärbt sich beim Schneiden nicht. Rosa Poren und ein dunkelbraunes Netz bedeuten Gallenröhrling (Tylopilus felleus). Rote oder orange Poren zeigen einen anderen Röhrling, der giftig sein kann. Das gilt auch für Fleisch, das blau anläuft.",
@@ -88,7 +88,7 @@
     },
     "morel": {
       "name": "Morchella",
-      "description": "Charakteristischer Pilz mit wabenförmigem Hut, erscheint im Frühling",
+      "description": "Ein Pilz mit einem Hut wie eine Bienenwabe. Er erscheint im Frühling.",
       "howTo": "Suche in gestörten Gebieten, verbrannten Wäldern und bei toten Bäumen im Frühling",
       "guide": {
         "identify": "Der Hut ist eine Wabe aus Gruben und Rippen. Er kann gelblich, graubraun oder fast schwarz sein und sitzt auf einem hellen Stiel. Schneide jede Morchel der Länge nach durch. Eine echte Morchel ist von der Hutspitze bis zum Stielgrund ein einziger Hohlraum. Ihr Hut ist mit dem unteren Rand am Stiel angewachsen. Die tödlich giftige Frühjahrs-Lorchel (Gyromitra esculenta) hat einen hirnartig gewundenen, rotbraunen Kopf. Innen ist sie gekammert oder wattig. Auch Kochen macht sie nicht sicher. Bei der Böhmischen Verpel (Verpa bohemica) sitzt der Hut nur ganz oben am Stiel, wie ein Fingerhut. Ihr Stiel ist mit wattigem Mark gefüllt.",
@@ -102,7 +102,7 @@
     },
     "blackberry": {
       "name": "Brombeere",
-      "description": "Süsse, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
+      "description": "Süsse, dunkelviolette Beeren an dornigen Sträuchern.",
       "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer",
       "guide": {
         "identify": "Brombeeren haben lange, bogig überhängende Triebe voller hakiger Stacheln. Jedes Blatt besteht aus drei oder fünf gesägten Blättchen, die wie eine Hand gespreizt sind. Oben sind sie dunkelgrün, unten heller. Die Blüten sind weiss oder rosa und haben fünf Blütenblätter. Die Beeren bestehen aus vielen kleinen runden Kügelchen. Sie werden erst grün, dann rot und schliesslich glänzend schwarz. Eine reife Brombeere löst sich mitsamt ihrem weissen Zapfen. Eine Himbeere lässt den Zapfen an der Pflanze und ist innen hohl. Rubus fruticosus ist eine Gruppe aus Hunderten eng verwandter Brombeeren. Du verwendest sie alle gleich.",
@@ -116,7 +116,7 @@
     },
     "elderberry": {
       "name": "Holunderbeere",
-      "description": "Kleine, dunkelviolette Beeren, die in Dolden an Holunderbäumen wachsen",
+      "description": "Kleine, dunkelviolette Beeren, die in Dolden am Holunder hängen.",
       "howTo": "Suche Holunderbäume in Hecken und Waldrändern im Herbst",
       "guide": {
         "identify": "Der Holunder ist ein Strauch oder kleiner Baum mit graubrauner, korkiger, gefurchter Rinde. In den Zweigen steckt weiches weisses Mark. Die Blätter stehen gegenständig und haben fünf bis sieben gesägte Fiederblättchen. Beim Amerikanischen Holunder können es bis zu elf sein. Im Frühsommer trägt er flache Dolden aus cremeweissen, duftenden Blüten. Daraus werden breite Dolden kleiner schwarzvioletter Beeren an rötlichen Stielen. Reif hängen die Dolden unter ihrem Gewicht nach unten. Der Attich oder Zwerg-Holunder (Sambucus ebulus) ist eine krautige Pflanze, die jeden Winter abstirbt. Seine Fruchtstände stehen aufrecht über den Blättern. Der Trauben-Holunder (Sambucus racemosa) hat rote Beeren in aufrechten, kuppelförmigen Ständen. Die Amerikanische Kermesbeere (Phytolacca americana) ist eine hohe Staude mit glatten, purpurroten Stängeln. Ihre Beeren sitzen an langen Ähren aufgereiht, nicht in flachen Dolden.",
@@ -130,7 +130,7 @@
     },
     "nettle": {
       "name": "Brennnessel",
-      "description": "Nährstoffreiche grüne Pflanze mit Brennhaaren, muss gekocht werden",
+      "description": "Eine nahrhafte grüne Pflanze mit Brennhaaren. Bevor du sie isst, kochst du sie immer.",
       "howTo": "Zu finden in gestörten Gebieten, Hecken und Waldrändern im Frühling und Sommer",
       "guide": {
         "identify": "Brennnesseln wachsen aufrecht, mit vierkantigen Stängeln und gegenständigen Blättern. Die Blätter sind herz- bis eiförmig, grob gesägt und zugespitzt. Stängel und Blätter sind mit Brennhaaren besetzt. Ab dem Frühsommer hängen dünne Rispen winziger grünlicher Blüten aus den Blattachseln. Taubnesseln sehen ähnlich aus, brennen aber nicht. Ausserdem haben sie auffällige weisse, gelbe oder violette Lippenblüten.",
@@ -144,7 +144,7 @@
     },
     "dandelion": {
       "name": "Löwenzahn",
-      "description": "Häufiges Wildkraut mit leuchtend gelben Blüten und essbaren Blättern",
+      "description": "Ein häufiges Wildkraut mit leuchtend gelben Blüten. Die Blätter sind essbar.",
       "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit",
       "guide": {
         "identify": "Der Löwenzahn wächst als Rosette dicht am Boden. Die Blätter sind kahl und tief und unregelmässig eingeschnitten. Ihre Zähne zeigen zurück zur Mitte. Blätter und Stiele geben weissen Milchsaft ab, wenn du sie abbrichst. Jeder Blütenstiel ist blattlos, unverzweigt und hohl. Er trägt ein einzelnes Köpfchen aus gelben Zungenblüten. Später wird daraus die runde weisse Pusteblume. Das Ferkelkraut hat verzweigte, markige Stiele und behaarte Blätter. Leontodon-Arten wie der Herbst-Löwenzahn haben gegabelte Haare auf den Blättern. Gänsedisteln tragen mehrere Blüten an beblätterten Stängeln. Pflück nur Pflanzen, die in jedem Punkt passen.",
@@ -158,7 +158,7 @@
     },
     "hazelnut": {
       "name": "Haselnuss",
-      "description": "Süsse, runde Nüsse, die an Haselsträuchern wachsen",
+      "description": "Süsse, runde Nüsse vom Haselstrauch.",
       "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst",
       "guide": {
         "identify": "Die Hasel ist ein Strauch oder kleiner Baum mit vielen Stämmen. Ihre Blätter sind rund und doppelt gesägt, vorne zugespitzt und unten weich und flaumig. Im Spätwinter hängen gelbe Kätzchen an den kahlen Zweigen. Die Nüsse wachsen in Büscheln zu eins bis vier. Jede sitzt in einer gefransten grünen Blatthülle, die etwa drei Viertel von ihr bedeckt. Beim Reifen werden sie braun. Die wilden Haseln Nordamerikas sind nahe Verwandte. Bei der Schnabel-Hasel bildet die Hülle eine lange, borstige Röhre.",
@@ -172,7 +172,7 @@
     },
     "garlic": {
       "name": "Bärlauch",
-      "description": "Kräftig duftendes Kraut mit breiten Blättern und weissen Blüten",
+      "description": "Ein kräftig duftendes Wildkraut mit breiten Blättern und weissen Blüten.",
       "howTo": "Zu finden in Laubwäldern im Frühling, oft in grossen Beständen",
       "guide": {
         "identify": "Jedes Bärlauchblatt wächst an einem eigenen dünnen Stiel direkt aus dem Boden. Die Blattfläche ist weich, hellgrün und spitz-oval, mit parallelen Nerven. Die Unterseite ist matt. Ab April trägt ein blattloser Stängel eine runde Dolde aus weissen, sternförmigen Blüten. Zerreibst du ein Blatt, riecht Bärlauch stark nach Knoblauch. Seine tödlichen Doppelgänger tun das nicht. Der Geruch bleibt aber an den Fingern hängen, deshalb beweist der Test nach den ersten paar Blättern nichts mehr. Prüf darum jedes Blatt auch an Stiel und Form. Das Maiglöckchen hat zwei bis drei Blätter, die sich am Grund gegenseitig umhüllen. Die Herbstzeitlose hat zähe, ungestielte Blätter in einem Büschel. Der Aronstab hat pfeilförmige Blätter mit netzartigen Nerven. Der Weisse Germer hat gefaltete Blätter an einem aufrechten Stängel. Bei der Weisswurz sitzen die Blätter abwechselnd an einem bogigen Stängel.",
@@ -186,7 +186,7 @@
     },
     "chickenOfTheWoods": {
       "name": "Schwefelporling",
-      "description": "Leuchtend orange-gelber Baumpilz, der an Bäumen wächst",
+      "description": "Ein leuchtend orangegelber Porling, der an Bäumen wächst.",
       "howTo": "Suche an toten oder sterbenden Bäumen, besonders Eichen",
       "guide": {
         "identify": "Der Schwefelporling wächst als fächerförmige Konsolen ohne Stiel, 10 bis 40 cm breit und dachziegelartig übereinander. Junge Konsolen sind weich, saftig und leuchtend gelb bis orange. Mit dem Alter verblassen sie zu Cremeweiss und werden kreidig. Die Unterseite ist schwefelgelb und hat winzige Poren, keine Lamellen. Das Fleisch ist weiss bis blassgelb und verfärbt sich beim Anschneiden nicht. Ein oranges Büschel auf Holz mit Lamellen auf der Unterseite ist der giftige Ölbaumtrichterling (Omphalotus). Im Westen der USA sehen die nah verwandten Laetiporus gilbertsonii und Laetiporus conifericola fast gleich aus.",
@@ -200,7 +200,7 @@
     },
     "oysterMushroom": {
       "name": "Austernpilz",
-      "description": "Weiss-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
+      "description": "Ein weissgrauer Pilz mit fächerförmigen Hüten. Er wächst in Büscheln an totem Holz.",
       "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter",
       "guide": {
         "identify": "Austernseitlinge haben einen muschel- oder fächerförmigen Hut von 5 bis 18 cm. Er kann blaugrau, graubraun oder cremefarben sein. Sie wachsen dachziegelartig übereinander am Holz. Die weissen bis cremefarbenen Lamellen laufen an einem kurzen, seitlichen Stiel herab, oder es gibt gar keinen Stiel. Das Fleisch ist weiss und fest, der Geruch mild. Das Sporenpulver ist weiss bis blasslila. Drei Doppelgänger musst du kennen. Der giftige Ölbaumtrichterling (Omphalotus) ist leuchtend orange, auch an den Lamellen. Er wächst büschelig am Stammfuss. Der Grünblättrige Schwefelkopf (Hypholoma fasciculare) hat schwefelgelbe Hüte auf mittigen Stielen. Seine Lamellen sind grünlich gelb und werden purpurbraun, und er schmeckt bitter. Der Ohrförmige Seitling (Pleurocybella porrigens) wird mit Todesfällen in Japan in Verbindung gebracht. Er ist reinweiss, dünn und durchscheinend und wächst nur auf morschem Nadelholz.",
@@ -214,7 +214,7 @@
     },
     "shiitake": {
       "name": "Shiitake",
-      "description": "Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt",
+      "description": "Ein Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt.",
       "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst",
       "guide": {
         "identify": "Der Hut ist braun bis dunkel rotbraun und wird im Alter flach. Am Rand hat er oft weissliche Flocken, und bei Trockenheit reisst er auf. Die Lamellen sind weiss bis cremefarben und werden bei Druck braun. Der Stiel ist zäh, faserig und sitzt oft aussermittig. Das Sporenpulver ist weiss. Der tödlich giftige Gift-Häubling (Galerina marginata) wächst ebenfalls auf Holzstämmen. Er ist kleiner und honigbraun, hat einen Ring am Stiel und rostbraunes Sporenpulver.",
@@ -228,7 +228,7 @@
     },
     "raspberry": {
       "name": "Waldhimbeere",
-      "description": "Süsse rote Beeren an dornigen Ruten mit charakteristischen gefiederten Blättern",
+      "description": "Süsse rote Beeren an dornigen Ruten.",
       "howTo": "Suche Himbeersträucher in Hecken, Waldrändern und gestörten Gebieten im Sommer",
       "guide": {
         "identify": "Himbeeren wachsen an aufrechten Ruten, die oft mannshoch werden. Die Ruten sind mit kleinen, feinen Stacheln besetzt, nicht mit den hakigen Stacheln der Brombeere. Jedes Blatt hat drei bis sieben gesägte Fiederblättchen an einem Stiel. Sie sind oben grün und unten weissfilzig. Die kleinen weissen Blüten hängen nach unten. Wenn du eine rote Beere pflückst, bleibt ihr weisser Zapfen an der Pflanze. Eine gepflückte Himbeere ist deshalb ein hohles Hütchen.",
@@ -242,7 +242,7 @@
     },
     "blueberry": {
       "name": "Waldheidelbeere",
-      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden",
+      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden.",
       "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst",
       "guide": {
         "identify": "Die Heidelbeere, auch Blaubeere genannt, ist ein niedriger Zwergstrauch, der im Winter die Blätter verliert. Meist bleibt sie unter Kniehöhe. Ihre Zweige sind grün und kantig. Die Blätter sind klein und oval, mit fein gesägtem Rand. Im Frühling hängen einzeln rötliche Blüten, die wie kleine Laternen aussehen. Aus jeder wird eine blauschwarze Beere mit hellem Reif. An der Spitze der Beere sitzt ein kleines Krönchen. Das Fruchtfleisch ist durch und durch violettrot. Kulturheidelbeeren haben helles Fruchtfleisch. Ihre giftigen Doppelgänger sind krautige Pflanzen, keine verholzten Zwergsträucher. Die Tollkirsche (Atropa bella-donna) ist hoch, und ihre glänzend schwarzen Beeren sitzen in einem grünen Stern aus fünf Kelchblättern. Die Einbeere (Paris quadrifolia) trägt eine einzige Beere oben auf einem Stängel mit einem Quirl aus vier Blättern. Bei der Weisswurz (Polygonatum) hängen blauschwarze Beeren unter einem bogigen, unverzweigten Stängel.",
@@ -256,7 +256,7 @@
     },
     "strawberry": {
       "name": "Walderdbeere",
-      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern",
+      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern.",
       "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer",
       "guide": {
         "identify": "Die Walderdbeere ist eine niedrige Pflanze. Ihre langgestielten Blätter haben drei gezähnte Blättchen, hellgrün und leicht glänzend. Sie breitet sich mit Ausläufern aus, die am Boden Wurzeln schlagen. Der Endzahn jedes Blättchens ist so lang wie seine Nachbarn oder länger. Die Blüten sind weiss, mit fünf runden Blütenblättern und gelber Mitte. Die Frucht ist ein kleiner roter Kegel mit winzigen Nüsschen auf der Oberfläche und hängt an einem dünnen Stiel. Das Erdbeer-Fingerkraut (Potentilla sterilis) blüht früher. Es hat Lücken zwischen den eingekerbten Blütenblättern, und sein Endzahn ist kürzer als die Nachbarn. Eine fleischige Frucht hat es nicht. Die Indische Scheinerdbeere (Potentilla indica) hat gelbe Blüten und runde, schwammige Früchte ohne Geschmack.",
@@ -270,7 +270,7 @@
     },
     "wildMint": {
       "name": "Wilde Minzen",
-      "description": "Jede wilde Minze: Wasserminze, Rossminze, Apfelminze, Ackerminze und Polei-Minze. Vierkantige Stängel, gegenständige Blätter und Minzduft beim Zerreiben",
+      "description": "Jede wilde Minze: Wasserminze, Rossminze, Apfelminze, Ackerminze und Polei-Minze. Sie haben vierkantige Stängel, gegenständige Blätter und riechen beim Zerreiben nach Minze.",
       "howTo": "Zu finden auf feuchten Böden, in Gräben und an Bächen. Polei-Minze ist als leichter Tee unbedenklich, als Öl oder in grösseren Mengen aber giftig: in der Schwangerschaft meiden",
       "guide": {
         "identify": "Alle Minzen haben vierkantige Stängel und gegenständige Blätter. Ein zerriebenes Blatt riecht deutlich nach Minze. Kleine lila, rosa oder weisse Blüten stehen in Quirlen oder in Köpfchen und Ähren an den Triebspitzen. Die Wasserminze hat behaarte, eiförmige Blätter und ein rundes Blütenköpfchen. Die Rossminze hat lange, graufilzige Blätter. Die Apfelminze hat runde, runzlige, weiche Blätter. Die Ackerminze blüht nur in Quirlen entlang des Stängels. Die Polei-Minze ist klein und kriechend, mit winzigen Blättern und scharfem Geruch. Zwischen ihnen wachsen geruchlose Pflanzen mit Vierkantstängel, etwa der Wolfstrapp. Ausserdem bleibt der Duft an deinen Fingern hängen. Riech deshalb an jedem Stängel einzeln und lass alle stehen, die nicht nach Minze riechen.",
@@ -284,7 +284,7 @@
     },
     "chickweed": {
       "name": "Vogelmiere",
-      "description": "Niedrig wachsende Pflanze mit kleinen weissen Blüten und ovalen Blättern, sehr nahrhaft",
+      "description": "Eine niedrige Pflanze mit kleinen weissen Blüten und ovalen Blättern. Sie ist sehr nahrhaft.",
       "howTo": "Häufig in Gärten, gestörten Gebieten und Wiesen während der Wachstumszeit",
       "guide": {
         "identify": "Die Vogelmiere ist eine niedrige Pflanze, die sich am Boden ausbreitet. Ihre Stängel sind schwach, rund und saftig. Die Blätter sind kleine, spitze Ovale und stehen paarweise gegenüber. Die unteren sitzen auf kurzen Stielen. Am Stängel läuft eine einzelne Reihe feiner Haare entlang. An jedem Blattpaar wechselt sie die Seite. Die weissen Blüten sind sternförmig und haben fünf Blütenblätter. Jedes ist so tief gespalten, dass es aussieht, als wären es zehn. Es gibt zwei giftige Doppelgänger. Der Acker-Gauchheil hat vierkantige, kahle Stängel und ungestielte Blätter mit schwarzen Punkten auf der Unterseite. Seine Blüten sind orangerot oder blau. Wolfsmilch gibt aus einem abgebrochenen Stängel weissen Milchsaft ab. Die Vogelmiere tut das nie.",
@@ -298,7 +298,7 @@
     },
     "plantain": {
       "name": "Breitwegerich",
-      "description": "Niedrig wachsende Pflanze mit breiten, ovalen Blättern und hohen Blütenständen",
+      "description": "Eine niedrige Pflanze mit breiten, ovalen Blättern und hohen Blütenähren.",
       "howTo": "Zu finden auf Rasenflächen, Wiesen und gestörten Gebieten während der Wachstumszeit",
       "guide": {
         "identify": "Der Breitwegerich wächst als flache Rosette aus breiten, ovalen Blättern an kurzen, breiten Stielen. Jedes Blatt hat drei bis sieben kräftige Nerven. Sie laufen parallel vom Grund bis zur Spitze. Reisst du einen Blattstiel ab, ziehen sie sich als zähe Fäden heraus. Ab dem Frühsommer tragen blattlose Stängel lange, schmale Ähren aus winzigen grünlichen Blüten, wie Rattenschwänze. Später füllen sie sich mit kleinen braunen Samen. Der Fingerhut ist tödlich giftig, und auf seine Rosette im ersten Jahr musst du achten. Sie hat weiche, behaarte, runzlige Blätter mit einem Netz aus Nerven und ohne Fäden. Fingerhutblätter wurden schon aus Versehen als Wegerich verkauft.",
@@ -312,7 +312,7 @@
     },
     "walnut": {
       "name": "Walnuss",
-      "description": "Grosse, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
+      "description": "Grosse, runde Nüsse mit harter Schale und einem aromatischen, öligen Kern.",
       "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst",
       "guide": {
         "identify": "Der Walnussbaum ist ein grosser Baum. Seine Rinde ist glatt und olivbraun und wird im Alter grau und rissig. Die Blätter haben fünf bis neun ganzrandige, ovale Fiederblättchen. Zerrieben riechen sie nach Möbelpolitur. Die Nuss steckt in einer dicken, glatten grünen Hülle, die beim Reifen dunkel wird und aufplatzt. Die Schwarznuss im Osten der USA hat mehr Fiederblättchen, und die sind schmaler und gesägt. Ihre runde Hülle platzt nicht auf. Darin steckt eine sehr harte, gefurchte Schale.",
@@ -326,7 +326,7 @@
     },
     "chestnut": {
       "name": "Esskastanie",
-      "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die bei Reife aufplatzen",
+      "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die aufplatzen, wenn sie reif sind.",
       "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen",
       "guide": {
         "identify": "Die Blätter der Esskastanie sind lang, schmal und glänzend, 16 bis 28 cm lang. Sie haben spitze Sägezähne und viele gerade, parallele Nerven. Die Fruchthülle ist rundum mit langen, feinen Stacheln besetzt, spitz wie Nadeln. Meist stecken zwei oder drei Kastanien darin. Sie sind auf einer oder beiden Seiten abgeflacht und enden in einer kleinen Spitze mit einem Haarbüschel. Verwechsle sie nicht mit der giftigen Rosskastanie (Aesculus hippocastanum) in Parks und an Strassen. Sie hat handförmige Blätter aus fünf bis sieben Blättchen. Ihre dicke grüne Hülle hat nur wenige kurze Stacheln. Darin stecken eine oder zwei runde, glänzende Kastanien ohne Spitze. In Nordamerika sind auch die Buckeyes (andere Aesculus-Arten) giftig. Ein Baum mit handförmigen Blättern ist nie eine Esskastanie.",
@@ -340,7 +340,7 @@
     },
     "elderflower": {
       "name": "Holunderblüte",
-      "description": "Cremeweisse Blüten in grossen, flachen Dolden an Holunderbäumen",
+      "description": "Cremeweisse Blüten in grossen, flachen Dolden am Holunder.",
       "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer",
       "guide": {
         "identify": "Der Holunder ist ein verholzter Strauch oder kleiner Baum mit korkiger, gefurchter, graubrauner Rinde. Seine Blätter stehen gegenständig und haben 5 bis 7 gezähnte Fiederblättchen. Zerreibst du sie, riechen sie unangenehm. Im späten Frühling trägt er flache, verzweigte Dolden aus winzigen cremeweissen Blüten. Sie haben hellgelbe Staubbeutel und duften süss und schwer. Der Attich oder Zwerg-Holunder ist eine krautige Pflanze, die jeden Winter abstirbt. Er hat aufrechte Blütenstände und violette Staubbeutel. Der Rote Holunder blüht früher, in eiförmigen oder kuppelförmigen Ständen. Beide sind giftig. Gefleckter Schierling, Wasserschierling und Riesen-Bärenklau sind weiche grüne Kräuter, keine Sträucher. Der Saft des Riesen-Bärenklaus verbrennt bei Sonne die Haut. Der Gefleckte Schierling hat einen glatten, hohlen, purpurn gefleckten Stängel und riecht nach Mäusen. Bei allen dreien gehen die Blütenstiele von einem Punkt aus, wie die Speichen eines Schirms.",
@@ -354,7 +354,7 @@
     },
     "daisy": {
       "name": "Gänseblümchen",
-      "description": "Kleine weisse Blüten mit gelber Mitte, wachsen bodennah",
+      "description": "Kleine weisse Blüten mit gelber Mitte, dicht am Boden.",
       "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer",
       "guide": {
         "identify": "Das Gänseblümchen ist eine niedrige Pflanze. Seine spatelförmigen, leicht behaarten Blätter bilden eine flache Rosette, die dicht am Boden liegt. Jeder blattlose, behaarte Stiel trägt ein Blütenköpfchen von etwa 2 cm. Es hat weisse Blütenblätter, oft mit rosa Spitzen, um eine gelbe Mitte. Nachts und bei trübem Wetter schliessen sich die Köpfchen. Manche Pflanzen sehen ähnlich aus, sind aber andere. Die Margerite und andere grössere Blüten dieser Art wachsen an beblätterten Stängeln. Hundskamillen und Kamillen haben fein gefiederte Blätter.",
@@ -368,7 +368,7 @@
     },
     "violets": {
       "name": "Duftveilchen",
-      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft",
+      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft.",
       "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling",
       "guide": {
         "identify": "Das Duftveilchen ist eine niedrige Pflanze mit einer Rosette aus lang gestielten Blättern. Sie sind herzförmig mit rundem Grund, gekerbtem Rand und kurzen Haaren. Es breitet sich mit langen Ausläufern aus, die Wurzeln schlagen. Jede Blüte steht auf einem eigenen Stiel, der aus der Rosette kommt. Sie hat fünf ungleiche Blütenblätter, und das unterste hat hinten einen kurzen Sporn. Die Blüten sind meist tief violett, manchmal weiss, haben stumpfe Kelchblätter und duften süss. Hundsveilchen sehen ähnlich aus, duften aber nicht. Das Scharbockskraut ist giftig und wächst an denselben Stellen. Es hat glänzende, fleischige, kahle Blätter und Blüten mit 8 bis 12 glänzend gelben Blütenblättern. Auch der Aronstab ist giftig. Er hat glänzende, pfeilförmige Blätter, deren Lappen nach hinten zeigen.",
@@ -382,7 +382,7 @@
     },
     "amaranth": {
       "name": "Amarant",
-      "description": "Eine krautige Pflanze mit essbaren Blättern und Samen, reich an Nährstoffen.",
+      "description": "Eine Blattpflanze, die oft als Unkraut gilt. Blätter und Samen sind essbar und stecken voller Nährstoffe.",
       "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte.",
       "guide": {
         "identify": "Der Zurückgekrümmte Amarant ist eine kräftige, aufrechte einjährige Pflanze. Der Stängel ist fein weiss behaart und unten rot. Die Pfahlwurzel ist rosa bis rot. Die Blätter stehen wechselständig. Sie sind eiförmig bis rautenförmig, ganzrandig und lang gestielt. An der Spitze haben sie oft eine kleine Kerbe oder ein winziges Spitzchen. Die winzigen grünen Blüten sitzen in dichten, borstigen, stechenden Ähren. Später stecken darin winzige, glänzend schwarze Samen. Auf demselben Boden wachsen zwei giftige Unkräuter. Der Stechapfel (Datura) hat grosse, grob gezähnte Blätter, die unangenehm riechen, weisse Trichterblüten und stachelige Kapseln. Der Schwarze Nachtschatten hat Blätter mit welligem Rand, kleine weisse Sternblüten und schwarze Beeren.",
@@ -396,7 +396,7 @@
     },
     "artichoke": {
       "name": "Wilde Artischocke",
-      "description": "Dornige Pflanze ähnlich der kultivierten Artischocke, mit essbaren Blütenköpfen und Stängeln.",
+      "description": "Eine distelartige Pflanze, verwandt mit der Gartenartischocke. Du isst die Blütenknospen und die Stängel.",
       "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer.",
       "guide": {
         "identify": "Die Wilde Artischocke, auch Wilde Kardone genannt, bildet eine grosse Rosette aus tief eingeschnittenen Blättern. Oben sind sie silbrig graugrün, unten durch dichten Filz fast weiss. Jeder Blattlappen endet in einem starren gelben Dorn. Im späten Frühjahr wächst ein steifer, verzweigter Stängel bis etwa auf Kopfhöhe. Er trägt Köpfe wie kleine Artischocken, umhüllt von Hüllblättern mit Dornspitzen. Sie öffnen sich zu blauvioletten Distelblüten. Pass auf Atractylis gummifera auf, eine tödlich giftige Distel aus dem Mittelmeerraum. Sie wurde schon mit der Wilden Artischocke verwechselt und hat in Marokko Menschen getötet. Sie hat keinen Stängel. Ihr rosa Blütenkopf sitzt flach in der Mitte der stacheligen Rosette. Sie blüht im Spätsommer und Herbst, und aus ihrer Wurzel tritt ein klebriger Saft. Iss nie eine stängellose Distelrosette oder eine Distelwurzel.",
@@ -410,7 +410,7 @@
     },
     "asparagus": {
       "name": "Wilder Spargel",
-      "description": "Mehrjährige Pflanze mit dünnen, essbaren Trieben, die im Frühling erscheinen.",
+      "description": "Eine mehrjährige Pflanze, deren dünne Triebe im Frühling aus dem Boden kommen.",
       "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling.",
       "guide": {
         "identify": "Der Wilde Spargel ist ein verworrener, immergrüner, verholzter Strauch, bis etwa 1,5 m hoch. Echte Blätter hat er nicht. Stattdessen trägt er Büschel kurzer, steifer, nadelartiger grüner Zweiglein. Jedes endet in einem spitzen Dorn. Seine schwarzen Beeren isst man nicht. Im Frühling schieben sich dünne Triebe aus dem Fuss des alten, stacheligen Strauchs. Sie sind dunkelgrün bis violett und oft dünner als ein Bleistift. Kleine spitze Schuppen liegen dem Trieb an, Blätter gibt es keine. Schmerwurz und Zaunrübe sind giftige Kletterpflanzen in denselben Hecken und treiben ebenfalls im Frühling aus. Die Schmerwurz entfaltet bald glänzende, herzförmige Blätter. Die Zaunrübe ist behaart und hat gelappte Blätter und Ranken. Pflück nur Triebe, die sichtbar aus einem Spargelstrauch kommen.",
@@ -424,7 +424,7 @@
     },
     "black_chant": {
       "name": "Totentrompete",
-      "description": "Ein dunkler trompetenförmiger Pilz mit intensivem Geschmack, sehr geschätzt in der Küche.",
+      "description": "Ein dunkler, trichterförmiger Pilz mit kräftigem, rauchigem Geschmack. In der Küche ist er sehr begehrt.",
       "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst.",
       "guide": {
         "identify": "Du suchst ein dünnes, hohles Horn, 4 bis 8 cm breit. Es ist bis ganz unten offen und hat keinen abgesetzten Hut. Innen ist die Totentrompete graubraun bis schwarz und fein schuppig. Aussen ist sie aschgrau und glatt oder nur leicht runzelig, ohne Lamellen oder Leisten. Wenn sie reift, wird sie heller und bekommt einen weisslichen Reif. Das Fleisch ist dünn, brüchig und grauschwarz und riecht schwach süsslich. Die Totentrompeten im Osten der USA (Craterellus fallax) sehen genauso aus. Ihr Sporenpulver ist aber rosa-orange statt weiss. Die Graue Kraterelle (Craterellus cinereus) hat aussen deutliche, gegabelte Leisten.",
@@ -438,7 +438,7 @@
     },
     "lingonb": {
       "name": "Preiselbeere",
-      "description": "Kleine rote, säuerliche Beeren, die auf immergrünen Sträuchern in saurem Boden wachsen.",
+      "description": "Kleine, rote, säuerliche Beeren an niedrigen immergrünen Sträuchern auf saurem Boden.",
       "howTo": "Suche in Nadelwäldern, Heideflächen und Mooren von Spätsommer bis Herbst.",
       "guide": {
         "identify": "Die Preiselbeere ist ein kriechender, immergrüner Zwergstrauch. Ihre Blätter sind dick, glänzend und dunkelgrün, mit nach unten eingerollten Rändern. Die helle Unterseite ist mit winzigen dunklen Punkten übersät. Kleine weisse bis rosa Glöckchenblüten sitzen in kurzen Trauben an den Triebspitzen. Daraus werden runde, glänzend rote Beeren, die in kleinen Büscheln hängen. Die Echte Bärentraube (Arctostaphylos uva-ursi) ist ein kriechender Strauch an denselben Stellen. Ihre Blätter sind netzartig geadert und haben keine Punkte, und ihre Beeren sind trocken und mehlig. Die giftigen roten und schwarzen Beeren wachsen nicht auf einem niedrigen immergrünen Teppich. Die Eibe (Taxus) ist ein Baum oder hoher Strauch mit flachen Nadeln. Ihr roter Becher ist vorne offen und umschliesst einen dunklen Samen. Der Seidelbast (Daphne mezereum) ist ein aufrechter Strauch, dessen Beeren dicht am Zweig sitzen. Die Tollkirsche (Atropa bella-donna) ist eine hohe Staude mit schwarzen Beeren. Das Rote Christophskraut (Actaea) und das Maiglöckchen (Convallaria majalis) sind krautige Pflanzen.",
@@ -452,7 +452,7 @@
     },
     "masterwort": {
       "name": "Meisterwurz",
-      "description": "Mehrjährige Pflanze mit aromatischen Blättern und weissen Doldenblüten, verwendet in der traditionellen Medizin und als Gewürz.",
+      "description": "Eine mehrjährige Pflanze mit aromatischen Blättern und weissen Blütendolden. Sie dient seit langem als Gewürz und in der Volksmedizin.",
       "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer.",
       "guide": {
         "identify": "Die Meisterwurz ist ein kahler Doldenblütler, 30 bis 100 cm hoch. Ihr Stängel ist rund, gerillt und hohl. Die Blätter teilen sich in drei und dann noch einmal in drei. Am Ende stehen breite, eiförmige, doppelt gesägte Teilblätter von 5 bis 10 cm Länge. Die oberen Blätter sitzen auf grossen, aufgeblasenen Scheiden. Die Dolden sind flach, weiss oder rosa und haben bis zu 50 Strahlen. Die Früchte sind rund, flach und breit geflügelt. Ein zerriebenes Blatt oder der dicke braune Wurzelstock riecht kräftig würzig, nach Sellerie und Möhre. Ihre tödlichen Doppelgänger haben fein zerteilte Blätter, fiedrig oder wie bei einem Farn. Der Gefleckte Schierling hat einen glatten, purpurn gefleckten Stängel und riecht nach Mäusen. Die Hundspetersilie hat lange Hüllblättchen, die unter jedem Döldchen herabhängen. Beim Wasserschierling ist der Wurzelstock in hohle Kammern geteilt, wenn du ihn längs aufschneidest. Die Safran-Rebendolde hat helle Knollen in nassem Boden. Der Riesen-Bärenklau ist viel grösser und hat einen borstigen, purpurn gefleckten Stängel. Sein Saft verbrennt bei Sonne die Haut. Auch der Saft der Meisterwurz kann die Haut lichtempfindlich machen.",
@@ -466,7 +466,7 @@
     },
     "parasol": {
       "name": "Parasolpilz",
-      "description": "Grosser Pilz mit breitem, schuppigem Hut, der einem Regenschirm ähnelt, jung essbar.",
+      "description": "Ein grosser, hoher Pilz mit breitem, schuppigem Hut, der sich wie ein Sonnenschirm öffnet. Iss ihn jung.",
       "howTo": "Suche auf Wiesen, Weiden und an Waldrändern von Spätsommer bis Herbst.",
       "guide": {
         "identify": "Der Parasol ist ein hoher Pilz. Sein Hut beginnt als geschlossener, eiförmiger Paukenschlegel. Dann öffnet er sich zu einem flachen Schirm von 10 bis 25 cm. Der Hut ist cremefarben mit braunen Schuppen und hat in der Mitte einen glatten braunen Buckel. Die Lamellen sind weiss, frei und stehen dicht. Der schlanke Stiel wird bis 30 cm hoch und hat unten eine Knolle. Er ist braun genattert wie eine Schlangenhaut und trägt einen dicken, doppelten Ring, der sich verschieben lässt. Das Sporenpulver ist weiss. Mehrere Doppelgänger musst du kennen. Die tödlich giftigen Schirmlinge (Lepiota) sind klein, ihr Hut misst nur wenige Zentimeter. Chlorophyllum molybdites hat grünliches Sporenpulver. Die Safranschirmlinge (Chlorophyllum rhacodes und C. brunneum) vertragen viele Menschen nicht. Sie haben einen glatten Stiel, und ihr Fleisch färbt sich beim Anschneiden orangerot. Der Pantherpilz (Amanita pantherina) hat weisse Flocken auf dem Hut und einen Ring, der sich nicht verschieben lässt. Ausserdem hat er unten eine gerandete Knolle.",
@@ -480,7 +480,7 @@
     },
     "sorrel": {
       "name": "Gewöhnlicher Sauerampfer",
-      "description": "Pflanze mit säuerlich-zitronigem Geschmack, verwendet in Salaten und Suppen.",
+      "description": "Eine Blattpflanze mit säuerlich-zitronigem Geschmack, gut in Salaten und Suppen.",
       "howTo": "Pflücke die jungen Blätter auf Wiesen, Weiden und entlang von Wegen im Frühling und Sommer.",
       "guide": {
         "identify": "Sauerampfer hat zarte, pfeilförmige Blätter. Ihre zwei spitzen Grundlappen zeigen nach hinten, den Stiel hinunter. Die oberen Blätter umfassen den Stängel. Wo ein Blatt am Stängel ansetzt, umhüllt ihn eine dünne, häutige Scheide. Ab Mai tragen die Blütenstängel lockere Rispen kleiner rötlicher Blüten. Der Gefleckte Aronstab (Arum maculatum) ist giftig, und seine jungen Blätter haben eine ähnliche Form. Sie haben aber oft dunkle Flecken und abgerundete Lappen. Ausserdem wächst er in Wäldern und Hecken statt auf offenen Wiesen. Probier nie ein Blatt zur Kontrolle, denn Aronstab brennt im Mund.",
@@ -494,7 +494,7 @@
     },
     "st_george": {
       "name": "Georgsritterling",
-      "description": "Fester, weisser Pilz mit mehlartigem Geruch, erscheint um den Georgstag im Frühling.",
+      "description": "Ein fester weisser Pilz, der nach frischem Mehl riecht. Er erscheint im Frühling, um den Georgstag.",
       "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling.",
       "guide": {
         "identify": "Der Mairitterling ist kräftig und fleischig, weiss bis cremefarben. Der Hut wird 5 bis 15 cm breit, ist oft buckelig und hat einen eingerollten Rand. Die Lamellen sind weiss, schmal und stehen sehr dicht. Der dicke, volle Stiel hat keinen Ring und unten keine Scheide. Das feste weisse Fleisch verfärbt sich nicht. Es riecht stark nach frischem Mehl. Das Sporenpulver ist weiss. Der tödlich giftige Ziegelrote Risspilz (Inosperma erubescens) hat einen spitzen, faserig gestreiften Hut. Wo man ihn anfasst, rötet er sich, und sein Sporenpulver ist braun. Der Riesen-Rötling (Entoloma sinuatum) kann ebenfalls nach Mehl riechen. Seine Lamellen werden aber rosa, und sein Sporenpulver ist rosa. Auch weisse Knollenblätterpilze wie der tödliche Frühlings-Knollenblätterpilz (Amanita verna) erscheinen im Frühjahr. Sie haben einen Ring und unten eine Scheide.",
@@ -508,7 +508,7 @@
     },
     "truffle_b": {
       "name": "Schwarzer Trüffel",
-      "description": "Sehr geschätzter unterirdischer Pilz mit intensivem Aroma, in der Gourmetküche verwendet.",
+      "description": "Ein sehr begehrter Pilz, der unter der Erde wächst und kräftig duftet. In der Küche nimmt man ihn sparsam.",
       "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt.",
       "guide": {
         "identify": "Der Schwarze Trüffel ist rundlich und knollig und wächst unter der Erde. Er wird walnuss- bis faustgross. Die schwarze Haut ist jung rötlich und mit kleinen, harten, vieleckigen Warzen besetzt. Schneide ihn durch. Reifes Fleisch ist violettschwarz und von feinen weissen Adern marmoriert, die sich an der Luft rotbraun färben. Er riecht stark und erdig. Kartoffelboviste (Scleroderma) sind giftig. Sie haben eine dicke, gelbliche bis braune, schuppige Haut und riechen nach Gas. Innen sind sie fest und dunkel. Der Wintertrüffel (Tuber brumale) und der importierte Chinesische Trüffel (Tuber indicum) sehen ähnlich aus. Sie sind aber viel weniger wert.",
@@ -522,7 +522,7 @@
     },
     "bronze_bolete": {
       "name": "Bronze-Steinpilz",
-      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hell genetztem Stiel und festem weissem Fleisch",
+      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hellem, genetztem Stiel und festem weissem Fleisch.",
       "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz",
       "guide": {
         "identify": "Das ist der dunkelste Steinpilz. Der Hut ist dunkel kastanienbraun bis fast schwarz, oft mit bronzefarbenen Flecken. Er bleibt trocken und fein samtig, auch bei Nässe. Die Poren sind erst weiss, dann gelb bis oliv, und sie laufen nicht blau an. Der hellbraune Stiel trägt ein feines braunes Netz, oben am dichtesten. Das sehr feste weisse Fleisch verfärbt sich beim Anschneiden nicht. Der Sommersteinpilz ist heller, und sein Netz reicht weiter den Stiel hinunter. Zwei andere Röhrlinge wachsen in denselben Eichenwäldern. Das sind der Satansröhrling (Rubroboletus satanas) und der Falsche Satansröhrling (Rubroboletus legaliae). Beide haben rote Poren und Fleisch, das blau anläuft.",
@@ -536,7 +536,7 @@
     },
     "pine_bolete": {
       "name": "Kiefern-Steinpilz",
-      "description": "Ein rotbrauner Steinpilz der Kiefernwälder mit gedrungenem, rötlich genetztem Stiel und festem Fleisch",
+      "description": "Ein Steinpilz der Kiefernwälder mit rotbraunem Hut, kräftigem, rötlich genetztem Stiel und festem Fleisch.",
       "howTo": "Suche in moosigen Kiefern- und Fichtenwäldern auf saurem Sandboden, im späten Frühjahr und wieder im Herbst",
       "guide": {
         "identify": "Der Kiefern-Steinpilz ist der rote unter den Steinpilzen. Sein Hut ist weinrot bis mahagonibraun und oft beulig. Jung ist er samtig, bei Nässe fettig bis schmierig, und am Rand hat er einen weisslichen Reif. Der Stiel ist kurz und dick, rotbraun überhaucht und hat ein feines weissliches bis rötliches Netz. Das Fleisch ist weiss, direkt unter der Huthaut aber weinrot. Die Poren werden von weiss über gelb zu oliv. Auf Druck verfärben sie sich kaum. Der Schwarzhütige Steinpilz ist sepiabraun bis schwarz, ohne Rot. Rote oder orange Poren (Rubroboletus satanas) schliessen ihn aus. Das gilt auch für rosa Poren mit dunklem Netz (Tylopilus felleus).",
@@ -550,7 +550,7 @@
     },
     "summer_bolete": {
       "name": "Sommersteinpilz",
-      "description": "Der früheste Steinpilz, mit fein rissigem hellbraunem Hut und einem von oben bis unten genetzten Stiel",
+      "description": "Der früheste Steinpilz. Sein hellbrauner Hut ist fein rissig, und der Stiel ist von oben bis unten genetzt.",
       "howTo": "Suche unter Eichen und Buchen ab dem späten Frühjahr, lange vor den anderen Steinpilzen",
       "guide": {
         "identify": "Der Sommer-Steinpilz hat einen matten, trockenen, samtigen Hut, hell haselnussbraun bis mittelbraun. Bei Trockenheit reisst der Hut fein netzartig auf. Er ist nie fettig, und sein Rand ist nicht heller als die Mitte. Sein deutlichstes Merkmal ist ein erhabenes Netz, das fast bis zum Stielgrund reicht. Die Poren sind weiss, dann gelboliv, und verfärben sich nicht. Das weisse Fleisch ist weicher als beim Steinpilz. Der Satansröhrling (Rubroboletus satanas) und Rubroboletus legaliae wachsen in denselben Eichenwäldern. Sie haben aber rote Poren und Fleisch, das blau anläuft. Der Gallenröhrling (Tylopilus felleus) hat rosa Poren und ein dunkles Netz.",
@@ -564,7 +564,7 @@
     },
     "pacific_chant": {
       "name": "Pazifik-Pfifferling",
-      "description": "Ein grosser goldener Pfifferling des pazifischen Nordwestens, blasser und rosiger als sein europäischer Verwandter",
+      "description": "Ein grosser goldener Pfifferling aus dem pazifischen Nordwesten. Er ist blasser und rosiger als der europäische.",
       "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben",
       "guide": {
         "identify": "Das ist ein grosser Pfifferling, blasser und rosiger als der europäische. Der Hut ist orangegelb bis aprikosenfarben. Junge Hüte haben oft feine bräunliche Schüppchen und einen rosa Schimmer. Bei nassem Wetter können beide verschwinden. Darunter sitzen stumpfe, gegabelte Leisten, die am Stiel herablaufen. Sie sind blass orangegelb und meist rosa überhaucht. Der Stiel wird nach unten schmaler, das Fleisch ist weisslich und fest. Auf Druck färbt sich der Hut gelblich. Ölbaumtrichterlinge (Omphalotus) und der Falsche Pfifferling haben dünne, dicht stehende echte Lamellen. Turbinellus floccosus ist eine tiefe, hohle, orangerote Trompete mit groben Schuppen. Vielen Menschen schlägt er auf den Magen.",
@@ -578,7 +578,7 @@
     },
     "smooth_chant": {
       "name": "Glatter Pfifferling",
-      "description": "Ein orangefarbener Pfifferling mit fast glatter statt geriefter Unterseite und starkem Aprikosengeruch",
+      "description": "Ein orangefarbener Pfifferling mit fast glatter Unterseite statt Leisten. Er riecht stark nach Aprikose.",
       "howTo": "Suche in den Eichenwäldern des amerikanischen Südostens im feuchten Sommer, oft truppweise auf offenem Boden",
       "guide": {
         "identify": "Der Glatte Pfifferling ist leuchtend orangegelb bis eigelb und 2,5 bis 8 cm breit. Erst ist er flach, später wird er zu einer flachen Vase mit welligem Rand. An seiner Unterseite erkennst du ihn. Sie ist glatt oder nur leicht runzelig und hat keine echten Lamellen. Sie ist blasser als der Hut, oft rosa, und läuft am Stiel herab. Der Stiel wird nach unten schmaler. Das Fleisch ist weiss und verfärbt sich beim Schneiden nicht. Meist riecht er stark und süss, nach Aprikose. In denselben Eichenwäldern ist der Ölbaumtrichterling Omphalotus illudens häufig. Er hat scharfe, dicht stehende echte Lamellen und wächst in dichten Büscheln aus Holz oder vergrabenen Wurzeln. Ausserdem ist er auch innen orange.",
@@ -592,7 +592,7 @@
     },
     "winter_chant": {
       "name": "Trompetenpfifferling",
-      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel, der bis in die ersten Fröste fruchtet",
+      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel. Er wächst bis in die ersten Fröste.",
       "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz",
       "guide": {
         "identify": "Der Trompetenpfifferling ist klein und schlank. Der Hut misst 1 bis 4 cm und ist braun bis gelbbraun. Er ist ein dünner Trichter, dessen Mitte sich zum hohlen Stiel hin öffnet. Darunter laufen stumpfe, gegabelte Leisten am Stiel herab, grau bis gelblichgrau. Der Stiel ist gelb bis orangegelb, hohl und oft zusammengedrückt oder gefurcht. Der Spitzgebuckelte Raukopf (Cortinarius rubellus) wächst in denselben moosigen Nadelwäldern. Er hat einen spitzen, rotbraunen Hut und echte rostbraune Lamellen. Sein Stiel ist voll und hat schwache gelbe Bänder. Er zerstört die Nieren. Prüf jeden Pilz beim Sammeln und noch einmal beim Putzen. Die norwegische Giftinformation rät, den ganzen Korb wegzuwerfen, wenn auch nur ein Raukopf darin ist.",
@@ -606,7 +606,7 @@
     },
     "eastern_king": {
       "name": "Ostamerika-Steinpilz",
-      "description": "Die Steinpilze der ostamerikanischen Eichenwälder: hellbrauner bis lilabrauner Hut, weisse, im Alter gilbende Poren und genetzter Stiel, nie blau verfärbend",
+      "description": "Der Steinpilz der Eichenwälder im Osten der USA. Der Hut ist hellbraun bis lilabraun, die Poren sind weiss und werden gelb, und er läuft nie blau an.",
       "howTo": "Suche unter Eichen, Buchen und Hickorys in den Laubwäldern des Ostens ab Juni, wenige Tage nach warmem Sommerregen",
       "guide": {
         "identify": "Das ist eine kleine Gruppe von Steinpilzen aus dem Osten Nordamerikas. Boletus variipes hat einen trockenen, samtigen Hut, hellbraun bis graubraun, der oft aufreisst. Boletus separans hat einen lilabraunen bis leberroten Hut, der zu Gelbbraun verblasst. Auch am Stiel zeigt er Lila. Beide haben jung weisse Poren, die später gelblich werden. Beide haben ein deutliches weisses bis bräunliches Netz am Stiel. Ihr weisses Fleisch verfärbt sich nicht. Bittere Tylopilus-Arten haben Poren, die rosa werden. Ein Beispiel ist der violettgraue Tylopilus plumbeoviolaceus. Rote oder orange Poren (Neoboletus subvelutipes) zeigen einen giftigen Röhrling. Das gilt auch für Poren und Fleisch, die blau anlaufen (Boletus sensibilis, Boletus huronensis).",
@@ -620,7 +620,7 @@
     },
     "rocky_king": {
       "name": "Rocky-Mountains-Steinpilz",
-      "description": "Ein gedrungener Hochgebirgs-Steinpilz mit ziegelrotem bis rotbraunem Hut, weissen Poren und dickem hellem Stiel, oben genetzt",
+      "description": "Ein kräftiger Steinpilz aus dem Hochgebirge. Er hat einen ziegelroten bis rotbraunen Hut, weisse Poren und einen dicken, hellen Stiel, der oben genetzt ist.",
       "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September",
       "guide": {
         "identify": "Das ist ein grosser, gedrungener Steinpilz der hohen Rocky Mountains. Sein Hut ist ziegelrot bis rotbraun und frisch etwas klebrig. Junge Hüte sind oft weisslich bereift. Er ist röter als der Steinpilz (Boletus edulis), der dort ebenfalls wächst. Die Poren sind jung weiss und wie ausgestopft, dann werden sie gelb und oliv. Auf Druck verfärben sie sich nicht. Der dicke, helle Stiel trägt ein feines weisses Netz, zumindest im oberen Teil. Das weisse Fleisch läuft nicht blau an. Espen-Rotkappen (Leccinum) haben dunkle Schüppchen am Stiel. Rotkappen mit orangem Hut haben in Colorado schwere Magen-Darm-Vergiftungen ausgelöst. Rote oder orange Poren zeigen einen giftigen Röhrling.",
@@ -634,7 +634,7 @@
     },
     "lions_mane": {
       "name": "Igel-Stachelbart",
-      "description": "Ein weisser, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen, der gebraten an Krabbenfleisch erinnert",
+      "description": "Ein weisser, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen. Gebraten erinnert er an Krabbenfleisch.",
       "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen",
       "guide": {
         "identify": "Der Igel-Stachelbart ist ein einzelner, weisser, rundlicher Klumpen von 8 bis 24 cm. Er hat keinen Hut und keine Lamellen. Weiche, 1 bis 5 cm lange Stacheln hängen wie Eiszapfen herab. Im Alter wird er gelb. Das Fleisch ist weiss und weich und verfärbt sich beim Anschneiden nicht. Das Sporenpulver ist weiss. Seine Verwandten, der Ästige Stachelbart (Hericium coralloides) und Hericium americanum, sind verzweigt und haben kürzere Stacheln.",
@@ -648,7 +648,7 @@
     },
     "hen_of_the_woods": {
       "name": "Klapperschwamm",
-      "description": "Eine grosse Rosette aus sich überlappenden, graubraunen Hütchen am Fuss alter Eichen, unterseits mit weissen Poren",
+      "description": "Eine grosse Rosette aus überlappenden, graubraunen Hütchen am Fuss alter Eichen, mit weissen Poren darunter.",
       "howTo": "Suche am Fuss alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt",
       "guide": {
         "identify": "Der Klapperschwamm bildet eine Rosette von 15 bis 40 cm. Sie besteht aus vielen graubraunen Hütchen, die dachziegelartig übereinanderliegen. Sie sind löffel- oder fächerförmig und je 3 bis 14 cm breit. Alle verzweigen sich aus einem gemeinsamen weissen Strunk. Die Unterseite ist weiss und hat winzige Poren, keine Lamellen. Das Fleisch ist weiss und fest und verfärbt sich weder beim Schneiden noch auf Druck. Der Riesenporling (Meripilus) hat grössere, dickere Hüte, die auf Druck schwarz anlaufen. Der Eichhase (Polyporus umbellatus) hat runde Hütchen auf kleinen Stielen in der Mitte.",
@@ -662,7 +662,7 @@
     },
     "saffron_milk_cap": {
       "name": "Edel-Reizker",
-      "description": "Ein orangefarbener Hut mit dunkleren Ringen, der karottenorange Milch blutet und grün anläuft; in Spanien und Italien heiss begehrt",
+      "description": "Ein orangefarbener Hut mit dunkleren Ringen. Er blutet karottenorange Milch und läuft grün an, und in Spanien und Italien ist er heiss begehrt.",
       "howTo": "Suche unter Kiefern und Fichten vom Spätsommer bis November, am Mittelmeer und an der US-Pazifikküste bis in den Winter. Brich eine Lamelle ab: Die Milch muss orange bis rot sein, niemals weiss",
       "guide": {
         "identify": "Der Hut des Edel-Reizkers ist orange mit dunkleren, ringförmigen Zonen. Jung ist sein Rand eingerollt. Später wird er trichterförmig und ist oft grün gefleckt. Die dichten orangen Lamellen laufen leicht am Stiel herab. Der Stiel ist kurz, hohl und orange, oft mit dunkler orangen Grübchen. Brich eine Lamelle an und schau dir die Milch an. Sie ist karottenorange und kann langsam weinrot werden. Lamellen und Fleisch verfärben sich auf Druck grün. Weisse oder gelb werdende Milch zeigt einen anderen Milchling. Einer davon ist der Birken-Reizker (Lactarius torminosus). Er ist rosiger, hat einen zottig bärtigen Hutrand und wächst bei Birken.",
@@ -676,7 +676,7 @@
     },
     "hedgehog_mushroom": {
       "name": "Semmel-Stoppelpilz",
-      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen: einer der sichersten Wildpilze für Einsteiger",
+      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen darunter. Einer der sichersten Wildpilze für den Anfang.",
       "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen",
       "guide": {
         "identify": "Dreh ihn um. Unter dem Hut hängen weiche, brüchige Stacheln, 2 bis 6 mm lang, wie kleine Eiszapfen. Lamellen oder Leisten gibt es nicht. Die Stacheln lassen sich leicht abstreifen. Der Hut ist 4 bis 15 cm breit und cremefarben bis semmelgelb oder blass orange. Er ist trocken, samtig und oft buckelig. Der Stiel ist weiss, voll und sitzt oft nicht in der Mitte. Das feste weisse Fleisch verfärbt sich auf Druck langsam gelblich bis orangebraun. Der Rotgelbe Stoppelpilz (Hydnum rufescens) ist kleiner und kräftiger orange. Er hat dieselben weichen Stacheln, genau wie die amerikanischen Hydnum-Arten. Andere Stachelpilze wie Korkstachlinge (Hydnellum) und Habichtspilze (Sarcodon) sind zäh und korkig oder braun und schuppig. Viele davon sind bitter.",
@@ -690,7 +690,7 @@
     },
     "shaggy_mane": {
       "name": "Schopf-Tintling",
-      "description": "Ein hoher weisser, zottig beschuppter Zylinder auf Rasen und an Wegrändern, der sich binnen eines Tages nach dem Pflücken in schwarze Tinte auflöst",
+      "description": "Ein hoher weisser Zylinder mit zottigen Schuppen, auf Rasen und an Wegrändern. Innerhalb eines Tages nach dem Pflücken zerfliesst er zu schwarzer Tinte.",
       "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weisse Exemplare und koche sie noch am selben Tag; meide stark befahrene Strassen, dort nimmt er Schwermetalle auf",
       "guide": {
         "identify": "Der Schopftintling ist ein hoher weisser Zylinder, 5 bis 15 cm hoch. Er ist mit zottigen, abstehenden Schuppen bedeckt und hat einen blassbraunen Scheitel. Im Alter öffnet er sich zu einer Glocke. Die dicht stehenden Lamellen werden von weiss über rosa zu schwarz. Dann zerfliessen sie vom Hutrand her nach oben zu schwarzer Tinte. Der weisse Stiel ist glatt und hohl. Sein dünner Ring lässt sich verschieben und rutscht oft bis zum Grund. Das Sporenpulver ist schwarz. Der Falten-Tintling (Coprinopsis atramentaria) hat einen glatten, graubraunen, fein gerieften Hut ohne zottige Schuppen. Er wächst büschelig aus vergrabenem Holz. Auf Rasen in den USA kann der junge Chlorophyllum molybdites mit grünem Sporenpulver ähnlich aussehen. Seine Lamellen werden aber nie schwarz.",
@@ -704,7 +704,7 @@
     },
     "giant_puffball": {
       "name": "Riesenbovist",
-      "description": "Eine glatte weisse Kugel, fussballgross oder grösser, auf Wiesen und Weiden, mit festem, weissem Fleisch wie frischer Mozzarella",
+      "description": "Eine glatte weisse Kugel, so gross wie ein Fussball oder grösser, auf Wiesen und Weiden. Das Fleisch ist fest und weiss wie frischer Mozzarella.",
       "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiss sein, ohne jede Spur von Hut oder Stiel",
       "guide": {
         "identify": "Der Riesenbovist ist eine glatte weisse Kugel, oft 20 bis 50 cm gross. Er hat eine dünne, lederartige Haut und keinen Stiel. Ein wurzelartiger Strang verbindet ihn mit dem Boden. Schneide jeden einzelnen von oben nach unten in der Mitte durch. Innen muss er fest und durchgehend reinweiss sein, wie frischer Mozzarella. Siehst du im Schnitt die Umrisse von Hut, Lamellen oder Stiel, kann es ein junger Wulstling (Amanita) sein, der noch im Ei steckt. Der kann tödlich sein. Eine dicke, schuppige, gelbliche Haut und ein dunkles, violettschwarzes Inneres zeigen einen Kartoffelbovist (Scleroderma), und der ist giftig. Gelbes, olivfarbenes oder braunes Fleisch heisst, dass die Sporen reifen. Dann ist er nicht mehr essbar.",
@@ -718,7 +718,7 @@
     },
     "matsutake": {
       "name": "Matsutake",
-      "description": "Ein fester, weiss-brauner Pilz mit würzigem, zimtartigem Duft, in Japan der begehrteste aller Speisepilze",
+      "description": "Ein fester, weiss-brauner Pilz, der würzig riecht, ein bisschen nach Zimt. In Japan ist er der begehrteste aller Pilze.",
       "howTo": "Suche ab August in trockenen, sandigen Kiefernheiden Skandinaviens und Finnlands und von September bis November unter Nadelbäumen und Tanoak im Westen der USA. Harke nie den Waldboden auf. In Schweden und Norwegen steht er wegen der Kahlschläge auf der Roten Liste, nicht wegen des Sammelns; in den US-Nationalforsten brauchst du eine Genehmigung",
       "guide": {
         "identify": "Der Matsutake ist ein fester, schwerer Pilz. Sein Hut wird 6 bis 20 cm breit und ist weiss mit braunen Fasern und Schuppen. In Europa und Asien ist er brauner. Jung ist der Hutrand eingerollt. Die Lamellen stehen dicht, sind weiss bis cremefarben und am Stiel angewachsen. Ein dickes weisses Velum hinterlässt einen abstehenden Ring. Unterhalb des Rings steckt der Stiel in braunen Schuppen. Der volle Stiel wird nach unten schmaler und hat weder Knolle noch sackartige Scheide. Er riecht stark und würzig, nach Zimt mit einem Hauch von schmutzigen Socken. Ohne diesen Geruch ist es kein Matsutake. Der Geruch allein beweist aber nichts. Amanita smithiana und die weissen Knollenblätterpilze sind ebenfalls weiss. Das sind der Kegelhütige Knollenblätterpilz (Amanita virosa) in Europa, A. bisporigera im Osten und A. ocreata im Westen Nordamerikas. Sie haben ganz unten am Stiel eine Knolle, eine Scheide oder warzige Ringe. Ihr Ring ist zerrissen oder hängt wie ein Rock, und sie riechen nicht würzig. Sie zerstören Nieren oder Leber.",
@@ -732,7 +732,7 @@
     },
     "ramps": {
       "name": "Ramp-Lauch",
-      "description": "Der wilde Knoblauch Amerikas: breite, glatte grüne Blätter an violetten Stielen, die stark nach Zwiebel und Knoblauch riechen",
+      "description": "Der wilde Knoblauch Amerikas: breite, glatte grüne Blätter an violetten Stielen, die stark nach Zwiebel und Knoblauch riechen.",
       "howTo": "Suche in reichen, feuchten Laubwäldern im Osten der USA von März bis Mai, bevor die Bäume austreiben. Nimm ein Blatt pro Pflanze und lass die Zwiebel stehen; manche Parks verbieten das Sammeln, und Québec verbietet den Verkauf",
       "guide": {
         "identify": "Ramp-Lauch treibt zwei oder drei breite, glatte, flache Blätter direkt aus einer kleinen Zwiebel im Boden. Jedes Blatt hat einen eigenen Stiel, der unten oft purpurrot ist. Bis zum Frühsommer welken die Blätter. Danach trägt ein blattloser Stängel eine runde Dolde kleiner weisser Blüten. Zerreib ein Blatt. Ramp-Lauch riecht stark nach Zwiebel und Knoblauch, seine tödlichen Doppelgänger nicht. Der Geruch bleibt aber an deinen Fingern hängen. Nach den ersten Blättern beweist der Test deshalb nichts mehr. Prüf darum jede Pflanze auch an Blättern und Stielen. Der Germer hat gefaltete Blätter an einem aufrechten Stängel und wächst auf nassem Boden. Das Maiglöckchen hat zwei oder drei Blätter, die sich am Grund gegenseitig umhüllen. Die Herbstzeitlose ist aus Gärten verwildert. Sie hat ungestielte Blätter in einem Büschel. Melanthium parviflorum hat ähnliche grundständige Blätter, riecht aber nicht nach Zwiebel.",
@@ -746,7 +746,7 @@
     },
     "fiddleheads": {
       "name": "Straussenfarn-Triebe",
-      "description": "Die fest eingerollten jungen Wedel des Straussenfarns: glatt, leuchtend grün, mit braunen, papierartigen Schuppen",
+      "description": "Die fest eingerollten jungen Wedel des Straussenfarns. Sie sind glatt und leuchtend grün, mit braunen, papierartigen Schuppen.",
       "howTo": "Suche in Flussauen und feuchten Wäldern von Ende April bis Mai, solange die Wedel noch eingerollt sind. Koche sie immer vor dem Essen ab und nimm höchstens die Hälfte der Triebe eines Horsts",
       "guide": {
         "identify": "Gesammelt wird nur der Straussenfarn. Er wächst in Horsten mit etwa drei bis zwölf eingerollten Trieben. Das sind feste grüne Spiralen von etwa 2,5 cm Durchmesser. Der Stiel ist glatt und hat auf der Innenseite eine tiefe, U-förmige Rinne. Dünne braune, papierartige Schuppen bedecken die Triebe und lassen sich abreiben. Die fruchtbaren Wedel vom Vorjahr stehen oft noch im Horst. Sie sind dunkelbraun, steif und sehen aus wie Federn. Der Adlerfarn ist krebserregend. Er treibt einzeln aus kriechenden Sprossen unter der Erde. Sein Stiel ist flaumig behaart und rund, er hat keine Papierschuppen, und seine Spitze teilt sich in drei. Andere Farne wie der Zimtfarn haben wollige Triebe und sind nicht zu empfehlen.",
@@ -760,7 +760,7 @@
     },
     "cloudberry": {
       "name": "Moltebeere",
-      "description": "Eine bernsteinorange Beere nordischer Moore, wie eine weiche Himbeere, in Skandinavien heiss begehrt",
+      "description": "Eine bernsteinorange Beere aus nordischen Mooren. Sie sieht aus wie eine weiche Himbeere, und in Skandinavien ist sie heiss begehrt.",
       "howTo": "Suche im Juli und August auf offenen Mooren und feuchten Heiden Fennoskandiens, wenn die Beeren von hartem Rot zu weichem Bernsteingelb wechseln. Frost zur Blütezeit kann die Ernte eines Jahres vernichten",
       "guide": {
         "identify": "Die Moltebeere ist eine niedrige krautige Pflanze, kein Strauch, etwa eine Hand hoch. Sie wächst aus kriechenden Sprossen unter der Erde. Jeder aufrechte Trieb trägt ein bis drei rundliche, runzlige Blätter mit fünf bis sieben flachen Lappen. Dazu kommt eine einzelne weisse Blüte. Männliche und weibliche Blüten wachsen auf verschiedenen Pflanzen, deshalb tragen nur manche Triebe Früchte. Die Beere sieht aus wie eine Himbeere aus wenigen grossen Kügelchen. Erst ist sie hart und rot. Reif wird sie weich und bernsteinorange.",
@@ -774,7 +774,7 @@
     },
     "huckleberry": {
       "name": "Huckleberry",
-      "description": "Eine violettschwarze Bergbeere aus dem Nordwesten der USA, süsser und herber als eine Heidelbeere",
+      "description": "Eine violettschwarze Bergbeere aus dem Nordwesten der USA. Sie ist süsser und herber als eine Heidelbeere.",
       "howTo": "Suche von Juli bis September an subalpinen Hängen und auf alten Brandflächen in 1.000–2.000 m in Montana, Idaho und den Cascades. Dort leben Bären: Mach dich bemerkbar und trag Bärenspray bei dir",
       "guide": {
         "identify": "Die Huckleberry ist ein Strauch, der im Winter die Blätter verliert. Meist ist sie hüft- bis schulterhoch. Ihre jungen Zweige sind leicht kantig und gelbgrün. Die Blätter sind dünn und oval, mit spitzem Ende und fein gesägtem Rand. Im Frühsommer hängen cremerosa, krugförmige Blüten einzeln in den Blattachseln. Aus jeder wird eine einzelne violette bis rötlich schwarze Beere, meist ohne hellen Reif. An der Spitze sitzt ein kleines Krönchen. In denselben Wäldern wachsen Beeren, die du nicht essen solltest, aber sie wachsen anders. Die Behüllte Heckenkirsche (Lonicera involucrata) trägt schwarze Beeren paarweise in roten Hochblättern. Das Rote Christophskraut (Actaea rubra) ist eine krautige Pflanze mit roten oder weissen Beeren in Büscheln.",
@@ -788,7 +788,7 @@
     },
     "pawpaw": {
       "name": "Indianerbanane",
-      "description": "Die grösste heimische Frucht Nordamerikas: grün, mangoförmig, mit cremigem Fruchtfleisch, das nach Banane und Mango schmeckt",
+      "description": "Die grösste heimische Frucht Nordamerikas. Sie ist grün und geformt wie eine Mango, mit puddingweichem Fruchtfleisch, das nach Banane und Mango schmeckt.",
       "howTo": "Suche von Ende August bis Oktober im Unterholz der Auwälder im Osten der USA, wenn die Früchte weich werden und fallen. Iss nur das Fruchtfleisch: Schale und Samen sind giftig",
       "guide": {
         "identify": "Die Indianerbanane ist ein kleiner Baum im Unterholz. Durch Wurzelausläufer bildet sie oft ganze Gruppen. Die Blätter sind gross, hängen herab und sind oberhalb der Mitte am breitesten. Zerrieben riechen sie nach grüner Paprika. Im Frühjahr öffnen sich vor den Blättern tief weinrote Blüten mit sechs Blütenblättern. Die Frucht ist länglich und grün bis gelbgrün. Sie wächst einzeln oder in Büscheln von zwei bis neun Früchten. Innen umgibt weiches, gelbes Fruchtfleisch wie Pudding zwei Reihen grosser, flacher brauner Samen.",
@@ -802,7 +802,7 @@
     },
     "rose_hips": {
       "name": "Hagebutten",
-      "description": "Die roten Herbstfrüchte der Wildrosen, reich an Vitamin C und voller Samen mit juckenden Haaren",
+      "description": "Die roten Herbstfrüchte der Wildrosen. Sie sind reich an Vitamin C, und die Samen darin stecken in juckenden Härchen.",
       "howTo": "Suche von Ende August bis November an Hecken, Gebüschen und Waldrändern; nach den ersten Frösten sind sie am weichsten. Entferne Samen und Haare, sie reizen Mund und Darm",
       "guide": {
         "identify": "Die Hundsrose ist ein Strauch mit langen, bogig überhängenden Trieben und kräftigen, hakigen Stacheln. Ihre Blätter haben 5 bis 7 gezähnte Fiederblättchen. Die Hagebutten sind eiförmig, glatt und glänzend scharlachrot, 1 bis 2 cm lang. Reif tragen sie keine Kelchblätter mehr. Innen sitzen harte Kerne in feinen, juckenden Härchen. Schmerwurz, Rotfrüchtige Zaunrübe und Bittersüsser Nachtschatten wachsen in denselben Hecken. Sie tragen glänzend rote, giftige Beeren in Büscheln, an kletternden Stängeln ohne Stacheln. Eine Hagebutte dagegen wächst an einem stacheligen Rosenzweig und ist voller behaarter Kerne.",
@@ -816,7 +816,7 @@
     },
     "sloes": {
       "name": "Schlehen",
-      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns, bereift und herb-sauer",
+      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns. Sie haben einen bläulichen Reif und schmecken herb und sauer.",
       "howTo": "Suche von September bis November an Hecken und buschigen Hängen; nach den ersten Frösten werden sie milder. Zerdrück die Kerne nicht und achte auf glänzend schwarze Doppelgänger wie Kreuzdorn und Tollkirsche",
       "guide": {
         "identify": "Schlehen wachsen am Schlehdorn. Das ist ein dichter, holziger Strauch mit dunkler Rinde, und seine Seitentriebe enden in spitzen Dornen. Im März und April blüht er weiss, noch vor dem Laub. Die Frucht ist rund und etwa 1 cm gross. Sie ist blauschwarz mit einem matten Reif, der sich abwischen lässt. Schlehen sitzen einzeln oder zu zweit an den Zweigen. Innen umgibt grünes, sehr herbes Fruchtfleisch einen einzigen Stein. Der Kreuzdorn hat glänzend schwarze Beeren in Büscheln, ohne Reif. Die Tollkirsche ist eine weiche, belaubte Staude, kein Dornstrauch. Ihre glänzend schwarzen Beeren sitzen einzeln, jede in einem grünen Stern aus Kelchblättern.",
@@ -830,7 +830,7 @@
     },
     "sea_buckthorn": {
       "name": "Sanddorn",
-      "description": "Leuchtend orange Beeren dicht an dornigen, silbrig belaubten Zweigen: sauer und reich an Vitamin C",
+      "description": "Leuchtend orange Beeren, dicht an dornigen Zweigen mit silbrigen Blättern. Sie sind sauer und reich an Vitamin C.",
       "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten",
       "guide": {
         "identify": "Sanddorn ist ein dorniger, stark verzweigter Strauch, der Dickichte bildet. Seine schmalen, weidenähnlichen Blätter sind mit silbrigen Schuppen bedeckt, vor allem auf der Unterseite. Männliche und weibliche Blüten wachsen an getrennten Sträuchern, deshalb tragen nur die weiblichen Früchte. Die Beeren sind rund, leuchtend orange und 6 bis 8 mm gross. Sie sitzen dicht gedrängt auf sehr kurzen Stielen an den Zweigen. Sie sind saftig und sehr sauer und platzen bei der kleinsten Berührung. Auch Eberesche und Feuerdorn haben orange Beeren. Sie tragen sie aber in gestielten Büscheln zwischen grünen Blättern.",
@@ -844,7 +844,7 @@
     },
     "boletus": {
       "name": "Boletus (Steinpilze & Maronen)",
-      "description": "Steinpilze und Maronen in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz, in Europa der Maronen-Röhrling und die nordamerikanischen Königsröhrlinge",
+      "description": "Steinpilze und Maronen zusammen: Fichten-, Kiefern-, Bronze- und Sommersteinpilz, in Europa der Maronenröhrling und die nordamerikanischen Steinpilze.",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen",
       "guide": {
         "identify": "In dieser Gruppe stecken mehrere Röhrlinge. In Europa sind das der Steinpilz (Boletus edulis) sowie Kiefern-, Bronze- und Sommersteinpilz. In Nordamerika kommen der Ostamerika-Steinpilz und der Rocky-Mountains-Steinpilz hinzu. Auch der Maronenröhrling (Imleria badia) gehört in die Gruppe. Die Steinpilze haben jung weisse Poren, ein Netz am Stiel und weisses Fleisch, das nicht blau wird. Der Maronenröhrling hat gelbe Poren, die blaugrün anlaufen, und einen gestreiften Stiel ohne Netz. Am Hut erkennst du sie. Beim Steinpilz ist er braun und fettig, beim Kiefern-Steinpilz weinrot und beim Bronze-Steinpilz fast schwarz und samtig. Der Sommersteinpilz hat einen hellen, rissigen Hut, der Ostamerika-Steinpilz einen hellbraunen bis lilabraunen. Der Rocky-Mountains-Steinpilz hat einen ziegelroten Hut, der Maronenröhrling einen kastanienbraunen, klebrigen. Rote oder orange Poren zeigen einen giftigen Röhrling, etwa den Satansröhrling (Rubroboletus satanas). Rosa Poren und ein dunkles Stielnetz zeigen den bitteren Gallenröhrling (Tylopilus felleus).",
@@ -858,7 +858,7 @@
     },
     "cantharellus": {
       "name": "Pfifferlinge (alle)",
-      "description": "Alle Pfifferlinge in einem Wert: die goldenen Pfifferlinge, die Totentrompete und der Trompetenpfifferling und in Nordamerika der glatte Pfifferling und der Pazifik-Pfifferling",
+      "description": "Alle Pfifferlinge zusammen: der Echte Pfifferling, die Totentrompete, der Trompetenpfifferling und in Nordamerika der Glatte und der Pazifik-Pfifferling.",
       "howTo": "Jeder Ort zeigt den besten ihrer Werte; goldene Pfifferlinge an moosigen Hängen unter Eichen, Buchen und Nadelbäumen nach warmem Regen, Totentrompeten in feuchtem Laub unter Laubbäumen, Trompetenpfifferlinge auf nassem Moos unter Nadelbäumen spät in der Saison",
       "guide": {
         "identify": "Zu dieser Gruppe gehören fünf Arten. Das sind der Pfifferling, der Glatte und der Pazifik-Pfifferling aus Nordamerika, die Totentrompete und der Trompetenpfifferling. Die letzten beiden gehören zur nahe verwandten Gattung Craterellus. Alle haben stumpfe, gegabelte Leisten oder eine fast glatte Unterseite, die am Stiel herabläuft. Dünne, messerartige Lamellen haben sie nie. Pfifferling, Glatter und Pazifik-Pfifferling sind gelb bis orange und fleischig und haben einen vollen Stiel. Der Trompetenpfifferling ist klein, mit braunem Hut und hohlem gelbem Stiel. Die Totentrompete ist ein dünnes, hohles, grauschwarzes Horn. Jede Art hat ihren eigenen gefährlichen Doppelgänger. Bei den gelben ist es der Ölbaumtrichterling (Omphalotus), mit echten Lamellen und büschelig auf Holz. Zwischen Trompetenpfifferlingen ist es der tödliche Spitzgebuckelte Raukopf (Cortinarius rubellus), mit rostbraunen Lamellen.",
@@ -872,7 +872,7 @@
     },
     "bay_bolete": {
       "name": "Maronen-Röhrling",
-      "description": "Ein Röhrling mit kastanienbraunem, bei Nässe schmierigem Hut, cremefarbenen bis olivgelben Poren, die auf Druck blaugrün anlaufen, und gestreiftem Stiel ohne Netz",
+      "description": "Ein Röhrling mit kastanienbraunem Hut, der bei Nässe schmierig wird. Die Poren laufen blaugrün an, und der gestreifte Stiel hat kein Netz.",
       "howTo": "Such im Moos unter Kiefern und Fichten, aber auch unter Buchen und Eichen, auf saurem Sandboden von August bis zu den ersten Frösten; am meisten gibt es im Oktober, wenn die Steinpilze nachlassen. Er speichert mehr Tschernobyl-Cäsium als die meisten Pilze, iss ihn in Bayern und Österreich deshalb nur gelegentlich",
       "guide": {
         "identify": "Der Maronenröhrling, kurz Marone, ist ein Röhrling ohne das Stielnetz der Steinpilze. Der Hut ist kastanienbraun. Trocken fühlt er sich an wie Wildleder, bei Nässe wird er schmierig. Die Poren sind cremefarben bis blassgelb, später oliv, und laufen auf Druck blaugrün an. Das Fleisch ist weiss bis blassgelb und kann beim Anschneiden leicht blau werden. Der Stiel ist schlanker und braun gestreift auf hellerem Grund. Rote oder orange Poren schliessen ihn aus (Rubroboletus satanas, Neoboletus subvelutipes). Das gilt auch für rosa Poren mit genetztem Stiel (Tylopilus felleus). Im Osten Nordamerikas musst du noch zwei weitere kennen. Boletus sensibilis wird sofort überall dunkelblau und hat einen gelben Stiel. Boletus huronensis ist kompakt, geformt wie ein Steinpilz und hat einen gelblichen Stiel.",

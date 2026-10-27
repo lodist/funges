@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Golden Chanterelle",
-      "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
+      "description": "A golden yellow mushroom shaped like a funnel. It smells fruity, a little like apricots.",
       "howTo": "Look for them in deciduous forests, especially near oak and beech trees",
       "guide": {
         "identify": "Chanterelles are egg-yolk to golden yellow and grow up to 10 cm across. The cap is a shallow funnel with a wavy edge that curls under. Underneath you won't find real gills, but blunt, forking ridges that run down the stem. You can't lift them off one by one like gills. The stem is solid, and the flesh is firm and white to pale yellow. It smells faintly of apricots. Two look-alikes matter. Jack-o'-lanterns (Omphalotus) have thin, crowded real gills, grow in clusters from wood or buried roots and are orange right through. The false chanterelle (Hygrophoropsis aurantiaca) is a deeper orange, soft, and also has thin, crowded gills.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Pfifferling",
-      "description": "Ein goldgelber Pilz mit charakteristischer Trichterform und fruchtigem Aroma",
+      "description": "Ein goldgelber Pilz in Trichterform. Er riecht fruchtig, ein bisschen nach Aprikose.",
       "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen",
       "guide": {
         "identify": "Pfifferlinge sind eigelb bis goldgelb und werden bis 10 cm breit. Der Hut ist ein flacher Trichter mit welligem Rand, der nach unten eingerollt ist. Darunter sitzen keine echten Lamellen, sondern stumpfe, gegabelte Leisten, die am Stiel herablaufen. Anders als Lamellen kannst du sie nicht einzeln abheben. Der Stiel ist voll, das Fleisch fest und weiss bis blassgelb. Er riecht leicht nach Aprikose. Zwei Doppelgänger musst du kennen. Ölbaumtrichterlinge (Omphalotus) haben dünne, dicht stehende echte Lamellen, wachsen büschelig aus Holz oder vergrabenen Wurzeln und sind bis ins Fleisch orange. Der Falsche Pfifferling (Hygrophoropsis aurantiaca) ist kräftiger orange, weich und hat ebenfalls dünne, dichte Lamellen.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Rebozuelo",
-      "description": "Un hongo amarillo dorado con forma de embudo distintiva y aroma afrutado",
+      "description": "Una seta de color amarillo dorado con forma de embudo. Huele a fruta, un poco a albaricoque.",
       "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas",
       "guide": {
-        "identify": "Amarillo yema a dorado y de hasta 10 cm, con el sombrero en embudo poco profundo y el borde ondulado y enrollado. Debajo tiene pliegues gruesos y romos que se bifurcan y bajan por el pie; no se pueden separar uno a uno como las láminas. El pie es macizo y la carne, blanca a amarillo pálido y firme, huele levemente a albaricoque. Las setas del olivo (Omphalotus) tienen láminas verdaderas finas y apretadas, salen en grupos de madera o de raíces enterradas y son anaranjadas también por dentro; el falso rebozuelo (Hygrophoropsis aurantiaca) es más anaranjado y blando, con láminas finas y apretadas.",
-        "habitat": "Vive asociado a las raíces de los árboles: bajo robles, hayas, abedules, castaños, píceas y pinos, sobre todo en suelos ácidos con musgo, a menudo en taludes y junto a caminos. Común en toda Europa, del llano a la montaña. En Norteamérica el rebozuelo es un grupo de especies cercanas, como Cantharellus flavus en el este, C. californicus bajo encinas americanas en California y C. cascadensis en el noroeste del Pacífico.",
-        "season": "En el centro y norte de Europa, de finales de junio a octubre, tras lluvias cálidas y abundantes; en el sur de Europa sale más tarde y dura más, hasta el invierno en los encinares y alcornocales mediterráneos. En el este de EE. UU., en verano tras lluvias cálidas; en el oeste, tras las lluvias de otoño, y en California hasta el invierno.",
-        "picking": "Córtalo o gíralo por la base, límpialo de tierra en el sitio y deja los pequeños. En Alemania está especialmente protegido y solo se permiten pequeñas cantidades para consumo propio; los cantones suizos, las regiones italianas, zonas de Francia y España y los terrenos públicos de EE. UU. fijan sus propios límites o permisos, así que consulta las normas locales.",
-        "kitchen": "Una vez identificados con total seguridad, limpia los rebozuelos con un cepillo en lugar de lavarlos: absorben agua. No los comas nunca crudos; cocínalos bien, primero en la sartén sin grasa hasta que suelten el agua y luego con mantequilla. Sabor suave, afrutado y algo picante, textura firme; van bien con huevos, nata, patatas, pasta y pollo.",
-        "keeps": "Unos días en la nevera, en papel, no en plástico. Secos se vuelven correosos; para guardarlos más tiempo, saltéalos en mantequilla y congélalos.",
+        "identify": "Los rebozuelos son de amarillo yema a amarillo dorado y llegan a 10 cm de ancho. El sombrero es un embudo poco hondo, con el borde ondulado y vuelto hacia abajo. Debajo no tiene láminas de verdad, sino pliegues romos y ramificados que bajan por el pie. No puedes separarlos uno a uno como las láminas. El pie es macizo y la carne, firme y de blanca a amarillo pálido. Huele un poco a albaricoque. Hay dos parecidos que importan. La seta del olivo (Omphalotus) tiene láminas de verdad, finas y apretadas. Sale en grupos sobre madera o sobre raíces enterradas y es naranja también por dentro. El falso rebozuelo (Hygrophoropsis aurantiaca) es más anaranjado y blando. También tiene láminas finas y apretadas.",
+        "habitat": "Los rebozuelos viven unidos a las raíces de los árboles. Crecen bajo robles, hayas, abedules, castaños, píceas y pinos, sobre todo en suelo ácido con musgo. A menudo los encuentras en taludes y junto a los caminos. Son comunes en toda Europa, desde el llano hasta la montaña. En Norteamérica, el rebozuelo son en realidad varias especies cercanas. Algunos ejemplos son Cantharellus flavus en el este, C. californicus bajo encinas americanas en California y C. cascadensis en el noroeste del Pacífico.",
+        "season": "En el centro y el norte de Europa salen de finales de junio a octubre, después de lluvias cálidas que empapen bien. En el sur de Europa la temporada empieza más tarde y dura más. En los encinares mediterráneos llega hasta el invierno. En el este de EE. UU. salen en verano, después de lluvias cálidas. En el oeste siguen a las lluvias de otoño. En California siguen saliendo hasta el invierno.",
+        "picking": "Córtalos o gíralos por la base y quítales la tierra allí mismo con un cepillo. Deja crecer los pequeños. En Alemania están especialmente protegidos. Allí solo puedes coger pequeñas cantidades, para consumo propio. Los cantones suizos, las regiones italianas, zonas de Francia y España y los terrenos públicos de EE. UU. ponen sus propios límites o permisos. Consulta las normas locales.",
+        "kitchen": "Cuando los tengas bien identificados, límpialos con un cepillo en vez de lavarlos. Absorben agua. No los comas nunca crudos. Cocínalos bien. Ponlos primero en la sartén sin grasa hasta que se vaya el agua. Luego añade mantequilla. Tienen un sabor suave, afrutado y algo picante. La textura es firme. Van bien con huevos, nata, patatas, pasta y pollo.",
+        "keeps": "Aguantan unos días en la nevera, en papel y no en plástico. Secos se vuelven correosos. Para guardarlos más tiempo, saltéalos en mantequilla y congélalos.",
         "source": "Identificación y hábitat: First Nature (Reino Unido) y MushroomExpert.com. Especies norteamericanas y especies parecidas: University of Florida IFAS Extension. Protección: Reglamento federal alemán de protección de especies. Temporada: registros de GBIF."
       }
     },

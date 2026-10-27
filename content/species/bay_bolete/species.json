@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Bay Bolete",
-      "description": "A chestnut-brown capped bolete, tacky when wet, with cream to olive-yellow pores that bruise blue-green and a streaky stem without a net",
+      "description": "A bolete with a chestnut-brown cap that turns sticky when wet. Its pores bruise blue-green, and its streaky stem has no net.",
       "howTo": "Look in moss under pine and spruce, also beech and oak, on acid sandy soil from August to the first frosts; it peaks in October as porcini fade. It gathers more Chernobyl caesium than most mushrooms, so in Bavaria and Austria eat it only now and then",
       "guide": {
         "identify": "This is a bolete without the porcini's net on the stem. The cap is chestnut brown. It feels like suede when dry and turns sticky when wet. The pores are cream to pale yellow, later olive, and bruise blue-green. The flesh is white to pale yellow and may turn faintly blue when you cut it. The stem is slimmer and streaked brown on a paler background. Red or orange pores rule it out (Rubroboletus satanas, Neoboletus subvelutipes). So do pink pores with a netted stem (Tylopilus felleus). In eastern North America there are two more to know. Boletus sensibilis turns dark blue instantly all over and has a yellow stem. Boletus huronensis is dense and shaped like a porcino, with a yellowish stem.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Maronen-Röhrling",
-      "description": "Ein Röhrling mit kastanienbraunem, bei Nässe schmierigem Hut, cremefarbenen bis olivgelben Poren, die auf Druck blaugrün anlaufen, und gestreiftem Stiel ohne Netz",
+      "description": "Ein Röhrling mit kastanienbraunem Hut, der bei Nässe schmierig wird. Die Poren laufen blaugrün an, und der gestreifte Stiel hat kein Netz.",
       "howTo": "Such im Moos unter Kiefern und Fichten, aber auch unter Buchen und Eichen, auf saurem Sandboden von August bis zu den ersten Frösten; am meisten gibt es im Oktober, wenn die Steinpilze nachlassen. Er speichert mehr Tschernobyl-Cäsium als die meisten Pilze, iss ihn in Bayern und Österreich deshalb nur gelegentlich",
       "guide": {
         "identify": "Der Maronenröhrling, kurz Marone, ist ein Röhrling ohne das Stielnetz der Steinpilze. Der Hut ist kastanienbraun. Trocken fühlt er sich an wie Wildleder, bei Nässe wird er schmierig. Die Poren sind cremefarben bis blassgelb, später oliv, und laufen auf Druck blaugrün an. Das Fleisch ist weiss bis blassgelb und kann beim Anschneiden leicht blau werden. Der Stiel ist schlanker und braun gestreift auf hellerem Grund. Rote oder orange Poren schliessen ihn aus (Rubroboletus satanas, Neoboletus subvelutipes). Das gilt auch für rosa Poren mit genetztem Stiel (Tylopilus felleus). Im Osten Nordamerikas musst du noch zwei weitere kennen. Boletus sensibilis wird sofort überall dunkelblau und hat einen gelben Stiel. Boletus huronensis ist kompakt, geformt wie ein Steinpilz und hat einen gelblichen Stiel.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Boleto Bayo",
-      "description": "Un boleto de sombrero castaño, viscoso con la humedad, con poros de crema a amarillo oliva que azulean al tocarlos y pie estriado sin retículo",
+      "description": "Un boleto de sombrero castaño que se vuelve viscoso con la humedad. Sus poros se manchan de azul verdoso al tocarlos. Su pie tiene vetas pero no tiene red.",
       "howTo": "Búscalo entre el musgo bajo pinos y píceas, y también hayas y robles, en suelos ácidos y arenosos desde agosto hasta las primeras heladas; abunda sobre todo en octubre, cuando los boletos comestibles declinan. Acumula más cesio de Chernóbil que la mayoría de las setas: en Baviera y Austria cómelo solo de vez en cuando",
       "guide": {
-        "identify": "Un boleto sin el retículo en el pie de los boletos tipo porcini: el sombrero es castaño, como de ante en seco y viscoso con la humedad. Los poros son de crema a amarillo pálido, luego oliva, y azulean al presionarlos; la carne, de blanca a amarillo pálido, puede azulear algo al cortarla. El pie, más delgado, está estriado de pardo sobre fondo más claro. Poros rojos o naranjas (Rubroboletus satanas, Neoboletus subvelutipes) o rosados con el pie reticulado (Tylopilus felleus) lo descartan; en el este de Norteamérica, Boletus sensibilis azulea al instante por completo y tiene el pie amarillo, y Boletus huronensis es denso, con forma de porcini y pie amarillento.",
-        "habitat": "Con pinos y píceas, también hayas, robles y castaños, en suelo ácido y arenoso, a menudo entre musgo junto a tocones viejos; común en las llanuras del norte y el centro de Europa. En Norteamérica, en el noreste, los Grandes Lagos y los Apalaches, bajo pinos y tsugas.",
-        "season": "En Europa, de agosto a las primeras heladas fuertes, con su máximo en octubre, después de los boletos comestibles, y hasta diciembre en el sur. En el noreste de Norteamérica antes, sobre todo de julio a septiembre.",
-        "picking": "Gíralo o córtalo y deja los jóvenes y los viejos. Infórmate de las normas: en muchos montes hace falta permiso y en las reservas naturales suele estar prohibido recoger.",
-        "kitchen": "Una vez identificado con certeza, limpia el sombrero con un paño, pélalo si está viscoso, quita los tubos blandos de los viejos y cocínalo bien; el azul desaparece al cocinarlo y el sabor es suave. Acumula más cesio radiactivo que la mayoría de las setas: en partes de Baviera y Austria, cómelo solo de vez en cuando.",
-        "keeps": "Se seca bien en láminas finas y se congela después de cocinarlo.",
+        "identify": "Es un boleto sin la redecilla en el pie que tienen los boletus del grupo edulis. El sombrero es castaño. En seco tiene un tacto de ante y con la humedad se vuelve pegajoso. Los poros son de color crema a amarillo pálido, luego oliva. Al tocarlos se manchan de verde azulado. La carne es de blanca a amarillo pálido y al cortarla puede azulear un poco. El pie es más delgado y tiene vetas pardas sobre un fondo más claro. Si los poros son rojos o naranjas, no es él (Rubroboletus satanas, Neoboletus subvelutipes). Tampoco lo es si los poros son rosados y el pie tiene redecilla (Tylopilus felleus). En el este de Norteamérica hay dos más que debes conocer. Boletus sensibilis se vuelve azul oscuro al instante por todas partes y tiene el pie amarillo. Boletus huronensis es compacto, con forma de boleto comestible y el pie amarillento.",
+        "habitat": "Crece con pinos y píceas, y también con hayas, robles y castaños. Le gusta el suelo ácido y arenoso. A menudo sale entre el musgo, junto a tocones viejos. Es común en las tierras bajas del norte y el centro de Europa. En Norteamérica crece en el noreste, en torno a los Grandes Lagos y en los Apalaches, bajo pinos y tsugas.",
+        "season": "En Europa sale de agosto hasta las primeras heladas fuertes. Su mejor momento es octubre, después del boleto comestible. En el sur sigue hasta diciembre. En el noreste de Norteamérica sale antes, sobre todo de julio a septiembre.",
+        "picking": "Sácalo girándolo o córtalo. Deja los jóvenes y los viejos. Consulta las normas locales, porque en las reservas naturales a menudo está prohibido recoger.",
+        "kitchen": "Primero asegúrate bien de que lo has identificado. Limpia el sombrero con un paño y pélalo si está viscoso. Si los tubos están viejos y blandos, quítalos. Cocínalo bien. El azul desaparece al cocinarlo y el sabor es suave. Acumula más cesio radiactivo que la mayoría de las setas. En partes de Baviera y Austria, cómelo solo de vez en cuando.",
+        "keeps": "Se seca bien en láminas finas. Cocinado, también se congela bien.",
         "source": "Identificación y hábitat: First Nature y MushroomExpert. Temporada: registros de GBIF. Cesio: Oficina Federal alemana de Protección Radiológica (BfS) y LGL de Baviera."
       }
     },

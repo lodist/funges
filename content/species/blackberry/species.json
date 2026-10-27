@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Blackberry",
-      "description": "Sweet, dark purple berries that grow on thorny bushes",
+      "description": "Sweet, dark purple berries on thorny bushes.",
       "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer",
       "guide": {
         "identify": "Brambles have long, arching stems armed with hooked prickles. Each leaf has three or five toothed leaflets spread like a hand. They are dark green on top and paler underneath. The flowers are white or pink, with five petals. The berries are made of many small round drupelets. They go from green to red to glossy black. A ripe blackberry comes off with its white core inside. A raspberry leaves its core on the plant and is hollow. Rubus fruticosus is a group of hundreds of closely related brambles. You use them all the same way.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Brombeere",
-      "description": "Süsse, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
+      "description": "Süsse, dunkelviolette Beeren an dornigen Sträuchern.",
       "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer",
       "guide": {
         "identify": "Brombeeren haben lange, bogig überhängende Triebe voller hakiger Stacheln. Jedes Blatt besteht aus drei oder fünf gesägten Blättchen, die wie eine Hand gespreizt sind. Oben sind sie dunkelgrün, unten heller. Die Blüten sind weiss oder rosa und haben fünf Blütenblätter. Die Beeren bestehen aus vielen kleinen runden Kügelchen. Sie werden erst grün, dann rot und schliesslich glänzend schwarz. Eine reife Brombeere löst sich mitsamt ihrem weissen Zapfen. Eine Himbeere lässt den Zapfen an der Pflanze und ist innen hohl. Rubus fruticosus ist eine Gruppe aus Hunderten eng verwandter Brombeeren. Du verwendest sie alle gleich.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Mora",
-      "description": "Bayas dulces de color púrpura oscuro que crecen en arbustos espinosos",
+      "description": "Bayas dulces de color morado oscuro en zarzas con pinchos.",
       "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano",
       "guide": {
-        "identify": "La zarza es un arbusto de tallos largos y arqueados armados de aguijones ganchudos; las hojas tienen tres o cinco folíolos dentados dispuestos como una mano, verde oscuro por encima y más claros por debajo. Sus flores blancas o rosadas de cinco pétalos dan frutos formados por muchas drupas pequeñas y redondas, primero verdes, luego rojas y, maduras, de un negro brillante. Una mora madura se suelta con su corazón blanco dentro; una frambuesa deja el corazón en la planta y queda hueca. Rubus fruticosus agrupa cientos de zarzas muy emparentadas, que se aprovechan todas igual.",
-        "habitat": "Setos, bordes y claros de bosque, matorrales, solares y taludes de vías, en casi cualquier suelo, en toda Europa salvo el extremo norte. En EE. UU. crecen zarzas autóctonas en campos abandonados y bordes de bosque, y la zarza del Himalaya, introducida, forma matorrales densos en el noroeste del Pacífico y en California.",
-        "season": "Madura desde julio en el sur de Europa y de EE. UU., y desde finales de julio o agosto más al norte, y sigue hasta las primeras heladas de septiembre y octubre; en la misma zarza suele haber a la vez flores, frutos verdes y frutos maduros.",
-        "picking": "Coge solo moras bien negras que se suelten con un tirón suave, deja las rojas y algunas para los animales y evita las cunetas con mucho tráfico y los bordes que puedan estar tratados con herbicida. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
-        "kitchen": "Una vez identificadas con certeza, se comen crudas o cocinadas: en crumble y tartas con manzana, en mermelada, jalea, sirope o vinagre. Lávalas justo antes de usarlas y revisa que no tengan insectos. El sabor va de dulce a ácido según la zarza.",
-        "keeps": "Sin lavar y extendidas en un recipiente plano, aguantan uno o dos días en la nevera. Para congelarlas, extiéndelas en una bandeja y pásalas a bolsas cuando estén duras; congeladas sirven para cocinar.",
+        "identify": "Las zarzas tienen tallos largos y arqueados, armados de pinchos ganchudos. Cada hoja tiene tres o cinco hojuelas dentadas, abiertas como una mano. Son verde oscuro por arriba y más claras por debajo. Las flores son blancas o rosadas, de cinco pétalos. Cada mora está hecha de muchas bolitas pequeñas. Pasan de verdes a rojas y luego a negras y brillantes. Una mora madura se suelta con su centro blanco dentro. La frambuesa deja el centro en la planta y queda hueca. Rubus fruticosus es un grupo de cientos de zarzas muy emparentadas. Todas se aprovechan igual.",
+        "habitat": "Búscalas en setos, bordes y claros de bosque, matorrales, solares y taludes de las vías del tren. Crecen en casi cualquier suelo, en toda Europa salvo el extremo norte. En EE. UU. hay zarzas autóctonas en campos abandonados y bordes de bosque. La zarza del Himalaya, que es introducida, forma matorrales cerrados en el noroeste del Pacífico y en California.",
+        "season": "En el sur de Europa y en EE. UU. las moras maduran desde julio. Más al norte empiezan a finales de julio o en agosto. Siguen saliendo hasta las primeras heladas, en septiembre y octubre. En la misma zarza suele haber a la vez flores, moras verdes y moras maduras.",
+        "picking": "Coge solo moras bien negras que se suelten con un tirón suave. Deja las rojas y deja algunas para los animales. Evita las cunetas con mucho tráfico y los bordes tratados con herbicida. En Europa central hay que pensar en la tenia del zorro. La autoridad sanitaria de Baviera (LGL) dice que no se ha demostrado que comer bayas silvestres sea un factor de riesgo. Aun así, aconseja lavarlas bien. Solo calentarlas por encima de 60 °C mata sus huevos. Congelarlas en casa no los mata.",
+        "kitchen": "Cuando tengas clara la planta, puedes comer las moras crudas o cocinadas. Puedes hornearlas en crumble y tartas con manzana. También sirven para mermelada, jalea, sirope y vinagre. Lávalas justo antes de usarlas y mira que no tengan bichos. El sabor va de dulce a ácido, según la zarza.",
+        "keeps": "Sin lavar y extendidas en una caja plana, aguantan uno o dos días en la nevera. Para congelarlas, extiéndelas en una bandeja y pásalas a una bolsa cuando estén duras. Congeladas, son para cocinar.",
         "source": "Identificación, hábitat y usos: Woodland Trust. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
       }
     },

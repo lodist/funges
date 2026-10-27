@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Lion's Mane",
-      "description": "A white, shaggy clump of long hanging spines on hardwood trees that cooks up like crab",
+      "description": "A white, shaggy clump of long hanging spines on hardwood trees. Cooked, it tastes a bit like crab.",
       "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there",
       "guide": {
         "identify": "Lion's mane is a single white, rounded clump 8 to 24 cm across. It has no cap or gills. Soft spines 1 to 5 cm long hang from it like icicles. It turns yellow with age. The flesh is white and soft and does not change colour when cut. The spore print is white. Its relatives coral tooth (Hericium coralloides) and bear's head (Hericium americanum) are branched and have shorter spines.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Igel-Stachelbart",
-      "description": "Ein weisser, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen, der gebraten an Krabbenfleisch erinnert",
+      "description": "Ein weisser, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen. Gebraten erinnert er an Krabbenfleisch.",
       "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen",
       "guide": {
         "identify": "Der Igel-Stachelbart ist ein einzelner, weisser, rundlicher Klumpen von 8 bis 24 cm. Er hat keinen Hut und keine Lamellen. Weiche, 1 bis 5 cm lange Stacheln hängen wie Eiszapfen herab. Im Alter wird er gelb. Das Fleisch ist weiss und weich und verfärbt sich beim Anschneiden nicht. Das Sporenpulver ist weiss. Seine Verwandten, der Ästige Stachelbart (Hericium coralloides) und Hericium americanum, sind verzweigt und haben kürzere Stacheln.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Melena de león",
-      "description": "Una mata blanca y desgreñada de largas púas colgantes que crece en árboles de hoja ancha y, cocinada, recuerda al cangrejo",
+      "description": "Una mata blanca y desgreñada de púas largas y colgantes, en árboles de hoja ancha. Cocinada, sabe un poco a cangrejo.",
       "howTo": "Búscala en robles, hayas y arces heridos o muertos desde finales del verano hasta el otoño, a menudo en lo alto del tronco. En Europa es rara y está protegida en algunos lugares: déjala donde está",
       "guide": {
-        "identify": "Una sola masa blanca y redondeada, de 8 a 24 cm, sin sombrero ni láminas: de ella cuelgan como carámbanos púas blandas de 1 a 5 cm. Amarillea con la edad; la carne es blanca y blanda y no cambia de color al cortarla, y la esporada es blanca. Sus parientes Hericium coralloides y, en Norteamérica, Hericium americanum son ramificados, con púas más cortas.",
-        "habitat": "Sale de heridas de árboles de hoja ancha vivos y en troncos muertos, sobre todo robles, también hayas y arces, a menudo en lo alto. En EE. UU. aparece en todo el país, más en el este; en Europa es rara, en hayas y robles viejos de bosques maduros.",
-        "season": "De finales de verano a finales de otoño, después de la lluvia; en zonas cálidas como California, también en invierno. A menudo vuelve al mismo árbol.",
-        "picking": "En Europa, déjala: es rara y está protegida por ley en varios países, entre ellos Reino Unido, Polonia, Hungría, Croacia, Eslovenia y Suecia; hazle una foto y comunica el hallazgo. En EE. UU., corta con navaja por la base los ejemplares blancos y frescos; en bosques nacionales y parques la recogida puede necesitar permiso o estar prohibida: infórmate de las normas locales.",
-        "kitchen": "Una vez identificada con certeza, cocínala: córtala en lonchas, pásala por la sartén sin grasa hasta que suelte el agua y dórala luego con mantequilla. Su sabor suave y dulce y su textura fibrosa recuerdan al cangrejo; los ejemplares amarillentos saben ácidos.",
-        "keeps": "Unos días en la nevera en una bolsa de papel; congélala cocinada.",
+        "identify": "La melena de león es una sola masa blanca y redondeada, de 8 a 24 cm. No tiene sombrero ni láminas. De ella cuelgan púas blandas de 1 a 5 cm, como carámbanos. Con la edad amarillea. La carne es blanca y blanda y no cambia de color al cortarla. La esporada es blanca. Sus parientes Hericium coralloides y Hericium americanum son ramificados y tienen púas más cortas.",
+        "habitat": "Sale de heridas en árboles de hoja ancha vivos y en troncos muertos. Casi siempre en robles, pero también en hayas y arces, y a menudo en lo alto. En EE. UU. la encuentras en todo el país, más en el este. En Europa es rara. Sale en hayas y robles viejos de bosques antiguos.",
+        "season": "Búscala de finales de verano a finales de otoño, después de la lluvia. En zonas cálidas como California sigue saliendo durante el invierno. A menudo vuelve al mismo árbol.",
+        "picking": "En Europa, déjala. Es rara y está protegida por ley en varios países, entre ellos Reino Unido, Polonia, Hungría, Croacia, Eslovenia y Suecia. Hazle una foto y comunica el hallazgo. En EE. UU., corta con un cuchillo por la base las masas blancas y frescas. En bosques nacionales y parques puede hacer falta permiso o estar prohibido recoger. Consulta las normas locales.",
+        "kitchen": "Cuando la tengas bien identificada, cocínala. Córtala en lonchas y pásala por la sartén sin grasa para que suelte el agua. Luego dórala con mantequilla. Su sabor suave y dulce y su textura de hebras se suelen comparar con el cangrejo. Las masas amarillentas saben agrias.",
+        "keeps": "Aguanta unos días en la nevera, en una bolsa de papel. Congélala después de cocinarla.",
         "source": "Identificación y temporada: MushroomExpert.com y Wild Food UK. Protección: Lista Roja de la UICN y Wildlife and Countryside Act 1981 del Reino Unido."
       }
     },

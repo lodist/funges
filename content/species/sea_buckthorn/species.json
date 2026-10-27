@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Sea Buckthorn",
-      "description": "Bright orange berries packed along thorny, silver-leaved branches: sour and rich in vitamin C",
+      "description": "Bright orange berries packed along thorny branches with silvery leaves. They are sour and rich in vitamin C.",
       "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves",
       "guide": {
         "identify": "Sea buckthorn is a thorny, much-branched shrub that forms thickets. Its narrow, willow-like leaves are covered in silvery scales, above all underneath. Male and female flowers grow on separate bushes, so only female bushes fruit. The berries are round and bright orange, 6 to 8 mm across. They sit packed tightly along the twigs on very short stalks. They are juicy and very sour, and they burst at a touch. Rowan and firethorn also have orange berries. But they carry them in stalked bunches among green leaves.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Sanddorn",
-      "description": "Leuchtend orange Beeren dicht an dornigen, silbrig belaubten Zweigen: sauer und reich an Vitamin C",
+      "description": "Leuchtend orange Beeren, dicht an dornigen Zweigen mit silbrigen Blättern. Sie sind sauer und reich an Vitamin C.",
       "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten",
       "guide": {
         "identify": "Sanddorn ist ein dorniger, stark verzweigter Strauch, der Dickichte bildet. Seine schmalen, weidenähnlichen Blätter sind mit silbrigen Schuppen bedeckt, vor allem auf der Unterseite. Männliche und weibliche Blüten wachsen an getrennten Sträuchern, deshalb tragen nur die weiblichen Früchte. Die Beeren sind rund, leuchtend orange und 6 bis 8 mm gross. Sie sitzen dicht gedrängt auf sehr kurzen Stielen an den Zweigen. Sie sind saftig und sehr sauer und platzen bei der kleinsten Berührung. Auch Eberesche und Feuerdorn haben orange Beeren. Sie tragen sie aber in gestielten Büscheln zwischen grünen Blättern.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Espino amarillo",
-      "description": "Bayas de un naranja intenso apretadas a lo largo de ramas espinosas de hojas plateadas: ácidas y ricas en vitamina C",
+      "description": "Bayas de un naranja intenso, apretadas a lo largo de ramas espinosas de hojas plateadas. Son ácidas y ricas en vitamina C.",
       "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida",
       "guide": {
-        "identify": "El espino amarillo es un arbusto espinoso y muy ramificado que forma espesuras, con hojas estrechas, parecidas a las del sauce, cubiertas de escamas plateadas, sobre todo por el envés. Las flores masculinas y femeninas crecen en matas distintas, así que solo las femeninas dan fruto: bayas redondas de color naranja intenso, de 6 a 8 mm, apretadas a lo largo de las ramas sobre rabillos muy cortos. Son jugosas, muy ácidas y revientan al tocarlas; el serbal de cazadores y el espino de fuego, en cambio, llevan sus bayas naranjas en ramilletes con rabillo entre hojas verdes.",
-        "habitat": "Necesita pleno sol y arena o grava sueltas: dunas costeras del mar del Norte, el Báltico y el este de Inglaterra, y graveras y terrazas secas de los ríos de los Alpes y su piedemonte. En el sur de Europa es sobre todo una planta de las graveras de los ríos de montaña, en los Alpes y el Pirineo, donde en algunos valles lo llaman arto blanco; también se planta en taludes y cunetas.",
-        "season": "Las bayas maduran de agosto a octubre y son más aromáticas al principio de la maduración. Siguen en la mata hasta el invierno, pero pasadas saben a rancio.",
-        "picking": "Muchas matas silvestres crecen en espacios protegidos de dunas y riberas donde está prohibido recolectar: consulta antes las normas locales y no cortes nunca ramas de matas silvestres. Usa guantes, pon un cuenco debajo de la rama al recoger porque las bayas revientan y deja muchas para los zorzales que pasan el invierno.",
-        "kitchen": "Una vez identificadas con certeza, las bayas pueden comerse crudas, pero son muy ácidas, algo amargas y manchan; casi siempre se cuecen un momento con un poco de agua y miel o azúcar y se cuelan para zumo, jarabe, jalea o puré. La manzana o el albaricoque suavizan la acidez; el puré va bien con yogur, muesli, helado y sopas.",
-        "keeps": "Frescas se estropean pronto: congélalas, o congela el zumo en porciones. La pulpa que queda al prensar se puede secar para infusión.",
+        "identify": "El espino amarillo es un arbusto espinoso y muy ramificado que forma espesuras. Sus hojas son estrechas, como de sauce, y están cubiertas de escamas plateadas, sobre todo por debajo. Las flores masculinas y femeninas salen en matas distintas, así que solo dan fruto las femeninas. Las bayas son redondas y de un naranja intenso, de 6 a 8 mm. Van muy apretadas a lo largo de las ramas, con rabillos muy cortos. Son jugosas y muy ácidas, y revientan en cuanto las tocas. El serbal de cazadores y el espino de fuego también tienen bayas naranjas. Pero las llevan en ramilletes con rabillo, entre hojas verdes.",
+        "habitat": "Necesita pleno sol y arena o grava al descubierto. Búscalo en las dunas de la costa del mar del Norte, del Báltico y del este de Inglaterra. También crece en graveras secas y terrazas de los ríos de los Alpes y de sus estribaciones. En el sur de Europa es sobre todo una planta de las graveras de los ríos de montaña, en los Alpes y en los Pirineos. También se planta en taludes y bordes de carretera.",
+        "season": "Las bayas maduran de agosto a octubre. Son más aromáticas al principio de la maduración. Siguen en la mata hasta el invierno, pero las pasadas saben a rancio.",
+        "picking": "Muchas matas silvestres crecen en reservas naturales de dunas y riberas, donde está prohibido recolectar. Infórmate antes de las normas del lugar. No cortes nunca ramas de matas silvestres. Ponte guantes. Pon un cuenco debajo de la rama mientras coges, porque las bayas revientan. Deja muchas para los zorzales que pasan allí el invierno.",
+        "kitchen": "Si no tienes ninguna duda de la identificación, puedes comer las bayas crudas. Pero son muy ácidas, algo amargas y manchan. La mayoría de la gente las cuece un momento con un poco de agua y miel o azúcar. Luego las cuela para hacer zumo, jarabe, jalea o puré. La manzana o el albaricoque suavizan la acidez. El puré va bien con yogur, muesli, helado y sopas.",
+        "keeps": "Las bayas frescas se estropean pronto. Congélalas, o congela el zumo en porciones. La pulpa que queda al prensarlas se puede secar para infusión.",
         "source": "Identificación y hábitat: The Wildlife Trusts y Agencia Europea de Medio Ambiente (EUNIS). Temporada, cocina y conservación: Bundeszentrum für Ernährung (BZfE, Alemania)."
       }
     },

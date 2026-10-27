@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Dandelion",
-      "description": "A common weed with bright yellow flowers and edible leaves",
+      "description": "A common weed with bright yellow flowers. Its leaves are edible.",
       "howTo": "Found in meadows, grasslands, and disturbed areas during growing season",
       "guide": {
         "identify": "Dandelion grows as a rosette at ground level. The leaves are hairless and deeply, raggedly lobed. Their teeth point back towards the centre. Leaves and stalks bleed white milky sap when you break them. Each flower stalk is leafless, unbranched and hollow. It carries one head of yellow, strap-shaped florets. Later comes a round white seed clock. Cat's-ear has branched, solid stalks and hairy leaves. Hawkbits have forked hairs on the leaves. Sow-thistles carry several flowers on leafy stems. Only pick plants that match every point.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Löwenzahn",
-      "description": "Häufiges Wildkraut mit leuchtend gelben Blüten und essbaren Blättern",
+      "description": "Ein häufiges Wildkraut mit leuchtend gelben Blüten. Die Blätter sind essbar.",
       "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit",
       "guide": {
         "identify": "Der Löwenzahn wächst als Rosette dicht am Boden. Die Blätter sind kahl und tief und unregelmässig eingeschnitten. Ihre Zähne zeigen zurück zur Mitte. Blätter und Stiele geben weissen Milchsaft ab, wenn du sie abbrichst. Jeder Blütenstiel ist blattlos, unverzweigt und hohl. Er trägt ein einzelnes Köpfchen aus gelben Zungenblüten. Später wird daraus die runde weisse Pusteblume. Das Ferkelkraut hat verzweigte, markige Stiele und behaarte Blätter. Leontodon-Arten wie der Herbst-Löwenzahn haben gegabelte Haare auf den Blättern. Gänsedisteln tragen mehrere Blüten an beblätterten Stängeln. Pflück nur Pflanzen, die in jedem Punkt passen.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Diente de león",
-      "description": "Maleza común con flores amarillas brillantes y hojas comestibles",
+      "description": "Una mala hierba muy común de flores amarillas y vivas. Sus hojas se comen.",
       "howTo": "Se encuentra en praderas, pastizales y áreas alteradas durante la temporada de crecimiento",
       "guide": {
-        "identify": "El diente de león crece en una roseta a ras de suelo de hojas sin pelos, profunda e irregularmente recortadas, con dientes que apuntan hacia el centro. Hojas y tallos sueltan un látex blanco al romperlos; cada tallo floral es hueco, sin hojas ni ramas, y lleva una sola cabezuela de florecillas amarillas en lengüeta, que después se convierte en el vilano blanco y redondo. Hypochaeris radicata tiene tallos ramificados y macizos y hojas peludas, los Leontodon tienen pelos ahorquillados en las hojas y las cerrajas llevan varias flores en tallos con hojas: coge solo plantas que cumplan todos los puntos.",
-        "habitat": "Céspedes, prados, pastos, cunetas y baldíos, al sol, desde las tierras bajas hasta la montaña. Crece en casi toda Europa y, llevado desde Europa, en todo Estados Unidos.",
-        "season": "A principios de primavera llega una gran floración, sobre todo en abril y mayo y antes en el sur templado; luego sigue floreciendo a ratos hasta el otoño. Las hojas amargan menos a principios de primavera, antes de los primeros capullos.",
-        "picking": "Corta las hojas tiernas por la base y coge las flores un día de sol, cuando estén bien abiertas, dejando muchas para las primeras abejas. Evita los céspedes tratados con herbicida, las cunetas y los sitios donde se pasea a perros, y saca raíces solo donde el propietario lo permita, como en tu propio jardín.",
-        "kitchen": "Una vez identificado con certeza, las hojas tiernas se comen crudas en ensalada, con un amargor agradable, como en la ensalada francesa con panceta; las hojas viejas se hierven unos 10 minutos para quitarles amargor y luego se saltean con ajo y aceite. Las flores, siempre cocinadas: en buñuelos o cocidas con azúcar y limón hasta un jarabe espeso; las raíces limpias y tostadas dan un sucedáneo de café, y en cantidad son laxantes. El látex puede irritar la piel y quien tiene alergia a las compuestas puede reaccionar, así que prueba primero una pequeña cantidad.",
-        "keeps": "Las hojas aguantan unos días en una bolsa en la nevera. Usa las flores nada más cogerlas, porque se cierran pronto; las raíces tostadas se guardan en un tarro hermético.",
+        "identify": "El diente de león crece en una roseta a ras de suelo. Las hojas no tienen pelos y están muy recortadas, de forma irregular. Sus dientes apuntan hacia el centro. Al romper las hojas o los tallos sueltan un líquido blanco como leche. Cada tallo de flor es hueco, sin hojas y sin ramas. Lleva una sola cabezuela de florecillas amarillas en forma de lengüeta. Después se convierte en una bola blanca de vilanos. Hypochaeris radicata tiene tallos ramificados y macizos y hojas peludas. Los Leontodon tienen pelos ahorquillados en las hojas. Las cerrajas llevan varias flores en tallos con hojas. Coge solo plantas que cumplan todos los puntos.",
+        "habitat": "Crece en céspedes, prados, pastos, cunetas y descampados, al sol, desde las tierras bajas hasta la montaña. Lo encuentras en casi toda Europa. Lo llevaron de Europa a EE. UU. y hoy crece en todo el país.",
+        "season": "A principios de primavera llega una gran floración, sobre todo en abril y mayo. En el sur templado llega antes. Después salen flores a ratos hasta el otoño. Las hojas amargan menos a principios de primavera, antes de que salgan los primeros capullos.",
+        "picking": "Corta las hojas tiernas por la base. Coge las flores un día de sol, cuando estén bien abiertas, y deja muchas para las primeras abejas. Evita los céspedes tratados con herbicida, las cunetas y los sitios donde se pasea a perros. Saca raíces solo donde el dueño te dé permiso, como en tu propio jardín.",
+        "kitchen": "Cuando tengas clara la planta, come las hojas tiernas crudas en ensalada. Tienen un amargor agradable, como en la ensalada francesa con panceta. Las hojas más viejas, hiérvelas unos 10 minutos para quitarles algo de amargor. Luego saltéalas con ajo y aceite. Las flores, úsalas cocinadas. Haz buñuelos o cuécelas con azúcar y limón hasta tener un jarabe espeso. Las raíces limpias se pueden tostar para hacer un sucedáneo de café. En cantidad, las raíces son laxantes. El líquido blanco puede irritar la piel. Quien tiene alergia a las compuestas puede reaccionar, así que prueba primero una cantidad pequeña.",
+        "keeps": "Las hojas aguantan unos días en la nevera, en una bolsa. Usa las flores nada más cogerlas, porque se cierran pronto. Las raíces tostadas se guardan en un tarro hermético.",
         "source": "Identificación: BSBI y extensión de NC State. Recolección y cocina: extensión de la Universidad de Wisconsin-Madison y de la Universidad Estatal de Colorado. Seguridad: National Center for Complementary and Integrative Health (EE. UU.)."
       }
     },

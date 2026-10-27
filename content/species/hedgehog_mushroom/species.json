@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Hedgehog Mushroom",
-      "description": "A buff to orange cap with soft spines instead of gills underneath: one of the safest wild mushrooms to learn",
+      "description": "A buff to orange cap with soft spines underneath instead of gills. One of the safest wild mushrooms to learn.",
       "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills",
       "guide": {
         "identify": "Turn it over. Under the cap you'll find soft, brittle spines 2 to 6 mm long, hanging like small icicles. There are no gills or ridges. The spines rub off easily. The cap is 4 to 15 cm across and cream to buff or pale orange. It is dry, velvety and often lumpy. The stem is white, solid and often off-centre. The firm white flesh slowly bruises yellowish to orange-brown. The terracotta hedgehog (Hydnum rufescens) is smaller and more orange. It has the same soft spines, and so do the American Hydnum species. Other tooth fungi, such as Hydnellum and Sarcodon, are tough and corky or brown and scaly. Many of them are bitter.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Semmel-Stoppelpilz",
-      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen: einer der sichersten Wildpilze für Einsteiger",
+      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen darunter. Einer der sichersten Wildpilze für den Anfang.",
       "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen",
       "guide": {
         "identify": "Dreh ihn um. Unter dem Hut hängen weiche, brüchige Stacheln, 2 bis 6 mm lang, wie kleine Eiszapfen. Lamellen oder Leisten gibt es nicht. Die Stacheln lassen sich leicht abstreifen. Der Hut ist 4 bis 15 cm breit und cremefarben bis semmelgelb oder blass orange. Er ist trocken, samtig und oft buckelig. Der Stiel ist weiss, voll und sitzt oft nicht in der Mitte. Das feste weisse Fleisch verfärbt sich auf Druck langsam gelblich bis orangebraun. Der Rotgelbe Stoppelpilz (Hydnum rufescens) ist kleiner und kräftiger orange. Er hat dieselben weichen Stacheln, genau wie die amerikanischen Hydnum-Arten. Andere Stachelpilze wie Korkstachlinge (Hydnellum) und Habichtspilze (Sarcodon) sind zäh und korkig oder braun und schuppig. Viele davon sind bitter.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Lengua de vaca",
-      "description": "Un sombrero de color gamuza a anaranjado con púas blandas en lugar de láminas: una de las setas silvestres más seguras para aprender",
+      "description": "Un sombrero de color gamuza a naranja, con púas blandas por debajo en lugar de láminas. Es de las setas silvestres más seguras para aprender a reconocer.",
       "howTo": "Búscala en bosques musgosos de coníferas y frondosas desde finales del verano hasta finales del otoño, a menudo en corros o hileras; en la costa del Pacífico de EE. UU., todo el invierno. Dale la vuelta: púas, no láminas",
       "guide": {
-        "identify": "Dale la vuelta: bajo el sombrero tiene púas blandas y quebradizas de 2 a 6 mm, colgando como pequeños carámbanos, no láminas ni pliegues; se desprenden con facilidad. El sombrero mide de 4 a 15 cm, es crema a color gamuza o naranja pálido, seco, aterciopelado y a menudo abollado; el pie es blanco, macizo y a menudo descentrado, y la carne, blanca y firme, se mancha despacio de amarillo a pardo anaranjado al rozarla. Hydnum rufescens, más pequeña y más anaranjada, y las especies americanas de Hydnum tienen las mismas púas blandas. Otros hongos con púas, como Hydnellum y Sarcodon, son duros, acorchados o pardos y escamosos, y muchos amargan.",
-        "habitat": "Vive asociada tanto a coníferas como a frondosas, como píceas, pinos, hayas, robles y abedules, en el musgo y la hojarasca, a menudo en corros o hileras. Común en toda Europa, del llano a la montaña, y en toda Norteamérica; en la costa del Pacífico de EE. UU. crecen varias especies de Hydnum bajo abetos de Douglas, tanoaks y otros árboles.",
-        "season": "En el centro y norte de Europa, de finales del verano a finales del otoño, a menudo hasta las heladas fuertes; en el sur de Europa más tarde y durante más tiempo, hasta el invierno. En la costa del Pacífico de EE. UU. llega con las lluvias de otoño y sigue todo el invierno.",
-        "picking": "Córtala por la base, límpiala de tierra y hojas en el sitio para que no se metan entre las púas y deja las pequeñas. En el sur de Baviera y el Bosque Bávaro todavía acumula cesio de Chernóbil, así que allí cómela solo de vez en cuando.",
-        "kitchen": "Una vez identificada con total seguridad, cepilla el sombrero; en las grandes, quita las púas, que se desprenden en la sartén y pueden amargar. No la comas nunca cruda: cocínala bien, salteada en mantequilla o guisada. Suave, con sabor a fruto seco y algo dulce, y textura firme y carnosa; va bien con huevos, patatas, caza y en salsas.",
-        "keeps": "Al ser firme, se conserva mejor que la mayoría de las setas: varios días en la nevera, en papel. Para guardarla más tiempo, cocínala y congélala.",
+        "identify": "Dale la vuelta. Bajo el sombrero encontrarás púas blandas y quebradizas de 2 a 6 mm, que cuelgan como pequeños carámbanos. No tiene láminas ni pliegues. Las púas se desprenden fácilmente. El sombrero mide de 4 a 15 cm y es de color crema a gamuza o naranja pálido. Es seco, aterciopelado y a menudo abollado. El pie es blanco, macizo y muchas veces está descentrado. La carne es blanca y firme, y al rozarla se mancha despacio de amarillento a pardo anaranjado. La lengua de gato (Hydnum rufescens) es más pequeña y más anaranjada. Tiene las mismas púas blandas, igual que las especies americanas de Hydnum. Otros hongos con púas, como Hydnellum y Sarcodon, son duros y acorchados o pardos y escamosos. Muchos amargan.",
+        "habitat": "Vive tanto con coníferas como con frondosas, como píceas, pinos, hayas, robles y abedules. Búscala en el musgo y la hojarasca. A menudo sale en corros o en hileras. Es común en toda Europa, del llano a la montaña, y en toda Norteamérica. En la costa del Pacífico de EE. UU. crecen varias especies de Hydnum bajo abetos de Douglas, tanoaks y otros árboles.",
+        "season": "En el centro y el norte de Europa sale de finales de verano a finales de otoño, a menudo hasta las heladas fuertes. En el sur de Europa la temporada es más tardía y más larga, y llega al invierno. En la costa del Pacífico de EE. UU. llega con las lluvias de otoño y sigue durante todo el invierno.",
+        "picking": "Córtala por la base. Límpiala allí mismo de restos para que no se queden metidos entre las púas. Deja las pequeñas. En el sur de Baviera y en el Bosque Bávaro todavía lleva cesio de Chernóbil. Allí cómela solo de vez en cuando.",
+        "kitchen": "Primero asegúrate bien de que la has identificado. Cepilla el sombrero. En las grandes, quita las púas frotando. Se sueltan en la sartén y pueden amargar. No la comas nunca cruda. Cocínala bien, salteada en mantequilla o guisada. Tiene un sabor suave, dulce y a frutos secos. La textura es firme y carnosa. Va bien con huevos, patatas y caza. También en salsas.",
+        "keeps": "Como es firme, aguanta mejor que la mayoría de las setas silvestres. Dura varios días en la nevera, en papel. Para guardarla más tiempo, cocínala y congélala.",
         "source": "Identificación: First Nature (Reino Unido) y MykoWeb (California Fungi). Cesio: Oficina Federal alemana de Protección Radiológica (BfS). Temporada: registros de GBIF."
       }
     },

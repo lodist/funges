@@ -60,7 +60,7 @@
   "list_of_species": {
     "chant": {
       "name": "Golden Chanterelle",
-      "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
+      "description": "A golden yellow mushroom shaped like a funnel. It smells fruity, a little like apricots.",
       "howTo": "Look for them in deciduous forests, especially near oak and beech trees",
       "guide": {
         "identify": "Chanterelles are egg-yolk to golden yellow and grow up to 10 cm across. The cap is a shallow funnel with a wavy edge that curls under. Underneath you won't find real gills, but blunt, forking ridges that run down the stem. You can't lift them off one by one like gills. The stem is solid, and the flesh is firm and white to pale yellow. It smells faintly of apricots. Two look-alikes matter. Jack-o'-lanterns (Omphalotus) have thin, crowded real gills, grow in clusters from wood or buried roots and are orange right through. The false chanterelle (Hygrophoropsis aurantiaca) is a deeper orange, soft, and also has thin, crowded gills.",
@@ -74,7 +74,7 @@
     },
     "mushroom": {
       "name": "Porcini",
-      "description": "The king bolete: a stout brown-capped mushroom with a pale netted stem and white pores that never bruise blue",
+      "description": "The porcino: a stout mushroom with a brown cap, a pale netted stem and white pores that never bruise blue.",
       "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn",
       "guide": {
         "identify": "This is a stout bolete with a pale to chestnut-brown cap. The cap is smooth and greasy but never velvety. It often has a thin whitish rim. The pores are white when young, then turn yellow and olive. They do not change colour when you press them. The pale stem has a fine white net near the top. The white flesh does not change colour when cut. Pink pores and a dark brown net mean the bitter bolete (Tylopilus felleus). Red or orange pores mean another bolete that may be toxic. So does flesh that turns blue.",
@@ -88,7 +88,7 @@
     },
     "morel": {
       "name": "Morchella",
-      "description": "A distinctive mushroom with a honeycomb cap that appears in spring",
+      "description": "A mushroom with a cap like a honeycomb. It comes up in spring.",
       "howTo": "Look in disturbed areas, burned forests, and near dead trees in spring",
       "guide": {
         "identify": "The cap is a honeycomb of pits and ridges. It can be yellowish, grey-brown or almost black, and it sits on a pale stem. Cut every morel in half lengthways. A true morel is one single hollow from the cap tip to the stem base. Its cap joins the stem at its lower edge. The deadly false morel (Gyromitra esculenta) has a brain-like, reddish-brown head. Inside, it is chambered or cottony. Cooking does not make it safe. Verpa bohemica has a cap attached only at the very top, like a thimble. Its stem is stuffed with cottony pith.",
@@ -102,7 +102,7 @@
     },
     "blackberry": {
       "name": "Blackberry",
-      "description": "Sweet, dark purple berries that grow on thorny bushes",
+      "description": "Sweet, dark purple berries on thorny bushes.",
       "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer",
       "guide": {
         "identify": "Brambles have long, arching stems armed with hooked prickles. Each leaf has three or five toothed leaflets spread like a hand. They are dark green on top and paler underneath. The flowers are white or pink, with five petals. The berries are made of many small round drupelets. They go from green to red to glossy black. A ripe blackberry comes off with its white core inside. A raspberry leaves its core on the plant and is hollow. Rubus fruticosus is a group of hundreds of closely related brambles. You use them all the same way.",
@@ -116,7 +116,7 @@
     },
     "elderberry": {
       "name": "Elderberry",
-      "description": "Small dark purple berries that grow in clusters on elder trees",
+      "description": "Small, dark purple berries that hang in clusters on elder trees.",
       "howTo": "Look for elder trees in hedgerows and woodland edges in autumn",
       "guide": {
         "identify": "Elder is a shrub or small tree with grey-brown, corky, furrowed bark. The twigs have soft white pith inside. The leaves are opposite, with five to seven toothed leaflets. American elderberry can have up to eleven. In early summer it carries flat heads of creamy, scented flowers. These become broad clusters of small purple-black berries on reddish stalks. When ripe, the clusters droop under their weight. Dwarf elder (Sambucus ebulus) is a soft herb that dies back each winter. Its berry clusters stand upright above the leaves. Red elder (Sambucus racemosa) has red berries in upright, dome-shaped clusters. Pokeweed (Phytolacca americana) is a tall herb with smooth purple-red stems. Its berries are strung along long spikes, not held in flat clusters.",
@@ -130,7 +130,7 @@
     },
     "nettle": {
       "name": "Nettle",
-      "description": "A nutritious green plant with stinging hairs that must be cooked",
+      "description": "A nutritious green plant with stinging hairs. You always cook it before eating.",
       "howTo": "Found in disturbed areas, hedgerows, and woodland edges in spring and summer",
       "guide": {
         "identify": "Nettles grow upright, with square stems and leaves in opposite pairs. The leaves are heart-shaped to oval, coarsely toothed and pointed. Stems and leaves are covered in stinging hairs. From early summer, thin tassels of tiny greenish flowers hang where the leaves join the stem. Dead-nettles look similar, but they don't sting. They also have showy white, yellow or purple lipped flowers.",
@@ -144,7 +144,7 @@
     },
     "dandelion": {
       "name": "Dandelion",
-      "description": "A common weed with bright yellow flowers and edible leaves",
+      "description": "A common weed with bright yellow flowers. Its leaves are edible.",
       "howTo": "Found in meadows, grasslands, and disturbed areas during growing season",
       "guide": {
         "identify": "Dandelion grows as a rosette at ground level. The leaves are hairless and deeply, raggedly lobed. Their teeth point back towards the centre. Leaves and stalks bleed white milky sap when you break them. Each flower stalk is leafless, unbranched and hollow. It carries one head of yellow, strap-shaped florets. Later comes a round white seed clock. Cat's-ear has branched, solid stalks and hairy leaves. Hawkbits have forked hairs on the leaves. Sow-thistles carry several flowers on leafy stems. Only pick plants that match every point.",
@@ -158,7 +158,7 @@
     },
     "hazelnut": {
       "name": "Hazelnut",
-      "description": "Sweet, round nuts that grow on hazel trees",
+      "description": "Sweet, round nuts from hazel bushes.",
       "howTo": "Look for hazel trees in hedgerows and woodland edges in autumn",
       "guide": {
         "identify": "Hazel is a shrub or small tree with many stems. Its leaves are round and doubly toothed, pointed at the tip and soft and downy underneath. In late winter yellow catkins hang from the bare twigs. The nuts grow in bunches of one to four. Each sits in a frilly, green, leafy husk that covers about three quarters of it. They turn brown as they ripen. North America's wild hazels are close relatives. The beaked hazelnut's husk forms a long bristly tube.",
@@ -172,7 +172,7 @@
     },
     "garlic": {
       "name": "Wild Garlic",
-      "description": "A pungent herb with broad leaves and white flowers",
+      "description": "A strong-smelling wild herb with broad leaves and white flowers.",
       "howTo": "Found in deciduous woodlands in spring, often forming large patches",
       "guide": {
         "identify": "Each leaf of wild garlic grows on its own thin stalk straight from the ground. The blade is soft, bright green and a pointed oval, with parallel veins. It is matt underneath. From April a leafless stalk carries a rounded cluster of white, star-shaped flowers. Crush a leaf and wild garlic smells strongly of garlic. Its deadly look-alikes do not. But the smell stays on your fingers, so after the first few leaves the test proves nothing. Check every leaf by its stalk and outline too. Lily of the valley has two or three leaves wrapped around one another at the base. Autumn crocus has tough, stalkless leaves in a tuft. Lords-and-ladies has arrow-shaped leaves with net veins. White false hellebore has pleated leaves along an upright stem. Solomon's seal has leaves alternating along an arching stem.",
@@ -186,7 +186,7 @@
     },
     "chickenOfTheWoods": {
       "name": "Chicken of the Woods",
-      "description": "A bright orange-yellow bracket fungus that grows on trees",
+      "description": "A bright orange-yellow bracket fungus that grows on trees.",
       "howTo": "Look for it growing on dead or dying trees, especially oaks",
       "guide": {
         "identify": "Chicken of the woods grows as overlapping, fan-shaped brackets 10 to 40 cm wide, with no stem. Young ones are soft, moist and bright yellow to orange. With age they fade to cream and turn chalky. The underside is sulphur-yellow with tiny pores, not gills. The flesh is white to pale yellow and does not change colour when cut. An orange cluster on wood with gills underneath is the poisonous jack-o'-lantern (Omphalotus). In the western US, the closely related Laetiporus gilbertsonii and Laetiporus conifericola look much the same.",
@@ -200,7 +200,7 @@
     },
     "oysterMushroom": {
       "name": "Oyster Mushroom",
-      "description": "A white-grey mushroom with fan-shaped cap that grows in clusters on dead wood",
+      "description": "A white-grey mushroom with fan-shaped caps. It grows in clusters on dead wood.",
       "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter",
       "guide": {
         "identify": "Oyster mushrooms have a shell- or fan-shaped cap, 5 to 18 cm across. It can be blue-grey, grey-brown or cream. They grow on wood in overlapping tiers. The white to cream gills run down into a short, off-centre stem, or there is no stem at all. The flesh is white and firm, and the smell is mild. The spore print is white to pale lilac. Three look-alikes matter. The poisonous jack-o'-lantern (Omphalotus) is bright orange, gills included. It grows in tufts at the foot of trees. Sulphur tuft (Hypholoma fasciculare) has sulphur-yellow caps on central stems. Its gills are greenish-yellow and turn purple-brown, and it tastes bitter. Angel wings (Pleurocybella porrigens) have been linked to deaths in Japan. They are pure white, thin and translucent, and grow only on rotting conifer wood.",
@@ -214,7 +214,7 @@
     },
     "shiitake": {
       "name": "Shiitake",
-      "description": "A mushroom with brown cap and white gills, highly prized in Asian cuisine",
+      "description": "A mushroom with a brown cap and white gills, highly prized in Asian cooking.",
       "howTo": "Found growing on dead hardwood trees, especially oak and beech, in spring and autumn",
       "guide": {
         "identify": "The cap is brown to dark reddish-brown and flattens with age. It often has whitish flecks near the edge, and it cracks in dry weather. The gills are white to cream and bruise brown. The stem is tough, fibrous and often off-centre. The spore print is white. The deadly funeral bell (Galerina marginata) also grows on logs. It is smaller and honey-brown, with a ring on the stem and a rusty-brown spore print.",
@@ -228,7 +228,7 @@
     },
     "raspberry": {
       "name": "Wild Raspberry",
-      "description": "Sweet red berries that grow on thorny canes with distinctive compound leaves",
+      "description": "Sweet red berries on thorny canes.",
       "howTo": "Look for raspberry canes in hedgerows, woodland edges, and disturbed areas in summer",
       "guide": {
         "identify": "Raspberries grow on upright canes, often head-high. The canes are covered in small, fine prickles, not the hooked thorns of a blackberry. Each leaf has three to seven toothed leaflets set along a stalk. They are green above and white-felted beneath. The small white flowers hang downwards. When you pick a red berry, its white core stays on the plant. So a picked raspberry is a hollow cap.",
@@ -242,7 +242,7 @@
     },
     "blueberry": {
       "name": "Wild Blueberry",
-      "description": "Small sweet blue berries that grow on low shrubs in acidic soil",
+      "description": "Small, sweet blue berries on low shrubs in acid soil.",
       "howTo": "Found in heaths, moors, and acidic forests in summer and early autumn",
       "guide": {
         "identify": "Bilberry, also called whortleberry, is a low deciduous shrub, usually below knee height. Its stems are green and angled. The leaves are small and oval, with finely toothed edges. In spring, pinkish flowers shaped like lanterns hang one by one. Each gives one blue-black berry with a pale bloom. At the tip of the berry sits a small ring shaped like a crown. The flesh is purple-red right through. Cultivated blueberries have pale flesh. Its poisonous look-alikes are soft herbs, not woody dwarf shrubs. Deadly nightshade (Atropa bella-donna) is tall, and its shiny black berries sit in a green star of five sepals. Herb Paris (Paris quadrifolia) carries one berry on top of a stem with a whorl of four leaves. Solomon's seal (Polygonatum) hangs blue-black berries beneath an arching, unbranched stem.",
@@ -256,7 +256,7 @@
     },
     "strawberry": {
       "name": "Wild Strawberry",
-      "description": "Small red berries with intense flavor, with white flowers and trifoliate leaves",
+      "description": "Small red berries full of flavour, with white flowers and leaves in threes.",
       "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer",
       "guide": {
         "identify": "Wild strawberry is a low plant. Its long-stalked leaves have three toothed leaflets, bright green and slightly glossy. It spreads by runners that root along the ground. The end tooth of each leaflet is as long as its neighbours, or longer. The flowers are white, with five rounded petals and a yellow centre. The fruit is a small red cone with tiny seeds on the surface, hanging from a thin stalk. Barren strawberry (Potentilla sterilis) flowers earlier. It has gaps between its notched petals and an end tooth shorter than its neighbours. It has no fleshy fruit. Mock strawberry (Potentilla indica) has yellow flowers and round, spongy, tasteless berries.",
@@ -270,7 +270,7 @@
     },
     "wildMint": {
       "name": "Wild mints",
-      "description": "Any wild mint: water mint, horse mint, apple mint, corn mint and pennyroyal. Square stems, opposite leaves and a mint scent when crushed",
+      "description": "Every wild mint: water mint, horse mint, apple mint, corn mint and pennyroyal. They have square stems, leaves in pairs and smell of mint when crushed.",
       "howTo": "Found in damp ground, ditches and along streams. Pennyroyal is fine as a light tea (poleo menta) but toxic as an oil or in quantity: avoid it in pregnancy",
       "guide": {
         "identify": "All mints have square stems and leaves in opposite pairs. A crushed leaf has a clear mint smell. Small lilac, pink or white flowers grow in whorls, or in heads and spikes at the shoot tips. Water mint has hairy, oval leaves and a rounded flower head. Horse mint has long, grey-hairy leaves. Apple mint has round, wrinkled, soft leaves. Corn mint flowers only in whorls along the stem. Pennyroyal is small and creeping, with tiny leaves and a sharp smell. Unscented square-stemmed plants such as gipsywort grow among them. The smell also stays on your fingers. So smell each stem on its own, and leave any that does not smell of mint.",
@@ -284,7 +284,7 @@
     },
     "chickweed": {
       "name": "Chickweed",
-      "description": "A low-growing plant with small white flowers and oval leaves, very nutritious",
+      "description": "A low plant with small white flowers and oval leaves. It is very nutritious.",
       "howTo": "Common in gardens, disturbed areas, and meadows during growing season",
       "guide": {
         "identify": "Chickweed is a low, sprawling plant with weak, round, juicy stems. The leaves are small, pointed ovals in opposite pairs. The lower ones sit on short stalks. A single line of fine hairs runs down the stem. It switches sides at each pair of leaves. The white flowers are star-shaped, with five petals. Each petal is split so deeply that they look like ten. There are two toxic look-alikes. Scarlet pimpernel has square, hairless stems and stalkless leaves with black dots underneath. Its flowers are orange-red or blue. Spurges ooze white, milky sap from a broken stem. Chickweed never does.",
@@ -298,7 +298,7 @@
     },
     "plantain": {
       "name": "Common Plantain",
-      "description": "A low-growing plant with broad oval leaves and tall flower spikes",
+      "description": "A low plant with broad oval leaves and tall flower spikes.",
       "howTo": "Found in lawns, meadows, and disturbed areas during growing season",
       "guide": {
         "identify": "Common plantain grows as a flat rosette of broad, oval leaves on short, wide stalks. Each leaf has three to seven strong veins. They run side by side from base to tip. Snap a leaf stalk and they pull out as tough strings. From early summer, leafless stalks carry long, narrow rat-tail spikes of tiny greenish flowers. Later these fill with small brown seeds. Foxglove is deadly, and its first-year rosette is the one to watch for. It has soft, hairy, wrinkled leaves with a net of veins and no strings. Foxglove leaves have been sold by mistake as plantain.",
@@ -312,7 +312,7 @@
     },
     "walnut": {
       "name": "Walnut",
-      "description": "Large round nuts with hard shells and rich, oily flavor",
+      "description": "Big round nuts with hard shells and a rich, oily taste.",
       "howTo": "Look for walnut trees in parks, gardens, and woodland edges in autumn",
       "guide": {
         "identify": "The walnut is a large tree. Its bark is smooth and olive-brown, turning grey and fissured with age. The leaves have five to nine smooth-edged oval leaflets. Crushed, they smell of polish. The nut sits in a thick, smooth green husk that darkens and splits when ripe. The black walnut of the eastern US has more leaflets, and they are narrower and toothed. Its round husk does not split. Inside is a very hard, ridged shell.",
@@ -326,7 +326,7 @@
     },
     "chestnut": {
       "name": "Chestnut",
-      "description": "Large sweet nuts encased in spiny green husks that split open when ripe",
+      "description": "Big, sweet nuts in spiny green husks that split open when they are ripe.",
       "howTo": "Found in chestnut groves and mixed forests in autumn, often near paths",
       "guide": {
         "identify": "Sweet chestnut leaves are long, narrow and glossy, 16 to 28 cm long. They have sharp saw teeth and many straight, parallel veins. The husk is covered all over in long, fine spines as sharp as needles. It usually holds two or three nuts. They are flattened on one or both sides and end in a small point with a tuft. Don't confuse it with the toxic horse chestnut (Aesculus hippocastanum) of parks and streets. That tree has hand-shaped leaves of five to seven leaflets. Its thick green husk has only a few short spikes. Inside are one or two round, glossy conkers with no point. In North America the buckeyes (other Aesculus) are toxic too. A tree with hand-shaped leaves is never a sweet chestnut.",
@@ -340,7 +340,7 @@
     },
     "elderflower": {
       "name": "Elderflower",
-      "description": "Creamy white flowers that grow in large flat clusters on elder trees",
+      "description": "Creamy white flowers in big flat clusters on elder trees.",
       "howTo": "Look for elder trees in hedgerows and woodland edges in late spring and early summer",
       "guide": {
         "identify": "Elder is a woody shrub or small tree with corky, furrowed, grey-brown bark. Its leaves are opposite, with 5 to 7 toothed leaflets. They smell unpleasant when you crush them. In late spring it carries flat, branching heads of tiny creamy white flowers. These have pale yellow anthers and a sweet, musky scent. Danewort, or dwarf elder, is a soft herb that dies back each winter. It has upright heads and purple anthers. Red elder flowers earlier, in egg- or dome-shaped clusters. Both are toxic. Hemlock, water hemlock and giant hogweed are soft green herbs, not woody shrubs. Giant hogweed's sap burns skin in sunlight. Hemlock has a smooth, hollow, purple-blotched stem and a mousy smell. In all three, the flower stalks spread from one point like the spokes of an umbrella.",
@@ -354,7 +354,7 @@
     },
     "daisy": {
       "name": "Common Daisy",
-      "description": "Small white flowers with yellow centers that grow close to the ground",
+      "description": "Small white flowers with yellow centres, close to the ground.",
       "howTo": "Common in lawns, meadows, and grassy areas during spring and summer",
       "guide": {
         "identify": "The common daisy is a low plant. Its spoon-shaped, slightly hairy leaves form a flat rosette pressed to the ground. Each leafless, hairy stalk carries one flower head about 2 cm across. It has white rays, often tipped with pink, around a yellow centre. The heads close at night and in dull weather. Some plants look similar but are different. Oxeye daisy and other bigger daisy-like flowers grow on leafy stems. Mayweeds and chamomiles have feathery leaves.",
@@ -368,7 +368,7 @@
     },
     "violets": {
       "name": "Sweet Violet",
-      "description": "Small purple flowers with heart-shaped leaves and a sweet fragrance",
+      "description": "Small purple flowers with heart-shaped leaves and a sweet scent.",
       "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring",
       "guide": {
         "identify": "Sweet violet is a low plant with a rosette of long-stalked leaves. They are heart-shaped with a rounded base, scalloped edges and short hairs. It spreads by long runners that root. Each flower rises on its own stalk from the rosette. It has five uneven petals, and the lowest has a short spur at the back. The flowers are usually deep violet, sometimes white, with blunt sepals and a sweet scent. Dog violets look similar but have no scent. Lesser celandine is poisonous and grows in the same places. It has glossy, fleshy, hairless leaves and flowers with 8 to 12 shiny yellow petals. Lords-and-ladies is poisonous too. It has glossy, arrow-shaped leaves with lobes pointing backwards.",
@@ -382,7 +382,7 @@
     },
     "amaranth": {
       "name": "Amaranth",
-      "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
+      "description": "A leafy plant often taken for a weed. Its leaves and seeds are edible and full of nutrients.",
       "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering.",
       "guide": {
         "identify": "Redroot amaranth, or pigweed, is a stout, upright annual. Its stem is covered in fine white hairs and is red at the base. The taproot is pink to red. The leaves grow alternately and are oval to diamond-shaped, smooth-edged and long-stalked. They often have a small notch or a tiny point at the tip. The tiny green flowers sit in dense, bristly, prickly spikes. Later these hold tiny, shiny black seeds. Two toxic weeds share its ground. Thorn apple (Datura) has large, coarsely toothed leaves that smell foul, white trumpet flowers and spiny pods. Black nightshade has wavy-edged leaves, small white star flowers and black berries.",
@@ -396,7 +396,7 @@
     },
     "artichoke": {
       "name": "Wild Artichoke",
-      "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
+      "description": "A thistle-like plant, related to the garden artichoke. You eat its flower buds and stems.",
       "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer.",
       "guide": {
         "identify": "Wild artichoke, also called wild cardoon, forms a large rosette of deeply cut leaves. They are silvery grey-green on top and almost white underneath, felted with hairs. Each lobe ends in a stiff yellow spine. In late spring a stiff, branched stem grows up to head height. It carries heads like small artichokes, wrapped in spine-tipped bracts. These open into blue-purple thistle flowers. Watch out for Atractylis gummifera, a deadly Mediterranean thistle. People have mistaken it for wild artichoke, and it has killed people in Morocco. It has no stem. Its pink flower head sits flat in the middle of the spiny rosette. It flowers in late summer and autumn, and its root oozes a sticky gum. Never eat a stemless thistle rosette or a thistle root.",
@@ -410,7 +410,7 @@
     },
     "asparagus": {
       "name": "Wild Asparagus",
-      "description": "A perennial plant with slender, edible shoots that appear in spring.",
+      "description": "A perennial whose slender shoots come up in spring.",
       "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring.",
       "guide": {
         "identify": "Wild asparagus is a tangled, evergreen, woody shrub up to about 1.5 m tall. It has no true leaves. Instead it has tufts of short, stiff, needle-like green branchlets, each ending in a sharp spine. Its black berries are not eaten. In spring, thin shoots push up from the base of the old spiny bush. They are dark green to purplish and often thinner than a pencil. Small pointed scales lie pressed to the stem, and there are no leaves. Black bryony and white bryony are poisonous climbers of the same hedges, and they also sprout in spring. Black bryony soon unfolds glossy heart-shaped leaves. White bryony is hairy, with lobed leaves and tendrils. Only pick shoots that rise from an asparagus bush you can see.",
@@ -424,7 +424,7 @@
     },
     "black_chant": {
       "name": "Black Trumpet (Horn of Plenty)",
-      "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
+      "description": "A dark, funnel-shaped mushroom with a rich, smoky taste. Cooks prize it.",
       "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn.",
       "guide": {
         "identify": "You're looking for a thin, hollow horn 4 to 8 cm across. It is open right down to the base and has no separate cap. The inside is grey-brown to black and finely scaly. The outside is ash-grey and smooth or only faintly wrinkled, with no gills or ridges. As it ripens it turns paler, with a whitish bloom. The flesh is thin, brittle and grey-black, with a faint, sweet smell. Black trumpets of the eastern US (Craterellus fallax) look the same. They give a pinkish-orange spore print rather than a white one. The ash-grey chanterelle (Craterellus cinereus) has clear forked ridges on the outside.",
@@ -438,7 +438,7 @@
     },
     "lingonb": {
       "name": "Lingonberry",
-      "description": "Small, red, tart berries that grow on low evergreen shrubs in acidic soils.",
+      "description": "Small, red, tart berries on low evergreen shrubs in acid soil.",
       "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn.",
       "guide": {
         "identify": "Lingonberry, also called cowberry, is a creeping evergreen dwarf shrub. Its leaves are thick, glossy and dark green, with edges that roll under. The pale underside is speckled with tiny dark dots. Small white to pink bell-shaped flowers grow in short clusters at the shoot tips. They give round, glossy red berries that hang in small bunches. Bearberry (Arctostaphylos uva-ursi) is a trailing shrub of the same places. It has net-veined leaves without dots and dry, mealy berries. The poisonous red and black berries do not grow on a low evergreen carpet. Yew (Taxus) is a tree or tall shrub with flat needles. Its red cup is open at the end around a dark seed. Mezereon (Daphne mezereum) is an upright shrub with berries pressed along the stem. Deadly nightshade (Atropa bella-donna) is a tall herb with black berries. Red baneberry (Actaea) and lily of the valley (Convallaria majalis) are soft herbs.",
@@ -452,7 +452,7 @@
     },
     "masterwort": {
       "name": "Masterwort",
-      "description": "A perennial herb with aromatic leaves and white flower clusters, used in traditional medicine and as a spice.",
+      "description": "A perennial herb with aromatic leaves and white flower clusters. It has long been used as a spice and in folk medicine.",
       "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer.",
       "guide": {
         "identify": "Masterwort is a hairless umbellifer 30 to 100 cm tall. Its stem is round, grooved and hollow. The leaves split into three, and then into three again. They end in broad, oval, double-toothed leaflets 5 to 10 cm long. The upper leaves sit on large, inflated sheaths. The umbels are flat and white or pinkish, with up to 50 rays. The fruits are round, flat and broadly winged. A crushed leaf or the thick brown rootstock smells strongly spicy, of celery and carrot. Its deadly look-alikes have finely divided leaves, feathery or like a fern's. Hemlock has a smooth, purple-blotched stem and a mousy smell. Fool's parsley has long bracts hanging under each small umbel. Cowbane (water hemlock) has a rootstock split into hollow chambers when you cut it lengthways. Hemlock water dropwort has pale tubers in wet ground. Giant hogweed is far bigger, with a bristly, purple-blotched stem. Its sap burns skin in sunlight. Masterwort's own sap can also make skin sensitive to sunlight.",
@@ -466,7 +466,7 @@
     },
     "parasol": {
       "name": "Parasol Mushroom",
-      "description": "A large, tall mushroom with a broad, scaly cap resembling a parasol, edible when young.",
+      "description": "A big, tall mushroom with a broad, scaly cap that opens like a parasol. Eat it young.",
       "howTo": "Look for it in meadows, grasslands, and forest edges from late summer to autumn.",
       "guide": {
         "identify": "The parasol is a tall mushroom. Its cap starts as a closed, egg-shaped drumstick. It opens into a flat umbrella 10 to 25 cm across. The cap is cream with brown scales and a smooth brown bump in the centre. The gills are white, free and crowded. The slender stem grows up to 30 cm tall and has a bulb at the base. It has a brown snakeskin pattern and a thick double ring that slides up and down. The spore print is white. Several look-alikes matter. The deadly Lepiota species are small, with caps of only a few centimetres. Chlorophyllum molybdites gives a greenish spore print. The shaggy parasols (Chlorophyllum rhacodes and C. brunneum) upset many people. They have a smooth stem, and their flesh turns orange-red when cut. Amanita pantherina has white warts on the cap and a ring that does not slide. It also has a rimmed bulb at the base.",
@@ -480,7 +480,7 @@
     },
     "sorrel": {
       "name": "Common Sorrel",
-      "description": "A tangy, lemon-flavored leafy plant often used in salads and soups.",
+      "description": "A leafy plant with a sharp, lemony taste, good in salads and soups.",
       "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer.",
       "guide": {
         "identify": "Sorrel has tender, arrow-shaped leaves. Their two pointed basal lobes point backwards, down the stalk. The upper leaves clasp the stem. Where each leaf joins the stem, a thin, papery sheath wraps around it. From May the flowering stems carry loose spikes of small reddish flowers. Lords-and-ladies (Arum maculatum) is toxic, and its young leaves have a similar shape. But they often carry dark spots and have rounded lobes. They grow in woods and hedges rather than open grassland. Never taste a leaf to check it, because lords-and-ladies burns the mouth.",
@@ -494,7 +494,7 @@
     },
     "st_george": {
       "name": "St. George's Mushroom",
-      "description": "A white, firm mushroom with a mealy scent, appearing around St. George's Day in spring.",
+      "description": "A firm white mushroom that smells of fresh flour. It appears in spring, around St George's Day.",
       "howTo": "Found in grassy areas, meadows, and along woodland edges in spring.",
       "guide": {
         "identify": "St George's mushroom is stout and fleshy, white to cream. The cap is 5 to 15 cm across, often lumpy, with an inrolled edge. The gills are white, narrow and very crowded. The thick, solid stem has no ring and no sac at the base. The firm white flesh does not change colour. It smells strongly of fresh meal. The spore print is white. The deadly Inosperma erubescens has a pointed, streaky cap. It reddens where handled and gives a brown spore print. Entoloma sinuatum can smell mealy too. But its gills turn pink and its spore print is pink. White Amanitas such as the deadly Amanita verna are also out in spring. They have a ring and a sac at the base.",
@@ -508,7 +508,7 @@
     },
     "truffle_b": {
       "name": "Black Truffle",
-      "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
+      "description": "A highly prized fungus that grows underground and smells strongly. Cooks use it sparingly.",
       "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter.",
       "guide": {
         "identify": "This truffle is a round, lumpy tuber that grows underground. It ranges from walnut to fist size. The black skin is reddish when young and covered in small, hard, many-sided warts. Cut it in half. Ripe flesh is purplish-black, marbled with fine white veins that turn reddish-brown in the air. It smells strong and earthy. Earthballs (Scleroderma) are poisonous. They have a thick, yellowish to brown, scaly skin and smell of gas. Inside they are firm and dark. The winter truffle (Tuber brumale) and the imported Chinese truffle (Tuber indicum) look similar. But they are worth far less.",
@@ -522,7 +522,7 @@
     },
     "bronze_bolete": {
       "name": "Bronze Bolete",
-      "description": "A dark bronze to almost black-capped porcino with a pale netted stem and firm white flesh",
+      "description": "A porcino with a dark bronze to almost black cap, a pale netted stem and firm white flesh.",
       "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete",
       "guide": {
         "identify": "This is the darkest porcino. The cap is dark chestnut to almost black, often with bronze patches. It stays dry and finely velvety, even when wet. The pores are white, then yellow to olive, and they don't turn blue. The pale brown stem has a fine brown net, densest at the top. The very firm white flesh does not change colour when you cut it. The summer bolete is paler, and its net runs further down the stem. Two other boletes share its oak woods. These are the devil's bolete (Rubroboletus satanas) and Le Gal's bolete (Rubroboletus legaliae). Both have red pores and flesh that turns blue.",
@@ -536,7 +536,7 @@
     },
     "pine_bolete": {
       "name": "Pine Bolete",
-      "description": "A red-brown capped porcino of pine woods, with a stout reddish netted stem and firm flesh",
+      "description": "A porcino of pine woods with a red-brown cap, a stout reddish netted stem and firm flesh.",
       "howTo": "Look in mossy pine and spruce forest on acidic sandy soil, in a late spring flush and again in autumn",
       "guide": {
         "identify": "This is the red porcino. The cap is wine-red to mahogany and often bumpy. It is velvety when young and greasy to slimy when wet, with a whitish bloom at the edge. The stem is short and stout, flushed reddish brown, with a fine whitish to reddish net. The flesh is white, but wine-red just under the cap skin. The pores go from white to yellow and olive. They barely change colour when you press them. The bronze bolete is sepia to black, with no red. Red or orange pores (Rubroboletus satanas) rule it out. So do pink pores with a dark net (Tylopilus felleus).",
@@ -550,7 +550,7 @@
     },
     "summer_bolete": {
       "name": "Summer Bolete",
-      "description": "The earliest porcino, with a finely cracked pale brown cap and a stem netted from top to bottom",
+      "description": "The earliest porcino. Its pale brown cap is finely cracked, and its stem is netted from top to bottom.",
       "howTo": "Look under oak and beech from late spring, well before the other porcini appear",
       "guide": {
         "identify": "The summer porcino has a matt, dry, velvety cap, pale hazel to mid-brown. In dry weather the cap cracks into a fine network. It is never greasy, and its edge is no paler than the centre. Its clearest mark is a raised net that runs down the stem almost to the base. The pores are white, then yellow-olive, and do not change colour. The white flesh is softer than in porcini. The devil's bolete (Rubroboletus satanas) and Le Gal's bolete (Rubroboletus legaliae) share its oak woods. But they have red pores and flesh that turns blue. The bitter bolete (Tylopilus felleus) has pink pores and a dark net.",
@@ -564,7 +564,7 @@
     },
     "pacific_chant": {
       "name": "Pacific Chanterelle",
-      "description": "A large golden chanterelle of the Pacific Northwest, paler and pinker than its European cousin",
+      "description": "A big golden chanterelle from the Pacific Northwest. It is paler and pinker than the European one.",
       "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in",
       "guide": {
         "identify": "This is a large chanterelle, paler and pinker than the European one. The cap is orange-yellow to apricot. Young caps often have fine brownish scales and a pinkish cast, which can vanish in wet weather. Underneath are blunt, forking ridges that run down the stem. They are pale orange-yellow and usually tinged pink. The stem tapers downward, and the flesh is whitish and firm. The cap bruises yellowish. Jack-o'-lanterns (Omphalotus) and the false chanterelle have thin, crowded true gills. The scaly vase chanterelle (Turbinellus floccosus) is a deep, hollow, orange-red trumpet with coarse scales. It upsets many people's stomachs.",
@@ -578,7 +578,7 @@
     },
     "smooth_chant": {
       "name": "Smooth Chanterelle",
-      "description": "An orange chanterelle whose underside is nearly smooth instead of ridged, with a strong apricot smell",
+      "description": "An orange chanterelle with an almost smooth underside instead of ridges. It smells strongly of apricots.",
       "howTo": "Look in southeastern oak woods through the humid summer, often in troops on bare soil",
       "guide": {
         "identify": "The smooth chanterelle is bright orange-yellow to egg-yolk yellow and 2.5 to 8 cm across. It starts flat and later becomes a shallow vase with a wavy edge. Its underside sets it apart. It is smooth or only shallowly wrinkled, with no true gills. It is paler than the cap, often pinkish, and runs down the stem. The stem tapers to the base. The flesh is white and does not change when cut. The smell is usually strong and sweet, like apricots. Jack-o'-lanterns (Omphalotus illudens) are common in the same oak woods. They have sharp, crowded true gills and grow in tight clusters from wood or buried roots. They are also orange inside.",
@@ -592,7 +592,7 @@
     },
     "winter_chant": {
       "name": "Winter Chanterelle",
-      "description": "A small brown-capped chanterelle on a hollow yellow stem, fruiting on through the first frosts",
+      "description": "A small chanterelle with a brown cap on a hollow yellow stem. It keeps fruiting through the first frosts.",
       "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood",
       "guide": {
         "identify": "The winter chanterelle is small and slim. The cap is 1 to 4 cm, brown to yellow-brown. It is a thin funnel, and its centre opens into the hollow stem. Underneath are blunt, forking ridges, grey to yellowish-grey, that run down the stem. The stem is yellow to orange-yellow, hollow and often flattened or grooved. The deadly webcap (Cortinarius rubellus) grows in the same mossy conifer woods. It has a pointed red-brown cap and true rusty-brown gills. Its stem is solid, with faint yellow bands. It destroys the kidneys. Check every mushroom as you pick and again as you clean. Norway's poison centre advises throwing away the whole basket if you find even one webcap in it.",
@@ -606,7 +606,7 @@
     },
     "eastern_king": {
       "name": "Eastern King Bolete",
-      "description": "The king boletes of eastern oak woods: a tan to lilac-brown cap, white pores that turn yellow with age and a netted stem, never bruising blue",
+      "description": "The porcini of the oak woods in the eastern US. The cap is tan to lilac-brown, the pores are white and turn yellow, and it never bruises blue.",
       "howTo": "Look under oak, beech and hickory in eastern hardwood forest from June, a few days after warm summer rain",
       "guide": {
         "identify": "This is a small group of eastern king boletes. Boletus variipes has a dry, velvety cap, tan to grey-brown, that often cracks. Boletus separans has a lilac-brown to liver-red cap that fades to yellow-brown. It also shows lilac on the stem. Both have white pores when young that turn yellowish. Both have a clear white to brownish net on the stem. Their white flesh does not change colour. Bitter Tylopilus have pores that turn pink. One example is the violet-grey Tylopilus plumbeoviolaceus. Red or orange pores (Neoboletus subvelutipes) mean a toxic bolete. So do bluing pores and flesh (Boletus sensibilis, Boletus huronensis).",
@@ -620,7 +620,7 @@
     },
     "rocky_king": {
       "name": "Rocky Mountain King",
-      "description": "A stout high-mountain porcino with a brick-red to red-brown cap, white pores and a thick pale stem netted at the top",
+      "description": "A stout porcino of the high mountains. It has a brick-red to red-brown cap, white pores and a thick pale stem with a net at the top.",
       "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September",
       "guide": {
         "identify": "This is a big, stout porcino of the high Rockies. The cap is brick-red to reddish-brown and tacky when fresh. Young caps often have a whitish bloom. It is redder than the porcini (Boletus edulis) that also grow there. The pores are white and stuffed when young, then turn yellow and olive. They do not bruise. The thick, pale stem has a fine white net, at least near the top. The white flesh does not turn blue. Aspen boletes (Leccinum) have dark scales on the stem. Orange-capped ones have caused severe stomach poisonings in Colorado. Red or orange pores mean a toxic bolete.",
@@ -634,7 +634,7 @@
     },
     "lions_mane": {
       "name": "Lion's Mane",
-      "description": "A white, shaggy clump of long hanging spines on hardwood trees that cooks up like crab",
+      "description": "A white, shaggy clump of long hanging spines on hardwood trees. Cooked, it tastes a bit like crab.",
       "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there",
       "guide": {
         "identify": "Lion's mane is a single white, rounded clump 8 to 24 cm across. It has no cap or gills. Soft spines 1 to 5 cm long hang from it like icicles. It turns yellow with age. The flesh is white and soft and does not change colour when cut. The spore print is white. Its relatives coral tooth (Hericium coralloides) and bear's head (Hericium americanum) are branched and have shorter spines.",
@@ -648,7 +648,7 @@
     },
     "hen_of_the_woods": {
       "name": "Hen of the Woods",
-      "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath",
+      "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath.",
       "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe",
       "guide": {
         "identify": "Hen of the woods forms a rosette 15 to 40 cm across. It is made of many overlapping grey-brown caps, shaped like spoons or fans and each 3 to 14 cm wide. They branch from a shared white base. The underside is white with tiny pores, not gills. The flesh is white and firm and does not stain when cut or bruised. The black-staining polypore (Meripilus) has larger, thicker caps that bruise black. The umbrella polypore (Polyporus umbellatus) has round caps on small central stems.",
@@ -662,7 +662,7 @@
     },
     "saffron_milk_cap": {
       "name": "Saffron Milk Cap",
-      "description": "An orange cap with darker rings that bleeds carrot-orange milk and bruises green; a favourite in Spain and Italy",
+      "description": "An orange cap with darker rings. It bleeds carrot-orange milk and bruises green, and it is a favourite in Spain and Italy.",
       "howTo": "Look under pines and spruces from late summer to November, into winter on the Mediterranean and US Pacific coasts. Break a gill: the milk must be orange to red, never white",
       "guide": {
         "identify": "The cap is orange with darker concentric rings. When young, its edge is rolled under. Later it turns funnel-shaped and is often blotched green. The crowded orange gills run slightly down the stem. The stem is short, hollow and orange, often with darker orange pits. Break a gill and look at the milk. It is carrot-orange and may slowly turn wine-red. Gills and flesh bruise green. White or yellowing milk means another milk cap. One is the woolly milk cap (Lactarius torminosus). It is pinker, has a woolly, bearded cap edge and grows with birch.",
@@ -676,7 +676,7 @@
     },
     "hedgehog_mushroom": {
       "name": "Hedgehog Mushroom",
-      "description": "A buff to orange cap with soft spines instead of gills underneath: one of the safest wild mushrooms to learn",
+      "description": "A buff to orange cap with soft spines underneath instead of gills. One of the safest wild mushrooms to learn.",
       "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills",
       "guide": {
         "identify": "Turn it over. Under the cap you'll find soft, brittle spines 2 to 6 mm long, hanging like small icicles. There are no gills or ridges. The spines rub off easily. The cap is 4 to 15 cm across and cream to buff or pale orange. It is dry, velvety and often lumpy. The stem is white, solid and often off-centre. The firm white flesh slowly bruises yellowish to orange-brown. The terracotta hedgehog (Hydnum rufescens) is smaller and more orange. It has the same soft spines, and so do the American Hydnum species. Other tooth fungi, such as Hydnellum and Sarcodon, are tough and corky or brown and scaly. Many of them are bitter.",
@@ -690,7 +690,7 @@
     },
     "shaggy_mane": {
       "name": "Shaggy Mane",
-      "description": "A tall white cylinder of shaggy scales on lawns and roadsides that dissolves into black ink within a day of picking",
+      "description": "A tall white cylinder covered in shaggy scales, on lawns and roadsides. Within a day of picking it melts into black ink.",
       "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals",
       "guide": {
         "identify": "The shaggy mane is a tall white cylinder, 5 to 15 cm high. It is covered in shaggy, upturned scales, with a pale brown top. With age it opens into a bell. The crowded gills turn from white to pink to black. Then they dissolve into black ink, from the cap edge upwards. The white stem is smooth and hollow. Its thin ring slides and often drops to the base. The spore print is black. The common ink cap (Coprinopsis atramentaria) has a smooth, grey-brown, finely grooved cap with no shaggy scales. It grows in clusters from buried wood. On US lawns, young green-spored parasols (Chlorophyllum molybdites) can look similar. Their gills never turn black.",
@@ -704,7 +704,7 @@
     },
     "giant_puffball": {
       "name": "Giant Puffball",
-      "description": "A smooth white ball, football-sized or bigger, in meadows and pastures, with firm white flesh like fresh mozzarella",
+      "description": "A smooth white ball, as big as a football or bigger, in meadows and pastures. Its flesh is firm and white, like fresh mozzarella.",
       "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem",
       "guide": {
         "identify": "The giant puffball is a smooth white ball, often 20 to 50 cm across. It has a thin, leathery skin and no stem. A cord-like root joins it to the ground. Cut every one in half from top to bottom. The inside must be firm and pure white throughout, like fresh mozzarella. Any outline of a cap, gills or stem can mean a young Amanita still in its egg. That can be deadly. A thick, scaly, yellowish skin and a dark, purple-black inside mean an earthball (Scleroderma), which is poisonous. Yellow, olive or brown flesh means the spores are ripening. Then it is no longer edible.",
@@ -718,7 +718,7 @@
     },
     "matsutake": {
       "name": "Matsutake",
-      "description": "A firm white-and-brown mushroom with a spicy, cinnamon-like smell, prized above all others in Japan",
+      "description": "A firm white-and-brown mushroom that smells spicy, a little like cinnamon. In Japan it is prized above all others.",
       "howTo": "Look in dry, sandy pine heaths from August in the Nordics, and under conifers and tanoak from September to November in the western US. Never rake the ground. It is red-listed in Sweden and Norway, where logging, not picking, is the threat; US national forests require a permit",
       "guide": {
         "identify": "Matsutake is a firm, heavy mushroom. The cap is 6 to 20 cm across, white with brown fibres and scales. In Europe and Asia it is browner. When young, the cap edge is rolled in. The gills are crowded, white to cream and attached to the stem. A thick white veil leaves a flaring ring. Below the ring, brown scales sheathe the stem. The solid stem narrows towards the base, with no bulb, sac or cup. The smell is strong and spicy, like cinnamon with a note of dirty socks. Without that smell it is not a matsutake. But the smell alone is no proof. Smith's amanita (Amanita smithiana) and the destroying angels are white too. These are Amanita virosa in Europe, A. bisporigera in the East and A. ocreata in the West. They have a bulb, sac or warty rings at the very base. Their ring is ragged or skirt-like, and they have no spicy smell. They destroy the kidneys or liver.",
@@ -732,7 +732,7 @@
     },
     "ramps": {
       "name": "Ramps",
-      "description": "America's wild garlic: broad, smooth green leaves on purplish stems that smell strongly of onion and garlic",
+      "description": "America's wild garlic: broad, smooth green leaves on purplish stems that smell strongly of onion and garlic.",
       "howTo": "Look in rich, moist hardwood forest in the eastern US from March to May, before the trees leaf out. Take one leaf per plant and leave the bulb; some parks ban picking, and Quebec bans selling them",
       "guide": {
         "identify": "Ramps grow two or three broad, smooth, flat leaves straight from a small bulb in the ground. Each leaf has its own stalk, often purplish-red near the base. The leaves wither by early summer. After that, a leafless stalk carries a rounded cluster of small white flowers. Crush a leaf. Ramps smell strongly of onion and garlic, and their deadly look-alikes do not. But the smell stays on your fingers, so after the first few leaves the test proves nothing. Check every plant by its leaves and stalks too. False hellebore has pleated leaves set along an upright stem and grows in wet ground. Lily of the valley has two or three leaves wrapped around one another at the base. Autumn crocus, a garden escape, has stalkless leaves in a tuft. Appalachian bunchflower (Melanthium parviflorum) has similar basal leaves but no onion smell.",
@@ -746,7 +746,7 @@
     },
     "fiddleheads": {
       "name": "Fiddleheads",
-      "description": "The tightly coiled young fronds of the ostrich fern: smooth, bright green, with brown papery scales",
+      "description": "The tightly curled young fronds of the ostrich fern. They are smooth and bright green, with brown papery scales.",
       "howTo": "Look on river floodplains and in moist woods from late April to May, while the fronds are still coiled. Always boil them before eating, and take no more than half the fiddleheads of a clump",
       "guide": {
         "identify": "Only the ostrich fern is picked. It grows in clumps, called crowns, of about three to twelve fiddleheads. These are tight green coils about 2.5 cm across. The stem is smooth, with a deep U-shaped groove on its inner side. Thin brown papery scales cover them and rub off. Last year's fertile fronds often still stand in the clump. They are dark brown, stiff and shaped like feathers. Bracken is carcinogenic. It comes up singly from creeping stems under the ground. Its stem is fuzzy and round, it has no papery scales and its top branches in three. Other ferns, such as cinnamon fern, have woolly fiddleheads and are not recommended.",
@@ -760,7 +760,7 @@
     },
     "cloudberry": {
       "name": "Cloudberry",
-      "description": "An amber-orange berry of northern bogs, like a soft raspberry, prized across the Nordic countries",
+      "description": "An amber-orange berry from northern bogs. It looks like a soft raspberry, and the Nordic countries love it.",
       "howTo": "Look on open bogs and wet heath in Fennoscandia in July and August, when the berries turn from hard red to soft amber-yellow. A frost at flowering time can ruin a year's crop",
       "guide": {
         "identify": "Cloudberry is a low herb, not a shrub, about a hand high. It rises from creeping stems under the ground. Each upright shoot carries one to three round, wrinkled leaves with five to seven shallow lobes. It has a single white flower. Male and female flowers grow on separate plants, so only some shoots bear fruit. The berry looks like a raspberry made of a few large drupelets. It is hard and red at first. When ripe it turns soft and amber-orange.",
@@ -774,7 +774,7 @@
     },
     "huckleberry": {
       "name": "Huckleberry",
-      "description": "A purple-black mountain berry of the US Northwest, sweeter and tarter than a blueberry",
+      "description": "A purple-black mountain berry from the northwest of the US. It is sweeter and tarter than a blueberry.",
       "howTo": "Look on subalpine slopes and old burns at 1,000–2,000 m in Montana, Idaho and the Cascades from July to September. Huckleberry patches are bear country: make noise and carry bear spray",
       "guide": {
         "identify": "Huckleberry is a deciduous shrub, usually waist to shoulder high. Its young twigs are slightly angled and yellow-green. The leaves are thin and oval, with a pointed tip and finely toothed edges. In early summer creamy-pink, urn-shaped flowers hang singly from the leaf axils. Each gives one purple to reddish-black berry, usually without a pale bloom. At its tip sits a small ring shaped like a crown. Berries you should not eat grow in the same forests, but they grow differently. Twinberry honeysuckle (Lonicera involucrata) has black berries in pairs inside red bracts. Baneberry (Actaea rubra) is a soft herb with clustered red or white berries.",
@@ -788,7 +788,7 @@
     },
     "pawpaw": {
       "name": "Pawpaw",
-      "description": "North America's largest native fruit: green and mango-shaped, with custardy flesh that tastes of banana and mango",
+      "description": "North America's biggest native fruit. It is green and shaped like a mango, with custard-soft flesh that tastes of banana and mango.",
       "howTo": "Look in the understory of river-bottom forests in the eastern US from late August to October, when the fruit softens and drops. Eat only the flesh: the skin and seeds are poisonous",
       "guide": {
         "identify": "Pawpaw is a small understory tree. It often forms patches from root suckers. The leaves are large and drooping, and widest beyond the middle. Crushed, they smell of green pepper. In spring, deep maroon flowers with six petals open before the leaves. The fruit is oblong and green to yellow-green. It grows singly or in clusters of two to nine. Inside, soft yellow, custard-like flesh surrounds two rows of large, flat brown seeds.",
@@ -802,7 +802,7 @@
     },
     "rose_hips": {
       "name": "Rose Hips",
-      "description": "The red autumn fruits of wild roses, rich in vitamin C and full of seeds wrapped in itchy hairs",
+      "description": "The red autumn fruits of wild roses. They are rich in vitamin C, and the seeds inside are wrapped in itchy hairs.",
       "howTo": "Look on hedgerows, scrub and woodland edges from late August to November; they are softest after the first frosts. Remove the seeds and hairs, which irritate the mouth and gut",
       "guide": {
         "identify": "Dog rose is a shrub with long arching stems and strongly hooked prickles. Its leaves have 5 to 7 toothed leaflets. The hips are oval, smooth and glossy scarlet, 1 to 2 cm long. When ripe they have no sepals left on them. Inside, hard seeds sit in fine, irritant hairs. Black bryony, white bryony and bittersweet grow in the same hedges. They hang shiny red, poisonous berries in bunches, on climbing stems without prickles. A rose hip grows on a prickly rose stem and is full of hairy seeds.",
@@ -816,7 +816,7 @@
     },
     "sloes": {
       "name": "Sloes",
-      "description": "The small blue-black fruits of the thorny blackthorn, with a dusty bloom and a fiercely sour taste",
+      "description": "The small blue-black fruits of the thorny blackthorn. They have a dusty bloom and taste fiercely sour.",
       "howTo": "Look on hedgerows and scrubby slopes from September to November; they mellow after the first frosts. Don't crush the stones, and watch for shiny black look-alikes such as buckthorn and deadly nightshade",
       "guide": {
         "identify": "Sloes grow on blackthorn. It is a dense, woody shrub with dark bark, and its side twigs end in sharp thorns. The white blossom opens in March and April, before the leaves. The fruit is round and about 1 cm across. It is blue-black with a dusty bloom that rubs off. Sloes grow singly or in pairs along the twigs. Inside, green and very astringent flesh surrounds one stone. Buckthorn has shiny black berries in clusters, with no bloom. Deadly nightshade is a soft, leafy herb, not a thorny shrub. Its shiny black berries grow singly, each sitting in a green star of sepals.",
@@ -830,7 +830,7 @@
     },
     "sea_buckthorn": {
       "name": "Sea Buckthorn",
-      "description": "Bright orange berries packed along thorny, silver-leaved branches: sour and rich in vitamin C",
+      "description": "Bright orange berries packed along thorny branches with silvery leaves. They are sour and rich in vitamin C.",
       "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves",
       "guide": {
         "identify": "Sea buckthorn is a thorny, much-branched shrub that forms thickets. Its narrow, willow-like leaves are covered in silvery scales, above all underneath. Male and female flowers grow on separate bushes, so only female bushes fruit. The berries are round and bright orange, 6 to 8 mm across. They sit packed tightly along the twigs on very short stalks. They are juicy and very sour, and they burst at a touch. Rowan and firethorn also have orange berries. But they carry them in stalked bunches among green leaves.",
@@ -844,7 +844,7 @@
     },
     "boletus": {
       "name": "Boletus (porcini & bay bolete)",
-      "description": "Porcini and the bay bolete in one score: porcini, pine, bronze and summer boletes, the bay bolete in Europe and the North American kings",
+      "description": "Porcini and the bay bolete together: porcino, pine, bronze and summer bolete, the bay bolete in Europe and the North American kings.",
       "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain",
       "guide": {
         "identify": "This group brings together several boletes. In Europe there are the porcini (Boletus edulis) and the pine, bronze and summer boletes. North America adds the eastern king bolete and the Rocky Mountain king. The bay bolete (Imleria badia) belongs here too. The porcini and kings have white pores when young, a net on the stem and white flesh that does not turn blue. The bay bolete has yellow pores that bruise blue-green and a streaky stem without a net. The cap tells them apart. It is brown and greasy on the porcino, wine-red on the pine bolete and near-black and velvety on the bronze bolete. The summer bolete's cap is pale and cracked, and the eastern king's is tan to lilac-brown. The Rocky Mountain king has a brick-red cap and the bay bolete a chestnut, tacky one. Red or orange pores mean a toxic bolete, such as the devil's bolete (Rubroboletus satanas). Pink pores and a dark stem net mean the bitter bolete (Tylopilus felleus).",
@@ -858,7 +858,7 @@
     },
     "cantharellus": {
       "name": "Chanterelles (all)",
-      "description": "Every chanterelle in one score: the golden chanterelles, the black trumpet and the winter chanterelle, and in North America the smooth and Pacific chanterelles",
+      "description": "Every chanterelle together: the golden chanterelle, the black trumpet, the winter chanterelle and, in North America, the smooth and Pacific chanterelles.",
       "howTo": "Each place shows the best of their scores; golden chanterelles on mossy slopes under oak, beech and conifers after warm rain, black trumpets in damp leaf litter under broadleaves, winter chanterelles on wet moss under conifers late in the season",
       "guide": {
         "identify": "This group holds five species. They are the golden chanterelle, the smooth and Pacific chanterelles of North America, the black trumpet and the winter chanterelle. The last two belong to the close genus Craterellus. All of them have blunt, forking ridges or a nearly smooth underside running down the stem. They never have thin, blade-like gills. The golden, smooth and Pacific chanterelles are yellow to orange and fleshy, with a solid stem. The winter chanterelle is small, with a brown cap and a hollow yellow stem. The black trumpet is a thin, hollow, grey-black horn. Each has its own dangerous look-alike. For the yellow ones it is the jack-o'-lantern (Omphalotus), with true gills and clusters on wood. Among winter chanterelles it is the deadly webcap (Cortinarius rubellus), with rusty-brown gills.",
@@ -872,7 +872,7 @@
     },
     "bay_bolete": {
       "name": "Bay Bolete",
-      "description": "A chestnut-brown capped bolete, tacky when wet, with cream to olive-yellow pores that bruise blue-green and a streaky stem without a net",
+      "description": "A bolete with a chestnut-brown cap that turns sticky when wet. Its pores bruise blue-green, and its streaky stem has no net.",
       "howTo": "Look in moss under pine and spruce, also beech and oak, on acid sandy soil from August to the first frosts; it peaks in October as porcini fade. It gathers more Chernobyl caesium than most mushrooms, so in Bavaria and Austria eat it only now and then",
       "guide": {
         "identify": "This is a bolete without the porcini's net on the stem. The cap is chestnut brown. It feels like suede when dry and turns sticky when wet. The pores are cream to pale yellow, later olive, and bruise blue-green. The flesh is white to pale yellow and may turn faintly blue when you cut it. The stem is slimmer and streaked brown on a paler background. Red or orange pores rule it out (Rubroboletus satanas, Neoboletus subvelutipes). So do pink pores with a netted stem (Tylopilus felleus). In eastern North America there are two more to know. Boletus sensibilis turns dark blue instantly all over and has a yellow stem. Boletus huronensis is dense and shaped like a porcino, with a yellowish stem.",

@@ -18,7 +18,7 @@
   "locales": {
     "en": {
       "name": "Oyster Mushroom",
-      "description": "A white-grey mushroom with fan-shaped cap that grows in clusters on dead wood",
+      "description": "A white-grey mushroom with fan-shaped caps. It grows in clusters on dead wood.",
       "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter",
       "guide": {
         "identify": "Oyster mushrooms have a shell- or fan-shaped cap, 5 to 18 cm across. It can be blue-grey, grey-brown or cream. They grow on wood in overlapping tiers. The white to cream gills run down into a short, off-centre stem, or there is no stem at all. The flesh is white and firm, and the smell is mild. The spore print is white to pale lilac. Three look-alikes matter. The poisonous jack-o'-lantern (Omphalotus) is bright orange, gills included. It grows in tufts at the foot of trees. Sulphur tuft (Hypholoma fasciculare) has sulphur-yellow caps on central stems. Its gills are greenish-yellow and turn purple-brown, and it tastes bitter. Angel wings (Pleurocybella porrigens) have been linked to deaths in Japan. They are pure white, thin and translucent, and grow only on rotting conifer wood.",
@@ -60,7 +60,7 @@
     },
     "de": {
       "name": "Austernpilz",
-      "description": "Weiss-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
+      "description": "Ein weissgrauer Pilz mit fächerförmigen Hüten. Er wächst in Büscheln an totem Holz.",
       "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter",
       "guide": {
         "identify": "Austernseitlinge haben einen muschel- oder fächerförmigen Hut von 5 bis 18 cm. Er kann blaugrau, graubraun oder cremefarben sein. Sie wachsen dachziegelartig übereinander am Holz. Die weissen bis cremefarbenen Lamellen laufen an einem kurzen, seitlichen Stiel herab, oder es gibt gar keinen Stiel. Das Fleisch ist weiss und fest, der Geruch mild. Das Sporenpulver ist weiss bis blasslila. Drei Doppelgänger musst du kennen. Der giftige Ölbaumtrichterling (Omphalotus) ist leuchtend orange, auch an den Lamellen. Er wächst büschelig am Stammfuss. Der Grünblättrige Schwefelkopf (Hypholoma fasciculare) hat schwefelgelbe Hüte auf mittigen Stielen. Seine Lamellen sind grünlich gelb und werden purpurbraun, und er schmeckt bitter. Der Ohrförmige Seitling (Pleurocybella porrigens) wird mit Todesfällen in Japan in Verbindung gebracht. Er ist reinweiss, dünn und durchscheinend und wächst nur auf morschem Nadelholz.",
@@ -74,15 +74,15 @@
     },
     "es": {
       "name": "Seta de ostra",
-      "description": "Hongo blanco-grisáceo con sombrero en forma de abanico que crece en racimos sobre madera muerta",
+      "description": "Una seta de color blanco grisáceo con sombreros en forma de abanico. Crece en grupos apiñados sobre madera muerta.",
       "howTo": "Búscalas creciendo en árboles muertos, especialmente hayas y robles, en otoño e invierno",
       "guide": {
-        "identify": "Sombrero en forma de concha o abanico, de 5 a 18 cm, gris azulado, pardo grisáceo o crema, en pisos superpuestos sobre madera. Las láminas, blancas a crema, bajan por un pie corto y lateral, que puede faltar; la carne es blanca y firme, el olor suave y la esporada blanca a lila pálido. La venenosa seta de olivo (Omphalotus) es naranja vivo, láminas incluidas, y crece en matas al pie de los árboles; Hypholoma fasciculare tiene sombreros amarillo azufre sobre pies centrales, láminas amarillo verdosas que se vuelven pardo púrpura y sabor amargo. Pleurocybella porrigens, relacionada con muertes en Japón, es blanca pura, fina y translúcida y crece solo sobre madera podrida de coníferas.",
-        "habitat": "En árboles de hoja ancha muertos o moribundos, sobre todo hayas, también chopos, sauces, robles y fresnos: troncos en pie, tocones y troncos caídos, rara vez coníferas. Común en toda Europa y Norteamérica.",
-        "season": "De finales de otoño al invierno, tras una ola de frío o las primeras heladas después de la lluvia; hasta enero o febrero en el sur de Europa y de octubre a principios de abril en el este de EE. UU.",
-        "picking": "Corta el grupo por la base con navaja, coge los sombreros firmes y jóvenes y deja los viejos o llenos de escarabajos. Donde la recogida de setas necesita permiso o tiene límites diarios, como en muchas comunidades y municipios, infórmate de las normas locales.",
-        "kitchen": "Una vez identificada con certeza, cocínala bien; no la comas cruda. Quita la base dura, rasga los sombreros en tiras y saltéalas a fuego vivo hasta que los bordes queden crujientes; su sabor suave y algo dulce va con ajo, mantequilla, salsa de soja y huevos.",
-        "keeps": "Se estropea rápido: guárdala unos días en la nevera en una bolsa de papel o congélala cocinada.",
+        "identify": "La seta de ostra tiene el sombrero en forma de concha o de abanico, de 5 a 18 cm. Puede ser gris azulado, pardo grisáceo o crema. Crece sobre madera, en pisos que se solapan. Las láminas son de blancas a crema y bajan hasta un pie corto y descentrado, o no hay pie. La carne es blanca y firme, y el olor es suave. La esporada es de blanca a lila pálido. Hay tres parecidas que debes conocer. La venenosa seta de olivo (Omphalotus) es de un naranja vivo, láminas incluidas. Crece en matas al pie de los árboles. Hypholoma fasciculare tiene sombreros amarillo azufre con el pie en el centro. Sus láminas son amarillo verdosas y se vuelven pardo púrpura, y sabe amarga. Las orejas de ángel (Pleurocybella porrigens) se han relacionado con muertes en Japón. Son de un blanco puro, finas y translúcidas. Solo crecen sobre madera podrida de coníferas.",
+        "habitat": "Crece en frondosas muertas o que se están muriendo, sobre todo en hayas. También sale en chopos, sauces, robles y fresnos. En coníferas sale rara vez. Búscala en troncos en pie, tocones y troncos caídos. Es común en toda Europa y Norteamérica.",
+        "season": "Es una seta de finales de otoño y de invierno. La hace salir una ola de frío o las primeras heladas después de llover. En el sur de Europa sigue hasta enero o febrero. En el este de EE. UU. sale de octubre a principios de abril.",
+        "picking": "Corta el grupo por la base con una navaja. Coge los sombreros jóvenes y firmes, y deja los viejos o llenos de escarabajos. En algunos sitios hace falta permiso para coger setas o hay límites diarios, así que infórmate de las normas del lugar.",
+        "kitchen": "Antes de cocinarla, asegúrate de que la has identificado sin ninguna duda. Cocínala bien y no la comas cruda. Quita la base dura y rasga los sombreros en tiras. Saltéalas a fuego vivo hasta que los bordes queden crujientes. Tiene un sabor suave y algo dulce. Va bien con ajo, mantequilla, salsa de soja y huevos.",
+        "keeps": "Se estropea rápido. Guárdala unos días en la nevera en una bolsa de papel, o cocínala y congélala.",
         "source": "Identificación y temporada: First Nature y MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, Universidad de la Columbia Británica."
       }
     },
