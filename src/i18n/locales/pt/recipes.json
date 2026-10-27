@@ -223,7 +223,7 @@
       "title": "Torta de Cantharellus e Ervas",
       "ingredients": [
         "200 g de cantharellus frescos",
-        "1 alho-poró pequeno, fatiado fino",
+        "1 alho-francês pequeno, fatiado fino",
         "2 ovos",
         "100 ml de creme de leite",
         "1 colher de sopa de azeite de oliva",
@@ -233,9 +233,9 @@
       ],
       "instructions": [
         "Limpe os cogumelos: Limpe os cantharellus com um pincel ou pano úmido.",
-        "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-poró até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal.",
+        "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-francês até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal.",
         "Prepare o recheio: Bata os ovos com o creme de leite, as ervas, sal e pimenta.",
-        "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-poró, despeje a mistura de ovos por cima.",
+        "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-francês, despeje a mistura de ovos por cima.",
         "Asse: Leve ao forno a 180°C por 25–30 minutos até dourar.",
         "Sirva: Quente ou fria, ideal para um brunch na floresta."
       ],
@@ -247,7 +247,7 @@
         },
         {
           "step": 2,
-          "instruction": "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-poró até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal."
+          "instruction": "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-francês até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal."
         },
         {
           "step": 3,
@@ -255,7 +255,7 @@
         },
         {
           "step": 4,
-          "instruction": "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-poró, despeje a mistura de ovos por cima."
+          "instruction": "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-francês, despeje a mistura de ovos por cima."
         },
         {
           "step": 5,
