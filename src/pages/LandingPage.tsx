@@ -277,7 +277,7 @@ const REGIONS: ScoreRegionId[] = AMERICAS ? ['USE', 'USW'] : ['NE', 'SE'];
 /** What is up tonight, from the nightly forecast: the mushroom strong in the
  *  most areas, or, when no mushroom is (mid-winter), whatever is. Until the
  *  data arrives, or when nothing is up at all, the plain description. */
-function LiveLine() {
+export function LiveLine() {
   const { t, i18n } = useTranslation('common');
   const species = useSpeciesData();
   const [top, setTop] = useState<{ speciesId: string; areas: number } | null>(
