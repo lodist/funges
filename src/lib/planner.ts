@@ -8,7 +8,6 @@
  */
 import { currentGarden, updateGarden } from '@/lib/gardens';
 import { CROPS, type CropStatus } from '@/lib/huerta';
-import { nextMonth } from '@/lib/huerta-wire';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import type { Acidity, Texture } from '@/lib/soil';
 
@@ -858,24 +857,6 @@ export function ready(
     key: 'readyAround',
     month: new Date(today.getTime() + days * 864e5).getMonth(),
   };
-}
-
-/** When a crop put in a bed on `today` is planned to go in: today if it goes
- *  in now, or if the place's calendar (`sow`: its sowing months, bit 0 =
- *  January) holds this month, while the weekly status says why it waits;
- *  else the 1st of the next month the calendar holds. Without the calendar,
- *  unset: as soon as it can. */
-export function dueDate(
-  status: CropStatus | undefined,
-  sow: number | undefined,
-  today: string
-): string | undefined {
-  if (status === 'now') return today;
-  if (!sow) return undefined;
-  const [y, m] = today.split('-').map(Number);
-  if ((sow >> (m - 1)) & 1) return today;
-  const next = nextMonth(sow, m - 1)!;
-  return `${next < m - 1 ? y + 1 : y}-${String(next + 1).padStart(2, '0')}-01`;
 }
 
 /** The 1st of the month `k` months after `today`'s, YYYY-MM-DD. */

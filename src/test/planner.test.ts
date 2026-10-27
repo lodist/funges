@@ -6,7 +6,6 @@ import {
   adjacent,
   autoPlan,
   axisOf,
-  dueDate,
   fit,
   inMonth,
   layout,
@@ -307,27 +306,6 @@ describe('the garden model', () => {
     const block = source.match(/const STAGED[^{]*\{([^}]*)\}/)?.[1] ?? '';
     const staged = new Set([...block.matchAll(/^\s*(\w+):/gm)].map(m => m[1]));
     expect(CROPS.filter(c => !staged.has(c.id)).map(c => c.id)).toEqual([]);
-  });
-});
-
-describe('when a crop put in a bed goes in', () => {
-  // Tomatoes go in April to June here; garlic in October and November.
-  const TOMATO = 0b111000;
-  const GARLIC = (1 << 9) | (1 << 10);
-
-  it('today when it goes in now, or its month has come', () => {
-    expect(dueDate('now', TOMATO, '2026-10-24')).toBe('2026-10-24');
-    expect(dueDate('wait_soil', GARLIC, '2026-10-24')).toBe('2026-10-24');
-  });
-
-  it('else the 1st of its next month, next year if need be', () => {
-    expect(dueDate('too_late', TOMATO, '2026-10-24')).toBe('2027-04-01');
-    expect(dueDate('wait_frost', TOMATO, '2027-02-10')).toBe('2027-04-01');
-  });
-
-  it('unset without the calendar', () => {
-    expect(dueDate('too_late', undefined, '2026-10-24')).toBeUndefined();
-    expect(dueDate('too_late', 0, '2026-10-24')).toBeUndefined();
   });
 });
 

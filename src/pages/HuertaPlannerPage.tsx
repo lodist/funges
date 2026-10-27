@@ -67,7 +67,6 @@ import {
 import {
   autoPlan,
   axisOf,
-  dueDate,
   fit,
   inMonth,
   layout,
@@ -141,6 +140,17 @@ const addDays = (day: string, n: number) => {
   d.setDate(d.getDate() + n);
   return d.toLocaleDateString('sv');
 };
+/** How many months ahead the plan's crops not yet in go in: the month of
+ *  its latest planned day, or 0 (today). */
+function plannedFor(plan: Plan | null) {
+  const last = (plan?.sections ?? []).reduce(
+    (d, x) => (x.crop && !x.planted && x.sow && x.sow > d ? x.sow : d),
+    today()
+  );
+  const [y, m] = last.split('-').map(Number);
+  const [y0, m0] = today().split('-').map(Number);
+  return Math.min(12, (y - y0) * 12 + m - m0);
+}
 /** A stage on the timeline as the drawing's plants show it. */
 const drawnAs = (g: GrowthStage): Stage =>
   g === 'seedling' || g === 'young' ? g : 'grown';
@@ -185,8 +195,9 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const [past, setPast] = useState<Plan[]>([]);
   // The drawing's column, brought into view when a job is tapped.
   const modelRef = useRef<HTMLDivElement>(null);
-  // What Plan it for me plans for: this week (0), or a month ahead (1-12).
-  const [forMonths, setForMonths] = useState(0);
+  // When the crops not yet in go in: today (0), or the 1st of a month ahead
+  // (1-12). It opens on the month the plan was left planned for.
+  const [forMonths, setForMonths] = useState(() => plannedFor(plan));
   // The timeline: how many weeks ahead the drawing shows (0: today).
   const [weeks, setWeeks] = useState(0);
   const later = useDeferredValue(weeks);
@@ -294,17 +305,14 @@ function Planner({ onMoved }: { onMoved: () => void }) {
       sections: plan.sections.map((x, i) => (ids.includes(i) ? change(x) : x)),
     });
   };
-  // A crop put into sections: chosen, not yet planted, dated for when it
-  // can go in at the place.
+  // A crop put into sections: chosen, not yet planted, going in at the time
+  // planned for.
   const place = (ids: number[], crop: string) =>
     edit(ids, x => ({
       ...x,
       crop,
       planted: undefined,
-      sow:
-        forMonths && planStatus(crop) === 'now'
-          ? target
-          : dueDate(status(crop), year?.crops[crop]?.sow, today()),
+      sow: forMonths ? target : today(),
     }));
   // Marked planted today, or not.
   const plantOn = (ids: number[], planted: string | undefined) => {
@@ -315,26 +323,18 @@ function Planner({ onMoved }: { onMoved: () => void }) {
       setTimeout(() => setFresh([]), 2500);
     }
   };
-  // A month to plan for: the timeline goes there, and the crops still waiting
-  // to go in (not in, and not going in this week) go in then if they can.
+  // The time planned for decides when every crop not yet in goes in, so the
+  // timeline grows them from then; it moves there too.
   const planFor = (k: number) => {
-    const first = monthAhead(today(), k);
+    const day = k ? monthAhead(today(), k) : today();
     setForMonths(k);
-    setWeeks(
-      k ? Math.ceil((Date.parse(first) - Date.parse(today())) / (7 * 864e5)) : 0
-    );
-    if (!plan || !k) return;
-    const month = Number(first.slice(5, 7)) - 1;
+    setWeeks(Math.ceil((Date.parse(day) - Date.parse(today())) / (7 * 864e5)));
+    if (!plan) return;
     edit(
       plan.sections.flatMap((x, i) =>
-        x.crop &&
-        !x.planted &&
-        status(x.crop) !== 'now' &&
-        inMonth(year?.crops[x.crop]?.sow, month) === 'now'
-          ? [i]
-          : []
+        x.crop && !x.planted && x.sow !== day ? [i] : []
       ),
-      x => ({ ...x, sow: first })
+      x => ({ ...x, sow: day })
     );
   };
   // A job on This week ticked off.
@@ -408,11 +408,9 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const stages =
     later && temps
       ? plan.sections.map(x =>
-          // Planned, its day come, but too late for it: it won't go in.
-          !x.planted &&
-          due(x, today()) &&
-          (status(x.crop ?? '') === 'too_late' ||
-            status(x.crop ?? '') === 'not_here')
+          // Planned, its day come, but it can't grow here: it won't go in.
+          // (One put in too late grows until the place's climate ends it.)
+          !x.planted && due(x, today()) && status(x.crop ?? '') === 'not_here'
             ? 'bare'
             : stageOn(
                 x,
@@ -808,6 +806,9 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                 <Undo2 className='size-4' />
                 <span className='max-sm:sr-only'>{t('planner.undo')}</span>
               </Button>
+              <p className='basis-full text-xs text-muted-foreground'>
+                {t('planner.forHint')}
+              </p>
             </div>
 
             <div className='grid lg:grid-cols-[minmax(0,1fr)_22rem]'>
@@ -1538,6 +1539,11 @@ function SectionPanel({
   const st = s.crop ? advice.crops[s.crop] : undefined;
   // Planned for a later day: it waits for that, whatever this week says.
   const later = !s.planted && s.sow && s.sow > today() ? s.sow : null;
+  // Planned for a month the place's calendar doesn't sow it in.
+  const sowing = s.crop ? year?.crops[s.crop]?.sow : undefined;
+  const offMonth = Boolean(
+    later && sowing && !((sowing >> (Number(later.slice(5, 7)) - 1)) & 1)
+  );
   const f = fit(s, garden.ground === 'rows');
   const due = crop
     ? ready(st, need?.days ?? null, new Date(`${advice.day}T12:00:00`))
@@ -1655,9 +1661,8 @@ function SectionPanel({
                   variant={later || st !== 'now' ? 'outline' : 'default'}
                   className={cn(
                     'mt-1.5',
-                    later && 'font-semibold text-primary-text',
-                    !later &&
-                      st !== 'now' &&
+                    later && !offMonth && 'font-semibold text-primary-text',
+                    ((!later && st !== 'now') || offMonth) &&
                       'border-destructive-text text-destructive-text'
                   )}
                 >
