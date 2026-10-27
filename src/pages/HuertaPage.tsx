@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { CropSheet } from '@/components/CropSheet';
@@ -18,24 +17,21 @@ import {
   STATUS_GROUPS,
   SAMPLE_ADVICE,
   type Crop,
-  type CropNeeds,
   type CropStatus,
   type PlaceAdvice,
 } from '@/lib/huerta';
-import { gardenWeek } from '@/lib/garden-week';
 import {
   fetchAdvice,
-  fetchNeeds,
   huertaApiConfigured,
   savedPlace,
   savePlace,
+  plain,
   searchTowns,
   type Place,
   type Town,
 } from '@/lib/huerta-api';
-import { MapPinned, Navigation } from '@/lib/icons';
+import { MapPinned, Navigation, Search } from '@/lib/icons';
 import { chooseGarden, gardenLabel, useGardens } from '@/lib/gardens';
-import { loadPlan } from '@/lib/planner';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 import { cn } from '@/lib/utils';
 
@@ -266,6 +262,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   const year = useHuertaYear();
   const [view, setView] = useState<View>('all');
   const [kind, setKind] = useState<string>('all');
+  const [query, setQuery] = useState('');
   const { gardens, current } = useGardens();
   // The garden filter: only that garden's crops. Choosing another garden
   // starts the page afresh at its place (HuertaGate), so the choice is kept
@@ -282,8 +279,16 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
       ? (current?.plan?.sections.flatMap(s => (s.crop ? [s.crop] : [])) ?? [])
       : []
   );
+  // By its name here or its Latin one, accents and case aside.
+  const q = plain(query);
+  const found = (crop: Crop) =>
+    !q ||
+    plain(t(`crops.${crop.id}`)).includes(q) ||
+    plain(crop.scientific).includes(q);
   const shown = (crop: Crop) =>
-    (kind === 'all' || crop.kind === kind) && (!only || mine.has(crop.id));
+    (kind === 'all' || crop.kind === kind) &&
+    (!only || mine.has(crop.id)) &&
+    found(crop);
   const filterGarden = (value: string) => {
     try {
       sessionStorage.setItem(ONLY, value === ALL ? '' : value);
@@ -327,12 +332,24 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
       : view === 'harvest'
         ? harvesting
         : null;
+  // A search that finds nothing in what is on show.
+  const nothing =
+    q !== '' && (list ?? [...now, ...waiting, ...over]).length === 0;
   return (
     <>
       <HuertaWeek advice={advice} />
 
-      <GardenLine advice={advice} year={year} />
-
+      <div className='relative mt-6 lg:w-72'>
+        <Search className='pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted-foreground' />
+        <Input
+          type='search'
+          placeholder={t('find.placeholder')}
+          aria-label={t('find.placeholder')}
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+          className='pl-11'
+        />
+      </div>
       <CategoryChips
         chips={views.map(value => ({
           value,
@@ -344,7 +361,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
         }))}
         value={view}
         onChange={value => setView(value as View)}
-        className='mt-6 justify-start'
+        className='mt-4 justify-start'
       />
       <CategoryChips
         chips={KINDS.map(value => ({
@@ -372,7 +389,25 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
         />
       ) : null}
 
-      {list ? (
+      {nothing ? (
+        <div className='mt-10 flex flex-col items-center gap-4 py-12 text-center'>
+          <Search className='size-12 text-muted-foreground' />
+          <h2 className='text-xl font-semibold text-foreground'>
+            {t('find.none')}
+          </h2>
+          <p className='text-muted-foreground'>{t('find.noneHelp')}</p>
+          <Button
+            variant='outline'
+            onClick={() => {
+              setQuery('');
+              setKind('all');
+              setView('all');
+            }}
+          >
+            {t('find.clear')}
+          </Button>
+        </div>
+      ) : list ? (
         <section className='mt-10'>
           <SectionTitle
             title={t(view === 'harvest' ? 'views.harvest' : `sheet.${view}Now`)}
@@ -389,7 +424,7 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
             <p className='text-muted-foreground'>{t('views.none')}</p>
           )}
         </section>
-      ) : (
+      ) : q && now.length === 0 ? null : (
         <section className='mt-10'>
           <SectionTitle title={t('now.title')} count={now.length} />
           {now.length > 0 ? (
@@ -412,7 +447,13 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
       ) : null}
 
       {!list && over.length > 0 ? (
-        <TooLate crops={over} advice={advice} onOpen={setOpen} year={year} />
+        <TooLate
+          crops={over}
+          advice={advice}
+          onOpen={setOpen}
+          year={year}
+          open={q !== ''}
+        />
       ) : null}
 
       <CropSheet
@@ -424,57 +465,6 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
         onClose={() => setOpen(null)}
       />
     </>
-  );
-}
-
-/** Your garden's week lives on My garden: this says whether it has jobs
- *  this week, or how to start, with the way there. */
-function GardenLine({
-  advice,
-  year,
-}: {
-  advice: PlaceAdvice;
-  year: ReturnType<typeof useHuertaYear>;
-}) {
-  const { t } = useTranslation('huerta');
-  const [plan] = useState(() => loadPlan());
-  const [needs, setNeeds] = useState<Record<string, CropNeeds>>({});
-  useEffect(() => {
-    if (!huertaApiConfigured || !plan) return;
-    let live = true;
-    fetchNeeds()
-      .then(n => live && setNeeds(n))
-      .catch(() => {}); // frost jobs wait for the crops' frost classes
-    return () => {
-      live = false;
-    };
-  }, [plan]);
-  const jobs = plan
-    ? gardenWeek(
-        plan,
-        advice,
-        needs,
-        new Date().toLocaleDateString('sv'),
-        year
-        // As My garden counts them: "ready in N weeks" is under Coming up.
-      ).filter(task => !(task.kind === 'stage' && task.step === 'harvestSoon'))
-    : [];
-  return (
-    <p className='mt-6 text-sm text-muted-foreground'>
-      {t(
-        !plan
-          ? 'week.todo.noPlan'
-          : jobs.length
-            ? 'week.garden.some'
-            : 'week.garden.none'
-      )}{' '}
-      <Link
-        to='/huerta/planner'
-        className='font-medium text-primary-text underline underline-offset-4'
-      >
-        {t('week.todo.openPlanner')}
-      </Link>
-    </p>
   );
 }
 
@@ -569,11 +559,14 @@ function TooLate({
   advice,
   onOpen,
   year,
+  open = false,
 }: {
   crops: Crop[];
   advice: PlaceAdvice;
   onOpen: (crop: Crop) => void;
   year: ReturnType<typeof useHuertaYear>;
+  /** All of them, not one row (a search's finds). */
+  open?: boolean;
 }) {
   const { t, i18n } = useTranslation('huerta');
   // When its time comes back here, from the place's year.
@@ -588,7 +581,8 @@ function TooLate({
           }).format(new Date(2026, m, 1)),
         });
   };
-  const [all, setAll] = useState(false);
+  const [more, setMore] = useState(false);
+  const all = open || more;
   return (
     <section className='mt-10'>
       <SectionTitle title={t('over.title')} count={crops.length} />
@@ -603,7 +597,11 @@ function TooLate({
         }
       />
       {!all && crops.length > OVER_SHOWN ? (
-        <Button variant='outline' className='mt-4' onClick={() => setAll(true)}>
+        <Button
+          variant='outline'
+          className='mt-4'
+          onClick={() => setMore(true)}
+        >
           {t('over.show', { count: crops.length })}
         </Button>
       ) : null}
