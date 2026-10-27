@@ -19,32 +19,86 @@
     "en": {
       "name": "Blackberry",
       "description": "Sweet, dark purple berries that grow on thorny bushes",
-      "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer"
+      "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer",
+      "guide": {
+        "identify": "A bramble with long, arching stems armed with hooked prickles; the leaves have three or five toothed leaflets spread like a hand, dark green above and paler beneath. White or pink five-petalled flowers give berries made of many small round drupelets, green then red then glossy black. A ripe blackberry comes off with its white core inside; a raspberry leaves its core on the plant and is hollow. Rubus fruticosus is a group of hundreds of closely related brambles, all used the same way.",
+        "habitat": "Hedgerows, woodland edges and clearings, scrub, wasteland and railway banks, on almost any soil, across Europe except the far north. In the US, native blackberries grow in old fields and woodland edges, and the introduced Himalayan blackberry forms dense thickets in the Pacific Northwest and California.",
+        "season": "Ripens from July in the south of Europe and the US and from late July or August further north, and goes on until the first frosts in September and October; flowers, green fruit and ripe fruit often hang on the same bush.",
+        "picking": "Pick only fully black berries that come away with a gentle pull, leave the red ones and some for wildlife, and avoid busy roadsides and edges sprayed with weedkiller. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm, but advises washing them well; only heating above 60 °C kills its eggs, and home freezing does not.",
+        "kitchen": "Once identified with certainty, the berries are eaten raw or cooked: in crumbles and pies with apple, in jam, jelly, syrup and vinegar. Rinse them just before use and check for insects. The flavour ranges from sweet to sharp from bush to bush.",
+        "keeps": "Unwashed and spread in a shallow box, they keep a day or two in the fridge. To freeze, spread them on a tray and bag them once hard; frozen berries suit cooking.",
+        "source": "Identification, habitat and uses: Woodland Trust. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "it": {
       "name": "More",
       "description": "Bacche dolci, viola scuro che crescono su cespugli spinosi",
-      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate"
+      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate",
+      "guide": {
+        "identify": "Il rovo è un arbusto dai lunghi fusti arcuati armati di spine uncinate; le foglie hanno tre o cinque foglioline dentate disposte a ventaglio, verde scuro sopra e più chiare sotto. I fiori bianchi o rosa a cinque petali danno frutti fatti di tante piccole drupe rotonde, prima verdi, poi rosse e, a maturazione, nero lucido. Una mora matura si stacca con il suo cuore bianco all'interno; un lampone lascia il cuore sulla pianta e resta cavo. Rubus fruticosus riunisce centinaia di rovi strettamente imparentati, che si usano tutti allo stesso modo.",
+        "habitat": "Siepi, margini e radure dei boschi, arbusteti, incolti e scarpate ferroviarie, su quasi ogni suolo, in tutta Europa tranne l'estremo nord. Negli Stati Uniti crescono rovi autoctoni nei campi abbandonati e ai margini dei boschi, e il rovo armeno (rovo dell'Himalaya), introdotto, forma fitti roveti nel Nord-ovest pacifico e in California.",
+        "season": "Matura da luglio nel sud dell'Europa e degli Stati Uniti, da fine luglio o agosto più a nord, e continua fino alle prime gelate di settembre e ottobre; sullo stesso rovo ci sono spesso insieme fiori, frutti verdi e frutti maturi.",
+        "picking": "Raccogli solo more ben nere che si staccano con una leggera trazione, lascia quelle rosse e una parte per gli animali ed evita i bordi delle strade trafficate e i margini che potrebbero essere trattati con diserbanti. In Europa centrale l'autorità sanitaria bavarese (LGL) indica che mangiare bacche selvatiche non è stato finora riconosciuto come fattore di rischio per l'echinococco della volpe, ma consiglia di lavarle bene; solo la cottura sopra i 60 °C uccide le uova, il congelatore di casa no.",
+        "kitchen": "Una volta identificate con certezza, si mangiano crude o cotte: in crostate e crumble con le mele, in marmellata, gelatina, sciroppo o aceto. Sciacquale poco prima di usarle e controlla che non ci siano insetti. Il sapore va dal dolce all'aspro a seconda del rovo.",
+        "keeps": "Non lavate e stese in un contenitore basso si conservano uno o due giorni in frigorifero. Per congelarle stendile su un vassoio e mettile in sacchetti quando sono dure; congelate vanno bene per cucinare.",
+        "source": "Identificazione, habitat e usi: Woodland Trust. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "fr": {
       "name": "Mûre",
       "description": "Baies sucrées, pourpre foncé, poussant sur des buissons épineux",
-      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été"
+      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été",
+      "guide": {
+        "identify": "La ronce est un arbuste aux longues tiges arquées, armées d'aiguillons crochus ; ses feuilles ont trois ou cinq folioles dentées disposées en éventail, vert foncé dessus et plus pâles dessous. Ses fleurs blanches ou roses à cinq pétales donnent des fruits formés de nombreuses petites drupéoles rondes, vertes, puis rouges, puis d'un noir brillant à maturité. Une mûre à point se détache avec son cœur blanc à l'intérieur ; une framboise laisse son cœur sur la plante et reste creuse. Rubus fruticosus regroupe des centaines de ronces très proches, qui s'utilisent toutes de la même façon.",
+        "habitat": "Haies, lisières et clairières, fourrés, friches et talus de voies ferrées, sur presque tous les sols, dans toute l'Europe sauf l'extrême nord. Aux États-Unis, des ronces indigènes poussent dans les vieux champs et en lisière, et la ronce d'Arménie (ronce de l'Himalaya), introduite, forme des fourrés denses dans le nord-ouest Pacifique et en Californie.",
+        "season": "Mûrit dès juillet dans le sud de l'Europe et des États-Unis, dès fin juillet ou août plus au nord, et continue jusqu'aux premières gelées de septembre et d'octobre ; fleurs, fruits verts et fruits mûrs se côtoient souvent sur le même roncier.",
+        "picking": "Cueillez seulement les mûres bien noires qui se détachent d'une légère traction, laissez les rouges et une part pour la faune et évitez les bords de routes passantes et les lisières traitées aux désherbants. En Europe centrale, l'office bavarois de la santé (LGL) indique que la consommation de baies sauvages n'a pas été identifiée comme un facteur de risque d'échinococcose (ténia du renard), mais conseille de bien les laver ; seule une cuisson au-dessus de 60 °C tue les œufs, la congélation domestique non.",
+        "kitchen": "Une fois identifiées avec certitude, les mûres se mangent crues ou cuites : en crumble et en tarte avec des pommes, en confiture, gelée, sirop ou vinaigre. Rincez-les juste avant usage et vérifiez qu'il n'y a pas d'insectes. Le goût va du doux à l'acidulé selon le roncier.",
+        "keeps": "Non lavées et étalées dans une boîte plate, elles se gardent un ou deux jours au réfrigérateur. Pour les congeler, étalez-les sur un plateau puis mettez-les en sachet une fois dures ; congelées, elles servent pour la cuisson.",
+        "source": "Identification, habitat et usages : Woodland Trust. Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "de": {
       "name": "Brombeere",
       "description": "Süsse, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
-      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer"
+      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer",
+      "guide": {
+        "identify": "Ein Strauch mit langen, bogig überhängenden Ranken voller hakiger Stacheln; die Blätter sind handförmig aus drei oder fünf gesägten Blättchen zusammengesetzt, oben dunkelgrün, unten heller. Aus weißen oder rosa Blüten mit fünf Blütenblättern entstehen Früchte aus vielen kleinen, runden Steinfrüchtchen, erst grün, dann rot, reif glänzend schwarz. Eine reife Brombeere löst sich mitsamt ihrem weißen Zapfen; eine Himbeere lässt den Zapfen an der Pflanze und ist innen hohl. Rubus fruticosus ist eine Sammelart aus Hunderten eng verwandter Brombeeren, die alle gleich verwendet werden.",
+        "habitat": "Hecken, Waldränder und Lichtungen, Gebüsche, Brachflächen und Bahndämme, auf fast jedem Boden, in ganz Europa außer dem hohen Norden. In den USA wachsen heimische Brombeeren auf alten Feldern und an Waldrändern; die eingeschleppte Armenische Brombeere (Himalaya-Brombeere) bildet im pazifischen Nordwesten und in Kalifornien dichte Gestrüppe.",
+        "season": "Reift ab Juli im Süden Europas und der USA, weiter nördlich ab Ende Juli oder August, und trägt bis zu den ersten Frösten im September und Oktober; Blüten, grüne und reife Früchte hängen oft am selben Strauch.",
+        "picking": "Pflück nur ganz schwarze Beeren, die sich leicht lösen, lass die roten und einige für die Tiere hängen und meide stark befahrene Straßenränder und Ränder, die mit Unkrautvernichter gespritzt sein könnten. Laut dem Bayerischen Landesamt für Gesundheit und Lebensmittelsicherheit (LGL) ist das Essen von Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm erkannt worden; es rät trotzdem, sie gründlich zu waschen: nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Sind sie sicher bestimmt, kannst du die Beeren roh oder gekocht essen: in Crumble und Kuchen mit Äpfeln, als Marmelade, Gelee, Sirup oder Essig. Wasch sie erst kurz vor dem Verwenden und achte auf Insekten. Der Geschmack reicht je nach Strauch von süß bis herb.",
+        "keeps": "Ungewaschen und flach in einer Schale ausgebreitet halten sie sich ein bis zwei Tage im Kühlschrank. Zum Einfrieren auf einem Blech ausbreiten und gefroren in Beutel füllen; gefrorene Beeren eignen sich zum Kochen.",
+        "source": "Bestimmung, Standort und Verwendung: Woodland Trust. Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "es": {
       "name": "Mora",
       "description": "Bayas dulces de color púrpura oscuro que crecen en arbustos espinosos",
-      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano"
+      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano",
+      "guide": {
+        "identify": "La zarza es un arbusto de tallos largos y arqueados armados de aguijones ganchudos; las hojas tienen tres o cinco folíolos dentados dispuestos como una mano, verde oscuro por encima y más claros por debajo. Sus flores blancas o rosadas de cinco pétalos dan frutos formados por muchas drupas pequeñas y redondas, primero verdes, luego rojas y, maduras, de un negro brillante. Una mora madura se suelta con su corazón blanco dentro; una frambuesa deja el corazón en la planta y queda hueca. Rubus fruticosus agrupa cientos de zarzas muy emparentadas, que se aprovechan todas igual.",
+        "habitat": "Setos, bordes y claros de bosque, matorrales, solares y taludes de vías, en casi cualquier suelo, en toda Europa salvo el extremo norte. En EE. UU. crecen zarzas autóctonas en campos abandonados y bordes de bosque, y la zarza del Himalaya, introducida, forma matorrales densos en el noroeste del Pacífico y en California.",
+        "season": "Madura desde julio en el sur de Europa y de EE. UU., y desde finales de julio o agosto más al norte, y sigue hasta las primeras heladas de septiembre y octubre; en la misma zarza suele haber a la vez flores, frutos verdes y frutos maduros.",
+        "picking": "Coge solo moras bien negras que se suelten con un tirón suave, deja las rojas y algunas para los animales y evita las cunetas con mucho tráfico y los bordes que puedan estar tratados con herbicida. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
+        "kitchen": "Una vez identificadas con certeza, se comen crudas o cocinadas: en crumble y tartas con manzana, en mermelada, jalea, sirope o vinagre. Lávalas justo antes de usarlas y revisa que no tengan insectos. El sabor va de dulce a ácido según la zarza.",
+        "keeps": "Sin lavar y extendidas en un recipiente plano, aguantan uno o dos días en la nevera. Para congelarlas, extiéndelas en una bandeja y pásalas a bolsas cuando estén duras; congeladas sirven para cocinar.",
+        "source": "Identificación, hábitat y usos: Woodland Trust. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "pt": {
       "name": "Amora",
       "description": "Frutas doces e roxas-escuras que crescem em arbustos espinhosos",
-      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão"
+      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão",
+      "guide": {
+        "identify": "A silva é um arbusto de caules compridos e arqueados, armados de acúleos em gancho; as folhas têm três ou cinco folíolos dentados dispostos em leque, verde-escuros por cima e mais claros por baixo. As flores brancas ou cor-de-rosa, de cinco pétalas, dão frutos feitos de muitas pequenas drupas redondas, primeiro verdes, depois vermelhos e, maduros, negros e brilhantes. Uma amora madura solta-se com o seu miolo branco lá dentro; uma framboesa deixa o miolo na planta e fica oca. Rubus fruticosus reúne centenas de silvas muito aparentadas, que se aproveitam todas da mesma forma.",
+        "habitat": "Sebes, orlas e clareiras de bosques, matos, terrenos baldios e taludes de linhas de comboio, em quase todo o tipo de solo, em toda a Europa exceto o extremo norte. Nos EUA crescem silvas nativas em campos abandonados e orlas de bosque, e a silva-dos-himalaias, introduzida, forma matagais densos no noroeste do Pacífico e na Califórnia.",
+        "season": "Amadurece a partir de julho no sul da Europa e dos EUA, e de finais de julho ou agosto mais a norte, e continua até às primeiras geadas de setembro e outubro; na mesma silva há muitas vezes ao mesmo tempo flores, frutos verdes e frutos maduros.",
+        "picking": "Colha só amoras bem negras que se soltem com um puxão leve, deixe as vermelhas e algumas para os animais e evite bermas de estradas movimentadas e orlas que possam ter sido tratadas com herbicida. Na Europa Central, a autoridade de saúde da Baviera (LGL) indica que comer bagas silvestres não foi até hoje identificado como fator de risco para a ténia-da-raposa, mas aconselha a lavá-las bem; só aquecê-las acima de 60 °C mata os ovos, e a congelação doméstica não.",
+        "kitchen": "Depois de identificadas com certeza, comem-se cruas ou cozinhadas: em crumble e tartes com maçã, em doce, geleia, xarope ou vinagre. Passe-as por água só antes de usar e veja se não têm insetos. O sabor vai do doce ao ácido de silva para silva.",
+        "keeps": "Sem lavar e espalhadas numa caixa baixa, aguentam um ou dois dias no frigorífico. Para congelar, espalhe-as num tabuleiro e passe-as para sacos quando estiverem duras; congeladas servem para cozinhar.",
+        "source": "Identificação, habitat e usos: Woodland Trust. Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     }
   },
   "identification": {

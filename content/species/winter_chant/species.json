@@ -19,32 +19,86 @@
     "en": {
       "name": "Winter Chanterelle",
       "description": "A small brown-capped chanterelle on a hollow yellow stem, fruiting on through the first frosts",
-      "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood"
+      "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood",
+      "guide": {
+        "identify": "Small and slim: the cap is 1 to 4 cm, brown to yellow-brown, a thin funnel whose centre opens into the hollow stem. Underneath are blunt, forking ridges, grey to yellowish-grey, running down the stem; the stem is yellow to orange-yellow, hollow and often flattened or grooved. The deadly webcap (Cortinarius rubellus) grows in the same mossy conifer woods: it has a pointed red-brown cap, true rusty-brown gills and a solid stem with faint yellow bands, and it destroys the kidneys. Check every mushroom as you pick and again as you clean: Norway's poison centre advises throwing away the whole basket if you find even one webcap in it.",
+        "habitat": "On wet, acid ground in conifer woods, mainly under spruce and pine, in moss, at bog edges and on moss-covered rotten logs. Common in northern and central Europe and in the mountains of the south; in North America in the Pacific Northwest, northern California and the northern and eastern conifer forests.",
+        "season": "Late in the year: in Europe from September until hard frost, often still in November and December; on the US Pacific coast from autumn through winter. It needs a wet autumn, and light frosts do not stop it.",
+        "picking": "Cut the stems above the moss to keep the basket clean, leave the smallest and keep to local limits, such as small amounts for your own use in Germany. In southern Bavaria and the Bavarian Forest it still carries caesium from Chernobyl, so eat it there only now and then.",
+        "kitchen": "Once identified with certainty, split the hollow stems and rinse out needles and grit. Never eat it raw: cook it well, in butter, sauces or soups, or with game. Earthy and stronger than its size suggests.",
+        "keeps": "A few days in the fridge in paper. It dries very well and keeps its flavour for months in a closed jar; it can also be cooked and frozen.",
+        "source": "Identification: MykoWeb (California Fungi) and First Nature (UK). Deadly webcap: Norwegian Institute of Public Health. Caesium: German Federal Office for Radiation Protection (BfS). Season: GBIF records."
+      }
     },
     "it": {
       "name": "Finferla",
       "description": "Un piccolo gallinaccio dal cappello bruno su gambo giallo e cavo, che fruttifica fino alle prime gelate",
-      "howTo": "Cercala nella lettiera muscosa delle conifere a fine stagione, spesso in fitti gruppi su legno marcescente"
+      "howTo": "Cercala nella lettiera muscosa delle conifere a fine stagione, spesso in fitti gruppi su legno marcescente",
+      "guide": {
+        "identify": "Piccola e slanciata: il cappello misura da 1 a 4 cm, è bruno o bruno giallastro, un imbuto sottile il cui centro si apre nel gambo cavo. Sotto ha pieghe ottuse e biforcate, grigie o grigio giallastre, che scendono sul gambo; il gambo è giallo o giallo arancio, cavo e spesso schiacciato o solcato. Il Cortinarius rubellus cresce negli stessi boschi muschiosi di conifere: ha il cappello bruno rossiccio con un umbone appuntito, lamelle vere color ruggine e il gambo pieno con deboli bande gialle, e distrugge i reni. Controlla ogni fungo quando lo raccogli e di nuovo quando lo pulisci: il centro antiveleni norvegese consiglia di buttare tutto il cestino se contiene anche un solo cortinario.",
+        "habitat": "Su terreno umido e acido nei boschi di conifere, soprattutto sotto abeti rossi e pini, nel muschio, ai margini delle torbiere e sul legno marcio coperto di muschio. Comune nell'Europa settentrionale e centrale e in montagna al sud; in Nord America nel Nord-Ovest pacifico, nella California settentrionale e nei boschi di conifere del nord e dell'est.",
+        "season": "Tardi nell'anno: in Europa da settembre fino alle gelate forti, spesso ancora a novembre e dicembre; sulla costa pacifica degli Stati Uniti dall'autunno per tutto l'inverno. Ha bisogno di un autunno umido, e le gelate leggere non la fermano.",
+        "picking": "Taglia i gambi sopra il muschio per tenere pulito il cestino, lascia le più piccole e rispetta le regole locali, come il tesserino e i limiti giornalieri di molte regioni italiane. Nella Baviera meridionale e nella Foresta Bavarese contiene ancora cesio di Chernobyl: lì mangiala solo ogni tanto.",
+        "kitchen": "Una volta identificata con certezza, apri i gambi cavi e sciacqua via aghi e sabbia. Non mangiarla mai cruda: cuocila bene, nel burro, nei sughi, nelle zuppe o con la selvaggina. Sa di sottobosco ed è più saporita di quanto la taglia faccia pensare.",
+        "keeps": "Qualche giorno in frigorifero nella carta. Si secca benissimo e in un barattolo chiuso conserva l'aroma per mesi; si può anche congelare cotta.",
+        "source": "Identificazione: MykoWeb (California Fungi) e First Nature (Regno Unito). Cortinarius rubellus: Istituto norvegese di sanità pubblica. Cesio: Ufficio federale tedesco per la radioprotezione (BfS). Stagione: dati GBIF."
+      }
     },
     "fr": {
       "name": "Chanterelle en Tube",
       "description": "Une petite chanterelle au chapeau brun sur un pied jaune et creux, qui fructifie jusqu'aux premières gelées",
-      "howTo": "Cherchez-la dans la litière moussue des conifères en fin de saison, souvent en troupes denses sur bois pourri"
+      "howTo": "Cherchez-la dans la litière moussue des conifères en fin de saison, souvent en troupes denses sur bois pourri",
+      "guide": {
+        "identify": "Petite et élancée : le chapeau mesure de 1 à 4 cm, brun à brun jaunâtre, un entonnoir mince dont le centre s'ouvre dans le pied creux. Dessous, des plis obtus et fourchus, gris à gris jaunâtre, descendent sur le pied ; le pied est jaune à jaune orangé, creux et souvent aplati ou sillonné. Le cortinaire très joli (Cortinarius rubellus) pousse dans les mêmes bois de conifères moussus : il a un chapeau brun rouge à mamelon pointu, de vraies lames brun rouille et un pied plein à faibles bandes jaunes, et il détruit les reins. Vérifiez chaque champignon à la cueillette et encore au nettoyage : le centre antipoison norvégien conseille de jeter tout le panier s'il contient ne serait-ce qu'un cortinaire.",
+        "habitat": "Sur sol humide et acide dans les bois de conifères, surtout sous les épicéas et les pins, dans la mousse, au bord des tourbières et sur le bois pourri moussu. Commune en Europe du Nord et centrale et en montagne dans le Sud ; en Amérique du Nord, dans le Nord-Ouest pacifique, le nord de la Californie et les forêts de conifères du nord et de l'est.",
+        "season": "Tard dans l'année : en Europe de septembre jusqu'aux fortes gelées, souvent encore en novembre et décembre ; sur la côte pacifique des États-Unis, de l'automne et pendant tout l'hiver. Elle a besoin d'un automne humide, et les petites gelées ne l'arrêtent pas.",
+        "picking": "Coupez les pieds au-dessus de la mousse pour garder le panier propre, laissez les plus petites et respectez les règles locales, comme les petites quantités pour un usage personnel en Allemagne. Dans le sud de la Bavière et la forêt bavaroise, elle contient encore du césium de Tchernobyl : n'en mangez là-bas que de temps en temps.",
+        "kitchen": "Une fois identifiée avec certitude, fendez les pieds creux et rincez les aiguilles et la terre. Ne la mangez jamais crue : cuisez-la bien, au beurre, en sauce ou en soupe, ou avec du gibier. Goût de sous-bois, plus puissant que sa taille ne le laisse penser.",
+        "keeps": "Quelques jours au réfrigérateur dans du papier. Elle sèche très bien et garde son arôme des mois dans un bocal fermé ; on peut aussi la congeler cuite.",
+        "source": "Identification : MykoWeb (California Fungi) et First Nature (Royaume-Uni). Cortinaire très joli : Institut norvégien de santé publique. Césium : Office fédéral allemand de radioprotection (BfS). Saison : données GBIF."
+      }
     },
     "de": {
       "name": "Trompetenpfifferling",
       "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel, der bis in die ersten Fröste fruchtet",
-      "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz"
+      "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz",
+      "guide": {
+        "identify": "Klein und schlank: der Hut misst 1 bis 4 cm, ist braun bis gelbbraun, ein dünner Trichter, dessen Mitte in den hohlen Stiel übergeht. Unten laufen stumpfe, gegabelte, graue bis gelblichgraue Leisten am Stiel herab; der Stiel ist gelb bis orangegelb, hohl und oft zusammengedrückt oder gefurcht. Der Spitzgebuckelte Raukopf (Cortinarius rubellus) wächst in denselben moosigen Nadelwäldern: er hat einen spitz gebuckelten, rotbraunen Hut, echte rostbraune Lamellen und einen vollen Stiel mit schwachen gelben Bändern, und er zerstört die Nieren. Prüfe jeden Pilz beim Sammeln und noch einmal beim Putzen: die norwegische Giftinformation rät, den ganzen Korb wegzuwerfen, wenn auch nur ein Raukopf darin ist.",
+        "habitat": "Auf nassem, saurem Boden in Nadelwäldern, vor allem unter Fichte und Kiefer, im Moos, an Moorrändern und auf bemoostem, morschem Holz. Häufig in Nord- und Mitteleuropa und in den Bergen des Südens; in Nordamerika im pazifischen Nordwesten, in Nordkalifornien und in den nördlichen und östlichen Nadelwäldern.",
+        "season": "Spät im Jahr: in Europa von September bis zum starken Frost, oft noch im November und Dezember; an der US-Pazifikküste vom Herbst durch den Winter. Er braucht einen nassen Herbst, leichter Frost hält ihn nicht auf.",
+        "picking": "Schneide die Stiele über dem Moos ab, damit der Korb sauber bleibt, lass die kleinsten stehen und halte dich an die Regeln vor Ort, in Deutschland etwa geringe Mengen für den eigenen Bedarf. In Südbayern und im Bayerischen Wald trägt er noch Cäsium aus Tschernobyl; iss ihn dort nur ab und zu.",
+        "kitchen": "Wenn er sicher bestimmt ist, schneide die hohlen Stiele auf und spül Nadeln und Sand heraus. Iss ihn nie roh: gare ihn gut durch, in Butter, in Soßen und Suppen oder zu Wild. Erdig und kräftiger, als seine Größe vermuten lässt.",
+        "keeps": "Ein paar Tage im Kühlschrank in Papier. Er lässt sich sehr gut trocknen und behält im geschlossenen Glas monatelang sein Aroma; du kannst ihn auch gegart einfrieren.",
+        "source": "Bestimmung: MykoWeb (California Fungi) und First Nature (UK). Spitzgebuckelter Raukopf: Norwegisches Institut für Volksgesundheit. Cäsium: Bundesamt für Strahlenschutz (BfS). Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Rebozuelo de Invierno",
       "description": "Un rebozuelo pequeño de sombrero pardo sobre pie amarillo y hueco, que fructifica hasta las primeras heladas",
-      "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida"
+      "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida",
+      "guide": {
+        "identify": "Pequeño y esbelto: el sombrero mide de 1 a 4 cm, es pardo a pardo amarillento, un embudo fino cuyo centro se abre al pie hueco. Debajo tiene pliegues romos y bifurcados, grises a gris amarillentos, que bajan por el pie; el pie es amarillo a amarillo anaranjado, hueco y a menudo aplastado o acanalado. El cortinario Cortinarius rubellus crece en los mismos bosques de coníferas con musgo: tiene el sombrero pardo rojizo con un mamelón puntiagudo, láminas verdaderas pardo óxido y el pie macizo con bandas amarillas tenues, y destruye los riñones. Revisa cada seta al cogerla y otra vez al limpiarla: el centro de toxicología de Noruega aconseja tirar la cesta entera si aparece aunque sea un solo cortinario.",
+        "habitat": "En suelo húmedo y ácido de bosques de coníferas, sobre todo bajo píceas y pinos, en el musgo, en bordes de turberas y sobre troncos podridos cubiertos de musgo. Común en el norte y centro de Europa y en las montañas del sur; en Norteamérica, en el noroeste del Pacífico, el norte de California y los bosques de coníferas del norte y el este.",
+        "season": "Tarde en el año: en Europa, de septiembre hasta las heladas fuertes, a menudo aún en noviembre y diciembre; en la costa del Pacífico de EE. UU., del otoño a todo el invierno. Necesita un otoño húmedo, y las heladas ligeras no lo detienen.",
+        "picking": "Corta los pies por encima del musgo para que la cesta quede limpia, deja los más pequeños y respeta las normas locales, como las pequeñas cantidades para consumo propio en Alemania. En el sur de Baviera y el Bosque Bávaro todavía acumula cesio de Chernóbil, así que allí cómelo solo de vez en cuando.",
+        "kitchen": "Una vez identificado con total seguridad, abre los pies huecos y enjuaga las acículas y la arena. No lo comas nunca crudo: cocínalo bien, en mantequilla, en salsas o sopas, o con caza. Sabe a tierra y es más intenso de lo que su tamaño sugiere.",
+        "keeps": "Unos días en la nevera, en papel. Se seca muy bien y en un tarro cerrado conserva el aroma durante meses; también se puede cocinar y congelar.",
+        "source": "Identificación: MykoWeb (California Fungi) y First Nature (Reino Unido). Cortinarius rubellus: Instituto Noruego de Salud Pública. Cesio: Oficina Federal alemana de Protección Radiológica (BfS). Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Cantarelo de Inverno",
       "description": "Um cantarelo pequeno de chapéu castanho sobre pé amarelo e oco, que frutifica até às primeiras geadas",
-      "howTo": "Procure na manta morta com musgo das coníferas no fim da época, muitas vezes em grupos densos sobre madeira podre"
+      "howTo": "Procure na manta morta com musgo das coníferas no fim da época, muitas vezes em grupos densos sobre madeira podre",
+      "guide": {
+        "identify": "Pequeno e esguio: o chapéu mede 1 a 4 cm, é castanho a castanho-amarelado, um funil fino cujo centro se abre para o pé oco. Por baixo tem pregas rombas e bifurcadas, cinzentas a cinzento-amareladas, que descem pelo pé; o pé é amarelo a amarelo-alaranjado, oco e muitas vezes achatado ou sulcado. O Cortinarius rubellus cresce nos mesmos bosques de coníferas com musgo: tem o chapéu castanho-avermelhado com um mamilo pontiagudo, lâminas verdadeiras castanho-ferrugem e o pé cheio com faixas amarelas ténues, e destrói os rins. Verifique cada cogumelo ao apanhá-lo e outra vez ao limpá-lo: o centro antivenenos da Noruega aconselha deitar fora o cesto inteiro se tiver nem que seja um só cortinário.",
+        "habitat": "Em solo húmido e ácido de bosques de coníferas, sobretudo debaixo de píceas e pinheiros, no musgo, na orla de turfeiras e sobre troncos podres cobertos de musgo. Comum no norte e centro da Europa e nas montanhas do sul; na América do Norte, no noroeste do Pacífico, no norte da Califórnia e nas florestas de coníferas do norte e do leste.",
+        "season": "Tarde no ano: na Europa de setembro até às geadas fortes, muitas vezes ainda em novembro e dezembro; na costa do Pacífico dos EUA do outono a todo o inverno. Precisa de um outono húmido, e as geadas ligeiras não o travam.",
+        "picking": "Corte os pés acima do musgo para manter o cesto limpo, deixe os mais pequenos e respeite as regras locais, como as pequenas quantidades para consumo próprio na Alemanha. No sul da Baviera e na Floresta da Baviera ainda acumula césio de Chernobil, por isso coma-o lá só de vez em quando.",
+        "kitchen": "Depois de identificado com toda a certeza, abra os pés ocos e passe-os por água para tirar agulhas e areia. Nunca o coma cru: cozinhe-o bem, em manteiga, em molhos ou sopas, ou com caça. Sabe a terra e é mais intenso do que o tamanho faz pensar.",
+        "keeps": "Uns dias no frigorífico, em papel. Seca muito bem e num frasco fechado guarda o aroma durante meses; também se pode cozinhar e congelar.",
+        "source": "Identificação: MykoWeb (California Fungi) e First Nature (Reino Unido). Cortinarius rubellus: Instituto Norueguês de Saúde Pública. Césio: Serviço Federal alemão de Proteção contra Radiações (BfS). Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -241,6 +295,8 @@
       "taxonKeys": [2554536],
       "references": ["https://www.gbif.org/species/2554536"]
     },
-    "rangePrior": { "taxonKeys": [2554536] }
+    "rangePrior": {
+      "taxonKeys": [2554536]
+    }
   }
 }

@@ -19,32 +19,86 @@
     "en": {
       "name": "Wild Asparagus",
       "description": "A perennial plant with slender, edible shoots that appear in spring.",
-      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring."
+      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring.",
+      "guide": {
+        "identify": "Wild asparagus is a tangled, evergreen, woody shrub up to about 1.5 m with no true leaves, only tufts of short, stiff, needle-like green branchlets, each ending in a sharp spine; its black berries are not eaten. In spring, thin dark green to purplish shoots, often thinner than a pencil, push up from the base of the old spiny bush, with small pointed scales pressed to the stem and no leaves. Black bryony and white bryony, poisonous climbers of the same hedges, also sprout in spring: black bryony soon unfolds glossy heart-shaped leaves, white bryony is hairy with lobed leaves and tendrils. Pick only shoots that rise from an asparagus bush you can see.",
+        "habitat": "Mediterranean scrub, the edges of holm oak and pine woods, olive groves, hedges, stone walls and roadsides, from the coast into the hills of Portugal, Spain, southern France, Italy, the Balkans and Greece. It does not grow wild in northern and central Europe: asparagus there is garden asparagus gone wild, mostly on sandy ground.",
+        "season": "Shoots come up from late winter to spring after the autumn and winter rains: from February on warm coasts, into April and May in the hills. Rain followed by mild, sunny days brings a new flush.",
+        "picking": "Snap each shoot by hand where it breaks easily, leave some on every bush and never cut or uproot the bush. In Italy each region sets its own rules (Tuscany allows picking only until 31 May); in Spain the landowner and the regional government decide, and parks often ban picking: check local rules.",
+        "kitchen": "Once identified with certainty, use only the tender part above where the shoot snaps; it is more bitter than garden asparagus. Cook it briefly: in omelettes and scrambled eggs, risotto or pasta, or sautéed with garlic and olive oil.",
+        "keeps": "Best eaten the same day; it keeps a few days in the fridge standing in a little water, or blanch and freeze it.",
+        "source": "Identification, habitat and season: Mediterranean floras and the University of the Balearic Islands virtual herbarium. Bryonies: RHS. Picking rules: Regione Toscana."
+      }
     },
     "it": {
       "name": "Asparago Selvatico",
       "description": "Pianta perenne con germogli sottili e commestibili che compaiono in primavera.",
-      "howTo": "Cerca i giovani germogli in campi aperti, prati e lungo le siepi in primavera."
+      "howTo": "Cerca i giovani germogli in campi aperti, prati e lungo le siepi in primavera.",
+      "guide": {
+        "identify": "L'asparago selvatico (asparago pungente) è un arbusto intricato, sempreverde e legnoso, alto fino a circa 1,5 m, senza vere foglie, solo con ciuffi di rametti verdi corti, rigidi e aghiformi, ognuno con una spina all'apice; le sue bacche nere non si mangiano. In primavera dalla base della vecchia pianta spinosa spuntano turioni sottili, da verde scuro a violacei, spesso più fini di una matita, con piccole squame appuntite aderenti al fusto e senza foglie. Il tamaro e la brionia, rampicanti velenosi delle stesse siepi, germogliano anch'essi in primavera: il tamaro apre presto foglie lucide a cuore, la brionia è pelosa, con foglie lobate e viticci. Raccogli solo turioni che escono da una pianta di asparago ben visibile.",
+        "habitat": "Macchia mediterranea, margini di leccete e pinete, uliveti, siepi, muretti a secco e bordi delle strade, dalla costa fino alla collina in Portogallo, Spagna, Francia meridionale, Italia, Balcani e Grecia. Non cresce spontaneo nell'Europa settentrionale e centrale: lì gli asparagi sono asparagi coltivati inselvatichiti, soprattutto su terreni sabbiosi.",
+        "season": "I turioni spuntano da fine inverno a primavera, dopo le piogge d'autunno e d'inverno: da febbraio sulle coste calde, fino ad aprile e maggio in collina. La pioggia seguita da giornate miti e soleggiate porta una nuova buttata.",
+        "picking": "Spezza ogni turione con le mani dove si rompe facilmente, lasciane qualcuno su ogni pianta e non tagliare né sradicare mai la pianta. In Italia ogni regione ha le sue regole (la Toscana consente la raccolta solo fino al 31 maggio), nei parchi spesso è vietata e in Spagna decidono il proprietario e la comunità autonoma: verifica le regole locali.",
+        "kitchen": "Una volta identificato con certezza, usa solo la parte tenera sopra il punto di rottura; è più amaro dell'asparago coltivato. Cuocilo poco: nella frittata o con le uova strapazzate, nel risotto, nella pasta o saltato con aglio e olio d'oliva.",
+        "keeps": "Meglio mangiarlo in giornata; in piedi in un po' d'acqua si conserva qualche giorno in frigorifero, oppure sbollentalo e congelalo.",
+        "source": "Identificazione, habitat e stagione: flore mediterranee ed erbario virtuale dell'Università delle Isole Baleari. Tamaro e brionia: RHS. Regole di raccolta: Regione Toscana."
+      }
     },
     "fr": {
       "name": "Asperge sauvage",
       "description": "Plante vivace aux pousses fines et comestibles apparaissant au printemps.",
-      "howTo": "Cherche les jeunes pousses dans les champs ouverts, prairies et le long des haies au printemps."
+      "howTo": "Cherche les jeunes pousses dans les champs ouverts, prairies et le long des haies au printemps.",
+      "guide": {
+        "identify": "L'asperge sauvage (asperge à feuilles aiguës) est un arbrisseau enchevêtré, toujours vert et ligneux, jusqu'à environ 1,5 m, sans vraies feuilles, seulement des touffes de courts rameaux verts, raides, en aiguilles, terminés chacun par une épine ; ses baies noires ne se mangent pas. Au printemps, des pousses fines, vert foncé à violacées, souvent plus minces qu'un crayon, sortent du pied du vieil arbrisseau épineux, avec de petites écailles pointues plaquées sur la tige et pas de feuilles. Le tamier commun et la bryone dioïque, lianes toxiques des mêmes haies, font aussi des pousses au printemps : le tamier déploie vite des feuilles luisantes en cœur, la bryone est velue, avec des feuilles lobées et des vrilles. Ne cueillez que des pousses qui sortent d'un pied d'asperge bien visible.",
+        "habitat": "Maquis et garrigue, lisières de chênaies vertes et de pinèdes, oliveraies, haies, murets de pierre et bords de chemin, du littoral jusqu'aux collines du Portugal, de l'Espagne, du sud de la France, de l'Italie, des Balkans et de la Grèce. Elle ne pousse pas à l'état sauvage dans le nord et le centre de l'Europe : les asperges qu'on y trouve sont des asperges cultivées ensauvagées, surtout sur sol sableux.",
+        "season": "Les pousses sortent de la fin de l'hiver au printemps, après les pluies d'automne et d'hiver : dès février sur les côtes chaudes, jusqu'en avril et mai dans les collines. Une pluie suivie de journées douces et ensoleillées amène une nouvelle poussée.",
+        "picking": "Cassez chaque pousse à la main là où elle se rompt facilement, laissez-en quelques-unes sur chaque pied et ne coupez ni n'arrachez jamais le pied. En Italie, chaque région fixe ses règles (la Toscane n'autorise la cueillette que jusqu'au 31 mai) ; en Espagne, ce sont le propriétaire et la région qui décident, et dans les espaces protégés c'est souvent interdit : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois l'asperge identifiée avec certitude, ne gardez que la partie tendre au-dessus du point de cassure ; elle est plus amère que l'asperge cultivée. Faites-la cuire peu : en omelette ou en œufs brouillés, en risotto, avec des pâtes ou poêlée à l'ail et à l'huile d'olive.",
+        "keeps": "Mieux vaut la manger le jour même ; debout dans un peu d'eau, elle se garde quelques jours au réfrigérateur, ou blanchissez-la et congelez-la.",
+        "source": "Identification, habitat et saison : flores méditerranéennes et herbier virtuel de l'université des îles Baléares. Tamier et bryone : RHS. Règles de cueillette : Regione Toscana."
+      }
     },
     "de": {
       "name": "Wilder Spargel",
       "description": "Mehrjährige Pflanze mit dünnen, essbaren Trieben, die im Frühling erscheinen.",
-      "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling."
+      "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling.",
+      "guide": {
+        "identify": "Der Wilde Spargel (Spitzblättriger Spargel) ist ein verworrener, immergrüner, verholzter Strauch bis etwa 1,5 m ohne echte Blätter, nur mit Büscheln kurzer, steifer, nadelartiger grüner Kurztriebe, die jeweils in einem spitzen Dorn enden; seine schwarzen Beeren werden nicht gegessen. Im Frühling schieben sich dünne, dunkelgrüne bis violette Triebe, oft dünner als ein Bleistift, aus dem Fuß des alten, stacheligen Strauchs, mit kleinen, spitzen, anliegenden Schuppen und ohne Blätter. Schmerwurz und Zaunrübe, giftige Kletterpflanzen derselben Hecken, treiben ebenfalls im Frühling aus: Die Schmerwurz entfaltet bald glänzende, herzförmige Blätter, die Zaunrübe ist behaart und hat gelappte Blätter und Ranken. Ernte nur Triebe, die sichtbar aus einem Spargelstrauch kommen.",
+        "habitat": "Mediterrane Macchie, Ränder von Steineichen- und Kiefernwäldern, Olivenhaine, Hecken, Trockenmauern und Wegränder, von der Küste bis ins Hügelland in Portugal, Spanien, Südfrankreich, Italien, auf dem Balkan und in Griechenland. In Nord- und Mitteleuropa wächst er nicht wild: Spargel dort ist verwilderter Gemüsespargel, meist auf Sandboden.",
+        "season": "Die Triebe erscheinen vom Spätwinter bis ins Frühjahr nach den Herbst- und Winterregen: ab Februar an warmen Küsten, bis in den April und Mai im Hügelland. Regen und danach milde, sonnige Tage bringen einen neuen Schub.",
+        "picking": "Brich jeden Trieb mit der Hand dort ab, wo er leicht bricht, lass an jedem Strauch einige stehen und schneide oder reiß den Strauch nie aus. In Italien legt jede Region eigene Regeln fest (die Toskana erlaubt das Sammeln nur bis 31. Mai), in Spanien entscheiden Grundbesitzer und Regionalregierung, und in Schutzgebieten ist es oft verboten: Prüf die örtlichen Regeln.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, nimm nur den zarten Teil oberhalb der Bruchstelle; er ist bitterer als Gemüsespargel. Gare ihn kurz: im Omelett oder Rührei, im Risotto, in Pasta oder mit Knoblauch und Olivenöl angebraten.",
+        "keeps": "Am besten noch am selben Tag essen; aufrecht in etwas Wasser hält er sich ein paar Tage im Kühlschrank, oder du blanchierst und frierst ihn ein.",
+        "source": "Bestimmung, Standort und Saison: Mittelmeerfloren und das virtuelle Herbarium der Universität der Balearen. Zaunrübe und Schmerwurz: RHS. Sammelregeln: Regione Toscana."
+      }
     },
     "es": {
       "name": "Espárrago silvestre",
       "description": "Planta perenne con brotes delgados y comestibles que aparecen en primavera.",
-      "howTo": "Busca los brotes jóvenes en campos abiertos, praderas y a lo largo de setos en primavera."
+      "howTo": "Busca los brotes jóvenes en campos abiertos, praderas y a lo largo de setos en primavera.",
+      "guide": {
+        "identify": "La esparraguera silvestre (Asparagus acutifolius) es una mata enmarañada, perenne y leñosa de hasta 1,5 m, sin hojas verdaderas, solo con manojos de ramitas verdes cortas, rígidas y como agujas, cada una terminada en una espina; sus bayas negras no se comen. En primavera, de la base de la mata vieja y espinosa salen brotes finos, de verde oscuro a morado, a menudo más delgados que un lápiz, con pequeñas escamas puntiagudas pegadas al tallo y sin hojas. La nueza negra y la nueza blanca, trepadoras venenosas de los mismos setos, también brotan en primavera: la negra despliega pronto hojas brillantes en forma de corazón y la blanca es peluda, con hojas lobuladas y zarcillos. Coge solo brotes que salgan de una esparraguera que veas.",
+        "habitat": "Matorral mediterráneo, bordes de encinares y pinares, olivares, setos, muros de piedra y cunetas, desde la costa hasta las sierras de Portugal, España, el sur de Francia, Italia, los Balcanes y Grecia. No crece silvestre en el norte y el centro de Europa: allí los espárragos son de huerta asilvestrados, sobre todo en suelos arenosos.",
+        "season": "Los brotes salen de finales de invierno a primavera, tras las lluvias de otoño e invierno: desde febrero en las costas cálidas hasta abril y mayo en la sierra. La lluvia seguida de días templados y soleados trae una nueva tanda.",
+        "picking": "Parte cada brote con la mano por donde se quiebra fácilmente, deja algunos en cada mata y no cortes ni arranques nunca la mata. En España deciden el dueño del terreno y la comunidad autónoma, y en los espacios protegidos suele estar prohibido; en Italia cada región pone sus reglas (la Toscana solo lo permite hasta el 31 de mayo): consulta las normas locales.",
+        "kitchen": "Una vez identificado con certeza, usa solo la parte tierna por encima de donde se quiebra; es más amargo que el espárrago de huerta. Cocínalo poco: en tortilla o revuelto, en arroz o pasta, o salteado con ajo y aceite de oliva.",
+        "keeps": "Mejor comerlo el mismo día; de pie en un poco de agua aguanta unos días en la nevera, o escáldalo y congélalo.",
+        "source": "Identificación, hábitat y temporada: floras mediterráneas y el herbario virtual de la Universitat de les Illes Balears. Nuezas: RHS. Normas de recolección: Regione Toscana."
+      }
     },
     "pt": {
       "name": "Espargo-silvestre",
       "description": "Planta perene com rebentos finos e comestíveis que aparecem na primavera.",
-      "howTo": "Procure os rebentos jovens em campos abertos, prados e ao longo das sebes na primavera."
+      "howTo": "Procure os rebentos jovens em campos abertos, prados e ao longo das sebes na primavera.",
+      "guide": {
+        "identify": "O espargo-silvestre (espargo-bravo, Asparagus acutifolius) é um arbusto emaranhado, sempre verde e lenhoso, até cerca de 1,5 m, sem folhas verdadeiras, só com tufos de raminhos verdes curtos, rijos e em agulha, cada um terminado num espinho; as bagas pretas não se comem. Na primavera, da base da mata velha e espinhosa nascem rebentos finos, de verde-escuro a arroxeados, muitas vezes mais finos do que um lápis, com pequenas escamas pontiagudas encostadas ao caule e sem folhas. A norça-preta e a norça-branca, trepadeiras venenosas das mesmas sebes, também rebentam na primavera: a preta abre cedo folhas lustrosas em forma de coração e a branca é peluda, com folhas lobadas e gavinhas. Colha apenas rebentos que saiam de uma mata de espargo bem visível.",
+        "habitat": "Matos mediterrânicos, orlas de azinhais e pinhais, olivais, sebes, muros de pedra e bermas, do litoral até às serras de Portugal, Espanha, sul de França, Itália, Balcãs e Grécia. Não cresce espontâneo no norte e no centro da Europa: lá, os espargos são espargos de horta asselvajados, sobretudo em solos arenosos.",
+        "season": "Os rebentos saem do fim do inverno à primavera, depois das chuvas de outono e inverno: a partir de fevereiro nas costas quentes, até abril e maio na serra. Chuva seguida de dias amenos e soalheiros traz uma nova leva.",
+        "picking": "Parta cada rebento à mão onde ele quebra com facilidade, deixe alguns em cada mata e nunca corte nem arranque a mata. Em Itália cada região tem as suas regras (a Toscana só permite a apanha até 31 de maio), em Espanha decidem o dono do terreno e a comunidade autónoma, e nas áreas protegidas costuma ser proibido: consulte as regras locais.",
+        "kitchen": "Depois de identificado com certeza, use apenas a parte tenra acima do ponto onde parte; é mais amargo do que o espargo de horta. Cozinhe-o pouco: em ovos mexidos, omeletes, migas, arroz ou massa, ou salteado com alho e azeite.",
+        "keeps": "É melhor comê-lo no próprio dia; de pé num pouco de água aguenta uns dias no frigorífico, ou escalde-o e congele-o.",
+        "source": "Identificação, habitat e época: floras mediterrânicas e herbário virtual da Universidade das Ilhas Baleares. Norças: RHS. Regras de apanha: Regione Toscana."
+      }
     }
   },
   "identification": {
@@ -145,6 +199,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2768995] }
+    "rangePrior": {
+      "taxonKeys": [2768995]
+    }
   }
 }

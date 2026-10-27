@@ -61,297 +61,828 @@
     "chant": {
       "name": "Golden Chanterelle",
       "description": "A golden yellow mushroom with a distinctive funnel shape and fruity aroma",
-      "howTo": "Look for them in deciduous forests, especially near oak and beech trees"
+      "howTo": "Look for them in deciduous forests, especially near oak and beech trees",
+      "guide": {
+        "identify": "Egg-yolk to golden yellow and up to 10 cm across, the cap a shallow funnel with a wavy, inrolled edge. Underneath are blunt, forking ridges that run down the stem; they cannot be lifted off one by one like gills. The stem is solid, the flesh white to pale yellow and firm, with a faint smell of apricots. Jack-o'-lanterns (Omphalotus) have thin, crowded true gills, grow in clusters from wood or buried roots and are orange right through; the false chanterelle (Hygrophoropsis aurantiaca) is deeper orange and soft, with thin, crowded gills.",
+        "habitat": "It lives with tree roots: under oak, beech, birch, chestnut, spruce and pine, mostly on acid soil in moss, often on banks and beside paths. Common across Europe, from the lowlands to the mountains. In North America the golden chanterelle is several close species, such as Cantharellus flavus in the East, C. californicus under live oaks in California and C. cascadensis in the Pacific Northwest.",
+        "season": "In central and northern Europe from late June to October, after warm, soaking rain; in southern Europe later and longer, into winter in Mediterranean oak woods. In the eastern US it fruits in summer after warm rain; in the West it follows the autumn rains and in California runs on into winter.",
+        "picking": "Cut or twist at the base, brush off soil on the spot and leave the small ones to grow. In Germany it is specially protected and may be picked only in small amounts for your own use; Swiss cantons, Italian regions, parts of France and Spain and US public lands set their own limits or permits, so check the local rules.",
+        "kitchen": "Once identified with certainty, brush chanterelles clean rather than washing them: they soak up water. Never eat them raw; cook them well, first in a dry pan until the water has gone, then in butter. Mild, fruity and slightly peppery, with a firm bite; good with eggs, cream, potatoes, pasta and chicken.",
+        "keeps": "A few days in the fridge in paper, not plastic. Dried chanterelles turn tough, so for longer keeping fry them in butter and freeze them.",
+        "source": "Identification and habitat: First Nature (UK) and MushroomExpert.com. North American species and look-alikes: University of Florida IFAS Extension. Protection: German Federal Species Protection Ordinance. Season: GBIF records."
+      }
     },
     "mushroom": {
       "name": "Porcini",
       "description": "The king bolete: a stout brown-capped mushroom with a pale netted stem and white pores that never bruise blue",
-      "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn"
+      "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn",
+      "guide": {
+        "identify": "A stout bolete with a pale to chestnut-brown cap, smooth and greasy but never velvety, often with a thin whitish rim. The pores are white when young, then yellow and olive, and do not change colour when pressed. The pale stem has a fine white net near the top, and the white flesh does not change colour when cut. Pink pores and a dark brown net mean the bitter bolete (Tylopilus felleus); red or orange pores or bluing flesh mean another, possibly toxic bolete.",
+        "habitat": "With spruce, pine, beech, oak, sweet chestnut and birch on acid soil, from the lowlands to the tree line, across Europe. In North America it grows mainly in the Pacific states; the redder Rocky Mountain king is commoner in the southern Rockies.",
+        "season": "Mainly August to October, from June in the mountains and into November in the south; on the US Pacific coast with the autumn rains. A flush usually comes about two weeks after a soaking rain that follows a warm, dry spell.",
+        "picking": "Twist it out or cut it at the base; leave buttons and old or maggoty caps. Germany allows only small amounts for your own use, most Italian regions require a permit, and each US national forest sets its own rules.",
+        "kitchen": "Once it is identified with certainty, brush it clean, slice it lengthwise to check for maggots and fry it or use it in risotto, pasta and soups. Cook it through: not everyone tolerates it raw, and old or badly stored ones upset the stomach.",
+        "keeps": "Keep it cool in paper, not plastic, for a day or two. It dries very well in thin slices and freezes well.",
+        "source": "Identification and habitat: Regione Piemonte, First Nature and MushroomExpert. Season: GBIF records. Rules: BArtSchV (Germany) and US Forest Service. Cooking: Regione Piemonte and VIDAL."
+      }
     },
     "morel": {
       "name": "Morchella",
       "description": "A distinctive mushroom with a honeycomb cap that appears in spring",
-      "howTo": "Look in disturbed areas, burned forests, and near dead trees in spring"
+      "howTo": "Look in disturbed areas, burned forests, and near dead trees in spring",
+      "guide": {
+        "identify": "The cap is a honeycomb of pits and ridges, yellowish, grey-brown or almost black, on a pale stem. Cut every one in half lengthways: a true morel is a single hollow from cap tip to stem base, with the cap joined to the stem at its lower edge. The deadly false morel (Gyromitra esculenta) has a brain-like, reddish-brown head and a chambered or cottony inside; cooking does not make it safe. Verpa bohemica has a cap attached only at the very top, like a thimble, and a stem stuffed with cottony pith.",
+        "habitat": "On the ground in open broadleaf and river woods, old orchards and gardens, often by ash, elm, poplar or apple, on lime-rich soil or bark mulch. In the eastern US, by dying elms, ash and old apple trees; in the western US, in conifer forest the spring after a fire.",
+        "season": "March to May: earlier in the lowlands of southern Europe, later in the north and in the mountains, into June. It follows soaking spring rain once the soil warms, and in the mountains of the western US the melting snow.",
+        "picking": "Cut the stem at ground level with a knife and carry morels in a basket or mesh bag. In Germany all morels are protected: small amounts for your own use only. Elsewhere many regions and US national forests set limits or ask for a permit: check local rules.",
+        "kitchen": "Once identified with certainty, morels must be cooked thoroughly: raw or undercooked, dried ones included, they are toxic. France's food-safety agency ANSES advises 20 to 30 minutes in the pan for wild mushrooms. Large meals have caused dizziness and trembling even when cooked, so keep portions modest; they suit butter, cream, asparagus and chicken.",
+        "keeps": "Two days in the fridge, in a paper bag. They dry very well; soak dried morels, strain the water into the sauce and cook them as long as fresh ones.",
+        "source": "Identification and habitat: Missouri Department of Conservation and First Nature. Toxicity and cooking: ANSES and Lagrange and Vernoux (Toxins, 2020). Rules: German Federal Species Protection Ordinance and US Forest Service. Season: GBIF records."
+      }
     },
     "blackberry": {
       "name": "Blackberry",
       "description": "Sweet, dark purple berries that grow on thorny bushes",
-      "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer"
+      "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer",
+      "guide": {
+        "identify": "A bramble with long, arching stems armed with hooked prickles; the leaves have three or five toothed leaflets spread like a hand, dark green above and paler beneath. White or pink five-petalled flowers give berries made of many small round drupelets, green then red then glossy black. A ripe blackberry comes off with its white core inside; a raspberry leaves its core on the plant and is hollow. Rubus fruticosus is a group of hundreds of closely related brambles, all used the same way.",
+        "habitat": "Hedgerows, woodland edges and clearings, scrub, wasteland and railway banks, on almost any soil, across Europe except the far north. In the US, native blackberries grow in old fields and woodland edges, and the introduced Himalayan blackberry forms dense thickets in the Pacific Northwest and California.",
+        "season": "Ripens from July in the south of Europe and the US and from late July or August further north, and goes on until the first frosts in September and October; flowers, green fruit and ripe fruit often hang on the same bush.",
+        "picking": "Pick only fully black berries that come away with a gentle pull, leave the red ones and some for wildlife, and avoid busy roadsides and edges sprayed with weedkiller. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm, but advises washing them well; only heating above 60 °C kills its eggs, and home freezing does not.",
+        "kitchen": "Once identified with certainty, the berries are eaten raw or cooked: in crumbles and pies with apple, in jam, jelly, syrup and vinegar. Rinse them just before use and check for insects. The flavour ranges from sweet to sharp from bush to bush.",
+        "keeps": "Unwashed and spread in a shallow box, they keep a day or two in the fridge. To freeze, spread them on a tray and bag them once hard; frozen berries suit cooking.",
+        "source": "Identification, habitat and uses: Woodland Trust. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "elderberry": {
       "name": "Elderberry",
       "description": "Small dark purple berries that grow in clusters on elder trees",
-      "howTo": "Look for elder trees in hedgerows and woodland edges in autumn"
+      "howTo": "Look for elder trees in hedgerows and woodland edges in autumn",
+      "guide": {
+        "identify": "A shrub or small tree with grey-brown, corky, furrowed bark and soft white pith inside the twigs. The leaves are opposite, with five to seven toothed leaflets (up to eleven in American elderberry); flat heads of creamy, scented flowers in early summer become broad clusters of small purple-black berries on reddish stalks, which droop under their weight when ripe. Dwarf elder (Sambucus ebulus) is a soft herb that dies back each winter, with berry clusters standing upright above the leaves; red elder (Sambucus racemosa) has red berries in upright, dome-shaped clusters. Pokeweed (Phytolacca americana) is a tall herb with smooth purple-red stems and berries strung along long spikes, not in flat clusters.",
+        "habitat": "Hedgerows, woodland edges, scrub, riverbanks, wasteland and the edges of villages, on rich, moist soil, across Europe except the far north. In the eastern US the native American elderberry grows along streams, wet ditches and field edges; in the west, blue elderberry, whose ripe berries carry a dusty blue bloom, grows on open slopes and in valleys.",
+        "season": "Berries ripen in early autumn: from late August in warm lowlands, through September and into October further north and in the mountains. The creamy flower heads come earlier, from late May.",
+        "picking": "Cut whole clusters with scissors when every berry is purple-black, and leave clusters with green or red berries. Avoid busy roadsides and leave plenty on each bush for birds.",
+        "kitchen": "Elderberries must be cooked: raw or unripe berries, stems, leaves and seeds contain compounds that release cyanide during digestion and can cause nausea, vomiting and stomach cramps; thorough cooking breaks them down. Once identified with certainty, strip the berries from the stalks with a fork, discard green berries and every bit of stem, and simmer them into syrup, jelly, juice, soup or pie filling. The taste is dark, earthy and tart and goes well with apple, pear, cinnamon and lemon; never use red elderberries for food.",
+        "keeps": "Fresh clusters keep a day or two in the fridge. Frozen whole, the berries shake off the stalks easily; frozen or dried berries must still be cooked before eating.",
+        "source": "Identification and habitat: Woodland Trust. Toxicity, cooking and keeping: Oregon State University Extension."
+      }
     },
     "nettle": {
       "name": "Nettle",
       "description": "A nutritious green plant with stinging hairs that must be cooked",
-      "howTo": "Found in disturbed areas, hedgerows, and woodland edges in spring and summer"
+      "howTo": "Found in disturbed areas, hedgerows, and woodland edges in spring and summer",
+      "guide": {
+        "identify": "An upright plant with square stems and leaves in opposite pairs: heart-shaped to oval, coarsely toothed and pointed. Stems and leaves are covered in stinging hairs, and from early summer thin tassels of tiny greenish flowers hang where the leaves join the stem. Dead-nettles look similar but do not sting and have showy white, yellow or purple lipped flowers.",
+        "habitat": "Grows in dense patches on rich, moist soil: woodland edges, riverbanks, ditches, hedgerows and the ground around farms and old buildings. Common throughout Europe, in the south mostly in damp, shaded places, and across most of the US, especially along streams and in moist open woods.",
+        "season": "Young shoots appear from February in mild areas and in March further north; pick them until the plant flowers, from about June. Cut or mown patches send up fresh shoots for a second picking in late summer and autumn.",
+        "picking": "Wear gloves, snip the top few pairs of leaves with scissors and leave the roots. Avoid roadsides, sprayed field edges and dog-walking paths; nettle patches also feed the caterpillars of many butterflies.",
+        "kitchen": "Always cook or blanch nettles before eating them: heat removes the sting, and so does thorough drying. Drop the washed tops into boiling salted water for a few minutes, then use them like spinach in soups, risotto, omelettes and pesto; they taste like spinach with an earthy edge.",
+        "keeps": "Blanched, squeezed and frozen in portions they keep for months; leaves dried in a shady, airy place make tea.",
+        "source": "Identification, habitat and cooking: NC State Extension and Woodland Trust. Season: Woodland Trust and GBIF records."
+      }
     },
     "dandelion": {
       "name": "Dandelion",
       "description": "A common weed with bright yellow flowers and edible leaves",
-      "howTo": "Found in meadows, grasslands, and disturbed areas during growing season"
+      "howTo": "Found in meadows, grasslands, and disturbed areas during growing season",
+      "guide": {
+        "identify": "Dandelion grows as a ground-level rosette of hairless leaves, deeply and raggedly lobed, with teeth that point back towards the centre. Leaves and stalks bleed white milky sap when broken; each flower stalk is leafless, unbranched and hollow and carries one head of yellow, strap-shaped florets, followed by a round white seed clock. Cat's-ear has branched, solid stalks and hairy leaves, hawkbits have forked hairs on the leaves and sow-thistles carry several flowers on leafy stems: pick only plants that match every point.",
+        "habitat": "Lawns, meadows, pastures, verges and waste ground, in sun, from the lowlands into the mountains. It grows almost everywhere in Europe and, brought from Europe, throughout the US.",
+        "season": "A big flush of flowers comes in early spring, mainly in April and May and earlier in the mild south, then flowers appear on and off until autumn. The leaves are least bitter in early spring, before the first buds appear.",
+        "picking": "Cut young leaves at the base and pick flowers on a sunny day when they are fully open, leaving plenty for early bees. Avoid lawns treated with weedkiller, roadsides and places where dogs are walked, and dig roots only where you have the landowner's permission, such as your own garden.",
+        "kitchen": "Once identified with certainty, young leaves are eaten raw in salads, pleasantly bitter, as in the French salad with bacon; older leaves are boiled for about 10 minutes to take off some bitterness, then fried with garlic and oil. Use the flowers cooked, in fritters or simmered with sugar and lemon into a thick syrup, and roast cleaned roots for a coffee substitute; eaten in quantity, the roots are a laxative. The milky sap can irritate skin, and people allergic to the daisy family can react, so try a small amount first.",
+        "keeps": "Leaves keep a few days in a bag in the fridge. Use flowers straight after picking, as they close quickly; roasted roots keep in an airtight jar.",
+        "source": "Identification: BSBI and NC State Extension. Picking and cooking: University of Wisconsin-Madison Extension and Colorado State University Extension. Safety: US National Center for Complementary and Integrative Health."
+      }
     },
     "hazelnut": {
       "name": "Hazelnut",
       "description": "Sweet, round nuts that grow on hazel trees",
-      "howTo": "Look for hazel trees in hedgerows and woodland edges in autumn"
+      "howTo": "Look for hazel trees in hedgerows and woodland edges in autumn",
+      "guide": {
+        "identify": "A shrub or small tree with many stems and round, doubly toothed leaves, pointed at the tip and soft and downy underneath; yellow catkins hang from bare twigs in late winter. The nuts grow in bunches of one to four, each in a frilly green leafy husk covering about three quarters of it, and turn brown as they ripen. North America's wild hazels are close relatives; the beaked hazelnut's husk forms a long bristly tube.",
+        "habitat": "Woodland understorey, hedgerows and scrub across Europe, in the south mostly in hills and mountains; it fruits best in sun at woodland edges. In the US the European hazel grows mainly in Oregon orchards; the wild species grow in thickets, clearings and woodland edges.",
+        "season": "Late August to October: the nuts are ready when the husk browns and they fall or come loose with a light shake. Squirrels, jays and dormice often get there first.",
+        "picking": "Gather fallen nuts or shake the branches lightly, and leave plenty for wildlife. Skip nuts with a small round hole (a weevil larva has eaten the kernel) and light ones, and avoid busy roadsides and sprayed field edges.",
+        "kitchen": "Once you are sure of the plant, eat them raw or roast them until the skins crack, then rub the skins off in a rough cloth. Use them in cakes, pralines, pesto and salads. Hazelnuts are a common cause of nut allergy.",
+        "keeps": "Dry them in the shell in an airy place until the kernel turns cream right through, then store them cool and dry; dried nuts keep up to a year in the fridge.",
+        "source": "Identification and habitat: Woodland Trust and Minnesota Department of Natural Resources. Drying and storage: Oregon State University Extension."
+      }
     },
     "garlic": {
       "name": "Wild Garlic",
       "description": "A pungent herb with broad leaves and white flowers",
-      "howTo": "Found in deciduous woodlands in spring, often forming large patches"
+      "howTo": "Found in deciduous woodlands in spring, often forming large patches",
+      "guide": {
+        "identify": "Each leaf grows on its own thin stalk straight from the ground: a soft, bright green, pointed oval blade with parallel veins, matt underneath; from April a leafless stalk carries a rounded cluster of white, star-shaped flowers. Crush a leaf: wild garlic smells strongly of garlic and its deadly look-alikes do not, but the smell stays on your fingers, so after the first few leaves the test proves nothing; check every leaf by its stalk and outline too. Lily of the valley has two or three leaves wrapped around one another at the base; autumn crocus has tough, stalkless leaves in a tuft; lords-and-ladies has arrow-shaped leaves with net veins; white false hellebore has pleated leaves along an upright stem; Solomon's seal has leaves alternating along an arching stem.",
+        "habitat": "Forms carpets in damp, shady deciduous woods, especially beech and floodplain woods on rich soil, and along shaded streams. Common in central and northern Europe, including Britain; in southern Europe mostly in mountain woods.",
+        "season": "Leaves come up from February in mild places and in March and April elsewhere, and are best before the flowers open. It flowers from April to June, later in the mountains; by early summer the leaves are gone.",
+        "picking": "Pick leaf by leaf, never by the handful, so that no look-alike growing in the same patch ends up in your basket, and leave the bulbs. Britain bans digging up wild plants without the landowner's permission, Germany allows only a small amount for your own use and many nature reserves ban picking: check local rules.",
+        "kitchen": "Once identified with certainty, use the leaves raw or add them at the end of cooking: in pesto, soups, risotto, butter and with eggs; the flowers go on salads. Wash each leaf under running water: in central Europe authorities advise this because of fox tapeworm, whose eggs survive freezing but not cooking.",
+        "keeps": "Leaves keep two or three days in the fridge in a damp cloth. Chopped leaves and pesto freeze well; keep anything in oil in the fridge and use it within a few days.",
+        "source": "Identification and look-alikes: Austrian Agency for Health and Food Safety (AGES), German Federal Institute for Risk Assessment (BfR) and Woodland Trust. Season: Woodland Trust and GBIF records."
+      }
     },
     "chickenOfTheWoods": {
       "name": "Chicken of the Woods",
       "description": "A bright orange-yellow bracket fungus that grows on trees",
-      "howTo": "Look for it growing on dead or dying trees, especially oaks"
+      "howTo": "Look for it growing on dead or dying trees, especially oaks",
+      "guide": {
+        "identify": "Overlapping, fan-shaped brackets 10 to 40 cm wide with no stem: soft, moist and bright yellow to orange when young, fading to cream and turning chalky with age. The underside is sulphur-yellow with tiny pores, not gills; the flesh is white to pale yellow and does not change colour when cut. An orange cluster on wood with gills underneath is the poisonous jack-o'-lantern (Omphalotus). In the western US the closely related Laetiporus gilbertsonii and Laetiporus conifericola look much the same.",
+        "habitat": "A wood-decay fungus on living and dead broadleaf trees, most often oak, also sweet chestnut, cherry, willow and beech, and now and then yew. It is common in lowland Europe and the eastern US, in woods, parks and streets; in the western US its relatives grow on oaks, eucalyptus and conifers.",
+        "season": "Late spring to autumn, mostly in summer, a few days after warm rain; in the western US mainly in autumn. The same tree often fruits for several years.",
+        "picking": "Cut the soft edges of young brackets with a knife and leave the tough base and old, chalky brackets. Never pick it from yew, which is highly poisonous, or from trees along busy roads; where mushroom picking needs a permit or has daily limits, check local rules.",
+        "kitchen": "Once identified with certainty, cook it thoroughly: raw or undercooked it upsets the stomach, and even well cooked it disagrees with some people (nausea, dizziness, vomiting), so try a small amount first. Sliced and fried or braised, the firm flesh is often compared to chicken and goes with lemon, garlic and herbs.",
+        "keeps": "A few days in the fridge in a paper bag. It freezes well, raw or cooked.",
+        "source": "Identification and hosts: Woodland Trust, First Nature and MushroomExpert.com. Western species: Bay Area Mycological Society. Reactions: University of Florida IFAS Extension."
+      }
     },
     "oysterMushroom": {
       "name": "Oyster Mushroom",
       "description": "A white-grey mushroom with fan-shaped cap that grows in clusters on dead wood",
-      "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter"
+      "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter",
+      "guide": {
+        "identify": "A shell- or fan-shaped cap 5 to 18 cm across, blue-grey, grey-brown or cream, in overlapping tiers on wood. White to cream gills run down into a short, off-centre stem or none; the flesh is white and firm, the smell mild and the spore print white to pale lilac. The poisonous jack-o'-lantern (Omphalotus) is bright orange, gills included, and grows in tufts at the foot of trees; sulphur tuft (Hypholoma fasciculare) has sulphur-yellow caps on central stems, greenish-yellow gills turning purple-brown and a bitter taste. Angel wings (Pleurocybella porrigens), linked to deaths in Japan, are pure white, thin and translucent and grow only on rotting conifer wood.",
+        "habitat": "On dead or dying broadleaf trees, mainly beech, also poplar, willow, oak and ash: standing trunks, stumps and fallen logs, rarely conifers. Common across Europe and North America.",
+        "season": "Late autumn into winter, set off by a cold spell or the first frosts after rain; into January or February in southern Europe and from October to early April in the eastern US.",
+        "picking": "Cut the cluster at the base with a knife, take firm young caps and leave old or beetle-riddled ones. Where mushroom picking needs a permit or has daily limits, check local rules.",
+        "kitchen": "Once identified with certainty, cook it well; do not eat it raw. Trim the tough base, tear the caps into strips and fry them hot until the edges crisp; the mild, slightly sweet taste goes with garlic, butter, soy sauce and eggs.",
+        "keeps": "It spoils fast: keep it in a paper bag in the fridge for a few days, or freeze it after cooking.",
+        "source": "Identification and season: First Nature and MushroomExpert.com. Angel wings: Beaty Biodiversity Museum, University of British Columbia."
+      }
     },
     "shiitake": {
       "name": "Shiitake",
       "description": "A mushroom with brown cap and white gills, highly prized in Asian cuisine",
-      "howTo": "Found growing on dead hardwood trees, especially oak and beech, in spring and autumn"
+      "howTo": "Found growing on dead hardwood trees, especially oak and beech, in spring and autumn",
+      "guide": {
+        "identify": "A brown to dark reddish-brown cap that flattens with age, often with whitish flecks near the edge and cracks in dry weather. The gills are white to cream and bruise brown; the stem is tough, fibrous and often off-centre; the spore print is white. The deadly funeral bell (Galerina marginata) also grows on logs: it is smaller and honey-brown, with a ring on the stem and a rusty-brown spore print.",
+        "habitat": "Native to East Asia, on dead broadleaf wood such as oak and Castanopsis. In Europe and North America it is grown on oak logs or sawdust blocks and has been found outside cultivation only a few times (for example in the Netherlands), so a brown mushroom on a fallen log in the woods is almost certainly something else.",
+        "season": "Logs kept outdoors fruit in spring and autumn, a few days after soaking rain in mild weather; growers also force a flush by soaking a log in cold water.",
+        "picking": "Pick caps while the edge is still curled under: twist them off or cut the stem at the log. Pick only from logs you grow or have permission to pick from.",
+        "kitchen": "Once identified with certainty, cook it thoroughly: raw or lightly cooked shiitake can cause shiitake dermatitis, an itchy rash of whip-like streaks about a day later. The stems are too tough to eat but flavour stock; fry or simmer the caps, which have a deep, savoury taste, with soy sauce, ginger and garlic.",
+        "keeps": "A few days in the fridge in a paper bag. It dries very well: soak dried caps before use and keep the water as stock.",
+        "source": "Origin and distribution: Naturalis Biodiversity Center. Log growing: Cornell Cooperative Extension. Shiitake dermatitis: DermNet."
+      }
     },
     "raspberry": {
       "name": "Wild Raspberry",
       "description": "Sweet red berries that grow on thorny canes with distinctive compound leaves",
-      "howTo": "Look for raspberry canes in hedgerows, woodland edges, and disturbed areas in summer"
+      "howTo": "Look for raspberry canes in hedgerows, woodland edges, and disturbed areas in summer",
+      "guide": {
+        "identify": "Upright canes, often head-high, covered in small, fine prickles rather than the hooked thorns of a blackberry. The leaves have three to seven toothed leaflets set along a stalk, green above and white-felted beneath. Small white flowers hang downwards; the red berry comes away from the plant leaving its white core behind, so a picked raspberry is a hollow cap.",
+        "habitat": "Woodland clearings and edges, felled and burnt ground, scrub, heathland, rocky slopes and hedgerows, from the lowlands into the mountains across Europe; it moves into new clearings and fades as the trees grow back. In the US, American red raspberry grows across the north and in the western mountains, and the black raspberry, with purple-black hollow berries, in the east.",
+        "season": "Ripens in summer: from June in southern Europe and the lowlands, in July and August in the north and in the mountains, sometimes into September up high.",
+        "picking": "Pick berries that are fully red and slip off the core without pulling, into a shallow container, as they crush easily. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm, but advises washing them well; only heating above 60 °C kills its eggs, and home freezing does not.",
+        "kitchen": "Once identified with certainty, eat them raw or use them for jam, syrup, cakes and desserts; wild raspberries are smaller and more aromatic than garden ones. Rinse them briefly just before use and check for the small white larvae of the raspberry beetle.",
+        "keeps": "Very perishable: eat them the same day or keep them a day or two in the fridge, unwashed. Freeze them spread on a tray, then bag them; frozen berries suit sauces and baking.",
+        "source": "Identification and habitat: Woodland Trust. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "blueberry": {
       "name": "Wild Blueberry",
       "description": "Small sweet blue berries that grow on low shrubs in acidic soil",
-      "howTo": "Found in heaths, moors, and acidic forests in summer and early autumn"
+      "howTo": "Found in heaths, moors, and acidic forests in summer and early autumn",
+      "guide": {
+        "identify": "Bilberry, also called whortleberry, is a low deciduous shrub, usually below knee height, with green, angled stems and small oval leaves with finely toothed edges. Pinkish, lantern-shaped flowers hang singly in spring; each gives one blue-black berry with a pale bloom and a small crown-shaped ring at the tip, and the flesh is purple-red right through (cultivated blueberries have pale flesh). Its poisonous look-alikes are soft herbs, not woody dwarf shrubs: deadly nightshade (Atropa bella-donna) is tall, with shiny black berries sitting in a green star of five sepals; herb Paris (Paris quadrifolia) carries one berry on top of a stem with a whorl of four leaves; Solomon's seal (Polygonatum) hangs blue-black berries beneath an arching, unbranched stem.",
+        "habitat": "Acid, nutrient-poor soil: conifer, birch and oak woods, heaths and moorland, from the lowlands to above the treeline; common across northern and central Europe and in the mountains of the south, and absent on lime. In North America it grows wild in the western mountains; in the east, the wild blueberries picked are lowbush and highbush blueberries (Vaccinium angustifolium, Vaccinium corymbosum), close relatives with pale flesh.",
+        "season": "Ripens from July in the lowlands; in the mountains and the north the season runs through August into September. A late frost at flowering can cut the crop.",
+        "picking": "Pick by hand: berry combs strip leaves and damage the plants, and some places ban them or set daily limits, such as the Vosges in France and Tuscany in Italy: check local rules. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm, but advises washing them well; only heating above 60 °C kills its eggs, and home freezing does not.",
+        "kitchen": "Once identified with certainty, eat them raw or in tarts, pancakes, jam and compote; they are sweet and sharp and stain fingers, teeth and clothes. Rinse them briefly just before use and pick out leaves and green berries.",
+        "keeps": "They keep a few days in the fridge, unwashed and spread out. Freeze them on a tray, then bag them; they also dry well.",
+        "source": "Identification and habitat: Woodland Trust; look-alikes: Yle (Finnish public broadcaster). Picking rules: Vosges prefecture and Region of Tuscany. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "strawberry": {
       "name": "Wild Strawberry",
       "description": "Small red berries with intense flavor, with white flowers and trifoliate leaves",
-      "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer"
+      "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer",
+      "guide": {
+        "identify": "A low plant with long-stalked leaves of three toothed leaflets, bright green and slightly glossy, spreading by runners that root along the ground; the end tooth of each leaflet is as long as its neighbours or longer. The flowers are white with five rounded petals and a yellow centre; the fruit is a small red cone with tiny seeds on the surface, hanging from a thin stalk. Barren strawberry (Potentilla sterilis) flowers earlier and has gaps between its notched petals, an end tooth shorter than its neighbours and no fleshy fruit; mock strawberry (Potentilla indica) has yellow flowers and round, spongy, tasteless berries.",
+        "habitat": "Woodland edges, clearings, sunny banks, path sides, hedgerow bases and old grassland, often on dry, stony or lime-rich soil, from the lowlands into the mountains across Europe. In the US it grows in open woods and clearings in the north and in the western mountains; the larger Virginia strawberry (Fragaria virginiana) is the usual wild strawberry of fields and meadows.",
+        "season": "Flowers from April; berries ripen from late May in southern Europe and from June elsewhere, and plants keep fruiting through the summer, into August in the mountains and the north.",
+        "picking": "Pick only fully red berries by pinching the stalk and never pull up the plants; in England, where wild strawberry is listed as near threatened, pick sparingly. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm, but advises washing them well; only heating above 60 °C kills its eggs, and home freezing does not.",
+        "kitchen": "Once identified with certainty, eat them raw and soon, rinsed briefly just before eating. The flavour is more intense than that of garden strawberries but varies from plant to plant; a handful is enough to scent cream, yoghurt or a tart.",
+        "keeps": "They spoil quickly in a warm basket: keep them cool and eat them the same day. They can be frozen, but thaw soft.",
+        "source": "Identification and habitat: Woodland Trust and Botanical Society of Britain and Ireland (BSBI). Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "wildMint": {
       "name": "Wild mints",
       "description": "Any wild mint: water mint, horse mint, apple mint, corn mint and pennyroyal. Square stems, opposite leaves and a mint scent when crushed",
-      "howTo": "Found in damp ground, ditches and along streams. Pennyroyal is fine as a light tea (poleo menta) but toxic as an oil or in quantity: avoid it in pregnancy"
+      "howTo": "Found in damp ground, ditches and along streams. Pennyroyal is fine as a light tea (poleo menta) but toxic as an oil or in quantity: avoid it in pregnancy",
+      "guide": {
+        "identify": "All mints have square stems, leaves in opposite pairs and a clear mint smell when a leaf is crushed; small lilac, pink or white flowers grow in whorls or in heads and spikes at the shoot tips. Water mint has hairy, oval leaves and a rounded flower head; horse mint long, grey-hairy leaves; apple mint round, wrinkled, soft leaves; corn mint flowers only in whorls along the stem; pennyroyal is small and creeping, with tiny leaves and a sharp smell. Unscented square-stemmed plants such as gipsywort grow among them, and the smell stays on your fingers: smell each stem on its own and leave any that does not smell of mint.",
+        "habitat": "Most wild mints like wet ground: stream and pond edges, ditches, marshes and wet meadows; corn mint also grows in damp fields and pennyroyal in grassland that floods in winter, mostly in southern and western Europe. In the US the native American wild mint grows in wet places across most of the country, and spearmint, peppermint and pennyroyal have escaped from gardens.",
+        "season": "Shoots appear in spring and are most tender before flowering; most flower from midsummer into autumn, and growth starts earlier in southern Europe.",
+        "picking": "Pinch off the top few pairs of leaves above a leaf joint and leave the roots. Pick stem by stem, not by the handful: deadly hemlock water-dropwort and water hemlock grow in the same wet places; avoid water below farms or sewage outlets.",
+        "kitchen": "Once identified with certainty, the leaves make tea and go into salads, yoghurt sauces and dishes with peas, potatoes and lamb. Mint from streams, ditches or grazed wet pasture can carry liver fluke, like wild watercress: use it only in hot tea or cooked. Pennyroyal contains pulegone, which harms the liver: a light tea is traditional in Spain and Portugal, but never use the oil, never drink it strong or often, and never give it to babies, children or anyone pregnant, breastfeeding or with liver disease.",
+        "keeps": "Bunches hung in a dark, airy place dry well for tea; chopped leaves freeze in ice cubes.",
+        "source": "Identification and habitat: Botanical Society of Britain and Ireland, The Wildlife Trusts and Native Plant Trust (Go Botany). Pennyroyal: European Medicines Agency and National Capital Poison Center. Liver fluke: Pan American Health Organization. Season: GBIF records."
+      }
     },
     "chickweed": {
       "name": "Chickweed",
       "description": "A low-growing plant with small white flowers and oval leaves, very nutritious",
-      "howTo": "Common in gardens, disturbed areas, and meadows during growing season"
+      "howTo": "Common in gardens, disturbed areas, and meadows during growing season",
+      "guide": {
+        "identify": "A low, sprawling plant with weak, round, juicy stems and small, pointed oval leaves in opposite pairs, the lower ones on short stalks. A single line of fine hairs runs down the stem, switching sides at each leaf pair. The white, star-shaped flowers have five petals split so deeply that they look like ten. Two toxic look-alikes: scarlet pimpernel has square, hairless stems, stalkless leaves with black dots underneath and orange-red or blue flowers; spurges ooze white, milky sap from a broken stem, which chickweed never does.",
+        "habitat": "Gardens, vegetable beds, field edges, farmyards and other disturbed, rich, moist soil, often in light shade. One of the commonest plants in Europe and found across the US.",
+        "season": "Grows best in cool, damp weather: spring and autumn in the north, autumn to spring in mild areas such as southern Europe and the southern US. Summer heat and drought make it die back until the autumn rains.",
+        "picking": "Snip or pinch off the leafy top few centimetres; the plant regrows. Pick only where no weedkiller has been sprayed, away from roads and from spots where dogs and cats go.",
+        "kitchen": "Once identified with certainty, the leaves, stems and flowers are eaten raw or briefly cooked; they taste mild and fresh, a little like young peas. Add them to salads, sandwiches and pesto, or stir them into soups at the end, and wash them well.",
+        "keeps": "Chickweed wilts quickly: keep it in a bag in the fridge and eat it within a day or two.",
+        "source": "Identification: UC Statewide IPM Program and Woodland Trust. Scarlet pimpernel: Ontario Ministry of Agriculture. Season: Woodland Trust and GBIF records."
+      }
     },
     "plantain": {
       "name": "Common Plantain",
       "description": "A low-growing plant with broad oval leaves and tall flower spikes",
-      "howTo": "Found in lawns, meadows, and disturbed areas during growing season"
+      "howTo": "Found in lawns, meadows, and disturbed areas during growing season",
+      "guide": {
+        "identify": "Common plantain grows as a flat rosette of broad, oval leaves on short, wide stalks; each leaf has three to seven strong veins running side by side from base to tip, and if you snap a leaf stalk they pull out as tough strings. From early summer, leafless stalks carry long, narrow rat-tail spikes of tiny greenish flowers, later full of small brown seeds. The first-year rosette of foxglove, which is deadly, has soft, hairy, wrinkled leaves with a net of veins and no strings; foxglove leaves have been sold by mistake as plantain.",
+        "habitat": "Lawns, paths, farm tracks, field edges, meadows and gardens: wherever the ground is trampled and compacted. Native to Europe and Asia, it is common all over Europe and across the whole of the US, where it came with European settlers.",
+        "season": "New leaves appear from early spring to autumn, most tender in spring and after mowing. Flower spikes rise from early summer and the seeds ripen into autumn.",
+        "picking": "Pick young leaves from the centre of the rosette, a few from each plant, and leave the root in the ground. Avoid roadsides, paths used by dogs and lawns or verges that may have been sprayed with weedkiller.",
+        "kitchen": "Once identified with certainty, young leaves can go raw into salads; older leaves are tough and stringy, so blanch them or cook them like spinach and pull out the strings. The taste is mild, grassy and slightly bitter. NC State Extension notes that very large amounts can lower blood pressure: eat it as one green among others.",
+        "keeps": "The leaves wilt fast: keep them in a bag in the fridge for a day or two, or dry them in the shade for tea.",
+        "source": "Identification, habitat and season: NC State Extension, Michigan State University Extension and UC IPM. Foxglove mix-up: US FDA (1997). Kitchen: NC State Extension."
+      }
     },
     "walnut": {
       "name": "Walnut",
       "description": "Large round nuts with hard shells and rich, oily flavor",
-      "howTo": "Look for walnut trees in parks, gardens, and woodland edges in autumn"
+      "howTo": "Look for walnut trees in parks, gardens, and woodland edges in autumn",
+      "guide": {
+        "identify": "A large tree with smooth olive-brown bark that turns grey and fissured with age, and leaves of five to nine smooth-edged oval leaflets that smell of polish when crushed. The nut sits in a thick, smooth green husk that darkens and splits when ripe. The black walnut of the eastern US has more, narrower, toothed leaflets and a round husk that does not split, around a very hard, ridged shell.",
+        "habitat": "Native from south-east Europe to south-west China, it has been planted across Europe and gone wild in hedgerows, field edges, riverbanks and young woods, mostly at low altitude on deep, fertile soil. In the US, orchards are mainly in California; in the eastern woods the wild species is the black walnut.",
+        "season": "September and October, when the husks crack and the nuts drop. Green walnuts for pickling or liqueur are picked in late June or early July, while a skewer still goes straight through.",
+        "picking": "Gather fallen nuts every day or two, before mould and insects spoil them, and wear gloves: the husk stains skin brown for days. Remove the husks soon; most walnut trees belong to someone, so ask first.",
+        "kitchen": "Once you are sure of the tree, eat fresh walnuts with the bitter skin peeled off, or dry them for bread, cakes, salads and sauces. Throw away mouldy, shrivelled or rancid kernels. Walnuts are a common cause of nut allergy.",
+        "keeps": "Dry them in the shell in an airy, shady place until the divider between the halves snaps; dried nuts keep up to a year in the fridge.",
+        "source": "Identification and range: Woodland Trust. Harvest and storage: Oregon State University and Kansas State University extension."
+      }
     },
     "chestnut": {
       "name": "Chestnut",
       "description": "Large sweet nuts encased in spiny green husks that split open when ripe",
-      "howTo": "Found in chestnut groves and mixed forests in autumn, often near paths"
+      "howTo": "Found in chestnut groves and mixed forests in autumn, often near paths",
+      "guide": {
+        "identify": "Long, narrow, glossy leaves 16 to 28 cm long with sharp saw teeth and many straight, parallel veins. The husk is covered all over with long, fine, needle-sharp spines and usually holds two or three nuts, flattened on one or both sides and ending in a small point with a tuft. The toxic horse chestnut (Aesculus hippocastanum) of parks and streets has hand-shaped leaves of five to seven leaflets, a thick green husk with a few short spikes and one or two round, glossy conkers with no point. In North America the buckeyes (other Aesculus) are toxic too: a tree with hand-shaped leaves is never a sweet chestnut.",
+        "habitat": "Native to southern Europe, western Asia and North Africa and long planted for its nuts, it grows on acid, well-drained soil and avoids limestone; large chestnut woods cover hills from northern Portugal and Galicia to the Cévennes, Corsica and the Apennines. In the US most chestnuts are planted, as blight nearly wiped out the native species.",
+        "season": "The nuts fall from late September to early November, mostly in October, earlier in the lowlands than in the mountains.",
+        "picking": "Every few days, gather nuts that have fallen on their own; wear thick gloves or roll the husks open under your boot, and leave nuts with small holes from weevil or moth larvae. Many chestnut woods are private and the nuts on the ground belong to the owner: check local rules.",
+        "kitchen": "Once you are sure they are sweet chestnuts, cook them: raw they are astringent and hard to digest. Discard any that float in water, cut a slit in the shell so they do not burst, then roast them or simmer them for about 30 minutes and peel off the shell and bitter inner skin while warm. Sweet and floury, they go into soups, stuffings and purées.",
+        "keeps": "Fresh chestnuts mould within about two weeks at room temperature; in the fridge they keep about two months, or freeze or dry them.",
+        "source": "Identification: Woodland Trust, ANSES and Oregon State University Extension. Harvest, cooking and storage: Oregon State University Extension."
+      }
     },
     "elderflower": {
       "name": "Elderflower",
       "description": "Creamy white flowers that grow in large flat clusters on elder trees",
-      "howTo": "Look for elder trees in hedgerows and woodland edges in late spring and early summer"
+      "howTo": "Look for elder trees in hedgerows and woodland edges in late spring and early summer",
+      "guide": {
+        "identify": "Elder is a woody shrub or small tree with corky, furrowed, grey-brown bark and opposite leaves of 5 to 7 toothed leaflets that smell unpleasant when crushed. In late spring it carries flat, branching heads of tiny creamy white flowers with pale yellow anthers and a sweet, musky scent. Danewort (dwarf elder) is a soft herb that dies back each winter, with upright heads and purple anthers, and red elder flowers earlier in egg- or dome-shaped clusters; both are toxic. Hemlock, water hemlock and giant hogweed, whose sap burns skin in sunlight, are soft green herbs, not woody shrubs: hemlock has a smooth, hollow, purple-blotched stem and a mousy smell, and in all three the flower stalks spread from one point like umbrella spokes.",
+        "habitat": "Hedgerows, woodland edges, scrub, riverbanks and waste ground, often near houses on rich soil; common across Europe from the lowlands into the hills. In the US the native American elder in the East and blue elder in the West grow in similar places.",
+        "season": "Elder flowers from late May into June in northern and central Europe, earlier in the warm south. In the eastern US American elder flowers later and over a longer spell, mostly in June and July.",
+        "picking": "Pick on a dry, sunny morning, choosing heads that are fully open, creamy and sweet-smelling, and pass over browning ones. Cut or snap them at the base, take only a few from each bush so it can still bear berries, and shake out insects gently.",
+        "kitchen": "Once identified with certainty, only the flowers are used: strip them from the stalks, since stalks, leaves, bark, roots and unripe berries are poisonous. Steep them in hot sugar syrup with lemon for cordial, dip whole heads in batter and fry them as fritters without eating the thick stalk, or dry them for tea; the taste is sweet and floral, good with gooseberries and strawberries. The berries that follow in autumn must be cooked.",
+        "keeps": "The flowers fade fast, so use them the day you pick them. Heads dried in the shade keep for tea in an airtight jar; cordial keeps a few weeks in the fridge or can be frozen.",
+        "source": "Identification and habitat: Woodland Trust and BSBI. Look-alikes: University of Minnesota Extension. Picking and cooking: Penn State Extension and UMass Extension."
+      }
     },
     "daisy": {
       "name": "Common Daisy",
       "description": "Small white flowers with yellow centers that grow close to the ground",
-      "howTo": "Common in lawns, meadows, and grassy areas during spring and summer"
+      "howTo": "Common in lawns, meadows, and grassy areas during spring and summer",
+      "guide": {
+        "identify": "The common daisy is a low plant with a flat rosette of spoon-shaped, slightly hairy leaves pressed to the ground. Each leafless, hairy stalk carries one flower head about 2 cm across: white rays, often tipped with pink, around a yellow centre; the heads close at night and in dull weather. Bigger daisy-like flowers on leafy stems, such as oxeye daisy, and the mayweeds and chamomiles with feathery leaves are different plants.",
+        "habitat": "Lawns, short turf, grazed pastures, verges and paths, in sun on moist soil; it grows almost everywhere in Europe. In the US it came from Europe and now grows in lawns and damp, disturbed ground, most of all where summers are cool.",
+        "season": "It flowers almost all year where winters are mild, with the main flush from spring into early summer. In cold regions and much of the US it flowers from spring to early summer, with scattered flowers until frost.",
+        "picking": "Pinch off flower heads and a few young leaves, taking from many plants and leaving the rosettes in place. Avoid lawns treated with weedkiller or fertiliser, places where dogs are walked and roadsides.",
+        "kitchen": "Once identified with certainty, the flowers and young leaves are eaten raw in small amounts, in salads and sandwiches or as a garnish; they taste mild to slightly bitter, and older leaves are tough. Rinse them gently in cool water. Try only a little at first, since people allergic to the daisy family can react and large amounts can upset the stomach, and avoid it in pregnancy and while breastfeeding.",
+        "keeps": "Pick just before use, as the flowers wilt quickly; until then keep them between damp paper towels in the fridge.",
+        "source": "Identification and habitat: The Wildlife Trusts and NC State Extension. Cooking and safety: Colorado State University Extension and NC State Extension."
+      }
     },
     "violets": {
       "name": "Sweet Violet",
       "description": "Small purple flowers with heart-shaped leaves and a sweet fragrance",
-      "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring"
+      "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring",
+      "guide": {
+        "identify": "Sweet violet is a low plant with a rosette of long-stalked, heart-shaped leaves with a rounded base, scalloped edges and short hairs; it spreads by long runners that root. Each flower rises on its own stalk from the rosette: five uneven petals, the lowest with a short spur at the back, usually deep violet, sometimes white, with blunt sepals and a sweet scent; dog violets look similar but have no scent. Lesser celandine, which is poisonous and grows in the same places, has glossy, fleshy, hairless leaves and flowers with 8 to 12 shiny yellow petals; lords-and-ladies, also poisonous, has glossy, arrow-shaped leaves with lobes pointing backwards.",
+        "habitat": "Woodland edges, hedge banks, shady grass, churchyards, parks and old gardens, on moist, rich soil in part shade. It grows across most of Europe and has escaped from gardens in many places; in the US it grows wild locally in lawns and woodland edges.",
+        "season": "It flowers from February to May, earlier in the mild south, and in April and May in much of the US. A few flowers sometimes appear again in late summer, and the leaves are best young, in spring.",
+        "picking": "Pick a few flowers and young leaves from each patch and leave the rosette and roots in the ground; never dig up plants. Avoid sprayed lawns, verges and places where dogs are walked.",
+        "kitchen": "Once identified with certainty, the flowers go raw on salads and desserts, are candied with pasteurised egg white and fine sugar, or are steeped in boiling water and sweetened for violet syrup. Young leaves are eaten raw in salads or cooked like spinach; they are mild and slightly thicken soups. Never eat the roots or seeds, which can cause vomiting, and try a small amount first.",
+        "keeps": "The flowers wilt fast: keep them between damp paper towels in the fridge and use them the same day. Candied flowers keep in an airtight container in a cool, dark place.",
+        "source": "Identification and habitat: NatureSpot and NC State Extension. Cooking: Colorado State University Extension and NC State Extension."
+      }
     },
     "amaranth": {
       "name": "Amaranth",
       "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
-      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering."
+      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering.",
+      "guide": {
+        "identify": "Redroot amaranth (pigweed) is a stout, upright annual with a stem covered in fine white hairs, red at the base, and a pink to red taproot. Its alternate leaves are oval to diamond-shaped, smooth-edged and long-stalked, often with a small notch or tiny point at the tip; the tiny green flowers sit in dense, bristly, prickly spikes and later hold tiny, shiny black seeds. Two toxic weeds share its ground: thorn apple (Datura), with large, coarsely toothed, foul-smelling leaves, white trumpet flowers and spiny pods, and black nightshade, with wavy-edged leaves, small white star flowers and black berries.",
+        "habitat": "Gardens, fields, farmyards and waste ground: bare, rich, disturbed soil in full sun. Native to central and eastern North America, it is a common weed across the US and much of Europe, most of all in warm lowlands.",
+        "season": "A summer annual: it comes up in late spring once the soil warms, flowers from about July to September and ripens seed from August to October, until the first frost. The leaves are best young, before flowering.",
+        "picking": "Pick young leaves and tender tops by hand before flowering, and rub out the seed heads once the seeds are black. Avoid roadsides and sprayed fields; skip heavily manured or fertilised ground and drought-stressed plants, which build up the most nitrate.",
+        "kitchen": "Once identified with certainty, cook the leaves like spinach: boil them briefly and pour the water away, which lowers their nitrate and oxalate. Eat them in moderation, and not at all if you have kidney stones or kidney disease; they taste mild and earthy, good with garlic, beans and eggs. The seeds can be toasted or cooked like a grain.",
+        "keeps": "The leaves wilt within a day: keep them in a bag in the fridge, or blanch and freeze them. Dry the seed heads in a paper bag, rub out and winnow the seeds and store them in a closed jar.",
+        "source": "Identification and season: Cornell University and NC State Extension. Nitrates and oxalates: NC State Extension and Michigan State University Extension. Thorn apple mix-ups: Marseille poison control centre."
+      }
     },
     "artichoke": {
       "name": "Wild Artichoke",
       "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
-      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer."
+      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer.",
+      "guide": {
+        "identify": "Wild artichoke (wild cardoon) forms a large rosette of deeply cut leaves, silvery grey-green above and almost white with felted hairs beneath, each lobe ending in a stiff yellow spine. In late spring a stiff, branched stem up to head height carries heads like small artichokes, wrapped in spine-tipped bracts, that open into blue-purple thistle flowers. Atractylis gummifera, a deadly Mediterranean thistle that has been mistaken for wild artichoke and has killed people in Morocco, has no stem: its pink flower head sits flat in the middle of the spiny rosette, it flowers in late summer and autumn, and its root oozes a sticky gum. Never eat a stemless thistle rosette or a thistle root.",
+        "habitat": "Dry, sunny, open ground: pastures, field edges, roadsides, fallow land and scrub, often on clay. Native to the Mediterranean, from Portugal to Greece and North Africa; in northern and central Europe it is only a garden escape. In California it is an invasive weed of grassland and coastal scrub below 500 m; elsewhere in the US it is a garden plant.",
+        "season": "The rosette grows after the autumn rains and through the mild winter: leaf stalks are picked from late winter to spring, heads in late spring and early summer. It flowers mainly in June and July, then dries off in the summer drought.",
+        "picking": "Wear thick gloves and cut stalks or heads with a knife; leave the root, and in its native range leave some heads to flower. In California, where it is invasive, take heads before they seed and never move seed heads; check local rules on public land.",
+        "kitchen": "Once identified with certainty, peel the leaf stalks of spines and strings, drop the pieces into lemon water, as they blacken, and boil them until tender; they taste like a bitter artichoke and are stewed or fried in batter. From the heads, strip the spiny bracts and eat the tender base and heart. The dried flowers curdle milk for cheeses such as Serra da Estrela and Torta del Casar.",
+        "keeps": "Stalks keep a few days in the fridge in a damp cloth; boiled, they freeze well.",
+        "source": "Identification, range and season: IUCN Global Invasive Species Database and California Invasive Plant Council. Atractylis poisonings: Moroccan poison control data."
+      }
     },
     "asparagus": {
       "name": "Wild Asparagus",
       "description": "A perennial plant with slender, edible shoots that appear in spring.",
-      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring."
+      "howTo": "Look for young shoots in open fields, meadows, and along hedgerows in spring.",
+      "guide": {
+        "identify": "Wild asparagus is a tangled, evergreen, woody shrub up to about 1.5 m with no true leaves, only tufts of short, stiff, needle-like green branchlets, each ending in a sharp spine; its black berries are not eaten. In spring, thin dark green to purplish shoots, often thinner than a pencil, push up from the base of the old spiny bush, with small pointed scales pressed to the stem and no leaves. Black bryony and white bryony, poisonous climbers of the same hedges, also sprout in spring: black bryony soon unfolds glossy heart-shaped leaves, white bryony is hairy with lobed leaves and tendrils. Pick only shoots that rise from an asparagus bush you can see.",
+        "habitat": "Mediterranean scrub, the edges of holm oak and pine woods, olive groves, hedges, stone walls and roadsides, from the coast into the hills of Portugal, Spain, southern France, Italy, the Balkans and Greece. It does not grow wild in northern and central Europe: asparagus there is garden asparagus gone wild, mostly on sandy ground.",
+        "season": "Shoots come up from late winter to spring after the autumn and winter rains: from February on warm coasts, into April and May in the hills. Rain followed by mild, sunny days brings a new flush.",
+        "picking": "Snap each shoot by hand where it breaks easily, leave some on every bush and never cut or uproot the bush. In Italy each region sets its own rules (Tuscany allows picking only until 31 May); in Spain the landowner and the regional government decide, and parks often ban picking: check local rules.",
+        "kitchen": "Once identified with certainty, use only the tender part above where the shoot snaps; it is more bitter than garden asparagus. Cook it briefly: in omelettes and scrambled eggs, risotto or pasta, or sautéed with garlic and olive oil.",
+        "keeps": "Best eaten the same day; it keeps a few days in the fridge standing in a little water, or blanch and freeze it.",
+        "source": "Identification, habitat and season: Mediterranean floras and the University of the Balearic Islands virtual herbarium. Bryonies: RHS. Picking rules: Regione Toscana."
+      }
     },
     "black_chant": {
       "name": "Black Trumpet (Horn of Plenty)",
       "description": "A dark, funnel-shaped mushroom with a rich, smoky flavor, prized in gourmet cooking.",
-      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn."
+      "howTo": "Found in deciduous forests, especially under oak and beech, in late summer and autumn.",
+      "guide": {
+        "identify": "A thin, hollow horn 4 to 8 cm across, open down to the base, with no separate cap. The inside is grey-brown to black and finely scaly; the outside is ash-grey, smooth or only faintly wrinkled, with no gills or ridges, and turns paler with a whitish bloom as it ripens. The flesh is thin, brittle and grey-black, with a faint, sweet smell. Black trumpets of the eastern US (Craterellus fallax) look the same but give a pinkish-orange spore print rather than white; the ash-grey chanterelle (Craterellus cinereus) has clear forked ridges on the outside.",
+        "habitat": "It lives with broadleaf trees, mainly beech and oak, also hornbeam and hazel, in damp leaf litter and moss, often in large groups on rich, loamy soil, in gullies and on banks. Common across Europe; in the eastern US its counterpart grows under oak and beech, and on the Pacific coast a western black trumpet grows under tanoak, live oak and madrone.",
+        "season": "Mainly autumn: in Europe from late summer to November, into December in mild years and later still around the Mediterranean; in the eastern US from July to October after heavy rain. On the Pacific coast the western black trumpet fruits from midwinter into spring.",
+        "picking": "Pinch or cut at the base, leave the small ones and take only what you will eat; local limits on wild mushrooms apply. It hides well in dark litter: where you find one, look closely around it.",
+        "kitchen": "Once identified with certainty, split each trumpet lengthwise and rinse out leaves, insects and grit, then drain it well. Never eat it raw: cook it well, in butter, cream sauces, risotto or pasta, or with fish and eggs. The taste is deep and smoky, stronger after drying.",
+        "keeps": "Fresh, only a few days in the fridge. It dries quickly and very well; keep it in a closed jar, or grind it to a powder for sauces and soups.",
+        "source": "Identification and habitat: First Nature (UK), MushroomExpert.com and MykoWeb (California Fungi). Season: GBIF records."
+      }
     },
     "lingonb": {
       "name": "Lingonberry",
       "description": "Small, red, tart berries that grow on low evergreen shrubs in acidic soils.",
-      "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn."
+      "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn.",
+      "guide": {
+        "identify": "Lingonberry, also called cowberry, is a creeping evergreen dwarf shrub with thick, glossy, dark green leaves whose edges roll under; the pale underside is speckled with tiny dark dots. Small white to pink bell-shaped flowers in short clusters at the shoot tips give round, glossy red berries that hang in small bunches. Bearberry (Arctostaphylos uva-ursi), a trailing shrub of the same places, has net-veined leaves without dots and dry, mealy berries. The poisonous red and black berries do not grow on a low evergreen carpet: yew (Taxus) is a tree or tall shrub with flat needles and a red cup open at the end around a dark seed; mezereon (Daphne mezereum) is an upright shrub with berries pressed along the stem; deadly nightshade (Atropa bella-donna) is a tall herb with black berries; red baneberry (Actaea) and lily of the valley (Convallaria majalis) are soft herbs.",
+        "habitat": "Acid, poor soil in pine and spruce forests, birch woods, heaths, moorland and mountain slopes above the treeline; very common in Scandinavia and the Baltic states, and found in the Alps and other mountains. In North America it grows mainly in Canada and Alaska and reaches the US only in the far north, from Minnesota to Maine, where it is rare (endangered in Wisconsin).",
+        "season": "Berries turn red from August and are best when fully dark red, from September into October; they hang on the plants into winter.",
+        "picking": "Pick dark red berries by hand, or with a berry picker where that is allowed; in Sweden, Finland and Norway everyman's right lets anyone pick wild berries away from houses and gardens, though nature reserves can have their own rules. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm, but advises washing them well; only heating above 60 °C kills its eggs, and home freezing does not.",
+        "kitchen": "Raw berries are sour and slightly bitter, so once identified with certainty they are usually cooked with sugar into a sauce or jam, or stirred raw with sugar as in Sweden. Serve them with meatballs, game, roasts, potato pancakes or porridge.",
+        "keeps": "They keep longer in the fridge than most berries, and stirred with sugar they keep cool for a long time thanks to their natural benzoic acid. They freeze well as they are.",
+        "source": "Identification and range: Minnesota Wildflowers and CREA Mont-Blanc. Picking rights: Swedish Environmental Protection Agency. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "masterwort": {
       "name": "Masterwort",
       "description": "A perennial herb with aromatic leaves and white flower clusters, used in traditional medicine and as a spice.",
-      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer."
+      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer.",
+      "guide": {
+        "identify": "Masterwort is a hairless umbellifer 30 to 100 cm tall with a round, grooved, hollow stem; its leaves split into three and three again into broad, oval, double-toothed leaflets 5 to 10 cm long, and the upper leaves sit on large, inflated sheaths. The flat white or pinkish umbels have up to 50 rays, the fruits are round, flat and broadly winged, and a crushed leaf or the thick brown rootstock smells strongly spicy, of celery and carrot. Its deadly look-alikes have finely divided, feathery or fern-like leaves: hemlock with a smooth, purple-blotched stem and a mousy smell, fool's parsley with long bracts hanging under each small umbel, cowbane (water hemlock) with a rootstock split into hollow chambers when cut lengthways, hemlock water dropwort with pale tubers in wet ground. Giant hogweed is far bigger, with a bristly, purple-blotched stem and sap that burns skin in sunlight; masterwort's own sap can also make skin sensitive to sunlight.",
+        "habitat": "Damp mountain meadows, tall-herb stands, stream banks, scree and alder scrub, mostly at 1,400 to 2,700 m, in the Alps, Pyrenees, Carpathians and other mountains of central and southern Europe. In Germany it is native only in the Bavarian Alps; lower down it is rare and usually escaped from old gardens, as in Britain and Scandinavia.",
+        "season": "The leaves grow as the snow melts and are best young, in early summer. It flowers from late June to August; the fruits ripen in September and October.",
+        "picking": "Wearing gloves, take a few leaves from a large stand and leave the rootstock in the ground; digging the root often needs a permit (in Tyrol from the district authority), and many reserves and national parks ban picking. It grows among monkshood and white false hellebore, both deadly: pick leaf by leaf from a plant identified whole.",
+        "kitchen": "Once identified with certainty, use it as a seasoning, not a vegetable: it is strongly bitter and spicy, like lovage. In the Alps the root flavours schnapps (Meisterwurzbrand) and herb cheese; a few young leaves, finely chopped, go sparingly into soups and fresh cheese. Wash your hands after handling it.",
+        "keeps": "Dry leaves, or slices of root, in an airy, shaded place and store them in a closed jar.",
+        "source": "Identification, habitat and season: Botanical Society of Britain and Ireland and Alpine floras. Root digging and schnapps: Austrian Ministry of Agriculture (register of traditional foods). Skin reactions: Botanical Dermatology Database."
+      }
     },
     "parasol": {
       "name": "Parasol Mushroom",
       "description": "A large, tall mushroom with a broad, scaly cap resembling a parasol, edible when young.",
-      "howTo": "Look for it in meadows, grasslands, and forest edges from late summer to autumn."
+      "howTo": "Look for it in meadows, grasslands, and forest edges from late summer to autumn.",
+      "guide": {
+        "identify": "A tall mushroom: the cap opens from a closed, egg-shaped drumstick into a flat umbrella 10 to 25 cm across, cream with brown scales and a smooth brown bump in the centre. The gills are white, free and crowded; the slender stem, up to 30 cm tall with a bulb at the base, has a brown snakeskin pattern and a thick double ring that slides up and down; the spore print is white. The deadly Lepiota species are small, with caps of a few centimetres; Chlorophyllum molybdites gives a greenish spore print; the shaggy parasols (Chlorophyllum rhacodes and C. brunneum), which upset many people, have a smooth stem and flesh that turns orange-red when cut; Amanita pantherina has white warts on the cap, a ring that does not slide and a rimmed bulb at the base.",
+        "habitat": "In grassland and at woodland edges: pastures, meadows, clearings, rides and dunes, on well-drained soil from the lowlands to the mountains. Common across Europe.",
+        "season": "Summer to autumn, mainly July to October, and into November in southern Europe. It comes up after a spell of warm, wet weather.",
+        "picking": "Pick only open, full-size caps whose every feature you can check; lift the whole mushroom to see the base, and leave any parasol-like mushroom with a cap under 10 cm. Leave old, tough ones, and check local rules: many regions limit how much you may pick.",
+        "kitchen": "Once identified with certainty, eat only the cap, and cook it: like most wild mushrooms it can upset the stomach raw. Breaded and fried like a schnitzel, or grilled with butter and garlic, it tastes mild and nutty. The tough stems can be dried and ground for soups.",
+        "keeps": "Two days in the fridge. Sliced caps dry well.",
+        "source": "Identification and habitat: First Nature. Look-alikes and poisonings: ANSES. Season: GBIF records."
+      }
     },
     "sorrel": {
       "name": "Common Sorrel",
       "description": "A tangy, lemon-flavored leafy plant often used in salads and soups.",
-      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer."
+      "howTo": "Harvest young leaves in meadows, grasslands, and along paths in spring and summer.",
+      "guide": {
+        "identify": "Tender, arrow-shaped leaves whose two pointed basal lobes point backwards, down the stalk; the upper leaves clasp the stem, and a thin, papery sheath wraps the stem where each leaf joins it. From May the flowering stems carry loose spikes of small reddish flowers. Lords-and-ladies (Arum maculatum), which is toxic, has young leaves of a similar shape, but they often carry dark spots, have rounded lobes and grow in woods and hedges rather than open grassland. Never taste a leaf to check it: lords-and-ladies burns the mouth.",
+        "habitat": "Meadows, pastures, lawns, verges and open woods, from the lowlands into the mountains; very common throughout Europe. In the US it is introduced and scattered, mainly in the north-east, around the Great Lakes, in Oregon and in Alaska, where the smaller sheep's sorrel is far more common.",
+        "season": "Leaves grow from early spring, in mild places almost all year, and are best young; once the plant flowers, from May, they turn tougher and more bitter, but cut plants send up new ones.",
+        "picking": "Pick single young leaves from each plant and leave the root; choose meadows that are not sprayed or fertilised, away from roads and dog paths.",
+        "kitchen": "Once identified with certainty, the leaves are sharply sour, like lemon peel: shred young ones into salads, or cook them briefly into soups, omelettes and sauces for fish and eggs. The sourness is oxalic acid: eat sorrel in moderation and avoid it if you have kidney stones. Cook it in stainless steel or enamel, not aluminium or cast iron.",
+        "keeps": "Leaves wilt within two or three days in the fridge; cooked down to a purée, sorrel freezes well.",
+        "source": "Identification and look-alikes: Woodland Trust and Wild Food UK. US range: Flora of North America. Oxalic acid: Wild Food UK. Season: GBIF records."
+      }
     },
     "st_george": {
       "name": "St. George's Mushroom",
       "description": "A white, firm mushroom with a mealy scent, appearing around St. George's Day in spring.",
-      "howTo": "Found in grassy areas, meadows, and along woodland edges in spring."
+      "howTo": "Found in grassy areas, meadows, and along woodland edges in spring.",
+      "guide": {
+        "identify": "A stout, fleshy mushroom, white to cream, with a cap 5 to 15 cm across, often lumpy, with an inrolled edge. The gills are white, narrow and very crowded; the thick, solid stem has no ring and no sac at the base; the firm white flesh does not change colour and smells strongly of fresh meal; the spore print is white. The deadly Inosperma erubescens has a pointed, streaky cap, reddens where handled and gives a brown spore print; Entoloma sinuatum can smell mealy too, but its gills turn pink and its spore print is pink. White Amanitas such as the deadly Amanita verna, also out in spring, have a ring and a sac at the base.",
+        "habitat": "In grass: pastures, mown verges, parks and woodland edges, often by hawthorn, blackthorn and other hedgerow shrubs, mostly on lime-rich ground. It comes back to the same spots for years, often in rings; found across Europe and much sought after in northern Spain and central Italy.",
+        "season": "Spring, mainly April and May, and into June in the north and in the mountains; it is named after St George's Day, 23 April. A mild, wet spring brings it on.",
+        "picking": "Cut the stem at the base and leave the small ones; take young, firm caps, as older ones are often full of maggots. Avoid busy verges, and check local rules: some regions require a permit or set a daily limit.",
+        "kitchen": "Once identified with certainty, eat it cooked: most of the mealy smell goes, and the firm, mild flesh suits omelettes, scrambled eggs, risotto and cream sauces. Cut each one lengthways first to check for maggots.",
+        "keeps": "Up to two days in the fridge, wrapped in paper. It freezes well after a quick sauté.",
+        "source": "Identification and habitat: First Nature. Look-alikes: First Nature and ANSES. Season: GBIF records."
+      }
     },
     "truffle_b": {
       "name": "Black Truffle",
       "description": "A highly prized underground fungus with a strong aroma, used in gourmet cuisine.",
-      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter."
+      "howTo": "Found underground near the roots of oaks and hazelnuts, typically harvested with trained animals in winter.",
+      "guide": {
+        "identify": "A round, lumpy tuber, from walnut to fist size, that grows underground. The black skin, reddish when young, is covered in small, hard, many-sided warts. Cut it in half: ripe flesh is purplish-black, marbled with fine white veins that turn reddish-brown in the air, and it smells strong and earthy. Earthballs (Scleroderma), which are poisonous, have a thick, yellowish to brown, scaly skin, a smell of gas and a firm, dark inside; the winter truffle (Tuber brumale) and the imported Chinese truffle (Tuber indicum) look similar but are worth far less.",
+        "habitat": "Underground among the roots of oaks, above all holm and downy oak, and of hazel, on well-drained, lime-rich soil in sunny hill country; a patch of bare, burnt-looking ground around a tree often shows where it grows. Native to southern France, eastern Spain and central Italy; much of the crop now comes from planted truffle orchards.",
+        "season": "Winter: it ripens from December to March, and markets peak in January. Storms in late July and August, as it swells, decide the size of the crop.",
+        "picking": "It is found with a trained dog: dig only where the dog marks, with a small truffle spade, take only ripe truffles and fill the hole again. Truffle hunting is regulated: Italy requires a licence after an exam and its regions set the seasons; Spanish regions set seasons and permits; in France truffles belong to the landowner, and in Germany wild truffles are protected. Check local rules before you look.",
+        "kitchen": "Once identified with certainty, brush it clean under cold water just before use. Shave or grate it raw over warm dishes, or warm it gently in fat: with eggs, butter, pasta, risotto or potatoes. Long cooking kills the aroma.",
+        "keeps": "Wrap it in kitchen paper in a closed jar in the fridge, change the paper daily and use it within days, as the aroma fades; eggs kept in the jar take on its scent. Freezing keeps the aroma better than drying.",
+        "source": "Identification and habitat: CRPF Languedoc-Roussillon and Trufamania. Rules: Italian truffle law 752/1985, Spanish regional rules and German Federal Species Protection Ordinance. Season: GBIF records."
+      }
     },
     "bronze_bolete": {
       "name": "Bronze Bolete",
       "description": "A dark bronze to almost black-capped porcino with a pale netted stem and firm white flesh",
-      "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete"
+      "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete",
+      "guide": {
+        "identify": "The darkest porcino: the cap is dark chestnut to almost black, often with bronze patches, and stays dry and finely velvety even when wet. The pores are white, then yellow to olive, and do not turn blue. The pale brown stem has a fine brown net, densest at the top, and the very firm white flesh does not change colour when cut. The summer bolete is paler, with a net further down the stem; the devil's bolete (Rubroboletus satanas) and Le Gal's bolete (Rubroboletus legaliae), which share its oak woods, have red pores and bluing flesh.",
+        "habitat": "Warm, sunny slopes with oak, sweet chestnut and beech, mostly between 200 and 1,000 m. Common around the Mediterranean, in Italy along the Apennines and on the islands; rare in Britain and Germany.",
+        "season": "From July after summer storms, but mainly in September and October, later than the summer bolete, and into November in the south. It fruits when a soaking rain and cooling soil follow a hot spell.",
+        "picking": "Cut or twist it out and leave young ones to grow. In Germany it is rare and specially protected: do not pick it there. Italy and Spain have regional permits and daily limits.",
+        "kitchen": "The firmest of the porcini, with a nutty taste that grows when dried. Once it is identified with certainty, brush it, check for maggots and cook it through, as you would porcini.",
+        "keeps": "It dries and freezes very well in slices.",
+        "source": "Identification, habitat and season: Regione Piemonte and First Nature; GBIF records. Protection: BArtSchV (Germany). Cooking: Regione Piemonte."
+      }
     },
     "pine_bolete": {
       "name": "Pine Bolete",
       "description": "A red-brown capped porcino of pine woods, with a stout reddish netted stem and firm flesh",
-      "howTo": "Look in mossy pine and spruce forest on acidic sandy soil, in a late spring flush and again in autumn"
+      "howTo": "Look in mossy pine and spruce forest on acidic sandy soil, in a late spring flush and again in autumn",
+      "guide": {
+        "identify": "The red porcino: the cap is wine-red to mahogany, often bumpy, velvety when young and greasy to slimy when wet, with a whitish bloom at the edge. The short, stout stem is flushed reddish brown with a fine whitish to reddish net, and the white flesh is wine-red just under the cap skin. The pores go from white to yellow and olive and barely change colour when pressed. The bronze bolete is sepia to black with no red; red or orange pores (Rubroboletus satanas) or pink pores with a dark net (Tylopilus felleus) rule it out.",
+        "habitat": "Mostly with Scots pine and spruce on acid ground, often in moss, and in the mountains also with chestnut, beech and fir, mainly at 400 to 1,400 m. Common in Scandinavia, Scotland's pinewoods and the mountains of central and southern Europe.",
+        "season": "Often the first porcino of the year and the last: a flush in May and June where it stays cool and moist, and the main crop in September and October, into November and past the first frosts.",
+        "picking": "Cut or twist it out and do not rake the moss, which shelters the fungus. Many Italian and Spanish regions require a permit, and some Swiss cantons limit amounts: check local rules.",
+        "kitchen": "Once it is identified with certainty, cook it through like porcini; it is milder and slightly resinous, and very firm young ones need longer cooking. It tints the cooking water green and suits sauces, pickling and drying.",
+        "keeps": "It dries well in slices; fresh, use it within a day or two.",
+        "source": "Identification, habitat and season: Regione Piemonte and First Nature; GBIF records. Cooking: Regione Piemonte."
+      }
     },
     "summer_bolete": {
       "name": "Summer Bolete",
       "description": "The earliest porcino, with a finely cracked pale brown cap and a stem netted from top to bottom",
-      "howTo": "Look under oak and beech from late spring, well before the other porcini appear"
+      "howTo": "Look under oak and beech from late spring, well before the other porcini appear",
+      "guide": {
+        "identify": "The summer porcino has a matt, dry, velvety cap, pale hazel to mid-brown, that cracks into a fine network in dry weather; it is never greasy, and its edge is no paler than the centre. Its clearest mark is a raised net that runs down the stem almost to the base. The pores are white, then yellow-olive, and do not change colour; the white flesh is softer than in porcini. The devil's bolete (Rubroboletus satanas) and Le Gal's bolete (Rubroboletus legaliae) share its oak woods but have red pores and bluing flesh; the bitter bolete (Tylopilus felleus) has pink pores and a dark net.",
+        "habitat": "Oak and sweet chestnut, also beech, lime and birch, at wood edges, in parks and on sunny slopes, from the lowlands to about 1,000 m. Common in central and southern Europe, especially south-west France and Portugal; rare in Britain.",
+        "season": "The first porcino of the year: from May on low ground and June in the mountains, mainly July to early September after warm rain, until the first autumn cold.",
+        "picking": "Cut or twist it out and leave small ones. In hot weather many are maggoty: halve them on the spot and leave infested ones in the wood. Many Italian and Spanish regions require a permit.",
+        "kitchen": "Many cooks rate it the finest porcino: sweet, nutty and fragrant, for drying, sauces and egg dishes. Once it is identified with certainty, cut away maggoty parts and cook it through.",
+        "keeps": "It keeps worst of the porcini: cook or dry it the day you pick it.",
+        "source": "Identification, habitat and season: Regione Piemonte and First Nature; GBIF records. Cooking: Regione Piemonte."
+      }
     },
     "pacific_chant": {
       "name": "Pacific Chanterelle",
       "description": "A large golden chanterelle of the Pacific Northwest, paler and pinker than its European cousin",
-      "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in"
+      "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in",
+      "guide": {
+        "identify": "A large chanterelle, paler and pinker than the European one: the cap is orange-yellow to apricot, and young caps often have fine brownish scales and a pinkish cast, which can vanish in wet weather. The blunt, forking ridges below run down the stem and are pale orange-yellow, usually tinged pink; the stem tapers downward, the flesh is whitish and firm, and the cap bruises yellowish. Jack-o'-lanterns (Omphalotus) and the false chanterelle have thin, crowded true gills; the scaly vase chanterelle (Turbinellus floccosus) is a deep, hollow, orange-red trumpet with coarse scales that upsets many people's stomachs.",
+        "habitat": "It lives with conifers, mainly Douglas fir and western hemlock, also Sitka spruce, in moss and needle litter in second-growth and old forest, mostly in the lowlands and foothills. It ranges from British Columbia through Washington and Oregon, where it is the state mushroom, to northern California.",
+        "season": "From September to December, sometimes into January, once the autumn rains have soaked the ground; a dry autumn delays it. Each mushroom grows slowly and can keep growing for weeks in cool, wet weather.",
+        "picking": "Cut at the base and leave the small buttons to grow on; take only what you will eat. Rules differ by national forest, state and park: some require a free permit and set daily limits, many state parks forbid picking and selling needs a commercial permit, so check with the land manager.",
+        "kitchen": "Once identified with certainty, brush off needles and soil; rinse only if gritty, then dry, as rain-soaked ones hold water. Never eat it raw: dry-fry it first to drive off the water, then finish in butter. Mild, fruity and firm; good with eggs, cream, pasta, salmon and game.",
+        "keeps": "Several days in the fridge in a paper bag. Dried, it turns tough: for longer keeping, fry it in butter and freeze it.",
+        "source": "Identification: MushroomExpert.com and UBC Beaty Biodiversity Museum. Picking rules: US Forest Service. Season: GBIF records."
+      }
     },
     "smooth_chant": {
       "name": "Smooth Chanterelle",
       "description": "An orange chanterelle whose underside is nearly smooth instead of ridged, with a strong apricot smell",
-      "howTo": "Look in southeastern oak woods through the humid summer, often in troops on bare soil"
+      "howTo": "Look in southeastern oak woods through the humid summer, often in troops on bare soil",
+      "guide": {
+        "identify": "Bright orange-yellow to egg-yolk yellow, 2.5 to 8 cm across, flat at first, later a shallow vase with a wavy edge. Its underside sets it apart: smooth or only shallowly wrinkled, paler than the cap and often pinkish, running down the stem, with no true gills. The stem tapers to the base, the flesh is white and does not change when cut, and the smell is usually strong and sweet, like apricots. Jack-o'-lanterns (Omphalotus illudens), common in the same oak woods, have sharp, crowded true gills, grow in tight clusters from wood or buried roots and are orange inside.",
+        "habitat": "It lives with oaks and sometimes hickories, in hardwood and oak-pine woods across the eastern US, east of the Rocky Mountains, and is most common in the Southeast. It often comes up in troops on bare or mossy soil along paths, stream banks and road cuts.",
+        "season": "Summer, from June to September and most often from July, soon after warm, heavy rain in humid weather.",
+        "picking": "Cut at the base, leave the small ones and take only what you will eat. Rules differ by state, park and national forest, and many state parks forbid picking, so check before you go.",
+        "kitchen": "Once identified with certainty, brush off the soil; the smooth underside holds little grit. Never eat it raw: cook it well, slowly in butter or in a cream sauce. Fruity and mild like other chanterelles; good with eggs, grits, pasta, chicken and pork.",
+        "keeps": "A few days in the fridge in a paper bag. Dried, it turns tough: for longer keeping, fry it in butter and freeze it.",
+        "source": "Identification and habitat: MushroomExpert.com and University of Florida IFAS Extension. Season: GBIF records."
+      }
     },
     "winter_chant": {
       "name": "Winter Chanterelle",
       "description": "A small brown-capped chanterelle on a hollow yellow stem, fruiting on through the first frosts",
-      "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood"
+      "howTo": "Look in mossy conifer litter late in the season, often in dense troops on rotting wood",
+      "guide": {
+        "identify": "Small and slim: the cap is 1 to 4 cm, brown to yellow-brown, a thin funnel whose centre opens into the hollow stem. Underneath are blunt, forking ridges, grey to yellowish-grey, running down the stem; the stem is yellow to orange-yellow, hollow and often flattened or grooved. The deadly webcap (Cortinarius rubellus) grows in the same mossy conifer woods: it has a pointed red-brown cap, true rusty-brown gills and a solid stem with faint yellow bands, and it destroys the kidneys. Check every mushroom as you pick and again as you clean: Norway's poison centre advises throwing away the whole basket if you find even one webcap in it.",
+        "habitat": "On wet, acid ground in conifer woods, mainly under spruce and pine, in moss, at bog edges and on moss-covered rotten logs. Common in northern and central Europe and in the mountains of the south; in North America in the Pacific Northwest, northern California and the northern and eastern conifer forests.",
+        "season": "Late in the year: in Europe from September until hard frost, often still in November and December; on the US Pacific coast from autumn through winter. It needs a wet autumn, and light frosts do not stop it.",
+        "picking": "Cut the stems above the moss to keep the basket clean, leave the smallest and keep to local limits, such as small amounts for your own use in Germany. In southern Bavaria and the Bavarian Forest it still carries caesium from Chernobyl, so eat it there only now and then.",
+        "kitchen": "Once identified with certainty, split the hollow stems and rinse out needles and grit. Never eat it raw: cook it well, in butter, sauces or soups, or with game. Earthy and stronger than its size suggests.",
+        "keeps": "A few days in the fridge in paper. It dries very well and keeps its flavour for months in a closed jar; it can also be cooked and frozen.",
+        "source": "Identification: MykoWeb (California Fungi) and First Nature (UK). Deadly webcap: Norwegian Institute of Public Health. Caesium: German Federal Office for Radiation Protection (BfS). Season: GBIF records."
+      }
     },
     "eastern_king": {
       "name": "Eastern King Bolete",
       "description": "The king boletes of eastern oak woods: a tan to lilac-brown cap, white pores that turn yellow with age and a netted stem, never bruising blue",
-      "howTo": "Look under oak, beech and hickory in eastern hardwood forest from June, a few days after warm summer rain"
+      "howTo": "Look under oak, beech and hickory in eastern hardwood forest from June, a few days after warm summer rain",
+      "guide": {
+        "identify": "A small group of eastern king boletes: Boletus variipes has a dry, velvety, tan to grey-brown cap that often cracks; Boletus separans has a lilac-brown to liver-red cap fading to yellow-brown, with lilac on the stem. Both have white young pores turning yellowish, a clear white to brownish stem net and white flesh that does not change colour. Bitter Tylopilus, such as the violet-grey Tylopilus plumbeoviolaceus, have pores that turn pink. Red or orange pores (Neoboletus subvelutipes) or bluing pores and flesh (Boletus sensibilis, Boletus huronensis) mean a toxic bolete.",
+        "habitat": "With oaks, also beech and other hardwoods, east of the Rockies: most often from New York and the Great Lakes through Pennsylvania and the Appalachians to Georgia and the Ozarks. Boletus nobilis and Boletus atkinsonii belong to the same group.",
+        "season": "June to September, most of all July and August, after warm, soaking summer rain.",
+        "picking": "Cut or twist it out and slice it on the spot, as summer kings are often maggoty. Some national forests need a free permit and set daily limits; parks have their own, often stricter rules.",
+        "kitchen": "Once it is identified with certainty, cook it through like porcini: sauté it, add it to pasta, soups and stews, or dry it for a deeper flavour. Use only firm, fresh ones.",
+        "keeps": "It dries very well in thin slices; fresh, use it within a day or two.",
+        "source": "Identification and habitat: MushroomExpert (Michael Kuo). Season: GBIF and iNaturalist records. Rules: US Forest Service."
+      }
     },
     "rocky_king": {
       "name": "Rocky Mountain King",
       "description": "A stout high-mountain porcino with a brick-red to red-brown cap, white pores and a thick pale stem netted at the top",
-      "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September"
+      "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September",
+      "guide": {
+        "identify": "A big, stout porcino of the high Rockies with a brick-red to reddish-brown cap, tacky when fresh and often with a whitish bloom when young, redder than the porcini (Boletus edulis) that also grows there. The pores are white and stuffed when young, then yellow and olive, and do not bruise. The thick, pale stem has a fine white net at least near the top, and the white flesh does not turn blue. Aspen boletes (Leccinum) have dark scales on the stem, and orange-capped ones have caused severe stomach poisonings in Colorado; red or orange pores mean a toxic bolete.",
+        "habitat": "Mainly with Engelmann spruce, also fir and Douglas fir, from about 2,400 m to the tree line, in Colorado, New Mexico and the mountains of Arizona.",
+        "season": "July to September, sometimes into October: it starts with the monsoon storms and moves upslope through the season; in dry summers it barely fruits.",
+        "picking": "Twist it out gently, since much of the stem is underground, and leave very maggoty ones. Each national forest sets its own rules, some with a free permit and daily limits.",
+        "kitchen": "Once it is identified with certainty, remove the yellow, soft pores of mature caps, which can taste bitter and turn slimy, then cook it through like porcini or dry it.",
+        "keeps": "Dry it in thin slices, or sauté and freeze it.",
+        "source": "Identification and habitat: Arora and Frank (2014), MushroomExpert and Forage Colorado. Season: GBIF records. Rules: US Forest Service."
+      }
     },
     "lions_mane": {
       "name": "Lion's Mane",
       "description": "A white, shaggy clump of long hanging spines on hardwood trees that cooks up like crab",
-      "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there"
+      "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there",
+      "guide": {
+        "identify": "A single white, rounded clump 8 to 24 cm across, with no cap or gills: soft spines 1 to 5 cm long hang from it like icicles. It yellows with age; the flesh is white and soft and does not change colour when cut, and the spore print is white. Its relatives coral tooth (Hericium coralloides) and bear's head (Hericium americanum) are branched, with shorter spines.",
+        "habitat": "From wounds in living broadleaf trees and on dead trunks, most often oak, also beech and maple, often high up. It is found across the US, more in the East; in Europe it is rare, on old beech and oak in ancient woods.",
+        "season": "Late summer to late autumn, after rain; through winter in warm areas such as California. It often returns to the same tree.",
+        "picking": "In Europe, leave it: it is rare and protected by law in several countries, including the UK, Poland, Hungary, Croatia, Slovenia and Sweden; photograph it and report the find. In the US, cut fresh white clumps at the base with a knife; national forests and parks may need a permit or ban collecting, so check local rules.",
+        "kitchen": "Once identified with certainty, cook it: slice it, dry-fry it to drive off the water, then brown it in butter. The mild, sweet taste and stringy texture are often compared to crab; yellowed clumps taste sour.",
+        "keeps": "A few days in the fridge in a paper bag; freeze it after cooking.",
+        "source": "Identification and season: MushroomExpert.com and Wild Food UK. Protection: IUCN Red List and the UK Wildlife and Countryside Act 1981."
+      }
     },
     "hen_of_the_woods": {
       "name": "Hen of the Woods",
       "description": "A big rosette of overlapping grey-brown fronds at the foot of old oaks, with white pores underneath",
-      "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe"
+      "howTo": "Look at the base of old or dying oaks from late August to October; it often comes back to the same tree year after year. It is protected in parts of central and northern Europe",
+      "guide": {
+        "identify": "A rosette 15 to 40 cm across of many overlapping, spoon- to fan-shaped grey-brown caps, each 3 to 14 cm wide, branching from a shared white base. The underside is white with tiny pores, not gills; the flesh is white and firm and does not stain when cut or bruised. The black-staining polypore (Meripilus) has larger, thicker caps that bruise black; the umbrella polypore (Polyporus umbellatus) has round caps on small central stems.",
+        "habitat": "At the base of old oaks, sometimes on stumps or other broadleaf trees; it rots the roots and comes back to the same tree for years. It is common in the eastern US and rare in the West; in Europe it is uncommon and declining, under old oaks and sweet chestnuts.",
+        "season": "Late summer to late autumn, mostly September and October, often after the first cool nights that follow rain.",
+        "picking": "Cut the rosette at the base with a knife, take only fresh, firm ones and leave the tree to fruit again. In Europe it is protected by law in Poland, Estonia, Latvia and Lithuania and red-listed in Germany, Austria and elsewhere: check local rules.",
+        "kitchen": "Once identified with certainty, cook it thoroughly. Shake and rinse soil and insects from between the caps and trim the tough core; fried or roasted, the caps crisp at the edges and taste rich, earthy and slightly peppery.",
+        "keeps": "Several days in the fridge in a paper bag. It freezes well after cooking and dries well.",
+        "source": "Identification and habitat: MushroomExpert.com. Status in Europe: IUCN Red List."
+      }
     },
     "saffron_milk_cap": {
       "name": "Saffron Milk Cap",
       "description": "An orange cap with darker rings that bleeds carrot-orange milk and bruises green; a favourite in Spain and Italy",
-      "howTo": "Look under pines and spruces from late summer to November, into winter on the Mediterranean and US Pacific coasts. Break a gill: the milk must be orange to red, never white"
+      "howTo": "Look under pines and spruces from late summer to November, into winter on the Mediterranean and US Pacific coasts. Break a gill: the milk must be orange to red, never white",
+      "guide": {
+        "identify": "An orange cap with darker concentric rings, rolled under at the edge when young, later funnel-shaped and often blotched green. The crowded orange gills run slightly down the short, hollow orange stem, which often has darker orange pits. Break a gill: the milk is carrot-orange and may slowly turn wine-red, and gills and flesh bruise green. White or yellowing milk means another milk cap, such as the woolly milk cap (Lactarius torminosus), which is pinker, has a woolly, bearded cap edge and grows with birch.",
+        "habitat": "Under pines, on sandy or lime-rich soil, often in young plantations and grassy clearings; close relatives grow under spruce (Lactarius deterrimus) and fir (Lactarius salmonicolor). Common across Europe and above all in the pine woods of Spain, Portugal and Italy; in North America several related orange-milked species grow under conifers.",
+        "season": "Autumn: from late summer to November in central and northern Europe. In Mediterranean pine woods it follows the autumn rains, from October into January, and on the US Pacific coast it fruits through the wet winter.",
+        "picking": "Cut the stem at the base, check it for larvae and leave the small ones. In many regions of Spain and Italy you need a permit or must keep to a daily limit: check local rules.",
+        "kitchen": "Once identified with certainty, cook it well: grilled with garlic, olive oil and parsley, stewed with potatoes or rice, or with meat. The firm, slightly grainy flesh tastes mild and resinous; slow cooking removes any bitterness. The green stains are harmless, and its pigment can turn urine red, which is harmless too.",
+        "keeps": "Two days in the fridge. It does not dry well; cook and freeze it, or preserve it in oil or vinegar.",
+        "source": "Identification and habitat: First Nature. Storage: ANSES. Season: GBIF records."
+      }
     },
     "hedgehog_mushroom": {
       "name": "Hedgehog Mushroom",
       "description": "A buff to orange cap with soft spines instead of gills underneath: one of the safest wild mushrooms to learn",
-      "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills"
+      "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills",
+      "guide": {
+        "identify": "Turn it over: under the cap are soft, brittle spines 2 to 6 mm long, hanging like small icicles, not gills or ridges; they rub off easily. The cap is 4 to 15 cm, cream to buff or pale orange, dry, velvety and often lumpy; the stem is white, solid and often off-centre, and the firm white flesh bruises slowly yellowish to orange-brown. The smaller, more orange terracotta hedgehog (Hydnum rufescens) and the American Hydnum species have the same soft spines. Other tooth fungi, such as Hydnellum and Sarcodon, are tough, corky or brown and scaly, and many are bitter.",
+        "habitat": "It lives with conifers and broadleaf trees alike, such as spruce, pine, beech, oak and birch, in moss and leaf litter, often in rings or rows. Common across Europe from the lowlands to the mountains and across North America; on the US Pacific coast several Hydnum species grow under Douglas fir, tanoak and other trees.",
+        "season": "In central and northern Europe from late summer to late autumn, often until hard frost; later and longer in southern Europe, into winter. On the US Pacific coast it comes with the autumn rains and continues through the winter.",
+        "picking": "Cut at the base, brush off debris on the spot so it does not lodge in the spines and leave the small ones. In southern Bavaria and the Bavarian Forest it still carries caesium from Chernobyl, so eat it there only now and then.",
+        "kitchen": "Once identified with certainty, brush the cap; on large ones, rub off the spines, which break off in the pan and can taste bitter. Never eat it raw: cook it well, fried in butter or braised. Mild, nutty and sweet, with a firm, meaty bite; good with eggs, potatoes, game and in sauces.",
+        "keeps": "Firm as it is, it keeps better than most wild mushrooms: several days in the fridge in paper. For longer keeping, cook it and freeze it.",
+        "source": "Identification: First Nature (UK) and MykoWeb (California Fungi). Caesium: German Federal Office for Radiation Protection (BfS). Season: GBIF records."
+      }
     },
     "shaggy_mane": {
       "name": "Shaggy Mane",
       "description": "A tall white cylinder of shaggy scales on lawns and roadsides that dissolves into black ink within a day of picking",
-      "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals"
+      "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals",
+      "guide": {
+        "identify": "A tall white cylinder, 5 to 15 cm high, covered in shaggy, upturned scales, with a pale brown top; with age it opens into a bell. The crowded gills turn from white to pink to black and dissolve into black ink from the cap edge upwards; the white stem is smooth and hollow, with a thin ring that slides and often drops to the base; the spore print is black. The common ink cap (Coprinopsis atramentaria) has a smooth, grey-brown, finely grooved cap with no shaggy scales and grows in clusters from buried wood. On US lawns, young green-spored parasols (Chlorophyllum molybdites) can look similar, but their gills never turn black.",
+        "habitat": "Lawns, verges, parks, paths, building sites and other disturbed, grassy ground, often in rows or groups. Common across Europe and North America.",
+        "season": "Mainly late summer and autumn, a few days after rain, and again in spring; on the US Pacific coast it carries on through the mild, wet winter.",
+        "picking": "Take only young, closed caps that are white all over, with white gills, and only what you will cook the same day. Avoid busy roads, dumps and polluted ground: it takes up heavy metals.",
+        "kitchen": "Once identified with certainty, cook it within a few hours and cut away any pink or black part, which turns bitter. Sautéed in butter, or in soups and omelettes, it is mild and delicate. It is not known to react with alcohol, but the common ink cap does, even with drinks taken days before or after the meal: if you are unsure which ink cap you have, do not eat it.",
+        "keeps": "It does not keep: within a day it turns to ink, even in the fridge. Cook it straight away; cooked, it keeps a day or two in the fridge or can be frozen.",
+        "source": "Identification and habitat: First Nature and Missouri Department of Conservation. Alcohol reaction: First Nature. Season: GBIF records."
+      }
     },
     "giant_puffball": {
       "name": "Giant Puffball",
       "description": "A smooth white ball, football-sized or bigger, in meadows and pastures, with firm white flesh like fresh mozzarella",
-      "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem"
+      "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem",
+      "guide": {
+        "identify": "A smooth white ball, often 20 to 50 cm across, with a thin, leathery skin and no stem, joined to the ground by a cord-like root. Cut every one in half from top to bottom: the inside must be firm and pure white throughout, like fresh mozzarella. Any outline of a cap, gills or stem can mean a young Amanita still in its egg, which can be deadly; a thick, scaly, yellowish skin and a dark, purple-black inside mean an earthball (Scleroderma), which is poisonous. Yellow, olive or brown flesh means the spores are ripening: it is no longer edible.",
+        "habitat": "Meadows, pastures, parks, gardens, hedgerows and woodland edges on rich ground, often among nettles and often in the same place every year. Widespread in Europe and the eastern US; in the dry interior West the similar western giant puffball (Calvatia booniana) grows in sagebrush and open grassland.",
+        "season": "Summer to autumn: mainly July to October in Europe, late summer to early autumn in the eastern US. It swells fast after warm, heavy rain.",
+        "picking": "Cut it at the base and take only firm ones that are white inside; one usually feeds several people. Leave old, yellowing ones to spread their spores, and avoid roadsides and lawns treated with chemicals.",
+        "kitchen": "Once identified with certainty, peel off the skin, which can be hard to digest, and cook it: thick slices fried in butter, or breaded, taste mild and take up other flavours. Try a small amount the first time.",
+        "keeps": "Eat it within two days, kept in the fridge, and throw it away once the flesh yellows. Fried slices freeze well.",
+        "source": "Identification and habitat: Missouri Department of Conservation and First Nature. Storage: ANSES. Season: GBIF records."
+      }
     },
     "matsutake": {
       "name": "Matsutake",
       "description": "A firm white-and-brown mushroom with a spicy, cinnamon-like smell, prized above all others in Japan",
-      "howTo": "Look in dry, sandy pine heaths from August in the Nordics, and under conifers and tanoak from September to November in the western US. Never rake the ground. It is red-listed in Sweden and Norway, where logging, not picking, is the threat; US national forests require a permit"
+      "howTo": "Look in dry, sandy pine heaths from August in the Nordics, and under conifers and tanoak from September to November in the western US. Never rake the ground. It is red-listed in Sweden and Norway, where logging, not picking, is the threat; US national forests require a permit",
+      "guide": {
+        "identify": "A firm, heavy mushroom: the cap is 6 to 20 cm, white with brown fibres and scales (browner in Europe and Asia), its edge rolled in when young. The crowded white to cream gills are attached to the stem; a thick white veil leaves a flaring ring with brown scales sheathing the stem below it, and the solid stem narrows to the base, with no bulb, sac or cup. The smell is strong and spicy, like cinnamon with a note of dirty socks: without it, it is not a matsutake, but smell alone is no proof. Smith's amanita (Amanita smithiana) and the destroying angels (Amanita virosa in Europe, A. bisporigera in the East, A. ocreata in the West) are white too, but have a bulb, sac or warty rings at the very base, a ragged or skirt-like ring and no spicy smell; they destroy the kidneys or liver.",
+        "habitat": "It lives with trees on poor, well-drained soil. In Europe mainly in Finland, Sweden and Norway, in dry, lichen-rich pine heaths on sand or gravel; in western North America under pines, Douglas fir, hemlock, firs and tanoak, often on sandy or pumice soil; in the East under jack pine, red pine and eastern hemlock, in the north and the Appalachians.",
+        "season": "In the Nordic countries from August to October, after late-summer rain once nights turn cool; in North America from September to November, into December on the Pacific coast.",
+        "picking": "Rock it gently out of the ground, then fill the hole and put back the moss and needles; never rake or dig, which damages the fungus and future crops. It is listed as Vulnerable worldwide (IUCN) and red-listed in Sweden and Norway, where the loss of old pine forest, not picking, is the threat; US national forests set their own matsutake permits and limits, so check with the ranger district.",
+        "kitchen": "Once identified with certainty, wipe it clean and trim the stem base; do not wash it. Never eat it raw; cook it gently and briefly to keep the aroma: sliced and grilled, cooked with rice or in a clear broth. Firm and chewy, with a spicy, pine-like scent.",
+        "keeps": "Wrapped in paper in the fridge; use it within a few days, before the smell fades.",
+        "source": "Identification: UBC Beaty Biodiversity Museum and MushroomExpert.com. Look-alikes: North American Mycological Association poisoning reports. Status: IUCN Red List. Picking rules: US Forest Service. Season: GBIF records."
+      }
     },
     "ramps": {
       "name": "Ramps",
       "description": "America's wild garlic: broad, smooth green leaves on purplish stems that smell strongly of onion and garlic",
-      "howTo": "Look in rich, moist hardwood forest in the eastern US from March to May, before the trees leaf out. Take one leaf per plant and leave the bulb; some parks ban picking, and Quebec bans selling them"
+      "howTo": "Look in rich, moist hardwood forest in the eastern US from March to May, before the trees leaf out. Take one leaf per plant and leave the bulb; some parks ban picking, and Quebec bans selling them",
+      "guide": {
+        "identify": "Two or three broad, smooth, flat leaves rise straight from the ground from a small bulb, each on its own stalk, often purplish-red near the base; they wither by early summer, before a leafless stalk carries a rounded cluster of small white flowers. Crush a leaf: ramps smell strongly of onion and garlic and their deadly look-alikes do not, but the smell stays on your fingers, so after the first few leaves the test proves nothing; check every plant by its leaves and stalks too. False hellebore has pleated leaves set along an upright stem and grows in wet ground; lily of the valley has two or three leaves wrapped around one another at the base; autumn crocus, a garden escape, has stalkless leaves in a tuft; Appalachian bunchflower (Melanthium parviflorum) has similar basal leaves but no onion smell.",
+        "habitat": "Rich, moist deciduous forest with deep leaf litter, on shaded slopes and in stream bottoms, from Quebec and New England through the Appalachians to Georgia and west to Minnesota.",
+        "season": "Leaves come up from March in the southern Appalachians and in April and May further north, in the few weeks before the trees leaf out; by late May or June they yellow and die back.",
+        "picking": "Take one leaf per plant, cut with a knife, and leave the bulb: digging it kills the plant, which needs at least five years from seed to reach picking size. Ramps have declined in parts of their range: Great Smoky Mountains National Park bans picking, some national forests limit it and ban selling, and Quebec lists them as vulnerable and bans their sale; check local rules.",
+        "kitchen": "Once identified with certainty, the leaves taste of strong garlic and onion: use a few raw, or wilt them briefly into eggs, potatoes, pasta and butter.",
+        "keeps": "Leaves keep a few days in the fridge in a damp cloth; chopped leaves, ramp butter and pesto freeze well.",
+        "source": "Identification, habitat and picking: NC State Extension and United Plant Savers. Look-alikes: Vermont Department of Health. Rules: National Park Service, USDA Forest Service and Quebec's environment ministry. Season: GBIF records."
+      }
     },
     "fiddleheads": {
       "name": "Fiddleheads",
       "description": "The tightly coiled young fronds of the ostrich fern: smooth, bright green, with brown papery scales",
-      "howTo": "Look on river floodplains and in moist woods from late April to May, while the fronds are still coiled. Always boil them before eating, and take no more than half the fiddleheads of a clump"
+      "howTo": "Look on river floodplains and in moist woods from late April to May, while the fronds are still coiled. Always boil them before eating, and take no more than half the fiddleheads of a clump",
+      "guide": {
+        "identify": "Only the ostrich fern is picked. It grows in clumps (crowns) of about three to twelve fiddleheads: tight green coils about 2.5 cm across on a smooth stem with a deep U-shaped groove on its inner side, covered in thin brown papery scales that rub off. Last year's fertile fronds, dark brown, stiff and feather-shaped, often still stand in the clump. Bracken, which is carcinogenic, comes up singly from creeping underground stems, with a fuzzy, round stem, no papery scales and a top that branches in three; other ferns, such as cinnamon fern, have woolly fiddleheads and are not recommended.",
+        "habitat": "Shaded river floodplains, sandbars and rich, moist woods, often under maple and ash. In the US it is common in the Northeast and around the Great Lakes, south to Pennsylvania and west to the Dakotas, and rare in the West outside Alaska; in Europe it grows along streams in the north and centre.",
+        "season": "Fiddleheads come up in spring as the ground warms after snowmelt and floods: late April in southern Maine, mid to late May in the far north, into early June in places. Pick them while 5 to 15 cm tall and tightly coiled; within days they unroll and are past eating.",
+        "picking": "Pick only from healthy clumps with at least four fiddleheads, take no more than half and do not return that season: picking them all weakens or kills the fern. Ask the landowner first; in Germany the wild ostrich fern is protected by law, so leave it there.",
+        "kitchen": "Never eat fiddleheads raw or lightly cooked: they have caused food poisoning outbreaks (nausea, vomiting, diarrhoea and cramps) investigated by the US CDC. Once identified with certainty, rub off the brown scales, wash them in several changes of cold water, then boil them in small batches in plenty of salted water for 15 minutes, or steam them for 10 to 12 minutes, and throw the water away. Only then sauté them or add them to dishes; they taste of asparagus and green beans.",
+        "keeps": "Refrigerate and use within a week. To freeze, blanch small batches for 2 minutes, cool in ice water, drain and freeze; they still need the full 15 minutes of boiling before eating.",
+        "source": "Identification, season, picking and cooking: University of Maine Cooperative Extension. Food poisoning: US CDC. US range: Penn State Extension. Protection in Germany: Federal Species Protection Ordinance (BArtSchV)."
+      }
     },
     "cloudberry": {
       "name": "Cloudberry",
       "description": "An amber-orange berry of northern bogs, like a soft raspberry, prized across the Nordic countries",
-      "howTo": "Look on open bogs and wet heath in Fennoscandia in July and August, when the berries turn from hard red to soft amber-yellow. A frost at flowering time can ruin a year's crop"
+      "howTo": "Look on open bogs and wet heath in Fennoscandia in July and August, when the berries turn from hard red to soft amber-yellow. A frost at flowering time can ruin a year's crop",
+      "guide": {
+        "identify": "A low herb, not a shrub, about a hand high, rising from creeping underground stems; each upright shoot carries one to three round, wrinkled leaves with five to seven shallow lobes and a single white flower. Male and female flowers grow on separate plants, so only some shoots bear fruit. The berry looks like a raspberry made of a few large drupelets: hard and red at first, it turns soft and amber-orange when ripe.",
+        "habitat": "Open bogs, wet heath, mires and tundra, often among sphagnum moss and dwarf birch; common in Norway, Sweden, Finland, the Baltic states and Russia, and found on high moorland in Scotland and northern England. In Germany, Poland and the Czech Republic it survives only in a few bogs as a relic of the Ice Age and is protected or listed as endangered.",
+        "season": "Flowers in June; berries ripen from mid-July in the south of Scandinavia and the Baltic to August in the far north and in the mountains. A frost at flowering time can ruin a year's crop.",
+        "picking": "Pick only soft, amber berries that come off easily; hard red ones are not ripe. Everyman's right lets anyone pick them in Sweden, Finland and Norway, but in Nordland, Troms and Finnmark the landowner may ban picking on productive cloudberry bogs, announced by signs or in a newspaper; you may then still eat berries on the spot, and on public land in Finnmark only residents may pick them to sell. Nature reserves can have their own rules, and in central Europe the plant must be left alone: check local rules before you go.",
+        "kitchen": "Once identified with certainty, eat them fresh with cream or on waffles, or cook them into jam; in Finland the jam goes with warm squeaky cheese (leipäjuusto), and in Sweden over ice cream. The taste is tart and aromatic.",
+        "keeps": "Ripe berries keep only a day or two in the fridge; they freeze well, and their natural benzoic acid helps the jam keep.",
+        "source": "Identification and habitat: University of Alberta and Minnesota Wildflowers. Picking rules: Norwegian Environment Agency and Swedish Environmental Protection Agency. Status in central Europe: Czech and German red lists."
+      }
     },
     "huckleberry": {
       "name": "Huckleberry",
       "description": "A purple-black mountain berry of the US Northwest, sweeter and tarter than a blueberry",
-      "howTo": "Look on subalpine slopes and old burns at 1,000–2,000 m in Montana, Idaho and the Cascades from July to September. Huckleberry patches are bear country: make noise and carry bear spray"
+      "howTo": "Look on subalpine slopes and old burns at 1,000–2,000 m in Montana, Idaho and the Cascades from July to September. Huckleberry patches are bear country: make noise and carry bear spray",
+      "guide": {
+        "identify": "A deciduous shrub, usually waist to shoulder high, with slightly angled yellow-green young twigs and thin, oval leaves that end in a point and have finely toothed edges. Creamy-pink, urn-shaped flowers hang singly from the leaf axils in early summer; each gives one purple to reddish-black berry, usually without a pale bloom, with a small crown-shaped ring at the tip. Berries not to eat in the same forests grow differently: twinberry honeysuckle (Lonicera involucrata) has black berries in pairs inside red bracts, and baneberry (Actaea rubra) is a soft herb with clustered red or white berries.",
+        "habitat": "Mountain conifer forests, open subalpine slopes and old burns, where the shrubs fruit best in sun; from British Columbia south through the Cascades and the Northern Rockies (Washington, Oregon, Idaho, Montana, Wyoming) to California, with outlying stands east to the Black Hills and the upper Great Lakes. In the eastern US the name huckleberry usually means Gaylussacia, a different shrub whose berries hold ten small, hard seeds.",
+        "season": "Ripens from July at lower elevations to September higher up, with berries ripening a few at a time on each bush. A late frost at flowering can cut the crop.",
+        "picking": "Pick by hand, berry by berry, without breaking branches. On US national forests, picking for your own use is often allowed, sometimes with a free permit and daily and season limits; commercial picking needs a permit or is closed, and some fields are reserved for tribes, such as part of the Sawtooth Berry Fields in Washington: check the forest's rules. Huckleberry patches are bear country: make noise and carry bear spray.",
+        "kitchen": "Once identified with certainty, eat them raw or cook them into pies, jam, syrup, pancakes and sauces for game; they are more intense than cultivated blueberries, sweet with a tart edge. Rinse them just before use.",
+        "keeps": "They keep a few days in the fridge, unwashed and spread out; freeze them on a tray, then bag them.",
+        "source": "Identification and range: USDA Forest Service (Fire Effects Information System) and University of British Columbia. Picking rules: Gifford Pinchot National Forest. Look-alikes: US National Park Service."
+      }
     },
     "pawpaw": {
       "name": "Pawpaw",
       "description": "North America's largest native fruit: green and mango-shaped, with custardy flesh that tastes of banana and mango",
-      "howTo": "Look in the understory of river-bottom forests in the eastern US from late August to October, when the fruit softens and drops. Eat only the flesh: the skin and seeds are poisonous"
+      "howTo": "Look in the understory of river-bottom forests in the eastern US from late August to October, when the fruit softens and drops. Eat only the flesh: the skin and seeds are poisonous",
+      "guide": {
+        "identify": "A small understory tree that often forms patches from root suckers, with large, drooping leaves that are widest beyond the middle and smell of green pepper when crushed. Deep maroon, six-petalled flowers appear in spring before the leaves. The fruit is oblong, green to yellow-green, borne singly or in clusters of two to nine, with soft yellow, custard-like flesh around two rows of large, flat brown seeds.",
+        "habitat": "Moist, rich woods on river floodplains, stream banks and shady lower slopes; native across the eastern US from northern Florida to the Great Lakes and southern Ontario, and west to eastern Nebraska, Kansas, Oklahoma and Texas. It does not grow wild in the western US.",
+        "season": "Fruit ripens from late August in the south to September and October in the north; a tree's crop ripens over one to two weeks, and ripe fruit drops.",
+        "picking": "A ripe fruit gives slightly when gently squeezed, like a peach, and smells strongly fruity; skin colour is not a reliable sign. Gather fresh windfalls or shake the trunk gently, check every day or two in season and handle the fruit carefully, as it bruises easily.",
+        "kitchen": "Once identified with certainty, eat only the flesh: cut the fruit in half lengthwise and scoop the flesh away from the skin and seeds, which must not be eaten or chewed. The flesh tastes of banana and mango and can replace banana in breads, ice cream and puddings; wild fruit can have a bitter aftertaste. Some people react with vomiting or an allergic reaction, so try a small amount first; medical sources also advise against eating it in large amounts over long periods, because the flesh contains annonacin, a compound toxic to nerve cells in laboratory studies.",
+        "keeps": "Ripe fruit lasts only a few days at room temperature and about a week in the fridge; fruit picked just before it is fully ripe keeps up to three weeks in the fridge and then finishes ripening at room temperature. The scooped flesh freezes for up to a year.",
+        "source": "Identification and range: University of Kentucky Center for Crop Diversification. Ripeness, preparation and keeping: Purdue Extension. Reactions: Memorial Sloan Kettering Cancer Center."
+      }
     },
     "rose_hips": {
       "name": "Rose Hips",
       "description": "The red autumn fruits of wild roses, rich in vitamin C and full of seeds wrapped in itchy hairs",
-      "howTo": "Look on hedgerows, scrub and woodland edges from late August to November; they are softest after the first frosts. Remove the seeds and hairs, which irritate the mouth and gut"
+      "howTo": "Look on hedgerows, scrub and woodland edges from late August to November; they are softest after the first frosts. Remove the seeds and hairs, which irritate the mouth and gut",
+      "guide": {
+        "identify": "Dog rose is a shrub with long arching stems, strongly hooked prickles and leaves of 5 to 7 toothed leaflets. The hips are oval, smooth, glossy scarlet and 1 to 2 cm long, with no sepals left on them when ripe; inside, hard seeds sit in fine, irritant hairs. Black bryony, white bryony and bittersweet hang shiny red, poisonous berries in bunches on climbing stems without prickles in the same hedges; a rose hip grows on a prickly rose stem and is full of hairy seeds.",
+        "habitat": "Hedgerows, scrub, woodland edges and rough grassland across Europe, from the lowlands into the mountains. In the US dog rose grows wild in places, and the hips of native wild roses and of rugosa rose are used the same way.",
+        "season": "Hips ripen from September to November and many stay on the bush into winter. Frost makes them softer and sweeter, but the longer they hang the less vitamin C they hold.",
+        "picking": "Pick firm, fully coloured hips that give a little when pressed, a few from each bush, and leave plenty for birds. Wear gloves and avoid roadsides and sprayed hedges.",
+        "kitchen": "Once identified with certainty, only the pulp is eaten: the seeds and their hairs irritate the mouth, gut and skin. Cut off the stalk and tip, halve the hips and scrape out every seed and hair, or simmer them whole and press them through a fine sieve; then strain the juice again through muslin. Use the pulp for syrup, jelly, jam and tea; it goes well with apple.",
+        "keeps": "Fresh hips keep about a week in the fridge. They freeze well; seeded halves dried at no more than 50 °C keep for many months in an airtight jar.",
+        "source": "Identification and habitat: Woodland Trust and The Wildlife Trusts. Season, picking and cooking: University of Alaska Fairbanks Cooperative Extension and Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "sloes": {
       "name": "Sloes",
       "description": "The small blue-black fruits of the thorny blackthorn, with a dusty bloom and a fiercely sour taste",
-      "howTo": "Look on hedgerows and scrubby slopes from September to November; they mellow after the first frosts. Don't crush the stones, and watch for shiny black look-alikes such as buckthorn and deadly nightshade"
+      "howTo": "Look on hedgerows and scrubby slopes from September to November; they mellow after the first frosts. Don't crush the stones, and watch for shiny black look-alikes such as buckthorn and deadly nightshade",
+      "guide": {
+        "identify": "Sloes grow on blackthorn, a dense, woody shrub with dark bark and side twigs that end in sharp thorns; its white blossom opens in March and April, before the leaves. The fruit is round, about 1 cm across, blue-black with a dusty bloom that rubs off, and grows singly or in pairs along the twigs; inside, green and very astringent flesh surrounds one stone. Buckthorn has shiny black berries in clusters with no bloom; deadly nightshade is a soft, leafy herb, not a thorny shrub, with single shiny black berries each sitting in a green star of sepals.",
+        "habitat": "Hedgerows, scrub, woodland edges and sunny, stony slopes, often in thickets that spread by suckers. It grows across most of Europe, north and south, from the lowlands into the hills.",
+        "season": "Sloes ripen from September to November and are ready when they are dark and soft enough to squash between your fingers. They are traditionally picked after the first frost, which splits the skins and softens the fruit so the juice runs out; picking them earlier and freezing them overnight does the same.",
+        "picking": "Wear gloves: the thorns are long and sharp. Pick from several bushes, leave plenty for birds and avoid roadside hedges and sprayed field edges.",
+        "kitchen": "Once identified with certainty, sloes are too sour and astringent to eat raw, but they make sloe gin and other liqueurs, such as Spanish pacharán in anise spirit, and a jelly with apples. For gin, prick or freeze them, cover them with sugar and gin, leave them a few months in a dark place, shaking now and then, and strain. Never crush or crack the stones: the kernels contain amygdalin, which releases cyanide.",
+        "keeps": "Fresh sloes keep a few days in the fridge; frozen in sealed bags they keep for months and go straight from the freezer into the jar.",
+        "source": "Identification, habitat and the frost tradition: Woodland Trust. Stones: USDA Phytochemical and Ethnobotanical Databases."
+      }
     },
     "sea_buckthorn": {
       "name": "Sea Buckthorn",
       "description": "Bright orange berries packed along thorny, silver-leaved branches: sour and rich in vitamin C",
-      "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves"
+      "howTo": "Look on coastal dunes and gravelly riverbanks from August to October. Wear gloves against the thorns, and check the rules: picking is often forbidden in dune reserves",
+      "guide": {
+        "identify": "Sea buckthorn is a thorny, much-branched shrub that forms thickets, with narrow, willow-like leaves covered in silvery scales, above all underneath. Male and female flowers grow on separate bushes, so only female bushes fruit: round, bright orange berries 6 to 8 mm across, packed tightly along the twigs on very short stalks. The berries are juicy and very sour and burst at a touch; rowan and firethorn, by contrast, carry their orange berries in stalked bunches among green leaves.",
+        "habitat": "It needs full sun and open sand or gravel: coastal dunes of the North Sea, the Baltic and eastern England, and dry gravel banks and terraces of rivers in the Alps and their foothills. In southern Europe it is mostly a plant of mountain river gravels, in the Alps and the Pyrenees; it is also planted on embankments and roadsides.",
+        "season": "The berries ripen from August into October and are most aromatic early in ripening. They hang on into winter, but overripe berries taste rancid.",
+        "picking": "Wild stands often grow in dune and riverside nature reserves, where picking is forbidden: check local rules first and never cut branches from wild bushes. Wear gloves, hold a bowl under the twig as you pick because the berries burst, and leave plenty for wintering thrushes.",
+        "kitchen": "Once identified with certainty, the berries can be eaten raw, but they are very sour, slightly bitter and stain; most are cooked briefly with a little water and honey or sugar, then strained for juice, syrup, jelly or purée. Apple or apricot softens the sharpness; the purée suits yoghurt, muesli, ice cream and soups.",
+        "keeps": "Fresh berries spoil quickly: freeze them, or freeze the juice in portions. The pulp left after pressing can be dried for tea.",
+        "source": "Identification and habitat: The Wildlife Trusts and the European Environment Agency (EUNIS). Season, cooking and keeping: Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "boletus": {
       "name": "Boletus (porcini & bay bolete)",
       "description": "Porcini and the bay bolete in one score: porcini, pine, bronze and summer boletes, the bay bolete in Europe and the North American kings",
-      "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain"
+      "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain",
+      "guide": {
+        "identify": "The group brings together the porcini (Boletus edulis), the pine, bronze and summer boletes of Europe, the eastern king bolete and Rocky Mountain king of North America, and the bay bolete (Imleria badia). The porcini and kings have white young pores, a stem net and white flesh that does not turn blue; the bay bolete has yellow pores that bruise blue-green and a streaky stem without a net. The cap separates them: brown and greasy (porcini), wine-red (pine), near-black and velvety (bronze), pale and cracked (summer), tan to lilac-brown (eastern king), brick-red (Rocky Mountain king), chestnut and tacky (bay). Red or orange pores mean a toxic bolete such as the devil's bolete (Rubroboletus satanas); pink pores and a dark stem net mean the bitter bolete (Tylopilus felleus).",
+        "habitat": "All live with trees: porcini with conifers, beech and oak; the pine bolete with pine and spruce; the bronze and summer boletes with oak and chestnut in warm woods; the bay bolete with conifers on acid sand; the eastern king in eastern US oak woods; the Rocky Mountain king under high spruce.",
+        "season": "Together they run from May, with the summer bolete, to the first frosts, with the bay bolete peaking in October and November; porcini fruit mainly from August to October. Flushes follow a soaking rain by two to three weeks.",
+        "picking": "Pick only what you can name with certainty and keep each kind apart in the basket. Germany allows porcini only in small amounts for your own use and protects the bronze bolete; Italy and Spain often require permits.",
+        "kitchen": "Once identified with certainty, all are brushed, sliced to check for maggots and cooked through. The bay bolete gathers radioactive caesium: in parts of Bavaria and Austria eat it only now and then.",
+        "keeps": "All dry well in thin slices.",
+        "source": "Identification and habitat: Regione Piemonte, First Nature and MushroomExpert. Season: GBIF records. Rules: BArtSchV (Germany). Caesium: German Federal Office for Radiation Protection (BfS)."
+      }
     },
     "cantharellus": {
       "name": "Chanterelles (all)",
       "description": "Every chanterelle in one score: the golden chanterelles, the black trumpet and the winter chanterelle, and in North America the smooth and Pacific chanterelles",
-      "howTo": "Each place shows the best of their scores; golden chanterelles on mossy slopes under oak, beech and conifers after warm rain, black trumpets in damp leaf litter under broadleaves, winter chanterelles on wet moss under conifers late in the season"
+      "howTo": "Each place shows the best of their scores; golden chanterelles on mossy slopes under oak, beech and conifers after warm rain, black trumpets in damp leaf litter under broadleaves, winter chanterelles on wet moss under conifers late in the season",
+      "guide": {
+        "identify": "Five species: the golden chanterelle, the smooth and Pacific chanterelles of North America, the black trumpet and the winter chanterelle (the last two belong to the close genus Craterellus). All have blunt, forking ridges or a nearly smooth underside running down the stem, never thin blade-like gills. The golden, smooth and Pacific chanterelles are yellow to orange and fleshy with a solid stem; the winter chanterelle is small, with a brown cap and a hollow yellow stem; the black trumpet is a thin, hollow, grey-black horn. Their dangerous look-alikes differ: jack-o'-lanterns (Omphalotus), with true gills and clusters on wood, for the yellow ones, and the deadly webcap (Cortinarius rubellus), with rusty-brown gills, among winter chanterelles.",
+        "habitat": "All live with tree roots. The golden chanterelle grows under broadleaves and conifers across Europe and North America; the black trumpet in damp leaf litter, mainly under beech and oak; the winter chanterelle on wet moss and rotten wood under conifers. The smooth chanterelle belongs to eastern US oak woods, the Pacific chanterelle to the Douglas fir and hemlock forests of the Pacific Northwest.",
+        "season": "Together they run from early summer to winter: golden and smooth chanterelles from early summer after warm rain, black trumpets from late summer through autumn, Pacific and winter chanterelles from autumn into winter, until hard frost. In the western US they follow the autumn and winter rains.",
+        "picking": "Cut or twist at the base, leave the small ones and take only what you will eat. In Germany the golden chanterelle is specially protected and may be picked only in small amounts for your own use; other countries, regions and US public lands set their own limits or permits, so check the local rules.",
+        "kitchen": "Once each mushroom is identified with certainty, cook them all well and never eat them raw. Golden, smooth and Pacific chanterelles are fruity and firm, best fried slowly in butter; black trumpets are smoky and winter chanterelles earthy, both good in sauces, risotto and with eggs. Split trumpets and winter chanterelles lengthwise to rinse out grit.",
+        "keeps": "Fresh, a few days in the fridge in paper, not plastic. Black trumpets and winter chanterelles dry very well; golden chanterelles turn tough when dried and are better fried and frozen.",
+        "source": "Identification and habitat: First Nature (UK), MushroomExpert.com and MykoWeb (California Fungi). Deadly webcap: Norwegian Institute of Public Health. Protection: German Federal Species Protection Ordinance. Season: GBIF records."
+      }
     },
     "bay_bolete": {
       "name": "Bay Bolete",
       "description": "A chestnut-brown capped bolete, tacky when wet, with cream to olive-yellow pores that bruise blue-green and a streaky stem without a net",
-      "howTo": "Look in moss under pine and spruce, also beech and oak, on acid sandy soil from August to the first frosts; it peaks in October as porcini fade. It gathers more Chernobyl caesium than most mushrooms, so in Bavaria and Austria eat it only now and then"
+      "howTo": "Look in moss under pine and spruce, also beech and oak, on acid sandy soil from August to the first frosts; it peaks in October as porcini fade. It gathers more Chernobyl caesium than most mushrooms, so in Bavaria and Austria eat it only now and then",
+      "guide": {
+        "identify": "A bolete without the porcini's stem net: the cap is chestnut brown, suede-like when dry and sticky when wet. The pores are cream to pale yellow, later olive, and bruise blue-green; the white to pale yellow flesh may turn faintly blue when cut. The slimmer stem is streaked brown on a paler ground. Red or orange pores (Rubroboletus satanas, Neoboletus subvelutipes) or pink pores with a netted stem (Tylopilus felleus) rule it out; in eastern North America, Boletus sensibilis turns dark blue instantly all over and has a yellow stem, and Boletus huronensis is dense and porcini-shaped with a yellowish stem.",
+        "habitat": "With pine and spruce, also beech, oak and chestnut, on acid, sandy soil, often in moss near old stumps; common in the lowlands of northern and central Europe. In North America in the north-east, the Great Lakes and the Appalachians, under pine and hemlock.",
+        "season": "In Europe from August to the first hard frosts, peaking in October after the porcini, and into December in the south. In north-eastern North America earlier, mainly July to September.",
+        "picking": "Twist it out or cut it and leave the young and the old. Check local rules: picking is often banned in nature reserves.",
+        "kitchen": "Once it is identified with certainty, wipe the cap, peel it if slimy, remove soft old tubes and cook it through; any blue goes in cooking, and the taste is mild. It gathers more radioactive caesium than most mushrooms: in parts of Bavaria and Austria eat it only now and then.",
+        "keeps": "It dries well in thin slices and freezes after cooking.",
+        "source": "Identification and habitat: First Nature and MushroomExpert. Season: GBIF records. Caesium: German Federal Office for Radiation Protection (BfS) and Bavarian LGL."
+      }
     }
   },
   "place": {
@@ -392,7 +923,7 @@
     "habitat": "Where it grows",
     "season": "When",
     "picking": "Picking",
-    "kitchen": "In the kitchen",
+    "kitchen": "Cooking",
     "keeps": "Keeping",
     "source": "Sources"
   },

@@ -19,32 +19,86 @@
     "en": {
       "name": "Giant Puffball",
       "description": "A smooth white ball, football-sized or bigger, in meadows and pastures, with firm white flesh like fresh mozzarella",
-      "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem"
+      "howTo": "Look in meadows, pastures, parks and woodland edges from late summer to autumn, often where nettles grow. Cut every one in half from top to bottom: it must be pure white inside, with no trace of a cap or stem",
+      "guide": {
+        "identify": "A smooth white ball, often 20 to 50 cm across, with a thin, leathery skin and no stem, joined to the ground by a cord-like root. Cut every one in half from top to bottom: the inside must be firm and pure white throughout, like fresh mozzarella. Any outline of a cap, gills or stem can mean a young Amanita still in its egg, which can be deadly; a thick, scaly, yellowish skin and a dark, purple-black inside mean an earthball (Scleroderma), which is poisonous. Yellow, olive or brown flesh means the spores are ripening: it is no longer edible.",
+        "habitat": "Meadows, pastures, parks, gardens, hedgerows and woodland edges on rich ground, often among nettles and often in the same place every year. Widespread in Europe and the eastern US; in the dry interior West the similar western giant puffball (Calvatia booniana) grows in sagebrush and open grassland.",
+        "season": "Summer to autumn: mainly July to October in Europe, late summer to early autumn in the eastern US. It swells fast after warm, heavy rain.",
+        "picking": "Cut it at the base and take only firm ones that are white inside; one usually feeds several people. Leave old, yellowing ones to spread their spores, and avoid roadsides and lawns treated with chemicals.",
+        "kitchen": "Once identified with certainty, peel off the skin, which can be hard to digest, and cook it: thick slices fried in butter, or breaded, taste mild and take up other flavours. Try a small amount the first time.",
+        "keeps": "Eat it within two days, kept in the fridge, and throw it away once the flesh yellows. Fried slices freeze well.",
+        "source": "Identification and habitat: Missouri Department of Conservation and First Nature. Storage: ANSES. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Vescia gigante",
       "description": "Una palla bianca e liscia, grande come un pallone o più, in prati e pascoli, dalla polpa soda e bianca come mozzarella fresca",
-      "howTo": "Cercala in prati, pascoli, parchi e margini dei boschi da fine estate all'autunno, spesso dove crescono le ortiche. Tagliala sempre a metà dall'alto in basso: dentro deve essere bianca pura, senza traccia di cappello o gambo"
+      "howTo": "Cercala in prati, pascoli, parchi e margini dei boschi da fine estate all'autunno, spesso dove crescono le ortiche. Tagliala sempre a metà dall'alto in basso: dentro deve essere bianca pura, senza traccia di cappello o gambo",
+      "guide": {
+        "identify": "Una palla bianca e liscia, spesso di 20-50 cm, con una pelle sottile come cuoio e senza gambo, legata al terreno da un cordone simile a una radice. Tagliala sempre a metà dall'alto in basso: l'interno deve essere sodo e di un bianco puro e uniforme, come una mozzarella fresca. Qualsiasi sagoma di cappello, lamelle o gambo può indicare una giovane amanita ancora nell'ovolo, che può essere mortale; una pelle spessa, squamosa e giallastra con l'interno scuro, nero violaceo, indica uno Scleroderma, tossico. La carne gialla, oliva o bruna indica che le spore stanno maturando: non è più commestibile.",
+        "habitat": "Prati, pascoli, parchi, giardini, siepi e margini di bosco su terreno ricco, spesso tra le ortiche e spesso nello stesso posto ogni anno. Diffusa in Europa e negli Stati Uniti orientali; nell'interno arido dell'Ovest americano cresce una specie simile, Calvatia booniana, tra l'artemisia e le praterie aperte.",
+        "season": "Dall'estate all'autunno: soprattutto da luglio a ottobre in Europa, e tra fine estate e inizio autunno negli Stati Uniti orientali. Cresce in fretta dopo piogge abbondanti e calde.",
+        "picking": "Tagliala alla base e prendi solo esemplari sodi e bianchi all'interno; una sola basta spesso per più persone. Lascia quelle vecchie che ingialliscono a spargere le spore ed evita i bordi delle strade e i prati trattati con prodotti chimici.",
+        "kitchen": "Una volta identificata con certezza, togli la pelle, che può essere indigesta, e cuocila: a fette spesse in padella con il burro o impanate, ha un sapore delicato e assorbe gli altri sapori. La prima volta assaggiane poca.",
+        "keeps": "Mangiala entro due giorni, in frigorifero, e buttala appena la carne ingiallisce. Le fette già cotte si congelano bene.",
+        "source": "Identificazione e habitat: Missouri Department of Conservation e First Nature. Conservazione: ANSES. Stagione: segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Vesse-de-loup géante",
       "description": "Une boule blanche et lisse, grosse comme un ballon ou plus, dans les prés et les pâtures, à la chair ferme et blanche comme une mozzarella fraîche",
-      "howTo": "Cherchez-la dans les prés, les pâtures, les parcs et les lisières de la fin de l'été à l'automne, souvent là où poussent les orties. Coupez-la toujours en deux de haut en bas : l'intérieur doit être d'un blanc pur, sans trace de chapeau ni de pied"
+      "howTo": "Cherchez-la dans les prés, les pâtures, les parcs et les lisières de la fin de l'été à l'automne, souvent là où poussent les orties. Coupez-la toujours en deux de haut en bas : l'intérieur doit être d'un blanc pur, sans trace de chapeau ni de pied",
+      "guide": {
+        "identify": "Une boule blanche et lisse, souvent de 20 à 50 cm, à peau fine comme du cuir et sans pied, reliée au sol par un cordon semblable à une racine. Coupez-les toutes en deux de haut en bas : l'intérieur doit être ferme et d'un blanc pur et uniforme, comme une mozzarella fraîche. Le moindre contour de chapeau, de lames ou de pied peut signaler une jeune amanite encore dans son œuf, parfois mortelle ; une peau épaisse, écailleuse et jaunâtre et un intérieur sombre, violet noir, signalent un scléroderme (Scleroderma), toxique. Une chair jaune, olive ou brune signifie que les spores mûrissent : elle n'est plus comestible.",
+        "habitat": "Prés, pâtures, parcs, jardins, haies et lisières sur sol riche, souvent parmi les orties et souvent au même endroit chaque année. Répandue en Europe et dans l'est des États-Unis ; dans l'intérieur sec de l'Ouest américain pousse une espèce voisine, Calvatia booniana, dans les steppes d'armoise et les prairies ouvertes.",
+        "season": "De l'été à l'automne : surtout de juillet à octobre en Europe, et de la fin de l'été au début de l'automne dans l'est des États-Unis. Elle grossit vite après des pluies chaudes et abondantes.",
+        "picking": "Coupez-la à la base et ne prenez que des exemplaires fermes et blancs à l'intérieur ; un seul suffit souvent pour plusieurs personnes. Laissez les vieux qui jaunissent répandre leurs spores, et évitez les bords de route et les pelouses traitées.",
+        "kitchen": "Une fois identifiée avec certitude, pelez la peau, parfois indigeste, et faites-la cuire : en tranches épaisses poêlées au beurre ou panées, elle a un goût doux et prend les saveurs. La première fois, goûtez-en peu.",
+        "keeps": "À manger dans les deux jours, au réfrigérateur ; jetez-la dès que la chair jaunit. Les tranches poêlées se congèlent bien.",
+        "source": "Identification et habitat : Missouri Department of Conservation et First Nature. Conservation : ANSES. Saison : observations GBIF."
+      }
     },
     "de": {
       "name": "Riesenbovist",
       "description": "Eine glatte weiße Kugel, fußballgroß oder größer, auf Wiesen und Weiden, mit festem, weißem Fleisch wie frischer Mozzarella",
-      "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiß sein, ohne jede Spur von Hut oder Stiel"
+      "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiß sein, ohne jede Spur von Hut oder Stiel",
+      "guide": {
+        "identify": "Eine glatte weiße Kugel, oft 20 bis 50 cm groß, mit dünner, lederartiger Haut und ohne Stiel, nur mit einem wurzelartigen Strang im Boden verankert. Schneide jeden Riesenbovist von oben nach unten durch: innen muss er fest und durchgehend reinweiß sein, wie frischer Mozzarella. Zeigt der Schnitt Umrisse von Hut, Lamellen oder Stiel, kann es ein junger Knollenblätterpilz im Ei sein, der tödlich sein kann; eine dicke, schuppige, gelbliche Haut und ein dunkles, violettschwarzes Inneres zeigen einen giftigen Kartoffelbovist (Scleroderma). Gelbes, olivfarbenes oder braunes Fleisch heißt, dass die Sporen reifen: dann ist er nicht mehr essbar.",
+        "habitat": "Wiesen, Weiden, Parks, Gärten, Hecken und Waldränder auf nährstoffreichem Boden, oft zwischen Brennnesseln und oft jedes Jahr an derselben Stelle. Verbreitet in Europa und im Osten der USA; im trockenen Inland des US-Westens wächst die ähnliche Art Calvatia booniana in Beifußsteppen und offenem Grasland.",
+        "season": "Sommer bis Herbst: in Europa vor allem Juli bis Oktober, im Osten der USA vor allem im Spätsommer und Frühherbst. Nach warmem, kräftigem Regen wächst er schnell heran.",
+        "picking": "Schneide ihn an der Basis ab und nimm nur feste, innen weiße Exemplare; einer reicht meist für mehrere Personen. Lass alte, gelb werdende stehen, damit sie ihre Sporen verbreiten, und meide Straßenränder und chemisch behandelte Rasen.",
+        "kitchen": "Ist er sicher bestimmt, schäl die Haut ab, die schwer verdaulich sein kann, und gare ihn: dicke Scheiben, in Butter gebraten oder paniert, schmecken mild und nehmen andere Aromen an. Probier beim ersten Mal nur eine kleine Menge.",
+        "keeps": "Im Kühlschrank aufbewahren und innerhalb von zwei Tagen essen; sobald das Fleisch gelb wird, wegwerfen. Gebratene Scheiben lassen sich gut einfrieren.",
+        "source": "Bestimmung und Standort: Missouri Department of Conservation und First Nature. Lagern: ANSES. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Bejín gigante",
       "description": "Una bola blanca y lisa, del tamaño de un balón o mayor, en prados y pastos, de carne firme y blanca como la mozzarella fresca",
-      "howTo": "Búscalo en prados, pastos, parques y lindes de bosque desde finales del verano hasta el otoño, a menudo junto a las ortigas. Córtalo siempre por la mitad de arriba abajo: por dentro debe ser blanco puro, sin rastro de sombrero ni pie"
+      "howTo": "Búscalo en prados, pastos, parques y lindes de bosque desde finales del verano hasta el otoño, a menudo junto a las ortigas. Córtalo siempre por la mitad de arriba abajo: por dentro debe ser blanco puro, sin rastro de sombrero ni pie",
+      "guide": {
+        "identify": "Una bola blanca y lisa, a menudo de 20 a 50 cm, con una piel fina como de cuero y sin pie, unida al suelo por un cordón parecido a una raíz. Córtalos todos por la mitad de arriba abajo: por dentro deben ser firmes y de un blanco puro y uniforme, como una mozzarella fresca. Si se ve el contorno de un sombrero, láminas o pie, puede ser una amanita joven aún dentro de su huevo, que puede ser mortal; una piel gruesa, escamosa y amarillenta con el interior oscuro, morado negruzco, indica un Scleroderma, que es tóxico. La carne amarilla, oliva o parda indica que maduran las esporas: ya no es comestible.",
+        "habitat": "Prados, pastos, parques, jardines, setos y lindes de bosque en suelo rico, a menudo entre ortigas y a menudo en el mismo sitio cada año. Extendido en Europa y en el este de EE. UU.; en el interior seco del oeste crece un pariente parecido, Calvatia booniana, entre artemisas y pastizales abiertos.",
+        "season": "De verano a otoño: sobre todo de julio a octubre en Europa, y a finales de verano y principios de otoño en el este de EE. UU. Crece deprisa tras lluvias fuertes con calor.",
+        "picking": "Córtalo por la base y coge solo los firmes y blancos por dentro; uno suele bastar para varias personas. Deja los viejos que amarillean para que suelten sus esporas y evita cunetas y céspedes tratados con productos químicos.",
+        "kitchen": "Una vez identificado con certeza, quítale la piel, que puede ser indigesta, y cocínalo: en filetes gruesos a la plancha con mantequilla o rebozados, tiene un sabor suave y absorbe otros sabores. La primera vez, prueba solo un poco.",
+        "keeps": "Cómelo en dos días, guardado en la nevera, y tíralo en cuanto la carne amarillee. Los filetes ya fritos se congelan bien.",
+        "source": "Identificación y hábitat: Missouri Department of Conservation y First Nature. Conservación: ANSES. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Bufa-do-diabo",
       "description": "Uma bola branca e lisa, do tamanho de uma bola de futebol ou maior, em prados e pastagens, de carne firme e branca como mozzarella fresca",
-      "howTo": "Procure em prados, pastagens, parques e orlas de bosque do fim do verão ao outono, muitas vezes junto às urtigas. Corte sempre cada exemplar ao meio de cima para baixo: por dentro tem de ser branco puro, sem vestígios de chapéu ou pé"
+      "howTo": "Procure em prados, pastagens, parques e orlas de bosque do fim do verão ao outono, muitas vezes junto às urtigas. Corte sempre cada exemplar ao meio de cima para baixo: por dentro tem de ser branco puro, sem vestígios de chapéu ou pé",
+      "guide": {
+        "identify": "Uma bola branca e lisa, muitas vezes de 20 a 50 cm, com uma pele fina como couro e sem pé, presa ao solo por um cordão parecido com uma raiz. Corte-as todas ao meio, de cima a baixo: o interior tem de ser firme e de um branco puro e uniforme, como mozzarella fresca. Qualquer contorno de chapéu, lâminas ou pé pode indicar uma amanita jovem ainda dentro do ovo, que pode ser mortal; uma pele grossa, escamosa e amarelada com o interior escuro, negro-arroxeado, indica um Scleroderma, que é tóxico. Carne amarela, oliva ou castanha quer dizer que os esporos estão a amadurecer: já não é comestível.",
+        "habitat": "Prados, pastagens, parques, jardins, sebes e orlas de bosque em solo rico, muitas vezes entre urtigas e muitas vezes no mesmo sítio todos os anos. Espalhada pela Europa e pelo leste dos EUA; no interior seco do oeste americano cresce uma espécie parecida, Calvatia booniana, entre artemísias e pastagens abertas.",
+        "season": "Do verão ao outono: sobretudo de julho a outubro na Europa, e do fim do verão ao início do outono no leste dos EUA. Cresce depressa depois de chuvas fortes com calor.",
+        "picking": "Corte-a pela base e apanhe só exemplares firmes e brancos por dentro; uma só chega muitas vezes para várias pessoas. Deixe as velhas que amarelecem espalhar os esporos e evite bermas de estrada e relvados tratados com químicos.",
+        "kitchen": "Depois de identificada com certeza, tire-lhe a pele, que pode ser indigesta, e cozinhe-a: em fatias grossas na frigideira com manteiga ou panadas, tem um sabor suave e absorve outros sabores. Da primeira vez, prove só um pouco.",
+        "keeps": "Coma-a em dois dias, guardada no frigorífico, e deite-a fora mal a carne amareleça. As fatias já fritas congelam bem.",
+        "source": "Identificação e habitat: Missouri Department of Conservation e First Nature. Conservação: ANSES. Época: registos do GBIF."
+      }
     }
   },
   "identification": {

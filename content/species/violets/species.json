@@ -19,32 +19,86 @@
     "en": {
       "name": "Sweet Violet",
       "description": "Small purple flowers with heart-shaped leaves and a sweet fragrance",
-      "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring"
+      "howTo": "Found in woodland edges, hedgerows, and shady areas in early spring",
+      "guide": {
+        "identify": "Sweet violet is a low plant with a rosette of long-stalked, heart-shaped leaves with a rounded base, scalloped edges and short hairs; it spreads by long runners that root. Each flower rises on its own stalk from the rosette: five uneven petals, the lowest with a short spur at the back, usually deep violet, sometimes white, with blunt sepals and a sweet scent; dog violets look similar but have no scent. Lesser celandine, which is poisonous and grows in the same places, has glossy, fleshy, hairless leaves and flowers with 8 to 12 shiny yellow petals; lords-and-ladies, also poisonous, has glossy, arrow-shaped leaves with lobes pointing backwards.",
+        "habitat": "Woodland edges, hedge banks, shady grass, churchyards, parks and old gardens, on moist, rich soil in part shade. It grows across most of Europe and has escaped from gardens in many places; in the US it grows wild locally in lawns and woodland edges.",
+        "season": "It flowers from February to May, earlier in the mild south, and in April and May in much of the US. A few flowers sometimes appear again in late summer, and the leaves are best young, in spring.",
+        "picking": "Pick a few flowers and young leaves from each patch and leave the rosette and roots in the ground; never dig up plants. Avoid sprayed lawns, verges and places where dogs are walked.",
+        "kitchen": "Once identified with certainty, the flowers go raw on salads and desserts, are candied with pasteurised egg white and fine sugar, or are steeped in boiling water and sweetened for violet syrup. Young leaves are eaten raw in salads or cooked like spinach; they are mild and slightly thicken soups. Never eat the roots or seeds, which can cause vomiting, and try a small amount first.",
+        "keeps": "The flowers wilt fast: keep them between damp paper towels in the fridge and use them the same day. Candied flowers keep in an airtight container in a cool, dark place.",
+        "source": "Identification and habitat: NatureSpot and NC State Extension. Cooking: Colorado State University Extension and NC State Extension."
+      }
     },
     "it": {
       "name": "Viola Mammola",
       "description": "Piccoli fiori viola con foglie a forma di cuore e un profumo dolce",
-      "howTo": "Trovata in bordi boschivi, siepi e aree ombreggiate all'inizio della primavera"
+      "howTo": "Trovata in bordi boschivi, siepi e aree ombreggiate all'inizio della primavera",
+      "guide": {
+        "identify": "La viola mammola è una pianta bassa con una rosetta di foglie a cuore, a lungo picciolo, con base arrotondata, margine crenato e peli corti; si allarga con lunghi stoloni che radicano. Ogni fiore nasce dalla rosetta su un proprio peduncolo: cinque petali disuguali, l'inferiore con un breve sperone all'indietro, di solito viola scuro, a volte bianco, con sepali ottusi e profumo dolce; le viole selvatiche senza profumo, come la viola di Rivinus, si somigliano ma non profumano. Il favagello, velenoso, che cresce negli stessi posti, ha foglie lucide, carnose e glabre e fiori con 8-12 petali gialli lucenti; il gigaro (Arum maculatum), anch'esso velenoso, ha foglie lucide a punta di freccia con lobi rivolti all'indietro.",
+        "habitat": "Margini dei boschi, scarpate delle siepi, erba all'ombra, cimiteri, parchi e vecchi giardini, su terreno fresco e ricco a mezz'ombra. Cresce in quasi tutta Europa ed è sfuggita ai giardini in molti luoghi; negli Stati Uniti cresce spontanea qua e là nei prati e ai margini dei boschi.",
+        "season": "Fiorisce da febbraio a maggio, prima nel sud più mite, e in gran parte degli Stati Uniti ad aprile e maggio. A volte compare ancora qualche fiore a fine estate, e le foglie sono migliori giovani, in primavera.",
+        "picking": "Raccogli da ogni macchia solo qualche fiore e qualche foglia giovane e lascia rosetta e radici nel terreno; non sradicare mai le piante. Evita i prati trattati, i bordi delle strade e i posti dove si portano i cani.",
+        "kitchen": "Una volta identificati con certezza, i fiori si usano crudi su insalate e dolci, si candiscono con albume pastorizzato e zucchero fine, oppure si mettono in infusione in acqua bollente che poi si zucchera per lo sciroppo di viole. Le foglie giovani si mangiano crude in insalata o cotte come gli spinaci; sono delicate e addensano un po' le zuppe. Non mangiare mai radici o semi, che possono far vomitare, e assaggiane prima una piccola quantità.",
+        "keeps": "I fiori appassiscono in fretta: tienili tra fogli di carta da cucina umida in frigorifero e usali il giorno stesso. I fiori canditi si conservano in un contenitore ermetico in un luogo fresco e buio.",
+        "source": "Identificazione e habitat: NatureSpot e NC State Extension. Cucina: Colorado State University Extension e NC State Extension."
+      }
     },
     "fr": {
       "name": "Violette odorante",
       "description": "Petites fleurs violettes à feuilles en cœur et parfum doux",
-      "howTo": "Se trouve en lisière de bois, haies et zones ombragées au début du printemps"
+      "howTo": "Se trouve en lisière de bois, haies et zones ombragées au début du printemps",
+      "guide": {
+        "identify": "La violette odorante est une petite plante en rosette aux feuilles en cœur, longuement pétiolées, à base arrondie, bord crénelé et poils courts ; elle s'étend par de longs stolons qui s'enracinent. Chaque fleur naît de la rosette sur son propre pédoncule : cinq pétales inégaux, l'inférieur prolongé vers l'arrière par un court éperon, le plus souvent violet foncé, parfois blanche, avec des sépales obtus et un parfum sucré ; les violettes des bois sans parfum se ressemblent mais ne sentent rien. La ficaire, toxique, qui pousse aux mêmes endroits, a des feuilles luisantes, charnues et glabres et des fleurs de 8 à 12 pétales jaunes brillants ; le gouet tacheté (arum), toxique lui aussi, a des feuilles luisantes en fer de flèche aux lobes tournés vers l'arrière.",
+        "habitat": "Lisières, talus de haies, herbe ombragée, cimetières, parcs et vieux jardins, sur sol frais et riche à mi-ombre. Elle pousse dans presque toute l'Europe et s'est échappée des jardins en bien des endroits ; aux États-Unis, elle pousse çà et là à l'état sauvage dans les pelouses et les lisières.",
+        "season": "Elle fleurit de février à mai, plus tôt dans le sud de l'Europe, et en avril et mai dans une grande partie des États-Unis. Quelques fleurs réapparaissent parfois en fin d'été, et les feuilles sont meilleures jeunes, au printemps.",
+        "picking": "Ne cueillez que quelques fleurs et jeunes feuilles par touffe et laissez la rosette et les racines en terre ; n'arrachez jamais de plantes. Évitez les pelouses traitées, les bords de route et les lieux de promenade des chiens.",
+        "kitchen": "Une fois identifiées avec certitude, les fleurs se mangent crues sur les salades et les desserts, se cristallisent au blanc d'œuf pasteurisé et au sucre fin, ou s'infusent dans l'eau bouillante qu'on sucre ensuite pour un sirop de violette. Les jeunes feuilles se mangent crues en salade ou cuites comme des épinards ; douces, elles épaississent un peu les soupes. Ne mangez jamais les racines ni les graines, qui peuvent faire vomir, et goûtez d'abord une petite quantité.",
+        "keeps": "Les fleurs fanent vite : gardez-les entre deux feuilles de papier absorbant humide au réfrigérateur et utilisez-les le jour même. Les fleurs cristallisées se gardent dans une boîte hermétique, au frais et à l'obscurité.",
+        "source": "Identification et habitat : NatureSpot et service d'extension de NC State. Cuisine : services d'extension de Colorado State University et de NC State."
+      }
     },
     "de": {
       "name": "Duftveilchen",
       "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft",
-      "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling"
+      "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling",
+      "guide": {
+        "identify": "Das Duftveilchen (März-Veilchen) ist eine niedrige Pflanze mit einer Rosette aus lang gestielten, herzförmigen Blättern mit rundem Grund, gekerbtem Rand und kurzen Haaren; es breitet sich mit langen, wurzelnden Ausläufern aus. Jede Blüte steht auf einem eigenen Stiel direkt aus der Rosette: fünf ungleiche Kronblätter, das unterste mit einem kurzen Sporn nach hinten, meist tief violett, manchmal weiß, mit stumpfen Kelchblättern und süßem Duft; Hundsveilchen sehen ähnlich aus, duften aber nicht. Das giftige Scharbockskraut, das an denselben Stellen wächst, hat glänzende, fleischige, kahle Blätter und Blüten mit 8 bis 12 glänzend gelben Blütenblättern; der ebenfalls giftige Aronstab hat glänzende, pfeilförmige Blätter mit nach hinten zeigenden Lappen.",
+        "habitat": "Waldränder, Heckenböschungen, schattige Wiesen, Friedhöfe, Parks und alte Gärten, auf feuchtem, nährstoffreichem Boden im Halbschatten. Es wächst in fast ganz Europa und ist vielerorts aus Gärten verwildert; in den USA wächst es stellenweise wild in Rasen und an Waldrändern.",
+        "season": "Es blüht von Februar bis Mai, im milden Süden früher, und in weiten Teilen der USA im April und Mai. Manchmal folgen im Spätsommer noch einzelne Blüten, und die Blätter sind jung im Frühling am besten.",
+        "picking": "Pflück von jedem Bestand nur einige Blüten und junge Blätter und lass Rosette und Wurzeln im Boden; grab nie Pflanzen aus. Meide gespritzte Rasen, Straßenränder und Plätze, an denen Hunde ausgeführt werden.",
+        "kitchen": "Sicher bestimmt kommen die Blüten roh auf Salate und Desserts, werden mit pasteurisiertem Eiweiß und feinem Zucker kandiert oder mit kochendem Wasser übergossen und gesüßt zu Veilchensirup. Junge Blätter isst man roh im Salat oder gekocht wie Spinat; sie sind mild und binden Suppen leicht. Wurzeln und Samen nie essen, sie können Erbrechen auslösen, und probier zuerst nur wenig.",
+        "keeps": "Die Blüten welken schnell: zwischen feuchtem Küchenpapier im Kühlschrank aufbewahren und am selben Tag verwenden. Kandierte Blüten halten sich luftdicht verschlossen an einem kühlen, dunklen Ort.",
+        "source": "Bestimmung und Standort: NatureSpot und NC State Extension. Küche: Colorado State University Extension und NC State Extension."
+      }
     },
     "es": {
       "name": "Violeta dulce",
       "description": "Pequeñas flores moradas con hojas en forma de corazón y fragancia dulce",
-      "howTo": "Se encuentra en bordes de bosques, setos y zonas sombrías a principios de primavera"
+      "howTo": "Se encuentra en bordes de bosques, setos y zonas sombrías a principios de primavera",
+      "guide": {
+        "identify": "La violeta dulce (violeta de olor) es una planta baja con una roseta de hojas acorazonadas de pecíolo largo, base redondeada, borde festoneado y pelillos cortos; se extiende con estolones largos que enraízan. Cada flor sale de la roseta en su propio rabillo: cinco pétalos desiguales, el inferior con un espolón corto hacia atrás, casi siempre violeta oscuro, a veces blanca, con sépalos romos y un aroma dulce; las violetas silvestres sin olor, como Viola riviniana, se parecen pero no huelen. La celidonia menor, que es venenosa y crece en los mismos sitios, tiene hojas brillantes, carnosas y sin pelos y flores de 8 a 12 pétalos amarillos y brillantes; el aro (Arum maculatum), también venenoso, tiene hojas brillantes en forma de punta de flecha con lóbulos que apuntan hacia atrás.",
+        "habitat": "Bordes de bosque, taludes de setos, hierba a la sombra, cementerios, parques y jardines antiguos, en suelo húmedo y rico, a media sombra. Crece en casi toda Europa y se ha escapado de los jardines en muchos sitios; en Estados Unidos crece silvestre aquí y allá en céspedes y bordes de bosque.",
+        "season": "Florece de febrero a mayo, antes en el sur templado, y en gran parte de Estados Unidos en abril y mayo. A veces vuelven a salir algunas flores a finales de verano, y las hojas son mejores tiernas, en primavera.",
+        "picking": "Coge de cada mancha solo unas pocas flores y hojas tiernas y deja la roseta y las raíces en el suelo; no arranques nunca plantas. Evita los céspedes fumigados, las cunetas y los sitios donde se pasea a perros.",
+        "kitchen": "Una vez identificada con certeza, la flor se usa cruda en ensaladas y postres, se escarcha con clara de huevo pasteurizada y azúcar fino, o se infusiona en agua hirviendo que luego se endulza para hacer jarabe de violetas. Las hojas tiernas se comen crudas en ensalada o cocidas como espinacas; son suaves y espesan un poco las sopas. No comas nunca las raíces ni las semillas, que pueden provocar vómitos, y prueba primero una pequeña cantidad.",
+        "keeps": "La flor se mustia pronto: guárdala entre papel de cocina húmedo en la nevera y úsala el mismo día. Las flores escarchadas se conservan en un recipiente hermético en un lugar fresco y oscuro.",
+        "source": "Identificación y hábitat: NatureSpot y extensión de NC State. Cocina: extensión de la Universidad Estatal de Colorado y de NC State."
+      }
     },
     "pt": {
       "name": "Violeta-doce",
       "description": "Pequenas flores roxas com folhas em formato de coração e fragrância adocicada",
-      "howTo": "Encontrada em bordas de bosques, cercas vivas e áreas sombreadas no início da primavera"
+      "howTo": "Encontrada em bordas de bosques, cercas vivas e áreas sombreadas no início da primavera",
+      "guide": {
+        "identify": "A violeta-doce é uma planta baixa com uma roseta de folhas em forma de coração, de pé comprido, base arredondada, margem crenada e pelos curtos; alastra por estolhos compridos que enraízam. Cada flor nasce da roseta no seu próprio pé: cinco pétalas desiguais, a de baixo com um esporão curto para trás, quase sempre violeta-escuro, às vezes branca, com sépalas rombas e um perfume doce; as violetas-bravas sem perfume, como Viola riviniana, parecem-se mas não cheiram. A ficária, venenosa, que cresce nos mesmos sítios, tem folhas brilhantes, carnudas e sem pelos e flores com 8 a 12 pétalas amarelas brilhantes; o jarro (Arum maculatum), também venenoso, tem folhas brilhantes em ponta de seta com lóbulos virados para trás.",
+        "habitat": "Orlas de bosque, taludes de sebes, erva à sombra, cemitérios, parques e jardins antigos, em solo fresco e rico, à meia-sombra. Cresce em quase toda a Europa e escapou dos jardins em muitos sítios; nos Estados Unidos cresce espontânea aqui e ali em relvados e orlas de bosque.",
+        "season": "Floresce de fevereiro a maio, mais cedo no sul ameno, e em grande parte dos Estados Unidos em abril e maio. Às vezes voltam a aparecer algumas flores no fim do verão, e as folhas são melhores novas, na primavera.",
+        "picking": "Apanhe de cada mancha só algumas flores e folhas novas e deixe a roseta e as raízes na terra; nunca arranque plantas. Evite relvados tratados, bermas de estrada e sítios onde se passeiam cães.",
+        "kitchen": "Depois de identificada com certeza, a flor usa-se crua em saladas e sobremesas, cristaliza-se com clara de ovo pasteurizada e açúcar fino, ou põe-se em infusão em água a ferver que depois se adoça para fazer xarope de violetas. As folhas novas comem-se cruas em salada ou cozinhadas como espinafres; são suaves e engrossam um pouco as sopas. Nunca coma as raízes nem as sementes, que podem provocar vómitos, e prove primeiro uma pequena quantidade.",
+        "keeps": "As flores murcham depressa: guarde-as entre papel de cozinha húmido no frigorífico e use-as no próprio dia. As flores cristalizadas conservam-se num recipiente hermético, em local fresco e escuro.",
+        "source": "Identificação e habitat: NatureSpot e extensão da NC State. Cozinha: extensão da Colorado State University e da NC State."
+      }
     }
   },
   "identification": {
@@ -213,6 +267,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [5331181] }
+    "rangePrior": {
+      "taxonKeys": [5331181]
+    }
   }
 }

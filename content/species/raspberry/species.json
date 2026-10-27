@@ -19,32 +19,86 @@
     "en": {
       "name": "Wild Raspberry",
       "description": "Sweet red berries that grow on thorny canes with distinctive compound leaves",
-      "howTo": "Look for raspberry canes in hedgerows, woodland edges, and disturbed areas in summer"
+      "howTo": "Look for raspberry canes in hedgerows, woodland edges, and disturbed areas in summer",
+      "guide": {
+        "identify": "Upright canes, often head-high, covered in small, fine prickles rather than the hooked thorns of a blackberry. The leaves have three to seven toothed leaflets set along a stalk, green above and white-felted beneath. Small white flowers hang downwards; the red berry comes away from the plant leaving its white core behind, so a picked raspberry is a hollow cap.",
+        "habitat": "Woodland clearings and edges, felled and burnt ground, scrub, heathland, rocky slopes and hedgerows, from the lowlands into the mountains across Europe; it moves into new clearings and fades as the trees grow back. In the US, American red raspberry grows across the north and in the western mountains, and the black raspberry, with purple-black hollow berries, in the east.",
+        "season": "Ripens in summer: from June in southern Europe and the lowlands, in July and August in the north and in the mountains, sometimes into September up high.",
+        "picking": "Pick berries that are fully red and slip off the core without pulling, into a shallow container, as they crush easily. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm, but advises washing them well; only heating above 60 °C kills its eggs, and home freezing does not.",
+        "kitchen": "Once identified with certainty, eat them raw or use them for jam, syrup, cakes and desserts; wild raspberries are smaller and more aromatic than garden ones. Rinse them briefly just before use and check for the small white larvae of the raspberry beetle.",
+        "keeps": "Very perishable: eat them the same day or keep them a day or two in the fridge, unwashed. Freeze them spread on a tray, then bag them; frozen berries suit sauces and baking.",
+        "source": "Identification and habitat: Woodland Trust. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "it": {
       "name": "Lampone Selvatico",
       "description": "Bacche rosse dolci che crescono su canne spinose con foglie composte distintive",
-      "howTo": "Cerca canne di lampone in siepi, bordi boschivi e aree disturbate in estate"
+      "howTo": "Cerca canne di lampone in siepi, bordi boschivi e aree disturbate in estate",
+      "guide": {
+        "identify": "Canne erette, spesso alte quanto una persona, coperte di piccoli aculei sottili invece delle spine uncinate del rovo. Le foglie hanno da tre a sette foglioline dentate lungo un picciolo, verdi sopra e bianco-feltrose sotto. I piccoli fiori bianchi pendono verso il basso; il frutto rosso si stacca lasciando il cuore bianco sulla pianta, così un lampone raccolto è un cappuccio cavo.",
+        "habitat": "Radure e margini dei boschi, tagli e aree bruciate, arbusteti, brughiere, ghiaioni e siepi, dalla pianura alla montagna in tutta Europa; colonizza le radure nuove e scompare quando il bosco ricresce. Negli Stati Uniti il lampone americano cresce nel nord e nelle montagne dell'ovest, e il lampone nero, dai frutti cavi nero-violacei, nell'est.",
+        "season": "Matura in estate: da giugno nel sud dell'Europa e in pianura, a luglio e agosto nel nord e in montagna, a volte fino a settembre in quota.",
+        "picking": "Raccogli i lamponi ben rossi che si staccano dal cuore senza tirare, in un contenitore basso, perché si schiacciano facilmente. In Europa centrale l'autorità sanitaria bavarese (LGL) indica che mangiare bacche selvatiche non è stato finora riconosciuto come fattore di rischio per l'echinococco della volpe, ma consiglia di lavarle bene; solo la cottura sopra i 60 °C uccide le uova, il congelatore di casa no.",
+        "kitchen": "Una volta identificati con certezza, mangiali crudi o usali per marmellata, sciroppo, torte e dolci; i lamponi selvatici sono più piccoli e profumati di quelli dell'orto. Sciacquali poco prima di usarli e controlla che non contengano le piccole larve bianche del verme del lampone (Byturus).",
+        "keeps": "Molto deperibili: mangiali in giornata o tienili non lavati uno o due giorni in frigorifero. Congelali stesi su un vassoio e poi in sacchetti; congelati vanno bene per salse e dolci.",
+        "source": "Identificazione e habitat: Woodland Trust. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "fr": {
       "name": "Framboise sauvage",
       "description": "Baies rouges sucrées poussant sur des tiges épineuses à feuilles composées",
-      "howTo": "Cherchez les framboisiers dans les haies, lisières de bois et zones perturbées en été"
+      "howTo": "Cherchez les framboisiers dans les haies, lisières de bois et zones perturbées en été",
+      "guide": {
+        "identify": "Des cannes dressées, souvent à hauteur d'homme, couvertes de petits aiguillons fins plutôt que des épines crochues de la ronce. Les feuilles ont trois à sept folioles dentées le long d'un pétiole, vertes dessus et feutrées de blanc dessous. Les petites fleurs blanches pendent vers le bas ; le fruit rouge se détache en laissant son cœur blanc sur la plante, si bien qu'une framboise cueillie est un petit capuchon creux.",
+        "habitat": "Clairières et lisières, coupes et brûlis, fourrés, landes, éboulis et haies, de la plaine à la montagne dans toute l'Europe ; le framboisier colonise les nouvelles clairières et disparaît quand la forêt repousse. Aux États-Unis, le framboisier d'Amérique pousse dans le nord et dans les montagnes de l'ouest, et le framboisier noir, aux fruits creux noir violacé, dans l'est.",
+        "season": "Mûrit en été : dès juin dans le sud de l'Europe et en plaine, en juillet et août dans le nord et en montagne, parfois jusqu'en septembre en altitude.",
+        "picking": "Cueillez les framboises bien rouges qui se détachent de leur cœur sans tirer, dans un récipient plat, car elles s'écrasent facilement. En Europe centrale, l'office bavarois de la santé (LGL) indique que la consommation de baies sauvages n'a pas été identifiée comme un facteur de risque d'échinococcose (ténia du renard), mais conseille de bien les laver ; seule une cuisson au-dessus de 60 °C tue les œufs, la congélation domestique non.",
+        "kitchen": "Une fois identifiées avec certitude, mangez-les crues ou utilisez-les en confiture, sirop, gâteaux et desserts ; les framboises sauvages sont plus petites et plus parfumées que celles du jardin. Rincez-les juste avant usage et vérifiez qu'elles ne contiennent pas les petites larves blanches du ver des framboises (byture).",
+        "keeps": "Très fragiles : mangez-les le jour même ou gardez-les non lavées un ou deux jours au réfrigérateur. Congelez-les étalées sur un plateau, puis en sachet ; congelées, elles servent pour les coulis et la pâtisserie.",
+        "source": "Identification et habitat : Woodland Trust. Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "de": {
       "name": "Waldhimbeere",
       "description": "Süsse rote Beeren an dornigen Ruten mit charakteristischen gefiederten Blättern",
-      "howTo": "Suche Himbeersträucher in Hecken, Waldrändern und gestörten Gebieten im Sommer"
+      "howTo": "Suche Himbeersträucher in Hecken, Waldrändern und gestörten Gebieten im Sommer",
+      "guide": {
+        "identify": "Aufrechte, oft mannshohe Ruten mit feinen, kleinen Stacheln statt der hakigen Stacheln der Brombeere. Die Blätter haben drei bis sieben gesägte Fiederblättchen an einem Stiel, oben grün, unten weißfilzig. Die kleinen weißen Blüten hängen nach unten; die rote Frucht löst sich vom weißen Zapfen, der an der Pflanze bleibt, so dass eine gepflückte Himbeere ein hohles Hütchen ist.",
+        "habitat": "Waldlichtungen und Waldränder, Kahlschläge und Brandflächen, Gebüsche, Heiden, Geröllhänge und Hecken, vom Tiefland bis ins Gebirge in ganz Europa; sie besiedelt neue Lichtungen und verschwindet, wenn der Wald nachwächst. In den USA wächst die Amerikanische Himbeere im Norden und in den Bergen des Westens, die Schwarze Himbeere mit schwarzvioletten, hohlen Früchten im Osten.",
+        "season": "Reift im Sommer: ab Juni im Süden Europas und im Tiefland, im Juli und August im Norden und im Gebirge, in Hochlagen manchmal bis in den September.",
+        "picking": "Pflück Beeren, die ganz rot sind und sich ohne Ziehen vom Zapfen lösen, in ein flaches Gefäß, denn sie werden leicht zerdrückt. Laut dem Bayerischen Landesamt für Gesundheit und Lebensmittelsicherheit (LGL) ist das Essen von Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm erkannt worden; es rät trotzdem, sie gründlich zu waschen: nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Sind sie sicher bestimmt, kannst du sie roh essen oder zu Marmelade, Sirup, Kuchen und Desserts verarbeiten; Waldhimbeeren sind kleiner und aromatischer als Gartenhimbeeren. Wasch sie erst kurz vor dem Verwenden und achte auf die kleinen weißen Larven des Himbeerkäfers.",
+        "keeps": "Sehr empfindlich: am selben Tag essen oder ungewaschen ein bis zwei Tage im Kühlschrank aufbewahren. Auf einem Blech ausgebreitet einfrieren und dann in Beutel füllen; gefrorene Beeren eignen sich für Soßen und zum Backen.",
+        "source": "Bestimmung und Standort: Woodland Trust. Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "es": {
       "name": "Frambuesa silvestre",
       "description": "Bayas rojas dulces que crecen en cañas espinosas con hojas compuestas",
-      "howTo": "Busca cañas de frambuesa en setos, bordes de bosques y áreas alteradas en verano"
+      "howTo": "Busca cañas de frambuesa en setos, bordes de bosques y áreas alteradas en verano",
+      "guide": {
+        "identify": "Cañas erguidas, a menudo de la altura de una persona, cubiertas de aguijones pequeños y finos en lugar de las espinas ganchudas de la zarza. Las hojas tienen de tres a siete folíolos dentados a lo largo de un rabillo, verdes por encima y con un fieltro blanco por debajo. Las flores, pequeñas y blancas, cuelgan hacia abajo; el fruto rojo se suelta dejando el corazón blanco en la planta, así que una frambuesa recogida es un capuchón hueco.",
+        "habitat": "Claros y bordes de bosque, cortas y zonas quemadas, matorrales, brezales, pedregales y setos, desde las tierras bajas hasta la montaña en toda Europa; coloniza los claros nuevos y desaparece cuando el bosque vuelve a crecer. En EE. UU. la frambuesa americana crece en el norte y en las montañas del oeste, y la frambuesa negra, de frutos huecos negro violáceos, en el este.",
+        "season": "Madura en verano: desde junio en el sur de Europa y en tierras bajas, en julio y agosto en el norte y en la montaña, y a veces hasta septiembre en las zonas altas.",
+        "picking": "Coge las frambuesas bien rojas que se sueltan del corazón sin tirar, en un recipiente plano, porque se aplastan con facilidad. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
+        "kitchen": "Una vez identificadas con certeza, cómelas crudas o úsalas en mermelada, sirope, bizcochos y postres; las silvestres son más pequeñas y aromáticas que las de huerto. Lávalas justo antes de usarlas y revisa que no tengan las pequeñas larvas blancas del escarabajo de la frambuesa.",
+        "keeps": "Son muy delicadas: cómelas el mismo día o guárdalas sin lavar uno o dos días en la nevera. Congélalas extendidas en una bandeja y luego en bolsas; congeladas sirven para salsas y repostería.",
+        "source": "Identificación y hábitat: Woodland Trust. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "pt": {
       "name": "Framboesa-selvagem",
       "description": "Frutas vermelhas doces que crescem em caules espinhosos com folhas compostas",
-      "howTo": "Procure caules de framboesa em cercas vivas, bordas de bosques e áreas perturbadas no verão"
+      "howTo": "Procure caules de framboesa em cercas vivas, bordas de bosques e áreas perturbadas no verão",
+      "guide": {
+        "identify": "Varas erguidas, muitas vezes da altura de uma pessoa, cobertas de acúleos pequenos e finos em vez dos espinhos em gancho da silva. As folhas têm três a sete folíolos dentados ao longo de um pecíolo, verdes por cima e com um feltro branco por baixo. As pequenas flores brancas pendem para baixo; o fruto vermelho solta-se deixando o miolo branco na planta, por isso uma framboesa colhida é um capuz oco.",
+        "habitat": "Clareiras e orlas de bosques, cortes e zonas ardidas, matos, charnecas, cascalheiras e sebes, das terras baixas à montanha em toda a Europa; coloniza clareiras novas e desaparece quando o bosque volta a crescer. Nos EUA, a framboeseira-americana cresce no norte e nas montanhas do oeste, e a framboeseira-negra, de frutos ocos negro-violáceos, no leste.",
+        "season": "Amadurece no verão: a partir de junho no sul da Europa e nas terras baixas, em julho e agosto no norte e na montanha, por vezes até setembro nas zonas altas.",
+        "picking": "Colha as framboesas bem vermelhas que se soltem do miolo sem puxar, para um recipiente baixo, porque se esmagam com facilidade. Na Europa Central, a autoridade de saúde da Baviera (LGL) indica que comer bagas silvestres não foi até hoje identificado como fator de risco para a ténia-da-raposa, mas aconselha a lavá-las bem; só aquecê-las acima de 60 °C mata os ovos, e a congelação doméstica não.",
+        "kitchen": "Depois de identificadas com certeza, coma-as cruas ou use-as em doce, xarope, bolos e sobremesas; as silvestres são mais pequenas e aromáticas do que as da horta. Passe-as por água só antes de usar e veja se não têm as pequenas larvas brancas do escaravelho-da-framboesa.",
+        "keeps": "Muito perecíveis: coma-as no próprio dia ou guarde-as sem lavar um ou dois dias no frigorífico. Congele-as espalhadas num tabuleiro e depois em sacos; congeladas servem para molhos e pastelaria.",
+        "source": "Identificação e habitat: Woodland Trust. Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     }
   },
   "identification": {
@@ -223,6 +277,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2993094] }
+    "rangePrior": {
+      "taxonKeys": [2993094]
+    }
   }
 }

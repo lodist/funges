@@ -19,32 +19,86 @@
     "en": {
       "name": "Lion's Mane",
       "description": "A white, shaggy clump of long hanging spines on hardwood trees that cooks up like crab",
-      "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there"
+      "howTo": "Look on wounded or dead oak, beech and maple from late summer into autumn, often high on the trunk. In Europe it is rare and protected in places, so leave it there",
+      "guide": {
+        "identify": "A single white, rounded clump 8 to 24 cm across, with no cap or gills: soft spines 1 to 5 cm long hang from it like icicles. It yellows with age; the flesh is white and soft and does not change colour when cut, and the spore print is white. Its relatives coral tooth (Hericium coralloides) and bear's head (Hericium americanum) are branched, with shorter spines.",
+        "habitat": "From wounds in living broadleaf trees and on dead trunks, most often oak, also beech and maple, often high up. It is found across the US, more in the East; in Europe it is rare, on old beech and oak in ancient woods.",
+        "season": "Late summer to late autumn, after rain; through winter in warm areas such as California. It often returns to the same tree.",
+        "picking": "In Europe, leave it: it is rare and protected by law in several countries, including the UK, Poland, Hungary, Croatia, Slovenia and Sweden; photograph it and report the find. In the US, cut fresh white clumps at the base with a knife; national forests and parks may need a permit or ban collecting, so check local rules.",
+        "kitchen": "Once identified with certainty, cook it: slice it, dry-fry it to drive off the water, then brown it in butter. The mild, sweet taste and stringy texture are often compared to crab; yellowed clumps taste sour.",
+        "keeps": "A few days in the fridge in a paper bag; freeze it after cooking.",
+        "source": "Identification and season: MushroomExpert.com and Wild Food UK. Protection: IUCN Red List and the UK Wildlife and Countryside Act 1981."
+      }
     },
     "it": {
       "name": "Criniera di leone",
       "description": "Un cespo bianco e arruffato di lunghi aculei pendenti che cresce sulle latifoglie e, cotto, ricorda la polpa di granchio",
-      "howTo": "Cercala su querce, faggi e aceri feriti o morti da fine estate all'autunno, spesso in alto sul tronco. In Europa è rara e in alcuni paesi protetta: lasciala dov'è"
+      "howTo": "Cercala su querce, faggi e aceri feriti o morti da fine estate all'autunno, spesso in alto sul tronco. In Europa è rara e in alcuni paesi protetta: lasciala dov'è",
+      "guide": {
+        "identify": "Un'unica massa bianca e tondeggiante da 8 a 24 cm, senza cappello né lamelle: aculei morbidi lunghi da 1 a 5 cm pendono come ghiaccioli. Con l'età ingiallisce; la carne è bianca e morbida e non cambia colore al taglio, e la sporata è bianca. I suoi parenti Hericium coralloides e, in Nord America, Hericium americanum sono ramificati, con aculei più corti.",
+        "habitat": "Cresce da ferite di latifoglie vive e su tronchi morti, soprattutto querce, anche faggi e aceri, spesso in alto. Negli Stati Uniti si trova in tutto il paese, più spesso nell'est; in Europa è rara, su faggi e querce vecchi di boschi antichi.",
+        "season": "Dalla fine dell'estate alla fine dell'autunno, dopo la pioggia; nelle zone calde come la California anche d'inverno. Spesso torna sullo stesso albero.",
+        "picking": "In Europa lasciala dov'è: è rara e protetta per legge in diversi paesi, tra cui Regno Unito, Polonia, Ungheria, Croazia, Slovenia e Svezia; fotografala e segnala il ritrovamento. Negli Stati Uniti taglia alla base con il coltello gli esemplari bianchi e freschi; nelle foreste nazionali e nei parchi la raccolta può richiedere un permesso o essere vietata: informati sulle regole locali.",
+        "kitchen": "Una volta identificata con certezza, cuocila: tagliala a fette, passala in padella senza grassi finché perde l'acqua e poi falla dorare nel burro. Il sapore delicato e dolce e la consistenza filamentosa ricordano il granchio; gli esemplari ingialliti sanno di acido.",
+        "keeps": "Pochi giorni in frigorifero in un sacchetto di carta; congelala cotta.",
+        "source": "Riconoscimento e stagione: MushroomExpert.com e Wild Food UK. Protezione: Lista rossa IUCN e Wildlife and Countryside Act 1981 del Regno Unito."
+      }
     },
     "fr": {
       "name": "Hydne hérisson",
       "description": "Une touffe blanche et hirsute de longs aiguillons pendants qui pousse sur les feuillus et rappelle le crabe une fois cuite",
-      "howTo": "Cherchez-le sur les chênes, hêtres et érables blessés ou morts, de la fin de l'été à l'automne, souvent haut sur le tronc. En Europe il est rare et protégé par endroits : laissez-le en place"
+      "howTo": "Cherchez-le sur les chênes, hêtres et érables blessés ou morts, de la fin de l'été à l'automne, souvent haut sur le tronc. En Europe il est rare et protégé par endroits : laissez-le en place",
+      "guide": {
+        "identify": "Une seule masse blanche et arrondie de 8 à 24 cm, sans chapeau ni lames : des aiguillons mous de 1 à 5 cm en pendent comme des stalactites. Il jaunit avec l'âge ; la chair est blanche et molle et ne change pas de couleur à la coupe, et la sporée est blanche. Ses proches, l'hydne corail (Hericium coralloides) et, en Amérique du Nord, Hericium americanum, sont ramifiés, avec des aiguillons plus courts.",
+        "habitat": "Il sort des blessures de feuillus vivants et pousse sur les troncs morts, surtout le chêne, aussi le hêtre et l'érable, souvent haut sur le tronc. Aux États-Unis, on le trouve dans tout le pays, plus souvent dans l'est ; en Europe il est rare, sur les vieux hêtres et chênes des forêts anciennes.",
+        "season": "De la fin de l'été à la fin de l'automne, après la pluie ; tout l'hiver dans les régions chaudes comme la Californie. Il revient souvent sur le même arbre.",
+        "picking": "En Europe, laissez-le en place : il est rare et protégé par la loi dans plusieurs pays, dont le Royaume-Uni, la Pologne, la Hongrie, la Croatie, la Slovénie et la Suède, et inscrit sur la liste rouge en France ; photographiez-le et signalez la découverte. Aux États-Unis, coupez au couteau à la base les exemplaires blancs et frais ; dans les forêts nationales et les parcs, la cueillette peut demander un permis ou être interdite : renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois identifié avec certitude, faites-le cuire : coupez-le en tranches, faites-le revenir à sec pour chasser l'eau, puis dorez-le au beurre. Son goût doux et sucré et sa texture filandreuse rappellent le crabe ; les exemplaires jaunis ont un goût aigre.",
+        "keeps": "Quelques jours au réfrigérateur dans un sac en papier ; congelez-le cuit.",
+        "source": "Identification et saison : MushroomExpert.com et Wild Food UK. Protection : Liste rouge de l'UICN et Wildlife and Countryside Act 1981 (Royaume-Uni)."
+      }
     },
     "de": {
       "name": "Igel-Stachelbart",
       "description": "Ein weißer, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen, der gebraten an Krabbenfleisch erinnert",
-      "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen"
+      "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen",
+      "guide": {
+        "identify": "Ein einzelner, weißer, rundlicher Klumpen von 8 bis 24 cm ohne Hut und ohne Lamellen: Weiche, 1 bis 5 cm lange Stacheln hängen wie Eiszapfen herab. Im Alter wird er gelblich; das Fleisch ist weiß und weich und verfärbt sich beim Anschneiden nicht, das Sporenpulver ist weiß. Seine Verwandten, der Ästige Stachelbart (Hericium coralloides) und in Nordamerika Hericium americanum, sind verzweigt und haben kürzere Stacheln.",
+        "habitat": "Aus Wunden lebender Laubbäume und an toten Stämmen, meist an Eiche, auch an Buche und Ahorn, oft hoch am Stamm. In den USA im ganzen Land, häufiger im Osten; in Europa selten, an alten Buchen und Eichen in alten Wäldern.",
+        "season": "Vom Spätsommer bis in den Spätherbst, nach Regen; in warmen Gegenden wie Kalifornien auch im Winter. Oft erscheint er wieder am selben Baum.",
+        "picking": "In Europa lass ihn stehen: Er ist selten und in mehreren Ländern gesetzlich geschützt, darunter Großbritannien, Polen, Ungarn, Kroatien, Slowenien und Schweden, und in Deutschland auf der Roten Liste; mach ein Foto und melde den Fund. In den USA schneide frische, weiße Exemplare am Grund mit dem Messer ab; in National Forests und Parks kann das Sammeln genehmigungspflichtig oder verboten sein, also informiere dich über die Regeln vor Ort.",
+        "kitchen": "Erst wenn er sicher bestimmt ist: Schneide ihn in Scheiben, brate ihn ohne Fett, bis das Wasser verdampft ist, und bräune ihn dann in Butter. Der milde, süßliche Geschmack und die faserige Textur erinnern an Krebsfleisch; gelb gewordene Exemplare schmecken säuerlich.",
+        "keeps": "Einige Tage in einer Papiertüte im Kühlschrank; friere ihn gegart ein.",
+        "source": "Bestimmung und Saison: MushroomExpert.com und Wild Food UK. Schutzstatus: Rote Liste der IUCN und britischer Wildlife and Countryside Act 1981."
+      }
     },
     "es": {
       "name": "Melena de león",
       "description": "Una mata blanca y desgreñada de largas púas colgantes que crece en árboles de hoja ancha y, cocinada, recuerda al cangrejo",
-      "howTo": "Búscala en robles, hayas y arces heridos o muertos desde finales del verano hasta el otoño, a menudo en lo alto del tronco. En Europa es rara y está protegida en algunos lugares: déjala donde está"
+      "howTo": "Búscala en robles, hayas y arces heridos o muertos desde finales del verano hasta el otoño, a menudo en lo alto del tronco. En Europa es rara y está protegida en algunos lugares: déjala donde está",
+      "guide": {
+        "identify": "Una sola masa blanca y redondeada, de 8 a 24 cm, sin sombrero ni láminas: de ella cuelgan como carámbanos púas blandas de 1 a 5 cm. Amarillea con la edad; la carne es blanca y blanda y no cambia de color al cortarla, y la esporada es blanca. Sus parientes Hericium coralloides y, en Norteamérica, Hericium americanum son ramificados, con púas más cortas.",
+        "habitat": "Sale de heridas de árboles de hoja ancha vivos y en troncos muertos, sobre todo robles, también hayas y arces, a menudo en lo alto. En EE. UU. aparece en todo el país, más en el este; en Europa es rara, en hayas y robles viejos de bosques maduros.",
+        "season": "De finales de verano a finales de otoño, después de la lluvia; en zonas cálidas como California, también en invierno. A menudo vuelve al mismo árbol.",
+        "picking": "En Europa, déjala: es rara y está protegida por ley en varios países, entre ellos Reino Unido, Polonia, Hungría, Croacia, Eslovenia y Suecia; hazle una foto y comunica el hallazgo. En EE. UU., corta con navaja por la base los ejemplares blancos y frescos; en bosques nacionales y parques la recogida puede necesitar permiso o estar prohibida: infórmate de las normas locales.",
+        "kitchen": "Una vez identificada con certeza, cocínala: córtala en lonchas, pásala por la sartén sin grasa hasta que suelte el agua y dórala luego con mantequilla. Su sabor suave y dulce y su textura fibrosa recuerdan al cangrejo; los ejemplares amarillentos saben ácidos.",
+        "keeps": "Unos días en la nevera en una bolsa de papel; congélala cocinada.",
+        "source": "Identificación y temporada: MushroomExpert.com y Wild Food UK. Protección: Lista Roja de la UICN y Wildlife and Countryside Act 1981 del Reino Unido."
+      }
     },
     "pt": {
       "name": "Juba-de-leão",
       "description": "Um tufo branco e desgrenhado de longos espinhos pendentes que cresce em árvores de folha larga e, cozinhado, lembra caranguejo",
-      "howTo": "Procure em carvalhos, faias e bordos feridos ou mortos, do fim do verão ao outono, muitas vezes no alto do tronco. Na Europa é rara e protegida em alguns sítios: deixe-a onde está"
+      "howTo": "Procure em carvalhos, faias e bordos feridos ou mortos, do fim do verão ao outono, muitas vezes no alto do tronco. Na Europa é rara e protegida em alguns sítios: deixe-a onde está",
+      "guide": {
+        "identify": "Uma única massa branca e arredondada, de 8 a 24 cm, sem chapéu nem lâminas: dela pendem, como pingentes de gelo, espinhos moles de 1 a 5 cm. Amarelece com a idade; a carne é branca e mole e não muda de cor ao corte, e a esporada é branca. Os seus parentes Hericium coralloides e, na América do Norte, Hericium americanum são ramificados, com espinhos mais curtos.",
+        "habitat": "Nasce de feridas de árvores de folha larga vivas e em troncos mortos, sobretudo carvalhos, também faias e áceres, muitas vezes no alto. Nos EUA encontra-se em todo o país, mais no leste; na Europa é rara, em faias e carvalhos velhos de matas antigas.",
+        "season": "Do fim do verão ao fim do outono, depois da chuva; em zonas quentes como a Califórnia, também no inverno. Muitas vezes volta à mesma árvore.",
+        "picking": "Na Europa, deixe-a: é rara e protegida por lei em vários países, entre eles o Reino Unido, a Polónia, a Hungria, a Croácia, a Eslovénia e a Suécia; fotografe-a e comunique o achado. Nos EUA, corte pela base com uma faca os exemplares brancos e frescos; nas florestas nacionais e nos parques, a apanha pode exigir licença ou ser proibida: informe-se sobre as regras locais.",
+        "kitchen": "Depois de identificada com certeza, cozinhe-a: corte-a às fatias, passe-a pela frigideira sem gordura até largar a água e aloure-a depois em manteiga. O sabor suave e doce e a textura fibrosa lembram caranguejo; os exemplares amarelados sabem a ácido.",
+        "keeps": "Alguns dias no frigorífico num saco de papel; congele-a cozinhada.",
+        "source": "Identificação e época: MushroomExpert.com e Wild Food UK. Proteção: Lista Vermelha da UICN e Wildlife and Countryside Act 1981 do Reino Unido."
+      }
     }
   },
   "identification": {

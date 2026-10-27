@@ -19,32 +19,86 @@
     "en": {
       "name": "Shaggy Mane",
       "description": "A tall white cylinder of shaggy scales on lawns and roadsides that dissolves into black ink within a day of picking",
-      "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals"
+      "howTo": "Look on lawns, verges and disturbed ground a few days after autumn rain, and after spring rain too. Pick only young, all-white ones and cook them the same day; avoid busy roads, where it takes up heavy metals",
+      "guide": {
+        "identify": "A tall white cylinder, 5 to 15 cm high, covered in shaggy, upturned scales, with a pale brown top; with age it opens into a bell. The crowded gills turn from white to pink to black and dissolve into black ink from the cap edge upwards; the white stem is smooth and hollow, with a thin ring that slides and often drops to the base; the spore print is black. The common ink cap (Coprinopsis atramentaria) has a smooth, grey-brown, finely grooved cap with no shaggy scales and grows in clusters from buried wood. On US lawns, young green-spored parasols (Chlorophyllum molybdites) can look similar, but their gills never turn black.",
+        "habitat": "Lawns, verges, parks, paths, building sites and other disturbed, grassy ground, often in rows or groups. Common across Europe and North America.",
+        "season": "Mainly late summer and autumn, a few days after rain, and again in spring; on the US Pacific coast it carries on through the mild, wet winter.",
+        "picking": "Take only young, closed caps that are white all over, with white gills, and only what you will cook the same day. Avoid busy roads, dumps and polluted ground: it takes up heavy metals.",
+        "kitchen": "Once identified with certainty, cook it within a few hours and cut away any pink or black part, which turns bitter. Sautéed in butter, or in soups and omelettes, it is mild and delicate. It is not known to react with alcohol, but the common ink cap does, even with drinks taken days before or after the meal: if you are unsure which ink cap you have, do not eat it.",
+        "keeps": "It does not keep: within a day it turns to ink, even in the fridge. Cook it straight away; cooked, it keeps a day or two in the fridge or can be frozen.",
+        "source": "Identification and habitat: First Nature and Missouri Department of Conservation. Alcohol reaction: First Nature. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Coprino chiomato",
       "description": "Un alto cilindro bianco di squame arruffate su prati e bordi delle strade, che entro un giorno dalla raccolta si scioglie in inchiostro nero",
-      "howTo": "Cercalo su prati, cigli e terreni smossi qualche giorno dopo le piogge autunnali, e anche dopo quelle primaverili. Raccogli solo esemplari giovani e tutti bianchi e cucinali in giornata; evita le strade trafficate, dove assorbe metalli pesanti"
+      "howTo": "Cercalo su prati, cigli e terreni smossi qualche giorno dopo le piogge autunnali, e anche dopo quelle primaverili. Raccogli solo esemplari giovani e tutti bianchi e cucinali in giornata; evita le strade trafficate, dove assorbe metalli pesanti",
+      "guide": {
+        "identify": "Un alto cilindro bianco di 5-15 cm, coperto di squame lanose e rialzate, con la sommità bruno chiaro; invecchiando si apre a campana. Le lamelle fitte passano dal bianco al rosa al nero e si sciolgono in inchiostro nero a partire dal margine del cappello; il gambo bianco è liscio e cavo, con un anello sottile che scorre e spesso cade alla base; la sporata è nera. Il coprino atramentario (Coprinopsis atramentaria) ha il cappello liscio, grigio bruno e finemente striato, senza squame lanose, e cresce a ciuffi su legno sepolto. Nei prati degli Stati Uniti, i giovani Chlorophyllum molybdites possono sembrare simili, ma le loro lamelle non diventano mai nere.",
+        "habitat": "Prati rasati, bordi delle strade, parchi, sentieri, cantieri e altri terreni erbosi smossi, spesso in file o gruppi. Comune in tutta Europa e in Nord America.",
+        "season": "Soprattutto tra fine estate e autunno, pochi giorni dopo la pioggia, e di nuovo in primavera; sulla costa pacifica degli Stati Uniti continua per tutto l'inverno mite e piovoso.",
+        "picking": "Raccogli solo esemplari giovani e chiusi, tutti bianchi e con le lamelle bianche, e solo quelli che cucinerai in giornata. Evita strade trafficate, discariche e terreni inquinati: accumula metalli pesanti.",
+        "kitchen": "Una volta identificato con certezza, cuocilo entro poche ore e togli ogni parte rosa o nera, che diventa amara. Saltato nel burro, in zuppa o in frittata, è delicato. Non è noto che reagisca con l'alcol, ma il coprino atramentario sì, anche con alcol bevuto giorni prima o dopo il pasto: se non sei sicuro di quale coprino hai, non mangiarlo.",
+        "keeps": "Non si conserva: in meno di un giorno diventa inchiostro, anche in frigorifero. Cuocilo subito; cotto, si conserva uno o due giorni in frigorifero o si può congelare.",
+        "source": "Identificazione e habitat: First Nature e Missouri Department of Conservation. Reazione con l'alcol: First Nature. Stagione: segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Coprin chevelu",
       "description": "Un haut cylindre blanc couvert de mèches, sur les pelouses et les bords de route, qui se change en encre noire dans la journée qui suit la cueillette",
-      "howTo": "Cherchez-le sur les pelouses, les bas-côtés et les sols remués quelques jours après les pluies d'automne, et aussi après celles du printemps. Ne cueillez que des jeunes, entièrement blancs, et cuisinez-les le jour même ; évitez les routes passantes, où il absorbe des métaux lourds"
+      "howTo": "Cherchez-le sur les pelouses, les bas-côtés et les sols remués quelques jours après les pluies d'automne, et aussi après celles du printemps. Ne cueillez que des jeunes, entièrement blancs, et cuisinez-les le jour même ; évitez les routes passantes, où il absorbe des métaux lourds",
+      "guide": {
+        "identify": "Un haut cylindre blanc de 5 à 15 cm, couvert d'écailles laineuses et retroussées, au sommet brun pâle ; en vieillissant, il s'ouvre en cloche. Les lames serrées passent du blanc au rose puis au noir et se liquéfient en encre noire depuis le bord du chapeau ; le pied blanc est lisse et creux, avec un anneau mince qui coulisse et tombe souvent à la base ; la sporée est noire. Le coprin noir d'encre (Coprinopsis atramentaria) a un chapeau lisse, gris brun et finement strié, sans écailles laineuses, et pousse en touffes sur du bois enterré. Sur les pelouses des États-Unis, de jeunes Chlorophyllum molybdites peuvent lui ressembler, mais leurs lames ne noircissent jamais.",
+        "habitat": "Pelouses, bords de route, parcs, chemins, chantiers et autres terrains herbeux remués, souvent en lignes ou en groupes. Commun dans toute l'Europe et en Amérique du Nord.",
+        "season": "Surtout de la fin de l'été à l'automne, quelques jours après la pluie, et de nouveau au printemps ; sur la côte pacifique des États-Unis, il continue pendant l'hiver doux et pluvieux.",
+        "picking": "Ne prenez que des exemplaires jeunes et fermés, entièrement blancs, aux lames blanches, et seulement ce que vous cuisinerez le jour même. Évitez les routes fréquentées, les décharges et les sols pollués : il accumule les métaux lourds.",
+        "kitchen": "Une fois identifié avec certitude, cuisez-le dans les heures qui suivent et retirez toute partie rose ou noire, qui devient amère. Poêlé au beurre, en soupe ou en omelette, il est doux et délicat. On ne lui connaît pas de réaction avec l'alcool, mais le coprin noir d'encre en provoque une, même avec de l'alcool bu plusieurs jours avant ou après le repas : si vous n'êtes pas sûr de votre coprin, ne le mangez pas.",
+        "keeps": "Il ne se garde pas : en moins d'une journée, il tourne en encre, même au réfrigérateur. Cuisez-le aussitôt ; cuit, il se garde un ou deux jours au réfrigérateur ou se congèle.",
+        "source": "Identification et habitat : First Nature et Missouri Department of Conservation. Réaction à l'alcool : First Nature. Saison : observations GBIF."
+      }
     },
     "de": {
       "name": "Schopf-Tintling",
       "description": "Ein hoher weißer, zottig beschuppter Zylinder auf Rasen und an Wegrändern, der sich binnen eines Tages nach dem Pflücken in schwarze Tinte auflöst",
-      "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weiße Exemplare und koche sie noch am selben Tag; meide stark befahrene Straßen, dort nimmt er Schwermetalle auf"
+      "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weiße Exemplare und koche sie noch am selben Tag; meide stark befahrene Straßen, dort nimmt er Schwermetalle auf",
+      "guide": {
+        "identify": "Ein hoher weißer Zylinder, 5 bis 15 cm hoch, mit zottigen, abstehenden Schuppen und blassbraunem Scheitel; im Alter öffnet sich der Hut glockig. Die gedrängten Lamellen werden von weiß über rosa zu schwarz und zerfließen vom Hutrand her zu schwarzer Tinte; der weiße Stiel ist glatt und hohl, mit einem dünnen, verschiebbaren Ring, der oft nach unten rutscht; das Sporenpulver ist schwarz. Der Falten-Tintling (Coprinopsis atramentaria) hat einen glatten, graubraunen, fein gerieften Hut ohne zottige Schuppen und wächst büschelig aus vergrabenem Holz. Auf Rasen in den USA kann der junge Chlorophyllum molybdites ähnlich aussehen, doch seine Lamellen werden nie schwarz.",
+        "habitat": "Rasen, Wegränder, Parks, Wege, Baustellen und andere gestörte, grasige Flächen, oft in Reihen oder Gruppen. In ganz Europa und Nordamerika häufig.",
+        "season": "Vor allem im Spätsommer und Herbst, wenige Tage nach Regen, und wieder im Frühjahr; an der Pazifikküste der USA auch den milden, nassen Winter hindurch.",
+        "picking": "Nimm nur junge, geschlossene Exemplare, die rundum weiß sind und weiße Lamellen haben, und nur so viele, wie du am selben Tag kochst. Meide stark befahrene Straßen, Deponien und belasteten Boden: er reichert Schwermetalle an.",
+        "kitchen": "Ist er sicher bestimmt, gare ihn innerhalb weniger Stunden und schneide rosa oder schwarze Stellen weg, die bitter werden. In Butter gebraten, in Suppen oder im Omelett schmeckt er mild und fein. Mit Alkohol reagiert er nach heutigem Wissen nicht, der Falten-Tintling aber schon, sogar mit Alkohol Tage vor oder nach der Mahlzeit: wenn du nicht sicher weißt, welchen Tintling du hast, iss ihn nicht.",
+        "keeps": "Er hält sich nicht: binnen eines Tages zerfließt er zu Tinte, auch im Kühlschrank. Gare ihn sofort; gegart hält er sich ein bis zwei Tage im Kühlschrank oder lässt sich einfrieren.",
+        "source": "Bestimmung und Standort: First Nature und Missouri Department of Conservation. Reaktion mit Alkohol: First Nature. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Barbuda",
       "description": "Un alto cilindro blanco de escamas desgreñadas en céspedes y cunetas que se deshace en tinta negra en menos de un día tras cogerlo",
-      "howTo": "Búscala en céspedes, cunetas y suelos removidos unos días después de las lluvias de otoño, y también tras las de primavera. Coge solo ejemplares jóvenes y completamente blancos y cocínalos el mismo día; evita las carreteras con mucho tráfico, donde absorbe metales pesados"
+      "howTo": "Búscala en céspedes, cunetas y suelos removidos unos días después de las lluvias de otoño, y también tras las de primavera. Coge solo ejemplares jóvenes y completamente blancos y cocínalos el mismo día; evita las carreteras con mucho tráfico, donde absorbe metales pesados",
+      "guide": {
+        "identify": "Un cilindro blanco y alto, de 5 a 15 cm, cubierto de escamas lanosas y levantadas, con la punta parda clara; al envejecer se abre en campana. Las láminas, apretadas, pasan de blanco a rosa y a negro, y se deshacen en tinta negra desde el borde del sombrero hacia arriba; el pie es blanco, liso y hueco, con un anillo fino que se desliza y a menudo cae a la base; la esporada es negra. El coprino entintado (Coprinopsis atramentaria) tiene el sombrero liso, gris pardo y finamente estriado, sin escamas lanosas, y crece en grupos sobre madera enterrada. En céspedes de EE. UU., los ejemplares jóvenes de Chlorophyllum molybdites pueden parecerse, pero sus láminas nunca se vuelven negras.",
+        "habitat": "Céspedes, cunetas, parques, caminos, obras y otros terrenos removidos con hierba, a menudo en filas o grupos. Común en toda Europa y Norteamérica.",
+        "season": "Sobre todo a finales de verano y en otoño, pocos días después de llover, y otra vez en primavera; en la costa del Pacífico de EE. UU. sigue durante el invierno suave y lluvioso.",
+        "picking": "Coge solo ejemplares jóvenes y cerrados, blancos por completo y con las láminas blancas, y solo los que vayas a cocinar ese mismo día. Evita carreteras con tráfico, vertederos y suelos contaminados: acumula metales pesados.",
+        "kitchen": "Una vez identificada con certeza, cocínala en pocas horas y quita cualquier parte rosa o negra, que amarga. Salteada con mantequilla, en sopas o en tortilla, es suave y delicada. No se le conoce reacción con el alcohol, pero al coprino entintado sí, incluso con bebidas tomadas días antes o después de la comida: si no sabes seguro qué coprino tienes, no lo comas.",
+        "keeps": "No se conserva: en menos de un día se convierte en tinta, incluso en la nevera. Cocínala enseguida; cocinada, aguanta uno o dos días en la nevera o se puede congelar.",
+        "source": "Identificación y hábitat: First Nature y Missouri Department of Conservation. Reacción con el alcohol: First Nature. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Coprino-cabeludo",
       "description": "Um cilindro alto e branco de escamas desgrenhadas em relvados e bermas que se desfaz em tinta negra um dia depois de apanhado",
-      "howTo": "Procure em relvados, bermas e terrenos revolvidos alguns dias depois das chuvas de outono, e também depois das de primavera. Apanhe apenas exemplares jovens e totalmente brancos e cozinhe-os no mesmo dia; evite estradas movimentadas, onde absorve metais pesados"
+      "howTo": "Procure em relvados, bermas e terrenos revolvidos alguns dias depois das chuvas de outono, e também depois das de primavera. Apanhe apenas exemplares jovens e totalmente brancos e cozinhe-os no mesmo dia; evite estradas movimentadas, onde absorve metais pesados",
+      "guide": {
+        "identify": "Um cilindro branco e alto, de 5 a 15 cm, coberto de escamas lanosas e levantadas, com o topo castanho-claro; com a idade abre em sino. As lâminas apertadas passam de brancas a cor-de-rosa e a negras e desfazem-se em tinta negra a partir da orla do chapéu; o pé branco é liso e oco, com um anel fino que desliza e cai muitas vezes para a base; a esporada é negra. O Coprinopsis atramentaria tem o chapéu liso, cinzento-acastanhado e finamente estriado, sem escamas lanosas, e cresce em tufos sobre madeira enterrada. Nos relvados dos EUA, os Chlorophyllum molybdites jovens podem parecer-se com ele, mas as lâminas deles nunca ficam negras.",
+        "habitat": "Relvados, bermas, parques, caminhos, obras e outros terrenos com erva e solo mexido, muitas vezes em filas ou grupos. Comum em toda a Europa e na América do Norte.",
+        "season": "Sobretudo no fim do verão e no outono, poucos dias depois da chuva, e de novo na primavera; na costa do Pacífico dos EUA continua pelo inverno ameno e chuvoso.",
+        "picking": "Apanhe só exemplares jovens e fechados, todos brancos e com as lâminas brancas, e só os que vai cozinhar no mesmo dia. Evite estradas movimentadas, lixeiras e solos poluídos: acumula metais pesados.",
+        "kitchen": "Depois de identificado com certeza, cozinhe-o em poucas horas e corte qualquer parte cor-de-rosa ou negra, que fica amarga. Salteado em manteiga, em sopas ou em omeletes, é suave e delicado. Não se lhe conhece reação ao álcool, mas o Coprinopsis atramentaria reage, mesmo com álcool bebido dias antes ou depois da refeição: se não tiver a certeza de qual coprino tem, não o coma.",
+        "keeps": "Não se conserva: em menos de um dia desfaz-se em tinta, mesmo no frigorífico. Cozinhe-o logo; cozinhado, aguenta um ou dois dias no frigorífico ou pode congelar-se.",
+        "source": "Identificação e habitat: First Nature e Missouri Department of Conservation. Reação ao álcool: First Nature. Época: registos do GBIF."
+      }
     }
   },
   "identification": {

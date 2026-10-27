@@ -61,297 +61,828 @@
     "chant": {
       "name": "Rebozuelo",
       "description": "Un hongo amarillo dorado con forma de embudo distintiva y aroma afrutado",
-      "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas"
+      "howTo": "Búscalos en bosques caducifolios, especialmente cerca de robles y hayas",
+      "guide": {
+        "identify": "Amarillo yema a dorado y de hasta 10 cm, con el sombrero en embudo poco profundo y el borde ondulado y enrollado. Debajo tiene pliegues gruesos y romos que se bifurcan y bajan por el pie; no se pueden separar uno a uno como las láminas. El pie es macizo y la carne, blanca a amarillo pálido y firme, huele levemente a albaricoque. Las setas del olivo (Omphalotus) tienen láminas verdaderas finas y apretadas, salen en grupos de madera o de raíces enterradas y son anaranjadas también por dentro; el falso rebozuelo (Hygrophoropsis aurantiaca) es más anaranjado y blando, con láminas finas y apretadas.",
+        "habitat": "Vive asociado a las raíces de los árboles: bajo robles, hayas, abedules, castaños, píceas y pinos, sobre todo en suelos ácidos con musgo, a menudo en taludes y junto a caminos. Común en toda Europa, del llano a la montaña. En Norteamérica el rebozuelo es un grupo de especies cercanas, como Cantharellus flavus en el este, C. californicus bajo encinas americanas en California y C. cascadensis en el noroeste del Pacífico.",
+        "season": "En el centro y norte de Europa, de finales de junio a octubre, tras lluvias cálidas y abundantes; en el sur de Europa sale más tarde y dura más, hasta el invierno en los encinares y alcornocales mediterráneos. En el este de EE. UU., en verano tras lluvias cálidas; en el oeste, tras las lluvias de otoño, y en California hasta el invierno.",
+        "picking": "Córtalo o gíralo por la base, límpialo de tierra en el sitio y deja los pequeños. En Alemania está especialmente protegido y solo se permiten pequeñas cantidades para consumo propio; los cantones suizos, las regiones italianas, zonas de Francia y España y los terrenos públicos de EE. UU. fijan sus propios límites o permisos, así que consulta las normas locales.",
+        "kitchen": "Una vez identificados con total seguridad, limpia los rebozuelos con un cepillo en lugar de lavarlos: absorben agua. No los comas nunca crudos; cocínalos bien, primero en la sartén sin grasa hasta que suelten el agua y luego con mantequilla. Sabor suave, afrutado y algo picante, textura firme; van bien con huevos, nata, patatas, pasta y pollo.",
+        "keeps": "Unos días en la nevera, en papel, no en plástico. Secos se vuelven correosos; para guardarlos más tiempo, saltéalos en mantequilla y congélalos.",
+        "source": "Identificación y hábitat: First Nature (Reino Unido) y MushroomExpert.com. Especies norteamericanas y especies parecidas: University of Florida IFAS Extension. Protección: Reglamento federal alemán de protección de especies. Temporada: registros de GBIF."
+      }
     },
     "mushroom": {
       "name": "Boleto Comestible",
       "description": "El rey de los boletos: sombrero pardo, pie robusto y reticulado, y poros blancos que nunca azulean",
-      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de abetos y hayas, de finales de verano al otoño"
+      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de abetos y hayas, de finales de verano al otoño",
+      "guide": {
+        "identify": "Un boleto robusto, al que en muchas zonas llaman hongo, de sombrero pardo claro a castaño, liso y graso pero nunca aterciopelado, a menudo con un fino borde blanquecino. Los poros son blancos de joven, luego amarillos y oliva, y no cambian de color al presionarlos. El pie, claro, lleva un fino retículo blanco en la parte alta, y la carne blanca no cambia de color al cortarla. Poros rosados y un retículo pardo oscuro indican el boleto amargo (Tylopilus felleus); poros rojos o naranjas o carne que azulea indican otro boleto, quizá tóxico.",
+        "habitat": "Con píceas, pinos, hayas, robles, castaños y abedules en suelo ácido, desde el llano hasta el límite del arbolado, en toda Europa. En Norteamérica crece sobre todo en los estados del Pacífico; en el sur de las Rocosas es más común el boleto rey de las Rocosas, más rojo.",
+        "season": "Sobre todo de agosto a octubre, desde junio en la montaña y hasta noviembre en el sur; en la costa del Pacífico de Estados Unidos, con las lluvias de otoño. Suele salir unas dos semanas después de una lluvia abundante que sigue a un periodo cálido y seco.",
+        "picking": "Gíralo o córtalo por la base; deja los pequeños y los viejos o agusanados. En muchas comunidades autónomas y montes públicos hace falta permiso y hay un límite diario; en Alemania solo se permiten pequeñas cantidades para consumo propio.",
+        "kitchen": "Una vez identificado con certeza, cepíllalo, córtalo a lo largo para ver si tiene gusanos y hazlo a la plancha o en arroces, pasta y sopas. Cocínalo bien: no todo el mundo lo tolera crudo, y los ejemplares viejos o mal conservados sientan mal.",
+        "keeps": "Guárdalo fresco, en papel y no en plástico, uno o dos días. Se seca muy bien en láminas finas y se congela bien.",
+        "source": "Identificación y hábitat: Regione Piemonte, First Nature y MushroomExpert. Temporada: registros de GBIF. Normas: BArtSchV (Alemania) y Servicio Forestal de EE. UU. Cocina: Regione Piemonte y VIDAL."
+      }
     },
     "morel": {
       "name": "Morchella",
       "description": "Un hongo distintivo con sombrero en forma de panal que aparece en primavera",
-      "howTo": "Busca en áreas alteradas, bosques quemados y cerca de árboles muertos en primavera"
+      "howTo": "Busca en áreas alteradas, bosques quemados y cerca de árboles muertos en primavera",
+      "guide": {
+        "identify": "Las colmenillas tienen el sombrero como un panal de alvéolos y costillas, amarillento, pardo grisáceo o casi negro, sobre un pie claro. Córtalas todas por la mitad a lo largo: una colmenilla verdadera es un único hueco desde la punta del sombrero hasta la base del pie, y el sombrero está unido al pie por su borde inferior. La falsa colmenilla (Gyromitra esculenta), mortal, tiene una cabeza rojiza con pliegues como un cerebro y el interior tabicado o algodonoso; ni cocinada es segura. Verpa bohemica lleva el sombrero sujeto solo por la punta, como un dedal, sobre un pie relleno de una médula algodonosa.",
+        "habitat": "En el suelo de bosques claros de frondosas y de ribera, huertos viejos y jardines, a menudo junto a fresnos, olmos, chopos o manzanos, en suelo calizo o sobre corteza triturada. En el este de EE. UU., junto a olmos moribundos, fresnos y manzanos viejos; en el oeste, en bosques de coníferas la primavera siguiente a un incendio.",
+        "season": "De marzo a mayo: antes en las zonas bajas del sur de Europa, más tarde en el norte y en la montaña, hasta junio. Salen tras lluvias primaverales abundantes cuando el suelo se templa, y en las montañas del oeste de EE. UU. con el deshielo.",
+        "picking": "Corta el pie a ras de suelo con navaja y lleva las colmenillas en cesta o en bolsa de malla. En Alemania todas están protegidas: solo pequeñas cantidades para consumo propio. En otros sitios, muchas regiones y los bosques nacionales de EE. UU. fijan límites o piden permiso: consulta las normas locales.",
+        "kitchen": "Una vez identificadas con certeza, hay que cocinarlas a fondo: crudas o poco hechas, también las secas, son tóxicas. La agencia francesa de seguridad alimentaria ANSES aconseja de 20 a 30 minutos en la sartén para las setas silvestres. Comidas abundantes han causado mareo y temblores incluso cocinadas, así que toma raciones moderadas; van bien con mantequilla, nata, espárragos y pollo.",
+        "keeps": "Dos días en la nevera, en bolsa de papel. Se secan muy bien; hidrata las secas, cuela el agua del remojo para la salsa y cocínalas tanto tiempo como las frescas.",
+        "source": "Identificación y hábitat: Missouri Department of Conservation y First Nature. Toxicidad y cocina: ANSES y Lagrange y Vernoux (Toxins, 2020). Normas: Ordenanza Federal alemana de Protección de Especies (BArtSchV) y US Forest Service. Temporada: registros de GBIF."
+      }
     },
     "blackberry": {
       "name": "Mora",
       "description": "Bayas dulces de color púrpura oscuro que crecen en arbustos espinosos",
-      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano"
+      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano",
+      "guide": {
+        "identify": "La zarza es un arbusto de tallos largos y arqueados armados de aguijones ganchudos; las hojas tienen tres o cinco folíolos dentados dispuestos como una mano, verde oscuro por encima y más claros por debajo. Sus flores blancas o rosadas de cinco pétalos dan frutos formados por muchas drupas pequeñas y redondas, primero verdes, luego rojas y, maduras, de un negro brillante. Una mora madura se suelta con su corazón blanco dentro; una frambuesa deja el corazón en la planta y queda hueca. Rubus fruticosus agrupa cientos de zarzas muy emparentadas, que se aprovechan todas igual.",
+        "habitat": "Setos, bordes y claros de bosque, matorrales, solares y taludes de vías, en casi cualquier suelo, en toda Europa salvo el extremo norte. En EE. UU. crecen zarzas autóctonas en campos abandonados y bordes de bosque, y la zarza del Himalaya, introducida, forma matorrales densos en el noroeste del Pacífico y en California.",
+        "season": "Madura desde julio en el sur de Europa y de EE. UU., y desde finales de julio o agosto más al norte, y sigue hasta las primeras heladas de septiembre y octubre; en la misma zarza suele haber a la vez flores, frutos verdes y frutos maduros.",
+        "picking": "Coge solo moras bien negras que se suelten con un tirón suave, deja las rojas y algunas para los animales y evita las cunetas con mucho tráfico y los bordes que puedan estar tratados con herbicida. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
+        "kitchen": "Una vez identificadas con certeza, se comen crudas o cocinadas: en crumble y tartas con manzana, en mermelada, jalea, sirope o vinagre. Lávalas justo antes de usarlas y revisa que no tengan insectos. El sabor va de dulce a ácido según la zarza.",
+        "keeps": "Sin lavar y extendidas en un recipiente plano, aguantan uno o dos días en la nevera. Para congelarlas, extiéndelas en una bandeja y pásalas a bolsas cuando estén duras; congeladas sirven para cocinar.",
+        "source": "Identificación, hábitat y usos: Woodland Trust. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "elderberry": {
       "name": "Saúco",
       "description": "Pequeñas bayas oscuras que crecen en racimos en árboles de saúco",
-      "howTo": "Busca árboles de saúco en setos y bordes de bosques en otoño"
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques en otoño",
+      "guide": {
+        "identify": "Arbusto o árbol pequeño de corteza pardo grisácea, corchosa y agrietada, con médula blanca y blanda dentro de las ramas. Las hojas son opuestas, con cinco a siete folíolos dentados (hasta once en el saúco americano); las umbelas planas de flores blanco crema y perfumadas de principios de verano dan racimos anchos de bayas pequeñas negro violáceas sobre rabillos rojizos, que cuelgan por su peso cuando maduran. El yezgo (Sambucus ebulus) es una planta herbácea que se seca cada invierno, con los racimos erguidos por encima de las hojas; el saúco rojo (Sambucus racemosa) tiene bayas rojas en racimos erguidos en forma de cúpula. La hierba carmín (Phytolacca americana) es una herbácea alta de tallos lisos rojo púrpura, con las bayas a lo largo de espigas largas, no en umbelas planas.",
+        "habitat": "Setos, bordes de bosque, matorrales, riberas, solares y alrededores de los pueblos, en suelo rico y fresco, en toda Europa salvo el extremo norte. En el este de EE. UU. crece el saúco americano autóctono junto a arroyos, zanjas húmedas y lindes de campos; en el oeste, en laderas abiertas y valles, el saúco azul, cuyas bayas maduras tienen una pruina azul polvorienta.",
+        "season": "Las bayas maduran a principios de otoño: desde finales de agosto en tierras bajas cálidas, y en septiembre y hasta octubre más al norte y en la montaña. Las umbelas de flores salen antes, desde finales de mayo.",
+        "picking": "Corta umbelas enteras con tijeras cuando todas las bayas estén negro violáceas, y deja las que tengan bayas verdes o rojas. Evita las carreteras con mucho tráfico y deja bastantes en cada arbusto para los pájaros.",
+        "kitchen": "Las bayas de saúco deben cocinarse: las bayas crudas o verdes, los rabillos, las hojas y las semillas contienen compuestos que liberan cianuro durante la digestión y pueden causar náuseas, vómitos y calambres de estómago; una cocción completa los descompone. Una vez identificadas con certeza, desgrana las bayas con un tenedor, quita las verdes y cualquier resto de rabillo y cuécelas para hacer zumo, sirope, jalea, sopa o relleno de tarta. Saben oscuras, terrosas y ácidas y combinan con manzana, pera, canela y limón; nunca uses bayas de saúco rojo para comer.",
+        "keeps": "Las umbelas frescas aguantan uno o dos días en la nevera. Congeladas enteras, las bayas se sueltan fácilmente de los rabillos; las bayas congeladas o secas también deben cocinarse antes de comerlas.",
+        "source": "Identificación y hábitat: Woodland Trust. Toxicidad, cocción y conservación: extensión de la Oregon State University."
+      }
     },
     "nettle": {
       "name": "Ortiga",
       "description": "Planta verde nutritiva con pelos urticantes que debe cocinarse",
-      "howTo": "Se encuentra en áreas alteradas, setos y bordes de bosques en primavera y verano"
+      "howTo": "Se encuentra en áreas alteradas, setos y bordes de bosques en primavera y verano",
+      "guide": {
+        "identify": "Planta erguida de tallos cuadrados y hojas opuestas: de acorazonadas a ovaladas, con dientes gruesos y punta aguda. Tallos y hojas están cubiertos de pelos urticantes, y desde principios del verano cuelgan de las axilas de las hojas finos racimos de flores verdosas diminutas. Los lamios (ortigas muertas) se le parecen, pero no pican y tienen flores labiadas vistosas, blancas, amarillas o púrpuras.",
+        "habitat": "Forma rodales densos en suelo rico y húmedo: bordes de bosque, riberas, acequias, setos y alrededores de granjas y ruinas. Común en toda Europa, en el sur sobre todo en sitios húmedos y sombríos, y en la mayor parte de EE. UU., sobre todo junto a arroyos y en bosques húmedos y abiertos.",
+        "season": "Los brotes tiernos salen desde febrero en zonas templadas y desde marzo más al norte; recógelos hasta que la planta florezca, hacia junio. Las matas cortadas o segadas rebrotan y dan una segunda cosecha a finales del verano y en otoño.",
+        "picking": "Ponte guantes, corta con tijeras los primeros pares de hojas de arriba y deja las raíces. Evita cunetas, lindes de campos fumigados y caminos de perros; las ortigas alimentan además a las orugas de muchas mariposas.",
+        "kitchen": "Cocina o escalda siempre las ortigas antes de comerlas: el calor elimina el picor, y el secado completo también. Echa las puntas lavadas unos minutos en agua hirviendo con sal y úsalas como espinacas en sopas, risottos, tortillas y pesto; saben a espinaca con un fondo terroso.",
+        "keeps": "Escaldadas, escurridas y congeladas en porciones duran meses; las hojas secadas a la sombra en un sitio aireado sirven para infusión.",
+        "source": "Identificación, hábitat y cocina: NC State Extension y Woodland Trust. Temporada: Woodland Trust y registros de GBIF."
+      }
     },
     "dandelion": {
       "name": "Diente de león",
       "description": "Maleza común con flores amarillas brillantes y hojas comestibles",
-      "howTo": "Se encuentra en praderas, pastizales y áreas alteradas durante la temporada de crecimiento"
+      "howTo": "Se encuentra en praderas, pastizales y áreas alteradas durante la temporada de crecimiento",
+      "guide": {
+        "identify": "El diente de león crece en una roseta a ras de suelo de hojas sin pelos, profunda e irregularmente recortadas, con dientes que apuntan hacia el centro. Hojas y tallos sueltan un látex blanco al romperlos; cada tallo floral es hueco, sin hojas ni ramas, y lleva una sola cabezuela de florecillas amarillas en lengüeta, que después se convierte en el vilano blanco y redondo. Hypochaeris radicata tiene tallos ramificados y macizos y hojas peludas, los Leontodon tienen pelos ahorquillados en las hojas y las cerrajas llevan varias flores en tallos con hojas: coge solo plantas que cumplan todos los puntos.",
+        "habitat": "Céspedes, prados, pastos, cunetas y baldíos, al sol, desde las tierras bajas hasta la montaña. Crece en casi toda Europa y, llevado desde Europa, en todo Estados Unidos.",
+        "season": "A principios de primavera llega una gran floración, sobre todo en abril y mayo y antes en el sur templado; luego sigue floreciendo a ratos hasta el otoño. Las hojas amargan menos a principios de primavera, antes de los primeros capullos.",
+        "picking": "Corta las hojas tiernas por la base y coge las flores un día de sol, cuando estén bien abiertas, dejando muchas para las primeras abejas. Evita los céspedes tratados con herbicida, las cunetas y los sitios donde se pasea a perros, y saca raíces solo donde el propietario lo permita, como en tu propio jardín.",
+        "kitchen": "Una vez identificado con certeza, las hojas tiernas se comen crudas en ensalada, con un amargor agradable, como en la ensalada francesa con panceta; las hojas viejas se hierven unos 10 minutos para quitarles amargor y luego se saltean con ajo y aceite. Las flores, siempre cocinadas: en buñuelos o cocidas con azúcar y limón hasta un jarabe espeso; las raíces limpias y tostadas dan un sucedáneo de café, y en cantidad son laxantes. El látex puede irritar la piel y quien tiene alergia a las compuestas puede reaccionar, así que prueba primero una pequeña cantidad.",
+        "keeps": "Las hojas aguantan unos días en una bolsa en la nevera. Usa las flores nada más cogerlas, porque se cierran pronto; las raíces tostadas se guardan en un tarro hermético.",
+        "source": "Identificación: BSBI y extensión de NC State. Recolección y cocina: extensión de la Universidad de Wisconsin-Madison y de la Universidad Estatal de Colorado. Seguridad: National Center for Complementary and Integrative Health (EE. UU.)."
+      }
     },
     "hazelnut": {
       "name": "Avellana",
       "description": "Frutos secos dulces y redondos que crecen en avellanos",
-      "howTo": "Busca avellanos en setos y bordes de bosques en otoño"
+      "howTo": "Busca avellanos en setos y bordes de bosques en otoño",
+      "guide": {
+        "identify": "Arbusto de muchos tallos o arbolito con hojas redondeadas, doblemente dentadas, acabadas en punta, suaves y vellosas por el envés; a finales de invierno cuelgan amentos amarillos de las ramas desnudas. Las avellanas crecen en grupos de una a cuatro, cada una en una cubierta verde y foliácea con flecos que la envuelve en unas tres cuartas partes, y se vuelven pardas al madurar. Los avellanos silvestres de Norteamérica son parientes cercanos; en el avellano de pico la cubierta forma un tubo largo y erizado.",
+        "habitat": "Sotobosque, setos y matorrales de toda Europa, en el sur sobre todo en zonas de montaña y junto a arroyos; da más fruto al sol, en los bordes del bosque. En EE. UU. el avellano europeo se cultiva sobre todo en plantaciones de Oregón; las especies silvestres crecen en matorrales, claros y lindes de bosque.",
+        "season": "De finales de agosto a octubre: están listas cuando la cubierta se vuelve parda y caen o se sueltan al sacudir un poco la rama. Ardillas, arrendajos y lirones suelen llegar antes.",
+        "picking": "Recoge las que han caído o sacude un poco las ramas, y deja bastantes para los animales. Descarta las que tienen un agujerito redondo (una larva de gorgojo se ha comido el fruto) y las que pesan poco, y evita los bordes de carreteras con tráfico y las lindes de campos fumigados.",
+        "kitchen": "Cuando estés seguro de la planta, cómelas crudas o tuéstalas hasta que la piel se agriete, y quítasela frotándolas con un paño áspero. Van en bizcochos, turrones, pesto y ensaladas. Las avellanas son una causa frecuente de alergia a los frutos secos.",
+        "keeps": "Sécalas con cáscara en un sitio aireado hasta que el fruto sea color crema hasta el centro, y guárdalas en un lugar fresco y seco; secas aguantan hasta un año en la nevera.",
+        "source": "Identificación y hábitat: Woodland Trust y Departamento de Recursos Naturales de Minnesota. Secado y conservación: extensión de la Universidad Estatal de Oregón."
+      }
     },
     "garlic": {
       "name": "Ajo silvestre",
       "description": "Hierba de olor fuerte con hojas anchas y flores blancas",
-      "howTo": "Se encuentra en bosques caducifolios en primavera, a menudo formando grandes parches"
+      "howTo": "Se encuentra en bosques caducifolios en primavera, a menudo formando grandes parches",
+      "guide": {
+        "identify": "Cada hoja nace sola del suelo sobre su propio rabillo fino: un limbo blando, verde claro, ovalado y puntiagudo, con nervios paralelos, mate por el envés; desde abril, un tallo sin hojas lleva una umbela redonda de flores blancas en estrella. Estruja una hoja: el ajo silvestre huele mucho a ajo y sus dobles mortales no, pero el olor se queda en los dedos, así que tras las primeras hojas la prueba ya no demuestra nada; comprueba también el rabillo y la forma de cada hoja. El lirio de los valles tiene dos o tres hojas que se envuelven entre sí en la base; el cólquico, hojas duras sin rabillo en un manojo; el aro (Arum maculatum), hojas en forma de flecha con nervios en red; el vedegambre, hojas plegadas a lo largo de un tallo erguido; el sello de Salomón, hojas alternas en un tallo arqueado.",
+        "habitat": "El ajo silvestre, también llamado ajo de oso, forma alfombras en bosques caducifolios húmedos y umbríos, sobre todo hayedos y bosques de ribera en suelo rico, y junto a arroyos sombríos. Común en Europa central y del norte, también en Gran Bretaña; en el sur de Europa, sobre todo en bosques de montaña.",
+        "season": "Las hojas salen desde febrero en zonas templadas y en marzo y abril en el resto, y son mejores antes de que se abran las flores. Florece de abril a junio, más tarde en la montaña; a principios del verano las hojas ya han desaparecido.",
+        "picking": "Recoge hoja a hoja, nunca a puñados, para que no acabe en la cesta ningún doble que crezca en la misma mancha, y deja los bulbos. Gran Bretaña prohíbe arrancar plantas silvestres sin permiso del propietario, Alemania solo permite una pequeña cantidad para uso propio y muchas reservas naturales prohíben recogerlo: consulta las normas locales.",
+        "kitchen": "Una vez identificado con certeza, usa las hojas crudas o añádelas al final de la cocción: en pesto, sopas, risottos, mantequilla y con huevos; las flores van bien en ensaladas. Lava cada hoja bajo el grifo: en Europa central las autoridades lo aconsejan por la tenia del zorro, cuyos huevos resisten la congelación pero no la cocción.",
+        "keeps": "Las hojas aguantan dos o tres días en la nevera envueltas en un paño húmedo. Las hojas picadas y el pesto se congelan bien; guarda en la nevera todo lo que esté en aceite y consúmelo en pocos días.",
+        "source": "Identificación y dobles: Agencia Austriaca de Salud y Seguridad Alimentaria (AGES), Instituto Federal Alemán de Evaluación de Riesgos (BfR) y Woodland Trust. Temporada: Woodland Trust y registros de GBIF."
+      }
     },
     "chickenOfTheWoods": {
       "name": "Pollo de los bosques",
       "description": "Un hongo de color naranja-amarillo brillante que crece en los árboles",
-      "howTo": "Búscalo creciendo en árboles muertos o moribundos, especialmente robles"
+      "howTo": "Búscalo creciendo en árboles muertos o moribundos, especialmente robles",
+      "guide": {
+        "identify": "Repisas en abanico, superpuestas, de 10 a 40 cm y sin pie: de jóvenes blandas, jugosas y de amarillo vivo a naranja; con la edad pierden color hasta el crema y se vuelven yesosas. La cara inferior es amarillo azufre, con poros diminutos y no láminas; la carne es blanca o amarillo pálido y no cambia de color al cortarla. Un grupo naranja sobre madera con láminas debajo es la venenosa seta de olivo (Omphalotus). En el oeste de EE. UU., sus parientes cercanos Laetiporus gilbertsonii y Laetiporus conifericola son casi iguales.",
+        "habitat": "Hongo de la madera de árboles de hoja ancha vivos y muertos, sobre todo robles, también castaños, cerezos, sauces y hayas, y alguna vez tejos. Es común en las tierras bajas de Europa y en el este de EE. UU., en bosques, parques y calles; en el oeste de EE. UU. sus parientes crecen en robles, eucaliptos y coníferas.",
+        "season": "De finales de primavera a otoño, sobre todo en verano, pocos días después de lluvias cálidas; en el oeste de EE. UU., sobre todo en otoño. El mismo árbol suele fructificar varios años seguidos.",
+        "picking": "Corta con navaja los bordes blandos de las repisas jóvenes y deja la base dura y las repisas viejas y yesosas. No lo recojas nunca de un tejo, que es muy venenoso, ni de árboles junto a carreteras con tráfico; donde la recogida de setas necesita permiso o tiene límites diarios, como en muchas comunidades y municipios, infórmate de las normas locales.",
+        "kitchen": "Una vez identificado con certeza, cocínalo a fondo: crudo o poco hecho sienta mal al estómago, y aun bien cocinado algunas personas no lo toleran (náuseas, mareo, vómitos), así que prueba primero una cantidad pequeña. En láminas a la plancha o guisado, su carne firme recuerda al pollo y va con limón, ajo y hierbas.",
+        "keeps": "Unos días en la nevera en una bolsa de papel. Se congela bien, crudo o cocinado.",
+        "source": "Identificación y árboles huésped: Woodland Trust, First Nature y MushroomExpert.com. Especies del oeste de EE. UU.: Bay Area Mycological Society. Reacciones: extensión de la Universidad de Florida (IFAS)."
+      }
     },
     "oysterMushroom": {
       "name": "Seta de ostra",
       "description": "Hongo blanco-grisáceo con sombrero en forma de abanico que crece en racimos sobre madera muerta",
-      "howTo": "Búscalas creciendo en árboles muertos, especialmente hayas y robles, en otoño e invierno"
+      "howTo": "Búscalas creciendo en árboles muertos, especialmente hayas y robles, en otoño e invierno",
+      "guide": {
+        "identify": "Sombrero en forma de concha o abanico, de 5 a 18 cm, gris azulado, pardo grisáceo o crema, en pisos superpuestos sobre madera. Las láminas, blancas a crema, bajan por un pie corto y lateral, que puede faltar; la carne es blanca y firme, el olor suave y la esporada blanca a lila pálido. La venenosa seta de olivo (Omphalotus) es naranja vivo, láminas incluidas, y crece en matas al pie de los árboles; Hypholoma fasciculare tiene sombreros amarillo azufre sobre pies centrales, láminas amarillo verdosas que se vuelven pardo púrpura y sabor amargo. Pleurocybella porrigens, relacionada con muertes en Japón, es blanca pura, fina y translúcida y crece solo sobre madera podrida de coníferas.",
+        "habitat": "En árboles de hoja ancha muertos o moribundos, sobre todo hayas, también chopos, sauces, robles y fresnos: troncos en pie, tocones y troncos caídos, rara vez coníferas. Común en toda Europa y Norteamérica.",
+        "season": "De finales de otoño al invierno, tras una ola de frío o las primeras heladas después de la lluvia; hasta enero o febrero en el sur de Europa y de octubre a principios de abril en el este de EE. UU.",
+        "picking": "Corta el grupo por la base con navaja, coge los sombreros firmes y jóvenes y deja los viejos o llenos de escarabajos. Donde la recogida de setas necesita permiso o tiene límites diarios, como en muchas comunidades y municipios, infórmate de las normas locales.",
+        "kitchen": "Una vez identificada con certeza, cocínala bien; no la comas cruda. Quita la base dura, rasga los sombreros en tiras y saltéalas a fuego vivo hasta que los bordes queden crujientes; su sabor suave y algo dulce va con ajo, mantequilla, salsa de soja y huevos.",
+        "keeps": "Se estropea rápido: guárdala unos días en la nevera en una bolsa de papel o congélala cocinada.",
+        "source": "Identificación y temporada: First Nature y MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, Universidad de la Columbia Británica."
+      }
     },
     "shiitake": {
       "name": "Shiitake",
       "description": "Hongo con sombrero marrón y láminas blancas, muy apreciado en la cocina asiática",
-      "howTo": "Se encuentra creciendo en maderas duras muertas, especialmente roble y haya, en primavera y otoño"
+      "howTo": "Se encuentra creciendo en maderas duras muertas, especialmente roble y haya, en primavera y otoño",
+      "guide": {
+        "identify": "Sombrero pardo a pardo rojizo oscuro que se aplana con la edad, a menudo con escamas blanquecinas cerca del borde y agrietado en tiempo seco. Las láminas son blancas a crema y se manchan de pardo al tocarlas; el pie es duro, fibroso y a menudo excéntrico; la esporada es blanca. La mortal Galerina marginata también crece sobre troncos: es más pequeña y de color pardo miel, con anillo en el pie y esporada pardo herrumbre.",
+        "habitat": "Originario de Asia oriental, sobre madera muerta de frondosas como robles y Castanopsis. En Europa y Norteamérica se cultiva en troncos de roble o bloques de serrín y solo se ha encontrado fuera del cultivo unas pocas veces (por ejemplo en los Países Bajos), así que una seta parda en un tronco caído del bosque es casi seguro otra cosa.",
+        "season": "Los troncos al aire libre fructifican en primavera y otoño, pocos días después de una lluvia abundante con tiempo suave; los cultivadores también provocan una tanda remojando el tronco en agua fría.",
+        "picking": "Cosecha los sombreros cuando el borde aún está enrollado: gíralos o corta el pie junto al tronco. Recoge solo de troncos que cultives tú o donde tengas permiso.",
+        "kitchen": "Una vez identificado con certeza, cocínalo a fondo: crudo o poco hecho puede causar la dermatitis por shiitake, un sarpullido con picor en forma de latigazos que aparece más o menos un día después. Los pies son demasiado duros para comer pero dan sabor al caldo; saltea o cuece los sombreros, de sabor profundo y sabroso, con salsa de soja, jengibre y ajo.",
+        "keeps": "Unos días en la nevera en una bolsa de papel. Se seca muy bien: remoja los sombreros secos antes de usarlos y aprovecha el agua como caldo.",
+        "source": "Origen y distribución: Naturalis Biodiversity Center. Cultivo en troncos: extensión de la Universidad de Cornell. Dermatitis por shiitake: DermNet."
+      }
     },
     "raspberry": {
       "name": "Frambuesa silvestre",
       "description": "Bayas rojas dulces que crecen en cañas espinosas con hojas compuestas",
-      "howTo": "Busca cañas de frambuesa en setos, bordes de bosques y áreas alteradas en verano"
+      "howTo": "Busca cañas de frambuesa en setos, bordes de bosques y áreas alteradas en verano",
+      "guide": {
+        "identify": "Cañas erguidas, a menudo de la altura de una persona, cubiertas de aguijones pequeños y finos en lugar de las espinas ganchudas de la zarza. Las hojas tienen de tres a siete folíolos dentados a lo largo de un rabillo, verdes por encima y con un fieltro blanco por debajo. Las flores, pequeñas y blancas, cuelgan hacia abajo; el fruto rojo se suelta dejando el corazón blanco en la planta, así que una frambuesa recogida es un capuchón hueco.",
+        "habitat": "Claros y bordes de bosque, cortas y zonas quemadas, matorrales, brezales, pedregales y setos, desde las tierras bajas hasta la montaña en toda Europa; coloniza los claros nuevos y desaparece cuando el bosque vuelve a crecer. En EE. UU. la frambuesa americana crece en el norte y en las montañas del oeste, y la frambuesa negra, de frutos huecos negro violáceos, en el este.",
+        "season": "Madura en verano: desde junio en el sur de Europa y en tierras bajas, en julio y agosto en el norte y en la montaña, y a veces hasta septiembre en las zonas altas.",
+        "picking": "Coge las frambuesas bien rojas que se sueltan del corazón sin tirar, en un recipiente plano, porque se aplastan con facilidad. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
+        "kitchen": "Una vez identificadas con certeza, cómelas crudas o úsalas en mermelada, sirope, bizcochos y postres; las silvestres son más pequeñas y aromáticas que las de huerto. Lávalas justo antes de usarlas y revisa que no tengan las pequeñas larvas blancas del escarabajo de la frambuesa.",
+        "keeps": "Son muy delicadas: cómelas el mismo día o guárdalas sin lavar uno o dos días en la nevera. Congélalas extendidas en una bandeja y luego en bolsas; congeladas sirven para salsas y repostería.",
+        "source": "Identificación y hábitat: Woodland Trust. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "blueberry": {
       "name": "Arándano silvestre",
       "description": "Pequeñas bayas azules dulces que crecen en arbustos bajos en suelos ácidos",
-      "howTo": "Se encuentra en brezales, turberas y bosques ácidos en verano y principios de otoño"
+      "howTo": "Se encuentra en brezales, turberas y bosques ácidos en verano y principios de otoño",
+      "guide": {
+        "identify": "El arándano silvestre europeo es una mata caducifolia baja, normalmente por debajo de la rodilla, de tallos verdes y angulosos y hojas pequeñas, ovaladas y finamente dentadas. En primavera cuelgan flores sueltas rosadas en forma de farolillo; cada una da una sola baya negro azulada con pruina y una pequeña corona en la punta, y la pulpa es rojo violácea de parte a parte (los arándanos de cultivo tienen la pulpa clara). Sus dobles venenosos son plantas herbáceas, no matas leñosas: la belladona (Atropa bella-donna) es alta y lleva bayas negras brillantes asentadas en una estrella verde de cinco sépalos; la uva de raposa o hierba de París (Paris quadrifolia) lleva una sola baya en lo alto de un tallo con un verticilo de cuatro hojas; el sello de Salomón (Polygonatum) cuelga bayas negro azuladas bajo un tallo arqueado y sin ramas.",
+        "habitat": "Suelo ácido y pobre: bosques de coníferas, abedules y robles, brezales y turberas, desde las tierras bajas hasta por encima del límite del bosque; común en el norte y el centro de Europa y en las montañas del sur, y ausente en suelos calizos. En Norteamérica crece silvestre en las montañas del oeste; en el este, los arándanos silvestres que se recogen son el arándano bajo y el arándano alto (Vaccinium angustifolium, Vaccinium corymbosum), parientes cercanos de pulpa clara.",
+        "season": "Madura desde julio en tierras bajas; en la montaña y en el norte la temporada sigue en agosto y hasta septiembre. Una helada tardía en la floración puede reducir la cosecha.",
+        "picking": "Recoge a mano: los peines arrancan hojas y dañan las plantas, y algunos lugares los prohíben o fijan cantidades máximas diarias, como los Vosgos en Francia y la Toscana en Italia: consulta las normas locales. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
+        "kitchen": "Una vez identificados con certeza, cómelos crudos o en tartas, tortitas, mermelada y compota; son dulces y ácidos y tiñen dedos, dientes y ropa. Lávalos justo antes de usarlos y quita hojas y bayas verdes.",
+        "keeps": "Sin lavar y extendidos, aguantan unos días en la nevera. Congélalos en una bandeja y luego en bolsas; también se secan bien.",
+        "source": "Identificación y hábitat: Woodland Trust; dobles venenosos: Yle (radiotelevisión pública finlandesa). Normas de recogida: Prefectura de los Vosgos y Región de Toscana. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "strawberry": {
       "name": "Fresa silvestre",
       "description": "Pequeñas bayas rojas de sabor intenso, con flores blancas y hojas trifoliadas",
-      "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano"
+      "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano",
+      "guide": {
+        "identify": "Planta baja de hojas con rabillo largo y tres folíolos dentados, verde vivo y algo brillantes, que se extiende con estolones que enraízan; el diente final de cada folíolo es tan largo como sus vecinos o más. Las flores son blancas, de cinco pétalos redondos y centro amarillo; el fruto es un pequeño cono rojo con diminutas semillas en la superficie, que cuelga de un rabillo fino. La fresa estéril (Potentilla sterilis) florece antes y tiene huecos entre los pétalos escotados, un diente final más corto que sus vecinos y ningún fruto carnoso; la fresa de la India (Potentilla indica) tiene flores amarillas y frutos redondos, esponjosos e insípidos.",
+        "habitat": "Bordes de bosque, claros, taludes soleados, orillas de caminos, pies de seto y prados viejos, a menudo en suelo seco, pedregoso o calizo, desde las tierras bajas hasta la montaña en toda Europa. En EE. UU. crece en bosques claros y claros del norte y en las montañas del oeste; allí la fresa de Virginia (Fragaria virginiana), más grande, es la fresa silvestre habitual de campos y prados.",
+        "season": "Florece desde abril; los frutos maduran desde finales de mayo en el sur de Europa y desde junio en el resto, y la planta sigue dando fruto todo el verano, hasta agosto en la montaña y en el norte.",
+        "picking": "Coge solo fresas bien rojas pellizcando el rabillo y nunca arranques las plantas; en Inglaterra, donde la fresa silvestre está catalogada como casi amenazada, recoge con moderación. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
+        "kitchen": "Una vez identificadas con certeza, cómelas crudas y pronto, lavadas justo antes. Saben más intensas que las fresas de huerto, aunque varían de una planta a otra; un puñado basta para perfumar nata, yogur o una tarta.",
+        "keeps": "En una cesta al calor se estropean enseguida: tenlas al fresco y cómelas el mismo día. Se pueden congelar, pero al descongelarse quedan blandas.",
+        "source": "Identificación y hábitat: Woodland Trust y Botanical Society of Britain and Ireland (BSBI). Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "wildMint": {
       "name": "Mentas silvestres",
       "description": "Cualquier menta silvestre: menta acuática, menta de caballo, mastranzo, menta de campo y poleo. Tallos cuadrados, hojas opuestas y aroma a menta al frotarlas",
-      "howTo": "Crece en suelos húmedos, acequias y a lo largo de arroyos. El poleo está bien en una infusión ligera (poleo menta), pero es tóxico como aceite o en cantidad: evítalo en el embarazo"
+      "howTo": "Crece en suelos húmedos, acequias y a lo largo de arroyos. El poleo está bien en una infusión ligera (poleo menta), pero es tóxico como aceite o en cantidad: evítalo en el embarazo",
+      "guide": {
+        "identify": "Todas las mentas tienen tallos cuadrados, hojas opuestas y un claro olor a menta al estrujar una hoja; las florecillas lilas, rosadas o blancas forman verticilos o cabezuelas y espigas en la punta de los tallos. La menta acuática tiene hojas peludas y ovaladas y una cabezuela redonda de flores; la menta de caballo, hojas largas y grisáceas por el vello; el mastranzo, hojas redondeadas, rugosas y suaves; la menta de campo florece solo en verticilos a lo largo del tallo; el poleo es pequeño y rastrero, de hojas diminutas y olor penetrante. Entre ellas crecen plantas de tallo cuadrado sin olor, como el marrubio acuático (Lycopus), y el olor se queda en los dedos: huele cada tallo por separado y deja el que no huela a menta.",
+        "habitat": "La mayoría de las mentas silvestres buscan suelo húmedo: orillas de arroyos y charcas, acequias, zonas pantanosas y prados húmedos; la menta de campo crece también en cultivos húmedos y el poleo en pastizales que se encharcan en invierno, sobre todo en el sur y el oeste de Europa. En EE. UU. la menta silvestre americana, nativa, crece en lugares húmedos de casi todo el país, y la hierbabuena, la menta piperita y el poleo se han escapado de los jardines.",
+        "season": "Los brotes salen en primavera y son más tiernos antes de la floración; la mayoría florece desde pleno verano hasta el otoño, y en el sur de Europa empiezan a crecer antes.",
+        "picking": "Pellizca los primeros pares de hojas justo encima de un nudo y deja las raíces. Recoge tallo a tallo, no a puñados: el nabo del diablo (Oenanthe crocata) y la cicuta acuática, mortales, crecen en los mismos sitios húmedos; evita el agua por debajo de granjas o vertidos.",
+        "kitchen": "Una vez identificadas con certeza, las hojas dan infusiones y van en ensaladas, salsas de yogur y platos con guisantes, patatas y cordero. La menta de arroyos, acequias o prados húmedos con ganado puede llevar fasciola hepática, como el berro silvestre: úsala solo en infusión caliente o cocinada. El poleo contiene pulegona, que daña el hígado: una infusión ligera es tradicional en España y Portugal, pero nunca uses el aceite esencial, no lo tomes fuerte ni a menudo y nunca se lo des a bebés, niños, embarazadas, mujeres que dan el pecho ni personas con enfermedad del hígado.",
+        "keeps": "Los manojos colgados en un sitio oscuro y aireado se secan bien para infusión; las hojas picadas se congelan en cubitos de hielo.",
+        "source": "Identificación y hábitat: Botanical Society of Britain and Ireland, The Wildlife Trusts y Native Plant Trust (Go Botany). Poleo: Agencia Europea de Medicamentos y National Capital Poison Center. Fasciola: Organización Panamericana de la Salud. Temporada: registros de GBIF."
+      }
     },
     "chickweed": {
       "name": "Pamplina",
       "description": "Planta rastrera con pequeñas flores blancas y hojas ovaladas, muy nutritiva",
-      "howTo": "Común en jardines, áreas alteradas y praderas durante la temporada de crecimiento"
+      "howTo": "Común en jardines, áreas alteradas y praderas durante la temporada de crecimiento",
+      "guide": {
+        "identify": "Planta baja y rastrera, de tallos débiles, redondos y jugosos, con hojitas ovaladas y puntiagudas opuestas, las de abajo con un rabillo corto. Una sola línea de pelillos recorre el tallo y cambia de lado en cada par de hojas. Las flores blancas, en estrella, tienen cinco pétalos tan hendidos que parecen diez. Dos dobles tóxicos: los murajes (Anagallis arvensis) tienen tallos cuadrados y lampiños, hojas sin rabillo con puntos negros por debajo y flores rojo anaranjado o azules; las lechetreznas sueltan un látex blanco al romper el tallo, cosa que la pamplina nunca hace.",
+        "habitat": "Huertos, jardines, bordes de cultivos, corrales y otros suelos removidos, ricos y húmedos, a menudo a media sombra. Una de las plantas más comunes de Europa y presente en todo EE. UU.",
+        "season": "Crece mejor con tiempo fresco y húmedo: en primavera y otoño en el norte, y de otoño a primavera en zonas templadas como el sur de Europa y el sur de EE. UU. Con el calor y la sequía del verano se seca hasta las lluvias de otoño.",
+        "picking": "Corta o pellizca los primeros centímetros con hojas; la planta rebrota. Recógela solo donde no se hayan echado herbicidas, lejos de carreteras y de sitios por donde pasan perros y gatos.",
+        "kitchen": "Una vez identificada con certeza, se comen las hojas, los tallos y las flores, crudos o apenas cocinados; saben suaves y frescos, un poco a guisantes tiernos. Añádelos a ensaladas, bocadillos y pesto, o al final a las sopas, y lávalos bien.",
+        "keeps": "La pamplina se mustia rápido: guárdala en una bolsa en la nevera y cómela en uno o dos días.",
+        "source": "Identificación: UC Statewide IPM Program y Woodland Trust. Murajes: Ministerio de Agricultura de Ontario. Temporada: Woodland Trust y registros de GBIF."
+      }
     },
     "plantain": {
       "name": "Llantén común",
       "description": "Planta baja con hojas ovaladas anchas y espigas florales altas",
-      "howTo": "Se encuentra en céspedes, praderas y áreas alteradas durante la temporada de crecimiento"
+      "howTo": "Se encuentra en céspedes, praderas y áreas alteradas durante la temporada de crecimiento",
+      "guide": {
+        "identify": "El llantén común forma una roseta plana de hojas anchas y ovaladas, con peciolos cortos y anchos; cada hoja tiene de tres a siete nervios marcados y paralelos, y si rompes un peciolo salen como hilos duros. Desde principios del verano, unos tallos sin hojas llevan espigas largas y estrechas, como colas de rata, de flores verdosas diminutas, que luego se llenan de semillas pardas. La roseta del primer año de la dedalera, que es mortal, tiene hojas blandas, peludas y arrugadas, con nervios en red y sin hilos; se han vendido hojas de dedalera por error como llantén.",
+        "habitat": "Céspedes, caminos, pistas, lindes de campos, prados y huertos: allí donde el suelo está pisado y compacto. Es nativo de Europa y Asia, común en toda Europa y en todo Estados Unidos, adonde llegó con los colonos europeos.",
+        "season": "Las hojas nuevas brotan desde principios de primavera hasta el otoño, más tiernas en primavera y después de segar. Las espigas salen desde principios del verano y las semillas maduran hasta el otoño.",
+        "picking": "Coge hojas jóvenes del centro de la roseta, unas pocas de cada planta, y deja la raíz en la tierra. Evita las cunetas, los caminos por donde pasean perros y los céspedes o taludes que puedan estar tratados con herbicida.",
+        "kitchen": "Una vez identificado con certeza, las hojas jóvenes se pueden comer crudas en ensalada; las viejas son duras y fibrosas, así que escáldalas o cocínalas como espinacas y quítales los hilos. Sabe suave, a hierba y algo amargo. La NC State Extension advierte de que cantidades muy grandes pueden bajar la tensión: cómelo como una verdura más entre otras.",
+        "keeps": "Las hojas se mustian rápido: guárdalas en una bolsa en la nevera uno o dos días, o sécalas a la sombra para infusiones.",
+        "source": "Identificación, hábitat y temporada: NC State Extension, Michigan State University Extension y UC IPM. Confusión con la dedalera: FDA de EE. UU. (1997). Cocina: NC State Extension."
+      }
     },
     "walnut": {
       "name": "Nuez",
       "description": "Frutos grandes y redondos con cáscara dura y sabor rico y aceitoso",
-      "howTo": "Busca nogales en parques, jardines y bordes de bosques en otoño"
+      "howTo": "Busca nogales en parques, jardines y bordes de bosques en otoño",
+      "guide": {
+        "identify": "Árbol grande de corteza lisa y pardo oliva que con la edad se vuelve gris y agrietada, con hojas de cinco a nueve folíolos ovalados de borde liso que huelen a cera de muebles al estrujarlos. La nuez va dentro de una cubierta verde, gruesa y lisa, que se oscurece y se abre al madurar. El nogal negro del este de EE. UU. tiene más folíolos, más estrechos y dentados, y una cubierta redonda que no se abre, alrededor de una cáscara muy dura y surcada.",
+        "habitat": "Originario de una zona que va del sureste de Europa al suroeste de China, el nogal se ha plantado en toda Europa y se ha asilvestrado en setos, lindes, riberas y bosques jóvenes, sobre todo a baja altitud y en suelos profundos y fértiles. En EE. UU. las plantaciones están sobre todo en California; en los bosques del este la especie silvestre es el nogal negro.",
+        "season": "Septiembre y octubre, cuando las cubiertas se abren y las nueces caen. Las nueces verdes para encurtir o para licor se cogen a finales de junio o principios de julio, mientras una brocheta aún las atraviesa sin esfuerzo.",
+        "picking": "Recoge las nueces caídas cada uno o dos días, antes de que las estropeen el moho y los insectos, y ponte guantes: la cubierta tiñe la piel de marrón durante días. Quita las cubiertas pronto; la mayoría de los nogales tienen dueño, así que pregunta antes.",
+        "kitchen": "Cuando estés seguro del árbol, come las nueces frescas quitándoles la piel amarga, o sécalas para pan, bizcochos, ensaladas y salsas. Tira las nueces con moho, arrugadas o rancias. Las nueces son una causa frecuente de alergia a los frutos secos.",
+        "keeps": "Sécalas con cáscara en un sitio aireado y a la sombra hasta que el tabique entre las dos mitades se parta con un chasquido; secas aguantan hasta un año en la nevera.",
+        "source": "Identificación y distribución: Woodland Trust. Cosecha y conservación: extensión de las universidades estatales de Oregón y Kansas."
+      }
     },
     "chestnut": {
       "name": "Castaña",
       "description": "Grandes frutos dulces encerrados en cáscaras verdes espinosas que se abren al madurar",
-      "howTo": "Se encuentra en castañares y bosques mixtos en otoño, a menudo cerca de senderos"
+      "howTo": "Se encuentra en castañares y bosques mixtos en otoño, a menudo cerca de senderos",
+      "guide": {
+        "identify": "Hojas largas, estrechas y brillantes, de 16 a 28 cm, con dientes afilados y muchos nervios rectos y paralelos. El erizo está cubierto por completo de púas largas, finas y punzantes como agujas y suele llevar dos o tres castañas, aplanadas por una o las dos caras y acabadas en una puntita con un penacho. El castaño de Indias (Aesculus hippocastanum), tóxico y frecuente en parques y calles, tiene hojas en forma de mano de cinco a siete folíolos, una cubierta verde y gruesa con pocas púas cortas y una o dos semillas redondas y brillantes, sin punta. En Norteamérica también son tóxicos los buckeyes (otras especies de Aesculus): un árbol con hojas en forma de mano nunca es un castaño.",
+        "habitat": "Originario del sur de Europa, el oeste de Asia y el norte de África y cultivado desde hace mucho por sus castañas, el castaño crece en suelos ácidos y bien drenados y evita la caliza; hay grandes castañares desde el norte de Portugal, Galicia, Asturias y el Bierzo hasta el valle del Genal, las Cevenas, Córcega y los Apeninos. En EE. UU. la mayoría de los castaños son plantados, porque un chancro casi acabó con la especie autóctona.",
+        "season": "Las castañas caen de finales de septiembre a principios de noviembre, sobre todo en octubre, antes en zonas bajas que en la montaña.",
+        "picking": "Recoge cada pocos días las castañas que han caído solas; usa guantes gruesos o abre los erizos pisándolos con la bota, y deja las que tengan agujeritos de larvas de gorgojo o de polilla. Muchos castañares son privados y las castañas del suelo son del dueño: infórmate de las normas locales.",
+        "kitchen": "Cuando estés seguro de que son castañas, cocínalas: crudas son ásperas e indigestas. Tira las que floten en agua, haz un corte en la cáscara para que no estallen, ásalas o cuécelas unos 30 minutos y pélalas aún calientes, quitando la cáscara y la piel interior amarga. Dulces y harinosas, van en sopas, rellenos y purés.",
+        "keeps": "A temperatura ambiente, las castañas frescas se enmohecen en unas dos semanas; en la nevera aguantan unos dos meses, o puedes congelarlas o secarlas.",
+        "source": "Identificación: Woodland Trust, ANSES y extensión de la Universidad Estatal de Oregón. Cosecha, cocina y conservación: extensión de la Universidad Estatal de Oregón."
+      }
     },
     "elderflower": {
       "name": "Flor de saúco",
       "description": "Flores blancas cremosas que crecen en grandes racimos planos en árboles de saúco",
-      "howTo": "Busca árboles de saúco en setos y bordes de bosques a finales de primavera y principios de verano"
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques a finales de primavera y principios de verano",
+      "guide": {
+        "identify": "El saúco es un arbusto o arbolillo leñoso de corteza gris parda, corchosa y agrietada, con hojas opuestas de 5 a 7 folíolos dentados que huelen mal al estrujarlas. A finales de primavera da ramilletes planos y ramificados de florecillas blanco crema, con anteras amarillo pálido y un aroma dulce y almizclado. El yezgo (saúco enano) es una hierba blanda que se seca cada invierno, con ramilletes erguidos y anteras moradas, y el saúco rojo florece antes, en racimos ovoides o en cúpula; los dos son tóxicos. La cicuta, la cicuta acuática y el perejil gigante (Heracleum mantegazzianum), cuya savia quema la piel con el sol, son hierbas verdes y blandas, no arbustos leñosos: la cicuta tiene el tallo liso, hueco y con manchas moradas y huele a orina de ratón, y en las tres los radios de la flor salen de un mismo punto, como las varillas de un paraguas.",
+        "habitat": "Setos, bordes de bosque, matorrales, riberas y terrenos baldíos, a menudo cerca de casas, en suelo rico; común en toda Europa, desde las tierras bajas hasta la media montaña. En Estados Unidos el saúco americano, nativo del este, y el saúco azul del oeste crecen en sitios parecidos.",
+        "season": "Florece de finales de mayo a junio en el norte y el centro de Europa, y antes en el sur cálido. En el este de Estados Unidos el saúco americano florece más tarde y durante más tiempo, sobre todo en junio y julio.",
+        "picking": "Recoge en una mañana seca y soleada los ramilletes bien abiertos, de color crema y con buen olor, y deja los que empiezan a pardear. Córtalos o pártelos por la base, coge solo unos pocos de cada mata para que siga dando bayas y sacude con suavidad los insectos.",
+        "kitchen": "Una vez identificada con certeza, solo se usa la flor: sepárala de los rabillos, porque los tallos, las hojas, la corteza, las raíces y las bayas verdes son venenosos. Macera las flores en almíbar caliente con limón para hacer jarabe, reboza los ramilletes enteros y fríelos como buñuelos sin comer el tallo grueso, o sécalas para infusión; saben dulces y florales y van bien con grosellas espinosas y fresas. Las bayas que salen en otoño deben cocinarse siempre.",
+        "keeps": "La flor se marchita pronto, así que úsala el mismo día. Los ramilletes secados a la sombra se guardan para infusión en un tarro hermético; el jarabe aguanta unas semanas en la nevera o se puede congelar.",
+        "source": "Identificación y hábitat: Woodland Trust y BSBI. Especies parecidas: extensión de la Universidad de Minnesota. Recolección y cocina: extensión de Penn State y de UMass."
+      }
     },
     "daisy": {
       "name": "Margarita común",
       "description": "Pequeñas flores blancas con centro amarillo que crecen cerca del suelo",
-      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano"
+      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano",
+      "guide": {
+        "identify": "La margarita común (maya o chiribita) es una planta baja con una roseta plana de hojas en forma de espátula, algo peludas, pegadas al suelo. Cada tallo sin hojas y peludo lleva una sola cabezuela de unos 2 cm: lígulas blancas, a menudo con la punta rosada, alrededor de un centro amarillo; las cabezuelas se cierran de noche y con tiempo nublado. Las flores parecidas más grandes sobre tallos con hojas, como la margarita mayor, y las manzanillas de hojas finamente divididas son otras plantas.",
+        "habitat": "Céspedes, prados de hierba corta, pastos, cunetas y caminos, al sol y en suelo húmedo; crece en casi toda Europa. A Estados Unidos llegó desde Europa y hoy crece en céspedes y en suelos húmedos y removidos, sobre todo donde los veranos son frescos.",
+        "season": "Donde los inviernos son suaves florece casi todo el año, con la floración principal de primavera a principios de verano. En zonas frías y en gran parte de Estados Unidos florece de primavera a principios de verano, con flores sueltas hasta las heladas.",
+        "picking": "Pellizca las cabezuelas y unas pocas hojas tiernas, de muchas plantas, y deja las rosetas en su sitio. Evita los céspedes tratados con herbicida o abono, los sitios donde se pasea a perros y las cunetas.",
+        "kitchen": "Una vez identificada con certeza, la flor y las hojas tiernas se comen crudas en poca cantidad, en ensaladas, bocadillos o como adorno; saben suaves o algo amargas, y las hojas viejas son duras. Lávalas con cuidado en agua fría. Prueba primero muy poco, porque quien tiene alergia a las compuestas puede reaccionar y en grandes cantidades puede sentar mal al estómago; evítala en el embarazo y la lactancia.",
+        "keeps": "Cógela justo antes de usarla, porque la flor se mustia pronto; mientras, guárdala entre papel de cocina húmedo en la nevera.",
+        "source": "Identificación y hábitat: The Wildlife Trusts y extensión de NC State. Cocina y seguridad: extensión de la Universidad Estatal de Colorado y de NC State."
+      }
     },
     "violets": {
       "name": "Violeta dulce",
       "description": "Pequeñas flores moradas con hojas en forma de corazón y fragancia dulce",
-      "howTo": "Se encuentra en bordes de bosques, setos y zonas sombrías a principios de primavera"
+      "howTo": "Se encuentra en bordes de bosques, setos y zonas sombrías a principios de primavera",
+      "guide": {
+        "identify": "La violeta dulce (violeta de olor) es una planta baja con una roseta de hojas acorazonadas de pecíolo largo, base redondeada, borde festoneado y pelillos cortos; se extiende con estolones largos que enraízan. Cada flor sale de la roseta en su propio rabillo: cinco pétalos desiguales, el inferior con un espolón corto hacia atrás, casi siempre violeta oscuro, a veces blanca, con sépalos romos y un aroma dulce; las violetas silvestres sin olor, como Viola riviniana, se parecen pero no huelen. La celidonia menor, que es venenosa y crece en los mismos sitios, tiene hojas brillantes, carnosas y sin pelos y flores de 8 a 12 pétalos amarillos y brillantes; el aro (Arum maculatum), también venenoso, tiene hojas brillantes en forma de punta de flecha con lóbulos que apuntan hacia atrás.",
+        "habitat": "Bordes de bosque, taludes de setos, hierba a la sombra, cementerios, parques y jardines antiguos, en suelo húmedo y rico, a media sombra. Crece en casi toda Europa y se ha escapado de los jardines en muchos sitios; en Estados Unidos crece silvestre aquí y allá en céspedes y bordes de bosque.",
+        "season": "Florece de febrero a mayo, antes en el sur templado, y en gran parte de Estados Unidos en abril y mayo. A veces vuelven a salir algunas flores a finales de verano, y las hojas son mejores tiernas, en primavera.",
+        "picking": "Coge de cada mancha solo unas pocas flores y hojas tiernas y deja la roseta y las raíces en el suelo; no arranques nunca plantas. Evita los céspedes fumigados, las cunetas y los sitios donde se pasea a perros.",
+        "kitchen": "Una vez identificada con certeza, la flor se usa cruda en ensaladas y postres, se escarcha con clara de huevo pasteurizada y azúcar fino, o se infusiona en agua hirviendo que luego se endulza para hacer jarabe de violetas. Las hojas tiernas se comen crudas en ensalada o cocidas como espinacas; son suaves y espesan un poco las sopas. No comas nunca las raíces ni las semillas, que pueden provocar vómitos, y prueba primero una pequeña cantidad.",
+        "keeps": "La flor se mustia pronto: guárdala entre papel de cocina húmedo en la nevera y úsala el mismo día. Las flores escarchadas se conservan en un recipiente hermético en un lugar fresco y oscuro.",
+        "source": "Identificación y hábitat: NatureSpot y extensión de NC State. Cocina: extensión de la Universidad Estatal de Colorado y de NC State."
+      }
     },
     "amaranth": {
       "name": "Amaranto",
       "description": "Planta herbácea con hojas y semillas comestibles, rica en nutrientes.",
-      "howTo": "Crece en suelos alterados, huertos y campos durante el verano. Recolecta las hojas jóvenes antes de la floración."
+      "howTo": "Crece en suelos alterados, huertos y campos durante el verano. Recolecta las hojas jóvenes antes de la floración.",
+      "guide": {
+        "identify": "El amaranto o bledo (Amaranthus retroflexus) es una planta anual robusta y erguida, con el tallo cubierto de pelos blancos finos y rojizo en la base, y una raíz pivotante rosada o roja. Sus hojas alternas son ovaladas o romboidales, de borde liso y peciolo largo, a menudo con una pequeña muesca o una puntita en el ápice; las flores, verdes y diminutas, forman espigas densas, ásperas y pinchudas, y luego dan semillas negras, brillantes y diminutas. En el mismo suelo crecen dos malas hierbas tóxicas: el estramonio, con hojas grandes de dientes irregulares y olor desagradable, flores blancas en trompeta y frutos espinosos, y la hierba mora, con hojas de borde ondulado, flores pequeñas blancas en estrella y bayas negras.",
+        "habitat": "Huertos, campos de cultivo, corrales y solares: suelo removido, rico y desnudo, a pleno sol. Es nativo del centro y el este de Norteamérica y es una mala hierba común en todo EE. UU. y en gran parte de Europa, sobre todo en las zonas bajas y cálidas.",
+        "season": "Es anual y de verano: nace a finales de primavera, cuando la tierra se calienta, florece más o menos de julio a septiembre y madura las semillas de agosto a octubre, hasta la primera helada. Las hojas son mejores jóvenes, antes de la floración.",
+        "picking": "Coge a mano las hojas jóvenes y los brotes tiernos antes de que florezca, y desgrana las espigas cuando las semillas estén negras. Evita las cunetas y los campos tratados, y descarta las tierras muy abonadas o estercoladas y las plantas castigadas por la sequía, que acumulan más nitratos.",
+        "kitchen": "Una vez identificado con certeza, cocina las hojas como espinacas: hiérvelas un poco y tira el agua, lo que reduce los nitratos y el oxalato. Cómelo con moderación, y nada si tienes cálculos o enfermedad renal; sabe suave y terroso y va bien con ajo, legumbres y huevo. Las semillas se pueden tostar o cocer como un cereal.",
+        "keeps": "Las hojas se mustian en un día: guárdalas en una bolsa en la nevera, o escáldalas y congélalas. Seca las espigas en una bolsa de papel, desgrana y aventa las semillas y guárdalas en un tarro cerrado.",
+        "source": "Identificación y temporada: Cornell University y NC State Extension. Nitratos y oxalatos: NC State Extension y Michigan State University Extension. Confusión con estramonio: centro antitóxico de Marsella."
+      }
     },
     "artichoke": {
       "name": "Alcachofa silvestre",
       "description": "Planta espinosa similar a la alcachofa cultivada, con cabezuelas y tallos comestibles.",
-      "howTo": "Se encuentra en praderas y campos; recolecta las cabezuelas jóvenes y los tallos tiernos en primavera y a comienzos del verano."
+      "howTo": "Se encuentra en praderas y campos; recolecta las cabezuelas jóvenes y los tallos tiernos en primavera y a comienzos del verano.",
+      "guide": {
+        "identify": "La alcachofa silvestre (cardo silvestre o de comer) forma una gran roseta de hojas muy recortadas, gris verdoso plateado por arriba y casi blancas por debajo por una densa capa de pelos, con cada lóbulo terminado en una espina amarilla y rígida. A finales de primavera, un tallo rígido y ramificado de hasta la altura de una persona lleva cabezas como alcachofas pequeñas, envueltas en brácteas de punta espinosa, que se abren en flores de cardo azul violeta. La ajonjera o cardo de liga (Atractylis gummifera), un cardo mediterráneo mortal que se ha confundido con la alcachofa silvestre y ha causado muertes en Marruecos, no tiene tallo: su cabeza de flor rosada se asienta plana en el centro de la roseta espinosa, florece a finales de verano y en otoño, y su raíz suelta una goma pegajosa. No comas nunca una roseta de cardo sin tallo ni una raíz de cardo.",
+        "habitat": "Terreno abierto, seco y soleado: pastos, lindes, cunetas, barbechos y matorral, a menudo en suelos arcillosos. Es nativa del Mediterráneo, de Portugal a Grecia y el norte de África; en el norte y el centro de Europa solo aparece escapada de huertos. En California es una mala hierba invasora de praderas y matorral costero por debajo de 500 m; en el resto de EE. UU. es una planta de jardín.",
+        "season": "La roseta crece con las lluvias de otoño y durante el invierno suave: las pencas se recogen de finales de invierno a primavera y las cabezas a finales de primavera y principios de verano. Florece sobre todo en junio y julio y luego se seca con la sequía del verano.",
+        "picking": "Ponte guantes gruesos y corta las pencas o las cabezas con un cuchillo; deja la raíz y, en su zona de origen, deja algunas cabezas para que florezcan. En California, donde es invasora, corta las cabezas antes de que den semilla y no las lleves a otro sitio; consulta las normas locales en terrenos públicos.",
+        "kitchen": "Una vez identificada con certeza, pela las pencas para quitarles espinas y hebras, echa los trozos en agua con limón, porque se ennegrecen, y hiérvelos hasta que estén tiernos; saben a alcachofa amarga y se guisan o se rebozan. De las cabezas, quita las brácteas espinosas y come la base tierna y el corazón. Las flores secas cuajan la leche de quesos como la Torta del Casar y el Serra da Estrela.",
+        "keeps": "Las pencas aguantan unos días en la nevera envueltas en un paño húmedo; cocidas, se congelan bien.",
+        "source": "Identificación, distribución y temporada: IUCN Global Invasive Species Database y California Invasive Plant Council. Intoxicaciones por Atractylis: datos del centro antitóxico de Marruecos."
+      }
     },
     "asparagus": {
       "name": "Espárrago silvestre",
       "description": "Planta perenne con brotes delgados y comestibles que aparecen en primavera.",
-      "howTo": "Busca los brotes jóvenes en campos abiertos, praderas y a lo largo de setos en primavera."
+      "howTo": "Busca los brotes jóvenes en campos abiertos, praderas y a lo largo de setos en primavera.",
+      "guide": {
+        "identify": "La esparraguera silvestre (Asparagus acutifolius) es una mata enmarañada, perenne y leñosa de hasta 1,5 m, sin hojas verdaderas, solo con manojos de ramitas verdes cortas, rígidas y como agujas, cada una terminada en una espina; sus bayas negras no se comen. En primavera, de la base de la mata vieja y espinosa salen brotes finos, de verde oscuro a morado, a menudo más delgados que un lápiz, con pequeñas escamas puntiagudas pegadas al tallo y sin hojas. La nueza negra y la nueza blanca, trepadoras venenosas de los mismos setos, también brotan en primavera: la negra despliega pronto hojas brillantes en forma de corazón y la blanca es peluda, con hojas lobuladas y zarcillos. Coge solo brotes que salgan de una esparraguera que veas.",
+        "habitat": "Matorral mediterráneo, bordes de encinares y pinares, olivares, setos, muros de piedra y cunetas, desde la costa hasta las sierras de Portugal, España, el sur de Francia, Italia, los Balcanes y Grecia. No crece silvestre en el norte y el centro de Europa: allí los espárragos son de huerta asilvestrados, sobre todo en suelos arenosos.",
+        "season": "Los brotes salen de finales de invierno a primavera, tras las lluvias de otoño e invierno: desde febrero en las costas cálidas hasta abril y mayo en la sierra. La lluvia seguida de días templados y soleados trae una nueva tanda.",
+        "picking": "Parte cada brote con la mano por donde se quiebra fácilmente, deja algunos en cada mata y no cortes ni arranques nunca la mata. En España deciden el dueño del terreno y la comunidad autónoma, y en los espacios protegidos suele estar prohibido; en Italia cada región pone sus reglas (la Toscana solo lo permite hasta el 31 de mayo): consulta las normas locales.",
+        "kitchen": "Una vez identificado con certeza, usa solo la parte tierna por encima de donde se quiebra; es más amargo que el espárrago de huerta. Cocínalo poco: en tortilla o revuelto, en arroz o pasta, o salteado con ajo y aceite de oliva.",
+        "keeps": "Mejor comerlo el mismo día; de pie en un poco de agua aguanta unos días en la nevera, o escáldalo y congélalo.",
+        "source": "Identificación, hábitat y temporada: floras mediterráneas y el herbario virtual de la Universitat de les Illes Balears. Nuezas: RHS. Normas de recolección: Regione Toscana."
+      }
     },
     "black_chant": {
       "name": "Trompeta de los muertos",
       "description": "Hongo oscuro con forma de trompeta, de sabor intenso y muy apreciado en la cocina.",
-      "howTo": "Se encuentra en bosques de frondosas, especialmente bajo robles y hayas, desde finales del verano hasta el otoño."
+      "howTo": "Se encuentra en bosques de frondosas, especialmente bajo robles y hayas, desde finales del verano hasta el otoño.",
+      "guide": {
+        "identify": "Un cuerno fino y hueco de 4 a 8 cm de ancho, abierto hasta la base, sin sombrero diferenciado. Por dentro es pardo grisáceo a negro y finamente escamoso; por fuera, gris ceniza, liso o apenas arrugado, sin láminas ni pliegues, y al madurar se aclara con una pruina blanquecina. La carne es fina, quebradiza y gris negruzca, con un olor suave y dulzón. Las trompetas del este de EE. UU. (Craterellus fallax) son iguales, pero dan una esporada rosa anaranjada en lugar de blanca; Craterellus cinereus, muy parecida, tiene por fuera pliegues bifurcados bien marcados.",
+        "habitat": "Vive asociada a frondosas, sobre todo hayas y robles, también carpes y avellanos, en hojarasca húmeda y musgo, a menudo en grandes grupos sobre suelo rico y arcilloso, en vaguadas y taludes. Común en toda Europa; en el este de EE. UU. crece su especie hermana bajo robles y hayas, y en la costa del Pacífico una trompeta occidental bajo tanoaks, encinas americanas y madroños.",
+        "season": "Sobre todo en otoño: en Europa, de finales del verano a noviembre, hasta diciembre en años suaves y aún más tarde en el Mediterráneo; en el este de EE. UU., de julio a octubre tras lluvias fuertes. En la costa del Pacífico, la trompeta occidental sale de pleno invierno a la primavera.",
+        "picking": "Pellízcala o córtala por la base, deja las pequeñas y coge solo lo que vayas a comer; las normas locales sobre setas silvestres también se aplican. Se camufla bien en la hojarasca oscura: donde encuentres una, busca con cuidado alrededor.",
+        "kitchen": "Una vez identificada con total seguridad, abre cada trompeta a lo largo y enjuaga hojas, insectos y tierra; luego escúrrela bien. No la comas nunca cruda: cocínala bien, en mantequilla, salsas de nata, arroces o pasta, o con pescado y huevos. Sabor profundo y ahumado, más intenso una vez seca.",
+        "keeps": "Fresca, solo unos días en la nevera. Se seca rápido y muy bien; guárdala en un tarro cerrado o muélela en polvo para salsas y sopas.",
+        "source": "Identificación y hábitat: First Nature (Reino Unido), MushroomExpert.com y MykoWeb (California Fungi). Temporada: registros de GBIF."
+      }
     },
     "lingonb": {
       "name": "Arándano rojo",
       "description": "Pequeñas bayas rojas y ácidas que crecen en arbustos perennes en suelos ácidos.",
-      "howTo": "Búscalo en bosques de coníferas, brezales y páramos desde finales del verano hasta el otoño."
+      "howTo": "Búscalo en bosques de coníferas, brezales y páramos desde finales del verano hasta el otoño.",
+      "guide": {
+        "identify": "El arándano rojo es una mata rastrera de hoja perenne, con hojas gruesas, verde oscuro brillante y bordes enrollados hacia abajo; el envés, claro, está salpicado de diminutos puntos oscuros. Sus flores pequeñas en forma de campanilla, de blancas a rosadas, en racimos cortos en la punta de los tallos, dan bayas redondas, rojas y brillantes que cuelgan en pequeños ramilletes. La gayuba (Arctostaphylos uva-ursi), una mata rastrera de los mismos lugares, tiene hojas con nervios en red, sin puntos, y bayas secas y harinosas. Las bayas rojas y negras venenosas no crecen sobre una alfombra baja de hoja perenne: el tejo (Taxus) es un árbol o arbusto alto de acículas planas, con una copa roja abierta por la punta alrededor de una semilla oscura; el mezereón (Daphne mezereum) es un arbusto erguido con las bayas pegadas al tallo; la belladona (Atropa bella-donna) es una herbácea alta de bayas negras; la hierba de San Cristóbal de bayas rojas (Actaea) y el lirio de los valles (Convallaria majalis) son plantas herbáceas.",
+        "habitat": "Suelo ácido y pobre en pinares y abetales, abedulares, brezales, turberas y laderas de montaña por encima del límite del bosque; muy común en Escandinavia y los países bálticos, y presente en los Alpes y otras montañas. En Norteamérica crece sobre todo en Canadá y Alaska y solo llega a EE. UU. en el extremo norte, de Minnesota a Maine, donde es rara (amenazada en Wisconsin).",
+        "season": "Las bayas enrojecen desde agosto y están en su punto cuando son rojo oscuro, de septiembre a octubre; siguen en la planta hasta el invierno.",
+        "picking": "Recoge las bayas rojo oscuro a mano o, donde esté permitido, con un recolector de peine; en Suecia, Finlandia y Noruega el derecho de acceso a la naturaleza permite a cualquiera recoger bayas silvestres lejos de casas y jardines, aunque las reservas naturales pueden tener sus propias normas. En Europa central, la autoridad sanitaria de Baviera (LGL) señala que no se ha demostrado que comer bayas silvestres sea un factor de riesgo de la tenia del zorro, pero aconseja lavarlas bien; solo calentarlas por encima de 60 °C mata los huevos, y congelarlas en casa no.",
+        "kitchen": "Crudas son ácidas y algo amargas, así que, una vez identificadas con certeza, se suelen cocer con azúcar en salsa o mermelada, o se mezclan crudas con azúcar, como en Suecia. Acompañan albóndigas, caza, asados, tortitas de patata o gachas.",
+        "keeps": "En la nevera aguantan más que la mayoría de las bayas, y mezcladas con azúcar se conservan mucho tiempo en frío gracias a su ácido benzoico natural. Se congelan bien tal cual.",
+        "source": "Identificación y distribución: Minnesota Wildflowers y CREA Mont-Blanc. Derecho de recogida: Agencia Sueca de Protección del Medio Ambiente (Naturvårdsverket). Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "masterwort": {
       "name": "Imperatoria",
       "description": "Hierba perenne con hojas aromáticas y umbelas de flores blancas, usada en medicina tradicional y como especia.",
-      "howTo": "Se encuentra en praderas de montaña y claros de bosque; recolecta hojas y raíces en primavera y verano."
+      "howTo": "Se encuentra en praderas de montaña y claros de bosque; recolecta hojas y raíces en primavera y verano.",
+      "guide": {
+        "identify": "La imperatoria es una umbelífera lampiña de 30 a 100 cm, con el tallo redondo, estriado y hueco; sus hojas se dividen en tres y otra vez en tres, en folíolos anchos, ovalados y doblemente dentados de 5 a 10 cm, y las hojas de arriba nacen de grandes vainas hinchadas. Las umbelas, planas, blancas o rosadas, tienen hasta 50 radios, los frutos son redondos, planos y con un ala ancha, y una hoja estrujada o el grueso rizoma pardo huelen fuerte y especiado, a apio y zanahoria. Sus dobles mortales tienen hojas muy divididas, plumosas o como de helecho: la cicuta (Conium maculatum), con el tallo liso manchado de púrpura y olor a ratón; el perejil de perro (Aethusa cynapium), con brácteas largas que cuelgan bajo cada umbela pequeña; la cicuta acuática (Cicuta virosa), con un rizoma dividido en cámaras huecas al cortarlo a lo largo; y Oenanthe crocata, con tubérculos claros en suelo húmedo. El perejil gigante (Heracleum mantegazzianum) es mucho más grande, con el tallo erizado y manchado de púrpura y una savia que quema la piel al sol; la savia de la imperatoria también puede volver la piel sensible al sol.",
+        "habitat": "Prados húmedos de montaña, herbazales altos, orillas de arroyos, pedreras y matorrales de alisos, sobre todo entre 1400 y 2700 m, en los Alpes, los Pirineos, los Cárpatos y otras montañas del centro y el sur de Europa. Más abajo es rara y suele estar escapada de huertos antiguos, como en Gran Bretaña y Escandinavia.",
+        "season": "Las hojas brotan con el deshielo y son mejores jóvenes, a principios del verano. Florece de finales de junio a agosto; los frutos maduran en septiembre y octubre.",
+        "picking": "Coge con guantes unas pocas hojas de una mancha grande y deja el rizoma en la tierra; para arrancar la raíz a menudo hace falta permiso (en el Tirol, de la autoridad del distrito), y muchos espacios protegidos y parques nacionales prohíben coger plantas. Crece entre acónito y vedegambre, los dos mortales: coge hoja a hoja solo de una planta que hayas identificado entera.",
+        "kitchen": "Una vez identificada con certeza, úsala como condimento, no como verdura: sabe muy amarga y especiada, como la levística. En los Alpes la raíz aromatiza aguardiente (Meisterwurzbrand) y quesos de hierbas; unas pocas hojas jóvenes, picadas finas, se añaden con mesura a sopas y queso fresco. Lávate las manos después de tocarla.",
+        "keeps": "Seca las hojas, o rodajas de raíz, en un sitio aireado y a la sombra, y guárdalas en un tarro cerrado.",
+        "source": "Identificación, hábitat y temporada: Botanical Society of Britain and Ireland y floras alpinas. Arranque de la raíz y aguardiente: Ministerio de Agricultura de Austria (registro de alimentos tradicionales). Reacciones en la piel: Botanical Dermatology Database."
+      }
     },
     "parasol": {
       "name": "Parasol",
       "description": "Hongo grande con sombrero ancho y escamoso parecido a un paraguas, comestible cuando es joven.",
-      "howTo": "Búscalo en praderas, pastizales y bordes de bosques desde finales del verano hasta el otoño."
+      "howTo": "Búscalo en praderas, pastizales y bordes de bosques desde finales del verano hasta el otoño.",
+      "guide": {
+        "identify": "Una seta alta: el sombrero pasa de un palillo de tambor cerrado, en forma de huevo, a un paraguas plano de 10 a 25 cm, crema con escamas pardas y un mamelón liso y pardo en el centro. Las láminas son blancas, libres y apretadas; el pie, esbelto, de hasta 30 cm y con un bulbo en la base, lleva un dibujo pardo como de piel de serpiente y un anillo grueso y doble que se desliza arriba y abajo; la esporada es blanca. Las lepiotas mortales son pequeñas, con sombreros de pocos centímetros; Chlorophyllum molybdites da esporada verdosa; los parasoles de carne rojiza (Chlorophyllum rhacodes y C. brunneum), que sientan mal a mucha gente, tienen el pie liso y la carne que se vuelve rojo anaranjada al cortarla; la amanita pantera (Amanita pantherina) tiene verrugas blancas en el sombrero, un anillo fijo y un bulbo con reborde.",
+        "habitat": "En prados y lindes de bosque: pastos, claros, caminos forestales y dunas, en suelo bien drenado, desde las tierras bajas hasta la montaña. Común en toda Europa.",
+        "season": "De verano a otoño, sobre todo de julio a octubre, y hasta noviembre en el sur de Europa. Sale tras un periodo de tiempo cálido y húmedo.",
+        "picking": "Coge solo sombreros abiertos y de tamaño adulto en los que puedas comprobar cada rasgo; saca la seta entera para ver la base del pie y deja cualquier seta parecida con el sombrero de menos de 10 cm. Deja las viejas y duras, y consulta las normas locales: muchas comunidades limitan la cantidad.",
+        "kitchen": "Una vez identificada con certeza, come solo el sombrero y siempre cocinado: como casi todas las setas silvestres, cruda puede sentar mal. Rebozada y frita como un filete empanado, o a la plancha con mantequilla y ajo, tiene un sabor suave a avellana. Los pies, duros, se pueden secar y moler para sopas.",
+        "keeps": "Dos días en la nevera. Los sombreros en láminas se secan bien.",
+        "source": "Identificación y hábitat: First Nature. Especies parecidas e intoxicaciones: ANSES. Temporada: registros de GBIF."
+      }
     },
     "sorrel": {
       "name": "Acedera común",
       "description": "Planta de sabor ácido y cítrico, utilizada en ensaladas y sopas.",
-      "howTo": "Recolecta las hojas jóvenes en praderas, pastizales y a lo largo de los senderos en primavera y verano."
+      "howTo": "Recolecta las hojas jóvenes en praderas, pastizales y a lo largo de los senderos en primavera y verano.",
+      "guide": {
+        "identify": "Hojas tiernas en forma de flecha, con dos lóbulos basales puntiagudos que apuntan hacia atrás, hacia el rabillo; las hojas superiores abrazan el tallo, y una vaina fina y membranosa envuelve el tallo donde nace cada hoja. Desde mayo, los tallos florales llevan espigas sueltas de florecillas rojizas. El aro (Arum maculatum), que es tóxico, tiene hojas jóvenes de forma parecida, pero suelen llevar manchas oscuras, tienen lóbulos redondeados y crecen en bosques y setos y no en prados abiertos. Nunca pruebes una hoja para comprobarlo: el aro quema la boca.",
+        "habitat": "Prados, pastos, céspedes, cunetas y bosques claros, desde el llano hasta la montaña; muy común en toda Europa. En EE. UU. es introducida y aparece dispersa, sobre todo en el noreste, alrededor de los Grandes Lagos, en Oregón y en Alaska, donde la acederilla, más pequeña, es mucho más común.",
+        "season": "Las hojas crecen desde principios de primavera, en zonas templadas casi todo el año, y son mejores jóvenes; cuando la planta florece, desde mayo, se vuelven más duras y amargas, pero las plantas cortadas sacan hojas nuevas.",
+        "picking": "Coge hojas jóvenes sueltas de cada planta y deja la raíz; elige prados que no estén fumigados ni abonados, lejos de carreteras y caminos de perros.",
+        "kitchen": "Una vez identificada con certeza, las hojas tienen un sabor ácido intenso, como la piel de limón: corta las jóvenes en tiras para ensaladas o cocínalas poco en sopas, tortillas y salsas para pescado y huevos. La acidez es ácido oxálico: tómala con moderación y evítala si tienes cálculos renales. Cocínala en acero inoxidable o esmalte, no en aluminio ni hierro fundido.",
+        "keeps": "En la nevera las hojas se mustian en dos o tres días; cocida y hecha puré se congela bien.",
+        "source": "Identificación y dobles: Woodland Trust y Wild Food UK. Área en EE. UU.: Flora of North America. Ácido oxálico: Wild Food UK. Temporada: registros de GBIF."
+      }
     },
     "st_george": {
       "name": "Seta de San Jorge",
       "description": "Hongo blanco y firme con olor a harina, que aparece alrededor de la festividad de San Jorge en primavera.",
-      "howTo": "Se encuentra en praderas, pastizales y bordes de bosques en primavera."
+      "howTo": "Se encuentra en praderas, pastizales y bordes de bosques en primavera.",
+      "guide": {
+        "identify": "Una seta robusta y carnosa, blanca a crema, con el sombrero de 5 a 15 cm, a menudo irregular y abollado, con el borde enrollado. Las láminas son blancas, estrechas y muy apretadas; el pie, grueso y macizo, no tiene anillo ni volva en la base; la carne, firme y blanca, no cambia de color y huele mucho a harina fresca; la esporada es blanca. La mortal Inosperma erubescens tiene el sombrero cónico y fibroso, enrojece al tocarla y da esporada parda; Entoloma sinuatum también puede oler a harina, pero sus láminas se vuelven rosas y su esporada es rosa. Las amanitas blancas, como la mortal Amanita verna, que también sale en primavera, tienen anillo y volva en la base.",
+        "habitat": "En la hierba: pastos, cunetas segadas, parques y lindes de bosque, a menudo junto a espinos albares, endrinos y otros arbustos de seto, sobre todo en suelo calizo. Vuelve a los mismos sitios durante años, a menudo en corros; está en toda Europa y es muy apreciada en el País Vasco, Navarra y el centro de Italia, donde la llaman perretxiko y prugnolo.",
+        "season": "En primavera, sobre todo en abril y mayo, y hasta junio en el norte y en la montaña; debe su nombre al día de San Jorge, el 23 de abril. Una primavera suave y lluviosa la hace salir.",
+        "picking": "Corta el pie por la base y deja las pequeñas; coge sombreros jóvenes y firmes, porque los viejos suelen estar agusanados. Evita las cunetas con mucho tráfico y consulta las normas locales: algunas comunidades exigen permiso o fijan un cupo diario.",
+        "kitchen": "Una vez identificada con certeza, cómela cocinada: pierde casi todo el olor a harina, y su carne firme y suave va bien en tortillas, revueltos, arroces y salsas con nata. Córtala antes a lo largo para ver si tiene gusanos.",
+        "keeps": "Hasta dos días en la nevera, envuelta en papel. Salteada un momento, se congela bien.",
+        "source": "Identificación y hábitat: First Nature. Especies parecidas: First Nature y ANSES. Temporada: registros de GBIF."
+      }
     },
     "truffle_b": {
       "name": "Trufa negra",
       "description": "Hongo subterráneo muy apreciado, de aroma intenso, utilizado en la cocina gourmet.",
-      "howTo": "Se encuentra bajo tierra cerca de las raíces de robles y avellanos, recolectado con animales adiestrados en invierno."
+      "howTo": "Se encuentra bajo tierra cerca de las raíces de robles y avellanos, recolectado con animales adiestrados en invierno.",
+      "guide": {
+        "identify": "La trufa negra es un tubérculo redondo y abultado, del tamaño de una nuez al de un puño, que crece bajo tierra. La piel negra, rojiza de joven, está cubierta de verrugas pequeñas, duras y de varias caras. Córtala por la mitad: la carne madura es negra violácea, jaspeada de finas venas blancas que se vuelven pardo rojizas al aire, y tiene un olor fuerte y terroso. Los Scleroderma, tóxicos, tienen una piel gruesa, amarillenta a parda y escamosa, huelen a gas y son firmes y oscuros por dentro; la trufa de invierno o machenca (Tuber brumale) y la trufa china importada (Tuber indicum) se parecen, pero valen mucho menos.",
+        "habitat": "Bajo tierra, entre las raíces de encinas, quejigos y robles pubescentes y de avellanos, en suelo calizo y bien drenado de colinas soleadas; un calvero sin hierba alrededor del árbol, el quemado, suele delatarla. Es autóctona del sur de Francia, del este de España y del centro de Italia; gran parte de la cosecha procede hoy de plantaciones truferas.",
+        "season": "En invierno: madura de diciembre a marzo, y los mercados alcanzan su punto álgido en enero. Las tormentas de finales de julio y de agosto, mientras engorda, deciden el tamaño de la cosecha.",
+        "picking": "Se busca con un perro adiestrado: cava solo donde marque el perro, con un machete trufero, coge solo trufas maduras y tapa el hoyo. La recolección está regulada: en Italia hace falta una licencia tras un examen y las regiones fijan la temporada; en España cada comunidad autónoma fija temporada y permisos; en Francia las trufas pertenecen al dueño del terreno, y en Alemania las trufas silvestres están protegidas. Consulta las normas locales antes de buscar.",
+        "kitchen": "Una vez identificada con certeza, cepíllala bajo agua fría justo antes de usarla. Lamínala o rállala en crudo sobre platos calientes, o caliéntala suavemente en grasa: con huevos, mantequilla, pasta, arroz o patatas. Una cocción larga destruye el aroma.",
+        "keeps": "Envuélvela en papel de cocina y guárdala en un tarro cerrado en la nevera; cambia el papel cada día y úsala en pocos días, porque el aroma se pierde. Los huevos guardados en el tarro toman su aroma. Congelarla conserva el aroma mejor que secarla.",
+        "source": "Identificación y hábitat: CRPF Languedoc-Roussillon y Trufamania. Normas: ley italiana de trufas 752/1985, normas autonómicas españolas y Ordenanza Federal alemana de Protección de Especies (BArtSchV). Temporada: registros de GBIF."
+      }
     },
     "bronze_bolete": {
       "name": "Boleto Bronceado",
       "description": "Un boleto de sombrero bronceado oscuro casi negro, con pie claro reticulado y carne blanca y firme",
-      "howTo": "Búscalo en laderas cálidas de baja altitud bajo robles y castaños, más tarde que el boleto de verano"
+      "howTo": "Búscalo en laderas cálidas de baja altitud bajo robles y castaños, más tarde que el boleto de verano",
+      "guide": {
+        "identify": "El más oscuro de los boletos tipo porcini, llamado también boleto negro: el sombrero es de castaño oscuro a casi negro, a menudo con manchas bronceadas, y sigue seco y finamente aterciopelado incluso con humedad. Los poros son blancos, luego amarillos a oliva, y no azulean. El pie, pardo claro, tiene un fino retículo pardo, más denso arriba, y la carne blanca, muy firme, no cambia de color al cortarla. El boleto de verano es más claro y su retículo baja más; el boleto de Satanás (Rubroboletus satanas) y Rubroboletus legaliae, que comparten sus robledales, tienen poros rojos y carne que azulea.",
+        "habitat": "Laderas cálidas y soleadas con robles, castaños y hayas, sobre todo entre 200 y 1000 m. Común en torno al Mediterráneo, en Italia a lo largo de los Apeninos y en las islas; raro en Gran Bretaña y Alemania.",
+        "season": "Desde julio tras las tormentas de verano, pero sobre todo en septiembre y octubre, más tarde que el boleto de verano, y hasta noviembre en el sur. Fructifica cuando, tras una época de calor, llega una lluvia abundante y el suelo se enfría.",
+        "picking": "Córtalo o gíralo y deja crecer los jóvenes. En muchas comunidades autónomas hace falta permiso y hay un límite diario; en Alemania es raro y está especialmente protegido, así que allí no se puede recoger.",
+        "kitchen": "Es el más firme de los boletos tipo porcini, con un sabor a avellana que crece al secarlo. Una vez identificado con certeza, cepíllalo, revisa si tiene gusanos y cocínalo bien, como el boleto comestible.",
+        "keeps": "Se seca y se congela muy bien en láminas.",
+        "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Protección: BArtSchV (Alemania). Cocina: Regione Piemonte."
+      }
     },
     "pine_bolete": {
       "name": "Boleto de Pino",
       "description": "Un boleto de sombrero pardo rojizo de los pinares, con pie robusto reticulado y carne firme",
-      "howTo": "Búscalo en pinares y abetales con musgo sobre suelo ácido y arenoso, a finales de primavera y de nuevo en otoño"
+      "howTo": "Búscalo en pinares y abetales con musgo sobre suelo ácido y arenoso, a finales de primavera y de nuevo en otoño",
+      "guide": {
+        "identify": "El porcino rojo, llamado también boleto pinícola: el sombrero es de rojo vinoso a caoba, a menudo abollado, aterciopelado de joven y de graso a viscoso con la humedad, con una pruina blanquecina en el borde. El pie, corto y robusto, está teñido de pardo rojizo y lleva un fino retículo de blanquecino a rojizo, y la carne blanca es rojo vinoso justo bajo la cutícula. Los poros pasan de blancos a amarillos y oliva y apenas cambian de color al presionarlos. El boleto bronceado es de sepia a negro, sin rojo; poros rojos o naranjas (Rubroboletus satanas) o rosados con un retículo oscuro (Tylopilus felleus) lo descartan.",
+        "habitat": "Sobre todo con pino silvestre y pícea en suelo ácido, a menudo entre musgo, y en la montaña también con castaños, hayas y abetos, sobre todo entre 400 y 1400 m. Común en Escandinavia, en los pinares de Escocia y en las montañas del centro y el sur de Europa.",
+        "season": "A menudo es el primer boleto del año y el último: una salida en mayo y junio donde sigue fresco y húmedo, y la principal en septiembre y octubre, hasta noviembre y pasadas las primeras heladas.",
+        "picking": "Córtalo o gíralo y no rastrilles el musgo, que protege el micelio. En muchas comunidades autónomas y montes públicos hace falta un permiso de recolección y hay un límite diario: infórmate de las normas del lugar.",
+        "kitchen": "Una vez identificado con certeza, cocínalo bien como el boleto comestible; es más suave y algo resinoso, y los jóvenes muy firmes necesitan más cocción. Tiñe de verde el agua de cocción y va bien en salsas, en escabeche o seco.",
+        "keeps": "Se seca bien en láminas; fresco, úsalo en uno o dos días.",
+        "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Cocina: Regione Piemonte."
+      }
     },
     "summer_bolete": {
       "name": "Boleto de Verano",
       "description": "El primer boleto de la temporada, de sombrero pardo claro finamente agrietado y pie reticulado por completo",
-      "howTo": "Búscalo bajo robles y hayas desde finales de primavera, mucho antes que los demás boletos"
+      "howTo": "Búscalo bajo robles y hayas desde finales de primavera, mucho antes que los demás boletos",
+      "guide": {
+        "identify": "El boleto de verano, o boleto reticulado, tiene el sombrero mate, seco y aterciopelado, de avellana pálido a pardo medio, que con tiempo seco se agrieta en una fina red; nunca es graso y el borde no es más claro que el centro. Su rasgo más claro es un retículo en relieve que baja por el pie casi hasta la base. Los poros son blancos, luego amarillo oliva, y no cambian de color; la carne blanca es más blanda que en el boleto comestible. El boleto de Satanás (Rubroboletus satanas) y Rubroboletus legaliae comparten sus robledales pero tienen poros rojos y carne que azulea; el boleto amargo (Tylopilus felleus) tiene poros rosados y un retículo oscuro.",
+        "habitat": "Robles y castaños, también hayas, tilos y abedules, en bordes de bosque, parques y laderas soleadas, desde el llano hasta unos 1000 m. Común en el centro y el sur de Europa, en especial en el suroeste de Francia y en Portugal; raro en Gran Bretaña.",
+        "season": "El primer boleto del año: desde mayo en zonas bajas y junio en la montaña, sobre todo de julio a principios de septiembre tras lluvias cálidas, hasta el primer frío del otoño.",
+        "picking": "Córtalo o gíralo y deja los pequeños. Con calor muchos tienen gusanos: pártelos en el monte y deja allí los afectados. En muchas comunidades autónomas hace falta un permiso de recolección.",
+        "kitchen": "Muchos lo consideran el mejor boleto: dulce, con sabor a avellana y aromático, para secar, para salsas y con huevos. Una vez identificado con certeza, quita las partes con gusanos y cocínalo bien.",
+        "keeps": "Es el que peor se conserva: cocínalo o sécalo el mismo día.",
+        "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Cocina: Regione Piemonte."
+      }
     },
     "pacific_chant": {
       "name": "Rebozuelo del Pacífico",
       "description": "Un rebozuelo dorado y grande del noroeste del Pacífico, más pálido y rosado que su primo europeo",
-      "howTo": "Búscalo en bosques con musgo de abeto de Douglas y tsuga, una vez llegadas las lluvias de otoño"
+      "howTo": "Búscalo en bosques con musgo de abeto de Douglas y tsuga, una vez llegadas las lluvias de otoño",
+      "guide": {
+        "identify": "Un rebozuelo grande, más pálido y rosado que el europeo: el sombrero es amarillo anaranjado a color albaricoque, y los jóvenes suelen tener finas escamas parduscas y un tono rosado que pueden desaparecer con tiempo húmedo. Los pliegues romos y bifurcados bajan por el pie y son amarillo anaranjado pálido, casi siempre con un tinte rosado; el pie se estrecha hacia abajo, la carne es blanquecina y firme, y el sombrero amarillea al rozarlo. Las especies de Omphalotus y el falso rebozuelo tienen láminas verdaderas finas y apretadas; Turbinellus floccosus, una trompeta honda, hueca y rojo anaranjada con escamas gruesas, causa trastornos digestivos a mucha gente.",
+        "habitat": "Vive asociado a coníferas, sobre todo el abeto de Douglas y la tsuga occidental, también la pícea de Sitka, entre el musgo y la hojarasca de coníferas en bosques jóvenes y viejos, sobre todo en llanuras y estribaciones. Va de la Columbia Británica, por Washington y Oregón, donde es la seta oficial del estado, hasta el norte de California.",
+        "season": "De septiembre a diciembre, a veces hasta enero, cuando las lluvias de otoño han empapado el suelo; un otoño seco lo retrasa. Cada ejemplar crece despacio y puede seguir creciendo semanas con tiempo fresco y húmedo.",
+        "picking": "Córtalo por la base y deja los pequeños para que sigan creciendo; coge solo lo que vayas a comer. Las normas cambian según el bosque nacional, el estado y el parque: algunos piden un permiso gratuito y fijan límites diarios, muchos parques estatales prohíben recoger y para vender hace falta un permiso comercial, así que consulta a la administración del lugar.",
+        "kitchen": "Una vez identificado con total seguridad, quítale las acículas y la tierra con un cepillo; enjuágalo solo si tiene arena y sécalo, porque tras la lluvia retiene agua. No lo comas nunca crudo: saltéalo primero en la sartén sin grasa hasta que suelte el agua y termina con mantequilla. Suave, afrutado y firme; va bien con huevos, nata, pasta, salmón y caza.",
+        "keeps": "Varios días en la nevera en una bolsa de papel. Seco se vuelve correoso: para guardarlo más tiempo, saltéalo en mantequilla y congélalo.",
+        "source": "Identificación: MushroomExpert.com y UBC Beaty Biodiversity Museum. Normas de recogida: Servicio Forestal de EE. UU. Temporada: registros de GBIF."
+      }
     },
     "smooth_chant": {
       "name": "Rebozuelo Liso",
       "description": "Un rebozuelo anaranjado con el envés casi liso en lugar de plegado y fuerte olor a albaricoque",
-      "howTo": "Búscalo en robledales del sureste americano durante el verano húmedo, a menudo en grupos sobre suelo desnudo"
+      "howTo": "Búscalo en robledales del sureste americano durante el verano húmedo, a menudo en grupos sobre suelo desnudo",
+      "guide": {
+        "identify": "Amarillo anaranjado vivo a amarillo yema, de 2,5 a 8 cm, primero plano y luego en forma de jarrón poco profundo con el borde ondulado. Lo distingue la cara inferior: lisa o con arrugas muy bajas, más pálida que el sombrero y a menudo rosada, que baja por el pie, sin láminas verdaderas. El pie se estrecha hacia la base, la carne es blanca y no cambia al cortarla, y el olor suele ser fuerte y dulce, a albaricoque. Omphalotus illudens, pariente de la seta del olivo y común en los mismos robledales, tiene láminas verdaderas finas y apretadas, sale en grupos apretados de madera o raíces enterradas y es anaranjado por dentro.",
+        "habitat": "Vive asociado a robles y a veces a nogales americanos (hickory), en bosques de frondosas y de roble y pino del este de EE. UU., al este de las Montañas Rocosas, y abunda sobre todo en el sureste. A menudo sale en grupos sobre suelo desnudo o con musgo junto a caminos, orillas de arroyos y taludes.",
+        "season": "En verano, de junio a septiembre y sobre todo desde julio, poco después de lluvias cálidas e intensas con tiempo húmedo.",
+        "picking": "Córtalo por la base, deja los pequeños y coge solo lo que vayas a comer. Las normas cambian según el estado, el parque y el bosque nacional, y muchos parques estatales prohíben recoger, así que infórmate antes de ir.",
+        "kitchen": "Una vez identificado con total seguridad, quítale la tierra con un cepillo; la cara inferior lisa apenas guarda arena. No lo comas nunca crudo: cocínalo bien, despacio en mantequilla o en una salsa de nata. Afrutado y suave como otros rebozuelos; va bien con huevos, sémola de maíz (grits), pasta, pollo y cerdo.",
+        "keeps": "Unos días en la nevera en una bolsa de papel. Seco se vuelve correoso: para guardarlo más tiempo, saltéalo en mantequilla y congélalo.",
+        "source": "Identificación y hábitat: MushroomExpert.com y University of Florida IFAS Extension. Temporada: registros de GBIF."
+      }
     },
     "winter_chant": {
       "name": "Rebozuelo de Invierno",
       "description": "Un rebozuelo pequeño de sombrero pardo sobre pie amarillo y hueco, que fructifica hasta las primeras heladas",
-      "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida"
+      "howTo": "Búscalo en la hojarasca con musgo de las coníferas al final de la temporada, a menudo en grupos densos sobre madera podrida",
+      "guide": {
+        "identify": "Pequeño y esbelto: el sombrero mide de 1 a 4 cm, es pardo a pardo amarillento, un embudo fino cuyo centro se abre al pie hueco. Debajo tiene pliegues romos y bifurcados, grises a gris amarillentos, que bajan por el pie; el pie es amarillo a amarillo anaranjado, hueco y a menudo aplastado o acanalado. El cortinario Cortinarius rubellus crece en los mismos bosques de coníferas con musgo: tiene el sombrero pardo rojizo con un mamelón puntiagudo, láminas verdaderas pardo óxido y el pie macizo con bandas amarillas tenues, y destruye los riñones. Revisa cada seta al cogerla y otra vez al limpiarla: el centro de toxicología de Noruega aconseja tirar la cesta entera si aparece aunque sea un solo cortinario.",
+        "habitat": "En suelo húmedo y ácido de bosques de coníferas, sobre todo bajo píceas y pinos, en el musgo, en bordes de turberas y sobre troncos podridos cubiertos de musgo. Común en el norte y centro de Europa y en las montañas del sur; en Norteamérica, en el noroeste del Pacífico, el norte de California y los bosques de coníferas del norte y el este.",
+        "season": "Tarde en el año: en Europa, de septiembre hasta las heladas fuertes, a menudo aún en noviembre y diciembre; en la costa del Pacífico de EE. UU., del otoño a todo el invierno. Necesita un otoño húmedo, y las heladas ligeras no lo detienen.",
+        "picking": "Corta los pies por encima del musgo para que la cesta quede limpia, deja los más pequeños y respeta las normas locales, como las pequeñas cantidades para consumo propio en Alemania. En el sur de Baviera y el Bosque Bávaro todavía acumula cesio de Chernóbil, así que allí cómelo solo de vez en cuando.",
+        "kitchen": "Una vez identificado con total seguridad, abre los pies huecos y enjuaga las acículas y la arena. No lo comas nunca crudo: cocínalo bien, en mantequilla, en salsas o sopas, o con caza. Sabe a tierra y es más intenso de lo que su tamaño sugiere.",
+        "keeps": "Unos días en la nevera, en papel. Se seca muy bien y en un tarro cerrado conserva el aroma durante meses; también se puede cocinar y congelar.",
+        "source": "Identificación: MykoWeb (California Fungi) y First Nature (Reino Unido). Cortinarius rubellus: Instituto Noruego de Salud Pública. Cesio: Oficina Federal alemana de Protección Radiológica (BfS). Temporada: registros de GBIF."
+      }
     },
     "eastern_king": {
       "name": "Boleto Rey del Este",
       "description": "Los boletos de los robledales del este americano: sombrero pardo claro a pardo lila, poros blancos que amarillean con la edad y pie reticulado, sin azulear nunca",
-      "howTo": "Búscalo bajo robles, hayas y nogales americanos en los bosques caducifolios del este, desde junio, pocos días después de una lluvia cálida de verano"
+      "howTo": "Búscalo bajo robles, hayas y nogales americanos en los bosques caducifolios del este, desde junio, pocos días después de una lluvia cálida de verano",
+      "guide": {
+        "identify": "Un pequeño grupo de boletos reyes del este: Boletus variipes tiene el sombrero seco, aterciopelado, de pardo claro a pardo grisáceo, que a menudo se agrieta; Boletus separans, un sombrero de pardo lila a rojo hígado que se aclara a pardo amarillento, con lila en el pie. Los dos tienen poros blancos de jóvenes que amarillean, un retículo bien marcado de blanco a parduzco en el pie y carne blanca que no cambia de color. Los Tylopilus amargos, como Tylopilus plumbeoviolaceus, de tonos violetas, tienen poros que se vuelven rosados. Poros rojos o naranjas (Neoboletus subvelutipes) o poros y carne que azulean (Boletus sensibilis, Boletus huronensis) indican un boleto tóxico.",
+        "habitat": "Con robles, también hayas y otras frondosas, al este de las Rocosas: sobre todo desde Nueva York y los Grandes Lagos, por Pensilvania y los Apalaches, hasta Georgia y los Ozarks. Boletus nobilis y Boletus atkinsonii son del mismo grupo.",
+        "season": "De junio a septiembre, sobre todo en julio y agosto, tras lluvias de verano cálidas y abundantes.",
+        "picking": "Córtalo o gíralo y pártelo en el sitio, porque los boletos de verano suelen tener gusanos. Algunos bosques nacionales piden un permiso gratuito y fijan límites diarios; los parques tienen sus propias normas, a menudo más estrictas.",
+        "kitchen": "Una vez identificado con certeza, cocínalo bien como el boleto comestible: salteado, en pasta, sopas y guisos, o seco para un sabor más intenso. Usa solo ejemplares firmes y frescos.",
+        "keeps": "Se seca muy bien en láminas finas; fresco, úsalo en uno o dos días.",
+        "source": "Identificación y hábitat: MushroomExpert (Michael Kuo). Temporada: registros de GBIF e iNaturalist. Normas: Servicio Forestal de EE. UU."
+      }
     },
     "rocky_king": {
       "name": "Boleto Rey de las Rocosas",
       "description": "Un boleto robusto de alta montaña, de sombrero rojo ladrillo a pardo rojizo, poros blancos y pie grueso y claro reticulado en lo alto",
-      "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre"
+      "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre",
+      "guide": {
+        "identify": "Un boleto grande y robusto de lo alto de las Rocosas, de sombrero rojo ladrillo a pardo rojizo, pegajoso en fresco y a menudo con una pruina blanquecina de joven, más rojo que el boleto comestible (Boletus edulis), que también crece allí. Los poros son blancos y cerrados de jóvenes, luego amarillos y oliva, y no cambian de color. El pie, grueso y claro, lleva un fino retículo blanco al menos en lo alto, y la carne blanca no azulea. Los boletos de álamo temblón (Leccinum) tienen escamas oscuras en el pie, y los de sombrero naranja han causado intoxicaciones digestivas graves en Colorado; poros rojos o naranjas indican un boleto tóxico.",
+        "habitat": "Sobre todo con la pícea de Engelmann, también con abetos y abetos de Douglas, desde unos 2400 m hasta el límite del arbolado, en Colorado, Nuevo México y las montañas de Arizona.",
+        "season": "De julio a septiembre, a veces hasta octubre: empieza con las tormentas del monzón y sube de altitud a lo largo de la temporada; en veranos secos apenas sale.",
+        "picking": "Gíralo con cuidado, porque buena parte del pie está bajo tierra, y deja los muy agusanados. Cada bosque nacional fija sus normas, algunos con permiso gratuito y límites diarios.",
+        "kitchen": "Una vez identificado con certeza, quita los poros amarillos y blandos de los ejemplares maduros, que pueden amargar y volverse viscosos, y cocínalo bien como el boleto comestible o sécalo.",
+        "keeps": "Sécalo en láminas finas o congélalo salteado.",
+        "source": "Identificación y hábitat: Arora y Frank (2014), MushroomExpert y Forage Colorado. Temporada: registros de GBIF. Normas: Servicio Forestal de EE. UU."
+      }
     },
     "lions_mane": {
       "name": "Melena de león",
       "description": "Una mata blanca y desgreñada de largas púas colgantes que crece en árboles de hoja ancha y, cocinada, recuerda al cangrejo",
-      "howTo": "Búscala en robles, hayas y arces heridos o muertos desde finales del verano hasta el otoño, a menudo en lo alto del tronco. En Europa es rara y está protegida en algunos lugares: déjala donde está"
+      "howTo": "Búscala en robles, hayas y arces heridos o muertos desde finales del verano hasta el otoño, a menudo en lo alto del tronco. En Europa es rara y está protegida en algunos lugares: déjala donde está",
+      "guide": {
+        "identify": "Una sola masa blanca y redondeada, de 8 a 24 cm, sin sombrero ni láminas: de ella cuelgan como carámbanos púas blandas de 1 a 5 cm. Amarillea con la edad; la carne es blanca y blanda y no cambia de color al cortarla, y la esporada es blanca. Sus parientes Hericium coralloides y, en Norteamérica, Hericium americanum son ramificados, con púas más cortas.",
+        "habitat": "Sale de heridas de árboles de hoja ancha vivos y en troncos muertos, sobre todo robles, también hayas y arces, a menudo en lo alto. En EE. UU. aparece en todo el país, más en el este; en Europa es rara, en hayas y robles viejos de bosques maduros.",
+        "season": "De finales de verano a finales de otoño, después de la lluvia; en zonas cálidas como California, también en invierno. A menudo vuelve al mismo árbol.",
+        "picking": "En Europa, déjala: es rara y está protegida por ley en varios países, entre ellos Reino Unido, Polonia, Hungría, Croacia, Eslovenia y Suecia; hazle una foto y comunica el hallazgo. En EE. UU., corta con navaja por la base los ejemplares blancos y frescos; en bosques nacionales y parques la recogida puede necesitar permiso o estar prohibida: infórmate de las normas locales.",
+        "kitchen": "Una vez identificada con certeza, cocínala: córtala en lonchas, pásala por la sartén sin grasa hasta que suelte el agua y dórala luego con mantequilla. Su sabor suave y dulce y su textura fibrosa recuerdan al cangrejo; los ejemplares amarillentos saben ácidos.",
+        "keeps": "Unos días en la nevera en una bolsa de papel; congélala cocinada.",
+        "source": "Identificación y temporada: MushroomExpert.com y Wild Food UK. Protección: Lista Roja de la UICN y Wildlife and Countryside Act 1981 del Reino Unido."
+      }
     },
     "hen_of_the_woods": {
       "name": "Maitake",
       "description": "Una gran roseta de lóbulos pardo-grisáceos superpuestos al pie de robles viejos, con poros blancos por debajo",
-      "howTo": "Búscalo en la base de robles viejos o decaídos de finales de agosto a octubre; suele volver al mismo árbol año tras año. Está protegido en parte de Europa central y del norte"
+      "howTo": "Búscalo en la base de robles viejos o decaídos de finales de agosto a octubre; suele volver al mismo árbol año tras año. Está protegido en parte de Europa central y del norte",
+      "guide": {
+        "identify": "Una roseta de 15 a 40 cm formada por muchos sombreritos superpuestos, en forma de cuchara o abanico, gris pardos, de 3 a 14 cm cada uno, que se ramifican de una base blanca común. La cara inferior es blanca, con poros diminutos y no láminas; la carne es blanca y firme y no se mancha al cortarla ni al presionarla. El poliporo gigante (Meripilus) tiene sombreros más grandes y gruesos que se ennegrecen al tocarlos; Polyporus umbellatus tiene sombreritos redondos sobre pequeños pies centrales.",
+        "habitat": "Al pie de robles viejos, a veces en tocones o en otros árboles de hoja ancha; pudre las raíces y vuelve al mismo árbol durante años. Es común en el este de EE. UU. y raro en el oeste; en Europa es escaso y está en declive, bajo robles y castaños viejos.",
+        "season": "De finales de verano a finales de otoño, sobre todo en septiembre y octubre, a menudo tras las primeras noches frescas después de la lluvia.",
+        "picking": "Corta la roseta por la base con navaja, coge solo ejemplares frescos y firmes y deja que el árbol vuelva a dar. En Europa está protegido por ley en Polonia, Estonia, Letonia y Lituania y figura en las listas rojas de Alemania, Austria y otros países: infórmate de las normas locales.",
+        "kitchen": "Una vez identificado con certeza, cocínalo a fondo. Sacude y enjuaga la tierra y los insectos que quedan entre los sombreritos y quita la base dura; fritos o asados, los sombreritos quedan crujientes por los bordes y saben intensos, terrosos y algo picantes.",
+        "keeps": "Varios días en la nevera en una bolsa de papel. Se congela bien una vez cocinado y se seca bien.",
+        "source": "Identificación y hábitat: MushroomExpert.com. Situación en Europa: Lista Roja de la UICN."
+      }
     },
     "saffron_milk_cap": {
       "name": "Níscalo",
       "description": "Un sombrero anaranjado con anillos más oscuros que suelta una leche naranja zanahoria y se mancha de verde; el rovellón de Cataluña",
-      "howTo": "Búscalo bajo pinos y abetos rojos desde finales del verano hasta noviembre, y hasta el invierno en el Mediterráneo y en la costa del Pacífico de EE. UU. Rompe una lámina: la leche debe ser naranja o roja, nunca blanca"
+      "howTo": "Búscalo bajo pinos y abetos rojos desde finales del verano hasta noviembre, y hasta el invierno en el Mediterráneo y en la costa del Pacífico de EE. UU. Rompe una lámina: la leche debe ser naranja o roja, nunca blanca",
+      "guide": {
+        "identify": "Un sombrero naranja con anillos concéntricos más oscuros, de borde enrollado cuando es joven, luego en embudo y a menudo con manchas verdes. Las láminas, apretadas y naranjas, bajan un poco por el pie, corto, hueco y naranja, que suele tener hoyuelos de un naranja más oscuro. Rompe una lámina: la leche es de color zanahoria y puede volverse poco a poco rojo vino, y láminas y carne se manchan de verde al tocarlas. Una leche blanca o que amarillea indica otro Lactarius, como Lactarius torminosus, más rosado, con el borde del sombrero lanoso y barbudo, que crece con abedules.",
+        "habitat": "Bajo pinos, en suelo arenoso o calizo, a menudo en repoblaciones jóvenes y claros con hierba; parientes cercanos crecen bajo píceas (Lactarius deterrimus) y abetos (Lactarius salmonicolor). Común en toda Europa, sobre todo en los pinares de España, Portugal e Italia; en Norteamérica crecen bajo coníferas varias especies afines de leche naranja.",
+        "season": "En otoño: desde finales de verano hasta noviembre en el centro y el norte de Europa. En los pinares mediterráneos sigue a las lluvias de otoño, de octubre hasta enero, y en la costa del Pacífico de EE. UU. fructifica durante el invierno lluvioso.",
+        "picking": "Corta el pie por la base, mira si tiene gusanos y deja los pequeños. En muchas comunidades autónomas y regiones de Italia necesitas un permiso o debes respetar un cupo diario: consulta las normas locales.",
+        "kitchen": "Una vez identificado con certeza, cocínalo bien: a la plancha con ajo, aceite de oliva y perejil, guisado con patatas o arroz, o con carne. Su carne firme y algo granulosa sabe suave y resinosa; una cocción lenta quita el posible amargor. Las manchas verdes no son dañinas, y su pigmento puede teñir la orina de rojo, algo que tampoco es dañino.",
+        "keeps": "Dos días en la nevera. Se seca mal; cocínalo y congélalo, o consérvalo en aceite o en vinagre.",
+        "source": "Identificación y hábitat: First Nature. Conservación: ANSES. Temporada: registros de GBIF."
+      }
     },
     "hedgehog_mushroom": {
       "name": "Lengua de vaca",
       "description": "Un sombrero de color gamuza a anaranjado con púas blandas en lugar de láminas: una de las setas silvestres más seguras para aprender",
-      "howTo": "Búscala en bosques musgosos de coníferas y frondosas desde finales del verano hasta finales del otoño, a menudo en corros o hileras; en la costa del Pacífico de EE. UU., todo el invierno. Dale la vuelta: púas, no láminas"
+      "howTo": "Búscala en bosques musgosos de coníferas y frondosas desde finales del verano hasta finales del otoño, a menudo en corros o hileras; en la costa del Pacífico de EE. UU., todo el invierno. Dale la vuelta: púas, no láminas",
+      "guide": {
+        "identify": "Dale la vuelta: bajo el sombrero tiene púas blandas y quebradizas de 2 a 6 mm, colgando como pequeños carámbanos, no láminas ni pliegues; se desprenden con facilidad. El sombrero mide de 4 a 15 cm, es crema a color gamuza o naranja pálido, seco, aterciopelado y a menudo abollado; el pie es blanco, macizo y a menudo descentrado, y la carne, blanca y firme, se mancha despacio de amarillo a pardo anaranjado al rozarla. Hydnum rufescens, más pequeña y más anaranjada, y las especies americanas de Hydnum tienen las mismas púas blandas. Otros hongos con púas, como Hydnellum y Sarcodon, son duros, acorchados o pardos y escamosos, y muchos amargan.",
+        "habitat": "Vive asociada tanto a coníferas como a frondosas, como píceas, pinos, hayas, robles y abedules, en el musgo y la hojarasca, a menudo en corros o hileras. Común en toda Europa, del llano a la montaña, y en toda Norteamérica; en la costa del Pacífico de EE. UU. crecen varias especies de Hydnum bajo abetos de Douglas, tanoaks y otros árboles.",
+        "season": "En el centro y norte de Europa, de finales del verano a finales del otoño, a menudo hasta las heladas fuertes; en el sur de Europa más tarde y durante más tiempo, hasta el invierno. En la costa del Pacífico de EE. UU. llega con las lluvias de otoño y sigue todo el invierno.",
+        "picking": "Córtala por la base, límpiala de tierra y hojas en el sitio para que no se metan entre las púas y deja las pequeñas. En el sur de Baviera y el Bosque Bávaro todavía acumula cesio de Chernóbil, así que allí cómela solo de vez en cuando.",
+        "kitchen": "Una vez identificada con total seguridad, cepilla el sombrero; en las grandes, quita las púas, que se desprenden en la sartén y pueden amargar. No la comas nunca cruda: cocínala bien, salteada en mantequilla o guisada. Suave, con sabor a fruto seco y algo dulce, y textura firme y carnosa; va bien con huevos, patatas, caza y en salsas.",
+        "keeps": "Al ser firme, se conserva mejor que la mayoría de las setas: varios días en la nevera, en papel. Para guardarla más tiempo, cocínala y congélala.",
+        "source": "Identificación: First Nature (Reino Unido) y MykoWeb (California Fungi). Cesio: Oficina Federal alemana de Protección Radiológica (BfS). Temporada: registros de GBIF."
+      }
     },
     "shaggy_mane": {
       "name": "Barbuda",
       "description": "Un alto cilindro blanco de escamas desgreñadas en céspedes y cunetas que se deshace en tinta negra en menos de un día tras cogerlo",
-      "howTo": "Búscala en céspedes, cunetas y suelos removidos unos días después de las lluvias de otoño, y también tras las de primavera. Coge solo ejemplares jóvenes y completamente blancos y cocínalos el mismo día; evita las carreteras con mucho tráfico, donde absorbe metales pesados"
+      "howTo": "Búscala en céspedes, cunetas y suelos removidos unos días después de las lluvias de otoño, y también tras las de primavera. Coge solo ejemplares jóvenes y completamente blancos y cocínalos el mismo día; evita las carreteras con mucho tráfico, donde absorbe metales pesados",
+      "guide": {
+        "identify": "Un cilindro blanco y alto, de 5 a 15 cm, cubierto de escamas lanosas y levantadas, con la punta parda clara; al envejecer se abre en campana. Las láminas, apretadas, pasan de blanco a rosa y a negro, y se deshacen en tinta negra desde el borde del sombrero hacia arriba; el pie es blanco, liso y hueco, con un anillo fino que se desliza y a menudo cae a la base; la esporada es negra. El coprino entintado (Coprinopsis atramentaria) tiene el sombrero liso, gris pardo y finamente estriado, sin escamas lanosas, y crece en grupos sobre madera enterrada. En céspedes de EE. UU., los ejemplares jóvenes de Chlorophyllum molybdites pueden parecerse, pero sus láminas nunca se vuelven negras.",
+        "habitat": "Céspedes, cunetas, parques, caminos, obras y otros terrenos removidos con hierba, a menudo en filas o grupos. Común en toda Europa y Norteamérica.",
+        "season": "Sobre todo a finales de verano y en otoño, pocos días después de llover, y otra vez en primavera; en la costa del Pacífico de EE. UU. sigue durante el invierno suave y lluvioso.",
+        "picking": "Coge solo ejemplares jóvenes y cerrados, blancos por completo y con las láminas blancas, y solo los que vayas a cocinar ese mismo día. Evita carreteras con tráfico, vertederos y suelos contaminados: acumula metales pesados.",
+        "kitchen": "Una vez identificada con certeza, cocínala en pocas horas y quita cualquier parte rosa o negra, que amarga. Salteada con mantequilla, en sopas o en tortilla, es suave y delicada. No se le conoce reacción con el alcohol, pero al coprino entintado sí, incluso con bebidas tomadas días antes o después de la comida: si no sabes seguro qué coprino tienes, no lo comas.",
+        "keeps": "No se conserva: en menos de un día se convierte en tinta, incluso en la nevera. Cocínala enseguida; cocinada, aguanta uno o dos días en la nevera o se puede congelar.",
+        "source": "Identificación y hábitat: First Nature y Missouri Department of Conservation. Reacción con el alcohol: First Nature. Temporada: registros de GBIF."
+      }
     },
     "giant_puffball": {
       "name": "Bejín gigante",
       "description": "Una bola blanca y lisa, del tamaño de un balón o mayor, en prados y pastos, de carne firme y blanca como la mozzarella fresca",
-      "howTo": "Búscalo en prados, pastos, parques y lindes de bosque desde finales del verano hasta el otoño, a menudo junto a las ortigas. Córtalo siempre por la mitad de arriba abajo: por dentro debe ser blanco puro, sin rastro de sombrero ni pie"
+      "howTo": "Búscalo en prados, pastos, parques y lindes de bosque desde finales del verano hasta el otoño, a menudo junto a las ortigas. Córtalo siempre por la mitad de arriba abajo: por dentro debe ser blanco puro, sin rastro de sombrero ni pie",
+      "guide": {
+        "identify": "Una bola blanca y lisa, a menudo de 20 a 50 cm, con una piel fina como de cuero y sin pie, unida al suelo por un cordón parecido a una raíz. Córtalos todos por la mitad de arriba abajo: por dentro deben ser firmes y de un blanco puro y uniforme, como una mozzarella fresca. Si se ve el contorno de un sombrero, láminas o pie, puede ser una amanita joven aún dentro de su huevo, que puede ser mortal; una piel gruesa, escamosa y amarillenta con el interior oscuro, morado negruzco, indica un Scleroderma, que es tóxico. La carne amarilla, oliva o parda indica que maduran las esporas: ya no es comestible.",
+        "habitat": "Prados, pastos, parques, jardines, setos y lindes de bosque en suelo rico, a menudo entre ortigas y a menudo en el mismo sitio cada año. Extendido en Europa y en el este de EE. UU.; en el interior seco del oeste crece un pariente parecido, Calvatia booniana, entre artemisas y pastizales abiertos.",
+        "season": "De verano a otoño: sobre todo de julio a octubre en Europa, y a finales de verano y principios de otoño en el este de EE. UU. Crece deprisa tras lluvias fuertes con calor.",
+        "picking": "Córtalo por la base y coge solo los firmes y blancos por dentro; uno suele bastar para varias personas. Deja los viejos que amarillean para que suelten sus esporas y evita cunetas y céspedes tratados con productos químicos.",
+        "kitchen": "Una vez identificado con certeza, quítale la piel, que puede ser indigesta, y cocínalo: en filetes gruesos a la plancha con mantequilla o rebozados, tiene un sabor suave y absorbe otros sabores. La primera vez, prueba solo un poco.",
+        "keeps": "Cómelo en dos días, guardado en la nevera, y tíralo en cuanto la carne amarillee. Los filetes ya fritos se congelan bien.",
+        "source": "Identificación y hábitat: Missouri Department of Conservation y First Nature. Conservación: ANSES. Temporada: registros de GBIF."
+      }
     },
     "matsutake": {
       "name": "Matsutake",
       "description": "Una seta firme, blanca y parda, de olor especiado a canela, la más apreciada de todas en Japón",
-      "howTo": "Búscala en pinares secos y arenosos desde agosto en los países nórdicos, y bajo coníferas y tanoaks de septiembre a noviembre en el oeste de EE. UU. No rastrilles nunca el suelo. En Suecia y Noruega está en la lista roja por las talas, no por la recolección; en los bosques nacionales de EE. UU. se necesita un permiso"
+      "howTo": "Búscala en pinares secos y arenosos desde agosto en los países nórdicos, y bajo coníferas y tanoaks de septiembre a noviembre en el oeste de EE. UU. No rastrilles nunca el suelo. En Suecia y Noruega está en la lista roja por las talas, no por la recolección; en los bosques nacionales de EE. UU. se necesita un permiso",
+      "guide": {
+        "identify": "Una seta firme y pesada: el sombrero mide de 6 a 20 cm, es blanco con fibras y escamas pardas (más pardo en Europa y Asia) y de joven tiene el borde enrollado. Las láminas, apretadas y de blancas a crema, están unidas al pie; un velo blanco y grueso deja un anillo abierto, bajo el cual el pie está envuelto en escamas pardas, y el pie, macizo, se estrecha hacia la base, sin bulbo ni volva en forma de saco. El olor es fuerte y especiado, a canela con un fondo a calcetín sucio: sin él no es una matsutake, pero el olor solo no basta. Amanita smithiana y las amanitas blancas mortales (Amanita virosa en Europa, A. bisporigera en el este y A. ocreata en el oeste de EE. UU.) también son blancas, pero tienen en la base un bulbo, una volva o anillos de verrugas, un anillo desgarrado o en falda y ningún olor especiado; destruyen los riñones o el hígado.",
+        "habitat": "Vive asociada a árboles en suelos pobres y bien drenados. En Europa, sobre todo en Finlandia, Suecia y Noruega, en pinares secos ricos en líquenes sobre arena o grava; en el oeste de Norteamérica, bajo pinos, abetos de Douglas, tsugas, abetos y tanoaks, a menudo en suelos arenosos o de pumita; en el este, bajo pino de Banks, pino rojo y tsuga del Canadá, en el norte y los Apalaches.",
+        "season": "En los países nórdicos, de agosto a octubre, tras las lluvias de finales del verano cuando refrescan las noches; en Norteamérica, de septiembre a noviembre, y hasta diciembre en la costa del Pacífico.",
+        "picking": "Sácala con cuidado girándola, luego tapa el hueco y vuelve a poner el musgo y las acículas; no rastrilles ni caves nunca, porque daña el hongo y las cosechas futuras. La UICN la considera vulnerable en todo el mundo y está en la lista roja de Suecia y Noruega, donde la amenaza es la pérdida de pinares viejos, no la recolección; los bosques nacionales de EE. UU. fijan sus propios permisos y límites para la matsutake, así que consulta al distrito forestal.",
+        "kitchen": "Una vez identificada con total seguridad, límpiala con un paño y recorta la base del pie; no la laves. No la comas nunca cruda; cocínala poco y con suavidad para conservar el aroma: en láminas a la plancha, cocida con arroz o en un caldo claro. Firme y algo elástica, con un aroma especiado a pino.",
+        "keeps": "Envuelta en papel en la nevera; úsala en pocos días, antes de que pierda el olor.",
+        "source": "Identificación: UBC Beaty Biodiversity Museum y MushroomExpert.com. Especies parecidas: informes de intoxicaciones de la North American Mycological Association. Estado de conservación: Lista Roja de la UICN. Normas de recogida: Servicio Forestal de EE. UU. Temporada: registros de GBIF."
+      }
     },
     "ramps": {
       "name": "Puerro silvestre americano",
       "description": "El ajo silvestre de América: hojas anchas, lisas y verdes sobre tallos violáceos, con un fuerte olor a cebolla y ajo",
-      "howTo": "Búscalo en bosques de frondosas ricos y húmedos del este de EE. UU. de marzo a mayo, antes de que los árboles echen hojas. Coge una hoja por planta y deja el bulbo; algunos parques prohíben la recolección y Quebec prohíbe su venta"
+      "howTo": "Búscalo en bosques de frondosas ricos y húmedos del este de EE. UU. de marzo a mayo, antes de que los árboles echen hojas. Coge una hoja por planta y deja el bulbo; algunos parques prohíben la recolección y Quebec prohíbe su venta",
+      "guide": {
+        "identify": "Dos o tres hojas anchas, lisas y planas salen directamente del suelo desde un bulbo pequeño, cada una con su propio rabillo, a menudo rojo violáceo en la base; se marchitan a principios del verano, antes de que un tallo sin hojas lleve una umbela redonda de florecillas blancas. Estruja una hoja: el puerro silvestre americano huele mucho a cebolla y ajo y sus dobles mortales no, pero el olor se queda en los dedos, así que tras las primeras hojas la prueba ya no demuestra nada; comprueba también las hojas y los rabillos de cada planta. El falso eléboro (Veratrum viride) tiene hojas plegadas a lo largo de un tallo erguido y crece en suelo encharcado; el lirio de los valles tiene dos o tres hojas que se envuelven entre sí en la base; el cólquico, escapado de jardines, tiene hojas sin rabillo en un manojo; Melanthium parviflorum tiene hojas basales parecidas, pero sin olor a cebolla.",
+        "habitat": "Bosque caducifolio rico y húmedo, con mucha hojarasca, en laderas sombrías y fondos de valle junto a arroyos, desde Quebec y Nueva Inglaterra por los Apalaches hasta Georgia y, al oeste, hasta Minnesota.",
+        "season": "Las hojas salen desde marzo en el sur de los Apalaches y en abril y mayo más al norte, en las pocas semanas antes de que los árboles echen hoja; a finales de mayo o en junio amarillean y se secan.",
+        "picking": "Coge una hoja por planta, cortada con cuchillo, y deja el bulbo: arrancarlo mata la planta, que desde la semilla tarda al menos cinco años en alcanzar tamaño de cosecha. Ha disminuido en parte de su área: el Parque Nacional de las Great Smoky Mountains prohíbe recogerlo, algunos bosques nacionales limitan la recolección y prohíben su venta, y Quebec lo clasifica como vulnerable y prohíbe venderlo; consulta las normas locales.",
+        "kitchen": "Una vez identificado con certeza, las hojas saben a ajo y cebolla intensos: usa unas pocas crudas o saltéalas brevemente con huevos, patatas, pasta y mantequilla.",
+        "keeps": "Las hojas aguantan unos días en la nevera envueltas en un paño húmedo; las hojas picadas, la mantequilla aromatizada y el pesto se congelan bien.",
+        "source": "Identificación, hábitat y recolección: NC State Extension y United Plant Savers. Dobles: Departamento de Salud de Vermont. Normas: Servicio de Parques Nacionales y Servicio Forestal de EE. UU. y Ministerio de Medio Ambiente de Quebec. Temporada: registros de GBIF."
+      }
     },
     "fiddleheads": {
       "name": "Helecho avestruz",
       "description": "Las frondas jóvenes y enroscadas del helecho pluma de avestruz: lisas, de un verde vivo y con escamas pardas como de papel",
-      "howTo": "Búscalos en llanuras de inundación y bosques húmedos de finales de abril a mayo, mientras las frondas siguen enroscadas. Hiérvelos siempre antes de comerlos y no cojas más de la mitad de los brotes de una mata"
+      "howTo": "Búscalos en llanuras de inundación y bosques húmedos de finales de abril a mayo, mientras las frondas siguen enroscadas. Hiérvelos siempre antes de comerlos y no cojas más de la mitad de los brotes de una mata",
+      "guide": {
+        "identify": "Solo se recoge el helecho avestruz. Crece en matas (coronas) de unos tres a doce brotes: espirales verdes y apretadas de unos 2,5 cm de diámetro, sobre un tallo liso con un surco profundo en forma de U por la cara interior, cubiertas de escamas pardas, finas como papel, que se quitan frotando. Las frondas fértiles del año anterior, pardo oscuro, rígidas y en forma de pluma, suelen seguir en pie en la mata. El helecho común (Pteridium aquilinum), que es cancerígeno, brota de uno en uno a partir de tallos subterráneos rastreros, con el tallo redondo y velloso, sin escamas de papel y con la punta dividida en tres; otros helechos tienen brotes lanosos y no se recomiendan para comer.",
+        "habitat": "Riberas sombreadas que se inundan, bancos de arena y bosques húmedos y ricos, a menudo bajo arces y fresnos. En EE. UU. es común en el noreste y alrededor de los Grandes Lagos, hacia el sur hasta Pensilvania y hacia el oeste hasta las Dakotas, y raro en el oeste fuera de Alaska; en Europa crece junto a arroyos del norte y el centro.",
+        "season": "Los brotes salen en primavera, cuando la tierra se calienta tras el deshielo y las crecidas: a finales de abril en el sur de Maine, de mediados a finales de mayo en el extremo norte y, en algunos sitios, hasta principios de junio. Cógelos cuando miden de 5 a 15 cm y están bien enrollados; en pocos días se despliegan y ya no sirven.",
+        "picking": "Coge solo de matas sanas con al menos cuatro brotes, como mucho la mitad, y no vuelvas a ellas esa temporada: cogerlos todos debilita o mata el helecho. Pide permiso al dueño del terreno; en Alemania el helecho avestruz silvestre está protegido por ley, así que allí déjalo.",
+        "kitchen": "No comas nunca los brotes crudos o poco hechos: han causado intoxicaciones alimentarias colectivas (náuseas, vómitos, diarrea y retortijones) investigadas por los CDC de EE. UU. Una vez identificados con certeza, quítales las escamas pardas, lávalos en varias aguas frías y hiérvelos en tandas pequeñas, en mucha agua con sal, durante 15 minutos, o cuécelos al vapor de 10 a 12 minutos; tira el agua. Solo después saltéalos o añádelos a otros platos; saben a espárrago y judía verde.",
+        "keeps": "Guárdalos en la nevera y úsalos antes de una semana. Para congelarlos, escalda tandas pequeñas 2 minutos, enfríalas en agua con hielo, escúrrelas y congélalas; antes de comerlos siguen necesitando los 15 minutos completos de hervor.",
+        "source": "Identificación, temporada, recolección y cocina: University of Maine Cooperative Extension. Intoxicaciones: CDC de EE. UU. Distribución en EE. UU.: Penn State Extension. Protección en Alemania: Bundesartenschutzverordnung."
+      }
     },
     "cloudberry": {
       "name": "Mora de los pantanos",
       "description": "Una baya ámbar de las turberas del norte, parecida a una frambuesa blanda, muy apreciada en los países nórdicos",
-      "howTo": "Búscala en turberas abiertas y brezales húmedos de Fenoscandia en julio y agosto, cuando las bayas pasan de rojas y duras a blandas y amarillo ámbar. Una helada durante la floración puede arruinar la cosecha de un año"
+      "howTo": "Búscala en turberas abiertas y brezales húmedos de Fenoscandia en julio y agosto, cuando las bayas pasan de rojas y duras a blandas y amarillo ámbar. Una helada durante la floración puede arruinar la cosecha de un año",
+      "guide": {
+        "identify": "Una herbácea baja, no un arbusto, de un palmo de alto, que brota de tallos rastreros subterráneos; cada brote erguido lleva de una a tres hojas redondeadas y arrugadas, con cinco a siete lóbulos poco marcados, y una sola flor blanca. Las flores masculinas y femeninas crecen en plantas distintas, así que solo algunos brotes dan fruto. La baya parece una frambuesa de pocas drupas grandes: primero dura y roja, al madurar se vuelve blanda y de color naranja ámbar.",
+        "habitat": "Turberas abiertas, brezales húmedos, pantanos y tundra, a menudo entre musgo esfagno y abedules enanos; común en Noruega, Suecia, Finlandia, los países bálticos y Rusia, y presente en los páramos altos de Escocia y el norte de Inglaterra. En Alemania, Polonia y la República Checa sobrevive solo en unas pocas turberas como reliquia de la glaciación y está protegida o catalogada como amenazada.",
+        "season": "Florece en junio; las bayas maduran desde mediados de julio en el sur de Escandinavia y en los países bálticos hasta agosto en el extremo norte y en la montaña. Una helada durante la floración puede arruinar la cosecha de todo un año.",
+        "picking": "Coge solo bayas blandas y color ámbar que se suelten fácilmente; las rojas y duras no están maduras. En Suecia, Finlandia y Noruega el derecho de acceso a la naturaleza permite a cualquiera recogerlas, pero en Nordland, Troms y Finnmark el propietario puede prohibir la recogida en turberas productivas, avisando con carteles o en la prensa; aun así puedes comerlas allí mismo, y en terrenos públicos de Finnmark solo los residentes pueden recogerlas para vender. Las reservas naturales pueden tener sus propias normas, y en Europa central hay que dejar la planta en paz: consulta las normas locales antes de ir.",
+        "kitchen": "Una vez identificadas con certeza, cómelas frescas con nata o sobre gofres, o cuécelas en mermelada; en Finlandia la mermelada acompaña al queso chirriante templado (leipäjuusto) y en Suecia se sirve sobre helado. Saben ácidas y aromáticas.",
+        "keeps": "Las bayas maduras aguantan solo uno o dos días en la nevera; se congelan bien, y su ácido benzoico natural ayuda a conservar la mermelada.",
+        "source": "Identificación y hábitat: University of Alberta y Minnesota Wildflowers. Normas de recogida: Agencia Noruega de Medio Ambiente (Miljødirektoratet) y Agencia Sueca de Protección del Medio Ambiente (Naturvårdsverket). Estado en Europa central: listas rojas checa y alemana."
+      }
     },
     "huckleberry": {
       "name": "Huckleberry",
       "description": "Una baya de montaña negro violácea del noroeste de EE. UU., más dulce y más ácida que un arándano",
-      "howTo": "Búscala en laderas subalpinas y antiguas zonas quemadas entre 1.000 y 2.000 m en Montana, Idaho y las Cascadas de julio a septiembre. Es territorio de osos: haz ruido y lleva espray antiosos"
+      "howTo": "Búscala en laderas subalpinas y antiguas zonas quemadas entre 1.000 y 2.000 m en Montana, Idaho y las Cascadas de julio a septiembre. Es territorio de osos: haz ruido y lleva espray antiosos",
+      "guide": {
+        "identify": "Arbusto caducifolio, normalmente de la altura de la cintura al hombro, con ramitas jóvenes algo angulosas y verde amarillento y hojas finas, ovaladas, acabadas en punta y de borde finamente dentado. A principios de verano cuelgan flores sueltas en forma de jarrita, de color crema rosado, en las axilas de las hojas; cada una da una sola baya de púrpura a negro rojizo, normalmente sin pruina clara, con una pequeña corona en la punta. Las bayas que no se deben comer en esos mismos bosques crecen de otra forma: la madreselva de involucro (Lonicera involucrata) tiene bayas negras por parejas dentro de brácteas rojas, y la hierba de San Cristóbal roja (Actaea rubra) es una herbácea con bayas rojas o blancas en racimos.",
+        "habitat": "Bosques de coníferas de montaña, laderas subalpinas abiertas y zonas quemadas antiguas, donde los arbustos dan más fruto al sol; desde Columbia Británica hacia el sur por las Cascadas y las Montañas Rocosas del norte (Washington, Oregón, Idaho, Montana, Wyoming) hasta California, con poblaciones aisladas al este hasta las Black Hills y la región de los Grandes Lagos. En el este de EE. UU. el nombre huckleberry suele designar a Gaylussacia, otro arbusto cuyas bayas tienen diez semillas pequeñas y duras.",
+        "season": "Madura desde julio en las zonas más bajas hasta septiembre en las más altas, y en cada arbusto las bayas maduran poco a poco. Una helada tardía en la floración puede reducir la cosecha.",
+        "picking": "Recoge a mano, baya a baya, sin romper ramas. En los bosques nacionales de EE. UU. la recogida para consumo propio suele estar permitida, a veces con un permiso gratuito y límites diarios y por temporada; la recogida comercial necesita permiso o está cerrada, y algunos campos están reservados a las tribus, como parte de los Sawtooth Berry Fields en Washington: consulta las normas de cada bosque. Las manchas de huckleberry son territorio de osos: haz ruido y lleva espray antiosos.",
+        "kitchen": "Una vez identificadas con certeza, cómelas crudas o cocínalas en tartas, mermelada, sirope, tortitas y salsas para la caza; son más intensas que los arándanos de cultivo, dulces con un punto ácido. Lávalas justo antes de usarlas.",
+        "keeps": "Sin lavar y extendidas, aguantan unos días en la nevera; para congelarlas, extiéndelas en una bandeja y luego pásalas a bolsas.",
+        "source": "Identificación y distribución: Servicio Forestal de EE. UU. (Fire Effects Information System) y University of British Columbia. Normas de recogida: Gifford Pinchot National Forest. Bayas parecidas: Servicio de Parques Nacionales de EE. UU."
+      }
     },
     "pawpaw": {
       "name": "Asimina",
       "description": "La mayor fruta nativa de Norteamérica: verde y con forma de mango, de pulpa cremosa que sabe a plátano y mango",
-      "howTo": "Búscala en el sotobosque de los bosques de ribera del este de EE. UU. de finales de agosto a octubre, cuando la fruta se ablanda y cae. Come solo la pulpa: la piel y las semillas son venenosas"
+      "howTo": "Búscala en el sotobosque de los bosques de ribera del este de EE. UU. de finales de agosto a octubre, cuando la fruta se ablanda y cae. Come solo la pulpa: la piel y las semillas son venenosas",
+      "guide": {
+        "identify": "Árbol pequeño de sotobosque que suele formar rodales a partir de brotes de raíz, con hojas grandes y colgantes, más anchas por encima de la mitad, que huelen a pimiento verde al estrujarlas. En primavera, antes que las hojas, salen flores granate oscuro de seis pétalos. El fruto es alargado, de verde a verde amarillento, solo o en racimos de dos a nueve, con pulpa amarilla, blanda y cremosa como unas natillas alrededor de dos hileras de semillas grandes, planas y marrones.",
+        "habitat": "Bosques húmedos y ricos de llanuras de inundación, orillas de arroyos y faldas de ladera sombrías; autóctona en todo el este de EE. UU., del norte de Florida a los Grandes Lagos y el sur de Ontario, y al oeste hasta el este de Nebraska, Kansas, Oklahoma y Texas. No crece silvestre en el oeste de EE. UU.",
+        "season": "El fruto madura desde finales de agosto en el sur hasta septiembre y octubre en el norte; la cosecha de un árbol madura a lo largo de una o dos semanas, y la fruta madura cae.",
+        "picking": "Una fruta madura cede un poco al apretarla suavemente, como un melocotón, y huele intensamente a fruta; el color de la piel no es una señal fiable. Recoge la fruta recién caída o sacude el tronco con suavidad, revisa cada uno o dos días en temporada y trata la fruta con cuidado, porque se magulla con facilidad.",
+        "kitchen": "Una vez identificada con certeza, come solo la pulpa: corta la fruta a lo largo y saca la pulpa con una cuchara, separándola de la piel y de las semillas, que no se deben comer ni masticar. La pulpa sabe a plátano y mango y puede sustituir al plátano en bizcochos, helados y postres; la fruta silvestre puede dejar un regusto amargo. Algunas personas reaccionan con vómitos o una reacción alérgica, así que prueba primero una cantidad pequeña; las fuentes médicas desaconsejan además comer grandes cantidades durante mucho tiempo, porque la pulpa contiene anonacina, un compuesto que en estudios de laboratorio daña las neuronas.",
+        "keeps": "La fruta madura dura solo unos días a temperatura ambiente y una semana en la nevera; si se recoge justo antes de estar del todo madura aguanta hasta tres semanas en la nevera y luego termina de madurar a temperatura ambiente. La pulpa se congela hasta un año.",
+        "source": "Identificación y distribución: University of Kentucky, Center for Crop Diversification. Madurez, preparación y conservación: extensión de Purdue. Reacciones: Memorial Sloan Kettering Cancer Center."
+      }
     },
     "rose_hips": {
       "name": "Escaramujos",
       "description": "Los frutos rojos otoñales de las rosas silvestres, ricos en vitamina C y llenos de semillas envueltas en pelos irritantes",
-      "howTo": "Búscalos en setos, matorrales y lindes de bosque de finales de agosto a noviembre; están más blandos tras las primeras heladas. Quita las semillas y los pelos, que irritan la boca y el intestino"
+      "howTo": "Búscalos en setos, matorrales y lindes de bosque de finales de agosto a noviembre; están más blandos tras las primeras heladas. Quita las semillas y los pelos, que irritan la boca y el intestino",
+      "guide": {
+        "identify": "La rosa canina es un arbusto de tallos largos y arqueados, con aguijones fuertes y curvos en forma de gancho, y hojas de 5 a 7 folíolos dentados. Sus escaramujos son ovalados, lisos, de un rojo escarlata brillante y de 1 a 2 cm de largo, y ya maduros no conservan los sépalos; dentro, las semillas duras van envueltas en pelillos finos e irritantes. En los mismos setos, la nueza negra, la nueza blanca y la dulcamara cuelgan bayas rojas, brillantes y venenosas, en racimos, de tallos trepadores sin aguijones; un escaramujo crece en una rama espinosa de rosal y está lleno de semillas con pelos.",
+        "habitat": "Setos, matorrales, bordes de bosque y herbazales en toda Europa, desde las tierras bajas hasta la montaña. En Estados Unidos la rosa canina crece asilvestrada en algunos lugares, y los escaramujos de los rosales silvestres nativos y del rosal rugoso se usan igual.",
+        "season": "Maduran de septiembre a noviembre y muchos siguen en la mata hasta el invierno. La helada los ablanda y los endulza, pero cuanto más tiempo cuelgan, menos vitamina C tienen.",
+        "picking": "Recoge escaramujos firmes y bien coloreados que cedan un poco al apretarlos, unos pocos de cada mata, y deja muchos para los pájaros. Usa guantes y evita las cunetas y los setos que puedan estar fumigados.",
+        "kitchen": "Una vez identificados con certeza, solo se come la pulpa: las semillas y sus pelillos irritan la boca, el intestino y la piel. Quita el rabillo y la punta, parte los escaramujos por la mitad y raspa todas las semillas y pelos, o cuécelos enteros y pásalos por un colador fino; después vuelve a colar el jugo por un paño. Con la pulpa se hacen mermelada, jalea, jarabe e infusión; va bien con manzana.",
+        "keeps": "Frescos aguantan alrededor de una semana en la nevera. Se congelan bien; las mitades sin semillas, secadas a 50 °C como máximo, se conservan muchos meses en un tarro hermético.",
+        "source": "Identificación y hábitat: Woodland Trust y The Wildlife Trusts. Temporada, recolección y cocina: extensión de la Universidad de Alaska Fairbanks y Bundeszentrum für Ernährung (BZfE, Alemania)."
+      }
     },
     "sloes": {
       "name": "Endrinas",
       "description": "Los pequeños frutos azul negruzco del endrino espinoso, con pruina y un sabor muy áspero",
-      "howTo": "Búscalas en setos y laderas con matorral de septiembre a noviembre; se suavizan tras las primeras heladas. No machaques los huesos y cuidado con los parecidos negros y brillantes, como el espino cerval y la belladona"
+      "howTo": "Búscalas en setos y laderas con matorral de septiembre a noviembre; se suavizan tras las primeras heladas. No machaques los huesos y cuidado con los parecidos negros y brillantes, como el espino cerval y la belladona",
+      "guide": {
+        "identify": "Las endrinas crecen en el endrino, un arbusto leñoso y denso de corteza oscura cuyas ramitas laterales acaban en espinas afiladas; florece en blanco en marzo y abril, antes de sacar las hojas. El fruto es redondo, de alrededor de 1 cm, negro azulado con una pruína azulada que se va al frotar, y crece solo o de dos en dos a lo largo de las ramas; dentro, una pulpa verdosa y muy áspera rodea un único hueso. El espino cerval tiene bayas negras y brillantes en racimos, sin pruína; la belladona es una hierba blanda y frondosa, no un arbusto espinoso, con bayas negras y brillantes sueltas, cada una sobre una estrella verde de sépalos.",
+        "habitat": "Setos, matorrales, bordes de bosque y laderas pedregosas y soleadas, a menudo en espesuras que se extienden por brotes de raíz. Crece en casi toda Europa, en el norte y en el sur, desde las tierras bajas hasta la media montaña.",
+        "season": "Maduran de septiembre a noviembre y están listas cuando son oscuras y se aplastan con los dedos. Tradicionalmente se recogen tras la primera helada, que abre la piel y ablanda el fruto para que suelte el jugo; recogerlas antes y congelarlas una noche consigue lo mismo.",
+        "picking": "Usa guantes: las espinas son largas y afiladas. Recoge de varias matas, deja muchas para los pájaros y evita los setos junto a carreteras y los bordes de campos fumigados.",
+        "kitchen": "Una vez identificadas con certeza, las endrinas son demasiado ásperas para comerlas crudas, pero con ellas se hacen el pacharán navarro, macerado en anís, otros licores y una jalea con manzana. Para el pacharán, se dejan enteras unos meses en aguardiente anisado, con azúcar al gusto, en un sitio oscuro, agitando de vez en cuando, y luego se cuela. No aplastes ni rompas nunca los huesos: la semilla contiene amigdalina, que libera cianuro.",
+        "keeps": "Frescas aguantan unos días en la nevera; congeladas en bolsas cerradas duran meses y van directas del congelador al tarro.",
+        "source": "Identificación, hábitat y la tradición de la helada: Woodland Trust. Huesos: bases de datos fitoquímicas y etnobotánicas del USDA."
+      }
     },
     "sea_buckthorn": {
       "name": "Espino amarillo",
       "description": "Bayas de un naranja intenso apretadas a lo largo de ramas espinosas de hojas plateadas: ácidas y ricas en vitamina C",
-      "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida"
+      "howTo": "Búscalo en dunas costeras y riberas de grava de agosto a octubre. Usa guantes por las espinas e infórmate: en las reservas de dunas la recolección suele estar prohibida",
+      "guide": {
+        "identify": "El espino amarillo es un arbusto espinoso y muy ramificado que forma espesuras, con hojas estrechas, parecidas a las del sauce, cubiertas de escamas plateadas, sobre todo por el envés. Las flores masculinas y femeninas crecen en matas distintas, así que solo las femeninas dan fruto: bayas redondas de color naranja intenso, de 6 a 8 mm, apretadas a lo largo de las ramas sobre rabillos muy cortos. Son jugosas, muy ácidas y revientan al tocarlas; el serbal de cazadores y el espino de fuego, en cambio, llevan sus bayas naranjas en ramilletes con rabillo entre hojas verdes.",
+        "habitat": "Necesita pleno sol y arena o grava sueltas: dunas costeras del mar del Norte, el Báltico y el este de Inglaterra, y graveras y terrazas secas de los ríos de los Alpes y su piedemonte. En el sur de Europa es sobre todo una planta de las graveras de los ríos de montaña, en los Alpes y el Pirineo, donde en algunos valles lo llaman arto blanco; también se planta en taludes y cunetas.",
+        "season": "Las bayas maduran de agosto a octubre y son más aromáticas al principio de la maduración. Siguen en la mata hasta el invierno, pero pasadas saben a rancio.",
+        "picking": "Muchas matas silvestres crecen en espacios protegidos de dunas y riberas donde está prohibido recolectar: consulta antes las normas locales y no cortes nunca ramas de matas silvestres. Usa guantes, pon un cuenco debajo de la rama al recoger porque las bayas revientan y deja muchas para los zorzales que pasan el invierno.",
+        "kitchen": "Una vez identificadas con certeza, las bayas pueden comerse crudas, pero son muy ácidas, algo amargas y manchan; casi siempre se cuecen un momento con un poco de agua y miel o azúcar y se cuelan para zumo, jarabe, jalea o puré. La manzana o el albaricoque suavizan la acidez; el puré va bien con yogur, muesli, helado y sopas.",
+        "keeps": "Frescas se estropean pronto: congélalas, o congela el zumo en porciones. La pulpa que queda al prensar se puede secar para infusión.",
+        "source": "Identificación y hábitat: The Wildlife Trusts y Agencia Europea de Medio Ambiente (EUNIS). Temporada, cocina y conservación: Bundeszentrum für Ernährung (BZfE, Alemania)."
+      }
     },
     "boletus": {
       "name": "Boletus (todos los boletos)",
       "description": "Los boletos tipo porcini y el boleto bayo en una sola puntuación: boleto comestible, de pino, negro y de verano, el boleto bayo en Europa y los reyes norteamericanos",
-      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante"
+      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante",
+      "guide": {
+        "identify": "El grupo reúne el boleto comestible (Boletus edulis), los boletos de pino, bronceado y de verano de Europa, el boleto rey del este y el boleto rey de las Rocosas de Norteamérica, y el boleto bayo (Imleria badia). Los de tipo porcini tienen poros blancos de jóvenes, retículo en el pie y carne blanca que no azulea; el bayo tiene poros amarillos que azulean y un pie estriado sin retículo. El sombrero los separa: pardo y graso (comestible), rojo vinoso (de pino), casi negro y aterciopelado (bronceado), claro y agrietado (de verano), de pardo claro a pardo lila (rey del este), rojo ladrillo (rey de las Rocosas), castaño y viscoso (bayo). Poros rojos o naranjas indican un boleto tóxico como el boleto de Satanás (Rubroboletus satanas); poros rosados y un retículo oscuro, el boleto amargo (Tylopilus felleus).",
+        "habitat": "Todos viven asociados a árboles: el comestible con coníferas, hayas y robles; el de pino con pinos y píceas; el bronceado y el de verano con robles y castaños en bosques cálidos; el bayo con coníferas en suelo ácido y arenoso; el rey del este en robledales del este de EE. UU.; el rey de las Rocosas bajo píceas de alta montaña.",
+        "season": "Juntos van de mayo, con el de verano, a las primeras heladas, con el bayo, que abunda en octubre y noviembre; el comestible sale sobre todo de agosto a octubre. Cada salida llega dos o tres semanas después de una lluvia abundante.",
+        "picking": "Recoge solo lo que sepas identificar con certeza y separa las especies en la cesta. En muchas comunidades autónomas hace falta permiso; en Alemania el boleto comestible solo se permite en pequeñas cantidades para consumo propio y el bronceado está protegido.",
+        "kitchen": "Una vez identificados con certeza, todos se cepillan, se revisan por si tienen gusanos y se cocinan bien. El bayo acumula cesio radiactivo: en partes de Baviera y Austria, cómelo solo de vez en cuando.",
+        "keeps": "Todos se secan bien en láminas finas.",
+        "source": "Identificación y hábitat: Regione Piemonte, First Nature y MushroomExpert. Temporada: registros de GBIF. Normas: BArtSchV (Alemania). Cesio: Oficina Federal alemana de Protección Radiológica (BfS)."
+      }
     },
     "cantharellus": {
       "name": "Rebozuelos (todos)",
       "description": "Todos los rebozuelos en una sola puntuación: los rebozuelos dorados, la trompeta de los muertos y el rebozuelo de invierno y, en Norteamérica, el rebozuelo liso y el rebozuelo del Pacífico",
-      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; los rebozuelos dorados en laderas con musgo bajo robles, hayas y coníferas tras una lluvia templada, las trompetas de los muertos en la hojarasca húmeda bajo frondosas, los rebozuelos de invierno sobre musgo mojado bajo coníferas al final de la temporada"
+      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; los rebozuelos dorados en laderas con musgo bajo robles, hayas y coníferas tras una lluvia templada, las trompetas de los muertos en la hojarasca húmeda bajo frondosas, los rebozuelos de invierno sobre musgo mojado bajo coníferas al final de la temporada",
+      "guide": {
+        "identify": "Cinco especies: el rebozuelo, el rebozuelo liso y el del Pacífico de Norteamérica, la trompeta de los muertos y el rebozuelo de invierno (los dos últimos son del género cercano Craterellus). Todos tienen pliegues romos que se bifurcan o una cara inferior casi lisa que baja por el pie, nunca láminas finas como hojas. El rebozuelo, el liso y el del Pacífico son amarillos a anaranjados y carnosos, con el pie macizo; el de invierno es pequeño, de sombrero pardo y pie amarillo y hueco; la trompeta es un cuerno fino, hueco y gris negruzco. Sus parecidos peligrosos son distintos: las setas del olivo (Omphalotus), con láminas verdaderas y en grupos sobre madera, para los amarillos, y el cortinario Cortinarius rubellus, de láminas pardo óxido, entre los rebozuelos de invierno.",
+        "habitat": "Todos viven asociados a las raíces de los árboles. El rebozuelo crece bajo frondosas y coníferas en toda Europa y Norteamérica; la trompeta, en la hojarasca húmeda, sobre todo bajo hayas y robles; el de invierno, sobre musgo mojado y madera podrida bajo coníferas. El liso es de los robledales del este de EE. UU. y el del Pacífico, de los bosques de abeto de Douglas y tsuga del noroeste del Pacífico.",
+        "season": "Juntos van de principios del verano al invierno: el rebozuelo y el liso desde principios del verano tras lluvias cálidas, la trompeta de finales del verano al otoño, el del Pacífico y el de invierno del otoño al invierno, hasta las heladas fuertes. En el oeste de EE. UU. siguen a las lluvias de otoño e invierno.",
+        "picking": "Córtalos o gíralos por la base, deja los pequeños y coge solo lo que vayas a comer. En Alemania el rebozuelo está especialmente protegido y solo se permiten pequeñas cantidades para consumo propio; otros países, regiones y los terrenos públicos de EE. UU. fijan sus propios límites o permisos, así que consulta las normas locales.",
+        "kitchen": "Una vez identificada cada seta con total seguridad, cocínalas todas bien y no las comas nunca crudas. El rebozuelo, el liso y el del Pacífico son afrutados y firmes, mejor salteados despacio en mantequilla; la trompeta sabe ahumada y el de invierno a tierra, y ambos van bien en salsas, arroces y revueltos. Abre las trompetas y los rebozuelos de invierno a lo largo para enjuagar la tierra.",
+        "keeps": "Frescos, unos días en la nevera, en papel, no en plástico. Las trompetas y los rebozuelos de invierno se secan muy bien; el rebozuelo se vuelve correoso al secarlo y es mejor saltearlo y congelarlo.",
+        "source": "Identificación y hábitat: First Nature (Reino Unido), MushroomExpert.com y MykoWeb (California Fungi). Cortinarius rubellus: Instituto Noruego de Salud Pública. Protección: Reglamento federal alemán de protección de especies. Temporada: registros de GBIF."
+      }
     },
     "bay_bolete": {
       "name": "Boleto Bayo",
       "description": "Un boleto de sombrero castaño, viscoso con la humedad, con poros de crema a amarillo oliva que azulean al tocarlos y pie estriado sin retículo",
-      "howTo": "Búscalo entre el musgo bajo pinos y píceas, y también hayas y robles, en suelos ácidos y arenosos desde agosto hasta las primeras heladas; abunda sobre todo en octubre, cuando los boletos comestibles declinan. Acumula más cesio de Chernóbil que la mayoría de las setas: en Baviera y Austria cómelo solo de vez en cuando"
+      "howTo": "Búscalo entre el musgo bajo pinos y píceas, y también hayas y robles, en suelos ácidos y arenosos desde agosto hasta las primeras heladas; abunda sobre todo en octubre, cuando los boletos comestibles declinan. Acumula más cesio de Chernóbil que la mayoría de las setas: en Baviera y Austria cómelo solo de vez en cuando",
+      "guide": {
+        "identify": "Un boleto sin el retículo en el pie de los boletos tipo porcini: el sombrero es castaño, como de ante en seco y viscoso con la humedad. Los poros son de crema a amarillo pálido, luego oliva, y azulean al presionarlos; la carne, de blanca a amarillo pálido, puede azulear algo al cortarla. El pie, más delgado, está estriado de pardo sobre fondo más claro. Poros rojos o naranjas (Rubroboletus satanas, Neoboletus subvelutipes) o rosados con el pie reticulado (Tylopilus felleus) lo descartan; en el este de Norteamérica, Boletus sensibilis azulea al instante por completo y tiene el pie amarillo, y Boletus huronensis es denso, con forma de porcini y pie amarillento.",
+        "habitat": "Con pinos y píceas, también hayas, robles y castaños, en suelo ácido y arenoso, a menudo entre musgo junto a tocones viejos; común en las llanuras del norte y el centro de Europa. En Norteamérica, en el noreste, los Grandes Lagos y los Apalaches, bajo pinos y tsugas.",
+        "season": "En Europa, de agosto a las primeras heladas fuertes, con su máximo en octubre, después de los boletos comestibles, y hasta diciembre en el sur. En el noreste de Norteamérica antes, sobre todo de julio a septiembre.",
+        "picking": "Gíralo o córtalo y deja los jóvenes y los viejos. Infórmate de las normas: en muchos montes hace falta permiso y en las reservas naturales suele estar prohibido recoger.",
+        "kitchen": "Una vez identificado con certeza, limpia el sombrero con un paño, pélalo si está viscoso, quita los tubos blandos de los viejos y cocínalo bien; el azul desaparece al cocinarlo y el sabor es suave. Acumula más cesio radiactivo que la mayoría de las setas: en partes de Baviera y Austria, cómelo solo de vez en cuando.",
+        "keeps": "Se seca bien en láminas finas y se congela después de cocinarlo.",
+        "source": "Identificación y hábitat: First Nature y MushroomExpert. Temporada: registros de GBIF. Cesio: Oficina Federal alemana de Protección Radiológica (BfS) y LGL de Baviera."
+      }
     }
   },
   "place": {
@@ -392,7 +923,7 @@
     "habitat": "Dónde crece",
     "season": "Cuándo",
     "picking": "Recolección",
-    "kitchen": "En la cocina",
+    "kitchen": "Preparación",
     "keeps": "Conservación",
     "source": "Fuentes"
   },

@@ -19,32 +19,86 @@
     "en": {
       "name": "Boletus (porcini & bay bolete)",
       "description": "Porcini and the bay bolete in one score: porcini, pine, bronze and summer boletes, the bay bolete in Europe and the North American kings",
-      "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain"
+      "howTo": "Each place shows the best of their scores; look in beech, oak, chestnut, pine and spruce woods two to four weeks after a soaking rain",
+      "guide": {
+        "identify": "The group brings together the porcini (Boletus edulis), the pine, bronze and summer boletes of Europe, the eastern king bolete and Rocky Mountain king of North America, and the bay bolete (Imleria badia). The porcini and kings have white young pores, a stem net and white flesh that does not turn blue; the bay bolete has yellow pores that bruise blue-green and a streaky stem without a net. The cap separates them: brown and greasy (porcini), wine-red (pine), near-black and velvety (bronze), pale and cracked (summer), tan to lilac-brown (eastern king), brick-red (Rocky Mountain king), chestnut and tacky (bay). Red or orange pores mean a toxic bolete such as the devil's bolete (Rubroboletus satanas); pink pores and a dark stem net mean the bitter bolete (Tylopilus felleus).",
+        "habitat": "All live with trees: porcini with conifers, beech and oak; the pine bolete with pine and spruce; the bronze and summer boletes with oak and chestnut in warm woods; the bay bolete with conifers on acid sand; the eastern king in eastern US oak woods; the Rocky Mountain king under high spruce.",
+        "season": "Together they run from May, with the summer bolete, to the first frosts, with the bay bolete peaking in October and November; porcini fruit mainly from August to October. Flushes follow a soaking rain by two to three weeks.",
+        "picking": "Pick only what you can name with certainty and keep each kind apart in the basket. Germany allows porcini only in small amounts for your own use and protects the bronze bolete; Italy and Spain often require permits.",
+        "kitchen": "Once identified with certainty, all are brushed, sliced to check for maggots and cooked through. The bay bolete gathers radioactive caesium: in parts of Bavaria and Austria eat it only now and then.",
+        "keeps": "All dry well in thin slices.",
+        "source": "Identification and habitat: Regione Piemonte, First Nature and MushroomExpert. Season: GBIF records. Rules: BArtSchV (Germany). Caesium: German Federal Office for Radiation Protection (BfS)."
+      }
     },
     "it": {
       "name": "Boletus (porcini e boleto baio)",
       "description": "Porcini e boleto baio in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, il boleto baio in Europa e i re boleti nordamericani",
-      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante"
+      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante",
+      "guide": {
+        "identify": "Il gruppo riunisce il porcino (Boletus edulis), il porcino rosso, il porcino nero e il porcino estivo d'Europa, il porcino dell'Est americano e il porcino delle Rocciose del Nord America, e il boleto baio (Imleria badia). I porcini hanno pori bianchi da giovani, un reticolo sul gambo e carne bianca che non vira al blu; il boleto baio ha pori gialli che virano al blu-verde e un gambo striato senza reticolo. Il cappello li distingue: bruno e untuoso (porcino), rosso vinoso (porcino rosso), quasi nero e vellutato (porcino nero), chiaro e screpolato (porcino estivo), da nocciola a bruno-lilla (porcino dell'Est americano), rosso mattone (porcino delle Rocciose), castano e viscido (boleto baio). Pori rossi o arancioni indicano un boleto tossico come il porcino malefico (Rubroboletus satanas); pori rosa e un reticolo scuro, il porcino amaro (Tylopilus felleus).",
+        "habitat": "Tutti vivono in simbiosi con gli alberi: il porcino con conifere, faggi e querce; il porcino rosso con pini e abeti rossi; il porcino nero e quello estivo con querce e castagni nei boschi caldi; il boleto baio con conifere su sabbie acide; il porcino dell'Est americano nei querceti dell'est degli Stati Uniti; quello delle Rocciose sotto gli abeti rossi d'alta quota.",
+        "season": "Insieme vanno da maggio, con il porcino estivo, alle prime gelate, con il boleto baio, più abbondante a ottobre e novembre; il porcino esce soprattutto da agosto a ottobre. Ogni buttata segue di due o tre settimane una pioggia abbondante.",
+        "picking": "Raccogli solo ciò che sai riconoscere con certezza e tieni separate le specie nel cestino. In Italia la maggior parte delle regioni chiede il tesserino; in Germania il porcino è permesso solo in piccole quantità per uso personale e il porcino nero è protetto.",
+        "kitchen": "Una volta riconosciuti con certezza, si spazzolano tutti, si controllano per le larve e si cuociono bene. Il boleto baio accumula cesio radioattivo: in parti della Baviera e dell'Austria mangialo solo ogni tanto.",
+        "keeps": "Tutti si essiccano bene a fette sottili.",
+        "source": "Identificazione e habitat: Regione Piemonte, First Nature e MushroomExpert. Stagione: dati GBIF. Regole: BArtSchV (Germania). Cesio: Ufficio federale tedesco per la radioprotezione (BfS)."
+      }
     },
     "fr": {
       "name": "Boletus (cèpes et bolet bai)",
       "description": "Les cèpes et le bolet bai en un seul score : cèpe de Bordeaux, cèpe des pins, cèpe bronzé et cèpe d'été, le bolet bai en Europe et les bolets royaux d'Amérique du Nord",
-      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie"
+      "howTo": "Chaque lieu affiche le meilleur de leurs scores ; cherchez dans les hêtraies, chênaies, châtaigneraies, pinèdes et pessières deux à quatre semaines après une bonne pluie",
+      "guide": {
+        "identify": "Le groupe réunit le cèpe de Bordeaux (Boletus edulis), les cèpes des pins, bronzé et d'été d'Europe, le cèpe de l'Est américain et le cèpe des Rocheuses d'Amérique du Nord, et le bolet bai (Imleria badia). Les cèpes ont des pores blancs chez le jeune, un réseau sur le pied et une chair blanche qui ne bleuit pas ; le bolet bai a des pores jaunes qui bleuissent et un pied strié sans réseau. Le chapeau les sépare : brun et gras (cèpe de Bordeaux), rouge vineux (cèpe des pins), presque noir et velouté (cèpe bronzé), clair et craquelé (cèpe d'été), fauve à brun lilacin (cèpe de l'Est américain), rouge brique (cèpe des Rocheuses), brun châtaigne et visqueux (bolet bai). Des pores rouges ou orange signalent un bolet toxique comme le bolet Satan (Rubroboletus satanas) ; des pores roses et un réseau sombre, le bolet amer (Tylopilus felleus).",
+        "habitat": "Tous vivent avec des arbres : le cèpe de Bordeaux avec les conifères, le hêtre et le chêne ; le cèpe des pins avec le pin et l'épicéa ; les cèpes bronzé et d'été avec le chêne et le châtaignier dans les bois chauds ; le bolet bai avec les conifères sur sable acide ; le cèpe de l'Est américain dans les chênaies de l'est des États-Unis ; le cèpe des Rocheuses sous les épicéas d'altitude.",
+        "season": "Ensemble, ils vont de mai, avec le cèpe d'été, aux premières gelées, avec le bolet bai, au plus fort en octobre et novembre ; le cèpe de Bordeaux sort surtout d'août à octobre. Chaque poussée suit une bonne pluie de deux à trois semaines.",
+        "picking": "Ne cueillez que ce que vous savez nommer avec certitude et séparez les espèces dans le panier. En France, la cueillette peut être limitée par arrêté ; en Allemagne, le cèpe de Bordeaux n'est permis qu'en petite quantité pour son propre usage et le cèpe bronzé est protégé.",
+        "kitchen": "Après une identification certaine, tous se brossent, se vérifient pour les vers et se cuisent bien. Le bolet bai accumule du césium radioactif : dans certaines régions de Bavière et d'Autriche, n'en mangez que de temps en temps.",
+        "keeps": "Tous se sèchent bien en tranches fines.",
+        "source": "Identification et habitat : Regione Piemonte, First Nature et MushroomExpert. Saison : données GBIF. Règles : BArtSchV (Allemagne). Césium : Office fédéral allemand de radioprotection (BfS)."
+      }
     },
     "de": {
       "name": "Boletus (Steinpilze & Maronen)",
       "description": "Steinpilze und Maronen in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz, in Europa der Maronen-Röhrling und die nordamerikanischen Königsröhrlinge",
-      "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen"
+      "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen",
+      "guide": {
+        "identify": "Die Gruppe umfasst den Steinpilz (Boletus edulis), den Kiefern-, Bronze- und Sommersteinpilz Europas, den Ostamerika- und den Rocky-Mountains-Steinpilz Nordamerikas sowie den Maronen-Röhrling (Imleria badia). Die Steinpilze haben jung weiße Poren, ein Stielnetz und weißes Fleisch, das nicht blau wird; der Maronen-Röhrling hat gelbe, blaugrün anlaufende Poren und einen gestreiften Stiel ohne Netz. Der Hut trennt sie: braun und fettig (Steinpilz), weinrot (Kiefern-Steinpilz), fast schwarz und samtig (Bronze-Steinpilz), hell und rissig (Sommersteinpilz), hell- bis lilabraun (Ostamerika-Steinpilz), ziegelrot (Rocky-Mountains-Steinpilz), kastanienbraun und schmierig (Maronen-Röhrling). Rote oder orange Poren zeigen einen giftigen Röhrling wie den Satansröhrling (Rubroboletus satanas), rosa Poren mit dunklem Stielnetz den Gallenröhrling (Tylopilus felleus).",
+        "habitat": "Alle leben mit Bäumen: der Steinpilz mit Nadelbäumen, Buche und Eiche, der Kiefern-Steinpilz mit Kiefer und Fichte, Bronze- und Sommersteinpilz mit Eiche und Kastanie in warmen Wäldern, der Maronen-Röhrling mit Nadelbäumen auf saurem Sand, der Ostamerika-Steinpilz in Eichenwäldern im Osten der USA, der Rocky-Mountains-Steinpilz unter hochgelegenen Fichten.",
+        "season": "Zusammen reichen sie von Mai, mit dem Sommersteinpilz, bis zu den ersten Frösten, mit dem Maronen-Röhrling, der im Oktober und November am häufigsten ist; der Steinpilz fruchtet vor allem von August bis Oktober. Ein Schub folgt zwei bis drei Wochen auf einen durchdringenden Regen.",
+        "picking": "Sammle nur, was du sicher bestimmen kannst, und halte die Arten im Korb getrennt. In Deutschland ist der Steinpilz nur in geringen Mengen für den eigenen Bedarf erlaubt, der Bronze-Steinpilz ist geschützt; in Italien und Spanien braucht man oft eine Genehmigung.",
+        "kitchen": "Wenn sie sicher bestimmt sind, werden alle abgebürstet, auf Maden geprüft und gut durchgegart. Der Maronen-Röhrling speichert radioaktives Cäsium: Iss ihn in Teilen Bayerns und Österreichs nur ab und zu.",
+        "keeps": "Alle lassen sich in dünnen Scheiben gut trocknen.",
+        "source": "Bestimmung und Standort: Regione Piemonte, First Nature und MushroomExpert. Saison: GBIF-Funddaten. Regeln: Bundesartenschutzverordnung (BArtSchV). Cäsium: Bundesamt für Strahlenschutz (BfS)."
+      }
     },
     "es": {
       "name": "Boletus (todos los boletos)",
       "description": "Los boletos tipo porcini y el boleto bayo en una sola puntuación: boleto comestible, de pino, negro y de verano, el boleto bayo en Europa y los reyes norteamericanos",
-      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante"
+      "howTo": "Cada lugar muestra la mejor de sus puntuaciones; busca en hayedos, robledales, castañares, pinares y abetales dos a cuatro semanas después de una lluvia abundante",
+      "guide": {
+        "identify": "El grupo reúne el boleto comestible (Boletus edulis), los boletos de pino, bronceado y de verano de Europa, el boleto rey del este y el boleto rey de las Rocosas de Norteamérica, y el boleto bayo (Imleria badia). Los de tipo porcini tienen poros blancos de jóvenes, retículo en el pie y carne blanca que no azulea; el bayo tiene poros amarillos que azulean y un pie estriado sin retículo. El sombrero los separa: pardo y graso (comestible), rojo vinoso (de pino), casi negro y aterciopelado (bronceado), claro y agrietado (de verano), de pardo claro a pardo lila (rey del este), rojo ladrillo (rey de las Rocosas), castaño y viscoso (bayo). Poros rojos o naranjas indican un boleto tóxico como el boleto de Satanás (Rubroboletus satanas); poros rosados y un retículo oscuro, el boleto amargo (Tylopilus felleus).",
+        "habitat": "Todos viven asociados a árboles: el comestible con coníferas, hayas y robles; el de pino con pinos y píceas; el bronceado y el de verano con robles y castaños en bosques cálidos; el bayo con coníferas en suelo ácido y arenoso; el rey del este en robledales del este de EE. UU.; el rey de las Rocosas bajo píceas de alta montaña.",
+        "season": "Juntos van de mayo, con el de verano, a las primeras heladas, con el bayo, que abunda en octubre y noviembre; el comestible sale sobre todo de agosto a octubre. Cada salida llega dos o tres semanas después de una lluvia abundante.",
+        "picking": "Recoge solo lo que sepas identificar con certeza y separa las especies en la cesta. En muchas comunidades autónomas hace falta permiso; en Alemania el boleto comestible solo se permite en pequeñas cantidades para consumo propio y el bronceado está protegido.",
+        "kitchen": "Una vez identificados con certeza, todos se cepillan, se revisan por si tienen gusanos y se cocinan bien. El bayo acumula cesio radiactivo: en partes de Baviera y Austria, cómelo solo de vez en cuando.",
+        "keeps": "Todos se secan bien en láminas finas.",
+        "source": "Identificación y hábitat: Regione Piemonte, First Nature y MushroomExpert. Temporada: registros de GBIF. Normas: BArtSchV (Alemania). Cesio: Oficina Federal alemana de Protección Radiológica (BfS)."
+      }
     },
     "pt": {
       "name": "Boletus (porcini e boleto baio)",
       "description": "Os boletos do tipo porcini e o boleto baio numa só pontuação: porcini, de pinheiro, bronzeado e de verão, o boleto baio na Europa e os reis norte-americanos",
-      "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte"
+      "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte",
+      "guide": {
+        "identify": "O grupo junta o boleto comestível (Boletus edulis), os boletos do pinheiro, bronzeado e de verão da Europa, o boleto rei do leste e o boleto rei das Rochosas da América do Norte, e o boleto baio (Imleria badia). Os do tipo porcini têm poros brancos quando jovens, rede no pé e carne branca que não azula; o baio tem poros amarelos que azulam e um pé estriado sem rede. O chapéu distingue-os: castanho e gorduroso (comestível), vermelho-vinho (do pinheiro), quase preto e aveludado (bronzeado), claro e gretado (de verão), castanho-claro a castanho-lilás (rei do leste), vermelho-tijolo (rei das Rochosas), castanho e viscoso (baio). Poros vermelhos ou cor de laranja indicam um boleto tóxico como o boleto-de-satanás (Rubroboletus satanas); poros rosados e uma rede escura, o boleto-amargo (Tylopilus felleus).",
+        "habitat": "Todos vivem associados a árvores: o comestível com coníferas, faias e carvalhos; o do pinheiro com pinheiros e espruces; o bronzeado e o de verão com carvalhos e castanheiros em matas quentes; o baio com coníferas em solo ácido e arenoso; o rei do leste em carvalhais do leste dos EUA; o rei das Rochosas sob espruces de altitude.",
+        "season": "Juntos vão de maio, com o de verão, às primeiras geadas, com o baio, mais abundante em outubro e novembro; o comestível surge sobretudo de agosto a outubro. Cada vaga surge duas a três semanas depois de uma chuva forte.",
+        "picking": "Apanhe só o que saiba identificar com certeza e separe as espécies no cesto. Em áreas protegidas a apanha pode ser proibida e em Espanha muitas vezes é preciso licença; na Alemanha o comestível só se permite em pequenas quantidades e o bronzeado é protegido.",
+        "kitchen": "Depois de identificados com certeza, todos se escovam, se verificam quanto a bicho e se cozinham bem. O baio acumula césio radioativo: em partes da Baviera e da Áustria, coma-o só de vez em quando.",
+        "keeps": "Todos secam bem em fatias finas.",
+        "source": "Identificação e habitat: Regione Piemonte, First Nature e MushroomExpert. Época: registos do GBIF. Regras: BArtSchV (Alemanha). Césio: Serviço Federal alemão de Proteção contra Radiações (BfS)."
+      }
     }
   },
   "identification": {

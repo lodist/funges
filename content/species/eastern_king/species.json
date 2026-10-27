@@ -19,32 +19,86 @@
     "en": {
       "name": "Eastern King Bolete",
       "description": "The king boletes of eastern oak woods: a tan to lilac-brown cap, white pores that turn yellow with age and a netted stem, never bruising blue",
-      "howTo": "Look under oak, beech and hickory in eastern hardwood forest from June, a few days after warm summer rain"
+      "howTo": "Look under oak, beech and hickory in eastern hardwood forest from June, a few days after warm summer rain",
+      "guide": {
+        "identify": "A small group of eastern king boletes: Boletus variipes has a dry, velvety, tan to grey-brown cap that often cracks; Boletus separans has a lilac-brown to liver-red cap fading to yellow-brown, with lilac on the stem. Both have white young pores turning yellowish, a clear white to brownish stem net and white flesh that does not change colour. Bitter Tylopilus, such as the violet-grey Tylopilus plumbeoviolaceus, have pores that turn pink. Red or orange pores (Neoboletus subvelutipes) or bluing pores and flesh (Boletus sensibilis, Boletus huronensis) mean a toxic bolete.",
+        "habitat": "With oaks, also beech and other hardwoods, east of the Rockies: most often from New York and the Great Lakes through Pennsylvania and the Appalachians to Georgia and the Ozarks. Boletus nobilis and Boletus atkinsonii belong to the same group.",
+        "season": "June to September, most of all July and August, after warm, soaking summer rain.",
+        "picking": "Cut or twist it out and slice it on the spot, as summer kings are often maggoty. Some national forests need a free permit and set daily limits; parks have their own, often stricter rules.",
+        "kitchen": "Once it is identified with certainty, cook it through like porcini: sauté it, add it to pasta, soups and stews, or dry it for a deeper flavour. Use only firm, fresh ones.",
+        "keeps": "It dries very well in thin slices; fresh, use it within a day or two.",
+        "source": "Identification and habitat: MushroomExpert (Michael Kuo). Season: GBIF and iNaturalist records. Rules: US Forest Service."
+      }
     },
     "it": {
       "name": "Porcino dell'Est Americano",
       "description": "I porcini dei querceti dell'est americano: cappello da nocciola a bruno-lilla, pori bianchi che ingialliscono con l'età e gambo reticolato, mai viranti al blu",
-      "howTo": "Cercalo sotto querce e faggi nei boschi di latifoglie dell'est, da giugno, pochi giorni dopo una pioggia estiva calda"
+      "howTo": "Cercalo sotto querce e faggi nei boschi di latifoglie dell'est, da giugno, pochi giorni dopo una pioggia estiva calda",
+      "guide": {
+        "identify": "Un piccolo gruppo di porcini dell'est americano: Boletus variipes ha il cappello asciutto, vellutato, da nocciola a bruno-grigiastro, spesso screpolato; Boletus separans un cappello da bruno-lilla a rosso fegato che sbiadisce in bruno-giallastro, con toni lilla sul gambo. Entrambi hanno pori bianchi da giovani, poi giallastri, un reticolo netto da bianco a brunastro sul gambo e carne bianca che non cambia colore. I Tylopilus amari, come Tylopilus plumbeoviolaceus dai toni violetti, hanno pori che diventano rosa. Pori rossi o arancioni (Neoboletus subvelutipes) o pori e carne che virano al blu (Boletus sensibilis, Boletus huronensis) indicano un boleto tossico.",
+        "habitat": "Con le querce, anche faggi e altre latifoglie, a est delle Rocciose: soprattutto da New York e dai Grandi Laghi, attraverso Pennsylvania e Appalachi, fino alla Georgia e agli Ozark. Boletus nobilis e Boletus atkinsonii fanno parte dello stesso gruppo.",
+        "season": "Da giugno a settembre, soprattutto a luglio e agosto, dopo piogge estive calde e abbondanti.",
+        "picking": "Taglialo o estrailo ruotandolo e taglialo sul posto, perché i porcini estivi sono spesso bacati. Alcune foreste nazionali chiedono un permesso gratuito e fissano limiti giornalieri; i parchi hanno regole proprie, spesso più severe.",
+        "kitchen": "Una volta riconosciuto con certezza, cuocilo bene come il porcino: trifolato, con la pasta, nelle zuppe e negli stufati, o essiccato per un sapore più intenso. Usa solo esemplari sodi e freschi.",
+        "keeps": "Si essicca benissimo a fette sottili; fresco, usalo entro uno o due giorni.",
+        "source": "Identificazione e habitat: MushroomExpert (Michael Kuo). Stagione: dati GBIF e iNaturalist. Regole: US Forest Service."
+      }
     },
     "fr": {
       "name": "Cèpe de l'Est Américain",
       "description": "Les cèpes des chênaies de l'est américain : chapeau fauve à brun lilacin, pores blancs jaunissant avec l'âge et pied réticulé, jamais bleuissants",
-      "howTo": "Cherchez-le sous les chênes et les hêtres des forêts feuillues de l'est, dès juin, quelques jours après une pluie d'été chaude"
+      "howTo": "Cherchez-le sous les chênes et les hêtres des forêts feuillues de l'est, dès juin, quelques jours après une pluie d'été chaude",
+      "guide": {
+        "identify": "Un petit groupe de cèpes de l'est de l'Amérique du Nord : Boletus variipes a un chapeau sec, velouté, fauve à brun grisâtre, souvent craquelé ; Boletus separans un chapeau brun lilacin à rouge foie qui pâlit en brun jaunâtre, avec du lilas sur le pied. Tous deux ont des pores blancs chez le jeune, puis jaunâtres, un réseau net blanc à brunâtre sur le pied et une chair blanche qui ne change pas de couleur. Les Tylopilus amers, comme Tylopilus plumbeoviolaceus aux tons violets, ont des pores qui deviennent roses. Des pores rouges ou orange (Neoboletus subvelutipes), ou des pores et une chair qui bleuissent (Boletus sensibilis, Boletus huronensis), signalent un bolet toxique.",
+        "habitat": "Avec les chênes, aussi les hêtres et d'autres feuillus, à l'est des Rocheuses : surtout de New York et des Grands Lacs à la Géorgie et aux monts Ozarks, en passant par la Pennsylvanie et les Appalaches. Boletus nobilis et Boletus atkinsonii appartiennent au même groupe.",
+        "season": "De juin à septembre, surtout en juillet et août, après des pluies d'été chaudes et abondantes.",
+        "picking": "Coupez-le ou dégagez-le en le tournant et coupez-le sur place, car les cèpes d'été sont souvent véreux. Certaines forêts nationales demandent un permis gratuit et fixent des limites par jour ; les parcs ont leurs propres règles, souvent plus strictes.",
+        "kitchen": "Après une identification certaine, cuisez-le bien comme le cèpe de Bordeaux : poêlé, avec des pâtes, en soupe ou en ragoût, ou séché pour plus de goût. N'utilisez que des sujets fermes et frais.",
+        "keeps": "Il se sèche très bien en tranches fines ; frais, utilisez-le sous un ou deux jours.",
+        "source": "Identification et habitat : MushroomExpert (Michael Kuo). Saison : données GBIF et iNaturalist. Règles : US Forest Service."
+      }
     },
     "de": {
       "name": "Ostamerika-Steinpilz",
       "description": "Die Steinpilze der ostamerikanischen Eichenwälder: hellbrauner bis lilabrauner Hut, weisse, im Alter gilbende Poren und genetzter Stiel, nie blau verfärbend",
-      "howTo": "Suche unter Eichen, Buchen und Hickorys in den Laubwäldern des Ostens ab Juni, wenige Tage nach warmem Sommerregen"
+      "howTo": "Suche unter Eichen, Buchen und Hickorys in den Laubwäldern des Ostens ab Juni, wenige Tage nach warmem Sommerregen",
+      "guide": {
+        "identify": "Eine kleine Gruppe ostamerikanischer Königsröhrlinge: Boletus variipes hat einen trockenen, samtigen, hell- bis graubraunen Hut, der oft aufreißt; Boletus separans einen lilabraunen bis leberroten Hut, der zu Gelbbraun verblasst, und Lila am Stiel. Beide haben jung weiße, später gelbliche Poren, ein deutliches weißes bis bräunliches Stielnetz und weißes Fleisch, das sich nicht verfärbt. Bittere Tylopilus-Arten wie der violettgraue Tylopilus plumbeoviolaceus haben Poren, die rosa werden. Rote oder orange Poren (Neoboletus subvelutipes) oder Poren und Fleisch, die blau anlaufen (Boletus sensibilis, Boletus huronensis), zeigen einen giftigen Röhrling.",
+        "habitat": "Bei Eichen, auch Buchen und anderen Laubbäumen, östlich der Rocky Mountains: am häufigsten von New York und den Großen Seen über Pennsylvania und die Appalachen bis Georgia und in die Ozarks. Boletus nobilis und Boletus atkinsonii gehören zur selben Gruppe.",
+        "season": "Juni bis September, am meisten im Juli und August, nach warmem, durchdringendem Sommerregen.",
+        "picking": "Schneide oder dreh ihn heraus und schneide ihn gleich auf, denn Sommerpilze sind oft madig. Manche National Forests verlangen eine kostenlose Genehmigung mit Tagesgrenzen; Parks haben eigene, oft strengere Regeln.",
+        "kitchen": "Ist er sicher bestimmt, gare ihn wie den Steinpilz gut durch: braten, zu Nudeln, Suppen und Eintöpfen geben oder für mehr Aroma trocknen. Nimm nur feste, frische Exemplare.",
+        "keeps": "In dünnen Scheiben lässt er sich sehr gut trocknen; frisch ein bis zwei Tage haltbar.",
+        "source": "Bestimmung und Standort: MushroomExpert (Michael Kuo). Saison: GBIF- und iNaturalist-Funddaten. Regeln: US Forest Service."
+      }
     },
     "es": {
       "name": "Boleto Rey del Este",
       "description": "Los boletos de los robledales del este americano: sombrero pardo claro a pardo lila, poros blancos que amarillean con la edad y pie reticulado, sin azulear nunca",
-      "howTo": "Búscalo bajo robles, hayas y nogales americanos en los bosques caducifolios del este, desde junio, pocos días después de una lluvia cálida de verano"
+      "howTo": "Búscalo bajo robles, hayas y nogales americanos en los bosques caducifolios del este, desde junio, pocos días después de una lluvia cálida de verano",
+      "guide": {
+        "identify": "Un pequeño grupo de boletos reyes del este: Boletus variipes tiene el sombrero seco, aterciopelado, de pardo claro a pardo grisáceo, que a menudo se agrieta; Boletus separans, un sombrero de pardo lila a rojo hígado que se aclara a pardo amarillento, con lila en el pie. Los dos tienen poros blancos de jóvenes que amarillean, un retículo bien marcado de blanco a parduzco en el pie y carne blanca que no cambia de color. Los Tylopilus amargos, como Tylopilus plumbeoviolaceus, de tonos violetas, tienen poros que se vuelven rosados. Poros rojos o naranjas (Neoboletus subvelutipes) o poros y carne que azulean (Boletus sensibilis, Boletus huronensis) indican un boleto tóxico.",
+        "habitat": "Con robles, también hayas y otras frondosas, al este de las Rocosas: sobre todo desde Nueva York y los Grandes Lagos, por Pensilvania y los Apalaches, hasta Georgia y los Ozarks. Boletus nobilis y Boletus atkinsonii son del mismo grupo.",
+        "season": "De junio a septiembre, sobre todo en julio y agosto, tras lluvias de verano cálidas y abundantes.",
+        "picking": "Córtalo o gíralo y pártelo en el sitio, porque los boletos de verano suelen tener gusanos. Algunos bosques nacionales piden un permiso gratuito y fijan límites diarios; los parques tienen sus propias normas, a menudo más estrictas.",
+        "kitchen": "Una vez identificado con certeza, cocínalo bien como el boleto comestible: salteado, en pasta, sopas y guisos, o seco para un sabor más intenso. Usa solo ejemplares firmes y frescos.",
+        "keeps": "Se seca muy bien en láminas finas; fresco, úsalo en uno o dos días.",
+        "source": "Identificación y hábitat: MushroomExpert (Michael Kuo). Temporada: registros de GBIF e iNaturalist. Normas: Servicio Forestal de EE. UU."
+      }
     },
     "pt": {
       "name": "Boleto Rei do Leste",
       "description": "Os cogumelos boleto dos carvalhais do leste americano: chapéu castanho claro a castanho-lilás, poros brancos que amarelecem com a idade e pé reticulado, sem nunca azular",
-      "howTo": "Procure sob carvalhos, faias e nogueiras-americanas nas florestas caducifólias do leste, a partir de junho, poucos dias depois de uma chuva quente de verão"
+      "howTo": "Procure sob carvalhos, faias e nogueiras-americanas nas florestas caducifólias do leste, a partir de junho, poucos dias depois de uma chuva quente de verão",
+      "guide": {
+        "identify": "Um pequeno grupo de boletos reis do leste da América do Norte: o Boletus variipes tem o chapéu seco, aveludado, castanho-claro a castanho-acinzentado, que muitas vezes greta; o Boletus separans, um chapéu castanho-lilás a vermelho-fígado que desbota para castanho-amarelado, com lilás no pé. Ambos têm poros brancos quando jovens que amarelecem, uma rede bem marcada, branca a acastanhada, no pé e carne branca que não muda de cor. Os Tylopilus amargos, como o Tylopilus plumbeoviolaceus, de tons violeta, têm poros que ficam rosados. Poros vermelhos ou cor de laranja (Neoboletus subvelutipes) ou poros e carne que azulam (Boletus sensibilis, Boletus huronensis) indicam um boleto tóxico.",
+        "habitat": "Com carvalhos, também faias e outras folhosas, a leste das Rochosas: sobretudo desde Nova Iorque e os Grandes Lagos, pela Pensilvânia e pelos Apalaches, até à Geórgia e aos montes Ozark. O Boletus nobilis e o Boletus atkinsonii pertencem ao mesmo grupo.",
+        "season": "De junho a setembro, sobretudo em julho e agosto, depois de chuvas de verão quentes e fortes.",
+        "picking": "Corte-o ou rode-o para o tirar e corte-o logo no local, porque os boletos de verão têm muitas vezes bicho. Algumas florestas nacionais pedem uma licença gratuita e fixam limites diários; os parques têm regras próprias, muitas vezes mais rigorosas.",
+        "kitchen": "Depois de identificado com certeza, cozinhe-o bem como o boleto comestível: salteado, com massa, em sopas e estufados, ou seco para um sabor mais intenso. Use só exemplares firmes e frescos.",
+        "keeps": "Seca muito bem em fatias finas; fresco, use-o em um ou dois dias.",
+        "source": "Identificação e habitat: MushroomExpert (Michael Kuo). Época: registos do GBIF e do iNaturalist. Regras: Serviço Florestal dos EUA."
+      }
     }
   },
   "identification": {
@@ -174,6 +228,8 @@
         "https://www.gbif.org/species/6015920"
       ]
     },
-    "rangePrior": { "taxonKeys": [2524722, 7240439, 6015430, 6015920] }
+    "rangePrior": {
+      "taxonKeys": [2524722, 7240439, 6015430, 6015920]
+    }
   }
 }

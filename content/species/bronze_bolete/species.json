@@ -19,32 +19,86 @@
     "en": {
       "name": "Bronze Bolete",
       "description": "A dark bronze to almost black-capped porcino with a pale netted stem and firm white flesh",
-      "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete"
+      "howTo": "Look on warm lowland slopes under oak and sweet chestnut, later in the season than the summer bolete",
+      "guide": {
+        "identify": "The darkest porcino: the cap is dark chestnut to almost black, often with bronze patches, and stays dry and finely velvety even when wet. The pores are white, then yellow to olive, and do not turn blue. The pale brown stem has a fine brown net, densest at the top, and the very firm white flesh does not change colour when cut. The summer bolete is paler, with a net further down the stem; the devil's bolete (Rubroboletus satanas) and Le Gal's bolete (Rubroboletus legaliae), which share its oak woods, have red pores and bluing flesh.",
+        "habitat": "Warm, sunny slopes with oak, sweet chestnut and beech, mostly between 200 and 1,000 m. Common around the Mediterranean, in Italy along the Apennines and on the islands; rare in Britain and Germany.",
+        "season": "From July after summer storms, but mainly in September and October, later than the summer bolete, and into November in the south. It fruits when a soaking rain and cooling soil follow a hot spell.",
+        "picking": "Cut or twist it out and leave young ones to grow. In Germany it is rare and specially protected: do not pick it there. Italy and Spain have regional permits and daily limits.",
+        "kitchen": "The firmest of the porcini, with a nutty taste that grows when dried. Once it is identified with certainty, brush it, check for maggots and cook it through, as you would porcini.",
+        "keeps": "It dries and freezes very well in slices.",
+        "source": "Identification, habitat and season: Regione Piemonte and First Nature; GBIF records. Protection: BArtSchV (Germany). Cooking: Regione Piemonte."
+      }
     },
     "it": {
       "name": "Porcino Nero",
       "description": "Un porcino dal cappello bronzeo scuro, quasi nero, con gambo reticolato chiaro e polpa bianca e soda",
-      "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo"
+      "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo",
+      "guide": {
+        "identify": "Il più scuro dei porcini, detto anche bronzino: il cappello va dal castano scuro al quasi nero, spesso con chiazze bronzee, e resta asciutto e finemente vellutato anche con l'umidità. I pori sono bianchi, poi gialli fino all'oliva, e non virano al blu. Il gambo nocciola chiaro porta un fine reticolo bruno, più fitto in alto, e la carne bianca, sodissima, non cambia colore al taglio. Il porcino estivo è più chiaro, con il reticolo più esteso; il porcino malefico (Rubroboletus satanas) e Rubroboletus legaliae, che crescono negli stessi querceti, hanno pori rossi e carne che vira al blu.",
+        "habitat": "Versanti caldi e soleggiati con querce, castagni e faggi, di solito tra 200 e 1000 m. Comune nell'area mediterranea, in Italia lungo l'Appennino e nelle isole; raro in Gran Bretagna e in Germania.",
+        "season": "Da luglio dopo i temporali estivi, ma soprattutto a settembre e ottobre, più tardi del porcino estivo, e fino a novembre al sud. Fruttifica quando, dopo un periodo caldo, arrivano una pioggia abbondante e il raffreddamento del suolo.",
+        "picking": "Taglialo o estrailo ruotandolo e lascia crescere i giovani. In Italia la maggior parte delle regioni chiede il tesserino e fissa un limite giornaliero; in Germania è raro e particolarmente protetto, quindi lì non va raccolto.",
+        "kitchen": "È il più sodo dei porcini, con un sapore di nocciola che cresce con l'essiccazione. Una volta riconosciuto con certezza, spazzolalo, controlla le larve e cuocilo bene, come il porcino.",
+        "keeps": "Si essicca e si surgela benissimo a fette.",
+        "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Tutela: BArtSchV (Germania). Cucina: Regione Piemonte."
+      }
     },
     "fr": {
       "name": "Cèpe Bronzé",
       "description": "Un cèpe au chapeau bronze foncé presque noir, au pied clair réticulé et à la chair blanche et ferme",
-      "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été"
+      "howTo": "Cherchez-le sur les coteaux chauds de plaine sous les chênes et les châtaigniers, plus tard que le cèpe d'été",
+      "guide": {
+        "identify": "Le plus sombre des cèpes, appelé aussi cèpe noir : le chapeau est brun châtain foncé à presque noir, souvent taché de bronze, et reste sec et finement velouté même par temps humide. Les pores sont blancs, puis jaunes à olive, et ne bleuissent pas. Le pied brun clair porte un fin réseau brun, plus dense en haut, et la chair blanche, très ferme, ne change pas de couleur à la coupe. Le cèpe d'été est plus clair, avec un réseau qui descend plus bas ; le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae), qui partagent ses chênaies, ont des pores rouges et une chair qui bleuit.",
+        "habitat": "Pentes chaudes et ensoleillées avec chênes, châtaigniers et hêtres, surtout entre 200 et 1000 m. Commun autour de la Méditerranée, en Italie le long des Apennins et dans les îles ; rare en Grande-Bretagne et en Allemagne.",
+        "season": "Dès juillet après les orages d'été, mais surtout en septembre et octobre, plus tard que le cèpe d'été, et jusqu'en novembre dans le sud. Il fructifie quand une bonne pluie et un sol qui se refroidit suivent une période de chaleur.",
+        "picking": "Coupez-le ou dégagez-le en le tournant et laissez grandir les jeunes. La cueillette peut être limitée par arrêté en France ; en Allemagne, il est rare et spécialement protégé : ne l'y cueillez pas.",
+        "kitchen": "C'est le plus ferme des cèpes, au goût de noisette qui se renforce au séchage. Après une identification certaine, brossez-le, vérifiez les vers et cuisez-le bien, comme le cèpe de Bordeaux.",
+        "keeps": "Il se sèche et se congèle très bien en tranches.",
+        "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Protection : BArtSchV (Allemagne). Cuisine : Regione Piemonte."
+      }
     },
     "de": {
       "name": "Bronze-Steinpilz",
       "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hell genetztem Stiel und festem weissem Fleisch",
-      "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz"
+      "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz",
+      "guide": {
+        "identify": "Der dunkelste Steinpilz: Der Hut ist dunkel kastanienbraun bis fast schwarz, oft bronzefleckig, und bleibt auch bei Nässe trocken und fein samtig. Die Poren sind weiß, dann gelb bis oliv, und laufen nicht blau an. Der hellbraune Stiel trägt ein feines braunes Netz, oben am dichtesten, und das sehr feste weiße Fleisch verfärbt sich beim Schneiden nicht. Der Sommersteinpilz ist heller, sein Netz reicht weiter hinab; der Satansröhrling (Rubroboletus satanas) und Rubroboletus legaliae, die in denselben Eichenwäldern wachsen, haben rote Poren und blau anlaufendes Fleisch.",
+        "habitat": "Warme, sonnige Hänge mit Eiche, Edelkastanie und Buche, meist zwischen 200 und 1000 m. Häufig rund ums Mittelmeer, in Italien entlang des Apennins und auf den Inseln; in Deutschland und Großbritannien selten.",
+        "season": "Ab Juli nach Sommergewittern, vor allem aber im September und Oktober, später als der Sommersteinpilz, im Süden bis in den November. Er fruchtet, wenn nach einer Hitzeperiode durchdringender Regen fällt und der Boden abkühlt.",
+        "picking": "Schneide oder dreh ihn heraus und lass junge stehen. In Deutschland ist er selten und besonders geschützt: Sammle ihn hier nicht. In Italien und Spanien gelten regionale Genehmigungen und Tagesgrenzen.",
+        "kitchen": "Er ist der festeste aller Steinpilze, nussig und getrocknet noch kräftiger. Ist er sicher bestimmt, bürste ihn ab, prüf ihn auf Maden und gare ihn wie den Steinpilz gut durch.",
+        "keeps": "In Scheiben lässt er sich sehr gut trocknen und einfrieren.",
+        "source": "Bestimmung, Standort und Saison: Regione Piemonte und First Nature; GBIF-Funddaten. Schutz: Bundesartenschutzverordnung (BArtSchV). Küche: Regione Piemonte."
+      }
     },
     "es": {
       "name": "Boleto Bronceado",
       "description": "Un boleto de sombrero bronceado oscuro casi negro, con pie claro reticulado y carne blanca y firme",
-      "howTo": "Búscalo en laderas cálidas de baja altitud bajo robles y castaños, más tarde que el boleto de verano"
+      "howTo": "Búscalo en laderas cálidas de baja altitud bajo robles y castaños, más tarde que el boleto de verano",
+      "guide": {
+        "identify": "El más oscuro de los boletos tipo porcini, llamado también boleto negro: el sombrero es de castaño oscuro a casi negro, a menudo con manchas bronceadas, y sigue seco y finamente aterciopelado incluso con humedad. Los poros son blancos, luego amarillos a oliva, y no azulean. El pie, pardo claro, tiene un fino retículo pardo, más denso arriba, y la carne blanca, muy firme, no cambia de color al cortarla. El boleto de verano es más claro y su retículo baja más; el boleto de Satanás (Rubroboletus satanas) y Rubroboletus legaliae, que comparten sus robledales, tienen poros rojos y carne que azulea.",
+        "habitat": "Laderas cálidas y soleadas con robles, castaños y hayas, sobre todo entre 200 y 1000 m. Común en torno al Mediterráneo, en Italia a lo largo de los Apeninos y en las islas; raro en Gran Bretaña y Alemania.",
+        "season": "Desde julio tras las tormentas de verano, pero sobre todo en septiembre y octubre, más tarde que el boleto de verano, y hasta noviembre en el sur. Fructifica cuando, tras una época de calor, llega una lluvia abundante y el suelo se enfría.",
+        "picking": "Córtalo o gíralo y deja crecer los jóvenes. En muchas comunidades autónomas hace falta permiso y hay un límite diario; en Alemania es raro y está especialmente protegido, así que allí no se puede recoger.",
+        "kitchen": "Es el más firme de los boletos tipo porcini, con un sabor a avellana que crece al secarlo. Una vez identificado con certeza, cepíllalo, revisa si tiene gusanos y cocínalo bien, como el boleto comestible.",
+        "keeps": "Se seca y se congela muy bien en láminas.",
+        "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Protección: BArtSchV (Alemania). Cocina: Regione Piemonte."
+      }
     },
     "pt": {
       "name": "Boleto Bronzeado",
       "description": "Um cogumelo boleto de chapéu bronzeado escuro quase preto, com pé claro reticulado e carne branca e firme",
-      "howTo": "Procure em encostas quentes de baixa altitude sob carvalhos e castanheiros, mais tarde que o boleto de verão"
+      "howTo": "Procure em encostas quentes de baixa altitude sob carvalhos e castanheiros, mais tarde que o boleto de verão",
+      "guide": {
+        "identify": "O mais escuro dos boletos do tipo porcini: o chapéu vai de castanho-escuro a quase preto, muitas vezes com manchas bronzeadas, e mantém-se seco e finamente aveludado mesmo com humidade. Os poros são brancos, depois amarelos a verde-oliva, e não azulam. O pé castanho-claro tem uma fina rede castanha, mais densa em cima, e a carne branca, muito firme, não muda de cor ao corte. O boleto de verão é mais claro e a rede desce mais; o boleto-de-satanás (Rubroboletus satanas) e o Rubroboletus legaliae, que partilham os seus carvalhais, têm poros vermelhos e carne que azula.",
+        "habitat": "Encostas quentes e soalheiras com carvalhos, castanheiros e faias, sobretudo entre 200 e 1000 m. Comum à volta do Mediterrâneo, em Itália ao longo dos Apeninos e nas ilhas; raro na Grã-Bretanha e na Alemanha.",
+        "season": "A partir de julho depois das trovoadas de verão, mas sobretudo em setembro e outubro, mais tarde que o boleto de verão, e até novembro no sul. Frutifica quando, depois de um período de calor, chegam uma chuva forte e o arrefecimento do solo.",
+        "picking": "Corte-o ou rode-o para o tirar e deixe crescer os jovens. Em áreas protegidas a apanha pode ser proibida e em Espanha muitas vezes é preciso licença; na Alemanha é raro e especialmente protegido, por isso não se pode apanhar.",
+        "kitchen": "É o mais firme dos boletos do tipo porcini, com um sabor a avelã que aumenta depois de seco. Depois de identificado com certeza, escove-o, veja se tem bicho e cozinhe-o bem, como o boleto comestível.",
+        "keeps": "Seca e congela muito bem em fatias.",
+        "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Proteção: BArtSchV (Alemanha). Cozinha: Regione Piemonte."
+      }
     }
   },
   "identification": {
@@ -149,6 +203,8 @@
       "taxonKeys": [8733688],
       "references": ["https://www.gbif.org/species/8733688"]
     },
-    "rangePrior": { "taxonKeys": [8733688] }
+    "rangePrior": {
+      "taxonKeys": [8733688]
+    }
   }
 }

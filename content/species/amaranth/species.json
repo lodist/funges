@@ -19,32 +19,86 @@
     "en": {
       "name": "Amaranth",
       "description": "A leafy green plant, often considered a weed, with edible leaves and seeds rich in nutrients.",
-      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering."
+      "howTo": "Look for it in disturbed soils, gardens, and fields during summer. Young leaves are best harvested before flowering.",
+      "guide": {
+        "identify": "Redroot amaranth (pigweed) is a stout, upright annual with a stem covered in fine white hairs, red at the base, and a pink to red taproot. Its alternate leaves are oval to diamond-shaped, smooth-edged and long-stalked, often with a small notch or tiny point at the tip; the tiny green flowers sit in dense, bristly, prickly spikes and later hold tiny, shiny black seeds. Two toxic weeds share its ground: thorn apple (Datura), with large, coarsely toothed, foul-smelling leaves, white trumpet flowers and spiny pods, and black nightshade, with wavy-edged leaves, small white star flowers and black berries.",
+        "habitat": "Gardens, fields, farmyards and waste ground: bare, rich, disturbed soil in full sun. Native to central and eastern North America, it is a common weed across the US and much of Europe, most of all in warm lowlands.",
+        "season": "A summer annual: it comes up in late spring once the soil warms, flowers from about July to September and ripens seed from August to October, until the first frost. The leaves are best young, before flowering.",
+        "picking": "Pick young leaves and tender tops by hand before flowering, and rub out the seed heads once the seeds are black. Avoid roadsides and sprayed fields; skip heavily manured or fertilised ground and drought-stressed plants, which build up the most nitrate.",
+        "kitchen": "Once identified with certainty, cook the leaves like spinach: boil them briefly and pour the water away, which lowers their nitrate and oxalate. Eat them in moderation, and not at all if you have kidney stones or kidney disease; they taste mild and earthy, good with garlic, beans and eggs. The seeds can be toasted or cooked like a grain.",
+        "keeps": "The leaves wilt within a day: keep them in a bag in the fridge, or blanch and freeze them. Dry the seed heads in a paper bag, rub out and winnow the seeds and store them in a closed jar.",
+        "source": "Identification and season: Cornell University and NC State Extension. Nitrates and oxalates: NC State Extension and Michigan State University Extension. Thorn apple mix-ups: Marseille poison control centre."
+      }
     },
     "it": {
       "name": "Amaranto",
       "description": "Una pianta erbacea con foglie e semi commestibili, ricca di nutrienti.",
-      "howTo": "Cresce in terreni disturbati, orti e campi durante l'estate. Raccogli le foglie giovani prima della fioritura."
+      "howTo": "Cresce in terreni disturbati, orti e campi durante l'estate. Raccogli le foglie giovani prima della fioritura.",
+      "guide": {
+        "identify": "L'amaranto comune (Amaranthus retroflexus) è una pianta annuale robusta ed eretta, con il fusto coperto di sottili peli bianchi e rossastro alla base e una radice a fittone rosa o rossa. Le foglie alterne sono ovali o romboidali, a margine liscio e con un lungo picciolo, spesso con una piccola tacca o una minuscola punta all'apice; i minuscoli fiori verdi formano spighe dense, ispide e pungenti, e poi minuscoli semi neri e lucidi. Sullo stesso terreno crescono due infestanti tossiche: lo stramonio, con foglie grandi a denti irregolari e dall'odore sgradevole, fiori bianchi a tromba e capsule spinose, e l'erba morella, con foglie a margine ondulato, piccoli fiori bianchi a stella e bacche nere.",
+        "habitat": "Orti, campi coltivati, aie e incolti: terreno nudo, ricco e smosso, in pieno sole. Originario del Nord America centrale e orientale, è un'infestante comune in tutti gli Stati Uniti e in gran parte d'Europa, soprattutto in pianura e nelle zone calde.",
+        "season": "È annuale ed estivo: nasce a fine primavera, quando il terreno si scalda, fiorisce più o meno da luglio a settembre e matura i semi da agosto a ottobre, fino alla prima gelata. Le foglie sono migliori giovani, prima della fioritura.",
+        "picking": "Raccogli a mano le foglie giovani e le cime tenere prima della fioritura, e sgrana le spighe quando i semi sono neri. Evita i bordi delle strade e i campi trattati, e lascia stare i terreni molto concimati o letamati e le piante sofferenti per la siccità, che accumulano più nitrati.",
+        "kitchen": "Una volta identificato con certezza, cuoci le foglie come gli spinaci: lessale brevemente e butta l'acqua, che riduce nitrati e ossalati. Mangialo con moderazione, e per niente se hai calcoli o malattie renali; ha un sapore delicato e terroso e sta bene con aglio, legumi e uova. I semi si tostano o si cuociono come un cereale.",
+        "keeps": "Le foglie appassiscono in un giorno: tienile in un sacchetto in frigorifero, oppure sbollentale e congelale. Fai seccare le spighe in un sacchetto di carta, sgrana e ventila i semi e conservali in un barattolo chiuso.",
+        "source": "Identificazione e stagione: Cornell University e NC State Extension. Nitrati e ossalati: NC State Extension e Michigan State University Extension. Confusione con lo stramonio: centro antiveleni di Marsiglia."
+      }
     },
     "fr": {
       "name": "Amarante",
       "description": "Plante herbacée aux feuilles et graines comestibles, riche en nutriments.",
-      "howTo": "Pousse sur sols perturbés, potagers et champs pendant l'été. Récolte les jeunes feuilles avant la floraison."
+      "howTo": "Pousse sur sols perturbés, potagers et champs pendant l'été. Récolte les jeunes feuilles avant la floraison.",
+      "guide": {
+        "identify": "L'amarante réfléchie est une plante annuelle robuste et dressée, à tige couverte de fins poils blancs et rougeâtre à la base, avec une racine pivotante rose à rouge. Ses feuilles alternes sont ovales à losangiques, à bord lisse et long pétiole, souvent avec une petite encoche ou une minuscule pointe au sommet ; les minuscules fleurs vertes forment des épis denses, hérissés et piquants, puis de minuscules graines noires et brillantes. Deux mauvaises herbes toxiques poussent sur le même sol : le datura stramoine, aux grandes feuilles grossièrement dentées et malodorantes, aux fleurs blanches en trompette et aux capsules épineuses, et la morelle noire, aux feuilles à bord ondulé, aux petites fleurs blanches en étoile et aux baies noires.",
+        "habitat": "Jardins, cultures, cours de ferme et friches : sol nu, riche et remué, en plein soleil. Originaire du centre et de l'est de l'Amérique du Nord, c'est une mauvaise herbe commune dans tous les États-Unis et dans une grande partie de l'Europe, surtout dans les plaines chaudes.",
+        "season": "Annuelle d'été : elle lève à la fin du printemps quand le sol se réchauffe, fleurit environ de juillet à septembre et mûrit ses graines d'août à octobre, jusqu'aux premières gelées. Les feuilles sont meilleures jeunes, avant la floraison.",
+        "picking": "Cueillez à la main les jeunes feuilles et les pousses tendres avant la floraison, et égrenez les épis quand les graines sont noires. Évitez les bords de route et les champs traités, et laissez de côté les sols très fumés ou fertilisés et les plantes souffrant de la sécheresse, qui accumulent le plus de nitrates.",
+        "kitchen": "Une fois l'amarante identifiée avec certitude, faites cuire les feuilles comme des épinards : faites-les bouillir brièvement et jetez l'eau, ce qui réduit les nitrates et l'acide oxalique. Mangez-en avec modération, et pas du tout en cas de calculs rénaux ou de maladie des reins ; son goût est doux et terreux, bon avec l'ail, les haricots et les œufs. Les graines se font griller ou cuire comme une céréale.",
+        "keeps": "Les feuilles flétrissent en un jour : gardez-les dans un sac au réfrigérateur, ou blanchissez-les et congelez-les. Faites sécher les épis dans un sac en papier, frottez et vannez les graines, puis gardez-les dans un bocal fermé.",
+        "source": "Identification et saison : Cornell University et NC State Extension. Nitrates et oxalates : NC State Extension et Michigan State University Extension. Confusion avec le datura : centre antipoison de Marseille."
+      }
     },
     "de": {
       "name": "Amarant",
       "description": "Eine krautige Pflanze mit essbaren Blättern und Samen, reich an Nährstoffen.",
-      "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte."
+      "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte.",
+      "guide": {
+        "identify": "Der Zurückgekrümmte Amarant ist eine kräftige, aufrechte, einjährige Pflanze mit fein weiß behaartem, unten rötlichem Stängel und rosa bis roter Pfahlwurzel. Seine wechselständigen Blätter sind eiförmig bis rautenförmig, ganzrandig und lang gestielt, oft mit einer kleinen Kerbe oder einem Spitzchen am Ende; die winzigen grünen Blüten sitzen in dichten, borstigen, stechenden Ähren und tragen später winzige, glänzend schwarze Samen. Auf demselben Boden wachsen zwei giftige Unkräuter: der Gemeine Stechapfel mit großen, grob gezähnten, unangenehm riechenden Blättern, weißen Trichterblüten und stacheligen Kapseln, und der Schwarze Nachtschatten mit buchtigen Blättern, kleinen weißen Sternblüten und schwarzen Beeren.",
+        "habitat": "Gärten, Äcker, Hofplätze und Brachland: offener, nährstoffreicher, gestörter Boden in voller Sonne. Er stammt aus dem mittleren und östlichen Nordamerika und ist in den ganzen USA und in weiten Teilen Europas ein häufiges Unkraut, vor allem in warmen Tieflagen.",
+        "season": "Er ist einjährig und liebt Wärme: Er keimt im späten Frühjahr, wenn der Boden warm ist, blüht etwa von Juli bis September und reift seine Samen von August bis Oktober, bis zum ersten Frost. Die Blätter sind jung am besten, vor der Blüte.",
+        "picking": "Pflück junge Blätter und zarte Triebspitzen vor der Blüte von Hand und reib die Samen aus den Ähren, sobald sie schwarz sind. Meide Straßenränder und gespritzte Äcker; lass stark gedüngten oder mit Mist versorgten Boden und Pflanzen, die unter Trockenheit leiden, aus: Sie reichern am meisten Nitrat an.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare die Blätter wie Spinat: kurz kochen und das Wasser weggießen, das senkt Nitrat und Oxalsäure. Iss ihn in Maßen und bei Nierensteinen oder Nierenkrankheiten gar nicht; er schmeckt mild und erdig, gut mit Knoblauch, Bohnen und Eiern. Die Samen kannst du rösten oder wie Getreide kochen.",
+        "keeps": "Die Blätter welken innerhalb eines Tages: im Beutel im Kühlschrank aufbewahren oder blanchieren und einfrieren. Samenstände in einer Papiertüte trocknen, die Samen ausreiben, die Spreu wegblasen und im geschlossenen Glas lagern.",
+        "source": "Bestimmung und Saison: Cornell University und NC State Extension. Nitrat und Oxalsäure: NC State Extension und Michigan State University Extension. Verwechslung mit Stechapfel: Giftnotrufzentrale Marseille."
+      }
     },
     "es": {
       "name": "Amaranto",
       "description": "Planta herbácea con hojas y semillas comestibles, rica en nutrientes.",
-      "howTo": "Crece en suelos alterados, huertos y campos durante el verano. Recolecta las hojas jóvenes antes de la floración."
+      "howTo": "Crece en suelos alterados, huertos y campos durante el verano. Recolecta las hojas jóvenes antes de la floración.",
+      "guide": {
+        "identify": "El amaranto o bledo (Amaranthus retroflexus) es una planta anual robusta y erguida, con el tallo cubierto de pelos blancos finos y rojizo en la base, y una raíz pivotante rosada o roja. Sus hojas alternas son ovaladas o romboidales, de borde liso y peciolo largo, a menudo con una pequeña muesca o una puntita en el ápice; las flores, verdes y diminutas, forman espigas densas, ásperas y pinchudas, y luego dan semillas negras, brillantes y diminutas. En el mismo suelo crecen dos malas hierbas tóxicas: el estramonio, con hojas grandes de dientes irregulares y olor desagradable, flores blancas en trompeta y frutos espinosos, y la hierba mora, con hojas de borde ondulado, flores pequeñas blancas en estrella y bayas negras.",
+        "habitat": "Huertos, campos de cultivo, corrales y solares: suelo removido, rico y desnudo, a pleno sol. Es nativo del centro y el este de Norteamérica y es una mala hierba común en todo EE. UU. y en gran parte de Europa, sobre todo en las zonas bajas y cálidas.",
+        "season": "Es anual y de verano: nace a finales de primavera, cuando la tierra se calienta, florece más o menos de julio a septiembre y madura las semillas de agosto a octubre, hasta la primera helada. Las hojas son mejores jóvenes, antes de la floración.",
+        "picking": "Coge a mano las hojas jóvenes y los brotes tiernos antes de que florezca, y desgrana las espigas cuando las semillas estén negras. Evita las cunetas y los campos tratados, y descarta las tierras muy abonadas o estercoladas y las plantas castigadas por la sequía, que acumulan más nitratos.",
+        "kitchen": "Una vez identificado con certeza, cocina las hojas como espinacas: hiérvelas un poco y tira el agua, lo que reduce los nitratos y el oxalato. Cómelo con moderación, y nada si tienes cálculos o enfermedad renal; sabe suave y terroso y va bien con ajo, legumbres y huevo. Las semillas se pueden tostar o cocer como un cereal.",
+        "keeps": "Las hojas se mustian en un día: guárdalas en una bolsa en la nevera, o escáldalas y congélalas. Seca las espigas en una bolsa de papel, desgrana y aventa las semillas y guárdalas en un tarro cerrado.",
+        "source": "Identificación y temporada: Cornell University y NC State Extension. Nitratos y oxalatos: NC State Extension y Michigan State University Extension. Confusión con estramonio: centro antitóxico de Marsella."
+      }
     },
     "pt": {
       "name": "Amaranto",
       "description": "Planta herbácea com folhas e sementes comestíveis, rica em nutrientes.",
-      "howTo": "Cresce em solos perturbados, hortas e campos durante o verão. Colha as folhas jovens antes da floração."
+      "howTo": "Cresce em solos perturbados, hortas e campos durante o verão. Colha as folhas jovens antes da floração.",
+      "guide": {
+        "identify": "O amaranto ou bredo (Amaranthus retroflexus) é uma planta anual robusta e erguida, com o caule coberto de pelos brancos finos e avermelhado na base, e uma raiz aprumada rosada a vermelha. As folhas alternas são ovais a losangulares, de margem lisa e pecíolo comprido, muitas vezes com um pequeno entalhe ou uma pontinha no ápice; as flores, verdes e minúsculas, formam espigas densas e ásperas, que picam ao toque, e depois dão sementes pretas, brilhantes e minúsculas. No mesmo solo crescem duas infestantes tóxicas: o estramónio (figueira-do-inferno), com folhas grandes de dentes irregulares e cheiro desagradável, flores brancas em trombeta e cápsulas espinhosas, e a erva-moira, com folhas de margem ondulada, pequenas flores brancas em estrela e bagas pretas.",
+        "habitat": "Hortas, campos de cultivo, quintais e terrenos baldios: solo nu, rico e mexido, em pleno sol. Nativo do centro e do leste da América do Norte, é uma infestante comum em todos os EUA e em grande parte da Europa, sobretudo em zonas baixas e quentes.",
+        "season": "É anual e de verão: nasce no fim da primavera, quando a terra aquece, floresce mais ou menos de julho a setembro e amadurece as sementes de agosto a outubro, até à primeira geada. As folhas são melhores novas, antes da floração.",
+        "picking": "Colha à mão as folhas novas e as pontas tenras antes da floração, e debulhe as espigas quando as sementes estiverem pretas. Evite bermas de estrada e campos tratados, e ponha de parte os terrenos muito adubados ou estrumados e as plantas castigadas pela seca, que acumulam mais nitratos.",
+        "kitchen": "Depois de identificado com certeza, cozinhe as folhas como espinafres: coza-as pouco tempo e deite fora a água, o que reduz os nitratos e o oxalato. Coma-o com moderação, e nada se tiver pedras nos rins ou doença renal; tem um sabor suave e terroso e vai bem com alho, feijão e ovos. As sementes podem ser torradas ou cozidas como um cereal.",
+        "keeps": "As folhas murcham num dia: guarde-as num saco no frigorífico, ou escalde-as e congele-as. Seque as espigas num saco de papel, debulhe e limpe as sementes ao vento e guarde-as num frasco fechado.",
+        "source": "Identificação e época: Cornell University e NC State Extension. Nitratos e oxalatos: NC State Extension e Michigan State University Extension. Confusão com estramónio: centro antivenenos de Marselha."
+      }
     }
   },
   "identification": {
@@ -209,6 +263,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [6109534] }
+    "rangePrior": {
+      "taxonKeys": [6109534]
+    }
   }
 }

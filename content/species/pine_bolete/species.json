@@ -19,32 +19,86 @@
     "en": {
       "name": "Pine Bolete",
       "description": "A red-brown capped porcino of pine woods, with a stout reddish netted stem and firm flesh",
-      "howTo": "Look in mossy pine and spruce forest on acidic sandy soil, in a late spring flush and again in autumn"
+      "howTo": "Look in mossy pine and spruce forest on acidic sandy soil, in a late spring flush and again in autumn",
+      "guide": {
+        "identify": "The red porcino: the cap is wine-red to mahogany, often bumpy, velvety when young and greasy to slimy when wet, with a whitish bloom at the edge. The short, stout stem is flushed reddish brown with a fine whitish to reddish net, and the white flesh is wine-red just under the cap skin. The pores go from white to yellow and olive and barely change colour when pressed. The bronze bolete is sepia to black with no red; red or orange pores (Rubroboletus satanas) or pink pores with a dark net (Tylopilus felleus) rule it out.",
+        "habitat": "Mostly with Scots pine and spruce on acid ground, often in moss, and in the mountains also with chestnut, beech and fir, mainly at 400 to 1,400 m. Common in Scandinavia, Scotland's pinewoods and the mountains of central and southern Europe.",
+        "season": "Often the first porcino of the year and the last: a flush in May and June where it stays cool and moist, and the main crop in September and October, into November and past the first frosts.",
+        "picking": "Cut or twist it out and do not rake the moss, which shelters the fungus. Many Italian and Spanish regions require a permit, and some Swiss cantons limit amounts: check local rules.",
+        "kitchen": "Once it is identified with certainty, cook it through like porcini; it is milder and slightly resinous, and very firm young ones need longer cooking. It tints the cooking water green and suits sauces, pickling and drying.",
+        "keeps": "It dries well in slices; fresh, use it within a day or two.",
+        "source": "Identification, habitat and season: Regione Piemonte and First Nature; GBIF records. Cooking: Regione Piemonte."
+      }
     },
     "it": {
       "name": "Porcino Rosso",
       "description": "Un porcino dal cappello bruno-rossiccio dei boschi di pino, con gambo tozzo reticolato e polpa soda",
-      "howTo": "Cercalo nelle pinete e peccete muscose su suolo acido e sabbioso, a fine primavera e di nuovo in autunno"
+      "howTo": "Cercalo nelle pinete e peccete muscose su suolo acido e sabbioso, a fine primavera e di nuovo in autunno",
+      "guide": {
+        "identify": "Il porcino rosso, o porcino dei pini: il cappello va dal rosso vinoso al mogano, spesso bitorzoluto, vellutato da giovane e da untuoso a viscido con l'umidità, con una pruina biancastra al margine. Il gambo, corto e tozzo, è sfumato di bruno-rossastro con un fine reticolo da biancastro a rossastro, e la carne bianca è rossastra subito sotto la cuticola. I pori passano dal bianco al giallo e all'oliva e cambiano appena colore se premuti. Il porcino nero è color seppia o quasi nero, senza rosso; pori rossi o arancioni (Rubroboletus satanas) o rosa con un reticolo scuro (Tylopilus felleus) lo escludono.",
+        "habitat": "Soprattutto con pino silvestre e abete rosso su suoli acidi, spesso nel muschio, e in montagna anche con castagno, faggio e abete bianco, di solito tra 400 e 1400 m. Comune in Scandinavia, nelle pinete scozzesi, sulle Alpi e lungo tutto l'Appennino.",
+        "season": "Spesso è il primo porcino dell'anno e l'ultimo: una buttata a maggio e giugno dove resta fresco e umido, e quella principale a settembre e ottobre, fino a novembre e oltre le prime gelate.",
+        "picking": "Taglialo o estrailo ruotandolo e non rastrellare il muschio, che protegge il micelio. In Italia la maggior parte delle regioni chiede il tesserino e fissa un limite giornaliero: informati sulle regole locali.",
+        "kitchen": "Una volta riconosciuto con certezza, cuocilo bene come il porcino; è più delicato e un po' resinoso, e i giovani sodissimi richiedono più cottura. Tinge di verde l'acqua di cottura ed è ottimo nei sughi, sott'aceto o essiccato.",
+        "keeps": "Si essicca bene a fette; fresco, usalo entro uno o due giorni.",
+        "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Cucina: Regione Piemonte."
+      }
     },
     "fr": {
       "name": "Cèpe des Pins",
       "description": "Un cèpe au chapeau brun-rouge des pinèdes, au pied trapu réticulé rougeâtre et à la chair ferme",
-      "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne"
+      "howTo": "Cherchez-le dans les pinèdes et pesséries moussues sur sol acide et sableux, à la fin du printemps puis en automne",
+      "guide": {
+        "identify": "Le cèpe rouge, appelé aussi cèpe acajou : le chapeau est rouge vineux à acajou, souvent bosselé, velouté chez le jeune et gras à visqueux par temps humide, avec une pruine blanchâtre à la marge. Le pied, court et trapu, est lavé de brun rouge et porte un fin réseau blanchâtre à rougeâtre, et la chair blanche est rouge vineux juste sous la cuticule. Les pores passent du blanc au jaune et à l'olive et changent à peine de couleur à la pression. Le cèpe bronzé est sépia à noir, sans rouge ; des pores rouges ou orange (Rubroboletus satanas) ou roses avec un réseau sombre (Tylopilus felleus) l'excluent.",
+        "habitat": "Surtout avec le pin sylvestre et l'épicéa sur sol acide, souvent dans la mousse, et en montagne aussi avec le châtaignier, le hêtre et le sapin, surtout entre 400 et 1400 m. Commun en Scandinavie, dans les pinèdes d'Écosse et dans les montagnes d'Europe centrale et méridionale.",
+        "season": "Souvent le premier cèpe de l'année et le dernier : une poussée en mai et juin là où il fait frais et humide, et la principale en septembre et octobre, jusqu'en novembre et après les premières gelées.",
+        "picking": "Coupez-le ou dégagez-le en le tournant et ne ratissez pas la mousse, qui protège le mycélium. La cueillette peut être limitée par arrêté en France, et certains cantons suisses fixent des quantités : renseignez-vous sur les règles locales.",
+        "kitchen": "Après une identification certaine, cuisez-le bien comme le cèpe de Bordeaux ; il est plus doux, un peu résineux, et les jeunes très fermes demandent plus de cuisson. Il teinte l'eau de cuisson en vert et convient aux sauces, au vinaigre et au séchage.",
+        "keeps": "Il se sèche bien en tranches ; frais, utilisez-le sous un ou deux jours.",
+        "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
+      }
     },
     "de": {
       "name": "Kiefern-Steinpilz",
       "description": "Ein rotbrauner Steinpilz der Kiefernwälder mit gedrungenem, rötlich genetztem Stiel und festem Fleisch",
-      "howTo": "Suche in moosigen Kiefern- und Fichtenwäldern auf saurem Sandboden, im späten Frühjahr und wieder im Herbst"
+      "howTo": "Suche in moosigen Kiefern- und Fichtenwäldern auf saurem Sandboden, im späten Frühjahr und wieder im Herbst",
+      "guide": {
+        "identify": "Der rote Steinpilz: Der Hut ist weinrot bis mahagonibraun, oft beulig, jung samtig und bei Nässe fettig bis schmierig, mit weißlichem Reif am Rand. Der kurze, gedrungene Stiel ist rotbraun überhaucht, mit feinem weißlichem bis rötlichem Netz, und das weiße Fleisch ist direkt unter der Huthaut weinrot. Die Poren werden von weiß über gelb zu oliv und verfärben sich auf Druck kaum. Der Bronze-Steinpilz ist sepiabraun bis schwarz ohne Rot; rote oder orange Poren (Rubroboletus satanas) oder rosa Poren mit dunklem Netz (Tylopilus felleus) schließen ihn aus.",
+        "habitat": "Meist bei Waldkiefer und Fichte auf saurem Boden, oft im Moos, im Gebirge auch bei Kastanie, Buche und Tanne, vor allem zwischen 400 und 1400 m. Häufig in Skandinavien, in Schottlands Kiefernwäldern und in den Bergen Mittel- und Südeuropas.",
+        "season": "Oft der erste und der letzte Steinpilz des Jahres: ein Schub im Mai und Juni, wo es kühl und feucht bleibt, und die Hauptsaison im September und Oktober, bis in den November und über die ersten Fröste hinaus.",
+        "picking": "Schneide oder dreh ihn heraus und reche das Moos nicht auf, es schützt das Pilzgeflecht. In Österreich begrenzt das Forstgesetz die Tagesmenge, manche Schweizer Kantone haben Mengengrenzen, und in Italien und Spanien braucht man oft eine Genehmigung.",
+        "kitchen": "Ist er sicher bestimmt, gare ihn wie den Steinpilz gut durch; er ist milder, leicht harzig, und sehr feste junge Exemplare brauchen länger. Er färbt das Kochwasser grünlich und eignet sich für Soßen, zum Einlegen und zum Trocknen.",
+        "keeps": "In Scheiben lässt er sich gut trocknen; frisch ein bis zwei Tage haltbar.",
+        "source": "Bestimmung, Standort und Saison: Regione Piemonte und First Nature; GBIF-Funddaten. Küche: Regione Piemonte."
+      }
     },
     "es": {
       "name": "Boleto de Pino",
       "description": "Un boleto de sombrero pardo rojizo de los pinares, con pie robusto reticulado y carne firme",
-      "howTo": "Búscalo en pinares y abetales con musgo sobre suelo ácido y arenoso, a finales de primavera y de nuevo en otoño"
+      "howTo": "Búscalo en pinares y abetales con musgo sobre suelo ácido y arenoso, a finales de primavera y de nuevo en otoño",
+      "guide": {
+        "identify": "El porcino rojo, llamado también boleto pinícola: el sombrero es de rojo vinoso a caoba, a menudo abollado, aterciopelado de joven y de graso a viscoso con la humedad, con una pruina blanquecina en el borde. El pie, corto y robusto, está teñido de pardo rojizo y lleva un fino retículo de blanquecino a rojizo, y la carne blanca es rojo vinoso justo bajo la cutícula. Los poros pasan de blancos a amarillos y oliva y apenas cambian de color al presionarlos. El boleto bronceado es de sepia a negro, sin rojo; poros rojos o naranjas (Rubroboletus satanas) o rosados con un retículo oscuro (Tylopilus felleus) lo descartan.",
+        "habitat": "Sobre todo con pino silvestre y pícea en suelo ácido, a menudo entre musgo, y en la montaña también con castaños, hayas y abetos, sobre todo entre 400 y 1400 m. Común en Escandinavia, en los pinares de Escocia y en las montañas del centro y el sur de Europa.",
+        "season": "A menudo es el primer boleto del año y el último: una salida en mayo y junio donde sigue fresco y húmedo, y la principal en septiembre y octubre, hasta noviembre y pasadas las primeras heladas.",
+        "picking": "Córtalo o gíralo y no rastrilles el musgo, que protege el micelio. En muchas comunidades autónomas y montes públicos hace falta un permiso de recolección y hay un límite diario: infórmate de las normas del lugar.",
+        "kitchen": "Una vez identificado con certeza, cocínalo bien como el boleto comestible; es más suave y algo resinoso, y los jóvenes muy firmes necesitan más cocción. Tiñe de verde el agua de cocción y va bien en salsas, en escabeche o seco.",
+        "keeps": "Se seca bien en láminas; fresco, úsalo en uno o dos días.",
+        "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Cocina: Regione Piemonte."
+      }
     },
     "pt": {
       "name": "Boleto do Pinheiro",
       "description": "Um cogumelo boleto de chapéu castanho-avermelhado dos pinhais, com pé robusto reticulado e carne firme",
-      "howTo": "Procure em pinhais e abetais com musgo sobre solo ácido e arenoso, no fim da primavera e de novo no outono"
+      "howTo": "Procure em pinhais e abetais com musgo sobre solo ácido e arenoso, no fim da primavera e de novo no outono",
+      "guide": {
+        "identify": "O porcini vermelho: o chapéu vai de vermelho-vinho a cor de mogno, muitas vezes irregular, aveludado no exemplar jovem e de gorduroso a viscoso com a humidade, com uma pruína esbranquiçada na margem. O pé, curto e robusto, é tingido de castanho-avermelhado e tem uma fina rede esbranquiçada a avermelhada, e a carne branca é vermelho-vinho logo por baixo da cutícula. Os poros passam de brancos a amarelos e verde-oliva e quase não mudam de cor quando pressionados. O boleto bronzeado é cor de sépia a preto, sem vermelho; poros vermelhos ou cor de laranja (Rubroboletus satanas) ou rosados com uma rede escura (Tylopilus felleus) excluem-no.",
+        "habitat": "Sobretudo com pinheiro-silvestre e espruce em solo ácido, muitas vezes no musgo, e na montanha também com castanheiros, faias e abetos, sobretudo entre 400 e 1400 m. Comum na Escandinávia, nos pinhais da Escócia e nas montanhas da Europa central e do sul.",
+        "season": "Muitas vezes é o primeiro boleto do ano e o último: uma vaga em maio e junho onde se mantém fresco e húmido, e a principal em setembro e outubro, até novembro e depois das primeiras geadas.",
+        "picking": "Corte-o ou rode-o para o tirar e não ancinhe o musgo, que protege o micélio. Em áreas protegidas a apanha pode ser proibida e em muitas zonas de Espanha é preciso licença e há um limite diário.",
+        "kitchen": "Depois de identificado com certeza, cozinhe-o bem como o boleto comestível; é mais suave e um pouco resinoso, e os jovens muito firmes precisam de mais cozedura. Tinge de verde a água da cozedura e fica bem em molhos, em escabeche ou seco.",
+        "keeps": "Seca bem em fatias; fresco, use-o em um ou dois dias.",
+        "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Cozinha: Regione Piemonte."
+      }
     }
   },
   "identification": {
@@ -147,6 +201,8 @@
       "taxonKeys": [5954949],
       "references": ["https://www.gbif.org/species/5954949"]
     },
-    "rangePrior": { "taxonKeys": [5954949] }
+    "rangePrior": {
+      "taxonKeys": [5954949]
+    }
   }
 }
