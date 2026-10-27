@@ -47,12 +47,25 @@ export interface ToxicSpecies {
    */
   confusedWithSpeciesIds: string[];
   /**
+   * Checks for one catalog species where `checkKeys` (written for another) would
+   * mislead: the jack-o'-lantern's gills-not-ridges check is about chanterelles,
+   * and oysters have true gills too. The species sheet shows these instead.
+   */
+  checksFor?: Partial<Record<string, string[]>>;
+  /**
    * Confusions dangerous enough to warrant their own escalated warning when
    * both species appear in the same result set. Data-driven so adding a pair
    * later is a data change, not a code change.
    */
   criticalConfusions?: { catalogId: string; noteKey: string }[];
 }
+
+// An earthball is told from a truffle by its skin and veins, from a puffball by
+// cutting it open: each sheet shows its own check.
+const SCLERODERMA_CHECKS = {
+  truffle_b: ['toxicity.checks.interiorPattern'],
+  giant_puffball: ['toxicity.checks.puffballInterior'],
+};
 
 // The catalog's porcini and chanterelle siblings, shared by every look-alike
 // that is mistaken for any of them. Add a new sibling here once, not per entry.
@@ -85,6 +98,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillVsRidges',
     ],
     confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    checksFor: { 'oyster-mushroom': ['toxicity.checks.jackOLantern'] },
   },
   {
     id: 'hygrophoropsis-aurantiaca',
@@ -349,9 +363,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
       {
@@ -368,9 +383,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
       {
@@ -406,7 +422,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.immuneHaemolysis',
     checkKeys: [
-      'toxicity.checks.capStructure',
+      'toxicity.checks.capMargin',
       'toxicity.checks.gillAttachment',
       'toxicity.checks.fleshBruising',
     ],
@@ -453,9 +469,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.gillVsRidges',
       'toxicity.checks.gillAttachment',
-      'toxicity.checks.capAttachment',
     ],
     confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    checksFor: { 'oyster-mushroom': ['toxicity.checks.jackOLantern'] },
   },
   {
     id: 'omphalotus-olivascens',
@@ -466,9 +482,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.gillVsRidges',
       'toxicity.checks.gillAttachment',
-      'toxicity.checks.capAttachment',
     ],
     confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    checksFor: { 'oyster-mushroom': ['toxicity.checks.jackOLantern'] },
   },
   {
     id: 'omphalotus-subilludens',
@@ -479,9 +495,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.gillVsRidges',
       'toxicity.checks.gillAttachment',
-      'toxicity.checks.capAttachment',
     ],
     confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    checksFor: { 'oyster-mushroom': ['toxicity.checks.jackOLantern'] },
   },
 
   // Yellow-stainer. Bruises chrome yellow at the stem base and smells of ink or
@@ -508,11 +524,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',
-    checkKeys: [
-      'toxicity.checks.gillColour',
-      'toxicity.checks.capAttachment',
-      'toxicity.checks.smellCompare',
-    ],
+    checkKeys: ['toxicity.checks.sulphurTuft', 'toxicity.checks.sporePrint'],
     confusedWithSpeciesIds: ['oyster-mushroom'],
   },
 
@@ -617,7 +629,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: [
-      'toxicity.checks.capAttachment',
+      'toxicity.checks.ringAndStem',
       'toxicity.checks.sporePrint',
       'toxicity.checks.overallSize',
     ],
@@ -668,7 +680,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.rhabdomyolysis',
-    checkKeys: ['toxicity.checks.gillColour', 'toxicity.checks.capStructure'],
+    checkKeys: ['toxicity.checks.gillColour', 'toxicity.checks.smellCompare'],
     confusedWithSpeciesIds: [],
   },
   {
@@ -677,11 +689,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.encephalopathy',
-    checkKeys: [
-      'toxicity.checks.gillAttachment',
-      'toxicity.checks.capStructure',
-      'toxicity.checks.capAttachment',
-    ],
+    checkKeys: ['toxicity.checks.angelWing'],
     confusedWithSpeciesIds: ['oyster-mushroom'],
     criticalConfusions: [
       {
@@ -932,9 +940,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -950,9 +959,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -969,9 +979,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
