@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Bufa-do-diabo",
-      "description": "Uma bola branca e lisa, do tamanho de uma bola de futebol ou maior, em prados e pastagens, de carne firme e branca como mozzarella fresca",
+      "description": "Uma bola branca e lisa, do tamanho de uma bola de futebol ou maior, em prados e pastagens. A carne é firme e branca, como mozzarella fresca.",
       "howTo": "Procure em prados, pastagens, parques e orlas de bosque do fim do verão ao outono, muitas vezes junto às urtigas. Corte sempre cada exemplar ao meio de cima para baixo: por dentro tem de ser branco puro, sem vestígios de chapéu ou pé",
       "guide": {
-        "identify": "Uma bola branca e lisa, muitas vezes de 20 a 50 cm, com uma pele fina como couro e sem pé, presa ao solo por um cordão parecido com uma raiz. Corte-as todas ao meio, de cima a baixo: o interior tem de ser firme e de um branco puro e uniforme, como mozzarella fresca. Qualquer contorno de chapéu, lâminas ou pé pode indicar uma amanita jovem ainda dentro do ovo, que pode ser mortal; uma pele grossa, escamosa e amarelada com o interior escuro, negro-arroxeado, indica um Scleroderma, que é tóxico. Carne amarela, oliva ou castanha quer dizer que os esporos estão a amadurecer: já não é comestível.",
-        "habitat": "Prados, pastagens, parques, jardins, sebes e orlas de bosque em solo rico, muitas vezes entre urtigas e muitas vezes no mesmo sítio todos os anos. Espalhada pela Europa e pelo leste dos EUA; no interior seco do oeste americano cresce uma espécie parecida, Calvatia booniana, entre artemísias e pastagens abertas.",
-        "season": "Do verão ao outono: sobretudo de julho a outubro na Europa, e do fim do verão ao início do outono no leste dos EUA. Cresce depressa depois de chuvas fortes com calor.",
-        "picking": "Corte-a pela base e apanhe só exemplares firmes e brancos por dentro; uma só chega muitas vezes para várias pessoas. Deixe as velhas que amarelecem espalhar os esporos e evite bermas de estrada e relvados tratados com químicos.",
-        "kitchen": "Depois de identificada com certeza, tire-lhe a pele, que pode ser indigesta, e cozinhe-a: em fatias grossas na frigideira com manteiga ou panadas, tem um sabor suave e absorve outros sabores. Da primeira vez, prove só um pouco.",
-        "keeps": "Coma-a em dois dias, guardada no frigorífico, e deite-a fora mal a carne amareleça. As fatias já fritas congelam bem.",
+        "identify": "A bufa-do-diabo é uma bola branca e lisa, muitas vezes com 20 a 50 cm de diâmetro. Tem uma pele fina que parece couro. Não tem pé. Está presa ao chão por um cordão que parece uma raiz. Corte cada uma ao meio, de cima a baixo. Por dentro tem de ser firme e de um branco puro por igual, como mozzarella fresca. Qualquer contorno de chapéu, lâminas ou pé pode ser uma amanita nova ainda dentro do ovo. E isso pode ser mortal. Uma pele grossa, escamosa e amarelada e um interior escuro, negro-arroxeado, indicam um Scleroderma, que é venenoso. Carne amarela, verde-oliva ou castanha quer dizer que os esporos estão a amadurecer. Nessa altura já não se come.",
+        "habitat": "Procure em prados, pastagens, parques, jardins, sebes e orlas de bosque, em terra rica. Aparece muitas vezes no meio das urtigas. Muitas vezes volta ao mesmo sítio todos os anos. Está espalhada pela Europa e pelo leste dos EUA. No interior seco do oeste dos EUA cresce uma espécie parecida, a Calvatia booniana, entre artemísias e pastagens abertas.",
+        "season": "Aparece do verão ao outono. Na Europa sai sobretudo de julho a outubro. No leste dos EUA, do fim do verão ao início do outono. Incha depressa depois de chuva forte e quente.",
+        "picking": "Corte-a pela base e leve só as firmes e brancas por dentro. Uma chega muitas vezes para várias pessoas. Deixe as velhas e amareladas espalhar os esporos. Evite bermas de estrada e relvados tratados com químicos.",
+        "kitchen": "Quando tiver a certeza, tire-lhe a pele, que pode ser indigesta. Depois cozinhe-a. Frite fatias grossas em manteiga, simples ou panadas. Tem um sabor suave e absorve outros sabores. Da primeira vez, prove só um pouco.",
+        "keeps": "Guarde-a no frigorífico e coma-a em dois dias. Deite-a fora assim que a carne amarelecer. As fatias fritas congelam bem.",
         "source": "Identificação e habitat: Missouri Department of Conservation e First Nature. Conservação: ANSES. Época: registos do GBIF."
       }
     }

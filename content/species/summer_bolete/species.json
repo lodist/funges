@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Boleto de Verão",
-      "description": "O primeiro cogumelo boleto da época, de chapéu castanho claro finamente gretado e pé reticulado de alto a baixo",
+      "description": "O porcini que aparece mais cedo. O chapéu castanho-claro tem gretas finas e o pé tem rede de cima a baixo.",
       "howTo": "Procure sob carvalhos e faias a partir do fim da primavera, bem antes dos outros boletos",
       "guide": {
-        "identify": "O boleto de verão tem o chapéu mate, seco e aveludado, cor de avelã clara a castanho médio, que com o tempo seco greta numa rede fina; nunca é gorduroso e a margem não é mais clara do que o centro. A marca mais clara é uma rede em relevo que desce pelo pé quase até à base. Os poros são brancos, depois amarelo-oliva, e não mudam de cor; a carne branca é mais mole do que no boleto comestível. O boleto-de-satanás (Rubroboletus satanas) e o Rubroboletus legaliae partilham os seus carvalhais mas têm poros vermelhos e carne que azula; o boleto-amargo (Tylopilus felleus) tem poros rosados e uma rede escura.",
-        "habitat": "Carvalhos e castanheiros, também faias, tílias e bétulas, nas orlas, em parques e em encostas soalheiras, da planície até cerca de 1000 m. Comum na Europa central e do sul, sobretudo em Portugal e no sudoeste de França; raro na Grã-Bretanha.",
-        "season": "O primeiro boleto do ano: a partir de maio a baixa altitude e de junho na montanha, sobretudo de julho ao início de setembro depois de chuvas quentes, até ao primeiro frio do outono.",
-        "picking": "Corte-o ou rode-o para o tirar e deixe os pequenos. Com calor muitos têm bicho: corte-os ao meio no local e deixe na mata os afetados. Em áreas protegidas a apanha pode ser proibida.",
-        "kitchen": "Muitos consideram-no o melhor dos boletos: doce, com sabor a avelã e perfumado, para secar, para molhos e com ovos. Depois de identificado com certeza, tire as partes com bicho e cozinhe-o bem.",
-        "keeps": "É o que pior se conserva: cozinhe-o ou seque-o no próprio dia.",
+        "identify": "O boleto de verão tem o chapéu mate, seco e aveludado, cor de avelã clara a castanho médio. Com tempo seco, o chapéu greta numa rede fina. Nunca é gorduroso e a margem não é mais clara do que o centro. O sinal mais claro é uma rede em relevo que desce pelo pé quase até à base. Os poros são brancos e depois amarelo-azeitona. Não mudam de cor. A carne branca é mais mole do que a do boleto comestível. O boleto-de-satanás (Rubroboletus satanas) e o Rubroboletus legaliae partilham os mesmos carvalhais. Mas têm poros vermelhos e carne que azula. O boleto-amargo (Tylopilus felleus) tem poros cor-de-rosa e uma rede escura.",
+        "habitat": "Cresce com carvalhos e castanheiros. Também cresce com faias, tílias e vidoeiros. Procure nas orlas dos bosques, em parques e em encostas soalheiras, da planície até cerca de 1000 m. É comum na Europa central e do sul, sobretudo no sudoeste de França e em Portugal. Na Grã-Bretanha é raro.",
+        "season": "É o primeiro boleto do ano. Começa em maio nas terras baixas e em junho na montanha. A época principal vai de julho ao início de setembro, depois de chuvas quentes. Dura até aos primeiros frios do outono.",
+        "picking": "Corte-o ou rode-o para o tirar e deixe os pequenos. Com calor, muitos têm bicho. Corte-os ao meio logo ali e deixe na mata os que tiverem bicho. Em muitas regiões de Itália e de Espanha é preciso licença.",
+        "kitchen": "Muitos cozinheiros consideram-no o melhor de todos os boletos. É doce, perfumado e sabe a avelã. É bom para secar, para molhos e para pratos com ovos. Depois de o identificar com certeza, tire as partes com bicho e cozinhe-o bem.",
+        "keeps": "De todos os boletos, é o que pior se conserva. Cozinhe-o ou seque-o no dia em que o apanha.",
         "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Cozinha: Regione Piemonte."
       }
     }

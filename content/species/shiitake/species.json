@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Shiitake",
-      "description": "Cogumelo com chapéu marrom e lâminas brancas, muito valorizado na culinária asiática",
+      "description": "Um cogumelo de chapéu castanho e lâminas brancas, muito apreciado na cozinha asiática.",
       "howTo": "Encontrado crescendo em madeira dura morta, especialmente carvalho e faia, na primavera e outono",
       "guide": {
-        "identify": "Chapéu castanho a castanho-avermelhado escuro que aplana com a idade, muitas vezes com flocos esbranquiçados junto à margem e gretado em tempo seco. As lâminas são brancas a creme e mancham-se de castanho ao toque; o pé é rijo, fibroso e muitas vezes excêntrico; a esporada é branca. A mortal Galerina marginata também cresce em troncos: é mais pequena e castanho-mel, com anel no pé e esporada castanho-ferrugem.",
-        "habitat": "Originário da Ásia Oriental, em madeira morta de folhosas como carvalhos e Castanopsis. Na Europa e na América do Norte cultiva-se em troncos de carvalho ou blocos de serradura e só foi encontrado fora do cultivo poucas vezes (por exemplo nos Países Baixos): um cogumelo castanho num tronco caído na mata é quase de certeza outra espécie.",
-        "season": "Os troncos ao ar livre frutificam na primavera e no outono, poucos dias depois de chuva abundante com tempo ameno; os produtores também provocam uma frutificação pondo o tronco de molho em água fria.",
-        "picking": "Colha os chapéus enquanto a margem ainda está enrolada: rode-os ou corte o pé rente ao tronco. Colha só de troncos que cultiva ou onde tem autorização.",
-        "kitchen": "Depois de identificado com certeza, cozinhe-o bem: cru ou mal cozinhado pode causar a dermatite do shiitake, uma erupção com comichão em riscas, como chicotadas, cerca de um dia depois. Os pés são demasiado rijos para comer mas dão sabor ao caldo; salteie ou estufe os chapéus, de sabor profundo e saboroso, com molho de soja, gengibre e alho.",
-        "keeps": "Alguns dias no frigorífico num saco de papel. Seca muito bem: ponha os chapéus secos de molho antes de usar e aproveite a água como caldo.",
+        "identify": "O chapéu é castanho a castanho-avermelhado escuro e aplana com a idade. Tem muitas vezes flocos esbranquiçados junto à margem e greta com tempo seco. As lâminas são brancas a creme e ganham manchas castanhas ao toque. O pé é rijo, fibroso e muitas vezes descentrado. A esporada é branca. A galerina (Galerina marginata) é mortal e também cresce em troncos. É mais pequena e cor de mel, com um anel no pé e esporada castanho-ferrugem.",
+        "habitat": "O shiitake é nativo da Ásia Oriental, onde cresce em madeira morta de folhosas, como carvalhos e Castanopsis. Na Europa e na América do Norte cultiva-se em troncos de carvalho ou em blocos de serradura. Fora do cultivo só foi encontrado poucas vezes, por exemplo nos Países Baixos. Por isso, um cogumelo castanho num tronco caído no bosque é quase de certeza outra coisa.",
+        "season": "Os troncos que ficam ao ar livre frutificam na primavera e no outono. Uma vaga aparece poucos dias depois de uma chuva forte com tempo ameno. Os produtores também provocam uma vaga pondo o tronco de molho em água fria.",
+        "picking": "Apanhe os chapéus enquanto a margem ainda está enrolada para baixo. Rode-os ou corte o pé rente ao tronco. Apanhe só de troncos que cultiva ou onde tem autorização para apanhar.",
+        "kitchen": "Confirme a identificação e depois cozinhe-o bem. Cru ou mal cozinhado, o shiitake pode causar a dermatite do shiitake. É uma erupção com comichão, em riscas como chicotadas, que aparece cerca de um dia depois. Os pés são rijos demais para comer, mas dão sabor ao caldo. Salteie os chapéus ou coza-os em lume brando com molho de soja, gengibre e alho. Têm um gosto profundo e muito saboroso.",
+        "keeps": "Aguenta uns dias no frigorífico, num saco de papel. Seca muito bem. Ponha os chapéus secos de molho antes de usar e guarde a água para caldo.",
         "source": "Origem e distribuição: Naturalis Biodiversity Center. Cultivo em troncos: Cornell Cooperative Extension. Dermatite do shiitake: DermNet."
       }
     }

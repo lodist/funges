@@ -88,14 +88,14 @@
     },
     "pt": {
       "name": "Boleto Bronzeado",
-      "description": "Um cogumelo boleto de chapéu bronzeado escuro quase preto, com pé claro reticulado e carne branca e firme",
+      "description": "Um porcini com o chapéu de bronze-escuro a quase preto, o pé claro com uma rede e a carne branca e firme.",
       "howTo": "Procure em encostas quentes de baixa altitude sob carvalhos e castanheiros, mais tarde que o boleto de verão",
       "guide": {
-        "identify": "O mais escuro dos boletos do tipo porcini: o chapéu vai de castanho-escuro a quase preto, muitas vezes com manchas bronzeadas, e mantém-se seco e finamente aveludado mesmo com humidade. Os poros são brancos, depois amarelos a verde-oliva, e não azulam. O pé castanho-claro tem uma fina rede castanha, mais densa em cima, e a carne branca, muito firme, não muda de cor ao corte. O boleto de verão é mais claro e a rede desce mais; o boleto-de-satanás (Rubroboletus satanas) e o Rubroboletus legaliae, que partilham os seus carvalhais, têm poros vermelhos e carne que azula.",
-        "habitat": "Encostas quentes e soalheiras com carvalhos, castanheiros e faias, sobretudo entre 200 e 1000 m. Comum à volta do Mediterrâneo, em Itália ao longo dos Apeninos e nas ilhas; raro na Grã-Bretanha e na Alemanha.",
-        "season": "A partir de julho depois das trovoadas de verão, mas sobretudo em setembro e outubro, mais tarde que o boleto de verão, e até novembro no sul. Frutifica quando, depois de um período de calor, chegam uma chuva forte e o arrefecimento do solo.",
-        "picking": "Corte-o ou rode-o para o tirar e deixe crescer os jovens. Em áreas protegidas a apanha pode ser proibida e em Espanha muitas vezes é preciso licença; na Alemanha é raro e especialmente protegido, por isso não se pode apanhar.",
-        "kitchen": "É o mais firme dos boletos do tipo porcini, com um sabor a avelã que aumenta depois de seco. Depois de identificado com certeza, escove-o, veja se tem bicho e cozinhe-o bem, como o boleto comestível.",
+        "identify": "É o mais escuro dos boletos do tipo porcini. O chapéu vai de castanho-escuro a quase preto, muitas vezes com manchas cor de bronze. Mantém-se seco e finamente aveludado, mesmo com chuva. Os poros são brancos e depois amarelos a verde-oliva. Não azulam. O pé, castanho-claro, tem uma rede fina castanha, mais cerrada em cima. A carne, branca e muito firme, não muda de cor quando a corta. O boleto de verão é mais claro e a rede desce mais pelo pé. Nos mesmos carvalhais crescem outros dois boletos. São o boleto-de-satanás (Rubroboletus satanas) e o boleto de Le Gal (Rubroboletus legaliae). Os dois têm poros vermelhos e carne que azula.",
+        "habitat": "Gosta de encostas quentes e soalheiras com carvalhos, castanheiros e faias, sobretudo entre os 200 e os 1000 m. É comum à volta do Mediterrâneo. Em Itália encontra-se ao longo dos Apeninos e nas ilhas. É raro na Grã-Bretanha e na Alemanha.",
+        "season": "Pode aparecer a partir de julho, depois das trovoadas de verão. A época principal é setembro e outubro, mais tarde do que o boleto de verão. No sul vai até novembro. Sai quando, depois de uma vaga de calor, vêm uma chuva forte e o arrefecimento da terra.",
+        "picking": "Corte-o ou torça-o para o tirar e deixe crescer os novos. Na Alemanha é raro e especialmente protegido, por isso lá não o apanhe. Em Itália e em Espanha há licenças regionais e limites diários.",
+        "kitchen": "É o mais firme dos boletos do tipo porcini. Tem um sabor a frutos secos que fica mais forte depois de seco. Depois de o identificar com certeza, trate-o como o boleto comestível. Escove-o, veja se tem bicho e cozinhe-o bem.",
         "keeps": "Seca e congela muito bem em fatias.",
         "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Proteção: BArtSchV (Alemanha). Cozinha: Regione Piemonte."
       }

@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Azedinha-comum",
-      "description": "Planta de sabor ácido e cítrico, utilizada em saladas e sopas.",
+      "description": "Uma planta de folhas com um sabor ácido, a limão, boa em saladas e sopas.",
       "howTo": "Colha as folhas jovens em prados, pastagens e ao longo dos caminhos na primavera e no verão.",
       "guide": {
-        "identify": "Folhas tenras em forma de seta, com dois lóbulos na base, pontiagudos e virados para trás, ao longo do pé; as folhas de cima abraçam o caule, e uma bainha fina e membranosa envolve o caule onde nasce cada folha. A partir de maio, os caules floridos levam espigas soltas de pequenas flores avermelhadas. O jarro (Arum maculatum), que é tóxico, tem folhas novas de forma parecida, mas muitas vezes com manchas escuras e lóbulos arredondados, e cresce em bosques e sebes e não em prados abertos. Nunca prove uma folha para confirmar: o jarro queima a boca.",
-        "habitat": "Prados, pastagens, relvados, bermas e bosques abertos, da planície à montanha; muito comum em toda a Europa. Nos EUA é introduzida e aparece dispersa, sobretudo no nordeste, à volta dos Grandes Lagos, no Oregon e no Alasca, onde a Rumex acetosella, mais pequena, é muito mais comum.",
-        "season": "As folhas crescem desde o início da primavera, quase todo o ano nas zonas amenas, e são melhores novas; quando a planta floresce, a partir de maio, ficam mais rijas e amargas, mas as plantas cortadas dão folhas novas.",
-        "picking": "Apanhe algumas folhas novas de cada planta e deixe a raiz; escolha prados que não sejam pulverizados nem adubados, longe de estradas e de caminhos de cães.",
-        "kitchen": "Depois de identificada com certeza, as folhas têm um sabor ácido intenso, como casca de limão: corte as novas em tiras para saladas, ou cozinhe-as pouco em sopas, omeletes e molhos para peixe e ovos. A acidez vem do ácido oxálico: coma-a com moderação e evite-a se tiver pedras nos rins. Cozinhe-a em inox ou esmalte, não em alumínio nem ferro fundido.",
-        "keeps": "No frigorífico as folhas murcham em dois ou três dias; cozida em puré, congela bem.",
+        "identify": "A azedinha tem folhas tenras em forma de seta. Na base têm dois lóbulos pontiagudos, virados para trás, ao longo do pé. As folhas de cima abraçam o caule. No sítio onde cada folha se liga ao caule, uma bainha fina, como papel, envolve-o. A partir de maio, os caules floridos levam espigas soltas de pequenas flores avermelhadas. O jarro (Arum maculatum) é tóxico e as folhas novas têm uma forma parecida. Mas têm muitas vezes manchas escuras e lóbulos arredondados. Crescem em bosques e sebes, não em prados abertos. Nunca prove uma folha para confirmar, porque o jarro queima a boca.",
+        "habitat": "Procure em prados, pastagens, relvados, bermas e bosques abertos, da planície à montanha. É muito comum em toda a Europa. Nos EUA foi introduzida e aparece dispersa. Encontra-se sobretudo no nordeste, à volta dos Grandes Lagos, no Oregon e no Alasca. Lá, a azeda-ovelha, mais pequena, é muito mais comum.",
+        "season": "As folhas nascem a partir do início da primavera e, nas zonas amenas, quase todo o ano. São melhores novas. Quando a planta floresce, a partir de maio, ficam mais rijas e mais amargas. Mas as plantas cortadas voltam a dar folhas novas.",
+        "picking": "Apanhe as folhas novas uma a uma em cada planta e deixe a raiz. Escolha prados que não sejam pulverizados nem adubados, longe de estradas e de caminhos de cães.",
+        "kitchen": "Primeiro tenha a certeza da identificação. As folhas são muito ácidas, como casca de limão. Corte as novas em tiras para saladas. Também as pode cozinhar pouco tempo em sopas, omeletes e molhos para peixe e ovos. A acidez vem do ácido oxálico. Coma azedinha com moderação e evite-a se tiver pedras nos rins. Cozinhe-a em inox ou esmalte, não em alumínio nem em ferro fundido.",
+        "keeps": "No frigorífico, as folhas murcham em dois ou três dias. Cozinhada em puré, a azedinha congela bem.",
         "source": "Identificação e sósias: Woodland Trust e Wild Food UK. Área nos EUA: Flora of North America. Ácido oxálico: Wild Food UK. Época: registos do GBIF."
       }
     }

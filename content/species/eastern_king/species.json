@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Boleto Rei do Leste",
-      "description": "Os cogumelos boleto dos carvalhais do leste americano: chapéu castanho claro a castanho-lilás, poros brancos que amarelecem com a idade e pé reticulado, sem nunca azular",
+      "description": "Os porcini dos carvalhais do leste dos EUA. O chapéu vai de castanho-claro a castanho-lilás e os poros são brancos e ficam amarelos. Nunca azula ao toque.",
       "howTo": "Procure sob carvalhos, faias e nogueiras-americanas nas florestas caducifólias do leste, a partir de junho, poucos dias depois de uma chuva quente de verão",
       "guide": {
-        "identify": "Um pequeno grupo de boletos reis do leste da América do Norte: o Boletus variipes tem o chapéu seco, aveludado, castanho-claro a castanho-acinzentado, que muitas vezes greta; o Boletus separans, um chapéu castanho-lilás a vermelho-fígado que desbota para castanho-amarelado, com lilás no pé. Ambos têm poros brancos quando jovens que amarelecem, uma rede bem marcada, branca a acastanhada, no pé e carne branca que não muda de cor. Os Tylopilus amargos, como o Tylopilus plumbeoviolaceus, de tons violeta, têm poros que ficam rosados. Poros vermelhos ou cor de laranja (Neoboletus subvelutipes) ou poros e carne que azulam (Boletus sensibilis, Boletus huronensis) indicam um boleto tóxico.",
-        "habitat": "Com carvalhos, também faias e outras folhosas, a leste das Rochosas: sobretudo desde Nova Iorque e os Grandes Lagos, pela Pensilvânia e pelos Apalaches, até à Geórgia e aos montes Ozark. O Boletus nobilis e o Boletus atkinsonii pertencem ao mesmo grupo.",
-        "season": "De junho a setembro, sobretudo em julho e agosto, depois de chuvas de verão quentes e fortes.",
-        "picking": "Corte-o ou rode-o para o tirar e corte-o logo no local, porque os boletos de verão têm muitas vezes bicho. Algumas florestas nacionais pedem uma licença gratuita e fixam limites diários; os parques têm regras próprias, muitas vezes mais rigorosas.",
-        "kitchen": "Depois de identificado com certeza, cozinhe-o bem como o boleto comestível: salteado, com massa, em sopas e estufados, ou seco para um sabor mais intenso. Use só exemplares firmes e frescos.",
-        "keeps": "Seca muito bem em fatias finas; fresco, use-o em um ou dois dias.",
+        "identify": "É um pequeno grupo de boletos reis do leste da América do Norte. O Boletus variipes tem o chapéu seco e aveludado, castanho-claro a castanho-acinzentado, que greta muitas vezes. O Boletus separans tem o chapéu castanho-lilás a vermelho-fígado, que desbota para castanho-amarelado. Também tem lilás no pé. Os dois têm poros brancos quando novos, que depois amarelecem. Os dois têm no pé uma rede bem marcada, branca a acastanhada. A carne é branca e não muda de cor. Os Tylopilus amargos têm poros que ficam cor-de-rosa. Um exemplo é o Tylopilus plumbeoviolaceus, cinzento-violeta. Poros vermelhos ou cor de laranja (Neoboletus subvelutipes) indicam um boleto tóxico. Poros e carne que azulam (Boletus sensibilis, Boletus huronensis) também.",
+        "habitat": "Cresce a leste das Rochosas, com carvalhos e também com faias e outras folhosas. É mais comum desde Nova Iorque e os Grandes Lagos, passando pela Pensilvânia e pelos Apalaches, até à Geórgia e aos montes Ozark. O Boletus nobilis e o Boletus atkinsonii pertencem ao mesmo grupo.",
+        "season": "Sai de junho a setembro, sobretudo em julho e agosto. Procure-o depois de chuvas de verão quentes e abundantes.",
+        "picking": "Corte-o ou torça-o para o tirar e abra-o logo ali. Os reis de verão têm muitas vezes bicho. Algumas florestas nacionais pedem uma licença gratuita e fixam limites diários. Os parques têm regras próprias, muitas vezes mais apertadas.",
+        "kitchen": "Confirme bem a identificação e depois cozinhe-o bem, como o boleto comestível. Salteie-o ou junte-o a massas, sopas e estufados. Também o pode secar, para um sabor mais intenso. Use só exemplares firmes e frescos.",
+        "keeps": "Seca muito bem em fatias finas. Fresco, use-o em um ou dois dias.",
         "source": "Identificação e habitat: MushroomExpert (Michael Kuo). Época: registos do GBIF e do iNaturalist. Regras: Serviço Florestal dos EUA."
       }
     }

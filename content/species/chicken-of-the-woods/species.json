@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Frango-da-mata",
-      "description": "Fungo de prateleira amarelo-alaranjado brilhante que cresce em árvores",
+      "description": "Um fungo de prateleira, de um amarelo-alaranjado vivo, que cresce nas árvores.",
       "howTo": "Procure crescendo em árvores mortas ou moribundas, especialmente carvalhos",
       "guide": {
-        "identify": "Prateleiras em leque, sobrepostas, de 10 a 40 cm e sem pé: quando jovens tenras, suculentas e de amarelo-vivo a laranja; com a idade desbotam até ao creme e ficam secas e quebradiças. A face inferior é amarelo-enxofre, com poros minúsculos e não lâminas; a carne é branca a amarelo-pálida e não muda de cor ao corte. Um tufo laranja sobre madeira com lâminas por baixo é o venenoso Omphalotus. No oeste dos EUA, os parentes próximos Laetiporus gilbertsonii e Laetiporus conifericola são quase iguais.",
-        "habitat": "Fungo da madeira de árvores de folha larga vivas e mortas, sobretudo carvalhos, também castanheiros, cerejeiras, salgueiros e faias, e por vezes teixos. É comum nas terras baixas da Europa e no leste dos EUA, em matas, parques e ruas; no oeste dos EUA, os seus parentes crescem em carvalhos, eucaliptos e coníferas.",
-        "season": "Do fim da primavera ao outono, sobretudo no verão, poucos dias depois de chuva quente; no oeste dos EUA, sobretudo no outono. A mesma árvore frutifica muitas vezes vários anos seguidos.",
-        "picking": "Corte à faca as margens tenras das prateleiras jovens e deixe a base dura e as prateleiras velhas e secas. Nunca o apanhe de um teixo, que é muito venenoso, nem de árvores à beira de estradas movimentadas; onde a apanha de cogumelos precisa de licença ou tem limites diários, informe-se sobre as regras locais.",
-        "kitchen": "Depois de identificado com certeza, cozinhe-o bem: cru ou mal cozinhado faz mal ao estômago e, mesmo bem cozinhado, não cai bem a algumas pessoas (náuseas, tonturas, vómitos), por isso prove primeiro uma pequena quantidade. Às fatias, frito ou estufado, a carne firme lembra frango e vai bem com limão, alho e ervas aromáticas.",
-        "keeps": "Alguns dias no frigorífico num saco de papel. Congela bem, cru ou cozinhado.",
+        "identify": "O frango-da-mata cresce em prateleiras sobrepostas, em forma de leque, com 10 a 40 cm de largura e sem pé. Quando novas, as prateleiras são tenras, húmidas e de amarelo-vivo a cor de laranja. Com a idade desbotam até ao creme e ficam secas como giz. A face de baixo é amarelo-enxofre, com poros minúsculos e não lâminas. A carne é branca a amarelo-pálida e não muda de cor ao corte. Um tufo cor de laranja na madeira, com lâminas por baixo, é o venenoso cogumelo-da-oliveira (Omphalotus). No oeste dos EUA, os parentes próximos Laetiporus gilbertsonii e Laetiporus conifericola são muito parecidos.",
+        "habitat": "É um fungo que apodrece a madeira. Cresce em árvores de folha larga vivas ou mortas, sobretudo carvalhos. Também aparece em castanheiros, cerejeiras, salgueiros e faias e, uma vez por outra, em teixos. É comum nas terras baixas da Europa e no leste dos EUA, em matas, parques e ruas. No oeste dos EUA, os seus parentes crescem em carvalhos, eucaliptos e coníferas.",
+        "season": "Aparece do fim da primavera ao outono, sobretudo no verão, poucos dias depois de chuva quente. No oeste dos EUA sai sobretudo no outono. A mesma árvore dá-o muitas vezes vários anos seguidos.",
+        "picking": "Corte à faca as margens tenras das prateleiras novas. Deixe a base dura e as prateleiras velhas, que já parecem giz. Nunca o apanhe de um teixo, que é muito venenoso. Também não o apanhe de árvores à beira de estradas movimentadas. Onde a apanha de cogumelos precisa de licença ou tem limites diários, consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza do que é, cozinhe-o muito bem. Cru ou mal cozinhado, faz mal ao estômago. Mesmo bem cozinhado, cai mal a algumas pessoas e dá náuseas, tonturas e vómitos. Por isso, prove primeiro um bocadinho. Corte-o às fatias e frite-o ou estufe-o. A carne firme faz muitas vezes lembrar frango. Vai bem com limão, alho e ervas aromáticas.",
+        "keeps": "Aguenta uns dias no frigorífico, num saco de papel. Congela bem, cru ou cozinhado.",
         "source": "Identificação e árvores hospedeiras: Woodland Trust, First Nature e MushroomExpert.com. Espécies do oeste dos EUA: Bay Area Mycological Society. Reações: University of Florida (IFAS Extension)."
       }
     }

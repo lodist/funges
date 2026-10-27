@@ -88,15 +88,15 @@
     },
     "pt": {
       "name": "Cogumelo-ostra",
-      "description": "Cogumelo branco-acinzentado com chapéu em forma de leque que cresce em grupos sobre madeira morta",
+      "description": "Um cogumelo branco-acinzentado, de chapéus em forma de leque. Cresce em grupos sobre madeira morta.",
       "howTo": "Procure crescendo em árvores mortas, especialmente faia e carvalho, no outono e inverno",
       "guide": {
-        "identify": "Chapéu em forma de concha ou de leque, de 5 a 18 cm, cinzento-azulado, cinzento-acastanhado ou creme, em andares sobrepostos na madeira. As lâminas, brancas a creme, descem por um pé curto e lateral, que pode faltar; a carne é branca e firme, o cheiro suave e a esporada branca a lilás-pálida. O venenoso Omphalotus é laranja-vivo, lâminas incluídas, e cresce em tufos na base das árvores; o Hypholoma fasciculare tem chapéus amarelo-enxofre em pés centrais, lâminas amarelo-esverdeadas que passam a castanho-púrpura e sabor amargo. A Pleurocybella porrigens, associada a mortes no Japão, é branca pura, fina e translúcida e cresce só em madeira podre de coníferas.",
-        "habitat": "Em árvores de folha larga mortas ou a morrer, sobretudo faias, também choupos, salgueiros, carvalhos e freixos: troncos de pé, cepos e troncos caídos, raramente coníferas. Comum em toda a Europa e na América do Norte.",
-        "season": "Do fim do outono ao inverno, depois de uma vaga de frio ou das primeiras geadas a seguir à chuva; até janeiro ou fevereiro no sul da Europa e de outubro ao início de abril no leste dos EUA.",
-        "picking": "Corte o tufo pela base com uma faca, apanhe os chapéus firmes e jovens e deixe os velhos ou roídos por escaravelhos. Onde a apanha de cogumelos precisa de licença ou tem limites diários, informe-se sobre as regras locais.",
-        "kitchen": "Depois de identificado com certeza, cozinhe-o bem; não o coma cru. Corte a base rija, rasgue os chapéus em tiras e salteie-as em lume forte até as margens ficarem estaladiças; o sabor suave, um pouco doce, vai bem com alho, manteiga, molho de soja e ovos.",
-        "keeps": "Estraga-se depressa: guarde-o alguns dias no frigorífico num saco de papel ou congele-o cozinhado.",
+        "identify": "O cogumelo-ostra tem o chapéu em forma de concha ou de leque, com 5 a 18 cm. Pode ser cinzento-azulado, cinzento-acastanhado ou creme. Cresce na madeira, em andares sobrepostos. As lâminas, brancas a creme, descem por um pé curto e descentrado. Às vezes nem tem pé. A carne é branca e firme. O cheiro é suave. A esporada é branca a lilás-pálido. Há três sósias que tem de conhecer. O Omphalotus é venenoso e cor de laranja viva, lâminas incluídas. Cresce em tufos na base das árvores. O Hypholoma fasciculare tem chapéus amarelo-enxofre, com o pé ao centro. As lâminas são amarelo-esverdeadas e passam a castanho-arroxeado. Tem sabor amargo. A Pleurocybella porrigens está ligada a mortes no Japão. É branca pura, fina e translúcida e só cresce em madeira podre de coníferas.",
+        "habitat": "Cresce em árvores de folha larga mortas ou a morrer, sobretudo faias. Também aparece em choupos, salgueiros, carvalhos e freixos. Em coníferas é raro. Procure em troncos de pé, cepos e troncos caídos. É comum em toda a Europa e na América do Norte.",
+        "season": "É um cogumelo do fim do outono e do inverno. Uma vaga de frio ou as primeiras geadas depois da chuva fazem-no sair. No sul da Europa continua até janeiro ou fevereiro. No leste dos EUA frutifica de outubro ao início de abril.",
+        "picking": "Corte o tufo pela base com uma faca. Apanhe os chapéus novos e firmes e deixe os velhos ou roídos pelos escaravelhos. Nalguns sítios a apanha de cogumelos precisa de licença ou tem limites diários, por isso informe-se sobre as regras locais.",
+        "kitchen": "Antes de o cozinhar, tenha a certeza da identificação. Cozinhe-o bem e não o coma cru. Corte a base rija e rasgue os chapéus em tiras. Salteie-as em lume forte até as bordas ficarem estaladiças. O sabor é suave e um pouco doce. Vai bem com alho, manteiga, molho de soja e ovos.",
+        "keeps": "Estraga-se depressa. Guarde-o uns dias no frigorífico, num saco de papel. Também o pode cozinhar e congelar.",
         "source": "Identificação e época: First Nature e MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, Universidade da Colúmbia Britânica."
       }
     }
