@@ -2129,6 +2129,7 @@
     "forLabel": "Planificar para",
     "thisWeek": "Hoy",
     "forMonth": "Planificado para {{month}} en {{place}}.",
+    "forHint": "Lo que aún no está en la tierra se planta en el momento elegido aquí, y la línea de tiempo lo muestra creciendo desde entonces.",
     "readyOn": "Hacia el {{date}}",
     "timeline": {
       "now": "Ahora",

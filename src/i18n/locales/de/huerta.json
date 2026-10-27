@@ -2129,6 +2129,7 @@
     "forLabel": "Planen für",
     "thisWeek": "Heute",
     "forMonth": "Geplant für {{month}} rund um {{place}}.",
+    "forHint": "Was noch nicht in der Erde ist, kommt zur hier gewählten Zeit hinein, und die Zeitleiste zeigt, wie es ab dann wächst.",
     "readyOn": "Um den {{date}}",
     "timeline": {
       "now": "Jetzt",
