@@ -13,11 +13,11 @@
   "offline": {
     "title": "Using the map offline",
     "prepareTitle": "Before you leave",
-    "prepare": "While online, open Offline Maps and download your region. The package includes the basemap and forecasts and remains valid for 7 days. Wait until it shows as downloaded, and update it before leaving if it has expired. Install the app for the most reliable offline restart.",
+    "prepare": "While online, open Offline Maps and download your region. The package includes the basemap and forecasts and remains valid for 7 days. Wait until it shows as downloaded and update it before leaving if it has expired. Install the app for the most reliable offline restart.",
     "availableTitle": "What remains available",
-    "available": "The downloaded basemap, forecasts, species selector, forecast slider, zone details, every map style, and Locate Me remain available. GPS does not require mobile data, although it may be slower and still needs location permission.",
+    "available": "The downloaded basemap, forecasts, species selector, forecast slider, zone details, every map style and Locate Me remain available. GPS does not require mobile data, although it may be slower and still needs location permission.",
     "unavailableTitle": "What needs a connection",
-    "unavailable": "Photo ID remains available after its one-time model download. Route to Dish, Google Maps navigation, and Area Data are hidden while offline because they require an internet connection."
+    "unavailable": "Photo ID remains available after its one-time model download. Route to Dish, Google Maps navigation and Area Data are hidden while offline because they require an internet connection."
   },
   "functions": {
     "title": "Functions:",
@@ -48,10 +48,10 @@
     "title": "Our Mission",
     "commitment": "Funges is committed to leveraging technology and environmental data to empower individuals and organizations in sustainable foraging and resource collection.",
     "goal": "By providing real-time insights and predictive analytics, our goal is to reduce resource waste, adapt to climate change and make nature's gifts more accessible to everyone.",
-    "sustainability": "Foraging is most sustainable when it follows the natural rhythm of the environment — guided by seasonality, locality, and ecological balance. Nature provides what is needed, when it is needed; responsible harvesting begins with attentiveness to these cycles.",
+    "sustainability": "Foraging is most sustainable when it follows the natural rhythm of the environment — guided by seasonality, locality and ecological balance. Nature provides what is needed, when it is needed; responsible harvesting begins with attentiveness to these cycles.",
     "community": "Through innovation and open access, the goal is to create a community of responsible foragers who value sustainability and biodiversity.",
     "openAccess": "Open access to information fosters a deeper connection to place and time, encouraging decisions that respect biodiversity and the regenerative capacity of ecosystems.",
-    "privacy": "That openness runs both ways: information flows to you without anything flowing back. There is no account, no personal data is collected, and photo identification happens on your own device. Anonymity here is not a setting to switch on, it is the design."
+    "privacy": "That openness runs both ways: information flows to you without anything flowing back. There is no account, no personal data is collected and photo identification happens on your own device. Anonymity here is not a setting to switch on, it is the design."
   },
   "prediction": {
     "title": "How Wild Edibles Are Predicted",
@@ -62,13 +62,13 @@
       "soil": "Soil pH",
       "vegetation": "Land cover, forest types and host trees",
       "topography": "Elevation and distance to water",
-      "trends": "Where each species is recorded, and its season"
+      "trends": "Where each species is recorded and its season"
     },
     "goal": "The goal is to simulate the behavior of experienced foragers—amplified by data. In other words, respectfully trying to hack nature to make wild harvesting more accessible, precise and sustainable.",
     "methodology": {
       "title": "Data Sources & Methodology",
-      "description": "Funges uses a combination of environmental, meteorological, and geospatial datasets to forecast the best locations and times for foraging wild edibles.",
-      "datasets": "These include weather forecasts, elevation and soil maps, land-cover and forest maps, and citizen-science sightings of each species—analyzed over time to simulate nature's cycles and identify real-time hotspots."
+      "description": "Funges uses a combination of environmental, meteorological and geospatial datasets to forecast the best locations and times for foraging wild edibles.",
+      "datasets": "These include weather forecasts, elevation and soil maps, land-cover and forest maps plus citizen-science sightings of each species—analyzed over time to simulate nature's cycles and identify real-time hotspots."
     },
     "keyDatasets": {
       "title": "Key Datasets",
@@ -122,18 +122,18 @@
       },
       "era5": {
         "title": "9. ERA5 Reanalysis (Past Rain)",
-        "description": "ECMWF's reanalysis combines weather models with observations from across the world. Forecasts are often wrong about where rain fell, so once ERA5 publishes a day, about five days later, Funges replaces that day's forecast rain with ERA5's. Its monthly averages give each place's normal weather for the time of year, and the models that predict when mushrooms appear were trained on its hourly time series.",
+        "description": "ECMWF's reanalysis combines weather models with observations from across the world. Forecasts are often wrong about where rain fell, so once ERA5 publishes a day, about five days later, Funges replaces that day's forecast rain with ERA5's. Its monthly averages give each place's normal weather for the time of year and the models that predict when mushrooms appear were trained on its hourly time series.",
         "source": "Source: Copernicus Climate Change Service (C3S), ECMWF",
         "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Copernicus Climate Change Service (C3S) (2025). ERA5 hourly time-series data on single levels from 1940 to present. ECMWF. https://doi.org/10.24381/1cf1ad76. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
       },
-      "additional": "Daily weather comes from WeatherAPI.com forecasts, and every model change is checked against recent sightings the model has not seen."
+      "additional": "Daily weather comes from WeatherAPI.com forecasts and every model change is checked against recent sightings the model has not seen."
     }
   },
   "identify": {
     "title": "How Photo Identification Works",
     "intro": "Identify, in the bottom bar on a phone or the sidebar on a computer, narrows a photo down to about three possible species, each marked edible or toxic. It is a shortlist, not a verdict: a dangerous look-alike can be the correct answer even when it is not the first result.",
     "onDevice": "Recognition runs entirely on your phone. Photos are never uploaded and never stored by the app. That is why a one-time model download is needed the first time you use it: without it, identification would have to send your photos to a server instead.",
-    "howTo": "Open Identify, allow the one-time download over Wi-Fi, then take a photo or pick one from your gallery. Fill the frame with the whole specimen where you can, including the stem base, and photograph what you have actually dug up or picked rather than a distant cluster. Two photos of the same find - the top and the underside including the stem base - give a noticeably better match than one.",
+    "howTo": "Open Identify, allow the one-time download over Wi-Fi, then take a photo or pick one from your gallery. Fill the frame with the whole specimen where you can, including the stem base. Photograph what you have actually dug up or picked rather than a distant cluster. Two photos of the same find - the top and the underside including the stem base - give a noticeably better match than one.",
     "limits": "Identification takes from around five to twenty seconds depending on the device, because the work happens on your device rather than in a data centre. It covers the species in this app plus about two and a half thousand more found in the same regions; anything outside that is shown by scientific name only, with no safety information. Never eat anything based on this app - a misidentification can be fatal."
   }
 }
