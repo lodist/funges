@@ -17,9 +17,7 @@ describe('what a garden task says', () => {
   });
 
   it('a crop that missed its time says so', () => {
-    expect(
-      taskText({ kind: 'tooLate', crops: ['tomato'] }, t, 'en')
-    ).toEqual({
+    expect(taskText({ kind: 'tooLate', crops: ['tomato'] }, t, 'en')).toEqual({
       title: `${tomato}: too late now`,
       text: 'Pick something else for its beds, or let “Plan it for me” fill them.',
       from: 'plan',

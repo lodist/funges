@@ -34,10 +34,7 @@ import {
 import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '@/hooks/use-mobile';
-import {
-  shouldShowHuerta,
-  shouldShowOfflineFeatures,
-} from '@/lib/feature-flags';
+import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import MapLastUpdated from '@/components/MapLastUpdated';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -162,7 +159,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             items: [
               // The Huerta account (sign out, delete), in Huerta only: from
               // Terra it would jump spaces. Phones have it in Settings.
-              ...(shouldShowHuerta && currentSpace(pathname) === 'huerta'
+              ...(currentSpace(pathname) === 'huerta'
                 ? [
                     {
                       title: t('account'),

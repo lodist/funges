@@ -1,7 +1,5 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import FrontPage from '@/pages/FrontPage';
-import LandingPage from '@/pages/LandingPage';
-import { shouldShowHuerta } from '@/lib/feature-flags';
 import { lastDoor } from '@/lib/spaces';
 // zod's mini build: the same checks, a fraction of the entry chunk.
 import * as z from 'zod/mini';
@@ -22,9 +20,9 @@ const legacyMapSearch = z.object({
 // app (the logo), it stays.
 let opened = window.location.pathname === import.meta.env.BASE_URL;
 
-// The front page every space opens from; Terra's own until Huerta launches.
+// The front page every space opens from.
 export const Route = createFileRoute('/')({
-  component: shouldShowHuerta ? FrontPage : LandingPage,
+  component: FrontPage,
   validateSearch: legacyMapSearch,
   beforeLoad: ({ search, preload }) => {
     const { species, lat, lng, zoom } = search;
@@ -41,7 +39,7 @@ export const Route = createFileRoute('/')({
       });
     }
     if (preload) return;
-    const door = opened && shouldShowHuerta ? lastDoor() : null;
+    const door = opened ? lastDoor() : null;
     opened = false;
     if (door) throw redirect({ href: door, replace: true });
   },

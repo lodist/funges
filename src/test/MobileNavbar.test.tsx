@@ -57,8 +57,6 @@ vi.mock('@/lib/feature-flags', () => ({
   get shouldShowOfflineFeatures() {
     return offlineEnabled.current;
   },
-  // One space, as on the live site: no space slot in the bar.
-  shouldShowHuerta: false,
 }));
 
 const navLinks = () =>

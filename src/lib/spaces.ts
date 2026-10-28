@@ -1,4 +1,3 @@
-import { shouldShowHuerta } from '@/lib/feature-flags';
 import {
   localizedPath,
   stripLanguage,
@@ -18,9 +17,8 @@ export const SPACE_HOME: Record<Space, string> = {
   huerta: '/huerta/map',
 };
 
-/** The spaces a visitor can switch between: Huerta only where it is shown. */
-export const visibleSpaces = (): Space[] =>
-  shouldShowHuerta ? ['terra', 'huerta'] : ['terra'];
+/** The spaces a visitor can switch between. */
+export const visibleSpaces = (): Space[] => ['terra', 'huerta'];
 
 /** Pages every space shares (the phone hub, help, legal): no space of their own. */
 const SHARED =
