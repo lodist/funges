@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import './i18n';
 import { useDailySpeciesRefresh } from '@/hooks/use-daily-species-refresh';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import { reloadIntoUpdate } from '@/lib/pwa';
 import { pathLanguage } from '@/lib/seo-pages';
 
 // Create a client
@@ -32,7 +33,14 @@ const router = createRouter({
   // handle the data fetching on the client instead.
   defaultPreloadStaleTime: 0,
   basepath: import.meta.env.BASE_URL || '/',
+  defaultNotFoundComponent: NotFound,
 });
+
+function NotFound() {
+  const { t } = useTranslation('common');
+  useEffect(() => void reloadIntoUpdate(), []);
+  return <p className='p-4'>{t('errors.notFound')}</p>;
+}
 
 function App() {
   const { i18n } = useTranslation('common');
