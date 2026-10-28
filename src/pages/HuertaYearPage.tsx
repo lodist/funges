@@ -2,19 +2,30 @@ import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
+import { PlacePicker } from '@/components/PlacePicker';
 import SEO from '@/components/SEO';
+import { Button } from '@/components/ui/button';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { useHuertaYear } from '@/hooks/use-huerta-year';
 import { CROPS, huertaImage, KINDS } from '@/lib/huerta';
-import { huertaApiConfigured, savedPlace } from '@/lib/huerta-api';
+import { huertaApiConfigured, savedPlace, savePlace } from '@/lib/huerta-api';
+import { MapPinned } from '@/lib/icons';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import { cn } from '@/lib/utils';
 
 /** The calendar: every crop's sowing and harvest months at the visitor's place,
  *  like the back of a seed packet, but for this climate. */
 export default function HuertaYearPage() {
+  // Another place: the page starts afresh, as My garden does.
+  const [moves, setMoves] = useState(0);
+  return <Calendar key={moves} onMoved={() => setMoves(n => n + 1)} />;
+}
+
+function Calendar({ onMoved }: { onMoved: () => void }) {
   const { t, i18n } = useTranslation('huerta');
   const year = useHuertaYear();
+  // Choosing the place, open under the header.
+  const [picking, setPicking] = useState(false);
   const [kind, setKind] = useState<string>('all');
   const hasPlace = huertaApiConfigured && savedPlace() !== null;
   const thisMonth = new Date().getMonth();
@@ -39,8 +50,23 @@ export default function HuertaYearPage() {
             scopeLabel={
               year ? t('year.around', { place: year.place }) : undefined
             }
-            action={null}
+            action={
+              huertaApiConfigured ? (
+                <Button variant='outline' onClick={() => setPicking(p => !p)}>
+                  <MapPinned />
+                  {hasPlace ? t('change') : t('planner.choosePlace')}
+                </Button>
+              ) : null
+            }
           />
+          {picking ? (
+            <PlacePicker
+              onPick={chosen => {
+                savePlace(chosen);
+                onMoved();
+              }}
+            />
+          ) : null}
           {hasPlace && year ? (
             <CategoryChips
               chips={KINDS.map(value => ({
