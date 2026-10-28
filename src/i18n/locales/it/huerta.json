@@ -179,6 +179,17 @@
         "clear": "Usa l'aiuola per qualcosa che cresce adesso.",
         "pick": "Raccogli quello che puoi prima.",
         "replace": "Non faranno in tempo a essere pronti: usa l'aiuola per qualcosa che cresce adesso."
+      },
+      "over": {
+        "title": "{{crops}}: finito per quest'anno?",
+        "text": "Libera l'aiuola: sarà pronta per quello che può andarci dopo."
+      },
+      "end": {
+        "harvested": "Raccolto",
+        "allPicked": "Tutto raccolto",
+        "finished": "Finito",
+        "dugIn": "Interrato",
+        "cleared": "Liberato"
       }
     },
     "short": {
@@ -203,6 +214,18 @@
       "undo": "Annulla",
       "sown": "{{crop}}: semina del {{date}}",
       "planted": "{{crop}}: messa a dimora del {{date}}"
+    },
+    "season": {
+      "title": "Questa stagione",
+      "harvested": "Dentro il {{from}}, fuori il {{to}}",
+      "lost": "Dentro il {{from}}, perso il {{to}} · {{why}}",
+      "said": "avevamo detto {{date}}",
+      "rate": "Com'è andata: {{crop}}",
+      "rating": {
+        "1": "Scarso",
+        "2": "Discreto",
+        "3": "Buono"
+      }
     }
   },
   "units": {
@@ -1902,7 +1925,10 @@
         }
       ],
       "source": "Sovescio: RHS. pH: University of Connecticut."
-    }
+    },
+    "lastHarvest": "L'ultima volta è andato a dimora il {{from}} ed è uscito il {{to}}.",
+    "lastLost": "L'ultima volta è andato perso il {{date}}. {{why}}.",
+    "lastSaid": "Avevamo detto il {{date}}."
   },
   "map": {
     "title": "Mappa",
@@ -2159,7 +2185,18 @@
       "coverFrost": "Può ancora gelare fino al {{date}} circa: coprilo nelle notti fredde.",
       "coverWinter": "Le gelate forti sono ancora probabili fino al {{date}} circa: coprilo nelle notti fredde.",
       "lostAround": "Perso verso il {{date}}"
-    }
+    },
+    "end": {
+      "lost": "Perso",
+      "why": "Cos'è successo?",
+      "cold": "Gelo o freddo",
+      "pests": "Parassiti o malattie",
+      "sprout": "Non è nato",
+      "dry": "Seccato",
+      "other": "Qualcos'altro"
+    },
+    "before": "Prima",
+    "beforeText": "{{crop}}, fuori il {{date}}"
   },
   "year": {
     "title": "Calendario",

@@ -7,6 +7,8 @@ import {
   adjacent,
   autoPlan,
   axisOf,
+  endAs,
+  finish,
   fit,
   inMonth,
   layout,
@@ -17,6 +19,7 @@ import {
   northness,
   notes,
   partners,
+  pastAt,
   ready,
   removeBed,
   reshape,
@@ -24,6 +27,7 @@ import {
   split,
   summary,
   type Garden,
+  type Plan,
   type PlanStyle,
   type Section,
 } from '@/lib/planner';
@@ -414,5 +418,64 @@ describe('partners', () => {
       'tomato',
       'pepper',
     ]);
+  });
+
+  it('takes a harvest out of its bed, keeps it, and plans the next family there', () => {
+    const garden: Garden = { width: 6, length: 4.5, shape: 'rect' };
+    const first = autoPlan(layout(garden), status, { sow: '2026-10-01' });
+    const bed = first[2].bed;
+    const grew = first.filter(s => s.bed === bed).map(s => s.crop);
+    const plan: Plan = {
+      garden,
+      sections: first.map((s, i) =>
+        i === 2 ? { ...s, planted: '2026-03-01' } : s
+      ),
+    };
+    const done = finish(plan, [2, 3], '2026-09-20', 'harvested', s =>
+      s.crop === grew[0] ? '2026-09-10' : null
+    );
+    // Only the planted section comes out; it keeps its place and the day
+    // Huerta gave.
+    expect(done.sections[2]).toMatchObject({ crop: null, planted: undefined });
+    expect(done.sections[3].crop).toBe(first[3].crop);
+    expect(done.past).toEqual([
+      {
+        crop: first[2].crop,
+        x0: first[2].x0,
+        x1: first[2].x1,
+        y0: first[2].y0,
+        y1: first[2].y1,
+        planted: '2026-03-01',
+        ended: '2026-09-20',
+        end: 'harvested',
+        said: first[2].crop === grew[0] ? '2026-09-10' : null,
+      },
+    ]);
+    expect(pastAt(done.past, first[2])[0].crop).toBe(first[2].crop);
+    expect(pastAt(done.past, first[0])).toEqual([]);
+    // That bed gets another family in the year after; a year on, any.
+    const again = (sow: string) =>
+      autoPlan(done.sections, status, { sow, past: done.past })
+        .filter(s => s.bed === bed)
+        .map(s => s.crop);
+    for (const crop of again('2026-10-01')) expect(grew).not.toContain(crop);
+    expect(again('2028-10-01')).toEqual(
+      autoPlan(done.sections, status, { sow: '2028-10-01' })
+        .filter(s => s.bed === bed)
+        .map(s => s.crop)
+    );
+    // A resize keeps what came out.
+    expect(
+      reshape(done, { ...garden, width: 7 }, status, '2026-10-01').past
+    ).toEqual(done.past);
+  });
+
+  it('names the way each crop comes out', () => {
+    expect(endAs('garlic')).toBe('harvested');
+    expect(endAs('tomato')).toBe('allPicked');
+    expect(endAs('sunflower')).toBe('finished');
+    expect(endAs('phacelia')).toBe('dugIn');
+    expect(endAs('asparagus')).toBeNull();
+    expect(endAs('rhubarb')).toBeNull();
   });
 });

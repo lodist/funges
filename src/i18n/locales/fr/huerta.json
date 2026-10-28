@@ -179,6 +179,17 @@
         "clear": "Utilisez la planche pour une culture qui pousse maintenant.",
         "pick": "Récoltez ce que vous pouvez avant.",
         "replace": "Ils ne seront pas prêts à temps : utilisez la planche pour une culture qui pousse maintenant."
+      },
+      "over": {
+        "title": "{{crops}} : fini pour cette année ?",
+        "text": "Libérez la planche : elle sera prête pour ce qui peut venir ensuite."
+      },
+      "end": {
+        "harvested": "Récolté",
+        "allPicked": "Tout cueilli",
+        "finished": "Terminé",
+        "dugIn": "Enfoui",
+        "cleared": "Libéré"
       }
     },
     "short": {
@@ -203,6 +214,18 @@
       "undo": "Annuler",
       "sown": "{{crop}} : semis du {{date}}",
       "planted": "{{crop}} : plantation du {{date}}"
+    },
+    "season": {
+      "title": "Cette saison",
+      "harvested": "En terre le {{from}}, sorti le {{to}}",
+      "lost": "En terre le {{from}}, perdu le {{to}} · {{why}}",
+      "said": "nous avions dit {{date}}",
+      "rate": "Comment ça a donné : {{crop}}",
+      "rating": {
+        "1": "Faible",
+        "2": "Correct",
+        "3": "Bon"
+      }
     }
   },
   "units": {
@@ -1902,7 +1925,10 @@
         }
       ],
       "source": "Engrais vert : RHS. pH : université du Connecticut."
-    }
+    },
+    "lastHarvest": "La dernière fois, il est entré en terre le {{from}} et sorti le {{to}}.",
+    "lastLost": "La dernière fois, il a été perdu le {{date}}. {{why}}.",
+    "lastSaid": "Nous avions dit le {{date}}."
   },
   "map": {
     "title": "Carte",
@@ -2159,7 +2185,18 @@
       "coverFrost": "Il peut encore geler jusque vers le {{date}} : couvrez-le les nuits froides.",
       "coverWinter": "De fortes gelées restent probables jusque vers le {{date}} : couvrez-le les nuits froides.",
       "lostAround": "Perdu vers le {{date}}"
-    }
+    },
+    "end": {
+      "lost": "Perdu",
+      "why": "Que s'est-il passé ?",
+      "cold": "Gel ou froid",
+      "pests": "Ravageurs ou maladie",
+      "sprout": "N'a pas levé",
+      "dry": "Desséché",
+      "other": "Autre chose"
+    },
+    "before": "Avant",
+    "beforeText": "{{crop}}, sorti le {{date}}"
   },
   "year": {
     "title": "Calendrier",

@@ -100,6 +100,12 @@ export function taskText(
         }),
         from: 'plan',
       };
+    case 'over':
+      return {
+        title: t('week.todo.over.title', { crops: names(task.crops) }),
+        text: t('week.todo.over.text'),
+        from: 'plan',
+      };
     case 'sowAgain':
       return {
         title: t('week.todo.sowAgain.title', { crop: t(`crops.${task.crop}`) }),

@@ -179,6 +179,17 @@
         "clear": "Aprovecha el bancal para algo que crezca ahora.",
         "pick": "Cosecha lo que puedas antes.",
         "replace": "No llegarán a estar listos: aprovecha el bancal para algo que crezca ahora."
+      },
+      "over": {
+        "title": "{{crops}}: ¿terminado por este año?",
+        "text": "Despeja el bancal y quedará libre para lo que pueda ir después."
+      },
+      "end": {
+        "harvested": "Cosechado",
+        "allPicked": "Todo recogido",
+        "finished": "Terminado",
+        "dugIn": "Enterrado",
+        "cleared": "Despejado"
       }
     },
     "short": {
@@ -203,6 +214,18 @@
       "undo": "Deshacer",
       "sown": "{{crop}}: siembra del {{date}}",
       "planted": "{{crop}}: plantación del {{date}}"
+    },
+    "season": {
+      "title": "Esta temporada",
+      "harvested": "Entró el {{from}}, salió el {{to}}",
+      "lost": "Entró el {{from}}, perdido el {{to}} · {{why}}",
+      "said": "dijimos {{date}}",
+      "rate": "Qué tal fue: {{crop}}",
+      "rating": {
+        "1": "Flojo",
+        "2": "Bien",
+        "3": "Muy bien"
+      }
     }
   },
   "units": {
@@ -1902,7 +1925,10 @@
         }
       ],
       "source": "Abono verde: RHS. pH: extensión de la Universidad de Connecticut."
-    }
+    },
+    "lastHarvest": "La última vez entró el {{from}} y salió el {{to}}.",
+    "lastLost": "La última vez se perdió el {{date}}. {{why}}.",
+    "lastSaid": "Habíamos dicho el {{date}}."
   },
   "map": {
     "title": "Mapa",
@@ -2159,7 +2185,18 @@
       "coverFrost": "Aún puede helar hasta el {{date}} más o menos: cúbrelo las noches frías.",
       "coverWinter": "Aún pueden caer heladas fuertes hasta el {{date}} más o menos: cúbrelo las noches frías.",
       "lostAround": "Se pierde hacia el {{date}}"
-    }
+    },
+    "end": {
+      "lost": "Perdido",
+      "why": "¿Qué pasó?",
+      "cold": "Helada o frío",
+      "pests": "Plagas o enfermedad",
+      "sprout": "No germinó",
+      "dry": "Se secó",
+      "other": "Otra cosa"
+    },
+    "before": "Antes",
+    "beforeText": "{{crop}}, salió el {{date}}"
   },
   "year": {
     "title": "Calendario",

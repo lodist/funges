@@ -48,7 +48,7 @@
     "intro": "Para quaisquer dúvidas ou preocupações sobre esta Política de Privacidade, entre em contato:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última atualização em: 26.10.2026",
+  "lastUpdated": "Última atualização em: 28.10.2026",
   "accounts": {
     "title": "Contas Huerta",
     "content": "Você entra no Huerta com sua conta do Google. O Google nos informa seu endereço de e-mail e um número que identifica sua conta do Google; guardamos os dois, junto com seu idioma e fuso horário, para que você possa entrar em qualquer dispositivo e receber os alertas na hora certa. Guardamos suas hortas: os nomes, os planos e o local arredondado para cerca de 1 km, nunca seu endereço.",
@@ -57,6 +57,7 @@
     "delete": "Você pode excluir sua conta a qualquer momento: abra a página da sua conta (Ajuda → Conta no computador, Configurações no celular) e escolha Excluir conta, ou escreva para o endereço de contato abaixo a partir do e-mail da sua conta. Seu e-mail, suas hortas e seus alertas são excluídos na hora, em todos os dispositivos.",
     "google": "Do Google recebemos apenas seu endereço de e-mail, se o Google o verificou e o número que identifica sua conta do Google. Nunca vemos sua senha e não temos acesso aos seus contatos, arquivos nem a mais nada da sua conta do Google. Não usamos esses dados para publicidade e nunca os vendemos. Você também pode remover o Funges dos apps conectados à sua conta do Google quando quiser.",
     "legal": "Tratamos esses dados para fornecer a conta que você pediu (art. 6.º, n.º 1, alínea b, do RGPD). Os alertas da manhã só são enviados se você os ativar, e você pode desativá-los a qualquer momento.",
+    "outcomes": "Quando você marca um cultivo como colhido ou perdido, podemos usar as datas dele, a sua avaliação e o lugar da horta (arredondado para cerca de 1 km) para verificar e melhorar as datas que o Huerta dá. Nunca usamos o seu nome ou e-mail para isso. Fazemos isso pelo nosso interesse legítimo em um serviço com datas certas (art. 6.º, n.º 1, alínea f, do RGPD). Se você se opuser, escreva para o endereço de contato abaixo e deixaremos suas hortas de fora.",
     "retention": "Guardamos seus dados enquanto você tiver uma conta. Um login em um dispositivo expira depois de um ano sem uso. Os registros de um login em andamento são apagados em poucos minutos. Quando você exclui sua conta, tudo é apagado na hora; o histórico de restauração do nosso provedor de banco de dados guarda tudo por no máximo mais 7 dias, depois some de vez.",
     "device": "Para manter você conectado e funcionar offline, o app guarda seu login e uma cópia das suas hortas no seu dispositivo (armazenamento do navegador). Isso é necessário para o serviço funcionar; o Funges não usa cookies de rastreamento.",
     "age": "As contas Huerta são para pessoas com 16 anos ou mais."

@@ -20,11 +20,18 @@ import {
   Droplets,
   Shovel,
   Snowflake,
+  Sprout,
 } from '@/lib/icons';
-import type { Plan } from '@/lib/planner';
+import { endAs, type Grown, type Plan } from '@/lib/planner';
 import { cn } from '@/lib/utils';
 
 const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
+const days = (from: string, to: string) =>
+  Math.round(
+    (new Date(`${to}T12:00:00`).getTime() -
+      new Date(`${from}T12:00:00`).getTime()) /
+      864e5
+  );
 /** The picture beside a job: the weather's own, else the crop's photo. */
 const ICON: Record<string, ComponentType<{ className?: string }>> = {
   frost: Snowflake,
@@ -34,7 +41,9 @@ const ICON: Record<string, ComponentType<{ className?: string }>> = {
   soil: Shovel,
   tooLate: Clock,
   fate: AlertTriangle,
+  over: Sprout,
 };
+const YEAR_DAYS = 365;
 
 interface Job {
   key: string;
@@ -66,6 +75,8 @@ export function GardenThisWeek({
   onUndo,
   onShow,
   onReplan,
+  onEnd,
+  onRate,
   folded = false,
 }: {
   plan: Plan;
@@ -87,6 +98,10 @@ export function GardenThisWeek({
   onShow: (at: number[]) => void;
   /** Plan it for me, for just these sections. */
   onReplan: (at: number[]) => void;
+  /** Take planted sections out, harvested. */
+  onEnd: (at: number[]) => void;
+  /** Rate crops that came out (by their place in the plan's past). */
+  onRate: (at: number[], rating: Grown['rating']) => void;
   folded?: boolean;
 }) {
   const { t, i18n } = useTranslation('huerta');
@@ -160,6 +175,20 @@ export function GardenThisWeek({
           };
         });
       const { title, text, from } = taskText(task, t, i18n.language);
+      if (task.kind === 'over') {
+        const at = growing(task.crops);
+        return [
+          {
+            key: 'over',
+            kind: task.kind,
+            title,
+            text,
+            from,
+            at,
+            action: { label: t('week.todo.end.cleared'), run: () => onEnd(at) },
+          },
+        ];
+      }
       if (task.kind === 'tooLate') {
         const at = task.crops.flatMap(crop => toSow(plan, crop, today).at);
         return [
@@ -175,6 +204,11 @@ export function GardenThisWeek({
         ];
       }
       const key = jobKey(task, plan, today);
+      // The harvest in: the crop comes out, unless it stays (a perennial).
+      const end =
+        task.kind === 'stage' && task.step === 'harvest'
+          ? { as: endAs(task.crop), crop: task.crop }
+          : null;
       return [
         {
           key: key ?? task.kind,
@@ -193,8 +227,12 @@ export function GardenThisWeek({
                   : [],
           // A crop that won't be ready before it dies: its beds planned
           // again with what grows now; anything else ticked off once seen to.
-          action:
-            task.kind === 'fate' && !task.ready
+          action: end?.as
+            ? {
+                label: t(`week.todo.end.${end.as}`),
+                run: () => onEnd(growing([end.crop])),
+              }
+            : task.kind === 'fate' && !task.ready
               ? {
                   label: t('planner.auto'),
                   run: () => onReplan(growing(task.crops)),
@@ -251,6 +289,20 @@ export function GardenThisWeek({
       };
     }),
   ];
+
+  // The last year's crops out of the beds, latest first: those of one sowing
+  // that came out together on one line.
+  const season = new Map<string, { g: Grown; at: number[] }>();
+  (plan.past ?? []).forEach((g, i) => {
+    if (days(g.ended, today) > YEAR_DAYS) return;
+    const key = [g.crop, g.planted, g.ended, g.end, g.why].join('|');
+    const line = season.get(key) ?? { g, at: [] };
+    line.at.push(i);
+    season.set(key, line);
+  });
+  const lines = [...season.values()].sort((a, z) =>
+    z.g.ended.localeCompare(a.g.ended)
+  );
 
   const title = (
     <h2 id='garden-week' className='text-xl font-semibold'>
@@ -337,6 +389,66 @@ export function GardenThisWeek({
                 <Button variant='ghost' onClick={d.undo}>
                   {t('week.done.undo')}
                 </Button>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
+
+      {lines.length ? (
+        <details className='group/season'>
+          <summary className='focus-ring flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-muted-foreground hover:bg-muted [&::-webkit-details-marker]:hidden'>
+            <ChevronDown className='size-4 transition-transform group-open/season:rotate-180' />
+            <span className='type-micro'>{t('week.season.title')}</span>
+            <span className='text-xs tabular-nums'>{lines.length}</span>
+          </summary>
+          <ul className='mt-1 flex flex-col gap-2'>
+            {lines.map(({ g, at }) => (
+              <li
+                key={at.join()}
+                className='flex flex-wrap items-center gap-x-3 gap-y-1 px-2 text-sm'
+              >
+                <span className='min-w-0 flex-1 basis-56'>
+                  <span className='block font-medium text-foreground'>
+                    {name(g.crop)}
+                  </span>
+                  <span className='block text-xs text-muted-foreground'>
+                    {g.end === 'lost'
+                      ? t('week.season.lost', {
+                          from: date(g.planted, 'short'),
+                          to: date(g.ended, 'short'),
+                          why: t(`planner.end.${g.why ?? 'other'}`),
+                        })
+                      : t('week.season.harvested', {
+                          from: date(g.planted, 'short'),
+                          to: date(g.ended, 'short'),
+                        })}
+                    {g.end === 'harvested' && g.said
+                      ? ` · ${t('week.season.said', { date: date(g.said, 'short') })}`
+                      : null}
+                  </span>
+                </span>
+                {g.end === 'harvested' ? (
+                  <span
+                    role='group'
+                    aria-label={t('week.season.rate', { crop: name(g.crop) })}
+                    className='flex gap-1'
+                  >
+                    {([1, 2, 3] as const).map(r => (
+                      <Button
+                        key={r}
+                        className='px-3'
+                        variant={g.rating === r ? 'default' : 'outline'}
+                        aria-pressed={g.rating === r}
+                        onClick={() =>
+                          onRate(at, g.rating === r ? undefined : r)
+                        }
+                      >
+                        {t(`week.season.rating.${r}`)}
+                      </Button>
+                    ))}
+                  </span>
+                ) : null}
               </li>
             ))}
           </ul>
