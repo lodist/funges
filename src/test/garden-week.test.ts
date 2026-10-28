@@ -170,6 +170,15 @@ describe("this week's to-do list", () => {
       step: 'harvest',
     });
     expect(step('tomato', '2026-05-15', '2026-11-20')).toEqual([]);
+    // Its harvest over, it asks to come out; not while it is picked.
+    const over = (crop: string, planted: string, today: string) =>
+      gardenWeek(plan([crop, planted]), advice, NEEDS, today, year).filter(
+        task => task.kind === 'over'
+      );
+    expect(over('tomato', '2026-05-15', '2026-11-20')).toEqual([
+      { kind: 'over', crops: ['tomato'] },
+    ]);
+    expect(over('tomato', '2026-05-15', '2026-08-15')).toEqual([]);
     expect(step('garlic', '2025-10-20', '2026-06-01')).toEqual([
       { kind: 'stage', crop: 'garlic', step: 'ripen', weeks: 1 },
     ]);

@@ -82,6 +82,7 @@ export default function PrivacyPolicyPage() {
               <p>{t('accounts.content')}</p>
               <p>{t('accounts.google')}</p>
               <p>{t('accounts.legal')}</p>
+              <p>{t('accounts.outcomes')}</p>
               <p>{t('accounts.storage')}</p>
               <p>{t('accounts.retention')}</p>
               <p>{t('accounts.alerts')}</p>

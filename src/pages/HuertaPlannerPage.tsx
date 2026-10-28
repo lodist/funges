@@ -67,6 +67,8 @@ import {
 import {
   autoPlan,
   axisOf,
+  endAs,
+  finish,
   fit,
   inMonth,
   layout,
@@ -78,6 +80,7 @@ import {
   monthAhead,
   nextYear,
   notes,
+  pastAt,
   ready,
   removeBed,
   reshape,
@@ -88,7 +91,9 @@ import {
   UNIT,
   type Axis,
   type Garden,
+  type Grown,
   type Ground,
+  type LostTo,
   type Plan,
   type PlanStyle,
   type Section,
@@ -133,6 +138,7 @@ const STYLES: PlanStyle[] = [
   'herbsFlowers',
 ];
 const GROUNDS: Ground[] = ['raised', 'ground', 'rows'];
+const LOST_TO: LostTo[] = ['cold', 'pests', 'sprout', 'dry', 'other'];
 /** The timeline's reach: a year ahead, a week a step. */
 const TIMELINE_WEEKS = 52;
 const addDays = (day: string, n: number) => {
@@ -344,6 +350,51 @@ function Planner({ onMoved }: { onMoved: () => void }) {
       ...plan,
       done: pruneDone({ ...plan.done, [key]: today() }, today()),
     });
+  // The ready day Huerta gives a planted section now: kept with it when it
+  // comes out, to set against the day it really was.
+  const said = (x: Section) => {
+    const need = x.crop ? needs[x.crop] : undefined;
+    if (!x.crop || !x.planted || !temps || !need?.days || CROP[x.crop]?.note)
+      return null;
+    const dies = fate(x.crop, need, x.planted, site);
+    return readyDay(x.crop, need, temps, x.planted, dies?.day);
+  };
+  // Planted sections taken out today, and what goes in now planned in their
+  // place (not a family that grew there in the last year). A harvest takes
+  // out only the sowings that are ready, or over.
+  const end = (ids: number[], how: Grown['end'], why?: LostTo) => {
+    if (!plan) return;
+    const ripe =
+      how === 'harvested' && temps
+        ? ids.filter(i => {
+            const x = plan.sections[i];
+            return ['ready', 'bare'].includes(
+              stageOn(
+                x,
+                needs,
+                temps,
+                year?.crops[x.crop ?? '']?.harvest ?? 0,
+                today(),
+                today(),
+                site
+              )
+            );
+          })
+        : [];
+    const out = ripe.length ? ripe : ids;
+    const next = finish(plan, out, today(), how, said, why);
+    update({
+      ...next,
+      sections: autoPlan(next.sections, status, {
+        north: plan.garden.north,
+        style: plan.garden.style,
+        axis: axisOf(plan.garden),
+        only: out,
+        sow: today(),
+        past: next.past,
+      }),
+    });
+  };
   // The sections a job is about, selected and brought into view.
   const show = (ids: number[]) => {
     setSel(ids);
@@ -539,22 +590,28 @@ function Planner({ onMoved }: { onMoved: () => void }) {
               }}
               onShow={show}
               folded={!isMobile}
-              onReplan={ids =>
+              onReplan={ids => {
+                // A crop the climate ends before it is ready is kept as lost
+                // to the cold; its beds count as empty again.
+                const next = finish(plan, ids, today(), 'lost', said, 'cold');
+                update({
+                  ...next,
+                  sections: autoPlan(next.sections, status, {
+                    north,
+                    style: plan.garden.style,
+                    axis,
+                    only: ids,
+                    sow: today(),
+                    past: next.past,
+                  }),
+                });
+              }}
+              onEnd={ids => end(ids, 'harvested')}
+              onRate={(at, rating) =>
                 update({
                   ...plan,
-                  sections: autoPlan(
-                    // A lost crop's beds count as empty again.
-                    plan.sections.map((x, i) =>
-                      ids.includes(i) ? { ...x, planted: undefined } : x
-                    ),
-                    status,
-                    {
-                      north,
-                      style: plan.garden.style,
-                      axis,
-                      only: ids,
-                      sow: today(),
-                    }
+                  past: plan.past?.map((g, i) =>
+                    at.includes(i) ? { ...g, rating } : g
                   ),
                 })
               }
@@ -779,6 +836,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                                 ? chosen
                                 : undefined,
                             sow: forMonths ? target : today(),
+                            past: plan.past,
                           }),
                         })
                       }
@@ -1000,6 +1058,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                               style: plan.garden.style,
                               axis,
                               sow: today(),
+                              past: plan.past,
                             }),
                           });
                           only(first);
@@ -1011,6 +1070,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                   ) : null}
                   {s ? (
                     <SectionPanel
+                      // Another section starts with its own panel.
+                      key={plan.sections.indexOf(s)}
                       section={s}
                       index={plan.sections.indexOf(s)}
                       sections={plan.sections}
@@ -1025,6 +1086,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                       count={count}
                       onSwap={crop => place(chosen, crop)}
                       onPlanted={planted => plantOn(chosen, planted)}
+                      past={plan.past}
+                      onEnd={(how, why) => end(chosen, how, why)}
                       onDay={day =>
                         edit(
                           chosen.filter(i => plan.sections[i]?.crop),
@@ -1511,6 +1574,8 @@ function SectionPanel({
   onMerge,
   onLength,
   onDeleteBed,
+  past,
+  onEnd,
 }: {
   section: Section;
   index: number;
@@ -1533,6 +1598,10 @@ function SectionPanel({
   onMerge: (dir: -1 | 1) => void;
   onLength: (delta: number) => void;
   onDeleteBed: () => void;
+  /** What has come out of the garden (the plan's past). */
+  past?: Grown[];
+  /** Take it out: harvested, or lost (and to what). */
+  onEnd: (how: Grown['end'], why?: LostTo) => void;
 }) {
   const { t, i18n } = useTranslation('huerta');
   const crop = s.crop ? CROP[s.crop] : null;
@@ -1631,6 +1700,10 @@ function SectionPanel({
     };
   }, [advice, t]);
   const near = notes(sections, index, garden.north ?? 0);
+  // What grew here last, and the reasons asked for once it is marked lost.
+  const before = pastAt(past, s)[0];
+  const [losing, setLosing] = useState(false);
+  const takeOut = crop ? endAs(crop.id) : null;
   const axis: Axis = axisOf(garden);
   const length = axis === 'y' ? s.y1 - s.y0 : s.x1 - s.x0;
 
@@ -1728,6 +1801,17 @@ function SectionPanel({
             <dd className='text-foreground'>
               {t(`planner.next.${nextYear(crop.id)}`)}
             </dd>
+            {before ? (
+              <>
+                <dt className='text-muted-foreground'>{t('planner.before')}</dt>
+                <dd className='text-foreground'>
+                  {t('planner.beforeText', {
+                    crop: t(`crops.${before.crop}`),
+                    date: day(before.ended),
+                  })}
+                </dd>
+              </>
+            ) : null}
           </dl>
           {warnings.map(warning => (
             <p key={warning} className={WARNING}>
@@ -1768,6 +1852,44 @@ function SectionPanel({
               >
                 {t('planner.notPlanted')}
               </Button>
+              {/* Out of the bed: the harvest in (a perennial stays), or lost. */}
+              <div className='flex w-full flex-wrap gap-2'>
+                {takeOut ? (
+                  <Button onClick={() => onEnd('harvested')}>
+                    {t(`week.todo.end.${takeOut}`)}
+                  </Button>
+                ) : null}
+                <Button
+                  variant='outline'
+                  aria-expanded={losing}
+                  onClick={() => setLosing(on => !on)}
+                >
+                  {t('planner.end.lost')}
+                </Button>
+              </div>
+              {losing ? (
+                <div
+                  role='group'
+                  aria-label={t('planner.end.why')}
+                  className='flex w-full flex-col gap-2'
+                >
+                  <p className='text-muted-foreground'>
+                    {t('planner.end.why')}
+                  </p>
+                  <div className='flex flex-wrap gap-2'>
+                    {LOST_TO.map(why => (
+                      <Button
+                        key={why}
+                        variant='outline'
+                        className='px-3'
+                        onClick={() => onEnd('lost', why)}
+                      >
+                        {t(`planner.end.${why}`)}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </div>
           ) : (
             <Button onClick={() => onPlanted(today())} className='self-start'>

@@ -74,6 +74,103 @@ export interface Plan {
   /** Jobs ticked off on My garden: each job's key (lib/garden-week jobKey)
    *  and the day it was ticked. */
   done?: Record<string, string>;
+  /** What has come out of the beds, oldest first. */
+  // ponytail: kept for good (~150 bytes each); trim to a few years if a
+  // garden's record ever nears D1's row limit.
+  past?: Grown[];
+}
+
+/** What took a crop the gardener marked lost. */
+export type LostTo = 'cold' | 'pests' | 'sprout' | 'dry' | 'other';
+
+/** A crop that has come out of the garden, harvested or lost: the season's
+ *  list, the beds' rotation and a check of the day Huerta said it would be
+ *  ready all read it. */
+export interface Grown {
+  crop: string;
+  /** Where it grew: its section's corners then (beds change, places don't). */
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+  planted: string;
+  ended: string;
+  end: 'harvested' | 'lost';
+  why?: LostTo;
+  /** How it did, as the gardener rates it: 1 poor, 2 fair, 3 good. */
+  rating?: 1 | 2 | 3;
+  /** The ready day Huerta gave it when it came out; null: none. */
+  said?: string | null;
+}
+
+/** Planted sections taken out on `ended`: each kept in the plan's past and
+ *  its section left empty. `said` gives each its ready day as Huerta saw it. */
+export function finish(
+  plan: Plan,
+  ids: number[],
+  ended: string,
+  end: Grown['end'],
+  said: (s: Section) => string | null,
+  why?: LostTo
+): Plan {
+  const out = ids.filter(
+    i => plan.sections[i]?.crop && plan.sections[i].planted
+  );
+  if (!out.length) return plan;
+  return {
+    ...plan,
+    sections: plan.sections.map((s, i) =>
+      out.includes(i)
+        ? { ...s, crop: null, planted: undefined, sow: undefined }
+        : s
+    ),
+    past: [
+      ...(plan.past ?? []),
+      ...out.map(i => {
+        const s = plan.sections[i];
+        return {
+          crop: s.crop!,
+          x0: s.x0,
+          x1: s.x1,
+          y0: s.y0,
+          y1: s.y1,
+          planted: s.planted!,
+          ended,
+          end,
+          ...(why ? { why } : {}),
+          said: said(s),
+        };
+      }),
+    ],
+  };
+}
+
+type Box = Pick<Section, 'x0' | 'x1' | 'y0' | 'y1'>;
+const overlaps = (a: Box, b: Box) =>
+  Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0) > 0.01 &&
+  Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0) > 0.01;
+
+/** What grew where a section is, latest out first. */
+export const pastAt = (past: Grown[] | undefined, at: Box) =>
+  (past ?? [])
+    .filter(g => overlaps(g, at))
+    .sort((a, z) => z.ended.localeCompare(a.ended));
+
+/** Crops picked a little at a time over weeks, not lifted or cut at once. */
+const PICKED = new Set(
+  'tomato pepper chilli aubergine cucumber courgette melon watermelon green_beans peas broad_beans chard kale spinach lettuce rocket lambs_lettuce brussels_sprouts basil parsley coriander dill chervil'.split(
+    ' '
+  )
+);
+/** The button that takes a crop out once its harvest is in: cut flowers end,
+ *  green manures are dug in, crops picked over weeks are all picked; null
+ *  for a perennial, which stays. */
+export function endAs(id: string) {
+  const crop = CROP[id];
+  if (!crop || nextYear(id) === 'stays') return null;
+  if (crop.kind === 'cover') return 'dugIn';
+  if (crop.kind === 'flower') return 'finished';
+  return PICKED.has(id) ? 'allPicked' : 'harvested';
 }
 
 const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
@@ -250,6 +347,9 @@ const GROUPS = {
   fruit: ['strawberry', 'melon', 'watermelon'],
 } as const;
 type Group = keyof typeof GROUPS;
+const GROUP_OF = Object.fromEntries(
+  Object.entries(GROUPS).flatMap(([group, ids]) => ids.map(id => [id, group]))
+) as Partial<Record<string, Group>>;
 
 const ORDER: Record<number, Group[]> = {
   1: ['leaves'],
@@ -365,7 +465,8 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
  *  family per bed (of those the style grows), onions and garlic never beside
  *  peas and beans, the tallest crop of a bed at its north end. Planted
  *  sections keep their crop, and with `keepChosen` every section that has one;
- *  with `only`, just those sections (by index) are planned. */
+ *  with `only`, just those sections (by index) are planned. With `past`, a
+ *  bed is not given a family that grew in it in the year before. */
 export function autoPlan(
   sections: Section[],
   status: (crop: string) => CropStatus | undefined,
@@ -376,6 +477,7 @@ export function autoPlan(
     style = 'mixed',
     axis = 'y',
     sow,
+    past,
   }: {
     north?: number;
     keepChosen?: boolean;
@@ -384,6 +486,7 @@ export function autoPlan(
     axis?: Axis;
     /** The day the sections it fills are planned to go in. */
     sow?: string;
+    past?: Grown[];
   } = {}
 ): Section[] {
   // Only what goes in this week: a crop that must wait, or whose time is
@@ -404,12 +507,28 @@ export function autoPlan(
       beds.map((_, i) => how.cycle[i % how.cycle.length])
   );
   const used = new Set<string>();
+  // The families a bed grew in the year before the planned day.
+  const yearAgo = monthAhead(sow ?? new Date().toLocaleDateString('sv'), -12);
+  const since = (bed: number) =>
+    new Set(
+      (past ?? [])
+        .filter(
+          g =>
+            g.ended >= yearAgo && out.some(s => s.bed === bed && overlaps(s, g))
+        )
+        .map(g => GROUP_OF[g.crop])
+        .filter(Boolean)
+    );
   beds.forEach((bed, i) => {
     // The bed's family, else the first of the style's with a crop going in
     // now; with none, the bed is left empty.
-    const group = [groups[i], ...how.fallback, ...how.cycle].find(k =>
-      GROUPS[k].some(now)
-    );
+    // ponytail: a bed's last family is skipped, not the whole rotation
+    // cycle; the next bed's family may end up beside the one it should not.
+    const before = since(bed);
+    const choices = [groups[i], ...how.fallback, ...how.cycle];
+    const group =
+      choices.find(k => !before.has(k) && GROUPS[k].some(now)) ??
+      choices.find(k => GROUPS[k].some(now));
     const pick = group
       ? GROUPS[group]
           .filter(now)
@@ -639,6 +758,7 @@ export function reshape(
       : s;
   });
   return {
+    ...plan,
     garden,
     sections: autoPlan(numberBeds(kept), status, {
       north: garden.north,
@@ -646,6 +766,7 @@ export function reshape(
       style: garden.style,
       axis: axisOf(garden),
       sow,
+      past: plan.past,
     }),
     bare,
   };

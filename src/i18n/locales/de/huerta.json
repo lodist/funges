@@ -179,6 +179,17 @@
         "clear": "Nutze das Beet für etwas, das jetzt wächst.",
         "pick": "Ernte vorher, was du kannst.",
         "replace": "Sie werden nicht rechtzeitig reif: Nutze das Beet für etwas, das jetzt wächst."
+      },
+      "over": {
+        "title": "{{crops}}: fertig für dieses Jahr?",
+        "text": "Räum das Beet ab, dann ist es frei für das, was als Nächstes rein kann."
+      },
+      "end": {
+        "harvested": "Geerntet",
+        "allPicked": "Alles gepflückt",
+        "finished": "Verblüht",
+        "dugIn": "Eingegraben",
+        "cleared": "Abgeräumt"
       }
     },
     "short": {
@@ -203,6 +214,18 @@
       "undo": "Rückgängig",
       "sown": "{{crop}}: gesät am {{date}}",
       "planted": "{{crop}}: gepflanzt am {{date}}"
+    },
+    "season": {
+      "title": "Diese Saison",
+      "harvested": "Rein am {{from}}, raus am {{to}}",
+      "lost": "Rein am {{from}}, verloren am {{to}} · {{why}}",
+      "said": "wir sagten {{date}}",
+      "rate": "Wie war es: {{crop}}",
+      "rating": {
+        "1": "Schwach",
+        "2": "Okay",
+        "3": "Gut"
+      }
     }
   },
   "units": {
@@ -1902,7 +1925,10 @@
         }
       ],
       "source": "Gründüngung: RHS. pH: University of Connecticut Extension."
-    }
+    },
+    "lastHarvest": "Letztes Mal kam es am {{from}} rein und am {{to}} raus.",
+    "lastLost": "Letztes Mal ging es am {{date}} verloren. {{why}}.",
+    "lastSaid": "Wir hatten den {{date}} gesagt."
   },
   "map": {
     "title": "Karte",
@@ -2159,7 +2185,18 @@
       "coverFrost": "Bis etwa zum {{date}} ist noch Frost möglich: in kalten Nächten abdecken.",
       "coverWinter": "Bis etwa zum {{date}} sind noch starke Fröste möglich: in kalten Nächten abdecken.",
       "lostAround": "Verloren um den {{date}}"
-    }
+    },
+    "end": {
+      "lost": "Verloren",
+      "why": "Was ist passiert?",
+      "cold": "Frost oder Kälte",
+      "pests": "Schädlinge oder Krankheit",
+      "sprout": "Nicht aufgegangen",
+      "dry": "Vertrocknet",
+      "other": "Etwas anderes"
+    },
+    "before": "Vorher",
+    "beforeText": "{{crop}}, raus am {{date}}"
   },
   "year": {
     "title": "Kalender",

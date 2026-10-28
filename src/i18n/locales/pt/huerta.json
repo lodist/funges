@@ -179,6 +179,17 @@
         "clear": "Use o canteiro para algo que cresce agora.",
         "pick": "Colha o que puder antes.",
         "replace": "Não vão ficar prontos a tempo: use o canteiro para algo que cresce agora."
+      },
+      "over": {
+        "title": "{{crops}}: acabou por este ano?",
+        "text": "Limpe o canteiro e ele fica livre para o que pode entrar depois."
+      },
+      "end": {
+        "harvested": "Colhido",
+        "allPicked": "Tudo colhido",
+        "finished": "Terminou",
+        "dugIn": "Incorporado",
+        "cleared": "Limpo"
       }
     },
     "short": {
@@ -203,6 +214,18 @@
       "undo": "Desfazer",
       "sown": "{{crop}}: semeadura em {{date}}",
       "planted": "{{crop}}: plantio em {{date}}"
+    },
+    "season": {
+      "title": "Esta temporada",
+      "harvested": "Entrou em {{from}}, saiu em {{to}}",
+      "lost": "Entrou em {{from}}, perdido em {{to}} · {{why}}",
+      "said": "dissemos {{date}}",
+      "rate": "Como foi: {{crop}}",
+      "rating": {
+        "1": "Fraco",
+        "2": "Bom",
+        "3": "Ótimo"
+      }
     }
   },
   "units": {
@@ -1902,7 +1925,10 @@
         }
       ],
       "source": "Adubo verde: RHS. pH: University of Connecticut."
-    }
+    },
+    "lastHarvest": "Da última vez entrou em {{from}} e saiu em {{to}}.",
+    "lastLost": "Da última vez se perdeu em {{date}}. {{why}}.",
+    "lastSaid": "Tínhamos dito {{date}}."
   },
   "map": {
     "title": "Mapa",
@@ -2159,7 +2185,18 @@
       "coverFrost": "Ainda pode gear até cerca de {{date}}: cubra-o nas noites frias.",
       "coverWinter": "Geadas fortes ainda são prováveis até cerca de {{date}}: cubra-o nas noites frias.",
       "lostAround": "Perdido por volta de {{date}}"
-    }
+    },
+    "end": {
+      "lost": "Perdido",
+      "why": "O que aconteceu?",
+      "cold": "Geada ou frio",
+      "pests": "Pragas ou doença",
+      "sprout": "Não germinou",
+      "dry": "Secou",
+      "other": "Outra coisa"
+    },
+    "before": "Antes",
+    "beforeText": "{{crop}}, saiu em {{date}}"
   },
   "year": {
     "title": "Calendário",

@@ -53,7 +53,10 @@ export type Task =
       crops: string[];
     }
   | { kind: 'sowAgain'; crop: string; weeks: number }
-  | { kind: 'stage'; crop: string; step: Step; weeks?: number; cm?: number };
+  | { kind: 'stage'; crop: string; step: Step; weeks?: number; cm?: number }
+  /** Its harvest over, or its season ended after it was ready: still in the
+   *  plan, to take out so the bed is free. */
+  | { kind: 'over'; crops: string[] };
 
 /** Quick crops worth sowing again, and after how many weeks. */
 const SUCCESSION: Record<string, number> = {
@@ -469,6 +472,27 @@ export function gardenWeek(
   }
   tasks.push(...fates.values());
 
+  // Done for the year (perennials stay): its harvest over, or what ends it
+  // here came once it was ready.
+  if (grow) {
+    const over = planted.filter(
+      s =>
+        needs[s.crop!]?.days &&
+        !NOTED.has(s.crop!) &&
+        stageOn(
+          s,
+          needs,
+          grow,
+          year?.crops[s.crop!]?.harvest ?? 0,
+          today,
+          today,
+          { year, frost: advice }
+        ) === 'bare'
+    );
+    if (over.length)
+      tasks.push({ kind: 'over', crops: unique(over.map(s => s.crop!)) });
+  }
+
   // Water, when something is in the ground.
   if (growing.length) {
     if ((advice.water ?? 0) >= WATER_MM[soil.texture])
@@ -685,12 +709,7 @@ export function comingUp(
 }
 
 export type GrowthStage =
-  | 'bare'
-  | 'seedling'
-  | 'young'
-  | 'grown'
-  | 'ready'
-  | 'lost';
+  'bare' | 'seedling' | 'young' | 'grown' | 'ready' | 'lost';
 
 /** Where a section's crop has got to on `day`: bare before it goes in (its
  *  planted day, else its planned day, else today) and again once its harvest

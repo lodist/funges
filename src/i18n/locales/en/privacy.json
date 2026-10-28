@@ -48,7 +48,7 @@
     "intro": "For any questions or concerns regarding this Privacy Policy, please contact:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Last updated on: 26.10.2026",
+  "lastUpdated": "Last updated on: 28.10.2026",
   "accounts": {
     "title": "Huerta accounts",
     "content": "You sign in to Huerta with your Google account. Google tells us your email address and a number that identifies your Google account; we keep both, with your language and time zone, so you can sign in on any device and get alerts at the right time. We keep your gardens: their names, their plans and their place rounded to about 1 km, never your address.",
@@ -57,6 +57,7 @@
     "delete": "You can delete your account at any time: open your account page (Help → Account on a computer, Settings on a phone) and choose Delete account, or write to the contact address below from the email address of your account. Your email, your gardens and your alerts are deleted at once, on every device.",
     "google": "From Google we receive only your email address, whether Google has verified it, and the number that identifies your Google account. We never see your password and get no access to your contacts, files or anything else in your Google account. We don’t use this data for advertising and never sell it. You can also remove Funges from the apps connected to your Google account at any time.",
     "legal": "We process this data to provide the account you asked for (Art. 6(1)(b) GDPR). Morning alerts are sent only if you turn them on, and you can turn them off at any time.",
+    "outcomes": "When you mark a crop harvested or lost, we may use its dates, your rating and the place of its garden (rounded to about 1 km) to check and improve the dates Huerta gives. We never use your name or email for this. We do it in our legitimate interest in a service whose dates are right (Art. 6(1)(f) GDPR). If you object, write to the contact address below and we will leave your gardens out.",
     "retention": "We keep your data for as long as you have an account. A sign-in on a device ends after a year without use. Records of a sign-in in progress are deleted within minutes. When you delete your account, everything is deleted at once; our database provider’s restore history keeps it for up to 7 more days, after which it is gone for good.",
     "device": "To keep you signed in and to work offline, the app stores your sign-in and a copy of your gardens on your device (browser storage). This is needed for the service to work; Funges uses no tracking cookies.",
     "age": "Huerta accounts are for people aged 16 and over."

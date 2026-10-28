@@ -48,7 +48,7 @@
     "intro": "Bei Fragen oder Anliegen zu dieser Datenschutzerklärung wende dich bitte an:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Letzte Aktualisierung am: 26.10.2026",
+  "lastUpdated": "Letzte Aktualisierung am: 28.10.2026",
   "accounts": {
     "title": "Huerta-Konten",
     "content": "Du meldest dich bei Huerta mit deinem Google-Konto an. Google teilt uns deine E-Mail-Adresse und eine Nummer mit, die dein Google-Konto kennzeichnet; wir speichern beides zusammen mit deiner Sprache und Zeitzone, damit du dich auf jedem Gerät anmelden kannst und die Hinweise zur richtigen Zeit bekommst. Wir speichern deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet, nie deine Adresse.",
@@ -57,6 +57,7 @@
     "delete": "Du kannst dein Konto jederzeit löschen: Öffne deine Kontoseite (Hilfe → Konto am Computer, Einstellungen am Handy) und wähle Konto löschen, oder schreib von der E-Mail-Adresse deines Kontos an die Kontaktadresse unten. Deine E-Mail-Adresse, deine Gärten und deine Hinweise werden sofort gelöscht, auf allen Geräten.",
     "google": "Von Google erhalten wir nur deine E-Mail-Adresse, ob Google sie bestätigt hat, und die Nummer, die dein Google-Konto kennzeichnet. Wir sehen nie dein Passwort und haben keinen Zugriff auf deine Kontakte, Dateien oder sonst etwas in deinem Google-Konto. Wir nutzen diese Daten nicht für Werbung und verkaufen sie nie. Du kannst Funges ausserdem jederzeit aus den mit deinem Google-Konto verknüpften Apps entfernen.",
     "legal": "Wir verarbeiten diese Daten, um dir das Konto bereitzustellen, das du angefordert hast (Art. 6 Abs. 1 lit. b DSGVO). Morgendliche Hinweise werden nur gesendet, wenn du sie einschaltest, und du kannst sie jederzeit ausschalten.",
+    "outcomes": "Wenn du eine Kultur als geerntet oder verloren markierst, dürfen wir ihre Daten, deine Bewertung und den Ort ihres Gartens (auf etwa 1 km gerundet) nutzen, um die Daten zu prüfen und zu verbessern, die Huerta angibt. Deinen Namen oder deine E-Mail nutzen wir dafür nie. Wir tun das aus unserem berechtigten Interesse an einem Dienst mit richtigen Daten (Art. 6 Abs. 1 lit. f DSGVO). Wenn du widersprichst, schreib an die Kontaktadresse unten, dann lassen wir deine Gärten weg.",
     "retention": "Wir speichern deine Daten, solange du ein Konto hast. Eine Anmeldung auf einem Gerät endet nach einem Jahr ohne Nutzung. Daten einer laufenden Anmeldung werden innerhalb weniger Minuten gelöscht. Wenn du dein Konto löschst, wird alles sofort gelöscht; der Wiederherstellungsverlauf unseres Datenbankanbieters bewahrt es noch höchstens 7 Tage auf, danach ist es endgültig weg.",
     "device": "Damit du angemeldet bleibst und die App offline funktioniert, speichert sie deine Anmeldung und eine Kopie deiner Gärten auf deinem Gerät (Browserspeicher). Das ist für den Dienst nötig; Funges verwendet keine Tracking-Cookies.",
     "age": "Huerta-Konten sind für Personen ab 16 Jahren."

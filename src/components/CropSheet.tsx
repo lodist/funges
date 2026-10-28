@@ -263,7 +263,11 @@ function InGarden({
 }) {
   const { t, i18n } = useTranslation('huerta');
   const here = plan.sections.filter(s => s.crop === crop.id);
-  if (here.length === 0) return null;
+  // The last time it came out of this garden.
+  const last = (plan.past ?? [])
+    .filter(g => g.crop === crop.id)
+    .sort((a, z) => z.ended.localeCompare(a.ended))[0];
+  if (here.length === 0 && !last) return null;
   const today = new Date().toLocaleDateString('sv');
   const temps = year?.temps
     ? soilTemps(year.temps, gardenSoil(plan.garden, year.soil).texture)
@@ -338,6 +342,22 @@ function InGarden({
           );
         })}
       </ul>
+      {last ? (
+        <p className='text-sm text-muted-foreground'>
+          {last.end === 'lost'
+            ? t('grow.lastLost', {
+                date: day(last.ended),
+                why: t(`planner.end.${last.why ?? 'other'}`),
+              })
+            : t('grow.lastHarvest', {
+                from: day(last.planted),
+                to: day(last.ended),
+              })}
+          {last.end === 'harvested' && last.said
+            ? ` ${t('grow.lastSaid', { date: day(last.said) })}`
+            : null}
+        </p>
+      ) : null}
       <Link
         to='/huerta/planner'
         className='self-start text-sm font-medium text-primary-text underline underline-offset-4'

@@ -179,6 +179,17 @@
         "clear": "Use the bed for something that grows now.",
         "pick": "Pick what you can before then.",
         "replace": "They won't be ready in time: use the bed for something that grows now."
+      },
+      "over": {
+        "title": "{{crops}}: done for this year?",
+        "text": "Clear the bed and it's free for what can go in next."
+      },
+      "end": {
+        "harvested": "Harvested",
+        "allPicked": "All picked",
+        "finished": "Finished",
+        "dugIn": "Dug in",
+        "cleared": "Cleared"
       }
     },
     "short": {
@@ -203,6 +214,18 @@
       "undo": "Undo",
       "sown": "{{crop}}: sown {{date}}",
       "planted": "{{crop}}: planted {{date}}"
+    },
+    "season": {
+      "title": "This season",
+      "harvested": "In {{from}}, out {{to}}",
+      "lost": "In {{from}}, lost {{to}} · {{why}}",
+      "said": "we said {{date}}",
+      "rate": "How did it do: {{crop}}",
+      "rating": {
+        "1": "Poor",
+        "2": "OK",
+        "3": "Good"
+      }
     }
   },
   "units": {
@@ -1902,7 +1925,10 @@
         }
       ],
       "source": "Green manure: RHS. pH: University of Connecticut extension."
-    }
+    },
+    "lastHarvest": "Last time it went in on {{from}} and came out on {{to}}.",
+    "lastLost": "Last time it was lost on {{date}}. {{why}}.",
+    "lastSaid": "We had said {{date}}."
   },
   "map": {
     "title": "Map",
@@ -2159,7 +2185,18 @@
       "coverFrost": "Frost is still likely until about {{date}}: cover it on cold nights.",
       "coverWinter": "Hard frosts are still likely until about {{date}}: cover it on cold nights.",
       "lostAround": "Lost around {{date}}"
-    }
+    },
+    "end": {
+      "lost": "Lost",
+      "why": "What happened?",
+      "cold": "Frost or cold",
+      "pests": "Pests or disease",
+      "sprout": "Didn't come up",
+      "dry": "Dried out",
+      "other": "Something else"
+    },
+    "before": "Before",
+    "beforeText": "{{crop}}, out {{date}}"
   },
   "year": {
     "title": "Calendar",

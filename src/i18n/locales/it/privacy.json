@@ -48,7 +48,7 @@
     "intro": "Per qualsiasi domanda o preoccupazione riguardo questa Informativa sulla Privacy, contatta:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Ultimo aggiornamento: 26.10.2026",
+  "lastUpdated": "Ultimo aggiornamento: 28.10.2026",
   "accounts": {
     "title": "Account Huerta",
     "content": "Accedi a Huerta con il tuo account Google. Google ci comunica il tuo indirizzo email e un numero che identifica il tuo account Google; li conserviamo, insieme alla tua lingua e al tuo fuso orario, perché tu possa accedere da qualsiasi dispositivo e ricevere gli avvisi all’ora giusta. Conserviamo i tuoi orti: i nomi, i piani e la posizione arrotondata a circa 1 km, mai il tuo indirizzo.",
@@ -57,6 +57,7 @@
     "delete": "Puoi eliminare il tuo account in qualsiasi momento: apri la pagina del tuo account (Aiuto → Account su un computer, Impostazioni su un telefono) e scegli Elimina account, oppure scrivi all’indirizzo di contatto qui sotto dall’email del tuo account. La tua email, i tuoi orti e i tuoi avvisi vengono cancellati subito, su tutti i dispositivi.",
     "google": "Da Google riceviamo solo il tuo indirizzo email, se Google lo ha verificato e il numero che identifica il tuo account Google. Non vediamo mai la tua password e non abbiamo accesso ai tuoi contatti, ai tuoi file né ad altro nel tuo account Google. Non usiamo questi dati per la pubblicità e non li vendiamo mai. Puoi anche rimuovere Funges dalle app collegate al tuo account Google in qualsiasi momento.",
     "legal": "Trattiamo questi dati per fornirti l’account che hai richiesto (art. 6, par. 1, lett. b GDPR). Gli avvisi del mattino vengono inviati solo se li attivi, e puoi disattivarli in qualsiasi momento.",
+    "outcomes": "Quando segni una coltura come raccolta o persa, possiamo usare le sue date, il tuo giudizio e il luogo del suo orto (arrotondato a circa 1 km) per verificare e migliorare le date che dà Huerta. Non usiamo mai il tuo nome o la tua e-mail per questo. Lo facciamo per il nostro legittimo interesse a un servizio con date giuste (art. 6, par. 1, lett. f, GDPR). Se ti opponi, scrivi all'indirizzo di contatto qui sotto e lasceremo fuori i tuoi orti.",
     "retention": "Conserviamo i tuoi dati finché hai un account. Un accesso su un dispositivo scade dopo un anno senza uso. I dati di un accesso in corso vengono cancellati entro pochi minuti. Quando elimini il tuo account, tutto viene cancellato subito; la cronologia di ripristino del nostro fornitore di database lo conserva per altri 7 giorni al massimo, dopodiché sparisce per sempre.",
     "device": "Per mantenerti connesso e funzionare offline, l’app conserva il tuo accesso e una copia dei tuoi orti sul dispositivo (memoria del browser). È necessario perché il servizio funzioni; Funges non usa cookie di tracciamento.",
     "age": "Gli account Huerta sono per persone dai 16 anni in su."
