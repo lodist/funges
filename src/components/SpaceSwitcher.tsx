@@ -27,6 +27,10 @@ import { cn } from '@/lib/utils';
  */
 /** Spaces still in early release: a pill beside their name. */
 const EARLY = new Set<Space>(['huerta']);
+/** The pill. A long word pair ("Acceso anticipado") wraps inside it rather
+ *  than pushing the chevron out of the sidebar's button or the tile. */
+const PILL =
+  'min-w-0 whitespace-normal rounded-full bg-band-foreground/15 px-1.5 py-0.5 text-center font-sans text-xs leading-tight font-medium';
 
 export const SpaceSwitcher = ({ className }: { className?: string }) =>
   visibleSpaces().length > 1 ? <SpaceMenu className={className} /> : null;
@@ -73,11 +77,7 @@ function SpaceMenu({
           >
             <span className='flex-1 text-left'>{name(current)}</span>
             {EARLY.has(current) ? (
-              // A long word pair ("Acceso anticipado") wraps inside the pill
-              // rather than pushing the chevron out of the button.
-              <span className='min-w-0 whitespace-normal rounded-full bg-band-foreground/15 px-1.5 py-0.5 text-center font-sans text-xs leading-tight font-medium'>
-                {t('spaces.early')}
-              </span>
+              <span className={PILL}>{t('spaces.early')}</span>
             ) : null}
             <ChevronDown className='size-4' />
           </Button>
@@ -107,9 +107,7 @@ function SpaceMenu({
                 <span className='flex items-center gap-2 font-display text-base font-semibold'>
                   {name(space)}
                   {EARLY.has(space) ? (
-                    <span className='rounded-full bg-band-foreground/15 px-2 py-0.5 font-sans text-xs font-medium'>
-                      {t('spaces.early')}
-                    </span>
+                    <span className={PILL}>{t('spaces.early')}</span>
                   ) : null}
                 </span>
                 <span className='text-xs text-band-foreground/80'>
