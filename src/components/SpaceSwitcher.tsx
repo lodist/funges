@@ -65,14 +65,17 @@ function SpaceMenu({
             variant='ghost'
             data-space={current}
             className={cn(
-              'justify-start gap-2 rounded-full bg-band pl-4 pr-3 font-display text-lg font-semibold text-band-foreground hover:bg-band hover:text-band-foreground hover:brightness-110 dark:bg-band dark:hover:bg-band dark:hover:text-band-foreground',
+              // Padding through has-[>svg]: the size's has-[>svg]:px-4 beats plain pl/pr.
+              'justify-start gap-1.5 rounded-full bg-band has-[>svg]:pl-3.5 has-[>svg]:pr-3 font-display text-lg font-semibold text-band-foreground hover:bg-band hover:text-band-foreground hover:brightness-110 dark:bg-band dark:hover:bg-band dark:hover:text-band-foreground',
               className
             )}
             aria-label={t('spaces.switch', { space: name(current) })}
           >
             <span className='flex-1 text-left'>{name(current)}</span>
             {EARLY.has(current) ? (
-              <span className='rounded-full bg-band-foreground/15 px-2 py-0.5 font-sans text-xs font-medium'>
+              // A long word pair ("Acceso anticipado") wraps inside the pill
+              // rather than pushing the chevron out of the button.
+              <span className='min-w-0 whitespace-normal rounded-full bg-band-foreground/15 px-1.5 py-0.5 text-center font-sans text-xs leading-tight font-medium'>
                 {t('spaces.early')}
               </span>
             ) : null}
