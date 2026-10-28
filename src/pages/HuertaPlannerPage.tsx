@@ -245,7 +245,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const target = monthAhead(today(), forMonths);
   const planStatus = (id: string) =>
     forMonths
-      ? inMonth(year?.crops[id]?.sow, Number(target.slice(5, 7)) - 1)
+      ? inMonth(id, Number(target.slice(5, 7)) - 1, year, needs[id])
       : status(id);
   const monthName = (day: string, withYear = false) =>
     new Intl.DateTimeFormat(i18n.language, {
@@ -1539,11 +1539,11 @@ function SectionPanel({
   const st = s.crop ? advice.crops[s.crop] : undefined;
   // Planned for a later day: it waits for that, whatever this week says.
   const later = !s.planted && s.sow && s.sow > today() ? s.sow : null;
-  // Planned for a month the place's calendar doesn't sow it in.
-  const sowing = s.crop ? year?.crops[s.crop]?.sow : undefined;
-  const offMonth = Boolean(
-    later && sowing && !((sowing >> (Number(later.slice(5, 7)) - 1)) & 1)
-  );
+  // Its status when it goes in: this week's, or its planned month's.
+  const then =
+    later && crop
+      ? inMonth(crop.id, Number(later.slice(5, 7)) - 1, year, need)
+      : st;
   const f = fit(s, garden.ground === 'rows');
   const due = crop
     ? ready(st, need?.days ?? null, new Date(`${advice.day}T12:00:00`))
@@ -1553,7 +1553,7 @@ function SectionPanel({
       new Date(2026, m, 1)
     );
   // Put where it can't go in any more: no ready day to promise.
-  const gone = !s.planted && !later && (st === 'too_late' || st === 'not_here');
+  const gone = !s.planted && (then === 'too_late' || then === 'not_here');
   const start = s.planted ?? (s.sow && s.sow > today() ? s.sow : today());
   const site = { year, frost: advice };
   // When the place's climate kills it, going in on `from`, if before it is
@@ -1655,28 +1655,30 @@ function SectionPanel({
                 {crop.scientific}
               </p>
               {s.planted ? null : (
-                // Its planned month when it goes in later; a red outline
-                // when it was put where it can't go in now.
+                // Its planned month when it goes in then; else, in a red
+                // outline, why not (this week, or in the planned month).
                 <Badge
-                  variant={later || st !== 'now' ? 'outline' : 'default'}
+                  variant={later || then !== 'now' ? 'outline' : 'default'}
                   className={cn(
                     'mt-1.5',
-                    later && !offMonth && 'font-semibold text-primary-text',
-                    ((!later && st !== 'now') || offMonth) &&
+                    later &&
+                      then === 'now' &&
+                      'font-semibold text-primary-text',
+                    then !== 'now' &&
                       'border-destructive-text text-destructive-text'
                   )}
                 >
-                  {later
+                  {later && then === 'now'
                     ? t(
                         crop.how === 'sow'
                           ? 'planner.sowIn'
                           : 'planner.plantIn',
                         { month: month(Number(later.slice(5, 7)) - 1) }
                       )
-                    : st === 'now'
+                    : then === 'now'
                       ? t(`sheet.${crop.how}Now`)
-                      : st
-                        ? t(`status.${st}`)
+                      : then
+                        ? t(`status.${then}`)
                         : '–'}
                 </Badge>
               )}

@@ -7,7 +7,8 @@
  * faces the bearing `north` (0, as before: north).
  */
 import { currentGarden, updateGarden } from '@/lib/gardens';
-import { CROPS, type CropStatus } from '@/lib/huerta';
+import { CROPS, type CropNeeds, type CropStatus } from '@/lib/huerta';
+import type { PlaceYear } from '@/lib/huerta-wire';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import type { Acidity, Texture } from '@/lib/soil';
 
@@ -866,10 +867,63 @@ export function monthAhead(today: string, k: number) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
 }
 
-/** A crop's status in a later month (0-11): in, when the place's calendar
- *  has it going in then (`sow`: its sowing months, bit 0 = January). */
-export const inMonth = (sow: number | undefined, month: number): CropStatus =>
-  sow && (sow >> month) & 1 ? 'now' : 'too_late';
+/** The crop table's season: crops that go in only in autumn, or in spring. */
+const SEASON: Partial<Record<string, 'autumn' | 'spring'>> = {
+  tulip: 'autumn',
+  daffodil: 'autumn',
+  crocus: 'autumn',
+  winter_rye: 'autumn',
+  asparagus: 'spring',
+};
+
+/** A crop's status in a later month (0-11): in when the place's calendar
+ *  has it going in then; else why not, by the nightly rules over a typical
+ *  month, as the calendar is built (data_tools/build_huerta_year.py): the
+ *  month's air plus the summer sun's warming for the soil, the place's
+ *  warm-night season for the nights, its usual frost dates for the frost. */
+// ponytail: usual frost dates, not the nightly run's 1-in-10 odds; a month
+// the calendar skips for frost alone reads as wait_frost / too_late.
+export function inMonth(
+  id: string,
+  month: number,
+  year?: PlaceYear | null,
+  need?: CropNeeds
+): CropStatus {
+  const sow = year?.crops[id]?.sow;
+  if (sow && (sow >> month) & 1) return 'now';
+  const autumn = month >= 6;
+  if (SEASON[id] === 'autumn' && !autumn) return 'wait_autumn';
+  if (SEASON[id] === 'spring' && autumn) return 'wait_spring';
+  const day = month * 30.4 + 15;
+  const air = year?.temps?.[month];
+  const soil =
+    air === undefined
+      ? null
+      : air + 4 * Math.max(0, Math.cos((2 * Math.PI * (day - 172)) / 365));
+  const [min, max] = need?.soil ?? [null, null];
+  const cold = soil !== null && min !== null && soil < min;
+  const climate = year?.climate;
+  const frost = need?.frost === 'tender' ? climate?.frost : climate?.hard;
+  if (need?.frost === 'tender') {
+    const warm = need.night
+      ? climate?.[need.night >= 13 ? 'warm13' : 'warm10']
+      : undefined;
+    if (warm === null) return 'not_here';
+    const days = need.days ?? 0;
+    if (warm && warm[1] < 365 && day + days > warm[1] && day >= warm[0] - 14)
+      return 'too_late';
+    if (frost && day > frost[1] && day + days >= frost[0]) return 'too_late';
+    if (frost && day <= frost[1]) return 'wait_frost';
+    if (warm && day < warm[0] - 14) return 'wait_warm';
+    if (cold) return autumn ? 'too_late' : 'wait_soil';
+  } else {
+    if (cold) return autumn ? 'too_late' : 'wait_soil';
+    if (soil !== null && max !== null && soil > max) return 'too_warm';
+    if (need?.frost === 'half_hardy' && frost && day <= frost[1])
+      return 'wait_frost';
+  }
+  return autumn ? 'too_late' : 'wait_frost';
+}
 
 /** What should follow a crop in its bed next year: rotate the families. */
 export function nextYear(id: string) {
