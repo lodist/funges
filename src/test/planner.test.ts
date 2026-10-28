@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
-import type { CropStatus } from '@/lib/huerta';
+import type { CropNeeds, CropStatus } from '@/lib/huerta';
+import type { PlaceYear } from '@/lib/huerta-wire';
 import {
   adjacent,
   autoPlan,
@@ -343,14 +344,48 @@ describe('planning for a later month', () => {
     expect(monthAhead('2026-12-31', 1)).toBe('2027-01-01');
   });
 
-  it("goes by the place's calendar for that month", () => {
-    expect(inMonth(0b100, 2)).toBe('now');
-    expect(inMonth(0b100, 3)).toBe('too_late');
-    expect(inMonth(undefined, 3)).toBe('too_late');
+  it("goes by the place's calendar for that month, and says why not", () => {
+    // Near Valencia: melons go in May-August, tulips November-December.
+    const year: PlaceYear = {
+      place: 'Valencia',
+      crops: {
+        melon: { sow: 0b11110000, harvest: 0 },
+        tulip: { sow: 0b110000000000, harvest: 0 },
+      },
+      temps: [
+        11.2, 11.9, 13.3, 15.5, 18.8, 22.8, 25.4, 25.7, 23, 19.5, 15.1, 12.3,
+      ],
+      climate: {
+        frost: null,
+        hard: null,
+        warm10: [94, 323],
+        warm13: [126, 305],
+        low: 2,
+      },
+    };
+    const melon: CropNeeds = {
+      frost: 'tender',
+      soil: [18, null],
+      night: 13,
+      days: 80,
+    };
+    const tulip: CropNeeds = {
+      frost: 'hardy',
+      soil: [2, 15],
+      night: null,
+      days: 150,
+    };
+    expect(inMonth('melon', 4, year, melon)).toBe('now');
+    expect(inMonth('melon', 2, year, melon)).toBe('wait_warm');
+    expect(inMonth('melon', 9, year, melon)).toBe('too_late');
+    expect(inMonth('tulip', 3, year, tulip)).toBe('wait_autumn');
+    expect(inMonth('tulip', 9, year, tulip)).toBe('too_warm');
+    expect(inMonth('tulip', 10, year, tulip)).toBe('now');
   });
 
   it('Plan it for me for March plans what goes in in March, dated the 1st', () => {
-    const march = (id: string) => inMonth(id === 'tomato' ? 0b100 : 0, 2);
+    const year = { place: '', crops: { tomato: { sow: 0b100, harvest: 0 } } };
+    const march = (id: string) => inMonth(id, 2, year);
     const out = autoPlan(
       layout({ width: 6, length: 4.5, shape: 'rect' }),
       march,
