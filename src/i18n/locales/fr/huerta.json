@@ -241,7 +241,7 @@
     "title": "Pas encore"
   },
   "over": {
-    "title": "Trop tard cette année",
+    "title": "Trop tard",
     "show": "Afficher les {{count}}"
   },
   "how": {
@@ -254,7 +254,7 @@
     "wait_soil": "Sol encore trop froid",
     "wait_warm": "Nuits encore trop froides",
     "too_warm": "Sol trop chaud pour l'instant",
-    "too_late": "Trop tard cette année",
+    "too_late": "Trop tard",
     "not_here": "Pas en plein air ici",
     "wait_autumn": "En automne",
     "wait_spring": "Au printemps"
@@ -349,7 +349,7 @@
       "soilHigh": "Sol à {{soil}} °C. Il se met en terre sous {{max}} °C.",
       "nights": "Nuits à {{nights}} °C. Il lui faut des nuits au-dessus de {{night}} °C.",
       "frost": "Une gelée reste probable ici.",
-      "late": "Il reste trop peu de temps cette année avant les gelées ou le froid.",
+      "late": "Ici, son moment est passé pour l'instant.",
       "notHere": "Les étés sont trop frais ici pour le cultiver en plein air.",
       "autumn": "Ici, il se met en terre à l'automne.",
       "spring": "Ici, il se met en terre au printemps.",

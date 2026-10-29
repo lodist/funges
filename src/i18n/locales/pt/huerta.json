@@ -241,7 +241,7 @@
     "title": "Ainda não"
   },
   "over": {
-    "title": "Tarde demais este ano",
+    "title": "Tarde demais",
     "show": "Mostrar todas as {{count}}"
   },
   "how": {
@@ -254,7 +254,7 @@
     "wait_soil": "Solo ainda frio demais",
     "wait_warm": "Noites ainda frias demais",
     "too_warm": "Solo quente demais por enquanto",
-    "too_late": "Tarde demais este ano",
+    "too_late": "Tarde demais",
     "not_here": "Não ao ar livre aqui",
     "wait_autumn": "No outono",
     "wait_spring": "Na primavera"
@@ -349,7 +349,7 @@
       "soilHigh": "Solo a {{soil}} °C. Vai bem abaixo de {{max}} °C.",
       "nights": "Noites a {{nights}} °C. Precisa de noites acima de {{night}} °C.",
       "frost": "Aqui ainda é provável que geie.",
-      "late": "Resta pouco tempo este ano antes das geadas ou do frio.",
+      "late": "Aqui, por enquanto, o momento dele já passou.",
       "notHere": "Aqui os verões são frescos demais para cultivá-lo ao ar livre.",
       "autumn": "Aqui vai para a terra no outono.",
       "spring": "Aqui vai para a terra na primavera.",
