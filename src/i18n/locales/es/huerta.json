@@ -359,7 +359,8 @@
       "frostSoon": "Helada en los próximos 3 días.",
       "frostLater": "Posible helada la noche del {{night}}.",
       "longDays": "Los días son demasiado largos: sembrado ahora, se espigaría.",
-      "heat": "Ahora hace demasiado calor: se pone cuando afloje el calor del verano."
+      "heat": "Ahora hace demasiado calor: se pone cuando afloje el calor del verano.",
+      "coldSeason": "Aquí, en esta época del año, la tierra suele estar aún demasiado fría."
     },
     "how": {
       "sow": "Cómo sembrar",

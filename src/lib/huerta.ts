@@ -969,6 +969,8 @@ export function cropReasons(
   else if (said) out.push({ ok: false, key: said });
   else if (status === 'too_warm' && out.every(reason => reason.ok))
     out.push({ ok: false, key: 'heat' });
+  else if (status === 'wait_soil' && out.every(reason => reason.ok))
+    out.push({ ok: false, key: 'coldSeason' });
   else if (status === 'wait_warm' && out.every(reason => reason.ok))
     out.push({ ok: false, key: 'warmSeason' });
   else if (status === 'now' && need)

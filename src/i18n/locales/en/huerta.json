@@ -359,7 +359,8 @@
       "frostSoon": "Frost in the next 3 days.",
       "frostLater": "Frost possible on {{night}} night.",
       "longDays": "The days are too long: sown now, it would bolt.",
-      "heat": "Too warm for it now: it goes in when the summer heat eases."
+      "heat": "Too warm for it now: it goes in when the summer heat eases.",
+      "coldSeason": "The soil here is usually still too cold for it at this time of year."
     },
     "how": {
       "sow": "How to sow",
