@@ -8,6 +8,7 @@ import { HuertaCropPicker } from '@/components/HuertaCropPicker';
 import { HuertaWeek } from '@/components/HuertaWeek';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
   BAND_ACTIVE_CLASS,
@@ -600,23 +601,25 @@ function Legend({
       : null;
   const timed = ahead !== null;
   return (
+    // On the band, as Terra's map dock.
     <div
       className={cn(
-        'pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm',
-        timed && 'flex w-full max-w-sm flex-col gap-2'
+        'pointer-events-auto rounded-card p-3 text-sm elevation-raised',
+        BAND_SURFACE_CLASS,
+        timed && 'flex w-full max-w-sm flex-col gap-3'
       )}
     >
       {timed ? <Timeline ahead={ahead} onAhead={onAhead} /> : null}
       {failed || source === 'crop' ? null : (
         // The crop layer's rows already say it: sow or plant now, not yet, too late.
-        <p className='font-semibold text-foreground'>{title}</p>
+        <p className='font-semibold text-happy-50'>{title}</p>
       )}
       {what && !failed ? (
-        <p className='text-xs text-muted-foreground'>{what}</p>
+        <p className='text-xs text-happy-100'>{what}</p>
       ) : null}
       {failed || source === 'crop' ? null : <span className='block h-2' />}
       {failed ? (
-        <p className='text-muted-foreground'>{t('map.failed')}</p>
+        <p className='text-happy-100'>{t('map.failed')}</p>
       ) : keys.length > 0 ? (
         <ul
           className={cn(
@@ -626,9 +629,9 @@ function Legend({
           )}
         >
           {keys.map(([fill, label]) => (
-            <li key={label} className='flex items-center gap-2'>
+            <li key={label} className='flex items-center gap-2 text-happy-50'>
               <span
-                className='size-3.5 shrink-0 rounded-sm border border-border'
+                className='size-3.5 shrink-0 rounded-sm border border-happy-50/60'
                 style={{ background: fill }}
               />
               {label}
@@ -637,7 +640,7 @@ function Legend({
         </ul>
       ) : (
         <div className='flex w-48 flex-col gap-1'>
-          <span className='flex h-3 overflow-hidden rounded-sm border border-border'>
+          <span className='flex h-3 overflow-hidden rounded-sm border border-happy-50/60'>
             {steps.map(fill => (
               <span
                 key={css(fill)}
@@ -646,22 +649,22 @@ function Legend({
               />
             ))}
           </span>
-          <span className='flex justify-between text-xs text-muted-foreground'>
+          <span className='flex justify-between text-xs text-happy-100'>
             <span>{t(`map.legend.${source}Low`)}</span>
             <span>{t(`map.legend.${source}High`)}</span>
           </span>
         </div>
       )}
       {timed ? (
-        <p className='text-xs text-muted-foreground'>{t('map.year.note')}</p>
+        <p className='text-xs text-happy-100'>{t('map.year.note')}</p>
       ) : null}
     </div>
   );
 }
 
-/** As the planner's timeline: a slider from this week to a year ahead, a
- *  month a step. The forecast reaches a week; the months after it are a
- *  typical year, from the sowing windows. */
+/** A slider from this week to a year ahead, a month a step, on the band as
+ *  Terra's map dock draws its days. The forecast reaches a week; the months
+ *  after it are a typical year, from the sowing windows. */
 function Timeline({
   ahead,
   onAhead,
@@ -676,39 +679,41 @@ function Timeline({
     day.setMonth(day.getMonth() + months);
     return new Intl.DateTimeFormat(i18n.language, { month }).format(day);
   };
-  const label = ahead
-    ? t('map.year.month', { month: name(ahead, 'long') })
-    : t('planner.timeline.now');
+  const label = (months: number) =>
+    months
+      ? t('map.year.month', { month: name(months, 'long') })
+      : t('planner.timeline.now');
   return (
     <div>
-      <div className='flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1'>
-        <label htmlFor='map-when' className='font-semibold text-foreground'>
-          {label}
-        </label>
+      <div className='mb-2 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1'>
+        <p className='font-semibold text-happy-50'>{label(ahead)}</p>
         {ahead ? (
           <Button
             variant='link'
-            className='h-auto p-0 text-sm'
+            className='h-auto p-0 text-sm text-happy-100 hover:text-happy-50'
             onClick={() => onAhead(0)}
           >
             {t('planner.timeline.back')}
           </Button>
         ) : (
-          <span className='text-muted-foreground'>{t('map.year.hint')}</span>
+          <span className='text-happy-100'>{t('map.year.hint')}</span>
         )}
       </div>
-      <input
-        id='map-when'
-        type='range'
-        min={0}
-        max={12}
-        step={1}
-        value={ahead}
-        onChange={e => onAhead(Number(e.target.value))}
-        aria-valuetext={label}
-        className='h-7 w-full cursor-pointer accent-primary'
-      />
-      <div className='-mt-1 flex justify-between text-xs text-muted-foreground'>
+      {/* The slider draws in --foreground on --background: the band re-points
+          both, as the map dock's, a fine light line instead of ink. */}
+      <div className='[--background:var(--happy-900)] [--foreground:var(--happy-300)]'>
+        <Slider
+          min={0}
+          max={12}
+          step={1}
+          value={[ahead]}
+          onValueChange={([next]) => onAhead(next)}
+          formatValue={label}
+          aria-label={t('map.year.label')}
+          showTicks
+        />
+      </div>
+      <div className='mt-1 flex justify-between text-xs text-happy-100'>
         <span>{t('planner.timeline.now')}</span>
         <span>{name(6, 'short')}</span>
         <span>{name(12, 'short')}</span>

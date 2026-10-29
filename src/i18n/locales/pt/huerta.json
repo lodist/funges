@@ -1949,7 +1949,7 @@
       "now": "Semeie ou plante agora",
       "month": "Semeie ou plante este mês",
       "wait": "Ainda não",
-      "over": "Tarde demais este ano",
+      "over": "Tarde demais",
       "frost": "Geada nos próximos 3 dias",
       "ground": "Geada no solo nos próximos 3 dias",
       "soilLow": "0 °C",
@@ -1965,9 +1965,10 @@
       "balanceHigh": "Chuva de sobra"
     },
     "year": {
+      "label": "Mês",
       "month": "Um {{month}} típico",
       "hint": "Deslize para ver o ano que vem",
-      "note": "Esta semana segue a previsão do tempo para os próximos 7 dias. Os meses seguintes mostram um ano típico em cada lugar, com base no tempo de 2016 a 2025."
+      "note": "Esta semana pela previsão, os meses seguintes por um ano típico."
     },
     "use": "Usar como minha horta",
     "close": "Fechar",

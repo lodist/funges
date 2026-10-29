@@ -1949,7 +1949,7 @@
       "now": "Sow or plant now",
       "month": "Sow or plant this month",
       "wait": "Not yet",
-      "over": "Too late this year",
+      "over": "Too late",
       "frost": "Frost in the next 3 days",
       "ground": "Ground frost in the next 3 days",
       "soilLow": "0 °C",
@@ -1965,9 +1965,10 @@
       "balanceHigh": "Rain to spare"
     },
     "year": {
+      "label": "Month",
       "month": "A typical {{month}}",
       "hint": "Slide to see the year ahead",
-      "note": "This week follows the weather forecast for the next 7 days. The months after it show a typical year at each place, from the weather of 2016 to 2025."
+      "note": "This week from the forecast, later months from a typical year."
     },
     "use": "Make this my garden",
     "close": "Close",
