@@ -191,9 +191,30 @@ export interface Bands {
 
 /** The crop layer's groups as an order: now, not yet, too late. */
 const STATUS = (byte: number) => {
+  if (byte === 255) return NaN;
   const code = String.fromCharCode(byte);
   return code === 'n' ? 0 : 'fswhapd'.includes(code) ? 1 : 2;
 };
+
+/** A crop's status at each place in `month` (1-12) of a typical year, as the
+ *  crop layer's letters, from its two months layers (one bit a month from
+ *  January and from September; 255 in the second where it has none): now
+ *  in a month it goes in, not yet while one is still to come that year, too
+ *  late after its last, not here in none. */
+export function monthCodes(
+  janAug: Uint8Array,
+  sepDec: Uint8Array,
+  month: number
+): Uint8Array {
+  const [now, wait, over, none] = [...'nslx'].map(c => c.charCodeAt(0));
+  return janAug.map((low, p) => {
+    if (sepDec[p] === 255) return 255;
+    const months = low | (sepDec[p] << 8);
+    if (!months) return none;
+    if (months & (1 << (month - 1))) return now;
+    return months >> month ? wait : over;
+  });
+}
 /** The old frost codes by how hard: none, later in the week, ground frost, frost. */
 const SEVERITY = [0, 2, 3, 1];
 const offset = (by: number) => (byte: number) =>

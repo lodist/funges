@@ -1947,6 +1947,7 @@
     },
     "legend": {
       "now": "Semina o pianta ora",
+      "month": "Semina o pianta questo mese",
       "wait": "Non ancora",
       "over": "Troppo tardi quest'anno",
       "frost": "Gelata nei prossimi 3 giorni",
@@ -1962,6 +1963,11 @@
       "balance": "Pioggia contro sole e vento, prossimi 7 giorni",
       "balanceLow": "Da annaffiare",
       "balanceHigh": "Pioggia in eccesso"
+    },
+    "year": {
+      "month": "Un {{month}} tipico",
+      "hint": "Scorri per vedere l'anno che viene",
+      "note": "Questa settimana segue le previsioni meteo dei prossimi 7 giorni. I mesi successivi mostrano un anno tipico in ogni luogo, in base al meteo dal 2016 al 2025."
     },
     "use": "Usa come il mio orto",
     "close": "Chiudi",

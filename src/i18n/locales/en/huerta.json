@@ -1947,6 +1947,7 @@
     },
     "legend": {
       "now": "Sow or plant now",
+      "month": "Sow or plant this month",
       "wait": "Not yet",
       "over": "Too late this year",
       "frost": "Frost in the next 3 days",
@@ -1962,6 +1963,11 @@
       "balance": "Rain against sun and wind, next 7 days",
       "balanceLow": "Needs water",
       "balanceHigh": "Rain to spare"
+    },
+    "year": {
+      "month": "A typical {{month}}",
+      "hint": "Slide to see the year ahead",
+      "note": "This week follows the weather forecast for the next 7 days. The months after it show a typical year at each place, from the weather of 2016 to 2025."
     },
     "use": "Make this my garden",
     "close": "Close",
