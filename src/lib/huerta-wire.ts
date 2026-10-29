@@ -16,6 +16,7 @@ const STATUS: Record<string, CropStatus> = {
   x: 'not_here',
   a: 'wait_autumn',
   p: 'wait_spring',
+  d: 'wait_days',
 };
 const FROST: Record<string, PlaceAdvice['frost']> = {
   '': 'none',

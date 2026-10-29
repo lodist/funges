@@ -192,7 +192,7 @@ export interface Bands {
 /** The crop layer's groups as an order: now, not yet, too late. */
 const STATUS = (byte: number) => {
   const code = String.fromCharCode(byte);
-  return code === 'n' ? 0 : 'fswhap'.includes(code) ? 1 : 2;
+  return code === 'n' ? 0 : 'fswhapd'.includes(code) ? 1 : 2;
 };
 /** The old frost codes by how hard: none, later in the week, ground frost, frost. */
 const SEVERITY = [0, 2, 3, 1];
