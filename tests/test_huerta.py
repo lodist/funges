@@ -152,11 +152,14 @@ def test_windows_decide_and_the_week_holds_back():
     places = pd.DataFrame([base, {**base, "Latitude": 48.0, "Longitude": 11.0}])
     may = huerta.advise(places, CROPS, 145, win)                               # day 145 = index 144
     assert may["tomato"].tolist() == ["now", "not_here"]
-    assert may["peas"].tolist() == ["too_warm", "too_late"]                     # a window to come here, none there
+    # The cycle, round the year: too late while the last window is nearer than the next, then not yet.
+    assert may["peas"].tolist() == ["too_late", "too_late"]                     # spring's 15 days past, autumn's 86 ahead
     july = huerta.advise(places, CROPS, 210, win)
-    assert july["tomato"].tolist()[0] == "wait_autumn"                          # this round over, another to come
-    assert july["peas"].tolist() == ["too_warm", "too_late"]
+    assert july["tomato"].tolist()[0] == "too_late"                             # 10 days past, 31 ahead
+    assert july["peas"].tolist() == ["too_warm", "too_late"]                    # 21 days to autumn's: its own reason
+    assert huerta.advise(places, CROPS, 235, win)["tomato"].tolist()[0] == "wait_autumn"   # over, the next nearer
     assert huerta.advise(places, CROPS, 280, win)["tomato"].tolist()[0] == "too_late"
+    assert huerta.advise(places, CROPS, 30, win)["tomato"].tolist()[0] == "wait_warm"     # the next window nearer than the last
     # Inside its window, this week's weather may still hold a crop back.
     cold = huerta.advise(places.assign(frost3=1.0), CROPS, 145, win)
     assert cold["tomato"].tolist()[0] == "wait_frost"

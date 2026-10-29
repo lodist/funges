@@ -26,10 +26,11 @@ decide instead, and the rules above are the fallback. A day in a crop's window: 
 may still hold it back (tender crops: a frost (<= 2 C) in the next 3 days or (<= 0 C) later in the
 week -> wait_frost, nights below its need -> wait_warm; others: a hard frost (-3 C) in the next 3 days
 for half-hardy ones -> wait_frost; soil below or above its range -> wait_soil / too_warm), else now.
-Outside its windows the window's own reason: soil usually too cold (wait_soil), frost still likely
+Between two of its windows (round the year) the cycle: too_late while the last window is nearer than
+the next; then the window's own reason: soil usually too cold (wait_soil), frost still likely
 (wait_frost), its warm nights to come (wait_warm), too warm (too_warm), days long enough to make it
-bolt (wait_days), its season comes (wait_autumn / wait_spring), while a window still opens later this
-year; too_late when none does; not_here where it has none.
+bolt (wait_days), its season comes (wait_autumn / wait_spring, also where the day's letter only says
+this round is over); not_here where it has none.
 
 Inputs, built locally and shipped to R2 like every built file (backend/generated, pinned in
 on_r2.json and fetched by r2.generated): huerta_crops.csv, the crop table; frost_odds_<REGION>.parquet,
@@ -138,13 +139,14 @@ def window_rows(windows, place):
 
 def in_windows(windows, place, crop, doy):
     """For one crop at each place (matched on its coordinates): today's window letter ('' where the
-    windows have no such place or crop), and whether a window opens later this calendar year, and
-    whether it has one at all. Windows are run-length letters per place and crop, place after place."""
+    windows have no such place or crop); whether it has a window at all; whether its last window is
+    nearer than its next (round the year); and the day of year its next one opens. Windows are
+    run-length letters per place and crop, place after place."""
     n = len(place)
-    letter, later, ever = np.full(n, "", object), np.zeros(n, bool), np.zeros(n, bool)
+    letter, ever, late, nxt = np.full(n, "", object), np.zeros(n, bool), np.zeros(n, bool), np.zeros(n, int)
     crops = list(windows["crops"])
     if crop not in crops:
-        return letter, later, ever
+        return letter, ever, late, nxt
     row = window_rows(windows, place)
     have = ~np.isnan(row)
     k = row[have].astype(np.int64) * len(crops) + crops.index(crop)
@@ -153,16 +155,24 @@ def in_windows(windows, place, crop, doy):
     first = np.concatenate([[0], np.cumsum(lengths)[:-1]])          # each place's first segment, gathered
     seg = np.repeat(np.arange(len(k)), lengths)
     idx = np.repeat(a - first, lengths) + np.arange(lengths.sum())
-    starts, codes = windows["starts"][idx], windows["codes"][idx]
+    starts, codes = windows["starts"][idx].astype(int), windows["codes"][idx]
     letters = windows["letters"]
     today = doy - 1
     upto = np.bincount(seg, starts <= today, minlength=len(k)).astype(int)
     now = codes[first + upto - 1]
     is_n = letters[codes] == "n"
     letter[have] = letters[now]
-    later[have] = np.bincount(seg, (starts > today) & is_n, minlength=len(k)) > 0
     ever[have] = np.bincount(seg, is_n, minlength=len(k)) > 0
-    return letter, later, ever
+    # Each window's first and last day; days to the next first and since the last last, round the year.
+    ends = np.append(starts[1:], 365)
+    ends[first + lengths - 1] = 365
+    w = np.flatnonzero(is_n)
+    until, since = np.full(len(k), 999), np.full(len(k), 999)
+    np.minimum.at(until, seg[w], (starts[w] - today) % 365)
+    np.minimum.at(since, seg[w], (today - (ends[w] - 1)) % 365)
+    late[have] = since < until
+    nxt[have] = (today + until) % 365 + 1
+    return letter, ever, late, nxt
 
 
 def advise(place, crops, doy, windows=None):
@@ -173,7 +183,7 @@ def advise(place, crops, doy, windows=None):
         return out
     soil, frost3, frostw, night7 = (place[c].to_numpy() for c in ("soil3", "frost3", "frostw", "night7"))
     for c in crops.itertuples(index=False):
-        letter, later, ever = in_windows(windows, place, c.crop, doy)
+        letter, ever, late, nxt = in_windows(windows, place, c.crop, doy)
         status = np.full(len(place), "", object)
 
         def mark(when, code):
@@ -191,9 +201,10 @@ def advise(place, crops, doy, windows=None):
         mark(inside & (soil > c.soil_max), "too_warm")                   # no maximum (NaN): never
         mark(inside, "now")
         mark((letter != "") & ~ever, "not_here")
-        waiting = np.isin(letter, ["s", "f", "w", "h", "b", "a", "p"])
-        mark(waiting & ~later, "too_late")                               # nothing opens again this year
-        mark((letter == "l") & later, "wait_autumn")                     # this round is over, the autumn's comes
+        mark((letter != "") & late, "too_late")                          # the cycle: now, too late, not yet
+        over = np.isin(letter, ["l", "x"])                               # this round over, the next one nearer
+        mark(over & (nxt >= AUTUMN), "wait_autumn")
+        mark(over, "wait_spring")
         for code, name in WINDOW.items():
             mark(letter == code, name)
         known = letter != ""
