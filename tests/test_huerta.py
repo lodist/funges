@@ -95,6 +95,25 @@ def test_map_files_hold_one_layer_after_another():
     assert bytes(layers[5]).decode() + bytes(layers[6]).decode() == "nhlx"
 
 
+def test_map_files_carry_each_crops_months_after_the_week():
+    places = pd.DataFrame({
+        "Latitude": [40.44, 39.86, 50.0], "Longitude": [-3.675, -4.02, 8.0],
+        "frost3": [9.2, -0.5, 5.0], "frostw": [1.0, 5.0, 5.0], "soil3": [13.44, np.nan, 9.0], "rain7": [4.0, 1.0, 0.0],
+        "et07": [14.4, 12.0, 3.0],
+    })
+    advice = pd.DataFrame({"garlic": ["now", "too_warm", "now"], "tomato": ["too_late", "not_here", "too_late"]})
+    win = {"crops": np.array(["tomato", "garlic"]), "lat": np.array([39.86, 40.44]), "lon": np.array([-4.02, -3.675]),
+           # Toledo: tomato April to June, garlic September to December; Madrid: no tomato, garlic October and November
+           "sow": np.array([[0b111000, 0b111100000000], [0, 0b11000000000]], np.uint16)}
+    files = huerta.map_files(places, advice, "2026-10-20", win)
+    index = json.loads(files["index.json"])
+    assert index["layers"][5:] == ["garlic", "tomato", "garlic_jan_aug", "garlic_sep_dec",
+                                   "tomato_jan_aug", "tomato_sep_dec"]          # the week's layers keep their places
+    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(-1, 3)
+    assert layers[7].tolist() == [0, 0, 0] and layers[8].tolist() == [0b0110, 0b1111, 255]   # none in the windows: 255
+    assert layers[9].tolist() == [0, 0b111000, 0] and layers[10][:2].tolist() == [0, 0]
+
+
 def test_conditions_find_the_first_frost_night_later_in_the_week():
     hours = pd.date_range("2026-10-20 19:00", periods=7 * 24, freq="h", tz="UTC")
     temp = np.full(len(hours), 8.0)
