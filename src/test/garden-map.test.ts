@@ -225,12 +225,28 @@ describe("the map's year", () => {
     const sepDec = new Uint8Array([0b10, 0b110, 0, 255]);
     const letters = (month: number) =>
       String.fromCharCode(...monthCodes(janAug, sepDec, month).slice(0, 3));
-    expect(letters(1)).toBe('ssx'); // January: both to come
-    expect(letters(4)).toBe('nsx');
-    expect(letters(7)).toBe('ssx'); // the autumn round still to come
+    expect(letters(4)).toBe('nlx');
     expect(letters(11)).toBe('lnx');
-    expect(letters(12)).toBe('llx');
     expect(monthCodes(janAug, sepDec, 4)[3]).toBe(255);
     expect(bands('crop').value(255)).toBeNaN(); // drawn as no place
+  });
+
+  it('goes round the cycle: now, too late, not yet, now', () => {
+    // March to May, then October.
+    const year = Array.from({ length: 12 }, (_, m) =>
+      String.fromCharCode(
+        monthCodes(new Uint8Array([0b11100]), new Uint8Array([0b10]), m + 1)[0]
+      )
+    ).join('');
+    // Jan-Feb not yet; Mar-May now; Jun-Jul too late; Aug-Sep not yet; Oct
+    // now; Nov-Dec too late.
+    expect(year).toBe('ssnnnllssnll');
+    // One time a year: too late for its first half of the wait, then not yet.
+    const tomato = Array.from({ length: 12 }, (_, m) =>
+      String.fromCharCode(
+        monthCodes(new Uint8Array([0b110000]), new Uint8Array([0]), m + 1)[0]
+      )
+    ).join('');
+    expect(tomato).toBe('ssssnnllllls');
   });
 });

@@ -1949,7 +1949,7 @@
       "now": "Jetzt säen oder pflanzen",
       "month": "Diesen Monat säen oder pflanzen",
       "wait": "Noch nicht",
-      "over": "Dieses Jahr zu spät",
+      "over": "Zu spät",
       "frost": "Frost in den nächsten 3 Tagen",
       "ground": "Bodenfrost in den nächsten 3 Tagen",
       "soilLow": "0 °C",
@@ -1965,9 +1965,10 @@
       "balanceHigh": "Regen reicht"
     },
     "year": {
+      "label": "Monat",
       "month": "Ein typischer {{month}}",
       "hint": "Schieben, um das kommende Jahr zu sehen",
-      "note": "Diese Woche folgt der Wettervorhersage für die nächsten 7 Tage. Die Monate danach zeigen ein typisches Jahr an jedem Ort, nach dem Wetter von 2016 bis 2025."
+      "note": "Diese Woche nach der Vorhersage, spätere Monate nach einem typischen Jahr."
     },
     "use": "Als meinen Garten nehmen",
     "close": "Schliessen",
