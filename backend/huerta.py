@@ -31,9 +31,10 @@ Outside its windows the window's own reason: soil usually too cold (wait_soil), 
 bolt (wait_days), its season comes (wait_autumn / wait_spring), while a window still opens later this
 year; too_late when none does; not_here where it has none.
 
-Inputs, local and never in the repo: HUERTA_DIR (default app_operation/huerta) holds
-crops.csv, the crop table, and windows/<REGION>.npz; FROST_ODDS_DIR (default app_operation/frost_odds)
-holds <REGION>_frost.parquet, each place's frost dates, yearly lows and warm-night season.
+Inputs, built locally and shipped to R2 like every built file (backend/generated, pinned in
+on_r2.json and fetched by r2.generated): huerta_crops.csv, the crop table; frost_odds_<REGION>.parquet,
+each place's frost dates, yearly lows and warm-night season; huerta_windows_<REGION>.npz, the sowing
+windows.
 
 Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REGION>/
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
@@ -60,16 +61,14 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-APP = Path(__file__).resolve().parents[2]
-HUERTA_DIR = Path(os.getenv("HUERTA_DIR") or APP / "huerta")
-FROST_ODDS_DIR = Path(os.getenv("FROST_ODDS_DIR") or APP / "frost_odds")
+GENERATED = Path(__file__).resolve().parent / "generated"
+CROPS = GENERATED / "huerta_crops.csv"
 SAFE = 0.1      # tender crops: a frost before harvest in at most 1 year in 10
 RISKY = 0.5     # hardier crops: a hard frost before harvest in at most half the years
 EARLY = 14      # days before the warm nights normally begin that a tender crop may go out
 AUTUMN = 182    # day of year (1 July): soil too cold means too late from here; autumn crops open
 CODES = {"now": "n", "wait_frost": "f", "wait_soil": "s", "wait_warm": "w", "too_warm": "h",
          "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p", "wait_days": "d"}
-WINDOWS_DIR = HUERTA_DIR / "windows"
 # The windows' letters (build_huerta_windows.py), a status each.
 WINDOW = {"n": "now", "s": "wait_soil", "f": "wait_frost", "w": "wait_warm", "h": "too_warm", "b": "wait_days",
           "a": "wait_autumn", "p": "wait_spring", "l": "too_late", "x": "not_here"}
@@ -115,8 +114,9 @@ def frost_risk(place, name, doy, days):
 
 
 def load_windows(region):
-    """The region's sowing windows, or None where they are not on this machine."""
-    path = WINDOWS_DIR / f"{region}.npz"
+    """The region's sowing windows (fetched from R2 when missing or outdated), or None where none were shipped."""
+    import r2
+    path = r2.generated(GENERATED / f"huerta_windows_{region}.npz")
     if not path.exists():
         return None
     with np.load(path) as z:
@@ -301,8 +301,10 @@ def area_files(place, advice, day):
 def publish(region, forecast):
     """Tonight's advice at the region's places, as area files on R2. Skipped, with a line in
     the log, when the crop table or the region's frost climate is not on this machine."""
+    import r2
     started = time.time()
-    crops_path, frost_path = HUERTA_DIR / "crops.csv", FROST_ODDS_DIR / f"{region}_frost.parquet"
+    crops_path = r2.generated(CROPS)
+    frost_path = r2.generated(GENERATED / f"frost_odds_{region}.parquet")
     if not (crops_path.exists() and frost_path.exists()):
         print(f"Huerta: skipped, no {crops_path.name if not crops_path.exists() else frost_path.name}")
         return 0
@@ -319,7 +321,6 @@ def publish(region, forecast):
     advice = advise(place, crops, day.dayofyear, windows)
     files = area_files(place, advice, f"{day:%Y-%m-%d}")
 
-    import r2
     s3, bucket = r2.client(), os.environ["R2_BUCKET_NAME"]
     with ThreadPoolExecutor(UPLOAD_WORKERS) as pool:
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
