@@ -1947,6 +1947,7 @@
     },
     "legend": {
       "now": "Siembra o planta ahora",
+      "month": "Siembra o planta este mes",
       "wait": "Aún no",
       "over": "Demasiado tarde este año",
       "frost": "Helada en los próximos 3 días",
@@ -1962,6 +1963,11 @@
       "balance": "Lluvia frente a sol y viento, próximos 7 días",
       "balanceLow": "Hay que regar",
       "balanceHigh": "Llueve de sobra"
+    },
+    "year": {
+      "month": "Un {{month}} típico",
+      "hint": "Desliza para ver el año que viene",
+      "note": "Esta semana sigue el pronóstico del tiempo para los próximos 7 días. Los meses siguientes muestran un año típico en cada lugar, según el tiempo de 2016 a 2025."
     },
     "use": "Usar como mi huerto",
     "close": "Cerrar",

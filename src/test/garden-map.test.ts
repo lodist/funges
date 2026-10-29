@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
-import { bands, field, grid, shapes, smoothed } from '@/lib/garden-map';
+import {
+  bands,
+  field,
+  grid,
+  monthCodes,
+  shapes,
+  smoothed,
+} from '@/lib/garden-map';
 
 /** A rectangle of places, `cols` × `rows`, 0.075° apart along rows. */
 const block = (cols: number, rows: number) =>
@@ -208,5 +215,22 @@ describe('the garden map drawing', () => {
         for (const hole of polygon.slice(1))
           expect(signed(hole)).toBeLessThan(0);
       }
+  });
+});
+
+describe("the map's year", () => {
+  it('reads a month of a typical year as the crop layer reads a night', () => {
+    // March to May, then October; October and November only; none; unknown.
+    const janAug = new Uint8Array([0b11100, 0, 0, 0]);
+    const sepDec = new Uint8Array([0b10, 0b110, 0, 255]);
+    const letters = (month: number) =>
+      String.fromCharCode(...monthCodes(janAug, sepDec, month).slice(0, 3));
+    expect(letters(1)).toBe('ssx'); // January: both to come
+    expect(letters(4)).toBe('nsx');
+    expect(letters(7)).toBe('ssx'); // the autumn round still to come
+    expect(letters(11)).toBe('lnx');
+    expect(letters(12)).toBe('llx');
+    expect(monthCodes(janAug, sepDec, 4)[3]).toBe(255);
+    expect(bands('crop').value(255)).toBeNaN(); // drawn as no place
   });
 });
