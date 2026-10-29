@@ -155,6 +155,16 @@ describe('the garden map drawing', () => {
     expect(polygonArea(0) + polygonArea(1)).toBeCloseTo(limit, 2);
   });
 
+  it('no "not yet" runs between going in now and too late', () => {
+    // Ten columns: the west five going in now, the east five too late.
+    const bytes = new Uint8Array(
+      Array.from({ length: 60 }, (_, i) => (i % 10 < 5 ? 110 : 108)) // n, l
+    );
+    const { features } = shapes(grid(block(10, 6)), 'crop', bytes);
+    const fills = features.filter(f => f.properties.fill);
+    expect(fills.map(f => !!f.properties.hatch)).toEqual([false, true]);
+  });
+
   it('no band runs along its own hole where a warmer band reaches the edge of the places', () => {
     // Nine by eight places, the east half warmer and reaching the block's
     // edge: the cooler band stops at the warm one instead of running on round

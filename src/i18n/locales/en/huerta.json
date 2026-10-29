@@ -351,13 +351,16 @@
       "frost": "Frost is still likely here.",
       "late": "Too little time is left this year before the frosts or the cold.",
       "notHere": "Summers here are too cool for it outdoors.",
-      "autumn": "It goes in only in autumn.",
-      "spring": "It goes in only in spring.",
+      "autumn": "Here it goes in in autumn.",
+      "spring": "Here it goes in in spring.",
       "warmSeason": "The warm nights it needs haven't begun here yet.",
       "noFrost": "No frost is likely before it's ready.",
       "hardy": "It gets through the frosts here.",
       "frostSoon": "Frost in the next 3 days.",
-      "frostLater": "Frost possible on {{night}} night."
+      "frostLater": "Frost possible on {{night}} night.",
+      "longDays": "The days are too long: sown now, it would bolt.",
+      "heat": "Too warm for it now: it goes in when the summer heat eases.",
+      "coldSeason": "The soil here is usually still too cold for it at this time of year."
     },
     "how": {
       "sow": "How to sow",

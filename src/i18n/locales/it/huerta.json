@@ -351,13 +351,16 @@
       "frost": "Qui è ancora probabile una gelata.",
       "late": "Quest'anno resta troppo poco tempo prima delle gelate o del freddo.",
       "notHere": "Qui le estati sono troppo fresche per coltivarlo all'aperto.",
-      "autumn": "Si mette a dimora solo in autunno.",
-      "spring": "Si mette a dimora solo in primavera.",
+      "autumn": "Qui si mette a dimora in autunno.",
+      "spring": "Qui si mette a dimora in primavera.",
       "warmSeason": "Qui non sono ancora arrivate le notti calde che gli servono.",
       "noFrost": "Non è probabile una gelata prima del raccolto.",
       "hardy": "Regge le gelate di qui.",
       "frostSoon": "Gelata nei prossimi 3 giorni.",
-      "frostLater": "Possibile gelata {{night}} notte."
+      "frostLater": "Possibile gelata {{night}} notte.",
+      "longDays": "Le giornate sono troppo lunghe: seminato ora, andrebbe a seme.",
+      "heat": "Ora fa troppo caldo: si mette a dimora quando il caldo estivo cala.",
+      "coldSeason": "Qui, in questo periodo dell'anno, il terreno di solito è ancora troppo freddo."
     },
     "how": {
       "sow": "Come seminare",

@@ -351,13 +351,16 @@
       "frost": "Aquí aún es probable que hiele.",
       "late": "Queda poco tiempo este año antes de las heladas o el frío.",
       "notHere": "Aquí los veranos son demasiado frescos para cultivarlo al aire libre.",
-      "autumn": "Solo se pone en otoño.",
-      "spring": "Solo se pone en primavera.",
+      "autumn": "Aquí se pone en otoño.",
+      "spring": "Aquí se pone en primavera.",
       "warmSeason": "Aquí aún no han llegado las noches cálidas que necesita.",
       "noFrost": "No es probable que hiele antes de la cosecha.",
       "hardy": "Aguanta las heladas de aquí.",
       "frostSoon": "Helada en los próximos 3 días.",
-      "frostLater": "Posible helada la noche del {{night}}."
+      "frostLater": "Posible helada la noche del {{night}}.",
+      "longDays": "Los días son demasiado largos: sembrado ahora, se espigaría.",
+      "heat": "Ahora hace demasiado calor: se pone cuando afloje el calor del verano.",
+      "coldSeason": "Aquí, en esta época del año, la tierra suele estar aún demasiado fría."
     },
     "how": {
       "sow": "Cómo sembrar",

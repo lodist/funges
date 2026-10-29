@@ -351,13 +351,16 @@
       "frost": "Frost ist hier noch wahrscheinlich.",
       "late": "Dieses Jahr bleibt bis zu Frost oder Kälte zu wenig Zeit.",
       "notHere": "Die Sommer sind hier zu kühl für den Anbau im Freien.",
-      "autumn": "Es kommt nur im Herbst in die Erde.",
-      "spring": "Es kommt nur im Frühling in die Erde.",
+      "autumn": "Hier kommt es im Herbst in die Erde.",
+      "spring": "Hier kommt es im Frühling in die Erde.",
       "warmSeason": "Die warmen Nächte, die es braucht, haben hier noch nicht begonnen.",
       "noFrost": "Bis zur Ernte ist kein Frost zu erwarten.",
       "hardy": "Es übersteht die Fröste hier.",
       "frostSoon": "Frost in den nächsten 3 Tagen.",
-      "frostLater": "Frost möglich: {{night}}nacht."
+      "frostLater": "Frost möglich: {{night}}nacht.",
+      "longDays": "Die Tage sind zu lang: Jetzt gesät, würde es schiessen.",
+      "heat": "Jetzt ist es ihm zu warm: Es kommt in die Erde, wenn die Sommerhitze nachlässt.",
+      "coldSeason": "Der Boden ist hier um diese Jahreszeit meist noch zu kalt dafür."
     },
     "how": {
       "sow": "So wird gesät",

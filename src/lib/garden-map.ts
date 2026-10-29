@@ -184,12 +184,15 @@ export interface Bands {
   step: number;
   /** Rounds of smoothing over neighbouring places. */
   smooth: number;
+  /** Kinds, not amounts: each cut is traced on its own share of places past
+   *  it, so where now meets too late no "not yet" runs between them. */
+  kinds?: boolean;
 }
 
 /** The crop layer's groups as an order: now, not yet, too late. */
 const STATUS = (byte: number) => {
   const code = String.fromCharCode(byte);
-  return code === 'n' ? 0 : 'fswhap'.includes(code) ? 1 : 2;
+  return code === 'n' ? 0 : 'fswhapd'.includes(code) ? 1 : 2;
 };
 /** The old frost codes by how hard: none, later in the week, ground frost, frost. */
 const SEVERITY = [0, 2, 3, 1];
@@ -216,6 +219,7 @@ export function bands(source: MapSource, dark = false): Bands {
         fills: [palette.crop.now, palette.crop.wait, 'over'],
         step: 0.5,
         smooth: 1,
+        kinds: true,
       };
     case 'frost':
       return {
@@ -571,12 +575,18 @@ export function shapes(
 ): Shapes {
   const spec = bands(source, dark);
   const { bounds, width, height } = region;
-  const values = smoothed(
-    field(region, bytes, spec.value),
-    width,
-    height,
-    spec.smooth
-  );
+  const cells = field(region, bytes, spec.value);
+  const values = smoothed(cells, width, height, spec.smooth);
+  // Kinds: 1 where a place is past the edge, 0 where not, smoothed alike. A
+  // share past a higher edge is never above the share past a lower one, so
+  // the cuts still nest, and where 0 meets 2 both run the same line.
+  const past = (t: number) =>
+    smoothed(
+      cells.map(v => (Number.isNaN(v) ? NaN : v > t ? 1 : 0)),
+      width,
+      height,
+      spec.smooth
+    );
   const perDegree = width / (bounds[2] - bounds[0]);
   const perRadian = (perDegree * 180) / Math.PI;
   const top = mercator(bounds[3]);
@@ -590,9 +600,11 @@ export function shapes(
   const trace = contours().size([width, height]).smooth(true).thresholds([0]);
   const levels = [-Infinity, ...spec.edges];
   const cut = new Float64Array(width * height);
-  const cuts: Polygons[] = levels.map(t => {
-    for (let i = 0; i < values.length; i++) {
-      const v = values[i];
+  const cuts: Polygons[] = levels.map(edge => {
+    const [from, t] =
+      spec.kinds && edge !== -Infinity ? [past(edge), 0.5] : [values, edge];
+    for (let i = 0; i < from.length; i++) {
+      const v = from[i];
       cut[i] = Number.isNaN(v)
         ? -spec.step
         : t === -Infinity

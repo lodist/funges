@@ -351,13 +351,16 @@
       "frost": "Aqui ainda é provável que geie.",
       "late": "Resta pouco tempo este ano antes das geadas ou do frio.",
       "notHere": "Aqui os verões são frescos demais para cultivá-lo ao ar livre.",
-      "autumn": "Vai para a terra só no outono.",
-      "spring": "Vai para a terra só na primavera.",
+      "autumn": "Aqui vai para a terra no outono.",
+      "spring": "Aqui vai para a terra na primavera.",
       "warmSeason": "As noites quentes de que precisa ainda não começaram aqui.",
       "noFrost": "Não é provável que geie antes da colheita.",
       "hardy": "Aguenta as geadas daqui.",
       "frostSoon": "Geada nos próximos 3 dias.",
-      "frostLater": "Possível geada na noite de {{night}}."
+      "frostLater": "Possível geada na noite de {{night}}.",
+      "longDays": "Os dias estão demasiado longos: semeado agora, espigaria.",
+      "heat": "Agora está calor demais: vai para a terra quando o calor do verão abrandar.",
+      "coldSeason": "Aqui, nesta altura do ano, a terra costuma estar ainda fria demais."
     },
     "how": {
       "sow": "Como semear",

@@ -351,13 +351,16 @@
       "frost": "Une gelée reste probable ici.",
       "late": "Il reste trop peu de temps cette année avant les gelées ou le froid.",
       "notHere": "Les étés sont trop frais ici pour le cultiver en plein air.",
-      "autumn": "Il se met en terre seulement à l'automne.",
-      "spring": "Il se met en terre seulement au printemps.",
+      "autumn": "Ici, il se met en terre à l'automne.",
+      "spring": "Ici, il se met en terre au printemps.",
       "warmSeason": "Les nuits douces dont il a besoin n'ont pas encore commencé ici.",
       "noFrost": "Aucune gelée probable avant la récolte.",
       "hardy": "Il supporte les gelées d'ici.",
       "frostSoon": "Gel dans les 3 prochains jours.",
-      "frostLater": "Gel possible dans la nuit de {{night}}."
+      "frostLater": "Gel possible dans la nuit de {{night}}.",
+      "longDays": "Les jours sont trop longs : semé maintenant, il monterait en graine.",
+      "heat": "Il fait trop chaud pour lui en ce moment : il se met en terre quand la chaleur de l'été retombe.",
+      "coldSeason": "Ici, à cette période de l'année, la terre est en général encore trop froide."
     },
     "how": {
       "sow": "Comment semer",
