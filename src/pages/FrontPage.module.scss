@@ -88,14 +88,16 @@
   margin-top: 2rem;
 }
 
-// The close: the legal pages, as on the space front pages.
+// The close: the legal pages, as on the space front pages. 4rem below the
+// links clears the desktop language switcher, which floats 16px off the
+// bottom-right corner (as LandingPage's close).
 .footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 2rem var(--page-gutter) calc(2rem + var(--mobile-navbar-height, 0px));
+  padding: 2rem var(--page-gutter) calc(4rem + var(--mobile-navbar-height, 0px));
   nav {
     display: flex;
     flex-wrap: wrap;
