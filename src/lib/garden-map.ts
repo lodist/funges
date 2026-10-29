@@ -198,9 +198,9 @@ const STATUS = (byte: number) => {
 
 /** A crop's status at each place in `month` (1-12) of a typical year, as the
  *  crop layer's letters, from its two months layers (one bit a month from
- *  January and from September; 255 in the second where it has none): now
- *  in a month it goes in, not yet while one is still to come that year, too
- *  late after its last, not here in none. */
+ *  January and from September; 255 in the second where it has none): now in
+ *  a month it goes in, not here in none. Between two of its times (round the
+ *  year), the cycle: too late while the last is nearer, then not yet. */
 export function monthCodes(
   janAug: Uint8Array,
   sepDec: Uint8Array,
@@ -211,8 +211,14 @@ export function monthCodes(
     if (sepDec[p] === 255) return 255;
     const months = low | (sepDec[p] << 8);
     if (!months) return none;
-    if (months & (1 << (month - 1))) return now;
-    return months >> month ? wait : over;
+    const goes = (m: number) => (months >> ((m + 12) % 12)) & 1;
+    const at = month - 1;
+    if (goes(at)) return now;
+    let since = 1,
+      until = 1;
+    while (!goes(at - since)) since++;
+    while (!goes(at + until)) until++;
+    return until <= since ? wait : over;
   });
 }
 /** The old frost codes by how hard: none, later in the week, ground frost, frost. */
