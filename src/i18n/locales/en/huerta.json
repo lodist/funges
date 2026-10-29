@@ -241,7 +241,7 @@
     "title": "Not yet"
   },
   "over": {
-    "title": "Too late this year",
+    "title": "Too late",
     "show": "Show all {{count}}"
   },
   "how": {
@@ -254,7 +254,7 @@
     "wait_soil": "Soil still too cold",
     "wait_warm": "Nights still too cold",
     "too_warm": "Soil too warm for now",
-    "too_late": "Too late this year",
+    "too_late": "Too late",
     "not_here": "Not outdoors here",
     "wait_autumn": "In autumn",
     "wait_spring": "In spring"
@@ -349,7 +349,7 @@
       "soilHigh": "Soil {{soil}} °C. It goes in below {{max}} °C.",
       "nights": "Nights {{nights}} °C. It needs nights above {{night}} °C.",
       "frost": "Frost is still likely here.",
-      "late": "Too little time is left this year before the frosts or the cold.",
+      "late": "Its time here is over for now.",
       "notHere": "Summers here are too cool for it outdoors.",
       "autumn": "Here it goes in in autumn.",
       "spring": "Here it goes in in spring.",

@@ -241,7 +241,7 @@
     "title": "Todavía no"
   },
   "over": {
-    "title": "Demasiado tarde este año",
+    "title": "Demasiado tarde",
     "show": "Ver los {{count}}"
   },
   "how": {
@@ -254,7 +254,7 @@
     "wait_soil": "Suelo aún demasiado frío",
     "wait_warm": "Noches aún demasiado frías",
     "too_warm": "Suelo demasiado cálido por ahora",
-    "too_late": "Demasiado tarde este año",
+    "too_late": "Demasiado tarde",
     "not_here": "No al aire libre aquí",
     "wait_autumn": "En otoño",
     "wait_spring": "En primavera"
@@ -349,7 +349,7 @@
       "soilHigh": "Suelo a {{soil}} °C. Va bien por debajo de {{max}} °C.",
       "nights": "Noches a {{nights}} °C. Necesita noches por encima de {{night}} °C.",
       "frost": "Aquí aún es probable que hiele.",
-      "late": "Queda poco tiempo este año antes de las heladas o el frío.",
+      "late": "Aquí, por ahora, ya pasó su momento.",
       "notHere": "Aquí los veranos son demasiado frescos para cultivarlo al aire libre.",
       "autumn": "Aquí se pone en otoño.",
       "spring": "Aquí se pone en primavera.",
