@@ -20,9 +20,20 @@ Hargreaves' radiation formula). Per crop, the first rule that applies:
   overwinter, a hard frost before harvest in more than half the years -> too_late;
 - otherwise: now.
 
+Where the region's sowing windows are on this machine (huerta/windows/<REGION>.npz, built by
+data_tools/build_huerta_windows.py from each place's 2016-2025 climate and each crop's biology), they
+decide instead, and the rules above are the fallback. A day in a crop's window: this week's weather
+may still hold it back (tender crops: a frost (<= 2 C) in the next 3 days or (<= 0 C) later in the
+week -> wait_frost, nights below its need -> wait_warm; others: a hard frost (-3 C) in the next 3 days
+for half-hardy ones -> wait_frost; soil below or above its range -> wait_soil / too_warm), else now.
+Outside its windows the window's own reason: soil usually too cold (wait_soil), frost still likely
+(wait_frost), its warm nights to come (wait_warm), too warm (too_warm), days long enough to make it
+bolt (wait_days), its season comes (wait_autumn / wait_spring), while a window still opens later this
+year; too_late when none does; not_here where it has none.
+
 Inputs, local and never in the repo: HUERTA_DIR (default app_operation/huerta) holds
-crops.csv, the crop table; FROST_ODDS_DIR (default app_operation/frost_odds) holds
-<REGION>_frost.parquet, each place's frost dates, yearly lows and warm-night season.
+crops.csv, the crop table, and windows/<REGION>.npz; FROST_ODDS_DIR (default app_operation/frost_odds)
+holds <REGION>_frost.parquet, each place's frost dates, yearly lows and warm-night season.
 
 Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REGION>/
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
@@ -57,7 +68,11 @@ RISKY = 0.5     # hardier crops: a hard frost before harvest in at most half the
 EARLY = 14      # days before the warm nights normally begin that a tender crop may go out
 AUTUMN = 182    # day of year (1 July): soil too cold means too late from here; autumn crops open
 CODES = {"now": "n", "wait_frost": "f", "wait_soil": "s", "wait_warm": "w", "too_warm": "h",
-         "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p"}
+         "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p", "wait_days": "d"}
+WINDOWS_DIR = HUERTA_DIR / "windows"
+# The windows' letters (build_huerta_windows.py), a status each.
+WINDOW = {"n": "now", "s": "wait_soil", "f": "wait_frost", "w": "wait_warm", "h": "too_warm", "b": "wait_days",
+          "a": "wait_autumn", "p": "wait_spring", "l": "too_late", "x": "not_here"}
 UPLOAD_WORKERS = 16
 # The garden map's own layers: frost (0 none; in the next 3 days 1 ground frost, 2 frost; 3 either
 # later in the week), soil
@@ -99,7 +114,87 @@ def frost_risk(place, name, doy, days):
     return (last >= doy).mean(axis=1), ((first > 0) & (first <= doy + days)).mean(axis=1)
 
 
-def advise(place, crops, doy):
+def load_windows(region):
+    """The region's sowing windows, or None where they are not on this machine."""
+    path = WINDOWS_DIR / f"{region}.npz"
+    if not path.exists():
+        return None
+    with np.load(path) as z:
+        return {k: z[k] for k in z.files}
+
+
+def in_windows(windows, place, crop, doy):
+    """For one crop at each place (matched on its coordinates): today's window letter ('' where the
+    windows have no such place or crop), and whether a window opens later this calendar year, and
+    whether it has one at all. Windows are run-length letters per place and crop, place after place."""
+    n = len(place)
+    letter, later, ever = np.full(n, "", object), np.zeros(n, bool), np.zeros(n, bool)
+    crops = list(windows["crops"])
+    if crop not in crops:
+        return letter, later, ever
+
+    def key(lat, lon):
+        return np.round(np.asarray(lat, float) * 1e4).astype(np.int64) * 10**8 + np.round(np.asarray(lon, float) * 1e4).astype(np.int64)
+
+    where = pd.Series(np.arange(len(windows["lat"])), index=key(windows["lat"], windows["lon"]))
+    where = where[~where.index.duplicated()]
+    row = where.reindex(key(place["Latitude"], place["Longitude"])).to_numpy()
+    have = ~np.isnan(row)
+    k = row[have].astype(np.int64) * len(crops) + crops.index(crop)
+    a, b = windows["offsets"][k], windows["offsets"][k + 1]
+    lengths = b - a
+    first = np.concatenate([[0], np.cumsum(lengths)[:-1]])          # each place's first segment, gathered
+    seg = np.repeat(np.arange(len(k)), lengths)
+    idx = np.repeat(a - first, lengths) + np.arange(lengths.sum())
+    starts, codes = windows["starts"][idx], windows["codes"][idx]
+    letters = windows["letters"]
+    today = doy - 1
+    upto = np.bincount(seg, starts <= today, minlength=len(k)).astype(int)
+    now = codes[first + upto - 1]
+    is_n = letters[codes] == "n"
+    letter[have] = letters[now]
+    later[have] = np.bincount(seg, (starts > today) & is_n, minlength=len(k)) > 0
+    ever[have] = np.bincount(seg, is_n, minlength=len(k)) > 0
+    return letter, later, ever
+
+
+def advise(place, crops, doy, windows=None):
+    """One status per crop and place: from the sowing windows and this week's weather where the windows
+    hold the place and crop, else by the rules (module docstring)."""
+    out = rules(place, crops, doy)
+    if windows is None:
+        return out
+    soil, frost3, frostw, night7 = (place[c].to_numpy() for c in ("soil3", "frost3", "frostw", "night7"))
+    for c in crops.itertuples(index=False):
+        letter, later, ever = in_windows(windows, place, c.crop, doy)
+        status = np.full(len(place), "", object)
+
+        def mark(when, code):
+            status[np.asarray(when) & (status == "")] = code
+
+        inside = letter == "n"
+        if c.frost == "tender":
+            mark(inside & (frost3 <= 2), "wait_frost")
+            mark(inside & (frostw <= 0), "wait_frost")
+            if not np.isnan(c.night):
+                mark(inside & (night7 < c.night), "wait_warm")
+        elif c.frost == "half_hardy":
+            mark(inside & (frost3 <= -3), "wait_frost")
+        mark(inside & (soil < c.soil_min), "wait_soil")
+        mark(inside & (soil > c.soil_max), "too_warm")                   # no maximum (NaN): never
+        mark(inside, "now")
+        mark((letter != "") & ~ever, "not_here")
+        waiting = np.isin(letter, ["s", "f", "w", "h", "b", "a", "p"])
+        mark(waiting & ~later, "too_late")                               # nothing opens again this year
+        mark((letter == "l") & later, "wait_autumn")                     # this round is over, the autumn's comes
+        for code, name in WINDOW.items():
+            mark(letter == code, name)
+        known = letter != ""
+        out.loc[known, c.crop] = status[known]
+    return out
+
+
+def rules(place, crops, doy):
     """One status per crop and place, by the rules in the module docstring."""
     soil, frost3, frostw, night7 = (place[c].to_numpy() for c in ("soil3", "frost3", "frostw", "night7"))
     cold_soil = "too_late" if doy >= AUTUMN else "wait_soil"
@@ -218,7 +313,10 @@ def publish(region, forecast):
         frame["key_lat"], frame["key_lon"] = frame[la].round(4), frame[lo].round(4)
     place = place.merge(cond.drop(columns=["lat", "lon"]), on=["key_lat", "key_lon"], how="inner")
     crops = pd.read_csv(crops_path)
-    advice = advise(place, crops, day.dayofyear)
+    windows = load_windows(region)
+    if windows is None:
+        print(f"Huerta: no sowing windows for {region}, the rules decide")
+    advice = advise(place, crops, day.dayofyear, windows)
     files = area_files(place, advice, f"{day:%Y-%m-%d}")
 
     import r2
