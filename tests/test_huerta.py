@@ -106,3 +106,42 @@ def test_conditions_find_the_first_frost_night_later_in_the_week():
     row = cond.iloc[0]
     assert row["frost3"] == 8.0 and row["frostw"] == -1.0
     assert row["frostw_night"] == "2026-10-24"      # the frost night, not the earlier ground frost
+
+
+def windows(rows, crops=("tomato", "peas")):
+    """A windows file in the builder's run-length form: rows is, per place, per crop, [(start day, letter)]."""
+    letters = np.array(list("nsfwhbaplx"))
+    counts, starts, codes, lat, lon = [], [], [], [], []
+    for (la, lo), per in rows:
+        lat.append(la), lon.append(lo)
+        for segments in per:
+            counts.append(len(segments))
+            starts += [s for s, _ in segments]
+            codes += [int(np.flatnonzero(letters == x)[0]) for _, x in segments]
+    return {"crops": np.array(crops), "letters": letters, "lat": np.array(lat), "lon": np.array(lon),
+            "offsets": np.concatenate([[0], np.cumsum(counts)]), "starts": np.array(starts, np.int16),
+            "codes": np.array(codes, np.uint8)}
+
+
+def test_windows_decide_and_the_week_holds_back():
+    win = windows([
+        ((40.0, -3.0), [[(0, "w"), (130, "n"), (200, "l"), (240, "n"), (260, "l")],   # tomato: May-July, early September
+                        [(0, "s"), (60, "n"), (130, "h"), (230, "n"), (270, "l")]]),   # peas: spring, then autumn
+        ((48.0, 11.0), [[(0, "x")], [(0, "s"), (80, "n"), (140, "h"), (300, "s")]]),   # no tomatoes; peas in spring
+    ])
+    base = dict(place(soil3=18.0, frost3=8.0, frostw=8.0, night7=12.0), Latitude=40.0, Longitude=-3.0)
+    places = pd.DataFrame([base, {**base, "Latitude": 48.0, "Longitude": 11.0}])
+    may = huerta.advise(places, CROPS, 145, win)                               # day 145 = index 144
+    assert may["tomato"].tolist() == ["now", "not_here"]
+    assert may["peas"].tolist() == ["too_warm", "too_late"]                     # a window to come here, none there
+    july = huerta.advise(places, CROPS, 210, win)
+    assert july["tomato"].tolist()[0] == "wait_autumn"                          # this round over, another to come
+    assert july["peas"].tolist() == ["too_warm", "too_late"]
+    assert huerta.advise(places, CROPS, 280, win)["tomato"].tolist()[0] == "too_late"
+    # Inside its window, this week's weather may still hold a crop back.
+    cold = huerta.advise(places.assign(frost3=1.0), CROPS, 145, win)
+    assert cold["tomato"].tolist()[0] == "wait_frost"
+    autumn = huerta.advise(places.assign(soil3=2.0), CROPS, 240, win)
+    assert autumn["peas"].tolist() == ["wait_soil", "too_late"]
+    # A crop the windows don't hold keeps the rules.
+    assert huerta.advise(places, CROPS, 145, win)["garlic"].tolist() == huerta.rules(places, CROPS, 145)["garlic"].tolist()
