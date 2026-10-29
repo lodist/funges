@@ -14,9 +14,11 @@ export type CropStatus =
   | 'too_warm'
   | 'too_late'
   | 'not_here'
-  /** Goes in only in autumn (bulbs, winter rye), or only in spring (asparagus). */
+  /** Its next time here is autumn (bulbs, garlic, or after a summer gap), or spring. */
   | 'wait_autumn'
-  | 'wait_spring';
+  | 'wait_spring'
+  /** The days are long enough to make it bolt (spinach, coriander, radish...). */
+  | 'wait_days';
 
 export type CropKind = 'vegetable' | 'fruit' | 'herb' | 'flower' | 'cover';
 
@@ -880,6 +882,7 @@ export const STATUS_GROUPS = {
     'too_warm',
     'wait_autumn',
     'wait_spring',
+    'wait_days',
   ],
   over: ['too_late', 'not_here'],
 } satisfies Record<string, CropStatus[]>;
@@ -919,6 +922,7 @@ const STATUS_REASON: Partial<Record<CropStatus, string>> = {
   not_here: 'notHere',
   wait_autumn: 'autumn',
   wait_spring: 'spring',
+  wait_days: 'longDays',
 };
 
 /** Why a crop is or isn't for this week, in the place's own conditions:
@@ -963,6 +967,8 @@ export function cropReasons(
       values: { night: advice.laterNight },
     });
   else if (said) out.push({ ok: false, key: said });
+  else if (status === 'too_warm' && out.every(reason => reason.ok))
+    out.push({ ok: false, key: 'heat' });
   else if (status === 'wait_warm' && out.every(reason => reason.ok))
     out.push({ ok: false, key: 'warmSeason' });
   else if (status === 'now' && need)
