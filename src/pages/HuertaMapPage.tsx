@@ -17,6 +17,7 @@ import {
 import {
   bands,
   grid,
+  monthCodes,
   PALETTES,
   shapes,
   type MapLayer,
@@ -223,24 +224,34 @@ const sourceOf = (layer: MapLayer, layers: string[]): MapSource =>
       : layer;
 
 /** A continent's layer as shapes, its regions' places together: where two
- *  regions meet, one shape runs on across. */
+ *  regions meet, one shape runs on across. The crop layer in `month` (1-12)
+ *  is that month of a typical year; 0, this week. `months`: the night's
+ *  files carry the crop's months (nights before them did not). */
 async function drawContinent(
   continent: Continent,
   layer: MapLayer,
   crop: string,
-  dark: boolean
-): Promise<{ data: Shapes; source: MapSource }> {
+  dark: boolean,
+  month: number
+): Promise<{ data: Shapes; source: MapSource; months: boolean }> {
+  const year = [`${crop}_jan_aug`, `${crop}_sep_dec`];
   const load = async (region: MapRegion, again: boolean) => {
     const night = await fetchMapNight(region, again);
     const source = sourceOf(layer, night.layers);
+    const months = year.every(name => night.layers.includes(name));
+    const read = (name: string) => fetchMapLayer(region, night.day, name);
+    const [janAug, sepDec] =
+      layer === 'crop' && month && months
+        ? await Promise.all(year.map(read))
+        : [];
     return {
       source,
+      months,
       places: night.places,
-      values: await fetchMapLayer(
-        region,
-        night.day,
-        layer === 'crop' ? crop : source
-      ),
+      values:
+        janAug && sepDec
+          ? monthCodes(janAug, sepDec, month)
+          : await read(layer === 'crop' ? crop : source),
     };
   };
   // A 409 means the night run moved on since the index was read.
@@ -260,8 +271,16 @@ async function drawContinent(
   // ponytail: both regions are written by one night's code; the first says
   // which source the continent is drawn from.
   const source = parts[0].source;
-  return { data: shapes(grid(places), source, values, dark), source };
+  return {
+    data: shapes(grid(places), source, values, dark),
+    source,
+    months: parts.every(p => p.months),
+  };
 }
+
+/** The calendar month (1-12) `ahead` months from this one. */
+const monthAhead = (ahead: number) =>
+  ((new Date().getMonth() + ahead) % 12) + 1;
 
 export default function HuertaMapPage() {
   const { t } = useTranslation('huerta');
@@ -289,6 +308,17 @@ export default function HuertaMapPage() {
   const [sources, setSources] = useState<Partial<Record<MapLayer, MapSource>>>(
     {}
   );
+  // The timeline: how many months ahead the crop layer shows (0: this week),
+  // and the one drawn, once the slider rests (a drawing takes a moment).
+  const [ahead, setAhead] = useState(0);
+  const [drawnAhead, setDrawnAhead] = useState(0);
+  useEffect(() => {
+    const rest = window.setTimeout(() => setDrawnAhead(ahead), 250);
+    return () => window.clearTimeout(rest);
+  }, [ahead]);
+  const month = layer === 'crop' && drawnAhead ? monthAhead(drawnAhead) : 0;
+  // Whether the night's files carry the crop's months, for the timeline.
+  const [months, setMonths] = useState(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   // advice: undefined while it loads, null where Huerta has no place.
@@ -374,17 +404,18 @@ export default function HuertaMapPage() {
   useEffect(() => {
     const m = map.current;
     if (!ready || !m || !huertaApiConfigured) return;
-    const key = `${layer}:${crop}`;
+    const key = `${layer}:${crop}:${month}`;
     setFailed(false);
     for (const continent of shown) {
       if (wanted.current.get(continent) === key) continue;
       wanted.current.set(continent, key);
-      drawContinent(continent, layer, crop, dark)
-        .then(({ data, source }) => {
+      drawContinent(continent, layer, crop, dark, month)
+        .then(({ data, source, months }) => {
           if (wanted.current.get(continent) !== key || map.current !== m)
             return;
           show(m, continent, data, dark);
           setSources(prev => ({ ...prev, [layer]: source }));
+          if (layer === 'crop') setMonths(months);
         })
         .catch(() => {
           if (wanted.current.get(continent) !== key) return;
@@ -392,7 +423,7 @@ export default function HuertaMapPage() {
           setFailed(true);
         });
     }
-  }, [ready, shown, layer, crop, dark]);
+  }, [ready, shown, layer, crop, dark, month]);
 
   // The place tapped: a marker, and its own advice for the card.
   useEffect(() => {
@@ -503,6 +534,8 @@ export default function HuertaMapPage() {
               title={layerName(layer)}
               failed={failed}
               dark={dark}
+              ahead={layer === 'crop' && months ? ahead : null}
+              onAhead={setAhead}
             />
           )}
         </div>
@@ -519,6 +552,8 @@ function Legend({
   title,
   failed,
   dark,
+  ahead,
+  onAhead,
 }: {
   /** What the layer on show is drawn from. */
   source: MapSource;
@@ -527,6 +562,10 @@ function Legend({
   failed: boolean;
   /** The basemap is a dark one: its palette. */
   dark: boolean;
+  /** Months ahead on the timeline; null: no timeline (another layer, or a
+   *  night without the crop's months). */
+  ahead: number | null;
+  onAhead: (ahead: number) => void;
 }) {
   const { t } = useTranslation('huerta');
   const palette = PALETTES[dark ? 'dark' : 'light'];
@@ -536,7 +575,10 @@ function Legend({
   const keys: [string, string][] =
     source === 'crop'
       ? [
-          [css(palette.crop.now), t('map.legend.now')],
+          [
+            css(palette.crop.now),
+            t(ahead ? 'map.legend.month' : 'map.legend.now'),
+          ],
           [css(palette.crop.wait), t('map.legend.wait')],
           [hatched, t('map.legend.over')],
         ]
@@ -556,8 +598,15 @@ function Legend({
     source === 'cold' || source === 'balance'
       ? t(`map.legend.${source}`)
       : null;
+  const timed = ahead !== null;
   return (
-    <div className='pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm'>
+    <div
+      className={cn(
+        'pointer-events-auto rounded-card bg-card/95 p-3 text-sm shadow-sm backdrop-blur-sm',
+        timed && 'flex w-full max-w-sm flex-col gap-2'
+      )}
+    >
+      {timed ? <Timeline ahead={ahead} onAhead={onAhead} /> : null}
       {failed || source === 'crop' ? null : (
         // The crop layer's rows already say it: sow or plant now, not yet, too late.
         <p className='font-semibold text-foreground'>{title}</p>
@@ -569,7 +618,13 @@ function Legend({
       {failed ? (
         <p className='text-muted-foreground'>{t('map.failed')}</p>
       ) : keys.length > 0 ? (
-        <ul className='flex flex-col gap-1.5'>
+        <ul
+          className={cn(
+            'flex gap-1.5',
+            // Under the timeline, a row: the map keeps more of the screen.
+            timed ? 'flex-wrap gap-x-4' : 'flex-col'
+          )}
+        >
           {keys.map(([fill, label]) => (
             <li key={label} className='flex items-center gap-2'>
               <span
@@ -597,6 +652,67 @@ function Legend({
           </span>
         </div>
       )}
+      {timed ? (
+        <p className='text-xs text-muted-foreground'>{t('map.year.note')}</p>
+      ) : null}
+    </div>
+  );
+}
+
+/** As the planner's timeline: a slider from this week to a year ahead, a
+ *  month a step. The forecast reaches a week; the months after it are a
+ *  typical year, from the sowing windows. */
+function Timeline({
+  ahead,
+  onAhead,
+}: {
+  ahead: number;
+  onAhead: (ahead: number) => void;
+}) {
+  const { t, i18n } = useTranslation('huerta');
+  const name = (months: number, month: 'long' | 'short') => {
+    const day = new Date();
+    day.setDate(1);
+    day.setMonth(day.getMonth() + months);
+    return new Intl.DateTimeFormat(i18n.language, { month }).format(day);
+  };
+  const label = ahead
+    ? t('map.year.month', { month: name(ahead, 'long') })
+    : t('planner.timeline.now');
+  return (
+    <div>
+      <div className='flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1'>
+        <label htmlFor='map-when' className='font-semibold text-foreground'>
+          {label}
+        </label>
+        {ahead ? (
+          <Button
+            variant='link'
+            className='h-auto p-0 text-sm'
+            onClick={() => onAhead(0)}
+          >
+            {t('planner.timeline.back')}
+          </Button>
+        ) : (
+          <span className='text-muted-foreground'>{t('map.year.hint')}</span>
+        )}
+      </div>
+      <input
+        id='map-when'
+        type='range'
+        min={0}
+        max={12}
+        step={1}
+        value={ahead}
+        onChange={e => onAhead(Number(e.target.value))}
+        aria-valuetext={label}
+        className='h-7 w-full cursor-pointer accent-primary'
+      />
+      <div className='-mt-1 flex justify-between text-xs text-muted-foreground'>
+        <span>{t('planner.timeline.now')}</span>
+        <span>{name(6, 'short')}</span>
+        <span>{name(12, 'short')}</span>
+      </div>
     </div>
   );
 }

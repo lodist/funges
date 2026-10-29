@@ -1947,6 +1947,7 @@
     },
     "legend": {
       "now": "Semer ou planter maintenant",
+      "month": "Semer ou planter ce mois-ci",
       "wait": "Pas encore",
       "over": "Trop tard cette année",
       "frost": "Gel dans les 3 prochains jours",
@@ -1962,6 +1963,11 @@
       "balance": "Pluie contre soleil et vent, 7 prochains jours",
       "balanceLow": "À arroser",
       "balanceHigh": "Pluie suffisante"
+    },
+    "year": {
+      "month": "Une année typique, en {{month}}",
+      "hint": "Faites glisser pour voir l'année à venir",
+      "note": "Cette semaine suit les prévisions météo des 7 prochains jours. Les mois suivants montrent une année typique à chaque endroit, d'après la météo de 2016 à 2025."
     },
     "use": "En faire mon potager",
     "close": "Fermer",

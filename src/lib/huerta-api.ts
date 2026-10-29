@@ -215,13 +215,20 @@ export function fetchMapNight(region: MapRegion, again = false) {
   return nights.get(region)!;
 }
 
-/** One layer of one region, one byte per place, for the night `day`. */
-export async function fetchMapLayer(
-  region: MapRegion,
-  day: string,
-  layer: string
-) {
-  return new Uint8Array(await bytes('/v1/map/layer', { region, day, layer }));
+const layers = new Map<string, Promise<Uint8Array>>();
+
+/** One layer of one region, one byte per place, for the night `day`; asked
+ *  once per visit, as the year's months are looked at back and forth. */
+export function fetchMapLayer(region: MapRegion, day: string, layer: string) {
+  const key = `${region}/${day}/${layer}`;
+  if (!layers.has(key)) {
+    const got = bytes('/v1/map/layer', { region, day, layer }).then(
+      b => new Uint8Array(b)
+    );
+    got.catch(() => layers.delete(key));
+    layers.set(key, got);
+  }
+  return layers.get(key)!;
 }
 
 const YEAR_KEY = 'huerta-year';
