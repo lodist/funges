@@ -135,3 +135,38 @@ export const activateUpdate = (): Promise<void> => {
     waiting.postMessage({ type: 'SKIP_WAITING' });
   });
 };
+
+/** A page this version does not know may be one a newer version has: a link
+ *  from search to a page added since the visitor's last visit, opened in the
+ *  version their browser kept. Fetch the newer version, hand over to it and
+ *  load the page again, once per address so a real 404 stays a 404. */
+export const reloadIntoUpdate = async (): Promise<void> => {
+  if (!sw || !import.meta.env.PROD) return;
+  const tried = 'reloadedIntoUpdate';
+  try {
+    if (sessionStorage.getItem(tried) === location.pathname) return;
+  } catch {
+    return; // no storage: no guard against a reload loop, so no reload
+  }
+  const r = registration ?? (await sw.getRegistration());
+  if (!r) return;
+  const takenOver = loadedUnder !== null && sw.controller !== loadedUnder;
+  if (!takenOver) {
+    await r.update().catch(() => {});
+    const next = r.installing ?? r.waiting;
+    if (!next) return; // no newer version: a real 404
+    while (next.state === 'installing')
+      await new Promise(done =>
+        next.addEventListener('statechange', done, { once: true })
+      );
+    if (r.waiting !== next) return;
+    registration = r;
+    await activateUpdate();
+  }
+  try {
+    sessionStorage.setItem(tried, location.pathname);
+  } catch {
+    return;
+  }
+  location.reload();
+};
