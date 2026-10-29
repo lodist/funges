@@ -36,6 +36,28 @@ describe("a crop's reasons for this week", () => {
     });
   });
 
+  it("says the season's reason when this week's numbers do not hold it back", () => {
+    // The sowing windows say no while this week's soil fits: the place's usual heat, cold or long days.
+    expect(cropReasons('too_warm', SAMPLE_ADVICE, garlic).slice(-1)[0]).toEqual(
+      {
+        ok: false,
+        key: 'heat',
+      }
+    );
+    expect(
+      cropReasons('wait_soil', SAMPLE_ADVICE, garlic).slice(-1)[0]
+    ).toEqual({
+      ok: false,
+      key: 'coldSeason',
+    });
+    expect(
+      cropReasons('wait_days', SAMPLE_ADVICE, garlic).slice(-1)[0]
+    ).toEqual({
+      ok: false,
+      key: 'longDays',
+    });
+  });
+
   it('gives only the season when a crop has no needs to compare', () => {
     expect(cropReasons('wait_autumn', SAMPLE_ADVICE)).toEqual([
       { ok: false, key: 'autumn' },

@@ -359,7 +359,8 @@
       "frostSoon": "Frost in den nächsten 3 Tagen.",
       "frostLater": "Frost möglich: {{night}}nacht.",
       "longDays": "Die Tage sind zu lang: Jetzt gesät, würde es schiessen.",
-      "heat": "Jetzt ist es ihm zu warm: Es kommt in die Erde, wenn die Sommerhitze nachlässt."
+      "heat": "Jetzt ist es ihm zu warm: Es kommt in die Erde, wenn die Sommerhitze nachlässt.",
+      "coldSeason": "Der Boden ist hier um diese Jahreszeit meist noch zu kalt dafür."
     },
     "how": {
       "sow": "So wird gesät",

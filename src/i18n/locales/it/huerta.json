@@ -359,7 +359,8 @@
       "frostSoon": "Gelata nei prossimi 3 giorni.",
       "frostLater": "Possibile gelata {{night}} notte.",
       "longDays": "Le giornate sono troppo lunghe: seminato ora, andrebbe a seme.",
-      "heat": "Ora fa troppo caldo: si mette a dimora quando il caldo estivo cala."
+      "heat": "Ora fa troppo caldo: si mette a dimora quando il caldo estivo cala.",
+      "coldSeason": "Qui, in questo periodo dell'anno, il terreno di solito è ancora troppo freddo."
     },
     "how": {
       "sow": "Come seminare",

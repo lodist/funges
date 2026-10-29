@@ -359,7 +359,8 @@
       "frostSoon": "Geada nos próximos 3 dias.",
       "frostLater": "Possível geada na noite de {{night}}.",
       "longDays": "Os dias estão demasiado longos: semeado agora, espigaria.",
-      "heat": "Agora está calor demais: vai para a terra quando o calor do verão abrandar."
+      "heat": "Agora está calor demais: vai para a terra quando o calor do verão abrandar.",
+      "coldSeason": "Aqui, nesta altura do ano, a terra costuma estar ainda fria demais."
     },
     "how": {
       "sow": "Como semear",
