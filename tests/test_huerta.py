@@ -95,6 +95,25 @@ def test_map_files_hold_one_layer_after_another():
     assert bytes(layers[5]).decode() + bytes(layers[6]).decode() == "nhlx"
 
 
+def test_map_files_carry_each_crops_months_after_the_week():
+    places = pd.DataFrame({
+        "Latitude": [40.44, 39.86, 50.0], "Longitude": [-3.675, -4.02, 8.0],
+        "frost3": [9.2, -0.5, 5.0], "frostw": [1.0, 5.0, 5.0], "soil3": [13.44, np.nan, 9.0], "rain7": [4.0, 1.0, 0.0],
+        "et07": [14.4, 12.0, 3.0],
+    })
+    advice = pd.DataFrame({"garlic": ["now", "too_warm", "now"], "tomato": ["too_late", "not_here", "too_late"]})
+    win = {"crops": np.array(["tomato", "garlic"]), "lat": np.array([39.86, 40.44]), "lon": np.array([-4.02, -3.675]),
+           # Toledo: tomato April to June, garlic September to December; Madrid: no tomato, garlic October and November
+           "sow": np.array([[0b111000, 0b111100000000], [0, 0b11000000000]], np.uint16)}
+    files = huerta.map_files(places, advice, "2026-10-20", win)
+    index = json.loads(files["index.json"])
+    assert index["layers"][5:] == ["garlic", "tomato", "garlic_jan_aug", "garlic_sep_dec",
+                                   "tomato_jan_aug", "tomato_sep_dec"]          # the week's layers keep their places
+    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(-1, 3)
+    assert layers[7].tolist() == [0, 0, 0] and layers[8].tolist() == [0b0110, 0b1111, 255]   # none in the windows: 255
+    assert layers[9].tolist() == [0, 0b111000, 0] and layers[10][:2].tolist() == [0, 0]
+
+
 def test_conditions_find_the_first_frost_night_later_in_the_week():
     hours = pd.date_range("2026-10-20 19:00", periods=7 * 24, freq="h", tz="UTC")
     temp = np.full(len(hours), 8.0)
@@ -133,11 +152,14 @@ def test_windows_decide_and_the_week_holds_back():
     places = pd.DataFrame([base, {**base, "Latitude": 48.0, "Longitude": 11.0}])
     may = huerta.advise(places, CROPS, 145, win)                               # day 145 = index 144
     assert may["tomato"].tolist() == ["now", "not_here"]
-    assert may["peas"].tolist() == ["too_warm", "too_late"]                     # a window to come here, none there
+    # The cycle, round the year: too late while the last window is nearer than the next, then not yet.
+    assert may["peas"].tolist() == ["too_late", "too_late"]                     # spring's 15 days past, autumn's 86 ahead
     july = huerta.advise(places, CROPS, 210, win)
-    assert july["tomato"].tolist()[0] == "wait_autumn"                          # this round over, another to come
-    assert july["peas"].tolist() == ["too_warm", "too_late"]
+    assert july["tomato"].tolist()[0] == "too_late"                             # 10 days past, 31 ahead
+    assert july["peas"].tolist() == ["too_warm", "too_late"]                    # 21 days to autumn's: its own reason
+    assert huerta.advise(places, CROPS, 235, win)["tomato"].tolist()[0] == "wait_autumn"   # over, the next nearer
     assert huerta.advise(places, CROPS, 280, win)["tomato"].tolist()[0] == "too_late"
+    assert huerta.advise(places, CROPS, 30, win)["tomato"].tolist()[0] == "wait_warm"     # the next window nearer than the last
     # Inside its window, this week's weather may still hold a crop back.
     cold = huerta.advise(places.assign(frost3=1.0), CROPS, 145, win)
     assert cold["tomato"].tolist()[0] == "wait_frost"

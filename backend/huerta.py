@@ -26,10 +26,11 @@ decide instead, and the rules above are the fallback. A day in a crop's window: 
 may still hold it back (tender crops: a frost (<= 2 C) in the next 3 days or (<= 0 C) later in the
 week -> wait_frost, nights below its need -> wait_warm; others: a hard frost (-3 C) in the next 3 days
 for half-hardy ones -> wait_frost; soil below or above its range -> wait_soil / too_warm), else now.
-Outside its windows the window's own reason: soil usually too cold (wait_soil), frost still likely
+Between two of its windows (round the year) the cycle: too_late while the last window is nearer than
+the next; then the window's own reason: soil usually too cold (wait_soil), frost still likely
 (wait_frost), its warm nights to come (wait_warm), too warm (too_warm), days long enough to make it
-bolt (wait_days), its season comes (wait_autumn / wait_spring), while a window still opens later this
-year; too_late when none does; not_here where it has none.
+bolt (wait_days), its season comes (wait_autumn / wait_spring, also where the day's letter only says
+this round is over); not_here where it has none.
 
 Inputs, built locally and shipped to R2 like every built file (backend/generated, pinned in
 on_r2.json and fetched by r2.generated): huerta_crops.csv, the crop table; frost_odds_<REGION>.parquet,
@@ -45,7 +46,10 @@ year), later_frost the same '' / 'g' / 'f' for days 4-7 and later_night the date
 first such night (null: none). For the garden map, huerta/map/<REGION>/:
 index.json {day, n, layers}, places.bin (int16 lat x100, lon x100 per place) and layers.bin,
 one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter;
-cold is the week's coldest hour, C + 40, and balance its rain less its evaporation, mm + 100),
+cold is the week's coldest hour, C + 40, and balance its rain less its evaporation, mm + 100;
+then, where the sowing windows are, two per crop for the map's year: <crop>_jan_aug and
+<crop>_sep_dec, the months it goes in in a typical year, one bit a month from January and from
+September, 255 in the second where the windows have no such place),
 so the Worker can hand out one layer with a range read. And huerta/crops.json, what each crop needs
 (frost class, soil range, warm nights, days to harvest), for the app to say why. The Huerta Worker hands one place at a
 time to the app.
@@ -123,22 +127,27 @@ def load_windows(region):
         return {k: z[k] for k in z.files}
 
 
-def in_windows(windows, place, crop, doy):
-    """For one crop at each place (matched on its coordinates): today's window letter ('' where the
-    windows have no such place or crop), and whether a window opens later this calendar year, and
-    whether it has one at all. Windows are run-length letters per place and crop, place after place."""
-    n = len(place)
-    letter, later, ever = np.full(n, "", object), np.zeros(n, bool), np.zeros(n, bool)
-    crops = list(windows["crops"])
-    if crop not in crops:
-        return letter, later, ever
-
+def window_rows(windows, place):
+    """Each place's row in the windows, matched on its coordinates; NaN where they have no such place."""
     def key(lat, lon):
         return np.round(np.asarray(lat, float) * 1e4).astype(np.int64) * 10**8 + np.round(np.asarray(lon, float) * 1e4).astype(np.int64)
 
     where = pd.Series(np.arange(len(windows["lat"])), index=key(windows["lat"], windows["lon"]))
     where = where[~where.index.duplicated()]
-    row = where.reindex(key(place["Latitude"], place["Longitude"])).to_numpy()
+    return where.reindex(key(place["Latitude"], place["Longitude"])).to_numpy()
+
+
+def in_windows(windows, place, crop, doy):
+    """For one crop at each place (matched on its coordinates): today's window letter ('' where the
+    windows have no such place or crop); whether it has a window at all; whether its last window is
+    nearer than its next (round the year); and the day of year its next one opens. Windows are
+    run-length letters per place and crop, place after place."""
+    n = len(place)
+    letter, ever, late, nxt = np.full(n, "", object), np.zeros(n, bool), np.zeros(n, bool), np.zeros(n, int)
+    crops = list(windows["crops"])
+    if crop not in crops:
+        return letter, ever, late, nxt
+    row = window_rows(windows, place)
     have = ~np.isnan(row)
     k = row[have].astype(np.int64) * len(crops) + crops.index(crop)
     a, b = windows["offsets"][k], windows["offsets"][k + 1]
@@ -146,16 +155,24 @@ def in_windows(windows, place, crop, doy):
     first = np.concatenate([[0], np.cumsum(lengths)[:-1]])          # each place's first segment, gathered
     seg = np.repeat(np.arange(len(k)), lengths)
     idx = np.repeat(a - first, lengths) + np.arange(lengths.sum())
-    starts, codes = windows["starts"][idx], windows["codes"][idx]
+    starts, codes = windows["starts"][idx].astype(int), windows["codes"][idx]
     letters = windows["letters"]
     today = doy - 1
     upto = np.bincount(seg, starts <= today, minlength=len(k)).astype(int)
     now = codes[first + upto - 1]
     is_n = letters[codes] == "n"
     letter[have] = letters[now]
-    later[have] = np.bincount(seg, (starts > today) & is_n, minlength=len(k)) > 0
     ever[have] = np.bincount(seg, is_n, minlength=len(k)) > 0
-    return letter, later, ever
+    # Each window's first and last day; days to the next first and since the last last, round the year.
+    ends = np.append(starts[1:], 365)
+    ends[first + lengths - 1] = 365
+    w = np.flatnonzero(is_n)
+    until, since = np.full(len(k), 999), np.full(len(k), 999)
+    np.minimum.at(until, seg[w], (starts[w] - today) % 365)
+    np.minimum.at(since, seg[w], (today - (ends[w] - 1)) % 365)
+    late[have] = since < until
+    nxt[have] = (today + until) % 365 + 1
+    return letter, ever, late, nxt
 
 
 def advise(place, crops, doy, windows=None):
@@ -166,7 +183,7 @@ def advise(place, crops, doy, windows=None):
         return out
     soil, frost3, frostw, night7 = (place[c].to_numpy() for c in ("soil3", "frost3", "frostw", "night7"))
     for c in crops.itertuples(index=False):
-        letter, later, ever = in_windows(windows, place, c.crop, doy)
+        letter, ever, late, nxt = in_windows(windows, place, c.crop, doy)
         status = np.full(len(place), "", object)
 
         def mark(when, code):
@@ -184,9 +201,10 @@ def advise(place, crops, doy, windows=None):
         mark(inside & (soil > c.soil_max), "too_warm")                   # no maximum (NaN): never
         mark(inside, "now")
         mark((letter != "") & ~ever, "not_here")
-        waiting = np.isin(letter, ["s", "f", "w", "h", "b", "a", "p"])
-        mark(waiting & ~later, "too_late")                               # nothing opens again this year
-        mark((letter == "l") & later, "wait_autumn")                     # this round is over, the autumn's comes
+        mark((letter != "") & late, "too_late")                          # the cycle: now, too late, not yet
+        over = np.isin(letter, ["l", "x"])                               # this round over, the next one nearer
+        mark(over & (nxt >= AUTUMN), "wait_autumn")
+        mark(over, "wait_spring")
         for code, name in WINDOW.items():
             mark(letter == code, name)
         known = letter != ""
@@ -260,8 +278,9 @@ def _byte(values, offset=0):
     return np.where(np.isnan(v), 255, np.clip(v, 0, 254)).astype(np.uint8)
 
 
-def map_files(place, advice, day):
-    """{name under huerta/map/<REGION>/: bytes} for the garden map, layers in MAP_LAYERS + crop order."""
+def map_files(place, advice, day, windows=None):
+    """{name under huerta/map/<REGION>/: bytes} for the garden map, layers in MAP_LAYERS + crop order, then
+    each crop's months from the windows."""
     n = len(place)
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2, place["frostw"] <= 2], [2, 1, 3], 0).astype(np.uint8)
     water = (place["et07"] - place["rain7"]).clip(lower=0)
@@ -270,8 +289,22 @@ def map_files(place, advice, day):
     columns = [frost, _byte(place["soil3"], 40), _byte(water), _byte(cold, 40), _byte(balance, 100)]
     codes = advice.replace(CODES)
     columns += [np.frombuffer("".join(codes[c]).encode("ascii"), np.uint8) for c in advice.columns]
+    names = [*MAP_LAYERS, *advice.columns]
+    if windows is not None:
+        # ponytail: the year only changes when the windows are rebuilt, sent again each night (~2 bytes a place
+        # and crop) so it needs no Worker route of its own.
+        row = window_rows(windows, place)
+        have = ~np.isnan(row)
+        crops = list(windows["crops"])
+        for c in advice.columns:
+            if c not in crops:
+                continue
+            months = np.zeros(n, np.uint16)
+            months[have] = windows["sow"][row[have].astype(np.int64), crops.index(c)]
+            columns += [(months & 0xFF).astype(np.uint8), np.where(have, months >> 8, 255).astype(np.uint8)]
+            names += [f"{c}_jan_aug", f"{c}_sep_dec"]
     places = np.column_stack([np.round(place["Latitude"] * 100), np.round(place["Longitude"] * 100)]).astype("<i2")
-    index = {"day": day, "n": n, "layers": [*MAP_LAYERS, *advice.columns]}
+    index = {"day": day, "n": n, "layers": names}
     return {"index.json": json.dumps(index, separators=(",", ":")).encode(), "places.bin": places.tobytes(),
             "layers.bin": np.concatenate(columns).tobytes()}
 
@@ -327,7 +360,7 @@ def publish(region, forecast):
                                                ContentType="application/json"), files.items()))
     s3.put_object(Bucket=bucket, Key="huerta/crops.json", Body=crop_needs(crops), ContentType="application/json")
     # The index last, so the map never reads an index ahead of its layers.
-    maps = map_files(place, advice, f"{day:%Y-%m-%d}")
+    maps = map_files(place, advice, f"{day:%Y-%m-%d}", windows)
     for name in ("places.bin", "layers.bin", "index.json"):
         s3.put_object(Bucket=bucket, Key=f"huerta/map/{region}/{name}", Body=maps[name],
                       ContentType="application/json" if name.endswith(".json") else "application/octet-stream")
