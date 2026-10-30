@@ -9,6 +9,7 @@ import {
   jobKey,
   pruneDone,
   readyDay,
+  stageHarvest,
   stageOn,
   toSow,
 } from '@/lib/garden-week';
@@ -186,6 +187,26 @@ describe("this week's to-do list", () => {
     expect(
       gardenWeek(plan(['carrot', '2026-04-01']), advice, NEEDS, '2026-04-20')
     ).toEqual([]);
+  });
+
+  it('follows no calendar season for perennials, bulbs and green manures', () => {
+    // Their season in the calendar (picking, flowers, digging in) is no first
+    // harvest after planting: asparagus is first cut two years on.
+    const year = {
+      place: 'Zug',
+      temps: Array(12).fill(10),
+      crops: {
+        tomato: { sow: 0b100000, harvest: 0b1111000000 },
+        asparagus: { sow: 0b11100, harvest: 0b111000 },
+        tulip: { sow: 0b1100000000, harvest: 0b11000 },
+        phacelia: { sow: 0b11111000, harvest: 0b111100000 },
+      },
+    } as unknown as PlaceYear;
+    expect(stageHarvest(year, 'tomato')).toBe(0b1111000000);
+    expect(stageHarvest(year, 'asparagus')).toBe(0);
+    expect(stageHarvest(year, 'tulip')).toBe(0);
+    expect(stageHarvest(year, 'phacelia')).toBe(0);
+    expect(stageHarvest(null, 'tomato')).toBe(0);
   });
 });
 

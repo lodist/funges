@@ -195,11 +195,13 @@ function Advice({ advice }: { advice: PlaceAdvice }) {
   const now = pick(STATUS_GROUPS.now);
   const waiting = pick(STATUS_GROUPS.wait);
   const over = pick(STATUS_GROUPS.over);
-  // Picked around here this month, from the place's calendar, and until when.
+  // Picked (or in flower) around here this month, from the place's calendar,
+  // and until when; green manures are dug in, not picked.
   const month = new Date().getMonth();
   const picked = (id: string) => year?.crops[id]?.harvest ?? 0;
   const harvesting = CROPS.filter(
-    crop => shown(crop) && (picked(crop.id) >> month) & 1
+    crop =>
+      shown(crop) && crop.kind !== 'cover' && (picked(crop.id) >> month) & 1
   );
   const until = (id: string) => {
     let last = month;

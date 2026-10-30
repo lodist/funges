@@ -161,7 +161,8 @@ export function growth(
 }
 
 /** This week's care step for one planted crop, if any; `harvest` is its
- *  harvest months at the place (none for perennials and green manures). */
+ *  harvest months at the place (stageHarvest: none for perennials, bulbs
+ *  and green manures). */
 function stage(
   id: string,
   needs: CropNeeds,
@@ -449,7 +450,7 @@ export function gardenWeek(
       grow && need?.days && growth(crop, need, grow, s.planted!, dies.day) >= 1
     );
     // Ready by then: worth a word only near its end, while still picked.
-    const harvest = year?.crops[crop]?.harvest ?? 0;
+    const harvest = stageHarvest(year, crop);
     if (
       ready &&
       (dies.day < today ||
@@ -479,15 +480,10 @@ export function gardenWeek(
       s =>
         needs[s.crop!]?.days &&
         !NOTED.has(s.crop!) &&
-        stageOn(
-          s,
-          needs,
-          grow,
-          year?.crops[s.crop!]?.harvest ?? 0,
-          today,
-          today,
-          { year, frost: advice }
-        ) === 'bare'
+        stageOn(s, needs, grow, stageHarvest(year, s.crop!), today, today, {
+          year,
+          frost: advice,
+        }) === 'bare'
     );
     if (over.length)
       tasks.push({ kind: 'over', crops: unique(over.map(s => s.crop!)) });
@@ -563,7 +559,7 @@ export function gardenWeek(
         .filter(s => s.crop === crop)
         .map(s => s.planted!)
         .sort()[0];
-      const harvest = year.crops[crop]?.harvest ?? 0;
+      const harvest = stageHarvest(year, crop);
       const task = stage(crop, needs[crop], temps, harvest, first, today);
       if (task) tasks.push(task);
     }
@@ -654,6 +650,16 @@ const AHEAD_DAYS = 28;
 /** Crops whose first harvest is not a matter of weeks (perennials, flowers
  *  next spring): no ready day. */
 const NOTED = new Set(CROPS.filter(c => c.note).map(c => c.id));
+const COVER = new Set(CROPS.filter(c => c.kind === 'cover').map(c => c.id));
+
+/** The harvest months a planted crop's steps follow: none for perennials,
+ *  bulbs and green manures, whose season in the calendar (picking,
+ *  flowers, digging in) is no first harvest after planting. */
+export const stageHarvest = (
+  year: PlaceYear | null | undefined,
+  crop: string
+): number =>
+  NOTED.has(crop) || COVER.has(crop) ? 0 : (year?.crops[crop]?.harvest ?? 0);
 
 /** The next four weeks in the garden: planted crops coming ready (unless
  *  they die first: To do warns of that), planned sowings coming up, and
