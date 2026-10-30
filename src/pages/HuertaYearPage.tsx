@@ -209,11 +209,18 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                       lines.filter(l => l.season && l.season !== 'overwinter')
                         .length > 1;
                     return lines.map((line, k) => {
+                      // What tells a row's harvest from the same season's:
+                      // its season, a perennial's or bulb's own line from
+                      // its sheet, or that it overwinters.
                       const caption =
                         line.season === 'overwinter' ||
                         (named && line.season !== null)
                           ? t(`year.season.${line.season}`)
-                          : null;
+                          : crop.note
+                            ? t(`sheet.ready.${crop.note}`)
+                            : harvestFirst(line.sow, line.harvest)
+                              ? t('year.season.overwinter')
+                              : null;
                       return (
                         <tr
                           key={`${crop.id}-${line.season ?? 'all'}`}
@@ -342,6 +349,11 @@ const monthBackdrop = (month: number) => ({
   ].join(', '),
   backgroundSize: '100% 100%, calc(100% / 12) 100%',
 });
+
+/** Every harvest month before the first sowing month: the harvest of a crop
+ *  sown to stand the winter, the following year (winter rye). */
+const harvestFirst = (sow: number, harvest: number) =>
+  harvest > 0 && sow > 0 && harvest < (sow & -sow);
 
 /** A crop's months (bit 0 = January) as runs of consecutive months, [first, last]. */
 const runs = (months: number) => {
