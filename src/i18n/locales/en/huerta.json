@@ -2212,7 +2212,15 @@
     "thisMonth": "This month ({{month}})",
     "notHere": "Not outdoors here: {{crops}}.",
     "backIn": "Back in {{month}}",
-    "note": "Sowing months follow the same rules as each week's advice, over a typical year at your place. Harvest months are approximate."
+    "note": "Sowing months follow the same rules as each week's advice, over a typical year at your place. Harvest months are approximate. A crop sown in more than one season has a row for each. One that overwinters is harvested the following year.",
+    "nextYear": "the following year",
+    "season": {
+      "spring": "Spring",
+      "summer": "Summer",
+      "autumn": "Autumn",
+      "winter": "Winter",
+      "overwinter": "Overwintering"
+    }
   },
   "alerts": {
     "more_one": "and {{count}} more",

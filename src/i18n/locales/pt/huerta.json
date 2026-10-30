@@ -2212,7 +2212,15 @@
     "thisMonth": "Este mês ({{month}})",
     "notHere": "Não ao ar livre aqui: {{crops}}.",
     "backIn": "Volta em {{month}}",
-    "note": "Os meses de semeadura seguem as mesmas regras do conselho de cada semana, num ano típico no seu lugar. Os meses de colheita são aproximados."
+    "note": "Os meses de semeadura seguem as mesmas regras do conselho de cada semana, num ano típico no seu lugar. Os meses de colheita são aproximados. Uma cultura semeada em várias estações tem uma linha para cada uma. A que passa o inverno colhe-se no ano seguinte.",
+    "nextYear": "no ano seguinte",
+    "season": {
+      "spring": "Primavera",
+      "summer": "Verão",
+      "autumn": "Outono",
+      "winter": "Inverno",
+      "overwinter": "Passa o inverno"
+    }
   },
   "alerts": {
     "more_one": "e mais {{count}}",
