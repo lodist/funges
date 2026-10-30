@@ -5,11 +5,17 @@ import { CategoryChips } from '@/components/CategoryChips';
 import { PlacePicker } from '@/components/PlacePicker';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { useHuertaYear } from '@/hooks/use-huerta-year';
 import { CROPS, huertaImage, KINDS } from '@/lib/huerta';
-import { huertaApiConfigured, savedPlace, savePlace } from '@/lib/huerta-api';
-import { MapPinned } from '@/lib/icons';
+import {
+  huertaApiConfigured,
+  plain,
+  savedPlace,
+  savePlace,
+} from '@/lib/huerta-api';
+import { MapPinned, Search } from '@/lib/icons';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import { cn } from '@/lib/utils';
 
@@ -27,12 +33,21 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
   // Choosing the place, open under the header.
   const [picking, setPicking] = useState(false);
   const [kind, setKind] = useState<string>('all');
+  const [query, setQuery] = useState('');
   const hasPlace = huertaApiConfigured && savedPlace() !== null;
   const thisMonth = new Date().getMonth();
   const letter = new Intl.DateTimeFormat(i18n.language, { month: 'narrow' });
   const monthName = new Intl.DateTimeFormat(i18n.language, { month: 'long' });
   const short = new Intl.DateTimeFormat(i18n.language, { month: 'short' });
-  const shown = CROPS.filter(c => kind === 'all' || c.kind === kind);
+  // By its name here or its Latin one, accents and case aside, as on Species.
+  const q = plain(query);
+  const shown = CROPS.filter(
+    c =>
+      (kind === 'all' || c.kind === kind) &&
+      (!q ||
+        plain(t(`crops.${c.id}`)).includes(q) ||
+        plain(c.scientific).includes(q))
+  );
   const rows = shown.filter(c => year?.crops[c.id]?.sow);
   const absent = shown.filter(c => year && !year.crops[c.id]?.sow);
 
@@ -68,16 +83,29 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
             />
           ) : null}
           {hasPlace && year ? (
-            <CategoryChips
-              chips={KINDS.map(value => ({
-                value,
-                label: t(`kinds.${value}`),
-                icon: huertaImage(`kinds/${value}`),
-              }))}
-              value={kind}
-              onChange={setKind}
-              className='justify-start'
-            />
+            <div>
+              <div className='relative lg:w-72'>
+                <Search className='pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted-foreground' />
+                <Input
+                  type='search'
+                  placeholder={t('find.placeholder')}
+                  aria-label={t('find.placeholder')}
+                  value={query}
+                  onChange={event => setQuery(event.target.value)}
+                  className='pl-11'
+                />
+              </div>
+              <CategoryChips
+                chips={KINDS.map(value => ({
+                  value,
+                  label: t(`kinds.${value}`),
+                  icon: huertaImage(`kinds/${value}`),
+                }))}
+                value={kind}
+                onChange={setKind}
+                className='mt-4 justify-start'
+              />
+            </div>
           ) : null}
         </header>
 
@@ -95,6 +123,23 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
           <SkeletonGroup>
             <Skeleton className='h-96 w-full rounded-card' />
           </SkeletonGroup>
+        ) : q !== '' && shown.length === 0 ? (
+          <div className='mt-10 flex flex-col items-center gap-4 py-12 text-center'>
+            <Search className='size-12 text-muted-foreground' />
+            <h2 className='text-xl font-semibold text-foreground'>
+              {t('find.none')}
+            </h2>
+            <p className='text-muted-foreground'>{t('find.noneHelp')}</p>
+            <Button
+              variant='outline'
+              onClick={() => {
+                setQuery('');
+                setKind('all');
+              }}
+            >
+              {t('find.clear')}
+            </Button>
+          </div>
         ) : (
           <>
             <div className='flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground'>
