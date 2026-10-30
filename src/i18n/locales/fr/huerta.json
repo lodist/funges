@@ -402,10 +402,6 @@
     "year": "Son année autour de {{place}}"
   },
   "grow": {
-    "inGarden": "Dans votre potager",
-    "plannedFor": "Prévu pour le {{date}}",
-    "readyOn": "Prête vers le {{date}}",
-    "readyNow": "Prête à récolter",
     "weather": "Froid, chaleur et sol",
     "care": "Entretien",
     "goodWith": "Bien à côté de",
@@ -1928,10 +1924,7 @@
         }
       ],
       "source": "Engrais vert : RHS. pH : université du Connecticut."
-    },
-    "lastHarvest": "La dernière fois, il est entré en terre le {{from}} et sorti le {{to}}.",
-    "lastLost": "La dernière fois, il a été perdu le {{date}}. {{why}}.",
-    "lastSaid": "Nous avions dit le {{date}}."
+    }
   },
   "map": {
     "title": "Carte",

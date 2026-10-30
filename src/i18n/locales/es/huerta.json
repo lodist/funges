@@ -402,10 +402,6 @@
     "year": "Su año en {{place}}"
   },
   "grow": {
-    "inGarden": "En tu huerto",
-    "plannedFor": "Previsto para el {{date}}",
-    "readyOn": "Lista hacia el {{date}}",
-    "readyNow": "Lista para cosechar",
     "weather": "Frío, calor y suelo",
     "care": "Cuidados",
     "goodWith": "Bien junto a",
@@ -1928,10 +1924,7 @@
         }
       ],
       "source": "Abono verde: RHS. pH: extensión de la Universidad de Connecticut."
-    },
-    "lastHarvest": "La última vez entró el {{from}} y salió el {{to}}.",
-    "lastLost": "La última vez se perdió el {{date}}. {{why}}.",
-    "lastSaid": "Habíamos dicho el {{date}}."
+    }
   },
   "map": {
     "title": "Mapa",
