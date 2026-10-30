@@ -700,8 +700,10 @@ function Timeline({
         )}
       </div>
       {/* The slider draws in --foreground on --background: the band re-points
-          both, as the map dock's, a fine light line instead of ink. */}
-      <div className='[--background:var(--happy-900)] [--foreground:var(--happy-300)]'>
+          both, as the map dock's, a fine light line instead of ink. In cream:
+          Huerta's 300 step is a salmon that sinks into the band and reads as
+          the map's coral "sow or plant". */}
+      <div className='[--background:var(--happy-900)] [--foreground:var(--happy-50)]'>
         <Slider
           min={0}
           max={12}
