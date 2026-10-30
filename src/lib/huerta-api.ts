@@ -117,9 +117,12 @@ export const plain = (text: string) =>
     .replace(/[^\p{L}\p{N}]/gu, '')
     .toLowerCase();
 
-const sections = new Map<string, Promise<Town[]>>();
+// Each town with its people, when the list knows them (0: a place's own name).
+const sections = new Map<string, Promise<(Town & { pop: number })[]>>();
 
-/** Towns whose name starts with `query`: exact names first, then shorter ones.
+/** Towns whose name starts with `query`: exact names first, then bigger towns,
+ *  then shorter names. A city under two names (Milan, Milano) sits at one
+ *  spot and is listed once.
  *  Rejects when the town list cannot be reached, which is not "no such town". */
 export async function searchTowns(query: string): Promise<Town[]> {
   const q = plain(query);
@@ -133,13 +136,14 @@ export async function searchTowns(query: string): Promise<Town[]> {
           if (!r.ok) throw new Error(`Huerta towns: ${r.status}`);
           return r.json();
         })
-        .then((rows: [string, number, number, string, string?][]) =>
-          rows.map(([name, lat, lon, country, province = '']) => ({
+        .then((rows: [string, number, number, string, string?, number?][]) =>
+          rows.map(([name, lat, lon, country, province = '', pop = 0]) => ({
             name,
             lat,
             lon,
             country,
             province,
+            pop,
           }))
         )
         .catch(error => {
@@ -149,14 +153,21 @@ export async function searchTowns(query: string): Promise<Town[]> {
     );
   }
   const towns = await sections.get(key)!;
+  const seen = new Set<string>();
   return towns
     .filter(town => plain(town.name).startsWith(q))
     .sort(
       (a, b) =>
         Number(plain(b.name) === q) - Number(plain(a.name) === q) ||
+        b.pop - a.pop ||
         a.name.length - b.name.length
     )
-    .slice(0, 8);
+    .filter(town => {
+      const at = `${town.lat},${town.lon}`;
+      return !seen.has(at) && Boolean(seen.add(at));
+    })
+    .slice(0, 8)
+    .map(({ pop: _pop, ...town }) => town);
 }
 
 let needs: Promise<Record<string, CropNeeds>> | null = null;
