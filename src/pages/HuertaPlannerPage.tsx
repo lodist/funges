@@ -105,6 +105,7 @@ import {
   fate,
   pruneDone,
   readyDay,
+  stageHarvest,
   stageOn,
   type Fate,
   type GrowthStage,
@@ -373,7 +374,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                 x,
                 needs,
                 temps,
-                year?.crops[x.crop ?? '']?.harvest ?? 0,
+                stageHarvest(year, x.crop ?? ''),
                 today(),
                 today(),
                 site
@@ -467,7 +468,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                 x,
                 needs,
                 temps,
-                year?.crops[x.crop ?? '']?.harvest ?? 0,
+                stageHarvest(year, x.crop ?? ''),
                 addDays(today(), 7 * later),
                 today(),
                 site
@@ -487,7 +488,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
               x,
               needs,
               temps,
-              year?.crops[x.crop]?.harvest ?? 0,
+              stageHarvest(year, x.crop),
               today(),
               today(),
               site
