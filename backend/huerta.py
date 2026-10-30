@@ -123,8 +123,8 @@ def load_windows(region):
     path = r2.generated(GENERATED / f"huerta_windows_{region}.npz")
     if not path.exists():
         return None
-    with np.load(path) as z:
-        return {k: z[k] for k in z.files}
+    with np.load(path) as z:                                 # the calendar's season rows are the year files'
+        return {k: z[k] for k in z.files if k != "seasons"}
 
 
 def window_rows(windows, place):
