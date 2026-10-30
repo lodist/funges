@@ -37,6 +37,7 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
   const [query, setQuery] = useState('');
   const hasPlace = huertaApiConfigured && savedPlace() !== null;
   const thisMonth = new Date().getMonth();
+  const backdrop = monthBackdrop(thisMonth);
   const letter = new Intl.DateTimeFormat(i18n.language, { month: 'narrow' });
   const monthName = new Intl.DateTimeFormat(i18n.language, { month: 'long' });
   const short = new Intl.DateTimeFormat(i18n.language, { month: 'short' });
@@ -168,12 +169,13 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                   <col className='w-28 sm:w-52' />
                   <col />
                 </colgroup>
+                {/* The months stay at the top while the crops scroll by. */}
                 <thead>
                   <tr>
-                    <th className='pb-2 text-left'>
+                    <th className={cn(HEAD, 'text-left')}>
                       <span className='sr-only'>{t('year.crop')}</span>
                     </th>
-                    <th className='pb-2' aria-hidden='true'>
+                    <th className={HEAD} aria-hidden='true'>
                       <span className='grid grid-cols-12'>
                         {Array.from({ length: 12 }, (_, m) => (
                           <abbr
@@ -237,34 +239,26 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                               <span className='flex min-w-0 flex-col'>
                                 <span
                                   className={cn(
-                                    'line-clamp-2 text-xs leading-tight font-medium text-foreground sm:text-sm',
+                                    'line-clamp-2 text-xs leading-tight font-medium break-words hyphens-auto text-foreground sm:text-sm',
                                     k > 0 && 'sr-only'
                                   )}
                                 >
                                   {t(`crops.${crop.id}`)}
                                 </span>
                                 {caption ? (
-                                  <span className='text-xs leading-tight text-muted-foreground'>
+                                  <span className='text-xs leading-tight break-words hyphens-auto text-muted-foreground'>
                                     {caption}
                                   </span>
                                 ) : null}
                               </span>
                             </span>
                           </th>
-                          <td className='py-2'>
-                            {/* The year as twelve columns: this month's shaded
-                                through the row, each season one bar over it. */}
+                          <td className='py-2' style={backdrop}>
+                            {/* The year as twelve columns, each season one bar. */}
                             <span
                               aria-hidden='true'
                               className='grid grid-cols-12 grid-rows-[0.5rem_0.5rem] gap-y-0.5 sm:grid-rows-[0.625rem_0.625rem]'
                             >
-                              <span
-                                className='-my-2 bg-muted'
-                                style={{
-                                  gridColumn: thisMonth + 1,
-                                  gridRow: '1 / 3',
-                                }}
-                              />
                               {runs(line.sow).map(([from, to]) => (
                                 <span
                                   key={`s${from}`}
@@ -335,6 +329,19 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
     </>
   );
 }
+
+const HEAD =
+  'sticky top-0 z-10 bg-card pt-2 pb-2 shadow-[inset_0_-1px_0_var(--color-border)]';
+
+/** Behind a crop's bars: this month shaded through the whole row, and a faint
+ *  line where each month begins, to follow a bar up to its month. */
+const monthBackdrop = (month: number) => ({
+  backgroundImage: [
+    `linear-gradient(to right, transparent calc(100% * ${month} / 12), var(--color-muted) calc(100% * ${month} / 12) calc(100% * ${month + 1} / 12), transparent calc(100% * ${month + 1} / 12))`,
+    'linear-gradient(to right, color-mix(in oklab, var(--color-border) 70%, transparent) 1px, transparent 1px)',
+  ].join(', '),
+  backgroundSize: '100% 100%, calc(100% / 12) 100%',
+});
 
 /** A crop's months (bit 0 = January) as runs of consecutive months, [first, last]. */
 const runs = (months: number) => {
