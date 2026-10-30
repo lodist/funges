@@ -402,10 +402,6 @@
     "year": "Its year around {{place}}"
   },
   "grow": {
-    "inGarden": "In your garden",
-    "plannedFor": "Planned for {{date}}",
-    "readyOn": "Ready around {{date}}",
-    "readyNow": "Ready to pick",
     "weather": "Cold, warmth and soil",
     "care": "Looking after it",
     "goodWith": "Good next to",
@@ -1928,10 +1924,7 @@
         }
       ],
       "source": "Green manure: RHS. pH: University of Connecticut extension."
-    },
-    "lastHarvest": "Last time it went in on {{from}} and came out on {{to}}.",
-    "lastLost": "Last time it was lost on {{date}}. {{why}}.",
-    "lastSaid": "We had said {{date}}."
+    }
   },
   "map": {
     "title": "Map",

@@ -402,10 +402,6 @@
     "year": "Sein Jahr rund um {{place}}"
   },
   "grow": {
-    "inGarden": "In deinem Garten",
-    "plannedFor": "Geplant für den {{date}}",
-    "readyOn": "Erntereif um den {{date}}",
-    "readyNow": "Erntereif",
     "weather": "Kälte, Wärme und Boden",
     "care": "Pflege",
     "goodWith": "Gut neben",
@@ -1928,10 +1924,7 @@
         }
       ],
       "source": "Gründüngung: RHS. pH: University of Connecticut Extension."
-    },
-    "lastHarvest": "Letztes Mal kam es am {{from}} rein und am {{to}} raus.",
-    "lastLost": "Letztes Mal ging es am {{date}} verloren. {{why}}.",
-    "lastSaid": "Wir hatten den {{date}} gesagt."
+    }
   },
   "map": {
     "title": "Karte",
