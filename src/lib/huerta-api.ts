@@ -244,6 +244,9 @@ export function fetchMapLayer(region: MapRegion, day: string, layer: string) {
 
 const YEAR_KEY = 'huerta-year';
 const YEAR_DAYS = 1; // a rebuilt year reaches the device the next day
+// The year files' shape: a year kept in an older one is asked for again at
+// once (2: each crop's sowing seasons), and stands in only while offline.
+const YEAR_FORMAT = 2;
 
 /** The nearest place's year. Kept on the device for a day, then asked for
  *  again past the browser's own cache; the kept one stands in while the
@@ -252,6 +255,7 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
   const lat = rounded(place.lat);
   const lon = rounded(place.lon);
   const kept = read<{
+    v?: number;
     lat: number;
     lon: number;
     at: number;
@@ -268,7 +272,12 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
     kept.year.climate
       ? kept.year
       : null;
-  if (usable && Date.now() - kept!.at < YEAR_DAYS * 864e5) return usable;
+  if (
+    usable &&
+    kept!.v === YEAR_FORMAT &&
+    Date.now() - kept!.at < YEAR_DAYS * 864e5
+  )
+    return usable;
   let response: Response;
   try {
     response = await apiFetch('/v1/year', { lat, lon }, { cache: 'no-cache' });
@@ -282,6 +291,6 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
     throw new Error(`Huerta year: ${response.status}`);
   }
   const year = decodeYear((await response.json()) as YearResponse);
-  write(YEAR_KEY, { lat, lon, at: Date.now(), year });
+  write(YEAR_KEY, { v: YEAR_FORMAT, lat, lon, at: Date.now(), year });
   return year;
 }

@@ -188,6 +188,18 @@ describe('the Huerta Worker client', () => {
     vi.useRealTimers();
   });
 
+  it('asks again at once for a year kept before the year files carried the seasons', async () => {
+    const calls = vi.fn(async () => Response.json(YEAR));
+    vi.stubGlobal('fetch', calls);
+    const zug = { lat: 47.16, lon: 8.55 };
+    await fetchYear(zug);
+    const kept = JSON.parse(localStorage.getItem('huerta-year')!);
+    delete kept.v;
+    localStorage.setItem('huerta-year', JSON.stringify(kept));
+    await fetchYear(zug);
+    expect(calls).toHaveBeenCalledTimes(2);
+  });
+
   it('asks as the signed-in account, and a 401 signs the device out', async () => {
     setSession({ token: 'f'.repeat(64), email: 'a@b.c' });
     const calls = vi.fn(async (url: string) =>
