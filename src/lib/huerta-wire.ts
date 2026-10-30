@@ -67,10 +67,24 @@ export const decodeAdvice = ({
   ),
 });
 
-/** A crop's months at one place, bit 0 = January. */
+/** The seasons a crop can be sown in, each a row of the calendar where it is
+ *  sown in more than one: named for its middle, or 'overwinter', sown to stand
+ *  the winter and harvested the following year. */
+export const SEASONS = [
+  'spring',
+  'summer',
+  'autumn',
+  'winter',
+  'overwinter',
+] as const;
+export type Season = (typeof SEASONS)[number];
+
+/** A crop's months at one place, bit 0 = January; where it is sown in more
+ *  than one season, each season's own. */
 export interface CropYear {
   sow: number;
   harvest: number;
+  seasons?: { season: Season; sow: number; harvest: number }[];
 }
 
 /** What a place's climate does to crops in the ground: its frost season
@@ -108,6 +122,10 @@ export interface YearResponse {
     name: string;
     /** Six hex digits per entry of `crops`: sowing months, harvest months. */
     months: string;
+    /** The crops sown in more than one season, by index in `crops`: seven
+     *  characters per season, its index in SEASONS, then its sowing and harvest
+     *  months as three hex digits each. */
+    seasons?: Record<string, string>;
     temps?: number[];
     /** Topsoil pH, clay %, sand %. */
     soil?: [number, number, number];
@@ -120,6 +138,16 @@ export interface YearResponse {
 
 const days = (first: number | null, last: number | null) =>
   first && last ? ([first, last] as [number, number]) : null;
+
+const seasonsOf = (code: string) =>
+  Array.from({ length: code.length / 7 }, (_, k) => {
+    const part = code.slice(k * 7, k * 7 + 7);
+    return {
+      season: SEASONS[Number(part[0])],
+      sow: parseInt(part.slice(1, 4), 16),
+      harvest: parseInt(part.slice(4), 16),
+    };
+  });
 
 export const decodeYear = ({
   crops,
@@ -155,11 +183,13 @@ export const decodeYear = ({
   crops: Object.fromEntries(
     crops.map((id, i) => {
       const code = place.months.slice(i * 6, i * 6 + 6);
+      const seasons = place.seasons?.[i];
       return [
         id,
         {
           sow: parseInt(code.slice(0, 3), 16),
           harvest: parseInt(code.slice(3), 16),
+          ...(seasons ? { seasons: seasonsOf(seasons) } : {}),
         },
       ];
     })

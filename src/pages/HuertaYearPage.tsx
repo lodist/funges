@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { useHuertaYear } from '@/hooks/use-huerta-year';
 import { CROPS, huertaImage, KINDS } from '@/lib/huerta';
+import type { Season } from '@/lib/huerta-wire';
 import {
   huertaApiConfigured,
   plain,
@@ -193,82 +194,125 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {rows.map(crop => {
-                    const { sow, harvest } = year.crops[crop.id];
-                    return (
-                      <tr key={crop.id} className='border-t border-border'>
-                        <th
-                          scope='row'
-                          className='py-2 pr-2 text-left font-normal'
+                  {rows.flatMap(crop => {
+                    const { sow, harvest, seasons } = year.crops[crop.id];
+                    // A crop sown in more than one season: a row for each,
+                    // named where it has more than one besides overwintering.
+                    const lines: {
+                      season: Season | null;
+                      sow: number;
+                      harvest: number;
+                    }[] = seasons ?? [{ season: null, sow, harvest }];
+                    const named =
+                      lines.filter(l => l.season && l.season !== 'overwinter')
+                        .length > 1;
+                    return lines.map((line, k) => {
+                      const caption =
+                        line.season === 'overwinter' ||
+                        (named && line.season !== null)
+                          ? t(`year.season.${line.season}`)
+                          : null;
+                      return (
+                        <tr
+                          key={`${crop.id}-${line.season ?? 'all'}`}
+                          className={cn(k === 0 && 'border-t border-border')}
                         >
-                          <span className='flex items-center gap-2'>
-                            <img
-                              src={huertaImage(`crops/${crop.id}`)}
-                              alt=''
-                              loading='lazy'
-                              className='size-7 shrink-0 rounded-md object-cover sm:size-8'
-                            />
-                            <span className='line-clamp-2 text-xs leading-tight font-medium text-foreground sm:text-sm'>
-                              {t(`crops.${crop.id}`)}
-                            </span>
-                          </span>
-                        </th>
-                        <td className='py-2'>
-                          {/* The year as twelve columns: this month's shaded
-                              through the row, each season one bar over it. */}
-                          <span
-                            aria-hidden='true'
-                            className='grid grid-cols-12 grid-rows-[0.5rem_0.5rem] gap-y-0.5 sm:grid-rows-[0.625rem_0.625rem]'
+                          <th
+                            scope='row'
+                            className='py-2 pr-2 text-left font-normal'
                           >
+                            <span className='flex items-center gap-2'>
+                              {k === 0 ? (
+                                <img
+                                  src={huertaImage(`crops/${crop.id}`)}
+                                  alt=''
+                                  loading='lazy'
+                                  className='size-7 shrink-0 rounded-md object-cover sm:size-8'
+                                />
+                              ) : (
+                                <span className='size-7 shrink-0 sm:size-8' />
+                              )}
+                              <span className='flex min-w-0 flex-col'>
+                                <span
+                                  className={cn(
+                                    'line-clamp-2 text-xs leading-tight font-medium text-foreground sm:text-sm',
+                                    k > 0 && 'sr-only'
+                                  )}
+                                >
+                                  {t(`crops.${crop.id}`)}
+                                </span>
+                                {caption ? (
+                                  <span className='text-xs leading-tight text-muted-foreground'>
+                                    {caption}
+                                  </span>
+                                ) : null}
+                              </span>
+                            </span>
+                          </th>
+                          <td className='py-2'>
+                            {/* The year as twelve columns: this month's shaded
+                                through the row, each season one bar over it. */}
                             <span
-                              className='-my-2 bg-muted'
-                              style={{
-                                gridColumn: thisMonth + 1,
-                                gridRow: '1 / 3',
-                              }}
-                            />
-                            {runs(sow).map(([from, to]) => (
+                              aria-hidden='true'
+                              className='grid grid-cols-12 grid-rows-[0.5rem_0.5rem] gap-y-0.5 sm:grid-rows-[0.625rem_0.625rem]'
+                            >
                               <span
-                                key={`s${from}`}
-                                className='mx-px rounded-full bg-band'
+                                className='-my-2 bg-muted'
                                 style={{
-                                  gridColumn: `${from + 1} / ${to + 2}`,
-                                  gridRow: 1,
+                                  gridColumn: thisMonth + 1,
+                                  gridRow: '1 / 3',
                                 }}
                               />
-                            ))}
-                            {runs(harvest).map(([from, to]) => (
-                              <span
-                                key={`h${from}`}
-                                className='mx-px rounded-full bg-happy-300'
-                                style={{
-                                  gridColumn: `${from + 1} / ${to + 2}`,
-                                  gridRow: 2,
-                                }}
-                              />
-                            ))}
-                          </span>
-                          <span className='sr-only'>
-                            {[
-                              [t('year.sow'), sow],
-                              [t('year.harvest'), harvest],
-                            ]
-                              .filter(([, months]) => months)
-                              .map(
-                                ([what, months]) =>
-                                  `${what}: ${runs(months as number)
-                                    .map(([from, to]) =>
-                                      from === to
-                                        ? short.format(new Date(2026, from, 1))
-                                        : `${short.format(new Date(2026, from, 1))}–${short.format(new Date(2026, to, 1))}`
-                                    )
-                                    .join(', ')}`
-                              )
-                              .join('. ')}
-                          </span>
-                        </td>
-                      </tr>
-                    );
+                              {runs(line.sow).map(([from, to]) => (
+                                <span
+                                  key={`s${from}`}
+                                  className='mx-px rounded-full bg-band'
+                                  style={{
+                                    gridColumn: `${from + 1} / ${to + 2}`,
+                                    gridRow: 1,
+                                  }}
+                                />
+                              ))}
+                              {runs(line.harvest).map(([from, to]) => (
+                                <span
+                                  key={`h${from}`}
+                                  className='mx-px rounded-full bg-happy-300'
+                                  style={{
+                                    gridColumn: `${from + 1} / ${to + 2}`,
+                                    gridRow: 2,
+                                  }}
+                                />
+                              ))}
+                            </span>
+                            <span className='sr-only'>
+                              {[
+                                [t('year.sow'), line.sow],
+                                [
+                                  line.season === 'overwinter'
+                                    ? `${t('year.harvest')} (${t('year.nextYear')})`
+                                    : t('year.harvest'),
+                                  line.harvest,
+                                ],
+                              ]
+                                .filter(([, months]) => months)
+                                .map(
+                                  ([what, months]) =>
+                                    `${what}: ${runs(months as number)
+                                      .map(([from, to]) =>
+                                        from === to
+                                          ? short.format(
+                                              new Date(2026, from, 1)
+                                            )
+                                          : `${short.format(new Date(2026, from, 1))}–${short.format(new Date(2026, to, 1))}`
+                                      )
+                                      .join(', ')}`
+                                )
+                                .join('. ')}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    });
                   })}
                 </tbody>
               </table>

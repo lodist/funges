@@ -2212,7 +2212,15 @@
     "thisMonth": "Questo mese ({{month}})",
     "notHere": "Non all'aperto qui: {{crops}}.",
     "backIn": "Di nuovo a {{month}}",
-    "note": "I mesi di semina seguono le stesse regole dei consigli di ogni settimana, su un anno tipico da te. I mesi di raccolto sono approssimativi."
+    "note": "I mesi di semina seguono le stesse regole dei consigli di ogni settimana, su un anno tipico da te. I mesi di raccolto sono approssimativi. Una coltura seminata in più stagioni ha una riga per ciascuna. Quella che passa l'inverno si raccoglie l'anno dopo.",
+    "nextYear": "l'anno dopo",
+    "season": {
+      "spring": "Primavera",
+      "summer": "Estate",
+      "autumn": "Autunno",
+      "winter": "Inverno",
+      "overwinter": "Svernante"
+    }
   },
   "alerts": {
     "more_one": "e altri {{count}}",

@@ -2212,7 +2212,15 @@
     "thisMonth": "Dieser Monat ({{month}})",
     "notHere": "Hier nicht im Freien: {{crops}}.",
     "backIn": "Wieder im {{month}}",
-    "note": "Die Saatmonate folgen denselben Regeln wie der Rat jeder Woche, über ein typisches Jahr an deinem Ort. Die Erntemonate sind ungefähr."
+    "note": "Die Saatmonate folgen denselben Regeln wie der Rat jeder Woche, über ein typisches Jahr an deinem Ort. Die Erntemonate sind ungefähr. Säst du etwas zu mehreren Jahreszeiten, hat jede ihre eigene Zeile. Was überwintert, erntest du im folgenden Jahr.",
+    "nextYear": "im folgenden Jahr",
+    "season": {
+      "spring": "Frühjahr",
+      "summer": "Sommer",
+      "autumn": "Herbst",
+      "winter": "Winter",
+      "overwinter": "Überwinternd"
+    }
   },
   "alerts": {
     "more_one": "und {{count}} weitere",

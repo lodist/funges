@@ -2212,7 +2212,15 @@
     "thisMonth": "Este mes ({{month}})",
     "notHere": "No al aire libre aquí: {{crops}}.",
     "backIn": "Vuelve en {{month}}",
-    "note": "Los meses de siembra siguen las mismas reglas que el consejo de cada semana, en un año normal en tu zona. Los meses de cosecha son aproximados."
+    "note": "Los meses de siembra siguen las mismas reglas que el consejo de cada semana, en un año normal en tu zona. Los meses de cosecha son aproximados. Un cultivo que se siembra en varias estaciones tiene una fila para cada una. El que pasa el invierno se cosecha el año siguiente.",
+    "nextYear": "el año siguiente",
+    "season": {
+      "spring": "Primavera",
+      "summer": "Verano",
+      "autumn": "Otoño",
+      "winter": "Invierno",
+      "overwinter": "Pasa el invierno"
+    }
   },
   "alerts": {
     "more_one": "y {{count}} más",
