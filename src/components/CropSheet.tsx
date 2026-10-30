@@ -1,5 +1,4 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import {
   Dialog,
@@ -20,11 +19,10 @@ import { GUIDES, type CropGuide } from '@/lib/crop-guides';
 import { fetchNeeds, huertaApiConfigured } from '@/lib/huerta-api';
 import type { CropYear } from '@/lib/huerta-api';
 import type { PlaceYear } from '@/lib/huerta-wire';
-import { fate, growth, readyDay } from '@/lib/garden-week';
-import { nextYear, partners, type Plan, type Section } from '@/lib/planner';
+import { nextYear, partners, type Plan } from '@/lib/planner';
 import { PLANT_LOOK } from '@/lib/planner-data';
-import { gardenSoil, soilTemps, type Acidity } from '@/lib/soil';
-import { AlertTriangle, Check, Clock } from '@/lib/icons';
+import { gardenSoil, type Acidity } from '@/lib/soil';
+import { Check, Clock } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { MonthCell } from '@/components/MonthCell';
 
@@ -33,16 +31,15 @@ interface CropSheetProps {
   advice: PlaceAdvice;
   /** The place's year, when known: each crop's months, the soil, the climate. */
   year?: PlaceYear | null;
-  /** The garden at this place: where the crop grows in it. */
+  /** The garden at this place: its soil. */
   plan?: Plan | null;
   /** The crop's photo, as the card shows it. */
   image: (crop: Crop) => string;
   onClose: () => void;
 }
 
-/** One crop at this place: why it is or isn't for this week, how to grow it,
- *  and how it does in the garden here. Opened from its card, like a species
- *  sheet in Terra. */
+/** One crop at this place: why it is or isn't for this week and how to grow
+ *  it. Opened from its card, like a species sheet in Terra. */
 export function CropSheet({
   crop,
   advice,
@@ -182,15 +179,6 @@ export function CropBody({
           ) : null}
         </div>
       </div>
-      {plan && advice ? (
-        <InGarden
-          crop={crop}
-          need={need}
-          plan={plan}
-          year={year}
-          advice={advice}
-        />
-      ) : null}
       {months && advice ? (
         <YearStrip year={months} place={advice.place} />
       ) : null}
@@ -240,131 +228,6 @@ function Rows({
         </div>
       ))}
     </dl>
-  );
-}
-
-const WARNING =
-  'flex gap-2 rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 text-sm text-status-warning-text';
-
-/** Where it grows in the garden here, and how it will do: ready around a
- *  day, or lost to the weather first, as My garden's section panel says. */
-function InGarden({
-  crop,
-  need,
-  plan,
-  year,
-  advice,
-}: {
-  crop: Crop;
-  need?: CropNeeds;
-  plan: Plan;
-  year?: PlaceYear | null;
-  advice: PlaceAdvice;
-}) {
-  const { t, i18n } = useTranslation('huerta');
-  const here = plan.sections.filter(s => s.crop === crop.id);
-  // The last time it came out of this garden.
-  const last = (plan.past ?? [])
-    .filter(g => g.crop === crop.id)
-    .sort((a, z) => z.ended.localeCompare(a.ended))[0];
-  if (here.length === 0 && !last) return null;
-  const today = new Date().toLocaleDateString('sv');
-  const temps = year?.temps
-    ? soilTemps(year.temps, gardenSoil(plan.garden, year.soil).texture)
-    : null;
-  const site = { year, frost: advice };
-  const day = (d: string) =>
-    new Intl.DateTimeFormat(i18n.language, {
-      day: 'numeric',
-      month: 'long',
-    }).format(new Date(`${d}T12:00:00`));
-  const outlook = (s: Section): { text: string; warn?: boolean } | null => {
-    if (!s.planted)
-      return {
-        text: s.sow
-          ? t('grow.plannedFor', { date: day(s.sow) })
-          : t('planner.notPlanted'),
-      };
-    // It dies first unless it is ready before (a perennial: whenever).
-    const dies = fate(crop.id, need, s.planted, site);
-    if (
-      dies &&
-      (!need?.days ||
-        (temps && growth(crop.id, need, temps, s.planted, dies.day) < 1))
-    )
-      return {
-        warn: true,
-        text:
-          dies.day <= today
-            ? t(`planner.fate.${dies.by}Now`)
-            : t(`planner.fate.${dies.by}`, { date: day(dies.day) }),
-      };
-    const ready =
-      !crop.note && need?.days && temps
-        ? readyDay(crop.id, need, temps, s.planted, dies?.day)
-        : null;
-    if (!ready) return null;
-    return {
-      text:
-        ready <= today
-          ? t('grow.readyNow')
-          : t('grow.readyOn', { date: day(ready) }),
-    };
-  };
-  const bed = (s: Section) =>
-    t(plan.garden.ground === 'rows' ? 'planner.strip' : 'planner.bed', {
-      n: s.bed + 1,
-    });
-  const went = (s: Section) =>
-    t(crop.how === 'sow' ? 'planner.sownOn' : 'planner.plantedOn', {
-      date: day(s.planted!),
-    });
-  return (
-    <Part title={t('grow.inGarden')}>
-      <ul className='flex flex-col gap-3 text-sm'>
-        {here.map(s => {
-          const o = outlook(s);
-          return (
-            <li key={`${s.bed}-${s.part}`} className='flex flex-col gap-1.5'>
-              <span className='text-foreground'>
-                <span className='font-semibold'>{bed(s)}</span>
-                {s.planted ? ` · ${went(s)}` : null}
-              </span>
-              {o?.warn ? (
-                <span className={WARNING}>
-                  <AlertTriangle className='mt-0.5 size-4 shrink-0' />
-                  {o.text}
-                </span>
-              ) : o ? (
-                <span className='text-muted-foreground'>{o.text}</span>
-              ) : null}
-            </li>
-          );
-        })}
-      </ul>
-      {last ? (
-        <p className='text-sm text-muted-foreground'>
-          {last.end === 'lost'
-            ? t('grow.lastLost', {
-                date: day(last.ended),
-                why: t(`planner.end.${last.why ?? 'other'}`),
-              })
-            : t('grow.lastHarvest', {
-                from: day(last.planted),
-                to: day(last.ended),
-              })}
-          {last.end === 'harvested' && last.said
-            ? ` ${t('grow.lastSaid', { date: day(last.said) })}`
-            : null}
-        </p>
-      ) : null}
-      <Link
-        to='/huerta/planner'
-        className='self-start text-sm font-medium text-primary-text underline underline-offset-4'
-      >
-        {t('week.todo.openPlanner')}
-      </Link>
-    </Part>
   );
 }
 

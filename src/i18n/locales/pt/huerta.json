@@ -402,10 +402,6 @@
     "year": "O ano dele em {{place}}"
   },
   "grow": {
-    "inGarden": "Na sua horta",
-    "plannedFor": "Previsto para {{date}}",
-    "readyOn": "Pronta por volta de {{date}}",
-    "readyNow": "Pronta a colher",
     "weather": "Frio, calor e solo",
     "care": "Cuidados",
     "goodWith": "Bem ao lado de",
@@ -1928,10 +1924,7 @@
         }
       ],
       "source": "Adubo verde: RHS. pH: University of Connecticut."
-    },
-    "lastHarvest": "Da última vez entrou em {{from}} e saiu em {{to}}.",
-    "lastLost": "Da última vez se perdeu em {{date}}. {{why}}.",
-    "lastSaid": "Tínhamos dito {{date}}."
+    }
   },
   "map": {
     "title": "Mapa",

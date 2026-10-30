@@ -402,10 +402,6 @@
     "year": "Il suo anno a {{place}}"
   },
   "grow": {
-    "inGarden": "Nel tuo orto",
-    "plannedFor": "Previsto per il {{date}}",
-    "readyOn": "Pronta verso il {{date}}",
-    "readyNow": "Pronta da raccogliere",
     "weather": "Freddo, caldo e terreno",
     "care": "Cure",
     "goodWith": "Bene accanto a",
@@ -1928,10 +1924,7 @@
         }
       ],
       "source": "Sovescio: RHS. pH: University of Connecticut."
-    },
-    "lastHarvest": "L'ultima volta è andato a dimora il {{from}} ed è uscito il {{to}}.",
-    "lastLost": "L'ultima volta è andato perso il {{date}}. {{why}}.",
-    "lastSaid": "Avevamo detto il {{date}}."
+    }
   },
   "map": {
     "title": "Mappa",
