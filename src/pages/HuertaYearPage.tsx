@@ -230,7 +230,9 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                                   className='size-7 shrink-0 rounded-md object-cover sm:size-8'
                                 />
                               ) : (
-                                <span className='size-7 shrink-0 sm:size-8' />
+                                // A season under the crop's photo: only as tall
+                                // as its bars, so the crop reads as one block.
+                                <span className='w-7 shrink-0 sm:w-8' />
                               )}
                               <span className='flex min-w-0 flex-col'>
                                 <span
