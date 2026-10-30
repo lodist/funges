@@ -4,6 +4,7 @@ import {
   decodeAdvice,
   fetchAdvice,
   fetchNeeds,
+  fetchYear,
   plain,
   saveMapView,
   savedMapView,
@@ -30,6 +31,17 @@ const FULL = {
   ...ADVICE,
   crops: CROPS.map(crop => crop.id),
   place: { ...ADVICE.place, statuses: 'n'.repeat(CROPS.length) },
+};
+// A place's year with every crop the app lists, its temperatures, soil and climate.
+const YEAR = {
+  crops: CROPS.map(crop => crop.id),
+  place: {
+    name: 'Zug',
+    months: '00e0f0'.repeat(CROPS.length),
+    temps: Array(12).fill(10),
+    soil: [6.5, 20, 40],
+    climate: [306, 116, 329, 88, 155, 265, 177, 246, -8],
+  },
 };
 const TOWNS = [
   ['Madridejos', 39.47, -3.53, 'ES', 'Toledo'],
@@ -116,6 +128,32 @@ describe('the Huerta Worker client', () => {
       )
     );
     expect((await searchTowns('vale')).map(t => t.name)).toEqual(['Valencia']);
+  });
+
+  it('keeps the year a day, then asks past the browser cache; kept stands in offline', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    const calls = vi.fn(async (_url: string, _init?: RequestInit) =>
+      Response.json(YEAR)
+    );
+    vi.stubGlobal('fetch', calls);
+    const zug = { lat: 47.16, lon: 8.55 };
+    const year = await fetchYear(zug);
+    expect(await fetchYear(zug)).toEqual(year);
+    expect(calls).toHaveBeenCalledTimes(1);
+    expect(calls.mock.calls[0][1]).toMatchObject({ cache: 'no-cache' });
+
+    // A day on, a rebuilt year is asked for...
+    vi.setSystemTime(Date.now() + 864e5 + 1);
+    await fetchYear(zug);
+    expect(calls).toHaveBeenCalledTimes(2);
+    // ...and offline, the kept one stands in.
+    vi.setSystemTime(Date.now() + 864e5 + 1);
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Promise.reject(new TypeError('offline')))
+    );
+    expect(await fetchYear(zug)).toEqual(year);
+    vi.useRealTimers();
   });
 
   it('asks as the signed-in account, and a 401 signs the device out', async () => {

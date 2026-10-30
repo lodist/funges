@@ -232,10 +232,11 @@ export function fetchMapLayer(region: MapRegion, day: string, layer: string) {
 }
 
 const YEAR_KEY = 'huerta-year';
-const YEAR_DAYS = 30; // the year only changes when it is rebuilt
+const YEAR_DAYS = 1; // a rebuilt year reaches the device the next day
 
-/** The nearest place's year. Kept on the device for a month; null where
- *  Huerta has no place. */
+/** The nearest place's year. Kept on the device for a day, then asked for
+ *  again past the browser's own cache; the kept one stands in while the
+ *  Worker can't be reached. Null where Huerta has no place. */
 export async function fetchYear(place: Place): Promise<PlaceYear | null> {
   const lat = rounded(place.lat);
   const lon = rounded(place.lon);
@@ -245,21 +246,30 @@ export async function fetchYear(place: Place): Promise<PlaceYear | null> {
     at: number;
     year: PlaceYear;
   }>(YEAR_KEY);
-  if (
+  const usable =
     kept &&
     kept.lat === lat &&
     kept.lon === lon &&
-    Date.now() - kept.at < YEAR_DAYS * 864e5 &&
     CROPS.every(crop => crop.id in kept.year.crops) &&
     kept.year.temps &&
     kept.year.soil !== undefined &&
     // Kept from before the year files carried the climate: ask again.
     kept.year.climate
-  )
-    return kept.year;
-  const response = await apiFetch('/v1/year', { lat, lon });
+      ? kept.year
+      : null;
+  if (usable && Date.now() - kept!.at < YEAR_DAYS * 864e5) return usable;
+  let response: Response;
+  try {
+    response = await apiFetch('/v1/year', { lat, lon }, { cache: 'no-cache' });
+  } catch (error) {
+    if (usable) return usable;
+    throw error;
+  }
   if (response.status === 404) return null;
-  if (!response.ok) throw new Error(`Huerta year: ${response.status}`);
+  if (!response.ok) {
+    if (usable) return usable;
+    throw new Error(`Huerta year: ${response.status}`);
+  }
   const year = decodeYear((await response.json()) as YearResponse);
   write(YEAR_KEY, { lat, lon, at: Date.now(), year });
   return year;
