@@ -23,6 +23,24 @@ describe("the Worker's year answer", () => {
     });
   });
 
+  it('reads each season of a crop sown in more than one', () => {
+    const year = decodeYear({
+      crops: ['lettuce', 'spinach'],
+      place: {
+        name: 'Zug',
+        months: '0f807e' + '6f8ff8',
+        // Spinach: spring (Apr-May, picked Jun-Jul) and to overwinter
+        // (Sep-Oct, picked the next Apr-Jul).
+        seasons: { 1: '0018060' + '4300078' },
+      },
+    });
+    expect(year.crops.lettuce).toEqual({ sow: 0x0f8, harvest: 0x07e });
+    expect(year.crops.spinach.seasons).toEqual([
+      { season: 'spring', sow: 0x018, harvest: 0x060 },
+      { season: 'overwinter', sow: 0x300, harvest: 0x078 },
+    ]);
+  });
+
   it('has no soil where the soil map has none', () => {
     expect(
       decodeYear({ crops: [], place: { name: 'Sea', months: '' } }).soil
