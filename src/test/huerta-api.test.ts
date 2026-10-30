@@ -91,6 +91,34 @@ describe('the Huerta Worker client', () => {
     expect(calls).toHaveBeenCalledTimes(2); // one advice, one section ("ma")
   });
 
+  it('lists the bigger town first and a city under two names once', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () =>
+        Response.json([
+          ['Zuraw', 51.1, 19.2, 'PL', 'Łódź'],
+          ['Zürich', 47.37, 8.55, 'CH', 'Zürich', 436332],
+          ['Zurich', 39.21, -99.44, 'US', 'Kansas'],
+          ['Zurigo', 47.37, 8.55, 'CH', 'Zürich', 436332],
+        ])
+      )
+    );
+    expect((await searchTowns('zur')).map(t => t.name)).toEqual([
+      'Zürich',
+      'Zuraw',
+      'Zurich',
+    ]);
+    expect(await searchTowns('zurigo')).toEqual([
+      {
+        name: 'Zurigo',
+        lat: 47.37,
+        lon: 8.55,
+        country: 'CH',
+        province: 'Zürich',
+      },
+    ]);
+  });
+
   it('keeps the garden’s answer when the map looks somewhere else', async () => {
     const calls = vi.fn(async () => Response.json(FULL));
     vi.stubGlobal('fetch', calls);
