@@ -125,7 +125,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 3,
     rows: 15,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'carrot',
@@ -145,7 +145,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 15,
     rows: 30,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'beetroot',
@@ -155,7 +155,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 10,
     rows: 30,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'turnip',
@@ -165,7 +165,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 15,
     rows: 30,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'chard',
@@ -175,7 +175,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 30,
     rows: 40,
-    sun: 3,
+    sun: 4,
   },
   {
     id: 'chicory',
@@ -185,7 +185,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 30,
     rows: 40,
-    sun: 6,
+    sun: 3,
   },
   {
     id: 'kale',
@@ -195,7 +195,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'cabbage',
@@ -225,7 +225,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'brussels_sprouts',
@@ -235,7 +235,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 60,
     rows: 75,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'kohlrabi',
@@ -245,7 +245,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 25,
     rows: 30,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'onion_sets',
@@ -275,7 +275,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 15,
     rows: 30,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'celery',
@@ -285,7 +285,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 30,
     rows: 30,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'fennel',
@@ -315,7 +315,7 @@ export const CROPS: Crop[] = [
     depth: 20,
     spacing: 40,
     rows: 90,
-    sun: 6,
+    sun: 4,
     note: 'third_year',
   },
   {
@@ -326,7 +326,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 90,
     rows: 90,
-    sun: 6,
+    sun: 4,
     note: 'second_year',
   },
   {
@@ -448,7 +448,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 35,
     rows: 75,
-    sun: 6,
+    sun: 4,
     note: 'next_year',
   },
   {
@@ -529,7 +529,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 25,
     rows: 30,
-    sun: 6,
+    sun: 3,
     note: 'perennial',
   },
   {
@@ -562,7 +562,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 30,
     rows: 40,
-    sun: 6,
+    sun: 4,
     note: 'perennial',
   },
   {
@@ -606,7 +606,7 @@ export const CROPS: Crop[] = [
     depth: 15,
     spacing: 10,
     rows: null,
-    sun: 6,
+    sun: 4,
     note: 'spring_flowers',
   },
   {
@@ -648,7 +648,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 30,
     rows: 30,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'nasturtium',
@@ -688,7 +688,7 @@ export const CROPS: Crop[] = [
     depth: 3,
     spacing: 15,
     rows: null,
-    sun: 6,
+    sun: 4,
   },
   {
     id: 'lavender',
