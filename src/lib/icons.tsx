@@ -57,6 +57,8 @@ import {
   MapPin as LucideMapPin,
   MapPinned as LucideMapPinned,
   Minus as LucideMinus,
+  Repeat as LucideRepeat,
+  SquareDashedMousePointer as LucideSquareDashedMousePointer,
   MoreHorizontal as LucideMoreHorizontal,
   Monitor as LucideMonitor,
   Moon as LucideMoon,
@@ -190,6 +192,10 @@ export const Maximize2 = decorativeByDefault(LucideMaximize2);
 export const MapPin = decorativeByDefault(LucideMapPin);
 export const MapPinned = decorativeByDefault(LucideMapPinned);
 export const Minus = decorativeByDefault(LucideMinus);
+export const Repeat = decorativeByDefault(LucideRepeat);
+export const SquareDashedMousePointer = decorativeByDefault(
+  LucideSquareDashedMousePointer
+);
 export const MoreHorizontal = decorativeByDefault(LucideMoreHorizontal);
 export const Monitor = decorativeByDefault(LucideMonitor);
 export const Moon = decorativeByDefault(LucideMoon);

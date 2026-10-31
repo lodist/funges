@@ -1994,6 +1994,61 @@
     "useShort": "Mon potager"
   },
   "planner": {
+    "area": {
+      "select": "Sélectionner une zone",
+      "done": "Terminé",
+      "hint": "Glissez sur les planches voulues."
+    },
+    "pick": {
+      "bed_one": "Toute la planche ({{count}})",
+      "bed_other": "Toute la planche ({{count}})",
+      "strip_one": "Toute la bande ({{count}})",
+      "strip_other": "Toute la bande ({{count}})",
+      "crop_one": "{{crop}} : tout ({{count}})",
+      "crop_other": "{{crop}} : tout ({{count}})"
+    },
+    "mix": {
+      "empty": "Vide"
+    },
+    "list": {
+      "title": "Ce qui pousse ici",
+      "hint": "Ranger met chaque culture d'un seul tenant, les familles ensemble et loin de là où elles ont poussé ces trois dernières années.",
+      "full": "Plus aucune partie libre. Agrandissez le potager ou retirez une culture du plan.",
+      "empty": "Rien de prévu pour l'instant. Ajoutez une culture ou laissez « Planifiez pour moi » remplir le potager.",
+      "add": "Ajouter une culture",
+      "arrange": "Ranger",
+      "sections_one": "{{count}} partie",
+      "sections_other": "{{count}} parties",
+      "area": "{{value}} m²",
+      "plants_one": "environ {{count}} plant",
+      "plants_other": "environ {{count}} plants",
+      "feeds_one": "de quoi nourrir environ {{count}} personne",
+      "feeds_other": "de quoi nourrir environ {{count}} personnes",
+      "goesIn": "En terre le {{date}}",
+      "goesNow": "En terre dès que possible",
+      "inSince": "En terre depuis le {{date}}",
+      "ready": "prêt vers le {{date}}",
+      "more": "Une partie de plus",
+      "less": "Une partie de moins",
+      "menu": "Plus pour {{crop}}",
+      "show": "Montrer sur le dessin",
+      "rounds": "Ressemer en plusieurs fois",
+      "remove": "Retirer du plan",
+      "addTitle": "Ajouter une culture",
+      "addText": "Elle va à côté de sa famille, ou là où le potager est libre.",
+      "roundsTitle": "Ressemer {{crop}} en plusieurs fois",
+      "roundsText": "Chaque semis aussi grand que celui-ci, à côté du précédent.",
+      "every": "Toutes les",
+      "weeks_one": "{{count}} semaine",
+      "weeks_other": "{{count}} semaines",
+      "times": "Semis",
+      "fewer": "Un semis de moins",
+      "moreRounds": "Un semis de plus",
+      "dates": "En terre le {{dates}}",
+      "room_one": "Il n'y avait de place que pour {{count}} semis.",
+      "room_other": "Il n'y avait de place que pour {{count}} semis.",
+      "addRounds": "Ajouter les semis"
+    },
     "title": "Mon potager",
     "description": "Votre potager planche par planche, et ce qu'il vous demande chaque semaine : quoi semer où, soins, arrosage et récolte, calculés pour votre lieu.",
     "sample": "Planifié pour un lieu d'exemple, {{place}}.",
@@ -2190,6 +2245,7 @@
       "lost": "Perdu : {{crops}}"
     },
     "tab": {
+      "list": "Liste",
       "week": "À faire",
       "garden": "Potager"
     },

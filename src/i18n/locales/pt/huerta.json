@@ -1994,6 +1994,61 @@
     "useShort": "Minha horta"
   },
   "planner": {
+    "area": {
+      "select": "Selecionar uma área",
+      "done": "Pronto",
+      "hint": "Arraste sobre os canteiros que quer."
+    },
+    "pick": {
+      "bed_one": "Canteiro inteiro ({{count}})",
+      "bed_other": "Canteiro inteiro ({{count}})",
+      "strip_one": "Faixa inteira ({{count}})",
+      "strip_other": "Faixa inteira ({{count}})",
+      "crop_one": "{{crop}}: tudo ({{count}})",
+      "crop_other": "{{crop}}: tudo ({{count}})"
+    },
+    "mix": {
+      "empty": "Vazio"
+    },
+    "list": {
+      "title": "O que cresce aqui",
+      "hint": "Organizar põe cada cultura numa só peça, as famílias juntas e longe de onde cresceram nos últimos três anos.",
+      "full": "Não sobra nenhuma parte livre. Aumente a horta ou tire uma cultura do plano.",
+      "empty": "Ainda nada planejado. Adicione uma cultura ou deixe «Planejar por mim» encher a horta.",
+      "add": "Adicionar uma cultura",
+      "arrange": "Organizar",
+      "sections_one": "{{count}} parte",
+      "sections_other": "{{count}} partes",
+      "area": "{{value}} m²",
+      "plants_one": "cerca de {{count}} planta",
+      "plants_other": "cerca de {{count}} plantas",
+      "feeds_one": "dá para cerca de {{count}} pessoa",
+      "feeds_other": "dá para cerca de {{count}} pessoas",
+      "goesIn": "Vai para a terra em {{date}}",
+      "goesNow": "Vai para a terra assim que der",
+      "inSince": "Na terra desde {{date}}",
+      "ready": "pronta por volta de {{date}}",
+      "more": "Uma parte a mais",
+      "less": "Uma parte a menos",
+      "menu": "Mais sobre {{crop}}",
+      "show": "Mostrar no desenho",
+      "rounds": "Semear de novo em etapas",
+      "remove": "Tirar do plano",
+      "addTitle": "Adicionar uma cultura",
+      "addText": "Vai ao lado da sua família, ou onde a horta estiver livre.",
+      "roundsTitle": "Semear {{crop}} de novo em etapas",
+      "roundsText": "Cada etapa do tamanho desta, ao lado da anterior.",
+      "every": "A cada",
+      "weeks_one": "{{count}} semana",
+      "weeks_other": "{{count}} semanas",
+      "times": "Etapas",
+      "fewer": "Uma etapa a menos",
+      "moreRounds": "Uma etapa a mais",
+      "dates": "Vai para a terra em {{dates}}",
+      "room_one": "Só havia espaço para {{count}} etapa.",
+      "room_other": "Só havia espaço para {{count}} etapas.",
+      "addRounds": "Adicionar as etapas"
+    },
     "title": "Minha horta",
     "description": "Sua horta canteiro por canteiro, e o que ela precisa de você a cada semana: o que semear e onde, cuidados, rega e colheita, calculados para o seu lugar.",
     "sample": "Planejado para um lugar de exemplo, {{place}}.",
@@ -2190,6 +2245,7 @@
       "lost": "Perdido: {{crops}}"
     },
     "tab": {
+      "list": "Lista",
       "week": "Tarefas",
       "garden": "Horta"
     },

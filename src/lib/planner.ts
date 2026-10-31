@@ -350,6 +350,9 @@ type Group = keyof typeof GROUPS;
 const GROUP_OF = Object.fromEntries(
   Object.entries(GROUPS).flatMap(([group, ids]) => ids.map(id => [id, group]))
 ) as Partial<Record<string, Group>>;
+/** A crop's family in the rotation (legumes, brassicas…); none for one
+ *  outside it. */
+export const familyOf = (id: string): string | undefined => GROUP_OF[id];
 
 const ORDER: Record<number, Group[]> = {
   1: ['leaves'],
