@@ -114,6 +114,38 @@ export function shrinkLine(sections: Section[], line: CropLine): Section[] {
   return i === null ? sections : put(sections, i, null);
 }
 
+/** A planned line made `n` sections (at least one): grown into the free
+ *  sections touching it, or shrunk from its far end; as far as there is
+ *  room. */
+// ponytail: a section at a time, each looking at every free one (quadratic);
+// fine at the planner's 60 x 60 m, a frontier if gardens grow past it.
+export function resizeLine(
+  sections: Section[],
+  line: CropLine,
+  n: number
+): Section[] {
+  let out = sections;
+  let ids = [...line.ids];
+  const want = Math.max(1, Math.round(n));
+  while (ids.length < want) {
+    const i = nextFree(out, ids);
+    if (i === null) break;
+    out = put(out, i, line.crop, line.day);
+    ids.push(i);
+  }
+  while (ids.length > want) {
+    const i = lastOf(out, ids);
+    if (i === null) break;
+    out = put(out, i, null);
+    ids = ids.filter(k => k !== i);
+  }
+  return out;
+}
+
+/** How many free sections the garden has left. */
+export const freeSections = (sections: Section[]) =>
+  sections.filter(free).length;
+
 /** A planned line taken out of the plan (what is in the ground stays). */
 export const dropLine = (sections: Section[], line: CropLine) =>
   sections.map((s, i) =>

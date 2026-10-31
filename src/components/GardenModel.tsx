@@ -10,6 +10,7 @@ import {
 } from '@/lib/planner';
 import { huertaImage } from '@/lib/huerta';
 import {
+  Hand,
   Maximize2,
   RotateCcw,
   RotateCw,
@@ -36,6 +37,8 @@ const MAX_DRAWN = 1500;
 /** The narrowest view, in model units (64 a metre). */
 const MIN_VIEW = 560;
 const MAX_ZOOM = 4;
+/** Zoomed out to half: a big plot with room around it to start a box. */
+const MIN_ZOOM = 0.5;
 const ZOOM_STEP = 1.5;
 /** How far off a bed (metres, on the ground) a tap still picks it. */
 const REACH = 0.6;
@@ -200,10 +203,12 @@ export function GardenModel({
   };
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState<[number, number]>([0, 0]);
-  // Selecting an area: on, a drag draws a box instead of moving the view (a
-  // finger then no longer scrolls the page over the model); the box, in
-  // pixels over the model, while it is drawn.
-  const [area, setArea] = useState(false);
+  // A tool on: moving the drawing, or selecting an area (a drag then draws a
+  // box). Either way a finger no longer scrolls the page over the model; the
+  // box, in pixels over the model, while it is drawn.
+  const [tool, setTool] = useState<'move' | 'area' | null>(null);
+  const area = tool === 'area';
+  const moving = tool === 'move';
   const frame = useRef<HTMLDivElement>(null);
   const [areaBox, setAreaBox] = useState<
     [number, number, number, number] | null
@@ -893,20 +898,24 @@ export function GardenModel({
   const n0 = P(0, 0),
     n1 = P(-Math.sin(bearing), -Math.cos(bearing));
 
-  // Zoomed in, the view is a window on the whole, moved by dragging.
+  // The view is a window on the whole, moved by dragging: as far as a
+  // corner of the garden in its middle, never off it.
   const w = maxX - minX,
     h = maxY - minY,
     vw = w / zoom,
     vh = h / zoom;
   const limit = ([x, y]: [number, number]): [number, number] => [
-    Math.max(-(w - vw) / 2, Math.min((w - vw) / 2, x)),
-    Math.max(-(h - vh) / 2, Math.min((h - vh) / 2, y)),
+    Math.max(-w / 2, Math.min(w / 2, x)),
+    Math.max(-h / 2, Math.min(h / 2, y)),
   ];
   const [px, py] = limit(pan);
-  const zoomTo = (z: number) => {
-    const next = z < 1.01 ? 1 : Math.min(MAX_ZOOM, z);
-    setZoom(next);
-    if (next === 1) setPan([0, 0]);
+  const zoomTo = (z: number) =>
+    setZoom(
+      Math.abs(z - 1) < 0.01 ? 1 : Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, z))
+    );
+  const fitView = () => {
+    setZoom(1);
+    setPan([0, 0]);
   };
   return (
     <div ref={frame} className='relative'>
@@ -916,13 +925,13 @@ export function GardenModel({
         viewBox={`${minX + (w - vw) / 2 + px} ${minY + (h - vh) / 2 + py} ${vw} ${vh}`}
         className={cn(
           'block h-auto max-h-[38rem] w-full',
-          // Two fingers pinch the model, one scrolls the page; zoomed in,
-          // one finger moves the view.
+          // Two fingers pinch the model, one scrolls the page; zoomed in or
+          // with the hand, one finger moves the view (a mouse always does).
           area
             ? 'cursor-crosshair touch-none'
-            : zoom > 1
+            : moving || zoom > 1
               ? 'cursor-grab touch-none active:cursor-grabbing'
-              : 'touch-pan-y'
+              : 'cursor-grab touch-pan-y active:cursor-grabbing'
         )}
         onPointerDown={e => {
           // An area: in its mode, or a mouse with Shift held.
@@ -939,7 +948,7 @@ export function GardenModel({
             drag.current = { x: 0, y: 0, pan: [px, py], moved: true };
             return;
           }
-          if (zoom > 1)
+          if (zoom > 1 || moving || e.pointerType === 'mouse')
             drag.current = {
               x: e.clientX,
               y: e.clientY,
@@ -1048,36 +1057,48 @@ export function GardenModel({
           }}
         />
       ) : null}
-      {onSelectArea ? (
-        // Many sections at once: a box dragged over them. On a phone it is a
-        // mode (a finger otherwise scrolls the page), shut by Done.
-        <div className='absolute top-2 right-2 flex flex-col items-end gap-1.5'>
-          <button
-            type='button'
-            aria-pressed={area}
-            onClick={() => setArea(on => !on)}
-            title={t('planner.area.select')}
-            className={cn(
-              'focus-ring flex h-8 items-center gap-1.5 rounded-lg px-2 text-xs font-medium elevation-raised sm:h-10 sm:px-2.5 sm:text-sm',
-              area
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-card/90 text-foreground hover:bg-card'
-            )}
+      {/* The tools together: the hand moves the drawing, Select draws a box
+          over sections (on a phone both are modes, a finger otherwise
+          scrolling the page), and what is selected is cleared beside them. */}
+      <div className='absolute bottom-2 left-2 flex max-w-[calc(100%-4rem)] flex-col items-start gap-1.5'>
+        {area && onSelectArea ? (
+          <p className='rounded-md bg-card/90 px-2 py-1 text-xs text-foreground elevation-raised'>
+            {t('planner.area.hint')}{' '}
+            <button
+              type='button'
+              onClick={() => onSelectArea(sections.map((_, i) => i))}
+              className='focus-ring font-medium text-primary-text underline underline-offset-2'
+            >
+              {t('planner.area.all')}
+            </button>
+          </p>
+        ) : null}
+        <div className='flex flex-wrap items-center gap-1.5'>
+          <ToolButton
+            pressed={moving}
+            label={t('planner.move')}
+            onClick={() => setTool(moving ? null : 'move')}
           >
-            <SquareDashedMousePointer className='size-4' />
-            {area ? (
-              t('planner.area.done')
-            ) : (
-              <span className='sr-only'>{t('planner.area.select')}</span>
-            )}
-          </button>
-          {area ? (
-            <p className='max-w-44 rounded-md bg-card/90 px-2 py-1 text-right text-xs text-foreground elevation-raised'>
-              {t('planner.area.hint')}
-            </p>
+            <Hand className='size-4' />
+          </ToolButton>
+          {onSelectArea ? (
+            <ToolButton
+              pressed={area}
+              label={t('planner.area.select')}
+              onClick={() => setTool(area ? null : 'area')}
+            >
+              <SquareDashedMousePointer className='size-4' />
+              {area ? t('planner.area.done') : t('planner.area.short')}
+            </ToolButton>
+          ) : null}
+          {onClear && selected.length > 0 ? (
+            <ToolButton label={t('planner.clearSelection')} onClick={onClear}>
+              <X className='size-3.5' />
+              {t('planner.clearSelection')}
+            </ToolButton>
           ) : null}
         </div>
-      ) : null}
+      </div>
       <div
         role='group'
         aria-label={t('planner.whereNorth')}
@@ -1102,17 +1123,6 @@ export function GardenModel({
           </ModelControl>
         ) : null}
       </div>
-      {onClear && selected.length > 0 ? (
-        <button
-          type='button'
-          onClick={onClear}
-          aria-label={t('planner.clearSelection')}
-          className='focus-ring absolute bottom-2 left-2 flex h-8 items-center gap-1 rounded-full bg-card/90 px-2.5 text-xs font-medium text-foreground elevation-raised hover:bg-card sm:h-9 sm:px-3 sm:text-sm'
-        >
-          <X className='size-3.5' />
-          {t('planner.clear')}
-        </button>
-      ) : null}
       <div className='absolute right-2 bottom-2 flex flex-col rounded-lg bg-card/90 elevation-raised'>
         <ModelControl
           label={t('planner.zoomIn')}
@@ -1123,20 +1133,52 @@ export function GardenModel({
         </ModelControl>
         <ModelControl
           label={t('planner.zoomOut')}
-          disabled={zoom <= 1}
+          disabled={zoom <= MIN_ZOOM}
           onClick={() => zoomTo(zoom / ZOOM_STEP)}
         >
           <ZoomOut className='size-4' />
         </ModelControl>
         <ModelControl
           label={t('planner.zoomFit')}
-          disabled={zoom === 1}
-          onClick={() => zoomTo(1)}
+          disabled={zoom === 1 && px === 0 && py === 0}
+          onClick={fitView}
         >
           <Maximize2 className='size-4' />
         </ModelControl>
       </div>
     </div>
+  );
+}
+
+/** A tool over the model, a map control's size: an icon (named by `label`),
+ *  or words beside it; a mode (`pressed` given) shows when it is on. */
+function ToolButton({
+  label,
+  pressed,
+  onClick,
+  children,
+}: {
+  label: string;
+  pressed?: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type='button'
+      aria-pressed={pressed}
+      aria-label={label}
+      title={label}
+      onClick={onClick}
+      className={cn(
+        'focus-ring flex h-8 min-w-8 items-center justify-center gap-1.5 rounded-lg px-2 text-xs font-medium elevation-raised sm:h-10 sm:min-w-10 sm:px-2.5 sm:text-sm',
+        pressed
+          ? 'bg-primary text-primary-foreground'
+          : 'bg-card/90 text-foreground hover:bg-card'
+      )}
+    >
+      {children}
+    </button>
   );
 }
 

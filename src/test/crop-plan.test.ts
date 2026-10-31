@@ -4,9 +4,11 @@ import {
   addRounds,
   arrange,
   cropLines,
+  freeSections,
   growLine,
   lastOf,
   nextFree,
+  resizeLine,
   shrinkLine,
 } from '@/lib/crop-plan';
 import { adjacent, layout, type Grown, type Section } from '@/lib/planner';
@@ -61,6 +63,21 @@ describe('the garden by crop', () => {
       i === 0 ? { ...x, planted: '2027-03-01' } : x
     );
     expect(lastOf(planted, [0])).toBeNull();
+  });
+
+  it('makes a line as many sections as typed, as far as there is room', () => {
+    const s = withCrops(field(), { 0: 'potato' });
+    const [line] = cropLines(s);
+    const ten = resizeLine(s, line, 10);
+    expect(cropLines(ten)[0].ids).toHaveLength(10);
+    expect(together(ten, 'potato')).toBe(true);
+    expect(
+      cropLines(resizeLine(ten, cropLines(ten)[0], 3))[0].ids
+    ).toHaveLength(3);
+    // More than the garden holds: all of it.
+    const all = resizeLine(s, line, 10_000);
+    expect(freeSections(all)).toBe(0);
+    expect(cropLines(all)[0].ids).toHaveLength(field().length);
   });
 
   it('puts a new crop next to its family, else at the north end; none when full', () => {

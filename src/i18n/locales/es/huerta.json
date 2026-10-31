@@ -1994,7 +1994,10 @@
     "useShort": "Mi huerto"
   },
   "planner": {
+    "move": "Mover el dibujo",
     "area": {
+      "short": "Seleccionar",
+      "all": "Seleccionar todo",
       "select": "Seleccionar una zona",
       "done": "Listo",
       "hint": "Arrastra sobre los bancales que quieras."
@@ -2011,6 +2014,9 @@
       "empty": "Vacío"
     },
     "list": {
+      "count": "Partes de {{crop}}",
+      "max": "Máx.",
+      "maxLabel": "Todas las que caben: {{count}}",
       "title": "Qué crece aquí",
       "hint": "Ordenar pone cada cultivo en una sola pieza, las familias juntas y lejos de donde crecieron los últimos tres años.",
       "full": "No queda ninguna parte libre. Agranda el huerto o quita un cultivo del plan.",
