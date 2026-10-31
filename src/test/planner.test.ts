@@ -385,6 +385,14 @@ describe('planning for a later month', () => {
     expect(inMonth('tulip', 3, year, tulip)).toBe('wait_autumn');
     expect(inMonth('tulip', 9, year, tulip)).toBe('too_warm');
     expect(inMonth('tulip', 10, year, tulip)).toBe('now');
+    // Spinach the calendar skips in June bolts in the long days.
+    const spinach: CropNeeds = {
+      frost: 'hardy',
+      soil: [1.7, 29.4],
+      night: null,
+      days: 40,
+    };
+    expect(inMonth('spinach', 5, year, spinach)).toBe('wait_days');
   });
 
   it('Plan it for me for March plans what goes in in March, dated the 1st', () => {

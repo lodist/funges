@@ -266,7 +266,8 @@
     "too_late": "Tarde demais",
     "not_here": "Não ao ar livre aqui",
     "wait_autumn": "No outono",
-    "wait_spring": "Na primavera"
+    "wait_spring": "Na primavera",
+    "wait_days": "Dias demasiado longos"
   },
   "crops": {
     "garlic": "Alho",
@@ -405,7 +406,13 @@
       "next_year": "Produz a partir do ano que vem",
       "second_year": "Colhem-se talos a partir do segundo ano",
       "third_year": "Cortam-se brotos a partir da terceira primavera",
-      "perennial": "Volta todo ano"
+      "perennial": "Volta todo ano",
+      "next_year_at": "A partir de {{month}}, no ano após plantar",
+      "second_year_at": "Talos a partir de {{month}} do segundo ano",
+      "third_year_at": "Turiões a partir de {{month}} da terceira primavera",
+      "perennial_at": "A partir de {{month}}, todos os anos",
+      "perennial_all": "Todo o ano, todos os anos",
+      "spring_flowers_at": "Floresce a partir de {{month}}, na primavera após plantar"
     },
     "source": "Dados de cultivo: RHS, UC ANR e guias de semeadura das empresas de sementes.",
     "year": "O ano dele em {{place}}"
