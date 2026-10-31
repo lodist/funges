@@ -11,6 +11,9 @@ import {
   finish,
   fit,
   inMonth,
+  withinLimits,
+  MAX_LENGTH,
+  MAX_WIDTH,
   layout,
   lengthen,
   merge,
@@ -485,5 +488,25 @@ describe('partners', () => {
     expect(endAs('phacelia')).toBe('dugIn');
     expect(endAs('asparagus')).toBeNull();
     expect(endAs('rhubarb')).toBeNull();
+  });
+});
+
+describe("the planner's size", () => {
+  it('cuts a bigger garden saved before down to 20 x 30 m, keeping the crops that fit', () => {
+    const garden = { width: 60, length: 60, shape: 'rect' as const };
+    const sections = layout(garden).map(x => ({ ...x, crop: 'potato' }));
+    const plan = withinLimits({ garden, sections });
+    expect([plan.garden.width, plan.garden.length]).toEqual([
+      MAX_WIDTH,
+      MAX_LENGTH,
+    ]);
+    expect(plan.sections.length).toBeLessThan(sections.length / 4);
+    expect(plan.sections.every(x => x.crop === 'potato')).toBe(true);
+    // Within the limits: the same plan.
+    const small = {
+      garden: { width: 6, length: 4.5, shape: 'rect' as const },
+      sections: [],
+    };
+    expect(withinLimits(small)).toBe(small);
   });
 });

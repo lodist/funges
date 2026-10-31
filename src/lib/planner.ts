@@ -17,7 +17,11 @@ export const PATH = 0.4;
 export const BORDER = 0.35;
 export const BED_HEIGHT = 0.22;
 export const MIN_SIDE = 1;
-export const MAX_SIDE = 60;
+// ponytail: 20 x 30 m for now. At 60 x 60 m (some 1,200 sections) the page
+// froze sowing them all at once; a bigger garden needs faster code first.
+export const MAX_WIDTH = 20;
+export const MAX_LENGTH = 30;
+export const MAX_SIDE = { width: MAX_WIDTH, length: MAX_LENGTH };
 const ROW_STRIP = 1.5;
 /** An open plot's strips are cut into blocks of about this length, metres. */
 const ROW_BLOCK = 3;
@@ -1090,8 +1094,24 @@ export function loadPlan(): Plan | null {
   // Every bed deleted is a plan too: its ground, to put a bed back on.
   return (plan?.sections?.length || plan?.bare?.length) &&
     plan.sections.every(s => !s.crop || s.crop in CROP)
-    ? plan
+    ? withinLimits(plan)
     : null;
+}
+
+/** A plan within the planner's size: a bigger garden saved before is cut
+ *  down to it, its crops kept where they still fit (nothing new planned). */
+export function withinLimits(plan: Plan): Plan {
+  const { width, length } = plan.garden;
+  if (width <= MAX_WIDTH && length <= MAX_LENGTH) return plan;
+  return reshape(
+    plan,
+    {
+      ...plan.garden,
+      width: Math.min(width, MAX_WIDTH),
+      length: Math.min(length, MAX_LENGTH),
+    },
+    () => undefined
+  );
 }
 
 export const savePlan = (plan: Plan) => updateGarden({ plan });
