@@ -40,7 +40,7 @@ import { Route as DataSeasonsIndexRouteImport } from './routes/data_.seasons.ind
 import { Route as DeSpeciesIdRouteImport } from './routes/de_.species_.$id'
 import { Route as HuertaCropsIdRouteImport } from './routes/huerta_.crops_.$id'
 import { Route as DataSeasonsPlaceSpeciesRouteImport } from './routes/data_.seasons.$place.$species'
-import { Route as DeHuertaCropsIdRouteImport } from './routes/de_.huerta_.crops_.$id'
+import { Route as DeHuertaPflanzenIdRouteImport } from './routes/de_.huerta_.pflanzen_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -197,9 +197,9 @@ const DataSeasonsPlaceSpeciesRoute = DataSeasonsPlaceSpeciesRouteImport.update({
   path: '/data/seasons/$place/$species',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DeHuertaCropsIdRoute = DeHuertaCropsIdRouteImport.update({
-  id: '/de_/huerta_/crops_/$id',
-  path: '/de/huerta/crops/$id',
+const DeHuertaPflanzenIdRoute = DeHuertaPflanzenIdRouteImport.update({
+  id: '/de_/huerta_/pflanzen_/$id',
+  path: '/de/huerta/pflanzen/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -235,7 +235,7 @@ export interface FileRoutesByFullPath {
   '/huerta/crops/$id': typeof HuertaCropsIdRoute
   '/data/seasons/': typeof DataSeasonsIndexRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
-  '/de/huerta/crops/$id': typeof DeHuertaCropsIdRoute
+  '/de/huerta/pflanzen/$id': typeof DeHuertaPflanzenIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -269,7 +269,7 @@ export interface FileRoutesByTo {
   '/huerta/crops/$id': typeof HuertaCropsIdRoute
   '/data/seasons': typeof DataSeasonsIndexRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
-  '/de/huerta/crops/$id': typeof DeHuertaCropsIdRoute
+  '/de/huerta/pflanzen/$id': typeof DeHuertaPflanzenIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -304,7 +304,7 @@ export interface FileRoutesById {
   '/huerta_/crops_/$id': typeof HuertaCropsIdRoute
   '/data_/seasons/': typeof DataSeasonsIndexRoute
   '/data_/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
-  '/de_/huerta_/crops_/$id': typeof DeHuertaCropsIdRoute
+  '/de_/huerta_/pflanzen_/$id': typeof DeHuertaPflanzenIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -340,7 +340,7 @@ export interface FileRouteTypes {
     | '/huerta/crops/$id'
     | '/data/seasons/'
     | '/data/seasons/$place/$species'
-    | '/de/huerta/crops/$id'
+    | '/de/huerta/pflanzen/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -374,7 +374,7 @@ export interface FileRouteTypes {
     | '/huerta/crops/$id'
     | '/data/seasons'
     | '/data/seasons/$place/$species'
-    | '/de/huerta/crops/$id'
+    | '/de/huerta/pflanzen/$id'
   id:
     | '__root__'
     | '/'
@@ -408,7 +408,7 @@ export interface FileRouteTypes {
     | '/huerta_/crops_/$id'
     | '/data_/seasons/'
     | '/data_/seasons/$place/$species'
-    | '/de_/huerta_/crops_/$id'
+    | '/de_/huerta_/pflanzen_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -443,7 +443,7 @@ export interface RootRouteChildren {
   HuertaCropsIdRoute: typeof HuertaCropsIdRoute
   DataSeasonsIndexRoute: typeof DataSeasonsIndexRoute
   DataSeasonsPlaceSpeciesRoute: typeof DataSeasonsPlaceSpeciesRoute
-  DeHuertaCropsIdRoute: typeof DeHuertaCropsIdRoute
+  DeHuertaPflanzenIdRoute: typeof DeHuertaPflanzenIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -665,11 +665,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataSeasonsPlaceSpeciesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/de_/huerta_/crops_/$id': {
-      id: '/de_/huerta_/crops_/$id'
-      path: '/de/huerta/crops/$id'
-      fullPath: '/de/huerta/crops/$id'
-      preLoaderRoute: typeof DeHuertaCropsIdRouteImport
+    '/de_/huerta_/pflanzen_/$id': {
+      id: '/de_/huerta_/pflanzen_/$id'
+      path: '/de/huerta/pflanzen/$id'
+      fullPath: '/de/huerta/pflanzen/$id'
+      preLoaderRoute: typeof DeHuertaPflanzenIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -707,7 +707,7 @@ const rootRouteChildren: RootRouteChildren = {
   HuertaCropsIdRoute: HuertaCropsIdRoute,
   DataSeasonsIndexRoute: DataSeasonsIndexRoute,
   DataSeasonsPlaceSpeciesRoute: DataSeasonsPlaceSpeciesRoute,
-  DeHuertaCropsIdRoute: DeHuertaCropsIdRoute,
+  DeHuertaPflanzenIdRoute: DeHuertaPflanzenIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

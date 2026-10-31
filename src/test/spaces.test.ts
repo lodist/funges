@@ -78,8 +78,20 @@ describe("Huerta's renamed pages", () => {
       '/huerta/crops/tomato/'
     );
     expect(renamedPath('/de/huerta/species/tomato/')).toBe(
-      '/de/huerta/crops/tomato/'
+      '/de/huerta/pflanzen/tomate/'
     );
+    // A crop's page: hyphens, and German words under /de.
+    expect(renamedPath('/huerta/crops/broad_beans/')).toBe(
+      '/huerta/crops/broad-beans/'
+    );
+    expect(renamedPath('/de/huerta/crops/broad_beans')).toBe(
+      '/de/huerta/pflanzen/dicke-bohnen/'
+    );
+    for (const path of [
+      '/huerta/crops/broad-beans',
+      '/de/huerta/pflanzen/dicke-bohnen/',
+    ])
+      expect(renamedPath(path)).toBe(path);
     for (const path of [
       '/huerta/map',
       '/huerta/crops',

@@ -1,4 +1,4 @@
-import { Link, useParams } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { PageLinks } from '@/components/PageLinks';
 import SEO from '@/components/SEO';
@@ -8,17 +8,18 @@ import { CROPS, huertaImage } from '@/lib/huerta';
 import { ArrowLeft } from '@/lib/icons';
 import {
   alternates,
+  cropOfPath,
   cropPageDescription,
   localizedPath,
   pathLanguage,
 } from '@/lib/seo-pages';
 
-/** One crop on a public page (/huerta/crops/$id, /de/huerta/crops/$id):
- *  how to grow it, for links and search. A garden's own view of it (this
- *  week, its bed) stays behind sign-in. */
+/** One crop on a public page (/huerta/crops/broad-beans/, in German
+ *  /de/huerta/pflanzen/dicke-bohnen/): how to grow it, for links and search.
+ *  A garden's own view of it (this week, its bed) stays behind sign-in. */
 export default function CropPage() {
-  const { id } = useParams({ strict: false }) as { id: string };
-  const crop = CROPS.find(c => c.id === id);
+  const { pathname } = useLocation();
+  const crop = CROPS.find(c => c.id === cropOfPath(pathname));
   const { t } = useTranslation('huerta');
   if (!crop) return null;
 
