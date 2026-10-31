@@ -1994,7 +1994,10 @@
     "useShort": "Minha horta"
   },
   "planner": {
+    "move": "Mover o desenho",
     "area": {
+      "short": "Selecionar",
+      "all": "Selecionar tudo",
       "select": "Selecionar uma área",
       "done": "Pronto",
       "hint": "Arraste sobre os canteiros que quer."
@@ -2011,6 +2014,9 @@
       "empty": "Vazio"
     },
     "list": {
+      "count": "Partes de {{crop}}",
+      "max": "Máx.",
+      "maxLabel": "Todas as que cabem: {{count}}",
       "title": "O que cresce aqui",
       "hint": "Organizar põe cada cultura numa só peça, as famílias juntas e longe de onde cresceram nos últimos três anos.",
       "full": "Não sobra nenhuma parte livre. Aumente a horta ou tire uma cultura do plano.",

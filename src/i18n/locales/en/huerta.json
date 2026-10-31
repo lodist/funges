@@ -1994,7 +1994,10 @@
     "useShort": "My garden"
   },
   "planner": {
+    "move": "Move the drawing",
     "area": {
+      "short": "Select",
+      "all": "Select all",
       "select": "Select an area",
       "done": "Done",
       "hint": "Drag over the beds you want."
@@ -2011,6 +2014,9 @@
       "empty": "Empty"
     },
     "list": {
+      "count": "Sections of {{crop}}",
+      "max": "Max",
+      "maxLabel": "As many as fit: {{count}}",
       "title": "What grows here",
       "hint": "Arrange puts each crop in one piece, families together and away from where they grew the last three years.",
       "full": "No free section left. Make the garden bigger or take a crop out of the plan.",

@@ -757,6 +757,14 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                         defaultValue={plan.garden[key]}
                         key={`${key}-${plan.garden[key]}`}
                         className='h-9 w-18 max-sm:text-sm sm:w-20'
+                        // Past the limit, back to it as it is typed.
+                        onChange={e => {
+                          if (Number(e.target.value) > MAX_SIDE)
+                            e.target.value = String(MAX_SIDE);
+                        }}
+                        onKeyDown={e => {
+                          if (e.key === 'Enter') e.currentTarget.blur();
+                        }}
                         onBlur={e => {
                           const v = Math.min(
                             MAX_SIDE,
@@ -765,6 +773,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                               Number(e.target.value) || plan.garden[key]
                             )
                           );
+                          // What is in use, even where it did not change.
+                          e.target.value = String(v);
                           if (v !== plan.garden[key])
                             resize({ ...plan.garden, [key]: v });
                         }}

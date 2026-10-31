@@ -1994,7 +1994,10 @@
     "useShort": "Mein Garten"
   },
   "planner": {
+    "move": "Zeichnung verschieben",
     "area": {
+      "short": "Auswählen",
+      "all": "Alle auswählen",
       "select": "Bereich auswählen",
       "done": "Fertig",
       "hint": "Zieh über die Beete, die du willst."
@@ -2011,6 +2014,9 @@
       "empty": "Leer"
     },
     "list": {
+      "count": "Teile mit {{crop}}",
+      "max": "Max.",
+      "maxLabel": "So viele, wie Platz haben: {{count}}",
       "title": "Was hier wächst",
       "hint": "Ordnen legt jede Kultur an einem Stück an, Familien zusammen und weg von dort, wo sie die letzten drei Jahre standen.",
       "full": "Kein freier Teil mehr. Vergrössere den Garten oder nimm eine Kultur aus dem Plan.",
