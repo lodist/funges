@@ -2221,6 +2221,7 @@
   },
   "year": {
     "title": "Calendrier",
+    "seoTitle": "Calendrier des semis pour chez vous",
     "description": "Quand chaque culture se sème, se plante et se récolte chez vous, d'après votre climat.",
     "around": "Autour de {{place}}, une année ordinaire.",
     "noPlace": "Choisissez votre lieu pour voir son année.",

@@ -19,6 +19,7 @@ import {
 } from '@/lib/huerta';
 import { GUIDES, type CropGuide } from '@/lib/crop-guides';
 import { harvestFrom } from '@/lib/garden-week';
+import { huertaPage } from '@/lib/seo-pages';
 import { fetchNeeds, huertaApiConfigured } from '@/lib/huerta-api';
 import type { CropYear } from '@/lib/huerta-api';
 import type { PlaceYear } from '@/lib/huerta-wire';
@@ -204,13 +205,19 @@ export function CropBody({
           the calendar. */}
       <div className='flex flex-wrap gap-3'>
         <Button asChild>
-          <Link to='/huerta/map' search={{ crop: crop.id }}>
+          <Link
+            to={huertaPage('map', i18n.language)}
+            search={{ crop: crop.id }}
+          >
             <MapPin />
             {t('sheet.viewOnMap')}
           </Link>
         </Button>
         <Button asChild variant='outline'>
-          <Link to='/huerta/planting-calendar' search={{ crop: crop.id }}>
+          <Link
+            to={huertaPage('calendar', i18n.language)}
+            search={{ crop: crop.id }}
+          >
             <CalendarRange />
             {t('sheet.viewOnCalendar')}
           </Link>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -52,7 +52,7 @@ import { ONLINE_MAX_ZOOM } from '@/lib/offline-packages';
 import { protocol } from '@/lib/pmtiles-protocol';
 import { cn } from '@/lib/utils';
 import { HILLSHADE_LAYER_ID, useMapStore } from '@/store/mapStore';
-import { Route as MapRoute } from '@/routes/huerta_.map';
+import { huertaPage, localizedPath, pathLanguage } from '@/lib/seo-pages';
 import MapThemeSelector from '@/components/MapThemeSelector';
 
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
@@ -285,7 +285,7 @@ const monthAhead = (ahead: number) =>
   ((new Date().getMonth() + ahead) % 12) + 1;
 
 export default function HuertaMapPage() {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
   const isMobile = useIsMobile();
   const phone = useRef(isMobile);
   phone.current = isMobile;
@@ -301,7 +301,7 @@ export default function HuertaMapPage() {
   // The advice at the map's centre, for the crop panel's status filter.
   const [centre, setCentre] = useState<PlaceAdvice | null | undefined>();
   // The crop a sheet's "View on map" asked for, else garlic.
-  const asked = MapRoute.useSearch().crop;
+  const { crop: asked } = useSearch({ strict: false }) as { crop?: string };
   const [crop, setCrop] = useState(
     asked && CROPS.some(c => c.id === asked) ? asked : 'garlic'
   );
@@ -469,7 +469,10 @@ export default function HuertaMapPage() {
       <SEO
         title={t('map.title')}
         description={t('map.description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta/map`}
+        canonicalUrl={localizedPath(
+          '/huerta/map/',
+          pathLanguage(window.location.pathname) ?? 'en'
+        )}
       />
       <div className={cn('relative', isMobile ? 'h-full' : '-m-4 h-screen')}>
         <div ref={container} className='h-full w-full' />
@@ -529,7 +532,7 @@ export default function HuertaMapPage() {
               crop={crop}
               onUse={() => {
                 savePlace(picked.place);
-                navigate({ to: '/huerta/garden-planner' });
+                navigate({ to: huertaPage('planner', i18n.language) });
               }}
               onClose={() => setPicked(null)}
             />

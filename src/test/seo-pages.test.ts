@@ -3,6 +3,7 @@ import {
   alternates,
   cropOfPath,
   cropPageDescription,
+  huertaPage,
   localizedPath,
   pageTitle,
   pathLanguage,
@@ -25,6 +26,19 @@ describe('seo-pages', () => {
     expect(localizedPath('/', 'en')).toBe('/');
   });
 
+  it("gives Huerta's pages the language's words", () => {
+    expect(localizedPath('/huerta/map', 'de')).toBe('/de/huerta/karte/');
+    expect(localizedPath('/de/huerta/gartenplaner/', 'en')).toBe(
+      '/huerta/garden-planner/'
+    );
+    expect(localizedPath('/huerta/planting-calendar/', 'de')).toBe(
+      '/de/huerta/pflanzkalender/'
+    );
+    expect(localizedPath('/de/huerta/pflanzen', 'en')).toBe('/huerta/crops/');
+    expect(huertaPage('crops', 'de-CH')).toBe('/de/huerta/pflanzen');
+    expect(huertaPage('calendar', 'fr')).toBe('/huerta/planting-calendar');
+  });
+
   it("gives a crop's page the language's words, hyphens between them", () => {
     expect(localizedPath('/huerta/crops/broad_beans/', 'en')).toBe(
       '/huerta/crops/broad-beans/'
@@ -35,7 +49,6 @@ describe('seo-pages', () => {
     expect(localizedPath('/de/huerta/pflanzen/moehre/', 'en')).toBe(
       '/huerta/crops/carrot/'
     );
-    expect(localizedPath('/huerta/crops/', 'de')).toBe('/de/huerta/crops/');
     expect(
       alternates('/de/huerta/pflanzen/dicke-bohnen/', 'https://www.fung.es')
     ).toEqual(alternates('/huerta/crops/broad-beans/', 'https://www.fung.es'));

@@ -2221,6 +2221,7 @@
   },
   "year": {
     "title": "Calendario",
+    "seoTitle": "Calendario de siembra para tu zona",
     "description": "Cuándo se siembra, se planta y se cosecha cada cultivo en tu zona, a partir de su clima.",
     "around": "En {{place}}, en un año normal.",
     "noPlace": "Elige tu lugar para ver su año.",

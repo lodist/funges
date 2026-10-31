@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from '@tanstack/react-router';
+import { useLocation, useSearch } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { CategoryChips } from '@/components/CategoryChips';
 import { PlacePicker } from '@/components/PlacePicker';
@@ -18,8 +18,8 @@ import {
 } from '@/lib/huerta-api';
 import { MapPinned, Search } from '@/lib/icons';
 import { ScopeHeader } from '@/components/ScopeHeader';
+import { alternates, localizedPath, pathLanguage } from '@/lib/seo-pages';
 import { cn } from '@/lib/utils';
-import { Route as CalendarRoute } from '@/routes/huerta_.planting-calendar';
 
 /** The calendar: every crop's sowing and harvest months at the visitor's place,
  *  like the back of a seed packet, but for this climate. */
@@ -32,17 +32,19 @@ export default function HuertaYearPage() {
 function Calendar({ onMoved }: { onMoved: () => void }) {
   const { t, i18n } = useTranslation('huerta');
   const year = useHuertaYear();
-  // Choosing the place, open under the header.
-  const [picking, setPicking] = useState(false);
+  const hasPlace = huertaApiConfigured && savedPlace() !== null;
+  // Choosing the place, open under the header: at once without one (the
+  // calendar is public, a first visit has none).
+  const [picking, setPicking] = useState(!hasPlace);
   const [kind, setKind] = useState<string>('all');
   // From a crop's sheet: its row alone, its name in the search box, until
   // the search changes (a name can be part of another's: Kohl, Grünkohl).
-  const asked = CalendarRoute.useSearch().crop;
+  const { crop: asked } = useSearch({ strict: false }) as { crop?: string };
+  const lang = pathLanguage(useLocation().pathname) ?? 'en';
   const named =
     asked && CROPS.some(c => c.id === asked) ? t(`crops.${asked}`) : '';
   const [query, setQuery] = useState(named);
   const only = named && query === named ? asked : null;
-  const hasPlace = huertaApiConfigured && savedPlace() !== null;
   const thisMonth = new Date().getMonth();
   const backdrop = monthBackdrop(thisMonth);
   const letter = new Intl.DateTimeFormat(i18n.language, { month: 'narrow' });
@@ -65,9 +67,13 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
   return (
     <>
       <SEO
-        title={t('year.title')}
+        title={t('year.seoTitle')}
         description={t('year.description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta/planting-calendar`}
+        canonicalUrl={localizedPath('/huerta/planting-calendar/', lang)}
+        alternates={alternates(
+          '/huerta/planting-calendar/',
+          window.location.origin
+        )}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>
@@ -121,15 +127,7 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
         </header>
 
         {!hasPlace ? (
-          <p className='text-foreground'>
-            {t('year.noPlace')}{' '}
-            <Link
-              to='/huerta/crops'
-              className='font-medium text-primary-text underline underline-offset-4'
-            >
-              {t('planner.choosePlace')}
-            </Link>
-          </p>
+          <p className='text-foreground'>{t('year.noPlace')}</p>
         ) : !year ? (
           <SkeletonGroup>
             <Skeleton className='h-96 w-full rounded-card' />

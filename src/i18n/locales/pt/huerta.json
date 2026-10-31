@@ -2221,6 +2221,7 @@
   },
   "year": {
     "title": "Calendário",
+    "seoTitle": "Calendário de plantio para a tua zona",
     "description": "Quando cada cultura é semeada, plantada e colhida no seu lugar, calculado a partir do seu clima.",
     "around": "Em {{place}}, num ano típico.",
     "noPlace": "Escolha seu lugar para ver o ano dele.",
