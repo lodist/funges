@@ -752,22 +752,22 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                         id={`planner-${key}`}
                         type='number'
                         min={MIN_SIDE}
-                        max={MAX_SIDE}
+                        max={MAX_SIDE[key]}
                         step={0.5}
                         defaultValue={plan.garden[key]}
                         key={`${key}-${plan.garden[key]}`}
                         className='h-9 w-18 max-sm:text-sm sm:w-20'
                         // Past the limit, back to it as it is typed.
                         onChange={e => {
-                          if (Number(e.target.value) > MAX_SIDE)
-                            e.target.value = String(MAX_SIDE);
+                          if (Number(e.target.value) > MAX_SIDE[key])
+                            e.target.value = String(MAX_SIDE[key]);
                         }}
                         onKeyDown={e => {
                           if (e.key === 'Enter') e.currentTarget.blur();
                         }}
                         onBlur={e => {
                           const v = Math.min(
-                            MAX_SIDE,
+                            MAX_SIDE[key],
                             Math.max(
                               MIN_SIDE,
                               Number(e.target.value) || plan.garden[key]
