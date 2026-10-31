@@ -2222,6 +2222,8 @@
   "year": {
     "title": "Calendario",
     "seoTitle": "Calendario delle semine per la tua zona",
+    "failed": "Il calendario non si è caricato. Riprova tra un momento.",
+    "none": "Qui non c'è un calendario di Huerta. Prova un paese vicino.",
     "description": "Quando si semina, si pianta e si raccoglie ogni coltura da te, calcolato dal tuo clima.",
     "around": "A {{place}}, in un anno tipico.",
     "noPlace": "Scegli il tuo luogo per vederne l'anno.",
