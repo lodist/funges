@@ -217,6 +217,8 @@
     },
     "season": {
       "title": "Esta temporada",
+      "entries_one": "{{count}} registro",
+      "entries_other": "{{count}} registros",
       "harvested": "Entró el {{from}}, salió el {{to}}",
       "lost": "Entró el {{from}}, perdido el {{to}} · {{why}}",
       "said": "dijimos {{date}}",

@@ -400,7 +400,9 @@ export function GardenThisWeek({
           <summary className='focus-ring flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-lg px-2 text-muted-foreground hover:bg-muted [&::-webkit-details-marker]:hidden'>
             <ChevronDown className='size-4 transition-transform group-open/season:rotate-180' />
             <span className='type-micro'>{t('week.season.title')}</span>
-            <span className='text-xs tabular-nums'>{lines.length}</span>
+            <span className='text-xs'>
+              {t('week.season.entries', { count: lines.length })}
+            </span>
           </summary>
           <ul className='mt-1 flex flex-col gap-2'>
             {lines.map(({ g, at }) => (
@@ -437,7 +439,7 @@ export function GardenThisWeek({
                     {([1, 2, 3] as const).map(r => (
                       <Button
                         key={r}
-                        className='px-3'
+                        className='px-2.5 text-xs'
                         variant={g.rating === r ? 'default' : 'outline'}
                         aria-pressed={g.rating === r}
                         onClick={() =>
