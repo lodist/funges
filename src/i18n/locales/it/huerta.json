@@ -2221,6 +2221,7 @@
   },
   "year": {
     "title": "Calendario",
+    "seoTitle": "Calendario delle semine per la tua zona",
     "description": "Quando si semina, si pianta e si raccoglie ogni coltura da te, calcolato dal tuo clima.",
     "around": "A {{place}}, in un anno tipico.",
     "noPlace": "Scegli il tuo luogo per vederne l'anno.",

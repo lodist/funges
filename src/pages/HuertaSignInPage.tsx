@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { GoogleMark } from '@/components/HuertaSignIn';
 import { Button } from '@/components/ui/button';
 import { finishSignIn, startSignIn } from '@/lib/huerta-session';
+import { huertaPage } from '@/lib/seo-pages';
 
 type State = 'working' | 'elsewhere' | 'failed';
 
@@ -11,7 +12,7 @@ type State = 'working' | 'elsewhere' | 'failed';
  *  sign-in began on; or, when it began in another browser view (the iPhone
  *  Home Screen app), a word to go back there. */
 export default function HuertaSignInPage() {
-  const { t } = useTranslation('huerta');
+  const { t, i18n } = useTranslation('huerta');
   const navigate = useNavigate();
   const [state, setState] = useState<State>('working');
   const once = useRef(false);
@@ -44,7 +45,7 @@ export default function HuertaSignInPage() {
             size='lg'
             variant='outline'
             className='bg-card'
-            onClick={() => void startSignIn('/huerta/crops')}
+            onClick={() => void startSignIn(huertaPage('crops', i18n.language))}
           >
             <GoogleMark />
             {t('signin.retry')}

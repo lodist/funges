@@ -17,16 +17,35 @@ export function pathLanguage(pathname: string): IndexedLanguage | null {
   return INDEXED_LANGUAGES.find(l => l !== 'en' && l === first) ?? null;
 }
 
-/** The indexed language a page's links use for an app language: its own, or
- *  English. */
+/** The indexed language a page's links use for an app language: its own
+ *  (de-CH reads as de), or English. */
 export const indexedLanguage = (lang: string): IndexedLanguage =>
-  INDEXED_LANGUAGES.find(l => l === lang) ?? 'en';
+  INDEXED_LANGUAGES.find(l => l === lang.split('-')[0]) ?? 'en';
 
 /** The path without its language prefix, ending in a slash. */
 export function stripLanguage(pathname: string): string {
   const lang = pathLanguage(pathname);
   return withSlash(lang ? pathname.slice(lang.length + 1) || '/' : pathname);
 }
+
+/** Huerta's pages, each in the language's own words: German under /de. */
+export const HUERTA_PAGES = {
+  crops: { en: '/huerta/crops', de: '/de/huerta/pflanzen' },
+  map: { en: '/huerta/map', de: '/de/huerta/karte' },
+  planner: { en: '/huerta/garden-planner', de: '/de/huerta/gartenplaner' },
+  calendar: {
+    en: '/huerta/planting-calendar',
+    de: '/de/huerta/pflanzkalender',
+  },
+} as const satisfies Record<string, Record<IndexedLanguage, string>>;
+/** A Huerta page's path for an app language: German words in German. */
+export const huertaPage = (page: keyof typeof HUERTA_PAGES, language: string) =>
+  HUERTA_PAGES[page][indexedLanguage(language)];
+const HUERTA_PAGE = new Map(
+  Object.values(HUERTA_PAGES).flatMap(page =>
+    INDEXED_LANGUAGES.map(lang => [stripLanguage(page[lang]), page] as const)
+  )
+);
 
 // A crop's page has the language's own words in its path, which search
 // engines read: /huerta/crops/broad-beans/, /de/huerta/pflanzen/dicke-bohnen/
@@ -57,6 +76,8 @@ export function localizedPath(path: string, lang: IndexedLanguage): string {
   const bare = stripLanguage(path);
   const crop = cropOfPath(bare);
   if (crop) return CROP_PATH[lang](crop);
+  const huerta = HUERTA_PAGE.get(bare);
+  if (huerta) return withSlash(huerta[lang]);
   return lang === 'en' ? bare : `/${lang}${bare}`;
 }
 

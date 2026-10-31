@@ -230,6 +230,21 @@ function cropPage(crop: (typeof CROPS)[number], lang: IndexedLanguage): Page {
   };
 }
 
+/** The planting calendar, public: a place's year once one is chosen. For
+ *  search, what it is and the crops it covers. */
+function calendarPage(lang: IndexedLanguage): Page {
+  const { t } = translator(lang);
+  const title = t('huerta', 'year.seoTitle');
+  const description = t('huerta', 'year.description');
+  return {
+    path: localizedPath('/huerta/planting-calendar/', lang),
+    lang,
+    title: pageTitle(title),
+    description,
+    body: `<main data-static><h1>${escape(title)}</h1><p>${escape(description)}</p><p>${escape(t('huerta', 'year.note'))}</p>${cropLinks(lang)}</main>`,
+  };
+}
+
 /** The front pages: the shared one every space opens from, then each
  *  space's own. Each says what it is and links the pages it leads to. */
 function frontPage(
@@ -275,6 +290,7 @@ export function buildPages(): Page[] {
     frontPage('/', lang),
     frontPage('/terra/', lang),
     frontPage('/huerta/', lang),
+    calendarPage(lang),
     ...GENERATED_SPECIES_DATA.map(species => speciesPage(species, lang)),
     ...CROPS.map(crop => cropPage(crop, lang)),
   ]);

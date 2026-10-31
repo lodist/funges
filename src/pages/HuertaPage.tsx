@@ -32,7 +32,7 @@ import {
 import { MapPinned, Search } from '@/lib/icons';
 import { chooseGarden, gardenLabel, useGardens } from '@/lib/gardens';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
-import { indexedLanguage, localizedPath } from '@/lib/seo-pages';
+import { indexedLanguage, localizedPath, pathLanguage } from '@/lib/seo-pages';
 import { cn } from '@/lib/utils';
 
 type Load =
@@ -92,7 +92,10 @@ export default function HuertaPage() {
       <SEO
         title={t('title')}
         description={t('description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta/crops`}
+        canonicalUrl={localizedPath(
+          '/huerta/crops/',
+          pathLanguage(window.location.pathname) ?? 'en'
+        )}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>
