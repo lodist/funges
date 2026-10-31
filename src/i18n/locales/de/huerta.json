@@ -217,6 +217,8 @@
     },
     "season": {
       "title": "Diese Saison",
+      "entries_one": "{{count}} Eintrag",
+      "entries_other": "{{count}} Einträge",
       "harvested": "Rein am {{from}}, raus am {{to}}",
       "lost": "Rein am {{from}}, verloren am {{to}} · {{why}}",
       "said": "wir sagten {{date}}",
