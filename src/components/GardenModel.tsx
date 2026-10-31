@@ -1320,7 +1320,9 @@ export function GardenModel({
           aria-label={title}
           viewBox={`${minX + (w - vw) / 2 + px} ${minY + (h - vh) / 2 + py} ${vw} ${vh}`}
           className={cn(
-            'block h-auto max-h-[38rem] w-full',
+            // Never its text selected: a drag would carry the text off
+            // instead of moving the drawing.
+            'block h-auto max-h-[38rem] w-full select-none',
             // Two fingers pinch the model, one scrolls the page; zoomed in or
             // with the hand, one finger moves the view (a mouse always does).
             area
@@ -1368,8 +1370,18 @@ export function GardenModel({
             if (!d || pinch.current) return;
             const dx = e.clientX - d.x,
               dy = e.clientY - d.y;
-            if (Math.abs(dx) + Math.abs(dy) > 4) d.moved = true;
-            const k = vw / e.currentTarget.clientWidth;
+            if (!d.moved && Math.abs(dx) + Math.abs(dy) > 4) {
+              d.moved = true;
+              // Moving: kept on the drawing past its edge (a tap still
+              // lands on its section, never captured).
+              e.currentTarget.setPointerCapture(e.pointerId);
+            }
+            // Model units a screen pixel: the drawing fills its width or, a
+            // tall plan, its height, whichever it meets first.
+            const k = Math.max(
+              vw / e.currentTarget.clientWidth,
+              vh / e.currentTarget.clientHeight
+            );
             if (d.moved) setPan(limit([d.pan[0] - dx * k, d.pan[1] - dy * k]));
           }}
           onPointerUp={e => {
@@ -1411,6 +1423,9 @@ export function GardenModel({
             const i = nearest(e.currentTarget, e.clientX, e.clientY);
             if (i !== null) onSelect(i);
           }}
+          // Nothing in the drawing is dragged off (a picture, a word): a drag
+          // moves the drawing. Crops dragged onto it come from the palette.
+          onDragStart={e => e.preventDefault()}
           onDragOver={e => {
             if (!onDropCrop || !e.dataTransfer.types.includes(CROP_DRAG))
               return;
