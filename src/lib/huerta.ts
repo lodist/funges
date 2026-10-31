@@ -4,6 +4,7 @@
  * advice is computed offline; the app only shows it.
  */
 import type { TFunction } from 'i18next';
+import type { Warm } from '@/lib/growth';
 
 /** Why a crop is or is not for this week. */
 export type CropStatus =
@@ -774,6 +775,9 @@ export interface PlaceAdvice {
   laterFrost?: 'none' | 'ground_frost' | 'frost';
   /** The first night of it, YYYY-MM-DD (the evening it begins). */
   laterNight?: string | null;
+  /** The place's daily mean air, observed then forecast: what a planted
+   *  crop's growth counts (lib/growth). */
+  warm?: Warm;
   crops: Record<string, CropStatus>;
 }
 
