@@ -13,6 +13,7 @@ import {
   Maximize2,
   RotateCcw,
   RotateCw,
+  SquareDashedMousePointer,
   X,
   ZoomIn,
   ZoomOut,
@@ -139,6 +140,11 @@ interface GardenModelProps {
   /** Quarter turns from north up the left. */
   turn?: number;
   onSelect: (index: number) => void;
+  /** Sections taken in at once by dragging over them (in area mode, or
+   *  with Shift held): added to the selection. */
+  onSelectArea?: (indices: number[]) => void;
+  /** A double click on a section: its whole bed. */
+  onBed?: (index: number) => void;
   /** The label over the selected section: its crop and count. */
   label?: { name: string; count: string };
   /** How far a section has grown (the page draws planned ones grown, but
@@ -173,6 +179,8 @@ export function GardenModel({
   selected,
   turn: quarter = 0,
   onSelect,
+  onSelectArea,
+  onBed,
   label,
   stage,
   fresh,
@@ -192,6 +200,36 @@ export function GardenModel({
   };
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState<[number, number]>([0, 0]);
+  // Selecting an area: on, a drag draws a box instead of moving the view (a
+  // finger then no longer scrolls the page over the model); the box, in
+  // pixels over the model, while it is drawn.
+  const [area, setArea] = useState(false);
+  const frame = useRef<HTMLDivElement>(null);
+  const [areaBox, setAreaBox] = useState<
+    [number, number, number, number] | null
+  >(null);
+  const boxFrom = useRef<[number, number] | null>(null);
+  const local = (x: number, y: number): [number, number] => {
+    const r = frame.current!.getBoundingClientRect();
+    return [x - r.left, y - r.top];
+  };
+  // The sections whose middle lies in the box (pixels over the model).
+  const inBox = (svg: SVGSVGElement, [x0, y0, x1, y1]: number[]) => {
+    const r = frame.current!.getBoundingClientRect();
+    const [l, t, rr, b] = [
+      Math.min(x0, x1) + r.left,
+      Math.min(y0, y1) + r.top,
+      Math.max(x0, x1) + r.left,
+      Math.max(y0, y1) + r.top,
+    ];
+    return [...svg.querySelectorAll('[data-sec]')].flatMap(el => {
+      const c = el.getBoundingClientRect();
+      const [cx, cy] = [c.left + c.width / 2, c.top + c.height / 2];
+      return cx >= l && cx <= rr && cy >= t && cy <= b
+        ? [Number(el.getAttribute('data-sec'))]
+        : [];
+    });
+  };
   // Fingers on the model, for a pinch: where each is, and the pinch's start.
   const fingers = useRef(new Map<number, [number, number]>());
   const pinch = useRef<{ d: number; zoom: number } | null>(null);
@@ -700,6 +738,7 @@ export function GardenModel({
             className='cursor-pointer'
             data-sec={i}
             onClick={select(i)}
+            onDoubleClick={onBed ? () => onBed(i) : undefined}
           />
         );
         if (!s.crop) continue;
@@ -870,7 +909,7 @@ export function GardenModel({
     if (next === 1) setPan([0, 0]);
   };
   return (
-    <div className='relative'>
+    <div ref={frame} className='relative'>
       <svg
         role='img'
         aria-label={title}
@@ -879,11 +918,21 @@ export function GardenModel({
           'block h-auto max-h-[38rem] w-full',
           // Two fingers pinch the model, one scrolls the page; zoomed in,
           // one finger moves the view.
-          zoom > 1
-            ? 'cursor-grab touch-none active:cursor-grabbing'
-            : 'touch-pan-y'
+          area
+            ? 'cursor-crosshair touch-none'
+            : zoom > 1
+              ? 'cursor-grab touch-none active:cursor-grabbing'
+              : 'touch-pan-y'
         )}
         onPointerDown={e => {
+          // An area: in its mode, or a mouse with Shift held.
+          if (onSelectArea && e.isPrimary && (area || e.shiftKey)) {
+            const [x, y] = local(e.clientX, e.clientY);
+            boxFrom.current = [x, y];
+            setAreaBox([x, y, x, y]);
+            e.currentTarget.setPointerCapture(e.pointerId);
+            return;
+          }
           fingers.current.set(e.pointerId, [e.clientX, e.clientY]);
           if (fingers.current.size === 2) {
             pinch.current = { d: spread(), zoom };
@@ -899,6 +948,11 @@ export function GardenModel({
             };
         }}
         onPointerMove={e => {
+          if (boxFrom.current) {
+            const [x, y] = local(e.clientX, e.clientY);
+            setAreaBox([boxFrom.current[0], boxFrom.current[1], x, y]);
+            return;
+          }
           if (fingers.current.has(e.pointerId))
             fingers.current.set(e.pointerId, [e.clientX, e.clientY]);
           if (pinch.current && fingers.current.size === 2) {
@@ -914,11 +968,26 @@ export function GardenModel({
           if (d.moved) setPan(limit([d.pan[0] - dx * k, d.pan[1] - dy * k]));
         }}
         onPointerUp={e => {
+          const from = boxFrom.current;
+          if (from) {
+            boxFrom.current = null;
+            setAreaBox(null);
+            const [x, y] = local(e.clientX, e.clientY);
+            // Barely moved: a tap, which selects as a tap does.
+            if (Math.abs(x - from[0]) + Math.abs(y - from[1]) > 8) {
+              onSelectArea?.(inBox(e.currentTarget, [from[0], from[1], x, y]));
+              drag.current = { x: 0, y: 0, pan: [px, py], moved: true };
+              setTimeout(() => (drag.current = null));
+            }
+            return;
+          }
           fingers.current.delete(e.pointerId);
           if (fingers.current.size < 2) pinch.current = null;
           setTimeout(() => (drag.current = null));
         }}
         onPointerCancel={e => {
+          boxFrom.current = null;
+          setAreaBox(null);
           fingers.current.delete(e.pointerId);
           pinch.current = null;
           drag.current = null;
@@ -967,6 +1036,48 @@ export function GardenModel({
           pointerEvents='none'
         />
       </svg>
+      {areaBox ? (
+        <div
+          aria-hidden
+          className='pointer-events-none absolute rounded-sm border-2 border-dashed border-primary bg-primary/10'
+          style={{
+            left: Math.min(areaBox[0], areaBox[2]),
+            top: Math.min(areaBox[1], areaBox[3]),
+            width: Math.abs(areaBox[2] - areaBox[0]),
+            height: Math.abs(areaBox[3] - areaBox[1]),
+          }}
+        />
+      ) : null}
+      {onSelectArea ? (
+        // Many sections at once: a box dragged over them. On a phone it is a
+        // mode (a finger otherwise scrolls the page), shut by Done.
+        <div className='absolute top-2 right-2 flex flex-col items-end gap-1.5'>
+          <button
+            type='button'
+            aria-pressed={area}
+            onClick={() => setArea(on => !on)}
+            title={t('planner.area.select')}
+            className={cn(
+              'focus-ring flex h-8 items-center gap-1.5 rounded-lg px-2 text-xs font-medium elevation-raised sm:h-10 sm:px-2.5 sm:text-sm',
+              area
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-card/90 text-foreground hover:bg-card'
+            )}
+          >
+            <SquareDashedMousePointer className='size-4' />
+            {area ? (
+              t('planner.area.done')
+            ) : (
+              <span className='sr-only'>{t('planner.area.select')}</span>
+            )}
+          </button>
+          {area ? (
+            <p className='max-w-44 rounded-md bg-card/90 px-2 py-1 text-right text-xs text-foreground elevation-raised'>
+              {t('planner.area.hint')}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
       <div
         role='group'
         aria-label={t('planner.whereNorth')}

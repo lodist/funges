@@ -1994,6 +1994,61 @@
     "useShort": "My garden"
   },
   "planner": {
+    "area": {
+      "select": "Select an area",
+      "done": "Done",
+      "hint": "Drag over the beds you want."
+    },
+    "pick": {
+      "bed_one": "Whole bed ({{count}})",
+      "bed_other": "Whole bed ({{count}})",
+      "strip_one": "Whole strip ({{count}})",
+      "strip_other": "Whole strip ({{count}})",
+      "crop_one": "All {{crop}} ({{count}})",
+      "crop_other": "All {{crop}} ({{count}})"
+    },
+    "mix": {
+      "empty": "Empty"
+    },
+    "list": {
+      "title": "What grows here",
+      "hint": "Arrange puts each crop in one piece, families together and away from where they grew the last three years.",
+      "full": "No free section left. Make the garden bigger or take a crop out of the plan.",
+      "empty": "Nothing planned yet. Add a crop or let Plan it for me fill the garden.",
+      "add": "Add a crop",
+      "arrange": "Arrange",
+      "sections_one": "{{count}} section",
+      "sections_other": "{{count}} sections",
+      "area": "{{value}} m²",
+      "plants_one": "about {{count}} plant",
+      "plants_other": "about {{count}} plants",
+      "feeds_one": "enough for about {{count}} person",
+      "feeds_other": "enough for about {{count}} people",
+      "goesIn": "Goes in {{date}}",
+      "goesNow": "Goes in as soon as it can",
+      "inSince": "In the ground since {{date}}",
+      "ready": "ready around {{date}}",
+      "more": "One section more",
+      "less": "One section less",
+      "menu": "More for {{crop}}",
+      "show": "Show on the drawing",
+      "rounds": "Sow again in rounds",
+      "remove": "Take out of the plan",
+      "addTitle": "Add a crop",
+      "addText": "It goes next to its family, or where the garden is free.",
+      "roundsTitle": "Sow {{crop}} again in rounds",
+      "roundsText": "Each round as big as this one, next to the round before.",
+      "every": "Every",
+      "weeks_one": "{{count}} week",
+      "weeks_other": "{{count}} weeks",
+      "times": "Rounds",
+      "fewer": "One round less",
+      "moreRounds": "One round more",
+      "dates": "Goes in on {{dates}}",
+      "room_one": "There was room for {{count}} round only.",
+      "room_other": "There was room for {{count}} rounds only.",
+      "addRounds": "Add the rounds"
+    },
     "title": "My garden",
     "description": "Your garden bed by bed and what it needs from you each week: what to sow where, care, watering and harvest, worked out for your place.",
     "sample": "Planned for a sample place, {{place}}.",
@@ -2190,6 +2245,7 @@
       "lost": "Lost: {{crops}}"
     },
     "tab": {
+      "list": "List",
       "week": "To do",
       "garden": "Garden"
     },

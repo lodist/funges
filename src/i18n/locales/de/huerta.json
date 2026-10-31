@@ -1994,6 +1994,61 @@
     "useShort": "Mein Garten"
   },
   "planner": {
+    "area": {
+      "select": "Bereich auswählen",
+      "done": "Fertig",
+      "hint": "Zieh über die Beete, die du willst."
+    },
+    "pick": {
+      "bed_one": "Ganzes Beet ({{count}})",
+      "bed_other": "Ganzes Beet ({{count}})",
+      "strip_one": "Ganzer Streifen ({{count}})",
+      "strip_other": "Ganzer Streifen ({{count}})",
+      "crop_one": "{{crop}}: alle ({{count}})",
+      "crop_other": "{{crop}}: alle ({{count}})"
+    },
+    "mix": {
+      "empty": "Leer"
+    },
+    "list": {
+      "title": "Was hier wächst",
+      "hint": "Ordnen legt jede Kultur an einem Stück an, Familien zusammen und weg von dort, wo sie die letzten drei Jahre standen.",
+      "full": "Kein freier Teil mehr. Vergrössere den Garten oder nimm eine Kultur aus dem Plan.",
+      "empty": "Noch nichts geplant. Füge eine Kultur hinzu oder lass „Für mich planen“ den Garten füllen.",
+      "add": "Kultur hinzufügen",
+      "arrange": "Ordnen",
+      "sections_one": "{{count}} Teil",
+      "sections_other": "{{count}} Teile",
+      "area": "{{value}} m²",
+      "plants_one": "etwa {{count}} Pflanze",
+      "plants_other": "etwa {{count}} Pflanzen",
+      "feeds_one": "reicht für etwa {{count}} Person",
+      "feeds_other": "reicht für etwa {{count}} Personen",
+      "goesIn": "Kommt am {{date}} in die Erde",
+      "goesNow": "Kommt in die Erde, sobald es geht",
+      "inSince": "In der Erde seit dem {{date}}",
+      "ready": "reif um den {{date}}",
+      "more": "Ein Teil mehr",
+      "less": "Ein Teil weniger",
+      "menu": "Mehr zu {{crop}}",
+      "show": "Auf der Zeichnung zeigen",
+      "rounds": "In Etappen nachsäen",
+      "remove": "Aus dem Plan nehmen",
+      "addTitle": "Kultur hinzufügen",
+      "addText": "Sie kommt neben ihre Familie oder dorthin, wo der Garten frei ist.",
+      "roundsTitle": "{{crop}} in Etappen nachsäen",
+      "roundsText": "Jede Etappe so gross wie diese, neben der vorherigen.",
+      "every": "Alle",
+      "weeks_one": "{{count}} Woche",
+      "weeks_other": "{{count}} Wochen",
+      "times": "Etappen",
+      "fewer": "Eine Etappe weniger",
+      "moreRounds": "Eine Etappe mehr",
+      "dates": "In die Erde am {{dates}}",
+      "room_one": "Platz gab es nur für {{count}} Etappe.",
+      "room_other": "Platz gab es nur für {{count}} Etappen.",
+      "addRounds": "Etappen hinzufügen"
+    },
     "title": "Mein Garten",
     "description": "Dein Garten Beet für Beet, und was er jede Woche von dir braucht: was wohin gesät wird, Pflege, Giessen und Ernte, berechnet für deinen Ort.",
     "sample": "Geplant für einen Beispielort, {{place}}.",
@@ -2190,6 +2245,7 @@
       "lost": "Verloren: {{crops}}"
     },
     "tab": {
+      "list": "Liste",
       "week": "Zu tun",
       "garden": "Garten"
     },
