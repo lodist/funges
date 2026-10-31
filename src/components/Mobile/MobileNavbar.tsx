@@ -47,9 +47,9 @@ const items = [
 // Huerta's own pages; the hub (Settings) is shared and holds the switcher.
 const huertaItems: typeof items = [
   { url: `${basePath}huerta/map`, icon: Map },
-  { url: `${basePath}huerta/planner`, icon: LayoutGrid },
-  { url: `${basePath}huerta/species`, icon: Database },
-  { url: `${basePath}huerta/year`, icon: CalendarRange },
+  { url: `${basePath}huerta/garden-planner`, icon: LayoutGrid },
+  { url: `${basePath}huerta/crops`, icon: Database },
+  { url: `${basePath}huerta/planting-calendar`, icon: CalendarRange },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {

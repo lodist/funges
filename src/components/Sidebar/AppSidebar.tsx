@@ -58,19 +58,19 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
     },
     {
       title: t('huertaPlanner'),
-      url: `${basePath}huerta/planner`,
+      url: `${basePath}huerta/garden-planner`,
       icon: LayoutGrid,
       isActive: false,
     },
     {
       title: t('huertaWeek'),
-      url: `${basePath}huerta/species`,
+      url: `${basePath}huerta/crops`,
       icon: Database,
       isActive: false,
     },
     {
       title: t('huertaYear'),
-      url: `${basePath}huerta/year`,
+      url: `${basePath}huerta/planting-calendar`,
       icon: CalendarRange,
       isActive: false,
     },

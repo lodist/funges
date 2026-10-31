@@ -11,6 +11,20 @@ import {
  */
 export type Space = 'terra' | 'huerta';
 
+/** Huerta's pages took names that say what they are (31 Oct 2026, before
+ *  launch); links, morning alerts and pages remembered from before land on
+ *  the new path, in the same language and with the same query. */
+const RENAMED: Record<string, string> = {
+  species: 'crops',
+  planner: 'garden-planner',
+  year: 'planting-calendar',
+};
+export const renamedPath = (path: string) =>
+  path.replace(
+    /(^|\/)huerta\/(species|planner|year)(?=\/|$)/,
+    (_, before: string, page: string) => `${before}huerta/${RENAMED[page]}`
+  );
+
 /** Where a space opens when it has not been visited yet. */
 export const SPACE_HOME: Record<Space, string> = {
   terra: '/map',
@@ -84,7 +98,7 @@ export const pathForSpace = (space: Space): string => {
     // As above.
   }
   return space === 'huerta' && hasGarden()
-    ? '/huerta/planner'
+    ? '/huerta/garden-planner'
     : SPACE_HOME[space];
 };
 

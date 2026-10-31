@@ -142,7 +142,7 @@ describe('AppSidebar', () => {
         .getAllByRole('menuitem')
         .map(item => item.getAttribute('href'));
     };
-    pathname.current = '/huerta/planner';
+    pathname.current = '/huerta/garden-planner';
     renderSidebar();
     expect(flyout().slice(0, 2)).toEqual(['/huerta/account', '/support']);
     cleanup();
@@ -243,10 +243,10 @@ describe('AppSidebar', () => {
   // Last: a shared page keeps the space a visitor came from (lib/spaces), so a
   // Huerta route here would carry into a later test's /privacy-policy.
   it('lists only its own pages in the Huerta space', () => {
-    pathname.current = '/huerta/species';
+    pathname.current = '/huerta/crops';
     renderSidebar();
 
-    expect(navLinks()).toContain('/huerta/species');
+    expect(navLinks()).toContain('/huerta/crops');
     expect(navLinks()).not.toContain('/map');
     expect(navLinks()).not.toContain('/species');
   });

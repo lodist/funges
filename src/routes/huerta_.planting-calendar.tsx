@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { HuertaGate } from '@/components/HuertaGate';
-import HuertaPage from '@/pages/HuertaPage';
+import HuertaYearPage from '@/pages/HuertaYearPage';
 
-export const Route = createFileRoute('/huerta_/species')({
+export const Route = createFileRoute('/huerta_/planting-calendar')({
   component: () => (
     <HuertaGate>
-      <HuertaPage />
+      <HuertaYearPage />
     </HuertaGate>
   ),
 });

@@ -111,7 +111,7 @@ function cropLinks(lang: IndexedLanguage) {
   return links(
     t('huerta', 'page.allCrops'),
     CROPS.map(crop => ({
-      href: localizedPath(`/huerta/species/${crop.id}/`, lang),
+      href: localizedPath(`/huerta/crops/${crop.id}/`, lang),
       name: t('huerta', `crops.${crop.id}`),
     }))
   );
@@ -216,7 +216,7 @@ function cropPage(crop: (typeof CROPS)[number], lang: IndexedLanguage): Page {
     cropLinks(lang),
   ];
   return {
-    path: localizedPath(`/huerta/species/${crop.id}/`, lang),
+    path: localizedPath(`/huerta/crops/${crop.id}/`, lang),
     lang,
     title: pageTitle(
       t('huerta', 'page.title', {

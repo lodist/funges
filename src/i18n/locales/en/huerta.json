@@ -1,5 +1,5 @@
 {
-  "title": "Species",
+  "title": "Crops",
   "description": "Every crop: whether it goes in this week around your town, how to grow it and what to watch for.",
   "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
   "around": "Around {{place}}, {{day}}",

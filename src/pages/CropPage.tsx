@@ -13,7 +13,7 @@ import {
   pathLanguage,
 } from '@/lib/seo-pages';
 
-/** One crop on a public page (/huerta/species/$id, /de/huerta/species/$id):
+/** One crop on a public page (/huerta/crops/$id, /de/huerta/crops/$id):
  *  how to grow it, for links and search. A garden's own view of it (this
  *  week, its bed) stays behind sign-in. */
 export default function CropPage() {
@@ -22,7 +22,7 @@ export default function CropPage() {
   const { t } = useTranslation('huerta');
   if (!crop) return null;
 
-  const path = `/huerta/species/${crop.id}/`;
+  const path = `/huerta/crops/${crop.id}/`;
   const lang = pathLanguage(window.location.pathname) ?? 'en';
   const name = t(`crops.${crop.id}`);
 
@@ -57,7 +57,7 @@ export default function CropPage() {
         <PageLinks
           title={t('page.allCrops')}
           links={CROPS.map(c => ({
-            href: localizedPath(`/huerta/species/${c.id}/`, lang),
+            href: localizedPath(`/huerta/crops/${c.id}/`, lang),
             name: t(`crops.${c.id}`),
           })).sort((a, b) => a.name.localeCompare(b.name))}
         />
