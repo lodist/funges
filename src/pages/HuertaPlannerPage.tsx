@@ -616,6 +616,12 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                   ),
                 })
               }
+              onForget={at =>
+                update({
+                  ...plan,
+                  past: plan.past?.filter((_, i) => !at.includes(i)),
+                })
+              }
             />
           )}
         </div>
