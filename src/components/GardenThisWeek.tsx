@@ -1,4 +1,5 @@
 import type { ComponentType, ReactNode } from 'react';
+import { SegmentedControl } from '@/components/SegmentedControl';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { taskText, type From } from '@/lib/garden-task-text';
@@ -431,25 +432,15 @@ export function GardenThisWeek({
                   </span>
                 </span>
                 {g.end === 'harvested' ? (
-                  <span
-                    role='group'
-                    aria-label={t('week.season.rate', { crop: name(g.crop) })}
-                    className='flex gap-1'
-                  >
-                    {([1, 2, 3] as const).map(r => (
-                      <Button
-                        key={r}
-                        className='px-2.5 text-xs'
-                        variant={g.rating === r ? 'default' : 'outline'}
-                        aria-pressed={g.rating === r}
-                        onClick={() =>
-                          onRate(at, g.rating === r ? undefined : r)
-                        }
-                      >
-                        {t(`week.season.rating.${r}`)}
-                      </Button>
-                    ))}
-                  </span>
+                  <SegmentedControl
+                    label={t('week.season.rate', { crop: name(g.crop) })}
+                    options={([1, 2, 3] as const).map(r => ({
+                      value: r,
+                      label: t(`week.season.rating.${r}`),
+                    }))}
+                    value={g.rating}
+                    onChange={r => onRate(at, g.rating === r ? undefined : r)}
+                  />
                 ) : null}
               </li>
             ))}
