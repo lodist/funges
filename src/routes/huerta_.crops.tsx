@@ -1,9 +1,9 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { HuertaGate } from '@/components/HuertaGate';
-import HuertaPlannerPage from '@/pages/HuertaPlannerPage';
+import HuertaPage from '@/pages/HuertaPage';
 import { shouldShowHuerta } from '@/lib/feature-flags';
 
-export const Route = createFileRoute('/huerta_/planner')({
+export const Route = createFileRoute('/huerta_/crops')({
   beforeLoad: () => {
     if (!shouldShowHuerta) {
       throw redirect({ to: '/map' });
@@ -11,7 +11,7 @@ export const Route = createFileRoute('/huerta_/planner')({
   },
   component: () => (
     <HuertaGate>
-      <HuertaPlannerPage />
+      <HuertaPage />
     </HuertaGate>
   ),
 });

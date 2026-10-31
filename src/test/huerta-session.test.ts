@@ -27,7 +27,7 @@ describe('signing in to Huerta', () => {
   it('sends the visitor to Google with a handoff and its hash as nonce', async () => {
     const s = await load();
     const go = vi.fn();
-    await s.startSignIn('/huerta/planner', go);
+    await s.startSignIn('/huerta/garden-planner', go);
     const url = new URL(go.mock.calls[0][0]);
     expect(url.origin + url.pathname).toBe(
       'https://accounts.google.com/o/oauth2/v2/auth'
@@ -38,7 +38,7 @@ describe('signing in to Huerta', () => {
     );
     expect(url.searchParams.get('response_type')).toBe('id_token');
     const pending = JSON.parse(sessionStorage.getItem('huerta-signin')!);
-    expect(pending.back).toBe('/huerta/planner');
+    expect(pending.back).toBe('/huerta/garden-planner');
     expect(url.searchParams.get('state')).toBe(pending.handoff);
     expect(url.searchParams.get('nonce')).toBe(await s.sha256(pending.handoff));
   });
@@ -47,12 +47,12 @@ describe('signing in to Huerta', () => {
     const s = await load();
     sessionStorage.setItem(
       'huerta-signin',
-      JSON.stringify({ handoff: HANDOFF, back: '/huerta/planner' })
+      JSON.stringify({ handoff: HANDOFF, back: '/huerta/garden-planner' })
     );
     const fetch = answer({ token: TOKEN, email: 'a@b.c' });
     vi.stubGlobal('fetch', fetch);
     expect(await s.finishSignIn(`#state=${HANDOFF}&id_token=x.y.z`)).toEqual({
-      back: '/huerta/planner',
+      back: '/huerta/garden-planner',
       here: true,
     });
     expect(JSON.parse(String(fetch.mock.calls[0][1]?.body))).toMatchObject({
@@ -72,7 +72,7 @@ describe('signing in to Huerta', () => {
     vi.stubGlobal('fetch', answer({ token: TOKEN, email: 'a@b.c' }));
     expect(
       await s.finishSignIn(`#state=${'cd'.repeat(16)}&id_token=x.y.z`)
-    ).toEqual({ back: '/huerta/species', here: false });
+    ).toEqual({ back: '/huerta/crops', here: false });
   });
 
   it('says why when Google sent no token', async () => {

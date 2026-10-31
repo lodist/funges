@@ -127,7 +127,7 @@ export function morningMessage(
   return {
     title: line(first),
     body: lines.length ? lines.join('\n') : taskText(first.task, t, lang).text,
-    url: `/huerta/planner?garden=${encodeURIComponent(first.id)}`,
+    url: `/huerta/garden-planner?garden=${encodeURIComponent(first.id)}`,
   };
 }
 

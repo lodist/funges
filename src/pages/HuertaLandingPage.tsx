@@ -39,10 +39,10 @@ const heroPhoto = (date: Date) =>
 
 // The year from seed to plate, each step opening the page that does it.
 const STEPS = [
-  { id: 'plan', to: '/huerta/planner' },
-  { id: 'plant', to: '/huerta/species' },
+  { id: 'plan', to: '/huerta/garden-planner' },
+  { id: 'plant', to: '/huerta/crops' },
   { id: 'care', to: '/huerta/map' },
-  { id: 'harvest', to: '/huerta/year' },
+  { id: 'harvest', to: '/huerta/planting-calendar' },
 ] as const;
 
 // A week as the garden page lists it: a sample, the same in every language.
@@ -82,7 +82,7 @@ export default function HuertaLandingPage() {
               <Logo className='h-10 md:h-12' />
             </Link>
             <Link
-              to='/huerta/species'
+              to='/huerta/crops'
               className={`${styles.textLink} focus-ring`}
             >
               {t('landing.headerLink')}
@@ -95,7 +95,7 @@ export default function HuertaLandingPage() {
               <p className={styles.intro}>{t('landing.intro')}</p>
               <div className={styles.choices}>
                 <Button asChild size='lg'>
-                  <Link to='/huerta/planner'>
+                  <Link to='/huerta/garden-planner'>
                     {t('landing.cta')}
                     <ArrowRight className='size-5' />
                   </Link>
@@ -114,7 +114,9 @@ export default function HuertaLandingPage() {
                   variant='outline'
                   className={BAND_OUTLINE_CLASS}
                 >
-                  <Link to='/huerta/year'>{tNav('huertaYear')}</Link>
+                  <Link to='/huerta/planting-calendar'>
+                    {tNav('huertaYear')}
+                  </Link>
                 </Button>
               </div>
               {/* Huerta is new: say so, and where to say what's off. */}
@@ -155,7 +157,7 @@ export default function HuertaLandingPage() {
               </ul>
             </div>
             <Button asChild size='lg'>
-              <Link to='/huerta/planner'>
+              <Link to='/huerta/garden-planner'>
                 {t('landing.cta')}
                 <ArrowRight className='size-5' />
               </Link>
@@ -197,7 +199,7 @@ export default function HuertaLandingPage() {
           <div className={styles.invite}>
             <h2>{t('landing.closing')}</h2>
             <Button asChild size='lg'>
-              <Link to='/huerta/planner'>
+              <Link to='/huerta/garden-planner'>
                 {t('landing.cta')}
                 <ArrowRight className='size-5' />
               </Link>

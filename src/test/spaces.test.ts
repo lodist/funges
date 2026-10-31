@@ -5,6 +5,7 @@ import {
   lastDoor,
   pathForSpace,
   rememberPath,
+  renamedPath,
   spaceForPath,
 } from '@/lib/spaces';
 
@@ -50,7 +51,7 @@ describe('spaces', () => {
       'huerta-gardens',
       JSON.stringify([{ id: 'g', plan: { sections: [] } }])
     );
-    expect(pathForSpace('huerta')).toBe('/huerta/planner');
+    expect(pathForSpace('huerta')).toBe('/huerta/garden-planner');
   });
 
   it("opens the front page's door into the space last used", () => {
@@ -59,11 +60,32 @@ describe('spaces', () => {
     expect(lastDoor()).toBeNull(); // the front page itself is no space
     rememberPath('/map');
     expect(lastDoor()).toBe('/terra/');
-    rememberPath('/huerta/species');
+    rememberPath('/huerta/crops');
     localStorage.setItem(
       'huerta-gardens',
       JSON.stringify([{ id: 'g', plan: { sections: [] } }])
     );
     expect(lastDoor()).toBe('/huerta/'); // the front page, garden or not
+  });
+});
+
+describe("Huerta's renamed pages", () => {
+  it('sends an old path to its new one, in its language, and leaves others', () => {
+    expect(renamedPath('/huerta/planner')).toBe('/huerta/garden-planner');
+    expect(renamedPath('/huerta/year/')).toBe('/huerta/planting-calendar/');
+    expect(renamedPath('/huerta/species')).toBe('/huerta/crops');
+    expect(renamedPath('/huerta/species/tomato/')).toBe(
+      '/huerta/crops/tomato/'
+    );
+    expect(renamedPath('/de/huerta/species/tomato/')).toBe(
+      '/de/huerta/crops/tomato/'
+    );
+    for (const path of [
+      '/huerta/map',
+      '/huerta/crops',
+      '/species',
+      '/huerta/years',
+    ])
+      expect(renamedPath(path)).toBe(path);
   });
 });

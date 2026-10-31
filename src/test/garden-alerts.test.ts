@@ -90,7 +90,7 @@ describe('the morning notification', () => {
     ).toEqual({
       title: 'Frost in the next 3 days',
       body: `Cover ${en.crops.tomato} on the cold nights.`,
-      url: '/huerta/planner?garden=g',
+      url: '/huerta/garden-planner?garden=g',
     });
   });
 
@@ -118,7 +118,7 @@ describe('the morning notification', () => {
       `Home: From your plan, ready to go in: ${en.crops.garlic}`,
       'and 1 more',
     ]);
-    expect(message.url).toBe('/huerta/planner?garden=a');
+    expect(message.url).toBe('/huerta/garden-planner?garden=a');
   });
 
   it('nothing new: no notification', () => {
