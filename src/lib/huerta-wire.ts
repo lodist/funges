@@ -3,6 +3,7 @@
  * browser, so the Worker's morning cron decodes the night's files with the
  * same code.
  */
+import type { Bio, Warm } from '@/lib/growth';
 import type { CropStatus, PlaceAdvice } from '@/lib/huerta';
 import type { MapSoil } from '@/lib/soil';
 
@@ -40,8 +41,20 @@ export interface AdviceResponse {
     firstFrost?: number | null;
     laterFrost?: string;
     laterNight?: string | null;
+    /** The first day, then one byte a day in base64: (C + 30) x 2, 255
+     *  unknown. */
+    warm?: [string, string];
   };
 }
+
+/** The night's daily mean air at a place, from the advice's bytes. */
+export const decodeWarm = ([start, bytes]: [string, string]): Warm => ({
+  start,
+  t: Array.from(atob(bytes), c => {
+    const b = c.charCodeAt(0);
+    return b === 255 ? null : b / 2 - 30;
+  }),
+});
 
 export const decodeAdvice = ({
   day,
@@ -62,6 +75,7 @@ export const decodeAdvice = ({
       ? undefined
       : (FROST[place.laterFrost] ?? 'none'),
   laterNight: place.laterNight ?? null,
+  ...(place.warm ? { warm: decodeWarm(place.warm) } : {}),
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),
@@ -98,6 +112,8 @@ export interface Climate {
   warm10: [number, number] | null;
   warm13: [number, number] | null;
   low: number | null;
+  /** The first light frost (2 C) of autumn, day of the year; 0: none. */
+  light?: number;
 }
 
 /** A place's year: each crop's months, the 12 monthly mean air
@@ -112,12 +128,33 @@ export interface PlaceYear {
   soil?: MapSoil | null;
   climate?: Climate;
   hardy?: Record<string, number | null>;
+  /** The 12 monthly mean sunshine, MJ m-2 day-1. */
+  sun?: number[];
+  /** Per crop, what the calendar's growth model needs (lib/growth); null
+   *  for a crop whose harvest is a season. */
+  bio?: Record<string, Bio | null>;
 }
+
+/** A crop's model parameters as the year files list them (bio_rows). */
+type BioRow = [
+  number,
+  number,
+  number,
+  number,
+  number,
+  Bio['kill'],
+  Bio['end'],
+  number,
+  number,
+  number | null,
+  number,
+];
 
 export interface YearResponse {
   crops: string[];
   /** Per crop, as `crops`. */
   hardy?: (number | null)[];
+  bio?: (BioRow | null)[];
   place: {
     name: string;
     /** Six hex digits per entry of `crops`: sowing months, harvest months. */
@@ -131,8 +168,9 @@ export interface YearResponse {
     soil?: [number, number, number];
     /** First frost, last frost, first hard frost, last hard frost, warm
      *  nights from 10 C start and end, from 13 C start and end (days of the
-     *  year, 0: none), winter low (C or null). */
+     *  year, 0: none), winter low (C or null), first light frost. */
     climate?: (number | null)[];
+    sun?: number[];
   };
 }
 
@@ -152,6 +190,7 @@ const seasonsOf = (code: string) =>
 export const decodeYear = ({
   crops,
   hardy,
+  bio,
   place,
 }: YearResponse): PlaceYear => ({
   place: place.name,
@@ -172,12 +211,41 @@ export const decodeYear = ({
             ? [place.climate[6] ?? 0, place.climate[7]]
             : null,
           low: place.climate[8] ?? null,
+          ...(place.climate[9] !== undefined
+            ? { light: place.climate[9] ?? 0 }
+            : {}),
         },
       }
     : {}),
   ...(hardy
     ? {
         hardy: Object.fromEntries(crops.map((id, i) => [id, hardy[i] ?? null])),
+      }
+    : {}),
+  ...(place.sun ? { sun: place.sun } : {}),
+  ...(bio
+    ? {
+        bio: Object.fromEntries(
+          crops.map((id, i) => {
+            const b = bio[i];
+            return [
+              id,
+              b && {
+                tb: b[0],
+                tlo: b[1],
+                thi: b[2],
+                tmax: b[3],
+                days: b[4],
+                kill: b[5],
+                end: b[6],
+                pick: b[7],
+                strict: Boolean(b[8]),
+                hardy: b[9],
+                night: Boolean(b[10]),
+              },
+            ];
+          })
+        ),
       }
     : {}),
   crops: Object.fromEntries(
