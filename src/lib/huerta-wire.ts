@@ -123,6 +123,8 @@ export interface Climate {
  *  files carry them. */
 export interface PlaceYear {
   place: string;
+  /** The place's latitude, when the Worker gives it. */
+  lat?: number;
   crops: Record<string, CropYear>;
   temps?: number[];
   soil?: MapSoil | null;
@@ -157,6 +159,7 @@ export interface YearResponse {
   bio?: (BioRow | null)[];
   place: {
     name: string;
+    lat?: number;
     /** Six hex digits per entry of `crops`: sowing months, harvest months. */
     months: string;
     /** The crops sown in more than one season, by index in `crops`: seven
@@ -194,6 +197,7 @@ export const decodeYear = ({
   place,
 }: YearResponse): PlaceYear => ({
   place: place.name,
+  ...(place.lat !== undefined ? { lat: place.lat } : {}),
   temps: place.temps,
   soil: place.soil
     ? { ph: place.soil[0], clay: place.soil[1], sand: place.soil[2] }

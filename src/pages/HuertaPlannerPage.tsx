@@ -60,7 +60,6 @@ import {
   ACIDITIES,
   forSoil,
   gardenSoil,
-  soilTemps,
   TEXTURES,
   textureOf,
 } from '@/lib/soil';
@@ -100,6 +99,7 @@ import {
 } from '@/lib/planner';
 import {
   growth,
+  growIn,
   coverUntil,
   due,
   fate,
@@ -108,6 +108,7 @@ import {
   stageHarvest,
   stageOn,
   type Fate,
+  type Grow,
   type GrowthStage,
 } from '@/lib/garden-week';
 import type { PlaceYear } from '@/lib/huerta-wire';
@@ -215,8 +216,9 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   // This week's statuses for the garden's own soil (lib/soil).
   const soil = gardenSoil(plan?.garden, year?.soil);
   const advice = forSoil(placeAdvice, needs, soil.texture, today());
-  // The place's monthly warmth as the garden's soil grows crops (lib/soil).
-  const temps = year?.temps && soilTemps(year.temps, soil.texture);
+  // How crops grow here: the calendar's model, fed by the warmth they have
+  // had, with the garden's soil (lib/garden-week growIn).
+  const grow = growIn(year, soil.texture, placeAdvice.warm);
   // Where the simulator reads what kills a crop at the place.
   const site = { year, frost: advice };
   // The visitor's own advice, when they chose a place; else the sample at once.
@@ -355,10 +357,10 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   // comes out, to set against the day it really was.
   const said = (x: Section) => {
     const need = x.crop ? needs[x.crop] : undefined;
-    if (!x.crop || !x.planted || !temps || !need?.days || CROP[x.crop]?.note)
+    if (!x.crop || !x.planted || !grow || !need?.days || CROP[x.crop]?.note)
       return null;
     const dies = fate(x.crop, need, x.planted, site);
-    return readyDay(x.crop, need, temps, x.planted, dies?.day);
+    return readyDay(x.crop, need, grow, x.planted, dies?.day);
   };
   // Planted sections taken out today, and what goes in now planned in their
   // place (not a family that grew there in the last year). A harvest takes
@@ -366,14 +368,14 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const end = (ids: number[], how: Grown['end'], why?: LostTo) => {
     if (!plan) return;
     const ripe =
-      how === 'harvested' && temps
+      how === 'harvested' && grow
         ? ids.filter(i => {
             const x = plan.sections[i];
             return ['ready', 'bare'].includes(
               stageOn(
                 x,
                 needs,
-                temps,
+                grow,
                 stageHarvest(year, x.crop ?? ''),
                 today(),
                 today(),
@@ -413,8 +415,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   // A planted crop's stage, from the warmth it has had at the place since.
   const stageOf = (s: Section): Stage => {
     const need = s.crop ? needs[s.crop] : undefined;
-    if (!s.crop || !s.planted || !need?.days || !temps) return 'grown';
-    const done = growth(s.crop, need, temps, s.planted, today());
+    if (!s.crop || !s.planted || !need?.days || !grow) return 'grown';
+    const done = growth(s.crop, need, grow, s.planted, today());
     return done < 0.3 ? 'seedling' : done < 0.75 ? 'young' : 'grown';
   };
   const count = (s: Section) => {
@@ -458,7 +460,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const view = tabs ? tab : null;
   // The timeline's day: each section's stage then, and the drawing that day.
   const stages =
-    later && temps
+    later && grow
       ? plan.sections.map(x =>
           // Planned, its day come, but it can't grow here: it won't go in.
           // (One put in too late grows until the place's climate ends it.)
@@ -467,7 +469,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
             : stageOn(
                 x,
                 needs,
-                temps,
+                grow,
                 stageHarvest(year, x.crop ?? ''),
                 addDays(today(), 7 * later),
                 today(),
@@ -482,12 +484,12 @@ function Planner({ onMoved }: { onMoved: () => void }) {
       : Boolean(
           x.crop &&
           x.planted &&
-          temps &&
+          grow &&
           ['bare', 'lost'].includes(
             stageOn(
               x,
               needs,
-              temps,
+              grow,
               stageHarvest(year, x.crop),
               today(),
               today(),
@@ -921,7 +923,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                     {t('planner.noRoom')}
                   </p>
                 )}
-                {temps ? (
+                {grow ? (
                   <Timeline
                     weeks={weeks}
                     onWeeks={setWeeks}
@@ -1087,7 +1089,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                       harvest={
                         s.crop ? year?.crops[s.crop]?.harvest : undefined
                       }
-                      temps={temps}
+                      grow={grow}
                       year={year}
                       need={s.crop ? needs[s.crop] : undefined}
                       count={count}
@@ -1571,7 +1573,7 @@ function SectionPanel({
   advice,
   need,
   harvest,
-  temps,
+  grow,
   year,
   count,
   onSwap,
@@ -1592,8 +1594,8 @@ function SectionPanel({
   need?: CropNeeds;
   /** The crop's harvest months at the place (bit 0 = January), when known. */
   harvest?: number;
-  /** The place's monthly mean temperatures, when known. */
-  temps?: number[];
+  /** How crops grow at the place (growIn), when known. */
+  grow?: Grow | null;
   /** The place's year (its climate and the crops' hardiness), when known. */
   year?: PlaceYear | null;
   count: (s: Section) => string;
@@ -1638,7 +1640,7 @@ function SectionPanel({
     const dies = crop ? fate(crop.id, need, from, site) : null;
     if (!dies || !crop) return null;
     if (!need?.days) return dies;
-    return temps && growth(crop.id, need, temps, from, dies.day) < 1
+    return grow && growth(crop.id, need, grow, from, dies.day) < 1
       ? dies
       : null;
   };
@@ -1650,11 +1652,11 @@ function SectionPanel({
   // The day it is ready, from the warmth since its planted (or planned) day;
   // none when it dies first.
   const readyOn =
-    crop && !crop.note && !gone && temps && need?.days
+    crop && !crop.note && !gone && grow && need?.days
       ? readyDay(
           crop.id,
           need,
-          temps,
+          grow,
           start,
           fate(crop.id, need, start, site)?.day
         )
