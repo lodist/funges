@@ -1994,6 +1994,29 @@
     "useShort": "My garden"
   },
   "planner": {
+    "family": {
+      "legumes": "Legumes",
+      "brassicas": "Cabbage family",
+      "leaves": "Leaves and roots",
+      "alliums": "Onion family",
+      "fruiting": "Fruiting crops",
+      "flowers": "Flowers",
+      "herbs": "Herbs",
+      "fruit": "Fruit",
+      "cover": "Green manures",
+      "other": "Others"
+    },
+    "view": {
+      "label": "How the garden is drawn",
+      "model": "3D",
+      "plan": "Plan"
+    },
+    "bedNo": "Select bed {{n}}",
+    "stripNo": "Select strip {{n}}",
+    "many": {
+      "join": "Join",
+      "split": "Split each in two"
+    },
     "move": "Move the drawing",
     "area": {
       "short": "Select",

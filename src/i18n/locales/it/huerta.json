@@ -1994,6 +1994,29 @@
     "useShort": "Il mio orto"
   },
   "planner": {
+    "family": {
+      "legumes": "Legumi",
+      "brassicas": "Cavoli",
+      "leaves": "Foglie e radici",
+      "alliums": "Agli e cipolle",
+      "fruiting": "Ortaggi da frutto",
+      "flowers": "Fiori",
+      "herbs": "Erbe",
+      "fruit": "Frutta",
+      "cover": "Sovesci",
+      "other": "Altro"
+    },
+    "view": {
+      "label": "Come si disegna l'orto",
+      "model": "3D",
+      "plan": "Pianta"
+    },
+    "bedNo": "Seleziona l'aiuola {{n}}",
+    "stripNo": "Seleziona la striscia {{n}}",
+    "many": {
+      "join": "Unisci",
+      "split": "Dividi ognuna in due"
+    },
     "move": "Sposta il disegno",
     "area": {
       "short": "Seleziona",

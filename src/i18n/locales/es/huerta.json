@@ -1994,6 +1994,29 @@
     "useShort": "Mi huerto"
   },
   "planner": {
+    "family": {
+      "legumes": "Legumbres",
+      "brassicas": "Coles",
+      "leaves": "Hojas y raíces",
+      "alliums": "Ajos y cebollas",
+      "fruiting": "Hortalizas de fruto",
+      "flowers": "Flores",
+      "herbs": "Hierbas",
+      "fruit": "Fruta",
+      "cover": "Abonos verdes",
+      "other": "Otros"
+    },
+    "view": {
+      "label": "Cómo se dibuja el huerto",
+      "model": "3D",
+      "plan": "Plano"
+    },
+    "bedNo": "Seleccionar el bancal {{n}}",
+    "stripNo": "Seleccionar la franja {{n}}",
+    "many": {
+      "join": "Unir",
+      "split": "Dividir cada una en dos"
+    },
     "move": "Mover el dibujo",
     "area": {
       "short": "Seleccionar",

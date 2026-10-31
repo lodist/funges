@@ -11,6 +11,8 @@ import {
   finish,
   fit,
   inMonth,
+  joinSections,
+  splitSections,
   withinLimits,
   MAX_LENGTH,
   MAX_WIDTH,
@@ -508,5 +510,38 @@ describe("the planner's size", () => {
       sections: [],
     };
     expect(withinLimits(small)).toBe(small);
+  });
+});
+
+describe('joining and splitting many sections', () => {
+  const beds = layout({ width: 6, length: 4.5, shape: 'rect' });
+  const bed0 = beds.flatMap((s, i) => (s.bed === 0 ? [i] : []));
+
+  it("joins a bed's chosen sections that follow one another, keeping the first's crop", () => {
+    const sections = beds.map((s, i) =>
+      i === bed0[0] ? { ...s, crop: 'tomato' } : s
+    );
+    const { sections: out, ids } = joinSections(sections, bed0);
+    expect(out.filter(s => s.bed === 0)).toHaveLength(1);
+    expect(ids).toHaveLength(1);
+    expect(out[ids[0]]).toMatchObject({ crop: 'tomato', part: 0, parts: 1 });
+    expect(out[ids[0]].y0).toBe(beds[bed0[0]].y0);
+    expect(out[ids[0]].y1).toBe(beds[bed0[bed0.length - 1]].y1);
+    // Sections apart, or in other beds, stay as they are.
+    const other = beds.findIndex(s => s.bed === 1);
+    const apart = joinSections(beds, [bed0[0], other]);
+    expect(apart.sections).toHaveLength(beds.length);
+  });
+
+  it('splits each chosen section in two, the halves chosen; none under 30 cm', () => {
+    const { sections: out, ids } = splitSections(beds, bed0);
+    expect(out.filter(s => s.bed === 0)).toHaveLength(bed0.length * 2);
+    expect(ids).toHaveLength(bed0.length * 2);
+    const again = splitSections(out, ids);
+    const thrice = splitSections(again.sections, again.ids);
+    const shortest = Math.min(
+      ...thrice.sections.filter(s => s.bed === 0).map(s => s.y1 - s.y0)
+    );
+    expect(shortest).toBeGreaterThanOrEqual(0.3 - 1e-9);
   });
 });

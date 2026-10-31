@@ -1994,6 +1994,29 @@
     "useShort": "Mon potager"
   },
   "planner": {
+    "family": {
+      "legumes": "Légumineuses",
+      "brassicas": "Choux",
+      "leaves": "Feuilles et racines",
+      "alliums": "Alliacées",
+      "fruiting": "Légumes-fruits",
+      "flowers": "Fleurs",
+      "herbs": "Aromatiques",
+      "fruit": "Fruits",
+      "cover": "Engrais verts",
+      "other": "Autres"
+    },
+    "view": {
+      "label": "Façon de dessiner le potager",
+      "model": "3D",
+      "plan": "Plan"
+    },
+    "bedNo": "Sélectionner la planche {{n}}",
+    "stripNo": "Sélectionner la bande {{n}}",
+    "many": {
+      "join": "Réunir",
+      "split": "Couper chacune en deux"
+    },
     "move": "Déplacer le dessin",
     "area": {
       "short": "Sélectionner",
