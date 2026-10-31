@@ -245,8 +245,9 @@ export function fetchMapLayer(region: MapRegion, day: string, layer: string) {
 const YEAR_KEY = 'huerta-year';
 const YEAR_DAYS = 1; // a rebuilt year reaches the device the next day
 // The year files' shape: a year kept in an older one is asked for again at
-// once (2: each crop's sowing seasons), and stands in only while offline.
-const YEAR_FORMAT = 2;
+// once (2: each crop's sowing seasons; 3: what a planted crop's growth needs,
+// lib/growth), and stands in only while offline.
+const YEAR_FORMAT = 3;
 
 /** The nearest place's year. Kept on the device for a day, then asked for
  *  again past the browser's own cache; the kept one stands in while the

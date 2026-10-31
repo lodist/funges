@@ -156,16 +156,15 @@ const after = (day1: number, h: number) => {
   return mod(h, YEAR) <= d ? base + d : base + YEAR + d;
 };
 
-/** The place's model inputs from its year and garden place; null where the
- *  year files carry no sunshine (a year kept from before the model). */
+/** The place's model inputs from its year; null where the year files carry
+ *  no sunshine (a year kept from before the model). */
 export function growthPlace(
-  year: PlaceYear | null | undefined,
-  lat: number
+  year: PlaceYear | null | undefined
 ): GrowthPlace | null {
   if (!year?.temps || !year.sun || !year.climate) return null;
   const c = year.climate;
   return {
-    lat,
+    lat: year.lat ?? 45,
     temps: year.temps,
     sun: year.sun,
     light: c.light ?? 0,
