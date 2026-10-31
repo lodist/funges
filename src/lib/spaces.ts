@@ -1,6 +1,8 @@
 import { shouldShowHuerta } from '@/lib/feature-flags';
 import {
+  cropOfPath,
   localizedPath,
+  pathLanguage,
   stripLanguage,
   type IndexedLanguage,
 } from '@/lib/seo-pages';
@@ -20,11 +22,18 @@ const RENAMED: Record<string, string> = {
   planner: 'garden-planner',
   year: 'planting-calendar',
 };
-export const renamedPath = (path: string) =>
-  path.replace(
+export function renamedPath(path: string) {
+  const renamed = path.replace(
     /(^|\/)huerta\/(species|planner|year)(?=\/|$)/,
     (_, before: string, page: string) => `${before}huerta/${RENAMED[page]}`
   );
+  // A crop's page under an older path (its id's underscore, English words
+  // under /de): the path its language gives it now.
+  if (!cropOfPath(renamed)) return renamed;
+  const page = localizedPath(renamed, pathLanguage(renamed) ?? 'en');
+  const bare = (p: string) => p.replace(/\/$/, '');
+  return bare(page) === bare(renamed) ? renamed : page;
+}
 
 /** Where a space opens when it has not been visited yet. */
 export const SPACE_HOME: Record<Space, string> = {

@@ -1,13 +1,13 @@
 import { createFileRoute, notFound, redirect } from '@tanstack/react-router';
 import CropPage from '@/pages/CropPage';
-import { CROPS } from '@/lib/huerta';
+import { cropOfPath } from '@/lib/seo-pages';
 import { shouldShowHuerta } from '@/lib/feature-flags';
 
 // The public crop page in German, for search: the path sets the language.
-export const Route = createFileRoute('/de_/huerta_/crops_/$id')({
-  beforeLoad: ({ params }) => {
+export const Route = createFileRoute('/de_/huerta_/pflanzen_/$id')({
+  beforeLoad: ({ location }) => {
     if (!shouldShowHuerta) throw redirect({ to: '/map' });
-    if (!CROPS.some(c => c.id === params.id)) throw notFound();
+    if (!cropOfPath(location.pathname)) throw notFound();
   },
   component: CropPage,
 });

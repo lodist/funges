@@ -4,6 +4,8 @@
  * build step that writes each page's static HTML (scripts/seo-pages.ts), so it
  * imports nothing through `@/`.
  */
+import { CROP_DE } from './crop-slugs';
+
 export const INDEXED_LANGUAGES = ['en', 'de'] as const;
 export type IndexedLanguage = (typeof INDEXED_LANGUAGES)[number];
 
@@ -26,9 +28,35 @@ export function stripLanguage(pathname: string): string {
   return withSlash(lang ? pathname.slice(lang.length + 1) || '/' : pathname);
 }
 
+// A crop's page has the language's own words in its path, which search
+// engines read: /huerta/crops/broad-beans/, /de/huerta/pflanzen/dicke-bohnen/
+// (a hyphen keeps two words apart, an underscore runs them together).
+const CROP_PAGE = /^\/huerta\/(crops|pflanzen)\/([^/]+)\/$/;
+const CROP_IDS = new Set(Object.keys(CROP_DE));
+const CROP_BY_DE = new Map(
+  Object.entries(CROP_DE).map(([id, word]) => [word, id])
+);
+const CROP_PATH: Record<IndexedLanguage, (id: string) => string> = {
+  en: id => `/huerta/crops/${id.replace(/_/g, '-')}/`,
+  de: id => `/de/huerta/pflanzen/${CROP_DE[id]}/`,
+};
+
+/** The crop a page's path is for, in any language and under its older
+ *  forms (its id, the English words under /de); null for any other page. */
+export function cropOfPath(pathname: string): string | null {
+  const match = CROP_PAGE.exec(stripLanguage(pathname));
+  if (!match) return null;
+  const [, list, word] = match;
+  const id =
+    list === 'pflanzen' ? CROP_BY_DE.get(word) : word.replace(/-/g, '_');
+  return id && CROP_IDS.has(id) ? id : null;
+}
+
 /** A page's path in a language, ending in a slash (GitHub Pages serves folders). */
 export function localizedPath(path: string, lang: IndexedLanguage): string {
   const bare = stripLanguage(path);
+  const crop = cropOfPath(bare);
+  if (crop) return CROP_PATH[lang](crop);
   return lang === 'en' ? bare : `/${lang}${bare}`;
 }
 
