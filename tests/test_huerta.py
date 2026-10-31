@@ -1,4 +1,5 @@
 """Huerta's garden rules on made-up places (one year of climate each), and the area files."""
+import base64
 import json
 
 import numpy as np
@@ -167,3 +168,46 @@ def test_windows_decide_and_the_week_holds_back():
     assert autumn["peas"].tolist() == ["wait_soil", "too_late"]
     # A crop the windows don't hold keeps the rules.
     assert huerta.advise(places, CROPS, 145, win)["garlic"].tolist() == huerta.rules(places, CROPS, 145)["garlic"].tolist()
+
+
+def _hours(start, n, t, lat=47.16, lon=8.55):
+    return pd.DataFrame({"time": pd.date_range(start, periods=n, freq="h", tz="UTC"), "lat": lat, "lon": lon,
+                         "t2m_c": t})
+
+
+def test_daily_air_keeps_the_past_and_adds_today_and_the_forecast(tmp_path, monkeypatch):
+    import hourly_weather
+    monkeypatch.setattr(hourly_weather, "OUT_DIR", tmp_path)
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    _hours("2026-10-28 01:00", 24, 8.0).to_parquet(past / "2026-10-28.parquet")
+    _hours("2026-10-29 01:00", 24, 10.0).to_parquet(past / "2026-10-29.parquet")
+    _hours("2026-10-30 01:00", 18, 12.0).to_parquet(past / "2026-10-30.parquet")   # up to tonight's run
+    forecast = _hours("2026-10-30 19:00", 48, 14.0)                               # 30th's evening on; 1st cut short
+    air = huerta.daily_air("SE", forecast)
+    assert list(air.columns) == ["2026-10-28", "2026-10-29", "2026-10-30", "2026-10-31"]
+    assert air.loc[(47.16, 8.55)].tolist() == [8.0, 10.0, 12.5, 14.0]             # today: 18 past hours, 6 forecast
+    with np.load(tmp_path / "SE" / "daily_air.npz") as z:                          # the store keeps the past days
+        assert z["days"].tolist() == ["2026-10-28", "2026-10-29"]
+    # The next night: the store's days, the day it lacks, a gap where a night had no weather.
+    (past / "2026-10-28.parquet").unlink()
+    _hours("2026-11-01 01:00", 24, 9.0).to_parquet(past / "2026-11-01.parquet")
+    air = huerta.daily_air("SE", _hours("2026-11-02 01:00", 24, 6.0))
+    assert list(air.columns)[0] == "2026-10-28" and np.isnan(air.loc[(47.16, 8.55), "2026-10-31"])
+    assert air.loc[(47.16, 8.55), ["2026-11-01", "2026-11-02"]].tolist() == [9.0, 6.0]
+
+
+def test_area_files_carry_each_places_daily_air():
+    assert huerta.warm_bytes([-30, 0, 20.3, np.nan, 100]).tolist() == [0, 60, 101, 255, 254]
+    places = pd.DataFrame({
+        "Location_Id": ["Zug_47.160_8.550", "Baar_47.200_8.525"], "Latitude": [47.16, 47.2], "Longitude": [8.55, 8.525],
+        "frost3": [5.0, 5.0], "soil3": [10.0, 10.0], "night7": [6.0, 6.0], "rain7": [4.0, 4.0], "et07": [6.0, 6.0],
+        "last0_median": [116, 116], "first0_median": [319, 319], "frostw": [5.0, 5.0], "frostw_night": [None, None],
+    })
+    advice = pd.DataFrame({"garlic": ["now", "now"]})
+    air = pd.DataFrame([[8.0, np.nan, 12.5]], columns=["2026-10-28", "2026-10-29", "2026-10-30"],
+                       index=pd.MultiIndex.from_tuples([(47.16, 8.55)], names=["key_lat", "key_lon"]))
+    rows = json.loads(huerta.area_files(places, advice, "2026-10-31", air)["47_8.json"])["places"]
+    first, b64 = rows[0][13]
+    assert first == "2026-10-28" and list(base64.b64decode(b64)) == [76, 255, 85]
+    assert rows[1][13] is None                                                    # no weather known there
