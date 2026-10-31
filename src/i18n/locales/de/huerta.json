@@ -2222,6 +2222,8 @@
   "year": {
     "title": "Kalender",
     "seoTitle": "Pflanzkalender für deinen Ort",
+    "failed": "Der Kalender konnte nicht laden. Versuch es gleich noch einmal.",
+    "none": "Hier gibt es keinen Huerta-Kalender. Versuch einen Ort in der Nähe.",
     "description": "Wann jede Kultur bei dir gesät, gepflanzt und geerntet wird, berechnet aus deinem Klima.",
     "around": "Rund um {{place}}, in einem typischen Jahr.",
     "noPlace": "Wähle deinen Ort, um sein Jahr zu sehen.",

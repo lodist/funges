@@ -7,7 +7,7 @@ import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
-import { useHuertaYear } from '@/hooks/use-huerta-year';
+import { useHuertaYearLoad } from '@/hooks/use-huerta-year';
 import { CROPS, huertaImage, KINDS } from '@/lib/huerta';
 import type { Season } from '@/lib/huerta-wire';
 import {
@@ -31,7 +31,7 @@ export default function HuertaYearPage() {
 
 function Calendar({ onMoved }: { onMoved: () => void }) {
   const { t, i18n } = useTranslation('huerta');
-  const year = useHuertaYear();
+  const { year, state, retry } = useHuertaYearLoad();
   const hasPlace = huertaApiConfigured && savedPlace() !== null;
   // Choosing the place, open under the header: at once without one (the
   // calendar is public, a first visit has none).
@@ -128,6 +128,16 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
 
         {!hasPlace ? (
           <p className='text-foreground'>{t('year.noPlace')}</p>
+        ) : !year && state === 'failed' ? (
+          // The Worker out of reach: say so, and ask again on a tap.
+          <div className='flex flex-col items-start gap-4'>
+            <p className='text-foreground'>{t('year.failed')}</p>
+            <Button variant='outline' onClick={retry}>
+              {t('signin.retry')}
+            </Button>
+          </div>
+        ) : !year && state === 'none' ? (
+          <p className='text-foreground'>{t('year.none')}</p>
         ) : !year ? (
           <SkeletonGroup>
             <Skeleton className='h-96 w-full rounded-card' />

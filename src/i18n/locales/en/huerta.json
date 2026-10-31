@@ -2222,6 +2222,8 @@
   "year": {
     "title": "Calendar",
     "seoTitle": "Planting calendar for where you live",
+    "failed": "The calendar could not load. Try again in a moment.",
+    "none": "No Huerta calendar here. Try a town nearby.",
     "description": "When each crop is sown, planted and harvested at your own place, worked out from its climate.",
     "around": "Around {{place}}, in a typical year.",
     "noPlace": "Choose your place to see its year.",
