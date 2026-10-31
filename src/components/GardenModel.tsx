@@ -652,10 +652,18 @@ export function GardenModel({
       };
       beds.forEach(bed => {
         const n = bed.parts[0].bed;
-        const cx = across
-            ? -PLAN_MARGIN * 0.5 * S
-            : ((bed.x0 + bed.x1) / 2) * S,
-          cy = across ? ((bed.y0 + bed.y1) / 2) * S : -PLAN_MARGIN * 0.5 * S;
+        // At its outer end: the north (west) one, unless another bed lies
+        // before it in its line (an L's lower part), then the other.
+        const behind = beds.some(o =>
+          across
+            ? o !== bed && o.y0 < bed.y1 && o.y1 > bed.y0 && o.x1 <= bed.x0
+            : o !== bed && o.x0 < bed.x1 && o.x1 > bed.x0 && o.y1 <= bed.y0
+        );
+        const outer = behind
+          ? ((across ? W : L) + PLAN_MARGIN * 0.5) * S
+          : -PLAN_MARGIN * 0.5 * S;
+        const cx = across ? outer : ((bed.x0 + bed.x1) / 2) * S,
+          cy = across ? ((bed.y0 + bed.y1) / 2) * S : outer;
         nodes.push(
           <g
             key={`no${n}`}
