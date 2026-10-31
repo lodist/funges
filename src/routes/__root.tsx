@@ -17,7 +17,7 @@ import { recordPath } from '@/lib/nav-history';
 import { crossesIsolationBoundary } from '@/lib/isolation';
 import { activateUpdate, isOutdated } from '@/lib/pwa';
 import { currentSpace, rememberPath, renamedPath } from '@/lib/spaces';
-import { pathLanguage, stripLanguage } from '@/lib/seo-pages';
+import { localizedPath, pathLanguage, stripLanguage } from '@/lib/seo-pages';
 import i18n from '@/i18n';
 
 // Evaluated once per document load: the route this document was served for.
@@ -80,7 +80,7 @@ function RootComponent() {
     const moved = (language: string) => {
       const prefix = pathLanguage(window.location.pathname);
       if (prefix && !language.startsWith(prefix))
-        void navigate({ to: stripLanguage(window.location.pathname) });
+        void navigate({ to: localizedPath(window.location.pathname, 'en') });
     };
     i18n.on('languageChanged', moved);
     return () => i18n.off('languageChanged', moved);

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   alternates,
+  cropOfPath,
   cropPageDescription,
   localizedPath,
   pageTitle,
@@ -22,6 +23,37 @@ describe('seo-pages', () => {
     );
     expect(localizedPath('/', 'de')).toBe('/de/');
     expect(localizedPath('/', 'en')).toBe('/');
+  });
+
+  it("gives a crop's page the language's words, hyphens between them", () => {
+    expect(localizedPath('/huerta/crops/broad_beans/', 'en')).toBe(
+      '/huerta/crops/broad-beans/'
+    );
+    expect(localizedPath('/huerta/crops/broad_beans/', 'de')).toBe(
+      '/de/huerta/pflanzen/dicke-bohnen/'
+    );
+    expect(localizedPath('/de/huerta/pflanzen/moehre/', 'en')).toBe(
+      '/huerta/crops/carrot/'
+    );
+    expect(localizedPath('/huerta/crops/', 'de')).toBe('/de/huerta/crops/');
+    expect(
+      alternates('/de/huerta/pflanzen/dicke-bohnen/', 'https://www.fung.es')
+    ).toEqual(alternates('/huerta/crops/broad-beans/', 'https://www.fung.es'));
+    // Its crop from any form of its path; none for an unknown word.
+    expect(cropOfPath('/huerta/crops/brussels-sprouts')).toBe(
+      'brussels_sprouts'
+    );
+    expect(cropOfPath('/de/huerta/pflanzen/rosenkohl/')).toBe(
+      'brussels_sprouts'
+    );
+    expect(cropOfPath('/de/huerta/crops/tomato/')).toBe('tomato');
+    for (const path of [
+      '/huerta/crops/',
+      '/huerta/crops/constructor/',
+      '/de/huerta/pflanzen/tomato/',
+      '/species/porcini/',
+    ])
+      expect(cropOfPath(path), path).toBeNull();
   });
 
   it('reads the language from the path, null when unprefixed', () => {
