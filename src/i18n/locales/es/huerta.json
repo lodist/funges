@@ -3,6 +3,8 @@
   "description": "Cada cultivo: si va a la tierra esta semana en tu localidad, cómo cultivarlo y qué vigilar.",
   "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
   "around": "Alrededores de {{place}}, {{day}}",
+  "offline": "Sin conexión: consejos del {{day}}",
+  "offlineShort": "Sin conexión",
   "change": "Cambiar de lugar",
   "find": {
     "placeholder": "Buscar un cultivo",
