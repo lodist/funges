@@ -217,6 +217,13 @@
     },
     "season": {
       "title": "Questa stagione",
+      "forget": {
+        "remove": "Rimuovi",
+        "label": "Rimuovi {{crop}} dall'elenco della stagione",
+        "ask": "Toglierlo dall'elenco?",
+        "yes": "Sì",
+        "no": "No"
+      },
       "entries_one": "{{count}} voce",
       "entries_other": "{{count}} voci",
       "harvested": "Dentro il {{from}}, fuori il {{to}}",
