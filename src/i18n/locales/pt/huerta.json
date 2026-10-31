@@ -415,7 +415,9 @@
       "spring_flowers_at": "Floresce a partir de {{month}}, na primavera após plantar"
     },
     "source": "Dados de cultivo: RHS, UC ANR e guias de semeadura das empresas de sementes.",
-    "year": "O ano dele em {{place}}"
+    "year": "O ano dele em {{place}}",
+    "viewOnMap": "Ver no mapa",
+    "viewOnCalendar": "Ver no calendário"
   },
   "grow": {
     "weather": "Frio, calor e solo",

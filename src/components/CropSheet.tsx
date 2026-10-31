@@ -1,4 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react';
+import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import {
   Dialog,
@@ -8,6 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   cropReasons,
   weekday,
@@ -23,7 +25,7 @@ import type { PlaceYear } from '@/lib/huerta-wire';
 import { nextYear, partners, type Plan } from '@/lib/planner';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import { gardenSoil, type Acidity } from '@/lib/soil';
-import { Check, Clock } from '@/lib/icons';
+import { CalendarRange, Check, Clock, MapPin } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { MonthCell } from '@/components/MonthCell';
 
@@ -197,6 +199,23 @@ export function CropBody({
         {t('sheet.source')}
         {guide ? ` ${t(`grow.${crop.id}.source`)}` : null}
       </p>
+
+      {/* As Terra's species sheet ends: the crop on the map, and its row in
+          the calendar. */}
+      <div className='flex flex-wrap gap-3'>
+        <Button asChild>
+          <Link to='/huerta/map' search={{ crop: crop.id }}>
+            <MapPin />
+            {t('sheet.viewOnMap')}
+          </Link>
+        </Button>
+        <Button asChild variant='outline'>
+          <Link to='/huerta/planting-calendar' search={{ crop: crop.id }}>
+            <CalendarRange />
+            {t('sheet.viewOnCalendar')}
+          </Link>
+        </Button>
+      </div>
     </Shell>
   );
 }
