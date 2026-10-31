@@ -415,7 +415,9 @@
       "spring_flowers_at": "Fleurit dès {{month}}, au printemps après la plantation"
     },
     "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers.",
-    "year": "Son année autour de {{place}}"
+    "year": "Son année autour de {{place}}",
+    "viewOnMap": "Voir sur la carte",
+    "viewOnCalendar": "Voir dans le calendrier"
   },
   "grow": {
     "weather": "Froid, chaleur et sol",
