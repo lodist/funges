@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Common Plantain",
-      "description": "A low-growing plant with broad oval leaves and tall flower spikes",
-      "howTo": "Found in lawns, meadows, and disturbed areas during growing season"
+      "description": "A low plant with broad oval leaves and tall flower spikes.",
+      "howTo": "Found in lawns, meadows and disturbed areas during growing season",
+      "guide": {
+        "identify": "Common plantain grows as a flat rosette of broad, oval leaves on short, wide stalks. Each leaf has three to seven strong veins. They run side by side from base to tip. Snap a leaf stalk and they pull out as tough strings. From early summer, leafless stalks carry long, narrow rat-tail spikes of tiny greenish flowers. Later these fill with small brown seeds. Foxglove is deadly and its first-year rosette is the one to watch for. It has soft, hairy, wrinkled leaves with a net of veins and no strings. Foxglove leaves have been sold by mistake as plantain.",
+        "habitat": "Look on lawns, paths, farm tracks, field edges, meadows and gardens. It grows wherever the ground is trampled and compacted. It is native to Europe and Asia and common all over Europe. It is also common across the whole of the US, where it came with European settlers.",
+        "season": "New leaves appear from early spring to autumn. They are most tender in spring and after mowing. Flower spikes rise from early summer and the seeds ripen into autumn.",
+        "picking": "Pick young leaves from the centre of the rosette, a few from each plant. Leave the root in the ground. Avoid roadsides and paths used by dogs. Also avoid lawns or verges that may have been sprayed with weedkiller.",
+        "kitchen": "Once you're certain it's plantain, you can put young leaves raw into salads. Older leaves are tough and stringy. Blanch them or cook them like spinach and pull out the strings. The taste is mild, grassy and slightly bitter. NC State Extension notes that very large amounts can lower blood pressure. So eat it as one green among others.",
+        "keeps": "The leaves wilt fast. Keep them in a bag in the fridge for a day or two, or dry them in the shade for tea.",
+        "source": "Identification, habitat and season: NC State Extension, Michigan State University Extension and UC IPM. Foxglove mix-up: US FDA (1997). Kitchen: NC State Extension."
+      }
     },
     "it": {
       "name": "Piantaggine Comune",
-      "description": "Una pianta bassa con foglie larghe e ovali e alte spighe di fiori",
-      "howTo": "Trovata in prati, praterie e aree disturbate durante la stagione di crescita"
+      "description": "Una pianta bassa dalle foglie larghe e ovali, con alte spighe di fiori.",
+      "howTo": "Trovata in prati, praterie e aree disturbate durante la stagione di crescita",
+      "guide": {
+        "identify": "La piantaggine comune forma una rosetta piatta di foglie larghe e ovali, su piccioli corti e larghi. Ogni foglia ha da tre a sette nervature marcate. Corrono parallele dalla base alla punta. Se spezzi un picciolo, vengono fuori come fili resistenti. Da inizio estate spuntano steli senza foglie con spighe lunghe e strette, a coda di topo, di minuscoli fiori verdastri. Poi si riempiono di piccoli semi bruni. La digitale è mortale. Fai attenzione soprattutto alla sua rosetta del primo anno. Ha foglie morbide, pelose e rugose, con nervature a rete e senza fili. Foglie di digitale sono già state vendute per sbaglio come piantaggine.",
+        "habitat": "Cercala nei tappeti erbosi, sui sentieri, sulle carrarecce, ai bordi dei campi, nei prati e nei giardini. Cresce dovunque il terreno sia calpestato e battuto. È originaria di Europa e Asia ed è comune in tutta Europa. È comune anche in tutti gli Stati Uniti, dove è arrivata con i coloni europei.",
+        "season": "Le foglie nuove spuntano da inizio primavera all'autunno. Sono più tenere in primavera e dopo lo sfalcio. Le spighe di fiori salgono da inizio estate e i semi maturano fino all'autunno.",
+        "picking": "Raccogli le foglie giovani al centro della rosetta, poche per pianta. Lascia la radice nel terreno. Evita i bordi delle strade e i sentieri dove passano i cani. Evita anche i prati e le scarpate che potrebbero essere stati trattati con il diserbante.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, puoi mettere le foglie giovani crude in insalata. Quelle più vecchie sono dure e filacciose. Sbollentale o cuocile come gli spinaci e togli i fili. Il sapore è delicato, erbaceo e un po' amaro. La NC State Extension segnala che quantità molto grandi possono abbassare la pressione. Quindi usala mescolata ad altre verdure.",
+        "keeps": "Le foglie appassiscono in fretta. Tienile in frigo in un sacchetto per un giorno o due, oppure seccale all'ombra per le tisane.",
+        "source": "Identificazione, habitat e stagione: NC State Extension, Michigan State University Extension e UC IPM. Scambio con la digitale: FDA statunitense (1997). Cucina: NC State Extension."
+      }
     },
     "fr": {
       "name": "Plantain majeur",
-      "description": "Plante basse à larges feuilles ovales et longues hampes florales",
-      "howTo": "Se trouve dans les pelouses, prairies et zones perturbées pendant la saison de croissance"
+      "description": "Une plante basse aux larges feuilles ovales, avec de hauts épis de fleurs.",
+      "howTo": "Se trouve dans les pelouses, prairies et zones perturbées pendant la saison de croissance",
+      "guide": {
+        "identify": "Le plantain majeur forme une rosette plate de feuilles larges et ovales, sur des pétioles courts et larges. Chaque feuille a trois à sept nervures bien marquées. Elles courent côte à côte de la base à la pointe. Cassez un pétiole et elles sortent comme des fils coriaces. Dès le début de l'été, des tiges sans feuilles portent de longs épis étroits en queue de rat, faits de minuscules fleurs verdâtres. Ils se remplissent ensuite de petites graines brunes. La digitale pourpre est mortelle. Méfiez-vous surtout de sa rosette de première année. Ses feuilles sont molles, velues et gaufrées, avec des nervures en réseau et sans fils. Des feuilles de digitale ont déjà été vendues par erreur comme du plantain.",
+        "habitat": "Cherchez-le sur les pelouses, les chemins, les sentiers de ferme, les bords de champs, les prairies et dans les jardins. Il pousse partout où le sol est piétiné et tassé. Il est originaire d'Europe et d'Asie. Il est commun dans toute l'Europe. Il l'est aussi dans tous les États-Unis, où il est arrivé avec les colons européens.",
+        "season": "Les nouvelles feuilles poussent du début du printemps à l'automne. Elles sont le plus tendres au printemps et après la tonte. Les épis montent dès le début de l'été. Les graines mûrissent jusqu'en automne.",
+        "picking": "Cueillez les jeunes feuilles au centre de la rosette, quelques-unes par plante. Laissez la racine en terre. Évitez les bords de route et les chemins où passent les chiens. Évitez aussi les pelouses et les talus qui ont pu être traités au désherbant.",
+        "kitchen": "Une fois le plantain identifié avec certitude, vous pouvez mettre les jeunes feuilles crues en salade. Les plus vieilles sont dures et filandreuses. Blanchissez-les ou faites-les cuire comme des épinards, puis retirez les fils. Le goût est doux, herbacé et un peu amer. NC State Extension signale que de très grandes quantités peuvent faire baisser la tension. Mangez-le donc comme une verdure parmi d'autres.",
+        "keeps": "Les feuilles fanent vite. Gardez-les un jour ou deux dans un sac au réfrigérateur. Pour la tisane, faites-les sécher à l'ombre.",
+        "source": "Identification, habitat et saison : NC State Extension, Michigan State University Extension et UC IPM. Confusion avec la digitale : FDA américaine (1997). Cuisine : NC State Extension."
+      }
     },
     "de": {
       "name": "Breitwegerich",
-      "description": "Niedrig wachsende Pflanze mit breiten, ovalen Blättern und hohen Blütenständen",
-      "howTo": "Zu finden auf Rasenflächen, Wiesen und gestörten Gebieten während der Wachstumszeit"
+      "description": "Eine niedrige Pflanze mit breiten, ovalen Blättern und hohen Blütenähren.",
+      "howTo": "Zu finden auf Rasenflächen, Wiesen und gestörten Gebieten während der Wachstumszeit",
+      "guide": {
+        "identify": "Der Breitwegerich wächst als flache Rosette aus breiten, ovalen Blättern an kurzen, breiten Stielen. Jedes Blatt hat drei bis sieben kräftige Nerven. Sie laufen parallel vom Grund bis zur Spitze. Reisst du einen Blattstiel ab, ziehen sie sich als zähe Fäden heraus. Ab dem Frühsommer tragen blattlose Stängel lange, schmale Ähren aus winzigen grünlichen Blüten, wie Rattenschwänze. Später füllen sie sich mit kleinen braunen Samen. Der Fingerhut ist tödlich giftig, und auf seine Rosette im ersten Jahr musst du achten. Sie hat weiche, behaarte, runzlige Blätter mit einem Netz aus Nerven und ohne Fäden. Fingerhutblätter wurden schon aus Versehen als Wegerich verkauft.",
+        "habitat": "Such auf Rasen, Wegen und Feldwegen, an Ackerrändern, auf Wiesen und in Gärten. Er wächst überall, wo der Boden festgetreten und verdichtet ist. Er stammt aus Europa und Asien und ist in ganz Europa häufig. Auch in den ganzen USA ist er häufig. Dorthin kam er mit europäischen Siedlern.",
+        "season": "Neue Blätter wachsen vom zeitigen Frühjahr bis in den Herbst. Am zartesten sind sie im Frühling und nach dem Mähen. Die Blütenähren erscheinen ab dem Frühsommer, und die Samen reifen bis in den Herbst.",
+        "picking": "Pflück junge Blätter aus der Mitte der Rosette, nur ein paar pro Pflanze. Lass die Wurzel im Boden. Meide Strassenränder und Wege, auf denen Hunde ausgeführt werden. Meide auch Rasen und Wegränder, die mit Unkrautvernichter gespritzt sein könnten.",
+        "kitchen": "Wenn du sicher bist, dass es Breitwegerich ist, kannst du junge Blätter roh in den Salat geben. Ältere Blätter sind zäh und faserig. Blanchier sie oder gare sie wie Spinat und zieh die Fäden heraus. Er schmeckt mild, grasig und leicht bitter. Laut NC State Extension können sehr grosse Mengen den Blutdruck senken. Iss ihn also als ein Blattgemüse unter mehreren.",
+        "keeps": "Die Blätter welken schnell. Bewahr sie ein, zwei Tage in einem Beutel im Kühlschrank auf, oder trockne sie im Schatten für Tee.",
+        "source": "Bestimmung, Standort und Saison: NC State Extension, Michigan State University Extension und UC IPM. Verwechslung mit Fingerhut: US-Behörde FDA (1997). Küche: NC State Extension."
+      }
     },
     "es": {
       "name": "Llantén común",
-      "description": "Planta baja con hojas ovaladas anchas y espigas florales altas",
-      "howTo": "Se encuentra en céspedes, praderas y áreas alteradas durante la temporada de crecimiento"
+      "description": "Una planta baja de hojas anchas y ovaladas con espigas de flores altas.",
+      "howTo": "Se encuentra en céspedes, praderas y áreas alteradas durante la temporada de crecimiento",
+      "guide": {
+        "identify": "El llantén forma una roseta plana de hojas anchas y ovaladas, con rabillos cortos y anchos. Cada hoja tiene de tres a siete nervios muy marcados. Van paralelos desde la base hasta la punta. Si partes un rabillo, salen como hilos duros. Desde principios del verano, unos tallos sin hojas llevan espigas largas y estrechas, como colas de rata, de florecillas verdosas. Luego se llenan de semillitas pardas. La dedalera es mortal, y hay que fijarse en su roseta del primer año. Tiene hojas blandas, peludas y arrugadas, con los nervios en red y sin hilos. Se han llegado a vender hojas de dedalera por error como si fueran llantén.",
+        "habitat": "Búscalo en céspedes, caminos, pistas de tierra, lindes de campos, prados y jardines. Crece allí donde el suelo está pisado y apelmazado. Es nativo de Europa y Asia, y común en toda Europa. También es común en todo EE. UU., adonde llegó con los colonos europeos.",
+        "season": "Las hojas nuevas salen desde principios de primavera hasta el otoño. Están más tiernas en primavera y después de segar. Las espigas salen desde principios del verano, y las semillas maduran hasta entrado el otoño.",
+        "picking": "Coge hojas jóvenes del centro de la roseta, unas pocas de cada planta. Deja la raíz en la tierra. Evita las cunetas y los caminos por donde pasan perros. Evita también los céspedes o taludes que puedan estar tratados con herbicida.",
+        "kitchen": "Cuando no tengas ninguna duda de que es llantén, puedes echar las hojas jóvenes crudas en ensalada. Las viejas son duras y fibrosas. Escáldalas o cocínalas como espinacas, y quítales los hilos. Sabe suave, a hierba y un poco amargo. La NC State Extension señala que cantidades muy grandes pueden bajar la tensión. Así que cómelo como una verdura más, junto a otras.",
+        "keeps": "Las hojas se mustian enseguida. Guárdalas en una bolsa en la nevera uno o dos días, o sécalas a la sombra para infusión.",
+        "source": "Identificación, hábitat y temporada: NC State Extension, Michigan State University Extension y UC IPM. Confusión con la dedalera: FDA de EE. UU. (1997). Cocina: NC State Extension."
+      }
     },
     "pt": {
       "name": "Tanchagem",
-      "description": "Planta rasteira com folhas ovais largas e longas hastes florais",
-      "howTo": "Encontrada em gramados, prados e áreas perturbadas durante a estação de crescimento"
+      "description": "Uma planta baixa com folhas largas e ovais e espigas altas de flores.",
+      "howTo": "Encontrada em gramados, prados e áreas perturbadas durante a estação de crescimento",
+      "guide": {
+        "identify": "A tanchagem forma uma roseta rente ao chão, de folhas largas e ovais com pés curtos e largos. Cada folha tem três a sete nervuras fortes. Correm lado a lado, da base à ponta. Se partir o pé de uma folha, as nervuras saem como fios rijos. A partir do início do verão, hastes sem folhas levam espigas compridas e estreitas, como caudas de rato, de florzinhas esverdeadas. Mais tarde enchem-se de pequenas sementes castanhas. A dedaleira é mortal. Atenção sobretudo à roseta do primeiro ano. Tem folhas moles, peludas e enrugadas, com nervuras em rede e sem fios. Já se venderam folhas de dedaleira por engano como tanchagem.",
+        "habitat": "Procure em relvados, caminhos, carreiros agrícolas, bordas de campos, prados e jardins. Cresce onde quer que o chão seja pisado e calcado. É nativa da Europa e da Ásia e comum em toda a Europa. Também é comum em todos os EUA, onde chegou com os colonos europeus.",
+        "season": "As folhas novas nascem do início da primavera ao outono. São mais tenras na primavera e depois de a relva ser cortada. As espigas sobem a partir do início do verão e as sementes amadurecem até ao outono.",
+        "picking": "Apanhe as folhas novas do centro da roseta, poucas de cada planta. Deixe a raiz na terra. Evite as bermas das estradas e os caminhos por onde passam cães. Evite também relvados ou bermas que possam ter sido tratados com herbicida.",
+        "kitchen": "Quando tiver a certeza de que é tanchagem, pode pôr as folhas novas cruas em saladas. As folhas mais velhas são rijas e fibrosas. Escalde-as ou cozinhe-as como espinafres e tire-lhes os fios. O sabor é suave e herbáceo, um pouco amargo. A NC State Extension avisa que quantidades muito grandes podem baixar a tensão arterial. Por isso coma-a como uma verdura entre outras.",
+        "keeps": "As folhas murcham depressa. Guarde-as um ou dois dias no frigorífico, num saco. Para chá, seque-as à sombra.",
+        "source": "Identificação, habitat e época: NC State Extension, Michigan State University Extension e UC IPM. Confusão com a dedaleira: FDA dos EUA (1997). Cozinha: NC State Extension."
+      }
     }
   },
   "identification": {
@@ -213,6 +267,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [] }
+    "rangePrior": {
+      "taxonKeys": []
+    }
   }
 }

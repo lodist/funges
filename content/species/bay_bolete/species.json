@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Bay Bolete",
-      "description": "A chestnut-brown capped bolete, tacky when wet, with cream to olive-yellow pores that bruise blue-green and a streaky stem without a net",
-      "howTo": "Look in moss under pine and spruce, also beech and oak, on acid sandy soil from August to the first frosts; it peaks in October as porcini fade. It gathers more Chernobyl caesium than most mushrooms, so in Bavaria and Austria eat it only now and then"
+      "description": "A bolete with a chestnut-brown cap that turns sticky when wet. Its pores bruise blue-green and its streaky stem has no net.",
+      "howTo": "Look in moss under pine and spruce, also beech and oak, on acid sandy soil from August to the first frosts; it peaks in October as porcini fade. It gathers more Chernobyl caesium than most mushrooms, so in Bavaria and Austria eat it only now and then",
+      "guide": {
+        "identify": "This is a bolete without the porcini's net on the stem. The cap is chestnut brown. It feels like suede when dry and turns sticky when wet. The pores are cream to pale yellow (later olive) and bruise blue-green. The flesh is white to pale yellow and may turn faintly blue when you cut it. The stem is slimmer and streaked brown on a paler background. Red or orange pores rule it out (Rubroboletus satanas, Neoboletus subvelutipes). So do pink pores with a netted stem (Tylopilus felleus). In eastern North America there are two more to know. Boletus sensibilis turns dark blue instantly all over and has a yellow stem. Boletus huronensis is dense and shaped like a porcino, with a yellowish stem.",
+        "habitat": "It grows with pine and spruce and also with beech, oak and chestnut. It likes acid, sandy soil and often sits in moss near old stumps. It is common in the lowlands of northern and central Europe. In North America it grows in the north-east, around the Great Lakes and in the Appalachians, under pine and hemlock.",
+        "season": "In Europe it fruits from August until the first hard frosts. It peaks in October (after the porcini) and runs into December in the south. In north-eastern North America it comes earlier, mainly from July to September.",
+        "picking": "Twist it out or cut it and leave the young and the old ones. Check the local rules, as picking is often banned in nature reserves.",
+        "kitchen": "First make sure of your identification. Wipe the cap and peel it if it is slimy. Remove any soft old tubes and cook it through. Any blue disappears in cooking and the taste is mild. It gathers more radioactive caesium than most mushrooms. In parts of Bavaria and Austria, eat it only now and then.",
+        "keeps": "It dries well in thin slices. It also freezes well once cooked.",
+        "source": "Identification and habitat: First Nature and MushroomExpert. Season: GBIF records. Caesium: German Federal Office for Radiation Protection (BfS) and Bavarian LGL."
+      }
     },
     "it": {
       "name": "Boleto Baio",
-      "description": "Un boleto dal cappello bruno castagna, vischioso col bagnato, con pori da crema a giallo oliva che virano al blu-verde e gambo striato senza reticolo",
-      "howTo": "Cercalo nel muschio sotto pini e abeti rossi, ma anche faggi e querce, su terreni acidi e sabbiosi da agosto alle prime gelate; il picco è a ottobre, quando i porcini calano. Accumula più cesio di Chernobyl della maggior parte dei funghi: in Baviera e in Austria mangialo solo ogni tanto"
+      "description": "Un boleto con il cappello marrone castagna, che diventa vischioso quando è bagnato. I pori, se li tocchi, virano al blu-verde. Il gambo è striato e non ha reticolo.",
+      "howTo": "Cercalo nel muschio sotto pini e abeti rossi, ma anche faggi e querce, su terreni acidi e sabbiosi da agosto alle prime gelate; il picco è a ottobre, quando i porcini calano. Accumula più cesio di Chernobyl della maggior parte dei funghi: in Baviera e in Austria mangialo solo ogni tanto",
+      "guide": {
+        "identify": "È un boleto senza il reticolo sul gambo che hanno i porcini. Il cappello è marrone castagna. Da asciutto sembra camoscio, col bagnato diventa appiccicoso. I pori sono da crema a giallo pallido, poi oliva. Se li premi virano al blu-verde. La carne è da bianca a giallo pallido e al taglio può diventare appena blu. Il gambo è più snello, striato di marrone su un fondo più chiaro. Se i pori sono rossi o arancioni non è lui (Rubroboletus satanas, Neoboletus subvelutipes). Lo stesso vale per pori rosa con il gambo reticolato (Tylopilus felleus). Nel Nord America orientale ce ne sono altri due da conoscere. Boletus sensibilis diventa subito blu scuro dappertutto e ha il gambo giallo. Boletus huronensis è compatto, ha la forma di un porcino e il gambo giallastro.",
+        "habitat": "Cresce con pini e abeti rossi, ma anche con faggi, querce e castagni. Ama i terreni acidi e sabbiosi e spesso sta nel muschio vicino alle vecchie ceppaie. È comune nelle pianure dell'Europa del nord e del centro. In Nord America cresce nel nord-est, intorno ai Grandi Laghi e sugli Appalachi, sotto pini e tsughe.",
+        "season": "In Europa esce da agosto finché non arrivano le prime gelate forti. Il picco è a ottobre, dopo i porcini. Al sud va avanti fino a dicembre. Nel nord-est del Nord America arriva prima, soprattutto da luglio a settembre.",
+        "picking": "Staccalo con una torsione o taglialo. Lascia stare quelli giovani e quelli vecchi. Informati sulle regole del posto, perché nelle riserve naturali la raccolta è spesso vietata.",
+        "kitchen": "Prima assicurati di averlo riconosciuto bene. Pulisci il cappello con un panno e, se è viscido, togli la pellicina. Se i tubuli sono vecchi e molli, toglili. Poi cuocilo bene. Il blu sparisce in cottura e il sapore è delicato. Accumula più cesio radioattivo della maggior parte dei funghi. In alcune zone della Baviera e dell'Austria mangialo solo ogni tanto.",
+        "keeps": "A fette sottili si secca bene. Anche cotto si congela bene.",
+        "source": "Identificazione e habitat: First Nature e MushroomExpert. Stagione: dati GBIF. Cesio: Ufficio federale tedesco per la radioprotezione (BfS) e LGL della Baviera."
+      }
     },
     "fr": {
       "name": "Bolet Bai",
-      "description": "Un bolet au chapeau brun châtaigne, visqueux par temps humide, aux pores crème à jaune olive qui bleuissent au toucher et au pied strié sans réseau",
-      "howTo": "Cherchez-le dans la mousse sous les pins et les épicéas, mais aussi sous les hêtres et les chênes, sur sol acide et sableux d'août aux premières gelées ; il culmine en octobre, quand les cèpes déclinent. Il accumule plus de césium de Tchernobyl que la plupart des champignons : en Bavière et en Autriche, n'en mangez qu'occasionnellement"
+      "description": "Un bolet au chapeau brun châtaigne qui devient collant par temps humide. Ses pores se tachent de bleu-vert au toucher. Son pied strié n'a pas de réseau.",
+      "howTo": "Cherchez-le dans la mousse sous les pins et les épicéas, mais aussi sous les hêtres et les chênes, sur sol acide et sableux d'août aux premières gelées ; il culmine en octobre, quand les cèpes déclinent. Il accumule plus de césium de Tchernobyl que la plupart des champignons : en Bavière et en Autriche, n'en mangez qu'occasionnellement",
+      "guide": {
+        "identify": "C'est un bolet sans le réseau que les cèpes ont sur le pied. Le chapeau est brun châtaigne. Par temps sec, on dirait du daim au toucher. Par temps humide, il devient visqueux. Les pores sont crème à jaune pâle, puis olive, et ils virent au bleu-vert quand on les touche. La chair est blanche à jaune pâle et peut bleuir légèrement à la coupe. Le pied est plus mince, strié de brun sur un fond plus clair. Si les pores sont rouges ou orange, ce n'est pas lui (Rubroboletus satanas, Neoboletus subvelutipes). Même chose pour des pores roses avec un pied réticulé (Tylopilus felleus). Dans l'est de l'Amérique du Nord, il faut en connaître deux autres. Boletus sensibilis devient instantanément bleu foncé partout, et son pied est jaune. Boletus huronensis est dense, en forme de cèpe, avec un pied jaunâtre.",
+        "habitat": "Il pousse avec les pins et les épicéas, mais aussi avec les hêtres, les chênes et les châtaigniers. Il aime les sols acides et sableux. On le trouve souvent dans la mousse, près de vieilles souches. Il est commun en plaine dans le nord et le centre de l'Europe. En Amérique du Nord, il pousse dans le Nord-Est, autour des Grands Lacs et dans les Appalaches, sous les pins et les pruches.",
+        "season": "En Europe, il sort d'août jusqu'aux premières fortes gelées. Il est au plus fort en octobre, après les cèpes, et dure jusqu'en décembre dans le sud. Dans le nord-est de l'Amérique du Nord, il arrive plus tôt, surtout de juillet à septembre.",
+        "picking": "Dégagez-le en le tournant ou coupez-le, et laissez les jeunes et les vieux. Renseignez-vous sur les règles locales, car la cueillette est souvent interdite dans les réserves naturelles.",
+        "kitchen": "Commencez par vous assurer de l'identification. Essuyez le chapeau et pelez-le s'il est visqueux. Retirez les tubes s'ils sont vieux et mous, et faites-le bien cuire. Le bleu disparaît à la cuisson, et le goût est doux. Il accumule plus de césium radioactif que la plupart des champignons. Dans certaines régions de Bavière et d'Autriche, n'en mangez que de temps en temps.",
+        "keeps": "Il sèche bien en tranches fines. Une fois cuit, il se congèle bien aussi.",
+        "source": "Identification et habitat : First Nature et MushroomExpert. Saison : données GBIF. Césium : Office fédéral allemand de radioprotection (BfS) et LGL de Bavière."
+      }
     },
     "de": {
       "name": "Maronen-Röhrling",
-      "description": "Ein Röhrling mit kastanienbraunem, bei Nässe schmierigem Hut, cremefarbenen bis olivgelben Poren, die auf Druck blaugrün anlaufen, und gestreiftem Stiel ohne Netz",
-      "howTo": "Such im Moos unter Kiefern und Fichten, aber auch unter Buchen und Eichen, auf saurem Sandboden von August bis zu den ersten Frösten; am meisten gibt es im Oktober, wenn die Steinpilze nachlassen. Er speichert mehr Tschernobyl-Cäsium als die meisten Pilze, iss ihn in Bayern und Österreich deshalb nur gelegentlich"
+      "description": "Ein Röhrling mit kastanienbraunem Hut, der bei Nässe schmierig wird. Die Poren laufen blaugrün an, und der gestreifte Stiel hat kein Netz.",
+      "howTo": "Such im Moos unter Kiefern und Fichten, aber auch unter Buchen und Eichen, auf saurem Sandboden von August bis zu den ersten Frösten; am meisten gibt es im Oktober, wenn die Steinpilze nachlassen. Er speichert mehr Tschernobyl-Cäsium als die meisten Pilze, iss ihn in Bayern und Österreich deshalb nur gelegentlich",
+      "guide": {
+        "identify": "Der Maronenröhrling, kurz Marone, ist ein Röhrling ohne das Stielnetz der Steinpilze. Der Hut ist kastanienbraun. Trocken fühlt er sich an wie Wildleder, bei Nässe wird er schmierig. Die Poren sind cremefarben bis blassgelb, später oliv, und laufen auf Druck blaugrün an. Das Fleisch ist weiss bis blassgelb und kann beim Anschneiden leicht blau werden. Der Stiel ist schlanker und braun gestreift auf hellerem Grund. Rote oder orange Poren schliessen ihn aus (Rubroboletus satanas, Neoboletus subvelutipes). Das gilt auch für rosa Poren mit genetztem Stiel (Tylopilus felleus). Im Osten Nordamerikas musst du noch zwei weitere kennen. Boletus sensibilis wird sofort überall dunkelblau und hat einen gelben Stiel. Boletus huronensis ist kompakt, geformt wie ein Steinpilz und hat einen gelblichen Stiel.",
+        "habitat": "Er wächst bei Kiefer und Fichte, aber auch bei Buche, Eiche und Kastanie. Er mag sauren, sandigen Boden und sitzt oft im Moos bei alten Stümpfen. Im Flachland Nord- und Mitteleuropas ist er häufig. In Nordamerika wächst er im Nordosten, an den Grossen Seen und in den Appalachen, unter Kiefern und Hemlocktannen.",
+        "season": "In Europa erscheint er von August bis zu den ersten starken Frösten. Am meisten gibt es im Oktober, nach den Steinpilzen, im Süden bis in den Dezember. Im Nordosten Nordamerikas kommt er früher, vor allem von Juli bis September.",
+        "picking": "Dreh ihn heraus oder schneide ihn ab, und lass junge und alte stehen. Prüf die Regeln vor Ort, denn in Naturschutzgebieten ist das Sammeln oft verboten.",
+        "kitchen": "Bestimm ihn zuerst sicher. Wisch den Hut ab und zieh die Haut ab, wenn sie schmierig ist. Entferne weiche, alte Röhren und gare ihn gut durch. Das Blau verschwindet beim Garen, und er schmeckt mild. Er speichert mehr radioaktives Cäsium als die meisten Pilze. In Teilen Bayerns und Österreichs isst du ihn deshalb nur ab und zu.",
+        "keeps": "In dünnen Scheiben lässt er sich gut trocknen. Gegart kannst du ihn auch gut einfrieren.",
+        "source": "Bestimmung und Standort: First Nature und MushroomExpert. Saison: GBIF-Funddaten. Cäsium: Bundesamt für Strahlenschutz (BfS) und Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "es": {
       "name": "Boleto Bayo",
-      "description": "Un boleto de sombrero castaño, viscoso con la humedad, con poros de crema a amarillo oliva que azulean al tocarlos y pie estriado sin retículo",
-      "howTo": "Búscalo entre el musgo bajo pinos y píceas, y también hayas y robles, en suelos ácidos y arenosos desde agosto hasta las primeras heladas; abunda sobre todo en octubre, cuando los boletos comestibles declinan. Acumula más cesio de Chernóbil que la mayoría de las setas: en Baviera y Austria cómelo solo de vez en cuando"
+      "description": "Un boleto de sombrero castaño que se vuelve viscoso con la humedad. Sus poros se manchan de azul verdoso al tocarlos. Su pie tiene vetas pero no tiene red.",
+      "howTo": "Búscalo entre el musgo bajo pinos y píceas, y también hayas y robles, en suelos ácidos y arenosos desde agosto hasta las primeras heladas; abunda sobre todo en octubre, cuando los boletos comestibles declinan. Acumula más cesio de Chernóbil que la mayoría de las setas: en Baviera y Austria cómelo solo de vez en cuando",
+      "guide": {
+        "identify": "Es un boleto sin la redecilla en el pie que tienen los boletus del grupo edulis. El sombrero es castaño. En seco tiene un tacto de ante y con la humedad se vuelve pegajoso. Los poros son de color crema a amarillo pálido, luego oliva. Al tocarlos se manchan de verde azulado. La carne es de blanca a amarillo pálido y al cortarla puede azulear un poco. El pie es más delgado y tiene vetas pardas sobre un fondo más claro. Si los poros son rojos o naranjas, no es él (Rubroboletus satanas, Neoboletus subvelutipes). Tampoco lo es si los poros son rosados y el pie tiene redecilla (Tylopilus felleus). En el este de Norteamérica hay dos más que debes conocer. Boletus sensibilis se vuelve azul oscuro al instante por todas partes y tiene el pie amarillo. Boletus huronensis es compacto, con forma de boleto comestible y el pie amarillento.",
+        "habitat": "Crece con pinos y píceas, y también con hayas, robles y castaños. Le gusta el suelo ácido y arenoso. A menudo sale entre el musgo, junto a tocones viejos. Es común en las tierras bajas del norte y el centro de Europa. En Norteamérica crece en el noreste, en torno a los Grandes Lagos y en los Apalaches, bajo pinos y tsugas.",
+        "season": "En Europa sale de agosto hasta las primeras heladas fuertes. Su mejor momento es octubre, después del boleto comestible. En el sur sigue hasta diciembre. En el noreste de Norteamérica sale antes, sobre todo de julio a septiembre.",
+        "picking": "Sácalo girándolo o córtalo. Deja los jóvenes y los viejos. Consulta las normas locales, porque en las reservas naturales a menudo está prohibido recoger.",
+        "kitchen": "Primero asegúrate bien de que lo has identificado. Limpia el sombrero con un paño y pélalo si está viscoso. Si los tubos están viejos y blandos, quítalos. Cocínalo bien. El azul desaparece al cocinarlo y el sabor es suave. Acumula más cesio radiactivo que la mayoría de las setas. En partes de Baviera y Austria, cómelo solo de vez en cuando.",
+        "keeps": "Se seca bien en láminas finas. Cocinado, también se congela bien.",
+        "source": "Identificación y hábitat: First Nature y MushroomExpert. Temporada: registros de GBIF. Cesio: Oficina Federal alemana de Protección Radiológica (BfS) y LGL de Baviera."
+      }
     },
     "pt": {
       "name": "Boleto Baio",
-      "description": "Um boleto de chapéu castanho, viscoso com a humidade, com poros de creme a amarelo-oliva que azulam ao toque e pé estriado sem retículo",
-      "howTo": "Procure no musgo sob pinheiros e espruces, e também faias e carvalhos, em solos ácidos e arenosos de agosto até às primeiras geadas; é mais abundante em outubro, quando os porcini diminuem. Acumula mais césio de Chernobil do que a maioria dos cogumelos: na Baviera e na Áustria coma-o só de vez em quando"
+      "description": "Um boleto de chapéu cor de castanha, que fica pegajoso quando está molhado. Os poros mancham de azul-esverdeado ao toque e o pé, com estrias, não tem rede.",
+      "howTo": "Procure no musgo sob pinheiros e espruces, e também faias e carvalhos, em solos ácidos e arenosos de agosto até às primeiras geadas; é mais abundante em outubro, quando os porcini diminuem. Acumula mais césio de Chernobil do que a maioria dos cogumelos: na Baviera e na Áustria coma-o só de vez em quando",
+      "guide": {
+        "identify": "É um boleto sem a rede no pé que têm os boletos do tipo porcini. O chapéu é castanho, cor de castanha. Seco, parece camurça ao toque. Com a chuva fica viscoso. Os poros são cor de creme a amarelo-pálido e depois verde-oliva. Mancham de azul-esverdeado ao toque. A carne é branca a amarelo-pálida e pode azular um pouco quando a corta. O pé é mais fino, com estrias castanhas sobre um fundo mais claro. Poros vermelhos ou cor de laranja excluem-no (Rubroboletus satanas, Neoboletus subvelutipes). Poros rosados com rede no pé também o excluem (Tylopilus felleus). No leste da América do Norte há mais dois que deve conhecer. O Boletus sensibilis fica logo todo azul-escuro e tem o pé amarelo. O Boletus huronensis é compacto e tem a forma de um porcini, com o pé amarelado.",
+        "habitat": "Cresce com pinheiros e píceas e também com faias, carvalhos e castanheiros. Gosta de solo ácido e arenoso e aparece muitas vezes no musgo, junto a cepos velhos. É comum nas terras baixas do norte e do centro da Europa. Na América do Norte cresce no nordeste, à volta dos Grandes Lagos e nos Apalaches, debaixo de pinheiros e tsugas.",
+        "season": "Na Europa sai de agosto até às primeiras geadas fortes. O ponto alto é em outubro, depois dos porcini. No sul vai até dezembro. No nordeste da América do Norte aparece mais cedo, sobretudo de julho a setembro.",
+        "picking": "Torça-o ou corte-o para o tirar. Deixe os novos e os velhos. Consulte as regras locais, porque nas reservas naturais a apanha é muitas vezes proibida.",
+        "kitchen": "Primeiro, confirme bem a identificação. Limpe o chapéu com um pano e tire-lhe a pele se estiver viscoso. Retire os tubos moles dos exemplares velhos e cozinhe-o bem. O azul desaparece ao cozinhar e o sabor é suave. Acumula mais césio radioativo do que a maioria dos cogumelos. Em partes da Baviera e da Áustria, coma-o só de vez em quando.",
+        "keeps": "Seca bem em fatias finas. Depois de cozinhado, também congela bem.",
+        "source": "Identificação e habitat: First Nature e MushroomExpert. Época: registos do GBIF. Césio: Serviço Federal alemão de Proteção contra Radiações (BfS) e LGL da Baviera."
+      }
     }
   },
   "identification": {

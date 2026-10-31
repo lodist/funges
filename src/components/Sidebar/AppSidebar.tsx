@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import {
+  LayoutGrid,
   Map,
   Database,
   ChefHat,
@@ -16,7 +17,10 @@ import {
   LifeBuoy,
   Smartphone,
   ScanSearch,
+  User,
 } from '@/lib/icons';
+import { currentSpace } from '@/lib/spaces';
+import { SpaceSwitcher } from '@/components/SpaceSwitcher';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
@@ -43,6 +47,34 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   const { t: tCommon } = useTranslation('common');
   const { state, toggleSidebar } = useSidebar();
   const isMobile = useIsMobile();
+  const { pathname } = useLocation();
+  // Each space lists its own pages; Help is shared.
+  const huertaNav = [
+    {
+      title: t('huertaMap'),
+      url: `${basePath}huerta/map`,
+      icon: Map,
+      isActive: true,
+    },
+    {
+      title: t('huertaPlanner'),
+      url: `${basePath}huerta/garden-planner`,
+      icon: LayoutGrid,
+      isActive: false,
+    },
+    {
+      title: t('huertaWeek'),
+      url: `${basePath}huerta/crops`,
+      icon: Database,
+      isActive: false,
+    },
+    {
+      title: t('huertaYear'),
+      url: `${basePath}huerta/planting-calendar`,
+      icon: CalendarRange,
+      isActive: false,
+    },
+  ];
   const data = {
     navMain: [
       {
@@ -125,6 +157,17 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             url: '#help',
             icon: LifeBuoy,
             items: [
+              // The Huerta account (sign out, delete), in Huerta only: from
+              // Terra it would jump spaces. Phones have it in Settings.
+              ...(currentSpace(pathname) === 'huerta'
+                ? [
+                    {
+                      title: t('account'),
+                      url: `${basePath}huerta/account`,
+                      icon: User,
+                    },
+                  ]
+                : []),
               {
                 title: t('support'),
                 url: `${basePath}support`,
@@ -207,10 +250,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>
         )}
+        {(state !== 'collapsed' || isMobile) && (
+          <SpaceSwitcher className='mt-2 w-full' />
+        )}
       </SidebarHeader>
       <SidebarSeparator className='mx-2 group-data-[collapsible=icon]:mx-2' />
       <SidebarContent className='px-2 pt-4 pb-0 group-data-[collapsible=icon]:px-0'>
-        <NavMain items={data.navMain} />
+        <NavMain
+          items={currentSpace(pathname) === 'huerta' ? huertaNav : data.navMain}
+        />
         <NavMain items={data.navHelp} className='mt-auto' />
       </SidebarContent>
     </Sidebar>

@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react';
+import type { Space } from '@/lib/spaces';
 import { cn } from '@/lib/utils';
 
 const base = import.meta.env.BASE_URL;
@@ -38,5 +39,17 @@ export const Logo = ({ className }: { className?: string }) => (
       className='aspect-[531/84] h-[40%] shrink-0 bg-logo'
       style={mask('wordmark_funges.png')}
     />
+  </span>
+);
+
+/** The mark in a space's own colour (Terra green, Huerta terracotta), on a
+ *  cream disc so it holds on that space's band: the space switcher's tiles. */
+export const SpaceMark = ({ space }: { space: Space }) => (
+  <span
+    data-space={space}
+    aria-hidden='true'
+    className='flex size-11 shrink-0 items-center justify-center rounded-full bg-happy-50 dark:bg-happy-50'
+  >
+    <LogoMark className='h-8 bg-happy-600' />
   </span>
 );

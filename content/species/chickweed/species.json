@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Chickweed",
-      "description": "A low-growing plant with small white flowers and oval leaves, very nutritious",
-      "howTo": "Common in gardens, disturbed areas, and meadows during growing season"
+      "description": "A low plant with small white flowers and oval leaves. It is very nutritious.",
+      "howTo": "Common in gardens, disturbed areas and meadows during growing season",
+      "guide": {
+        "identify": "Chickweed is a low, sprawling plant with weak, round, juicy stems. The leaves are small, pointed ovals in opposite pairs. The lower ones sit on short stalks. A single line of fine hairs runs down the stem. It switches sides at each pair of leaves. The white flowers are star-shaped, with five petals. Each petal is split so deeply that they look like ten. There are two toxic look-alikes. Scarlet pimpernel has square, hairless stems and stalkless leaves with black dots underneath. Its flowers are orange-red or blue. Spurges ooze white, milky sap from a broken stem. Chickweed never does.",
+        "habitat": "Look in gardens, vegetable beds, field edges and farmyards. It likes disturbed, rich, moist soil, often in light shade. It is one of the commonest plants in Europe and is found across the US.",
+        "season": "It grows best in cool, damp weather. In the north that means spring and autumn. In mild areas such as southern Europe and the southern US it grows from autumn to spring. Summer heat and drought make it die back until the autumn rains.",
+        "picking": "Snip or pinch off the leafy top few centimetres. The plant grows back. Only pick where no weedkiller has been sprayed. Stay away from roads and from spots where dogs and cats go.",
+        "kitchen": "Once you're sure of it, you can eat the leaves, stems and flowers raw or briefly cooked. They taste mild and fresh, a little like young peas. Add them to salads, sandwiches and pesto, or stir them into soups at the end. Wash them well.",
+        "keeps": "Chickweed wilts quickly. Keep it in a bag in the fridge and eat it within a day or two.",
+        "source": "Identification: UC Statewide IPM Program and Woodland Trust. Scarlet pimpernel: Ontario Ministry of Agriculture. Season: Woodland Trust and GBIF records."
+      }
     },
     "it": {
       "name": "Centocchio",
-      "description": "Una pianta bassa con piccoli fiori bianchi e foglie ovali, molto nutriente",
-      "howTo": "Comune in giardini, aree disturbate e praterie durante la stagione di crescita"
+      "description": "Una pianta bassa con piccoli fiori bianchi e foglie ovali. È molto nutriente.",
+      "howTo": "Comune in giardini, aree disturbate e praterie durante la stagione di crescita",
+      "guide": {
+        "identify": "Il centocchio, detto anche erba paperina, è una pianta bassa e sdraiata, con fusti deboli, tondi e succosi. Le foglie sono piccoli ovali appuntiti, a coppie opposte. Quelle in basso hanno un picciolo corto. Lungo il fusto corre una sola fila di peletti sottili. A ogni coppia di foglie la fila cambia lato. I fiori sono bianchi, a stella, con cinque petali. Ogni petalo è diviso così a fondo che sembrano dieci. Ci sono due sosia tossici. L'anagallide ha fusti quadrati e senza peli e foglie senza picciolo, con puntini neri sotto. I suoi fiori sono rosso arancio o blu. Le euforbie, se spezzi un fusto, perdono un lattice bianco. Il centocchio non lo fa mai.",
+        "habitat": "Cercalo negli orti, nei giardini, ai bordi dei campi e nelle aie. Ama la terra smossa, ricca e umida, spesso a mezz'ombra. È una delle piante più comuni d'Europa e si trova in tutti gli Stati Uniti.",
+        "season": "Cresce meglio col tempo fresco e umido. Al nord vuol dire primavera e autunno. Nelle zone miti, come il sud Europa e il sud degli Stati Uniti, cresce dall'autunno alla primavera. Col caldo e la siccità d'estate secca, fino alle piogge d'autunno.",
+        "picking": "Taglia o pizzica via i primi centimetri con le foglie. La pianta ricresce. Raccogli solo dove non è stato dato diserbante. Stai lontano dalle strade e dai posti dove vanno cani e gatti.",
+        "kitchen": "Quando sei sicuro che sia lui, puoi mangiare foglie, fusti e fiori, crudi o appena cotti. Hanno un sapore delicato e fresco, un po' di piselli novelli. Mettili in insalate, panini e pesto. Puoi anche aggiungerli alle minestre a fine cottura. Lavali bene.",
+        "keeps": "Il centocchio appassisce in fretta. Tienilo in frigo in un sacchetto e mangialo entro un giorno o due.",
+        "source": "Riconoscimento: UC Statewide IPM Program e Woodland Trust. Anagallide: Ministero dell'Agricoltura dell'Ontario. Stagione: Woodland Trust e segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Mouron des oiseaux",
-      "description": "Plante basse à petites fleurs blanches et feuilles ovales, très nutritive",
-      "howTo": "Commune dans les jardins, zones perturbées et prairies pendant la saison de croissance"
+      "description": "Une plante basse aux petites fleurs blanches et aux feuilles ovales. Elle est très nourrissante.",
+      "howTo": "Commune dans les jardins, zones perturbées et prairies pendant la saison de croissance",
+      "guide": {
+        "identify": "Le mouron des oiseaux est une plante basse et étalée, aux tiges fragiles, rondes et juteuses. Les feuilles sont petites, ovales et pointues, opposées par paires. Celles du bas ont un court pétiole. Une seule ligne de poils fins court le long de la tige. Elle change de côté à chaque paire de feuilles. Les fleurs blanches sont en étoile, avec cinq pétales. Chaque pétale est fendu si profondément qu'on croirait en voir dix. Il y a deux sosies toxiques. Le mouron rouge a des tiges carrées et sans poils. Ses feuilles n'ont pas de pétiole et sont ponctuées de noir dessous. Ses fleurs sont rouge orangé ou bleues. Les euphorbes laissent couler un lait blanc quand on casse la tige. Le mouron des oiseaux ne le fait jamais.",
+        "habitat": "Cherchez-le dans les jardins, les potagers, en bordure de champs et dans les cours de ferme. Il aime la terre remuée, riche et fraîche, souvent à mi-ombre. C'est l'une des plantes les plus communes d'Europe, et on le trouve dans tous les États-Unis.",
+        "season": "Il pousse le mieux par temps frais et humide. Dans le nord, cela veut dire au printemps et en automne. Dans les régions douces comme le sud de l'Europe et le sud des États-Unis, il pousse de l'automne au printemps. La chaleur et la sécheresse de l'été le font disparaître jusqu'aux pluies d'automne.",
+        "picking": "Coupez ou pincez les quelques centimètres feuillus du haut. La plante repousse. Ne cueillez que là où aucun désherbant n'a été pulvérisé. Restez loin des routes et des coins où passent les chiens et les chats.",
+        "kitchen": "Une fois la plante reconnue avec certitude, vous pouvez manger les feuilles, les tiges et les fleurs crues ou à peine cuites. Leur goût est doux et frais, un peu comme celui des petits pois nouveaux. Ajoutez-les aux salades, aux sandwiches et au pesto, ou mettez-les dans les soupes en fin de cuisson. Lavez-les bien.",
+        "keeps": "Le mouron des oiseaux flétrit vite. Gardez-le dans un sac au réfrigérateur et mangez-le dans un jour ou deux.",
+        "source": "Identification : UC Statewide IPM Program et Woodland Trust. Mouron rouge : ministère de l'Agriculture de l'Ontario. Saison : Woodland Trust et données GBIF."
+      }
     },
     "de": {
       "name": "Vogelmiere",
-      "description": "Niedrig wachsende Pflanze mit kleinen weissen Blüten und ovalen Blättern, sehr nahrhaft",
-      "howTo": "Häufig in Gärten, gestörten Gebieten und Wiesen während der Wachstumszeit"
+      "description": "Eine niedrige Pflanze mit kleinen weissen Blüten und ovalen Blättern. Sie ist sehr nahrhaft.",
+      "howTo": "Häufig in Gärten, gestörten Gebieten und Wiesen während der Wachstumszeit",
+      "guide": {
+        "identify": "Die Vogelmiere ist eine niedrige Pflanze, die sich am Boden ausbreitet. Ihre Stängel sind schwach, rund und saftig. Die Blätter sind kleine, spitze Ovale und stehen paarweise gegenüber. Die unteren sitzen auf kurzen Stielen. Am Stängel läuft eine einzelne Reihe feiner Haare entlang. An jedem Blattpaar wechselt sie die Seite. Die weissen Blüten sind sternförmig und haben fünf Blütenblätter. Jedes ist so tief gespalten, dass es aussieht, als wären es zehn. Es gibt zwei giftige Doppelgänger. Der Acker-Gauchheil hat vierkantige, kahle Stängel und ungestielte Blätter mit schwarzen Punkten auf der Unterseite. Seine Blüten sind orangerot oder blau. Wolfsmilch gibt aus einem abgebrochenen Stängel weissen Milchsaft ab. Die Vogelmiere tut das nie.",
+        "habitat": "Such in Gärten und Gemüsebeeten, an Ackerrändern und auf Hofplätzen. Sie mag offenen, nährstoffreichen, feuchten Boden, der oft bearbeitet wird, gern im Halbschatten. Sie ist eine der häufigsten Pflanzen Europas und kommt in den ganzen USA vor.",
+        "season": "Am besten wächst sie bei kühlem, feuchtem Wetter. Im Norden heisst das Frühling und Herbst. In milden Gegenden wie Südeuropa und dem Süden der USA wächst sie vom Herbst bis ins Frühjahr. Bei Sommerhitze und Trockenheit stirbt sie ab, bis der Herbstregen kommt.",
+        "picking": "Schneide oder kneif die oberen paar Zentimeter mit den Blättern ab. Die Pflanze wächst nach. Pflück nur, wo kein Unkrautvernichter gespritzt wurde. Halte dich von Strassen fern und von Stellen, an denen Hunde und Katzen unterwegs sind.",
+        "kitchen": "Wenn du dir sicher bist, kannst du Blätter, Stängel und Blüten roh oder kurz gegart essen. Sie schmecken mild und frisch, ein wenig wie junge Erbsen. Gib sie in Salate, auf Brote und in Pesto, oder rühr sie am Schluss in Suppen. Wasch sie gründlich.",
+        "keeps": "Vogelmiere welkt schnell. Bewahr sie im Beutel im Kühlschrank auf und iss sie innerhalb von ein bis zwei Tagen.",
+        "source": "Bestimmung: UC Statewide IPM Program und Woodland Trust. Acker-Gauchheil: Landwirtschaftsministerium von Ontario. Saison: Woodland Trust und GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Pamplina",
-      "description": "Planta rastrera con pequeñas flores blancas y hojas ovaladas, muy nutritiva",
-      "howTo": "Común en jardines, áreas alteradas y praderas durante la temporada de crecimiento"
+      "description": "Una planta baja de flores blancas pequeñas y hojas ovaladas. Es muy nutritiva.",
+      "howTo": "Común en jardines, áreas alteradas y praderas durante la temporada de crecimiento",
+      "guide": {
+        "identify": "La pamplina es una planta baja y rastrera, de tallos débiles, redondos y jugosos. Las hojas son pequeñas, ovaladas y puntiagudas, y salen por parejas enfrentadas. Las de abajo tienen un rabillo corto. Por el tallo baja una sola línea de pelillos finos. Esa línea cambia de lado en cada par de hojas. Las flores son blancas, en estrella, de cinco pétalos. Cada pétalo está tan partido que parecen diez. Tiene dos parecidos tóxicos. Los murajes tienen tallos cuadrados y sin pelo. Sus hojas no tienen rabillo y llevan puntos negros por debajo. Sus flores son rojo anaranjado o azules. Las lechetreznas sueltan un líquido blanco como leche al romper el tallo. La pamplina nunca lo hace.",
+        "habitat": "Búscala en jardines, huertos, bordes de campos y corrales. Le gusta la tierra removida, rica y húmeda, a menudo a media sombra. Es una de las plantas más comunes de Europa y está por todo EE. UU.",
+        "season": "Crece mejor con tiempo fresco y húmedo. En el norte eso quiere decir primavera y otoño. En zonas templadas, como el sur de Europa y el sur de EE. UU., crece de otoño a primavera. Con el calor y la sequía del verano se seca hasta las lluvias de otoño.",
+        "picking": "Corta o pellizca los primeros centímetros con hojas. La planta vuelve a brotar. Cógela solo donde no se hayan echado herbicidas. Aléjate de las carreteras y de los sitios por donde van perros y gatos.",
+        "kitchen": "Cuando la tengas bien identificada, puedes comer las hojas, los tallos y las flores crudos o un poco cocinados. Tienen un sabor suave y fresco, algo parecido a los guisantes tiernos. Añádelos a ensaladas, bocadillos y pesto. También puedes echarlos a las sopas al final. Lávalos bien.",
+        "keeps": "La pamplina se mustia rápido. Guárdala en la nevera dentro de una bolsa y cómela en uno o dos días.",
+        "source": "Identificación: UC Statewide IPM Program y Woodland Trust. Murajes: Ministerio de Agricultura de Ontario. Temporada: Woodland Trust y registros de GBIF."
+      }
     },
     "pt": {
-      "name": "Mourão",
-      "description": "Planta rasteira com pequenas flores brancas e folhas ovais, muito nutritiva",
-      "howTo": "Comum em jardins, áreas perturbadas e prados durante a estação de crescimento"
+      "name": "Morugem",
+      "description": "Uma planta baixa com florinhas brancas e folhas ovais. É muito nutritiva.",
+      "howTo": "Comum em jardins, áreas perturbadas e prados durante a estação de crescimento",
+      "guide": {
+        "identify": "A morugem é uma planta baixa e rasteira, de caules fracos, redondos e suculentos. As folhas são pequenas, ovais e pontiagudas, aos pares, uma em frente da outra. As de baixo têm um pé curto. Ao longo do caule corre uma única fila de pelos finos. Essa fila muda de lado a cada par de folhas. As flores são brancas, em estrela, com cinco pétalas. As pétalas são tão fendidas que parecem dez. Há dois sósias tóxicos. O morrião tem caules quadrados e sem pelos e folhas sem pé, com pontinhos pretos por baixo. As flores são vermelho-alaranjadas ou azuis. As eufórbias deitam um leite branco quando se parte o caule. A morugem nunca faz isso.",
+        "habitat": "Procure em jardins, canteiros da horta, bordas de campos e quintais. Gosta de terra mexida, rica e húmida, muitas vezes à meia-sombra. É uma das plantas mais comuns da Europa e encontra-se em todos os EUA.",
+        "season": "Cresce melhor com tempo fresco e húmido. No norte, isso quer dizer primavera e outono. Em zonas amenas, como o sul da Europa e o sul dos EUA, cresce do outono à primavera. Com o calor e a seca do verão, seca até voltarem as chuvas de outono.",
+        "picking": "Corte ou arranque com os dedos as pontas com folhas, só os primeiros centímetros. A planta volta a rebentar. Apanhe só onde não se tenha aplicado herbicida. Afaste-se das estradas e dos sítios por onde andam cães e gatos.",
+        "kitchen": "Quando tiver a certeza, pode comer as folhas, os caules e as flores, crus ou cozinhados por pouco tempo. Sabem a fresco e suave, um pouco a ervilhas novas. Junte-os a saladas, sandes e pesto. Também os pode deitar na sopa, já no fim. Lave-os bem.",
+        "keeps": "A morugem murcha depressa. Guarde-a num saco no frigorífico e coma-a em um ou dois dias.",
+        "source": "Identificação: UC Statewide IPM Program e Woodland Trust. Morrião: Ministério da Agricultura do Ontário. Época: Woodland Trust e registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -216,6 +270,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [5384604] }
+    "rangePrior": {
+      "taxonKeys": [5384604]
+    }
   }
 }

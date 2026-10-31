@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Common Daisy",
-      "description": "Small white flowers with yellow centers that grow close to the ground",
-      "howTo": "Common in lawns, meadows, and grassy areas during spring and summer"
+      "description": "Small white flowers with yellow centres, close to the ground.",
+      "howTo": "Common in lawns, meadows and grassy areas during spring and summer",
+      "guide": {
+        "identify": "The common daisy is a low plant. Its spoon-shaped, slightly hairy leaves form a flat rosette pressed to the ground. Each leafless, hairy stalk carries one flower head about 2 cm across. It has white rays, often tipped with pink, around a yellow centre. The heads close at night and in dull weather. Some plants look similar but are different. Oxeye daisy and other bigger daisy-like flowers grow on leafy stems. Mayweeds and chamomiles have feathery leaves.",
+        "habitat": "It grows in lawns, short turf, grazed pastures, verges and paths, in sun on moist soil. You find it almost everywhere in Europe. It came to the US from Europe. There it now grows in lawns and damp, disturbed ground, most of all where summers are cool.",
+        "season": "Where winters are mild it flowers almost all year. The main flush comes from spring into early summer. In cold regions and much of the US it flowers from spring to early summer. After that you see scattered flowers until frost.",
+        "picking": "Pinch off flower heads and a few young leaves. Take from many plants and leave the rosettes in place. Avoid lawns treated with weedkiller or fertiliser, places where dogs are walked and roadsides.",
+        "kitchen": "Once you've identified it with certainty, you can eat the flowers and young leaves raw in small amounts. Use them in salads and sandwiches or as a garnish. They taste mild to slightly bitter and older leaves are tough. Rinse them gently in cool water. Try only a little at first. People allergic to the daisy family can react and large amounts can upset the stomach. Avoid it in pregnancy and while breastfeeding.",
+        "keeps": "Pick them just before use, as the flowers wilt quickly. Until then, keep them between damp paper towels in the fridge.",
+        "source": "Identification and habitat: The Wildlife Trusts and NC State Extension. Cooking and safety: Colorado State University Extension and NC State Extension."
+      }
     },
     "it": {
       "name": "Margherita Comune",
-      "description": "Piccoli fiori bianchi con centri gialli che crescono vicino al terreno",
-      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate"
+      "description": "Piccoli fiori bianchi con il centro giallo che crescono rasoterra.",
+      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate",
+      "guide": {
+        "identify": "La margherita comune, o pratolina, è una pianta bassa. Le sue foglie, a forma di cucchiaio e un po' pelose, fanno una rosetta piatta schiacciata a terra. Ogni stelo è peloso e senza foglie e porta un solo fiore di circa 2 cm. Ha petali bianchi, spesso con la punta rosa, intorno a un centro giallo. I fiori si chiudono di notte e quando il cielo è coperto. Alcune piante le somigliano ma sono diverse. La margherita dei prati e gli altri fiori più grandi simili a margherite crescono su fusti con le foglie. Le camomille, vere e false, hanno foglie finissime, divise come piume.",
+        "habitat": "Cresce nei prati rasati, nell'erba bassa, nei pascoli, ai bordi delle strade e sui sentieri, al sole e su terreno umido. In Europa la trovi quasi ovunque. Negli Stati Uniti è arrivata dall'Europa. Lì oggi cresce nei prati e sui terreni umidi e smossi, soprattutto dove l'estate è fresca.",
+        "season": "Dove l'inverno è mite fiorisce quasi tutto l'anno. La fioritura più ricca va dalla primavera all'inizio dell'estate. Nelle zone fredde e in gran parte degli Stati Uniti fiorisce dalla primavera all'inizio dell'estate. Dopo trovi qualche fiore qua e là fino alle gelate.",
+        "picking": "Stacca con le dita i fiori e qualche foglia giovane. Prendi da tante piante e lascia le rosette al loro posto. Evita i prati trattati con diserbanti o concimi, i posti dove si portano a spasso i cani e i bordi delle strade.",
+        "kitchen": "Quando sei sicuro di averla riconosciuta, puoi mangiare crudi i fiori e le foglie giovani, ma in piccole quantità. Mettili nell'insalata e nei panini o usali per decorare il piatto. Il sapore è delicato o appena amaro. Le foglie vecchie sono dure. Sciacquali piano in acqua fresca. La prima volta mangiane poca. Chi è allergico alle composite, la famiglia della margherita, può avere una reazione. In grandi quantità può dare fastidio allo stomaco. Evitala in gravidanza e mentre allatti.",
+        "keeps": "Raccoglila appena prima di usarla, perché i fiori appassiscono presto. Fino ad allora tienila in frigo tra due fogli di carta da cucina umidi.",
+        "source": "Identificazione e habitat: The Wildlife Trusts e NC State Extension. Cucina e sicurezza: Colorado State University Extension e NC State Extension."
+      }
     },
     "fr": {
       "name": "Pâquerette",
-      "description": "Petites fleurs blanches à cœur jaune poussant près du sol",
-      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été"
+      "description": "De petites fleurs blanches au cœur jaune, au ras du sol.",
+      "howTo": "Commune dans les pelouses, prairies et zones herbeuses au printemps et en été",
+      "guide": {
+        "identify": "La pâquerette est une plante basse. Ses feuilles en forme de spatule, un peu velues, forment une rosette plate collée au sol. Chaque tige velue et sans feuilles porte une seule fleur d'environ 2 cm. Elle a des pétales blancs, souvent rosés au bout, autour d'un cœur jaune. Les fleurs se ferment la nuit et par temps gris. Certaines plantes lui ressemblent mais sont différentes. La grande marguerite et les autres grandes fleurs qui ressemblent à des marguerites poussent sur des tiges feuillues. Les matricaires et les camomilles ont des feuilles découpées comme des plumes.",
+        "habitat": "Elle pousse dans les pelouses, les gazons ras, les pâtures, les bords de route et les chemins, au soleil et sur sol frais. On la trouve presque partout en Europe. Elle est arrivée d'Europe aux États-Unis. Elle y pousse maintenant dans les pelouses et les terrains humides et remués, surtout là où les étés sont frais.",
+        "season": "Là où les hivers sont doux, elle fleurit presque toute l'année. La grande floraison va du printemps au début de l'été. Dans les régions froides et une grande partie des États-Unis, elle fleurit du printemps au début de l'été. Ensuite, on voit quelques fleurs çà et là jusqu'aux gelées.",
+        "picking": "Pincez des fleurs et quelques jeunes feuilles. Prenez-en sur beaucoup de plantes et laissez les rosettes en place. Évitez les pelouses traitées au désherbant ou à l'engrais, les endroits où l'on promène les chiens et les bords de route.",
+        "kitchen": "Une fois la pâquerette identifiée avec certitude, vous pouvez manger ses fleurs et ses jeunes feuilles crues, en petite quantité. Mettez-les dans les salades et les sandwiches, ou en décoration. Leur goût va de doux à un peu amer, et les vieilles feuilles sont coriaces. Rincez-les doucement à l'eau froide. Goûtez-en d'abord un peu seulement. Les personnes allergiques aux astéracées peuvent réagir, et de grandes quantités peuvent déranger l'estomac. Évitez-la pendant la grossesse et l'allaitement.",
+        "keeps": "Cueillez-les juste avant de les utiliser, car les fleurs fanent vite. En attendant, gardez-les au réfrigérateur entre deux feuilles de papier absorbant humide.",
+        "source": "Identification et habitat : The Wildlife Trusts et service d'extension de NC State. Cuisine et sécurité : services d'extension de Colorado State University et de NC State."
+      }
     },
     "de": {
       "name": "Gänseblümchen",
-      "description": "Kleine weisse Blüten mit gelber Mitte, wachsen bodennah",
-      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer"
+      "description": "Kleine weisse Blüten mit gelber Mitte, dicht am Boden.",
+      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer",
+      "guide": {
+        "identify": "Das Gänseblümchen ist eine niedrige Pflanze. Seine spatelförmigen, leicht behaarten Blätter bilden eine flache Rosette, die dicht am Boden liegt. Jeder blattlose, behaarte Stiel trägt ein Blütenköpfchen von etwa 2 cm. Es hat weisse Blütenblätter, oft mit rosa Spitzen, um eine gelbe Mitte. Nachts und bei trübem Wetter schliessen sich die Köpfchen. Manche Pflanzen sehen ähnlich aus, sind aber andere. Die Margerite und andere grössere Blüten dieser Art wachsen an beblätterten Stängeln. Hundskamillen und Kamillen haben fein gefiederte Blätter.",
+        "habitat": "Es wächst in Rasen und kurzem Gras, auf Weiden, an Wegrändern und auf Pfaden, sonnig und auf feuchtem Boden. Du findest es fast überall in Europa. In die USA kam es aus Europa. Dort wächst es heute in Rasen und auf feuchtem, offenem Boden, vor allem wo die Sommer kühl sind.",
+        "season": "Wo die Winter mild sind, blüht es fast das ganze Jahr. Am meisten blüht es vom Frühling bis in den Frühsommer. In kalten Gegenden und in weiten Teilen der USA blüht es vom Frühling bis zum Frühsommer. Danach siehst du bis zum Frost nur noch vereinzelte Blüten.",
+        "picking": "Knips Blütenköpfchen und ein paar junge Blätter ab. Nimm von vielen Pflanzen und lass die Rosetten stehen. Meide Rasen, die mit Unkrautvernichter oder Dünger behandelt wurden. Meide auch Strassenränder und Stellen, an denen Hunde Gassi gehen.",
+        "kitchen": "Wenn du es sicher bestimmt hast, kannst du Blüten und junge Blätter in kleinen Mengen roh essen. Sie passen in Salate und auf Brote oder dienen als Garnitur. Sie schmecken mild bis leicht bitter, ältere Blätter sind zäh. Spül sie vorsichtig in kaltem Wasser ab. Probier zuerst nur wenig. Wer gegen Korbblütler allergisch ist, kann darauf reagieren, und grosse Mengen können auf den Magen schlagen. In der Schwangerschaft und Stillzeit isst du es besser nicht.",
+        "keeps": "Pflück sie erst kurz vor dem Essen, denn die Blüten welken schnell. Bis dahin legst du sie zwischen feuchtes Küchenpapier in den Kühlschrank.",
+        "source": "Bestimmung und Standort: The Wildlife Trusts und NC State Extension. Küche und Sicherheit: Colorado State University Extension und NC State Extension."
+      }
     },
     "es": {
       "name": "Margarita común",
-      "description": "Pequeñas flores blancas con centro amarillo que crecen cerca del suelo",
-      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano"
+      "description": "Florecillas blancas con el centro amarillo, pegadas al suelo.",
+      "howTo": "Común en céspedes, praderas y áreas herbosas durante primavera y verano",
+      "guide": {
+        "identify": "La margarita común, o chiribita, es una planta baja. Sus hojas tienen forma de cuchara, son algo peludas y forman una roseta plana pegada al suelo. Cada tallo es peludo y no tiene hojas. Lleva una sola cabezuela de unos 2 cm. Tiene pétalos blancos, a menudo con la punta rosa, alrededor de un centro amarillo. Las cabezuelas se cierran de noche y cuando el día está gris. Algunas plantas se le parecen pero son otras. La margarita mayor y otras flores parecidas más grandes crecen en tallos con hojas. Las magarzas y las manzanillas tienen las hojas muy divididas, como plumas.",
+        "habitat": "Crece en céspedes, prados de hierba corta, pastos con ganado, cunetas y caminos, al sol y en tierra húmeda. La encuentras en casi toda Europa. A EE. UU. llegó desde Europa. Allí crece hoy en céspedes y en tierra húmeda y removida, sobre todo donde los veranos son frescos.",
+        "season": "Donde los inviernos son suaves florece casi todo el año. La floración fuerte va de la primavera a principios de verano. En las zonas frías y en gran parte de EE. UU. florece de primavera a principios de verano. Después ves flores sueltas hasta las heladas.",
+        "picking": "Pellizca las cabezuelas y unas pocas hojas tiernas. Coge de muchas plantas y deja las rosetas en su sitio. Evita los céspedes tratados con herbicida o abono, los sitios donde se pasea a perros y las cunetas.",
+        "kitchen": "Cuando la tengas bien identificada, puedes comer crudas las flores y las hojas tiernas, en poca cantidad. Úsalas en ensaladas y bocadillos o para adornar. Saben suaves o algo amargas. Las hojas viejas son duras. Lávalas con cuidado en agua fría. Al principio prueba solo un poco. Quien tiene alergia a las compuestas puede reaccionar. En grandes cantidades pueden sentar mal al estómago. Evítala en el embarazo y durante la lactancia.",
+        "keeps": "Cógelas justo antes de usarlas, porque las flores se mustian rápido. Mientras tanto, guárdalas en la nevera entre papel de cocina húmedo.",
+        "source": "Identificación y hábitat: The Wildlife Trusts y extensión de NC State. Cocina y seguridad: extensión de la Universidad Estatal de Colorado y de NC State."
+      }
     },
     "pt": {
       "name": "Margarida-comum",
-      "description": "Pequenas flores brancas com centros amarelos que crescem rente ao solo",
-      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão"
+      "description": "Florinhas brancas com o centro amarelo, rentes ao chão.",
+      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão",
+      "guide": {
+        "identify": "A margarida-comum, ou bonina, é uma planta baixa. As folhas, em forma de colher e um pouco peludas, formam uma roseta achatada, encostada ao chão. Cada pé, peludo e sem folhas, leva uma só flor com cerca de 2 cm. Tem pétalas brancas, muitas vezes com a ponta rosada, à volta de um centro amarelo. As flores fecham-se à noite e quando o tempo está encoberto. Há plantas parecidas que são outras. A margarida-maior e outras flores maiores do mesmo feitio crescem em caules com folhas. As camomilas e as margaças têm folhas finamente recortadas, como penas.",
+        "habitat": "Cresce em relvados, prados de erva rasa, pastagens com gado, bermas e caminhos, ao sol e em terra fresca. Encontra-se quase em toda a Europa. Nos EUA chegou da Europa. Lá cresce hoje em relvados e em terrenos húmidos e mexidos, sobretudo onde os verões são frescos.",
+        "season": "Onde os invernos são amenos, floresce quase todo o ano. A grande floração vai da primavera ao início do verão. Nas regiões frias e em grande parte dos EUA floresce da primavera ao início do verão. Depois disso vê-se uma flor aqui e outra ali até às geadas.",
+        "picking": "Apanhe com os dedos as flores e algumas folhas novas. Tire um pouco de muitas plantas e deixe as rosetas no sítio. Evite relvados tratados com herbicida ou adubo, sítios onde se passeiam cães e bermas de estrada.",
+        "kitchen": "Depois de a identificar com certeza, pode comer as flores e as folhas novas cruas, em pouca quantidade. Use-as em saladas e sandes ou para enfeitar os pratos. O sabor vai do suave ao ligeiramente amargo. As folhas velhas são duras. Passe-as por água fria com cuidado. Da primeira vez, prove só um pouco. Quem é alérgico à família das margaridas pode reagir. Em grande quantidade, pode fazer mal ao estômago. Evite-a na gravidez e durante a amamentação.",
+        "keeps": "Apanhe-as mesmo antes de usar, porque as flores murcham depressa. Até lá, guarde-as no frigorífico entre folhas de papel de cozinha húmido.",
+        "source": "Identificação e habitat: The Wildlife Trusts e extensão da NC State. Cozinha e segurança: extensão da Colorado State University e da NC State."
+      }
     }
   },
   "identification": {
@@ -210,6 +264,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [3117424] }
+    "rangePrior": {
+      "taxonKeys": [3117424]
+    }
   }
 }

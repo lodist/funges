@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Masterwort",
-      "description": "A perennial herb with aromatic leaves and white flower clusters, used in traditional medicine and as a spice.",
-      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer."
+      "description": "A perennial herb with aromatic leaves and white flower clusters. It has long been used as a spice and in folk medicine.",
+      "howTo": "Found in mountain meadows and forest clearings, harvest leaves and roots in spring and summer.",
+      "guide": {
+        "identify": "Masterwort is a hairless umbellifer 30 to 100 cm tall. Its stem is round, grooved and hollow. The leaves split into three and then into three again. They end in broad, oval, double-toothed leaflets 5 to 10 cm long. The upper leaves sit on large, inflated sheaths. The umbels are flat and white or pinkish, with up to 50 rays. The fruits are round, flat and broadly winged. A crushed leaf or the thick brown rootstock smells strongly spicy, of celery and carrot. Its deadly look-alikes have finely divided leaves, feathery or like a fern's. Hemlock has a smooth, purple-blotched stem and a mousy smell. Fool's parsley has long bracts hanging under each small umbel. Cowbane (water hemlock) has a rootstock split into hollow chambers when you cut it lengthways. Hemlock water dropwort has pale tubers in wet ground. Giant hogweed is far bigger, with a bristly, purple-blotched stem. Its sap burns skin in sunlight. Masterwort's own sap can also make skin sensitive to sunlight.",
+        "habitat": "It grows in damp mountain meadows and tall-herb stands, on stream banks and scree and in alder scrub. Mostly you find it between 1,400 and 2,700 m. It grows in the Alps, the Pyrenees, the Carpathians and other mountains of central and southern Europe. In Germany it is native only in the Bavarian Alps. Lower down it is rare and usually escaped from old gardens, as in Britain and Scandinavia.",
+        "season": "The leaves grow as the snow melts. They are best young, in early summer. It flowers from late June to August and the fruits ripen in September and October.",
+        "picking": "Wear gloves. Take a few leaves from a large stand and leave the rootstock in the ground. Digging the root often needs a permit. In Tyrol that comes from the district authority. Many reserves and national parks ban picking. It grows among monkshood and white false hellebore. Both are deadly. Pick leaf by leaf and only from a plant you have identified as a whole.",
+        "kitchen": "Be certain of your identification first. Use it as a seasoning, not a vegetable, because it is strongly bitter and spicy, like lovage. In the Alps the root flavours schnapps (Meisterwurzbrand) and herb cheese. Chop a few young leaves finely and add them sparingly to soups and fresh cheese. Wash your hands after handling it.",
+        "keeps": "Dry the leaves or slices of root in an airy, shaded place. Then store them in a closed jar.",
+        "source": "Identification, habitat and season: Botanical Society of Britain and Ireland and Alpine floras. Root digging and schnapps: Austrian Ministry of Agriculture (register of traditional foods). Skin reactions: Botanical Dermatology Database."
+      }
     },
     "it": {
       "name": "Imperatoria",
-      "description": "Erba perenne con foglie aromatiche e ombrelle di fiori bianchi, usata in medicina tradizionale e come spezia.",
-      "howTo": "Si trova in prati montani e radure boschive; raccogli foglie e radici in primavera ed estate."
+      "description": "Un'erba perenne con foglie aromatiche e ombrelle di fiori bianchi. Da tempo si usa come spezia e nella medicina popolare.",
+      "howTo": "Si trova in prati montani e radure boschive; raccogli foglie e radici in primavera ed estate.",
+      "guide": {
+        "identify": "L'imperatoria è un'ombrellifera senza peli, alta da 30 a 100 cm. Il fusto è rotondo, scanalato e cavo. Le foglie si dividono in tre e poi ancora in tre. Finiscono in foglioline larghe e ovali, a doppia dentatura, lunghe da 5 a 10 cm. Le foglie in alto nascono da grandi guaine gonfie. Le ombrelle sono piatte, bianche o rosate, con fino a 50 raggi. I frutti sono tondi, piatti e con larghe ali. Una foglia stropicciata o il grosso rizoma marrone hanno un odore forte e speziato, di sedano e carota. I suoi sosia mortali hanno foglie molto divise, piumose o simili a quelle di una felce. La cicuta maggiore ha il fusto liscio macchiato di viola e un odore di topo. La cicuta aglina ha lunghe brattee che pendono sotto ogni ombrellina. La cicuta acquatica ha un rizoma che, tagliato per il lungo, è diviso in camere vuote. L'enante zafferanata ha tuberi chiari nei terreni bagnati. Il panace di Mantegazza è molto più grande, con il fusto ispido macchiato di viola. La sua linfa brucia la pelle al sole. Anche la linfa dell'imperatoria può rendere la pelle sensibile al sole.",
+        "habitat": "Cresce nei prati umidi di montagna, tra le erbe alte, sulle sponde dei ruscelli, nei ghiaioni e nelle boscaglie di ontano. Per lo più la trovi tra 1.400 e 2.700 m. Cresce sulle Alpi, sui Pirenei, sui Carpazi e su altre montagne dell'Europa centrale e del sud. In Germania è nativa solo nelle Alpi bavaresi. Più in basso è rara e di solito scappata da vecchi orti, come in Gran Bretagna e in Scandinavia.",
+        "season": "Le foglie crescono mentre la neve si scioglie. Sono migliori giovani, a inizio estate. Fiorisce da fine giugno ad agosto, e i frutti maturano a settembre e ottobre.",
+        "picking": "Metti i guanti. Prendi poche foglie da una macchia grande e lascia il rizoma nel terreno. Per scavare la radice spesso serve un permesso. In Tirolo lo rilascia l'autorità distrettuale. Molte riserve e parchi nazionali vietano la raccolta. Cresce in mezzo all'aconito napello e al veratro bianco, mortali tutti e due. Raccogli foglia per foglia, e solo da una pianta che hai riconosciuto per intero.",
+        "kitchen": "Prima di tutto devi essere sicuro di averla riconosciuta. Usala come aroma, non come verdura, perché è molto amara e speziata, come il levistico. Sulle Alpi la radice dà sapore all'acquavite (Meisterwurzbrand) e ai formaggi alle erbe. Trita fini poche foglie giovani e aggiungile con parsimonia a zuppe e formaggi freschi. Dopo averla toccata lavati le mani.",
+        "keeps": "Fai seccare le foglie o le fettine di radice in un posto arieggiato e all'ombra. Poi conservale in un barattolo chiuso.",
+        "source": "Identificazione, habitat e stagione: Botanical Society of Britain and Ireland e flore alpine. Scavo della radice e acquavite: ministero austriaco dell'Agricoltura (registro degli alimenti tradizionali). Reazioni cutanee: Botanical Dermatology Database."
+      }
     },
     "fr": {
       "name": "Impératoire",
-      "description": "Plante vivace aux feuilles aromatiques et ombelles de fleurs blanches, utilisée en médecine traditionnelle et comme épice.",
-      "howTo": "Se trouve dans les prairies de montagne et les clairières forestières ; récolte feuilles et racines au printemps et en été."
+      "description": "Une plante vivace aux feuilles aromatiques et aux ombelles de fleurs blanches. On l'utilise depuis longtemps comme épice et en médecine populaire.",
+      "howTo": "Se trouve dans les prairies de montagne et les clairières forestières ; récolte feuilles et racines au printemps et en été.",
+      "guide": {
+        "identify": "L'impératoire est une ombellifère sans poils, de 30 à 100 cm de haut. Sa tige est ronde, cannelée et creuse. Les feuilles se divisent en trois, puis encore en trois. Elles se terminent par de larges folioles ovales, doublement dentées, de 5 à 10 cm de long. Les feuilles du haut sortent de grandes gaines renflées. Les ombelles sont plates, blanches ou rosées, avec jusqu'à 50 rayons. Les fruits sont ronds, plats et largement ailés. Une feuille froissée ou l'épaisse souche brune a une odeur forte et épicée, de céleri et de carotte. Ses sosies mortels ont des feuilles finement divisées, comme des plumes ou des fougères. La grande ciguë a une tige lisse tachée de pourpre et une odeur de souris. La petite ciguë a de longues bractées qui pendent sous chaque petite ombelle. Quand on coupe en long la souche de la ciguë vireuse, elle est cloisonnée en chambres creuses. L'œnanthe safranée a des tubercules pâles, en sol humide. La berce du Caucase est bien plus grande, avec une tige hérissée tachée de pourpre. Sa sève brûle la peau au soleil. La sève de l'impératoire elle-même peut aussi rendre la peau sensible au soleil.",
+        "habitat": "Elle pousse dans les prairies humides de montagne et les hautes herbes, au bord des ruisseaux, dans les éboulis et les fourrés d'aulnes. On la trouve surtout entre 1400 et 2700 m. Elle pousse dans les Alpes, les Pyrénées, les Carpates et d'autres montagnes d'Europe centrale et du Sud. En Allemagne, elle n'est indigène que dans les Alpes bavaroises. Plus bas, elle est rare et le plus souvent échappée de vieux jardins, comme en Grande-Bretagne et en Scandinavie.",
+        "season": "Les feuilles poussent à la fonte des neiges. Elles sont meilleures jeunes, au début de l'été. Elle fleurit de fin juin à août, et les fruits mûrissent en septembre et octobre.",
+        "picking": "Mettez des gants. Prenez quelques feuilles dans une grande station et laissez la souche en terre. Pour arracher la racine, il faut souvent une autorisation. Au Tyrol, elle est délivrée par l'autorité de district. Beaucoup de réserves et de parcs nationaux interdisent la cueillette. Elle pousse parmi l'aconit napel et le vératre blanc, tous deux mortels. Cueillez feuille par feuille, et seulement sur une plante que vous avez identifiée en entier.",
+        "kitchen": "Avant tout, soyez certain de votre identification. Utilisez-la comme aromate, pas comme légume, car elle est très amère et épicée, comme la livèche. Dans les Alpes, la racine parfume l'eau-de-vie (Meisterwurzbrand) et le fromage aux herbes. Hachez finement quelques jeunes feuilles et ajoutez-les avec parcimonie aux soupes et au fromage frais. Lavez-vous les mains après l'avoir manipulée.",
+        "keeps": "Faites sécher les feuilles ou des rondelles de racine dans un endroit aéré et ombragé. Gardez-les ensuite dans un bocal fermé.",
+        "source": "Identification, habitat et saison : Botanical Society of Britain and Ireland et flores alpines. Arrachage de la racine et eau-de-vie : ministère autrichien de l'Agriculture (registre des aliments traditionnels). Réactions cutanées : Botanical Dermatology Database."
+      }
     },
     "de": {
       "name": "Meisterwurz",
-      "description": "Mehrjährige Pflanze mit aromatischen Blättern und weissen Doldenblüten, verwendet in der traditionellen Medizin und als Gewürz.",
-      "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer."
+      "description": "Eine mehrjährige Pflanze mit aromatischen Blättern und weissen Blütendolden. Sie dient seit langem als Gewürz und in der Volksmedizin.",
+      "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer.",
+      "guide": {
+        "identify": "Die Meisterwurz ist ein kahler Doldenblütler, 30 bis 100 cm hoch. Ihr Stängel ist rund, gerillt und hohl. Die Blätter teilen sich in drei und dann noch einmal in drei. Am Ende stehen breite, eiförmige, doppelt gesägte Teilblätter von 5 bis 10 cm Länge. Die oberen Blätter sitzen auf grossen, aufgeblasenen Scheiden. Die Dolden sind flach, weiss oder rosa und haben bis zu 50 Strahlen. Die Früchte sind rund, flach und breit geflügelt. Ein zerriebenes Blatt oder der dicke braune Wurzelstock riecht kräftig würzig, nach Sellerie und Möhre. Ihre tödlichen Doppelgänger haben fein zerteilte Blätter, fiedrig oder wie bei einem Farn. Der Gefleckte Schierling hat einen glatten, purpurn gefleckten Stängel und riecht nach Mäusen. Die Hundspetersilie hat lange Hüllblättchen, die unter jedem Döldchen herabhängen. Beim Wasserschierling ist der Wurzelstock in hohle Kammern geteilt, wenn du ihn längs aufschneidest. Die Safran-Rebendolde hat helle Knollen in nassem Boden. Der Riesen-Bärenklau ist viel grösser und hat einen borstigen, purpurn gefleckten Stängel. Sein Saft verbrennt bei Sonne die Haut. Auch der Saft der Meisterwurz kann die Haut lichtempfindlich machen.",
+        "habitat": "Sie wächst auf feuchten Bergwiesen und in Hochstaudenfluren, an Bachufern, auf Schutthalden und im Grünerlengebüsch. Meist findest du sie zwischen 1400 und 2700 m. Sie wächst in den Alpen, den Pyrenäen, den Karpaten und anderen Gebirgen Mittel- und Südeuropas. In Deutschland ist sie nur in den Bayerischen Alpen heimisch. Weiter unten ist sie selten und meist aus alten Gärten verwildert, etwa in Grossbritannien und Skandinavien.",
+        "season": "Die Blätter wachsen, wenn der Schnee schmilzt. Am besten sind sie jung, im Frühsommer. Sie blüht von Ende Juni bis August, und die Früchte reifen im September und Oktober.",
+        "picking": "Zieh Handschuhe an. Nimm ein paar Blätter aus einem grossen Bestand und lass den Wurzelstock im Boden. Zum Ausgraben der Wurzel brauchst du oft eine Genehmigung. In Tirol bekommst du sie von der Bezirkshauptmannschaft. Viele Schutzgebiete und Nationalparks verbieten das Pflücken. Sie wächst zwischen Eisenhut und Weissem Germer, und beide sind tödlich giftig. Pflück Blatt für Blatt und nur von einer Pflanze, die du als Ganzes bestimmt hast.",
+        "kitchen": "Sei dir bei der Bestimmung zuerst ganz sicher. Verwende sie als Gewürz, nicht als Gemüse, denn sie schmeckt kräftig bitter und würzig, ähnlich wie Liebstöckel. In den Alpen würzt die Wurzel Schnaps (Meisterwurzbrand) und Kräuterkäse. Hack ein paar junge Blätter fein und gib sie sparsam in Suppen und Frischkäse. Wasch dir nach dem Anfassen die Hände.",
+        "keeps": "Trockne die Blätter oder Wurzelscheiben luftig im Schatten. Dann bewahrst du sie in einem verschlossenen Glas auf.",
+        "source": "Bestimmung, Standort und Saison: Botanical Society of Britain and Ireland und Alpenfloren. Wurzelgraben und Schnaps: österreichisches Landwirtschaftsministerium (Register traditioneller Lebensmittel). Hautreaktionen: Botanical Dermatology Database."
+      }
     },
     "es": {
       "name": "Imperatoria",
-      "description": "Hierba perenne con hojas aromáticas y umbelas de flores blancas, usada en medicina tradicional y como especia.",
-      "howTo": "Se encuentra en praderas de montaña y claros de bosque; recolecta hojas y raíces en primavera y verano."
+      "description": "Una hierba perenne de hojas aromáticas y umbelas de flores blancas. Desde hace mucho se usa como especia y en la medicina popular.",
+      "howTo": "Se encuentra en praderas de montaña y claros de bosque; recolecta hojas y raíces en primavera y verano.",
+      "guide": {
+        "identify": "La imperatoria es una umbelífera sin pelos, de 30 a 100 cm de alto. Su tallo es redondo, estriado y hueco. Las hojas se dividen en tres, y luego otra vez en tres. Acaban en hojuelas anchas, ovaladas y con doble dentado, de 5 a 10 cm. Las hojas de arriba nacen de unas vainas grandes e hinchadas. Las umbelas son planas, blancas o rosadas, con hasta 50 radios. Los frutos son redondos, planos y con un ala ancha. Una hoja estrujada o el rizoma, grueso y pardo, huelen fuerte y especiado, a apio y zanahoria. Sus parecidos mortales tienen las hojas muy divididas, como plumas o como un helecho. La cicuta tiene el tallo liso con manchas moradas y huele a orina de ratón. El perejil de perro tiene brácteas largas que cuelgan bajo cada umbela pequeña. La cicuta acuática tiene un rizoma dividido en cámaras huecas cuando lo cortas a lo largo. El nabo del diablo tiene tubérculos claros y crece en suelo húmedo. El perejil gigante es mucho más grande, con el tallo erizado y con manchas moradas. Su savia quema la piel con el sol. La propia savia de la imperatoria también puede volver la piel sensible al sol.",
+        "habitat": "Crece en prados húmedos de montaña, herbazales altos, orillas de arroyos, pedreras y matorrales de alisos. Casi siempre la encuentras entre 1400 y 2700 m. Crece en los Alpes, los Pirineos, los Cárpatos y otras montañas del centro y el sur de Europa. En Alemania solo es autóctona en los Alpes bávaros. Más abajo es rara y suele venir escapada de jardines antiguos, como en Gran Bretaña y Escandinavia.",
+        "season": "Las hojas crecen a medida que se derrite la nieve. Son mejores jóvenes, a principios de verano. Florece de finales de junio a agosto. Los frutos maduran en septiembre y octubre.",
+        "picking": "Ponte guantes. Coge unas pocas hojas de una mancha grande y deja el rizoma en la tierra. Para sacar la raíz a menudo hace falta permiso. En el Tirol lo da la autoridad del distrito. Muchas reservas y parques nacionales prohíben coger plantas. Crece entre acónito y vedegambre, y los dos son mortales. Coge hoja a hoja y solo de una planta que hayas identificado entera.",
+        "kitchen": "Primero asegúrate bien de que la has identificado. Úsala como condimento, no como verdura, porque es muy amarga y especiada, como la levística. En los Alpes, la raíz da sabor al aguardiente (Meisterwurzbrand) y a quesos de hierbas. Pica muy finas unas pocas hojas jóvenes y añádelas con mesura a sopas y queso fresco. Lávate las manos después de tocarla.",
+        "keeps": "Seca las hojas o rodajas de raíz en un sitio aireado y a la sombra. Después guárdalas en un tarro cerrado.",
+        "source": "Identificación, hábitat y temporada: Botanical Society of Britain and Ireland y floras alpinas. Arranque de la raíz y aguardiente: Ministerio de Agricultura de Austria (registro de alimentos tradicionales). Reacciones en la piel: Botanical Dermatology Database."
+      }
     },
     "pt": {
       "name": "Imperatória",
-      "description": "Erva perene com folhas aromáticas e umbelas de flores brancas, usada na medicina tradicional e como especiaria.",
-      "howTo": "Encontrada em prados de montanha e clareiras florestais; colha folhas e raízes na primavera e no verão."
+      "description": "Uma erva perene de folhas aromáticas e flores brancas em umbela. Há muito tempo que se usa como especiaria e na medicina popular.",
+      "howTo": "Encontrada em prados de montanha e clareiras florestais; colha folhas e raízes na primavera e no verão.",
+      "guide": {
+        "identify": "A imperatória é uma umbelífera sem pelos, com 30 a 100 cm de altura. O caule é redondo, estriado e oco. As folhas dividem-se em três e cada parte outra vez em três. Acabam em folíolos largos, ovais e duplamente dentados, de 5 a 10 cm. As folhas de cima nascem de grandes bainhas inchadas. As umbelas são planas, brancas ou rosadas, com até 50 raios. Os frutos são redondos, achatados e com uma asa larga. Uma folha esmagada ou o rizoma grosso e castanho têm um cheiro forte e especiado, a aipo e cenoura. Os seus sósias mortais têm folhas muito divididas, como penas ou como as de um feto. A cicuta tem o caule liso e com manchas roxas. Cheira a rato. A cicuta-menor tem brácteas compridas penduradas debaixo de cada umbela pequena. A cicuta-aquática tem um rizoma dividido em câmaras ocas quando o corta ao comprido. O embude (Oenanthe crocata) tem tubérculos claros, em terra molhada. O canabrás-gigante é muito maior, com o caule eriçado e manchado de roxo. A seiva dele queima a pele ao sol. A seiva da própria imperatória também pode tornar a pele sensível ao sol.",
+        "habitat": "Cresce em prados húmidos de montanha, em ervaçais altos, nas margens de ribeiros, em cascalheiras e em matos de amieiro. Encontra-se sobretudo entre os 1400 e os 2700 m. Cresce nos Alpes, nos Pirenéus, nos Cárpatos e noutras montanhas do centro e do sul da Europa. Na Alemanha só é nativa nos Alpes da Baviera. Mais abaixo é rara e em geral fugida de hortas antigas, como na Grã-Bretanha e na Escandinávia.",
+        "season": "As folhas rebentam com o degelo. São melhores novas, no início do verão. Floresce do fim de junho a agosto. Os frutos amadurecem em setembro e outubro.",
+        "picking": "Calce luvas. Tire poucas folhas de uma mancha grande e deixe o rizoma na terra. Arrancar a raiz exige muitas vezes autorização. No Tirol, é a autoridade distrital que a dá. Muitas reservas e parques nacionais proíbem a apanha. Cresce no meio do acónito e do veratro-branco. Os dois são mortais. Apanhe folha a folha e só de uma planta que tenha identificado por inteiro.",
+        "kitchen": "Primeiro, tenha a certeza da identificação. Use-a como tempero e não como verdura, porque tem um sabor muito amargo e forte a especiarias, como o levístico. Nos Alpes, a raiz dá sabor a aguardente (Meisterwurzbrand) e a queijos de ervas. Pique bem algumas folhas novas e junte-as com moderação a sopas e queijo fresco. Lave as mãos depois de lhe mexer.",
+        "keeps": "Seque as folhas ou rodelas de raiz num sítio arejado e à sombra. Depois guarde-as num frasco fechado.",
+        "source": "Identificação, habitat e época: Botanical Society of Britain and Ireland e floras alpinas. Arranque da raiz e aguardente: Ministério da Agricultura da Áustria (registo de alimentos tradicionais). Reações na pele: Botanical Dermatology Database."
+      }
     }
   },
   "identification": {
@@ -144,6 +198,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [5538108] }
+    "rangePrior": {
+      "taxonKeys": [5538108]
+    }
   }
 }

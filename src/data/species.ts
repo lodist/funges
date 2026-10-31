@@ -34,6 +34,8 @@ export interface SpeciesWithTranslations extends Omit<
   name: string;
   description: string;
   howTo: string;
+  /** Its entry in species.json's list_of_species (not always the id). */
+  translationKey: string;
 }
 
 export const SPECIES_DATA: Species[] = GENERATED_SPECIES_DATA;
@@ -45,6 +47,7 @@ export const useSpeciesData = (): SpeciesWithTranslations[] => {
     () =>
       SPECIES_DATA.map(species => ({
         ...species,
+        translationKey: species.nameKey.replace(/\.name$/, ''),
         name: t(species.nameKey),
         description: t(species.descriptionKey),
         howTo: t(species.howToKey),

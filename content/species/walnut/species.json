@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Walnut",
-      "description": "Large round nuts with hard shells and rich, oily flavor",
-      "howTo": "Look for walnut trees in parks, gardens, and woodland edges in autumn"
+      "description": "Big round nuts with hard shells and a rich, oily taste.",
+      "howTo": "Look for walnut trees in parks, gardens and woodland edges in autumn",
+      "guide": {
+        "identify": "The walnut is a large tree. Its bark is smooth and olive-brown, turning grey and fissured with age. The leaves have five to nine smooth-edged oval leaflets. Crushed, they smell of polish. The nut sits in a thick, smooth green husk that darkens and splits when ripe. The black walnut of the eastern US has more leaflets and they are narrower and toothed. Its round husk does not split. Inside is a very hard, ridged shell.",
+        "habitat": "Walnut is native from south-east Europe to south-west China. It has been planted across Europe and gone wild in hedgerows, field edges, riverbanks and young woods. It grows mostly at low altitude on deep, fertile soil. In the US, orchards are mainly in California. In the eastern woods the wild species is the black walnut.",
+        "season": "Walnuts come in September and October, when the husks crack and the nuts drop. Green walnuts for pickling or liqueur are picked in late June or early July. At that stage a skewer still goes straight through them.",
+        "picking": "Gather fallen nuts every day or two, before mould and insects spoil them. Wear gloves, because the husk stains skin brown for days. Remove the husks soon. Most walnut trees belong to someone, so ask first.",
+        "kitchen": "Once you are sure of the tree, eat fresh walnuts with the bitter skin peeled off. Or dry them for bread, cakes, salads and sauces. Throw away mouldy, shrivelled or rancid kernels. Walnuts are a common cause of nut allergy.",
+        "keeps": "Dry them in the shell in an airy, shady place, until the divider between the halves snaps. Dried nuts keep up to a year in the fridge.",
+        "source": "Identification and range: Woodland Trust. Harvest and storage: Oregon State University and Kansas State University extension."
+      }
     },
     "it": {
       "name": "Noce",
-      "description": "Noci grandi e rotonde con guscio duro e sapore ricco e oleoso",
-      "howTo": "Cerca alberi di noce in parchi, giardini e bordi boschivi in autunno"
+      "description": "Noci grandi e tonde con il guscio duro e un sapore ricco e oleoso.",
+      "howTo": "Cerca alberi di noce in parchi, giardini e bordi boschivi in autunno",
+      "guide": {
+        "identify": "Il noce è un albero grande. La corteccia è liscia e bruno-oliva, e con l'età diventa grigia e screpolata. Le foglie hanno da cinque a nove foglioline ovali, con il bordo liscio. Se le stropicci sanno di lucido per mobili. La noce sta dentro il mallo, verde, spesso e liscio, che a maturazione scurisce e si apre. Il noce nero dell'est degli Stati Uniti ha più foglioline, più strette e dentate. Il suo mallo tondo non si apre. Dentro c'è un guscio durissimo e pieno di solchi.",
+        "habitat": "Il noce viene da un'area che va dall'Europa sud-orientale alla Cina sud-occidentale. È stato piantato in tutta Europa e si è inselvatichito nelle siepi, ai bordi dei campi, sulle rive dei fiumi e nei boschi giovani. Cresce soprattutto a bassa quota, su terreni profondi e fertili. Negli Stati Uniti i noceti sono soprattutto in California. Nei boschi dell'est la specie selvatica è il noce nero.",
+        "season": "Le noci arrivano a settembre e ottobre, quando il mallo si spacca e le noci cadono. Le noci verdi per i sottaceti o per il nocino si raccolgono tra fine giugno e inizio luglio. In quel momento uno spiedino le trapassa ancora da parte a parte.",
+        "picking": "Raccogli le noci cadute ogni uno o due giorni, prima che muffe e insetti le rovinino. Metti i guanti, perché il mallo macchia la pelle di marrone per giorni. Togli presto il mallo. Quasi tutti i noci hanno un padrone, quindi chiedi prima.",
+        "kitchen": "Quando hai riconosciuto l'albero con certezza, mangia le noci fresche togliendo la pellicina amara. Oppure falle seccare e usale per pane, torte, insalate e sughi. Butta i gherigli ammuffiti, raggrinziti o rancidi. Le noci sono una causa frequente di allergia alla frutta a guscio.",
+        "keeps": "Falle asciugare nel guscio in un posto arieggiato e all'ombra, finché il setto che divide le due metà si spezza netto. Secche durano fino a un anno in frigo.",
+        "source": "Riconoscimento e diffusione: Woodland Trust. Raccolta e conservazione: Oregon State University e Kansas State University Extension."
+      }
     },
     "fr": {
       "name": "Noyer",
-      "description": "Grosses noix rondes à coque dure et saveur riche et huileuse",
-      "howTo": "Cherchez les noyers dans les parcs, jardins et lisières de bois en automne"
+      "description": "De grosses noix rondes à la coque dure, au goût riche et huileux.",
+      "howTo": "Cherchez les noyers dans les parcs, jardins et lisières de bois en automne",
+      "guide": {
+        "identify": "Le noyer est un grand arbre. Son écorce est lisse et brun olive, puis devient grise et crevassée avec l'âge. Ses feuilles ont cinq à neuf folioles ovales à bord lisse. Froissées, elles sentent l'encaustique. La noix est enfermée dans le brou, une enveloppe verte, épaisse et lisse. À maturité, le brou noircit et se fend. Le noyer noir de l'est des États-Unis a plus de folioles, plus étroites et dentées. Son brou rond ne se fend pas. À l'intérieur se trouve une coque très dure et sillonnée.",
+        "habitat": "Le noyer est originaire d'une zone qui va du sud-est de l'Europe au sud-ouest de la Chine. Il a été planté partout en Europe. Il s'est naturalisé dans les haies, en bordure de champs, sur les berges et dans les jeunes bois. Il pousse surtout à basse altitude, sur des sols profonds et fertiles. Aux États-Unis, les vergers sont surtout en Californie. Dans les forêts de l'est, l'espèce sauvage est le noyer noir.",
+        "season": "Les noix arrivent en septembre et octobre, quand le brou se fend et que les noix tombent. Les noix vertes, pour les conserves ou la liqueur, se cueillent fin juin ou début juillet. À ce stade, une brochette les traverse encore de part en part.",
+        "picking": "Ramassez les noix tombées tous les jours ou tous les deux jours, avant que les moisissures et les insectes ne les abîment. Portez des gants, car le brou tache la peau en brun pendant des jours. Retirez vite le brou. La plupart des noyers appartiennent à quelqu'un, alors demandez d'abord.",
+        "kitchen": "Une fois l'arbre identifié avec certitude, mangez les noix fraîches en retirant leur peau amère. Ou faites-les sécher pour le pain, les gâteaux, les salades et les sauces. Jetez les cerneaux moisis, ratatinés ou rances. La noix est une cause fréquente d'allergie aux fruits à coque.",
+        "keeps": "Faites-les sécher dans leur coque, dans un endroit aéré et ombragé, jusqu'à ce que la cloison entre les deux moitiés casse net. Sèches, elles se gardent jusqu'à un an au réfrigérateur.",
+        "source": "Identification et aire de répartition : Woodland Trust. Récolte et conservation : universités d'État de l'Oregon et du Kansas (services d'extension)."
+      }
     },
     "de": {
       "name": "Walnuss",
-      "description": "Grosse, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
-      "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst"
+      "description": "Grosse, runde Nüsse mit harter Schale und einem aromatischen, öligen Kern.",
+      "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst",
+      "guide": {
+        "identify": "Der Walnussbaum ist ein grosser Baum. Seine Rinde ist glatt und olivbraun und wird im Alter grau und rissig. Die Blätter haben fünf bis neun ganzrandige, ovale Fiederblättchen. Zerrieben riechen sie nach Möbelpolitur. Die Nuss steckt in einer dicken, glatten grünen Hülle, die beim Reifen dunkel wird und aufplatzt. Die Schwarznuss im Osten der USA hat mehr Fiederblättchen, und die sind schmaler und gesägt. Ihre runde Hülle platzt nicht auf. Darin steckt eine sehr harte, gefurchte Schale.",
+        "habitat": "Die Walnuss stammt aus dem Gebiet von Südosteuropa bis Südwestchina. In ganz Europa wurde sie gepflanzt und ist in Hecken, an Feldrändern, Flussufern und in jungen Wäldern verwildert. Meist wächst sie in tiefen Lagen auf tiefgründigem, fruchtbarem Boden. In den USA stehen die Plantagen vor allem in Kalifornien. In den Wäldern im Osten ist die Schwarznuss die wilde Art.",
+        "season": "Walnüsse kommen im September und Oktober, wenn die Hüllen aufplatzen und die Nüsse fallen. Grüne Walnüsse zum Einlegen oder für Nusslikör pflückt man Ende Juni oder Anfang Juli. Dann lässt sich noch glatt ein Spiess durch sie stechen.",
+        "picking": "Sammle heruntergefallene Nüsse alle ein bis zwei Tage, bevor Schimmel und Insekten sie verderben. Trag Handschuhe, denn die Hülle färbt die Haut tagelang braun. Entferne die Hüllen bald. Die meisten Walnussbäume gehören jemandem, also frag vorher.",
+        "kitchen": "Wenn du dir beim Baum sicher bist, iss frische Walnüsse und zieh vorher die bittere Haut ab. Oder trockne sie für Brot, Kuchen, Salate und Sossen. Wirf schimmelige, verschrumpelte oder ranzige Kerne weg. Walnüsse lösen häufig Nussallergien aus.",
+        "keeps": "Trockne sie in der Schale an einem luftigen, schattigen Ort, bis die Trennwand zwischen den Hälften knackend bricht. Getrocknete Nüsse halten sich im Kühlschrank bis zu einem Jahr.",
+        "source": "Bestimmung und Verbreitung: Woodland Trust. Ernte und Lagern: Oregon State University und Kansas State University Extension."
+      }
     },
     "es": {
       "name": "Nuez",
-      "description": "Frutos grandes y redondos con cáscara dura y sabor rico y aceitoso",
-      "howTo": "Busca nogales en parques, jardines y bordes de bosques en otoño"
+      "description": "Nueces grandes y redondas de cáscara dura, con un sabor intenso y aceitoso.",
+      "howTo": "Busca nogales en parques, jardines y bordes de bosques en otoño",
+      "guide": {
+        "identify": "El nogal es un árbol grande. Su corteza es lisa y de color pardo oliva, y con la edad se vuelve gris y agrietada. Las hojas tienen de cinco a nueve folíolos ovalados de borde liso. Si las estrujas, huelen a cera de muebles. La nuez va dentro de una cáscara verde, gruesa y lisa, que se oscurece y se abre al madurar. El nogal negro del este de EE. UU. tiene más folíolos. Son más estrechos y dentados. Su cáscara verde es redonda y no se abre. Dentro hay una cáscara muy dura y con surcos.",
+        "habitat": "El nogal es originario de una zona que va del sureste de Europa al suroeste de China. Se ha plantado por toda Europa y se ha asilvestrado en setos, lindes de campos, riberas y bosques jóvenes. Crece sobre todo a poca altitud, en suelos profundos y fértiles. En EE. UU. las plantaciones están sobre todo en California. En los bosques del este, la especie silvestre es el nogal negro.",
+        "season": "Las nueces se cogen en septiembre y octubre, cuando las cáscaras verdes se abren y las nueces caen. Las nueces verdes para encurtir o para licor se cogen a finales de junio o principios de julio. En ese momento una brocheta todavía las atraviesa de lado a lado.",
+        "picking": "Recoge las nueces caídas cada uno o dos días, antes de que las estropeen el moho y los bichos. Ponte guantes, porque la cáscara verde tiñe la piel de marrón durante días. Quítales pronto la cáscara verde. Casi todos los nogales tienen dueño, así que pregunta antes.",
+        "kitchen": "Cuando no tengas ninguna duda del árbol, come las nueces frescas quitándoles la piel amarga. O sécalas para pan, bizcochos, ensaladas y salsas. Tira las que tengan moho o estén arrugadas o rancias. Las nueces son una causa frecuente de alergia a los frutos secos.",
+        "keeps": "Sécalas con cáscara en un sitio aireado y a la sombra, hasta que el tabique entre las dos mitades se parta con un chasquido. Secas aguantan hasta un año en la nevera.",
+        "source": "Identificación y distribución: Woodland Trust. Cosecha y conservación: extensión de las universidades estatales de Oregón y Kansas."
+      }
     },
     "pt": {
       "name": "Noz",
-      "description": "Nozes grandes e redondas com casca dura e sabor rico e oleoso",
-      "howTo": "Procure nogueiras em parques, jardins e bordas de bosques no outono"
+      "description": "Frutos grandes e redondos, de casca dura e sabor rico e oleoso.",
+      "howTo": "Procure nogueiras em parques, jardins e bordas de bosques no outono",
+      "guide": {
+        "identify": "A nogueira é uma árvore grande. A casca do tronco é lisa, castanho-azeitona. Com a idade fica cinzenta e gretada. As folhas têm cinco a nove folíolos ovais de margem lisa. Esmagadas, cheiram a cera de móveis. A noz está dentro de uma casca verde, grossa e lisa, que escurece e abre quando madura. A nogueira-preta do leste dos EUA tem mais folíolos, mais estreitos e dentados. A casca verde é redonda e não abre. Lá dentro há uma casca muito dura, com sulcos.",
+        "habitat": "A nogueira é nativa de uma faixa que vai do sudeste da Europa ao sudoeste da China. Foi plantada em toda a Europa e tornou-se espontânea em sebes, bordas de campos, margens de rios e matas jovens. Cresce sobretudo a baixa altitude, em solos fundos e férteis. Nos EUA os pomares ficam sobretudo na Califórnia. Nas matas do leste, a espécie silvestre é a nogueira-preta.",
+        "season": "As nozes vêm em setembro e outubro, quando a casca verde estala e elas caem. As nozes verdes para conserva ou licor apanham-se no fim de junho ou no início de julho. Nessa altura um espeto ainda as atravessa de lado a lado.",
+        "picking": "Apanhe as nozes caídas todos os dias ou de dois em dois dias, antes que o bolor e os insetos as estraguem. Use luvas, porque a casca verde tinge a pele de castanho durante dias. Tire a casca verde pouco depois. A maior parte das nogueiras tem dono, por isso peça primeiro.",
+        "kitchen": "Quando tiver a certeza da árvore, coma as nozes frescas sem a pele amarga do miolo. Também as pode secar para pão, bolos, saladas e molhos. Deite fora os miolos com bolor, engelhados ou rançosos. As nozes são uma causa frequente de alergia a frutos de casca rija.",
+        "keeps": "Seque-as com casca num sítio arejado e à sombra, até a divisória entre as metades partir com um estalo. Secas, aguentam até um ano no frigorífico.",
+        "source": "Identificação e distribuição: Woodland Trust. Colheita e conservação: Oregon State University e Kansas State University Extension."
+      }
     }
   },
   "identification": {
@@ -208,6 +262,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [3054368, 3054357] }
+    "rangePrior": {
+      "taxonKeys": [3054368, 3054357]
+    }
   }
 }

@@ -4,8 +4,9 @@ import { cn } from '@/lib/utils';
 export interface CategoryChip {
   value: string;
   label: string;
-  /** URL of the type icon, from `CATEGORY_ICONS`. */
-  icon: string;
+  /** URL of the type icon, from `CATEGORY_ICONS`; a chip without one always
+   *  shows its label. */
+  icon?: string;
 }
 
 interface CategoryChipsProps {
@@ -17,16 +18,16 @@ interface CategoryChipsProps {
   className?: string;
 }
 
-/** A chosen filter chip: the band's deep green, the same in both themes.
- *  Weight and a soft lift alone left every chip white over the map's glass,
- *  so the choice could not be seen. */
+/** A chosen filter chip: the band's fill (green in Terra, terracotta in
+ *  Huerta). Weight and a soft lift alone left every chip white over the map's
+ *  glass, so the choice could not be seen. */
 export const SELECTED_CHIP_CLASS =
-  'bg-happy-900 font-semibold text-happy-50 shadow-[0_1px_4px_rgba(0,0,0,0.08)] hover:bg-happy-900 hover:text-happy-50 dark:bg-happy-900 dark:hover:bg-happy-900 dark:hover:text-happy-50';
+  'bg-band font-semibold text-band-foreground shadow-[0_1px_4px_rgba(0,0,0,0.08)] hover:bg-band hover:text-band-foreground dark:bg-band dark:hover:bg-band dark:hover:text-band-foreground';
 
 /** The species-type filter: one chip per type, the selected one on the band's
- * green. Shared by the map species panel, the area species list and the
- * Species page, so the three cannot drift apart again. Labels hide below
- * `sm:`, which is why each chip also carries its label as `aria-label`. */
+ * fill. Shared by the map species panel, the area species list and the Species
+ * page, so the three cannot drift apart again. Labels hide below `sm:`, which
+ * is why each chip also carries its label as `aria-label`. */
 export function CategoryChips({
   chips,
   value,
@@ -62,8 +63,12 @@ export function CategoryChips({
                   )
             )}
           >
-            <img src={chip.icon} alt='' className='size-6' />
-            <span className='hidden sm:inline'>{chip.label}</span>
+            {chip.icon ? (
+              <img src={chip.icon} alt='' className='size-6' />
+            ) : null}
+            <span className={cn(chip.icon && 'hidden sm:inline')}>
+              {chip.label}
+            </span>
           </Button>
         );
       })}

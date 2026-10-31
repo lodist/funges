@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Lingonberry",
-      "description": "Small, red, tart berries that grow on low evergreen shrubs in acidic soils.",
-      "howTo": "Look for them in coniferous forests, moorlands, and heathlands in late summer and autumn."
+      "description": "Small, red, tart berries on low evergreen shrubs in acid soil.",
+      "howTo": "Look for them in coniferous forests, moorlands and heathlands in late summer and autumn.",
+      "guide": {
+        "identify": "Lingonberry, also called cowberry, is a creeping evergreen dwarf shrub. Its leaves are thick, glossy and dark green, with edges that roll under. The pale underside is speckled with tiny dark dots. Small white to pink bell-shaped flowers grow in short clusters at the shoot tips. They give round, glossy red berries that hang in small bunches. Bearberry (Arctostaphylos uva-ursi) is a trailing shrub of the same places. It has net-veined leaves without dots and dry, mealy berries. The poisonous red and black berries do not grow on a low evergreen carpet. Yew (Taxus) is a tree or tall shrub with flat needles. Its red cup is open at the end around a dark seed. Mezereon (Daphne mezereum) is an upright shrub with berries pressed along the stem. Deadly nightshade (Atropa bella-donna) is a tall herb with black berries. Red baneberry (Actaea) and lily of the valley (Convallaria majalis) are soft herbs.",
+        "habitat": "It needs acid, poor soil. Look in pine and spruce forests, birch woods, heaths, moorland and on mountain slopes above the treeline. It is very common in Scandinavia and the Baltic states and is found in the Alps and other mountains. In North America it grows mainly in Canada and Alaska. It reaches the US only in the far north, from Minnesota to Maine. There it is rare and in Wisconsin it is endangered.",
+        "season": "The berries turn red from August. They are best when fully dark red, from September into October. They hang on the plants into winter.",
+        "picking": "Pick dark red berries by hand, or with a berry picker where that is allowed. In Sweden, Finland and Norway, everyman's right lets anyone pick wild berries away from houses and gardens. Nature reserves can have their own rules, though. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm. It still advises washing them well. Only heating above 60 °C kills its eggs and home freezing does not.",
+        "kitchen": "Raw berries are sour and slightly bitter. So once you've identified them with certainty, you usually cook them with sugar into a sauce or jam. In Sweden people also stir them raw with sugar. Serve them with meatballs, game, roasts, potato pancakes or porridge.",
+        "keeps": "They keep longer in the fridge than most berries. Stirred with sugar, they keep cool for a long time thanks to their natural benzoic acid. They freeze well as they are.",
+        "source": "Identification and range: Minnesota Wildflowers and CREA Mont-Blanc. Picking rights: Swedish Environmental Protection Agency. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "it": {
       "name": "Mirtillo Rosso",
-      "description": "Piccole bacche rosse e acidule che crescono su arbusti sempreverdi in suoli acidi.",
-      "howTo": "Cerca nei boschi di conifere, brughiere e lande tra fine estate e autunno."
+      "description": "Piccole bacche rosse e acidule su arbusti bassi sempreverdi, in terreno acido.",
+      "howTo": "Cerca nei boschi di conifere, brughiere e lande tra fine estate e autunno.",
+      "guide": {
+        "identify": "Il mirtillo rosso, o vite idea, è un piccolo arbusto sempreverde e strisciante. Le foglie sono spesse, lucide e verde scuro, con il margine arrotolato verso il basso. Sotto sono chiare e punteggiate di minuscoli puntini scuri. In cima ai rametti crescono piccoli fiori a campanella, da bianchi a rosa, in brevi grappoli. Danno bacche tonde, rosse e lucide, che pendono a mazzetti. L'uva ursina (Arctostaphylos uva-ursi) è un arbusto strisciante degli stessi posti. Ha foglie con nervature a rete e senza puntini. Le sue bacche sono secche e farinose. Le bacche rosse e nere velenose non crescono su un tappeto basso e sempreverde. Il tasso (Taxus) è un albero o un grande arbusto con aghi piatti. La sua coppetta rossa è aperta in punta, intorno a un seme scuro. Il fior di stecco (Daphne mezereum) è un arbusto dritto con le bacche attaccate lungo il ramo. La belladonna (Atropa bella-donna) è un'erba alta con bacche nere. L'actea rossa (Actaea) e il mughetto (Convallaria majalis) sono erbe morbide.",
+        "habitat": "Vuole terreno acido e povero. Cercalo nelle pinete e nelle peccete, nei boschi di betulle, nelle brughiere e nelle lande e sui pendii sopra il limite del bosco. È molto comune in Scandinavia e nei paesi baltici e si trova sulle Alpi e su altre montagne. In Nord America cresce soprattutto in Canada e in Alaska. Negli Stati Uniti arriva solo nell'estremo nord, dal Minnesota al Maine. Lì è raro e nel Wisconsin è in pericolo.",
+        "season": "Le bacche diventano rosse da agosto. Sono al meglio quando sono rosso scuro, da settembre a ottobre. Restano sulla pianta fino all'inverno.",
+        "picking": "Raccogli le bacche rosso scuro a mano, o col pettine dove è permesso. In Svezia, Finlandia e Norvegia il diritto di libero accesso alla natura permette a tutti di raccogliere bacche selvatiche lontano da case e giardini. Le riserve naturali però possono avere regole proprie. In Europa centrale l'autorità sanitaria bavarese (LGL) dice che mangiare bacche selvatiche non si è dimostrato un fattore di rischio per l'echinococco della volpe. Consiglia comunque di lavarle bene. Solo il calore sopra i 60 °C ne uccide le uova. Il congelatore di casa no.",
+        "kitchen": "Crude sono aspre e un po' amare. Così, una volta che le hai riconosciute con certezza, di solito si cuociono con lo zucchero in salsa o marmellata. In Svezia si mescolano anche crude con lo zucchero. Servile con polpette, selvaggina, arrosti, frittelle di patate o porridge.",
+        "keeps": "In frigo durano più della maggior parte delle bacche. Mescolate con lo zucchero si conservano a lungo al fresco, grazie al loro acido benzoico naturale. Si congelano bene così come sono.",
+        "source": "Identificazione e distribuzione: Minnesota Wildflowers e CREA Mont-Blanc. Diritto di raccolta: Agenzia svedese per la protezione dell'ambiente (Naturvårdsverket). Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "fr": {
       "name": "Airelle rouge",
-      "description": "Petites baies rouges et acidulées poussant sur des arbustes persistants dans les sols acides.",
-      "howTo": "Cherche dans les forêts de conifères, landes et tourbières de la fin de l'été à l'automne."
+      "description": "De petites baies rouges et acidulées, sur des arbrisseaux bas toujours verts, en sol acide.",
+      "howTo": "Cherche dans les forêts de conifères, landes et tourbières de la fin de l'été à l'automne.",
+      "guide": {
+        "identify": "L'airelle rouge, qu'on appelle aussi airelle vigne-d'Ida, est un petit arbrisseau rampant et toujours vert. Ses feuilles sont épaisses, luisantes et vert foncé, avec les bords enroulés vers le dessous. Le revers, plus pâle, est parsemé de minuscules points sombres. De petites fleurs en clochette, blanches à roses, poussent en courtes grappes au bout des pousses. Elles donnent des baies rondes, rouges et brillantes qui pendent en petits bouquets. La busserole (Arctostaphylos uva-ursi) est un arbrisseau rampant des mêmes endroits. Ses feuilles ont des nervures en réseau, sans points. Ses baies sont sèches et farineuses. Les baies rouges et noires toxiques ne poussent pas sur un tapis bas et toujours vert. L'if (Taxus) est un arbre ou un grand arbuste aux aiguilles plates. Sa cupule rouge est ouverte au bout, autour d'une graine sombre. Le bois-joli (Daphne mezereum) est un arbuste dressé, aux baies collées le long de la tige. La belladone (Atropa bella-donna) est une grande plante herbacée aux baies noires. L'actée rouge (Actaea) et le muguet (Convallaria majalis) sont des herbes tendres.",
+        "habitat": "Elle a besoin d'un sol acide et pauvre. Cherchez-la dans les forêts de pins et d'épicéas, les bois de bouleaux, les landes et les tourbières. Elle monte aussi sur les pentes de montagne, au-dessus de la limite des arbres. Elle est très commune en Scandinavie et dans les pays baltes. On la trouve aussi dans les Alpes et d'autres montagnes. En Amérique du Nord, elle pousse surtout au Canada et en Alaska. Elle n'atteint les États-Unis que tout au nord, du Minnesota au Maine. Elle y est rare, et dans le Wisconsin elle est menacée.",
+        "season": "Les baies rougissent dès août. Elles sont meilleures quand elles sont bien rouge foncé, de septembre à octobre. Elles restent sur les plants jusqu'en hiver.",
+        "picking": "Cueillez les baies rouge foncé à la main, ou avec un peigne à baies là où c'est permis. En Suède, en Finlande et en Norvège, le droit d'accès à la nature permet à chacun de cueillir des baies sauvages loin des maisons et des jardins. Les réserves naturelles peuvent cependant avoir leurs propres règles. En Europe centrale, l'office bavarois de la santé (LGL) indique que manger des baies sauvages n'est pas un facteur de risque démontré pour le ténia du renard. Il conseille tout de même de bien les laver. Seule une cuisson au-dessus de 60 °C tue ses œufs. Le congélateur de la maison ne les tue pas.",
+        "kitchen": "Crues, les baies sont acides et un peu amères. Une fois que vous les avez identifiées avec certitude, vous les cuisez donc le plus souvent avec du sucre, en sauce ou en confiture. En Suède, on les mélange aussi crues avec du sucre. Servez-les avec des boulettes de viande, du gibier, des rôtis, des galettes de pommes de terre ou du porridge.",
+        "keeps": "Elles se gardent plus longtemps au réfrigérateur que la plupart des baies. Mélangées au sucre, elles se conservent longtemps au frais grâce à leur acide benzoïque naturel. Elles se congèlent bien telles quelles.",
+        "source": "Identification et répartition : Minnesota Wildflowers et CREA Mont-Blanc. Droit de cueillette : Agence suédoise de protection de l'environnement (Naturvårdsverket). Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "de": {
       "name": "Preiselbeere",
-      "description": "Kleine rote, säuerliche Beeren, die auf immergrünen Sträuchern in saurem Boden wachsen.",
-      "howTo": "Suche in Nadelwäldern, Heideflächen und Mooren von Spätsommer bis Herbst."
+      "description": "Kleine, rote, säuerliche Beeren an niedrigen immergrünen Sträuchern auf saurem Boden.",
+      "howTo": "Suche in Nadelwäldern, Heideflächen und Mooren von Spätsommer bis Herbst.",
+      "guide": {
+        "identify": "Die Preiselbeere ist ein kriechender, immergrüner Zwergstrauch. Ihre Blätter sind dick, glänzend und dunkelgrün, mit nach unten eingerollten Rändern. Die helle Unterseite ist mit winzigen dunklen Punkten übersät. Kleine weisse bis rosa Glöckchenblüten sitzen in kurzen Trauben an den Triebspitzen. Daraus werden runde, glänzend rote Beeren, die in kleinen Büscheln hängen. Die Echte Bärentraube (Arctostaphylos uva-ursi) ist ein kriechender Strauch an denselben Stellen. Ihre Blätter sind netzartig geadert und haben keine Punkte, und ihre Beeren sind trocken und mehlig. Die giftigen roten und schwarzen Beeren wachsen nicht auf einem niedrigen immergrünen Teppich. Die Eibe (Taxus) ist ein Baum oder hoher Strauch mit flachen Nadeln. Ihr roter Becher ist vorne offen und umschliesst einen dunklen Samen. Der Seidelbast (Daphne mezereum) ist ein aufrechter Strauch, dessen Beeren dicht am Zweig sitzen. Die Tollkirsche (Atropa bella-donna) ist eine hohe Staude mit schwarzen Beeren. Das Rote Christophskraut (Actaea) und das Maiglöckchen (Convallaria majalis) sind krautige Pflanzen.",
+        "habitat": "Sie braucht sauren, mageren Boden. Such in Kiefern- und Fichtenwäldern, in Birkenwäldern, auf Heiden und Mooren und an Berghängen über der Baumgrenze. In Skandinavien und im Baltikum ist sie sehr häufig, und du findest sie auch in den Alpen und anderen Gebirgen. In Nordamerika wächst sie vor allem in Kanada und Alaska. Die USA erreicht sie nur im hohen Norden, von Minnesota bis Maine. Dort ist sie selten, und in Wisconsin gilt sie als bedroht.",
+        "season": "Ab August färben sich die Beeren rot. Am besten sind sie, wenn sie ganz dunkelrot sind, von September bis in den Oktober. Sie bleiben bis in den Winter an den Pflanzen.",
+        "picking": "Pflück dunkelrote Beeren mit der Hand oder, wo es erlaubt ist, mit einem Beerenpflücker. In Schweden, Finnland und Norwegen darf nach dem Jedermannsrecht jeder wilde Beeren sammeln, abseits von Häusern und Gärten. Naturschutzgebiete können aber eigene Regeln haben. In Mitteleuropa sagt das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL), dass das Essen von Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm nachgewiesen ist. Es rät trotzdem, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Roh sind die Beeren sauer und etwas bitter. Wenn du sie sicher bestimmt hast, kochst du sie deshalb meist mit Zucker zu einer Sosse oder Marmelade. In Schweden rührt man sie auch roh mit Zucker. Dazu passen Fleischbällchen, Wild, Braten, Kartoffelpuffer oder Porridge.",
+        "keeps": "Im Kühlschrank halten sie länger als die meisten Beeren. Mit Zucker gerührt halten sie sich kühl gelagert lange, dank ihrer natürlichen Benzoesäure. Du kannst sie auch einfach so einfrieren.",
+        "source": "Bestimmung und Verbreitung: Minnesota Wildflowers und CREA Mont-Blanc. Sammelrecht: Schwedisches Naturschutzamt (Naturvårdsverket). Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "es": {
       "name": "Arándano rojo",
-      "description": "Pequeñas bayas rojas y ácidas que crecen en arbustos perennes en suelos ácidos.",
-      "howTo": "Búscalo en bosques de coníferas, brezales y páramos desde finales del verano hasta el otoño."
+      "description": "Bayas pequeñas, rojas y agrias, en matas bajas de hoja perenne sobre suelo ácido.",
+      "howTo": "Búscalo en bosques de coníferas, brezales y páramos desde finales del verano hasta el otoño.",
+      "guide": {
+        "identify": "El arándano rojo es una mata enana y rastrera de hoja perenne. Sus hojas son gruesas, de verde oscuro brillante y con el borde enrollado hacia abajo. Por debajo son claras y tienen puntitos oscuros diminutos. Las flores son pequeñas campanillas, de blancas a rosadas, en racimos cortos en la punta de los brotes. Dan bayas redondas, rojas y brillantes, que cuelgan en racimitos. La gayuba (Arctostaphylos uva-ursi) es una mata rastrera de los mismos sitios. Sus hojas tienen nervios en red y no tienen puntos. Sus bayas son secas y harinosas. Las bayas rojas y negras venenosas no crecen en una alfombra baja de hoja perenne. El tejo (Taxus) es un árbol o un arbusto alto con agujas planas. Su copita roja está abierta por la punta y rodea una semilla oscura. El mezereón (Daphne mezereum) es un arbusto derecho con las bayas pegadas a lo largo del tallo. La belladona (Atropa bella-donna) es una hierba alta con bayas negras. La hierba de San Cristóbal roja (Actaea) y el lirio de los valles (Convallaria majalis) son hierbas blandas.",
+        "habitat": "Necesita suelo ácido y pobre. Búscalo en pinares, bosques de píceas, abedulares, brezales y páramos. También en laderas de montaña por encima del límite del bosque. Es muy común en Escandinavia y los países bálticos, y también está en los Alpes y otras montañas. En Norteamérica crece sobre todo en Canadá y Alaska. A EE. UU. solo llega en el extremo norte, de Minnesota a Maine. Allí es raro, y en Wisconsin está amenazado.",
+        "season": "Las bayas se ponen rojas desde agosto. Están en su punto cuando son rojo oscuro del todo, de septiembre a octubre. Siguen en la planta hasta el invierno.",
+        "picking": "Coge las bayas rojo oscuro a mano, o con un peine recolector donde esté permitido. En Suecia, Finlandia y Noruega, el derecho de acceso a la naturaleza permite a cualquiera coger bayas silvestres lejos de casas y jardines. Pero las reservas naturales pueden tener sus propias normas. En Europa central, la autoridad sanitaria de Baviera (LGL) dice que no se ha demostrado que comer bayas silvestres sea un factor de riesgo para la tenia del zorro. Aun así, aconseja lavarlas bien. Solo calentarlas por encima de 60 °C mata sus huevos. Congelarlas en casa no los mata.",
+        "kitchen": "Crudas son ácidas y algo amargas. Por eso, cuando las tengas bien identificadas, lo normal es cocerlas con azúcar para hacer salsa o mermelada. En Suecia también se mezclan crudas con azúcar. Sírvelas con albóndigas, caza, asados, tortitas de patata o gachas.",
+        "keeps": "En la nevera aguantan más que la mayoría de las bayas. Mezcladas con azúcar se conservan mucho tiempo en frío, gracias a su ácido benzoico natural. Tal cual, se congelan bien.",
+        "source": "Identificación y distribución: Minnesota Wildflowers y CREA Mont-Blanc. Derecho de recogida: Agencia Sueca de Protección del Medio Ambiente (Naturvårdsverket). Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "pt": {
       "name": "Mirtilo-vermelho",
-      "description": "Pequenas bagas vermelhas e ácidas que crescem em arbustos perenes em solos ácidos.",
-      "howTo": "Procure em florestas de coníferas, charnecas e turfeiras do fim do verão ao outono."
+      "description": "Bagas pequenas, vermelhas e azedas, em arbustos baixos e sempre verdes que crescem em solo ácido.",
+      "howTo": "Procure em florestas de coníferas, charnecas e turfeiras do fim do verão ao outono.",
+      "guide": {
+        "identify": "O mirtilo-vermelho é um arbusto anão, rasteiro e sempre verde. As folhas são grossas, brilhantes e verde-escuras, com as margens enroladas para baixo. Por baixo são claras e salpicadas de pontinhos escuros minúsculos. As flores são pequenas campainhas, brancas a rosadas, em cachos curtos na ponta dos ramos. Dão bagas redondas, vermelhas e brilhantes, que pendem em pequenos cachos. A uva-de-urso (Arctostaphylos uva-ursi) é um arbusto rasteiro dos mesmos sítios. As folhas têm nervuras em rede e não têm pontos. As bagas são secas e farinhentas. As bagas venenosas, vermelhas e negras, não crescem num tapete baixo e sempre verde. O teixo (Taxus) é uma árvore ou um arbusto alto, de agulhas achatadas. A sua taça vermelha está aberta na ponta, à volta de uma semente escura. O mezéreo (Daphne mezereum) é um arbusto direito, com as bagas encostadas ao longo do ramo. A beladona (Atropa bella-donna) é uma erva alta de bagas negras. A erva-de-são-cristóvão de bagas vermelhas (Actaea) e o lírio-do-vale (Convallaria majalis) são ervas moles.",
+        "habitat": "Precisa de solo ácido e pobre. Procure-o em florestas de pinheiros e píceas, bosques de bétulas, charnecas e urzais e em encostas de montanha acima do limite das árvores. É muito comum na Escandinávia e nos países bálticos e também aparece nos Alpes e noutras montanhas. Na América do Norte cresce sobretudo no Canadá e no Alasca. Só chega aos EUA no extremo norte, do Minnesota ao Maine. Aí é raro. No Wisconsin está ameaçado.",
+        "season": "As bagas começam a avermelhar em agosto. Estão no ponto quando ficam bem vermelho-escuras, de setembro até outubro. Ficam na planta até ao inverno.",
+        "picking": "Apanhe as bagas vermelho-escuras à mão. Onde for permitido, também pode usar um pente de bagas. Na Suécia, na Finlândia e na Noruega, o direito de livre acesso à natureza deixa qualquer pessoa apanhar bagas silvestres longe de casas e jardins. As reservas naturais, porém, podem ter regras próprias. Na Europa Central, a autoridade de saúde da Baviera (LGL) diz que não está demonstrado que comer bagas silvestres seja um fator de risco para a ténia-da-raposa. Mesmo assim, aconselha a lavá-las bem. Só aquecê-las acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Cruas, as bagas são ácidas e um pouco amargas. Por isso, depois de as identificar com certeza, o costume é cozê-las com açúcar, em molho ou doce. Na Suécia também se misturam cruas com açúcar. Sirva-as com almôndegas, caça, assados, panquecas de batata ou papas de aveia.",
+        "keeps": "No frigorífico aguentam mais do que a maioria das bagas. Misturadas com açúcar, conservam-se muito tempo no frio, graças ao seu ácido benzoico natural. Congelam bem tal como estão.",
+        "source": "Identificação e distribuição: Minnesota Wildflowers e CREA Mont-Blanc. Direito de apanha: Agência Sueca de Proteção do Ambiente (Naturvårdsverket). Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     }
   },
   "identification": {
@@ -209,6 +263,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2882835] }
+    "rangePrior": {
+      "taxonKeys": [2882835]
+    }
   }
 }

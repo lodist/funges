@@ -15,5 +15,23 @@
   "data": "Dados",
   "settings": "Configurações",
   "help": "Ajuda",
-  "googlePlay": "Disponível no Google Play"
+  "googlePlay": "Disponível no Google Play",
+  "huertaWeek": "Culturas",
+  "spaces": {
+    "switch": "Espaço: {{space}}. Mudar de espaço",
+    "open": "Abrir {{space}}",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Cogumelos e plantas silvestres"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Hortaliças, fruta e ervas"
+    },
+    "early": "Acesso antecipado"
+  },
+  "huertaMap": "Mapa",
+  "huertaPlanner": "Minha horta",
+  "huertaYear": "Calendário",
+  "account": "Conta"
 }

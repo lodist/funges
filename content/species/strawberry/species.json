@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Wild Strawberry",
-      "description": "Small red berries with intense flavor, with white flowers and trifoliate leaves",
-      "howTo": "Look for them in meadows, woodland edges, and grassy areas in spring and summer"
+      "description": "Small red berries full of flavour, with white flowers and leaves in threes.",
+      "howTo": "Look for them in meadows, woodland edges and grassy areas in spring and summer",
+      "guide": {
+        "identify": "Wild strawberry is a low plant. Its long-stalked leaves have three toothed leaflets, bright green and slightly glossy. It spreads by runners that root along the ground. The end tooth of each leaflet is as long as its neighbours, or longer. The flowers are white, with five rounded petals and a yellow centre. The fruit is a small red cone with tiny seeds on the surface, hanging from a thin stalk. Barren strawberry (Potentilla sterilis) flowers earlier. It has gaps between its notched petals and an end tooth shorter than its neighbours. It has no fleshy fruit. Mock strawberry (Potentilla indica) has yellow flowers and round, spongy, tasteless berries.",
+        "habitat": "Look at woodland edges and in clearings, on sunny banks and path sides, at hedgerow bases and in old grassland. It often grows on dry, stony or lime-rich soil, from the lowlands into the mountains across Europe. In the US it grows in open woods and clearings in the north and in the western mountains. The larger Virginia strawberry (Fragaria virginiana) is the usual wild strawberry of fields and meadows there.",
+        "season": "It flowers from April. In southern Europe the berries ripen from late May and elsewhere from June. The plants keep fruiting through the summer. In the mountains and the north they go on into August.",
+        "picking": "Pick only fully red berries by pinching the stalk. Never pull up the plants. In England wild strawberry is listed as near threatened, so pick sparingly there. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm. It still advises washing them well. Only heating above 60 °C kills the tapeworm's eggs. Home freezing does not.",
+        "kitchen": "With the plant identified with certainty, eat the berries raw and soon. Rinse them briefly just before eating. Their flavour is more intense than that of garden strawberries, but it varies from plant to plant. A handful is enough to scent cream, yoghurt or a tart.",
+        "keeps": "They spoil quickly in a warm basket. Keep them cool and eat them the same day. You can freeze them, but they thaw soft.",
+        "source": "Identification and habitat: Woodland Trust and Botanical Society of Britain and Ireland (BSBI). Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "it": {
       "name": "Fragola Selvatica",
-      "description": "Piccole bacche rosse dal sapore intenso con fiori bianchi e foglie trifogliate",
-      "howTo": "Cercale in praterie, bordi boschivi e aree erbose in primavera ed estate"
+      "description": "Piccoli frutti rossi pieni di sapore, con fiori bianchi e foglie divise in tre.",
+      "howTo": "Cercale in praterie, bordi boschivi e aree erbose in primavera ed estate",
+      "guide": {
+        "identify": "La fragolina di bosco è una pianta bassa. Le foglie hanno un lungo picciolo e tre foglioline dentate, verde brillante e un po' lucide. Si allarga con stoloni che mettono radici a terra. Il dente in punta a ogni fogliolina è lungo quanto quelli accanto, o di più. I fiori sono bianchi, con cinque petali tondi e il centro giallo. Il frutto è un piccolo cono rosso con minuscoli semini in superficie, appeso a un gambo sottile. La fragola sterile (Potentilla sterilis) fiorisce prima. I suoi petali hanno una tacca in punta e tra l'uno e l'altro resta uno spazio. Il dente in punta alla fogliolina è più corto di quelli accanto. Non fa frutti carnosi. La fragola matta (Potentilla indica) ha fiori gialli e frutti tondi, spugnosi e senza sapore.",
+        "habitat": "Cercala ai margini dei boschi e nelle radure, sulle scarpate al sole e a bordo sentiero, ai piedi delle siepi e nei prati vecchi. Cresce spesso su terreno secco, sassoso o calcareo, dalla pianura alla montagna, in tutta Europa. Negli Stati Uniti cresce nei boschi radi e nelle radure del nord e sulle montagne dell'ovest. Lì la fragola selvatica tipica di campi e prati è la fragola della Virginia (Fragaria virginiana), più grande.",
+        "season": "Fiorisce da aprile. Nel sud Europa le fragoline maturano da fine maggio, altrove da giugno. La pianta continua a fare frutti per tutta l'estate. In montagna e al nord va avanti fino ad agosto.",
+        "picking": "Raccogli solo fragoline ben rosse, pizzicando il gambo. Non strappare mai le piante. In Inghilterra la fragola selvatica è classificata come quasi minacciata, quindi lì raccoglile con parsimonia. Per l'Europa centrale, l'autorità sanitaria bavarese (LGL) dice che non è dimostrato che mangiare frutti di bosco selvatici sia un rischio per l'echinococco della volpe. Consiglia comunque di lavarli bene. Solo scaldandoli sopra i 60 °C si uccidono le uova del parassita. Il congelatore di casa non basta.",
+        "kitchen": "Quando hai riconosciuto la pianta con certezza, mangia le fragoline crude e subito. Sciacquale un attimo appena prima di mangiarle. Hanno un sapore più intenso delle fragole dell'orto, ma cambia da pianta a pianta. Ne basta una manciata per profumare panna, yogurt o una crostata.",
+        "keeps": "In un cestino al caldo si rovinano presto. Tienile al fresco e mangiale in giornata. Puoi congelarle, ma scongelate diventano molli.",
+        "source": "Identificazione e habitat: Woodland Trust e Botanical Society of Britain and Ireland (BSBI). Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "fr": {
       "name": "Fraise des bois",
-      "description": "Petites fraises rouges au goût intense, fleurs blanches et feuilles trifoliées",
-      "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été"
+      "description": "De petites fraises rouges pleines de goût. La plante a des fleurs blanches et des feuilles par trois.",
+      "howTo": "Cherchez-les dans les prairies, lisières de bois et zones herbeuses au printemps et en été",
+      "guide": {
+        "identify": "Le fraisier des bois est une plante basse. Ses feuilles à long pétiole ont trois folioles dentées, vert vif et un peu luisantes. Il s'étend par des stolons qui s'enracinent au sol. La dent du bout de chaque foliole est au moins aussi longue que ses voisines. Les fleurs sont blanches, à cinq pétales arrondis et au cœur jaune. Le fruit est un petit cône rouge, avec de minuscules graines en surface. Il pend au bout d'une fine queue. La potentille faux-fraisier (Potentilla sterilis) fleurit plus tôt. Ses pétales échancrés laissent des espaces entre eux. Sa dent du bout est plus courte que ses voisines. Elle ne donne pas de fruit charnu. Le fraisier des Indes (Potentilla indica) a des fleurs jaunes et des fruits ronds, spongieux et sans goût.",
+        "habitat": "Cherchez-le en lisière de bois et dans les clairières, sur les talus ensoleillés et au bord des chemins, au pied des haies et dans les vieilles prairies. Il pousse souvent sur sol sec, caillouteux ou calcaire, de la plaine à la montagne, dans toute l'Europe. Aux États-Unis, il pousse dans les bois clairs et les clairières du nord et dans les montagnes de l'ouest. Le fraisier de Virginie (Fragaria virginiana), plus grand, y est la fraise sauvage habituelle des champs et des prés.",
+        "season": "Il fleurit dès avril. Les fraises mûrissent dès la fin mai dans le sud de l'Europe et dès juin ailleurs. La plante continue à en donner tout l'été. En montagne et dans le nord, elle produit jusqu'en août.",
+        "picking": "Ne cueillez que les fraises bien rouges, en pinçant la queue. N'arrachez jamais les plants. En Angleterre, la fraise des bois est classée quasi menacée, alors cueillez-la avec modération là-bas. En Europe centrale, l'office bavarois de la santé (LGL) indique que manger des baies sauvages n'est pas un facteur de risque démontré pour le ténia du renard. Il conseille quand même de bien les laver. Seule une cuisson au-dessus de 60 °C tue les œufs du ténia. Le congélateur de la maison ne les tue pas.",
+        "kitchen": "Une fois la plante identifiée avec certitude, mangez les fraises crues et sans attendre. Rincez-les rapidement juste avant de les manger. Leur goût est plus intense que celui des fraises du jardin, mais il varie d'une plante à l'autre. Une poignée suffit pour parfumer une crème, un yaourt ou une tarte.",
+        "keeps": "Dans un panier au chaud, elles s'abîment vite. Gardez-les au frais et mangez-les le jour même. Vous pouvez les congeler, mais elles ramollissent en décongelant.",
+        "source": "Identification et habitat : Woodland Trust et Botanical Society of Britain and Ireland (BSBI). Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "de": {
       "name": "Walderdbeere",
-      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern",
-      "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer"
+      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern.",
+      "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer",
+      "guide": {
+        "identify": "Die Walderdbeere ist eine niedrige Pflanze. Ihre langgestielten Blätter haben drei gezähnte Blättchen, hellgrün und leicht glänzend. Sie breitet sich mit Ausläufern aus, die am Boden Wurzeln schlagen. Der Endzahn jedes Blättchens ist so lang wie seine Nachbarn oder länger. Die Blüten sind weiss, mit fünf runden Blütenblättern und gelber Mitte. Die Frucht ist ein kleiner roter Kegel mit winzigen Nüsschen auf der Oberfläche und hängt an einem dünnen Stiel. Das Erdbeer-Fingerkraut (Potentilla sterilis) blüht früher. Es hat Lücken zwischen den eingekerbten Blütenblättern, und sein Endzahn ist kürzer als die Nachbarn. Eine fleischige Frucht hat es nicht. Die Indische Scheinerdbeere (Potentilla indica) hat gelbe Blüten und runde, schwammige Früchte ohne Geschmack.",
+        "habitat": "Such an Waldrändern und auf Lichtungen, an sonnigen Böschungen und Wegrändern, am Fuss von Hecken und auf alten Wiesen. Oft wächst sie auf trockenem, steinigem oder kalkreichem Boden, vom Tiefland bis ins Gebirge, in ganz Europa. In den USA wächst sie in lichten Wäldern und auf Lichtungen im Norden und in den Bergen des Westens. Dort ist die grössere Virginia-Erdbeere (Fragaria virginiana) die übliche wilde Erdbeere auf Feldern und Wiesen.",
+        "season": "Sie blüht ab April. In Südeuropa reifen die Früchte ab Ende Mai, anderswo ab Juni. Die Pflanzen tragen den ganzen Sommer über weiter. Im Gebirge und im Norden gibt es sie bis in den August.",
+        "picking": "Pflück nur ganz rote Früchte und knips dabei den Stiel ab. Reiss nie die Pflanzen aus. In England gilt die Walderdbeere als potenziell gefährdet, also sammle dort sparsam. Für Mitteleuropa sagt das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL), dass Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm nachgewiesen sind. Trotzdem rät es, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier des Bandwurms ab. Einfrieren im Haushalt reicht nicht.",
+        "kitchen": "Wenn du die Pflanze sicher bestimmt hast, iss die Früchte roh und bald. Spül sie erst kurz vor dem Essen ab. Sie schmecken intensiver als Gartenerdbeeren, aber von Pflanze zu Pflanze verschieden. Eine Handvoll reicht, um Sahne, Joghurt oder eine Tarte zu aromatisieren.",
+        "keeps": "Im warmen Korb verderben sie schnell. Halt sie kühl und iss sie am selben Tag. Einfrieren geht, aber aufgetaut sind sie weich.",
+        "source": "Bestimmung und Standort: Woodland Trust und Botanical Society of Britain and Ireland (BSBI). Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "es": {
       "name": "Fresa silvestre",
-      "description": "Pequeñas bayas rojas de sabor intenso, con flores blancas y hojas trifoliadas",
-      "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano"
+      "description": "Fresas pequeñas y rojas llenas de sabor, con flores blancas y hojas de tres en tres.",
+      "howTo": "Búscalas en praderas, bordes de bosques y áreas herbosas en primavera y verano",
+      "guide": {
+        "identify": "La fresa silvestre es una planta baja. Sus hojas tienen un rabillo largo y tres folíolos dentados, de un verde vivo y algo brillantes. Se extiende con estolones que echan raíces en el suelo. El diente de la punta de cada folíolo es tan largo como los de al lado, o más. Las flores son blancas, con cinco pétalos redondeados y el centro amarillo. El fruto es un conito rojo con semillitas en la superficie, que cuelga de un rabillo fino. La fresa estéril (Potentilla sterilis) florece antes. Sus pétalos están escotados y dejan huecos entre ellos. El diente de la punta es más corto que los de al lado. No da fruto carnoso. La fresa de la India (Potentilla indica) tiene flores amarillas y frutos redondos, esponjosos y sin sabor.",
+        "habitat": "Búscala en bordes y claros de bosque, en taludes soleados, en orillas de caminos, al pie de los setos y en prados viejos. Suele crecer en suelo seco, pedregoso o calizo, desde las zonas bajas hasta la montaña en toda Europa. En EE. UU. crece en bosques abiertos y claros del norte y en las montañas del oeste. Allí la fresa silvestre habitual de campos y prados es la fresa de Virginia (Fragaria virginiana), que es más grande.",
+        "season": "Florece desde abril. En el sur de Europa los frutos maduran desde finales de mayo, y en el resto desde junio. Las plantas siguen dando fruto todo el verano. En la montaña y en el norte duran hasta agosto.",
+        "picking": "Coge solo las fresas bien rojas, pellizcando el rabillo. No arranques nunca las plantas. En Inglaterra la fresa silvestre está catalogada como casi amenazada, así que allí coge con moderación. En Europa central, la autoridad sanitaria de Baviera (LGL) dice que no se ha demostrado que comer bayas silvestres sea un factor de riesgo para la tenia del zorro. Aun así, aconseja lavarlas bien. Solo calentarlas por encima de 60 °C mata los huevos de la tenia. Congelarlas en casa no los mata.",
+        "kitchen": "Con la planta identificada sin ninguna duda, come las fresas crudas y pronto. Lávalas un momento justo antes de comerlas. Saben más intensas que las fresas de cultivo, aunque cambian de una planta a otra. Con un puñado basta para perfumar nata, yogur o una tarta.",
+        "keeps": "En una cesta al calor se estropean enseguida. Tenlas al fresco y cómelas el mismo día. Se pueden congelar, pero al descongelarlas quedan blandas.",
+        "source": "Identificación y hábitat: Woodland Trust y Botanical Society of Britain and Ireland (BSBI). Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "pt": {
       "name": "Morangos-silvestres",
-      "description": "Pequenos morangos vermelhos de sabor intenso, com flores brancas e folhas trifoliadas",
-      "howTo": "Procure em prados, bordas de bosques e áreas gramadas na primavera e verão"
+      "description": "Pequenos frutos vermelhos cheios de sabor, com flores brancas e folhas divididas em três.",
+      "howTo": "Procure em prados, bordas de bosques e áreas gramadas na primavera e verão",
+      "guide": {
+        "identify": "O morangueiro-silvestre é uma planta baixa. As folhas têm pé comprido e três folíolos dentados, verde-vivo e um pouco brilhantes. Alastra por estolhos que enraízam no chão. O dente da ponta de cada folíolo é do mesmo comprimento dos vizinhos ou mais comprido. As flores são brancas, com cinco pétalas redondas e o centro amarelo. O fruto é um pequeno cone vermelho com sementinhas à superfície, pendurado num pé fino. A Potentilla sterilis floresce mais cedo. Tem as pétalas chanfradas e separadas umas das outras. O dente da ponta é mais curto do que os vizinhos. Não dá fruto carnudo. O falso-morangueiro (Potentilla indica) tem flores amarelas e frutos redondos, esponjosos e sem sabor.",
+        "habitat": "Procure nas orlas e clareiras dos bosques, em taludes soalheiros, à beira dos caminhos, no pé das sebes e em prados antigos. Cresce muitas vezes em solo seco, pedregoso ou calcário, das terras baixas à montanha, em toda a Europa. Nos EUA cresce em bosques abertos e clareiras do norte e nas montanhas do oeste. Lá, o morango silvestre habitual dos campos e prados é o morangueiro-da-virgínia (Fragaria virginiana), que é maior.",
+        "season": "Floresce a partir de abril. No sul da Europa os morangos amadurecem a partir do fim de maio e no resto a partir de junho. As plantas continuam a dar fruto durante todo o verão. Na montanha e no norte vão até agosto.",
+        "picking": "Apanhe só morangos bem vermelhos, apertando o pé entre os dedos. Nunca arranque as plantas. Em Inglaterra o morangueiro-silvestre está classificado como quase ameaçado, por isso lá apanhe com moderação. Na Europa Central, a autoridade de saúde da Baviera (LGL) diz que não está provado que comer bagas silvestres seja um fator de risco para a ténia-da-raposa. Mesmo assim, aconselha a lavá-las bem. Só o aquecimento acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Com a planta identificada com certeza, coma os morangos crus e depressa. Passe-os rapidamente por água, só antes de os comer. O sabor é mais intenso do que o dos morangos da horta, mas varia de planta para planta. Uma mão-cheia chega para perfumar natas, iogurte ou uma tarte.",
+        "keeps": "Num cesto ao calor estragam-se depressa. Mantenha-os frescos e coma-os no próprio dia. Pode congelá-los, mas ao descongelar ficam moles.",
+        "source": "Identificação e habitat: Woodland Trust e Botanical Society of Britain and Ireland (BSBI). Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     }
   },
   "identification": {
@@ -211,6 +265,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [3029817, 7950792] }
+    "rangePrior": {
+      "taxonKeys": [3029817, 7950792]
+    }
   }
 }

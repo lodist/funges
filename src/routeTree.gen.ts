@@ -9,81 +9,42 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WorthForagingNowRouteImport } from './routes/worth-foraging-now'
-import { Route as TermsuseRouteImport } from './routes/termsuse'
-import { Route as SupportRouteImport } from './routes/support'
-import { Route as SpeciesRouteImport } from './routes/species'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as RecipesRouteImport } from './routes/recipes'
-import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
-import { Route as OfflineRouteImport } from './routes/offline'
-import { Route as MapRouteImport } from './routes/map'
-import { Route as InstructionsRouteImport } from './routes/instructions'
-import { Route as ImpressumRouteImport } from './routes/impressum'
-import { Route as IdentifyRouteImport } from './routes/identify'
-import { Route as DataRouteImport } from './routes/data'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DataRouteImport } from './routes/data'
+import { Route as DeRouteImport } from './routes/de'
+import { Route as DeleteAccountRouteImport } from './routes/delete-account'
+import { Route as HuertaRouteImport } from './routes/huerta'
+import { Route as IdentifyRouteImport } from './routes/identify'
+import { Route as ImpressumRouteImport } from './routes/impressum'
+import { Route as InstructionsRouteImport } from './routes/instructions'
+import { Route as MapRouteImport } from './routes/map'
+import { Route as OfflineRouteImport } from './routes/offline'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as RecipesRouteImport } from './routes/recipes'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SpeciesRouteImport } from './routes/species'
+import { Route as SupportRouteImport } from './routes/support'
+import { Route as TermsuseRouteImport } from './routes/termsuse'
+import { Route as TerraRouteImport } from './routes/terra'
+import { Route as WorthForagingNowRouteImport } from './routes/worth-foraging-now'
+import { Route as DeHuertaRouteImport } from './routes/de_.huerta'
+import { Route as DeTerraRouteImport } from './routes/de_.terra'
+import { Route as HuertaAccountRouteImport } from './routes/huerta_.account'
+import { Route as HuertaCropsRouteImport } from './routes/huerta_.crops'
+import { Route as HuertaGardenPlannerRouteImport } from './routes/huerta_.garden-planner'
+import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
+import { Route as HuertaPlantingCalendarRouteImport } from './routes/huerta_.planting-calendar'
+import { Route as HuertaSigninRouteImport } from './routes/huerta_.signin'
+import { Route as SpeciesIdRouteImport } from './routes/species_.$id'
 import { Route as DataSeasonsIndexRouteImport } from './routes/data_.seasons.index'
+import { Route as DeSpeciesIdRouteImport } from './routes/de_.species_.$id'
+import { Route as HuertaCropsIdRouteImport } from './routes/huerta_.crops_.$id'
 import { Route as DataSeasonsPlaceSpeciesRouteImport } from './routes/data_.seasons.$place.$species'
+import { Route as DeHuertaCropsIdRouteImport } from './routes/de_.huerta_.crops_.$id'
 
-const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
-  id: '/worth-foraging-now',
-  path: '/worth-foraging-now',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TermsuseRoute = TermsuseRouteImport.update({
-  id: '/termsuse',
-  path: '/termsuse',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SupportRoute = SupportRouteImport.update({
-  id: '/support',
-  path: '/support',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SpeciesRoute = SpeciesRouteImport.update({
-  id: '/species',
-  path: '/species',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RecipesRoute = RecipesRouteImport.update({
-  id: '/recipes',
-  path: '/recipes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
-  id: '/privacy-policy',
-  path: '/privacy-policy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OfflineRoute = OfflineRouteImport.update({
-  id: '/offline',
-  path: '/offline',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MapRoute = MapRouteImport.update({
-  id: '/map',
-  path: '/map',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InstructionsRoute = InstructionsRouteImport.update({
-  id: '/instructions',
-  path: '/instructions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ImpressumRoute = ImpressumRouteImport.update({
-  id: '/impressum',
-  path: '/impressum',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IdentifyRoute = IdentifyRouteImport.update({
-  id: '/identify',
-  path: '/identify',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DataRoute = DataRouteImport.update({
@@ -91,9 +52,129 @@ const DataRoute = DataRouteImport.update({
   path: '/data',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const DeRoute = DeRouteImport.update({
+  id: '/de',
+  path: '/de',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeleteAccountRoute = DeleteAccountRouteImport.update({
+  id: '/delete-account',
+  path: '/delete-account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaRoute = HuertaRouteImport.update({
+  id: '/huerta',
+  path: '/huerta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IdentifyRoute = IdentifyRouteImport.update({
+  id: '/identify',
+  path: '/identify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpressumRoute = ImpressumRouteImport.update({
+  id: '/impressum',
+  path: '/impressum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstructionsRoute = InstructionsRouteImport.update({
+  id: '/instructions',
+  path: '/instructions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OfflineRoute = OfflineRouteImport.update({
+  id: '/offline',
+  path: '/offline',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecipesRoute = RecipesRouteImport.update({
+  id: '/recipes',
+  path: '/recipes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpeciesRoute = SpeciesRouteImport.update({
+  id: '/species',
+  path: '/species',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsuseRoute = TermsuseRouteImport.update({
+  id: '/termsuse',
+  path: '/termsuse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerraRoute = TerraRouteImport.update({
+  id: '/terra',
+  path: '/terra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
+  id: '/worth-foraging-now',
+  path: '/worth-foraging-now',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeHuertaRoute = DeHuertaRouteImport.update({
+  id: '/de_/huerta',
+  path: '/de/huerta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeTerraRoute = DeTerraRouteImport.update({
+  id: '/de_/terra',
+  path: '/de/terra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaAccountRoute = HuertaAccountRouteImport.update({
+  id: '/huerta_/account',
+  path: '/huerta/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaCropsRoute = HuertaCropsRouteImport.update({
+  id: '/huerta_/crops',
+  path: '/huerta/crops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaGardenPlannerRoute = HuertaGardenPlannerRouteImport.update({
+  id: '/huerta_/garden-planner',
+  path: '/huerta/garden-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaMapRoute = HuertaMapRouteImport.update({
+  id: '/huerta_/map',
+  path: '/huerta/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaPlantingCalendarRoute = HuertaPlantingCalendarRouteImport.update({
+  id: '/huerta_/planting-calendar',
+  path: '/huerta/planting-calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaSigninRoute = HuertaSigninRouteImport.update({
+  id: '/huerta_/signin',
+  path: '/huerta/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpeciesIdRoute = SpeciesIdRouteImport.update({
+  id: '/species_/$id',
+  path: '/species/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DataSeasonsIndexRoute = DataSeasonsIndexRouteImport.update({
@@ -101,15 +182,33 @@ const DataSeasonsIndexRoute = DataSeasonsIndexRouteImport.update({
   path: '/data/seasons/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeSpeciesIdRoute = DeSpeciesIdRouteImport.update({
+  id: '/de_/species_/$id',
+  path: '/de/species/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HuertaCropsIdRoute = HuertaCropsIdRouteImport.update({
+  id: '/huerta_/crops_/$id',
+  path: '/huerta/crops/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataSeasonsPlaceSpeciesRoute = DataSeasonsPlaceSpeciesRouteImport.update({
   id: '/data_/seasons/$place/$species',
   path: '/data/seasons/$place/$species',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeHuertaCropsIdRoute = DeHuertaCropsIdRouteImport.update({
+  id: '/de_/huerta_/crops_/$id',
+  path: '/de/huerta/crops/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/de': typeof DeRoute
+  '/delete-account': typeof DeleteAccountRoute
+  '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -121,13 +220,29 @@ export interface FileRoutesByFullPath {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
-  '/data/seasons': typeof DataSeasonsIndexRoute
+  '/de/huerta': typeof DeHuertaRoute
+  '/de/terra': typeof DeTerraRoute
+  '/huerta/account': typeof HuertaAccountRoute
+  '/huerta/crops': typeof HuertaCropsRoute
+  '/huerta/garden-planner': typeof HuertaGardenPlannerRoute
+  '/huerta/map': typeof HuertaMapRoute
+  '/huerta/planting-calendar': typeof HuertaPlantingCalendarRoute
+  '/huerta/signin': typeof HuertaSigninRoute
+  '/species/$id': typeof SpeciesIdRoute
+  '/de/species/$id': typeof DeSpeciesIdRoute
+  '/huerta/crops/$id': typeof HuertaCropsIdRoute
+  '/data/seasons/': typeof DataSeasonsIndexRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
+  '/de/huerta/crops/$id': typeof DeHuertaCropsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/de': typeof DeRoute
+  '/delete-account': typeof DeleteAccountRoute
+  '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -139,14 +254,30 @@ export interface FileRoutesByTo {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/de/huerta': typeof DeHuertaRoute
+  '/de/terra': typeof DeTerraRoute
+  '/huerta/account': typeof HuertaAccountRoute
+  '/huerta/crops': typeof HuertaCropsRoute
+  '/huerta/garden-planner': typeof HuertaGardenPlannerRoute
+  '/huerta/map': typeof HuertaMapRoute
+  '/huerta/planting-calendar': typeof HuertaPlantingCalendarRoute
+  '/huerta/signin': typeof HuertaSigninRoute
+  '/species/$id': typeof SpeciesIdRoute
+  '/de/species/$id': typeof DeSpeciesIdRoute
+  '/huerta/crops/$id': typeof HuertaCropsIdRoute
   '/data/seasons': typeof DataSeasonsIndexRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
+  '/de/huerta/crops/$id': typeof DeHuertaCropsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/data': typeof DataRoute
+  '/de': typeof DeRoute
+  '/delete-account': typeof DeleteAccountRoute
+  '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
   '/impressum': typeof ImpressumRoute
   '/instructions': typeof InstructionsRoute
@@ -158,15 +289,31 @@ export interface FileRoutesById {
   '/species': typeof SpeciesRoute
   '/support': typeof SupportRoute
   '/termsuse': typeof TermsuseRoute
+  '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
+  '/de_/huerta': typeof DeHuertaRoute
+  '/de_/terra': typeof DeTerraRoute
+  '/huerta_/account': typeof HuertaAccountRoute
+  '/huerta_/crops': typeof HuertaCropsRoute
+  '/huerta_/garden-planner': typeof HuertaGardenPlannerRoute
+  '/huerta_/map': typeof HuertaMapRoute
+  '/huerta_/planting-calendar': typeof HuertaPlantingCalendarRoute
+  '/huerta_/signin': typeof HuertaSigninRoute
+  '/species_/$id': typeof SpeciesIdRoute
+  '/de_/species_/$id': typeof DeSpeciesIdRoute
+  '/huerta_/crops_/$id': typeof HuertaCropsIdRoute
   '/data_/seasons/': typeof DataSeasonsIndexRoute
   '/data_/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
+  '/de_/huerta_/crops_/$id': typeof DeHuertaCropsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/data'
+    | '/de'
+    | '/delete-account'
+    | '/huerta'
     | '/identify'
     | '/impressum'
     | '/instructions'
@@ -178,13 +325,29 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
-    | '/data/seasons'
+    | '/de/huerta'
+    | '/de/terra'
+    | '/huerta/account'
+    | '/huerta/crops'
+    | '/huerta/garden-planner'
+    | '/huerta/map'
+    | '/huerta/planting-calendar'
+    | '/huerta/signin'
+    | '/species/$id'
+    | '/de/species/$id'
+    | '/huerta/crops/$id'
+    | '/data/seasons/'
     | '/data/seasons/$place/$species'
+    | '/de/huerta/crops/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/data'
+    | '/de'
+    | '/delete-account'
+    | '/huerta'
     | '/identify'
     | '/impressum'
     | '/instructions'
@@ -196,13 +359,29 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
+    | '/de/huerta'
+    | '/de/terra'
+    | '/huerta/account'
+    | '/huerta/crops'
+    | '/huerta/garden-planner'
+    | '/huerta/map'
+    | '/huerta/planting-calendar'
+    | '/huerta/signin'
+    | '/species/$id'
+    | '/de/species/$id'
+    | '/huerta/crops/$id'
     | '/data/seasons'
     | '/data/seasons/$place/$species'
+    | '/de/huerta/crops/$id'
   id:
     | '__root__'
     | '/'
     | '/data'
+    | '/de'
+    | '/delete-account'
+    | '/huerta'
     | '/identify'
     | '/impressum'
     | '/instructions'
@@ -214,14 +393,30 @@ export interface FileRouteTypes {
     | '/species'
     | '/support'
     | '/termsuse'
+    | '/terra'
     | '/worth-foraging-now'
+    | '/de_/huerta'
+    | '/de_/terra'
+    | '/huerta_/account'
+    | '/huerta_/crops'
+    | '/huerta_/garden-planner'
+    | '/huerta_/map'
+    | '/huerta_/planting-calendar'
+    | '/huerta_/signin'
+    | '/species_/$id'
+    | '/de_/species_/$id'
+    | '/huerta_/crops_/$id'
     | '/data_/seasons/'
     | '/data_/seasons/$place/$species'
+    | '/de_/huerta_/crops_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DataRoute: typeof DataRoute
+  DeRoute: typeof DeRoute
+  DeleteAccountRoute: typeof DeleteAccountRoute
+  HuertaRoute: typeof HuertaRoute
   IdentifyRoute: typeof IdentifyRoute
   ImpressumRoute: typeof ImpressumRoute
   InstructionsRoute: typeof InstructionsRoute
@@ -233,95 +428,31 @@ export interface RootRouteChildren {
   SpeciesRoute: typeof SpeciesRoute
   SupportRoute: typeof SupportRoute
   TermsuseRoute: typeof TermsuseRoute
+  TerraRoute: typeof TerraRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
+  DeHuertaRoute: typeof DeHuertaRoute
+  DeTerraRoute: typeof DeTerraRoute
+  HuertaAccountRoute: typeof HuertaAccountRoute
+  HuertaCropsRoute: typeof HuertaCropsRoute
+  HuertaGardenPlannerRoute: typeof HuertaGardenPlannerRoute
+  HuertaMapRoute: typeof HuertaMapRoute
+  HuertaPlantingCalendarRoute: typeof HuertaPlantingCalendarRoute
+  HuertaSigninRoute: typeof HuertaSigninRoute
+  SpeciesIdRoute: typeof SpeciesIdRoute
+  DeSpeciesIdRoute: typeof DeSpeciesIdRoute
+  HuertaCropsIdRoute: typeof HuertaCropsIdRoute
   DataSeasonsIndexRoute: typeof DataSeasonsIndexRoute
   DataSeasonsPlaceSpeciesRoute: typeof DataSeasonsPlaceSpeciesRoute
+  DeHuertaCropsIdRoute: typeof DeHuertaCropsIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/worth-foraging-now': {
-      id: '/worth-foraging-now'
-      path: '/worth-foraging-now'
-      fullPath: '/worth-foraging-now'
-      preLoaderRoute: typeof WorthForagingNowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/termsuse': {
-      id: '/termsuse'
-      path: '/termsuse'
-      fullPath: '/termsuse'
-      preLoaderRoute: typeof TermsuseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/support': {
-      id: '/support'
-      path: '/support'
-      fullPath: '/support'
-      preLoaderRoute: typeof SupportRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/species': {
-      id: '/species'
-      path: '/species'
-      fullPath: '/species'
-      preLoaderRoute: typeof SpeciesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recipes': {
-      id: '/recipes'
-      path: '/recipes'
-      fullPath: '/recipes'
-      preLoaderRoute: typeof RecipesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy-policy': {
-      id: '/privacy-policy'
-      path: '/privacy-policy'
-      fullPath: '/privacy-policy'
-      preLoaderRoute: typeof PrivacyPolicyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/offline': {
-      id: '/offline'
-      path: '/offline'
-      fullPath: '/offline'
-      preLoaderRoute: typeof OfflineRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/map': {
-      id: '/map'
-      path: '/map'
-      fullPath: '/map'
-      preLoaderRoute: typeof MapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/instructions': {
-      id: '/instructions'
-      path: '/instructions'
-      fullPath: '/instructions'
-      preLoaderRoute: typeof InstructionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/impressum': {
-      id: '/impressum'
-      path: '/impressum'
-      fullPath: '/impressum'
-      preLoaderRoute: typeof ImpressumRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/identify': {
-      id: '/identify'
-      path: '/identify'
-      fullPath: '/identify'
-      preLoaderRoute: typeof IdentifyRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/data': {
@@ -331,18 +462,200 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/de': {
+      id: '/de'
+      path: '/de'
+      fullPath: '/de'
+      preLoaderRoute: typeof DeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/delete-account': {
+      id: '/delete-account'
+      path: '/delete-account'
+      fullPath: '/delete-account'
+      preLoaderRoute: typeof DeleteAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta': {
+      id: '/huerta'
+      path: '/huerta'
+      fullPath: '/huerta'
+      preLoaderRoute: typeof HuertaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/identify': {
+      id: '/identify'
+      path: '/identify'
+      fullPath: '/identify'
+      preLoaderRoute: typeof IdentifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impressum': {
+      id: '/impressum'
+      path: '/impressum'
+      fullPath: '/impressum'
+      preLoaderRoute: typeof ImpressumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instructions': {
+      id: '/instructions'
+      path: '/instructions'
+      fullPath: '/instructions'
+      preLoaderRoute: typeof InstructionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offline': {
+      id: '/offline'
+      path: '/offline'
+      fullPath: '/offline'
+      preLoaderRoute: typeof OfflineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recipes': {
+      id: '/recipes'
+      path: '/recipes'
+      fullPath: '/recipes'
+      preLoaderRoute: typeof RecipesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/species': {
+      id: '/species'
+      path: '/species'
+      fullPath: '/species'
+      preLoaderRoute: typeof SpeciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/termsuse': {
+      id: '/termsuse'
+      path: '/termsuse'
+      fullPath: '/termsuse'
+      preLoaderRoute: typeof TermsuseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terra': {
+      id: '/terra'
+      path: '/terra'
+      fullPath: '/terra'
+      preLoaderRoute: typeof TerraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/worth-foraging-now': {
+      id: '/worth-foraging-now'
+      path: '/worth-foraging-now'
+      fullPath: '/worth-foraging-now'
+      preLoaderRoute: typeof WorthForagingNowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de_/huerta': {
+      id: '/de_/huerta'
+      path: '/de/huerta'
+      fullPath: '/de/huerta'
+      preLoaderRoute: typeof DeHuertaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de_/terra': {
+      id: '/de_/terra'
+      path: '/de/terra'
+      fullPath: '/de/terra'
+      preLoaderRoute: typeof DeTerraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/account': {
+      id: '/huerta_/account'
+      path: '/huerta/account'
+      fullPath: '/huerta/account'
+      preLoaderRoute: typeof HuertaAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/crops': {
+      id: '/huerta_/crops'
+      path: '/huerta/crops'
+      fullPath: '/huerta/crops'
+      preLoaderRoute: typeof HuertaCropsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/garden-planner': {
+      id: '/huerta_/garden-planner'
+      path: '/huerta/garden-planner'
+      fullPath: '/huerta/garden-planner'
+      preLoaderRoute: typeof HuertaGardenPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/map': {
+      id: '/huerta_/map'
+      path: '/huerta/map'
+      fullPath: '/huerta/map'
+      preLoaderRoute: typeof HuertaMapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/planting-calendar': {
+      id: '/huerta_/planting-calendar'
+      path: '/huerta/planting-calendar'
+      fullPath: '/huerta/planting-calendar'
+      preLoaderRoute: typeof HuertaPlantingCalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/signin': {
+      id: '/huerta_/signin'
+      path: '/huerta/signin'
+      fullPath: '/huerta/signin'
+      preLoaderRoute: typeof HuertaSigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/species_/$id': {
+      id: '/species_/$id'
+      path: '/species/$id'
+      fullPath: '/species/$id'
+      preLoaderRoute: typeof SpeciesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/data_/seasons/': {
       id: '/data_/seasons/'
       path: '/data/seasons'
-      fullPath: '/data/seasons'
+      fullPath: '/data/seasons/'
       preLoaderRoute: typeof DataSeasonsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/de_/species_/$id': {
+      id: '/de_/species_/$id'
+      path: '/de/species/$id'
+      fullPath: '/de/species/$id'
+      preLoaderRoute: typeof DeSpeciesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/huerta_/crops_/$id': {
+      id: '/huerta_/crops_/$id'
+      path: '/huerta/crops/$id'
+      fullPath: '/huerta/crops/$id'
+      preLoaderRoute: typeof HuertaCropsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/data_/seasons/$place/$species': {
@@ -352,12 +665,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataSeasonsPlaceSpeciesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/de_/huerta_/crops_/$id': {
+      id: '/de_/huerta_/crops_/$id'
+      path: '/de/huerta/crops/$id'
+      fullPath: '/de/huerta/crops/$id'
+      preLoaderRoute: typeof DeHuertaCropsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DataRoute: DataRoute,
+  DeRoute: DeRoute,
+  DeleteAccountRoute: DeleteAccountRoute,
+  HuertaRoute: HuertaRoute,
   IdentifyRoute: IdentifyRoute,
   ImpressumRoute: ImpressumRoute,
   InstructionsRoute: InstructionsRoute,
@@ -369,9 +692,22 @@ const rootRouteChildren: RootRouteChildren = {
   SpeciesRoute: SpeciesRoute,
   SupportRoute: SupportRoute,
   TermsuseRoute: TermsuseRoute,
+  TerraRoute: TerraRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
+  DeHuertaRoute: DeHuertaRoute,
+  DeTerraRoute: DeTerraRoute,
+  HuertaAccountRoute: HuertaAccountRoute,
+  HuertaCropsRoute: HuertaCropsRoute,
+  HuertaGardenPlannerRoute: HuertaGardenPlannerRoute,
+  HuertaMapRoute: HuertaMapRoute,
+  HuertaPlantingCalendarRoute: HuertaPlantingCalendarRoute,
+  HuertaSigninRoute: HuertaSigninRoute,
+  SpeciesIdRoute: SpeciesIdRoute,
+  DeSpeciesIdRoute: DeSpeciesIdRoute,
+  HuertaCropsIdRoute: HuertaCropsIdRoute,
   DataSeasonsIndexRoute: DataSeasonsIndexRoute,
   DataSeasonsPlaceSpeciesRoute: DataSeasonsPlaceSpeciesRoute,
+  DeHuertaCropsIdRoute: DeHuertaCropsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

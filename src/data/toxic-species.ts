@@ -47,12 +47,25 @@ export interface ToxicSpecies {
    */
   confusedWithSpeciesIds: string[];
   /**
+   * Checks for one catalog species where `checkKeys` (written for another) would
+   * mislead: the jack-o'-lantern's gills-not-ridges check is about chanterelles,
+   * and oysters have true gills too. The species sheet shows these instead.
+   */
+  checksFor?: Partial<Record<string, string[]>>;
+  /**
    * Confusions dangerous enough to warrant their own escalated warning when
    * both species appear in the same result set. Data-driven so adding a pair
    * later is a data change, not a code change.
    */
   criticalConfusions?: { catalogId: string; noteKey: string }[];
 }
+
+// An earthball is told from a truffle by its skin and veins, from a puffball by
+// cutting it open: each sheet shows its own check.
+const SCLERODERMA_CHECKS = {
+  truffle_b: ['toxicity.checks.interiorPattern'],
+  giant_puffball: ['toxicity.checks.puffballInterior'],
+};
 
 // The catalog's porcini and chanterelle siblings, shared by every look-alike
 // that is mistaken for any of them. Add a new sibling here once, not per entry.
@@ -84,7 +97,15 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.gillAttachment',
       'toxicity.checks.gillVsRidges',
     ],
-    confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    confusedWithSpeciesIds: [
+      ...CHANTERELLE_IDS,
+      'oyster-mushroom',
+      'chicken-of-the-woods',
+    ],
+    checksFor: {
+      'oyster-mushroom': ['toxicity.checks.jackOLantern'],
+      'chicken-of-the-woods': ['toxicity.checks.jackOLanternChicken'],
+    },
   },
   {
     id: 'hygrophoropsis-aurantiaca',
@@ -104,7 +125,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: ['toxicity.checks.sporePrint', 'toxicity.checks.ringAndStem'],
-    confusedWithSpeciesIds: ['parasol'],
+    confusedWithSpeciesIds: ['parasol', 'shaggy_mane'],
   },
   {
     id: 'lepiota-brunneoincarnata',
@@ -211,7 +232,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: ['toxicity.checks.volva', 'toxicity.checks.gillColour'],
-    confusedWithSpeciesIds: ['giant_puffball'],
+    confusedWithSpeciesIds: ['giant_puffball', 'matsutake'],
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -235,7 +256,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: ['toxicity.checks.sporePrint', 'toxicity.checks.ringAndStem'],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['shiitake'],
   },
   {
     id: 'cortinarius-rubellus',
@@ -244,7 +265,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.orellanine',
     checkKeys: ['toxicity.checks.cortina', 'toxicity.checks.sporePrint'],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['winter_chant'],
   },
 
   // --- confused with wild garlic: the deadliest plant confusions here ---
@@ -267,7 +288,8 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.cardiacGlycoside',
     checkKeys: ['toxicity.checks.smell', 'toxicity.checks.leafArrangement'],
-    confusedWithSpeciesIds: ['garlic', 'ramps'],
+    confusedWithSpeciesIds: ['garlic', 'ramps', 'lingonb'],
+    checksFor: { lingonb: ['toxicity.checks.plantHabit'] },
     criticalConfusions: [
       { catalogId: 'ramps', noteKey: 'toxicity.critical.rampsPair' },
     ],
@@ -279,7 +301,11 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.calciumOxalate',
     checkKeys: ['toxicity.checks.smell', 'toxicity.checks.leafShape'],
-    confusedWithSpeciesIds: ['garlic'],
+    confusedWithSpeciesIds: ['garlic', 'violets', 'sorrel'],
+    checksFor: {
+      violets: ['toxicity.checks.arumLeaf'],
+      sorrel: ['toxicity.checks.arumLeaf'],
+    },
   },
 
   // --- confused with masterwort (Apiaceae confusions kill) ---
@@ -349,9 +375,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
       {
@@ -368,9 +395,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       { catalogId: 'truffle_b', noteKey: 'toxicity.critical.trufflePair' },
       {
@@ -406,7 +434,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.immuneHaemolysis',
     checkKeys: [
-      'toxicity.checks.capStructure',
+      'toxicity.checks.capMargin',
       'toxicity.checks.gillAttachment',
       'toxicity.checks.fleshBruising',
     ],
@@ -425,7 +453,8 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.leafShape',
       'toxicity.checks.plantHabit',
     ],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['plantain'],
+    checksFor: { plantain: ['toxicity.checks.plantainVeins'] },
   },
 
   {
@@ -453,9 +482,16 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.gillVsRidges',
       'toxicity.checks.gillAttachment',
-      'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    confusedWithSpeciesIds: [
+      ...CHANTERELLE_IDS,
+      'oyster-mushroom',
+      'chicken-of-the-woods',
+    ],
+    checksFor: {
+      'oyster-mushroom': ['toxicity.checks.jackOLantern'],
+      'chicken-of-the-woods': ['toxicity.checks.jackOLanternChicken'],
+    },
   },
   {
     id: 'omphalotus-olivascens',
@@ -466,9 +502,16 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.gillVsRidges',
       'toxicity.checks.gillAttachment',
-      'toxicity.checks.capAttachment',
     ],
-    confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    confusedWithSpeciesIds: [
+      ...CHANTERELLE_IDS,
+      'oyster-mushroom',
+      'chicken-of-the-woods',
+    ],
+    checksFor: {
+      'oyster-mushroom': ['toxicity.checks.jackOLantern'],
+      'chicken-of-the-woods': ['toxicity.checks.jackOLanternChicken'],
+    },
   },
   {
     id: 'omphalotus-subilludens',
@@ -479,9 +522,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     checkKeys: [
       'toxicity.checks.gillVsRidges',
       'toxicity.checks.gillAttachment',
-      'toxicity.checks.capAttachment',
     ],
     confusedWithSpeciesIds: [...CHANTERELLE_IDS, 'oyster-mushroom'],
+    checksFor: { 'oyster-mushroom': ['toxicity.checks.jackOLantern'] },
   },
 
   // Yellow-stainer. Bruises chrome yellow at the stem base and smells of ink or
@@ -508,11 +551,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',
-    checkKeys: [
-      'toxicity.checks.gillColour',
-      'toxicity.checks.capAttachment',
-      'toxicity.checks.smellCompare',
-    ],
+    checkKeys: ['toxicity.checks.sulphurTuft', 'toxicity.checks.sporePrint'],
     confusedWithSpeciesIds: ['oyster-mushroom'],
   },
 
@@ -563,7 +602,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.ringAndStem',
       'toxicity.checks.sporePrint',
     ],
-    confusedWithSpeciesIds: ['giant_puffball'],
+    confusedWithSpeciesIds: ['giant_puffball', 'matsutake'],
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -583,7 +622,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.ringAndStem',
       'toxicity.checks.sporePrint',
     ],
-    confusedWithSpeciesIds: ['giant_puffball'],
+    confusedWithSpeciesIds: ['giant_puffball', 'matsutake'],
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -617,7 +656,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: [
-      'toxicity.checks.capAttachment',
+      'toxicity.checks.ringAndStem',
       'toxicity.checks.sporePrint',
       'toxicity.checks.overallSize',
     ],
@@ -668,7 +707,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.rhabdomyolysis',
-    checkKeys: ['toxicity.checks.gillColour', 'toxicity.checks.capStructure'],
+    checkKeys: ['toxicity.checks.gillColour', 'toxicity.checks.smellCompare'],
     confusedWithSpeciesIds: [],
   },
   {
@@ -677,11 +716,7 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     category: 'mushroom',
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.encephalopathy',
-    checkKeys: [
-      'toxicity.checks.gillAttachment',
-      'toxicity.checks.capStructure',
-      'toxicity.checks.capAttachment',
-    ],
+    checkKeys: ['toxicity.checks.angelWing'],
     confusedWithSpeciesIds: ['oyster-mushroom'],
     criticalConfusions: [
       {
@@ -768,7 +803,8 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.plantHabit',
       'toxicity.checks.smellCompare',
     ],
-    confusedWithSpeciesIds: [],
+    confusedWithSpeciesIds: ['amaranth'],
+    checksFor: { amaranth: ['toxicity.checks.thornApple'] },
   },
   {
     id: 'datura-wrightii',
@@ -932,9 +968,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -950,9 +987,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -969,9 +1007,10 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: [
       'toxicity.checks.interiorPattern',
-      'toxicity.checks.capStructure',
+      'toxicity.checks.puffballInterior',
     ],
     confusedWithSpeciesIds: ['truffle_b', 'giant_puffball'],
+    checksFor: SCLERODERMA_CHECKS,
     criticalConfusions: [
       {
         catalogId: 'giant_puffball',
@@ -1176,6 +1215,175 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: ['toxicity.checks.berryBloom'],
     confusedWithSpeciesIds: ['sloes'],
+  },
+  // --- look-alikes found writing the species sheets (2026-10) ---
+  {
+    id: 'turbinellus-floccosus',
+    scientificName: 'Turbinellus floccosus',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.scalyVase'],
+    confusedWithSpeciesIds: ['pacific_chant', 'chant'],
+  },
+  {
+    id: 'amanita-verna',
+    scientificName: 'Amanita verna',
+    category: 'mushroom',
+    severity: 'lethal',
+    reasonKey: 'toxicity.mechanisms.amatoxin',
+    checkKeys: ['toxicity.checks.volva', 'toxicity.checks.gillColour'],
+    confusedWithSpeciesIds: ['st_george'],
+  },
+  {
+    id: 'chlorophyllum-brunneum',
+    scientificName: 'Chlorophyllum brunneum',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.ringAndStem',
+      'toxicity.checks.fleshReddening',
+    ],
+    confusedWithSpeciesIds: ['parasol'],
+  },
+  {
+    id: 'rubroboletus-legaliae',
+    scientificName: 'Rubroboletus legaliae',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.poreColour', 'toxicity.checks.fleshBruising'],
+    confusedWithSpeciesIds: BOLETE_IDS,
+  },
+  {
+    id: 'leccinum-insigne',
+    scientificName: 'Leccinum insigne',
+    category: 'mushroom',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.scaberStem'],
+    confusedWithSpeciesIds: ['rocky_king'],
+  },
+  {
+    id: 'aesculus-hippocastanum',
+    scientificName: 'Aesculus hippocastanum',
+    category: 'nut',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.chestnutHusk'],
+    confusedWithSpeciesIds: ['chestnut'],
+  },
+  {
+    id: 'polygonatum-multiflorum',
+    scientificName: 'Polygonatum multiflorum',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.leafArrangement',
+      'toxicity.checks.plantHabit',
+    ],
+    confusedWithSpeciesIds: ['garlic', 'blueberry'],
+    checksFor: {
+      garlic: ['toxicity.checks.leafArrangement'],
+      blueberry: ['toxicity.checks.plantHabit'],
+    },
+  },
+  {
+    id: 'actaea-rubra',
+    scientificName: 'Actaea rubra',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.plantHabit'],
+    confusedWithSpeciesIds: ['lingonb', 'huckleberry'],
+  },
+  {
+    id: 'dioscorea-communis',
+    scientificName: 'Dioscorea communis',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.calciumOxalate',
+    checkKeys: [
+      'toxicity.checks.hedgeBerries',
+      'toxicity.checks.asparagusShoot',
+    ],
+    confusedWithSpeciesIds: ['rose_hips', 'asparagus'],
+    checksFor: {
+      rose_hips: ['toxicity.checks.hedgeBerries'],
+      asparagus: ['toxicity.checks.asparagusShoot'],
+    },
+  },
+  {
+    id: 'bryonia-cretica',
+    scientificName: 'Bryonia cretica',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: [
+      'toxicity.checks.hedgeBerries',
+      'toxicity.checks.asparagusShoot',
+    ],
+    confusedWithSpeciesIds: ['rose_hips', 'asparagus'],
+    checksFor: {
+      rose_hips: ['toxicity.checks.hedgeBerries'],
+      asparagus: ['toxicity.checks.asparagusShoot'],
+    },
+  },
+  {
+    id: 'solanum-dulcamara',
+    scientificName: 'Solanum dulcamara',
+    category: 'berry',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.hedgeBerries'],
+    confusedWithSpeciesIds: ['rose_hips'],
+  },
+  {
+    id: 'heracleum-mantegazzianum',
+    scientificName: 'Heracleum mantegazzianum',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.phototoxic',
+    checkKeys: ['toxicity.checks.hogweed'],
+    confusedWithSpeciesIds: ['elderflower', 'masterwort'],
+  },
+  {
+    id: 'lysimachia-arvensis',
+    scientificName: 'Lysimachia arvensis',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.pimpernel'],
+    confusedWithSpeciesIds: ['chickweed'],
+  },
+  {
+    id: 'euphorbia-peplus',
+    scientificName: 'Euphorbia peplus',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.spurgeSap'],
+    confusedWithSpeciesIds: ['chickweed'],
+  },
+  {
+    id: 'solanum-nigrum',
+    scientificName: 'Solanum nigrum',
+    category: 'plant',
+    severity: 'toxic',
+    reasonKey: 'toxicity.mechanisms.giIrritant',
+    checkKeys: ['toxicity.checks.nightshadeFlower'],
+    confusedWithSpeciesIds: ['amaranth'],
+  },
+  {
+    id: 'chamaeleon-gummifer',
+    scientificName: 'Chamaeleon gummifer',
+    category: 'plant',
+    severity: 'lethal',
+    reasonKey: 'toxicity.mechanisms.atractyloside',
+    checkKeys: ['toxicity.checks.thistleRosette'],
+    confusedWithSpeciesIds: ['artichoke'],
   },
 ];
 

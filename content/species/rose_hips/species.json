@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Rose Hips",
-      "description": "The red autumn fruits of wild roses, rich in vitamin C and full of seeds wrapped in itchy hairs",
-      "howTo": "Look on hedgerows, scrub and woodland edges from late August to November; they are softest after the first frosts. Remove the seeds and hairs, which irritate the mouth and gut"
+      "description": "The red autumn fruits of wild roses. They are rich in vitamin C and the seeds inside are wrapped in itchy hairs.",
+      "howTo": "Look on hedgerows, scrub and woodland edges from late August to November; they are softest after the first frosts. Remove the seeds and hairs, which irritate the mouth and gut",
+      "guide": {
+        "identify": "Dog rose is a shrub with long arching stems and strongly hooked prickles. Its leaves have 5 to 7 toothed leaflets. The hips are oval, smooth and glossy scarlet, 1 to 2 cm long. When ripe they have no sepals left on them. Inside, hard seeds sit in fine, irritant hairs. Black bryony, white bryony and bittersweet grow in the same hedges. They hang shiny red, poisonous berries in bunches, on climbing stems without prickles. A rose hip grows on a prickly rose stem and is full of hairy seeds.",
+        "habitat": "Dog rose grows in hedgerows, scrub, woodland edges and rough grassland across Europe. You find it from the lowlands into the mountains. In the US dog rose grows wild in places. There you can use the hips of native wild roses and of rugosa rose the same way.",
+        "season": "Hips ripen from September to November. Many stay on the bush into winter. Frost makes them softer and sweeter. But the longer they hang, the less vitamin C they hold.",
+        "picking": "Pick firm, fully coloured hips that give a little when pressed. Take a few from each bush and leave plenty for birds. Wear gloves and avoid roadsides and sprayed hedges.",
+        "kitchen": "Once you're certain of them, eat only the pulp. The seeds and their hairs irritate the mouth, gut and skin. Cut off the stalk and tip, halve the hips and scrape out every seed and hair. Or simmer them whole and press them through a fine sieve. Then strain the juice again through muslin. Use the pulp for syrup, jelly, jam and tea. It goes well with apple.",
+        "keeps": "Fresh hips keep about a week in the fridge. They freeze well. Seeded halves dried at no more than 50 °C keep for many months in an airtight jar.",
+        "source": "Identification and habitat: Woodland Trust and The Wildlife Trusts. Season, picking and cooking: University of Alaska Fairbanks Cooperative Extension and Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "it": {
       "name": "Bacche di rosa canina",
-      "description": "I frutti rossi autunnali delle rose selvatiche, ricchi di vitamina C e pieni di semi avvolti da peli urticanti",
-      "howTo": "Cercale su siepi, arbusteti e margini dei boschi da fine agosto a novembre; sono più morbide dopo le prime gelate. Togli semi e peli, che irritano bocca e intestino"
+      "description": "I frutti rossi d'autunno delle rose selvatiche. Sono ricchi di vitamina C e i semi dentro sono avvolti da peli che fanno prudere.",
+      "howTo": "Cercale su siepi, arbusteti e margini dei boschi da fine agosto a novembre; sono più morbide dopo le prime gelate. Togli semi e peli, che irritano bocca e intestino",
+      "guide": {
+        "identify": "La rosa canina è un arbusto con lunghi rami ad arco e spine robuste e uncinate. Le foglie hanno da 5 a 7 foglioline dentate. Le bacche sono ovali, lisce, rosso scarlatto lucido e lunghe da 1 a 2 cm. Da mature non hanno più i sepali. Dentro ci sono semi duri immersi in peli fini e irritanti. Nelle stesse siepi crescono il tamaro, la brionia e la dulcamara. Hanno bacche rosse, lucide e velenose a grappoli, su fusti rampicanti senza spine. La bacca di rosa canina cresce su un ramo spinoso di rosa ed è piena di semi pelosi.",
+        "habitat": "La rosa canina cresce nelle siepi, tra gli arbusti, ai margini dei boschi e negli incolti erbosi in tutta Europa. La trovi dalla pianura alla montagna. Negli Stati Uniti in alcune zone cresce spontanea. Lì puoi usare allo stesso modo le bacche delle rose selvatiche native e della rosa rugosa.",
+        "season": "Le bacche maturano da settembre a novembre. Molte restano sulla pianta fino all'inverno. Il gelo le rende più morbide e dolci. Ma più restano sul ramo, meno vitamina C hanno.",
+        "picking": "Raccogli bacche sode e ben colorate, che cedono un poco quando le premi. Prendine poche da ogni pianta e lasciane tante agli uccelli. Metti i guanti ed evita i bordi delle strade e le siepi trattate.",
+        "kitchen": "Quando le hai riconosciute con certezza, mangiane solo la polpa. I semi e i loro peli irritano bocca, intestino e pelle. Togli il picciolo e la punta, taglia le bacche a metà e raschia via tutti i semi e i peli. Oppure falle sobbollire intere e passale al setaccio fine. Poi filtra di nuovo il succo attraverso una garza. Con la polpa fai sciroppo, gelatina, marmellata e tisane. Sta bene con la mela.",
+        "keeps": "Fresche durano circa una settimana in frigo. Si congelano bene. Le metà senza semi, seccate a non più di 50 °C, durano molti mesi in un barattolo ermetico.",
+        "source": "Identificazione e habitat: Woodland Trust e The Wildlife Trusts. Stagione, raccolta e cucina: servizio di extension della University of Alaska Fairbanks e Bundeszentrum für Ernährung (BZfE, Germania)."
+      }
     },
     "fr": {
       "name": "Cynorrhodons",
-      "description": "Les fruits rouges d'automne des rosiers sauvages, riches en vitamine C et pleins de graines entourées de poils irritants",
-      "howTo": "Cherchez-les dans les haies, les fourrés et les lisières de fin août à novembre ; ils sont plus tendres après les premières gelées. Retirez les graines et les poils, qui irritent la bouche et l'intestin"
+      "description": "Les fruits rouges d'automne des rosiers sauvages. Ils sont riches en vitamine C. À l'intérieur, les graines sont entourées de poils qui grattent.",
+      "howTo": "Cherchez-les dans les haies, les fourrés et les lisières de fin août à novembre ; ils sont plus tendres après les premières gelées. Retirez les graines et les poils, qui irritent la bouche et l'intestin",
+      "guide": {
+        "identify": "L'églantier est un arbuste aux longues tiges arquées, armées d'aiguillons forts et crochus. Ses feuilles ont 5 à 7 folioles dentées. Ses fruits, les cynorrhodons, sont ovales, lisses et d'un rouge écarlate brillant. Ils mesurent de 1 à 2 cm de long. Mûrs, ils n'ont plus de sépales. À l'intérieur, des graines dures sont entourées de poils fins et irritants. Le tamier, la bryone et la morelle douce-amère poussent dans les mêmes haies. Ces plantes portent des grappes de baies rouges, brillantes et toxiques, sur des tiges grimpantes sans aiguillons. Un cynorrhodon pousse sur une tige de rosier épineuse et il est rempli de graines poilues.",
+        "habitat": "L'églantier pousse dans les haies, les fourrés, les lisières et les friches herbeuses dans toute l'Europe. On le trouve de la plaine à la montagne. Aux États-Unis, il pousse à l'état sauvage par endroits. Là-bas, vous pouvez utiliser de la même façon les fruits des rosiers sauvages indigènes et du rosier rugueux.",
+        "season": "Les cynorrhodons mûrissent de septembre à novembre. Beaucoup restent sur l'arbuste jusqu'en hiver. Le gel les rend plus tendres et plus sucrés. Mais plus ils restent sur la branche, moins ils contiennent de vitamine C.",
+        "picking": "Cueillez des fruits fermes et bien colorés qui cèdent un peu sous le doigt. Prenez-en quelques-uns par arbuste et laissez-en beaucoup aux oiseaux. Portez des gants. Évitez les bords de route et les haies traitées.",
+        "kitchen": "Une fois les fruits identifiés avec certitude, n'en mangez que la pulpe. Les graines et leurs poils irritent la bouche, l'intestin et la peau. Coupez la queue et la pointe, ouvrez les fruits en deux et grattez toutes les graines et tous les poils. Vous pouvez aussi les faire cuire entiers et les passer au tamis fin. Filtrez ensuite le jus une seconde fois dans un linge fin. La pulpe sert pour le sirop, la gelée, la confiture et la tisane. Elle se marie bien avec la pomme.",
+        "keeps": "Frais, ils se gardent environ une semaine au réfrigérateur. Ils se congèlent bien. Épépinées et séchées à 50 °C maximum, les moitiés se gardent de longs mois dans un bocal hermétique.",
+        "source": "Identification et habitat : Woodland Trust et The Wildlife Trusts. Saison, cueillette et cuisine : service d'extension de l'université d'Alaska Fairbanks et Bundeszentrum für Ernährung (BZfE, Allemagne)."
+      }
     },
     "de": {
       "name": "Hagebutten",
-      "description": "Die roten Herbstfrüchte der Wildrosen, reich an Vitamin C und voller Samen mit juckenden Haaren",
-      "howTo": "Suche von Ende August bis November an Hecken, Gebüschen und Waldrändern; nach den ersten Frösten sind sie am weichsten. Entferne Samen und Haare, sie reizen Mund und Darm"
+      "description": "Die roten Herbstfrüchte der Wildrosen. Sie sind reich an Vitamin C, und die Samen darin stecken in juckenden Härchen.",
+      "howTo": "Suche von Ende August bis November an Hecken, Gebüschen und Waldrändern; nach den ersten Frösten sind sie am weichsten. Entferne Samen und Haare, sie reizen Mund und Darm",
+      "guide": {
+        "identify": "Die Hundsrose ist ein Strauch mit langen, bogig überhängenden Trieben und kräftigen, hakigen Stacheln. Ihre Blätter haben 5 bis 7 gezähnte Fiederblättchen. Die Hagebutten sind eiförmig, glatt und glänzend scharlachrot, 1 bis 2 cm lang. Reif tragen sie keine Kelchblätter mehr. Innen sitzen harte Kerne in feinen, juckenden Härchen. Schmerwurz, Rotfrüchtige Zaunrübe und Bittersüsser Nachtschatten wachsen in denselben Hecken. Sie tragen glänzend rote, giftige Beeren in Büscheln, an kletternden Stängeln ohne Stacheln. Eine Hagebutte dagegen wächst an einem stacheligen Rosenzweig und ist voller behaarter Kerne.",
+        "habitat": "Die Hundsrose wächst in Hecken und Gebüschen, an Waldrändern und auf rauem Grasland in ganz Europa. Du findest sie vom Tiefland bis in die Berge. In den USA wächst sie stellenweise wild. Dort kannst du auch die Hagebutten heimischer Wildrosen und der Kartoffel-Rose genauso verwenden.",
+        "season": "Hagebutten reifen von September bis November. Viele hängen bis in den Winter am Strauch. Frost macht sie weicher und süsser. Aber je länger sie hängen, desto weniger Vitamin C steckt in ihnen.",
+        "picking": "Pflück feste, voll ausgefärbte Hagebutten, die auf Druck etwas nachgeben. Nimm von jedem Strauch nur einige und lass den Vögeln genug übrig. Trag Handschuhe und meide Strassenränder und gespritzte Hecken.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, iss nur das Fruchtfleisch. Kerne und Härchen reizen Mund, Darm und Haut. Schneide Stiel und Spitze ab, halbiere die Hagebutten und kratz alle Kerne und Härchen heraus. Oder koch sie ganz weich und streich sie durch ein feines Sieb. Den Saft seihst du danach noch einmal durch ein Tuch. Aus dem Mark machst du Sirup, Gelee, Marmelade und Tee. Es passt gut zu Apfel.",
+        "keeps": "Frische Hagebutten halten sich etwa eine Woche im Kühlschrank. Sie lassen sich gut einfrieren. Entkernte Hälften, bei höchstens 50 °C getrocknet, halten sich in einem luftdichten Glas viele Monate.",
+        "source": "Bestimmung und Standort: Woodland Trust und The Wildlife Trusts. Saison, Ernte und Küche: University of Alaska Fairbanks Cooperative Extension und Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "es": {
       "name": "Escaramujos",
-      "description": "Los frutos rojos otoñales de las rosas silvestres, ricos en vitamina C y llenos de semillas envueltas en pelos irritantes",
-      "howTo": "Búscalos en setos, matorrales y lindes de bosque de finales de agosto a noviembre; están más blandos tras las primeras heladas. Quita las semillas y los pelos, que irritan la boca y el intestino"
+      "description": "Los frutos rojos de otoño de los rosales silvestres. Son ricos en vitamina C. Las semillas de dentro están envueltas en pelillos que pican.",
+      "howTo": "Búscalos en setos, matorrales y lindes de bosque de finales de agosto a noviembre; están más blandos tras las primeras heladas. Quita las semillas y los pelos, que irritan la boca y el intestino",
+      "guide": {
+        "identify": "La rosa canina es un arbusto de tallos largos y arqueados, con aguijones fuertes y curvados como ganchos. Sus hojas tienen de 5 a 7 folíolos dentados. Los escaramujos son ovalados, lisos y de un rojo escarlata brillante, de 1 a 2 cm de largo. Cuando están maduros ya no tienen los sépalos. Dentro, unas semillas duras van envueltas en pelillos finos que irritan. En los mismos setos crecen la nueza negra, la nueza blanca y la dulcamara. Sus bayas rojas, brillantes y venenosas cuelgan en racimos de tallos trepadores sin aguijones. El escaramujo, en cambio, crece en un tallo de rosal con pinchos y está lleno de semillas con pelos.",
+        "habitat": "La rosa canina crece en setos, matorrales, bordes de bosque y herbazales por toda Europa. La encuentras desde las zonas bajas hasta la montaña. En EE. UU. crece asilvestrada en algunos sitios. Allí puedes usar igual los escaramujos de los rosales silvestres nativos y del rosal rugoso.",
+        "season": "Los escaramujos maduran de septiembre a noviembre. Muchos se quedan en la mata hasta el invierno. La helada los ablanda y los endulza. Pero cuanto más tiempo cuelgan, menos vitamina C tienen.",
+        "picking": "Coge escaramujos firmes y con todo su color, que cedan un poco al apretarlos. Coge unos pocos de cada mata y deja muchos para los pájaros. Ponte guantes y evita las cunetas y los setos fumigados.",
+        "kitchen": "Cuando no tengas ninguna duda, come solo la pulpa. Las semillas y sus pelillos irritan la boca, el intestino y la piel. Quita el rabillo y la punta, parte los escaramujos por la mitad y raspa todas las semillas y los pelos. También puedes cocerlos enteros y pasarlos por un colador fino. Luego vuelve a colar el jugo por una gasa. Con la pulpa se hacen jarabe, jalea, mermelada e infusión. Va muy bien con manzana.",
+        "keeps": "Frescos aguantan alrededor de una semana en la nevera. Se congelan bien. Las mitades sin semillas, secadas a 50 °C como mucho, se conservan muchos meses en un tarro hermético.",
+        "source": "Identificación y hábitat: Woodland Trust y The Wildlife Trusts. Temporada, recolección y cocina: extensión de la Universidad de Alaska Fairbanks y Bundeszentrum für Ernährung (BZfE, Alemania)."
+      }
     },
     "pt": {
       "name": "Cinórrodos",
-      "description": "Os frutos vermelhos de outono das roseiras silvestres, ricos em vitamina C e cheios de sementes envoltas em pelos irritantes",
-      "howTo": "Procure em sebes, matagais e orlas de bosque do fim de agosto a novembro; ficam mais macios depois das primeiras geadas. Retire as sementes e os pelos, que irritam a boca e o intestino"
+      "description": "Os frutos vermelhos de outono das roseiras-bravas. São ricos em vitamina C. As sementes lá dentro estão envoltas em pelos que dão comichão.",
+      "howTo": "Procure em sebes, matagais e orlas de bosque do fim de agosto a novembro; ficam mais macios depois das primeiras geadas. Retire as sementes e os pelos, que irritam a boca e o intestino",
+      "guide": {
+        "identify": "A roseira-brava é um arbusto de caules compridos e arqueados, com picos fortes e curvos em gancho. As folhas têm 5 a 7 folíolos dentados. Os frutos, os cinórrodos, são ovais, lisos e de um escarlate brilhante, com 1 a 2 cm. Quando estão maduros já não têm sépalas. Por dentro, sementes duras estão envoltas em pelos finos e irritantes. A norça-preta, a norça-branca e a doce-amarga crescem nas mesmas sebes. Têm bagas vermelhas, brilhantes e venenosas, em cachos, penduradas em caules trepadores sem picos. Um cinórrodo cresce num ramo de roseira com picos e está cheio de sementes peludas.",
+        "habitat": "A roseira-brava cresce em sebes, matos, orlas de bosques e terrenos incultos com erva, em toda a Europa. Encontra-se das terras baixas à montanha. Nos EUA cresce espontânea nalguns sítios. Aí pode usar da mesma maneira os frutos das roseiras silvestres nativas e da roseira-rugosa.",
+        "season": "Os cinórrodos amadurecem de setembro a novembro. Muitos ficam no arbusto até ao inverno. A geada torna-os mais macios e mais doces. Mas quanto mais tempo ficam no ramo, menos vitamina C têm.",
+        "picking": "Apanhe frutos firmes e bem corados, que cedam um pouco quando os aperta. Apanhe poucos de cada arbusto e deixe muitos para as aves. Use luvas e evite as bermas das estradas e as sebes pulverizadas.",
+        "kitchen": "Quando tiver a certeza, coma só a polpa. As sementes e os pelos irritam a boca, o intestino e a pele. Corte o pé e a ponta, abra os frutos ao meio e raspe todas as sementes e pelos. Também os pode cozer inteiros em lume brando e passá-los por um passador fino. Depois volte a coar o sumo por um pano fino. Use a polpa para xarope, geleia, doce e chá. Combina bem com maçã.",
+        "keeps": "Frescos aguentam cerca de uma semana no frigorífico. Congelam bem. As metades sem sementes, secas a 50 °C no máximo, conservam-se muitos meses num frasco hermético.",
+        "source": "Identificação e habitat: Woodland Trust e The Wildlife Trusts. Época, apanha e cozinha: extensão da University of Alaska Fairbanks e Bundeszentrum für Ernährung (BZfE, Alemanha)."
+      }
     }
   },
   "identification": {

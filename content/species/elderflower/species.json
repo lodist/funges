@@ -19,33 +19,87 @@
   "locales": {
     "en": {
       "name": "Elderflower",
-      "description": "Creamy white flowers that grow in large flat clusters on elder trees",
-      "howTo": "Look for elder trees in hedgerows and woodland edges in late spring and early summer"
+      "description": "Creamy white flowers in big flat clusters on elder trees.",
+      "howTo": "Look for elder trees in hedgerows and woodland edges in late spring and early summer",
+      "guide": {
+        "identify": "Elder is a woody shrub or small tree with corky, furrowed, grey-brown bark. Its leaves are opposite, with 5 to 7 toothed leaflets. They smell unpleasant when you crush them. In late spring it carries flat, branching heads of tiny creamy white flowers. These have pale yellow anthers and a sweet, musky scent. Danewort, or dwarf elder, is a soft herb that dies back each winter. It has upright heads and purple anthers. Red elder flowers earlier, in egg- or dome-shaped clusters. Both are toxic. Hemlock, water hemlock and giant hogweed are soft green herbs, not woody shrubs. Giant hogweed's sap burns skin in sunlight. Hemlock has a smooth, hollow, purple-blotched stem and a mousy smell. In all three, the flower stalks spread from one point like the spokes of an umbrella.",
+        "habitat": "It grows in hedgerows, at woodland edges, in scrub, on riverbanks and on waste ground. It is often near houses, on rich soil. It is common across Europe, from the lowlands into the hills. In the US, the native American elder in the East and blue elder in the West grow in similar places.",
+        "season": "In northern and central Europe elder flowers from late May into June. In the warm south it starts earlier. In the eastern US, American elder flowers later and over a longer spell, mostly in June and July.",
+        "picking": "Pick on a dry, sunny morning. Choose heads that are fully open, creamy and sweet-smelling. Pass over browning ones. Cut or snap them at the base. Take only a few from each bush so it can still bear berries. Shake out insects gently.",
+        "kitchen": "When you're certain it's elder, use only the flowers. Strip them from the stalks, because stalks, leaves, bark, roots and unripe berries are poisonous. Steep the flowers in hot sugar syrup with lemon to make cordial. You can also dip whole heads in batter and fry them as fritters. Don't eat the thick stalk. Or dry the flowers for tea. The taste is sweet and floral, good with gooseberries and strawberries. The berries that follow in autumn must be cooked.",
+        "keeps": "The flowers fade fast, so use them the day you pick them. Heads dried in the shade keep for tea in an airtight jar. Cordial keeps a few weeks in the fridge, or you can freeze it.",
+        "source": "Identification and habitat: Woodland Trust and BSBI. Look-alikes: University of Minnesota Extension. Picking and cooking: Penn State Extension and UMass Extension."
+      }
     },
     "it": {
       "name": "Fiori di Sambuco",
-      "description": "Fiori bianco crema che crescono in grandi grappoli piatti sui sambuchi",
-      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in tarda primavera e inizio estate"
+      "description": "Fiori bianco crema raccolti in grandi ombrelle piatte sul sambuco.",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in tarda primavera e inizio estate",
+      "guide": {
+        "identify": "Il sambuco è un arbusto legnoso o un alberello con la corteccia grigio-bruna, sugherosa e solcata. Le foglie sono opposte, con da 5 a 7 foglioline dentate. Se le stropicci hanno un odore sgradevole. A fine primavera porta grandi ombrelle piatte e ramificate di fiorellini bianco crema. Hanno antere giallo chiaro e un profumo dolce e muschiato. L'ebbio, o sambuco nano, è un'erba morbida che secca ogni inverno. Ha ombrelle dritte e antere viola. Il sambuco rosso fiorisce prima, con grappoli a forma di uovo o di cupola. Sono tossici tutti e due. Cicuta maggiore, cicuta acquatica e panace di Mantegazza sono erbe verdi e morbide, non arbusti legnosi. La linfa del panace di Mantegazza brucia la pelle al sole. La cicuta maggiore ha il fusto liscio e cavo, macchiato di viola. Ha un odore di topo. In tutte e tre i gambi dei fiori partono da un unico punto, come le stecche di un ombrello.",
+        "habitat": "Cresce nelle siepi, ai margini dei boschi, tra gli arbusti, lungo i fiumi e negli incolti. Spesso sta vicino alle case, su terreno ricco. È comune in tutta Europa, dalla pianura alla collina. Negli Stati Uniti il sambuco americano, nativo dell'est, e il sambuco blu dell'ovest crescono in posti simili.",
+        "season": "Nell'Europa centrale e del nord il sambuco fiorisce da fine maggio a giugno. Nel sud più caldo comincia prima. Nell'est degli Stati Uniti il sambuco americano fiorisce più tardi e più a lungo, soprattutto a giugno e luglio.",
+        "picking": "Raccogli in una mattina asciutta e di sole. Scegli le ombrelle ben aperte, color crema e profumate. Lascia quelle che stanno diventando marroni. Tagliale o spezzale alla base. Prendine poche da ogni pianta, così può ancora fare le bacche. Scuotile piano per far cadere gli insetti.",
+        "kitchen": "Quando sei certo che sia sambuco, usa solo i fiori. Staccali dai gambi, perché gambi, foglie, corteccia, radici e bacche acerbe sono velenosi. Per lo sciroppo di sambuco lascia i fiori in infusione in uno sciroppo di zucchero caldo con limone. Puoi anche passare le ombrelle intere nella pastella e friggerle come frittelle. Il gambo grosso non mangiarlo. Oppure secca i fiori per le tisane. Il sapore è dolce e floreale e sta bene con uva spina e fragole. Le bacche che arrivano in autunno vanno cotte.",
+        "keeps": "I fiori sfioriscono in fretta, quindi usali il giorno stesso in cui li raccogli. Le ombrelle seccate all'ombra si conservano per le tisane in un barattolo ermetico. Lo sciroppo dura qualche settimana in frigo, oppure puoi congelarlo.",
+        "source": "Identificazione e habitat: Woodland Trust e BSBI. Specie simili: servizio di extension della University of Minnesota. Raccolta e cucina: Penn State Extension e UMass Extension."
+      }
     },
     "fr": {
       "name": "Fleur de sureau",
-      "description": "Fleurs blanches crémeuses en larges ombelles sur les sureaux",
-      "howTo": "Cherchez les sureaux dans les haies et lisières de bois à la fin du printemps et au début de l'été"
+      "description": "Des fleurs blanc crème en grands bouquets plats, sur les sureaux.",
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois à la fin du printemps et au début de l'été",
+      "guide": {
+        "identify": "Le sureau noir est un arbuste ligneux ou un petit arbre à l'écorce liégeuse, crevassée et gris-brun. Ses feuilles sont opposées, avec 5 à 7 folioles dentées. Elles sentent mauvais quand on les froisse. À la fin du printemps, il porte de larges ombelles plates et ramifiées de minuscules fleurs blanc crème. Elles ont des étamines jaune pâle et un parfum doux et musqué. L'hièble, ou sureau yèble, est une plante herbacée qui meurt chaque hiver. Elle a des ombelles dressées et des étamines violettes. Le sureau rouge fleurit plus tôt, en grappes en forme d'œuf ou de dôme. Tous deux sont toxiques. La grande ciguë, la ciguë vireuse et la berce du Caucase sont des herbes vertes et tendres, pas des arbustes ligneux. La sève de la berce du Caucase brûle la peau au soleil. La grande ciguë a une tige lisse, creuse et tachée de pourpre. Elle a une odeur de souris. Chez toutes les trois, les queues des fleurs partent d'un même point, comme les baleines d'un parapluie.",
+        "habitat": "Il pousse dans les haies, en lisière, dans les fourrés, sur les berges et dans les friches. On le voit souvent près des maisons, sur sol riche. Il est commun dans toute l'Europe, de la plaine jusqu'aux collines. Aux États-Unis, le sureau du Canada à l'est et le sureau bleu à l'ouest poussent dans des endroits semblables.",
+        "season": "Dans le nord et le centre de l'Europe, le sureau fleurit de fin mai à juin. Dans le sud chaud, il commence plus tôt. Dans l'est des États-Unis, le sureau du Canada fleurit plus tard et plus longtemps, surtout en juin et juillet.",
+        "picking": "Cueillez par une matinée sèche et ensoleillée. Choisissez des ombelles bien ouvertes, crème et qui sentent bon, et laissez celles qui brunissent. Coupez-les ou cassez-les à la base. N'en prenez que quelques-unes par arbuste, pour qu'il puisse encore donner des baies. Secouez doucement les insectes.",
+        "kitchen": "Quand vous êtes sûr que c'est du sureau, n'utilisez que les fleurs. Détachez-les des queues, car les queues, les feuilles, l'écorce, les racines et les baies pas mûres sont toxiques. Pour le sirop de sureau, faites infuser les fleurs dans de l'eau sucrée chaude avec du citron. Vous pouvez aussi tremper les ombelles entières dans de la pâte et les faire frire en beignets. Ne mangez pas la grosse tige. Ou bien faites sécher les fleurs pour la tisane. Le goût est doux et floral, et il va bien avec les groseilles à maquereau et les fraises. Les baies qui viennent à l'automne doivent être cuites.",
+        "keeps": "Les fleurs fanent vite, alors utilisez-les le jour de la cueillette. Séchées à l'ombre, les ombelles se gardent pour la tisane dans un bocal hermétique. Le sirop se garde quelques semaines au réfrigérateur, ou vous pouvez le congeler.",
+        "source": "Identification et habitat : Woodland Trust et BSBI. Espèces ressemblantes : service d'extension de l'université du Minnesota. Cueillette et cuisine : services d'extension de Penn State et de UMass."
+      }
     },
     "de": {
       "name": "Holunderblüte",
-      "description": "Cremeweisse Blüten in grossen, flachen Dolden an Holunderbäumen",
-      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer"
+      "description": "Cremeweisse Blüten in grossen, flachen Dolden am Holunder.",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer",
+      "guide": {
+        "identify": "Der Holunder ist ein verholzter Strauch oder kleiner Baum mit korkiger, gefurchter, graubrauner Rinde. Seine Blätter stehen gegenständig und haben 5 bis 7 gezähnte Fiederblättchen. Zerreibst du sie, riechen sie unangenehm. Im späten Frühling trägt er flache, verzweigte Dolden aus winzigen cremeweissen Blüten. Sie haben hellgelbe Staubbeutel und duften süss und schwer. Der Attich oder Zwerg-Holunder ist eine krautige Pflanze, die jeden Winter abstirbt. Er hat aufrechte Blütenstände und violette Staubbeutel. Der Rote Holunder blüht früher, in eiförmigen oder kuppelförmigen Ständen. Beide sind giftig. Gefleckter Schierling, Wasserschierling und Riesen-Bärenklau sind weiche grüne Kräuter, keine Sträucher. Der Saft des Riesen-Bärenklaus verbrennt bei Sonne die Haut. Der Gefleckte Schierling hat einen glatten, hohlen, purpurn gefleckten Stängel und riecht nach Mäusen. Bei allen dreien gehen die Blütenstiele von einem Punkt aus, wie die Speichen eines Schirms.",
+        "habitat": "Er wächst in Hecken, an Waldrändern, in Gebüschen, an Flussufern und auf Brachen. Oft steht er nahe bei Häusern, auf nährstoffreichem Boden. In ganz Europa ist er häufig, vom Tiefland bis ins Hügelland. In den USA wachsen der heimische Amerikanische Holunder im Osten und der Blaue Holunder im Westen an ähnlichen Orten.",
+        "season": "In Nord- und Mitteleuropa blüht der Holunder von Ende Mai bis in den Juni. Im warmen Süden beginnt er früher. Im Osten der USA blüht der Amerikanische Holunder später und länger, meist im Juni und Juli.",
+        "picking": "Pflück an einem trockenen, sonnigen Vormittag. Such dir Dolden aus, die ganz offen, cremefarben und duftend sind, und lass bräunliche hängen. Schneide oder brich sie am Ansatz ab. Nimm nur wenige pro Strauch, damit er noch Beeren tragen kann. Schüttle Insekten vorsichtig aus.",
+        "kitchen": "Wenn du sicher bist, dass es Holunder ist, verwende nur die Blüten. Streif sie von den Stielen, denn Stiele, Blätter, Rinde, Wurzeln und unreife Beeren sind giftig. Für Holunderblütensirup lässt du die Blüten in heissem Zuckersirup mit Zitrone ziehen. Du kannst auch ganze Dolden in Teig tauchen und als Holunderküchle ausbacken. Den dicken Stiel isst du nicht mit. Oder du trocknest die Blüten für Tee. Sie schmecken süss und blumig und passen gut zu Stachelbeeren und Erdbeeren. Die Beeren, die im Herbst folgen, musst du kochen.",
+        "keeps": "Die Blüten welken schnell, also verarbeite sie am Tag des Pflückens. Im Schatten getrocknete Dolden halten sich für Tee in einem luftdichten Glas. Sirup hält sich ein paar Wochen im Kühlschrank, oder du frierst ihn ein.",
+        "source": "Bestimmung und Standort: Woodland Trust und BSBI. Doppelgänger: University of Minnesota Extension. Ernte und Küche: Penn State Extension und UMass Extension."
+      }
     },
     "es": {
       "name": "Flor de saúco",
-      "description": "Flores blancas cremosas que crecen en grandes racimos planos en árboles de saúco",
-      "howTo": "Busca árboles de saúco en setos y bordes de bosques a finales de primavera y principios de verano"
+      "description": "Flores de color blanco crema en grandes ramilletes planos del saúco.",
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques a finales de primavera y principios de verano",
+      "guide": {
+        "identify": "El saúco es un arbusto leñoso o un arbolito, de corteza pardo grisácea, como de corcho y con surcos. Sus hojas salen enfrentadas, con 5 a 7 hojuelas dentadas. Al estrujarlas huelen mal. A finales de primavera da ramilletes planos y ramificados de florecillas blanco crema. Tienen anteras amarillo pálido y un olor dulce y almizclado. El yezgo, o saúco enano, es una hierba blanda que se seca cada invierno. Tiene los ramilletes derechos y las anteras moradas. El saúco rojo florece antes, en racimos en forma de huevo o de cúpula. Los dos son tóxicos. La cicuta, la cicuta acuática y el perejil gigante son hierbas verdes y blandas, no arbustos leñosos. La savia del perejil gigante quema la piel con el sol. La cicuta tiene el tallo liso, hueco y con manchas moradas, y huele a orina de ratón. En las tres, los rabillos de las flores salen de un mismo punto, como las varillas de un paraguas.",
+        "habitat": "Crece en setos, bordes de bosque, matorrales, riberas y descampados. A menudo está cerca de las casas, en tierra rica. Es común en toda Europa, desde las tierras bajas hasta la media montaña. En EE. UU., el saúco americano autóctono crece en sitios parecidos en el este. En el oeste lo hace el saúco azul.",
+        "season": "En el norte y el centro de Europa el saúco florece de finales de mayo a junio. En el sur cálido empieza antes. En el este de EE. UU., el saúco americano florece más tarde y durante más tiempo, sobre todo en junio y julio.",
+        "picking": "Coge las flores una mañana seca y soleada. Elige ramilletes bien abiertos, de color crema y que huelan dulce. Deja los que empiezan a ponerse pardos. Córtalos o pártelos por la base. Coge solo unos pocos de cada mata, para que luego pueda dar bayas. Sacude los bichos con suavidad.",
+        "kitchen": "Cuando tengas claro que es saúco, usa solo las flores. Sepáralas de los rabillos, porque los tallos, las hojas, la corteza, las raíces y las bayas verdes son venenosos. Deja las flores en almíbar caliente con limón para hacer jarabe. También puedes rebozar los ramilletes enteros y freírlos como buñuelos. No te comas el tallo grueso. Otra opción es secar las flores para infusión. Saben dulces y a flor. Van bien con grosellas espinosas y fresas. Las bayas que salen en otoño hay que cocinarlas.",
+        "keeps": "Las flores se estropean rápido, así que úsalas el mismo día que las coges. Los ramilletes secados a la sombra se guardan para infusión en un tarro hermético. El jarabe aguanta unas semanas en la nevera. También puedes congelarlo.",
+        "source": "Identificación y hábitat: Woodland Trust y BSBI. Especies parecidas: extensión de la Universidad de Minnesota. Recolección y cocina: extensión de Penn State y de UMass."
+      }
     },
     "pt": {
       "name": "Flor de sabugueiro",
-      "description": "Flores brancas cremosas que crescem em grandes cachos planos em árvores de sabugueiro",
-      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no final da primavera e início do verão"
+      "description": "Flores de um branco-creme, em grandes cachos planos no sabugueiro.",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no final da primavera e início do verão",
+      "guide": {
+        "identify": "O sabugueiro é um arbusto lenhoso ou uma pequena árvore, de casca castanho-acinzentada, cortiçosa e com sulcos. As folhas são opostas, com 5 a 7 folíolos dentados. Cheiram mal quando as esmaga. No fim da primavera dá umbelas planas e ramificadas de florzinhas branco-creme. Têm anteras amarelo-pálidas e um perfume doce e almiscarado. Os engos, ou sabugueiro-anão, são uma erva mole que seca todos os invernos. Têm as umbelas direitas e anteras roxas. O sabugueiro-vermelho floresce mais cedo, em cachos em forma de ovo ou de cúpula. Os dois são tóxicos. A cicuta, a cicuta-aquática e o canabrás-gigante são ervas verdes e moles, não arbustos lenhosos. A seiva do canabrás-gigante queima a pele ao sol. A cicuta tem o caule liso, oco e com manchas roxas. Cheira a rato. Nas três, os pés das flores saem todos do mesmo ponto, como as varetas de um guarda-chuva.",
+        "habitat": "Cresce em sebes, orlas de bosque, matos, margens de rios e baldios. Aparece muitas vezes perto das casas, em terra rica. É comum em toda a Europa, das terras baixas às colinas. Nos EUA há o sabugueiro-americano, nativo do leste. No oeste há o sabugueiro-azul. Ambos crescem em sítios parecidos.",
+        "season": "No norte e no centro da Europa, o sabugueiro floresce do fim de maio a junho. No sul quente começa mais cedo. No leste dos EUA, o sabugueiro-americano floresce mais tarde e durante mais tempo, sobretudo em junho e julho.",
+        "picking": "Apanhe numa manhã seca e de sol. Escolha as umbelas bem abertas, cor de creme e com perfume doce. Deixe as que começam a acastanhar. Corte-as ou parta-as pela base. Tire só algumas de cada arbusto, para que ainda dê bagas. Sacuda os insetos com cuidado.",
+        "kitchen": "Quando tiver a certeza de que é sabugueiro, use só as flores. Separe-as dos pés, porque os pés, as folhas, a casca, as raízes e as bagas verdes são venenosos. Deixe as flores de infusão numa calda de açúcar quente com limão para fazer xarope. Também pode passar as umbelas inteiras por polme e fritá-las. Não coma o pé grosso. Ou então seque as flores para chá. O sabor é doce e floral e combina com groselha-espinhosa e morangos. As bagas que vêm no outono têm de ser cozinhadas.",
+        "keeps": "As flores murcham depressa, por isso use-as no dia em que as apanha. As umbelas secas à sombra guardam-se para chá num frasco hermético. O xarope aguenta umas semanas no frigorífico. Também o pode congelar.",
+        "source": "Identificação e habitat: Woodland Trust e BSBI. Espécies parecidas: extensão da University of Minnesota. Apanha e cozinha: extensão da Penn State e da UMass."
+      }
     }
   },
   "identification": {
@@ -215,6 +269,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2888728, 6369819, 2888726] }
+    "rangePrior": {
+      "taxonKeys": [2888728, 6369819, 2888726]
+    }
   }
 }

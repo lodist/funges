@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Nettle",
-      "description": "A nutritious green plant with stinging hairs that must be cooked",
-      "howTo": "Found in disturbed areas, hedgerows, and woodland edges in spring and summer"
+      "description": "A nutritious green plant with stinging hairs. You always cook it before eating.",
+      "howTo": "Found in disturbed areas, hedgerows and woodland edges in spring and summer",
+      "guide": {
+        "identify": "Nettles grow upright, with square stems and leaves in opposite pairs. The leaves are heart-shaped to oval, coarsely toothed and pointed. Stems and leaves are covered in stinging hairs. From early summer, thin tassels of tiny greenish flowers hang where the leaves join the stem. Dead-nettles look similar, but they don't sting. They also have showy white, yellow or purple lipped flowers.",
+        "habitat": "Nettles grow in dense patches on rich, moist soil. Look at woodland edges, riverbanks, ditches, hedgerows and around farms and old buildings. They are common throughout Europe. In the south they keep mostly to damp, shaded places. They also grow across most of the US, especially along streams and in moist open woods.",
+        "season": "Young shoots appear from February in mild areas and from March further north. You can pick them until the plant flowers, from about June. Patches that have been cut or mown send up fresh shoots. That gives you a second picking in late summer and autumn.",
+        "picking": "Wear gloves. Snip the top few pairs of leaves with scissors and leave the roots. Avoid roadsides, sprayed field edges and paths where people walk dogs. Nettle patches also feed the caterpillars of many butterflies.",
+        "kitchen": "Always cook or blanch nettles before you eat them. Heat takes away the sting and so does drying them well. Drop the washed tops into boiling salted water for a few minutes. Then use them like spinach, in soup, risotto, omelettes or pesto. They taste like spinach, only a little earthier.",
+        "keeps": "Blanch them, squeeze them and freeze them in portions. They keep for months. For tea, dry the leaves in a shady, airy place.",
+        "source": "Identification, habitat and cooking: NC State Extension and Woodland Trust. Season: Woodland Trust and GBIF records."
+      }
     },
     "it": {
       "name": "Ortica",
-      "description": "Una pianta verde nutriente con peli urticanti che deve essere cotta",
-      "howTo": "Trovata in aree disturbate, siepi e bordi boschivi in primavera ed estate"
+      "description": "Una pianta verde nutriente con peli urticanti. Va sempre cotta prima di mangiarla.",
+      "howTo": "Trovata in aree disturbate, siepi e bordi boschivi in primavera ed estate",
+      "guide": {
+        "identify": "Le ortiche crescono dritte, con il fusto quadrato e le foglie a coppie, una di fronte all'altra. Le foglie sono a cuore o ovali, appuntite e con denti grossi. Fusto e foglie sono coperti di peli urticanti. Da inizio estate, dove la foglia si attacca al fusto, pendono sottili grappoli di minuscoli fiori verdastri. Le false ortiche le somigliano, ma non pungono. In più hanno vistosi fiori a labbro, bianchi, gialli o viola.",
+        "habitat": "Le ortiche formano macchie fitte su terreno ricco e umido. Cercale ai margini dei boschi, sulle rive, nei fossi e lungo le siepi. Le trovi anche intorno a cascine e ruderi. Sono comuni in tutta Europa. Al sud stanno soprattutto in posti umidi e ombrosi. Crescono anche in quasi tutti gli Stati Uniti, soprattutto lungo i torrenti e nei boschi radi e umidi.",
+        "season": "I germogli spuntano da febbraio nelle zone miti e da marzo più a nord. Puoi raccoglierle finché la pianta non fiorisce, più o meno da giugno. Le macchie tagliate o falciate rimettono germogli nuovi. Così fai un secondo raccolto a fine estate e in autunno.",
+        "picking": "Metti i guanti. Taglia con le forbici le prime coppie di foglie in cima e lascia le radici. Evita i bordi delle strade, i margini dei campi trattati e i sentieri dove si portano i cani. Le ortiche danno da mangiare anche ai bruchi di molte farfalle.",
+        "kitchen": "Le ortiche vanno sempre cotte o sbollentate prima di mangiarle. Il calore toglie il pizzicore. Anche una buona essiccazione lo toglie. Butta le cime lavate in acqua bollente salata per qualche minuto. Poi usale come gli spinaci, in minestre, risotti, frittate o pesto. Sanno di spinaci, ma un po' più terrosi.",
+        "keeps": "Sbollentale, strizzale e congelale a porzioni: così durano mesi. Per le tisane, secca le foglie all'ombra in un posto arieggiato.",
+        "source": "Riconoscimento, habitat e cucina: NC State Extension e Woodland Trust. Stagione: Woodland Trust e segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Ortie",
-      "description": "Plante verte nutritive avec des poils urticants, à cuire avant consommation",
-      "howTo": "Se trouve dans les zones perturbées, haies et lisières de bois au printemps et en été"
+      "description": "Une plante verte nourrissante, couverte de poils qui piquent. On la cuit toujours avant de la manger.",
+      "howTo": "Se trouve dans les zones perturbées, haies et lisières de bois au printemps et en été",
+      "guide": {
+        "identify": "Les orties poussent droites, avec des tiges carrées et des feuilles opposées par paires. Les feuilles sont en cœur ou ovales, grossièrement dentées et pointues. Tiges et feuilles sont couvertes de poils urticants. Dès le début de l'été, de fines grappes de minuscules fleurs verdâtres pendent à l'aisselle des feuilles. Les lamiers leur ressemblent, mais ils ne piquent pas. Ils ont aussi des fleurs voyantes en forme de lèvres, blanches, jaunes ou pourpres.",
+        "habitat": "Les orties forment des massifs denses sur sol riche et frais. Cherchez-les en lisière de bois, sur les berges, dans les fossés et les haies. Elles aiment aussi les abords des fermes et des vieux bâtiments. Elles sont communes dans toute l'Europe. Dans le sud, elles se cantonnent surtout aux lieux humides et ombragés. On les trouve aussi dans la plupart des États-Unis, surtout au bord des ruisseaux et dans les bois clairs et humides.",
+        "season": "Les jeunes pousses sortent dès février dans les régions douces et dès mars plus au nord. Vous pouvez les cueillir jusqu'à la floraison, vers juin. Les massifs coupés ou fauchés repoussent. Cela vous donne une seconde récolte en fin d'été et en automne.",
+        "picking": "Mettez des gants. Coupez aux ciseaux les premières paires de feuilles du haut et laissez les racines. Évitez les bords de route, les bordures de champs traitées et les chemins où l'on promène les chiens. Les orties nourrissent aussi les chenilles de nombreux papillons.",
+        "kitchen": "Faites toujours cuire ou blanchir les orties avant de les manger. La chaleur leur enlève leur piqûre, un bon séchage aussi. Plongez les sommités lavées quelques minutes dans l'eau bouillante salée. Utilisez-les ensuite comme des épinards, en soupe, en risotto, en omelette ou en pesto. Elles ont le goût des épinards, en un peu plus terreux.",
+        "keeps": "Blanchies, essorées et congelées en portions, elles se gardent des mois. Pour la tisane, faites sécher les feuilles à l'ombre, dans un endroit aéré.",
+        "source": "Identification, habitat et cuisine : NC State Extension et Woodland Trust. Saison : Woodland Trust et données GBIF."
+      }
     },
     "de": {
       "name": "Brennnessel",
-      "description": "Nährstoffreiche grüne Pflanze mit Brennhaaren, muss gekocht werden",
-      "howTo": "Zu finden in gestörten Gebieten, Hecken und Waldrändern im Frühling und Sommer"
+      "description": "Eine nahrhafte grüne Pflanze mit Brennhaaren. Bevor du sie isst, kochst du sie immer.",
+      "howTo": "Zu finden in gestörten Gebieten, Hecken und Waldrändern im Frühling und Sommer",
+      "guide": {
+        "identify": "Brennnesseln wachsen aufrecht, mit vierkantigen Stängeln und gegenständigen Blättern. Die Blätter sind herz- bis eiförmig, grob gesägt und zugespitzt. Stängel und Blätter sind mit Brennhaaren besetzt. Ab dem Frühsommer hängen dünne Rispen winziger grünlicher Blüten aus den Blattachseln. Taubnesseln sehen ähnlich aus, brennen aber nicht. Ausserdem haben sie auffällige weisse, gelbe oder violette Lippenblüten.",
+        "habitat": "Brennnesseln wachsen in dichten Beständen auf nährstoffreichem, feuchtem Boden. Such an Waldrändern, Flussufern, Gräben und Hecken und rund um Höfe und alte Gebäude. In ganz Europa sind sie häufig. Im Süden halten sie sich meist an feuchte, schattige Stellen. Sie wachsen auch in den meisten Teilen der USA, besonders an Bächen und in feuchten, lichten Wäldern.",
+        "season": "In milden Gegenden erscheinen die jungen Triebe ab Februar, weiter nördlich ab März. Sammeln kannst du sie, bis die Pflanze blüht, etwa ab Juni. Geschnittene oder gemähte Bestände treiben frisch aus. So kannst du im Spätsommer und Herbst ein zweites Mal ernten.",
+        "picking": "Zieh Handschuhe an. Schneide die obersten Blattpaare mit der Schere ab und lass die Wurzeln stehen. Meide Strassenränder, gespritzte Feldränder und Wege, auf denen Hunde ausgeführt werden. Brennnesseln sind ausserdem Futter für die Raupen vieler Schmetterlinge.",
+        "kitchen": "Brennnesseln immer kochen oder blanchieren, bevor du sie isst. Hitze nimmt ihnen das Brennen, gründliches Trocknen auch. Gib die gewaschenen Spitzen für ein paar Minuten in kochendes Salzwasser. Danach verwendest du sie wie Spinat, in Suppe, Risotto, Omelette oder Pesto. Sie schmecken wie Spinat, nur etwas erdiger.",
+        "keeps": "Blanchiert, ausgedrückt und portionsweise eingefroren halten sie sich monatelang. Für Tee trocknest du die Blätter an einem schattigen, luftigen Ort.",
+        "source": "Bestimmung, Standort und Zubereitung: NC State Extension und Woodland Trust. Saison: Woodland Trust und GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Ortiga",
-      "description": "Planta verde nutritiva con pelos urticantes que debe cocinarse",
-      "howTo": "Se encuentra en áreas alteradas, setos y bordes de bosques en primavera y verano"
+      "description": "Una planta verde y nutritiva con pelos que pican. Siempre hay que cocinarla antes de comerla.",
+      "howTo": "Se encuentra en áreas alteradas, setos y bordes de bosques en primavera y verano",
+      "guide": {
+        "identify": "Las ortigas crecen erguidas, con el tallo cuadrado y las hojas opuestas, de dos en dos. Las hojas van de acorazonadas a ovaladas, con dientes gruesos y la punta aguda. Tallos y hojas están cubiertos de pelos urticantes. Desde principios del verano cuelgan unos racimos finos de florecillas verdosas, justo donde la hoja se une al tallo. Los lamios, u ortigas muertas, se les parecen, pero no pican. Además tienen flores vistosas en forma de labio, blancas, amarillas o moradas.",
+        "habitat": "Las ortigas forman rodales densos en suelo rico y húmedo. Búscalas en bordes de bosque, riberas, zanjas y setos. También alrededor de granjas y casas viejas. Son comunes en toda Europa. En el sur se quedan sobre todo en sitios húmedos y a la sombra. También crecen en casi todo EE. UU., sobre todo junto a arroyos y en bosques húmedos y abiertos.",
+        "season": "Los brotes tiernos salen desde febrero en las zonas templadas y desde marzo más al norte. Puedes cogerlas hasta que la planta florece, más o menos a partir de junio. Las matas que se han cortado o segado vuelven a brotar. Así tienes una segunda cosecha a finales del verano y en otoño.",
+        "picking": "Ponte guantes. Corta con tijeras los primeros pares de hojas de arriba y deja las raíces. Evita las cunetas, los bordes de campos fumigados y los caminos donde la gente pasea perros. Además, las ortigas dan de comer a las orugas de muchas mariposas.",
+        "kitchen": "Cuece o escalda siempre las ortigas antes de comerlas. El calor les quita el picor, y secarlas bien también. Echa las puntas lavadas unos minutos en agua hirviendo con sal. Luego úsalas como espinacas, en sopa, risotto, tortilla o pesto. Saben a espinaca, solo que algo más a tierra.",
+        "keeps": "Escaldadas, escurridas y congeladas en porciones aguantan meses. Para infusión, seca las hojas en un sitio aireado y a la sombra.",
+        "source": "Identificación, hábitat y cocina: NC State Extension y Woodland Trust. Temporada: Woodland Trust y registros de GBIF."
+      }
     },
     "pt": {
       "name": "Urtiga",
-      "description": "Planta verde nutritiva com pelos urticantes que deve ser cozida",
-      "howTo": "Encontrada em áreas perturbadas, cercas vivas e bordas de bosques na primavera e verão"
+      "description": "Uma planta verde e nutritiva, com pelos que picam. Cozinhe-a sempre antes de a comer.",
+      "howTo": "Encontrada em áreas perturbadas, cercas vivas e bordas de bosques na primavera e verão",
+      "guide": {
+        "identify": "A urtiga cresce direita, com caules quadrados e folhas opostas, aos pares. As folhas são em forma de coração ou ovais, com dentes grossos e ponta aguçada. Caules e folhas estão cobertos de pelos que picam. A partir do início do verão, pendem cachos finos de florzinhas esverdeadas no sítio onde as folhas se ligam ao caule. As urtigas-mortas são parecidas, mas não picam. Além disso têm flores vistosas em forma de lábio, brancas, amarelas ou roxas.",
+        "habitat": "As urtigas formam manchas densas em solo rico e húmido. Procure nas orlas dos bosques, nas margens dos rios, nas valas e nas sebes. Também crescem à volta de quintas e de casas velhas. São comuns em toda a Europa. No sul ficam-se sobretudo pelos sítios húmidos e à sombra. Nos EUA existem na maior parte do país, sobretudo junto a ribeiros e em bosques abertos e húmidos.",
+        "season": "Os rebentos novos aparecem a partir de fevereiro nas zonas amenas e a partir de março mais a norte. Pode apanhá-los até a planta florir, mais ou menos a partir de junho. As manchas cortadas ou ceifadas voltam a rebentar. Assim tem uma segunda apanha no fim do verão e no outono.",
+        "picking": "Use luvas. Corte com uma tesoura os primeiros pares de folhas do topo e deixe as raízes. Evite as bermas das estradas, as orlas de campos pulverizados e os caminhos onde se passeiam cães. As urtigas também alimentam as lagartas de muitas borboletas.",
+        "kitchen": "Coza ou escalde sempre as urtigas antes de as comer. O calor tira-lhes a picada. Secá-las bem também. Mergulhe as pontas lavadas uns minutos em água a ferver com sal. Depois use-as como espinafres, em sopa, risoto, omelete ou pesto. Sabem a espinafres, mas um pouco mais a terra.",
+        "keeps": "Escalde-as, esprema-as e congele-as em porções. Assim duram meses. Para chá, seque as folhas num sítio arejado e à sombra.",
+        "source": "Identificação, habitat e cozinha: NC State Extension e Woodland Trust. Época: Woodland Trust e registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -228,6 +282,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [7960979, 6414539] }
+    "rangePrior": {
+      "taxonKeys": [7960979, 6414539]
+    }
   }
 }

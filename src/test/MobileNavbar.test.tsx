@@ -34,6 +34,10 @@ vi.mock('@tanstack/react-router', () => ({
   ),
 }));
 
+// The space button in the first slot is the space menu's own (SpaceSwitcher),
+// with its router hooks; the bar's contract here is its links.
+vi.mock('@/components/SpaceSwitcher', () => ({ SpaceNavButton: () => null }));
+
 const { isMobile } = vi.hoisted(() => ({ isMobile: { current: true } }));
 vi.mock('@/hooks/use-mobile', () => ({
   useIsMobile: () => isMobile.current,

@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Porcini",
-      "description": "The king bolete: a stout brown-capped mushroom with a pale netted stem and white pores that never bruise blue",
-      "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn"
+      "description": "The porcino: a stout mushroom with a brown cap, a pale netted stem and white pores that never bruise blue.",
+      "howTo": "Found in coniferous and deciduous forest, often near spruce and beech, from late summer into autumn",
+      "guide": {
+        "identify": "This is a stout bolete with a pale to chestnut-brown cap. The cap is smooth and greasy but never velvety. It often has a thin whitish rim. The pores are white when young, then turn yellow and olive. They do not change colour when you press them. The pale stem has a fine white net near the top. The white flesh does not change colour when cut. Pink pores and a dark brown net mean the bitter bolete (Tylopilus felleus). Red or orange pores mean another bolete that may be toxic. So does flesh that turns blue.",
+        "habitat": "It grows with spruce, pine, beech, oak, sweet chestnut and birch on acid soil. You find it from the lowlands to the tree line, all across Europe. In North America it grows mainly in the Pacific states. In the southern Rockies the redder Rocky Mountain king is commoner.",
+        "season": "The main season is August to October. In the mountains it starts in June and in the south it lasts into November. On the US Pacific coast it comes with the autumn rains. A flush usually comes about two weeks after a soaking rain that follows a warm, dry spell.",
+        "picking": "Twist it out or cut it at the base. Leave the buttons and the old or maggoty caps. Germany allows only small amounts for your own use. Most Italian regions require a permit. Each US national forest sets its own rules.",
+        "kitchen": "First make sure you have identified it with certainty. Brush it clean and slice it lengthwise to check for maggots. Fry it, or use it in risotto, pasta and soups. Cook it through. Not everyone tolerates it raw and old or badly stored ones upset the stomach.",
+        "keeps": "Keep it cool, in paper rather than plastic, for a day or two. It dries very well in thin slices and it freezes well too.",
+        "source": "Identification and habitat: Regione Piemonte, First Nature and MushroomExpert. Season: GBIF records. Rules: BArtSchV (Germany) and US Forest Service. Cooking: Regione Piemonte and VIDAL."
+      }
     },
     "it": {
       "name": "Porcino",
-      "description": "Il porcino per eccellenza: cappello bruno, gambo tozzo e reticolato, pori bianchi che non virano al blu",
-      "howTo": "Si trova nelle foreste di conifere e latifoglie, spesso vicino ad abeti e faggi, da fine estate all'autunno"
+      "description": "Il porcino: un fungo tozzo con il cappello bruno, il gambo chiaro con il reticolo e i pori bianchi che non virano mai al blu.",
+      "howTo": "Si trova nelle foreste di conifere e latifoglie, spesso vicino ad abeti e faggi, da fine estate all'autunno",
+      "guide": {
+        "identify": "Il porcino è un boleto massiccio, con il cappello dal nocciola chiaro al castano. Il cappello è liscio e untuoso, ma mai vellutato. Spesso ha un sottile orlo biancastro. I pori da giovani sono bianchi, poi diventano gialli e verde oliva. Se li premi non cambiano colore. Il gambo è chiaro e in alto ha un fine reticolo bianco. La carne è bianca e al taglio non cambia colore. Pori rosa e un reticolo marrone scuro sono del porcino amaro (Tylopilus felleus). Pori rossi o arancioni sono di un altro boleto, che può essere tossico. Vale lo stesso se la carne vira al blu.",
+        "habitat": "Cresce con abete rosso, pino, faggio, quercia, castagno e betulla, su terreno acido. Lo trovi dalla pianura fino al limite del bosco, in tutta Europa. In Nord America cresce soprattutto negli stati sul Pacifico. Nelle Montagne Rocciose del sud è più comune il porcino delle Rocciose, più rosso.",
+        "season": "La stagione buona va da agosto a ottobre. In montagna comincia a giugno e al sud dura fino a novembre. Sulla costa pacifica degli Stati Uniti arriva con le piogge d'autunno. Di solito la buttata arriva circa due settimane dopo una bella pioggia che segue un periodo caldo e asciutto.",
+        "picking": "Staccalo ruotandolo oppure taglialo alla base. Lascia i piccoli e quelli vecchi o bacati. In Germania puoi raccoglierne solo poco, per uso personale. In gran parte delle regioni italiane serve il tesserino. Negli Stati Uniti ogni foresta nazionale ha le sue regole.",
+        "kitchen": "Prima assicurati di averlo riconosciuto con certezza. Puliscilo con uno spazzolino e taglialo per il lungo per vedere se è bacato. Fallo in padella, oppure usalo nel risotto, nella pasta e nelle zuppe. Cuocilo bene. Non tutti lo tollerano crudo, e quelli vecchi o conservati male fanno male allo stomaco.",
+        "keeps": "Tienilo al fresco, nella carta e non nella plastica, per un giorno o due. Si secca benissimo a fette sottili e si congela bene.",
+        "source": "Identificazione e habitat: Regione Piemonte, First Nature e MushroomExpert. Stagione: dati GBIF. Regole: BArtSchV (Germania) e US Forest Service. Cucina: Regione Piemonte e VIDAL."
+      }
     },
     "fr": {
       "name": "Cèpe de Bordeaux",
-      "description": "Le roi des cèpes : chapeau brun, pied trapu et réticulé, pores blancs qui ne bleuissent jamais",
-      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des épicéas et des hêtres, de la fin de l'été à l'automne"
+      "description": "Le cèpe : un champignon trapu au chapeau brun. Son pied clair porte un réseau et ses pores blancs ne bleuissent jamais.",
+      "howTo": "Se trouve dans les forêts de conifères et de feuillus, souvent près des épicéas et des hêtres, de la fin de l'été à l'automne",
+      "guide": {
+        "identify": "C'est un bolet trapu, au chapeau brun clair à brun châtain. Le chapeau est lisse et gras, mais jamais velouté. Il a souvent une fine marge blanchâtre. Les pores sont blancs chez le jeune, puis deviennent jaunes et olive. Ils ne changent pas de couleur quand on appuie dessus. Le pied clair porte un fin réseau blanc dans le haut. La chair blanche ne change pas de couleur à la coupe. Des pores roses et un réseau brun foncé signalent le bolet amer (Tylopilus felleus). Des pores rouges ou orange signalent un autre bolet, peut-être toxique. Une chair qui bleuit signale la même chose.",
+        "habitat": "Il pousse avec l'épicéa, le pin, le hêtre, le chêne, le châtaignier et le bouleau, sur sol acide. On le trouve de la plaine jusqu'à la limite des arbres, dans toute l'Europe. En Amérique du Nord, il pousse surtout dans les États du Pacifique. Dans le sud des Rocheuses, le cèpe des Rocheuses, plus rouge, est plus courant.",
+        "season": "La pleine saison va d'août à octobre. En montagne, il commence dès juin. Dans le sud, il dure jusqu'en novembre. Sur la côte pacifique des États-Unis, il vient avec les pluies d'automne. Une poussée arrive en général environ deux semaines après une bonne pluie qui suit une période chaude et sèche.",
+        "picking": "Dégagez-le en le tournant ou coupez-le à la base. Laissez les tout jeunes, ainsi que les vieux ou les véreux. L'Allemagne n'autorise que de petites quantités pour votre usage personnel. La plupart des régions italiennes exigent un permis. Aux États-Unis, chaque forêt nationale fixe ses propres règles.",
+        "kitchen": "Assurez-vous d'abord de l'avoir identifié avec certitude. Brossez-le et coupez-le en deux dans la longueur pour repérer les vers. Poêlez-le ou mettez-le dans un risotto, des pâtes ou une soupe. Faites-le bien cuire. Tout le monde ne le digère pas cru. Les vieux ou ceux mal conservés dérangent l'estomac.",
+        "keeps": "Gardez-le au frais un jour ou deux, dans du papier plutôt que du plastique. Il sèche très bien en tranches fines. Il se congèle bien aussi.",
+        "source": "Identification et habitat : Regione Piemonte, First Nature et MushroomExpert. Saison : données GBIF. Règles : BArtSchV (Allemagne) et US Forest Service. Cuisine : Regione Piemonte et VIDAL."
+      }
     },
     "de": {
       "name": "Steinpilz",
-      "description": "Der Herrenpilz: brauner Hut, gedrungener genetzter Stiel und weisse Röhren, die sich nie blau verfärben",
-      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst"
+      "description": "Der Steinpilz: ein kräftiger Pilz mit braunem Hut, hellem, genetztem Stiel und weissen Poren, die nie blau anlaufen.",
+      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst",
+      "guide": {
+        "identify": "Der Steinpilz ist ein kräftiger Röhrling mit hell- bis kastanienbraunem Hut. Der Hut ist glatt und fettig, aber nie samtig. Oft hat er einen schmalen weisslichen Rand. Die Poren sind jung weiss, später gelb und oliv. Auf Druck verfärben sie sich nicht. Der helle Stiel trägt oben ein feines weisses Netz. Das weisse Fleisch verfärbt sich beim Schneiden nicht. Rosa Poren und ein dunkelbraunes Netz bedeuten Gallenröhrling (Tylopilus felleus). Rote oder orange Poren zeigen einen anderen Röhrling, der giftig sein kann. Das gilt auch für Fleisch, das blau anläuft.",
+        "habitat": "Er wächst bei Fichte, Kiefer, Buche, Eiche, Edelkastanie und Birke auf saurem Boden. Du findest ihn vom Tiefland bis zur Waldgrenze, in ganz Europa. In Nordamerika wächst er vor allem in den Pazifikstaaten. In den südlichen Rocky Mountains ist der rötere Rocky-Mountains-Steinpilz häufiger.",
+        "season": "Die Hauptsaison ist von August bis Oktober. Im Gebirge geht es schon im Juni los, und im Süden dauert sie bis in den November. An der Pazifikküste der USA kommt er mit den Herbstregen. Ein Schub kommt meist etwa zwei Wochen nach einem ausgiebigen Regen, der auf eine warme, trockene Zeit folgt.",
+        "picking": "Dreh ihn heraus oder schneide ihn unten ab. Lass die jungen Knöpfe stehen, ebenso alte oder madige Hüte. In Deutschland darfst du nur kleine Mengen für den eigenen Bedarf sammeln. In den meisten Regionen Italiens brauchst du eine Genehmigung. Jeder National Forest in den USA hat eigene Regeln.",
+        "kitchen": "Bestimme ihn zuerst sicher. Bürste ihn sauber und schneide ihn der Länge nach auf, um nach Maden zu sehen. Brate ihn oder gib ihn in Risotto, Nudeln und Suppen. Gare ihn gut durch. Nicht jeder verträgt ihn roh, und alte oder schlecht gelagerte Pilze schlagen auf den Magen.",
+        "keeps": "Bewahr ihn kühl auf, in Papier statt in Plastik, ein bis zwei Tage lang. In dünnen Scheiben lässt er sich sehr gut trocknen, und auch Einfrieren klappt gut.",
+        "source": "Bestimmung und Standort: Regione Piemonte, First Nature und MushroomExpert. Saison: GBIF-Funddaten. Regeln: Bundesartenschutzverordnung (BArtSchV) und US Forest Service. Küche: Regione Piemonte und VIDAL."
+      }
     },
     "es": {
       "name": "Boleto Comestible",
-      "description": "El rey de los boletos: sombrero pardo, pie robusto y reticulado, y poros blancos que nunca azulean",
-      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de abetos y hayas, de finales de verano al otoño"
+      "description": "El boleto comestible: una seta robusta de sombrero pardo, pie claro con red y poros blancos que nunca se manchan de azul.",
+      "howTo": "Se encuentra en bosques de coníferas y caducifolios, a menudo cerca de abetos y hayas, de finales de verano al otoño",
+      "guide": {
+        "identify": "Es un boleto robusto, al que en muchos sitios llaman simplemente hongo. El sombrero va de pardo claro a castaño. Es liso y grasiento, pero nunca aterciopelado. A menudo tiene un fino borde blanquecino. Los poros son blancos de joven y luego amarillos y verde oliva. No cambian de color al apretarlos. El pie es claro y lleva un fino retículo blanco en la parte de arriba. La carne es blanca y no cambia de color al cortarla. Si tiene poros rosados y un retículo pardo oscuro, es el boleto amargo (Tylopilus felleus). Si los poros son rojos o naranjas, es otro boleto que puede ser tóxico. Lo mismo si la carne azulea.",
+        "habitat": "Crece con píceas, pinos, hayas, robles, castaños y abedules, en suelo ácido. Lo encuentras desde el llano hasta el límite del bosque, en toda Europa. En Norteamérica sale sobre todo en los estados del Pacífico. En el sur de las Montañas Rocosas es más común el boleto rey de las Rocosas, que es más rojo.",
+        "season": "La temporada fuerte va de agosto a octubre. En la montaña empieza en junio, y en el sur dura hasta noviembre. En la costa del Pacífico de EE. UU. sale con las lluvias de otoño. Suele brotar unas dos semanas después de una buena lluvia que llega tras una racha cálida y seca.",
+        "picking": "Sácalo girándolo o córtalo por la base. Deja los pequeños y los viejos o agusanados. En Alemania solo se permiten pequeñas cantidades para consumo propio. La mayoría de las regiones italianas exigen un permiso. Cada bosque nacional de EE. UU. tiene sus propias normas.",
+        "kitchen": "Primero asegúrate de que lo has identificado sin ninguna duda. Límpialo con un cepillo y córtalo a lo largo para ver si tiene gusanos. Hazlo en la sartén o úsalo en risotto, pasta y sopas. Cocínalo bien. No todo el mundo lo tolera crudo, y los ejemplares viejos o mal guardados sientan mal al estómago.",
+        "keeps": "Guárdalo en un sitio fresco, en papel y no en plástico, uno o dos días. Se seca muy bien en láminas finas, y también se congela bien.",
+        "source": "Identificación y hábitat: Regione Piemonte, First Nature y MushroomExpert. Temporada: registros de GBIF. Normas: BArtSchV (Alemania) y Servicio Forestal de EE. UU. Cocina: Regione Piemonte y VIDAL."
+      }
     },
     "pt": {
       "name": "Boleto Comestível",
-      "description": "O rei dos boletos: chapéu castanho, pé robusto e reticulado, e poros brancos que nunca azulam",
-      "howTo": "Encontrado em florestas de coníferas e decíduas, muitas vezes perto de abetos e faias, do fim do verão ao outono"
+      "description": "O porcini: um cogumelo robusto, de chapéu castanho, pé claro com rede e poros brancos que nunca azulam.",
+      "howTo": "Encontrado em florestas de coníferas e decíduas, muitas vezes perto de abetos e faias, do fim do verão ao outono",
+      "guide": {
+        "identify": "É um boleto robusto, de chapéu castanho-claro a cor de castanha. O chapéu é liso e gorduroso, mas nunca aveludado. Tem muitas vezes uma orla fina esbranquiçada. Os poros são brancos no cogumelo novo e depois passam a amarelos e verde-azeitona. Não mudam de cor quando se carrega neles. O pé é claro e tem em cima uma rede branca e fina. A carne é branca e não muda de cor ao corte. Poros cor-de-rosa e uma rede castanho-escura indicam o boleto-amargo (Tylopilus felleus). Poros vermelhos ou cor de laranja indicam outro boleto, que pode ser tóxico. O mesmo vale para carne que fica azul.",
+        "habitat": "Cresce com espruces, pinheiros, faias, carvalhos, castanheiros e vidoeiros, em solo ácido. Encontra-se em toda a Europa, da planície ao limite das árvores. Na América do Norte cresce sobretudo nos estados do Pacífico. No sul das Montanhas Rochosas é mais comum o boleto rei das Rochosas, que é mais vermelho.",
+        "season": "A época principal vai de agosto a outubro. Na montanha começa em junho e no sul dura até novembro. Na costa do Pacífico dos EUA aparece com as chuvas de outono. Uma vaga costuma surgir umas duas semanas depois de uma chuvada forte que se segue a um período quente e seco.",
+        "picking": "Rode-o para o soltar ou corte-o pela base. Deixe os pequenos e os chapéus velhos ou com bicho. Na Alemanha só se podem apanhar pequenas quantidades para consumo próprio. Na maior parte das regiões de Itália é preciso licença. Cada floresta nacional dos EUA tem as suas regras.",
+        "kitchen": "Primeiro confirme que o identificou com toda a certeza. Limpe-o com uma escova e corte-o ao comprido para ver se tem bicho. Salteie-o ou use-o em risotos, massas e sopas. Cozinhe-o bem. Nem toda a gente o tolera cru. Os velhos ou mal guardados fazem mal ao estômago.",
+        "keeps": "Guarde-o num sítio fresco, em papel e não em plástico, durante um ou dois dias. Seca muito bem em fatias finas. Também congela bem.",
+        "source": "Identificação e habitat: Regione Piemonte, First Nature e MushroomExpert. Época: registos do GBIF. Regras: BArtSchV (Alemanha) e Serviço Florestal dos EUA. Cozinha: Regione Piemonte e VIDAL."
+      }
     }
   },
   "identification": {
@@ -262,6 +316,8 @@
         "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-us-porcini.md"
       ]
     },
-    "rangePrior": { "taxonKeys": [5954958, 6015464, 6015325] }
+    "rangePrior": {
+      "taxonKeys": [5954958, 6015464, 6015325]
+    }
   }
 }

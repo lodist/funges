@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Wild Artichoke",
-      "description": "A thistle-like plant with edible flower buds and stems, related to the cultivated artichoke.",
-      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer."
+      "description": "A thistle-like plant, related to the garden artichoke. You eat its flower buds and stems.",
+      "howTo": "Found in meadows and fields, harvest young flower buds and tender stems in spring and early summer.",
+      "guide": {
+        "identify": "Wild artichoke, also called wild cardoon, forms a large rosette of deeply cut leaves. They are silvery grey-green on top and almost white underneath, felted with hairs. Each lobe ends in a stiff yellow spine. In late spring a stiff, branched stem grows up to head height. It carries heads like small artichokes, wrapped in spine-tipped bracts. These open into blue-purple thistle flowers. Watch out for Atractylis gummifera, a deadly Mediterranean thistle. People have mistaken it for wild artichoke and it has killed people in Morocco. It has no stem. Its pink flower head sits flat in the middle of the spiny rosette. It flowers in late summer and autumn. Its root oozes a sticky gum. Never eat a stemless thistle rosette or a thistle root.",
+        "habitat": "It likes dry, sunny, open ground. You find it in pastures, at field edges, on roadsides, on fallow land and in scrub, often on clay. It is native to the Mediterranean, from Portugal to Greece and North Africa. In northern and central Europe it is only a garden escape. In California it is an invasive weed of grassland and coastal scrub below 500 m. Elsewhere in the US it is a garden plant.",
+        "season": "The rosette grows after the autumn rains and right through the mild winter. You pick the leaf stalks from late winter to spring. The heads come in late spring and early summer. It flowers mainly in June and July. Then it dries off in the summer drought.",
+        "picking": "Wear thick gloves and cut the stalks or heads with a knife. Leave the root in the ground. In its native range, leave some heads to flower. California is different, because there it is invasive. Take heads before they seed and never move seed heads around. Check local rules on public land.",
+        "kitchen": "Be certain of your identification before you start. Peel the spines and strings off the leaf stalks. Drop the pieces into lemon water straight away, because they blacken. Boil them until tender. They taste like a bitter artichoke and people stew them or fry them in batter. From the heads, strip off the spiny bracts and eat the tender base and heart. The dried flowers curdle milk for cheeses such as Serra da Estrela and Torta del Casar.",
+        "keeps": "The stalks keep a few days in the fridge, wrapped in a damp cloth. Once boiled, they freeze well.",
+        "source": "Identification, range and season: IUCN Global Invasive Species Database and California Invasive Plant Council. Atractylis poisonings: Moroccan poison control data."
+      }
     },
     "it": {
       "name": "Carciofo Selvatico",
-      "description": "Pianta spinosa simile al carciofo coltivato, con capolini e gambi commestibili.",
-      "howTo": "Si trova in prati e campi; raccogli i capolini giovani e i gambi teneri in primavera e inizio estate."
+      "description": "Una pianta spinosa simile al cardo, parente del carciofo dell'orto. Se ne mangiano i boccioli dei fiori e i gambi.",
+      "howTo": "Si trova in prati e campi; raccogli i capolini giovani e i gambi teneri in primavera e inizio estate.",
+      "guide": {
+        "identify": "Il carciofo selvatico, che chiamano anche cardo selvatico, fa una grande rosetta di foglie molto frastagliate. Sopra sono grigio-verdi argentate, sotto quasi bianche e coperte da un feltro di peli. Ogni lobo finisce con una spina gialla e dura. A fine primavera sale un fusto rigido e ramificato, che arriva all'altezza della testa. Porta dei capolini simili a piccoli carciofi, avvolti da brattee con la punta spinosa. Poi si aprono in fiori di cardo blu-viola. Attento alla masticogna (Atractylis gummifera), un cardo mediterraneo mortale. C'è chi l'ha scambiata per carciofo selvatico, e in Marocco ha ucciso delle persone. La masticogna non ha fusto. Il suo capolino rosa sta schiacciato in mezzo alla rosetta spinosa. Fiorisce a fine estate e in autunno, e dalla sua radice cola una gomma appiccicosa. Non mangiare mai una rosetta di cardo senza fusto né una radice di cardo.",
+        "habitat": "Gli piacciono i terreni aperti, secchi e soleggiati. Lo trovi nei pascoli, ai bordi dei campi e delle strade, negli incolti e nella macchia, spesso su terra argillosa. È originario del Mediterraneo, dal Portogallo alla Grecia e al Nord Africa. Nell'Europa del nord e del centro c'è solo perché è scappato dai giardini. In California è un'infestante invasiva delle praterie e della macchia costiera sotto i 500 m. Nel resto degli Stati Uniti è una pianta da giardino.",
+        "season": "La rosetta cresce dopo le piogge d'autunno e per tutto l'inverno mite. Le coste si raccolgono da fine inverno a primavera. I capolini arrivano tra fine primavera e inizio estate. Fiorisce soprattutto a giugno e luglio. Poi, con la siccità dell'estate, secca.",
+        "picking": "Metti dei guanti spessi e taglia coste o capolini col coltello. La radice lasciala nel terreno. Dove la pianta è di casa, lascia fiorire qualche capolino. In California è diverso, perché lì è invasiva. Prendi i capolini prima che facciano seme e non portare mai in giro le teste con i semi. Sui terreni pubblici informati sulle regole del posto.",
+        "kitchen": "Prima di cominciare devi essere sicuro di averlo riconosciuto. Togli spine e fili dalle coste. Metti subito i pezzi in acqua e limone, perché anneriscono. Lessali finché sono teneri. Sanno di carciofo amaro e si fanno in umido o fritti in pastella. Dai capolini togli le brattee spinose e mangia la base tenera e il cuore. I fiori secchi servono a cagliare il latte per formaggi come il Serra da Estrela e la Torta del Casar.",
+        "keeps": "Le coste durano qualche giorno in frigo, avvolte in un panno umido. Una volta lessate si congelano bene.",
+        "source": "Identificazione, distribuzione e stagione: IUCN Global Invasive Species Database e California Invasive Plant Council. Avvelenamenti da Atractylis: dati del centro antiveleni del Marocco."
+      }
     },
     "fr": {
       "name": "Artichaut sauvage",
-      "description": "Plante épineuse ressemblant à l'artichaut cultivé, avec capitules et tiges comestibles.",
-      "howTo": "Se trouve dans les prairies et champs ; récolte les jeunes capitules et les tiges tendres au printemps et au début de l'été."
+      "description": "Une plante qui ressemble à un chardon, cousine de l'artichaut du potager. On en mange les boutons floraux et les tiges.",
+      "howTo": "Se trouve dans les prairies et champs ; récolte les jeunes capitules et les tiges tendres au printemps et au début de l'été.",
+      "guide": {
+        "identify": "L'artichaut sauvage, qu'on appelle aussi cardon sauvage, forme une grande rosette de feuilles profondément découpées. Elles sont gris-vert argenté dessus et presque blanches dessous, feutrées de poils. Chaque lobe se termine par une épine jaune et raide. À la fin du printemps, une tige raide et ramifiée monte jusqu'à hauteur d'homme. Elle porte des capitules comme de petits artichauts, entourés de bractées terminées par une épine. Ils s'ouvrent en fleurs de chardon bleu-violet. Méfiez-vous du chardon à glu (Atractylis gummifera), un chardon méditerranéen mortel. On l'a déjà pris pour de l'artichaut sauvage, et il a tué des gens au Maroc. Il n'a pas de tige. Son capitule rose est posé à plat au milieu de la rosette épineuse. Il fleurit à la fin de l'été et en automne, et sa racine laisse couler une gomme collante. Ne mangez jamais une rosette de chardon sans tige, ni une racine de chardon.",
+        "habitat": "Il aime les terrains secs, ensoleillés et dégagés. On le trouve dans les pâtures, en bordure de champs, au bord des routes, dans les friches et les broussailles, souvent sur argile. Il est originaire de la Méditerranée, du Portugal à la Grèce et à l'Afrique du Nord. Dans le nord et le centre de l'Europe, il n'est qu'échappé des jardins. En Californie, c'est une mauvaise herbe envahissante des prairies et des broussailles côtières, en dessous de 500 m. Ailleurs aux États-Unis, c'est une plante de jardin.",
+        "season": "La rosette pousse après les pluies d'automne et tout au long de l'hiver doux. On cueille les côtes de la fin de l'hiver au printemps. Les capitules arrivent à la fin du printemps et au début de l'été. Il fleurit surtout en juin et juillet. Ensuite, il se dessèche avec la sécheresse de l'été.",
+        "picking": "Mettez des gants épais et coupez les côtes ou les capitules au couteau. Laissez la racine en terre. Dans son aire d'origine, laissez quelques capitules fleurir. En Californie, c'est différent, parce qu'il y est envahissant. Prenez les capitules avant qu'ils ne grainent et ne transportez jamais de capitules en graines. Sur les terrains publics, renseignez-vous sur les règles locales.",
+        "kitchen": "Soyez certain de votre identification avant de commencer. Épluchez les côtes pour enlever les épines et les fils. Plongez aussitôt les morceaux dans de l'eau citronnée, car ils noircissent. Faites-les bouillir jusqu'à ce qu'ils soient tendres. Ils ont le goût d'un artichaut amer. On les cuisine en ragoût ou en beignets. Sur les capitules, retirez les bractées épineuses et mangez la base tendre et le cœur. Les fleurs séchées servent à faire cailler le lait de fromages comme le Serra da Estrela et la Torta del Casar.",
+        "keeps": "Les côtes se gardent quelques jours au réfrigérateur, enveloppées dans un linge humide. Une fois cuites, elles se congèlent bien.",
+        "source": "Identification, répartition et saison : IUCN Global Invasive Species Database et California Invasive Plant Council. Intoxications par l'Atractylis : données du centre antipoison du Maroc."
+      }
     },
     "de": {
-      "name": "Wilder Artischocke",
-      "description": "Dornige Pflanze ähnlich der kultivierten Artischocke, mit essbaren Blütenköpfen und Stängeln.",
-      "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer."
+      "name": "Wilde Artischocke",
+      "description": "Eine distelartige Pflanze, verwandt mit der Gartenartischocke. Du isst die Blütenknospen und die Stängel.",
+      "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer.",
+      "guide": {
+        "identify": "Die Wilde Artischocke, auch Wilde Kardone genannt, bildet eine grosse Rosette aus tief eingeschnittenen Blättern. Oben sind sie silbrig graugrün, unten durch dichten Filz fast weiss. Jeder Blattlappen endet in einem starren gelben Dorn. Im späten Frühjahr wächst ein steifer, verzweigter Stängel bis etwa auf Kopfhöhe. Er trägt Köpfe wie kleine Artischocken, umhüllt von Hüllblättern mit Dornspitzen. Sie öffnen sich zu blauvioletten Distelblüten. Pass auf Atractylis gummifera auf, eine tödlich giftige Distel aus dem Mittelmeerraum. Sie wurde schon mit der Wilden Artischocke verwechselt und hat in Marokko Menschen getötet. Sie hat keinen Stängel. Ihr rosa Blütenkopf sitzt flach in der Mitte der stacheligen Rosette. Sie blüht im Spätsommer und Herbst, und aus ihrer Wurzel tritt ein klebriger Saft. Iss nie eine stängellose Distelrosette oder eine Distelwurzel.",
+        "habitat": "Sie mag trockenes, sonniges, offenes Gelände. Du findest sie auf Weiden, an Acker- und Wegrändern, auf Brachen und im Gebüsch, oft auf Lehm. Ihre Heimat ist der Mittelmeerraum, von Portugal bis Griechenland und Nordafrika. In Nord- und Mitteleuropa kommt sie nur aus Gärten verwildert vor. In Kalifornien ist sie ein invasives Unkraut im Grasland und im Küstengebüsch unter 500 m. Im Rest der USA ist sie eine Gartenpflanze.",
+        "season": "Die Rosette wächst nach den Herbstregen und den ganzen milden Winter durch. Die Blattstiele erntest du vom späten Winter bis ins Frühjahr. Die Köpfe kommen im späten Frühjahr und Frühsommer. Sie blüht vor allem im Juni und Juli. Danach vertrocknet sie in der Sommerdürre.",
+        "picking": "Zieh dicke Handschuhe an und schneide Stiele oder Köpfe mit dem Messer ab. Die Wurzel bleibt im Boden. In ihrer Heimat lässt du einige Köpfe blühen. In Kalifornien ist es anders, weil sie dort invasiv ist. Nimm die Köpfe dort, bevor sie Samen bilden, und trag nie Samenstände herum. Auf öffentlichem Land prüfst du die Regeln vor Ort.",
+        "kitchen": "Sei dir bei der Bestimmung sicher, bevor du anfängst. Schäl Dornen und Fasern von den Blattstielen. Leg die Stücke sofort in Zitronenwasser, weil sie sonst schwarz werden. Dann kochst du sie weich. Sie schmecken wie eine bittere Artischocke. Man schmort sie oder backt sie im Teig aus. Bei den Köpfen zupfst du die stacheligen Hüllblätter ab und isst den zarten Boden und das Herz. Die getrockneten Blüten bringen Milch zum Gerinnen, etwa für Käse wie Serra da Estrela und Torta del Casar.",
+        "keeps": "Die Stiele halten sich in ein feuchtes Tuch gewickelt ein paar Tage im Kühlschrank. Gekocht lassen sie sich gut einfrieren.",
+        "source": "Bestimmung, Verbreitung und Saison: IUCN Global Invasive Species Database und California Invasive Plant Council. Atractylis-Vergiftungen: Daten der marokkanischen Giftnotrufzentrale."
+      }
     },
     "es": {
       "name": "Alcachofa silvestre",
-      "description": "Planta espinosa similar a la alcachofa cultivada, con cabezuelas y tallos comestibles.",
-      "howTo": "Se encuentra en praderas y campos; recolecta las cabezuelas jóvenes y los tallos tiernos en primavera y a comienzos del verano."
+      "description": "Una planta parecida a un cardo, pariente de la alcachofa de huerta. Se comen las cabezuelas antes de abrirse y los tallos.",
+      "howTo": "Se encuentra en praderas y campos; recolecta las cabezuelas jóvenes y los tallos tiernos en primavera y a comienzos del verano.",
+      "guide": {
+        "identify": "La alcachofa silvestre, o cardo silvestre, forma una gran roseta de hojas muy recortadas. Por arriba son de un verde grisáceo plateado y por debajo casi blancas, con una pelusa como de fieltro. Cada lóbulo acaba en una espina amarilla y dura. A finales de primavera sale un tallo rígido y ramificado que llega a la altura de una persona. Lleva cabezas como alcachofas pequeñas, envueltas en brácteas con la punta espinosa. Esas cabezas se abren en flores de cardo de color azul violeta. Cuidado con la ajonjera (Atractylis gummifera), un cardo mediterráneo mortal. Hay quien la ha confundido con la alcachofa silvestre, y en Marruecos ha matado a gente. La ajonjera no tiene tallo. Su cabeza de flor rosa está plana en el centro de la roseta espinosa. Florece a finales de verano y en otoño. Su raíz suelta una goma pegajosa. No comas nunca una roseta de cardo sin tallo ni una raíz de cardo.",
+        "habitat": "Le gusta el terreno abierto, seco y soleado. La encuentras en pastos, lindes de campos, cunetas, barbechos y matorrales, a menudo en tierra arcillosa. Es nativa del Mediterráneo, desde Portugal hasta Grecia y el norte de África. En el norte y el centro de Europa solo aparece escapada de los huertos. En California es una mala hierba invasora de praderas y matorral costero por debajo de 500 m. En el resto de EE. UU. es una planta de jardín.",
+        "season": "La roseta crece con las lluvias de otoño y sigue creciendo durante todo el invierno suave. Las pencas se cogen de finales de invierno a primavera. Las cabezas salen a finales de primavera y principios de verano. Florece sobre todo en junio y julio. Después se seca con la sequía del verano.",
+        "picking": "Ponte guantes gruesos y corta las pencas o las cabezas con un cuchillo. Deja la raíz en la tierra. En su zona de origen, deja algunas cabezas para que florezcan. En California es distinto, porque allí es invasora. Coge las cabezas antes de que den semilla y no lleves nunca cabezas con semilla de un sitio a otro. En terrenos públicos, consulta las normas locales.",
+        "kitchen": "Antes de empezar, asegúrate bien de que la has identificado. Pela las pencas para quitarles las espinas y las hebras. Echa los trozos enseguida en agua con limón, porque se ponen negros. Hiérvelos hasta que estén tiernos. Saben a alcachofa amarga. Se suelen guisar o rebozar y freír. De las cabezas, quita las brácteas espinosas y cómete la base tierna y el corazón. Las flores secas cuajan la leche de quesos como el Serra da Estrela y la Torta del Casar.",
+        "keeps": "Las pencas aguantan unos días en la nevera, envueltas en un paño húmedo. Una vez cocidas, se congelan bien.",
+        "source": "Identificación, distribución y temporada: IUCN Global Invasive Species Database y California Invasive Plant Council. Intoxicaciones por Atractylis: datos del centro antitóxico de Marruecos."
+      }
     },
     "pt": {
       "name": "Alcachofra-silvestre",
-      "description": "Planta espinhosa semelhante à alcachofra cultivada, com capítulos e caules comestíveis.",
-      "howTo": "Encontrada em prados e campos; colha os capítulos jovens e os caules tenros na primavera e no início do verão."
+      "description": "Uma planta parecida com um cardo, parente da alcachofra da horta. Comem-se os botões das flores e os caules.",
+      "howTo": "Encontrada em prados e campos; colha os capítulos jovens e os caules tenros na primavera e no início do verão.",
+      "guide": {
+        "identify": "A alcachofra-silvestre, a que também se chama cardo ou cardo-do-coalho, forma uma grande roseta de folhas muito recortadas. São de um verde-acinzentado prateado por cima e quase brancas por baixo, com uma penugem como feltro. Cada lóbulo acaba num espinho amarelo e rijo. No fim da primavera sobe um caule rijo e ramificado, que pode chegar à altura de uma pessoa. Leva cabeças como pequenas alcachofras, envolvidas em brácteas com espinho na ponta. Estas abrem em flores de cardo azul-violeta. Cuidado com a Atractylis gummifera, um cardo mediterrânico mortal. Já foi confundida com a alcachofra-silvestre e matou pessoas em Marrocos. Não tem caule. A cabeça de flor, cor-de-rosa, assenta rente ao centro da roseta espinhosa. Floresce no fim do verão e no outono. A raiz deita uma goma pegajosa. Nunca coma uma roseta de cardo sem caule nem uma raiz de cardo.",
+        "habitat": "Gosta de terreno aberto, seco e soalheiro. Encontra-se em pastagens, bordas de campos, bermas, pousios e matos, muitas vezes em terra argilosa. É nativa do Mediterrâneo, de Portugal à Grécia e ao norte de África. No norte e no centro da Europa só aparece fugida de jardins. Na Califórnia é uma infestante invasora de prados e matos costeiros abaixo dos 500 m. No resto dos EUA é uma planta de jardim.",
+        "season": "A roseta cresce depois das chuvas de outono e durante todo o inverno ameno. Os talos das folhas apanham-se do fim do inverno à primavera. As cabeças vêm no fim da primavera e no início do verão. Floresce sobretudo em junho e julho. Depois seca com a estiagem do verão.",
+        "picking": "Calce luvas grossas e corte os talos ou as cabeças com uma faca. Deixe a raiz na terra. Na sua área de origem, deixe algumas cabeças florir. Na Califórnia é diferente, porque lá é invasora. Apanhe as cabeças antes de darem semente e nunca leve cabeças com semente de um lado para o outro. Em terrenos públicos, consulte as regras locais.",
+        "kitchen": "Antes de começar, tenha a certeza da identificação. Tire os espinhos e os fios aos talos das folhas. Ponha logo os pedaços em água com limão, porque escurecem. Coza-os até ficarem tenros. Sabem a alcachofra amarga e costumam fazer-se guisados ou fritos em polme. Nas cabeças, tire as brácteas espinhosas e coma a base tenra e o coração. As flores secas coalham o leite de queijos como o Serra da Estrela e a Torta del Casar.",
+        "keeps": "Os talos aguentam uns dias no frigorífico, embrulhados num pano húmido. Depois de cozidos, congelam bem.",
+        "source": "Identificação, distribuição e época: IUCN Global Invasive Species Database e California Invasive Plant Council. Intoxicações por Atractylis: dados do centro antivenenos de Marrocos."
+      }
     }
   },
   "identification": {
@@ -208,6 +262,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [3112364] }
+    "rangePrior": {
+      "taxonKeys": [3112364]
+    }
   }
 }

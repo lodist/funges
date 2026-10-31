@@ -1,5 +1,6 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import LandingPage from '@/pages/LandingPage';
+import FrontPage from '@/pages/FrontPage';
+import { lastDoor } from '@/lib/spaces';
 // zod's mini build: the same checks, a fraction of the entry chunk.
 import * as z from 'zod/mini';
 
@@ -14,10 +15,16 @@ const legacyMapSearch = z.object({
   zoom: z.catch(z.optional(z.coerce.number()), undefined),
 });
 
+// The Play app and a typed-in address open here. Opened here, the page goes
+// straight through the door the visitor last took; reached from inside the
+// app (the logo), it stays.
+let opened = window.location.pathname === import.meta.env.BASE_URL;
+
+// The front page every space opens from.
 export const Route = createFileRoute('/')({
-  component: LandingPage,
+  component: FrontPage,
   validateSearch: legacyMapSearch,
-  beforeLoad: ({ search }) => {
+  beforeLoad: ({ search, preload }) => {
     const { species, lat, lng, zoom } = search;
     if (
       species !== undefined ||
@@ -31,5 +38,9 @@ export const Route = createFileRoute('/')({
         replace: true,
       });
     }
+    if (preload) return;
+    const door = opened ? lastDoor() : null;
+    opened = false;
+    if (door) throw redirect({ href: door, replace: true });
   },
 });

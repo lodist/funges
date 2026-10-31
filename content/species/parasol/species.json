@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Parasol Mushroom",
-      "description": "A large, tall mushroom with a broad, scaly cap resembling a parasol, edible when young.",
-      "howTo": "Look for it in meadows, grasslands, and forest edges from late summer to autumn."
+      "description": "A big, tall mushroom with a broad, scaly cap that opens like a parasol. Eat it young.",
+      "howTo": "Look for it in meadows, grasslands and forest edges from late summer to autumn.",
+      "guide": {
+        "identify": "The parasol is a tall mushroom. Its cap starts as a closed, egg-shaped drumstick. It opens into a flat umbrella 10 to 25 cm across. The cap is cream with brown scales and a smooth brown bump in the centre. The gills are white, free and crowded. The slender stem grows up to 30 cm tall and has a bulb at the base. It has a brown snakeskin pattern and a thick double ring that slides up and down. The spore print is white. Several look-alikes matter. The deadly Lepiota species are small, with caps of only a few centimetres. Chlorophyllum molybdites gives a greenish spore print. The shaggy parasols (Chlorophyllum rhacodes and C. brunneum) upset many people. They have a smooth stem and their flesh turns orange-red when cut. Amanita pantherina has white warts on the cap and a ring that does not slide. It also has a rimmed bulb at the base.",
+        "habitat": "It grows in grassland and at woodland edges. Look in pastures, meadows, clearings, rides and dunes. It likes well-drained soil, from the lowlands to the mountains. It is common across Europe.",
+        "season": "Parasols come in summer and autumn, mainly from July to October. In southern Europe they go on into November. They come up after a spell of warm, wet weather.",
+        "picking": "Pick only open, full-size caps where you can check every feature. Lift the whole mushroom so you can see the base. Leave any parasol-like mushroom with a cap under 10 cm. Leave old, tough ones too. Check the local rules, because many regions limit how much you may pick.",
+        "kitchen": "Once you're certain of it, eat only the cap and cook it. Like most wild mushrooms, it can upset the stomach raw. Bread it and fry it like a schnitzel, or grill it with butter and garlic. It tastes mild and nutty. You can dry the tough stems and grind them for soups.",
+        "keeps": "It keeps two days in the fridge. Sliced caps dry well.",
+        "source": "Identification and habitat: First Nature. Look-alikes and poisonings: ANSES. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Mazza di Tamburo",
-      "description": "Grande fungo con cappello ampio e squamoso simile a un ombrello, commestibile da giovane.",
-      "howTo": "Cerca in prati, pascoli e ai margini dei boschi da fine estate ad autunno."
+      "description": "Un fungo grande e alto, con un cappello largo e squamoso che si apre come un ombrellone. Mangialo giovane.",
+      "howTo": "Cerca in prati, pascoli e ai margini dei boschi da fine estate ad autunno.",
+      "guide": {
+        "identify": "La mazza di tamburo è un fungo alto. Da giovane il cappello è chiuso, a forma d'uovo, proprio come una mazza di tamburo. Poi si apre in un ombrello piatto, largo da 10 a 25 cm. Il cappello è color crema, con squame brune e un umbone liscio e bruno al centro. Le lamelle sono bianche, libere e fitte. Il gambo è slanciato, alto fino a 30 cm, con un bulbo alla base. È tigrato di bruno come la pelle di un serpente. Porta un anello spesso e doppio che scorre su e giù. La sporata è bianca. Ci sono diversi sosia da conoscere. Le lepiote mortali sono piccole, con cappelli di pochi centimetri. Il Chlorophyllum molybdites ha la sporata verdastra. Le mazze di tamburo arrossanti (Chlorophyllum rhacodes e C. brunneum) fanno star male molte persone. Hanno il gambo liscio e la carne che al taglio diventa rosso arancio. L'Amanita pantherina, la tignosa bruna, ha verruche bianche sul cappello e un anello che non scorre. Alla base ha anche un bulbo con un orlo ben marcato.",
+        "habitat": "Cresce nei prati e ai margini dei boschi. Cercala nei pascoli, nei prati, nelle radure, lungo i sentieri nel bosco e sulle dune. Le piace il terreno ben drenato, dalla pianura alla montagna. È comune in tutta Europa.",
+        "season": "Le mazze di tamburo escono d'estate e in autunno, soprattutto da luglio a ottobre. Nel sud Europa continuano fino a novembre. Spuntano dopo un periodo caldo e umido.",
+        "picking": "Raccogli solo cappelli aperti e ben sviluppati, su cui puoi controllare tutti i caratteri. Prendi il fungo intero, così vedi la base. Lascia qualsiasi fungo simile alla mazza di tamburo con il cappello sotto i 10 cm. Lascia anche quelle vecchie e coriacee. Informati sulle regole del posto, perché molte regioni limitano quanto puoi raccogliere.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, mangia solo il cappello, e sempre cotto. Come quasi tutti i funghi selvatici, cruda può dare fastidio allo stomaco. Impanala e friggila come una cotoletta, oppure falla alla griglia con burro e aglio. Ha un sapore delicato, di nocciola. I gambi sono duri, ma puoi seccarli e macinarli per le zuppe.",
+        "keeps": "In frigo dura due giorni. I cappelli a fette si seccano bene.",
+        "source": "Identificazione e habitat: First Nature. Specie simili e intossicazioni: ANSES. Stagione: segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Coulemelle",
-      "description": "Grand champignon au large chapeau écailleux semblable à un parapluie, comestible lorsqu'il est jeune.",
-      "howTo": "Cherche dans les prairies, pâturages et lisières de forêt de la fin de l'été à l'automne."
+      "description": "Un grand champignon élancé au large chapeau écailleux, qui s'ouvre comme un parasol. Il se mange jeune.",
+      "howTo": "Cherche dans les prairies, pâturages et lisières de forêt de la fin de l'été à l'automne.",
+      "guide": {
+        "identify": "La coulemelle est un grand champignon. Jeune, elle ressemble à une baguette de tambour, avec un chapeau fermé en forme d'œuf. Le chapeau s'ouvre ensuite en une ombrelle plate de 10 à 25 cm. Il est crème et couvert d'écailles brunes, avec un mamelon brun et lisse au centre. Les lames sont blanches, libres et serrées. Le pied élancé mesure jusqu'à 30 cm de haut et se termine par un bulbe. Il est chiné de brun comme une peau de serpent. Il porte un anneau épais et double, qui coulisse le long du pied. La sporée est blanche. Il faut connaître plusieurs sosies. Les lépiotes mortelles sont petites, avec un chapeau de quelques centimètres seulement. Chlorophyllum molybdites donne une sporée verdâtre. Les lépiotes déguenillées (Chlorophyllum rhacodes et C. brunneum) rendent malades beaucoup de gens. Leur pied est lisse. Leur chair devient rouge orangé à la coupe. L'amanite panthère (Amanita pantherina) a des verrues blanches sur le chapeau et un anneau qui ne coulisse pas. Elle a aussi un bulbe à rebord à la base.",
+        "habitat": "Elle pousse dans les prés et en lisière de bois. Cherchez-la dans les pâtures, les prairies, les clairières, les allées forestières et les dunes. Elle aime les sols bien drainés, de la plaine à la montagne. Elle est commune dans toute l'Europe.",
+        "season": "Les coulemelles sortent en été et en automne, surtout de juillet à octobre. Dans le sud de l'Europe, elles continuent jusqu'en novembre. Elles apparaissent après une période chaude et humide.",
+        "picking": "Ne cueillez que des chapeaux ouverts, de taille adulte, sur lesquels vous pouvez vérifier chaque caractère. Sortez le champignon entier pour voir la base du pied. Laissez tout champignon qui ressemble à une coulemelle si son chapeau fait moins de 10 cm. Laissez aussi les vieilles, devenues coriaces. Renseignez-vous sur les règles locales, car beaucoup de régions limitent la quantité.",
+        "kitchen": "Une fois identifiée avec certitude, ne mangez que le chapeau, toujours cuit. Crue, elle peut déranger l'estomac, comme la plupart des champignons sauvages. Panez-la et faites-la frire comme une escalope. Vous pouvez aussi la griller avec du beurre et de l'ail. Elle a un goût doux de noisette. Vous pouvez faire sécher les pieds coriaces et les moudre pour les soupes.",
+        "keeps": "Elle se garde deux jours au réfrigérateur. Les chapeaux en lamelles sèchent bien.",
+        "source": "Identification et habitat : First Nature. Espèces proches et intoxications : ANSES. Saison : observations GBIF."
+      }
     },
     "de": {
       "name": "Parasolpilz",
-      "description": "Grosser Pilz mit breitem, schuppigem Hut, der einem Regenschirm ähnelt, jung essbar.",
-      "howTo": "Suche auf Wiesen, Weiden und an Waldrändern von Spätsommer bis Herbst."
+      "description": "Ein grosser, hoher Pilz mit breitem, schuppigem Hut, der sich wie ein Sonnenschirm öffnet. Iss ihn jung.",
+      "howTo": "Suche auf Wiesen, Weiden und an Waldrändern von Spätsommer bis Herbst.",
+      "guide": {
+        "identify": "Der Parasol ist ein hoher Pilz. Sein Hut beginnt als geschlossener, eiförmiger Paukenschlegel. Dann öffnet er sich zu einem flachen Schirm von 10 bis 25 cm. Der Hut ist cremefarben mit braunen Schuppen und hat in der Mitte einen glatten braunen Buckel. Die Lamellen sind weiss, frei und stehen dicht. Der schlanke Stiel wird bis 30 cm hoch und hat unten eine Knolle. Er ist braun genattert wie eine Schlangenhaut und trägt einen dicken, doppelten Ring, der sich verschieben lässt. Das Sporenpulver ist weiss. Mehrere Doppelgänger musst du kennen. Die tödlich giftigen Schirmlinge (Lepiota) sind klein, ihr Hut misst nur wenige Zentimeter. Chlorophyllum molybdites hat grünliches Sporenpulver. Die Safranschirmlinge (Chlorophyllum rhacodes und C. brunneum) vertragen viele Menschen nicht. Sie haben einen glatten Stiel, und ihr Fleisch färbt sich beim Anschneiden orangerot. Der Pantherpilz (Amanita pantherina) hat weisse Flocken auf dem Hut und einen Ring, der sich nicht verschieben lässt. Ausserdem hat er unten eine gerandete Knolle.",
+        "habitat": "Er wächst im Grasland und an Waldrändern. Such auf Weiden und Wiesen, auf Lichtungen, an Waldwegen und in Dünen. Er mag durchlässigen Boden, vom Tiefland bis ins Gebirge. In ganz Europa ist er häufig.",
+        "season": "Parasole kommen im Sommer und Herbst, vor allem von Juli bis Oktober. In Südeuropa gibt es sie bis in den November. Sie erscheinen nach einer warmen, feuchten Wetterphase.",
+        "picking": "Nimm nur offene, ausgewachsene Hüte, an denen du jedes Merkmal prüfen kannst. Heb den ganzen Pilz heraus, damit du den Stielgrund siehst. Lass jeden parasolähnlichen Pilz stehen, dessen Hut kleiner als 10 cm ist. Lass auch alte, zähe Exemplare stehen. Prüf die Regeln vor Ort, denn viele Regionen begrenzen die Sammelmenge.",
+        "kitchen": "Wenn du dir sicher bist, iss nur den Hut, und zwar gegart. Wie die meisten Wildpilze kann er roh auf den Magen schlagen. Paniere ihn und brate ihn wie ein Schnitzel, oder grill ihn mit Butter und Knoblauch. Er schmeckt mild und nussig. Die zähen Stiele kannst du trocknen und für Suppen mahlen.",
+        "keeps": "Im Kühlschrank hält er sich zwei Tage. In Scheiben geschnittene Hüte lassen sich gut trocknen.",
+        "source": "Bestimmung und Standort: First Nature. Doppelgänger und Vergiftungen: ANSES. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Parasol",
-      "description": "Hongo grande con sombrero ancho y escamoso parecido a un paraguas, comestible cuando es joven.",
-      "howTo": "Búscalo en praderas, pastizales y bordes de bosques desde finales del verano hasta el otoño."
+      "description": "Una seta grande y alta con un sombrero ancho y escamoso que se abre como una sombrilla. Se come cuando es joven.",
+      "howTo": "Búscalo en praderas, pastizales y bordes de bosques desde finales del verano hasta el otoño.",
+      "guide": {
+        "identify": "La galamperna o parasol es una seta alta. De joven, el sombrero es un palillo de tambor cerrado, con forma de huevo. Luego se abre en un paraguas plano de 10 a 25 cm. El sombrero es crema con escamas pardas y tiene en el centro un mamelón pardo y liso. Las láminas son blancas, libres y apretadas. El pie es esbelto, mide hasta 30 cm y tiene un bulbo en la base. Lleva un dibujo pardo como de piel de serpiente y un anillo grueso y doble que sube y baja. La esporada es blanca. Hay varias parecidas que debes conocer. Las lepiotas mortales son pequeñas, con sombreros de solo unos centímetros. Chlorophyllum molybdites da una esporada verdosa. Las lepiotas desgarradas (Chlorophyllum rhacodes y C. brunneum) sientan mal a mucha gente. Tienen el pie liso, y su carne se vuelve rojo anaranjada al cortarla. La amanita pantera (Amanita pantherina) tiene verrugas blancas en el sombrero y un anillo que no se mueve. Además tiene un bulbo con reborde en la base.",
+        "habitat": "Crece en prados y en lindes de bosque. Búscala en pastos, praderas, claros, pistas forestales y dunas. Le gusta el suelo que drena bien, desde las zonas bajas hasta la montaña. Es común en toda Europa.",
+        "season": "Sale en verano y en otoño, sobre todo de julio a octubre. En el sur de Europa sigue hasta noviembre. Aparece después de una racha de tiempo cálido y húmedo.",
+        "picking": "Coge solo sombreros abiertos y de tamaño adulto, en los que puedas comprobar todos los rasgos. Saca la seta entera para poder ver la base. Deja cualquier seta parecida con el sombrero de menos de 10 cm. Deja también las viejas y duras. Infórmate de las normas del lugar, porque muchas regiones limitan la cantidad que puedes coger.",
+        "kitchen": "Cuando no tengas ninguna duda de que es una galamperna, come solo el sombrero y siempre cocinado. Como casi todas las setas silvestres, cruda puede sentar mal al estómago. Empánala y fríela como un filete, o hazla a la plancha con mantequilla y ajo. Tiene un sabor suave, a frutos secos. Los pies son duros, pero puedes secarlos y molerlos para sopas.",
+        "keeps": "Aguanta dos días en la nevera. Los sombreros en láminas se secan bien.",
+        "source": "Identificación y hábitat: First Nature. Especies parecidas e intoxicaciones: ANSES. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Guarda-sol",
-      "description": "Grande cogumelo com chapéu largo e escamoso, semelhante a um guarda-sol, comestível quando jovem.",
-      "howTo": "Procure em prados, pastagens e nas bordas das florestas do fim do verão ao outono."
+      "description": "Um cogumelo grande e alto, com um chapéu largo e escamoso que se abre como um guarda-sol. Coma-o enquanto é novo.",
+      "howTo": "Procure em prados, pastagens e nas bordas das florestas do fim do verão ao outono.",
+      "guide": {
+        "identify": "O guarda-sol, a que muitos chamam frade, é um cogumelo alto. Em novo, o chapéu é fechado e tem forma de ovo, como uma baqueta de tambor. Depois abre num guarda-chuva plano de 10 a 25 cm. O chapéu é creme, com escamas castanhas e um mamilo liso e castanho no centro. As lâminas são brancas, livres e apertadas. O pé é esguio, chega aos 30 cm de altura e tem um bolbo na base. Tem um desenho castanho como pele de cobra. O anel é grosso e duplo e desliza para cima e para baixo. A esporada é branca. Há vários sósias que tem de conhecer. As espécies mortais de Lepiota são pequenas, com chapéus de poucos centímetros. O Chlorophyllum molybdites dá esporada esverdeada. O Chlorophyllum rhacodes e o C. brunneum fazem mal a muita gente. Têm o pé liso e a carne fica vermelho-alaranjada quando se corta. A amanita-pantera (Amanita pantherina) tem verrugas brancas no chapéu e um anel que não desliza. Além disso tem na base um bolbo com rebordo.",
+        "habitat": "Cresce em terrenos de erva e nas orlas dos bosques. Procure em pastagens, prados, clareiras, caminhos florestais e dunas. Gosta de solo bem drenado, da planície à montanha. É comum em toda a Europa.",
+        "season": "Aparece no verão e no outono, sobretudo de julho a outubro. No sul da Europa continua até novembro. Sai depois de um período de tempo quente e húmido.",
+        "picking": "Apanhe só chapéus abertos e já crescidos, em que possa verificar todas as características. Tire o cogumelo inteiro para poder ver a base. Deixe qualquer cogumelo parecido com o guarda-sol que tenha o chapéu com menos de 10 cm. Deixe também os velhos e rijos. Informe-se sobre as regras locais, porque muitas regiões limitam a quantidade que se pode apanhar.",
+        "kitchen": "Quando tiver a certeza de que é um guarda-sol, coma só o chapéu, sempre cozinhado. Como a maioria dos cogumelos silvestres, cru pode fazer mal ao estômago. Pane-o e frite-o como um bife panado. Também o pode grelhar com manteiga e alho. O sabor é suave e lembra avelã. Os pés são rijos, mas pode secá-los e moê-los para sopas.",
+        "keeps": "Aguenta dois dias no frigorífico. Os chapéus às fatias secam bem.",
+        "source": "Identificação e habitat: First Nature. Espécies parecidas e intoxicações: ANSES. Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -144,6 +198,8 @@
       "taxonKeys": [8914748],
       "references": ["https://www.gbif.org/species/8914748"]
     },
-    "rangePrior": { "taxonKeys": [8914748] }
+    "rangePrior": {
+      "taxonKeys": [8914748]
+    }
   }
 }

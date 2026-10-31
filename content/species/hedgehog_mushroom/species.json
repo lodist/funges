@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Hedgehog Mushroom",
-      "description": "A buff to orange cap with soft spines instead of gills underneath: one of the safest wild mushrooms to learn",
-      "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills"
+      "description": "A buff to orange cap with soft spines underneath instead of gills. One of the safest wild mushrooms to learn.",
+      "howTo": "Look in mossy conifer and broadleaf woods from late summer to late autumn, often in rings or rows; on the US Pacific coast through the winter. Turn it over: spines, not gills",
+      "guide": {
+        "identify": "Turn it over. Under the cap you'll find soft, brittle spines 2 to 6 mm long, hanging like small icicles. There are no gills or ridges. The spines rub off easily. The cap is 4 to 15 cm across and cream to buff or pale orange. It is dry, velvety and often lumpy. The stem is white, solid and often off-centre. The firm white flesh slowly bruises yellowish to orange-brown. The terracotta hedgehog (Hydnum rufescens) is smaller and more orange. It has the same soft spines and so do the American Hydnum species. Other tooth fungi, such as Hydnellum and Sarcodon, are tough and corky or brown and scaly. Many of them are bitter.",
+        "habitat": "It lives with conifers and broadleaf trees alike, such as spruce, pine, beech, oak and birch. Look in moss and leaf litter. It often grows in rings or rows. It is common across Europe (from the lowlands to the mountains) and across North America. On the US Pacific coast several Hydnum species grow under Douglas fir, tanoak and other trees.",
+        "season": "In central and northern Europe it comes from late summer to late autumn, often until hard frost. In southern Europe the season is later and longer, running into winter. On the US Pacific coast it arrives with the autumn rains and carries on through the winter.",
+        "picking": "Cut it at the base. Brush off debris on the spot so it doesn't get stuck in the spines. Leave the small ones. In southern Bavaria and the Bavarian Forest it still carries caesium from Chernobyl. Eat it there only now and then.",
+        "kitchen": "First be certain of your identification. Brush the cap. On large ones, rub off the spines. They break off in the pan and can taste bitter. Never eat it raw. Cook it well, fried in butter or braised. It tastes mild, nutty and sweet and has a firm, meaty bite. It is good with eggs, potatoes and game and in sauces.",
+        "keeps": "Because it is firm, it keeps better than most wild mushrooms. It lasts several days in the fridge in paper. For longer keeping, cook it and freeze it.",
+        "source": "Identification: First Nature (UK) and MykoWeb (California Fungi). Caesium: German Federal Office for Radiation Protection (BfS). Season: GBIF records."
+      }
     },
     "it": {
       "name": "Steccherino dorato",
-      "description": "Un cappello color camoscio o arancio con morbidi aculei al posto delle lamelle: uno dei funghi selvatici più sicuri da imparare",
-      "howTo": "Cercalo nei boschi muschiosi di conifere e latifoglie da fine estate a fine autunno, spesso in cerchi o file; sulla costa pacifica degli Stati Uniti per tutto l'inverno. Giralo: sotto ha aculei, non lamelle"
+      "description": "Un cappello da camoscio ad arancio, con aculei morbidi sotto al posto delle lamelle. È uno dei funghi selvatici più sicuri da imparare a riconoscere.",
+      "howTo": "Cercalo nei boschi muschiosi di conifere e latifoglie da fine estate a fine autunno, spesso in cerchi o file; sulla costa pacifica degli Stati Uniti per tutto l'inverno. Giralo: sotto ha aculei, non lamelle",
+      "guide": {
+        "identify": "Gira il fungo. Sotto il cappello ci sono aculei morbidi e fragili, lunghi da 2 a 6 mm, che pendono come piccoli ghiaccioli. Non ci sono lamelle né pieghe. Gli aculei si staccano facilmente. Il cappello misura da 4 a 15 cm ed è crema, camoscio o arancio pallido. È asciutto, vellutato e spesso bitorzoluto. Il gambo è bianco, pieno e spesso non sta al centro. La carne è bianca e soda. Se la tocchi diventa piano piano giallina fino all'arancio-bruno. Lo steccherino rossiccio (Hydnum rufescens) è più piccolo e più arancione. Ha gli stessi aculei morbidi, come le specie americane di Hydnum. Altri funghi con aculei, come Hydnellum e Sarcodon, sono duri e sugherosi oppure bruni e squamosi. Molti sono amari.",
+        "habitat": "Vive legato sia alle conifere sia alle latifoglie, come abete rosso, pino, faggio, quercia e betulla. Cercalo nel muschio e nella lettiera. Spesso cresce in cerchi o in file. È comune in tutta Europa, dalla pianura alla montagna. Lo trovi anche in tutto il Nord America. Sulla costa del Pacifico degli Stati Uniti ci sono diverse specie di Hydnum, sotto l'abete di Douglas, il tanoak e altri alberi.",
+        "season": "Nell'Europa centrale e del nord esce da fine estate a fine autunno, spesso fino alle gelate forti. Nel sud Europa la stagione è più tarda e più lunga e arriva fino all'inverno. Sulla costa del Pacifico degli Stati Uniti arriva con le piogge d'autunno e va avanti per tutto l'inverno.",
+        "picking": "Taglialo alla base. Pulisci già sul posto terra e detriti, così non ti restano incastrati tra gli aculei. Lascia i piccoli. Nella Baviera meridionale e nella Foresta Bavarese contiene ancora cesio di Chernobyl. Lì mangialo solo ogni tanto.",
+        "kitchen": "Prima assicurati di averlo riconosciuto con certezza. Spazzola il cappello. Negli esemplari grandi togli gli aculei sfregandoli. In padella si staccano e possono essere amari. Non mangiarlo mai crudo. Cuocilo bene, saltato nel burro o in umido. Ha un sapore delicato e dolce di nocciola. La consistenza è soda e carnosa. Sta bene con uova, patate, selvaggina e nei sughi.",
+        "keeps": "Essendo sodo, si conserva meglio della maggior parte dei funghi selvatici. In frigo, nella carta, dura diversi giorni. Per tenerlo più a lungo, cuocilo e congelalo.",
+        "source": "Identificazione: First Nature (Regno Unito) e MykoWeb (California Fungi). Cesio: Ufficio federale tedesco per la radioprotezione (BfS). Stagione: dati GBIF."
+      }
     },
     "fr": {
       "name": "Pied-de-mouton",
-      "description": "Un chapeau chamois à orangé avec de petits aiguillons tendres au lieu de lames : l'un des champignons sauvages les plus sûrs à apprendre",
-      "howTo": "Cherchez-le dans les bois moussus de conifères et de feuillus de la fin de l'été à la fin de l'automne, souvent en cercles ou en lignes ; tout l'hiver sur la côte pacifique des États-Unis. Retournez-le : des aiguillons, pas des lames"
+      "description": "Un chapeau chamois à orangé. Dessous, il a de petits aiguillons mous à la place des lames. C'est l'un des champignons sauvages les plus sûrs pour apprendre.",
+      "howTo": "Cherchez-le dans les bois moussus de conifères et de feuillus de la fin de l'été à la fin de l'automne, souvent en cercles ou en lignes ; tout l'hiver sur la côte pacifique des États-Unis. Retournez-le : des aiguillons, pas des lames",
+      "guide": {
+        "identify": "Retournez-le. Sous le chapeau, vous trouverez des aiguillons mous et cassants de 2 à 6 mm, qui pendent comme de petites stalactites. Il n'y a ni lames ni plis. Les aiguillons se détachent facilement. Le chapeau mesure de 4 à 15 cm et va du crème au chamois ou à l'orange pâle. Il est sec, velouté et souvent bosselé. Le pied est blanc, plein et souvent décentré. La chair blanche et ferme se tache lentement de jaunâtre à brun orangé au toucher. Le pied-de-mouton roux (Hydnum rufescens) est plus petit et plus orangé. Il a les mêmes aiguillons mous, tout comme les Hydnum d'Amérique. Les autres champignons à aiguillons, comme les Hydnellum et les Sarcodon, sont durs et liégeux, ou bruns et écailleux. Beaucoup d'entre eux sont amers.",
+        "habitat": "Il vit aussi bien avec les conifères qu'avec les feuillus, comme l'épicéa, le pin, le hêtre, le chêne et le bouleau. Cherchez-le dans la mousse et la litière. Il pousse souvent en cercles ou en lignes. Il est commun dans toute l'Europe, de la plaine à la montagne, et dans toute l'Amérique du Nord. Sur la côte pacifique des États-Unis, plusieurs espèces d'Hydnum poussent sous les douglas, les chênes à tan et d'autres arbres.",
+        "season": "En Europe centrale et du Nord, il sort de la fin de l'été à la fin de l'automne, souvent jusqu'aux fortes gelées. Dans le sud de l'Europe, la saison est plus tardive et plus longue, et va jusqu'en hiver. Sur la côte pacifique des États-Unis, il arrive avec les pluies d'automne et continue tout l'hiver.",
+        "picking": "Coupez-le à la base. Brossez les débris sur place pour qu'ils ne se coincent pas entre les aiguillons. Laissez les petits. Dans le sud de la Bavière et la forêt de Bavière, il contient encore du césium de Tchernobyl. Là-bas, n'en mangez que de temps en temps.",
+        "kitchen": "Soyez d'abord certain de votre identification. Brossez le chapeau. Sur les gros, frottez pour enlever les aiguillons. Ils se détachent dans la poêle et peuvent avoir un goût amer. Ne le mangez jamais cru. Faites-le bien cuire, poêlé au beurre ou braisé. Son goût est doux et sucré, avec une note de noisette. Sa chair reste ferme et charnue sous la dent. Il est bon en sauce et avec les œufs, les pommes de terre et le gibier.",
+        "keeps": "Comme il est ferme, il se garde mieux que la plupart des champignons sauvages. Il tient plusieurs jours au réfrigérateur, dans du papier. Pour le garder plus longtemps, faites-le cuire et congelez-le.",
+        "source": "Identification : First Nature (Royaume-Uni) et MykoWeb (California Fungi). Césium : Office fédéral allemand de radioprotection (BfS). Saison : données GBIF."
+      }
     },
     "de": {
       "name": "Semmel-Stoppelpilz",
-      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen: einer der sichersten Wildpilze für Einsteiger",
-      "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen"
+      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen darunter. Einer der sichersten Wildpilze für den Anfang.",
+      "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen",
+      "guide": {
+        "identify": "Dreh ihn um. Unter dem Hut hängen weiche, brüchige Stacheln, 2 bis 6 mm lang, wie kleine Eiszapfen. Lamellen oder Leisten gibt es nicht. Die Stacheln lassen sich leicht abstreifen. Der Hut ist 4 bis 15 cm breit und cremefarben bis semmelgelb oder blass orange. Er ist trocken, samtig und oft buckelig. Der Stiel ist weiss, voll und sitzt oft nicht in der Mitte. Das feste weisse Fleisch verfärbt sich auf Druck langsam gelblich bis orangebraun. Der Rotgelbe Stoppelpilz (Hydnum rufescens) ist kleiner und kräftiger orange. Er hat dieselben weichen Stacheln, genau wie die amerikanischen Hydnum-Arten. Andere Stachelpilze wie Korkstachlinge (Hydnellum) und Habichtspilze (Sarcodon) sind zäh und korkig oder braun und schuppig. Viele davon sind bitter.",
+        "habitat": "Er lebt mit Nadel- und Laubbäumen gleichermassen zusammen, etwa mit Fichte, Kiefer, Buche, Eiche und Birke. Such im Moos und im Laub. Oft wächst er in Ringen oder Reihen. In ganz Europa ist er häufig, vom Flachland bis ins Gebirge, und ebenso in ganz Nordamerika. An der US-Pazifikküste wachsen mehrere Hydnum-Arten unter Douglasie, Tanoak und anderen Bäumen.",
+        "season": "In Mittel- und Nordeuropa kommt er vom Spätsommer bis in den Spätherbst, oft bis zum starken Frost. In Südeuropa beginnt die Saison später und dauert länger, bis in den Winter. An der US-Pazifikküste kommt er mit den Herbstregen und bleibt den ganzen Winter.",
+        "picking": "Schneide ihn am Grund ab. Putz Schmutz gleich vor Ort ab, damit er nicht zwischen den Stacheln hängen bleibt. Lass die kleinen stehen. In Südbayern und im Bayerischen Wald enthält er noch Cäsium aus Tschernobyl. Iss ihn dort nur ab und zu.",
+        "kitchen": "Bestimm ihn zuerst sicher. Bürste den Hut ab. Bei grossen Exemplaren streifst du die Stacheln ab. Sie brechen in der Pfanne ab und können bitter schmecken. Iss ihn nie roh. Gare ihn gut durch, in Butter gebraten oder geschmort. Er schmeckt mild, nussig und süsslich und hat einen festen, fleischigen Biss. Er passt gut zu Eiern, Kartoffeln und Wild und in Sossen.",
+        "keeps": "Weil er so fest ist, hält er sich besser als die meisten Wildpilze. In Papier bleibt er mehrere Tage im Kühlschrank frisch. Für länger garst du ihn und frierst ihn ein.",
+        "source": "Bestimmung: First Nature (UK) und MykoWeb (California Fungi). Cäsium: Bundesamt für Strahlenschutz (BfS). Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Lengua de vaca",
-      "description": "Un sombrero de color gamuza a anaranjado con púas blandas en lugar de láminas: una de las setas silvestres más seguras para aprender",
-      "howTo": "Búscala en bosques musgosos de coníferas y frondosas desde finales del verano hasta finales del otoño, a menudo en corros o hileras; en la costa del Pacífico de EE. UU., todo el invierno. Dale la vuelta: púas, no láminas"
+      "description": "Un sombrero de color gamuza a naranja, con púas blandas por debajo en lugar de láminas. Es de las setas silvestres más seguras para aprender a reconocer.",
+      "howTo": "Búscala en bosques musgosos de coníferas y frondosas desde finales del verano hasta finales del otoño, a menudo en corros o hileras; en la costa del Pacífico de EE. UU., todo el invierno. Dale la vuelta: púas, no láminas",
+      "guide": {
+        "identify": "Dale la vuelta. Bajo el sombrero encontrarás púas blandas y quebradizas de 2 a 6 mm, que cuelgan como pequeños carámbanos. No tiene láminas ni pliegues. Las púas se desprenden fácilmente. El sombrero mide de 4 a 15 cm y es de color crema a gamuza o naranja pálido. Es seco, aterciopelado y a menudo abollado. El pie es blanco, macizo y muchas veces está descentrado. La carne es blanca y firme, y al rozarla se mancha despacio de amarillento a pardo anaranjado. La lengua de gato (Hydnum rufescens) es más pequeña y más anaranjada. Tiene las mismas púas blandas, igual que las especies americanas de Hydnum. Otros hongos con púas, como Hydnellum y Sarcodon, son duros y acorchados o pardos y escamosos. Muchos amargan.",
+        "habitat": "Vive tanto con coníferas como con frondosas, como píceas, pinos, hayas, robles y abedules. Búscala en el musgo y la hojarasca. A menudo sale en corros o en hileras. Es común en toda Europa, del llano a la montaña, y en toda Norteamérica. En la costa del Pacífico de EE. UU. crecen varias especies de Hydnum bajo abetos de Douglas, tanoaks y otros árboles.",
+        "season": "En el centro y el norte de Europa sale de finales de verano a finales de otoño, a menudo hasta las heladas fuertes. En el sur de Europa la temporada es más tardía y más larga, y llega al invierno. En la costa del Pacífico de EE. UU. llega con las lluvias de otoño y sigue durante todo el invierno.",
+        "picking": "Córtala por la base. Límpiala allí mismo de restos para que no se queden metidos entre las púas. Deja las pequeñas. En el sur de Baviera y en el Bosque Bávaro todavía lleva cesio de Chernóbil. Allí cómela solo de vez en cuando.",
+        "kitchen": "Primero asegúrate bien de que la has identificado. Cepilla el sombrero. En las grandes, quita las púas frotando. Se sueltan en la sartén y pueden amargar. No la comas nunca cruda. Cocínala bien, salteada en mantequilla o guisada. Tiene un sabor suave, dulce y a frutos secos. La textura es firme y carnosa. Va bien con huevos, patatas y caza. También en salsas.",
+        "keeps": "Como es firme, aguanta mejor que la mayoría de las setas silvestres. Dura varios días en la nevera, en papel. Para guardarla más tiempo, cocínala y congélala.",
+        "source": "Identificación: First Nature (Reino Unido) y MykoWeb (California Fungi). Cesio: Oficina Federal alemana de Protección Radiológica (BfS). Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Pé-de-carneiro",
-      "description": "Um chapéu cor de camurça a alaranjado com espinhos macios em vez de lâminas: um dos cogumelos silvestres mais seguros para aprender",
-      "howTo": "Procure em bosques musgosos de coníferas e folhosas do fim do verão ao fim do outono, muitas vezes em círculos ou filas; na costa do Pacífico dos EUA durante todo o inverno. Vire-o: espinhos, não lâminas"
+      "description": "Um chapéu cor de camurça a alaranjado, com espinhos macios por baixo em vez de lâminas. É um dos cogumelos silvestres mais seguros para quem está a aprender.",
+      "howTo": "Procure em bosques musgosos de coníferas e folhosas do fim do verão ao fim do outono, muitas vezes em círculos ou filas; na costa do Pacífico dos EUA durante todo o inverno. Vire-o: espinhos, não lâminas",
+      "guide": {
+        "identify": "Vire-o ao contrário. Debaixo do chapéu vai encontrar espinhos moles e quebradiços, de 2 a 6 mm, pendurados como pequenos pingentes de gelo. Não tem lâminas nem pregas. Os espinhos soltam-se com facilidade. O chapéu tem 4 a 15 cm de largura e vai do creme à cor de camurça ou ao laranja-pálido. É seco, aveludado e muitas vezes irregular, com altos. O pé é branco, cheio e muitas vezes fora do centro. A carne é branca e firme e, quando se toca, mancha devagar de amarelado a castanho-alaranjado. O Hydnum rufescens é mais pequeno e mais alaranjado. Tem os mesmos espinhos moles, tal como as espécies americanas de Hydnum. Outros cogumelos com espinhos, como os Hydnellum e os Sarcodon, são duros como cortiça ou então castanhos e escamosos. Muitos são amargos.",
+        "habitat": "Vive tanto com coníferas como com folhosas, como píceas, pinheiros, faias, carvalhos e bétulas. Procure-o no musgo e na folhada. Cresce muitas vezes em círculos ou em filas. É comum em toda a Europa, da planície à montanha. Também é comum em toda a América do Norte. Na costa do Pacífico dos EUA crescem várias espécies de Hydnum debaixo de abetos-de-douglas, tanoaks e outras árvores.",
+        "season": "Na Europa central e do norte sai do fim do verão ao fim do outono, muitas vezes até às geadas fortes. No sul da Europa a época vem mais tarde e dura mais, até ao inverno. Na costa do Pacífico dos EUA chega com as chuvas de outono e continua durante todo o inverno.",
+        "picking": "Corte-o pela base. Limpe logo ali a terra e os detritos, para não ficarem presos nos espinhos. Deixe os pequenos. No sul da Baviera e na Floresta da Baviera ainda tem césio de Chernobil. Aí, coma-o só de vez em quando.",
+        "kitchen": "Primeiro, tenha a certeza absoluta da identificação. Escove o chapéu. Nos grandes, tire os espinhos esfregando-os. Soltam-se na frigideira e podem amargar. Nunca o coma cru. Cozinhe-o bem, salteado em manteiga ou estufado. Tem um sabor suave e adocicado, a frutos secos. A textura é firme e carnuda. Fica bem com ovos, batatas, caça e em molhos.",
+        "keeps": "Como é firme, aguenta melhor do que a maioria dos cogumelos silvestres. Dura vários dias no frigorífico, em papel. Para o guardar mais tempo, cozinhe-o e congele-o.",
+        "source": "Identificação: First Nature (Reino Unido) e MykoWeb (California Fungi). Césio: Serviço Federal alemão de Proteção contra Radiações (BfS). Época: registos do GBIF."
+      }
     }
   },
   "identification": {

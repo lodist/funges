@@ -2,15 +2,16 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { VitePWA } from 'vite-plugin-pwa';
-import Sitemap from 'vite-plugin-sitemap';
 import removeConsole from 'vite-plugin-remove-console';
 import checker from 'vite-plugin-checker';
+import { seoPages } from './scripts/seo-pages';
 
 const baseUrl = process.env.VITE_BASE_URL || '/';
 const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
 
 const routeFullPaths = [
   '/data',
+  '/huerta',
   '/identify',
   '/impressum',
   '/instructions',
@@ -59,6 +60,8 @@ export default defineConfig({
       registerType: 'prompt',
       injectRegister: false,
       workbox: {
+        // Huerta's morning alerts: show a push, open its garden on a tap.
+        importScripts: ['huerta-push.js'],
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,webp,avif}',
           // The default map style and the dark one (dark mode's); the other
@@ -78,6 +81,12 @@ export default defineConfig({
           '**/landing/spectacle-*.webp',
           // Hundreds of season maps; a visitor opens a few of them.
           '**/season-atlas/**',
+          // Translations: a visitor needs one language, not six. Each file is
+          // kept once loaded (runtimeCaching below, and src/lib/pwa.ts).
+          '**/assets/locales/**',
+          // Each species and crop page's own HTML, for search engines (the
+          // root index.html, the app shell, stays for the offline fallback).
+          '**/*/index.html',
           // Read by iOS when the app is added to the home screen, never
           // through the service worker.
           '**/splash-screens/**',
@@ -86,6 +95,8 @@ export default defineConfig({
           // Cooked at home, not in the forest: a recipe's photo is kept once
           // viewed (the image rule below), not downloaded by every visitor.
           '**/assets/recipes/**',
+          // Huerta's crop photos and type icons: fetched by the garden page alone.
+          '**/huerta/*/*.webp',
         ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
@@ -113,7 +124,6 @@ export default defineConfig({
               ]).catch(() => undefined);
               if (answer) return answer;
               // ignoreSearch: precache keys end in ?__WB_REVISION__=…
-              // @ts-expect-error the service worker's CacheStorage, not Node's
               const shell: Response | undefined = await caches.match(
                 'index.html',
                 { ignoreSearch: true }
@@ -139,6 +149,20 @@ export default defineConfig({
               cacheName: 'ort-runtime-cache',
               expiration: {
                 maxEntries: 6,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // One namespace of one language per file, content-hashed: a new
+          // text is a new URL.
+          {
+            urlPattern: /\/assets\/locales\/.*\.js$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'locales-cache',
+              expiration: {
+                maxEntries: 120,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
               },
               cacheableResponse: { statuses: [0, 200] },
@@ -318,10 +342,10 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
       },
       manifest: {
-        name: 'Funges - Wild Mushroom & Edible Plants Foraging Map',
+        name: 'Funges: foraging map and garden planner',
         short_name: 'Funges',
         description:
-          'Real-time map of wild mushrooms and edible plants using weather and geospatial data.',
+          'Foraging forecasts for wild mushrooms and plants, plus a planner for your vegetable garden. What grows around you and when.',
         theme_color: '#3d7e40',
         background_color: '#ffffff',
         display: 'standalone',
@@ -418,12 +442,9 @@ export default defineConfig({
         ],
       },
     }),
-    Sitemap({
-      hostname: `${hostname}${baseUrl}`,
-      dynamicRoutes: routeFullPaths,
-      // Trailing slashes are added in deploy.yml (see there why).
-      exclude: ['/404'],
-    }),
+    // The indexed pages' own HTML and sitemap.xml (every URL with its slash:
+    // GitHub Pages serves folders, so /species 301s to /species/).
+    seoPages({ origin: hostname, others: routeFullPaths }),
     removeConsole({
       includes: [
         'log',
@@ -506,6 +527,16 @@ export default defineConfig({
           )
             ? 'assets/recipes/[name]-[hash][extname]'
             : 'assets/[name]-[hash][extname]',
+        // Translations in a folder of their own (assets/locales/de-species-…),
+        // so the precache can leave them out.
+        chunkFileNames: chunk => {
+          const locale = chunk.facadeModuleId?.match(
+            /[\\/]i18n[\\/]locales[\\/]([^\\/]+)[\\/]([^\\/]+)\.json$/
+          );
+          return locale
+            ? `assets/locales/${locale[1]}-${locale[2]}-[hash].js`
+            : 'assets/[name]-[hash].js';
+        },
         manualChunks(id) {
           if (id.includes('node_modules/@discourse/heic')) {
             return 'heic-decoder';

@@ -1,5 +1,6 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import {
+  LayoutGrid,
   Map,
   CalendarRange,
   ChefHat,
@@ -7,6 +8,8 @@ import {
   Settings as SettingsIcon,
   ScanSearch,
 } from '@/lib/icons';
+import { currentSpace, visibleSpaces } from '@/lib/spaces';
+import { SpaceNavButton } from '@/components/SpaceSwitcher';
 import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
@@ -39,6 +42,14 @@ const items = [
   { url: IDENTIFY_PATH, icon: ScanSearch, reloadDocument: true },
   { url: `${basePath}recipes`, icon: ChefHat },
   { url: `${basePath}species`, icon: Database },
+  { url: `${basePath}settings`, icon: SettingsIcon },
+];
+// Huerta's own pages; the hub (Settings) is shared and holds the switcher.
+const huertaItems: typeof items = [
+  { url: `${basePath}huerta/map`, icon: Map },
+  { url: `${basePath}huerta/garden-planner`, icon: LayoutGrid },
+  { url: `${basePath}huerta/crops`, icon: Database },
+  { url: `${basePath}huerta/planting-calendar`, icon: CalendarRange },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {
@@ -74,7 +85,22 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       )}
     >
       <ul className='flex justify-around items-center py-3 px-3'>
-        {items.map(item => {
+        {/* First slot: the space switch, a grey squirrel that opens the colour
+            tiles (only while there is more than one space). */}
+        {visibleSpaces().length > 1 && (
+          <li className='flex-1'>
+            <SpaceNavButton
+              className={cn(
+                'flex w-full items-center justify-center rounded-xl px-1 py-2 transition-all duration-base',
+                INACTIVE_ACCENT_CLASS
+              )}
+            />
+          </li>
+        )}
+        {(currentSpace(location.pathname) === 'huerta'
+          ? huertaItems
+          : items
+        ).map(item => {
           const isActive =
             item.url === `${basePath}settings`
               ? location.pathname.startsWith(`${basePath}settings`) ||

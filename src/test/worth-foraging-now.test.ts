@@ -10,6 +10,7 @@ import {
 const species: SpeciesWithTranslations[] = [
   {
     id: 'morel',
+    translationKey: 'morel',
     name: 'Morel',
     scientificName: 'Morchella esculenta',
     category: 'mushroom',
@@ -22,6 +23,7 @@ const species: SpeciesWithTranslations[] = [
   },
   {
     id: 'nettle',
+    translationKey: 'nettle',
     name: 'Nettle',
     scientificName: 'Urtica dioica',
     category: 'plant',
@@ -34,6 +36,7 @@ const species: SpeciesWithTranslations[] = [
   },
   {
     id: 'elderberry',
+    translationKey: 'elderberry',
     name: 'Elderberry',
     scientificName: 'Sambucus nigra',
     category: 'berry',
@@ -259,6 +262,7 @@ describe('worth foraging now recommendations', () => {
       ...species,
       {
         id: 'hidden',
+        translationKey: 'hidden',
         name: 'Hidden',
         scientificName: 'Hidden sp.',
         category: 'mushroom' as const,

@@ -15,5 +15,23 @@
   "data": "Datos",
   "settings": "Configuración",
   "help": "Ayuda",
-  "googlePlay": "Disponible en Google Play"
+  "googlePlay": "Disponible en Google Play",
+  "huertaWeek": "Cultivos",
+  "spaces": {
+    "switch": "Espacio: {{space}}. Cambiar de espacio",
+    "open": "Abrir {{space}}",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Setas y plantas silvestres"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Hortalizas, fruta y hierbas"
+    },
+    "early": "Acceso anticipado"
+  },
+  "huertaMap": "Mapa",
+  "huertaPlanner": "Mi huerto",
+  "huertaYear": "Calendario",
+  "account": "Cuenta"
 }

@@ -1,5 +1,11 @@
-import { createRootRoute, Outlet, useLocation } from '@tanstack/react-router';
-import { useEffect, useRef, useState } from 'react';
+import {
+  createRootRoute,
+  Outlet,
+  redirect,
+  useLocation,
+  useNavigate,
+} from '@tanstack/react-router';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { MotionConfig } from 'framer-motion';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -10,6 +16,9 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { recordPath } from '@/lib/nav-history';
 import { crossesIsolationBoundary } from '@/lib/isolation';
 import { activateUpdate, isOutdated } from '@/lib/pwa';
+import { currentSpace, rememberPath, renamedPath } from '@/lib/spaces';
+import { pathLanguage, stripLanguage } from '@/lib/seo-pages';
+import i18n from '@/i18n';
 
 // Evaluated once per document load: the route this document was served for.
 const DOCUMENT_PATH =
@@ -27,6 +36,10 @@ export const Route = createRootRoute({
   // (blurred, by index.html's view transition) until the new one has drawn.
   beforeLoad: ({ location, preload }) => {
     if (preload) return;
+    // A Huerta page's old path: on to its new one.
+    const renamed = renamedPath(location.pathname);
+    if (renamed !== location.pathname)
+      throw redirect({ href: renamed + location.searchStr, replace: true });
     const pageChanged = location.pathname !== shownPath;
     shownPath = location.pathname;
     if (
@@ -52,14 +65,47 @@ function RootComponent() {
   const location = useLocation();
   recordPath(location.pathname);
 
-  // The map is the one route that owns the viewport (no document scroll).
-  const isMapPage =
-    location.pathname.replace(/\/+$/, '') ===
-    `${import.meta.env.BASE_URL}map`.replace(/\/+$/, '');
-  // The landing page is the other full-bleed route: no sidebar, no padding.
-  const isLandingPage =
-    location.pathname.replace(/\/+$/, '') ===
-    import.meta.env.BASE_URL.replace(/\/+$/, '');
+  // The space's colours hang off <html>, so dialogs and menus portalled out of
+  // the page wear them too; set before paint, so a page never flashes green.
+  const space = currentSpace(stripLanguage(location.pathname));
+  useLayoutEffect(() => {
+    document.documentElement.dataset.space = space;
+  }, [space]);
+  useEffect(() => rememberPath(location.pathname), [location.pathname]);
+
+  // A /de/… page is German; choosing another language there moves to the same
+  // page without the prefix, which then shows the language just chosen.
+  const navigate = useNavigate();
+  useEffect(() => {
+    const moved = (language: string) => {
+      const prefix = pathLanguage(window.location.pathname);
+      if (prefix && !language.startsWith(prefix))
+        void navigate({ to: stripLanguage(window.location.pathname) });
+    };
+    i18n.on('languageChanged', moved);
+    return () => i18n.off('languageChanged', moved);
+  }, [navigate]);
+
+  // The maps (Terra's and Huerta's garden map) own the viewport (no document scroll).
+  const isMapPage = ['map', 'huerta/map'].some(
+    page =>
+      location.pathname.replace(/\/+$/, '') ===
+      `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
+  );
+  // The front pages (the shared one, Terra's and Huerta's, in English and
+  // German) are the other full-bleed routes: no sidebar, no padding.
+  const isLandingPage = [
+    '',
+    'terra',
+    'huerta',
+    'de',
+    'de/terra',
+    'de/huerta',
+  ].some(
+    page =>
+      location.pathname.replace(/\/+$/, '') ===
+      `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
+  );
   const mainRef = useRef<HTMLDivElement>(null);
   const [hideNavbar, setHideNavbar] = useState(false);
   const lastScrollYRef = useRef(0);

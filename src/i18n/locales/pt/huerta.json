@@ -1,0 +1,2385 @@
+{
+  "title": "Culturas",
+  "description": "Cada cultura: se vai para a terra esta semana na sua cidade, como cultivá-la e o que vigiar.",
+  "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
+  "around": "Arredores de {{place}}, {{day}}",
+  "change": "Mudar de lugar",
+  "find": {
+    "placeholder": "Buscar uma cultura",
+    "none": "Nenhuma cultura encontrada",
+    "noneHelp": "Tente outro nome, ou limpe a busca e os filtros.",
+    "clear": "Limpar"
+  },
+  "noPlace": "O Huerta ainda não tem conselhos para este lugar: cobre a Europa e os Estados Unidos continentais.",
+  "loadFailed": "Não foi possível carregar os conselhos. Tente de novo em instantes.",
+  "picker": {
+    "title": "Onde fica a sua horta?",
+    "help": "Use a sua localização ou procure a cidade ou vila mais próxima. Os conselhos valem para a região ao redor.",
+    "locate": "Usar minha localização",
+    "locating": "Procurando você…",
+    "locateFailed": "Não foi possível encontrar a sua localização. Procure a sua cidade.",
+    "search": "Cidade ou vila",
+    "placeholder": "Comece a digitar um nome",
+    "noResults": "Nenhum lugar com esse nome",
+    "searchFailed": "A busca de lugares não está disponível agora. Tente de novo em instantes ou use a sua localização."
+  },
+  "count_one": "{{count}} cultura",
+  "count_other": "{{count}} culturas",
+  "frost": {
+    "none": "Sem geada nos próximos 3 dias",
+    "ground_frost": "Possível geada no solo nos próximos 3 dias: cubra as plantas sensíveis",
+    "frost": "Geada nos próximos 3 dias: proteja as plantas sensíveis",
+    "noneWeek": "Sem geada nos próximos 7 dias"
+  },
+  "week": {
+    "label": "Esta semana",
+    "soil": "Solo",
+    "nights": "Noites",
+    "rain": "Chuva da semana",
+    "water": "Rega necessária",
+    "noWater": "Não precisa",
+    "lastFrost": "Última geada aqui: em geral por volta de {{date}}",
+    "firstFrost": "Primeira geada: em geral por volta de {{date}}",
+    "noFrostDates": "Aqui quase não geia",
+    "later": {
+      "frost": "Possível geada mais adiante na semana: na noite de {{night}}",
+      "ground_frost": "Possível geada no solo mais adiante na semana: na noite de {{night}}"
+    },
+    "todo": {
+      "title": "Para fazer esta semana",
+      "frost": {
+        "frost": "Geada nos próximos 3 dias",
+        "ground_frost": "Geada no solo nos próximos 3 dias",
+        "text": "Cubra {{crops}} nas noites frias."
+      },
+      "laterFrost": {
+        "text": "Tenha cobertura à mão para {{crops}}.",
+        "title": "Possível geada na noite de {{night}}"
+      },
+      "water": {
+        "title": "Regue cerca de {{mm}} L/m² esta semana",
+        "text": "A chuva não repõe o que o sol e o vento levam. Duas boas regas valem mais que um pouco todo dia.",
+        "sandy": "O solo arenoso seca depressa: melhor três ou quatro regas pequenas ao longo da semana.",
+        "clay": "A argila retém a água: uma rega funda, depois espere até os primeiros centímetros secarem."
+      },
+      "rain": {
+        "title": "Chuva esta semana, cerca de {{mm}} mm",
+        "text": "Não precisa regar os canteiros."
+      },
+      "plantNow": {
+        "title": "Do seu plano, prontos para ir para a terra"
+      },
+      "sowAgain": {
+        "title": "{{crop}}: semeie outra fileira",
+        "text": "A última foi há {{weeks}} semanas. Semear de novo mantém a colheita."
+      },
+      "from": {
+        "forecast": "Pela previsão",
+        "plan": "Pelo seu plano",
+        "soil": "Pelo seu solo",
+        "climate": "Do clima do seu local"
+      },
+      "nothing": "Sua horta não precisa de nada de você esta semana.",
+      "openPlanner": "Abrir Minha horta",
+      "stage": {
+        "thin": {
+          "title": "{{crop}}: desbaste as mudas",
+          "text": "Deixe uma a cada {{cm}} cm, para que cada uma tenha espaço para crescer."
+        },
+        "support": {
+          "title": "{{crop}}: coloque suportes",
+          "text": "Estacas, tela ou galhos para subirem, antes que tombem. Variedades anãs dispensam."
+        },
+        "tieTomato": {
+          "title": "{{crop}}: amarre e desbrote",
+          "text": "Amarre a haste à estaca e tire os brotos laterais, uma vez por semana. Variedades de crescimento determinado não precisam de nenhum dos dois."
+        },
+        "earthUp": {
+          "title": "{{crop}}: faça a amontoa",
+          "text": "Puxe terra para junto dos caules, deixando as pontas de fora. Batatas expostas à luz ficam verdes."
+        },
+        "blanch": {
+          "title": "{{crop}}: amontoe os caules",
+          "text": "Puxe terra aos poucos, para caules brancos mais longos."
+        },
+        "net": {
+          "title": "{{crop}}: mantenha sob tela",
+          "text": "Uma tela fina afasta a borboleta-da-couve e os pombos."
+        },
+        "pinchBeans": {
+          "title": "{{crop}}: corte as pontas",
+          "text": "Agora que as primeiras vagens se formam. Isso afasta o pulgão-preto."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}}: corte as pontas",
+          "text": "Logo acima do terceiro par de folhas, para plantas mais cheias e com mais flores."
+        },
+        "feed": {
+          "title": "{{crop}}: adube a cada uma ou duas semanas",
+          "text": "Agora que floresce e forma frutos, um adubo rico em potássio, como o de tomate, mantém a colheita."
+        },
+        "stake": {
+          "title": "{{crop}}: estaqueie os caules",
+          "text": "Firme a terra em volta e amarre os caules altos a uma estaca antes dos ventos de outono."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}}: colheita em cerca de uma semana",
+          "title_other": "{{crop}}: colheita em cerca de {{count}} semanas",
+          "text": "Calculado a partir do calor recebido desde a semeadura ou o plantio."
+        },
+        "ripen": {
+          "title": "{{crop}}: regue menos",
+          "text_one": "Deixe os bulbos amadurecerem. Dá para colher em cerca de uma semana, quando as folhas amarelarem.",
+          "text_other": "Deixe os bulbos amadurecerem. Dá para colher em cerca de {{count}} semanas, quando as folhas amarelarem."
+        },
+        "harvest": {
+          "title": "{{crop}}: hora de colher",
+          "text": "Recebeu o calor necessário desde a semeadura ou o plantio."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}}: calcário no canteiro antes",
+          "text": "Em solo ácido a família da couve pega hérnia-das-crucíferas. O calcário sobe o pH: espalhe algumas semanas antes de plantar, nunca junto com esterco."
+        },
+        "scab": {
+          "title": "{{crops}}: sem calcário este ano",
+          "text": "Em solo alcalino as batatas pegam sarna. Nada de calcário nem esterco fresco, e mantenha a terra úmida enquanto os tubérculos se formam."
+        },
+        "forking": {
+          "title": "{{crops}}: solte a argila",
+          "text": "Na argila pesada as raízes bifurcam. Cave a linha funda e sem pedras, com algum composto, ou cultive num canteiro elevado ou variedades curtas."
+        }
+      },
+      "done": "Feito",
+      "sow": {
+        "title": "{{crop}}: semear esta semana"
+      },
+      "plant": {
+        "title": "{{crop}}: plantar esta semana"
+      },
+      "forgot": {
+        "title": "{{crop}}: previsto para {{date}}",
+        "text": "Já está na terra? Marque para que o Huerta possa acompanhar o crescimento."
+      },
+      "tooLate": {
+        "title": "{{crops}}: agora é tarde",
+        "text": "Escolha outra coisa para os canteiros, ou deixe \"Planejar por mim\" preenchê-los."
+      },
+      "fate": {
+        "lost": "{{crops}}: não vai sobreviver aqui",
+        "soon": "{{crops}}: não passa de {{date}}",
+        "last": "Colha o restante de {{crops}} antes de {{date}}",
+        "frost": "Aqui costuma gear até lá, e eles não aguentam.",
+        "frostNow": "Aqui pode gear em qualquer noite, e eles não aguentam.",
+        "cold": "Até lá as noites aqui ficam frias demais para eles.",
+        "coldNow": "As noites aqui já estão frias demais para eles: não vão crescer.",
+        "winter": "Até lá o inverno aqui fica mais frio do que eles aguentam.",
+        "winterNow": "O inverno aqui já é mais frio do que eles aguentam.",
+        "clear": "Use o canteiro para algo que cresce agora.",
+        "pick": "Colha o que puder antes.",
+        "replace": "Não vão ficar prontos a tempo: use o canteiro para algo que cresce agora."
+      },
+      "over": {
+        "title": "{{crops}}: acabou por este ano?",
+        "text": "Limpe o canteiro e ele fica livre para o que pode entrar depois."
+      },
+      "end": {
+        "harvested": "Colhido",
+        "allPicked": "Tudo colhido",
+        "finished": "Terminou",
+        "dugIn": "Incorporado",
+        "cleared": "Limpo"
+      }
+    },
+    "short": {
+      "soil": "Solo",
+      "nights": "Noites",
+      "rain": "Chuva",
+      "water": "Rega",
+      "lastFrost": "Última geada ~{{date}}",
+      "firstFrost": "Primeira geada ~{{date}}"
+    },
+    "coming": {
+      "title": "Em breve",
+      "ready": "{{crop}}: hora de colher",
+      "sow": "{{crop}}: semear",
+      "plant": "{{crop}}: plantar",
+      "wait": "{{crop}}: {{reason}}",
+      "waiting": "Aguardando",
+      "note": "As datas de colheita são aproximadas, a partir das temperaturas habituais do seu lugar."
+    },
+    "done": {
+      "title": "Feito esta semana",
+      "undo": "Desfazer",
+      "sown": "{{crop}}: semeadura em {{date}}",
+      "planted": "{{crop}}: plantio em {{date}}"
+    },
+    "season": {
+      "title": "Esta temporada",
+      "forget": {
+        "remove": "Remover",
+        "label": "Remover {{crop}} da lista da estação",
+        "ask": "Remover da lista?",
+        "yes": "Sim",
+        "no": "Não"
+      },
+      "entries_one": "{{count}} registro",
+      "entries_other": "{{count}} registros",
+      "harvested": "Entrou em {{from}}, saiu em {{to}}",
+      "lost": "Entrou em {{from}}, perdido em {{to}} · {{why}}",
+      "said": "dissemos {{date}}",
+      "rate": "Como foi: {{crop}}",
+      "rating": {
+        "1": "Fraco",
+        "2": "Bom",
+        "3": "Ótimo"
+      }
+    }
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
+  },
+  "now": {
+    "title": "Semeie ou plante agora",
+    "none": "Nada para semear ou plantar aqui esta semana."
+  },
+  "waiting": {
+    "title": "Ainda não"
+  },
+  "over": {
+    "title": "Tarde demais",
+    "show": "Mostrar todas as {{count}}"
+  },
+  "how": {
+    "sow": "Semear",
+    "plant": "Plantar"
+  },
+  "status": {
+    "now": "Agora",
+    "wait_frost": "Ainda pode gear",
+    "wait_soil": "Solo ainda frio demais",
+    "wait_warm": "Noites ainda frias demais",
+    "too_warm": "Solo quente demais por enquanto",
+    "too_late": "Tarde demais",
+    "not_here": "Não ao ar livre aqui",
+    "wait_autumn": "No outono",
+    "wait_spring": "Na primavera",
+    "wait_days": "Dias demasiado longos"
+  },
+  "crops": {
+    "garlic": "Alho",
+    "broad_beans": "Favas",
+    "lettuce": "Alface",
+    "spinach": "Espinafre",
+    "peas": "Ervilhas",
+    "radish": "Rabanete",
+    "carrot": "Cenoura",
+    "beetroot": "Beterraba",
+    "chard": "Acelga",
+    "kale": "Couve-frisada",
+    "cabbage": "Repolho",
+    "broccoli": "Brócolos",
+    "onion_sets": "Bolbinhos de cebola",
+    "potato": "Batata",
+    "tomato": "Tomate",
+    "pepper": "Pimento",
+    "aubergine": "Beringela",
+    "cucumber": "Pepino",
+    "courgette": "Curgete",
+    "pumpkin": "Abóbora",
+    "melon": "Melão",
+    "green_beans": "Feijão-verde",
+    "sweetcorn": "Milho doce",
+    "basil": "Manjericão",
+    "parsley": "Salsa",
+    "coriander": "Coentro",
+    "sunflower": "Girassol",
+    "marigold": "Tagetes",
+    "sweet_pea": "Ervilha-de-cheiro",
+    "onion": "Cebola de semente",
+    "leek": "Alho-francês",
+    "cauliflower": "Couve-flor",
+    "brussels_sprouts": "Couve-de-bruxelas",
+    "kohlrabi": "Couve-rábano",
+    "rocket": "Rúcula",
+    "lambs_lettuce": "Alface-de-cordeiro",
+    "chicory": "Radicchio e escarola",
+    "fennel": "Funcho",
+    "parsnip": "Pastinaga",
+    "turnip": "Nabo",
+    "celery": "Aipo",
+    "chilli": "Malagueta",
+    "winter_squash": "Abóbora-de-inverno",
+    "watermelon": "Melancia",
+    "strawberry": "Morangos",
+    "asparagus": "Espargo",
+    "rhubarb": "Ruibarbo",
+    "artichoke": "Alcachofra",
+    "dill": "Endro",
+    "chervil": "Cerefólio",
+    "chives": "Cebolinho",
+    "thyme": "Tomilho",
+    "rosemary": "Alecrim",
+    "oregano": "Orégãos",
+    "sage": "Sálvia",
+    "mint": "Hortelã",
+    "tulip": "Tulipas",
+    "daffodil": "Narcisos",
+    "crocus": "Crocos",
+    "calendula": "Calêndula",
+    "nasturtium": "Capuchinha",
+    "zinnia": "Zínia",
+    "cosmos": "Cosmos",
+    "lavender": "Lavanda",
+    "field_beans": "Fava forrageira",
+    "winter_rye": "Centeio",
+    "crimson_clover": "Trevo-encarnado",
+    "phacelia": "Facélia",
+    "white_mustard": "Mostarda-branca"
+  },
+  "kinds": {
+    "all": "Todos",
+    "vegetable": "Hortaliças",
+    "fruit": "Frutas",
+    "herb": "Ervas",
+    "flower": "Flores",
+    "cover": "Adubos verdes"
+  },
+  "sheet": {
+    "sowNow": "Semeie agora",
+    "plantNow": "Plante agora",
+    "week": "Esta semana em {{place}}",
+    "why": {
+      "soilRange": "Solo a {{soil}} °C. Vai bem entre {{min}} e {{max}} °C.",
+      "soilFrom": "Solo a {{soil}} °C. Vai bem a partir de {{min}} °C.",
+      "soilLow": "Solo a {{soil}} °C. Precisa de pelo menos {{min}} °C.",
+      "soilHigh": "Solo a {{soil}} °C. Vai bem abaixo de {{max}} °C.",
+      "nights": "Noites a {{nights}} °C. Precisa de noites acima de {{night}} °C.",
+      "frost": "Aqui ainda é provável que geie.",
+      "late": "Aqui, por enquanto, o momento dele já passou.",
+      "notHere": "Aqui os verões são frescos demais para cultivá-lo ao ar livre.",
+      "autumn": "Aqui vai para a terra no outono.",
+      "spring": "Aqui vai para a terra na primavera.",
+      "warmSeason": "As noites quentes de que precisa ainda não começaram aqui.",
+      "noFrost": "Não é provável que geie antes da colheita.",
+      "hardy": "Aguenta as geadas daqui.",
+      "frostSoon": "Geada nos próximos 3 dias.",
+      "frostLater": "Possível geada na noite de {{night}}.",
+      "longDays": "Os dias estão demasiado longos: semeado agora, espigaria.",
+      "heat": "Agora está calor demais: vai para a terra quando o calor do verão abrandar.",
+      "coldSeason": "Aqui, nesta altura do ano, a terra costuma estar ainda fria demais."
+    },
+    "how": {
+      "sow": "Como semear",
+      "plant": "Como plantar"
+    },
+    "facts": {
+      "depth": "Profundidade",
+      "spacing": "Espaçamento",
+      "place": "Local",
+      "ready": "Colheita",
+      "height": "Altura",
+      "howMany": "Quantas"
+    },
+    "depthCm": "A {{value}} cm",
+    "depthPot": "Na mesma profundidade do vaso",
+    "scatter": "Espalhe ralo e passe o ancinho",
+    "apart": "A {{value}} cm",
+    "apartRows": "A {{value}} cm, fileiras a {{rows}} cm",
+    "sun": {
+      "full": "Sol pleno",
+      "part": "Sol ou meia-sombra"
+    },
+    "ready": {
+      "weeks_one": "Em cerca de {{count}} semana",
+      "weeks_other": "Em cerca de {{count}} semanas",
+      "months_one": "Em cerca de {{count}} mês",
+      "months_other": "Em cerca de {{count}} meses",
+      "flowers_one": "Floresce em cerca de {{count}} semana",
+      "flowers_other": "Floresce em cerca de {{count}} semanas",
+      "cover_one": "Cobre o solo em cerca de {{count}} semana",
+      "cover_other": "Cobre o solo em cerca de {{count}} semanas",
+      "spring_flowers": "Floresce na próxima primavera",
+      "next_year": "Produz a partir do ano que vem",
+      "second_year": "Colhem-se talos a partir do segundo ano",
+      "third_year": "Cortam-se brotos a partir da terceira primavera",
+      "perennial": "Volta todo ano",
+      "next_year_at": "A partir de {{month}}, no ano após plantar",
+      "second_year_at": "Talos a partir de {{month}} do segundo ano",
+      "third_year_at": "Turiões a partir de {{month}} da terceira primavera",
+      "perennial_at": "A partir de {{month}}, todos os anos",
+      "perennial_all": "Todo o ano, todos os anos",
+      "spring_flowers_at": "Floresce a partir de {{month}}, na primavera após plantar"
+    },
+    "source": "Dados de cultivo: RHS, UC ANR e guias de semeadura das empresas de sementes.",
+    "year": "O ano dele em {{place}}"
+  },
+  "grow": {
+    "weather": "Frio, calor e solo",
+    "care": "Cuidados",
+    "goodWith": "Bem ao lado de",
+    "apartFrom": "Longe de",
+    "harvest": {
+      "vegetable": "Colheita e conservação",
+      "fruit": "Colheita e conservação",
+      "herb": "Colheita e conservação",
+      "flower": "Corte e depois da floração",
+      "cover": "Corte e incorporação"
+    },
+    "problems": "O que pode correr mal",
+    "facts": {
+      "frost": "Geada",
+      "warmth": "Calor",
+      "ph": "pH do solo",
+      "water": "Rega",
+      "feed": "Adubação",
+      "pot": "Em vaso",
+      "nextYear": "No próximo ano no seu canteiro"
+    },
+    "frost": {
+      "tender": "Uma geada mata-a.",
+      "half_hardy": "Aguenta geadas ligeiras.",
+      "hardy": "Aguenta geadas fortes.",
+      "to": "Aguenta geada até cerca de {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Germina com o solo a partir de {{min}} °C.",
+      "sowRange": "Germina com o solo entre {{min}} e {{max}} °C.",
+      "plant": "Transplante quando o solo chegar a {{min}} °C.",
+      "nights": "Precisa de noites acima de {{night}} °C."
+    },
+    "ph": {
+      "range": "Melhor com pH de {{from}} a {{to}}.",
+      "acid": "O seu solo é mais ácido do que ela gosta: espalhe calcário agrícola umas semanas antes de plantar.",
+      "alkaline": "O seu solo é mais alcalino do que ela gosta: incorpore bastante composto.",
+      "fits": "O seu solo convém-lhe."
+    },
+    "pot": "Um vaso com pelo menos {{value}} cm de diâmetro.",
+    "noPot": "Melhor na terra.",
+    "perPerson": "{{from}}–{{to}} plantas por pessoa para comer fresco",
+    "perPersonKeep": "{{from}}–{{to}} plantas por pessoa para comer fresco, {{keepFrom}}–{{keepTo}} para guardar também para o inverno",
+    "garlic": {
+      "about": "Cada dente que planta dá uma cabeça nova inteira. Plante os dentes soltos no outono ou no início da primavera. A maioria das variedades precisa de passar frio para se dividir em dentes. É por isso que o alho plantado no outono dá as cabeças maiores.",
+      "water": "O alho precisa de uma rega normal. Regue nos períodos secos da primavera e do início do verão, enquanto as cabeças engordam. Pare quando as folhas começarem a amarelar. Regue sempre a terra e não as folhas.",
+      "feed": "O alho precisa de uma quantidade normal de adubo. Antes de plantar, misture na terra uns dois baldes de estrume bem curtido ou de composto por metro quadrado. Em geral, não precisa de mais nada.",
+      "harvest": "Arranque as cabeças com uma forquilha quando as folhas amarelarem. O alho plantado no outono fica pronto no início do verão, o da primavera um pouco mais tarde. Não espere demasiado, senão as cabeças abrem e guardam-se mal.",
+      "keeps": "Seque as cabeças numa só camada durante duas a quatro semanas, ao sol ou num telheiro arejado. Depois guarde-as num sítio fresco e seco. As variedades de haste dura aguentam quatro a seis meses, as de haste mole até um ano.",
+      "problems": [
+        {
+          "name": "Ferrugem",
+          "fix": "Aparecem nas folhas pintas cor de laranja em relevo, piores com tempo húmido. Deixe espaço entre as plantas e regue a terra, não as folhas. Na colheita, tire as folhas todas do canteiro."
+        },
+        {
+          "name": "Podridão-branca",
+          "fix": "As folhas amarelam e murcham enquanto um bolor branco e fofo cresce na base da cabeça. Não tem cura, por isso arranque as plantas doentes e deite-as ao lixo. Não volte a pôr alho, cebola ou alho-francês nesse canteiro durante muitos anos."
+        },
+        {
+          "name": "Cabeças sem dentes",
+          "fix": "Sai uma cabeça redonda sem dentes, normalmente porque o inverno não foi frio que chegue. Essa cabeça come-se na mesma. Para a próxima, plante no outono."
+        }
+      ],
+      "source": "Cuidados do alho: RHS. Quantos plantar: extensão da Kansas State. pH: University of Minnesota."
+    },
+    "broad_beans": {
+      "about": "As favas são as primeiras vagens do ano, gordas e com grãos grandes e tenros lá dentro. Semeie-as no outono ou do fim do inverno até à primavera. As variedades altas precisam de uma estaca em cada canto da linha, com um cordel à volta. Quando aparecerem as primeiras vagens, corte as pontas das plantas para afastar o pulgão-negro.",
+      "water": "As favas só precisam de uma rega normal. Na terra, dê-lhes uma boa rega quando começarem a florir e outra duas semanas depois. Os vasos secam depressa e precisam de água muitas vezes.",
+      "feed": "As favas precisam de muito pouco adubo. Como todas as leguminosas, deixam azoto na terra, por isso no chão não precisam de adubo nenhum. Em vaso, dê-lhes um adubo líquido rico em potássio de duas em duas semanas, a partir das primeiras flores.",
+      "harvest": "Apanhe as vagens quando estiverem cheias mas com os grãos ainda pequenos. A marca na ponta de cada grão deve estar branca ou verde, não preta. Veja as vagens de baixo de poucos em poucos dias, porque amadurecem depressa.",
+      "keeps": "Coma as favas descascadas pouco depois de as apanhar. Para as guardar mais tempo, escalde-as e congele-as.",
+      "problems": [
+        {
+          "name": "Pulgão-negro",
+          "fix": "No fim da primavera, pequenos pulgões pretos juntam-se nas pontas tenras dos rebentos. Quando se formarem as primeiras vagens, corte as pontas das plantas. Esmague ou lave com água os que sobrarem."
+        },
+        {
+          "name": "Mancha-chocolate",
+          "fix": "Aparecem manchas castanho-escuras nas folhas e nos caules, piores com tempo húmido e em plantas muito juntas. Dê espaço às plantas e não lhes dê adubo com azoto. Depois da colheita, tire as plantas velhas."
+        },
+        {
+          "name": "Ratos",
+          "fix": "As sementes semeadas ao ar livre no outono e no inverno desaparecem, porque os ratos as desenterram e comem. Em vez disso, semeie em vasos num sítio abrigado e depois passe as plantas para a terra."
+        }
+      ],
+      "source": "Cuidados das favas: RHS. pH: extensão da Oregon State University e da University of Connecticut."
+    },
+    "lettuce": {
+      "about": "Na alface de folha solta, vai apanhando umas folhas de cada vez durante semanas. As alfaces de repolho cortam-se inteiras quando o coração está firme. A alface cresce depressa com tempo fresco, mas espiga com o calor. Por isso semeie uma linha curta a cada duas ou três semanas, em vez de tudo de uma vez.",
+      "water": "A alface precisa de muita água, por isso mantenha a terra sempre húmida. Com a secura, as folhas ficam amargas e as plantas espigam, ou seja, deitam um caule de flor. Regue de manhã e não à noite. Assim há menos lesmas e menos bolor.",
+      "feed": "A alface precisa de pouco adubo. Se a terra levou composto antes da sementeira, as alfaces plantadas no chão não precisam de mais nada. Em vaso, dê um adubo líquido universal de duas em duas semanas no verão.",
+      "harvest": "Nas de folha solta, apanhe as folhas de fora quando tiverem uns 10 cm. Também pode cortar a planta toda, deixando um toco de 2,5 cm, para voltar a rebentar. As de repolho cortam-se pela base quando o coração estiver firme. Colha de manhã, quando as folhas estão estaladiças.",
+      "keeps": "As alfaces de folha macia, tipo manteiga, comem-se logo. As do tipo iceberg aguentam mais tempo num saco no frigorífico.",
+      "problems": [
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Aparecem buracos irregulares e rastos de baba, sobretudo nas plantinhas e com tempo húmido. Apanhe as lesmas e os caracóis ao anoitecer e regue de manhã."
+        },
+        {
+          "name": "Espigamento",
+          "fix": "Depois de calor ou de terra seca, sobe do centro um caule alto de flor e as folhas ficam amargas. Regue com regularidade e semeie as alfaces de verão à meia-sombra. Apanhe as plantas antes de ficarem velhas."
+        },
+        {
+          "name": "Míldio",
+          "fix": "Com tempo fresco e húmido, aparecem manchas amarelas e angulosas por cima das folhas, com uma penugem branca por baixo. Deixe espaço entre as plantas para o ar circular e regue a terra, não as folhas. Tire as folhas atacadas."
+        }
+      ],
+      "source": "Cuidados da alface: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Washington State University."
+    },
+    "lambs_lettuce": {
+      "about": "A alface-de-cordeiro é pequena e aguenta bem o frio. Dá folhas suaves no outono, no inverno e no início da primavera, quando há pouca coisa fresca na horta. Cresce devagar e fica rente ao chão, por isso mantenha o canteiro limpo de ervas. Com a terra quente, a semente não nasce. É por isso que se semeia sobretudo no fim do verão e no início do outono.",
+      "water": "A alface-de-cordeiro precisa de uma rega normal. Com tempo seco, regue-a com regularidade, porque a humidade irregular deixa as folhas rijas. Ao ar livre, no inverno, quase nunca é preciso regá-la.",
+      "feed": "Precisa de muito pouco adubo. Qualquer terra razoável chega sem adubo extra, sobretudo se antes lá esteve uma cultura de verão bem adubada.",
+      "harvest": "Corte as plantas inteiras rente à base. Também pode apanhar umas folhas de fora de cada planta. Do centro nascem folhas novas. Nos dias mais amenos, pode ir colhendo durante todo o inverno. Debaixo de uma campânula ou de uma manta térmica, continua a crescer durante mais tempo.",
+      "keeps": "No frigorífico, as folhas aguentam 5 a 7 dias. Lave-as só na altura de as usar.",
+      "problems": [
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantas rasteiras, sobretudo com tempo húmido. Apanhe-os ao anoitecer. Mantenha o canteiro sem ervas, porque é aí que se escondem."
+        },
+        {
+          "name": "Pulgões",
+          "fix": "Aparecem pequenos insetos verdes ou pretos nas folhas novas, que enrolam e ficam fracas. Tire-os com os dedos ou lave-os com um jato de água forte."
+        },
+        {
+          "name": "A semente não nasce",
+          "fix": "Não nasce nada, porque acima de uns 21 °C a semente fica parada à espera. Volte a semear quando o tempo refrescar. Mantenha a terra húmida até aparecerem as plantinhas."
+        }
+      ],
+      "source": "Cuidados da alface-de-cordeiro: RHS e Utah State University. pH e conservação: Utah State University."
+    },
+    "rocket": {
+      "about": "As folhas picantes da rúcula ficam prontas quatro a seis semanas depois de semear. A rúcula comum vive só uma época e floresce depressa, por isso semeie um pouco de poucas em poucas semanas. A rúcula selvagem volta todos os anos e vai dando folhas durante o verão e o outono.",
+      "water": "A rúcula precisa de uma rega normal. Nos períodos secos, mantenha a terra húmida, porque com a terra seca floresce e vai à semente antes do tempo. Com calor, um vaso pode precisar de água todos os dias.",
+      "feed": "A rúcula precisa de muito pouco adubo. Cresce depressa na maior parte das terras e em substrato novo, sem adubo nenhum.",
+      "harvest": "Apanhe umas folhas de cada planta, pouco de cada vez e muitas vezes. Assim continuam a nascer folhas novas. Quando a planta floresce, as folhas ficam rijas e muito picantes. As flores comem-se na salada.",
+      "keeps": "É melhor comê-la depressa. As folhas aguentam uns dias num saco no frigorífico.",
+      "problems": [
+        {
+          "name": "Áltica",
+          "fix": "As folhas ficam cheias de furinhos redondos, sobretudo com tempo quente e seco. Quase sempre o estrago é só de aspeto. Mantenha as plantinhas regadas e cubra-as com rede anti-insetos fina."
+        },
+        {
+          "name": "Espigamento",
+          "fix": "Com tempo quente e seco ou com as plantas muito juntas, os caules de flor sobem cedo. Desbaste as plantinhas e regue bem. Semeie a rúcula de verão à meia-sombra."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantinhas e as plantas novas. Apanhe-os ao anoitecer e proteja as plantinhas com tempo húmido."
+        }
+      ],
+      "source": "Cuidados da rúcula: RHS. pH: extensão da University of Delaware e da Oregon State University."
+    },
+    "spinach": {
+      "about": "O espinafre pode apanhar-se em folha baby cerca de um mês depois de semear ou já grande ao fim de uns dois meses. Gosta de tempo fresco e espiga com o calor e com os dias compridos do verão. Por isso semeie-o na primavera e no fim do verão. Para o verão, escolha uma variedade resistente ao espigamento, que demora a espigar.",
+      "water": "O espinafre precisa de muita água. Regue com regularidade quando o tempo está seco e nunca deixe secar um vaso, senão espiga e vai à semente. Regue de manhã.",
+      "feed": "O espinafre precisa de uma quantidade normal de adubo. Antes de semear, misture na terra composto ou estrume bem curtido. Em terra pobre, espalhe também um adubo completo com o ancinho.",
+      "harvest": "Apanhe umas folhas de fora de cada planta mais ou menos todas as semanas. Assim continuam a nascer folhas novas. Também pode cortar tudo logo acima da base. O espinafre volta a rebentar uma vez. Arranque as plantas que comecem a florir.",
+      "keeps": "O espinafre é melhor fresco, mas aguenta uns dias num saco no frigorífico. Para congelar, escalde as folhas em água a ferver durante 2 minutos. Arrefeça-as em água com gelo e depois embale-as.",
+      "problems": [
+        {
+          "name": "Espigamento",
+          "fix": "Depois de calor, terra seca ou dias compridos, aparece um caule de flor e as folhas ficam amargas. Mantenha a terra húmida e semeie variedades resistentes ao espigamento. Arranque as plantas que já começaram a florir."
+        },
+        {
+          "name": "Míldio",
+          "fix": "Com tempo fresco e húmido, aparecem manchas amarelas nas folhas, com uma penugem cinzento-arroxeada por baixo. Desbaste as plantas para o ar circular e regue de manhã. Tire as folhas atacadas."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "As lesmas e os caracóis comem as folhas novas e tenras. Apanhe-os ao anoitecer e regue de manhã. Mantenha também as ervas daninhas controladas."
+        }
+      ],
+      "source": "Cuidados do espinafre: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Washington State University. Congelação: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "peas": {
+      "about": "Há ervilhas para descascar. Outras, como a ervilha-torta, comem-se com vagem e tudo. Semeie a partir do início da primavera. Tirando as variedades mais baixinhas, todas trepam com pequenas gavinhas enroladas, por isso ponha-lhes rede ou ramos desde o início.",
+      "water": "As ervilhas precisam de uma rega normal. Dê-lhes uma boa rega quando começarem a florir e outra duas semanas depois, para as vagens encherem. Regue a terra e não as folhas. Os vasos precisam de rega frequente.",
+      "feed": "As ervilhas precisam de pouco adubo. Fazem o seu próprio azoto, por isso na terra não precisam de adubo nenhum. Em vaso, dê um adubo líquido rico em potássio de duas em duas semanas, a partir das primeiras flores.",
+      "harvest": "Apanhe as ervilhas de descascar quando as vagens estiverem bem cheias. As de comer com vagem apanham-se com uns 7,5 cm. Comece por baixo e colha de poucos em poucos dias, senão a planta deixa de dar vagens novas.",
+      "keeps": "As ervilhas perdem depressa a doçura. Coma-as no próprio dia em que as apanha ou escalde-as e congele-as logo a seguir.",
+      "problems": [
+        {
+          "name": "Traça-da-ervilha",
+          "fix": "Encontra pequenas lagartas dentro das vagens, muitas vezes só quando as descasca. A traça voa no início do verão, por isso as sementeiras muito cedo e as tardias escapam-lhe. Uma rede anti-insetos fina não a deixa entrar."
+        },
+        {
+          "name": "Oídio",
+          "fix": "Um pó branco cobre as folhas, sobretudo com tempo seco no fim do verão. Mantenha a terra húmida e deixe espaço entre as linhas. Arranque as plantas que já acabaram."
+        },
+        {
+          "name": "Ratos e pássaros",
+          "fix": "Os ratos desenterram as sementes e os pombos comem as plantas novas. Semeie em vasos num sítio abrigado e proteja as linhas com rede."
+        }
+      ],
+      "source": "Cuidados da ervilha: RHS. Quantas plantar: extensão da Kansas State. pH: University of Minnesota."
+    },
+    "radish": {
+      "about": "Na horta, não há raiz mais rápida. O rabanete é estaladiço, picante e fica pronto quatro a seis semanas depois de semear. Para ter sempre, semeie uma linha curta de duas em duas semanas. As sementeiras da primavera e do fim do verão correm melhor, porque o calor do verão faz a planta florir e a raiz ficar muito picante. Cabe bem nos espaços entre legumes mais lentos.",
+      "water": "O rabanete precisa de uma rega normal. O importante é regar sempre por igual, para a raiz crescer depressa e ficar suave. Com a terra seca, fica lenhoso e picante. Uma grande rega depois de um período seco racha-o.",
+      "feed": "O rabanete não precisa de adubo nenhum. Cresce tão depressa que a terra normal da horta chega.",
+      "harvest": "Arranque alguns de cada vez quando a raiz tiver uns 2,5 cm de largura. Se os deixar na terra, ficam depressa lenhosos, amargos e muito picantes.",
+      "keeps": "Corte as folhas e a pontinha fina da raiz. Num saco de plástico no frigorífico, aguentam até um mês.",
+      "problems": [
+        {
+          "name": "Áltica",
+          "fix": "Aparecem furinhos redondos nas folhas, sobretudo com tempo quente e seco. Normalmente o estrago é só de aspeto. Mantenha as plantinhas regadas e cubra-as com rede anti-insetos fina."
+        },
+        {
+          "name": "Espigamento",
+          "fix": "Com tempo quente e seco, a planta deita um caule de flor e a raiz deixa de engrossar. Semeie na primavera e no fim do verão e não deixe de regar. Arranque as plantas que florirem, mas pode comer as vagens novas delas."
+        },
+        {
+          "name": "Raízes rachadas ou lenhosas",
+          "fix": "As raízes racham quando a rega é irregular e ficam lenhosas quando ficam velhas. Regue com regularidade e apanhe-as com uns 2,5 cm de largura. Os rabanetes rachados comem-se na mesma."
+        }
+      ],
+      "source": "Cuidados do rabanete: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
+    },
+    "carrot": {
+      "about": "A cenoura precisa de terra solta e sem pedras. Pedras, torrões e estrume fresco fazem a raiz dividir-se em várias pernas. Semeie rala, diretamente no sítio onde as cenouras vão ficar. As plantinhas são pequenas e lentas ao início, por isso mantenha a linha limpa de ervas.",
+      "water": "A cenoura aguenta bem a secura e raramente precisa de rega. Numa seca longa, dê-lhe uma boa rega de duas em duas semanas. Conta mais regar por igual do que regar muito. Uma rega forte depois de um período seco racha as raízes.",
+      "feed": "A cenoura não precisa de adubo. Não enterre estrume fresco nem composto logo antes de semear, porque faz as raízes bifurcar. Prefira uma terra que foi estrumada para a cultura anterior.",
+      "harvest": "Arranque as cenouras logo que tenham tamanho para usar. Solte primeiro a terra com uma forquilha, para não se partirem. As raízes muito grandes perdem sabor. Quando desbastar, ou seja, arrancar as plantinhas a mais, mexa o menos possível nas folhas. O cheiro delas atrai a mosca-da-cenoura.",
+      "keeps": "Corte as folhas a cerca de 1 cm. Num saco furado no frigorífico, aguentam 2 a 4 meses. Numa caixa com areia húmida num sítio fresco, aguentam o mesmo tempo. As variedades tardias também podem ficar na terra, debaixo de palha, até precisar delas.",
+      "problems": [
+        {
+          "name": "Mosca-da-cenoura",
+          "fix": "Pequenas larvas abrem galerias castanho-ferrugem nas raízes. Cubra a cultura toda com rede anti-insetos fina desde o dia em que semeia."
+        },
+        {
+          "name": "Raízes bifurcadas",
+          "fix": "Em terra com pedras, torrões ou estrume recente, as raízes dividem-se em várias pernas. Cave bem o canteiro e tire as pedras. Ou então semeie variedades curtas e redondas."
+        },
+        {
+          "name": "Raízes rachadas",
+          "fix": "As raízes racham ao comprido quando chove muito ou se rega muito depois de um período seco. Nas secas longas, regue a fundo e com regularidade."
+        }
+      ],
+      "source": "Cuidados da cenoura: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Tamanho do vaso: University of Illinois. Conservação: University of Missouri."
+    },
+    "parsnip": {
+      "about": "A pastinaga fica na terra da primavera até ao inverno. Depois da geada fica mais doce. Compre semente nova todos os anos, porque a semente velha nasce mal. Mesmo a nova leva duas a quatro semanas a aparecer. Ao sol, as folhas podem fazer bolhas na pele, por isso use luvas e mangas compridas quando mondar.",
+      "water": "Depois de pegar, a pastinaga aguenta bem a secura. Até lá, regue as plantas novas quando o tempo estiver seco. Depois disso, as raízes fundas safam-se sozinhas. Mas mantenha a humidade regular, porque muita água de repente, depois de uma seca, racha as raízes.",
+      "feed": "A pastinaga precisa de muito pouco. Não a adube. Semeie-a num canteiro que foi estrumado para uma cultura anterior, porque o estrume ou o composto frescos fazem as raízes bifurcar.",
+      "harvest": "Arranque as raízes a partir do outono, quando as folhas secarem, de preferência depois da primeira geada forte. As raízes são compridas, por isso solte primeiro a terra bem fundo com uma forquilha. Marque a fila para a encontrar no inverno.",
+      "keeps": "Durante o inverno, o melhor sítio para elas é a própria terra. Antes das geadas fortes, arranque umas quantas a mais ou cubra a fila com palha. Depois de arrancadas, aguentam 2 a 4 meses no frigorífico, num saco com furos.",
+      "problems": [
+        {
+          "name": "Cancro",
+          "fix": "Aparecem manchas ásperas, castanho-alaranjadas ou pretas, no topo da raiz, muitas vezes onde ela se feriu. Cultive variedades resistentes. Tenha cuidado para não ferir as raízes quando sachar."
+        },
+        {
+          "name": "Mosca-da-cenoura",
+          "fix": "Umas larvas pequenas abrem galerias cor de ferrugem nas raízes. Cubra a cultura com rede anti-insetos fina. Não semeie onde houve cenouras ou pastinagas há pouco tempo."
+        },
+        {
+          "name": "Falhas na fila",
+          "fix": "As falhas na fila vêm de semente velha ou de terra fria e encharcada. Use semente nova e espere que a terra aqueça. Ponha algumas sementes em cada sítio e deixe ficar a mais forte."
+        }
+      ],
+      "source": "Cuidados da pastinaga: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
+    },
+    "beetroot": {
+      "about": "A beterraba dá raízes doces e folhas novas para saladas. Cada semente é na verdade um pequeno cacho que dá várias plantinhas. Arranque cedo as que estão a mais ou deixe-as crescer juntas em pequenos grupos, para ter beterrabas mini. Semeie um pouco a cada poucas semanas, da primavera até meio do verão. As raízes das sementeiras de verão são as que se guardam.",
+      "water": "A beterraba precisa de uma rega normal. Regue as plantinhas nos períodos secos. Depois de bem instaladas, só precisam de água a cada 10 a 14 dias, se o tempo estiver seco. Pouca água deixa a raiz lenhosa. A rega irregular racha-a. Água a mais dá folha em vez de raiz.",
+      "feed": "A beterraba precisa de uma quantidade normal de adubo. Uma terra melhorada com composto não precisa de mais nada. Se as plantas crescerem mal, dê-lhes um adubo líquido rico em azoto. Tire as ervas daninhas, porque lhe roubam alimento e água.",
+      "harvest": "Quando as raízes chegarem ao tamanho de uma bola de golfe, arranque uma sim, outra não. As outras ficam a crescer. Não deixe nenhuma passar dos 7 cm de largura. Torça as folhas em vez de as cortar, para a raiz não sangrar.",
+      "keeps": "Torça as folhas a 2,5 cm da raiz. As raízes aguentam 2 a 4 meses num saco furado no frigorífico. Em caixas com areia seca, numa arrecadação fresca, aguentam o mesmo tempo.",
+      "problems": [
+        {
+          "name": "Espigamento",
+          "fix": "Depois de tempo quente e seco ou de uma sementeira muito cedo e com frio, a planta floresce em vez de engrossar a raiz. Escolha variedades resistentes ao espigamento e não semeie cedo demais."
+        },
+        {
+          "name": "Larva-mineira",
+          "fix": "Aparecem manchas castanho-claras onde pequenas larvas comem a folha por dentro. Tire as folhas afetadas. A raiz raramente sofre."
+        },
+        {
+          "name": "Míldio",
+          "fix": "Com tempo húmido, aparecem manchas amarelo-claras nas folhas, com bolor cinzento-arroxeado por baixo. Tire as folhas afetadas e deixe espaço entre as plantas para o ar circular. Regue a terra e não as folhas."
+        }
+      ],
+      "source": "Cuidados da beterraba: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
+    },
+    "turnip": {
+      "about": "O nabo dá raízes redondas e folhas novas e tenras, as nabiças. Os nabos temporãos ficam prontos em cerca de seis semanas. Na primavera, semeie pouco de cada vez e muitas vezes. Volte a semear no fim do verão para ter nabos no outono e no inverno. Precisam de humidade constante. Em terra seca, as raízes ficam pequenas e lenhosas e as plantas florescem cedo.",
+      "water": "Os nabos dão-se bem com uma rega normal. Com tempo seco, regue para as raízes crescerem depressa e ficarem tenras. Um vaso seca depressa, por isso no verão regue-o muitas vezes.",
+      "feed": "Precisam de pouco adubo. Basta uma terra melhorada com composto ou estrume bem curtido, de preferência enterrado no outono anterior. Não é preciso mais adubo.",
+      "harvest": "Arranque os nabos temporãos do tamanho de uma bola de golfe para comer crus ou do tamanho de uma bola de ténis para cozinhar. Maiores do que isso ficam lenhosos e amargos. As folhas novas, até 15 cm, cozinham-se como os espinafres.",
+      "keeps": "Primeiro, tire as folhas torcendo-as. Os nabos de outono aguentam várias semanas em caixas com areia húmida, num sítio fresco e sem geada. Em zonas de clima ameno, pode deixá-los na terra debaixo de uma manta térmica.",
+      "problems": [
+        {
+          "name": "Mosca-da-couve",
+          "fix": "As plantas novas murcham porque umas larvas brancas e pequenas abrem galerias nas raízes. Cubra a cultura com rede anti-insetos fina desde o dia em que semear."
+        },
+        {
+          "name": "Hérnia da couve",
+          "fix": "As raízes ficam inchadas e deformadas e as plantas murcham nos dias quentes. A doença fica no solo durante muitos anos. Junte calcário à terra ácida e não cultive nabos nem outras couves onde ela apareceu."
+        },
+        {
+          "name": "Lesmas",
+          "fix": "As plantinhas são comidas durante a noite e veem-se rastos de baba. Proteja as plantas novas, sobretudo com tempo húmido."
+        }
+      ],
+      "source": "Cuidados do nabo: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland."
+    },
+    "chard": {
+      "about": "A acelga tem folhas grandes em talos grossos brancos, vermelhos ou amarelos. Apanha-se do verão até chegarem os frios e outra vez na primavera. Uma só sementeira dá durante meses. Também espiga mais tarde do que o espinafre. Por isso é das hortaliças de folha mais fáceis.",
+      "water": "A acelga precisa de uma rega normal. Regue as plantas novas com regularidade até pegarem. Depois aguenta períodos secos curtos, mas nos longos tem de ser regada. Em vaso, regue sempre que o substrato começar a secar.",
+      "feed": "A acelga precisa de pouco adubo. Normalmente nem é preciso adubar. Dá-se bem na maior parte das terras e em substrato novo.",
+      "harvest": "Corte as folhas de fora pela base, com o talo, e deixe o centro continuar a crescer. As folhas pequenas e novas podem ir cruas para a salada. As maiores cozinham-se como o espinafre, com os talos um bocadinho mais tempo.",
+      "keeps": "As folhas aguentam uns dias no frigorífico. Para congelar, escalde-as 2 minutos em água a ferver, arrefeça-as em água com gelo e embale-as.",
+      "problems": [
+        {
+          "name": "Larva-mineira",
+          "fix": "Aparecem manchas castanho-claras onde pequenas larvas abrem galerias dentro da folha. Tire as folhas afetadas e deite-as ao lixo. Uma rede anti-insetos fina mantém a mosca afastada."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Aparecem buracos nas plantas novas, sobretudo com tempo húmido. Apanhe as lesmas e os caracóis ao anoitecer e proteja as plantinhas."
+        },
+        {
+          "name": "Míldio",
+          "fix": "Com tempo húmido e plantas muito juntas, aparecem manchas claras com uma penugem cinzenta por baixo. Deixe bom espaço entre as plantas e tire as folhas afetadas."
+        }
+      ],
+      "source": "Cuidados da acelga: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: Washington State University. Congelação: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "chicory": {
+      "about": "Estas saladas de folha amarga são todas da mesma família. O radicchio forma uma cabeça vermelha e apertada. A chicória pão-de-açúcar faz um coração verde e alto. A escarola e a endívia frisada fazem um tufo solto de folhas. Tape-as da luz e ficam mais suaves. Semeadas no início do verão, dão folhas do fim do verão até ao outono. Se as semear ao ar livre cedo demais na primavera, tendem a espigar e florir.",
+      "water": "Estas saladas precisam de uma rega normal. Com tempo seco, regue bem, porque a terra seca deixa as folhas mais amargas e faz as plantas florir cedo. Mantenha o canteiro sem ervas, para nada lhes roubar a água.",
+      "feed": "Precisam de pouco adubo. Na terra, normalmente não precisam de nenhum. Em vaso ou em terra leve, dê-lhes um adubo líquido universal de duas em duas semanas, no verão.",
+      "harvest": "Corte as cabeças de radicchio e de pão-de-açúcar rente à base, quando estiverem firmes. O pé que fica muitas vezes rebenta e dá uma segunda cabeça, mais pequena. Para a escarola ficar mais suave, tape-lhe o coração, bem seco, com um prato ou um balde durante umas duas semanas. Depois corte-a e use-a logo.",
+      "keeps": "As cabeças aguentam vários dias no frigorífico. Guarde no escuro os corações que tapou, já brancos, porque a luz volta a pô-los verdes e amargos.",
+      "problems": [
+        {
+          "name": "Espigar",
+          "fix": "As hastes da flor sobem depois de uns dias de frio com as plantas ainda novas ou com calor e secura. Não semeie ao ar livre cedo demais e regue nos períodos secos. Para as sementeiras mais cedo, escolha variedades resistentes ao espigamento."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantinhas e escondem-se debaixo do que põe por cima da escarola. Espreite lá por baixo de poucos em poucos dias e tire-os."
+        },
+        {
+          "name": "Coração podre",
+          "fix": "As folhas de dentro apodrecem quando o coração fica molhado debaixo da cobertura. Tape só plantas secas e poucas de cada vez. Vá vê-las muitas vezes."
+        }
+      ],
+      "source": "Cuidados do radicchio e da escarola: RHS. Quantas plantar: extensão da University of Missouri. pH: University of Arkansas."
+    },
+    "kale": {
+      "about": "A couve-frisada vai dando folhas do outono até ao fim do inverno. Com a geada, as folhas ficam mais doces. É a mais rústica e a menos esquisita de todas as couves. Se a proteger das lagartas e dos pombos, cada planta dá muitas colheitas.",
+      "water": "A couve-frisada precisa de uma rega normal. Regue as plantas novas com regularidade para a terra nunca secar. Depois de pegarem, regue só nas secas longas. Em vaso, precisa de rega regular no verão.",
+      "feed": "A couve-frisada precisa de uma quantidade normal de adubo. Plante-a numa terra onde se enterrou composto. Só a adube em terra pobre ou em vaso. Aí, um adubo rico em azoto dá-lhe um empurrão.",
+      "harvest": "Apanhe duas ou três folhas de baixo de cada planta de cada vez e vá subindo pelo caule. Deixe o topo continuar a crescer. Apanhando com regularidade, continuam a sair folhas novas até à primavera.",
+      "keeps": "As folhas apanhadas aguentam uns dias no frigorífico. Mas as plantas ficam na horta o inverno todo, por isso apanhe só o que precisa. Para congelar, escalde as folhas 2 minutos e arrefeça-as em água com gelo.",
+      "problems": [
+        {
+          "name": "Lagartas",
+          "fix": "Do início do verão ao outono, vê buracos nas folhas e lagartas verdes. Cubra as plantas com rede anti-insetos fina desde o dia em que as planta. Tire os grupinhos de ovos amarelos que encontrar debaixo das folhas."
+        },
+        {
+          "name": "Pulgão-da-couve",
+          "fix": "Nas folhas novas juntam-se grupos de pulgões cinzentos com ar de cera, que fazem as folhas enrolar e estragar-se. Esmague ou lave cedo os grupos pequenos. Tire as folhas muito atacadas."
+        },
+        {
+          "name": "Pombos",
+          "fix": "No inverno, os pombos rasgam as folhas até ficarem só os talos e as nervuras. Cubra as plantas com uma rede assente em arcos ou canas, sem tocar nas folhas."
+        }
+      ],
+      "source": "Cuidados da couve-frisada: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Washington State University. Congelação: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "cabbage": {
+      "about": "Há variedades de primavera, de verão, de outono e de inverno, por isso pode cortar repolho quase todo o ano. Gosta de terra firme e rica. Proteja-o das lagartas, dos pombos e da mosca-da-couve. Não o plante onde houve couves de qualquer tipo nos últimos dois anos.",
+      "water": "O repolho precisa de uma rega normal. Regue as plantas novas com regularidade. Depois de pegarem, dê-lhes uma boa rega mais ou menos de 10 em 10 dias nos períodos secos. Regue mais quando as cabeças começarem a formar-se. Uma camada de composto por cima da terra mantém-na húmida.",
+      "feed": "O repolho precisa de terra rica e de muito adubo. Enterre composto no outono antes da plantação. Em terra pobre, dê um adubo rico em azoto quando as plantas já estiverem instaladas e antes de começarem a fazer cabeça.",
+      "harvest": "Quando a cabeça estiver firme, corte-a logo acima do chão com uma faca afiada. Nos repolhos de primavera e de verão, faça uma cruz pouco funda no toco que fica. Muitas vezes nasce uma segunda cabeça, mais pequena.",
+      "keeps": "Uma cabeça cortada aguenta pelo menos uma semana no frigorífico. Os repolhos de inverno guardam-se meses num sítio fresco, seco e sem geada. Ou então deixe-os na terra até precisar deles.",
+      "problems": [
+        {
+          "name": "Lagartas",
+          "fix": "Do início do verão ao outono, vê buracos nas folhas e lagartas verdes. Cubra as plantas com rede anti-insetos fina desde o dia em que as planta. Tire os grupinhos de ovos amarelos que encontrar debaixo das folhas."
+        },
+        {
+          "name": "Mosca-da-couve",
+          "fix": "As plantas novas murcham e morrem, porque larvas brancas lhes comem as raízes. Cubra as plantas acabadas de pôr com rede anti-insetos fina, bem presa ao chão. Mude a cultura de sítio todos os anos."
+        },
+        {
+          "name": "Hérnia-da-couve",
+          "fix": "As plantas ficam pequenas e murcham nos dias quentes, com as raízes inchadas e cheias de nós. Não tem cura e fica anos na terra, por isso corrija a terra ácida com cal e mude a cultura de sítio todos os anos. Crie as plantas em vasos para irem para a terra com raízes fortes ou escolha variedades resistentes."
+        }
+      ],
+      "source": "Cuidados e conservação do repolho: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Washington State University."
+    },
+    "cauliflower": {
+      "about": "Cada planta faz uma só cabeça branca, no meio. A couve-flor é a mais esquisita da família das couves. Qualquer coisa que a atrase, como a terra seca, o chão solto ou uma plantação tardia, dá cabeças pequenas que se formam cedo demais. Por isso mantenha-a sempre a crescer, sem paragens. Em vaso, cultive uma variedade mini.",
+      "water": "A couve-flor precisa de muita água. Mantenha a terra sempre húmida mas nunca encharcada, sobretudo quando as cabeças se estão a formar. Uma cobertura no solo guarda a humidade. Um vaso precisa de água sempre que o substrato comece a secar.",
+      "feed": "A couve-flor precisa de terra rica. Enterre composto antes de plantar. Em terra pobre, dê às plantas novas um adubo rico em azoto antes de as cabeças se formarem.",
+      "harvest": "Corte a cabeça com umas folhas quando estiver firme, antes de começar a abrir. Com o sol de verão, dobre umas folhas por cima da cabeça para ela ficar branca. No inverno, ate-as por cima para a proteger das geadas fortes.",
+      "keeps": "É melhor comê-la fresca. Com algumas folhas, aguenta vários dias no frigorífico. Também pode congelar os raminhos depois de os passar por água a ferver.",
+      "problems": [
+        {
+          "name": "Cabeças pequenas",
+          "fix": "Formam-se cabeças pequenas cedo demais, depois de alguma coisa ter atrasado a planta. Plante a tempo em chão firme e regue sempre por igual."
+        },
+        {
+          "name": "Hérnia-da-couve",
+          "fix": "As plantas ficam pequenas, murcham nos dias quentes e têm as raízes inchadas e cheias de nós. Não tem cura e fica anos na terra, por isso corrija a terra ácida com cal até chegar a um pH de cerca de 6,5. Mude estas culturas de canteiro todos os anos e crie as plantas em vasos, para irem para a terra com raízes fortes."
+        },
+        {
+          "name": "Lagarta-da-couve",
+          "fix": "Do início do verão ao outono, aparecem buracos nas folhas e lagartas verdes. Cubra as plantas com rede anti-insetos fina desde o dia em que as planta. Tire os grupinhos de ovos amarelos que encontrar debaixo das folhas."
+        }
+      ],
+      "source": "Cuidados e conservação da couve-flor: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: University of Minnesota."
+    },
+    "broccoli": {
+      "about": "O que se come nos brócolos é uma cabeça de botões de flor verdes. Depois de cortar a cabeça principal, os rebentos laterais vão saindo durante semanas. Colha antes de os botões abrirem em flores amarelas, o que acontece depressa com calor. Os brócolos de rebentos são um tipo mais rijo, que passa o inverno e dá colheita na primavera.",
+      "water": "Os brócolos precisam de uma rega normal. Regue as plantas novas com regularidade até pegarem. Depois, regue nos períodos secos. Se pararem de crescer, as plantas florescem cedo. Uma camada de composto por cima da terra mantém-na húmida.",
+      "feed": "Os brócolos precisam de terra rica e de muito adubo. Enterre composto ou estrume antes de plantar. Se a terra for pobre ou as plantas crescerem devagar, dê-lhes um adubo rico em azoto quando tiverem uns 20 cm.",
+      "harvest": "Corte a cabeça principal com um bocado de caule, enquanto está firme e com os botões ainda fechados. Depois vá vendo de poucos em poucos dias e corte os rebentos laterais antes de florirem. Apanhando com regularidade, continuam a sair até dois meses.",
+      "keeps": "Os brócolos aguentam uns dias no frigorífico. Escaldados, congelam bem.",
+      "problems": [
+        {
+          "name": "Floração precoce",
+          "fix": "Com calor ou quando as plantas param de crescer uns tempos, as cabeças ficam pequenas e abrem em flores amarelas. Regue nos períodos secos e, onde os verões são quentes, escolha variedades resistentes ao espigamento, que demoram a florir. Corte as cabeças logo que estejam prontas."
+        },
+        {
+          "name": "Lagartas",
+          "fix": "Do início do verão ao outono, vê buracos nas folhas e lagartas verdes. Cubra as plantas com rede anti-insetos fina desde o dia em que as planta. Tire os grupinhos de ovos amarelos que encontrar debaixo das folhas."
+        },
+        {
+          "name": "Pombos",
+          "fix": "Os pombos rasgam as folhas até ficarem só os talos e as nervuras. Cubra as plantas com uma rede assente em arcos ou canas, sem tocar nas folhas."
+        }
+      ],
+      "source": "Cuidados e conservação dos brócolos: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: Washington State University. Tamanho do vaso: Texas A&M AgriLife."
+    },
+    "brussels_sprouts": {
+      "about": "As couves-de-bruxelas crescem ao longo do caule alto e apanham-se no outono e no inverno. Depois da geada ficam mais doces. As plantas ficam muito tempo no chão e precisam de terra firme. Calque a terra antes de plantar e aperte bem cada planta, senão as couvinhas ficam soltas.",
+      "water": "As couves-de-bruxelas precisam de uma rega normal. Regue as plantas novas com regularidade para a terra nunca secar. Depois de pegarem, regue só com tempo seco. Uma cobertura grossa no solo mantém a terra húmida.",
+      "feed": "As couves-de-bruxelas precisam de terra rica. Enterre composto no outono anterior. Se a terra for pobre ou as plantas crescerem devagar, dê um adubo rico em azoto entre o início e meados do verão.",
+      "harvest": "Comece pelas couvinhas de baixo, quando estiverem firmes e do tamanho de uma noz. Parta-as com um puxão para baixo e vá subindo pelo caule. Quando acabarem as couvinhas, cozinhe o topo da planta como grelos.",
+      "keeps": "Um caule inteiro, depois de cortado, aguenta uns dias com o pé em água ou pendurado num telheiro fresco e sem geada. Tire as couvinhas à medida que precisar. Também se podem congelar, depois de passadas por água a ferver.",
+      "problems": [
+        {
+          "name": "Couvinhas abertas",
+          "fix": "Com a terra solta, as couvinhas ficam abertas e cheias de folhas, em vez de bolinhas apertadas. Calque a terra antes de plantar e chegue terra aos caules no fim do verão. Nos sítios com vento, ponha tutores nas plantas altas."
+        },
+        {
+          "name": "Pulgão-cinzento",
+          "fix": "Juntam-se pulgões cinzentos, com ar de cera, nas folhas e dentro das couvinhas. Esmague ou lave cedo os grupos pequenos. Tire as folhas muito atacadas."
+        },
+        {
+          "name": "Hérnia-da-couve",
+          "fix": "As plantas ficam pequenas e murcham nos dias quentes, com as raízes inchadas e cheias de nós. Não tem cura e fica anos na terra, por isso corrija a terra ácida com cal até chegar a um pH de pelo menos 6,5. Mude estas culturas de canteiro todos os anos e crie as plantas em vasos, para irem para a terra com raízes fortes."
+        }
+      ],
+      "source": "Cuidados e conservação da couve-de-bruxelas: RHS. Quantas plantar: extensão da Kansas State. pH: University of Georgia. Congelação: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "kohlrabi": {
+      "about": "O que se come na couve-rábano é o caule engrossado, uma bola estaladiça logo acima da terra. Sabe a uma couve suave e doce. Cresce depressa, por isso semeie uma linha curta a cada poucas semanas, da primavera ao fim do verão, em vez de tudo de uma vez. Apanhe-a nova, porque uma bola que cresce demais fica lenhosa.",
+      "water": "A couve-rábano precisa de uma rega normal. Mantenha a terra húmida por igual, porque a secura atrasa o crescimento e endurece as bolas. Regue as plantas novas com regularidade até estarem bem enraizadas.",
+      "feed": "A couve-rábano precisa de uma quantidade normal de adubo. Enterre composto antes de semear e ponha uma cobertura no solo quando as plantas já estiverem a crescer. Precisa de menos azoto do que as outras couves, por isso não é preciso dar mais adubo.",
+      "harvest": "Corte o caule por baixo da bola quando ela tiver entre o tamanho de uma bola de golfe e o de uma bola de ténis. As folhas novas cozinham-se como a couve-frisada.",
+      "keeps": "Corte as folhas e a raiz. Num saco de plástico no frigorífico, aguenta 2 a 4 semanas.",
+      "problems": [
+        {
+          "name": "Lagarta-da-couve",
+          "fix": "Lagartas verdes fazem buracos nas folhas. Cubra as plantas com rede anti-insetos fina. Ou então procure ovos e lagartas debaixo das folhas e tire-os à mão."
+        },
+        {
+          "name": "Áltica",
+          "fix": "Com tempo quente e seco, as folhas novas ficam cheias de furinhos redondos. Mantenha as plantinhas regadas e cubra-as com rede fina até estarem grandes e a crescer com força."
+        },
+        {
+          "name": "Bolas lenhosas",
+          "fix": "Depois de tempo quente e seco ou de uma colheita tardia, a polpa fica dura e cheia de fios. Regue nos períodos secos e apanhe antes de a bola passar o tamanho de uma bola de ténis."
+        }
+      ],
+      "source": "Cuidados da couve-rábano: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
+    },
+    "onion_sets": {
+      "about": "Os bolbinhos são cebolas pequenas criadas no ano anterior. Plantam-se e engordam até ficarem cebolas de tamanho normal. É a maneira mais fácil de cultivar cebolas. Enterre cada um com a ponta de fora e calque a terra, para os pássaros não os arrancarem.",
+      "water": "As cebolas precisam de uma rega normal. Regue nas secas longas, sobretudo enquanto as plantas são novas. Pare quando os bolbos tiverem engordado, a meio do verão. Com regas tardias, as cebolas guardam-se menos tempo.",
+      "feed": "As cebolas precisam de uma quantidade normal de adubo. Composto enterrado antes de plantar costuma chegar. Em terra pobre, dê aos bolbinhos plantados no outono um adubo rico em azoto no fim do inverno.",
+      "harvest": "Quando as folhas amarelarem e tombarem, arranque as cebolas antes de as folhas secarem de todo. Isto é de junho a julho para os bolbinhos de outono e de julho a outubro para os de primavera. Seque-as ao sol durante cerca de duas semanas.",
+      "keeps": "Guarde as cebolas secas em redes ou em caixas de ripas, num sítio fresco, seco, arejado e com luz. No escuro começam a grelar. As cebolas plantadas no outono aguentam até ao início do inverno, as da primavera até à primavera seguinte.",
+      "problems": [
+        {
+          "name": "Espigamento",
+          "fix": "Do meio da planta sai um caule de flor, muitas vezes depois de uma primavera fria. Parta-o e coma essa cebola primeiro, porque não se vai guardar. Os bolbinhos tratados pelo calor espigam menos."
+        },
+        {
+          "name": "Podridão-branca",
+          "fix": "As folhas amarelam e murcham enquanto um bolor branco e fofo cresce na base do bolbo. Não tem cura, por isso arranque as plantas doentes e deite-as ao lixo. Não volte a pôr cebolas, alho ou alho-francês nesse canteiro durante muitos anos."
+        },
+        {
+          "name": "Mosca-da-cebola",
+          "fix": "As plantas novas amarelam, murcham e morrem, enquanto larvas lhes comem as raízes e o bolbo. Arranque e destrua as plantas afetadas. Cubra a cultura com rede anti-insetos fina."
+        }
+      ],
+      "source": "Cuidados da cebola: RHS. Quantas plantar: extensão da Kansas State. pH: University of Connecticut."
+    },
+    "onion": {
+      "about": "A cebola de semente guarda-se durante o inverno. Sai mais barata do que os bolbinhos, as cebolinhas que se plantam em vez de semear. Há mais variedades à escolha. Também tem menos tendência para espigar, isto é, para florir cedo demais. Semeie no início da primavera, em casa ou diretamente na linha. Desbaste as plantinhas em duas vezes, para cada cebola ter espaço.",
+      "water": "A cebola de semente precisa de uma rega normal. Mantenha as plantinhas húmidas. Mais tarde, regue só nas secas longas. Pare quando os bolbos tiverem engordado, a meio do verão, para se guardarem mais tempo.",
+      "feed": "A cebola de semente precisa de uma quantidade normal de adubo. Composto enterrado antes de semear costuma chegar. Azoto a mais no fim dá cebolas moles, que se guardam mal.",
+      "harvest": "De julho a outubro, as folhas amarelam e tombam. Arranque então as cebolas, antes de as folhas secarem de todo. Seque-as ao sol durante cerca de duas semanas.",
+      "keeps": "A cebola de semente aguenta até à primavera seguinte. Guarde-a em redes ou em caixas de ripas, num sítio fresco, seco, arejado e com luz. No escuro, as cebolas grelam.",
+      "problems": [
+        {
+          "name": "Míldio",
+          "fix": "Com tempo fresco e húmido, as folhas ganham manchas claras com um bolor cinzento-arroxeado e depois tombam. Tire as folhas atacadas e deixe espaço entre as plantas. No ano seguinte, cultive as cebolas noutro canteiro."
+        },
+        {
+          "name": "Mosca-da-cebola",
+          "fix": "As plantinhas amarelam, murcham e morrem, porque há larvas a comer-lhes as raízes e o bolbo. Arranque e destrua as plantas afetadas. Cubra a cultura com rede anti-insetos fina."
+        },
+        {
+          "name": "Ervas daninhas",
+          "fix": "As plantinhas da cebola são finas e crescem devagar, por isso as ervas abafam-nas depressa. Arranque as ervas à mão muitas vezes enquanto as cebolas são pequenas."
+        }
+      ],
+      "source": "Cuidados da cebola: RHS. Quantas plantar: extensão da Kansas State. pH: University of Connecticut."
+    },
+    "leek": {
+      "about": "O alho-francês pode arrancar-se do fim do verão e durante todo o inverno. Semeie-o em alfobre ou em vasos. Quando as plantas tiverem a grossura de um lápis, passe-as para covas fundas feitas com um plantador, que é um pau pontiagudo para plantar. Encha cada cova de água. Plantado fundo, dá um caule branco comprido.",
+      "water": "O alho-francês precisa de uma rega normal. Regue as plantas novas até estarem a crescer bem. Depois disso, regue só nas secas longas. Regue a terra e mantenha as folhas secas, o que ajuda a travar a ferrugem.",
+      "feed": "O alho-francês precisa de terra rica. Fica meses no chão, por isso enterre bastante composto ou estrume antes de plantar. Em terra pobre, um adubo rico em azoto a meio do verão ajuda.",
+      "harvest": "A partir do fim do verão, arranque o alho-francês com uma forquilha à medida que precisar. Tire um sim, outro não. Os que ficam engrossam. As variedades tardias podem ficar na terra todo o inverno. A geada torna-as mais doces.",
+      "keeps": "O alho-francês guarda-se melhor na terra até precisar dele. Depois de arrancado, guarde-o no frigorífico sem lavar e gaste-o depressa.",
+      "problems": [
+        {
+          "name": "Ferrugem",
+          "fix": "Aparecem nas folhas pintas cor de laranja em relevo, sobretudo no fim do verão. Regue a terra em vez das folhas e escolha uma variedade resistente se a ferrugem voltar. O alho-francês com pouca ferrugem come-se na mesma."
+        },
+        {
+          "name": "Mosca-mineira",
+          "fix": "O primeiro sinal são filas de pontinhos brancos nas folhas. Depois, pequenas larvas abrem galerias nos caules, que se torcem e apodrecem. Cubra o alho-francês com rede anti-insetos fina desde o dia em que o planta."
+        },
+        {
+          "name": "Traça-do-alho-francês",
+          "fix": "As lagartas abrem galerias nas folhas e deixam manchas brancas, como papel. Corte as folhas estragadas. A mesma rede fina não deixa entrar a traça."
+        }
+      ],
+      "source": "Cuidados do alho-francês: RHS. pH: University of Connecticut."
+    },
+    "celery": {
+      "about": "O mais fácil é o aipo autobranqueador, que tem os talos claros sem ser preciso tapá-los. Plante-o em bloco e não em fila, para as plantas fazerem sombra aos talos umas das outras. O aipo precisa de calor e de rega regular. Se as plantas novas passarem muito tempo abaixo de 10 °C, podem espigar e ir para semente. Por isso, só as passe para a terra quando as noites se mantiverem amenas.",
+      "water": "O aipo precisa de muita água. Nunca deixe a terra secar, porque a secura deixa os talos fibrosos e com um sabor forte demais. No verão, regue com fartura de manhã ou ao fim da tarde, com água da chuva se puder.",
+      "feed": "O aipo precisa de terra rica. Plante-o num sítio com muito composto ou estrume. Em terra pobre, espalhe no verão um pouco de adubo rico em azoto. Em vaso, dê um adubo líquido equilibrado de duas em duas semanas.",
+      "harvest": "A partir do fim do verão, arranque as plantas inteiras antes de as folhas amarelecerem e antes da primeira geada. Quando as noites arrefecerem, cubra-as com manta térmica. Use-as pouco depois de as arrancar.",
+      "keeps": "Embrulhe-o num pano húmido ou num saco e guarde-o no frigorífico. Só se mantém estaladiço pouco tempo, por isso use-o depressa.",
+      "problems": [
+        {
+          "name": "Mosca-do-aipo",
+          "fix": "Aparecem manchas castanhas e secas nas folhas, onde umas larvas pequenas comem por dentro. Tire essas folhas com os dedos. Cubra as plantas novas com rede anti-insetos fina."
+        },
+        {
+          "name": "Manchas nas folhas",
+          "fix": "Com tempo húmido, espalham-se pelas folhas pequenas manchas castanhas com pontinhos pretos. Tire as folhas manchadas. Não cultive aipo nem aipo-rábano na mesma terra durante alguns anos."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "As lesmas adoram o aipo e comem tanto as plantas novas como os talos. Proteja as plantas, sobretudo com tempo húmido."
+        }
+      ],
+      "source": "Cuidados do aipo: RHS. pH: University of Connecticut e University of Maryland."
+    },
+    "fennel": {
+      "about": "O funcho de Florença faz, na base das folhas, um bolbo grosso com sabor a anis. O grande problema é espigar, ou seja, florir em vez de fazer bolbo. Para o evitar, semeie no início do verão em vez de na primavera. Escolha também uma variedade resistente ao espigamento. Semeie em alvéolos, uns tabuleiros pequenos com as células separadas, para não mexer nas raízes. Quando a base começar a engrossar, chegue-lhe terra à volta para ficar branca e doce.",
+      "water": "O funcho precisa de muita água. Mantenha a terra sempre húmida, porque uma secura é das principais causas de espigar. Regue com fartura, de manhã. No verão, veja o vaso todos os dias.",
+      "feed": "O funcho não pede mais do que uma adubação normal. Antes de semear, enterre composto na terra. Quando as plantas já estiverem a crescer, cubra o solo à volta delas. Não precisa de mais adubo.",
+      "harvest": "Corte o bolbo logo acima da terra quando tiver 10 a 15 cm de largura. Se os quiser pequenos, pode cortá-los a partir dos 5 cm. Não espere que se alongue e lance uma haste, porque aí fica lenhoso.",
+      "keeps": "O melhor é comê-lo fresco. Num saco, no frigorífico, aguenta uns dias.",
+      "problems": [
+        {
+          "name": "Espigar",
+          "fix": "Depois de frio, de uma secura ou de mexer nas raízes, sobe uma haste de flor e o bolbo fica achatado e rijo. Semeie mais tarde e regue sempre. Use logo as plantas que começarem a espigar."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantinhas acabadas de nascer e as plantas novas. Com tempo húmido, proteja as plantas. Monde à mão à volta delas, porque as ervas dão esconderijo às lesmas."
+        }
+      ],
+      "source": "Cuidados do funcho: RHS. pH: Utah State University e University of Arkansas."
+    },
+    "potato": {
+      "about": "As batatas temporãs ficam prontas no início do verão. As batatas de conservação arrancam-se no outono e guardam-se o inverno todo. Enquanto as plantas crescem, chegue-lhes terra aos caules de poucas em poucas semanas. Isso protege os rebentos da geada e mantém as batatas às escuras, para não ficarem verdes.",
+      "water": "As batatas precisam de uma rega normal. Regue nos períodos secos, sobretudo quando as plantas florescem e as batatas se estão a formar. Nessa altura, a terra sempre húmida também ajuda contra a sarna. Um vaso precisa de rega regular mesmo quando chove, porque as folhas não deixam a chuva chegar ao substrato.",
+      "feed": "As batatas precisam de terra rica, por isso cultive-as numa terra melhorada com composto ou estrume. Em terra pobre, dê um adubo rico em azoto na segunda vez que chegar terra aos caules. Em vaso, misture um adubo completo no substrato ao plantar. Também pode dar um adubo líquido ao fim de umas seis semanas.",
+      "harvest": "Arranque as batatas temporãs quando as flores abrirem e as batatas já tiverem o tamanho de um ovo. Nas de conservação que quer guardar, corte a rama quando amarelar. Espere 10 dias e depois cave. Comece a 30 cm do caule, para não espetar batatas com a forquilha.",
+      "keeps": "Deixe as batatas secar umas horas e tire-lhes a terra com uma escova. As sãs e sem mazelas aguentam 2 a 4 meses em sacos de papel ou de serapilheira, num sítio escuro, fresco e sem geada. Veja-as de poucas em poucas semanas e tire as que estiverem a apodrecer.",
+      "problems": [
+        {
+          "name": "Míldio",
+          "fix": "Com tempo quente e húmido, aparecem manchas castanhas que se espalham depressa pelas folhas e depois apodrecem as batatas. Logo que o vir, corte a rama e leve-a dali. Espere duas a três semanas antes de cavar e escolha variedades resistentes."
+        },
+        {
+          "name": "Sarna",
+          "fix": "Aparecem na pele manchas ásperas, como cortiça, mas as batatas descascadas comem-se na mesma. Regue nos períodos secos enquanto as batatas se formam e não ponha cal antes de plantar. Escolha variedades resistentes."
+        },
+        {
+          "name": "Batatas verdes",
+          "fix": "As batatas que apanham luz ficam verdes e são venenosas. Mantenha-as bem cobertas de terra e guarde-as no escuro. Deite fora as batatas verdes."
+        }
+      ],
+      "source": "Cuidados da batata: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Georgia. Tamanho do vaso: Cornell Cooperative Extension. Conservação: University of Missouri."
+    },
+    "asparagus": {
+      "about": "O espargo volta todos os anos. Um bom canteiro dá espargos todas as primaveras durante 20 anos ou mais. Plante as garras, os tufos de raízes novas, num canteiro sem ervas onde possam ficar para sempre. Nos dois primeiros anos não corte nenhum espargo, para as raízes ganharem força.",
+      "water": "Depois de instalado, o espargo aguenta a secura. No primeiro verão, regue as garras novas com regularidade. A partir daí, as raízes vão fundo e as plantas só precisam de água nas secas longas.",
+      "feed": "O espargo precisa de uma adubação normal. Todos os anos, no fim do inverno, espalhe 5 cm de composto ou estrume bem curtido por cima do canteiro. Se crescer fraco, espalhe um adubo completo no início da primavera, antes de os espargos aparecerem.",
+      "harvest": "Corte os espargos com uma faca afiada, logo abaixo da terra, quando tiverem uns 18 cm. Com calor, isso quer dizer de dois em dois ou de três em três dias. No primeiro ano de colheita, pare ao fim de seis semanas. Nos anos seguintes, pare ao fim de oito. Depois deixe crescer a rama, fina como a de um feto, e só a corte quando amarelecer no outono.",
+      "keeps": "Os espargos aguentam uns dias no frigorífico. Ponha-os de pé num pouco de água ou embrulhe as pontas cortadas em papel húmido. Depois de uma passagem rápida por água a ferver, congelam bem.",
+      "problems": [
+        {
+          "name": "Escaravelho-do-espargo",
+          "fix": "No verão, uns escaravelhos vermelhos e pretos com pintas cor de creme e as suas larvas cinzentas comem os caules e a rama. A partir do fim da primavera, apanhe-os à mão. No outono, tire os caules velhos, porque é lá que os adultos passam o inverno."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Roem os espargos novos com o tempo húmido da primavera. Vá ver depois de escurecer e apanhe-os. Mantenha o canteiro sem ervas nem restos, porque é aí que se escondem."
+        },
+        {
+          "name": "Podridão das raízes",
+          "fix": "Em terra pesada e encharcada, as plantas amarelecem e vão morrendo aqui e ali. Em terra pesada, cultive o espargo num canteiro elevado. Nunca plante garras novas onde já houve espargos."
+        }
+      ],
+      "source": "Cuidados do espargo: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: Cornell e University of Maryland."
+    },
+    "rhubarb": {
+      "about": "O ruibarbo volta ano após ano. Os talos têm um sabor ácido e apanham-se da primavera ao início do verão. Só se comem os talos. As folhas têm ácido oxálico e nunca se podem comer. Uma touceira dura muitos anos. Mais ou menos de cinco em cinco anos, arranque-a, corte-a em alguns pedaços e volte a plantá-los, para ela se manter forte.",
+      "water": "O ruibarbo só precisa de uma rega normal. Durante toda a primeira época, regue as plantas novas nos períodos secos. Depois disso, uma touceira já instalada só precisa de água em verões longos e secos. Nunca deixe a coroa, que é a base da planta, ficar em terra encharcada.",
+      "feed": "O ruibarbo precisa de uma adubação normal. Todas as primaveras, espalhe à volta da planta uma camada de 7 cm de estrume bem curtido ou composto. Mas não cubra a coroa. Em terra pobre, dê também um adubo rico em azoto na primavera.",
+      "harvest": "No segundo ano, tire só alguns talos. A partir do terceiro ano, apanhe os talos com uns 30 cm. Agarre cada um pela base e arranque-o torcendo, em vez de o cortar. Nunca tire mais de um terço dos talos de cada vez. Pare no início de julho, para a planta recuperar.",
+      "keeps": "Num saco, no frigorífico, os talos aguentam cerca de uma semana. Deite as folhas no composto. Os talos cortados aos pedaços também congelam bem.",
+      "problems": [
+        {
+          "name": "Podridão da coroa",
+          "fix": "A coroa fica mole e castanha e os gomos morrem, normalmente com a terra encharcada no inverno. Corte logo as partes podres. Se a coroa estiver toda afetada, volte a plantar pedaços sãos noutro sítio, em terra nova que escoe bem."
+        },
+        {
+          "name": "Hastes de flor",
+          "fix": "Os caules altos e grossos, com uma grande cabeça de flor, tiram força à planta. Corte-os rente à base logo que os vir."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem os rebentos novos na primavera. Vá ver as plantas depois de escurecer e apanhe-os."
+        }
+      ],
+      "source": "Cuidados do ruibarbo: RHS. Quantas plantar: extensão da University of Missouri. pH: Cornell e University of Maryland."
+    },
+    "artichoke": {
+      "about": "Na alcachofra, come-se o botão da flor antes de abrir. Os botões nascem numa planta grande, de folhas prateadas, que volta todos os anos. Dê-lhe espaço, sol e uma terra que escoe depressa. Os invernos frios e húmidos matam-na mais vezes do que a geada sozinha. No primeiro verão, corte as hastes das flores para a planta se instalar.",
+      "water": "A alcachofra precisa de uma rega normal. Regue com regularidade na primeira época e enquanto os botões se formam. Em terra seca, dá menos botões e mais pequenos. Depois de instalada, aguenta secas curtas.",
+      "feed": "Precisa de uma adubação normal. Antes de plantar, enterre bastante composto. Todas as primaveras, cubra o solo à volta da planta. Em terra pobre ou em vaso, junte um adubo rico em potássio na primavera.",
+      "harvest": "Corte os botões quando já tiverem o tamanho todo mas ainda estiverem bem fechados, com uns centímetros de pé. Corte primeiro o botão principal. Depois vêm os botões laterais, mais pequenos. Com calor, vá ver de poucos em poucos dias, porque os botões abrem depressa.",
+      "keeps": "Num saco, no frigorífico, os botões aguentam 3 a 5 dias.",
+      "problems": [
+        {
+          "name": "Pulgões",
+          "fix": "Juntam-se grupos de pequenos insetos pretos ou verdes nos botões e nas pontas dos rebentos. Lave-os com um jato de água forte. Deixe as joaninhas e as suas larvas comer o resto."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Na primavera, comem as plantas novas e os rebentos. Proteja as plantas novas e apanhe as lesmas depois de escurecer."
+        },
+        {
+          "name": "Morre no inverno",
+          "fix": "Em invernos frios e húmidos, as plantas apodrecem ou morrem, sobretudo as novas. No fim do outono, corte os caules e cubra a base da planta com uma camada grossa de palha ou folhas. Tire a cobertura na primavera."
+        }
+      ],
+      "source": "Cuidados da alcachofra: RHS e extensão da Utah State. pH: Cornell. Conservação: Utah State."
+    },
+    "tomato": {
+      "about": "Do pleno verão até à primeira geada, os tomates vão amadurecendo. Ate as variedades altas a uma cana e deixe-as num só caule, tirando-lhes os ladrões. As variedades de porte baixo ficam compactas e dão-se bem em vaso.",
+      "water": "O tomate precisa de muita água e de rega sempre por igual. A rega irregular racha os frutos e provoca podridão apical. Com calor, um vaso pode precisar de água todos os dias.",
+      "feed": "O tomate precisa de muito adubo. Quando os primeiros frutos engrossarem, dê um adubo líquido para tomate, rico em potássio, a cada 10 a 14 dias. Em terra rica precisa de menos, mas adubar de duas em duas semanas dá na mesma uma colheita maior.",
+      "harvest": "Apanhe cada tomate com o pé quando estiver todo corado. No fim da época, ponha os verdes a amadurecer num sítio quente e escuro ou numa gaveta com uma banana.",
+      "keeps": "Os tomates maduros aguentam uns dias à temperatura ambiente, longe do sol. O frigorífico estraga-lhes o sabor.",
+      "problems": [
+        {
+          "name": "Míldio",
+          "fix": "Com tempo quente e húmido, aparecem manchas castanhas que se espalham depressa por folhas e frutos. Tire as folhas e os frutos atacados logo que os vir. Plante os tomates longe das batatas, porque os dois apanham a doença."
+        },
+        {
+          "name": "Podridão apical",
+          "fix": "Forma-se uma mancha escura e afundada no fundo do fruto, por causa da rega irregular. Regue com regularidade e nunca deixe secar um vaso."
+        },
+        {
+          "name": "Frutos rachados",
+          "fix": "Os frutos a amadurecer racham quando chove muito ou se rega muito depois de um período seco. Mantenha a terra húmida por igual e coma depressa os frutos rachados."
+        }
+      ],
+      "source": "Cuidados do tomate: RHS. Quantas plantar: extensão da University of Missouri e da Kansas State. pH: University of Georgia. Conservação: University of Arizona."
+    },
+    "pepper": {
+      "about": "Pode comer os pimentos verdes ou deixá-los na planta até ficarem vermelhos, amarelos ou cor de laranja. Precisam de um verão longo e quente. Onde os verões são frescos, dão-se melhor em estufa ou num sítio soalheiro e abrigado. Ate cada planta a uma cana, porque os caules são quebradiços e partem com o peso dos frutos.",
+      "water": "O pimento precisa de uma rega normal, mas com a terra sempre húmida por igual. Se a terra secar, os botões de flor caem. Com calor, um vaso pode precisar de água todos os dias.",
+      "feed": "O pimento precisa de uma quantidade normal de adubo. Nas plantas em vaso, quando florirem, dê-lhes todas as semanas um adubo líquido para tomate, que é rico em potássio. Em terra rica precisa de menos, mas adubar dá na mesma uma colheita maior.",
+      "harvest": "Apanhe os pimentos quando tiverem o tamanho todo e estiverem brilhantes, ainda verdes ou já com cor. Ficam mais doces à medida que ganham cor, mas os frutos deixados a amadurecer atrasam os novos. Corte o pé com uma tesoura de podar em vez de puxar.",
+      "keeps": "Os pimentos guardam-se melhor num sítio fresco, à temperatura ambiente. No frigorífico duram 1 a 3 dias, se os comer pouco depois de os tirar de lá.",
+      "problems": [
+        {
+          "name": "Pulgões",
+          "fix": "Pequenos insetos verdes ou pretos juntam-se nas pontas e por baixo das folhas, que se enrolam, e a planta cresce mal. Vá vendo com frequência e tire os grupos pequenos à mão ou com um jato de água. As joaninhas e outros insetos que os comem dão uma ajuda."
+        },
+        {
+          "name": "Podridão apical",
+          "fix": "Forma-se uma mancha escura e afundada no fundo do fruto, por causa da rega irregular. Regue com regularidade. O resto da colheita costuma ficar bem."
+        },
+        {
+          "name": "Queda das flores",
+          "fix": "Os botões e as flores caem sem dar fruto quando a terra seca, com muito calor ou em noites frias. Mantenha a terra húmida por igual. Nos dias quentes, abra a estufa e faça-lhe sombra."
+        }
+      ],
+      "source": "Cuidados do pimento: RHS. Quantas plantar: extensão da Kansas State e da Virginia Tech. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
+    },
+    "chilli": {
+      "about": "As malaguetas usam-se frescas, secas ou em conserva. Precisam de calor o verão todo, por isso cultive-as numa estufa, num parapeito ao sol ou num canto quente e abrigado lá fora. Uma planta em vaso pode vir para dentro de casa antes do frio. No inverno, deixe-a num sítio claro e quente. Regue-a só um pouco.",
+      "water": "As malaguetas precisam de uma rega normal. Mantenha o substrato húmido por igual, porque se secar os botões caem. Com calor, um vaso em pleno sol pode precisar de água todos os dias.",
+      "feed": "Precisam de uma adubação normal. Quando as plantas em vaso começarem a florir, dê-lhes todas as semanas um adubo líquido rico em potássio, como o adubo para tomate. As plantas em terra rica precisam de menos.",
+      "harvest": "Para colher mais, apanhe-as verdes. As que deixa ficar vermelhas são mais picantes, mas aí a planta dá menos flores novas. No fim da época, deixe as últimas ganhar cor. Corte-as com o pé. Lave as mãos depois de mexer nas variedades picantes.",
+      "keeps": "Guarde as malaguetas frescas num sítio fresco e use-as depressa. Para o inverno, seque-as, congele-as ou ponha-as em conserva.",
+      "problems": [
+        {
+          "name": "Pulgões",
+          "fix": "Juntam-se pequenos insetos verdes ou pretos nas pontas dos rebentos e por baixo das folhas, que enrolam. Vigie com frequência, sobretudo dentro de casa, e tire os grupos pequenos com os dedos ou com a mangueira. As joaninhas e outros insetos que os comem também ajudam."
+        },
+        {
+          "name": "Aranhiço-vermelho",
+          "fix": "Com ar quente e seco, sobretudo em estufa, as folhas ficam com um pontilhado claro e teias finas. Borrife as plantas com água e molhe o chão da estufa para o ar ficar mais húmido."
+        },
+        {
+          "name": "Calor a mais",
+          "fix": "Acima de uns 30 °C as flores caem e vingam poucos frutos. Abra a estufa para arejar e faça-lhe sombra. Molhe o chão todos os dias."
+        }
+      ],
+      "source": "Cuidados e conservação da malagueta: RHS. pH: Virginia Tech (pimentos)."
+    },
+    "aubergine": {
+      "about": "As beringelas podem ser roxas, brancas ou às riscas. Precisam de mais calor do que o tomate e de uns cinco meses desde a sementeira até à colheita. Num verão fresco, cultive-as em estufa ou no sítio mais soalheiro e abrigado que tiver. Corte a ponta quando a planta tiver uns 30 cm, para ramificar mais. Nas variedades de fruto grande, deixe cinco ou seis frutos.",
+      "water": "A beringela precisa de muita água, por isso mantenha a terra sempre húmida. Com calor, um vaso pode precisar de água todos os dias. Em estufa, borrifar as folhas duas vezes por dia também afasta o aranhiço-vermelho.",
+      "feed": "A beringela precisa de muito adubo. Quando abrirem as primeiras flores, dê um adubo líquido rico em potássio de duas em duas semanas. Em terra rica precisa de menos, mas adubar dá na mesma uma colheita maior.",
+      "harvest": "Corte cada fruto com uns centímetros de pé quando tiver o tamanho todo, estiver brilhante e com boa cor. Se a casca estiver baça, o fruto passou do ponto e pode saber a amargo. Apanhe com regularidade e cuidado com os pequenos espinhos do pé.",
+      "keeps": "As beringelas guardam-se melhor num sítio fresco, à temperatura ambiente, por isso coma-as em poucos dias. No frigorífico duram 1 a 3 dias, se as cozinhar logo a seguir.",
+      "problems": [
+        {
+          "name": "Poucos ou nenhuns frutos",
+          "fix": "A planta dá poucos frutos ou nenhuns, normalmente por causa de um verão fresco ou de um sítio frio. Dê-lhe o sítio mais quente e soalheiro que tiver e a terra sempre húmida. Tire as flores que abrirem depois do fim do verão, porque esses frutos já não amadurecem."
+        },
+        {
+          "name": "Aranhiço-vermelho",
+          "fix": "Com ar quente e seco na estufa, as folhas ganham um pontilhado fino e claro e umas teias finas. Nas manhãs quentes, borrife as folhas e molhe o chão da estufa."
+        },
+        {
+          "name": "Pulgões e mosca-branca",
+          "fix": "Pequenos insetos chupam a seiva por baixo das folhas, que ficam pegajosas e pálidas. Veja muitas vezes o lado de baixo das folhas e lave os grupos pequenos. Na estufa, as armadilhas amarelas com cola apanham a mosca-branca."
+        }
+      ],
+      "source": "Cuidados da beringela: RHS. Quantas plantar: extensão da Kansas State e da Virginia Tech. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
+    },
+    "cucumber": {
+      "about": "Começa a apanhar pepinos a meio do verão. A maioria das variedades trepa, por isso conduza-as por uma cana, uma rede ou uma treliça. Assim poupa espaço e os frutos ficam limpos. As variedades de estufa costumam dar só flores femininas, por isso tire as flores masculinas que aparecerem. As de ar livre precisam das flores masculinas para a polinização.",
+      "water": "O pepino precisa de muita água, sobretudo quando os frutos se estão a formar. Mantenha a terra húmida por igual. Regue ao pé de manhã e não molhe as folhas. Numa vaga de calor, um vaso pode precisar de água todos os dias.",
+      "feed": "O pepino precisa de uma quantidade normal de adubo. Plantado no chão, raramente precisa de adubo, a não ser em terra pobre. Em vaso, dê um adubo líquido universal a cada 10 a 14 dias. Quando a planta florir, passe para um adubo para tomate, rico em potássio.",
+      "harvest": "Corte os pepinos com uma faca quando tiverem tamanho. São uns 15 cm nas variedades pequenas e 20 a 25 cm nas grandes. Veja de poucos em poucos dias, porque crescem depressa e quanto mais apanha, mais dão. Os pepinos amarelos e inchados já passaram do ponto.",
+      "keeps": "Os pepinos guardam-se melhor num sítio fresco, à temperatura ambiente. No frigorífico duram 1 a 3 dias, se os comer pouco depois de os tirar de lá.",
+      "problems": [
+        {
+          "name": "Oídio",
+          "fix": "Um pó branco cobre as folhas, pior quando as raízes estão secas. Regue ao pé, para as folhas ficarem secas e a terra húmida. Escolha variedades resistentes."
+        },
+        {
+          "name": "Vírus do mosaico",
+          "fix": "As folhas ficam manchadas de amarelo e encarquilhadas e as plantas ficam enfezadas. Arranque as plantas afetadas e deite-as ao lixo, não no monte do composto. Controle os pulgões, porque são eles que o espalham."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantas novas, sobretudo com tempo húmido. Proteja as plantas depois de as pôr na terra e vá vê-las ao anoitecer. Conduzidas para cima, as plantas mantêm os frutos fora do alcance delas."
+        }
+      ],
+      "source": "Cuidados do pepino: RHS. Quantas plantar: Virginia Tech. pH: Cornell Cooperative Extension. Conservação: Kansas State e University of Missouri."
+    },
+    "courgette": {
+      "about": "As curgetes apanham-se pequenas durante todo o verão. As flores também se comem. Uma só planta alastra muito e dá muitos frutos. Apanhe com frequência. Uma curgete esquecida uns dias fica enorme, quase uma abóbora, e atrasa a planta.",
+      "water": "A curgete precisa de muita água, por isso mantenha a terra húmida todo o verão. Regue ao pé e não por cima das folhas. Um vaso pequeno enterrado junto a cada planta e cheio de água leva-a direitinha às raízes.",
+      "feed": "A curgete precisa mesmo de terra rica. Antes de plantar, enterre bastante composto ou estrume bem curtido. Numa terra boa, precisa de pouco mais. Em vaso, dê um adubo líquido rico em potássio a cada 10 a 14 dias, quando os primeiros frutos engrossarem.",
+      "harvest": "Corte-as com 10 a 12 cm, enquanto estão pequenas e tenras. Com bom tempo, veja-as todos os dias ou dia sim, dia não, porque uma planta pode dar três ou quatro por semana. Pode apanhar as flores masculinas sem perder nenhum fruto.",
+      "keeps": "As curgetes aguentam uns dias no frigorífico. Coma-as enquanto estão firmes.",
+      "problems": [
+        {
+          "name": "Oídio",
+          "fix": "A partir do meio do verão, um pó branco cobre as folhas, pior com a terra seca. Mantenha a terra húmida e regue ao pé da planta. Corte as folhas mais atacadas."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantas novas, as flores e os frutos pequenos. Proteja as plantas depois de as pôr na terra. Também pode semear em casa, para irem para a terra já maiores."
+        },
+        {
+          "name": "Frutos que apodrecem ou não vingam",
+          "fix": "No início de um verão fresco, poucos insetos levam o pólen e os frutos pequenos apodrecem a partir da ponta. Passa quando o tempo aquece. Também pode polinizá-los à mão com uma flor masculina."
+        }
+      ],
+      "source": "Cuidados da curgete: RHS. Quantas plantar: Virginia Tech. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
+    },
+    "pumpkin": {
+      "about": "As abóboras amadurecem no outono e guardam-se pelo inverno dentro. As ramas alastram muito, por isso dê-lhes bastante espaço. Para ter abóboras grandes, deixe duas ou três em cada planta. Para uma abóbora gigante, deixe só uma.",
+      "water": "As abóboras precisam de muita água, sobretudo quando os frutos começam a crescer. Regue a terra e não as folhas. Um bom truque: enterre um vaso ao lado da planta e regue para dentro dele. Assim a água vai direitinha às raízes.",
+      "feed": "As abóboras precisam de terra rica. Enterre bastante composto ou estrume bem curtido no sítio onde vai plantar. Depois disso, a maioria das plantas não precisa de mais nada. Para frutos muito grandes, dê um adubo líquido rico em potássio a cada 10 a 14 dias, quando o fruto engrossar.",
+      "harvest": "Deixe a abóbora na planta até ganhar a cor toda. A casca deve estar dura e não ficar marcada quando lhe carrega com a unha. Corte-a antes da primeira geada, com pelo menos 10 cm de pé. Depois deixe-a ao sol uma semana a 10 dias, para a casca endurecer.",
+      "keeps": "Guarde as abóboras com a casca já endurecida num sítio arejado, entre 10 e 15 °C, sem se tocarem. Aguentam pelo menos três meses. Em boas condições, até seis. Uma abóbora apanhada pela geada não se guarda.",
+      "problems": [
+        {
+          "name": "Podridão dos frutos",
+          "fix": "A abóbora apodrece se ficar pousada em terra molhada ou se for cortada com o pé curto demais. Ponha cada uma em cima de uma telha, de um tijolo ou de uma tábua. Nunca a pegue pelo pé."
+        },
+        {
+          "name": "Oídio",
+          "fix": "Um pó branco cobre as folhas, pior quando as plantas passam sede. Regue com regularidade e dê espaço às plantas para o ar circular."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantas novas e as flores. Proteja as plantas depois de as pôr na terra, sobretudo com tempo húmido."
+        }
+      ],
+      "source": "Cuidados e conservação da abóbora: RHS. Maturação: University of Minnesota. Quantas plantar: Kansas State e Virginia Tech. pH: Virginia Tech."
+    },
+    "winter_squash": {
+      "about": "A abóbora-manteiga, a abóbora-bolota e a hokkaido são todas abóboras-de-inverno. Têm a casca dura e guardam-se durante o inverno. As variedades rasteiras alastram muito. As mais pequenas podem subir por um suporte firme. Deixe o fruto na planta até estar bem maduro, porque uma abóbora verde não se guarda.",
+      "water": "A abóbora-de-inverno precisa de muita água. Enquanto o fruto engrossa, regue com fartura, para o chão e não por cima das folhas. Uma camada de cobertura no chão à volta das plantas guarda a humidade na terra.",
+      "feed": "Precisa de terra rica. Enterre bastante composto ou estrume bem curtido no sítio onde a vai plantar. Em terra pobre, quando o fruto começar a engrossar, dê um adubo líquido rico em potássio a cada 10 a 14 dias.",
+      "harvest": "A abóbora está pronta quando a casca está dura e baça, a unha não a marca e o pé está firme. Corte-a antes da primeira geada, com um pedaço comprido de pé. Depois deixe-a ao sol uns 10 dias para a casca endurecer.",
+      "keeps": "Depois de a casca endurecer, guarde as abóboras num sítio seco e arejado, entre 10 e 15 °C. Conforme a variedade, aguentam de um a seis meses. Veja-as muitas vezes e gaste logo as que amolecerem.",
+      "problems": [
+        {
+          "name": "Oídio",
+          "fix": "Aparece um pó branco nas folhas, pior quando as plantas passam sede. Regue com regularidade e deixe espaço entre as plantas para o ar circular."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantas novas e as flores. Depois de plantar, proteja as plantas, sobretudo com tempo húmido."
+        },
+        {
+          "name": "Frutos que não vingam",
+          "fix": "Com tempo fresco há poucos insetos nas flores e os frutos pequenos murcham ou apodrecem. Para polinizar à mão, passe o pólen de uma flor masculina para dentro de uma flor feminina. A flor feminina reconhece-se pelo pequeno fruto que tem por trás."
+        }
+      ],
+      "source": "Cuidados da abóbora: RHS. Maturação e conservação: University of Minnesota e RHS. Quantas plantar: Kansas State e Virginia Tech. pH: Virginia Tech."
+    },
+    "green_beans": {
+      "about": "Apanhe o feijão-verde novo, enquanto as vagens estão tenras. As variedades anãs chegam a uns 45 cm e dão-se bem em vaso. As de trepar precisam de canas altas, mas dão vagens durante mais tempo. A geada mata-as e a terra fria e encharcada apodrece-as, por isso só semeie quando a terra estiver quente.",
+      "water": "O feijão-verde precisa de uma rega normal. Regue com tempo seco, sobretudo quando as plantas florescem e começam a dar vagens. Com a terra seca, as flores caem. Os vasos precisam de água muitas vezes.",
+      "feed": "O feijão-verde precisa de pouco adubo. Na terra não precisa de adubo nenhum. Azoto a mais dá folha em vez de vagens. Em vaso, dê um adubo líquido rico em potássio de duas em duas semanas, a partir das primeiras flores.",
+      "harvest": "Apanhe as vagens com 15 a 20 cm, quando partem com um estalo e antes de se notarem os grãos. Colha de poucos em poucos dias. Quanto mais apanha, mais vagens aparecem.",
+      "keeps": "As vagens aguentam uns dias num saco no frigorífico. Para o inverno, escalde-as e congele-as.",
+      "problems": [
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantinhas numa só noite. Crie as plantas em vasos e passe-as para a terra quando estiverem fortes. Nas noites húmidas, vá ver se há lesmas."
+        },
+        {
+          "name": "Pulgão-negro",
+          "fix": "Pequenos pulgões pretos juntam-se nas pontas dos rebentos. Esmague-os ou tire-os com um jato de água."
+        },
+        {
+          "name": "Queda das flores",
+          "fix": "Com tempo quente, seco ou ventoso, as flores caem sem dar vagens. Mantenha a terra húmida, sobretudo enquanto as plantas estão em flor."
+        }
+      ],
+      "source": "Cuidados do feijão-verde: RHS e Virginia Tech. Quantas plantar: extensão da Kansas State e da Texas A&M. pH: Virginia Tech e Penn State."
+    },
+    "sweetcorn": {
+      "about": "Plante o milho doce em bloco, com várias filas curtas, em vez de uma fila comprida. O pólen é levado pelo vento e só em bloco é que as maçarocas ficam bem cheias. Mantenha as variedades extradoces longe de outro milho doce, senão os grãos ficam farinhentos.",
+      "water": "O milho doce precisa de uma rega normal. Regue as plantas novas até pegarem e depois nos períodos secos. A rega conta mais quando aparecem as bandeiras no cimo da planta e enquanto as maçarocas engrossam.",
+      "feed": "O milho doce precisa de terra rica, por isso cultive-o numa terra cheia de composto ou estrume. Quando as plantas chegarem à altura do joelho, um adubo rico em azoto dá uma colheita maior.",
+      "harvest": "Quando as barbas na ponta de cada maçaroca ficarem castanhas, vá ver as maçarocas. Abra um pouco o folhelho e carregue num grão com a unha. Se sair um suco leitoso, está pronta. Se for aguado, tem de esperar. Arranque a maçaroca torcendo-a e coma-a depressa, porque o açúcar se transforma em amido.",
+      "keeps": "Guarde as maçarocas no frigorífico e coma-as em 2 dias. As variedades extradoces aguentam cerca de uma semana. Congele as que não conseguir comer a tempo.",
+      "problems": [
+        {
+          "name": "Maçarocas com falhas",
+          "fix": "As maçarocas têm falhas onde os grãos nunca se formaram, porque lhes chegou pouco pólen. Plante em bloco. Num dia sem vento, dê uns toques nas bandeiras no cimo das plantas para fazer cair o pólen."
+        },
+        {
+          "name": "Pássaros e ratos",
+          "fix": "Os pássaros, os ratos e os esquilos comem a semente e as maçarocas a amadurecer. Semeie em casa ou cubra a sementeira com rede. Proteja as maçarocas logo que se formem."
+        },
+        {
+          "name": "Carvão",
+          "fix": "Crescem nas maçarocas e nos caules grandes inchaços branco-acinzentados, que depois rebentam num pó preto. Corte-os antes de rebentarem e deite-os fora. No ano seguinte, cultive o milho noutro sítio."
+        }
+      ],
+      "source": "Cuidados do milho doce: RHS. Quantas plantar: extensão da Kansas State e da University of Missouri. pH: University of Connecticut e University of Maryland. Conservação: University of Missouri."
+    },
+    "strawberry": {
+      "about": "Os morangueiros voltam todos os anos. As variedades de verão dão morangos no início do verão. As remontantes dão fruto do verão até ao outono. Um canteiro produz bem durante três ou quatro anos. Depois, replante noutro sítio para evitar doenças do solo. Use estolhos enraizados, as plantinhas novas que as plantas velhas lançam.",
+      "water": "Os morangos precisam de uma rega normal. Nos períodos secos, regue com regularidade. Os vasos e os cestos suspensos secam depressa, por isso regue-os muitas vezes. Regue a terra de manhã, para os frutos e o coração de cada planta ficarem secos.",
+      "feed": "Precisam de uma adubação normal. Na terra, uma camada de composto por cima todas as primaveras costuma bastar. Em vaso, dê um adubo líquido universal de duas em duas semanas. Quando aparecerem os botões das flores, passe para um adubo rico em potássio.",
+      "harvest": "Apanhe os morangos quando estiverem completamente vermelhos, na hora mais quente do dia. Depois de apanhados, já não amadurecem. Quando os frutos começarem a aparecer, espalhe palha por baixo das plantas para os manter limpos. No outono, tire a palha.",
+      "keeps": "O melhor é comê-los no dia em que os apanha. Guarde-os no frigorífico e lave-os só antes de comer. Congelados perdem a forma, por isso use-os em batidos e sobremesas.",
+      "problems": [
+        {
+          "name": "Podridão cinzenta",
+          "fix": "Com tempo húmido, os frutos ganham um bolor cinzento e felpudo e apodrecem. Regue de manhã sem salpicar e mantenha os frutos em cima da palha. Tire logo os morangos podres."
+        },
+        {
+          "name": "Pássaros",
+          "fix": "Os pássaros levam a fruta à medida que amadurece. Antes de os morangos ganharem cor, cubra as plantas com uma rede montada numa armação. Estique-a bem e prenda-a com firmeza."
+        },
+        {
+          "name": "Gorgulho",
+          "fix": "Em vaso, as plantas murcham e tombam porque umas larvas brancas, curvadas em C, estão a comer as raízes. No fim do verão, regue o substrato com um tratamento biológico. É feito de vermes minúsculos, os nemátodes."
+        }
+      ],
+      "source": "Cuidados dos morangos: RHS. Tamanho do vaso: Iowa State University. pH: Cornell Cooperative Extension. Conservação: Kansas State e University of Missouri."
+    },
+    "melon": {
+      "about": "O melão amadurece no fim do verão e precisa de calor a sério. Onde os verões são frescos, cultive-o em estufa, túnel ou estufim. Para os frutos chegarem a amadurecer, deixe até quatro por planta ao ar livre e quatro a seis em estufa. Tire os outros quando tiverem uns 2,5 cm de largura.",
+      "water": "O melão precisa de uma rega normal. Mantenha a terra húmida por igual, sem encharcar. Regue ao pé, de manhã. Regue menos quando os frutos começarem a amadurecer, no fim do verão.",
+      "feed": "O melão precisa de uma quantidade normal de adubo. Em vaso, dê um adubo líquido universal a cada 10 a 14 dias no início do verão. Quando os frutos tiverem o tamanho de uma noz, passe para um adubo rico em potássio. Pare de adubar quando estiverem a amadurecer.",
+      "harvest": "Um melão maduro cheira a doce e o pé começa a rachar junto ao fruto. A ponta do lado oposto ao pé cede um pouco quando carrega nela. Os do tipo cantalupo soltam-se então do pé com um leve empurrão.",
+      "keeps": "Um melão maduro aguenta uns dias à temperatura ambiente. Depois de aberto, tape-o e guarde-o no frigorífico.",
+      "problems": [
+        {
+          "name": "Frutos que não vingam",
+          "fix": "Na estufa, chegam poucos insetos às flores. Abra as janelas e as portas nos dias quentes. Polinize à mão com um pincel pequeno, levando o pólen das flores masculinas para as femininas, que têm um frutinho por trás da flor."
+        },
+        {
+          "name": "Oídio",
+          "fix": "Um pó branco cobre as folhas, pior quando as plantas passam sede. Regue com regularidade e mantenha as folhas secas."
+        },
+        {
+          "name": "Aranhiço-vermelho",
+          "fix": "Com ar seco na estufa, as folhas ganham um pontilhado fino e claro e umas teias finas. Com calor, molhe o chão da estufa e borrife as plantas."
+        }
+      ],
+      "source": "Cuidados do melão: RHS. Maturação: University of Minnesota. Quantas plantar: Virginia Tech e Kansas State. pH: Virginia Tech. Conservação: Kansas State e University of Missouri."
+    },
+    "watermelon": {
+      "about": "A melancia precisa de um verão longo e quente. Numa zona fresca, escolha uma variedade pequena e temporã e cultive-a numa estufa ou num túnel. Ao contrário dos outros melões, não amadurece depois de colhida. Por isso, tem de ver se está madura enquanto o fruto ainda está na planta.",
+      "water": "A melancia precisa de uma rega normal. Enquanto as ramas crescem e os frutos engrossam, regue a fundo e com regularidade. Regue o chão, de manhã. Quando o fruto estiver quase do tamanho final, regue menos.",
+      "feed": "Chega uma adubação normal. Antes de plantar, misture composto na terra. Azoto a mais dá folhas em vez de frutos. Se adubar, use um adubo rico em potássio quando os frutos se formarem.",
+      "harvest": "Há três sinais de que está madura. A gavinha enrolada mais perto do fruto fica castanha e seca. A mancha onde assenta no chão passa de branca a amarelo-creme. A casca passa de brilhante a baça. Quando vir os três sinais, corte-a com uma faca.",
+      "keeps": "Uma melancia inteira aguenta 2 a 3 semanas num sítio fresco, entre 10 e 15 °C. Guarde-a longe de maçãs, bananas e tomates. Depois de aberta, tape-a e guarde-a no frigorífico.",
+      "problems": [
+        {
+          "name": "Colhida cedo demais",
+          "fix": "Uma melancia cortada cedo demais fica pálida e sem sabor, porque não amadurece fora da planta. Espere até ver ao mesmo tempo a gavinha seca, a mancha amarela por baixo e a casca baça."
+        },
+        {
+          "name": "Oídio",
+          "fix": "As folhas ficam com um pó branco, pior quando as plantas passam sede. Regue o chão com regularidade e mantenha as folhas secas."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantas novas. Depois de as plantar, proteja-as, sobretudo com tempo húmido."
+        }
+      ],
+      "source": "Cuidados da melancia: RHS. Maturação e conservação: University of Minnesota. Quantas plantar: Virginia Tech e Kansas State. pH: University of Maryland."
+    },
+    "basil": {
+      "about": "O manjericão vive só um verão e não aguenta o frio. As folhas perfumadas duram do início do verão até às primeiras noites frias. Se lhe tirar as pontas dos rebentos, a planta fica compacta e cheia de folhas. Dá-se bem num vaso, num sítio quente, soalheiro e abrigado do vento.",
+      "water": "O manjericão precisa de uma rega normal. Mantenha a terra húmida por igual. Regue de manhã, ao pé da planta e não por cima das folhas. Não gosta de ficar com as raízes molhadas durante a noite. Com calor, um vaso pode precisar de água todos os dias.",
+      "feed": "O manjericão precisa de muito pouco adubo. Na terra, não lhe dê nenhum. Em vaso, dê um adubo líquido equilibrado de poucas em poucas semanas, no verão. Não use adubo para tomate, porque faz o manjericão florir.",
+      "harvest": "Apanhe as pontas dos rebentos logo acima de um par de folhas, umas quantas de cada planta. Daí nascem depois rebentos laterais novos. Tire os botões de flor logo que apareçam, para as folhas continuarem tenras.",
+      "keeps": "No frigorífico, o manjericão fica preto. Em vez disso, ponha os pés num copo de água à temperatura ambiente e aguenta uns dias. Para durar mais, congele as folhas picadas em azeite ou faça pesto.",
+      "problems": [
+        {
+          "name": "Míldio",
+          "fix": "As folhas amarelecem entre as nervuras e ficam com uma penugem cinzento-arroxeada por baixo, sobretudo com tempo húmido. Regue a terra de manhã e deixe espaço entre as plantas. Arranque as plantas atacadas."
+        },
+        {
+          "name": "Danos do frio",
+          "fix": "Depois de noites frias, as folhas ficam pretas e moles. Mantenha o manjericão dentro de casa até as noites ficarem quentes. Quando o outono arrefecer, recolha os vasos ou cubra as plantas."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Podem comer uma planta nova numa só noite. Cultive o manjericão em vaso, vá vê-lo depois de escurecer e apanhe-os."
+        }
+      ],
+      "source": "Cuidados do manjericão: RHS. pH: extensão da Clemson e da University of Connecticut."
+    },
+    "parsley": {
+      "about": "Frisada ou lisa, a salsa vive dois anos, mas só se cultiva durante um. No segundo ano floresce e as folhas pioram, por isso semeie de novo todos os anos. A semente é lenta. Ao ar livre pode demorar até seis semanas a nascer, por isso marque a linha e mantenha-a húmida.",
+      "water": "A salsa precisa de uma rega normal. Mantenha a terra húmida mas nunca encharcada, sobretudo enquanto as plantinhas são pequenas e quando está quente e seco. Os vasos secam depressa. Com o calor do verão, passe-os para a meia-sombra.",
+      "feed": "A salsa precisa de pouco adubo. Na terra não precisa de nenhum. Em vaso, dê um adubo líquido equilibrado de poucas em poucas semanas, enquanto estiver a crescer.",
+      "harvest": "Corte alguns dos pés de fora rente à base e deixe o meio continuar a crescer. Se apanhar com regularidade, continuam a nascer folhas novas do fim da primavera até ao outono.",
+      "keeps": "Um molho com os pés em água aguenta vários dias no frigorífico. As folhas picadas congelam bem em cuvetes de gelo. Guardam mais sabor do que a salsa seca.",
+      "problems": [
+        {
+          "name": "Mosca-da-cenoura",
+          "fix": "As plantas ficam avermelhadas, murcham e deixam de crescer, porque há pequenas larvas a abrir galerias nas raízes. Cubra o canteiro com rede anti-insetos fina desde o dia em que semeia."
+        },
+        {
+          "name": "Mosca-do-aipo",
+          "fix": "Aparecem bolhas castanho-claras nas folhas, onde larvas pequeninas comem por dentro. Tire essas folhas e deite-as ao lixo. A planta faz folhas novas."
+        },
+        {
+          "name": "Demora a nascer",
+          "fix": "Durante semanas não aparece nada e muita gente acaba por cavar a linha por engano. Ponha a semente de molho uma noite antes de semear. Mantenha a terra húmida e espere até seis semanas."
+        }
+      ],
+      "source": "Cuidados da salsa: RHS. pH: Cornell e University of Maryland."
+    },
+    "coriander": {
+      "about": "O coentro dá folhas depressa e as sementes vêm mais tarde. Com calor ou com a terra seca, as plantas espigam e florescem logo. Por isso, a partir da primavera, semeie um bocadinho mais ou menos todos os meses, em vez de uma sementeira grande. Dá-se bem em vaso.",
+      "water": "O coentro precisa de uma rega normal. Nos períodos secos, mantenha a terra húmida, porque as raízes secas o fazem florir cedo. Com tempo quente, veja os vasos todos os dias.",
+      "feed": "O coentro precisa de muito pouco adubo. É uma cultura rápida, por isso a terra da horta ou um substrato novo chegam, sem adubo nenhum.",
+      "harvest": "Comece a cortar folhas quando as plantas tiverem 10 a 15 cm. Tire algumas de cada planta e depois dê-lhes cerca de duas semanas para rebentarem outra vez. Para ter semente, deixe florir algumas plantas. Corte os caules quando as sementes ficarem castanhas e seque-as num saco de papel.",
+      "keeps": "Um molho fresco aguenta uns dias no frigorífico. A semente seca dura meses num frasco bem fechado.",
+      "problems": [
+        {
+          "name": "Espigamento",
+          "fix": "Com tempo quente e seco ou depois de serem mudadas de sítio, as plantas deitam um caule de flor e deixam de dar folhas. Semeie no sítio definitivo, num lugar com sombra ao meio-dia. Regue nos períodos secos e escolha uma variedade que demore a espigar."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Com tempo húmido, comem as plantinhas. Vá lá fora depois de escurecer e apanhe-os."
+        },
+        {
+          "name": "Pulgões",
+          "fix": "Pequenos insetos verdes ou pretos juntam-se nas pontas e enfraquecem a planta. Tire-os com os dedos ou lave-os com água. Deixe as joaninhas em paz, porque os comem."
+        }
+      ],
+      "source": "Cuidados do coentro: RHS. pH: University of Connecticut. Tamanho do vaso: extensão da Oregon State."
+    },
+    "dill": {
+      "about": "O endro dá folhas finas como penas e, mais tarde, sementes. Tem uma raiz principal comprida e não gosta nada de ser mudado. Por isso, semeie-o logo no sítio onde vai crescer. Semeie um pouco de cada vez, de poucas em poucas semanas, de meados da primavera até ao pleno verão. Tal como o coentro, espiga com calor e secura, ou seja, floresce cedo demais.",
+      "water": "O endro dá-se bem com uma rega normal. Regue-o nos períodos secos, porque a terra seca fá-lo florir cedo e deixar de dar folhas. Com calor, os vasos secam depressa.",
+      "feed": "Precisa de pouco adubo. Em terra de horta ou em substrato novo, não precisa de adubo nenhum.",
+      "harvest": "Pode começar a apanhar folhas umas seis semanas depois de semear. Tire poucas de cada vez e deixe pelo menos um terço da planta. Para ter semente, corte as cabeças no fim do verão, quando estiverem secas e castanhas. Pendure-as de cabeça para baixo dentro de um saco de papel.",
+      "keeps": "As folhas frescas murcham depressa e conservam-se mal, mesmo no frigorífico. Use-as logo ou seque-as. As folhas e as sementes secas guardam-se num frasco bem fechado.",
+      "problems": [
+        {
+          "name": "Espigar",
+          "fix": "Com calor e secura, as plantas florescem cedo e deixam de dar folhas. Regue nos períodos secos e volte a semear de poucas em poucas semanas. Se só quer folhas, corte as hastes das flores."
+        },
+        {
+          "name": "Pulgões",
+          "fix": "Juntam-se pequenos insetos verdes ou pretos nos rebentos tenros e nas folhas. Tire-os com os dedos ou com água. Deixe as joaninhas em paz para comerem os que escaparem."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Com tempo húmido, comem as plantinhas tenras. Vá ver depois de escurecer e apanhe-os."
+        }
+      ],
+      "source": "Cuidados do endro: RHS. pH: University of Connecticut."
+    },
+    "chervil": {
+      "about": "O cerefólio é uma erva pequena e delicada, com um leve sabor a anis. Gosta de tempo fresco e de meia-sombra. Ao sol forte floresce cedo demais, por isso dá-se melhor na primavera e no outono. Semeie um pouco de poucas em poucas semanas para ter sempre folhas.",
+      "water": "O cerefólio precisa de uma rega normal. Mantenha a terra húmida por igual, mas sem encharcar, porque a terra seca fá-lo florir cedo. Com calor, os vasos precisam de mais água.",
+      "feed": "Precisa de muito pouco adubo. Chega a terra de horta ou um substrato novo, por isso não o adube.",
+      "harvest": "As folhas estão prontas umas oito semanas depois de semear, quando as plantas tiverem 10 cm. Apanhe algumas folhas novas de cada planta. Ou corte os caules inteiros a 5 cm e deixe-os rebentar outra vez.",
+      "keeps": "Use o cerefólio fresco. Murcha num dia ou dois e, seco, perde quase todo o sabor.",
+      "problems": [
+        {
+          "name": "Espigar",
+          "fix": "Ao sol forte e em terra seca, as plantas florescem cedo e as folhas perdem o sabor. Cultive-o à meia-sombra, regue com regularidade e volte a semear de poucas em poucas semanas."
+        },
+        {
+          "name": "Pulgões",
+          "fix": "Juntam-se pequenos insetos verdes nas folhas e nos rebentos tenros. Tire-os com os dedos ou com água e deixe as joaninhas comer o resto."
+        }
+      ],
+      "source": "Cuidados do cerefólio: RHS. pH: University of Connecticut."
+    },
+    "chives": {
+      "about": "As folhas do cebolinho têm um sabor suave a cebola. As flores roxas também se comem. O tufo volta todas as primaveras. A cada três ou quatro anos, arranque-o, separe-o em tufos mais pequenos e volte a plantá-los, para se manter forte.",
+      "water": "O cebolinho precisa de uma rega normal. No primeiro verão, regue-o nos períodos secos. Depois disso, na terra, aguenta-se sozinho. Em vaso, mantenha o substrato húmido por igual.",
+      "feed": "Precisa de pouco adubo. Na terra, basta um pouco de composto quando o plantar. Em vaso, um adubo líquido universal de vez em quando, no verão, faz com que continue a dar folhas novas.",
+      "harvest": "Corte as folhas logo acima da base sempre que precisar. Quanto mais vezes cortar, mais folhas tem. Depois da floração, corte o tufo todo a uns 5 cm e ele volta a rebentar com muitas folhas novas.",
+      "keeps": "Depois de cortado, o cebolinho murcha em poucos dias. Para o usar no inverno, pique-o e congele-o num saco ou numa cuvete de gelo.",
+      "problems": [
+        {
+          "name": "Ferrugem",
+          "fix": "Aparecem nas folhas pintas cor de laranja, em relevo. Corte o tufo rente ao chão e deite as folhas no lixo. As folhas novas costumam nascer sãs."
+        },
+        {
+          "name": "Pulgões",
+          "fix": "Pequenos pulgões verdes juntam-se nas folhas e nas hastes das flores. Tire-os com os dedos ou com um jato de água."
+        }
+      ],
+      "source": "Cuidados do cebolinho: RHS. pH: University of Minnesota."
+    },
+    "thyme": {
+      "about": "O tomilho está verde o ano todo, por isso pode apanhá-lo fresco em qualquer altura ou secá-lo. É um pequeno arbusto que precisa de sol e de uma terra onde a água escorra depressa. No inverno, a terra encharcada mata-o mais vezes do que o frio. Ao fim de alguns anos, as plantas ficam lenhosas. Substitua-as por plantas novas feitas de estaca.",
+      "water": "O tomilho aguenta bem a secura. Com tempo seco, regue as plantas novas até pegarem. Depois disso, na terra quase nunca precisa de água. Em vaso, regue com calor e tempo seco e deixe o substrato secar um pouco entre regas.",
+      "feed": "Precisa de muito pouco adubo. O tomilho cresce melhor em terra pobre, por isso, na terra, não o adube. Uma terra rica dá rebentos moles e com menos sabor. Se uma planta estiver há mais de um ano no mesmo vaso, pode dar-lhe um pouco de adubo universal no fim da primavera.",
+      "harvest": "Corte raminhos sempre que precisar. Os rebentos novos e tenros do fim da primavera e do verão são os que têm mais sabor. Cortar muitas vezes mantém a planta compacta. Apare-a ligeiramente depois da floração, mas não corte na madeira nua.",
+      "keeps": "Os raminhos frescos aguentam uns dias num saco, no frigorífico. Para secar o tomilho, pendure uns molhos durante algumas semanas num sítio quente, escuro e arejado. Depois guarde as folhas num frasco bem fechado.",
+      "problems": [
+        {
+          "name": "Podridão das raízes",
+          "fix": "Com a terra molhada, a planta murcha e fica castanha a partir da base. Cultive-a numa terra que escoe depressa, num canteiro elevado ou num vaso com gravilha misturada. Nunca deixe um vaso dentro de água."
+        },
+        {
+          "name": "Planta lenhosa e despida",
+          "fix": "Ao fim de alguns anos, o centro da planta fica despido e lenhoso. Apare-a ligeiramente todos os anos depois da floração. Substitua as plantas velhas por estacas feitas no fim da primavera."
+        },
+        {
+          "name": "Escaravelho-do-alecrim",
+          "fix": "Do fim do verão à primavera, uns pequenos escaravelhos com riscas verdes e roxas metalizadas comem as folhas. As suas larvas cinzentas também. Apanhe-os à mão ou sacuda a planta por cima de uma folha de papel."
+        }
+      ],
+      "source": "Cuidados do tomilho: RHS. pH: laboratório de solos da University of Connecticut."
+    },
+    "rosemary": {
+      "about": "Pode apanhar alecrim o ano todo, porque é um arbusto que não perde as folhas em nenhuma estação. Dê-lhe sol pleno e uma terra que escoe depressa. A terra pesada e encharcada mata-o mais depressa do que o frio. Em zonas frias, plante-o encostado a uma parede soalheira ou num vaso que possa levar para um sítio abrigado.",
+      "water": "O alecrim aguenta bem a secura. No primeiro ano, regue-o quando o tempo estiver seco. Depois disso, na terra quase nunca precisa de água. Um vaso precisa de rega com calor, mas nunca deixe o substrato encharcar.",
+      "feed": "Precisa de muito pouco adubo. Na terra, não precisa de adubo nenhum. Se a planta estiver há mais de um ano no mesmo vaso, dê-lhe um pouco de adubo granulado universal no fim da primavera ou no início do verão.",
+      "harvest": "Corte raminhos sempre que precisar, durante todo o ano. Os rebentos novos e tenros do fim da primavera e do verão são os mais saborosos. Apare a planta depois da floração para a manter bem cheia. Não corte na madeira velha e nua, porque raramente volta a rebentar.",
+      "keeps": "Os raminhos frescos aguentam vários dias no frigorífico. Para os secar, pendure-os num sítio quente, escuro e arejado. Depois tire as folhas e guarde-as num frasco bem fechado.",
+      "problems": [
+        {
+          "name": "Escaravelho-do-alecrim",
+          "fix": "Do fim do verão à primavera, uns pequenos escaravelhos com riscas verdes e roxas metalizadas comem as folhas. As suas larvas cinzentas também. Apanhe-os à mão ou sacuda a planta por cima de uma folha de papel."
+        },
+        {
+          "name": "Estragos do frio e da chuva",
+          "fix": "Depois de uma geada forte, de vento frio ou de um inverno chuvoso, os rebentos ficam castanhos e morrem. Quando fizer muito frio, cubra a planta com manta térmica e ponha os vasos num sítio abrigado. Na primavera, corte os rebentos mortos."
+        },
+        {
+          "name": "Cigarrinha-espumosa",
+          "fix": "No fim da primavera aparecem bolinhas de espuma branca nos rebentos. Cada uma esconde um pequeno inseto que chupa a seiva. Faz poucos estragos, por isso limpe-a ou tire-a com água."
+        }
+      ],
+      "source": "Cuidados do alecrim: RHS. pH: extensão da Texas A&M AgriLife."
+    },
+    "oregano": {
+      "about": "Os orégãos usam-se frescos ou secos. Com o tempo vão alastrando e voltam todos os anos. No inverno, a maior parte da rama seca. Na primavera nascem rebentos novos. Têm mais sabor ao sol pleno e em terra pobre que escoe depressa. O melhor é apanhá-los mesmo antes de as flores abrirem.",
+      "water": "Depois de instalados, os orégãos aguentam a secura. Regue as plantas novas quando o tempo estiver seco. Na terra, as plantas já instaladas não precisam de mais água. Em vaso, regue com calor e tempo seco, mas nunca deixe o substrato ficar encharcado.",
+      "feed": "Os orégãos precisam de muito pouco adubo. Na terra, não precisam de nenhum. Se uma planta estiver há mais de um ano no mesmo vaso, pode levar um pouco de adubo granulado universal no fim da primavera ou no início do verão.",
+      "harvest": "Do fim da primavera ao outono, corte raminhos e tire-lhes as folhas. O sabor é melhor antes de as flores abrirem. Depois da floração, corte a planta bem baixa e ela volta a dar folhas novas. No fim do inverno, tire os caules velhos.",
+      "keeps": "Os orégãos secam bem. Pendure os raminhos durante algumas semanas num sítio escuro e arejado. Depois tire as folhas e guarde-as num frasco bem fechado.",
+      "problems": [
+        {
+          "name": "Ferrugem da hortelã",
+          "fix": "Aparecem pintas cor de laranja ou castanhas, como pó, por baixo das folhas, e na primavera os rebentos nascem torcidos. Corte os caules afetados rente ao chão. Deite-os no lixo e não no composto."
+        },
+        {
+          "name": "Cigarrinhas",
+          "fix": "Uns pequenos insetos saltadores chupam a seiva e deixam manchas claras nas folhas. O estrago é só de aspeto, por isso pode deixá-los estar."
+        },
+        {
+          "name": "Traça-da-hortelã",
+          "fix": "No verão, umas lagartas pequenas comem as folhas e prendem-nas umas às outras com seda. Normalmente o estrago é pequeno. Se lhe fizer confusão, tire as lagartas à mão."
+        }
+      ],
+      "source": "Cuidados dos orégãos: RHS. pH: laboratório de solos da University of Connecticut (manjerona) e extensão da NC State."
+    },
+    "sage": {
+      "about": "A sálvia é um arbusto que mantém as folhas macias, verde-acinzentadas, o ano todo, por isso pode apanhá-la em qualquer altura. Precisa de sol e de uma terra que nunca fique encharcada. Ao fim de seis ou sete anos, as plantas ficam lenhosas e desengonçadas. Nessa altura, substitua-as por plantas novas feitas de estaca.",
+      "water": "Depois de instalada, a sálvia aguenta a secura. No primeiro ano, regue-a quando o tempo estiver seco. A partir daí, na terra, aguenta bem a seca. Em vaso, mantenha o substrato só húmido, sem encharcar. No inverno, ponha o vaso junto a uma parede, abrigado da chuva.",
+      "feed": "Precisa de muito pouco adubo. Na terra, não lhe dê adubo nenhum. Se a planta estiver há mais de um ano no mesmo vaso, espalhe-lhe um pouco de adubo granulado universal no fim da primavera ou no início do verão.",
+      "harvest": "Apanhe folhas novas ou raminhos inteiros sempre que precisar. Os rebentos da primavera e do verão são os mais saborosos. Colher muitas vezes mantém a planta bem cheia. Todos os anos, de meados ao fim da primavera, dê-lhe uma poda ligeira.",
+      "keeps": "Para secar a sálvia, pendure os raminhos num sítio quente, escuro e arejado. Depois guarde as folhas num frasco bem fechado. Também pode picar as folhas e congelá-las numa cuvete de gelo.",
+      "problems": [
+        {
+          "name": "Escaravelho-do-alecrim",
+          "fix": "Do fim do verão à primavera, uns pequenos escaravelhos com riscas verdes e roxas metalizadas comem as folhas. As larvas cinzentas fazem o mesmo. Apanhe-os à mão ou sacuda a planta por cima de uma folha de papel."
+        },
+        {
+          "name": "Cigarrinhas",
+          "fix": "As manchas claras nas folhas vêm de uns pequenos insetos saltadores que chupam a seiva. Raramente é grave. Basta tirar as folhas mais estragadas."
+        },
+        {
+          "name": "Planta lenhosa e desengonçada",
+          "fix": "As plantas velhas fazem caules compridos e despidos, com poucas folhas. Apare-as ligeiramente todas as primaveras. De poucos em poucos anos, faça estacas dos rebentos novos e tenros no fim da primavera para substituir a planta."
+        }
+      ],
+      "source": "Cuidados da sálvia: RHS. pH: UC Master Gardeners, University of California."
+    },
+    "mint": {
+      "about": "A hortelã cresce depressa, dura muitos anos e serve para chás, bebidas e cozinhados. As raízes correm depressa debaixo da terra e tomam conta do canteiro. Por isso, cultive-a num vaso. Ou plante-a num vaso sem fundo enterrado na terra, com a borda de fora. No inverno seca e na primavera volta a rebentar.",
+      "water": "A hortelã precisa de muita água. Mantenha a terra húmida por igual, porque num vaso seco murcha depressa. No verão, veja os vasos muitas vezes e, com calor, ponha-os à meia-sombra.",
+      "feed": "A hortelã precisa de uma adubação normal, sobretudo em vaso. Na terra precisa de pouco. Em vaso, dê-lhe adubo líquido na primavera e depois a cada 4 a 6 semanas, enquanto estiver a crescer.",
+      "harvest": "Do fim da primavera ao outono, apanhe muitas vezes as pontas dos rebentos novos. Colher com regularidade mantém a planta compacta e cheia de rebentos novos. Corte os caules que estiverem em flor, para ter folhas novas.",
+      "keeps": "Os raminhos frescos aguentam uns dias num copo com água ou no frigorífico. Congelada, a hortelã guarda melhor o sabor do que seca. Congele as folhas em cubos de gelo.",
+      "problems": [
+        {
+          "name": "Ferrugem da hortelã",
+          "fix": "Aparecem pintas cor de laranja, como pó, por baixo das folhas, e na primavera os rebentos nascem torcidos e inchados. Corte os caules afetados rente ao chão e deite-os no lixo. Se voltar todos os anos, recomece com plantas sãs noutro sítio."
+        },
+        {
+          "name": "Invade tudo",
+          "fix": "Aparecem rebentos a alastrar por todo o canteiro. Mantenha a hortelã num vaso com a borda acima da terra, para os estolhos não passarem por cima. De poucos em poucos anos, divida a planta em pedaços e volte a pô-la em vaso."
+        },
+        {
+          "name": "Escaravelho-da-hortelã",
+          "fix": "No verão, uns escaravelhos pequenos, azul-esverdeados e brilhantes, e as suas larvas fazem buracos nas folhas. Apanhe-os à mão. A planta costuma voltar a rebentar."
+        }
+      ],
+      "source": "Cuidados da hortelã: RHS. pH: NSW Department of Primary Industries. Adubação em vaso: University of Arizona."
+    },
+    "tulip": {
+      "about": "As tulipas dão flores grandes e de cores vivas de meados ao fim da primavera. Plante os bolbos no fim do outono, numa terra que escoe bem e não fique húmida. Os bolbos plantados tarde apanham menos vezes o fogo-da-tulipa, uma doença causada por um fungo. Muitas tulipas só florescem bem no primeiro ano. Nos sítios mais importantes do jardim, ponha bolbos novos todos os anos.",
+      "water": "As tulipas precisam de uma rega normal. Na terra, depois de os rebentos saírem, os bolbos só precisam de água ao fim de duas ou três semanas sem chover. Regue os vasos a partir do momento em que aparecem as folhas, porque a secura encurta a floração. Se o substrato de um vaso ficar encharcado no inverno, ponha o vaso ao abrigo da chuva.",
+      "feed": "Uma adubação normal serve-lhes bem. A partir do início da primavera, dê às tulipas em vaso um adubo líquido rico em potássio, como o adubo para tomate, todas as semanas até as folhas amarelecerem.",
+      "harvest": "Para a jarra, corte-as quando o botão já mostrar cor mas ainda não tiver aberto. No jardim, corte as flores murchas logo acima das folhas. Deixe as folhas até ficarem cor de palha. Para guardar os bolbos, arranque-os umas seis semanas depois da floração. Seque-os e guarde-os até ao outono num sítio quente, escuro e arejado.",
+      "keeps": "As tulipas cortadas duram vários dias na jarra. Continuam a crescer e inclinam-se para a luz. Vá acrescentando água fria à jarra.",
+      "problems": [
+        {
+          "name": "Fogo-da-tulipa",
+          "fix": "Aparecem manchas castanhas e as folhas e as flores torcem-se e secam, às vezes com bolor cinzento. Arranque as plantas doentes com o bolbo e deite-as no lixo. Plante no fim do outono e cultive as tulipas noutro sítio durante pelo menos três anos."
+        },
+        {
+          "name": "Esquilos e ratos",
+          "fix": "No outono e no inverno, desenterram os bolbos e comem-nos. Cubra o canteiro ou o vaso com rede de capoeira até as folhas saírem. Plantar narcisos no meio ajuda, porque os esquilos os evitam."
+        },
+        {
+          "name": "Poucas ou nenhumas flores",
+          "fix": "A partir do segundo ano, dão folhas mas nenhuma flor, ou só flores pequenas. Plante os bolbos a uma profundidade de pelo menos três vezes a altura deles e adube os vasos enquanto tiverem folhas. Substitua os bolbos cansados por bolbos novos."
+        }
+      ],
+      "source": "Cuidados da tulipa: RHS. pH: laboratório de solos da University of Connecticut. Tamanho do vaso: Purdue University."
+    },
+    "daffodil": {
+      "about": "Os narcisos, amarelos e brancos, florescem do fim do inverno a meados da primavera. Ao sol ou à meia-sombra, voltam durante muitos anos e vão formando tufos aos poucos. A única coisa a não esquecer: depois da floração, deixe as folhas secar sozinhas, porque são elas que alimentam as flores do ano seguinte.",
+      "water": "Para os narcisos, chega uma rega normal. Na terra, os bolbos quase nunca precisam de água, só em secas longas enquanto estão a crescer. Os vasos secam depressa, por isso regue-os até as folhas secarem.",
+      "feed": "Precisam de pouco adubo. Na terra, não precisam de adubo nenhum. Em vaso, dê-lhes um adubo líquido rico em potássio, como o adubo para tomate, desde que saem os rebentos até as folhas começarem a secar.",
+      "harvest": "Parta as flores murchas, para a energia voltar para o bolbo. Deixe as folhas até amarelecerem, umas seis semanas depois da floração. Não as corte, não as ate nem lhes dê nós. Para a jarra, corte os narcisos quando o botão estiver quase a abrir.",
+      "keeps": "Os narcisos cortados largam uma seiva que faz as outras flores durarem menos. Antes de os juntar a outras flores, deixe-os uma noite sozinhos em água. Depois disso, não volte a cortar os caules.",
+      "problems": [
+        {
+          "name": "Narcisos sem flor",
+          "fix": "Há muitas folhas mas nenhuma flor, por causa de tufos apertados, de bolbos pouco fundos ou de folhas cortadas cedo demais. Quando as folhas secarem, arranque os tufos apertados e separe os bolbos. Volte a plantá-los mais fundo."
+        },
+        {
+          "name": "Mosca-do-narciso",
+          "fix": "Saem folhas finas como erva mas nenhuma flor, e o bolbo está mole, com uma larva gorda lá dentro. Deite fora os bolbos moles. Quando as folhas estiverem a secar, calque a terra por cima dos buracos, para a mosca não chegar aos bolbos."
+        },
+        {
+          "name": "Bolbos podres",
+          "fix": "Os bolbos amolecem e apodrecem a partir de baixo, em terra encharcada ou quando estão guardados. Plante só bolbos firmes, numa terra que escoe bem. Deite fora os que estiverem moles."
+        }
+      ],
+      "source": "Cuidados do narciso: RHS. pH: laboratório de solos da University of Connecticut. Tamanho do vaso: Purdue University."
+    },
+    "crocus": {
+      "about": "Os crocos nascem de cormos, que são como pequenos bolbos, e florescem no fim do inverno e no início da primavera. Estão entre os primeiros alimentos do ano para as abelhas. Voltam todos os anos e alastram em manchas largas nos canteiros e na relva baixa. Depois da floração, deixe as folhas secar. Num relvado, só corte a relva quando elas já tiverem secado.",
+      "water": "Os crocos aguentam a secura e, na terra, quase nunca precisam de água. Em vaso, enquanto tiverem folhas, mantenha o substrato húmido a uns centímetros de profundidade.",
+      "feed": "Precisam de pouco adubo. Na terra não precisam de nenhum. Em vaso, dê-lhes um adubo líquido rico em potássio enquanto tiverem folhas. Isso ajuda as flores do ano seguinte.",
+      "harvest": "Não é preciso tirar as flores murchas. Deixe as folhas até secarem. Num relvado, espere até lá para cortar a relva, para os cormos ganharem força e se espalharem. Depois de as folhas secarem, pode tirar os crocos dos vasos. Guarde-os em sacos de papel num sítio fresco e seco até ao outono.",
+      "problems": [
+        {
+          "name": "Esquilos e ratos",
+          "fix": "Desenterram os cormos e comem-nos logo depois da plantação. Cubra as plantações novas com rede de capoeira ou rede metálica até os rebentos saírem."
+        },
+        {
+          "name": "Pássaros que bicam as flores",
+          "fix": "Os pardais bicam as flores, muitas vezes as amarelas, e deixam-nas rasgadas e desfeitas. Um fio preto ou uma rede por cima do tufo protege-as durante a floração."
+        },
+        {
+          "name": "Poucas flores",
+          "fix": "Cada ano há menos flores. Muitas vezes as folhas foram cortadas antes de secarem ou o sítio ficou com sombra a mais. Não mexa nas folhas e, quando secarem nesse ano, mude os tufos para um sítio mais soalheiro."
+        }
+      ],
+      "source": "Cuidados do croco: RHS. pH: laboratório de solos da University of Connecticut. Tamanho do vaso: Purdue University."
+    },
+    "sunflower": {
+      "about": "O girassol dá grandes flores de verão e ainda sementes para si ou para os pássaros. As variedades altas precisam de uma cana forte ou de uma parede onde as atar. As anãs ficam baixas e dão-se bem em vaso. Proteja as plantinhas das lesmas até estarem fortes.",
+      "water": "O girassol precisa de uma rega normal. Nos períodos secos, regue bem junto ao pé do caule. As variedades altas não podem secar. Em vaso precisam de água mais vezes, todos os dias quando está calor.",
+      "feed": "O girassol precisa de uma quantidade normal de adubo. Enterre composto no canteiro antes de semear. Quando aparecerem os botões de flor, dê de duas em duas semanas um adubo líquido rico em potássio, como o adubo para tomate. Assim as flores ficam maiores.",
+      "harvest": "Para a jarra, corte-os de manhã, quando as pétalas começam a abrir. Para semente, deixe a flor na planta até a parte de trás ficar castanha. Cubra-a com um saco de papel ou uma rede, para os pássaros não a comerem. Depois corte-a e seque-a dentro de casa.",
+      "keeps": "Um girassol cortado dura cerca de uma semana na jarra. Mude a água a cada dois dias. A semente seca guarda-se meses num sítio fresco, seco e escuro.",
+      "problems": [
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Numa só noite comem as plantas novas até ao caule. Ponha um anel de proteção à volta de cada plantinha. Também pode semear em vasos e plantar quando estiverem fortes."
+        },
+        {
+          "name": "Pássaros",
+          "fix": "Os pássaros desenterram a semente depois de semeada ou depenicam as flores maduras até não sobrar nada. Cubra as sementeiras com rede. Ponha um saco nas flores que quer guardar."
+        },
+        {
+          "name": "Plantas tombadas",
+          "fix": "Os caules altos inclinam-se ou partem com o vento ou depois da chuva. Ate-os cedo a uma cana forte ou cultive-os encostados a uma parede ou a uma vedação."
+        }
+      ],
+      "source": "Cuidados do girassol: RHS. pH: University of Minnesota."
+    },
+    "marigold": {
+      "about": "Os tagetes franceses e os africanos dão flores de um laranja e de um amarelo bem vivos. Florescem do início do verão até à primeira geada. Ficam bem em canteiros, em vasos e nos espaços entre os legumes. São fáceis de cultivar, mas as lesmas adoram as plantas novas. Se tirar as flores murchas, continuam a aparecer flores novas.",
+      "water": "Os tagetes só precisam de uma rega normal. Regue nos períodos secos, ao pé da planta e não por cima das flores. No verão os vasos secam depressa, por isso veja-os todos os dias.",
+      "feed": "Os tagetes precisam de pouco adubo. A terra normal da horta chega. Terra rica ou adubo a mais dão folhas em vez de flores. Em vaso, um adubo líquido de poucas em poucas semanas mantém-nos em flor.",
+      "harvest": "De poucos em poucos dias, tire as flores murchas, beliscando-as logo abaixo da cabeça. Para a jarra, corte-as quando as flores estiverem bem abertas.",
+      "keeps": "As flores cortadas duram cerca de uma semana na jarra. Tire as folhas que ficariam dentro de água.",
+      "problems": [
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Aparecem folhas furadas e plantinhas que desaparecem numa noite. Ponha na terra plantas já fortes em vez de plantinhas minúsculas. Com tempo húmido, proteja-as à noite."
+        },
+        {
+          "name": "Podridão cinzenta",
+          "fix": "Com tempo fresco e húmido, aparece uma penugem cinzenta nas flores e nos caules. Tire as flores que estão a apodrecer. Deixe espaço entre as plantas para secarem depressa."
+        },
+        {
+          "name": "Aranhiço-vermelho",
+          "fix": "Com tempo quente e seco, as folhas ficam pálidas e pintalgadas, com teias finas, sobretudo em estufas e vasos. Mantenha as plantas regadas. Borrife ou molhe com a mangueira o lado de baixo das folhas."
+        }
+      ],
+      "source": "Cuidados dos tagetes: RHS. pH: laboratório de solos da University of Connecticut."
+    },
+    "calendula": {
+      "about": "Do início do verão até ao outono, a calêndula dá flores cor de laranja e amarelas. Só vive um ano, mas aguenta o frio. As pétalas comem-se e dão cor às saladas e ao arroz. Cresce em quase todo o tipo de terra e deixa cair semente que nasce por todo o lado. Semeada no outono, passa o inverno e floresce cedo no ano seguinte.",
+      "water": "Depois de pegar bem, a calêndula aguenta a secura. Regue as plantinhas novas e as plantas em vaso. Não molhe as folhas, para travar o oídio.",
+      "feed": "Precisa de pouco adubo. Terra rica ou adubo a mais dão folhas moles e menos flores. As plantas em vaso podem levar um adubo líquido uma vez por mês.",
+      "harvest": "De manhã, corte as flores bem abertas para a jarra ou para aproveitar as pétalas. De poucos em poucos dias, tire as flores murchas. Senão, as plantas fazem semente e deixam de florir.",
+      "keeps": "As flores cortadas duram cerca de uma semana na jarra. Se secar as pétalas em cima de papel, num sítio quente e arejado, aguentam meses num frasco.",
+      "problems": [
+        {
+          "name": "Oídio",
+          "fix": "A partir de meados do verão, as folhas cobrem-se de um pó branco, pior em terra seca. Regue nos períodos secos, deixe espaço entre as plantas e arranque as que estiverem muito atacadas. As sementeiras tardias ficam mais limpas."
+        },
+        {
+          "name": "Pulgão-negro",
+          "fix": "Juntam-se pequenos insetos pretos nas pontas dos rebentos e nos botões. Tire-os com os dedos ou com um jato de água. As joaninhas e outros predadores não tardam a aparecer."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Com tempo húmido, comem as plantinhas numa só noite. Proteja as plantas novas à noite até estarem bem crescidas."
+        }
+      ],
+      "source": "Cuidados da calêndula: RHS. pH: Utah State University."
+    },
+    "nasturtium": {
+      "about": "A capuchinha espalha-se pelo chão ou trepa. Comem-se tanto as flores de cores vivas como as folhas, que têm um sabor picante. Dá-se melhor em terra pobre que escoe bem. Em terra rica dá muita folha e pouca flor. É fácil de semear, até para as crianças.",
+      "water": "Depois de pegar na terra, a capuchinha aguenta a secura. Regue as plantinhas novas e as plantas em vaso. Se a terra ficar muito seca durante muito tempo, deixa de florir.",
+      "feed": "A capuchinha precisa de muito pouco, por isso não a adube. O adubo dá folhas em vez de flores. Cultive-a em terra normal ou pobre, sem composto nem estrume.",
+      "harvest": "De manhã, apanhe as folhas novas e as flores abertas conforme precisar. Apanhe as sementes ainda verdes, antes de endurecerem, e pode pô-las em conserva como as alcaparras. Se tirar as flores murchas, continuam a aparecer flores novas.",
+      "keeps": "As folhas e as flores murcham depressa. Guarde-as num saco no frigorífico e use-as num dia ou dois.",
+      "problems": [
+        {
+          "name": "Pulgão-negro",
+          "fix": "Juntam-se grupos densos de insetos pretos debaixo das folhas e nas pontas dos rebentos. Corte os rebentos piores ou lave-os com a mangueira. As joaninhas e as moscas-das-flores não tardam a chegar."
+        },
+        {
+          "name": "Lagartas da couve",
+          "fix": "No fim do verão, umas lagartas verdes deixam as folhas despidas. São as mesmas que comem as couves. Veja por baixo das folhas e tire-as à mão."
+        },
+        {
+          "name": "Muita folha, pouca flor",
+          "fix": "As folhas grandes e viçosas escondem poucas flores, por causa da terra rica ou do adubo. Deixe de adubar. No ano seguinte, semeie-a num sítio mais pobre e soalheiro."
+        }
+      ],
+      "source": "Cuidados da capuchinha: RHS e University of Maryland."
+    },
+    "zinnia": {
+      "about": "As zínias dão flores de corte em cores fortes, do pleno verão até à primeira geada. Quanto mais cortar, mais florescem. Adoram calor e sol e sofrem com tempo frio e húmido. Não gostam que lhes mexam nas raízes, por isso semeie-as no sítio onde vão florir ou em vasos pequenos.",
+      "water": "As zínias precisam de uma rega normal. Nos períodos secos, regue bem junto ao pé da planta, porque as folhas molhadas trazem oídio. No verão, veja todos os dias as plantas em vaso.",
+      "feed": "Precisam de pouco adubo. Chega uma terra normal com algum composto. Adubo a mais dá rebentos moles. Em vaso, dê um adubo líquido de duas em duas semanas, a partir do momento em que começam a florir.",
+      "harvest": "Corte a flor quando estiver bem aberta e o caule estiver firme logo abaixo da cabeça. Um teste simples: abane-a e veja se o caule não dobra. Corte em baixo, logo acima de um par de folhas. Nas outras, tire as flores murchas para continuarem a aparecer botões novos.",
+      "keeps": "As zínias cortadas duram cerca de uma semana na jarra. Mude-lhes a água de dois em dois dias.",
+      "problems": [
+        {
+          "name": "Oídio",
+          "fix": "No fim do verão, aparece um pó branco nas folhas. Regue a terra e não as folhas, deixe espaço para o ar circular e tire as piores folhas. As variedades resistentes ao oídio também ajudam."
+        },
+        {
+          "name": "Manchas nas folhas",
+          "fix": "Com tempo húmido, aparecem nas folhas manchas castanhas ou escuras com a borda clara. Tire as folhas manchadas e regue junto ao pé. No fim da época, arranque as plantas."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantinhas numa só noite. Proteja-as à noite ou crie-as em vasos pequenos. Plante-as na terra quando já estiverem fortes."
+        }
+      ],
+      "source": "Cuidados da zínia: RHS. pH: University of Florida IFAS."
+    },
+    "cosmos": {
+      "about": "O cosmos é uma planta alta e leve que só dura uma estação. Tem folhas finas como penas e flores parecidas com margaridas, do pleno verão até à primeira geada. São boas para cortar. Floresce melhor em terra pobre ou normal. Em terra rica, as plantas ficam altas e cheias de folhas, mas com poucas flores. As variedades anãs dão-se bem em vaso.",
+      "water": "Depois de instalado, o cosmos aguenta a secura. Regue as plantinhas novas, as plantas acabadas de pôr na terra e os vasos. Água a mais, tal como adubo a mais, dá mais folhas do que flores.",
+      "feed": "O cosmos precisa de muito pouco. Na terra, não o adube. As plantas em vaso podem levar um adubo líquido rico em potássio, como o adubo para tomate, uma vez por mês.",
+      "harvest": "Para a jarra, corte os caules quando os botões estiverem a começar a abrir, logo acima de um rebento lateral. De poucos em poucos dias, tire as flores murchas. Senão, a planta faz semente e deixa de florir.",
+      "keeps": "As flores cortadas duram de uns dias a uma semana na jarra. Corte-as de manhã, com o fresco.",
+      "problems": [
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Comem as plantinhas e as plantas novas numa só noite. Só ponha na terra plantas fortes e proteja-as à noite até estarem bem crescidas."
+        },
+        {
+          "name": "Muita folha, pouca flor",
+          "fix": "As plantas crescem altas e viçosas mas florescem tarde e pouco, por causa da terra rica, do adubo ou da sombra. Deixe de adubar e continue a tirar as flores murchas. No ano seguinte, escolha um sítio mais soalheiro e com terra mais pobre."
+        },
+        {
+          "name": "Plantas que tombam",
+          "fix": "Com vento e chuva, as plantas altas tombam. Corte-lhes a ponta quando tiverem uns 30 cm, para ficarem mais ramificadas. Segure-as com canas ou com ramos."
+        }
+      ],
+      "source": "Cuidados do cosmos: RHS. pH: laboratório de solos da University of Connecticut."
+    },
+    "sweet_pea": {
+      "about": "A ervilha-de-cheiro trepa e dá flores perfumadas para cortar a partir do início do verão. Dê-lhe canas, rede ou uma vedação para trepar. Quando tiver uns 10 cm, corte-lhe a ponta e a planta fica mais ramalhuda. A grande regra: continue sempre a cortar flores, porque quando se formam vagens a planta deixa de florir. As vagens parecem ervilhas da horta, mas são venenosas.",
+      "water": "A ervilha-de-cheiro precisa de muita água. Mantenha a terra húmida durante toda a época e regue bem nos períodos secos. Com as raízes secas, a floração acaba mais cedo. Com tempo quente, os vasos precisam de água todos os dias.",
+      "feed": "A ervilha-de-cheiro precisa de uma quantidade normal de adubo. Antes de semear ou plantar, enterre bastante composto ou estrume bem curtido. Depois de as plantas pegarem, um adubo líquido a cada uma ou duas semanas mantém as flores a aparecer.",
+      "harvest": "De poucos em poucos dias, corte hastes de manhã, quando as flores mais baixas de cada haste estiverem abertas. Tire as vagens que encontrar, senão a planta deixa de florir.",
+      "keeps": "As hastes cortadas duram uns dias na jarra. Quanto mais cortar, mais flores novas aparecem.",
+      "problems": [
+        {
+          "name": "Pulgões",
+          "fix": "Os insetos verdes nas pontas e nos botões podem espalhar vírus que deixam a planta com riscas e torcida. Esmague-os ou tire-os logo cedo com um jato de água. Arranque as plantas riscadas e enfezadas."
+        },
+        {
+          "name": "Oídio",
+          "fix": "No fim do verão, as folhas ficam cobertas de um pó branco, pior com a terra seca e em sítios apertados sem ar a correr. Regue nos períodos secos e deixe o ar circular. Corte as partes atacadas."
+        },
+        {
+          "name": "Queda dos botões",
+          "fix": "Depois de noites frias ou com as raízes secas, os botões amarelecem e caem antes de abrir. Mantenha a terra húmida. Normalmente passa quando o tempo estabiliza."
+        }
+      ],
+      "source": "Cuidados da ervilha-de-cheiro: RHS. pH: University of Missouri. Oídio: Oregon State University."
+    },
+    "lavender": {
+      "about": "A lavanda é um pequeno arbusto que está verde o ano todo. As abelhas adoram as suas flores perfumadas de verão, que também secam bem. Precisa de sol pleno e de terra pobre que escoe depressa. Dá-se bem em terra calcária. A única coisa a não esquecer: apare-a todos os anos depois da floração, senão fica desengonçada e lenhosa.",
+      "water": "Depois de instalada, a lavanda aguenta bem a secura. No primeiro verão, regue as plantas novas com regularidade. Depois disso, na terra quase nunca precisa de água. Um vaso seca depressa e, no verão, precisa de rega regular.",
+      "feed": "Precisa de muito pouco. A lavanda gosta de terra pobre em nutrientes, por isso não a adube. O adubo dá caules moles que tombam.",
+      "harvest": "Para secar, corte as hastes numa manhã seca, quando abrirem as primeiras flores da espiga. No fim do verão, depois da floração, corte as hastes velhas das flores junto com uns 2,5 cm de rebento com folhas. Nunca corte na madeira nua.",
+      "keeps": "Pendure pequenos molhos de cabeça para baixo num sítio escuro e arejado até secarem. Num frasco fechado, as flores secas guardam o perfume durante meses.",
+      "problems": [
+        {
+          "name": "Podridão das raízes",
+          "fix": "Em terra pesada e encharcada, as plantas ficam cinzentas e secam, muitas vezes no inverno. Plante num camalhão ou num canteiro elevado e junte gravilha à terra dos vasos. Nunca deixe um vaso dentro de água."
+        },
+        {
+          "name": "Planta desengonçada e lenhosa",
+          "fix": "Os caules ficam despidos e lenhosos, com flores só nas pontas. Apare-a todos os anos depois da floração. Uma planta velha e despida não rebenta da madeira velha, por isso o melhor é substituí-la."
+        },
+        {
+          "name": "Escaravelho-do-alecrim",
+          "fix": "Do fim do verão à primavera, uns pequenos escaravelhos com riscas verdes e roxas metalizadas comem as folhas e as flores. As suas larvas cinzentas também. Apanhe-os à mão ou sacuda a planta por cima de uma folha de papel."
+        }
+      ],
+      "source": "Cuidados da lavanda: RHS. pH: UC IPM (University of California) e extensão da UMass."
+    },
+    "field_beans": {
+      "about": "A fava forrageira é um adubo verde de inverno, ou seja, uma cultura que se semeia para depois enterrar na terra. Semeada no outono, cobre a terra nua durante o inverno. As raízes abrem os solos pesados. Como todos os feijões e favas, também junta azoto à terra. Enterre-a na primavera, antes da cultura seguinte.",
+      "water": "A fava forrageira precisa de muito pouca água. A chuva de outono e de inverno chega, por isso só regue se a terra estiver seca quando semear.",
+      "feed": "Não precisa de adubo nenhum. Produz o seu próprio azoto, que fica na terra para a cultura seguinte.",
+      "harvest": "Na primavera, em qualquer altura até à floração, corte as plantas. Pique-as e deixe-as murchar. Depois enterre-as nos primeiros 25 cm de terra. Espere cerca de um mês antes de semear ou plantar seja o que for nesse canteiro.",
+      "problems": [
+        {
+          "name": "Pulgão-negro",
+          "fix": "Na primavera, juntam-se grupos densos de pulgões pretos nas pontas dos rebentos. Normalmente pode deixá-los estar, porque as plantas vão ser enterradas em breve. Se se espalharem, corte as plantas um pouco mais cedo."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Abrigam-se no meio das plantas cerradas e depois passam para a cultura seguinte. Depois de enterrar as favas, proteja as plantas novas e procure lesmas nas noites húmidas."
+        }
+      ],
+      "source": "Adubos verdes: RHS. pH: extensão da Oregon State University."
+    },
+    "winter_rye": {
+      "about": "O centeio é o adubo verde que melhor aguenta o frio. É uma cultura que se semeia para depois enterrar na terra. Semeado do fim do verão ao outono, continua a crescer durante o inverno. Segura o solo e abafa as ervas daninhas. As raízes, muito densas, também melhoram a terra. Enterre-o quando chegar a primavera.",
+      "water": "O centeio precisa de pouca água e a chuva chega. Só regue para a semente nascer, se o outono estiver seco.",
+      "feed": "Não precisa de adubo. O centeio cresce até em terras pobres, arenosas ou ácidas. Também aproveita o azoto que, sem ele, a chuva de inverno levaria.",
+      "harvest": "Na primavera, corte-o enquanto ainda está baixo e tenro. Pique-o, deixe-o murchar e depois enterre-o nos primeiros 25 cm de terra. O centeio mais velho é duro, volta a rebentar e atrasa a cultura seguinte.",
+      "problems": [
+        {
+          "name": "Sementes pequenas que não nascem",
+          "fix": "Enquanto apodrece, o centeio impede que nasçam sementes pequenas, como as de cenoura e de cebola. Depois de o enterrar, espere cerca de um mês antes de semear. Ou então ponha plantas já feitas ou sementes grandes, como as do feijão."
+        },
+        {
+          "name": "Cortado tarde",
+          "fix": "Se o deixar demasiado tempo, o centeio fica alto e duro. Depois de cortado volta a rebentar e pode semear-se sozinho. Corte-o antes de chegar a uns 30 cm."
+        }
+      ],
+      "source": "Cuidados do centeio: RHS e SARE. pH: University of Vermont."
+    },
+    "crimson_clover": {
+      "about": "O trevo-encarnado é um adubo verde, uma cultura que se semeia para bem da terra. Junta azoto e cobre o chão de folhas e de flores vermelhas que as abelhas visitam. Semeie-o da primavera ao fim do verão. Se o semear umas seis a oito semanas antes da primeira geada, passa o inverno e continua a crescer na primavera.",
+      "water": "Precisa de pouca água. Mantenha a terra semeada húmida até as plantinhas nascerem. Depois disso, a chuva costuma chegar.",
+      "feed": "Não precisa de adubo. O trevo produz o seu próprio azoto e deixa-o na terra.",
+      "harvest": "Corte-o quando florir, antes de fazer semente. Cortado rente ao chão, não volta a crescer. Enterre-o nos primeiros 25 cm de terra ou deixe-o a apodrecer à superfície. Depois espere cerca de um mês antes de semear.",
+      "problems": [
+        {
+          "name": "Trevo que se semeia sozinho",
+          "fix": "Se o deixar fazer semente, volta como erva daninha no meio das culturas seguintes. Corte-o quando estiver em flor."
+        },
+        {
+          "name": "Lesmas e caracóis",
+          "fix": "Escondem-se no meio das folhas cerradas e depois passam para a cultura seguinte. Depois de o cortar, proteja as plantas novas e procure lesmas nas noites húmidas."
+        }
+      ],
+      "source": "Cuidados do trevo-encarnado: RHS e SARE. pH: SAREP da University of California."
+    },
+    "phacelia": {
+      "about": "A facélia é um adubo verde rápido, com folhas finas como penas e flores azuis que as abelhas adoram. Cultiva-se para bem da terra e depois enterra-se. Cobre o solo nu, segura os nutrientes que sobram e, quando é enterrada, junta matéria orgânica. Não é parente de nenhuma das hortícolas habituais, por isso pode entrar em qualquer ponto da rotação de culturas.",
+      "water": "A facélia precisa de pouca água e a chuva costuma chegar. Só regue para fazer nascer uma sementeira em terra seca.",
+      "feed": "Não precisa de adubo. Aproveita os nutrientes que ficaram na terra e devolve-os quando a enterrar.",
+      "harvest": "Corte-a quando começar a florir. Se a quiser deixar para as abelhas, corte-a pouco depois, mas sempre antes de fazer semente. Pique-a e deixe-a murchar uns dias. Depois enterre-a na camada de cima da terra e espere duas a três semanas antes de semear. Uma sementeira de outono pode passar o inverno e ser enterrada quando chegar a primavera.",
+      "problems": [
+        {
+          "name": "Plantinhas por todo o lado",
+          "fix": "Quando se deixa a facélia fazer semente, nascem plantinhas por todo o canteiro. Corte-a antes de as flores murcharem. Arranque ou sache as plantinhas enquanto são pequenas."
+        },
+        {
+          "name": "Comichão na pele",
+          "fix": "Os caules e as folhas têm pelos ásperos que podem dar comichão ou vermelhidão na pele a algumas pessoas. Use luvas e mangas compridas quando a cortar e enterrar."
+        }
+      ],
+      "source": "A facélia como adubo verde: RHS. pH: USDA NRCS e Ministério da Agricultura da Colúmbia Britânica."
+    },
+    "white_mustard": {
+      "about": "Em terra nua, a mostarda-branca cobre o solo em poucas semanas. É um adubo verde rápido, uma cultura que se semeia para depois enterrar. Abafa as ervas daninhas e junta matéria orgânica quando é enterrada. Semeie-a da primavera ao fim do verão, nos intervalos entre culturas. É da família das couves, por isso não a cultive onde há problemas de hérnia da couve, uma doença das raízes das couves. Na rotação dos canteiros, conte-a como uma couve.",
+      "water": "Precisa de pouca água e a chuva costuma chegar. Só regue a terra semeada se o tempo estiver seco, para a semente nascer por igual.",
+      "feed": "A mostarda não precisa de adubo nenhum. Aproveita os nutrientes que ficaram na terra e devolve-os quando a enterrar.",
+      "harvest": "Corte-a antes de florir, normalmente quatro a oito semanas depois de semear. Pique os caules e deixe-os murchar uns dias. Depois enterre-os na camada de cima da terra. Espere duas a três semanas antes de semear ou plantar nesse sítio.",
+      "problems": [
+        {
+          "name": "Hérnia da couve",
+          "fix": "Como é parente das couves, pode trazer a hérnia e mantê-la na terra. Não a semeie onde a doença já apareceu. Também não a semeie logo antes de couves, nabos ou rabanetes."
+        },
+        {
+          "name": "Ir para semente",
+          "fix": "Com calor, floresce em poucas semanas e as sementes nascem depois como ervas daninhas. No verão, vigie-a muitas vezes e corte-a logo às primeiras flores."
+        }
+      ],
+      "source": "Adubo verde: RHS. pH: University of Connecticut."
+    }
+  },
+  "map": {
+    "title": "Mapa",
+    "description": "Onde cada cultura vai para a terra esta semana, geadas nos próximos três dias, temperatura do solo e rega, lugar a lugar.",
+    "crop": "Cultura",
+    "layer": "Camada do mapa",
+    "place": "Em {{place}}",
+    "layers": {
+      "crop": "Semeie ou plante agora",
+      "frost": "Geadas e noites frias",
+      "soil": "Temperatura do solo",
+      "water": "Água esta semana"
+    },
+    "legend": {
+      "now": "Semeie ou plante agora",
+      "month": "Semeie ou plante este mês",
+      "wait": "Ainda não",
+      "over": "Tarde demais",
+      "frost": "Geada nos próximos 3 dias",
+      "ground": "Geada no solo nos próximos 3 dias",
+      "soilLow": "0 °C",
+      "soilHigh": "26 °C",
+      "waterLow": "1 L/m²",
+      "waterHigh": "35 L/m² ou mais",
+      "later": "Possível geada mais adiante na semana",
+      "cold": "Noite mais fria, próximos 7 dias",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Chuva contra sol e vento, próximos 7 dias",
+      "balanceLow": "Precisa de rega",
+      "balanceHigh": "Chuva de sobra"
+    },
+    "year": {
+      "label": "Mês",
+      "month": "Um {{month}} típico",
+      "hint": "Deslize para ver o ano que vem",
+      "note": "Esta semana pela previsão, os meses seguintes por um ano típico."
+    },
+    "use": "Usar como minha horta",
+    "close": "Fechar",
+    "loadingPlace": "Procurando este lugar…",
+    "noPlace": "Não há conselhos do Huerta aqui.",
+    "failed": "O mapa não carregou. Tente de novo daqui a pouco.",
+    "search": "Pesquisar culturas",
+    "noResults": "Nenhuma cultura corresponde",
+    "clearFilters": "Limpar os filtros",
+    "useShort": "Minha horta"
+  },
+  "planner": {
+    "title": "Minha horta",
+    "description": "Sua horta canteiro por canteiro, e o que ela precisa de você a cada semana: o que semear e onde, cuidados, rega e colheita, calculados para o seu lugar.",
+    "sample": "Planejado para um lugar de exemplo, {{place}}.",
+    "choosePlace": "Escolha seu lugar",
+    "for": "Planejado para esta semana em {{place}}.",
+    "width": "Largura",
+    "length": "Comprimento",
+    "metres": "m",
+    "shapeLabel": "Formato",
+    "shape": {
+      "rect": "Retângulo",
+      "L": "Em L"
+    },
+    "auto": "Planejar por mim",
+    "model": "Sua horta, desenhada",
+    "noRoom": "Neste tamanho não cabe nenhum canteiro.",
+    "beds_one": "{{count}} canteiro",
+    "beds_other": "{{count}} canteiros",
+    "plants_one": "{{count}} planta",
+    "plants_other": "{{count}} plantas",
+    "allBeds": "Todos os canteiros",
+    "bed": "Canteiro {{n}}",
+    "part": {
+      "northHalf": "metade norte",
+      "southHalf": "metade sul",
+      "northEnd": "ponta norte",
+      "southEnd": "ponta sul",
+      "middle": "meio",
+      "eastHalf": "metade leste",
+      "westHalf": "metade oeste",
+      "eastEnd": "ponta leste",
+      "westEnd": "ponta oeste"
+    },
+    "unit": {
+      "plants_one": "{{count}} planta",
+      "plants_other": "{{count}} plantas",
+      "cloves_one": "{{count}} dente",
+      "cloves_other": "{{count}} dentes",
+      "sets_one": "{{count}} bolbinho",
+      "sets_other": "{{count}} bolbinhos",
+      "seedPotatoes_one": "{{count}} batata-semente",
+      "seedPotatoes_other": "{{count}} batatas-semente",
+      "bulbs_one": "{{count}} bulbo",
+      "bulbs_other": "{{count}} bulbos",
+      "corms_one": "{{count}} cormo",
+      "corms_other": "{{count}} cormos",
+      "crowns_one": "{{count}} coroa",
+      "crowns_other": "{{count}} coroas"
+    },
+    "scattered": "A lanço por todo o canteiro",
+    "howMany": "Quantas",
+    "spacing": "Espaçamento",
+    "eachWay": "A {{value}} cm em cada direção",
+    "when": "Colheita",
+    "readyNextSpring": "Na próxima primavera ou no início do verão",
+    "readyAround": "Por volta de {{month}}",
+    "nextYear": "No ano que vem",
+    "next": {
+      "cabbage": "As couves: aproveitam o nitrogênio que ervilhas e favas deixam.",
+      "roots": "Raízes e folhas, como cenouras ou beterrabas.",
+      "alliums": "Cebolas ou alho.",
+      "legumes": "Ervilhas e feijões.",
+      "stays": "Fica: volta todo ano.",
+      "cover": "Qualquer coisa: um adubo verde alimenta o que vem depois.",
+      "any": "Qualquer cultura.",
+      "other": "Uma cultura de outra família."
+    },
+    "plantedOn": "Plantado em {{date}}",
+    "notPlanted": "Ainda não plantado",
+    "sownToday": "Semeado hoje",
+    "plantedToday": "Plantado hoje",
+    "sownOrPlantedToday": "Semeado ou plantado hoje",
+    "neighbours": "Vizinhos",
+    "noNeighbours": "Nada a observar ao lado.",
+    "nextTo": "Ao lado de {{crop}}",
+    "rule": {
+      "alliumLegume": "Cebolas e alho podem atrasar ervilhas e feijões.",
+      "blight": "Batatas e tomates compartilham a requeima; uma contamina o outro.",
+      "fennel": "O funcho atrasa a maioria das hortaliças; dê a ele um canto só seu.",
+      "carrotFly": "O cheiro da cebola ajuda a esconder as cenouras da mosca-da-cenoura.",
+      "flowers": "As flores trazem polinizadores e predadores de pragas.",
+      "nasturtium": "As capuchinhas atraem pulgões e lagartas para longe.",
+      "threeSisters": "As três irmãs: o feijão sobe no milho, a abóbora cobre o solo.",
+      "basil": "Uma dupla clássica: o manjericão ocupa o espaço sob os tomates.",
+      "shade": "{{tall}} vai sombrear {{short}}: as plantas altas ficam na ponta norte."
+    },
+    "basis": {
+      "tradition": "Regra de hortelão",
+      "disease": "Doença em comum",
+      "someTrials": "Alguns ensaios",
+      "trials": "Testado em ensaios",
+      "system": "Sistema tradicional",
+      "sun": "Luz do sol"
+    },
+    "swap": "Trocar por",
+    "goesInNow": "Vai agora para a terra em {{place}}",
+    "later": "Mais tarde",
+    "split": "Dividir esta parte em duas",
+    "footnote": "Semeadura e plantio em {{date}}. Seu plano fica salvo na sua conta.",
+    "sownOn": "Semeado em {{date}}",
+    "groundLabel": "Como você cultiva",
+    "ground": {
+      "raised": "Canteiros elevados",
+      "ground": "Canteiros no chão",
+      "rows": "Fileiras em campo aberto"
+    },
+    "runLabel": "Canteiros",
+    "run": {
+      "along": "No comprimento",
+      "across": "Na largura"
+    },
+    "undo": "Desfazer",
+    "mergePrev": "Juntar com a anterior",
+    "mergeNext": "Juntar com a seguinte",
+    "shorter": "Mais curta",
+    "longer": "Mais longa",
+    "lengthValue": "{{value}} m",
+    "deleteBed": "Remover este canteiro",
+    "deleteStrip": "Remover esta faixa",
+    "bare": "Terra livre",
+    "bareText": "Aqui havia um canteiro. Coloque-o de volta ou deixe a terra livre.",
+    "putBed": "Colocar o canteiro de volta",
+    "strip": "Faixa {{n}}",
+    "whereNorth": "Para que lado fica o norte?",
+    "northLeft": "Girar o norte para a esquerda",
+    "northRight": "Girar o norte para a direita",
+    "zoomIn": "Aproximar",
+    "zoomOut": "Afastar",
+    "zoomFit": "Ver a horta inteira",
+    "styleLabel": "O que cultivar",
+    "style": {
+      "mixed": "Uma horta mista: hortaliças, ervas e flores",
+      "veg": "Só hortaliças",
+      "vegFlowers": "Hortaliças, com flores no fim de cada canteiro",
+      "fruit": "Fruta primeiro: morangos, melões, tomates, abóboras",
+      "herbsFlowers": "Ervas e flores"
+    },
+    "goodPairs_one": "✓ 1 par de bons vizinhos",
+    "goodPairs_other": "✓ {{count}} pares de bons vizinhos",
+    "badPairs_one": "! 1 par para separar",
+    "badPairs_other": "! {{count}} pares para separar",
+    "noBadPairs": "Nenhum vizinho para separar",
+    "goodHint": "Culturas que se ajudam lado a lado, como manjericão junto aos tomates ou flores junto às culturas de fruto. Toque para selecioná-las.",
+    "badHint": "Culturas que não devem ficar lado a lado, como cebola e feijão ou batata e tomate, ou uma cultura alta que faz sombra a uma baixa. Toque para selecioná-las.",
+    "faded": "Plantas claras estão planejadas, ainda não plantadas",
+    "selected_one": "{{count}} parte selecionada",
+    "selected_other": "{{count}} partes selecionadas",
+    "clearSelection": "Limpar a seleção",
+    "noneSelected": "Toque num canteiro para vê-lo. Toque em mais para mudá-los juntos.",
+    "palette": {
+      "title": "Culturas",
+      "hint": "Mantenha uma cultura premida e arraste-a para um canteiro, ou selecione canteiros e toque numa cultura.",
+      "toSelected_one": "Toque numa cultura para colocá-la na parte selecionada.",
+      "toSelected_other": "Toque numa cultura para colocá-la nas {{count}} partes selecionadas."
+    },
+    "strips_one": "{{count}} faixa",
+    "strips_other": "{{count}} faixas",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Limpar",
+    "soilLabel": "Solo",
+    "soil": {
+      "sandy": "Solo arenoso",
+      "loam": "Solo franco",
+      "clay": "Solo argiloso"
+    },
+    "acidityLabel": "pH do solo",
+    "acidity": {
+      "acid": "Solo ácido",
+      "neutral": "Solo neutro",
+      "alkaline": "Solo alcalino"
+    },
+    "soilWord": {
+      "sandy": "arenoso",
+      "loam": "franco",
+      "clay": "argiloso"
+    },
+    "soilHint": "Perto de {{place}} o solo é sobretudo {{texture}}, pH {{ph}}.",
+    "sowIn": "Semear em {{month}}",
+    "plantIn": "Plantar em {{month}}",
+    "sownOnInput": "Data da semeadura",
+    "plantedOnInput": "Data do plantio",
+    "forLabel": "Planejar para",
+    "thisWeek": "Hoje",
+    "forMonth": "Planejado para {{month}} em {{place}}.",
+    "forHint": "O que ainda não está na terra é plantado no momento escolhido aqui, e a linha do tempo mostra como ele cresce a partir daí.",
+    "readyOn": "Por volta de {{date}}",
+    "timeline": {
+      "now": "Agora",
+      "back": "Voltar para hoje",
+      "hint": "Deslize para ver sua horta nas próximas semanas",
+      "ready": "Para colher: {{crops}}",
+      "growing": "Crescendo: {{crops}}",
+      "empty": "Nada na terra",
+      "lost": "Perdido: {{crops}}"
+    },
+    "tab": {
+      "week": "Tarefas",
+      "garden": "Horta"
+    },
+    "warn": {
+      "coldSeeds": "O solo ainda está frio demais: as sementes podem apodrecer antes de germinar.",
+      "warmSeeds": "O solo está quente demais: as sementes podem não germinar."
+    },
+    "fate": {
+      "frost": "A geada provavelmente vai matá-lo por volta de {{date}}, antes de ficar pronto.",
+      "frostNow": "Aqui pode gear em qualquer noite, e ele não sobrevive a uma geada.",
+      "cold": "As noites aqui ficam frias demais para ele por volta de {{date}}: vai parar de crescer e morrer antes de ficar pronto.",
+      "coldNow": "As noites aqui já estão frias demais para ele: não vai crescer e deve morrer em poucas semanas.",
+      "winter": "O inverno aqui é mais frio do que ele aguenta: deve morrer por volta de {{date}}.",
+      "winterNow": "O inverno aqui já é mais frio do que ele aguenta: não vai sobreviver.",
+      "ifNow": "Se for plantado hoje",
+      "coverFrost": "Ainda pode gear até cerca de {{date}}: cubra-o nas noites frias.",
+      "coverWinter": "Geadas fortes ainda são prováveis até cerca de {{date}}: cubra-o nas noites frias.",
+      "lostAround": "Perdido por volta de {{date}}"
+    },
+    "end": {
+      "lost": "Perdido",
+      "why": "O que aconteceu?",
+      "cold": "Geada ou frio",
+      "pests": "Pragas ou doença",
+      "sprout": "Não germinou",
+      "dry": "Secou",
+      "other": "Outra coisa"
+    },
+    "before": "Antes",
+    "beforeText": "{{crop}}, saiu em {{date}}"
+  },
+  "year": {
+    "title": "Calendário",
+    "description": "Quando cada cultura é semeada, plantada e colhida no seu lugar, calculado a partir do seu clima.",
+    "around": "Em {{place}}, num ano típico.",
+    "noPlace": "Escolha seu lugar para ver o ano dele.",
+    "crop": "Cultura",
+    "sow": "Semear ou plantar",
+    "harvest": "Colheita ou flor",
+    "thisMonth": "Este mês ({{month}})",
+    "notHere": "Não ao ar livre aqui: {{crops}}.",
+    "backIn": "Volta em {{month}}",
+    "note": "Os meses de semeadura seguem as mesmas regras do conselho de cada semana, num ano típico no seu lugar. Os meses de colheita são aproximados. Uma cultura semeada em várias estações tem uma linha para cada uma. A que passa o inverno colhe-se no ano seguinte.",
+    "nextYear": "no ano seguinte",
+    "season": {
+      "spring": "Primavera",
+      "summer": "Verão",
+      "autumn": "Outono",
+      "winter": "Inverno",
+      "overwinter": "Passa o inverno"
+    }
+  },
+  "alerts": {
+    "more_one": "e mais {{count}}",
+    "more_other": "e mais {{count}}",
+    "title": "Alertas da manhã",
+    "text": "Uma notificação por volta das 8:00 quando sua horta precisar de algo novo.",
+    "kinds": {
+      "frost": "Geada chegando",
+      "care": "Cuidados",
+      "water": "Rega e chuva",
+      "sow": "Hora de semear"
+    },
+    "homeScreen": "No iPhone, primeiro adicione o Funges à Tela de Início (Compartilhar e depois Adicionar à Tela de Início) e ative os alertas lá.",
+    "unsupported": "Este navegador não consegue mostrar notificações.",
+    "denied": "As notificações do Funges estão bloqueadas. Permita-as nas configurações do navegador."
+  },
+  "early": "Acesso antecipado",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "O Funges diz o que cultivar, onde colocar, quando plantar e do que sua horta precisa nesta semana, com base no clima real do lugar onde ela fica.",
+    "button": "Fazer login com o Google",
+    "small": "Grátis durante o acesso antecipado. Guardamos seu e-mail e suas hortas, nada mais, e você pode apagá-los quando quiser na sua conta.",
+    "privacy": "Privacidade",
+    "working": "Entrando…",
+    "doneElsewhere": "Você entrou. Volte para o app Funges.",
+    "failed": "Não foi possível entrar.",
+    "retry": "Tentar de novo"
+  },
+  "account": {
+    "title": "Conta Huerta",
+    "signedInAs": "Conectado como {{email}}",
+    "signOut": "Sair",
+    "delete": "Excluir conta",
+    "deleteTitle": "Excluir sua conta?",
+    "deleteText": "Suas hortas e alertas vão junto, em todos os dispositivos. Não dá para desfazer.",
+    "deleteConfirm": "Excluir de vez",
+    "cancel": "Cancelar",
+    "failed": "Não funcionou. Verifique sua conexão e tente de novo."
+  },
+  "gardens": {
+    "label": "Suas hortas",
+    "default": "Minha horta",
+    "new": "Nova horta",
+    "rename": "Renomear",
+    "name": "Nome",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir esta horta",
+    "deleteText": "O plano dela também é excluído, em todos os dispositivos.",
+    "offline": "Não foi possível conectar ao Funges. Tente de novo quando estiver online.",
+    "numbered": "Horta {{n}}"
+  },
+  "guide": {
+    "title": "Primeiros passos",
+    "hide": "Ocultar",
+    "place": {
+      "title": "Onde fica sua horta?",
+      "text": "Encontre-a no mapa, para que tudo aqui seja calculado para o seu lugar.",
+      "action": "Encontrar no mapa"
+    },
+    "plan": {
+      "title": "Planeje seus canteiros",
+      "text": "Enchemos seus canteiros com o que vai para a terra agora no seu lugar. Toque em um canteiro e depois em uma cultura para trocá-la.",
+      "keep": "Manter este plano",
+      "empty": "Nada vai para a terra no seu lugar agora. Toque em um canteiro e depois em uma cultura: o Huerta marca a data em que ela pode ir para a terra."
+    },
+    "sow": {
+      "title": "Semeie e marque",
+      "text": "A lista desta semana diz o que semear, onde e como. Marque cada item quando estiver na terra, e o Huerta acompanha a partir daí."
+    },
+    "step": "Passo {{n}} de 3"
+  },
+  "views": {
+    "all": "Tudo",
+    "harvest": "Colher agora",
+    "none": "Nada esta semana.",
+    "until": "Até {{month}}",
+    "allYear": "O ano todo",
+    "allGardens": "Todas as culturas"
+  },
+  "landing": {
+    "headline": "Sua horta, semana a semana",
+    "intro": "O que semear, plantar, regar e colher no seu local, pela previsão desta noite",
+    "headerLink": "O que semear agora",
+    "cta": "Planejar minha horta",
+    "week": {
+      "heading": "Diz o que fazer nesta semana",
+      "body": "Cada tarefa com data para a sua horta: quando semear, quando plantar, quando regar e quando proteger da geada. Marque quando estiver feita",
+      "title": "Nesta semana",
+      "plant": {
+        "job": "Plante o alho",
+        "why": "O solo esfriou para 12 °C, no ponto certo"
+      },
+      "water": {
+        "job": "Regue a alface",
+        "why": "Seis dias sem chuva"
+      },
+      "frost": {
+        "job": "Cubra a acelga na quinta",
+        "why": "Geada provável naquela noite"
+      }
+    },
+    "coverage": "Para hortas na Europa e na América do Norte",
+    "journey": "Da semente ao prato",
+    "plan": {
+      "heading": "Planejar",
+      "body": "Desenhe seus canteiros e receba um plano adequado ao seu local e à estação",
+      "link": "Planejar minha horta"
+    },
+    "plant": {
+      "heading": "Semear e plantar",
+      "body": "Cada cultura quando o seu solo estiver pronto, não quando o pacote diz",
+      "link": "O que semear agora"
+    },
+    "care": {
+      "heading": "Cuidar",
+      "body": "Geada a caminho ou uma semana seca: o mapa mostra para o seu local",
+      "link": "Abrir o mapa da horta"
+    },
+    "harvest": {
+      "heading": "Colher",
+      "body": "Veja quando cada cultura estará pronta, conforme o calor das suas semanas",
+      "link": "Abrir o calendário"
+    },
+    "closing": "Comece sua horta",
+    "early": "A Huerta está em acesso antecipado: os conselhos melhoram a cada semana.",
+    "feedback": "Conte-me o que está errado!"
+  },
+  "page": {
+    "title": "{{name}}: {{start}}, cuidados e {{end}}",
+    "start": {
+      "sow": "sementeira",
+      "plant": "plantação"
+    },
+    "end": {
+      "vegetable": "colheita",
+      "fruit": "colheita",
+      "herb": "colheita",
+      "flower": "floração",
+      "cover": "incorporação no solo"
+    },
+    "signIn": "Inicie sessão para planear a sua horta",
+    "home": "Huerta",
+    "allCrops": "Todas as culturas"
+  }
+}

@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Pacific Chanterelle",
-      "description": "A large golden chanterelle of the Pacific Northwest, paler and pinker than its European cousin",
-      "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in"
+      "description": "A big golden chanterelle from the Pacific Northwest. It is paler and pinker than the European one.",
+      "howTo": "Look in mossy Douglas fir and hemlock forest once the autumn rains have set in",
+      "guide": {
+        "identify": "This is a large chanterelle, paler and pinker than the European one. The cap is orange-yellow to apricot. Young caps often have fine brownish scales and a pinkish cast, which can vanish in wet weather. Underneath are blunt, forking ridges that run down the stem. They are pale orange-yellow and usually tinged pink. The stem tapers downward and the flesh is whitish and firm. The cap bruises yellowish. Jack-o'-lanterns (Omphalotus) and the false chanterelle have thin, crowded true gills. The scaly vase chanterelle (Turbinellus floccosus) is a deep, hollow, orange-red trumpet with coarse scales. It upsets many people's stomachs.",
+        "habitat": "It lives with conifers: mainly Douglas fir and western hemlock, also Sitka spruce. Look in moss and needle litter, in second-growth and old forest. It grows mostly in the lowlands and foothills. Its range runs from British Columbia through Washington and Oregon to northern California. In Oregon it is the state mushroom.",
+        "season": "You find it from September to December, sometimes into January. It needs the autumn rains to soak the ground first, so a dry autumn delays it. Each mushroom grows slowly. In cool, wet weather it can keep growing for weeks.",
+        "picking": "Cut it at the base and leave the small buttons to grow on. Take only what you will eat. Rules differ by national forest, state and park. Some require a free permit and set daily limits. Many state parks forbid picking. Selling needs a commercial permit. Check with the land manager.",
+        "kitchen": "When you're certain what it is, brush off the needles and soil. Rinse it only if it's gritty, then dry it, because rain-soaked ones hold water. Never eat it raw. Dry-fry it first to drive off the water, then finish it in butter. It is mild, fruity and firm. It's good with eggs, cream, pasta, salmon and game.",
+        "keeps": "It keeps several days in the fridge in a paper bag. Dried, it turns tough. To keep it longer, fry it in butter and freeze it.",
+        "source": "Identification: MushroomExpert.com and UBC Beaty Biodiversity Museum. Picking rules: US Forest Service. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Galletto del Pacifico",
-      "description": "Un grande gallinaccio dorato del Nord-Ovest pacifico, più pallido e rosato del cugino europeo",
-      "howTo": "Cercalo nelle foreste muscose di abete di Douglas e tsuga, dopo l'arrivo delle piogge autunnali"
+      "description": "Un grande galletto dorato del nord-ovest del Pacifico. È più chiaro e più rosato di quello europeo.",
+      "howTo": "Cercalo nelle foreste muscose di abete di Douglas e tsuga, dopo l'arrivo delle piogge autunnali",
+      "guide": {
+        "identify": "È un galletto grande, più pallido e più rosato di quello europeo. Il cappello va dal giallo arancio al color albicocca. Da giovane ha spesso fini squamette brunastre e un riflesso rosato, che con il tempo umido possono sparire. Sotto ha pieghe ottuse e biforcate che scendono lungo il gambo. Sono giallo arancio pallido, di solito sfumate di rosa. Il gambo si assottiglia verso il basso. La carne è biancastra e soda. Dove lo tocchi, il cappello si macchia di giallo. I funghi dell'olivo (Omphalotus) e il falso gallinaccio hanno lamelle vere, sottili e fitte. Il Turbinellus floccosus è una trombetta profonda e cava, rosso arancio, con grosse squame. A molte persone dà disturbi di stomaco.",
+        "habitat": "Vive in simbiosi con le conifere, soprattutto con l'abete di Douglas e la tsuga occidentale. Vive anche con l'abete di Sitka. Cercalo nel muschio e tra gli aghi, nei boschi ricresciuti e in quelli vecchi. Cresce soprattutto in pianura e sulle prime colline. Va dalla Columbia Britannica, passando per Washington e Oregon, fino alla California del nord. In Oregon è il fungo simbolo dello stato.",
+        "season": "Lo trovi da settembre a dicembre, a volte fino a gennaio. Prima le piogge d'autunno devono inzuppare il terreno, quindi un autunno secco lo fa ritardare. Ogni fungo cresce piano. Con il tempo fresco e umido può continuare a crescere per settimane.",
+        "picking": "Taglialo alla base e lascia crescere i piccoli. Prendi solo quello che mangerai. Le regole cambiano da una foresta nazionale all'altra, da stato a stato e da parco a parco. Alcuni chiedono un permesso gratuito e fissano limiti giornalieri. Molti parchi statali vietano la raccolta. Per vendere serve un permesso commerciale. Chiedi all'ente che gestisce la zona.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, togli aghi e terra con un pennello. Sciacqualo solo se ha sabbia e poi asciugalo, perché dopo la pioggia è già pieno d'acqua. Non mangiarlo mai crudo. Prima fallo andare in padella senza grassi, finché butta fuori l'acqua. Poi finisci la cottura nel burro. È delicato, fruttato e sodo. Sta bene con uova, panna, pasta, salmone e selvaggina.",
+        "keeps": "In frigo, in un sacchetto di carta, dura diversi giorni. Secco diventa duro. Per tenerlo più a lungo, saltalo nel burro e congelalo.",
+        "source": "Identificazione: MushroomExpert.com e UBC Beaty Biodiversity Museum. Regole di raccolta: Servizio forestale degli Stati Uniti. Stagione: dati GBIF."
+      }
     },
     "fr": {
       "name": "Girolle du Pacifique",
-      "description": "Une grande girolle dorée du Nord-Ouest pacifique, plus pâle et plus rosée que sa cousine européenne",
-      "howTo": "Cherchez-la dans les forêts moussues de douglas et de pruche, une fois les pluies d'automne installées"
+      "description": "Une grande girolle dorée du Nord-Ouest pacifique. Elle est plus pâle et plus rosée que la girolle européenne.",
+      "howTo": "Cherchez-la dans les forêts moussues de douglas et de pruche, une fois les pluies d'automne installées",
+      "guide": {
+        "identify": "C'est une grande girolle, plus pâle et plus rosée que la girolle d'Europe. Le chapeau est jaune orangé à abricot. Les jeunes chapeaux ont souvent de fines écailles brunâtres et un reflet rosé, qui peuvent disparaître par temps humide. Dessous, des plis obtus et fourchus descendent sur le pied. Ils sont jaune orangé pâle, le plus souvent teintés de rose. Le pied s'amincit vers le bas. La chair est blanchâtre et ferme. Le chapeau jaunit au toucher. Les clitocybes de l'olivier (Omphalotus) et la fausse girolle ont de vraies lames, fines et serrées. Turbinellus floccosus forme une trompette profonde et creuse, rouge orangé, à grosses écailles. Il dérange l'estomac de beaucoup de gens.",
+        "habitat": "Elle vit avec les conifères, surtout le douglas et la pruche de l'Ouest. On la trouve aussi sous l'épicéa de Sitka. Cherchez-la dans la mousse et les aiguilles, en forêt jeune comme en vieille forêt. Elle pousse surtout en plaine et sur les contreforts. On la trouve de la Colombie-Britannique au nord de la Californie, en passant par l'État de Washington et l'Oregon. C'est le champignon officiel de l'Oregon.",
+        "season": "On la trouve de septembre à décembre, parfois jusqu'en janvier. Il faut d'abord que les pluies d'automne détrempent le sol, si bien qu'un automne sec la retarde. Chaque champignon pousse lentement. Par temps frais et humide, il peut grandir pendant des semaines.",
+        "picking": "Coupez-la à la base et laissez les petites continuer à pousser. Ne prenez que ce que vous mangerez. Les règles varient selon la forêt nationale, l'État et le parc. Certains exigent un permis gratuit et fixent des limites par jour. Beaucoup de parcs d'État interdisent la cueillette. Pour vendre, il faut un permis commercial. Renseignez-vous auprès du gestionnaire du terrain.",
+        "kitchen": "Une fois identifiée avec certitude, brossez les aiguilles et la terre. Ne la rincez que si elle est sableuse. Séchez-la ensuite, car celles cueillies après la pluie sont gorgées d'eau. Ne la mangez jamais crue. Faites-la d'abord sauter à sec pour chasser l'eau, puis finissez-la au beurre. Elle est douce, fruitée et ferme. Elle va bien avec les œufs, la crème, les pâtes, le saumon et le gibier.",
+        "keeps": "Elle se garde plusieurs jours au réfrigérateur dans un sac en papier. Séchée, elle devient coriace. Pour la garder plus longtemps, faites-la revenir au beurre et congelez-la.",
+        "source": "Identification : MushroomExpert.com et UBC Beaty Biodiversity Museum. Règles de cueillette : Service des forêts des États-Unis. Saison : données GBIF."
+      }
     },
     "de": {
       "name": "Pazifik-Pfifferling",
-      "description": "Ein grosser goldener Pfifferling des pazifischen Nordwestens, blasser und rosiger als sein europäischer Verwandter",
-      "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben"
+      "description": "Ein grosser goldener Pfifferling aus dem pazifischen Nordwesten. Er ist blasser und rosiger als der europäische.",
+      "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben",
+      "guide": {
+        "identify": "Das ist ein grosser Pfifferling, blasser und rosiger als der europäische. Der Hut ist orangegelb bis aprikosenfarben. Junge Hüte haben oft feine bräunliche Schüppchen und einen rosa Schimmer. Bei nassem Wetter können beide verschwinden. Darunter sitzen stumpfe, gegabelte Leisten, die am Stiel herablaufen. Sie sind blass orangegelb und meist rosa überhaucht. Der Stiel wird nach unten schmaler, das Fleisch ist weisslich und fest. Auf Druck färbt sich der Hut gelblich. Ölbaumtrichterlinge (Omphalotus) und der Falsche Pfifferling haben dünne, dicht stehende echte Lamellen. Turbinellus floccosus ist eine tiefe, hohle, orangerote Trompete mit groben Schuppen. Vielen Menschen schlägt er auf den Magen.",
+        "habitat": "Er lebt mit Nadelbäumen zusammen, vor allem mit Douglasie und Westamerikanischer Hemlocktanne, auch mit Sitka-Fichte. Such im Moos und in der Nadelstreu, in jungen wie in alten Wäldern. Er wächst meist im Flachland und im Vorgebirge. Sein Gebiet reicht von British Columbia über Washington und Oregon bis Nordkalifornien. In Oregon ist er der offizielle Staatspilz.",
+        "season": "Du findest ihn von September bis Dezember, manchmal bis in den Januar. Zuerst müssen die Herbstregen den Boden durchnässen, deshalb kommt er in einem trockenen Herbst später. Jeder Pilz wächst langsam. Bei kühlem, nassem Wetter kann er wochenlang weiterwachsen.",
+        "picking": "Schneide ihn am Grund ab und lass die kleinen Knöpfe weiterwachsen. Nimm nur, was du auch isst. Die Regeln sind je nach National Forest, Bundesstaat und Park verschieden. Manche verlangen eine kostenlose Genehmigung und setzen Tageslimits. Viele State Parks verbieten das Sammeln. Für den Verkauf brauchst du eine gewerbliche Genehmigung. Frag bei der zuständigen Verwaltung nach.",
+        "kitchen": "Wenn du sicher weisst, was du hast, bürste Nadeln und Erde ab. Spül ihn nur ab, wenn er sandig ist, und trockne ihn danach, denn nach Regen steckt viel Wasser in ihm. Iss ihn nie roh. Brate ihn zuerst in der trockenen Pfanne, bis das Wasser verdampft ist. Dann brätst du ihn in Butter fertig. Er ist mild, fruchtig und fest. Er passt gut zu Eiern, Sahne, Nudeln, Lachs und Wild.",
+        "keeps": "In einer Papiertüte hält er sich mehrere Tage im Kühlschrank. Getrocknet wird er zäh. Wenn du ihn länger aufheben willst, brate ihn in Butter an und friere ihn ein.",
+        "source": "Bestimmung: MushroomExpert.com und UBC Beaty Biodiversity Museum. Sammelregeln: US Forest Service. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Rebozuelo del Pacífico",
-      "description": "Un rebozuelo dorado y grande del noroeste del Pacífico, más pálido y rosado que su primo europeo",
-      "howTo": "Búscalo en bosques con musgo de abeto de Douglas y tsuga, una vez llegadas las lluvias de otoño"
+      "description": "Un rebozuelo dorado y grande del noroeste del Pacífico. Es más pálido y más rosado que el europeo.",
+      "howTo": "Búscalo en bosques con musgo de abeto de Douglas y tsuga, una vez llegadas las lluvias de otoño",
+      "guide": {
+        "identify": "Es un rebozuelo grande, más pálido y rosado que el europeo. El sombrero va de amarillo anaranjado a color albaricoque. Los jóvenes suelen tener finas escamas parduscas y un tono rosado, que pueden desaparecer con tiempo húmedo. Por debajo tiene pliegues romos y bifurcados que bajan por el pie. Son de un amarillo anaranjado pálido y casi siempre tienen un tinte rosado. El pie se estrecha hacia abajo, y la carne es blanquecina y firme. El sombrero amarillea al rozarlo. Las setas de olivo (Omphalotus) y el falso rebozuelo tienen láminas verdaderas, finas y apretadas. El rebozuelo escamoso (Turbinellus floccosus) es una trompeta honda y hueca, rojo anaranjada, con escamas gruesas. A mucha gente le sienta mal al estómago.",
+        "habitat": "Vive con coníferas, sobre todo con el abeto de Douglas y la tsuga occidental. También sale con la pícea de Sitka. Búscalo entre el musgo y las acículas caídas, en bosques que han vuelto a crecer y en bosques viejos. Sale sobre todo en zonas bajas y en el pie de monte. Su área va de la Columbia Británica, por Washington y Oregón, hasta el norte de California. En Oregón es la seta oficial del estado.",
+        "season": "Lo encuentras de septiembre a diciembre, a veces hasta enero. Necesita que las lluvias de otoño empapen antes el suelo, así que un otoño seco lo retrasa. Cada seta crece despacio. Con tiempo fresco y húmedo puede seguir creciendo durante semanas.",
+        "picking": "Córtalo por la base y deja los pequeños para que sigan creciendo. Coge solo lo que vayas a comer. Las normas cambian según el bosque nacional, el estado y el parque. Algunos piden un permiso gratuito y fijan límites diarios. Muchos parques estatales prohíben recogerlo. Para venderlo hace falta un permiso comercial. Pregunta a quien gestione el terreno.",
+        "kitchen": "Cuando no tengas ninguna duda de qué es, quítale las acículas y la tierra con un cepillo. Lávalo solo si tiene arena y luego sécalo, porque los que han cogido lluvia retienen agua. No lo comas nunca crudo. Primero saltéalo en la sartén sin grasa para que suelte el agua, y luego termínalo con mantequilla. Es suave, afrutado y firme. Va bien con huevos, nata, pasta, salmón y caza.",
+        "keeps": "Aguanta varios días en la nevera, en una bolsa de papel. Seco se queda correoso. Para guardarlo más tiempo, saltéalo en mantequilla y congélalo.",
+        "source": "Identificación: MushroomExpert.com y UBC Beaty Biodiversity Museum. Normas de recogida: Servicio Forestal de EE. UU. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Cantarelo do Pacífico",
-      "description": "Um cantarelo dourado e grande do noroeste do Pacífico, mais pálido e rosado que o primo europeu",
-      "howTo": "Procure em florestas com musgo de abeto de Douglas e tsuga, depois de chegarem as chuvas de outono"
+      "description": "Um cantarelo dourado e grande, do noroeste do Pacífico. É mais pálido e mais rosado do que o europeu.",
+      "howTo": "Procure em florestas com musgo de abeto de Douglas e tsuga, depois de chegarem as chuvas de outono",
+      "guide": {
+        "identify": "É um cantarelo grande, mais pálido e mais rosado do que o europeu. O chapéu é amarelo-alaranjado a cor de alperce. Os chapéus novos têm muitas vezes escamas finas acastanhadas e um tom rosado, que podem desaparecer com tempo húmido. Por baixo tem pregas rombas e bifurcadas que descem pelo pé. São de um amarelo-alaranjado pálido, quase sempre com um tom rosado. O pé afina para baixo e a carne é esbranquiçada e firme. Onde se toca, o chapéu fica amarelado. Os Omphalotus e o falso-cantarelo têm lâminas verdadeiras, finas e apertadas. O Turbinellus floccosus é uma trombeta funda e oca, vermelho-alaranjada, com escamas grossas. Faz mal ao estômago a muita gente.",
+        "habitat": "Vive associado a coníferas, sobretudo ao abeto-de-douglas e à tsuga-ocidental. Também aparece com o espruce-de-sitka. Procure no musgo e na camada de agulhas, em florestas jovens e em florestas antigas. Cresce sobretudo nas terras baixas e no sopé das montanhas. Vai da Colúmbia Britânica até ao norte da Califórnia, passando por Washington e pelo Oregon. No Oregon é o cogumelo oficial do estado.",
+        "season": "Encontra-se de setembro a dezembro, às vezes até janeiro. Primeiro precisa que as chuvas de outono encharquem o chão, por isso um outono seco atrasa-o. Cada cogumelo cresce devagar. Com tempo fresco e húmido pode continuar a crescer durante semanas.",
+        "picking": "Corte-o pela base e deixe os pequenos a crescer. Apanhe só o que vai comer. As regras variam conforme a floresta nacional, o estado e o parque. Algumas exigem uma licença gratuita e fixam limites diários. Muitos parques estaduais proíbem a apanha. Para vender é preciso uma licença comercial. Informe-se junto de quem gere o terreno.",
+        "kitchen": "Quando tiver a certeza do que é, tire as agulhas e a terra com uma escova. Só o passe por água se tiver areia. Depois seque-o, porque os que apanharam chuva ficam cheios de água. Nunca o coma cru. Primeiro salteie-o numa frigideira sem gordura para lhe tirar a água. Depois junte manteiga e acabe de o cozinhar. É suave, frutado e firme. Fica bem com ovos, natas, massa, salmão e caça.",
+        "keeps": "Num saco de papel, no frigorífico, aguenta vários dias. Seco fica rijo. Para o guardar mais tempo, salteie-o em manteiga e congele-o.",
+        "source": "Identificação: MushroomExpert.com e UBC Beaty Biodiversity Museum. Regras de apanha: Serviço Florestal dos EUA. Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -159,6 +213,8 @@
       "taxonKeys": [5466954],
       "references": ["https://www.gbif.org/species/5466954"]
     },
-    "rangePrior": { "taxonKeys": [5466954] }
+    "rangePrior": {
+      "taxonKeys": [5466954]
+    }
   }
 }

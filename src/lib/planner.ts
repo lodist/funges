@@ -1,0 +1,1094 @@
+/**
+ * The garden planner: a plot of a chosen size and shape, laid out in beds
+ * (raised, dug in the ground, or strips of an open plot) and paths, each bed
+ * in sections that hold one crop. The plan is filled from what goes in at the
+ * visitor's place this week, checked for neighbours, and kept on the device.
+ * Distances in metres; x runs across the plot, y down it, and the plot's top
+ * faces the bearing `north` (0, as before: north).
+ */
+import { currentGarden, updateGarden } from '@/lib/gardens';
+import { CROPS, type CropNeeds, type CropStatus } from '@/lib/huerta';
+import type { PlaceYear } from '@/lib/huerta-wire';
+import { PLANT_LOOK } from '@/lib/planner-data';
+import type { Acidity, Texture } from '@/lib/soil';
+
+export const BED_WIDTH = 1.2;
+export const PATH = 0.4;
+export const BORDER = 0.35;
+export const BED_HEIGHT = 0.22;
+export const MIN_SIDE = 1;
+export const MAX_SIDE = 60;
+const ROW_STRIP = 1.5;
+/** An open plot's strips are cut into blocks of about this length, metres. */
+const ROW_BLOCK = 3;
+const FOOTPATH = 0.3;
+const SHORTEST = 0.3;
+
+export type Rect = [number, number, number, number];
+export type Ground = 'raised' | 'ground' | 'rows';
+export type Axis = 'x' | 'y';
+/** What "Plan it for me" grows: a mixed garden (vegetables, herbs and some
+ *  flowers), vegetables only, vegetables with flowers at each bed's sunny
+ *  end, fruit first, or herbs and flowers. */
+export type PlanStyle =
+  'mixed' | 'veg' | 'vegFlowers' | 'fruit' | 'herbsFlowers';
+
+export interface Garden {
+  width: number;
+  length: number;
+  shape: 'rect' | 'L';
+  /** The compass bearing the plot's top edge faces, 0-315 by 45. */
+  north?: number;
+  /** Beds run across the plot (along its width) instead of along it. */
+  across?: boolean;
+  /** Raised beds (the default), beds dug in the ground, or an open plot in rows. */
+  ground?: Ground;
+  /** What "Plan it for me" grows; mixed by default. */
+  style?: PlanStyle;
+  /** The soil as the gardener knows it; unset, the map's (lib/soil). */
+  soil?: Texture;
+  acidity?: Acidity;
+}
+
+export interface Section {
+  bed: number;
+  /** Its place in the bed, north to south, of `parts`. */
+  part: number;
+  parts: number;
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+  crop: string | null;
+  /** The day it went in, YYYY-MM-DD; absent while only planned. */
+  planted?: string;
+  /** The day it is planned to go in, YYYY-MM-DD; absent: as soon as it can. */
+  sow?: string;
+}
+
+export interface Plan {
+  garden: Garden;
+  sections: Section[];
+  /** Beds deleted: plain earth, which a bed can be put back on. */
+  bare?: Rect[];
+  /** Jobs ticked off on My garden: each job's key (lib/garden-week jobKey)
+   *  and the day it was ticked. */
+  done?: Record<string, string>;
+  /** What has come out of the beds, oldest first. */
+  // ponytail: kept for good (~150 bytes each); trim to a few years if a
+  // garden's record ever nears D1's row limit.
+  past?: Grown[];
+}
+
+/** What took a crop the gardener marked lost. */
+export type LostTo = 'cold' | 'pests' | 'sprout' | 'dry' | 'other';
+
+/** A crop that has come out of the garden, harvested or lost: the season's
+ *  list, the beds' rotation and a check of the day Huerta said it would be
+ *  ready all read it. */
+export interface Grown {
+  crop: string;
+  /** Where it grew: its section's corners then (beds change, places don't). */
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+  planted: string;
+  ended: string;
+  end: 'harvested' | 'lost';
+  why?: LostTo;
+  /** How it did, as the gardener rates it: 1 poor, 2 fair, 3 good. */
+  rating?: 1 | 2 | 3;
+  /** The ready day Huerta gave it when it came out; null: none. */
+  said?: string | null;
+}
+
+/** Planted sections taken out on `ended`: each kept in the plan's past and
+ *  its section left empty. `said` gives each its ready day as Huerta saw it. */
+export function finish(
+  plan: Plan,
+  ids: number[],
+  ended: string,
+  end: Grown['end'],
+  said: (s: Section) => string | null,
+  why?: LostTo
+): Plan {
+  const out = ids.filter(
+    i => plan.sections[i]?.crop && plan.sections[i].planted
+  );
+  if (!out.length) return plan;
+  return {
+    ...plan,
+    sections: plan.sections.map((s, i) =>
+      out.includes(i)
+        ? { ...s, crop: null, planted: undefined, sow: undefined }
+        : s
+    ),
+    past: [
+      ...(plan.past ?? []),
+      ...out.map(i => {
+        const s = plan.sections[i];
+        return {
+          crop: s.crop!,
+          x0: s.x0,
+          x1: s.x1,
+          y0: s.y0,
+          y1: s.y1,
+          planted: s.planted!,
+          ended,
+          end,
+          ...(why ? { why } : {}),
+          said: said(s),
+        };
+      }),
+    ],
+  };
+}
+
+type Box = Pick<Section, 'x0' | 'x1' | 'y0' | 'y1'>;
+const overlaps = (a: Box, b: Box) =>
+  Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0) > 0.01 &&
+  Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0) > 0.01;
+
+/** What grew where a section is, latest out first. */
+export const pastAt = (past: Grown[] | undefined, at: Box) =>
+  (past ?? [])
+    .filter(g => overlaps(g, at))
+    .sort((a, z) => z.ended.localeCompare(a.ended));
+
+/** Crops picked a little at a time over weeks, not lifted or cut at once. */
+const PICKED = new Set(
+  'tomato pepper chilli aubergine cucumber courgette melon watermelon green_beans peas broad_beans chard kale spinach lettuce rocket lambs_lettuce brussels_sprouts basil parsley coriander dill chervil'.split(
+    ' '
+  )
+);
+/** The button that takes a crop out once its harvest is in: cut flowers end,
+ *  green manures are dug in, crops picked over weeks are all picked; null
+ *  for a perennial, which stays. */
+export function endAs(id: string) {
+  const crop = CROP[id];
+  if (!crop || nextYear(id) === 'stays') return null;
+  if (crop.kind === 'cover') return 'dugIn';
+  if (crop.kind === 'flower') return 'finished';
+  return PICKED.has(id) ? 'allPicked' : 'harvested';
+}
+
+const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
+
+/** The edge around the beds: 35 cm, less on a small plot. */
+export const border = (g: Garden) =>
+  Math.min(BORDER, 0.1 * Math.min(g.width, g.length));
+
+/** The axis a bed runs along: down the plot, unless beds run across it or
+ *  the plot is in rows (whose strips run across), but not both. */
+export const axisOf = (g: Garden): Axis =>
+  (g.ground === 'rows') !== Boolean(g.across) ? 'x' : 'y';
+
+/** The plot's rectangles: one, or two for the L (its bottom-right corner cut away). */
+export function regions(g: Garden): Rect[] {
+  const b = border(g);
+  const all: Rect[] =
+    g.shape === 'L'
+      ? [
+          [0, 0, g.width, g.length * 0.5],
+          [0, g.length * 0.5, g.width * 0.55, g.length],
+        ]
+      : [[0, 0, g.width, g.length]];
+  return all.filter(
+    ([x0, y0, x1, y1]) => x1 - x0 - 2 * b >= 0.5 && y1 - y0 - 2 * b >= 0.5
+  );
+}
+
+const flip = (s: Section): Section => ({
+  ...s,
+  x0: s.y0,
+  x1: s.y1,
+  y0: s.x0,
+  y1: s.x1,
+});
+
+/** Beds in one region, running down it side by side: 1.2 m wide with 40 cm
+ *  paths, in sections of about 1.8 m; in rows, strips of 1.5 m with 30 cm
+ *  footpaths, in blocks of about 3 m, one crop each. */
+function bedsIn(
+  [x0, y0, x1, y1]: Rect,
+  b: number,
+  rows: boolean,
+  first: number
+): Section[] {
+  const out: Section[] = [];
+  const room = x1 - x0 - 2 * b;
+  const width = Math.min(rows ? ROW_STRIP : BED_WIDTH, room);
+  const path = rows ? FOOTPATH : PATH;
+  const n = Math.max(1, Math.floor((room + path) / (width + path)));
+  const used = n * width + (n - 1) * path;
+  const ya = y0 + b,
+    yb = y1 - b;
+  const k = Math.max(1, Math.round((yb - ya) / (rows ? ROW_BLOCK : 1.8)));
+  let x = x0 + (x1 - x0 - used) / 2;
+  for (let i = 0; i < n; i++, x += width + path)
+    for (let j = 0; j < k; j++)
+      out.push({
+        bed: first + i,
+        part: j,
+        parts: k,
+        x0: x,
+        x1: x + width,
+        y0: ya + ((yb - ya) * j) / k,
+        y1: ya + ((yb - ya) * (j + 1)) / k,
+        crop: null,
+      });
+  return out;
+}
+
+/** The plot in beds: a region whose beds run across is laid out turned a
+ *  quarter (x and y swapped) and turned back. */
+export function layout(g: Garden): Section[] {
+  const b = border(g),
+    rows = g.ground === 'rows',
+    turned = axisOf(g) === 'x';
+  let bed = 0;
+  return regions(g).flatMap(r => {
+    const out = bedsIn(turned ? [r[1], r[0], r[3], r[2]] : r, b, rows, bed);
+    bed += new Set(out.map(s => s.bed)).size;
+    return turned ? out.map(flip) : out;
+  });
+}
+
+/** How far north a spot lies, metres along true north, for a plot whose top
+ *  faces the bearing `north`. */
+export function northness(g: Pick<Garden, 'north'>, x: number, y: number) {
+  const r = ((g.north ?? 0) * Math.PI) / 180;
+  return -(x * Math.sin(r) + y * Math.cos(r));
+}
+const northOf = (north: number, s: Section) =>
+  northness({ north }, (s.x0 + s.x1) / 2, (s.y0 + s.y1) / 2);
+
+/** Two sections touch across a bed's length or a path (or the L's gap). */
+export function adjacent(a: Section, b: Section) {
+  const xo = Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0);
+  const yo = Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0);
+  const xg = Math.max(a.x0, b.x0) - Math.min(a.x1, b.x1);
+  const yg = Math.max(a.y0, b.y0) - Math.min(a.y1, b.y1);
+  return (
+    a !== b &&
+    ((xo > 0.01 && yg <= 2 * BORDER + 0.01) || (yo > 0.01 && xg <= PATH + 0.01))
+  );
+}
+
+// ---------- planning it ----------
+
+const GROUPS = {
+  legumes: ['broad_beans', 'peas', 'green_beans', 'field_beans'],
+  brassicas: [
+    'cabbage',
+    'kale',
+    'broccoli',
+    'cauliflower',
+    'brussels_sprouts',
+    'kohlrabi',
+    'turnip',
+    'radish',
+    'rocket',
+  ],
+  leaves: [
+    'lettuce',
+    'spinach',
+    'lambs_lettuce',
+    'chard',
+    'beetroot',
+    'carrot',
+    'parsnip',
+    'chicory',
+    'parsley',
+    'coriander',
+    'celery',
+  ],
+  alliums: ['garlic', 'onion_sets', 'onion', 'leek'],
+  fruiting: [
+    'tomato',
+    'courgette',
+    'pepper',
+    'aubergine',
+    'cucumber',
+    'chilli',
+    'pumpkin',
+    'sweetcorn',
+    'melon',
+    'winter_squash',
+    'watermelon',
+    'potato',
+  ],
+  flowers: [
+    'calendula',
+    'marigold',
+    'cosmos',
+    'zinnia',
+    'nasturtium',
+    'sunflower',
+    'sweet_pea',
+    'tulip',
+    'daffodil',
+    'lavender',
+  ],
+  herbs: [
+    'basil',
+    'parsley',
+    'coriander',
+    'dill',
+    'chervil',
+    'chives',
+    'thyme',
+    'rosemary',
+    'oregano',
+    'sage',
+    'mint',
+  ],
+  fruit: ['strawberry', 'melon', 'watermelon'],
+} as const;
+type Group = keyof typeof GROUPS;
+const GROUP_OF = Object.fromEntries(
+  Object.entries(GROUPS).flatMap(([group, ids]) => ids.map(id => [id, group]))
+) as Partial<Record<string, Group>>;
+
+const ORDER: Record<number, Group[]> = {
+  1: ['leaves'],
+  2: ['brassicas', 'leaves'],
+  3: ['legumes', 'brassicas', 'alliums'],
+  4: ['legumes', 'brassicas', 'leaves', 'alliums'],
+};
+const CYCLE: Group[] = [
+  'legumes',
+  'brassicas',
+  'flowers',
+  'leaves',
+  'alliums',
+  'fruiting',
+];
+const VEG_CYCLE: Group[] = [
+  'legumes',
+  'brassicas',
+  'leaves',
+  'alliums',
+  'fruiting',
+];
+const isVeg = (id: string) => CROP[id]?.kind === 'vegetable';
+const FRUIT_FIRST = new Set(
+  'strawberry melon watermelon tomato pepper chilli aubergine courgette cucumber pumpkin winter_squash'.split(
+    ' '
+  )
+);
+/** Low flowers that do their neighbours good, for a bed's sunny end, in a
+ *  strip 40 cm deep. */
+const COMPANIONS = ['calendula', 'marigold', 'nasturtium'];
+const FLOWER_STRIP = 0.4;
+
+/** Each style's beds: the families in turn (by number of beds for the first
+ *  few), the families to fall back on, and which crops it allows. */
+const STYLES: Record<
+  PlanStyle,
+  {
+    order?: Record<number, Group[]>;
+    cycle: Group[];
+    fallback: Group[];
+    allow: (id: string) => boolean;
+  }
+> = {
+  mixed: {
+    order: ORDER,
+    cycle: CYCLE,
+    fallback: ['leaves', 'brassicas', 'flowers', 'fruiting'],
+    allow: () => true,
+  },
+  veg: {
+    order: ORDER,
+    cycle: VEG_CYCLE,
+    fallback: ['leaves', 'brassicas', 'fruiting'],
+    allow: isVeg,
+  },
+  vegFlowers: {
+    order: ORDER,
+    cycle: VEG_CYCLE,
+    fallback: ['leaves', 'brassicas', 'fruiting'],
+    allow: isVeg,
+  },
+  fruit: {
+    cycle: ['fruiting', 'fruit'],
+    fallback: ['fruit', 'fruiting'],
+    allow: id => FRUIT_FIRST.has(id),
+  },
+  herbsFlowers: {
+    cycle: ['herbs', 'flowers'],
+    fallback: ['herbs', 'flowers'],
+    allow: () => true,
+  },
+};
+
+/** The order of bed groups in which onions and garlic never sit beside peas
+ *  and beans: Heap's permutations, up to 7 beds. */
+function arrange(sections: Section[], beds: number[], groups: Group[]) {
+  if (beds.length > 7) return groups;
+  const near = beds.map(a =>
+    beds.map(
+      b =>
+        a !== b &&
+        sections.some(
+          s => s.bed === a && sections.some(t => t.bed === b && adjacent(s, t))
+        )
+    )
+  );
+  const pair = (x: Group, y: Group) =>
+    (x === 'legumes' && y === 'alliums') ||
+    (x === 'alliums' && y === 'legumes');
+  const clash = (order: Group[]) =>
+    order.some((x, i) => order.some((y, j) => near[i][j] && pair(x, y)));
+  const a = [...groups];
+  if (!clash(a)) return a;
+  const c = new Array<number>(a.length).fill(0);
+  for (let i = 0; i < a.length;) {
+    if (c[i] < i) {
+      const j = i % 2 ? c[i] : 0;
+      [a[j], a[i]] = [a[i], a[j]];
+      if (!clash(a)) return [...a];
+      c[i]++;
+      i = 0;
+    } else {
+      c[i] = 0;
+      i++;
+    }
+  }
+  return groups;
+}
+
+/** Fill every section with crops that go in this week at the visitor's
+ *  place (a bed with none stays empty): one
+ *  family per bed (of those the style grows), onions and garlic never beside
+ *  peas and beans, the tallest crop of a bed at its north end. Planted
+ *  sections keep their crop, and with `keepChosen` every section that has one;
+ *  with `only`, just those sections (by index) are planned. With `past`, a
+ *  bed is not given a family that grew in it in the year before. */
+export function autoPlan(
+  sections: Section[],
+  status: (crop: string) => CropStatus | undefined,
+  {
+    north = 0,
+    keepChosen = false,
+    only,
+    style = 'mixed',
+    axis = 'y',
+    sow,
+    past,
+  }: {
+    north?: number;
+    keepChosen?: boolean;
+    only?: number[];
+    style?: PlanStyle;
+    axis?: Axis;
+    /** The day the sections it fills are planned to go in. */
+    sow?: string;
+    past?: Grown[];
+  } = {}
+): Section[] {
+  // Only what goes in this week: a crop that must wait, or whose time is
+  // over, is never planned.
+  const how = STYLES[style];
+  const now = (id: string) => how.allow(id) && status(id) === 'now';
+  let out = sections.map(s => ({ ...s }));
+  const put = (s: Section, crop: string | null) => {
+    s.crop = crop;
+    s.sow = crop ? sow : undefined;
+  };
+  const open = new Set(only ? only.map(i => out[i]) : out);
+  const beds = [...new Set(out.map(s => s.bed))];
+  const groups = arrange(
+    out,
+    beds,
+    how.order?.[beds.length] ??
+      beds.map((_, i) => how.cycle[i % how.cycle.length])
+  );
+  const used = new Set<string>();
+  // The families a bed grew in the year before the planned day.
+  const yearAgo = monthAhead(sow ?? new Date().toLocaleDateString('sv'), -12);
+  const since = (bed: number) =>
+    new Set(
+      (past ?? [])
+        .filter(
+          g =>
+            g.ended >= yearAgo && out.some(s => s.bed === bed && overlaps(s, g))
+        )
+        .map(g => GROUP_OF[g.crop])
+        .filter(Boolean)
+    );
+  beds.forEach((bed, i) => {
+    // The bed's family, else the first of the style's with a crop going in
+    // now; with none, the bed is left empty.
+    // ponytail: a bed's last family is skipped, not the whole rotation
+    // cycle; the next bed's family may end up beside the one it should not.
+    const before = since(bed);
+    const choices = [groups[i], ...how.fallback, ...how.cycle];
+    const group =
+      choices.find(k => !before.has(k) && GROUPS[k].some(now)) ??
+      choices.find(k => GROUPS[k].some(now));
+    const pick = group
+      ? GROUPS[group]
+          .filter(now)
+          .sort((a, z) => Number(used.has(a)) - Number(used.has(z)))
+      : [];
+    const parts = out
+      .filter(
+        s =>
+          s.bed === bed && open.has(s) && !s.planted && !(keepChosen && s.crop)
+      )
+      .sort((a, z) => northOf(north, z) - northOf(north, a));
+    // Vegetables with flowers: a strip of a low companion flower across the
+    // bed's sunny end, cut from its last section (unless that is a strip).
+    const flower = COMPANIONS.find(id => status(id) === 'now');
+    if (style === 'vegFlowers' && parts.length && flower) {
+      const last = parts[parts.length - 1];
+      const [lo, hi] = span(last, axis);
+      if (hi - lo < 2 * FLOWER_STRIP + 0.3) put(parts.pop()!, flower);
+      else {
+        const atLo = along(last, axis, lo, lo + FLOWER_STRIP),
+          atHi = along(last, axis, hi - FLOWER_STRIP, hi);
+        const loSouth = northOf(north, atLo) < northOf(north, atHi);
+        const rest = loSouth
+          ? along(last, axis, lo + FLOWER_STRIP, hi)
+          : along(last, axis, lo, hi - FLOWER_STRIP);
+        out[out.indexOf(last)] = rest;
+        parts[parts.length - 1] = rest;
+        out.push({ ...(loSouth ? atLo : atHi), crop: flower, sow });
+      }
+    }
+    if (!pick.length) {
+      parts.forEach(s => put(s, null)); // nothing goes in now
+      return;
+    }
+    const crops = parts
+      .map((_, j) => pick[j % pick.length])
+      .sort((a, z) => PLANT_LOOK[z].height - PLANT_LOOK[a].height);
+    parts.forEach((s, j) => {
+      put(s, crops[j]);
+      used.add(crops[j]);
+    });
+  });
+  if (style === 'vegFlowers')
+    for (const bed of beds) out = renumber(out, bed, axis);
+  return out;
+}
+
+// ---------- editing ----------
+
+const span = (s: Section, a: Axis) =>
+  a === 'y' ? ([s.y0, s.y1] as const) : ([s.x0, s.x1] as const);
+const along = (s: Section, a: Axis, lo: number, hi: number): Section =>
+  a === 'y' ? { ...s, y0: lo, y1: hi } : { ...s, x0: lo, x1: hi };
+
+/** A bed's sections numbered in order along it. */
+function renumber(out: Section[], bed: number, a: Axis): Section[] {
+  const order = out
+    .filter(t => t.bed === bed)
+    .sort((p, q) => span(p, a)[0] - span(q, a)[0]);
+  return out.map(t =>
+    t.bed === bed ? { ...t, part: order.indexOf(t), parts: order.length } : t
+  );
+}
+
+/** A section cut in two along its bed, both halves with its crop. */
+export function split(
+  sections: Section[],
+  index: number,
+  a: Axis = 'y'
+): Section[] {
+  const s = sections[index];
+  const [lo, hi] = span(s, a);
+  const mid = (lo + hi) / 2;
+  const out = [
+    ...sections.slice(0, index),
+    along(s, a, lo, mid),
+    along(s, a, mid, hi),
+    ...sections.slice(index + 1),
+  ];
+  return renumber(out, s.bed, a);
+}
+
+/** A section joined with the one before (-1) or after (1) it in its bed,
+ *  keeping its own crop, planting and lock. */
+export function merge(
+  sections: Section[],
+  index: number,
+  dir: -1 | 1,
+  a: Axis = 'y'
+): Section[] {
+  const s = sections[index];
+  const other = sections.find(t => t.bed === s.bed && t.part === s.part + dir);
+  if (!other) return sections;
+  const [lo, hi] = span(s, a),
+    [olo, ohi] = span(other, a);
+  const joined = along(s, a, Math.min(lo, olo), Math.max(hi, ohi));
+  return renumber(
+    sections.filter(t => t !== other).map(t => (t === s ? joined : t)),
+    s.bed,
+    a
+  );
+}
+
+/** A section made longer (or shorter) by `delta`, the space taken from (or
+ *  given to) the next section in its bed, or the one before at the bed's end;
+ *  neither shorter than 30 cm. */
+export function lengthen(
+  sections: Section[],
+  index: number,
+  delta: number,
+  a: Axis = 'y'
+): Section[] {
+  const s = sections[index];
+  const next = sections.find(t => t.bed === s.bed && t.part === s.part + 1);
+  const other =
+    next ?? sections.find(t => t.bed === s.bed && t.part === s.part - 1);
+  if (!other) return sections;
+  const [lo, hi] = span(s, a),
+    [olo, ohi] = span(other, a);
+  const d = Math.max(
+    -(hi - lo - SHORTEST),
+    Math.min(delta, ohi - olo - SHORTEST)
+  );
+  return sections.map(t =>
+    t === s
+      ? next
+        ? along(s, a, lo, hi + d)
+        : along(s, a, lo - d, hi)
+      : t === other
+        ? next
+          ? along(t, a, olo + d, ohi)
+          : along(t, a, olo, ohi - d)
+        : t
+  );
+}
+
+/** Beds numbered 0, 1, ... in their earlier order. */
+function numberBeds(sections: Section[]): Section[] {
+  const ids = [...new Set(sections.map(s => s.bed))].sort((p, q) => p - q);
+  return sections.map(s => ({ ...s, bed: ids.indexOf(s.bed) }));
+}
+
+const rectOf = (s: Section): Rect => [s.x0, s.y0, s.x1, s.y1];
+const area = (r: Rect) => (r[2] - r[0]) * (r[3] - r[1]);
+const overlap = (p: Rect, q: Rect) =>
+  Math.max(0, Math.min(p[2], q[2]) - Math.max(p[0], q[0])) *
+  Math.max(0, Math.min(p[3], q[3]) - Math.max(p[1], q[1]));
+
+/** A bed deleted: its sections leave the plan, its ground stays plain earth. */
+export function removeBed(plan: Plan, bed: number): Plan {
+  const parts = plan.sections.filter(s => s.bed === bed);
+  if (!parts.length) return plan;
+  const box: Rect = [
+    Math.min(...parts.map(s => s.x0)),
+    Math.min(...parts.map(s => s.y0)),
+    Math.max(...parts.map(s => s.x1)),
+    Math.max(...parts.map(s => s.y1)),
+  ];
+  return {
+    ...plan,
+    sections: numberBeds(plan.sections.filter(s => s.bed !== bed)),
+    bare: [...(plan.bare ?? []), box],
+  };
+}
+
+/** A bed put back on a patch of plain earth, in sections of about 1.8 m. */
+export function restoreBed(plan: Plan, i: number): Plan {
+  const r = plan.bare?.[i];
+  if (!r) return plan;
+  const a = axisOf(plan.garden);
+  const [lo, hi] = a === 'y' ? [r[1], r[3]] : [r[0], r[2]];
+  const k = Math.max(
+    1,
+    Math.round((hi - lo) / (plan.garden.ground === 'rows' ? ROW_BLOCK : 1.8))
+  );
+  const bed = plan.sections.reduce((m, s) => Math.max(m, s.bed), -1) + 1;
+  const base: Section = {
+    bed,
+    part: 0,
+    parts: k,
+    x0: r[0],
+    y0: r[1],
+    x1: r[2],
+    y1: r[3],
+    crop: null,
+  };
+  const parts = Array.from({ length: k }, (_, j) =>
+    along(
+      { ...base, part: j },
+      a,
+      lo + ((hi - lo) * j) / k,
+      lo + ((hi - lo) * (j + 1)) / k
+    )
+  );
+  return {
+    ...plan,
+    sections: [...plan.sections, ...parts],
+    bare: plan.bare!.filter((_, j) => j !== i),
+  };
+}
+
+/** The plan on a new size, shape, north, bed direction or way of growing:
+ *  each new section keeps the crop and planting of the old one it
+ *  mostly lies on, deleted beds stay deleted, and the rest is planned. */
+export function reshape(
+  plan: Plan,
+  garden: Garden,
+  status: (crop: string) => CropStatus | undefined,
+  sow?: string
+): Plan {
+  const plot = regions(garden);
+  const bare = (plan.bare ?? []).filter(r =>
+    plot.some(q => overlap(r, q) >= area(r) / 2)
+  );
+  const fresh = layout(garden).filter(
+    s => !bare.some(r => overlap(rectOf(s), r) >= area(rectOf(s)) / 2)
+  );
+  const kept = fresh.map(s => {
+    let best: Section | undefined,
+      most = 0;
+    for (const o of plan.sections) {
+      const v = overlap(rectOf(s), rectOf(o));
+      if (v > most) [best, most] = [o, v];
+    }
+    return best && most >= area(rectOf(s)) / 2
+      ? { ...s, crop: best.crop, planted: best.planted, sow: best.sow }
+      : s;
+  });
+  return {
+    ...plan,
+    garden,
+    sections: autoPlan(numberBeds(kept), status, {
+      north: garden.north,
+      keepChosen: true,
+      style: garden.style,
+      axis: axisOf(garden),
+      sow,
+      past: plan.past,
+    }),
+    bare,
+  };
+}
+
+// ---------- neighbours ----------
+
+const set = (ids: string) => new Set(ids.split(' '));
+const ALLIUM = set('garlic onion_sets onion leek chives');
+const LEGUME = set('broad_beans peas green_beans field_beans');
+const BLIGHT = set('tomato aubergine pepper chilli');
+const BRASSICA = set(
+  'kale cabbage cauliflower broccoli brussels_sprouts kohlrabi turnip radish rocket'
+);
+const FRUITING = set(
+  'tomato pepper chilli aubergine courgette cucumber pumpkin winter_squash melon watermelon strawberry green_beans broad_beans'
+);
+const FLOWERS = set(
+  'calendula marigold cosmos phacelia nasturtium zinnia sunflower'
+);
+const VEG = new Set(
+  CROPS.filter(
+    c => (c.kind === 'vegetable' || c.kind === 'fruit') && c.id !== 'fennel'
+  ).map(c => c.id)
+);
+
+/** What a pairing rests on: shown with each note, so it can be weighed. */
+export type Basis =
+  'tradition' | 'disease' | 'someTrials' | 'trials' | 'system' | 'sun';
+
+const RULES: {
+  bad: boolean;
+  a: Set<string>;
+  b: Set<string>;
+  key: string;
+  basis: Basis;
+}[] = [
+  { bad: true, a: ALLIUM, b: LEGUME, key: 'alliumLegume', basis: 'tradition' },
+  { bad: true, a: set('potato'), b: BLIGHT, key: 'blight', basis: 'disease' },
+  { bad: true, a: set('fennel'), b: VEG, key: 'fennel', basis: 'tradition' },
+  {
+    bad: false,
+    a: set('carrot parsnip'),
+    b: ALLIUM,
+    key: 'carrotFly',
+    basis: 'someTrials',
+  },
+  { bad: false, a: FLOWERS, b: FRUITING, key: 'flowers', basis: 'trials' },
+  {
+    bad: false,
+    a: set('nasturtium'),
+    b: new Set([...BRASSICA, ...LEGUME]),
+    key: 'nasturtium',
+    basis: 'someTrials',
+  },
+  {
+    bad: false,
+    a: set('sweetcorn'),
+    b: set('green_beans pumpkin winter_squash'),
+    key: 'threeSisters',
+    basis: 'system',
+  },
+  {
+    bad: false,
+    a: set('basil'),
+    b: set('tomato pepper'),
+    key: 'basil',
+    basis: 'tradition',
+  },
+];
+
+/** A crop's pairings wherever it grows: each rule it is in, with the crops on
+ *  the other side. */
+export function partners(id: string) {
+  return RULES.flatMap(r => {
+    const other = r.a.has(id) ? r.b : r.b.has(id) ? r.a : null;
+    return other
+      ? [
+          {
+            bad: r.bad,
+            key: r.key,
+            basis: r.basis,
+            with: [...other].filter(c => c !== id && CROP[c]),
+          },
+        ]
+      : [];
+  });
+}
+
+export interface Note {
+  bad: boolean;
+  /** The neighbour's crop. */
+  with: string;
+  key: string;
+  basis: Basis;
+  /** For the shade note: the tall crop and the one it shades. */
+  tall?: string;
+  short?: string;
+}
+
+/** What to watch next to one section: good pairs, pairs to keep apart, and a
+ *  tall crop south of a low one in the same bed (by true north). */
+export function notes(sections: Section[], index: number, north = 0): Note[] {
+  const s = sections[index];
+  const out: Note[] = [];
+  const seen = new Set<string>();
+  const add = (n: Note) => {
+    const k = n.with + n.key;
+    if (!seen.has(k)) {
+      seen.add(k);
+      out.push(n);
+    }
+  };
+  if (!s.crop) return out;
+  for (const t of sections) {
+    if (!t.crop || !adjacent(s, t)) continue;
+    for (const r of RULES)
+      if (
+        (r.a.has(s.crop) && r.b.has(t.crop)) ||
+        (r.b.has(s.crop) && r.a.has(t.crop))
+      )
+        add({ bad: r.bad, with: t.crop, key: r.key, basis: r.basis });
+    if (s.bed === t.bed && s.crop !== t.crop) {
+      const [n, so] = northOf(north, s) > northOf(north, t) ? [s, t] : [t, s];
+      if (PLANT_LOOK[so.crop!].height >= 1 && PLANT_LOOK[n.crop!].height < 0.6)
+        add({
+          bad: true,
+          with: t.crop,
+          key: 'shade',
+          basis: 'sun',
+          tall: so.crop!,
+          short: n.crop!,
+        });
+    }
+  }
+  return out;
+}
+
+/** Good pairs and notes to fix over the whole garden, each pair once. */
+export function summary(sections: Section[], north = 0) {
+  let good = 0;
+  const bad: Note[] = [];
+  const seen = new Set<string>();
+  sections.forEach((s, i) =>
+    notes(sections, i, north).forEach(n => {
+      const k = [s.crop, n.with].sort().join() + n.key;
+      if (seen.has(k)) return;
+      seen.add(k);
+      if (n.bad) bad.push(n);
+      else good++;
+    })
+  );
+  return { good, bad };
+}
+
+// ---------- what fits ----------
+
+export interface Fit {
+  count: number;
+  /** In the row and between rows, metres. */
+  spacing: number;
+  across: number;
+  points: [number, number][];
+}
+
+/** The plants a section holds at the crop's spacing: in the row at its own
+ *  spacing, rows at least that far apart (half the field row gap in a bed,
+ *  the whole gap in an `open` plot). Null for a scattered green manure. */
+export function fit(s: Section, open = false): Fit | null {
+  const crop = s.crop ? CROP[s.crop] : null;
+  if (!crop || crop.spacing === null) return null;
+  const sp = crop.spacing / 100;
+  const across = Math.max(sp, (crop.rows ?? crop.spacing) / (open ? 100 : 200));
+  const w = s.x1 - s.x0,
+    l = s.y1 - s.y0;
+  const rows = Math.max(1, Math.floor(w / across + 1e-6));
+  const perRow = Math.max(1, Math.floor(l / sp + 1e-6));
+  const ox = s.x0 + (w - (rows - 1) * across) / 2;
+  const oy = s.y0 + (l - (perRow - 1) * sp) / 2;
+  const points: [number, number][] = [];
+  for (let i = 0; i < rows; i++)
+    for (let j = 0; j < perRow; j++)
+      points.push([ox + i * across, oy + j * sp]);
+  return { count: rows * perRow, spacing: sp, across, points };
+}
+
+/** What a crop is counted in. */
+export const UNIT: Record<string, string> = {
+  garlic: 'cloves',
+  onion_sets: 'sets',
+  potato: 'seedPotatoes',
+  tulip: 'bulbs',
+  daffodil: 'bulbs',
+  crocus: 'corms',
+  asparagus: 'crowns',
+  rhubarb: 'crowns',
+};
+
+/** When it is ready, from today: a month, or "next spring or early summer"
+ *  for a long crop going in in autumn (it waits out the winter). */
+export function ready(
+  status: CropStatus | undefined,
+  days: number | null,
+  today: Date
+): { key: 'readyNextSpring' } | { key: 'readyAround'; month: number } | null {
+  if (days === null) return null;
+  if (status === 'now' && today.getMonth() >= 8 && days >= 60)
+    return { key: 'readyNextSpring' };
+  return {
+    key: 'readyAround',
+    month: new Date(today.getTime() + days * 864e5).getMonth(),
+  };
+}
+
+/** The 1st of the month `k` months after `today`'s, YYYY-MM-DD. */
+export function monthAhead(today: string, k: number) {
+  const [y, m] = today.split('-').map(Number);
+  const d = new Date(y, m - 1 + k, 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
+}
+
+/** The crop table's season: crops that go in only in autumn, or in spring. */
+const SEASON: Partial<Record<string, 'autumn' | 'spring'>> = {
+  tulip: 'autumn',
+  daffodil: 'autumn',
+  crocus: 'autumn',
+  winter_rye: 'autumn',
+  asparagus: 'spring',
+};
+
+/** Crops that bolt when sown under long days: spinach from spring to late
+ *  summer, fennel before midsummer (the calendar's own rule,
+ *  build_huerta_windows.py long_day, weighs the place's day lengths). */
+const BOLTS: Partial<Record<string, (month: number) => boolean>> = {
+  spinach: m => m >= 3 && m <= 7,
+  fennel: m => m <= 4,
+};
+
+/** Statuses a crop goes in under and comes to nothing: no seedlings in soil
+ *  too warm, bolting in long days, none where it can't grow outdoors. */
+export const WONT_GROW: CropStatus[] = ['too_warm', 'wait_days', 'not_here'];
+
+/** A crop's status in a later month (0-11): in when the place's calendar
+ *  has it going in then; else why not, by the nightly rules over a typical
+ *  month, as the calendar is built (data_tools/build_huerta_year.py): the
+ *  month's air plus the summer sun's warming for the soil, the place's
+ *  warm-night season for the nights, its usual frost dates for the frost. */
+// ponytail: usual frost dates, not the nightly run's 1-in-10 odds; a month
+// the calendar skips for frost alone reads as wait_frost / too_late.
+export function inMonth(
+  id: string,
+  month: number,
+  year?: PlaceYear | null,
+  need?: CropNeeds
+): CropStatus {
+  const sow = year?.crops[id]?.sow;
+  if (sow && (sow >> month) & 1) return 'now';
+  const autumn = month >= 6;
+  if (SEASON[id] === 'autumn' && !autumn) return 'wait_autumn';
+  if (SEASON[id] === 'spring' && autumn) return 'wait_spring';
+  const day = month * 30.4 + 15;
+  const air = year?.temps?.[month];
+  const soil =
+    air === undefined
+      ? null
+      : air + 4 * Math.max(0, Math.cos((2 * Math.PI * (day - 172)) / 365));
+  const [min, max] = need?.soil ?? [null, null];
+  const cold = soil !== null && min !== null && soil < min;
+  const climate = year?.climate;
+  const frost = need?.frost === 'tender' ? climate?.frost : climate?.hard;
+  if (need?.frost === 'tender') {
+    const warm = need.night
+      ? climate?.[need.night >= 13 ? 'warm13' : 'warm10']
+      : undefined;
+    if (warm === null) return 'not_here';
+    const days = need.days ?? 0;
+    if (warm && warm[1] < 365 && day + days > warm[1] && day >= warm[0] - 14)
+      return 'too_late';
+    if (frost && day > frost[1] && day + days >= frost[0]) return 'too_late';
+    if (frost && day <= frost[1]) return 'wait_frost';
+    if (warm && day < warm[0] - 14) return 'wait_warm';
+    if (cold) return autumn ? 'too_late' : 'wait_soil';
+  } else {
+    if (cold) return autumn ? 'too_late' : 'wait_soil';
+    if (soil !== null && max !== null && soil > max) return 'too_warm';
+    if (need?.frost === 'half_hardy' && frost && day <= frost[1])
+      return 'wait_frost';
+  }
+  if (BOLTS[id]?.(month)) return 'wait_days';
+  return autumn ? 'too_late' : 'wait_frost';
+}
+
+/** What should follow a crop in its bed next year: rotate the families. */
+export function nextYear(id: string) {
+  const crop = CROP[id];
+  if (crop.note && crop.note !== 'spring_flowers') return 'stays';
+  if (crop.kind === 'cover') return 'cover';
+  if (crop.kind === 'flower') return 'any';
+  const next: Partial<Record<string, string>> = {
+    legume: 'cabbage',
+    brassica: 'roots',
+    umbellifer: 'alliums',
+    beet: 'alliums',
+    daisy: 'alliums',
+    allium: 'legumes',
+    nightshade: 'legumes',
+    cucurbit: 'legumes',
+    grass: 'legumes',
+  };
+  return next[PLANT_LOOK[id].family] ?? 'other';
+}
+
+// ---------- kept on the device ----------
+
+/** The current garden's plan (lib/gardens), when it is one this app can draw. */
+export function loadPlan(): Plan | null {
+  const plan = currentGarden()?.plan;
+  // Every bed deleted is a plan too: its ground, to put a bed back on.
+  return (plan?.sections?.length || plan?.bare?.length) &&
+    plan.sections.every(s => !s.crop || s.crop in CROP)
+    ? plan
+    : null;
+}
+
+export const savePlan = (plan: Plan) => updateGarden({ plan });

@@ -1,0 +1,516 @@
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { CategoryChips } from '@/components/CategoryChips';
+import { CropSheet } from '@/components/CropSheet';
+import { HuertaWeek } from '@/components/HuertaWeek';
+import { PlacePicker } from '@/components/PlacePicker';
+import { ScopeHeader } from '@/components/ScopeHeader';
+import SEO from '@/components/SEO';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
+import {
+  CROPS,
+  cropsWith,
+  huertaImage as image,
+  KINDS,
+  STATUS_GROUPS,
+  SAMPLE_ADVICE,
+  type Crop,
+  type CropStatus,
+  type PlaceAdvice,
+} from '@/lib/huerta';
+import {
+  fetchAdvice,
+  huertaApiConfigured,
+  savedPlace,
+  savePlace,
+  plain,
+  type Place,
+} from '@/lib/huerta-api';
+import { MapPinned, Search } from '@/lib/icons';
+import { chooseGarden, gardenLabel, useGardens } from '@/lib/gardens';
+import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
+import { indexedLanguage, localizedPath } from '@/lib/seo-pages';
+import { cn } from '@/lib/utils';
+
+type Load =
+  | { state: 'picking' }
+  | { state: 'loading' }
+  | { state: 'ready'; advice: PlaceAdvice }
+  | { state: 'none' }
+  | { state: 'failed' };
+
+/** Huerta's home: this week in the garden at the visitor's place. */
+export default function HuertaPage() {
+  const { t, i18n } = useTranslation('huerta');
+  // The place the advice is for and its day, under the title as Terra's
+  // pages put their scope.
+  const placeLine = (advice: PlaceAdvice) => {
+    const day = new Intl.DateTimeFormat(i18n.language, {
+      day: 'numeric',
+      month: 'long',
+    }).format(new Date(`${advice.day}T12:00:00`));
+    return huertaApiConfigured
+      ? t('around', { place: advice.place, day })
+      : t('sample', { place: advice.place, day });
+  };
+  const [place, setPlace] = useState<Place | null>(() =>
+    huertaApiConfigured ? savedPlace() : null
+  );
+  const [load, setLoad] = useState<Load>(() =>
+    !huertaApiConfigured
+      ? { state: 'ready', advice: SAMPLE_ADVICE }
+      : place
+        ? { state: 'loading' }
+        : { state: 'picking' }
+  );
+
+  useEffect(() => {
+    if (!huertaApiConfigured || !place) return;
+    let current = true;
+    setLoad({ state: 'loading' });
+    fetchAdvice(place)
+      .then(advice => {
+        if (current)
+          setLoad(advice ? { state: 'ready', advice } : { state: 'none' });
+      })
+      .catch(() => current && setLoad({ state: 'failed' }));
+    return () => {
+      current = false;
+    };
+  }, [place]);
+
+  const pick = (chosen: Place) => {
+    savePlace(chosen);
+    setPlace({ ...chosen });
+  };
+
+  return (
+    <>
+      <SEO
+        title={t('title')}
+        description={t('description')}
+        canonicalUrl={`${import.meta.env.BASE_URL}huerta/crops`}
+      />
+      <div className='container mx-auto max-w-7xl px-4 py-8'>
+        <header className='mb-8 flex flex-col gap-6'>
+          <ScopeHeader
+            title={t('title')}
+            scopeLabel={
+              load.state === 'ready' ? placeLine(load.advice) : undefined
+            }
+            action={
+              huertaApiConfigured && load.state === 'ready' ? (
+                <Button
+                  variant='outline'
+                  onClick={() => setLoad({ state: 'picking' })}
+                >
+                  <MapPinned />
+                  {t('change')}
+                </Button>
+              ) : null
+            }
+          />
+        </header>
+
+        {load.state === 'picking' ? <PlacePicker onPick={pick} /> : null}
+        {load.state === 'loading' ? (
+          <SkeletonGroup>
+            <Skeleton className='h-48 w-full rounded-card' />
+          </SkeletonGroup>
+        ) : null}
+        {load.state === 'none' || load.state === 'failed' ? (
+          <section className='flex flex-col items-start gap-4 rounded-card bg-card p-8 elevation-raised'>
+            <p className='text-foreground'>
+              {t(load.state === 'none' ? 'noPlace' : 'loadFailed')}
+            </p>
+            <Button
+              variant='outline'
+              onClick={() => setLoad({ state: 'picking' })}
+            >
+              {t('change')}
+            </Button>
+          </section>
+        ) : null}
+        {load.state === 'ready' ? <Advice advice={load.advice} /> : null}
+      </div>
+    </>
+  );
+}
+
+/** In Season's filters: everything, or one list (harvest only with the
+ *  place's calendar). */
+type View = 'all' | 'sow' | 'plant' | 'harvest';
+/** The garden row: all crops, or one garden's (kept for the visit here). */
+const ALL = 'all';
+const ONLY = 'huerta-season-garden';
+
+function Advice({ advice }: { advice: PlaceAdvice }) {
+  const { t, i18n } = useTranslation('huerta');
+  const year = useHuertaYear();
+  const [view, setView] = useState<View>('all');
+  const [kind, setKind] = useState<string>('all');
+  const [query, setQuery] = useState('');
+  const { gardens, current } = useGardens();
+  // The garden filter: only that garden's crops. Choosing another garden
+  // starts the page afresh at its place (HuertaGate), so the choice is kept
+  // for this visit.
+  const [only, setOnly] = useState(() => {
+    try {
+      return sessionStorage.getItem(ONLY) === current?.id;
+    } catch {
+      return false;
+    }
+  });
+  const mine = new Set(
+    only
+      ? (current?.plan?.sections.flatMap(s => (s.crop ? [s.crop] : [])) ?? [])
+      : []
+  );
+  // By its name here or its Latin one, accents and case aside.
+  const q = plain(query);
+  const found = (crop: Crop) =>
+    !q ||
+    plain(t(`crops.${crop.id}`)).includes(q) ||
+    plain(crop.scientific).includes(q);
+  const shown = (crop: Crop) =>
+    (kind === 'all' || crop.kind === kind) &&
+    (!only || mine.has(crop.id)) &&
+    found(crop);
+  const filterGarden = (value: string) => {
+    try {
+      sessionStorage.setItem(ONLY, value === ALL ? '' : value);
+    } catch {
+      // Blocked storage: the filter holds until the page starts afresh.
+    }
+    if (value === ALL) setOnly(false);
+    else if (value === current?.id) setOnly(true);
+    else chooseGarden(value);
+  };
+  const [open, setOpen] = useState<Crop | null>(null);
+  const pick = (statuses: CropStatus[]) =>
+    cropsWith(advice, statuses).filter(shown);
+  const now = pick(STATUS_GROUPS.now);
+  const waiting = pick(STATUS_GROUPS.wait);
+  const over = pick(STATUS_GROUPS.over);
+  // Picked (or in flower) around here this month, from the place's calendar,
+  // and until when; green manures are dug in, not picked.
+  const month = new Date().getMonth();
+  const picked = (id: string) => year?.crops[id]?.harvest ?? 0;
+  const harvesting = CROPS.filter(
+    crop =>
+      shown(crop) && crop.kind !== 'cover' && (picked(crop.id) >> month) & 1
+  );
+  const until = (id: string) => {
+    let last = month;
+    for (let k = 1; k < 12 && (picked(id) >> ((month + k) % 12)) & 1; k++)
+      last = (month + k) % 12;
+    return picked(id) === 0xfff
+      ? t('views.allYear')
+      : t('views.until', {
+          month: new Intl.DateTimeFormat(i18n.language, {
+            month: 'long',
+          }).format(new Date(2026, last, 1)),
+        });
+  };
+  const views: View[] = year
+    ? ['all', 'sow', 'plant', 'harvest']
+    : ['all', 'sow', 'plant'];
+  const list =
+    view === 'sow' || view === 'plant'
+      ? now.filter(crop => crop.how === view)
+      : view === 'harvest'
+        ? harvesting
+        : null;
+  // A search that finds nothing in what is on show.
+  const nothing =
+    q !== '' && (list ?? [...now, ...waiting, ...over]).length === 0;
+  return (
+    <>
+      <HuertaWeek advice={advice} />
+
+      <div className='relative mt-6 lg:w-72'>
+        <Search className='pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-muted-foreground' />
+        <Input
+          type='search'
+          placeholder={t('find.placeholder')}
+          aria-label={t('find.placeholder')}
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+          className='pl-11'
+        />
+      </div>
+      <CategoryChips
+        chips={views.map(value => ({
+          value,
+          label: t(
+            value === 'sow' || value === 'plant'
+              ? `sheet.${value}Now`
+              : `views.${value}`
+          ),
+        }))}
+        value={view}
+        onChange={value => setView(value as View)}
+        className='mt-4 justify-start'
+      />
+      <CategoryChips
+        chips={KINDS.map(value => ({
+          value,
+          label: t(`kinds.${value}`),
+          icon: image(`kinds/${value}`),
+        }))}
+        value={kind}
+        onChange={setKind}
+        className='mt-3 justify-start'
+      />
+      {/* A garden's own crops, at its place; all crops by default. */}
+      {gardens.some(g => g.plan?.sections.some(s => s.crop)) ? (
+        <CategoryChips
+          chips={[
+            { value: ALL, label: t('views.allGardens') },
+            ...gardens.map(garden => ({
+              value: garden.id,
+              label: gardenLabel(t, gardens, garden),
+            })),
+          ]}
+          value={only && current ? current.id : ALL}
+          onChange={filterGarden}
+          className='mt-3 justify-start'
+        />
+      ) : null}
+
+      {nothing ? (
+        <div className='mt-10 flex flex-col items-center gap-4 py-12 text-center'>
+          <Search className='size-12 text-muted-foreground' />
+          <h2 className='text-xl font-semibold text-foreground'>
+            {t('find.none')}
+          </h2>
+          <p className='text-muted-foreground'>{t('find.noneHelp')}</p>
+          <Button
+            variant='outline'
+            onClick={() => {
+              setQuery('');
+              setKind('all');
+              setView('all');
+            }}
+          >
+            {t('find.clear')}
+          </Button>
+        </div>
+      ) : list ? (
+        <section className='mt-10'>
+          <SectionTitle
+            title={t(view === 'harvest' ? 'views.harvest' : `sheet.${view}Now`)}
+            count={list.length}
+          />
+          {list.length > 0 ? (
+            <CropGrid
+              crops={list}
+              onOpen={setOpen}
+              note={view === 'harvest' ? crop => until(crop.id) : undefined}
+              how={view !== 'harvest'}
+            />
+          ) : (
+            <p className='text-muted-foreground'>{t('views.none')}</p>
+          )}
+        </section>
+      ) : q && now.length === 0 ? null : (
+        <section className='mt-10'>
+          <SectionTitle title={t('now.title')} count={now.length} />
+          {now.length > 0 ? (
+            <CropGrid crops={now} onOpen={setOpen} />
+          ) : (
+            <p className='text-muted-foreground'>{t('now.none')}</p>
+          )}
+        </section>
+      )}
+
+      {!list && waiting.length > 0 ? (
+        <section className='mt-10'>
+          <SectionTitle title={t('waiting.title')} count={waiting.length} />
+          <CropGrid
+            crops={waiting}
+            onOpen={setOpen}
+            note={crop => t(`status.${advice.crops[crop.id]}`)}
+          />
+        </section>
+      ) : null}
+
+      {!list && over.length > 0 ? (
+        <TooLate
+          crops={over}
+          advice={advice}
+          onOpen={setOpen}
+          year={year}
+          open={q !== ''}
+        />
+      ) : null}
+
+      <CropSheet
+        crop={open}
+        advice={advice}
+        year={year}
+        plan={current?.plan}
+        image={crop => image(`crops/${crop.id}`)}
+        onClose={() => setOpen(null)}
+      />
+    </>
+  );
+}
+
+function SectionTitle({ title, count }: { title: string; count: number }) {
+  const { t } = useTranslation('huerta');
+  return (
+    <div className='mb-4 flex items-baseline justify-between gap-4'>
+      <h2 className='text-xl font-semibold'>{title}</h2>
+      <span className='text-sm text-muted-foreground'>
+        {t('count', { count })}
+      </span>
+    </div>
+  );
+}
+
+/** The Species page's plate: a link to the crop's own page that, on a plain
+ *  click, opens its sheet here instead. */
+const TILE_CLASS =
+  'focus-ring flex h-full w-full flex-col overflow-hidden rounded-card bg-card text-left elevation-raised elevation-interactive';
+
+function CropGrid({
+  crops,
+  onOpen,
+  note,
+  out = false,
+  how = true,
+}: {
+  crops: Crop[];
+  onOpen: (crop: Crop) => void;
+  /** A line under the crop's name: why it waits, or why it is out. */
+  note?: (crop: Crop) => string | undefined;
+  /** Its season is over here: the photo is greyed. */
+  out?: boolean;
+  /** Whether it says how it goes in (sow or plant); not for the harvest. */
+  how?: boolean;
+}) {
+  const { t, i18n } = useTranslation('huerta');
+  return (
+    <ul className='grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6'>
+      {crops.map(crop => {
+        const line = note?.(crop);
+        return (
+          <li key={crop.id}>
+            <a
+              href={localizedPath(
+                `/huerta/crops/${crop.id}/`,
+                indexedLanguage(i18n.language)
+              )}
+              onClick={event => {
+                if (
+                  event.metaKey ||
+                  event.ctrlKey ||
+                  event.shiftKey ||
+                  event.altKey
+                )
+                  return;
+                event.preventDefault();
+                onOpen(crop);
+              }}
+              className={TILE_CLASS}
+            >
+              <img
+                src={image(`crops/${crop.id}`)}
+                alt=''
+                loading='lazy'
+                decoding='async'
+                className={cn(
+                  'aspect-square w-full bg-muted object-cover',
+                  out && 'opacity-80 grayscale'
+                )}
+              />
+              <span className='flex flex-1 flex-col items-start gap-2 p-3'>
+                <span>
+                  <span className='block leading-tight font-semibold hyphens-auto break-words text-foreground'>
+                    {t(`crops.${crop.id}`)}
+                  </span>
+                  <span className='mt-0.5 block text-xs text-muted-foreground italic'>
+                    {crop.scientific}
+                  </span>
+                </span>
+                {line ? (
+                  <span className='block text-sm text-muted-foreground'>
+                    {line}
+                  </span>
+                ) : null}
+                {out || !how ? null : (
+                  <Badge variant='secondary' className='mt-auto'>
+                    {t(`how.${crop.how}`)}
+                  </Badge>
+                )}
+              </span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+/** How many greyed plates show before "Show all": one row on a wide screen. */
+const OVER_SHOWN = 6;
+
+/** Crops whose season is over here, as greyed plates. */
+function TooLate({
+  crops,
+  advice,
+  onOpen,
+  year,
+  open = false,
+}: {
+  crops: Crop[];
+  advice: PlaceAdvice;
+  onOpen: (crop: Crop) => void;
+  year: ReturnType<typeof useHuertaYear>;
+  /** All of them, not one row (a search's finds). */
+  open?: boolean;
+}) {
+  const { t, i18n } = useTranslation('huerta');
+  // When its time comes back here, from the place's year.
+  const backIn = (crop: Crop) => {
+    const mask = year?.crops[crop.id]?.sow;
+    const m = mask ? nextMonth(mask, new Date().getMonth()) : null;
+    return m === null
+      ? undefined
+      : t('year.backIn', {
+          month: new Intl.DateTimeFormat(i18n.language, {
+            month: 'long',
+          }).format(new Date(2026, m, 1)),
+        });
+  };
+  const [more, setMore] = useState(false);
+  const all = open || more;
+  return (
+    <section className='mt-10'>
+      <SectionTitle title={t('over.title')} count={crops.length} />
+      <CropGrid
+        crops={all ? crops : crops.slice(0, OVER_SHOWN)}
+        onOpen={onOpen}
+        out
+        note={crop =>
+          advice.crops[crop.id] === 'not_here'
+            ? t('status.not_here')
+            : backIn(crop)
+        }
+      />
+      {!all && crops.length > OVER_SHOWN ? (
+        <Button
+          variant='outline'
+          className='mt-4'
+          onClick={() => setMore(true)}
+        >
+          {t('over.show', { count: crops.length })}
+        </Button>
+      ) : null}
+    </section>
+  );
+}

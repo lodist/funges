@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Wild Garlic",
-      "description": "A pungent herb with broad leaves and white flowers",
-      "howTo": "Found in deciduous woodlands in spring, often forming large patches"
+      "description": "A strong-smelling wild herb with broad leaves and white flowers.",
+      "howTo": "Found in deciduous woodlands in spring, often forming large patches",
+      "guide": {
+        "identify": "Each leaf of wild garlic grows on its own thin stalk straight from the ground. The blade is soft, bright green and a pointed oval, with parallel veins. It is matt underneath. From April a leafless stalk carries a rounded cluster of white, star-shaped flowers. Crush a leaf and wild garlic smells strongly of garlic. Its deadly look-alikes do not. But the smell stays on your fingers, so after the first few leaves the test proves nothing. Check every leaf by its stalk and outline too. Lily of the valley has two or three leaves wrapped around one another at the base. Autumn crocus has tough, stalkless leaves in a tuft. Lords-and-ladies has arrow-shaped leaves with net veins. White false hellebore has pleated leaves along an upright stem. Solomon's seal has leaves alternating along an arching stem.",
+        "habitat": "It forms carpets in damp, shady deciduous woods. It grows especially in beech woods and floodplain woods on rich soil and along shaded streams. It is common in central and northern Europe, including Britain. In southern Europe you find it mostly in mountain woods.",
+        "season": "The leaves come up from February in mild places and in March and April elsewhere. They are best before the flowers open. It flowers from April to June, later in the mountains. By early summer the leaves are gone.",
+        "picking": "Pick leaf by leaf, never by the handful. That way no look-alike growing in the same patch ends up in your basket. Leave the bulbs in the ground. Britain bans digging up wild plants without the landowner's permission. Germany allows only a small amount for your own use. Many nature reserves ban picking, so check the local rules.",
+        "kitchen": "Once you're certain of it, use the leaves raw or add them at the end of cooking. Put them in pesto, soups, risotto and butter, or have them with eggs. The flowers go on salads. Wash each leaf under running water. In central Europe the authorities advise this because of fox tapeworm. Its eggs survive freezing but not cooking.",
+        "keeps": "The leaves keep two or three days in the fridge in a damp cloth. Chopped leaves and pesto freeze well. Keep anything in oil in the fridge and use it within a few days.",
+        "source": "Identification and look-alikes: Austrian Agency for Health and Food Safety (AGES), German Federal Institute for Risk Assessment (BfR) and Woodland Trust. Season: Woodland Trust and GBIF records."
+      }
     },
     "it": {
       "name": "Aglio Orsino",
-      "description": "Un'erba pungente con foglie larghe e fiori bianchi",
-      "howTo": "Trovato in boschi decidui in primavera, spesso forma grandi macchie"
+      "description": "Un'erba selvatica dall'odore forte, con foglie larghe e fiori bianchi.",
+      "howTo": "Trovato in boschi decidui in primavera, spesso forma grandi macchie",
+      "guide": {
+        "identify": "Ogni foglia di aglio orsino nasce da sola dal terreno, su un picciolo sottile tutto suo. La lamina è morbida, verde vivo, ovale e appuntita, con nervature parallele. Sotto è opaca. Da aprile uno stelo senza foglie porta un'ombrella tonda di fiori bianchi a stella. Se stropicci una foglia di aglio orsino, sa forte di aglio. I suoi sosia mortali no. Però l'odore ti resta sulle dita, e dopo le prime foglie la prova non vale più niente. Quindi controlla ogni foglia anche dal picciolo e dalla forma. Il mughetto ha due o tre foglie avvolte una nell'altra alla base. Il colchico ha foglie coriacee, senza picciolo, a ciuffo. Il gigaro ha foglie a punta di freccia con nervature a rete. Il veratro bianco ha foglie pieghettate lungo un fusto dritto. Il sigillo di Salomone ha foglie alterne lungo un fusto ad arco.",
+        "habitat": "Forma dei tappeti nei boschi di latifoglie umidi e ombrosi. Cresce soprattutto nelle faggete e nei boschi di golena su terreno ricco. Lo trovi anche lungo i ruscelli all'ombra. È comune nell'Europa centrale e del nord, Gran Bretagna compresa. Nel sud Europa lo trovi soprattutto nei boschi di montagna.",
+        "season": "Nelle zone miti le foglie spuntano da febbraio, altrove a marzo e aprile. Sono più buone prima che si aprano i fiori. Fiorisce da aprile a giugno, più tardi in montagna. A inizio estate le foglie sono già sparite.",
+        "picking": "Raccogli foglia per foglia, mai a manciate. Così nel cestino non ti finisce nessun sosia cresciuto nella stessa macchia. Lascia i bulbi nel terreno. In Gran Bretagna è vietato sradicare piante selvatiche senza il permesso del proprietario. In Germania se ne può prendere solo una piccola quantità per uso personale. Molte riserve naturali vietano la raccolta, quindi informati sulle regole del posto.",
+        "kitchen": "Quando sei sicuro che sia lui, usa le foglie crude o aggiungile a fine cottura. Mettile nel pesto, nelle minestre, nel risotto e nel burro. Vanno benissimo anche con le uova. I fiori vanno sull'insalata. Lava ogni foglia sotto l'acqua corrente. Nell'Europa centrale le autorità lo consigliano per via dell'echinococco della volpe. Le sue uova resistono al congelamento ma non alla cottura.",
+        "keeps": "In frigo, avvolte in un panno umido, le foglie durano due o tre giorni. Le foglie tritate e il pesto si congelano bene. Quello che è sott'olio tienilo in frigo e consumalo entro pochi giorni.",
+        "source": "Riconoscimento e sosia: Agenzia austriaca per la salute e la sicurezza alimentare (AGES), Istituto federale tedesco per la valutazione dei rischi (BfR) e Woodland Trust. Stagione: Woodland Trust e segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Ail des ours",
-      "description": "Herbe à l'odeur forte, larges feuilles et fleurs blanches",
-      "howTo": "Se trouve dans les forêts de feuillus au printemps, souvent en grandes colonies"
+      "description": "Une plante sauvage à l'odeur forte, avec de larges feuilles et des fleurs blanches.",
+      "howTo": "Se trouve dans les forêts de feuillus au printemps, souvent en grandes colonies",
+      "guide": {
+        "identify": "Chaque feuille d'ail des ours sort seule du sol, sur son propre pétiole fin. La feuille est souple, vert vif, ovale et pointue, avec des nervures parallèles. Elle est mate dessous. Dès avril, une tige sans feuilles porte une ombelle arrondie de fleurs blanches en étoile. Quand on froisse une feuille, l'ail des ours sent fort l'ail. Ses sosies mortels, non. Mais l'odeur reste sur les doigts, donc après les premières feuilles, le test ne prouve plus rien. Vérifiez aussi chaque feuille à son pétiole et à sa forme. Le muguet a deux ou trois feuilles enroulées l'une dans l'autre à la base. Le colchique d'automne a des feuilles dures, sans pétiole, en touffe. L'arum (gouet tacheté) a des feuilles en fer de flèche, aux nervures en réseau. Le vératre blanc a des feuilles plissées le long d'une tige dressée. Le sceau-de-Salomon a des feuilles alternes le long d'une tige arquée.",
+        "habitat": "Il forme des tapis dans les bois de feuillus frais et ombragés. On le trouve surtout dans les hêtraies et les forêts alluviales sur sol riche. Il pousse aussi le long des ruisseaux ombragés. Il est commun en Europe centrale et du Nord, y compris en Grande-Bretagne. Dans le sud de l'Europe, on le trouve surtout dans les forêts de montagne.",
+        "season": "Les feuilles sortent dès février dans les endroits doux, et en mars et avril ailleurs. Elles sont meilleures avant l'ouverture des fleurs. Il fleurit d'avril à juin, plus tard en montagne. Au début de l'été, les feuilles ont disparu.",
+        "picking": "Cueillez feuille par feuille, jamais par poignées. Ainsi, aucun sosie qui pousse dans le même tapis ne finit dans votre panier. Laissez les bulbes en terre. La Grande-Bretagne interdit d'arracher des plantes sauvages sans l'accord du propriétaire. L'Allemagne n'autorise qu'une petite quantité pour votre propre usage. Beaucoup de réserves naturelles interdisent la cueillette, alors renseignez-vous sur les règles locales.",
+        "kitchen": "Une fois sûr de vous, utilisez les feuilles crues ou ajoutez-les en fin de cuisson. Mettez-les dans le pesto, les soupes, le risotto et le beurre, ou mangez-les avec des œufs. Les fleurs vont sur les salades. Lavez chaque feuille sous l'eau courante. En Europe centrale, les autorités le conseillent à cause du ténia du renard. Ses œufs résistent à la congélation, mais pas à la cuisson.",
+        "keeps": "Les feuilles se gardent deux ou trois jours au réfrigérateur, dans un linge humide. Les feuilles hachées et le pesto se congèlent bien. Gardez au réfrigérateur tout ce qui est conservé dans l'huile, et consommez-le en quelques jours.",
+        "source": "Identification et sosies : Agence autrichienne pour la santé et la sécurité alimentaire (AGES), Institut fédéral allemand d'évaluation des risques (BfR) et Woodland Trust. Saison : Woodland Trust et données GBIF."
+      }
     },
     "de": {
       "name": "Bärlauch",
-      "description": "Kräftig duftendes Kraut mit breiten Blättern und weissen Blüten",
-      "howTo": "Zu finden in Laubwäldern im Frühling, oft in grossen Beständen"
+      "description": "Ein kräftig duftendes Wildkraut mit breiten Blättern und weissen Blüten.",
+      "howTo": "Zu finden in Laubwäldern im Frühling, oft in grossen Beständen",
+      "guide": {
+        "identify": "Jedes Bärlauchblatt wächst an einem eigenen dünnen Stiel direkt aus dem Boden. Die Blattfläche ist weich, hellgrün und spitz-oval, mit parallelen Nerven. Die Unterseite ist matt. Ab April trägt ein blattloser Stängel eine runde Dolde aus weissen, sternförmigen Blüten. Zerreibst du ein Blatt, riecht Bärlauch stark nach Knoblauch. Seine tödlichen Doppelgänger tun das nicht. Der Geruch bleibt aber an den Fingern hängen, deshalb beweist der Test nach den ersten paar Blättern nichts mehr. Prüf darum jedes Blatt auch an Stiel und Form. Das Maiglöckchen hat zwei bis drei Blätter, die sich am Grund gegenseitig umhüllen. Die Herbstzeitlose hat zähe, ungestielte Blätter in einem Büschel. Der Aronstab hat pfeilförmige Blätter mit netzartigen Nerven. Der Weisse Germer hat gefaltete Blätter an einem aufrechten Stängel. Bei der Weisswurz sitzen die Blätter abwechselnd an einem bogigen Stängel.",
+        "habitat": "Er bildet Teppiche in feuchten, schattigen Laubwäldern. Besonders wächst er in Buchen- und Auwäldern auf nährstoffreichem Boden und an schattigen Bächen. In Mittel- und Nordeuropa ist er häufig, auch in Grossbritannien. In Südeuropa findest du ihn vor allem in Bergwäldern.",
+        "season": "In milden Lagen kommen die Blätter ab Februar, sonst im März und April. Am besten sind sie, bevor sich die Blüten öffnen. Er blüht von April bis Juni, in den Bergen später. Im Frühsommer sind die Blätter verschwunden.",
+        "picking": "Pflück Blatt für Blatt, nie büschelweise. So landet kein Doppelgänger aus demselben Bestand in deinem Korb. Lass die Zwiebeln im Boden. Grossbritannien verbietet, wilde Pflanzen ohne Erlaubnis des Grundbesitzers auszugraben. Deutschland erlaubt nur eine kleine Menge für den eigenen Bedarf. Viele Naturschutzgebiete verbieten das Sammeln, also prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du dir sicher bist, nimm die Blätter roh oder gib sie erst am Ende des Kochens dazu. Sie passen in Pesto, Suppen, Risotto und Butter oder zu Eiern. Die Blüten kommen auf Salate. Wasch jedes Blatt unter fliessendem Wasser. Das raten die Behörden in Mitteleuropa wegen des Fuchsbandwurms. Seine Eier überstehen das Einfrieren, aber nicht das Kochen.",
+        "keeps": "In ein feuchtes Tuch gewickelt halten sich die Blätter zwei bis drei Tage im Kühlschrank. Gehackte Blätter und Pesto lassen sich gut einfrieren. Alles, was in Öl liegt, gehört in den Kühlschrank und wird innerhalb weniger Tage gegessen.",
+        "source": "Bestimmung und Doppelgänger: Österreichische Agentur für Gesundheit und Ernährungssicherheit (AGES), Bundesinstitut für Risikobewertung (BfR) und Woodland Trust. Saison: Woodland Trust und GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Ajo silvestre",
-      "description": "Hierba de olor fuerte con hojas anchas y flores blancas",
-      "howTo": "Se encuentra en bosques caducifolios en primavera, a menudo formando grandes parches"
+      "description": "Una hierba silvestre de olor fuerte, con hojas anchas y flores blancas.",
+      "howTo": "Se encuentra en bosques caducifolios en primavera, a menudo formando grandes parches",
+      "guide": {
+        "identify": "Cada hoja del ajo silvestre, o ajo de oso, sale sola del suelo sobre su propio rabillo fino. La hoja es blanda, de un verde vivo, ovalada y puntiaguda, con nervios paralelos. Por debajo es mate. Desde abril, un tallo sin hojas lleva un ramillete redondo de flores blancas en estrella. Si estrujas una hoja, el ajo silvestre huele mucho a ajo. Sus parecidos mortales no huelen así. Pero el olor se te queda en los dedos, así que después de las primeras hojas la prueba ya no demuestra nada. Comprueba también el rabillo y la forma de cada hoja. El lirio de los valles tiene dos o tres hojas que se envuelven unas a otras en la base. El cólquico tiene hojas duras y sin rabillo, en un manojo. El aro tiene hojas en forma de flecha con nervios en red. El vedegambre tiene hojas plegadas a lo largo de un tallo derecho. El sello de Salomón tiene hojas alternas a lo largo de un tallo arqueado.",
+        "habitat": "Forma alfombras en bosques de hoja caduca húmedos y sombríos. Crece sobre todo en hayedos y bosques de ribera con suelo rico, y junto a arroyos a la sombra. Es común en el centro y el norte de Europa, también en Gran Bretaña. En el sur de Europa lo encuentras sobre todo en bosques de montaña.",
+        "season": "Las hojas salen desde febrero en las zonas templadas, y en marzo y abril en el resto. Son mejores antes de que se abran las flores. Florece de abril a junio, más tarde en la montaña. A principios de verano las hojas ya han desaparecido.",
+        "picking": "Coge hoja a hoja, nunca a puñados. Así no acaba en la cesta ningún parecido que crezca en la misma mancha. Deja los bulbos en la tierra. Gran Bretaña prohíbe arrancar plantas silvestres sin permiso del dueño. Alemania solo permite una pequeña cantidad para consumo propio. Muchas reservas naturales prohíben cogerlo, así que consulta las normas locales.",
+        "kitchen": "Cuando lo tengas bien identificado, usa las hojas crudas o añádelas al final de la cocción. Ponlas en pesto, sopas, arroces y mantequilla. También van bien con huevos. Las flores van en ensaladas. Lava cada hoja bajo el grifo. En Europa central las autoridades lo aconsejan por la tenia del zorro. Sus huevos resisten la congelación, pero no la cocción.",
+        "keeps": "Las hojas aguantan dos o tres días en la nevera, envueltas en un paño húmedo. Las hojas picadas y el pesto se congelan bien. Todo lo que esté en aceite, guárdalo en la nevera y gástalo en pocos días.",
+        "source": "Identificación y dobles: Agencia Austriaca de Salud y Seguridad Alimentaria (AGES), Instituto Federal Alemán de Evaluación de Riesgos (BfR) y Woodland Trust. Temporada: Woodland Trust y registros de GBIF."
+      }
     },
     "pt": {
       "name": "Alho-selvagem",
-      "description": "Erva de aroma forte com folhas largas e flores brancas",
-      "howTo": "Encontrado em bosques decíduos na primavera, frequentemente formando grandes tapetes"
+      "description": "Uma erva silvestre de cheiro forte, com folhas largas e flores brancas.",
+      "howTo": "Encontrado em bosques decíduos na primavera, frequentemente formando grandes tapetes",
+      "guide": {
+        "identify": "Cada folha do alho-selvagem nasce sozinha do chão, num pé fino só seu. A folha é macia, verde-viva, oval e pontiaguda, com nervuras paralelas. Por baixo é baça. A partir de abril, um pé sem folhas leva uma umbela redonda de flores brancas em estrela. Se esmagar uma folha, o alho-selvagem cheira fortemente a alho. Os seus sósias mortais não. Mas o cheiro fica-lhe nos dedos, por isso, depois das primeiras folhas, o teste já não prova nada. Verifique também o pé e a forma de cada folha. O lírio-do-vale tem duas ou três folhas enroladas umas nas outras na base. O cólquico tem folhas rijas, sem pé, em tufo. O jarro tem folhas em ponta de seta com nervuras em rede. O veratro-branco tem folhas pregueadas ao longo de um caule direito. O selo-de-salomão tem folhas alternas ao longo de um caule arqueado.",
+        "habitat": "Forma tapetes em bosques de folha caduca, húmidos e sombrios. Cresce sobretudo em faiais e matas ribeirinhas de solo rico e junto a ribeiros à sombra. É comum na Europa central e do norte, incluindo a Grã-Bretanha. No sul da Europa encontra-se sobretudo em bosques de montanha.",
+        "season": "Nas zonas amenas, as folhas saem a partir de fevereiro. No resto, saem em março e abril. São melhores antes de as flores abrirem. Floresce de abril a junho, mais tarde na montanha. No início do verão as folhas já desapareceram.",
+        "picking": "Apanhe folha a folha, nunca aos punhados. Assim nenhum sósia que cresça na mesma mancha vai parar ao cesto. Deixe os bolbos na terra. A Grã-Bretanha proíbe arrancar plantas silvestres sem autorização do dono do terreno. A Alemanha só permite uma pequena quantidade para consumo próprio. Muitas reservas naturais proíbem a apanha, por isso consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza, use as folhas cruas ou junte-as no fim da cozedura. Ponha-as em pesto, sopas, risotos e manteiga. Também ficam bem com ovos. As flores vão bem em saladas. Lave cada folha em água corrente. Na Europa central as autoridades aconselham-no por causa da ténia-da-raposa. Os ovos dela resistem à congelação, mas não à cozedura.",
+        "keeps": "As folhas aguentam dois ou três dias no frigorífico, num pano húmido. As folhas picadas e o pesto congelam bem. Guarde no frigorífico tudo o que estiver em azeite ou óleo e gaste-o em poucos dias.",
+        "source": "Identificação e sósias: Agência Austríaca para a Saúde e Segurança Alimentar (AGES), Instituto Federal Alemão de Avaliação de Riscos (BfR) e Woodland Trust. Época: Woodland Trust e registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -152,6 +206,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2857601] }
+    "rangePrior": {
+      "taxonKeys": [2857601]
+    }
   }
 }

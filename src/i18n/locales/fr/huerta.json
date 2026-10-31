@@ -1,0 +1,2385 @@
+{
+  "title": "Cultures",
+  "description": "Chaque culture : si elle se met en terre cette semaine dans votre commune, comment la cultiver et ce qu'il faut surveiller.",
+  "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
+  "around": "Environs de {{place}}, {{day}}",
+  "change": "Changer de lieu",
+  "find": {
+    "placeholder": "Rechercher une culture",
+    "none": "Aucune culture trouvée",
+    "noneHelp": "Essayez un autre nom, ou effacez la recherche et les filtres.",
+    "clear": "Effacer"
+  },
+  "noPlace": "Huerta n'a pas encore de conseils pour cet endroit : il couvre l'Europe et les États-Unis continentaux.",
+  "loadFailed": "Les conseils n'ont pas pu être chargés. Réessayez dans un instant.",
+  "picker": {
+    "title": "Où est votre potager ?",
+    "help": "Utilisez votre position ou cherchez la ville ou le village le plus proche. Les conseils valent pour les environs.",
+    "locate": "Utiliser ma position",
+    "locating": "Recherche de votre position…",
+    "locateFailed": "Votre position est introuvable. Cherchez plutôt votre commune.",
+    "search": "Ville ou village",
+    "placeholder": "Commencez à taper un nom",
+    "noResults": "Aucun lieu de ce nom",
+    "searchFailed": "La recherche de lieux est indisponible pour le moment. Réessayez dans un instant ou utilisez votre position."
+  },
+  "count_one": "{{count}} culture",
+  "count_other": "{{count}} cultures",
+  "frost": {
+    "none": "Pas de gel dans les 3 prochains jours",
+    "ground_frost": "Gelée blanche possible dans les 3 prochains jours : couvrez les plantes fragiles",
+    "frost": "Gel dans les 3 prochains jours : protégez les plantes fragiles",
+    "noneWeek": "Pas de gel dans les 7 prochains jours"
+  },
+  "week": {
+    "label": "Cette semaine",
+    "soil": "Sol",
+    "nights": "Nuits",
+    "rain": "Pluie de la semaine",
+    "water": "Arrosage nécessaire",
+    "noWater": "Inutile",
+    "lastFrost": "Dernière gelée ici vers le {{date}} en général",
+    "firstFrost": "Première gelée vers le {{date}} en général",
+    "noFrostDates": "Il gèle rarement ici",
+    "later": {
+      "frost": "Gel possible plus tard dans la semaine : dans la nuit de {{night}}",
+      "ground_frost": "Gelée au sol possible plus tard dans la semaine : dans la nuit de {{night}}"
+    },
+    "todo": {
+      "title": "À faire cette semaine",
+      "frost": {
+        "frost": "Gel dans les 3 prochains jours",
+        "ground_frost": "Gelée au sol dans les 3 prochains jours",
+        "text": "Couvrez {{crops}} les nuits froides."
+      },
+      "laterFrost": {
+        "text": "Gardez de quoi couvrir {{crops}}.",
+        "title": "Gel possible dans la nuit de {{night}}"
+      },
+      "water": {
+        "title": "Arrosez environ {{mm}} L/m² cette semaine",
+        "text": "La pluie ne compense pas ce que prennent le soleil et le vent. Deux bons arrosages valent mieux qu'un peu chaque jour.",
+        "sandy": "Le sol sableux sèche vite : mieux vaut trois ou quatre petits arrosages dans la semaine.",
+        "clay": "L'argile retient l'eau : un arrosage profond, puis attendez que les premiers centimètres soient secs."
+      },
+      "rain": {
+        "title": "Pluie cette semaine, environ {{mm}} mm",
+        "text": "Pas besoin d'arroser les planches."
+      },
+      "plantNow": {
+        "title": "De votre plan, prêts à mettre en terre"
+      },
+      "sowAgain": {
+        "title": "{{crop}} : semez un autre rang",
+        "text": "Le dernier date de {{weeks}} semaines. Semer à nouveau prolonge la récolte."
+      },
+      "from": {
+        "forecast": "Selon la prévision",
+        "plan": "Selon votre plan",
+        "soil": "Selon votre sol",
+        "climate": "D'après le climat de chez vous"
+      },
+      "nothing": "Votre potager n'a besoin de rien cette semaine.",
+      "openPlanner": "Ouvrir Mon potager",
+      "stage": {
+        "thin": {
+          "title": "{{crop}} : éclaircissez les semis",
+          "text": "Gardez-en un tous les {{cm}} cm, pour que chacun ait la place de pousser."
+        },
+        "support": {
+          "title": "{{crop}} : installez des tuteurs",
+          "text": "Des tuteurs, un filet ou des rames où grimper, avant que les tiges ne s'affaissent. Les variétés naines s'en passent."
+        },
+        "tieTomato": {
+          "title": "{{crop}} : attachez et ébourgeonnez",
+          "text": "Attachez la tige à son tuteur et pincez les gourmands, une fois par semaine. Les variétés buissonnantes n'en ont pas besoin."
+        },
+        "earthUp": {
+          "title": "{{crop}} : buttez",
+          "text": "Ramenez la terre autour des tiges en laissant dépasser le feuillage. À la lumière, les tubercules verdissent."
+        },
+        "blanch": {
+          "title": "{{crop}} : buttez les fûts",
+          "text": "Ramenez la terre peu à peu, pour des fûts blancs plus longs."
+        },
+        "net": {
+          "title": "{{crop}} : gardez sous filet",
+          "text": "Un filet fin éloigne la piéride du chou et les pigeons."
+        },
+        "pinchBeans": {
+          "title": "{{crop}} : pincez les têtes",
+          "text": "Maintenant que les premières gousses se forment. Cela éloigne le puceron noir."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}} : pincez les têtes",
+          "text": "Juste au-dessus de la troisième paire de feuilles, pour des plantes plus touffues et plus de fleurs."
+        },
+        "feed": {
+          "title": "{{crop}} : fertilisez toutes les une à deux semaines",
+          "text": "Maintenant que la floraison et la nouaison commencent, un engrais riche en potasse, comme l'engrais tomates, entretient la récolte."
+        },
+        "stake": {
+          "title": "{{crop}} : tuteurez les tiges",
+          "text": "Tassez la terre autour et attachez les hautes tiges à un tuteur avant les vents d'automne."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}} : à récolter dans une semaine environ",
+          "title_other": "{{crop}} : à récolter dans {{count}} semaines environ",
+          "text": "D'après la chaleur reçue depuis le semis ou la plantation."
+        },
+        "ripen": {
+          "title": "{{crop}} : arrosez moins",
+          "text_one": "Laissez les bulbes mûrir. Ils seront à arracher dans une semaine environ, quand les feuilles jauniront.",
+          "text_other": "Laissez les bulbes mûrir. Ils seront à arracher dans {{count}} semaines environ, quand les feuilles jauniront."
+        },
+        "harvest": {
+          "title": "{{crop}} : à récolter",
+          "text": "Depuis le semis ou la plantation, la chaleur reçue suffit."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}} : chaulez d'abord la planche",
+          "text": "En sol acide, la famille du chou attrape la hernie du chou. La chaux remonte le pH : épandez-la quelques semaines avant de planter, jamais avec du fumier."
+        },
+        "scab": {
+          "title": "{{crops}} : pas de chaux cette année",
+          "text": "En sol alcalin, les pommes de terre attrapent la gale. Ni chaux ni fumier frais, et gardez la terre humide pendant la formation des tubercules."
+        },
+        "forking": {
+          "title": "{{crops}} : ameublissez l'argile",
+          "text": "Dans une argile lourde, les racines fourchent. Bêchez le rang profond et sans cailloux, avec un peu de compost, ou cultivez-les en carré surélevé ou en variétés courtes."
+        }
+      },
+      "done": "Fait",
+      "sow": {
+        "title": "{{crop}} : à semer cette semaine"
+      },
+      "plant": {
+        "title": "{{crop}} : à planter cette semaine"
+      },
+      "forgot": {
+        "title": "{{crop}} : prévu pour le {{date}}",
+        "text": "C'est en terre ? Cochez-le pour que Huerta puisse suivre sa croissance."
+      },
+      "tooLate": {
+        "title": "{{crops}} : trop tard maintenant",
+        "text": "Choisissez autre chose pour ses planches, ou laissez « Planifiez pour moi » les remplir."
+      },
+      "fate": {
+        "lost": "{{crops}} : ne survivra pas ici",
+        "soon": "{{crops}} : ne passera pas le {{date}}",
+        "last": "Récoltez les derniers {{crops}} avant le {{date}}",
+        "frost": "Il gèle généralement ici d'ici là, et ils ne le supportent pas.",
+        "frostNow": "Il peut geler ici n'importe quelle nuit, et ils ne le supportent pas.",
+        "cold": "D'ici là, les nuits sont trop froides pour eux ici.",
+        "coldNow": "Les nuits sont déjà trop froides pour eux ici : ils ne pousseront pas.",
+        "winter": "D'ici là, l'hiver ici est plus froid qu'ils ne le supportent.",
+        "winterNow": "L'hiver ici est déjà plus froid qu'ils ne le supportent.",
+        "clear": "Utilisez la planche pour une culture qui pousse maintenant.",
+        "pick": "Récoltez ce que vous pouvez avant.",
+        "replace": "Ils ne seront pas prêts à temps : utilisez la planche pour une culture qui pousse maintenant."
+      },
+      "over": {
+        "title": "{{crops}} : fini pour cette année ?",
+        "text": "Libérez la planche : elle sera prête pour ce qui peut venir ensuite."
+      },
+      "end": {
+        "harvested": "Récolté",
+        "allPicked": "Tout cueilli",
+        "finished": "Terminé",
+        "dugIn": "Enfoui",
+        "cleared": "Libéré"
+      }
+    },
+    "short": {
+      "soil": "Sol",
+      "nights": "Nuits",
+      "rain": "Pluie",
+      "water": "Arrosage",
+      "lastFrost": "Dernière gelée ~{{date}}",
+      "firstFrost": "Première gelée ~{{date}}"
+    },
+    "coming": {
+      "title": "À venir",
+      "ready": "{{crop}} : à récolter",
+      "sow": "{{crop}} : semer",
+      "plant": "{{crop}} : planter",
+      "wait": "{{crop}} : {{reason}}",
+      "waiting": "En attente",
+      "note": "Les dates de récolte sont approximatives, d'après les températures habituelles chez vous."
+    },
+    "done": {
+      "title": "Fait cette semaine",
+      "undo": "Annuler",
+      "sown": "{{crop}} : semis du {{date}}",
+      "planted": "{{crop}} : plantation du {{date}}"
+    },
+    "season": {
+      "title": "Cette saison",
+      "forget": {
+        "remove": "Retirer",
+        "label": "Retirer {{crop}} de la liste de la saison",
+        "ask": "Le retirer de la liste ?",
+        "yes": "Oui",
+        "no": "Non"
+      },
+      "entries_one": "{{count}} entrée",
+      "entries_other": "{{count}} entrées",
+      "harvested": "En terre le {{from}}, sorti le {{to}}",
+      "lost": "En terre le {{from}}, perdu le {{to}} · {{why}}",
+      "said": "nous avions dit {{date}}",
+      "rate": "Comment ça a donné : {{crop}}",
+      "rating": {
+        "1": "Faible",
+        "2": "Correct",
+        "3": "Bon"
+      }
+    }
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
+  },
+  "now": {
+    "title": "À semer ou planter maintenant",
+    "none": "Rien à semer ni à planter ici cette semaine."
+  },
+  "waiting": {
+    "title": "Pas encore"
+  },
+  "over": {
+    "title": "Trop tard",
+    "show": "Afficher les {{count}}"
+  },
+  "how": {
+    "sow": "Semer",
+    "plant": "Planter"
+  },
+  "status": {
+    "now": "Maintenant",
+    "wait_frost": "Gel encore probable",
+    "wait_soil": "Sol encore trop froid",
+    "wait_warm": "Nuits encore trop froides",
+    "too_warm": "Sol trop chaud pour l'instant",
+    "too_late": "Trop tard",
+    "not_here": "Pas en plein air ici",
+    "wait_autumn": "En automne",
+    "wait_spring": "Au printemps",
+    "wait_days": "Jours trop longs pour l'instant"
+  },
+  "crops": {
+    "garlic": "Ail",
+    "broad_beans": "Fèves",
+    "lettuce": "Laitue",
+    "spinach": "Épinard",
+    "peas": "Petits pois",
+    "radish": "Radis",
+    "carrot": "Carotte",
+    "beetroot": "Betterave",
+    "chard": "Blette",
+    "kale": "Chou kale",
+    "cabbage": "Chou",
+    "broccoli": "Brocoli",
+    "onion_sets": "Bulbilles d'oignon",
+    "potato": "Pomme de terre",
+    "tomato": "Tomate",
+    "pepper": "Poivron",
+    "aubergine": "Aubergine",
+    "cucumber": "Concombre",
+    "courgette": "Courgette",
+    "pumpkin": "Potiron",
+    "melon": "Melon",
+    "green_beans": "Haricots verts",
+    "sweetcorn": "Maïs doux",
+    "basil": "Basilic",
+    "parsley": "Persil",
+    "coriander": "Coriandre",
+    "sunflower": "Tournesol",
+    "marigold": "Œillet d'Inde",
+    "sweet_pea": "Pois de senteur",
+    "onion": "Oignon de semis",
+    "leek": "Poireau",
+    "cauliflower": "Chou-fleur",
+    "brussels_sprouts": "Choux de Bruxelles",
+    "kohlrabi": "Chou-rave",
+    "rocket": "Roquette",
+    "lambs_lettuce": "Mâche",
+    "chicory": "Chicorée et radicchio",
+    "fennel": "Fenouil",
+    "parsnip": "Panais",
+    "turnip": "Navet",
+    "celery": "Céleri",
+    "chilli": "Piment",
+    "winter_squash": "Courge d'hiver",
+    "watermelon": "Pastèque",
+    "strawberry": "Fraises",
+    "asparagus": "Asperge",
+    "rhubarb": "Rhubarbe",
+    "artichoke": "Artichaut",
+    "dill": "Aneth",
+    "chervil": "Cerfeuil",
+    "chives": "Ciboulette",
+    "thyme": "Thym",
+    "rosemary": "Romarin",
+    "oregano": "Origan",
+    "sage": "Sauge",
+    "mint": "Menthe",
+    "tulip": "Tulipes",
+    "daffodil": "Narcisses",
+    "crocus": "Crocus",
+    "calendula": "Souci",
+    "nasturtium": "Capucine",
+    "zinnia": "Zinnia",
+    "cosmos": "Cosmos",
+    "lavender": "Lavande",
+    "field_beans": "Féverole",
+    "winter_rye": "Seigle",
+    "crimson_clover": "Trèfle incarnat",
+    "phacelia": "Phacélie",
+    "white_mustard": "Moutarde blanche"
+  },
+  "kinds": {
+    "all": "Tous",
+    "vegetable": "Légumes",
+    "fruit": "Fruits",
+    "herb": "Aromatiques",
+    "flower": "Fleurs",
+    "cover": "Engrais verts"
+  },
+  "sheet": {
+    "sowNow": "Semer maintenant",
+    "plantNow": "Planter maintenant",
+    "week": "Cette semaine autour de {{place}}",
+    "why": {
+      "soilRange": "Sol à {{soil}} °C. Il se met en terre entre {{min}} et {{max}} °C.",
+      "soilFrom": "Sol à {{soil}} °C. Il se met en terre dès {{min}} °C.",
+      "soilLow": "Sol à {{soil}} °C. Il lui faut au moins {{min}} °C.",
+      "soilHigh": "Sol à {{soil}} °C. Il se met en terre sous {{max}} °C.",
+      "nights": "Nuits à {{nights}} °C. Il lui faut des nuits au-dessus de {{night}} °C.",
+      "frost": "Une gelée reste probable ici.",
+      "late": "Ici, son moment est passé pour l'instant.",
+      "notHere": "Les étés sont trop frais ici pour le cultiver en plein air.",
+      "autumn": "Ici, il se met en terre à l'automne.",
+      "spring": "Ici, il se met en terre au printemps.",
+      "warmSeason": "Les nuits douces dont il a besoin n'ont pas encore commencé ici.",
+      "noFrost": "Aucune gelée probable avant la récolte.",
+      "hardy": "Il supporte les gelées d'ici.",
+      "frostSoon": "Gel dans les 3 prochains jours.",
+      "frostLater": "Gel possible dans la nuit de {{night}}.",
+      "longDays": "Les jours sont trop longs : semé maintenant, il monterait en graine.",
+      "heat": "Il fait trop chaud pour lui en ce moment : il se met en terre quand la chaleur de l'été retombe.",
+      "coldSeason": "Ici, à cette période de l'année, la terre est en général encore trop froide."
+    },
+    "how": {
+      "sow": "Comment semer",
+      "plant": "Comment planter"
+    },
+    "facts": {
+      "depth": "Profondeur",
+      "spacing": "Espacement",
+      "place": "Exposition",
+      "ready": "Récolte",
+      "height": "Hauteur",
+      "howMany": "Combien"
+    },
+    "depthCm": "À {{value}} cm",
+    "depthPot": "À la même profondeur que dans son pot",
+    "scatter": "Semer à la volée, clair, puis ratisser",
+    "apart": "Tous les {{value}} cm",
+    "apartRows": "Tous les {{value}} cm, rangs à {{rows}} cm",
+    "sun": {
+      "full": "Plein soleil",
+      "part": "Soleil ou mi-ombre"
+    },
+    "ready": {
+      "weeks_one": "Dans {{count}} semaine environ",
+      "weeks_other": "Dans {{count}} semaines environ",
+      "months_one": "Dans {{count}} mois environ",
+      "months_other": "Dans {{count}} mois environ",
+      "flowers_one": "Fleurit dans {{count}} semaine environ",
+      "flowers_other": "Fleurit dans {{count}} semaines environ",
+      "cover_one": "Couvre le sol en {{count}} semaine environ",
+      "cover_other": "Couvre le sol en {{count}} semaines environ",
+      "spring_flowers": "Fleurit au printemps prochain",
+      "next_year": "Produit dès l'an prochain",
+      "second_year": "On récolte les tiges dès la deuxième année",
+      "third_year": "On coupe les turions dès le troisième printemps",
+      "perennial": "Revient chaque année",
+      "next_year_at": "Dès {{month}}, l'année après la plantation",
+      "second_year_at": "Tiges dès {{month}} de sa deuxième année",
+      "third_year_at": "Turions dès {{month}} de son troisième printemps",
+      "perennial_at": "Dès {{month}}, chaque année",
+      "perennial_all": "Toute l'année, chaque année",
+      "spring_flowers_at": "Fleurit dès {{month}}, au printemps après la plantation"
+    },
+    "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers.",
+    "year": "Son année autour de {{place}}"
+  },
+  "grow": {
+    "weather": "Froid, chaleur et sol",
+    "care": "Entretien",
+    "goodWith": "Bien à côté de",
+    "apartFrom": "À tenir loin de",
+    "harvest": {
+      "vegetable": "Récolte et conservation",
+      "fruit": "Récolte et conservation",
+      "herb": "Cueillette et conservation",
+      "flower": "Coupe et après la floraison",
+      "cover": "Fauche et enfouissement"
+    },
+    "problems": "Ce qui peut mal tourner",
+    "facts": {
+      "frost": "Gel",
+      "warmth": "Chaleur",
+      "ph": "pH du sol",
+      "water": "Arrosage",
+      "feed": "Engrais",
+      "pot": "En pot",
+      "nextYear": "L'an prochain dans sa planche"
+    },
+    "frost": {
+      "tender": "Une gelée la tue.",
+      "half_hardy": "Elle supporte une gelée légère.",
+      "hardy": "Elle supporte les fortes gelées.",
+      "to": "Elle supporte le gel jusqu'à environ {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Lève dans un sol à partir de {{min}} °C.",
+      "sowRange": "Lève dans un sol de {{min}} à {{max}} °C.",
+      "plant": "Plantez-la dehors quand le sol atteint {{min}} °C.",
+      "nights": "Il lui faut des nuits au-dessus de {{night}} °C."
+    },
+    "ph": {
+      "range": "Idéal à pH {{from}} à {{to}}.",
+      "acid": "Votre sol est plus acide qu'elle ne l'aime : épandez de la chaux quelques semaines avant de planter.",
+      "alkaline": "Votre sol est plus calcaire qu'elle ne l'aime : incorporez beaucoup de compost.",
+      "fits": "Votre sol lui convient."
+    },
+    "pot": "Un pot d’au moins {{value}} cm de diamètre.",
+    "noPot": "Mieux en pleine terre.",
+    "perPerson": "{{from}} à {{to}} plants par personne pour manger frais",
+    "perPersonKeep": "{{from}} à {{to}} plants par personne pour manger frais, {{keepFrom}} à {{keepTo}} pour en garder aussi pour l'hiver",
+    "garlic": {
+      "about": "Chaque caïeu que vous plantez donne une tête entière. Plantez les caïeux un par un, en automne ou au début du printemps. La plupart des variétés ont besoin d'un coup de froid pour se diviser en caïeux. C'est pour ça qu'une plantation d'automne donne les plus grosses têtes.",
+      "water": "Pour l'ail, un arrosage normal suffit. Arrosez-le quand il fait sec au printemps et au début de l'été, pendant que les têtes grossissent. Arrêtez dès que les feuilles commencent à jaunir. Arrosez toujours la terre, pas les feuilles.",
+      "feed": "L'ail est moyennement gourmand. Avant de planter, incorporez environ deux seaux de fumier bien décomposé ou de compost par mètre carré. En général, il ne lui faut rien de plus.",
+      "harvest": "Arrachez les têtes à la fourche-bêche quand les feuilles jaunissent. L'ail planté en automne est prêt au début de l'été, celui de printemps un peu plus tard. N'attendez pas trop, sinon les têtes s'ouvrent et se gardent mal.",
+      "keeps": "Faites sécher les têtes en une seule couche pendant deux à quatre semaines, au soleil ou dans un abri bien aéré. Ensuite, rangez-les dans un endroit frais et sec. L'ail à col dur se garde quatre à six mois, l'ail à col tendre jusqu'à un an.",
+      "problems": [
+        {
+          "name": "Rouille",
+          "fix": "Des pustules orange en relief apparaissent sur les feuilles, surtout par temps humide. Espacez les plants et arrosez la terre, pas les feuilles. À la récolte, enlevez les feuilles."
+        },
+        {
+          "name": "Pourriture blanche",
+          "fix": "Les feuilles jaunissent et flétrissent, et un duvet blanc cotonneux se forme à la base de la tête. Il n'y a rien à faire, alors arrachez les plants malades et jetez-les à la poubelle. Ne cultivez plus d'ail, d'oignons ou de poireaux à cet endroit avant de nombreuses années."
+        },
+        {
+          "name": "Têtes sans caïeux",
+          "fix": "Vous obtenez une seule boule ronde au lieu de caïeux, le plus souvent parce que l'hiver n'a pas été assez froid. Elle se mange quand même. La prochaine fois, plantez en automne."
+        }
+      ],
+      "source": "Culture de l'ail : RHS. Combien en planter : service d'extension de Kansas State. pH : université du Minnesota."
+    },
+    "broad_beans": {
+      "about": "Les fèves ouvrent la saison des légumes à écosser. Leurs grains sont gros et tendres, bien au chaud dans des gousses dodues. Semez-les en automne, ou de la fin de l'hiver au printemps. Les variétés hautes ont besoin d'un piquet à chaque coin du rang, avec une ficelle tendue tout autour. Quand les premières gousses se forment, pincez le bout des tiges pour éloigner les pucerons noirs.",
+      "water": "Les fèves se contentent d'un arrosage normal. En pleine terre, arrosez copieusement au début de la floraison, puis encore deux semaines plus tard. Les pots sèchent vite et demandent de l'eau souvent.",
+      "feed": "Les fèves sont très peu gourmandes. Comme toutes les légumineuses, elles enrichissent le sol en azote, donc en pleine terre elles n'ont besoin d'aucun engrais. En pot, donnez un engrais liquide riche en potasse toutes les deux semaines dès les premières fleurs.",
+      "harvest": "Cueillez les gousses quand elles sont bien pleines mais que les grains sont encore petits. La petite cicatrice sur chaque grain doit être blanche ou verte, pas noire. Surveillez les gousses du bas tous les deux ou trois jours, car elles mûrissent vite.",
+      "keeps": "Mangez les fèves écossées peu après la cueillette. Pour les garder plus longtemps, blanchissez-les et congelez-les.",
+      "problems": [
+        {
+          "name": "Puceron noir",
+          "fix": "À la fin du printemps, de petits pucerons noirs s'entassent sur le bout tendre des tiges. Pincez ces extrémités dès que les premières gousses se forment. Écrasez ceux qui restent ou chassez-les au jet d'eau."
+        },
+        {
+          "name": "Taches chocolat",
+          "fix": "Des taches brun foncé apparaissent sur les feuilles et les tiges, surtout par temps humide et quand les plants sont serrés. Laissez de la place entre les plants et n'apportez pas d'engrais azoté. Après la récolte, enlevez les vieux plants."
+        },
+        {
+          "name": "Souris",
+          "fix": "Les graines semées dehors en automne et en hiver disparaissent, parce que les souris les déterrent pour les manger. Semez plutôt en godets à l'abri, puis mettez les plants en place."
+        }
+      ],
+      "source": "Culture de la fève : RHS. pH : services d'extension d'Oregon State University et de l'université du Connecticut."
+    },
+    "lettuce": {
+      "about": "Avec les laitues à couper, vous cueillez quelques feuilles à la fois pendant des semaines. Les laitues pommées se coupent entières quand la pomme est ferme. La laitue pousse vite quand il fait frais, mais elle monte en graines à la chaleur. Alors semez un petit rang toutes les deux ou trois semaines, plutôt que tout d'un coup.",
+      "water": "La laitue a besoin de beaucoup d'eau, alors gardez la terre toujours humide. Par temps sec, les feuilles deviennent amères et les plants montent en graines, avec une tige à fleurs qui pousse au milieu. Arrosez le matin plutôt que le soir, pour avoir moins de limaces et de moisissures.",
+      "feed": "La laitue est peu gourmande. Si vous avez mis du compost avant de semer, elle n'a besoin de rien en pleine terre. En pot, donnez un engrais liquide universel toutes les deux semaines en été.",
+      "harvest": "Sur les laitues à couper, cueillez les feuilles extérieures quand elles font à peu près 10 cm. Vous pouvez aussi couper toute la plante à 2,5 cm du sol et la laisser repousser. Coupez les laitues pommées à la base dès que la pomme est ferme au toucher. Récoltez le matin, quand les feuilles sont bien croquantes.",
+      "keeps": "Mangez vite les laitues beurre. Les batavias et les icebergs se gardent plus longtemps dans un sac au frigo.",
+      "problems": [
+        {
+          "name": "Limaces et escargots",
+          "fix": "Vous trouvez des trous irréguliers et des traînées de bave, surtout sur les jeunes plants par temps humide. Ramassez limaces et escargots à la tombée de la nuit et arrosez le matin."
+        },
+        {
+          "name": "Montée en graines",
+          "fix": "Après une période chaude ou quand la terre est sèche, une grande tige florale sort du cœur et les feuilles deviennent amères. Arrosez régulièrement et semez les laitues d'été à mi-ombre. Récoltez-les avant qu'elles vieillissent."
+        },
+        {
+          "name": "Mildiou",
+          "fix": "Par temps frais et humide, des taches jaunes anguleuses apparaissent sur le dessus des feuilles, avec un duvet blanc en dessous. Espacez les plants pour que l'air circule et arrosez la terre, pas les feuilles. Enlevez les feuilles atteintes."
+        }
+      ],
+      "source": "Culture de la laitue : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : Washington State University."
+    },
+    "lambs_lettuce": {
+      "about": "La mâche est une petite salade qui ne craint pas le froid. Elle donne des feuilles douces en automne, en hiver et au début du printemps, quand il n'y a presque rien d'autre de frais. Elle pousse lentement et reste basse, alors désherbez bien la planche. La graine ne lève pas dans une terre chaude. C'est pour ça qu'on la sème surtout à la fin de l'été et au début de l'automne.",
+      "water": "La mâche se contente d'un arrosage normal. Arrosez-la régulièrement quand il fait sec, car une humidité irrégulière rend les feuilles dures. Dehors en hiver, elle a rarement besoin d'eau.",
+      "feed": "La mâche est très peu gourmande. N'importe quelle terre correcte lui suffit sans engrais, surtout après une culture d'été bien nourrie.",
+      "harvest": "Coupez les rosettes entières à la base. Ou bien cueillez quelques feuilles extérieures sur chaque pied, et de nouvelles repartent du cœur. Continuez à récolter tout l'hiver quand il fait doux. Sous une cloche ou un voile d'hivernage, elle pousse plus longtemps.",
+      "keeps": "Les feuilles se gardent 5 à 7 jours au réfrigérateur. Lavez-les juste avant de les utiliser.",
+      "problems": [
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les petites rosettes, surtout par temps humide. Ramassez-les à la tombée de la nuit. Gardez la planche propre, car ils se cachent dans les mauvaises herbes."
+        },
+        {
+          "name": "Pucerons",
+          "fix": "De petits insectes verts ou noirs s'installent sur les jeunes feuilles, qui s'enroulent et s'affaiblissent. Enlevez-les du bout des doigts ou chassez-les avec un bon jet d'eau."
+        },
+        {
+          "name": "Graines qui ne lèvent pas",
+          "fix": "Rien ne sort, parce qu'au-dessus de 21 °C environ la graine se met en attente. Ressemez quand il fait plus frais. Gardez la terre humide jusqu'à la levée."
+        }
+      ],
+      "source": "Culture de la mâche : RHS et Utah State University. pH et conservation : Utah State University."
+    },
+    "rocket": {
+      "about": "Les feuilles poivrées de la roquette sont prêtes quatre à six semaines après le semis. La roquette cultivée ne vit qu'une saison et fleurit vite, alors semez-en un peu à quelques semaines d'intervalle. La roquette sauvage revient chaque année et donne des feuilles tout l'été et tout l'automne.",
+      "water": "La roquette demande un arrosage normal. Par temps sec, gardez la terre humide, car en terre sèche elle fleurit et monte en graines trop tôt. Quand il fait chaud, un pot peut demander de l'eau tous les jours.",
+      "feed": "La roquette est très peu gourmande. Elle pousse vite dans la plupart des sols et dans un terreau neuf, sans aucun engrais.",
+      "harvest": "Cueillez quelques feuilles sur chaque plant, un peu et souvent. Comme ça, elle en refait sans arrêt. Une fois que la plante fleurit, les feuilles deviennent dures et très piquantes. Les fleurs se mangent en salade.",
+      "keeps": "La roquette est meilleure mangée vite. Les feuilles se gardent quelques jours dans un sac au frigo.",
+      "problems": [
+        {
+          "name": "Altises",
+          "fix": "Les feuilles se criblent de petits trous ronds, surtout pendant les périodes chaudes et sèches. Le plus souvent, les dégâts sont juste esthétiques. Arrosez les semis et couvrez-les d'un filet anti-insectes fin."
+        },
+        {
+          "name": "Montée en graines",
+          "fix": "Les tiges florales montent trop tôt par temps chaud et sec, ou quand les plants sont serrés. Éclaircissez les semis et arrosez bien. Semez la roquette d'été à mi-ombre."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Limaces et escargots mangent les semis et les jeunes plants. Ramassez-les à la tombée de la nuit et protégez les semis par temps humide."
+        }
+      ],
+      "source": "Culture de la roquette : RHS. pH : services d'extension de l'université du Delaware et d'Oregon State University."
+    },
+    "spinach": {
+      "about": "Vous pouvez cueillir l'épinard en jeunes pousses un mois environ après le semis, ou en grandes feuilles au bout de deux mois à peu près. Il aime la fraîcheur et monte en graines avec la chaleur et les longues journées d'été. Semez-le donc au printemps et à la fin de l'été. Pour l'été, choisissez une variété lente à monter en graines.",
+      "water": "L'épinard a besoin de beaucoup d'eau. Arrosez-le régulièrement quand il fait sec et ne laissez jamais un pot se dessécher, sinon il monte en graines. Arrosez le matin.",
+      "feed": "L'épinard est moyennement gourmand. Avant de semer, incorporez du compost ou du fumier bien décomposé. En sol pauvre, ajoutez aussi un engrais complet et mélangez-le à la terre avec un râteau.",
+      "harvest": "Cueillez quelques feuilles extérieures sur chaque plant, environ une fois par semaine. Comme ça, il en refait sans arrêt. Vous pouvez aussi tout couper juste au-dessus du collet, et il repoussera une fois. Arrachez les plants qui commencent à fleurir.",
+      "keeps": "L'épinard est meilleur frais, mais il se garde quelques jours dans un sac au frigo. Pour le congeler, blanchissez les feuilles 2 minutes dans l'eau bouillante. Refroidissez-les dans de l'eau glacée, puis mettez-les en sachets.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "Après la chaleur, une terre sèche ou de longues journées, une tige florale apparaît et les feuilles deviennent amères. Gardez la terre humide et choisissez des variétés lentes à monter. Arrachez les plants qui ont commencé à fleurir."
+        },
+        {
+          "name": "Mildiou",
+          "fix": "Par temps frais et humide, des taches jaunes apparaissent sur les feuilles, avec un duvet gris violacé en dessous. Éclaircissez pour que l'air circule et arrosez le matin. Enlevez les feuilles atteintes."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Limaces et escargots dévorent les jeunes feuilles tendres. Ramassez-les à la tombée de la nuit et arrosez le matin. Désherbez aussi régulièrement."
+        }
+      ],
+      "source": "Culture de l'épinard : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : Washington State University. Congélation : National Center for Home Food Preservation (université de Géorgie)."
+    },
+    "peas": {
+      "about": "Certains pois se mangent écossés. D'autres, les mangetout et les pois gourmands, se mangent avec la cosse. Semez dès le début du printemps. À part les plus petites variétés, ils grimpent tous grâce à leurs petites vrilles, alors donnez-leur dès le départ un filet ou des rames.",
+      "water": "Les pois demandent un arrosage normal. Arrosez-les bien quand ils commencent à fleurir, puis encore deux semaines plus tard, pour que les cosses se remplissent. Arrosez la terre, pas les feuilles. En pot, il faut arroser souvent.",
+      "feed": "Les pois sont peu gourmands. Ils fabriquent leur propre azote, donc en pleine terre ils n'ont besoin d'aucun engrais. En pot, donnez un engrais liquide riche en potasse toutes les deux semaines dès les premières fleurs.",
+      "harvest": "Cueillez les pois à écosser quand les cosses sont bien pleines. Les mangetout et les pois gourmands se cueillent vers 7,5 cm. Commencez par le bas du plant et repassez tous les deux ou trois jours, sinon il arrête de faire de nouvelles cosses.",
+      "keeps": "Les petits pois perdent vite leur goût sucré. Mangez-les le jour même, ou blanchissez-les et congelez-les tout de suite.",
+      "problems": [
+        {
+          "name": "Tordeuse du pois",
+          "fix": "Vous trouvez de petites chenilles dans les cosses, souvent seulement au moment d'écosser. Le papillon vole au début de l'été, donc les semis très précoces ou tardifs y échappent. Un filet anti-insectes fin l'empêche d'entrer."
+        },
+        {
+          "name": "Oïdium",
+          "fix": "Une poudre blanche couvre les feuilles, surtout par temps sec à la fin de l'été. Gardez la terre humide et laissez de l'espace entre les rangs. Arrachez les plants qui ont fini de produire."
+        },
+        {
+          "name": "Souris et oiseaux",
+          "fix": "Les souris déterrent les graines et les pigeons mangent les jeunes plants. Semez en godets à l'abri et protégez les rangs avec un filet."
+        }
+      ],
+      "source": "Culture du pois : RHS. Combien en planter : service d'extension de Kansas State. pH : université du Minnesota."
+    },
+    "radish": {
+      "about": "Aucun légume-racine n'est plus rapide. Les radis sont croquants, piquants et prêts quatre à six semaines après le semis. Semez un petit rang toutes les deux semaines pour en avoir sans arrêt. Les semis de printemps et de fin d'été réussissent le mieux, car la chaleur de l'été fait fleurir les plants et rend les radis très piquants. Ils se glissent facilement entre des légumes plus lents.",
+      "water": "Les radis demandent un arrosage normal, mais régulier, pour qu'ils poussent vite et restent doux. En terre sèche, ils deviennent fibreux et piquants. Un gros arrosage après une période sèche les fait éclater.",
+      "feed": "Les radis n'ont besoin d'aucun engrais. Ils poussent si vite qu'une terre de jardin ordinaire leur suffit.",
+      "harvest": "Arrachez-en quelques-uns à la fois dès que la racine fait environ 2,5 cm de diamètre. Si vous les laissez en terre, ils deviennent vite fibreux, amers et très piquants.",
+      "keeps": "Coupez les feuilles et la fine pointe de la racine. Dans un sac plastique au frigo, ils se gardent jusqu'à un mois.",
+      "problems": [
+        {
+          "name": "Altises",
+          "fix": "De tout petits trous ronds apparaissent dans les feuilles, surtout par temps chaud et sec. En général, les dégâts sont juste esthétiques. Arrosez les semis et couvrez-les d'un filet anti-insectes fin."
+        },
+        {
+          "name": "Montée en graines",
+          "fix": "Par temps chaud et sec, les plants font une tige florale et la racine arrête de grossir. Semez au printemps et en fin d'été et continuez d'arroser. Arrachez les plants qui fleurissent, mais vous pouvez manger leurs jeunes gousses."
+        },
+        {
+          "name": "Racines éclatées ou fibreuses",
+          "fix": "Les radis éclatent quand l'arrosage est irrégulier et deviennent fibreux en vieillissant. Arrosez régulièrement et récoltez-les vers 2,5 cm de diamètre. Les radis éclatés restent bons à manger."
+        }
+      ],
+      "source": "Culture du radis : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : universités du Connecticut et du Maryland. Conservation : université du Missouri."
+    },
+    "carrot": {
+      "about": "La carotte veut une terre meuble et sans cailloux. Les cailloux, les mottes et le fumier frais font fourcher les racines, qui se divisent en plusieurs jambes. Semez clair, directement à l'endroit où les carottes vont pousser. Les jeunes pousses sont petites et lentes au début, alors gardez le rang bien désherbé.",
+      "water": "Les carottes supportent bien le sec et ont rarement besoin d'arrosage. En cas de longue sécheresse, donnez-leur un bon arrosage toutes les deux semaines. La régularité compte plus que la quantité. Un gros arrosage après une période sèche fait éclater les racines.",
+      "feed": "Les carottes n'ont besoin d'aucun engrais. N'enfouissez pas de fumier ou de compost frais juste avant le semis, sinon les racines fourchent. Semez-les plutôt là où vous avez mis du fumier pour une culture précédente.",
+      "harvest": "Arrachez les carottes dès qu'elles sont assez grosses pour la cuisine. Ameublissez d'abord la terre à la fourche-bêche pour ne pas les casser. Les très grosses carottes perdent leur goût. Quand vous arrachez les plantules en trop pour éclaircir le rang, touchez les feuilles le moins possible. Leur odeur attire la mouche de la carotte.",
+      "keeps": "Coupez les fanes à 1 cm environ. Dans un sac percé au frigo, les carottes se gardent 2 à 4 mois. Elles tiennent tout autant dans une caisse de sable humide, au frais. Vous pouvez aussi laisser les carottes de garde en terre, sous de la paille, jusqu'à ce que vous en ayez besoin.",
+      "problems": [
+        {
+          "name": "Mouche de la carotte",
+          "fix": "De petits asticots creusent des galeries brun rouille dans les racines. Couvrez toute la culture d'un filet anti-insectes fin dès le jour du semis."
+        },
+        {
+          "name": "Racines fourchues",
+          "fix": "En terre caillouteuse, motteuse ou fraîchement fumée, les racines se divisent en plusieurs jambes. Bêchez bien la planche et enlevez les cailloux. Ou semez des variétés courtes et rondes."
+        },
+        {
+          "name": "Racines éclatées",
+          "fix": "Les racines se fendent sur la longueur quand une grosse pluie ou un gros arrosage arrive après une période sèche. Pendant les longues périodes sèches, arrosez en profondeur et régulièrement."
+        }
+      ],
+      "source": "Culture de la carotte : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : universités du Connecticut et du Maryland. Taille du pot : université de l'Illinois. Conservation : université du Missouri."
+    },
+    "parsnip": {
+      "about": "Le panais reste en terre du printemps jusqu'en hiver, et il est plus sucré après les gelées. Achetez des graines neuves chaque année, car les vieilles lèvent mal. Même les neuves mettent deux à quatre semaines à sortir. Au soleil, ses feuilles peuvent faire des cloques sur la peau, alors mettez des gants et des manches longues pour désherber.",
+      "water": "Une fois bien installé, le panais supporte bien la sécheresse. Avant ça, arrosez les jeunes plants quand il fait sec. Ensuite, ses racines profondes lui permettent de tenir. Gardez quand même une humidité régulière, car trop d'eau d'un coup après une sécheresse fait éclater les racines.",
+      "feed": "Le panais n'a presque besoin de rien. Ne lui donnez pas d'engrais. Semez-le dans une planche fumée pour une culture précédente, car un apport frais de fumier ou de compost fait fourcher les racines.",
+      "harvest": "Arrachez les racines à partir de l'automne, quand le feuillage fane, de préférence après la première forte gelée. Les racines sont longues, alors ameublissez d'abord la terre en profondeur avec une fourche-bêche. Marquez le rang pour le retrouver en hiver.",
+      "keeps": "Le meilleur endroit pour les garder tout l'hiver, c'est la terre. Avant les fortes gelées, arrachez-en quelques-uns d'avance ou couvrez le rang de paille. Une fois arrachés, ils se gardent 2 à 4 mois au réfrigérateur dans un sac percé de trous.",
+      "problems": [
+        {
+          "name": "Chancre",
+          "fix": "Des plaques rugueuses brun orangé ou noires apparaissent sur le haut de la racine, souvent là où elle a été abîmée. Choisissez des variétés résistantes. Faites attention à ne pas entailler les racines en binant."
+        },
+        {
+          "name": "Mouche de la carotte",
+          "fix": "De petits asticots creusent des galeries couleur rouille dans les racines. Couvrez la culture d'un filet anti-insectes fin. Ne semez pas là où il y a eu des carottes ou des panais récemment."
+        },
+        {
+          "name": "Manques dans le rang",
+          "fix": "Les trous dans le rang viennent de vieilles graines ou d'une terre froide et mouillée. Utilisez des graines neuves et attendez que la terre se réchauffe. Semez quelques graines par poquet et gardez le plant le plus vigoureux."
+        }
+      ],
+      "source": "Culture du panais : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : universités du Connecticut et du Maryland. Conservation : université du Missouri."
+    },
+    "beetroot": {
+      "about": "La betterave donne des racines sucrées, et de jeunes feuilles pour la salade. Chaque graine est en fait un petit paquet de graines, qui donne plusieurs plantules. Arrachez tôt celles qui sont en trop, ou laissez-les pousser en petite touffe pour avoir des mini-betteraves. Semez-en un peu à quelques semaines d'intervalle, du printemps au milieu de l'été. Ce sont les racines des semis d'été qui se gardent.",
+      "water": "La betterave demande un arrosage normal. Arrosez les semis quand il fait sec. Une fois les plants bien installés, un arrosage tous les 10 à 14 jours par temps sec leur suffit. Trop peu d'eau rend les racines fibreuses, et un arrosage irrégulier les fait éclater. Trop d'eau donne des feuilles plutôt que des racines.",
+      "feed": "La betterave est moyennement gourmande. Une terre enrichie de compost n'a pas besoin d'engrais en plus. Si les plants poussent mal, donnez un engrais liquide riche en azote. Désherbez bien, car les mauvaises herbes lui volent nourriture et eau.",
+      "harvest": "Quand les racines ont la taille d'une balle de golf, arrachez-en une sur deux et laissez grossir les autres. Ne les laissez pas dépasser 7 cm de diamètre environ. Tordez les feuilles au lieu de les couper, pour que les racines ne saignent pas.",
+      "keeps": "Tordez les feuilles à 2,5 cm au-dessus de la racine. Les betteraves se gardent 2 à 4 mois dans un sac percé au frigo. Elles tiennent tout autant dans des caisses de sable sec, dans un abri frais.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "Après un temps chaud et sec, ou un semis très précoce dans le froid, les plants fleurissent au lieu de faire grossir leur racine. Choisissez des variétés résistantes à la montée en graines et ne semez pas trop tôt."
+        },
+        {
+          "name": "Mouche de la betterave",
+          "fix": "Des taches brun clair apparaissent là où de petits asticots mangent l'intérieur des feuilles. Pincez les feuilles atteintes. Les racines sont rarement touchées."
+        },
+        {
+          "name": "Mildiou",
+          "fix": "Par temps humide, des taches jaune pâle apparaissent sur les feuilles, avec une moisissure gris violacé en dessous. Enlevez les feuilles atteintes et laissez de l'espace entre les plants pour que l'air passe. Arrosez la terre, pas les feuilles."
+        }
+      ],
+      "source": "Culture de la betterave : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : universités du Connecticut et du Maryland. Conservation : université du Missouri."
+    },
+    "turnip": {
+      "about": "Le navet donne des racines rondes et de jeunes feuilles bien tendres. Les variétés précoces sont prêtes en six semaines environ. Au printemps, semez-en un peu à la fois, mais souvent. Ressemez ensuite à la fin de l'été pour avoir des navets en automne et en hiver. Il a besoin d'une humidité régulière. Dans une terre sèche, les racines restent petites et ligneuses, et la plante fleurit trop tôt.",
+      "water": "Le navet se contente d'un arrosage normal. Arrosez quand il fait sec, pour que les racines grossissent vite et restent tendres. Un pot sèche vite, alors arrosez-le souvent en été.",
+      "feed": "Le navet est peu gourmand. Une terre améliorée avec du compost ou du fumier bien décomposé lui suffit, de préférence enfoui l'automne d'avant. Pas besoin d'engrais en plus.",
+      "harvest": "Arrachez les navets précoces à la taille d'une balle de golf pour les manger crus, ou d'une balle de tennis pour les cuire. Plus gros, ils deviennent ligneux et amers. Vous pouvez cuisiner les jeunes feuilles comme des épinards, tant qu'elles ne dépassent pas 15 cm.",
+      "keeps": "Commencez par enlever les feuilles en les tordant. Les navets d'automne se gardent plusieurs semaines dans des caisses de sable humide, dans un endroit frais et hors gel. Dans les régions douces, vous pouvez les laisser en terre sous un voile d'hivernage.",
+      "problems": [
+        {
+          "name": "Mouche du chou",
+          "fix": "Les jeunes plants flétrissent, parce que de petits asticots blancs creusent des galeries dans les racines. Couvrez la culture d'un filet anti-insectes fin dès le jour du semis."
+        },
+        {
+          "name": "Hernie du chou",
+          "fix": "Les racines sont gonflées et déformées, et les plants flétrissent les jours de chaleur. La maladie reste dans le sol pendant de nombreuses années. Chaulez une terre acide et ne cultivez ni navets ni autres choux là où elle est apparue."
+        },
+        {
+          "name": "Limaces",
+          "fix": "Les semis disparaissent en une nuit et on voit des traces de bave. Protégez les jeunes plants, surtout par temps humide."
+        }
+      ],
+      "source": "Culture du navet : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : universités du Connecticut et du Maryland."
+    },
+    "chard": {
+      "about": "La blette a de grandes feuilles sur des côtes épaisses, blanches, rouges ou jaunes. Vous la cueillez de l'été jusqu'à ce que le froid l'arrête, puis de nouveau au printemps. Un seul semis produit pendant des mois. Elle monte aussi en graines moins vite que l'épinard, et c'est ce qui en fait l'un des légumes-feuilles les plus faciles.",
+      "water": "Pour la blette, un arrosage normal suffit. Arrosez régulièrement les jeunes plants jusqu'à ce qu'ils aient bien repris. Ensuite, la blette supporte de courtes périodes sèches, mais arrosez-la quand le sec dure. En pot, arrosez dès que le terreau commence à sécher.",
+      "feed": "La blette est peu gourmande, et en général elle n'a besoin d'aucun engrais. Elle pousse bien dans la plupart des sols et dans un terreau neuf.",
+      "harvest": "Coupez les feuilles extérieures à la base, avec leur côte, et laissez le cœur continuer à pousser. Les petites feuilles jeunes se mangent crues en salade. Cuisez les grandes comme des épinards, en laissant les côtes un peu plus longtemps.",
+      "keeps": "Les feuilles se gardent quelques jours au frigo. Pour les congeler, blanchissez-les 2 minutes dans l'eau bouillante, refroidissez-les dans de l'eau glacée et mettez-les en sachets.",
+      "problems": [
+        {
+          "name": "Mineuse",
+          "fix": "Des plaques brun clair montrent où de petites larves creusent des galeries dans la feuille. Enlevez les feuilles atteintes et jetez-les à la poubelle. Un filet anti-insectes fin tient la mouche à distance."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Des trous apparaissent sur les jeunes plants, surtout par temps humide. Ramassez limaces et escargots à la tombée de la nuit et protégez les semis."
+        },
+        {
+          "name": "Mildiou",
+          "fix": "Sur des plants trop serrés, par temps humide, des taches pâles apparaissent avec un duvet gris en dessous. Espacez bien les plants et enlevez les feuilles atteintes."
+        }
+      ],
+      "source": "Culture de la blette : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : Washington State University. Congélation : National Center for Home Food Preservation (université de Géorgie)."
+    },
+    "chicory": {
+      "about": "Ces salades amères sont toutes de la même famille. Le radicchio forme une pomme rouge bien serrée et le pain de sucre un grand cœur vert. La frisée et la scarole font une touffe de feuilles plus lâche. On la couvre pour la priver de lumière, et elle devient plus douce. Semées au début de l'été, elles donnent des feuilles de la fin de l'été jusqu'à l'automne. Si on les sème dehors trop tôt au printemps, elles ont tendance à monter en graines.",
+      "water": "Ces salades se contentent d'un arrosage normal. Arrosez bien à fond quand il fait sec, car une terre sèche rend les feuilles plus amères et fait fleurir les plants trop tôt. Désherbez la planche pour que rien ne leur dispute l'eau.",
+      "feed": "Elles sont peu gourmandes. En pleine terre, elles n'ont en général besoin de rien. En pot ou en terre légère, donnez un engrais liquide universel toutes les deux semaines en été.",
+      "harvest": "Coupez les pommes de radicchio et de pain de sucre à la base quand elles sont bien fermes. Le trognon repart souvent et donne une deuxième pomme, plus petite. Pour adoucir la frisée, couvrez le cœur bien sec avec une assiette ou un seau pendant deux semaines environ. Ensuite, coupez-la et mangez-la vite.",
+      "keeps": "Les pommes se gardent plusieurs jours au réfrigérateur. Gardez les cœurs blanchis dans le noir, car à la lumière ils reverdissent et redeviennent amers.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "Les plants montent en fleurs après un coup de froid quand ils sont jeunes, ou par temps chaud et sec. Ne semez pas dehors trop tôt et arrosez quand il fait sec. Pour les semis précoces, prenez des variétés résistantes à la montée en graines."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les semis et se cachent sous ce qui couvre la frisée. Regardez dessous tous les deux ou trois jours et retirez-les."
+        },
+        {
+          "name": "Pourriture du cœur",
+          "fix": "Les feuilles du cœur pourrissent quand il est mouillé sous la couverture. Ne couvrez que des plants secs, et seulement quelques-uns à la fois. Vérifiez-les souvent."
+        }
+      ],
+      "source": "Culture de la chicorée et du radicchio : RHS. Combien en planter : service d'extension de l'université du Missouri. pH : université de l'Arkansas."
+    },
+    "kale": {
+      "about": "De l'automne et tout au long de l'hiver, le chou kale donne des feuilles sans arrêt, et le gel les rend plus douces. C'est le plus rustique et le moins capricieux des choux. Protégez-le des chenilles et des pigeons, et chaque plant vous donnera de nombreuses cueillettes.",
+      "water": "Le chou kale demande un arrosage normal. Arrosez régulièrement les jeunes plants pour que la terre ne sèche jamais. Une fois qu'ils sont bien installés, arrosez seulement pendant les longues périodes sèches. En pot, il faut arroser régulièrement en été.",
+      "feed": "Le chou kale est moyennement gourmand. Plantez-le dans une terre où vous avez incorporé du compost. Donnez-lui de l'engrais seulement en sol pauvre ou en pot. Là, un engrais riche en azote le relance.",
+      "harvest": "Cueillez deux ou trois feuilles du bas sur chaque plant à la fois, en remontant peu à peu le long de la tige. Laissez la tête continuer à pousser. En cueillant régulièrement, vous aurez de nouvelles feuilles jusqu'au printemps.",
+      "keeps": "Les feuilles cueillies se gardent quelques jours au frigo. Mais les plants restent au jardin tout l'hiver, alors cueillez juste ce qu'il vous faut. Pour congeler, blanchissez les feuilles 2 minutes et refroidissez-les dans de l'eau glacée.",
+      "problems": [
+        {
+          "name": "Chenilles",
+          "fix": "Du début de l'été à l'automne, vous voyez des trous dans les feuilles et des chenilles vertes. Couvrez les plants d'un filet anti-insectes fin dès le jour de la plantation. Enlevez les petits tas d'œufs jaunes que vous trouvez sous les feuilles."
+        },
+        {
+          "name": "Puceron cendré du chou",
+          "fix": "Des colonies grises et cireuses de pucerons s'installent sur les jeunes feuilles, qui se recroquevillent et s'abîment. Écrasez ou lavez les petites colonies dès le début. Enlevez les feuilles très atteintes."
+        },
+        {
+          "name": "Pigeons",
+          "fix": "En hiver, les pigeons déchiquettent les feuilles jusqu'à ne laisser que les côtes et les nervures. Couvrez les plants d'un filet tendu sur des arceaux ou des tuteurs, sans qu'il touche les feuilles."
+        }
+      ],
+      "source": "Culture du chou kale : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : Washington State University. Congélation : National Center for Home Food Preservation (université de Géorgie)."
+    },
+    "cabbage": {
+      "about": "Il existe des choux de printemps, d'été, d'automne et d'hiver, donc vous pouvez en couper presque toute l'année. Le chou aime une terre ferme et riche. Protégez-le des chenilles, des pigeons et de la mouche du chou. Ne le plantez pas là où un légume de la famille des choux a poussé ces deux dernières années.",
+      "water": "Le chou demande un arrosage normal. Arrosez régulièrement les jeunes plants. Une fois qu'ils sont installés, donnez-leur un bon arrosage tous les 10 jours environ quand il fait sec. Arrosez davantage dès que les pommes commencent à se former. Une couche de compost sur la terre la garde humide.",
+      "feed": "Le chou est très gourmand et veut une terre riche. Incorporez du compost à l'automne qui précède la plantation. En sol pauvre, apportez un engrais riche en azote quand les plants ont bien repris, avant que les pommes se forment.",
+      "harvest": "Quand la pomme est ferme, coupez-la juste au-dessus du sol avec un couteau bien aiguisé. Sur les choux de printemps et d'été, faites une croix peu profonde sur le trognon. Il refait souvent une deuxième pomme, plus petite.",
+      "keeps": "Une pomme coupée se garde au moins une semaine au frigo. Les choux d'hiver se gardent des mois dans un endroit frais, sec et hors gel. Vous pouvez aussi les laisser en terre jusqu'à ce que vous en ayez besoin.",
+      "problems": [
+        {
+          "name": "Chenilles",
+          "fix": "Du début de l'été à l'automne, vous voyez des trous dans les feuilles et des chenilles vertes. Couvrez les plants d'un filet anti-insectes fin dès le jour de la plantation. Enlevez les petits tas d'œufs jaunes que vous trouvez sous les feuilles."
+        },
+        {
+          "name": "Mouche du chou",
+          "fix": "Les jeunes plants flétrissent et meurent, pendant que des asticots blancs mangent les racines. Couvrez les nouvelles plantations d'un filet anti-insectes fin, bien fixé au sol. Changez la culture de place chaque année."
+        },
+        {
+          "name": "Hernie du chou",
+          "fix": "Les plants restent petits et flétrissent aux heures chaudes, et leurs racines sont gonflées et noueuses. Il n'y a pas de remède et la maladie reste des années dans le sol, alors chaulez les sols acides et changez la culture de place chaque année. Élevez les plants en godets pour qu'ils partent avec de bonnes racines, ou choisissez des variétés résistantes."
+        }
+      ],
+      "source": "Culture et conservation du chou : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : Washington State University."
+    },
+    "cauliflower": {
+      "about": "Chaque plant forme une seule tête blanche au centre, qu'on appelle la pomme. Le chou-fleur est le plus capricieux des choux. Tout ce qui freine sa croissance, comme une terre sèche, un sol pas assez ferme ou une plantation tardive, donne de petites pommes qui se forment trop tôt. Faites-le donc pousser sans à-coups. En pot, choisissez une variété mini.",
+      "water": "Le chou-fleur a besoin de beaucoup d'eau. Gardez la terre toujours humide, mais jamais détrempée, surtout pendant que les pommes se forment. Un paillis aide à garder l'humidité. En pot, arrosez dès que le terreau commence à sécher.",
+      "feed": "Le chou-fleur est gourmand et a besoin d'une terre riche. Incorporez du compost avant de planter. En sol pauvre, donnez aux jeunes plants un engrais riche en azote avant que les pommes se forment.",
+      "harvest": "Coupez la pomme avec quelques feuilles quand elle est ferme, avant qu'elle commence à s'ouvrir. En été, en plein soleil, rabattez quelques feuilles sur la pomme pour qu'elle reste blanche. En hiver, attachez-les par-dessus pour la protéger des fortes gelées.",
+      "keeps": "Le chou-fleur est meilleur frais. Avec quelques feuilles autour, il se garde plusieurs jours au frigo. Vous pouvez aussi congeler les bouquets après un rapide passage dans l'eau bouillante.",
+      "problems": [
+        {
+          "name": "Pommes minuscules",
+          "fix": "De toutes petites pommes se forment trop tôt, quand quelque chose a freiné la croissance du plant. Plantez les jeunes plants à temps, dans une terre ferme, et arrosez régulièrement."
+        },
+        {
+          "name": "Hernie du chou",
+          "fix": "Les plants restent petits, flétrissent aux heures chaudes et ont des racines gonflées et noueuses. Il n'y a pas de remède et la maladie reste des années dans le sol, alors chaulez les sols acides jusqu'à un pH d'environ 6,5. Cultivez les choux dans une nouvelle planche chaque année et élevez les plants en godets, pour qu'ils partent avec de bonnes racines."
+        },
+        {
+          "name": "Chenilles du chou",
+          "fix": "Du début de l'été à l'automne, vous trouvez des trous dans les feuilles et des chenilles vertes. Couvrez les plants d'un filet anti-insectes fin dès le jour de la plantation. Enlevez les petits tas d'œufs jaunes que vous trouvez sous les feuilles."
+        }
+      ],
+      "source": "Culture et conservation du chou-fleur : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : université du Minnesota."
+    },
+    "broccoli": {
+      "about": "Ce que vous mangez, c'est une tête de boutons floraux verts. Une fois la tête principale coupée, des pousses latérales continuent de venir pendant des semaines. Récoltez avant que les boutons s'ouvrent en fleurs jaunes, ce qui va vite quand il fait chaud. Le brocoli à jets est un type plus rustique qui passe l'hiver et produit au printemps.",
+      "water": "Le brocoli demande un arrosage normal. Arrosez régulièrement les jeunes plants jusqu'à ce qu'ils aient bien repris, puis quand il fait sec. Si la croissance s'arrête, les plants fleurissent trop tôt. Une couche de compost sur la terre la garde humide.",
+      "feed": "Le brocoli est très gourmand et veut une terre riche. Incorporez du compost ou du fumier avant de planter. En sol pauvre, ou si les plants poussent lentement, donnez un engrais riche en azote quand ils font environ 20 cm.",
+      "harvest": "Coupez la tête principale avec un bout de tige quand elle est bien serrée et que les boutons ne sont pas encore ouverts. Ensuite, repassez tous les deux ou trois jours et coupez les pousses latérales avant qu'elles fleurissent. Si vous cueillez régulièrement, elles continuent de venir jusqu'à deux mois.",
+      "keeps": "Le brocoli se garde quelques jours au frigo. Après un passage à l'eau bouillante, il se congèle bien.",
+      "problems": [
+        {
+          "name": "Floraison précoce",
+          "fix": "Quand il fait chaud, ou si les plants arrêtent de pousser un moment, les têtes restent petites et s'ouvrent en fleurs jaunes. Arrosez par temps sec et, là où les étés sont chauds, choisissez des variétés lentes à fleurir. Coupez les têtes dès qu'elles sont prêtes."
+        },
+        {
+          "name": "Chenilles",
+          "fix": "Du début de l'été à l'automne, vous voyez des trous dans les feuilles et des chenilles vertes. Couvrez les plants d'un filet anti-insectes fin dès le jour de la plantation. Enlevez les petits tas d'œufs jaunes que vous trouvez sous les feuilles."
+        },
+        {
+          "name": "Pigeons",
+          "fix": "Les pigeons déchiquettent les feuilles jusqu'à ne laisser que les côtes et les nervures. Couvrez les plants d'un filet tendu sur des arceaux ou des tuteurs, sans qu'il touche les feuilles."
+        }
+      ],
+      "source": "Culture et conservation du brocoli : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : Washington State University. Taille du pot : Texas A&M AgriLife."
+    },
+    "brussels_sprouts": {
+      "about": "Les choux de Bruxelles poussent le long de la haute tige, et vous les cueillez tout l'automne et tout l'hiver. Ils sont plus doux après les gelées. Les plants restent longtemps en terre et ont besoin d'un sol ferme. Tassez la terre avant de planter, puis appuyez fort autour de chaque plant, sinon les choux restent lâches.",
+      "water": "Les choux de Bruxelles demandent un arrosage normal. Arrosez régulièrement les jeunes plants pour que la terre ne sèche jamais. Une fois qu'ils sont installés, arrosez seulement par temps sec. Un paillis épais garde la terre humide.",
+      "feed": "Les choux de Bruxelles sont gourmands et ont besoin d'une terre riche. Incorporez du compost dès l'automne précédent. En sol pauvre, ou si la croissance est lente, donnez un engrais riche en azote entre le début et le milieu de l'été.",
+      "harvest": "Commencez par les choux du bas, quand ils sont fermes et à peu près de la taille d'une noix. Cassez-les d'un coup sec vers le bas, en remontant peu à peu le long de la tige. Quand il n'y a plus de choux, cuisinez la tête comme un chou vert.",
+      "keeps": "Une tige entière coupée se garde quelques jours dans l'eau, ou suspendue dans un abri frais et hors gel. Cueillez les choux au fur et à mesure. Vous pouvez aussi les congeler, après un rapide passage dans l'eau bouillante.",
+      "problems": [
+        {
+          "name": "Choux lâches",
+          "fix": "Dans une terre meuble, les choux restent ouverts et feuillus au lieu de former de petites pommes bien serrées. Tassez la terre avant de planter et buttez les tiges à la fin de l'été. Tuteurez les grands plants dans les endroits venteux."
+        },
+        {
+          "name": "Puceron cendré du chou",
+          "fix": "Des pucerons gris et cireux s'installent sur les feuilles et à l'intérieur des choux. Écrasez ou lavez les petites colonies dès le début. Enlevez les feuilles très atteintes."
+        },
+        {
+          "name": "Hernie du chou",
+          "fix": "Les plants restent petits et flétrissent aux heures chaudes, et leurs racines sont gonflées et noueuses. Il n'y a pas de remède et la maladie reste des années dans le sol, alors chaulez les sols acides jusqu'à un pH d'au moins 6,5. Changez les choux de planche chaque année et élevez les plants en godets, pour qu'ils partent avec de bonnes racines."
+        }
+      ],
+      "source": "Culture et conservation des choux de Bruxelles : RHS. Combien en planter : service d'extension de Kansas State. pH : université de Géorgie. Congélation : National Center for Home Food Preservation (université de Géorgie)."
+    },
+    "kohlrabi": {
+      "about": "Ce que vous mangez, c'est une tige renflée qui forme une boule croquante juste au-dessus du sol. Elle a le goût d'un chou doux et sucré. Le chou-rave pousse vite, alors semez un petit rang à quelques semaines d'intervalle, du printemps à la fin de l'été, plutôt que tout d'un coup. Récoltez-le jeune, car une boule qu'on laisse grossir devient fibreuse.",
+      "water": "Le chou-rave demande un arrosage normal. Gardez la terre humide de façon régulière, car le sec ralentit la croissance et rend les boules dures. Arrosez régulièrement les jeunes plants jusqu'à ce qu'ils soient bien enracinés.",
+      "feed": "Le chou-rave est moyennement gourmand. Incorporez du compost avant de semer et paillez quand les plants poussent. Il demande moins d'azote que les autres choux, donc pas besoin d'engrais en plus.",
+      "harvest": "Coupez la tige sous la boule quand elle a entre la taille d'une balle de golf et celle d'une balle de tennis. Les jeunes feuilles se cuisinent comme le chou kale.",
+      "keeps": "Coupez les feuilles et la racine. Dans un sac plastique au frigo, il se garde 2 à 4 semaines.",
+      "problems": [
+        {
+          "name": "Chenilles du chou",
+          "fix": "Des chenilles vertes font des trous dans les feuilles. Couvrez les plants d'un filet anti-insectes fin. Ou regardez sous les feuilles et enlevez les œufs et les chenilles."
+        },
+        {
+          "name": "Altises",
+          "fix": "Par temps chaud et sec, les jeunes feuilles se criblent de minuscules trous ronds. Arrosez les semis et couvrez-les d'un filet fin jusqu'à ce qu'ils soient grands et bien vigoureux."
+        },
+        {
+          "name": "Boules fibreuses",
+          "fix": "La chair devient dure et filandreuse après un temps chaud et sec, ou quand vous récoltez trop tard. Arrosez par temps sec et récoltez avant que la boule dépasse la taille d'une balle de tennis."
+        }
+      ],
+      "source": "Culture du chou-rave : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : universités du Connecticut et du Maryland. Conservation : université du Missouri."
+    },
+    "onion_sets": {
+      "about": "Les bulbilles sont de petits oignons cultivés l'année d'avant. Vous les plantez, et elles deviennent de vrais oignons. C'est la façon la plus simple de cultiver des oignons. Enfoncez chaque bulbille en laissant juste dépasser la pointe, et tassez la terre pour que les oiseaux ne l'arrachent pas.",
+      "water": "Les oignons demandent un arrosage normal. Arrosez-les pendant les longues périodes sèches, surtout quand les plants sont jeunes. Arrêtez dès que les bulbes ont grossi, au milieu de l'été. Si vous arrosez tard, les oignons se gardent moins longtemps.",
+      "feed": "Les oignons sont moyennement gourmands. Du compost incorporé avant la plantation suffit en général. En sol pauvre, donnez un engrais riche en azote à la fin de l'hiver aux bulbilles plantées en automne.",
+      "harvest": "Quand les feuilles jaunissent et se couchent, arrachez les bulbes avant que les feuilles soient complètement sèches. C'est de juin à juillet pour les bulbilles d'automne, et de juillet à octobre pour celles de printemps. Faites-les sécher au soleil pendant environ deux semaines.",
+      "keeps": "Rangez les oignons secs en filets ou en cagettes, dans un endroit frais, sec, aéré et clair. Dans le noir, ils se mettent à germer. Ceux plantés en automne se gardent jusqu'au début de l'hiver, ceux de printemps jusqu'au printemps suivant.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "Une tige florale sort du milieu, souvent après un printemps froid. Cassez-la et mangez cet oignon en premier, car il ne se gardera pas. Les bulbilles traitées à la chaleur montent moins souvent."
+        },
+        {
+          "name": "Pourriture blanche",
+          "fix": "Les feuilles jaunissent et flétrissent, et un duvet blanc cotonneux se forme à la base du bulbe. Il n'y a rien à faire, alors arrachez les plants malades et jetez-les à la poubelle. Ne cultivez plus d'oignons, d'ail ou de poireaux à cet endroit avant de nombreuses années."
+        },
+        {
+          "name": "Mouche de l'oignon",
+          "fix": "Les jeunes plants jaunissent, flétrissent et meurent, pendant que des asticots mangent les racines et le bulbe. Arrachez les plants atteints et détruisez-les. Couvrez la culture d'un filet anti-insectes fin."
+        }
+      ],
+      "source": "Culture de l'oignon : RHS. Combien en planter : service d'extension de Kansas State. pH : université du Connecticut."
+    },
+    "onion": {
+      "about": "Les oignons de semis se gardent tout l'hiver. Ils coûtent moins cher que les bulbilles, ces petits bulbes qu'on plante à la place, et il en existe plus de variétés. Ils montent aussi moins facilement en graines. Semez au début du printemps, à l'intérieur ou directement en place. Éclaircissez les semis en deux fois, pour que chaque bulbe ait de la place.",
+      "water": "Les oignons demandent un arrosage normal. Gardez les semis humides. Plus tard, arrosez seulement pendant les longues périodes sèches. Arrêtez dès que les bulbes ont grossi, au milieu de l'été, pour qu'ils se gardent plus longtemps.",
+      "feed": "Les oignons sont moyennement gourmands. Du compost incorporé avant le semis suffit en général. Un apport d'azote tardif donne des bulbes mous qui se gardent mal.",
+      "harvest": "De juillet à octobre, les feuilles jaunissent et se couchent. Arrachez alors les bulbes, avant que les feuilles soient complètement sèches. Faites-les sécher au soleil pendant environ deux semaines.",
+      "keeps": "Les oignons de semis se gardent jusqu'au printemps suivant. Rangez-les en filets ou en cagettes dans un endroit frais, sec, aéré et clair. Dans le noir, ils germent.",
+      "problems": [
+        {
+          "name": "Mildiou",
+          "fix": "Par temps frais et humide, des taches pâles avec une moisissure gris violacé apparaissent sur les feuilles, qui finissent par s'affaisser. Enlevez les feuilles atteintes et espacez les plants. L'année suivante, cultivez vos oignons dans une autre planche."
+        },
+        {
+          "name": "Mouche de l'oignon",
+          "fix": "Les semis jaunissent, flétrissent et meurent, parce que des asticots mangent les racines et le bulbe. Arrachez les plants atteints et détruisez-les. Couvrez la culture d'un filet anti-insectes fin."
+        },
+        {
+          "name": "Mauvaises herbes",
+          "fix": "Les semis d'oignon sont fins et poussent lentement, alors les mauvaises herbes les étouffent vite. Désherbez souvent à la main tant qu'ils sont petits."
+        }
+      ],
+      "source": "Culture de l'oignon : RHS. Combien en planter : service d'extension de Kansas State. pH : université du Connecticut."
+    },
+    "leek": {
+      "about": "Vous pouvez arracher des poireaux de la fin de l'été et tout au long de l'hiver. Semez-les en pépinière ou en godets. Quand les jeunes plants sont à peu près gros comme un crayon, repiquez-les dans des trous profonds faits au plantoir. Remplissez chaque trou d'eau. En plantant profond, vous obtenez un long fût blanc.",
+      "water": "Les poireaux demandent un arrosage normal. Arrosez les jeunes plants jusqu'à ce qu'ils poussent bien. Ensuite, arrosez seulement pendant les longues périodes sèches. Arrosez la terre et gardez les feuilles sèches. Cela aide à tenir la rouille à distance.",
+      "feed": "Les poireaux sont gourmands et ont besoin d'une terre riche. Ils restent des mois en terre, alors incorporez beaucoup de compost ou de fumier avant de planter. En sol pauvre, un apport d'azote au milieu de l'été les aide.",
+      "harvest": "Dès la fin de l'été, arrachez les poireaux à la fourche-bêche au fur et à mesure de vos besoins. Prenez-en un sur deux, et les autres grossiront. Les variétés tardives peuvent rester en terre tout l'hiver. Le gel les rend plus doux.",
+      "keeps": "Les poireaux se gardent le mieux en terre, jusqu'à ce que vous en ayez besoin. Une fois arrachés, gardez-les au frigo sans les laver et utilisez-les vite.",
+      "problems": [
+        {
+          "name": "Rouille du poireau",
+          "fix": "Des pustules orange en relief apparaissent sur les feuilles, surtout à la fin de l'été. Arrosez la terre, pas les feuilles, et choisissez une variété résistante si la rouille revient. Les poireaux un peu rouillés se mangent sans problème."
+        },
+        {
+          "name": "Mouche mineuse du poireau",
+          "fix": "Le premier signe, ce sont des lignes de minuscules points blancs sur les feuilles. Ensuite, de petites larves creusent des galeries dans le fût, qui se tord et pourrit. Couvrez les poireaux d'un filet anti-insectes fin dès le jour de la plantation."
+        },
+        {
+          "name": "Teigne du poireau",
+          "fix": "Des chenilles creusent des galeries dans les feuilles et laissent des plages blanches comme du papier. Coupez les feuilles abîmées. Le même filet fin empêche le papillon d'entrer."
+        }
+      ],
+      "source": "Culture du poireau : RHS. pH : université du Connecticut."
+    },
+    "celery": {
+      "about": "Le plus facile, c'est le céleri autoblanchissant, dont les côtes restent pâles sans qu'on ait à les couvrir. Plantez-le en carré plutôt qu'en rang, pour que les plants se fassent de l'ombre sur les côtes. Le céleri a besoin de chaleur et d'un arrosage régulier. De jeunes plants restés longtemps sous 10 °C peuvent fleurir et monter en graines. Ne les plantez donc dehors qu'une fois que les nuits restent douces.",
+      "water": "Le céleri a besoin de beaucoup d'eau. Ne laissez jamais la terre se dessécher, car les coups de sec rendent les côtes filandreuses et trop fortes en goût. En été, arrosez copieusement le matin ou le soir, avec de l'eau de pluie si vous pouvez.",
+      "feed": "Le céleri est gourmand et demande une terre riche. Plantez-le dans un sol bien chargé en compost ou en fumier. En terre pauvre, épandez un peu d'engrais riche en azote en été. En pot, donnez un engrais liquide équilibré toutes les deux semaines.",
+      "harvest": "À partir de la fin de l'été, arrachez des pieds entiers avant que les feuilles jaunissent et avant les premières gelées. Couvrez-les d'un voile quand les nuits fraîchissent. Une fois arrachés, utilisez-les vite.",
+      "keeps": "Enveloppez-le dans un linge humide ou mettez-le dans un sac, au réfrigérateur. Il ne reste croquant que peu de temps, alors utilisez-le vite.",
+      "problems": [
+        {
+          "name": "Mouche du céleri",
+          "fix": "Des taches brunes et desséchées apparaissent sur les feuilles, là où de petits asticots mangent à l'intérieur. Supprimez ces feuilles en les pinçant. Couvrez les jeunes plants d'un filet anti-insectes fin."
+        },
+        {
+          "name": "Septoriose",
+          "fix": "Par temps humide, de petites taches brunes ponctuées de minuscules points noirs gagnent les feuilles. Enlevez les feuilles tachées. Ne cultivez plus de céleri ni de céleri-rave au même endroit pendant quelques années."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Les limaces adorent le céleri et mangent les jeunes plants comme les côtes. Protégez vos plants, surtout par temps humide."
+        }
+      ],
+      "source": "Culture du céleri : RHS. pH : universités du Connecticut et du Maryland."
+    },
+    "fennel": {
+      "about": "Le fenouil de Florence forme un bulbe renflé au goût d'anis, à la base de ses feuilles. Le principal souci, c'est la montée en graines, quand il fleurit au lieu de faire un bulbe. Pour l'éviter, semez-le au début de l'été plutôt qu'au printemps et choisissez une variété résistante à la montée. Semez-le en plaque alvéolée, une petite plaque à cases séparées, pour ne pas déranger les racines. Quand la base commence à grossir, buttez-la pour qu'elle reste blanche et douce.",
+      "water": "Le fenouil a besoin de beaucoup d'eau. Gardez la terre toujours humide, car un coup de sec est l'une des principales causes de montée en graines. Arrosez copieusement le matin. En pot, vérifiez la terre tous les jours en été.",
+      "feed": "Le fenouil est moyennement gourmand. Incorporez du compost avant le semis et paillez une fois que les plants poussent bien. Il n'a besoin de rien d'autre.",
+      "harvest": "Coupez le bulbe juste au-dessus du sol quand il fait 10 à 15 cm de large. Les petits, vous pouvez les couper dès 5 cm. N'attendez pas qu'il s'allonge et fasse une tige, sinon il devient ligneux.",
+      "keeps": "Il est meilleur frais. Dans un sac au réfrigérateur, il se garde quelques jours.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "Après un coup de froid, un coup de sec ou des racines dérangées, une tige à fleurs monte et le bulbe reste plat et dur. Semez plus tard et continuez d'arroser. Récoltez tout de suite les plants qui commencent à monter."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les semis et les jeunes plants. Protégez les plants par temps humide. Désherbez à la main autour d'eux, car les mauvaises herbes servent de cachette aux limaces."
+        }
+      ],
+      "source": "Culture du fenouil : RHS. pH : Utah State University et université de l'Arkansas."
+    },
+    "potato": {
+      "about": "Les pommes de terre primeurs se récoltent au début de l'été. Les pommes de terre de conservation sortent de terre à l'automne et se gardent tout l'hiver. Pendant la pousse, buttez les plants à quelques semaines d'intervalle, en ramenant de la terre autour des tiges. Cela protège les pousses du gel, et les pommes de terre restent dans le noir, donc elles ne verdissent pas.",
+      "water": "Les pommes de terre demandent un arrosage normal. Arrosez-les quand il fait sec, surtout à partir de la floraison, quand les tubercules se forment. À ce moment-là, une humidité régulière aide aussi contre la gale. En pot, arrosez régulièrement même s'il pleut, car le feuillage empêche la pluie d'atteindre le terreau.",
+      "feed": "Les pommes de terre sont gourmandes et ont besoin d'une terre riche. Plantez-les dans une terre enrichie de compost ou de fumier. En sol pauvre, donnez un engrais riche en azote au deuxième buttage. En pot, mélangez un engrais complet au terreau à la plantation, ou donnez un engrais liquide au bout de six semaines environ.",
+      "harvest": "Récoltez les primeurs quand les fleurs s'ouvrent, dès que les pommes de terre ont la taille d'un œuf de poule. Pour les pommes de terre de conservation, coupez les fanes quand elles jaunissent. Attendez 10 jours, puis arrachez. Commencez à 30 cm du pied pour ne pas en piquer avec la fourche.",
+      "keeps": "Laissez les pommes de terre sécher quelques heures, puis brossez la terre. Celles qui sont saines et intactes se gardent 2 à 4 mois dans des sacs en papier ou en toile de jute, dans un endroit sombre, frais et hors gel. Vérifiez-les toutes les deux ou trois semaines et retirez celles qui pourrissent.",
+      "problems": [
+        {
+          "name": "Mildiou",
+          "fix": "Par temps chaud et humide, des taches brunes envahissent vite les feuilles, puis font pourrir les pommes de terre. Dès que vous le voyez, coupez les fanes et sortez-les du jardin. Attendez deux à trois semaines avant d'arracher, et choisissez des variétés résistantes."
+        },
+        {
+          "name": "Gale",
+          "fix": "Des plaques rugueuses et liégeuses apparaissent sur la peau, mais une fois épluchées, les pommes de terre restent bonnes. Arrosez par temps sec pendant que les tubercules se forment, et ne chaulez pas avant la plantation. Choisissez des variétés résistantes."
+        },
+        {
+          "name": "Pommes de terre vertes",
+          "fix": "Les pommes de terre exposées à la lumière verdissent et deviennent toxiques. Buttez bien pour qu'elles restent couvertes de terre, et stockez-les dans le noir. Jetez les pommes de terre vertes."
+        }
+      ],
+      "source": "Culture de la pomme de terre : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : université de Géorgie. Taille du pot : Cornell Cooperative Extension. Conservation : université du Missouri."
+    },
+    "asparagus": {
+      "about": "L'asperge revient chaque année. Une bonne aspergeraie donne des asperges tous les printemps pendant 20 ans ou plus. Plantez les griffes, les jeunes touffes de racines, dans une planche sans mauvaises herbes où elles resteront pour de bon. Ne coupez aucune asperge les deux premières années, pour que les racines prennent des forces.",
+      "water": "Une fois installée, l'asperge supporte la sécheresse. Arrosez régulièrement les nouvelles griffes pendant tout leur premier été. Ensuite, les racines descendent profond, et les plants n'ont besoin d'eau que lors des longues périodes sèches.",
+      "feed": "L'asperge est moyennement gourmande. Chaque année à la fin de l'hiver, étalez 5 cm de compost ou de fumier bien décomposé sur la planche. Si la pousse est faible, épandez un engrais complet au début du printemps, avant que les asperges sortent.",
+      "harvest": "Coupez les asperges avec un couteau bien aiguisé, juste sous la surface du sol, quand elles font environ 18 cm de haut. Par temps chaud, il faut passer tous les deux ou trois jours. La première année de récolte, arrêtez au bout de six semaines. Les années suivantes, arrêtez au bout de huit. Laissez ensuite pousser le feuillage plumeux, et ne le coupez que quand il jaunit à l'automne.",
+      "keeps": "Les asperges se gardent quelques jours au réfrigérateur. Mettez-les debout dans un peu d'eau ou enveloppez la base dans du papier humide. Elles se congèlent bien après un rapide passage dans l'eau bouillante.",
+      "problems": [
+        {
+          "name": "Criocère de l'asperge",
+          "fix": "En été, des coléoptères rouges et noirs à taches crème et leurs larves grises dévorent les tiges et le feuillage. Ramassez-les à la main dès la fin du printemps. Enlevez les vieilles tiges à l'automne, car les adultes y passent l'hiver."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils grignotent les jeunes asperges quand le printemps est humide. Allez voir à la nuit tombée et ramassez-les. Gardez la planche propre, sans herbes ni débris où ils se cachent."
+        },
+        {
+          "name": "Pourriture des racines",
+          "fix": "En terre lourde et mouillée, les plants jaunissent et dépérissent par endroits. Si votre terre est lourde, cultivez l'asperge en planche surélevée. Ne replantez jamais de griffes là où il y a déjà eu des asperges."
+        }
+      ],
+      "source": "Culture de l'asperge : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : Cornell et université du Maryland."
+    },
+    "rhubarb": {
+      "about": "La rhubarbe revient année après année, et on cueille ses tiges acidulées du printemps au début de l'été. Ne mangez que les tiges. Les feuilles contiennent de l'acide oxalique et il ne faut jamais les manger. Une touffe produit pendant de nombreuses années. Tous les cinq ans environ, arrachez-la, coupez-la en quelques morceaux et replantez-les pour qu'elle reste vigoureuse.",
+      "water": "La rhubarbe se contente d'un arrosage normal. Arrosez les jeunes plants par temps sec pendant toute leur première saison. Ensuite, une touffe bien installée n'a besoin d'eau que pendant les longs étés secs. Ne laissez jamais la souche, la base de la plante, dans une terre détrempée.",
+      "feed": "La rhubarbe est moyennement gourmande. Chaque printemps, étalez une couche de 7 cm de fumier bien décomposé ou de compost autour du pied. Laissez quand même la souche dégagée. En terre pauvre, donnez aussi un engrais riche en azote au printemps.",
+      "harvest": "La deuxième année, ne cueillez que quelques tiges. À partir de la troisième, prenez les tiges d'environ 30 cm. Tenez chaque tige à la base et détachez-la en la tournant au lieu de la couper. Ne prenez jamais plus d'un tiers des tiges à la fois. Arrêtez début juillet pour que la plante se refasse.",
+      "keeps": "Les tiges se gardent environ une semaine au réfrigérateur, dans un sac. Mettez les feuilles au compost. Coupées en morceaux, les tiges se congèlent bien aussi.",
+      "problems": [
+        {
+          "name": "Pourriture de la souche",
+          "fix": "La souche devient molle et brune et les bourgeons meurent, en général dans une terre détrempée en hiver. Coupez tout de suite les parties pourries. Si toute la souche est touchée, replantez des morceaux sains dans une terre neuve et bien drainée."
+        },
+        {
+          "name": "Hampes florales",
+          "fix": "De hautes tiges épaisses, avec une grosse tête de fleurs, épuisent la plante. Coupez-les à la base dès que vous les voyez."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les jeunes pousses au printemps. Allez voir les plantes à la nuit tombée et ramassez-les."
+        }
+      ],
+      "source": "Culture de la rhubarbe : RHS. Combien en planter : service d'extension de l'université du Missouri. pH : Cornell et université du Maryland."
+    },
+    "artichoke": {
+      "about": "Ce qu'on mange dans l'artichaut, c'est le bouton de fleur, avant qu'il s'ouvre. Les boutons poussent sur une grande plante au feuillage argenté qui revient chaque année. Donnez-lui de la place, du soleil et une terre qui s'égoutte vite. Les hivers froids et humides la tuent plus souvent que le gel tout seul. Le premier été, coupez les tiges à fleurs pour que la plante s'installe.",
+      "water": "L'artichaut se contente d'un arrosage normal. Arrosez régulièrement la première saison et pendant que les têtes se forment. Dans une terre sèche, vous aurez des têtes moins nombreuses et plus petites. Une fois bien installée, la plante supporte de courtes périodes sèches.",
+      "feed": "L'artichaut est moyennement gourmand. Incorporez beaucoup de compost avant de planter et paillez autour chaque printemps. En terre pauvre ou en pot, ajoutez un engrais riche en potasse au printemps.",
+      "harvest": "Coupez les têtes quand elles ont atteint leur taille mais sont encore bien fermées, avec quelques centimètres de tige. Coupez d'abord la tête principale, et les têtes secondaires, plus petites, suivront. Par temps chaud, passez voir tous les deux ou trois jours, car elles s'ouvrent vite.",
+      "keeps": "Les têtes se gardent 3 à 5 jours au réfrigérateur, dans un sac.",
+      "problems": [
+        {
+          "name": "Pucerons",
+          "fix": "Des colonies de petits insectes noirs ou verts s'installent sur les têtes et au bout des pousses. Délogez-les avec un bon jet d'eau. Laissez les coccinelles et leurs larves manger le reste."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les jeunes plants et les nouvelles pousses au printemps. Protégez les jeunes plants et ramassez les limaces à la nuit tombée."
+        },
+        {
+          "name": "Pertes en hiver",
+          "fix": "Les plantes pourrissent ou meurent pendant les hivers froids et humides, surtout les jeunes. À la fin de l'automne, rabattez les tiges et couvrez le pied d'une épaisse couche de paille ou de feuilles. Retirez la protection au printemps."
+        }
+      ],
+      "source": "Culture de l'artichaut : RHS et service d'extension de Utah State. pH : Cornell. Conservation : Utah State."
+    },
+    "tomato": {
+      "about": "Du plein été jusqu'aux premières gelées, les tomates n'arrêtent pas de mûrir. Attachez les variétés hautes à un tuteur et gardez-les sur une seule tige en pinçant les gourmands. Les variétés buissonnantes restent compactes et vont bien en pot.",
+      "water": "Les tomates ont besoin de beaucoup d'eau, et surtout d'un arrosage régulier. Un arrosage irrégulier fait éclater les fruits et provoque la nécrose apicale. Par forte chaleur, un pot peut demander de l'eau tous les jours.",
+      "feed": "Les tomates sont très gourmandes. Dès que les premiers fruits grossissent, donnez un engrais liquide pour tomates, riche en potasse, tous les 10 à 14 jours. Une terre riche en demande moins, mais un apport toutes les deux semaines donne quand même une plus grosse récolte.",
+      "harvest": "Cueillez chaque tomate avec son pédoncule quand elle est bien colorée. En fin de saison, faites mûrir les vertes au chaud et dans le noir, ou dans un tiroir avec une banane.",
+      "keeps": "Les tomates mûres se gardent quelques jours à température ambiante, à l'abri du soleil. Le frigo leur fait perdre leur goût.",
+      "problems": [
+        {
+          "name": "Mildiou",
+          "fix": "Par temps chaud et humide, des taches brunes envahissent vite les feuilles et les fruits. Enlevez les feuilles et les fruits atteints dès que vous les voyez. Plantez les tomates loin des pommes de terre, car les deux attrapent le mildiou."
+        },
+        {
+          "name": "Nécrose apicale (cul noir)",
+          "fix": "Une tache sombre et creusée se forme au bas du fruit, à cause d'un arrosage irrégulier. Arrosez régulièrement et ne laissez jamais un pot se dessécher."
+        },
+        {
+          "name": "Fruits éclatés",
+          "fix": "Les fruits qui mûrissent se fendent quand une grosse pluie ou un gros arrosage arrive après une période sèche. Gardez la terre humide de façon régulière et mangez vite les fruits éclatés."
+        }
+      ],
+      "source": "Culture de la tomate : RHS. Combien en planter : services d'extension des universités du Missouri et de Kansas State. pH : université de Géorgie. Conservation : université de l'Arizona."
+    },
+    "pepper": {
+      "about": "Vous pouvez manger les poivrons verts, ou les laisser virer au rouge, au jaune ou à l'orange. Ils ont besoin d'un été long et chaud. Là où les étés sont frais, ils réussissent mieux en serre ou dans un coin ensoleillé et abrité. Attachez chaque pied à un tuteur, car les tiges sont cassantes et se brisent quand elles sont chargées de fruits.",
+      "water": "Les poivrons demandent un arrosage normal, mais gardez la terre humide de façon régulière. Si elle se dessèche, les boutons floraux tombent. Par forte chaleur, un pot peut demander de l'eau tous les jours.",
+      "feed": "Les poivrons sont moyennement gourmands. Dès que les plants en pot fleurissent, donnez-leur chaque semaine un engrais liquide pour tomates, riche en potasse. Une terre riche en demande moins, mais l'engrais donne quand même une plus grosse récolte.",
+      "harvest": "Cueillez les poivrons quand ils ont atteint leur taille et qu'ils sont brillants, encore verts ou déjà colorés. Ils deviennent plus sucrés en se colorant, mais les fruits laissés à mûrir ralentissent les suivants. Coupez le pédoncule au sécateur plutôt que de tirer.",
+      "keeps": "Les poivrons se gardent mieux dans une pièce fraîche. Au frigo, ils tiennent 1 à 3 jours, si vous les mangez peu après les avoir sortis.",
+      "problems": [
+        {
+          "name": "Pucerons",
+          "fix": "De petits insectes verts ou noirs se regroupent au bout des tiges et sous les feuilles, qui se recroquevillent, et la plante pousse mal. Surveillez souvent et enlevez les petites colonies à la main ou au jet d'eau. Les coccinelles et les autres insectes qui les mangent vous aident."
+        },
+        {
+          "name": "Nécrose apicale (cul noir)",
+          "fix": "Une tache sombre et creusée se forme au bas du fruit, à cause d'un arrosage irrégulier. Arrosez régulièrement. Le reste de la récolte est en général sain."
+        },
+        {
+          "name": "Chute des fleurs",
+          "fix": "Les boutons et les fleurs tombent sans donner de fruits quand la terre se dessèche, par forte chaleur ou quand les nuits sont froides. Gardez la terre humide de façon régulière. Les jours chauds, ouvrez la serre et ombrez-la."
+        }
+      ],
+      "source": "Culture du poivron : RHS. Combien en planter : services d'extension de Kansas State et de Virginia Tech. pH : Virginia Tech. Conservation : Kansas State et université du Missouri."
+    },
+    "chilli": {
+      "about": "Le piment s'utilise frais, séché ou au vinaigre. Il a besoin de chaleur tout l'été. Cultivez-le donc en serre, sur un rebord de fenêtre ensoleillé ou dehors dans un coin chaud et abrité. En pot, vous pouvez le rentrer avant le froid. L'hiver, gardez-le dans un endroit lumineux et chaud. Arrosez-le alors très peu.",
+      "water": "Le piment se contente d'un arrosage normal. Gardez le terreau régulièrement humide, car un terreau sec fait tomber les boutons. Par forte chaleur, un pot en plein soleil peut avoir besoin d'eau tous les jours.",
+      "feed": "Le piment est moyennement gourmand. Dès que les plants en pot commencent à fleurir, donnez-leur chaque semaine un engrais liquide riche en potasse, comme un engrais pour tomates. En pleine terre riche, ils en ont besoin de moins.",
+      "harvest": "Cueillez-les verts pour avoir la plus grosse récolte. Les fruits qu'on laisse rougir sont plus piquants, mais la plante fait alors moins de nouvelles fleurs. En fin de saison, laissez les derniers fruits prendre leur couleur. Coupez-les avec leur queue. Lavez-vous les mains après avoir touché les variétés fortes.",
+      "keeps": "Gardez les piments cueillis au frais et utilisez-les vite. Pour l'hiver, faites-les sécher, congelez-les ou mettez-les au vinaigre.",
+      "problems": [
+        {
+          "name": "Pucerons",
+          "fix": "De petits insectes verts ou noirs s'installent au bout des pousses et sous les feuilles, qui se recroquevillent. Surveillez souvent, surtout à l'intérieur, et enlevez les petits groupes à la main ou au jet d'eau. Les coccinelles et les autres insectes qui les mangent vous aident aussi."
+        },
+        {
+          "name": "Araignée rouge",
+          "fix": "Par air chaud et sec, surtout sous abri, les feuilles se couvrent d'une fine marbrure claire et de fines toiles. Brumisez les plantes et mouillez le sol de la serre pour rendre l'air plus humide."
+        },
+        {
+          "name": "Trop de chaleur",
+          "fix": "Au-dessus de 30 °C environ, les fleurs tombent et peu de fruits se forment. Ouvrez la serre pour l'aérer et ombrez-la. Mouillez le sol tous les jours."
+        }
+      ],
+      "source": "Culture et conservation du piment : RHS. pH : Virginia Tech (poivrons)."
+    },
+    "aubergine": {
+      "about": "Les aubergines peuvent être violettes, blanches ou striées. Elles demandent plus de chaleur que les tomates, et environ cinq mois entre le semis et la récolte. Quand l'été est frais, cultivez-les en serre ou dans le coin le plus ensoleillé et le plus abrité du jardin. Pincez la tête vers 30 cm pour que la plante se ramifie. Sur les variétés à gros fruits, gardez cinq ou six fruits par pied.",
+      "water": "Les aubergines ont besoin de beaucoup d'eau, alors gardez la terre humide en permanence. Par forte chaleur, un pot peut demander de l'eau tous les jours. Sous abri, bassiner les feuilles deux fois par jour éloigne aussi l'araignée rouge.",
+      "feed": "Les aubergines sont très gourmandes. Dès que les premières fleurs s'ouvrent, donnez un engrais liquide riche en potasse toutes les deux semaines. Une terre riche en demande moins, mais l'engrais donne quand même une plus grosse récolte.",
+      "harvest": "Coupez chaque fruit avec quelques centimètres de pédoncule quand il a atteint sa taille, qu'il est brillant et bien coloré. Une peau terne veut dire qu'il est trop mûr et qu'il risque d'être amer. Récoltez régulièrement, et attention aux petites épines sur le pédoncule.",
+      "keeps": "Les aubergines se gardent mieux dans une pièce fraîche, alors mangez-les dans les jours qui suivent. Au frigo, elles tiennent 1 à 3 jours, si vous les cuisinez peu après.",
+      "problems": [
+        {
+          "name": "Peu ou pas de fruits",
+          "fix": "Les plants donnent peu de fruits ou aucun, le plus souvent à cause d'un été frais ou d'un emplacement froid. Donnez-leur l'endroit le plus chaud et le plus ensoleillé, avec une humidité régulière. Enlevez les fleurs qui s'ouvrent après la fin de l'été, car leurs fruits n'auront pas le temps de mûrir."
+        },
+        {
+          "name": "Araignée rouge",
+          "fix": "Sous abri, quand l'air est chaud et sec, les feuilles se couvrent de petits points clairs et de fines toiles. Les matins chauds, bassinez les feuilles et mouillez le sol de la serre."
+        },
+        {
+          "name": "Pucerons et mouches blanches",
+          "fix": "De petits insectes sucent la sève sous les feuilles, qui deviennent collantes et pâles. Regardez souvent le revers des feuilles et lavez les petites colonies. En serre, des pièges jaunes collants attrapent les mouches blanches."
+        }
+      ],
+      "source": "Culture de l'aubergine : RHS. Combien en planter : services d'extension de Kansas State et de Virginia Tech. pH : Virginia Tech. Conservation : Kansas State et université du Missouri."
+    },
+    "cucumber": {
+      "about": "Les premiers concombres se cueillent au milieu de l'été. La plupart des variétés grimpent, alors palissez-les sur un tuteur, un filet ou un treillage. Vous gagnez ainsi de la place et les fruits restent propres. Les variétés de serre ne font en général que des fleurs femelles, donc enlevez les fleurs mâles qui apparaissent. Les variétés de plein air, elles, ont besoin de leurs fleurs mâles pour être pollinisées.",
+      "water": "Les concombres ont besoin de beaucoup d'eau, surtout quand les fruits se forment. Gardez la terre humide de façon régulière. Arrosez au pied le matin et gardez les feuilles au sec. Pendant une vague de chaleur, un pot peut demander de l'eau tous les jours.",
+      "feed": "Les concombres sont moyennement gourmands. En pleine terre, ils ont rarement besoin d'engrais, sauf si le sol est pauvre. En pot, donnez un engrais liquide universel tous les 10 à 14 jours. Dès que le plant fleurit, passez à un engrais pour tomates, riche en potasse.",
+      "harvest": "Coupez les fruits au couteau quand ils sont assez gros. Comptez environ 15 cm pour les petites variétés, et 20 à 25 cm pour les grandes. Passez tous les deux ou trois jours, car les fruits grossissent vite, et plus vous cueillez, plus il en vient. Un fruit jaune et gonflé est trop mûr.",
+      "keeps": "Les concombres se gardent mieux dans une pièce fraîche. Au frigo, ils tiennent 1 à 3 jours, si vous les mangez peu après les avoir sortis.",
+      "problems": [
+        {
+          "name": "Oïdium",
+          "fix": "Une poudre blanche couvre les feuilles, et c'est pire quand les racines manquent d'eau. Arrosez au pied, pour que les feuilles restent sèches et la terre humide. Choisissez des variétés résistantes."
+        },
+        {
+          "name": "Mosaïque du concombre",
+          "fix": "Les feuilles se marbrent de jaune et se gaufrent, et les plants restent chétifs. Arrachez les plants atteints et jetez-les, mais pas au compost. Limitez les pucerons, car ce sont eux qui transmettent le virus."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Les jeunes plants se font dévorer, surtout par temps humide. Protégez-les après la plantation et allez les voir à la tombée du jour. Si vous palissez les plants vers le haut, les fruits restent hors de portée."
+        }
+      ],
+      "source": "Culture du concombre : RHS. Combien en planter : Virginia Tech. pH : université Cornell. Conservation : Kansas State et université du Missouri."
+    },
+    "courgette": {
+      "about": "Les courgettes se cueillent petites, tout l'été, et leurs fleurs se mangent aussi. Un seul pied s'étale largement et donne beaucoup de fruits. Cueillez souvent. Une courgette oubliée quelques jours devient une grosse courge et ralentit la plante.",
+      "water": "Les courgettes ont besoin de beaucoup d'eau, alors gardez la terre humide tout l'été. Arrosez au pied, pas sur les feuilles. Un petit pot enterré près de chaque pied et rempli d'eau l'amène droit aux racines.",
+      "feed": "Les courgettes sont gourmandes et ont absolument besoin d'une terre riche. Avant de planter, incorporez beaucoup de compost ou de fumier bien décomposé. En bonne terre, elles n'ont ensuite presque besoin de rien. En pot, donnez un engrais liquide riche en potasse tous les 10 à 14 jours, dès que les premiers fruits grossissent.",
+      "harvest": "Coupez-les quand elles font 10 à 12 cm, encore petites et tendres. Par beau temps, passez tous les jours ou tous les deux jours, car un pied peut en donner trois ou quatre par semaine. Vous pouvez cueillir les fleurs mâles sans perdre de fruits.",
+      "keeps": "Les courgettes se gardent quelques jours au frigo. Mangez-les tant qu'elles sont encore fermes.",
+      "problems": [
+        {
+          "name": "Oïdium",
+          "fix": "Dès le milieu de l'été, une poudre blanche couvre les feuilles, et c'est pire en terre sèche. Gardez la terre humide et arrosez au pied. Coupez les feuilles les plus atteintes."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Les jeunes plants, les fleurs et les petits fruits se font dévorer. Protégez les plants après la plantation, ou semez à l'abri pour les mettre en place plus grands."
+        },
+        {
+          "name": "Fruits qui pourrissent ou ne nouent pas",
+          "fix": "Quand le début de l'été est frais, peu d'insectes transportent le pollen et les petits fruits pourrissent par le bout. Ça passe quand il fait plus chaud. Vous pouvez aussi les polliniser à la main avec une fleur mâle."
+        }
+      ],
+      "source": "Culture de la courgette : RHS. Combien en planter : Virginia Tech. pH : Virginia Tech. Conservation : Kansas State et université du Missouri."
+    },
+    "pumpkin": {
+      "about": "Les potirons mûrissent à l'automne et se gardent une bonne partie de l'hiver. Les tiges courent très loin, alors donnez-leur beaucoup de place. Pour de gros potirons, gardez-en deux ou trois par pied. Pour un potiron géant, n'en gardez qu'un.",
+      "water": "Les potirons ont besoin de beaucoup d'eau, surtout dès que les fruits commencent à grossir. Arrosez la terre, pas les feuilles. Une bonne astuce : enterrez un pot à côté du pied et versez l'eau dedans. Elle va ainsi droit aux racines.",
+      "feed": "Les potirons sont gourmands et ont besoin d'une terre riche. Incorporez beaucoup de compost ou de fumier bien décomposé à l'endroit où vous les plantez. Ensuite, la plupart des pieds n'ont besoin de rien d'autre. Pour de très gros fruits, donnez un engrais liquide riche en potasse tous les 10 à 14 jours, dès que les fruits grossissent.",
+      "harvest": "Laissez le fruit sur le pied jusqu'à ce qu'il soit bien coloré. L'écorce doit être dure et ne pas marquer quand vous y enfoncez l'ongle. Coupez-le avant les premières gelées, avec au moins 10 cm de pédoncule. Laissez-le ensuite une semaine à 10 jours au soleil pour que l'écorce durcisse.",
+      "keeps": "Rangez les potirons durcis dans un endroit aéré, entre 10 et 15 °C, sans qu'ils se touchent. Ils se gardent au moins trois mois, et jusqu'à six dans de bonnes conditions. Un fruit qui a gelé ne se garde pas.",
+      "problems": [
+        {
+          "name": "Pourriture des fruits",
+          "fix": "Un fruit pourrit s'il repose sur de la terre humide ou s'il est coupé avec un pédoncule trop court. Posez chaque fruit sur une tuile, une brique ou une planche. Ne le portez jamais par le pédoncule."
+        },
+        {
+          "name": "Oïdium",
+          "fix": "Une poudre blanche couvre les feuilles, et c'est pire quand les plants ont soif. Arrosez régulièrement et laissez de la place entre les pieds pour que l'air circule."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Les jeunes plants et les fleurs se font dévorer. Protégez les plants après la plantation, surtout par temps humide."
+        }
+      ],
+      "source": "Culture et conservation du potiron : RHS. Maturité : université du Minnesota. Combien en planter : Kansas State et Virginia Tech. pH : Virginia Tech."
+    },
+    "winter_squash": {
+      "about": "La butternut, la courge poivrée et le potimarron sont tous des courges d'hiver. Elles ont la peau dure et se gardent tout l'hiver. Les variétés coureuses s'étalent très loin. Les plus petites peuvent grimper sur un support solide. Laissez les fruits sur le pied jusqu'à ce qu'ils soient bien mûrs, car une courge pas mûre ne se garde pas.",
+      "water": "La courge d'hiver a besoin de beaucoup d'eau. Arrosez copieusement pendant que les fruits grossissent, au pied et pas sur les feuilles. Un paillis autour des pieds garde l'humidité dans le sol.",
+      "feed": "La courge d'hiver est gourmande et demande une terre riche. Mettez beaucoup de compost ou de fumier bien décomposé dans le trou de plantation. En terre pauvre, donnez un engrais liquide riche en potasse tous les 10 à 14 jours dès que les fruits grossissent.",
+      "harvest": "Une courge est mûre quand sa peau est dure et mate, que l'ongle n'y laisse pas de marque et que la queue est ferme. Coupez-la avant les premières gelées, avec un long bout de queue. Laissez-la ensuite une dizaine de jours au soleil pour que la peau durcisse.",
+      "keeps": "Rangez les courges durcies dans un endroit sec et aéré, entre 10 et 15 °C. Selon la variété, elles se gardent d'un à six mois. Surveillez-les souvent et utilisez celles qui ramollissent.",
+      "problems": [
+        {
+          "name": "Oïdium",
+          "fix": "Une poudre blanche apparaît sur les feuilles, et c'est pire quand les plantes manquent d'eau. Arrosez régulièrement et espacez les pieds pour que l'air circule."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les jeunes plants et les fleurs. Protégez les plants une fois mis en place, surtout par temps humide."
+        },
+        {
+          "name": "Petits fruits qui avortent",
+          "fix": "Par temps frais, peu d'insectes visitent les fleurs, alors les petits fruits se flétrissent ou pourrissent. Pour polliniser à la main, déposez le pollen d'une fleur mâle dans une fleur femelle. Vous reconnaissez la femelle au petit fruit qu'elle porte derrière la fleur."
+        }
+      ],
+      "source": "Culture des courges : RHS. Maturité et conservation : université du Minnesota et RHS. Combien en planter : Kansas State et Virginia Tech. pH : Virginia Tech."
+    },
+    "green_beans": {
+      "about": "Les haricots verts se cueillent jeunes, quand les gousses sont encore tendres. Les haricots nains montent à environ 45 cm et vont bien en pot. Les haricots à rames ont besoin de grandes rames, mais ils produisent plus longtemps. Le gel les tue et ils pourrissent dans une terre froide et mouillée, alors ne semez que quand la terre s'est réchauffée.",
+      "water": "Les haricots demandent un arrosage normal. Arrosez quand il fait sec, et surtout à partir de la floraison et quand les gousses se forment. En terre sèche, les fleurs tombent. Les pots demandent de l'eau souvent.",
+      "feed": "Les haricots sont peu gourmands. En pleine terre, ils n'ont besoin d'aucun engrais, et trop d'azote donne des feuilles au lieu de gousses. En pot, donnez un engrais liquide riche en potasse toutes les deux semaines dès les premières fleurs.",
+      "harvest": "Cueillez les gousses à 15 ou 20 cm, quand elles cassent net et avant qu'on voie les grains à travers. Cueillez tous les deux ou trois jours. Plus vous cueillez, plus il en vient.",
+      "keeps": "Les haricots se gardent quelques jours au frigo, dans un sac. Pour l'hiver, blanchissez-les et congelez-les.",
+      "problems": [
+        {
+          "name": "Limaces et escargots",
+          "fix": "Les semis se font dévorer en une nuit. Élevez les plants en godets et mettez-les en place quand ils sont robustes. Les soirs humides, allez voir s'il y a des limaces."
+        },
+        {
+          "name": "Puceron noir",
+          "fix": "De petits pucerons noirs s'entassent au bout des tiges. Écrasez-les ou chassez-les avec un jet d'eau."
+        },
+        {
+          "name": "Chute des fleurs",
+          "fix": "Par temps chaud, sec ou venteux, les fleurs tombent sans donner de gousses. Gardez la terre humide, surtout pendant la floraison."
+        }
+      ],
+      "source": "Culture du haricot : RHS et Virginia Tech. Combien en planter : services d'extension de Kansas State et Texas A&M. pH : Virginia Tech et Penn State."
+    },
+    "sweetcorn": {
+      "about": "Plantez le maïs doux en carré, sur plusieurs rangs courts, plutôt qu'en un seul long rang. C'est le vent qui transporte le pollen, et seul un carré donne des épis bien remplis. Tenez les variétés supersucrées à l'écart des autres maïs doux, sinon les grains deviennent farineux.",
+      "water": "Pour le maïs doux, un arrosage normal suffit. Arrosez les jeunes plants jusqu'à ce qu'ils aient bien repris, puis quand il fait sec. L'eau compte surtout au moment où les panicules apparaissent en haut des tiges, et pendant que les épis grossissent.",
+      "feed": "Le maïs doux est gourmand et a besoin d'une terre riche. Cultivez-le dans une terre bien chargée en compost ou en fumier. Un apport d'azote quand les plants arrivent à hauteur de genou donne une plus grosse récolte.",
+      "harvest": "Quand les barbes au bout des épis brunissent, vérifiez les épis. Écartez un peu l'enveloppe d'un épi et pressez un grain avec l'ongle. Si le jus est laiteux, il est prêt. S'il est clair comme de l'eau, attendez encore. Détachez l'épi en le tournant et mangez-le vite, car son sucre se transforme en amidon.",
+      "keeps": "Gardez les épis au frigo et mangez-les dans les 2 jours. Les variétés supersucrées tiennent environ une semaine. Congelez ceux que vous ne pourrez pas manger à temps.",
+      "problems": [
+        {
+          "name": "Épis mal remplis",
+          "fix": "Les épis ont des trous là où les grains ne se sont pas formés, parce que trop peu de pollen les a atteints. Plantez en carré. Par temps calme, tapotez les panicules en haut des plants pour faire tomber le pollen."
+        },
+        {
+          "name": "Oiseaux et souris",
+          "fix": "Les oiseaux, les souris et les écureuils mangent les graines et les épis qui mûrissent. Semez à l'abri ou couvrez le semis d'un filet. Protégez les épis dès qu'ils se forment."
+        },
+        {
+          "name": "Charbon du maïs",
+          "fix": "De grosses boursouflures gris-blanc poussent sur les épis et les tiges, puis éclatent en poudre noire. Coupez-les avant qu'elles éclatent et jetez-les. L'année suivante, cultivez le maïs ailleurs."
+        }
+      ],
+      "source": "Culture du maïs doux : RHS. Combien en planter : services d'extension de Kansas State et de l'université du Missouri. pH : universités du Connecticut et du Maryland. Conservation : université du Missouri."
+    },
+    "strawberry": {
+      "about": "Les fraisiers reviennent chaque année. Les variétés non remontantes donnent leurs fraises au début de l'été. Les remontantes produisent de l'été jusqu'à l'automne. Une planche donne une bonne récolte pendant trois ou quatre ans. Ensuite, replantez ailleurs pour éviter les maladies du sol. Prenez des stolons enracinés, les jeunes plants que les vieux pieds envoient autour d'eux.",
+      "water": "Les fraisiers se contentent d'un arrosage normal. Arrosez régulièrement quand il fait sec. Les pots et les suspensions sèchent vite, alors arrosez-les souvent. Arrosez la terre le matin, pour que les fruits et le cœur de chaque pied restent secs.",
+      "feed": "Les fraisiers sont moyennement gourmands. En pleine terre, un paillis de compost chaque printemps leur suffit en général. En pot, donnez un engrais liquide universel toutes les deux semaines. Quand les boutons floraux apparaissent, passez à un engrais riche en potasse.",
+      "harvest": "Cueillez les fraises quand elles sont rouges partout, aux heures les plus chaudes de la journée. Elles ne mûrissent plus après la cueillette. Quand les fruits se forment, étalez de la paille sous les pieds pour qu'ils restent propres. Retirez la paille à l'automne.",
+      "keeps": "Elles sont meilleures mangées le jour même. Gardez-les au réfrigérateur et lavez-les juste avant de les manger. Congelées, elles perdent leur forme, alors utilisez-les dans des smoothies et des desserts.",
+      "problems": [
+        {
+          "name": "Pourriture grise",
+          "fix": "Par temps humide, les fruits pourrissent sous un duvet gris. Arrosez le matin sans éclabousser et posez les fruits sur de la paille. Enlevez tout de suite les fraises pourries."
+        },
+        {
+          "name": "Oiseaux",
+          "fix": "Les oiseaux se servent dès que les fruits mûrissent. Avant que les fraises rougissent, couvrez les plants d'un filet posé sur une armature. Tendez-le bien et fixez-le solidement."
+        },
+        {
+          "name": "Otiorhynque",
+          "fix": "En pot, les plants flétrissent et s'effondrent parce que des larves blanches, recourbées en C, mangent les racines. À la fin de l'été, arrosez le terreau avec un traitement biologique. Il contient de minuscules vers appelés nématodes."
+        }
+      ],
+      "source": "Culture des fraises : RHS. Taille du pot : université d'État de l'Iowa. pH : université Cornell. Conservation : Kansas State et université du Missouri."
+    },
+    "melon": {
+      "about": "Les melons mûrissent à la fin de l'été et ont besoin de vraie chaleur. Là où les étés sont frais, cultivez-les en serre, sous tunnel ou sous châssis. Pour que les fruits arrivent à maturité, gardez-en jusqu'à quatre par pied en plein air, et quatre à six sous abri. Enlevez les autres quand ils font environ 2,5 cm.",
+      "water": "Les melons demandent un arrosage normal. Gardez la terre humide de façon régulière, mais pas détrempée, et arrosez au pied le matin. Arrosez moins quand les fruits commencent à mûrir, à la fin de l'été.",
+      "feed": "Les melons sont moyennement gourmands. En pot, donnez un engrais liquide universel tous les 10 à 14 jours au début de l'été. Quand les fruits ont la taille d'une noix, passez à un engrais riche en potasse. Arrêtez l'engrais quand ils mûrissent.",
+      "harvest": "Un melon mûr sent bon, et le pédoncule commence à se fendiller là où il tient au fruit. Le bout opposé au pédoncule cède un peu quand vous appuyez dessus. Les cantaloups se détachent alors d'une légère poussée.",
+      "keeps": "Un melon mûr se garde quelques jours à température ambiante. Une fois entamé, couvrez-le et mettez-le au frigo.",
+      "problems": [
+        {
+          "name": "Fruits qui ne nouent pas",
+          "fix": "Sous abri, peu d'insectes arrivent jusqu'aux fleurs. Ouvrez les aérations et les portes les jours chauds. Pollinisez à la main avec un petit pinceau, des fleurs mâles vers les fleurs femelles, qu'on reconnaît au petit fruit derrière la fleur."
+        },
+        {
+          "name": "Oïdium",
+          "fix": "Une poudre blanche couvre les feuilles, et c'est pire quand les plants ont soif. Arrosez régulièrement et gardez les feuilles au sec."
+        },
+        {
+          "name": "Araignée rouge",
+          "fix": "Sous abri, quand l'air est sec, les feuilles se couvrent de petits points clairs et de fines toiles. Par temps chaud, mouillez le sol de la serre et bassinez les plants."
+        }
+      ],
+      "source": "Culture du melon : RHS. Maturité : université du Minnesota. Combien en planter : Virginia Tech et Kansas State. pH : Virginia Tech. Conservation : Kansas State et université du Missouri."
+    },
+    "watermelon": {
+      "about": "La pastèque a besoin d'un été long et chaud. Dans une région fraîche, choisissez une petite variété précoce et cultivez-la sous abri. Contrairement aux autres melons, elle ne mûrit plus une fois cueillie. Il faut donc juger si elle est mûre pendant qu'elle est encore sur le pied.",
+      "water": "La pastèque se contente d'un arrosage normal. Pendant que les tiges poussent et que les fruits grossissent, arrosez à fond et régulièrement. Arrosez au pied, le matin. Quand le fruit approche de sa taille finale, arrosez moins.",
+      "feed": "La pastèque est moyennement gourmande. Incorporez du compost à la terre avant de planter. Trop d'azote vous donne des feuilles au lieu des fruits. Si vous mettez de l'engrais, prenez-en un riche en potasse dès que les fruits se forment.",
+      "harvest": "Pour savoir si elle est mûre, regardez trois choses. La vrille la plus proche du fruit est brune et sèche. La tache où il repose sur le sol passe du blanc au jaune crème. La peau passe de brillante à mate. Quand vous voyez les trois, coupez-la au couteau.",
+      "keeps": "Une pastèque entière se garde 2 à 3 semaines au frais, entre 10 et 15 °C. Tenez-la loin des pommes, des bananes et des tomates. Une fois entamée, couvrez-la et gardez-la au réfrigérateur.",
+      "problems": [
+        {
+          "name": "Cueillie trop tôt",
+          "fix": "Une pastèque coupée trop tôt reste pâle et fade, parce qu'elle ne mûrit pas hors du pied. Attendez de voir en même temps la vrille sèche, la tache jaune en dessous et la peau mate."
+        },
+        {
+          "name": "Oïdium",
+          "fix": "Les feuilles se couvrent d'une poudre blanche, et c'est pire quand les plantes manquent d'eau. Arrosez régulièrement au pied et gardez le feuillage sec."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les jeunes plants. Protégez-les une fois mis en place, surtout par temps humide."
+        }
+      ],
+      "source": "Culture de la pastèque : RHS. Maturité et conservation : université du Minnesota. Combien en planter : Virginia Tech et Kansas State. pH : université du Maryland."
+    },
+    "basil": {
+      "about": "Le basilic ne vit qu'un été et ne supporte pas le froid. Ses feuilles parfumées se cueillent du début de l'été jusqu'aux premières nuits froides. Pincez le bout des tiges, et la plante reste touffue et bien feuillue. Il pousse bien en pot, dans un coin chaud, ensoleillé et à l'abri du vent.",
+      "water": "Le basilic demande un arrosage normal. Gardez la terre humide de façon régulière. Arrosez le matin, au pied plutôt que sur les feuilles. Il déteste avoir les racines mouillées pendant la nuit. Par forte chaleur, un pot peut avoir besoin d'eau tous les jours.",
+      "feed": "Le basilic est très peu gourmand. En pleine terre, ne lui donnez rien. En pot, donnez-lui un peu d'engrais liquide équilibré en été, à quelques semaines d'intervalle. N'utilisez pas d'engrais pour tomates, car il pousse le basilic à fleurir.",
+      "harvest": "Cueillez le bout des tiges juste au-dessus d'une paire de feuilles, quelques-uns sur chaque plant. De nouvelles pousses latérales repartent alors de là. Pincez les boutons floraux dès qu'ils apparaissent, pour que les feuilles restent tendres.",
+      "keeps": "Au frigo, le basilic noircit. Mettez plutôt les tiges dans un verre d'eau, à température ambiante, et il tiendra quelques jours. Pour le garder plus longtemps, congelez les feuilles hachées dans de l'huile ou faites du pesto.",
+      "problems": [
+        {
+          "name": "Mildiou",
+          "fix": "Les feuilles jaunissent entre les nervures, avec un duvet gris violacé en dessous, surtout par temps humide. Arrosez la terre le matin et espacez les plants. Arrachez les plants atteints."
+        },
+        {
+          "name": "Dégâts du froid",
+          "fix": "Après des nuits froides, les feuilles noircissent et ramollissent. Gardez le basilic à l'intérieur jusqu'à ce que les nuits restent douces. Quand l'automne fraîchit, rentrez les pots ou couvrez les plants."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Limaces et escargots peuvent dévorer un jeune plant en une nuit. Cultivez le basilic en pot, puis allez voir à la nuit tombée et ramassez-les."
+        }
+      ],
+      "source": "Culture du basilic : RHS. pH : services d'extension de Clemson et de l'université du Connecticut."
+    },
+    "parsley": {
+      "about": "Frisé ou plat, le persil vit deux ans, mais vous ne le gardez qu'un an. La deuxième année, il fleurit et ses feuilles sont moins bonnes, alors semez-en chaque année. Les graines sont lentes. En pleine terre, elles peuvent mettre jusqu'à six semaines à lever, donc marquez le rang et gardez-le humide.",
+      "water": "Le persil demande un arrosage normal. Gardez la terre humide mais jamais détrempée, surtout tant que les plantules sont petites et pendant les périodes chaudes et sèches. Les pots sèchent vite. Au plus chaud de l'été, mettez-les à mi-ombre.",
+      "feed": "Le persil est peu gourmand. En pleine terre, il n'a besoin de rien. En pot, donnez un engrais liquide équilibré à quelques semaines d'intervalle pendant qu'il pousse.",
+      "harvest": "Coupez quelques tiges extérieures à la base et laissez le cœur continuer à pousser. Si vous cueillez régulièrement, de nouvelles feuilles arrivent de la fin du printemps jusqu'à l'automne.",
+      "keeps": "Mettez un bouquet dans un verre d'eau au frigo, et il tiendra plusieurs jours. Haché, il se congèle bien dans des bacs à glaçons. Il garde ainsi plus de goût que le persil séché.",
+      "problems": [
+        {
+          "name": "Mouche de la carotte",
+          "fix": "Les plants rougissent, flétrissent et arrêtent de pousser, parce que de petits asticots creusent des galeries dans les racines. Couvrez la planche d'un filet anti-insectes fin dès le jour du semis."
+        },
+        {
+          "name": "Mouche du céleri",
+          "fix": "Vous voyez des cloques brun clair sur les feuilles, là où de minuscules larves se nourrissent à l'intérieur. Enlevez ces feuilles et jetez-les à la poubelle. La plante en refera de nouvelles."
+        },
+        {
+          "name": "Levée lente",
+          "fix": "Rien ne sort pendant des semaines, et on rebêche souvent le rang par erreur. Faites tremper les graines une nuit avant de semer. Gardez la terre humide et patientez jusqu'à six semaines."
+        }
+      ],
+      "source": "Culture du persil : RHS. pH : Cornell et université du Maryland."
+    },
+    "coriander": {
+      "about": "Les feuilles de coriandre sont vite prêtes, et les graines viennent plus tard. Quand il fait chaud ou que la terre est sèche, les plants montent vite en fleurs. Alors semez-en un peu tous les mois environ dès le printemps, plutôt que tout d'un coup. Elle pousse bien en pot.",
+      "water": "La coriandre demande un arrosage normal. Par temps sec, gardez la terre humide, car des racines au sec la font fleurir trop tôt. Quand il fait chaud, vérifiez les pots tous les jours.",
+      "feed": "La coriandre est très peu gourmande. C'est une culture rapide, donc une terre de jardin ou un terreau neuf lui suffit, sans engrais.",
+      "harvest": "Commencez à couper les feuilles quand les plants font 10 à 15 cm. Prenez-en quelques-unes sur chaque plant, puis laissez-les repousser environ deux semaines. Pour les graines, laissez fleurir quelques plants. Coupez les tiges quand les graines brunissent et faites-les sécher dans un sac en papier.",
+      "keeps": "Un bouquet frais tient quelques jours au frigo. Les graines sèches se gardent des mois dans un bocal bien fermé.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "Par temps chaud et sec, ou après un repiquage, les plants font une tige florale et ne donnent plus de feuilles. Semez directement en place, dans un coin ombragé à midi. Arrosez par temps sec et choisissez une variété lente à monter."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Par temps humide, limaces et escargots mangent les plantules. Sortez à la nuit tombée et ramassez-les."
+        },
+        {
+          "name": "Pucerons",
+          "fix": "De petits insectes verts ou noirs s'entassent au bout des tiges et affaiblissent la plante. Enlevez-les avec les doigts ou à l'eau. Laissez faire les coccinelles, qui les mangent."
+        }
+      ],
+      "source": "Culture de la coriandre : RHS. pH : université du Connecticut. Taille du pot : service d'extension de l'Oregon State."
+    },
+    "dill": {
+      "about": "L'aneth donne des feuilles fines comme des plumes, puis des graines. Il a une seule longue racine et déteste être déplacé. Semez-le donc en place, un peu à la fois et à quelques semaines d'intervalle, du milieu du printemps au plein été. Comme la coriandre, il monte en graines par temps chaud et sec, c'est-à-dire qu'il fleurit trop tôt.",
+      "water": "L'aneth se contente d'un arrosage normal. Arrosez-le quand il fait sec, car une terre sèche le fait fleurir tôt et il arrête de faire des feuilles. Les pots sèchent vite quand il fait chaud.",
+      "feed": "L'aneth est peu gourmand. En terre de jardin ou dans du terreau neuf, il n'a besoin d'aucun engrais.",
+      "harvest": "Vous pouvez commencer à cueillir les feuilles environ six semaines après le semis. Prenez-en quelques-unes à la fois et laissez au moins un tiers de la plante. Pour les graines, coupez les ombelles à la fin de l'été, quand elles sont sèches et brunes. Suspendez-les tête en bas dans un sac en papier.",
+      "keeps": "Les feuilles fraîches flétrissent vite et se gardent mal, même au réfrigérateur. Utilisez-les vite ou faites-les sécher. Les feuilles et les graines séchées se gardent dans un bocal bien fermé.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "Par temps chaud et sec, les plants fleurissent tôt et ne font plus de feuilles. Arrosez quand il fait sec et ressemez à quelques semaines d'intervalle. Si vous ne voulez que les feuilles, coupez les tiges à fleurs."
+        },
+        {
+          "name": "Pucerons",
+          "fix": "De petits insectes verts ou noirs se regroupent sur les pousses tendres et les feuilles. Enlevez-les avec les doigts ou à l'eau. Laissez les coccinelles manger ceux qui restent."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Par temps humide, ils mangent les semis tendres. Allez voir à la nuit tombée et ramassez-les."
+        }
+      ],
+      "source": "Culture de l'aneth : RHS. pH : université du Connecticut."
+    },
+    "chervil": {
+      "about": "Le cerfeuil est une petite herbe délicate, au léger goût d'anis. Il aime la fraîcheur et la mi-ombre. En plein soleil, il fleurit trop tôt, alors c'est au printemps et à l'automne qu'il réussit le mieux. Semez-en un peu à quelques semaines d'intervalle pour en avoir sans interruption.",
+      "water": "Le cerfeuil se contente d'un arrosage normal. Gardez la terre toujours fraîche, mais pas détrempée, car une terre sèche le fait fleurir tôt. En pot, il lui faut plus d'eau quand il fait chaud.",
+      "feed": "Le cerfeuil n'a presque besoin de rien. La terre du jardin ou du terreau neuf lui suffit, alors ne lui donnez pas d'engrais.",
+      "harvest": "Les feuilles sont prêtes environ huit semaines après le semis, quand les plants font 10 cm. Cueillez quelques jeunes feuilles sur chaque pied. Ou rabattez des tiges entières à 5 cm et laissez-les repousser.",
+      "keeps": "Le cerfeuil s'utilise frais. Il flétrit en un ou deux jours et perd presque tout son goût une fois séché.",
+      "problems": [
+        {
+          "name": "Montée en graines",
+          "fix": "En plein soleil et en terre sèche, les plants fleurissent tôt et les feuilles perdent leur goût. Cultivez-le à mi-ombre, arrosez régulièrement et ressemez à quelques semaines d'intervalle."
+        },
+        {
+          "name": "Pucerons",
+          "fix": "De petits insectes verts se regroupent sur les feuilles et les pousses tendres. Enlevez-les avec les doigts ou à l'eau et laissez les coccinelles manger le reste."
+        }
+      ],
+      "source": "Culture du cerfeuil : RHS. pH : université du Connecticut."
+    },
+    "chives": {
+      "about": "La ciboulette a des feuilles au goût doux d'oignon, et ses fleurs violettes se mangent aussi. La touffe repart chaque printemps. Tous les trois ou quatre ans, arrachez-la, séparez-la en petites touffes et replantez-les pour qu'elle reste vigoureuse.",
+      "water": "La ciboulette se contente d'un arrosage normal. Le premier été, arrosez-la quand il fait sec. Ensuite, en pleine terre, elle se débrouille toute seule. En pot, gardez le terreau toujours un peu humide.",
+      "feed": "La ciboulette est peu gourmande. En pleine terre, un peu de compost à la plantation suffit. En pot, un engrais liquide universel de temps en temps en été l'aide à refaire des feuilles.",
+      "harvest": "Coupez les feuilles juste au-dessus de la base quand vous en avez besoin. Plus vous coupez souvent, plus vous en avez. Après la floraison, rabattez toute la touffe à environ 5 cm, et elle repartira avec plein de feuilles neuves.",
+      "keeps": "Une fois coupée, la ciboulette fane en quelques jours. Pour en avoir en hiver, hachez-la et congelez-la dans un sachet ou dans un bac à glaçons.",
+      "problems": [
+        {
+          "name": "Rouille",
+          "fix": "Des pustules orange en relief apparaissent sur les feuilles. Rabattez la touffe à ras et jetez les feuilles à la poubelle. En général, la repousse est saine."
+        },
+        {
+          "name": "Pucerons",
+          "fix": "De petits pucerons verts se regroupent sur les feuilles et les tiges des fleurs. Enlevez-les avec les doigts ou avec un jet d'eau."
+        }
+      ],
+      "source": "Culture de la ciboulette : RHS. pH : université du Minnesota."
+    },
+    "thyme": {
+      "about": "Le thym reste vert toute l'année, alors vous pouvez le cueillir frais en toute saison ou le faire sécher. C'est un petit arbrisseau qui demande du soleil et une terre où l'eau s'écoule vite. Une terre mouillée en hiver le tue plus souvent que le froid. Au bout de quelques années, les pieds deviennent ligneux. Remplacez-les par de nouveaux plants obtenus par bouture.",
+      "water": "Le thym supporte bien la sécheresse. Arrosez les jeunes plants par temps sec jusqu'à ce qu'ils soient installés. Ensuite, en pleine terre, ils n'ont presque jamais besoin d'eau. En pot, arrosez quand il fait chaud et sec, et laissez le terreau sécher un peu entre deux arrosages.",
+      "feed": "Le thym n'a presque besoin de rien. Il pousse mieux en terre pauvre, alors ne lui donnez pas d'engrais en pleine terre. Une terre riche donne des pousses molles et moins parfumées. Un pied qui est dans le même pot depuis plus d'un an peut recevoir une petite pincée d'engrais complet à la fin du printemps.",
+      "harvest": "Coupez des brins quand vous en avez besoin. Les jeunes pousses de la fin du printemps et de l'été ont le plus de goût. Des coupes fréquentes gardent le pied compact. Taillez-le légèrement après la floraison, mais sans couper dans le bois nu.",
+      "keeps": "Les brins frais se gardent quelques jours au réfrigérateur, dans un sachet. Pour faire sécher le thym, suspendez des bouquets quelques semaines dans un endroit chaud, sombre et aéré. Gardez ensuite les feuilles dans un bocal bien fermé.",
+      "problems": [
+        {
+          "name": "Pourriture des racines",
+          "fix": "La plante flétrit et brunit à partir de la base alors que la terre est mouillée. Cultivez-la dans une terre qui s'égoutte vite, en carré surélevé ou en pot avec du gravier mélangé au terreau. Ne laissez jamais un pot tremper dans l'eau."
+        },
+        {
+          "name": "Pied dégarni et ligneux",
+          "fix": "Au bout de quelques années, le centre du pied se dégarnit et devient ligneux. Taillez-le légèrement chaque année après la floraison. Remplacez les vieux pieds par des boutures prises à la fin du printemps."
+        },
+        {
+          "name": "Chrysomèle du romarin",
+          "fix": "De petits coléoptères rayés de vert et de violet métallique mangent les feuilles de la fin de l'été au printemps. Leurs larves grises les mangent aussi. Ramassez-les à la main ou secouez la plante au-dessus d'une feuille de papier."
+        }
+      ],
+      "source": "Culture du thym : RHS. pH : laboratoire d'analyse des sols de l'université du Connecticut."
+    },
+    "rosemary": {
+      "about": "Vous pouvez cueillir le romarin toute l'année, car cet arbuste garde ses feuilles en toute saison. Plantez-le en plein soleil, dans une terre qui s'égoutte vite. Une terre lourde et mouillée le tue plus vite que le froid. Dans les régions froides, mettez-le contre un mur ensoleillé ou dans un pot que vous pourrez mettre à l'abri.",
+      "water": "Le romarin supporte bien la sécheresse. La première année, arrosez-le quand il fait sec. Ensuite, en pleine terre, il n'a presque jamais besoin d'eau. En pot, il faut l'arroser quand il fait chaud, mais ne laissez jamais le terreau détrempé.",
+      "feed": "Le romarin n'a presque besoin de rien. En pleine terre, il n'a besoin d'aucun engrais. Si un pied est dans le même pot depuis plus d'un an, donnez-lui un peu d'engrais complet en granulés à la fin du printemps ou au début de l'été.",
+      "harvest": "Coupez des rameaux quand vous en avez besoin, toute l'année. Les jeunes pousses de la fin du printemps et de l'été ont le meilleur goût. Taillez la plante après la floraison pour qu'elle reste touffue. Ne coupez pas dans le vieux bois nu, car il repart rarement.",
+      "keeps": "Les brins frais se gardent plusieurs jours au réfrigérateur. Pour les faire sécher, suspendez-les dans un endroit chaud, sombre et aéré. Effeuillez-les ensuite et gardez les feuilles dans un bocal bien fermé.",
+      "problems": [
+        {
+          "name": "Chrysomèle du romarin",
+          "fix": "De la fin de l'été au printemps, de petits coléoptères rayés de vert et de violet métallique mangent les feuilles, tout comme leurs larves grises. Ramassez-les à la main ou secouez la plante au-dessus d'une feuille de papier."
+        },
+        {
+          "name": "Dégâts du gel et de l'humidité",
+          "fix": "Les pousses brunissent et meurent après un fort gel, un vent froid ou un hiver humide. Par grand froid, couvrez la plante d'un voile d'hivernage et mettez les pots à l'abri. Au printemps, coupez les pousses mortes."
+        },
+        {
+          "name": "Crachat de coucou",
+          "fix": "Des amas d'écume blanche apparaissent sur les pousses à la fin du printemps. Chacun cache un petit insecte qui suce la sève. L'insecte fait peu de dégâts, alors essuyez l'écume ou rincez-la à l'eau."
+        }
+      ],
+      "source": "Culture du romarin : RHS. pH : Texas A&M AgriLife Extension."
+    },
+    "oregano": {
+      "about": "L'origan s'utilise frais ou séché. Il s'étale avec le temps et revient chaque année. En hiver, presque tout le feuillage disparaît, et de nouvelles pousses sortent au printemps. Il a le plus de goût en plein soleil, dans une terre pauvre qui s'égoutte vite. Le meilleur moment pour le cueillir, c'est juste avant l'ouverture des fleurs.",
+      "water": "Une fois installé, l'origan supporte la sécheresse. Arrosez les jeunes plants quand il fait sec. Les pieds bien installés en pleine terre n'ont pas besoin d'eau en plus. En pot, arrosez-le quand il fait chaud et sec, mais ne laissez jamais le terreau détrempé.",
+      "feed": "L'origan n'a presque besoin de rien. En pleine terre, il n'a besoin d'aucun engrais. Un pied qui est dans le même pot depuis plus d'un an peut recevoir une pincée d'engrais complet en granulés à la fin du printemps ou au début de l'été.",
+      "harvest": "Coupez des tiges de la fin du printemps à l'automne et effeuillez-les. Le goût est meilleur avant l'ouverture des fleurs. Après la floraison, rabattez la plante et elle refera une nouvelle série de feuilles. À la fin de l'hiver, enlevez les vieilles tiges.",
+      "keeps": "L'origan sèche bien. Suspendez des brins quelques semaines dans un endroit sombre et aéré. Effeuillez-les ensuite et gardez les feuilles dans un bocal bien fermé.",
+      "problems": [
+        {
+          "name": "Rouille de la menthe",
+          "fix": "Des pustules poudreuses orange ou brunes apparaissent sous les feuilles, et au printemps les pousses sortent tordues. Coupez les tiges atteintes au ras du sol. Jetez-les à la poubelle, pas au compost."
+        },
+        {
+          "name": "Cicadelles",
+          "fix": "De petits insectes sauteurs sucent la sève et laissent des marbrures claires sur les feuilles. Les dégâts n'abîment que l'aspect, alors vous pouvez les laisser tranquilles."
+        },
+        {
+          "name": "Pyrale de la menthe",
+          "fix": "En été, de petites chenilles mangent les feuilles et les relient avec des fils de soie. Les dégâts sont en général légers. Si ça vous gêne, retirez les chenilles à la main."
+        }
+      ],
+      "source": "Culture de l'origan : RHS. pH : laboratoire d'analyse des sols de l'université du Connecticut (marjolaine) et NC State Extension."
+    },
+    "sage": {
+      "about": "La sauge est un arbuste qui garde toute l'année ses feuilles douces, d'un vert grisé. Vous pouvez donc la cueillir en toute saison. Elle demande du soleil et une terre qui ne reste jamais détrempée. Au bout de six ou sept ans, les pieds deviennent ligneux et dégarnis. Remplacez-les alors par de nouveaux plants obtenus par bouture.",
+      "water": "Une fois installée, la sauge supporte la sécheresse. La première année, arrosez-la quand il fait sec. Ensuite, en pleine terre, elle tient bien même pendant les sécheresses. En pot, gardez le terreau juste frais, pas détrempé. En hiver, placez le pot contre un mur, à l'abri de la pluie.",
+      "feed": "La sauge n'a presque besoin de rien. Ne donnez aucun engrais aux pieds en pleine terre. Si un pied est dans le même pot depuis plus d'un an, donnez-lui une petite pincée d'engrais complet en granulés à la fin du printemps ou au début de l'été.",
+      "harvest": "Cueillez de jeunes feuilles ou des pousses entières quand vous en avez besoin. Les pousses du printemps et de l'été ont le meilleur goût. Des cueillettes fréquentes la gardent touffue. Taillez-la légèrement chaque année, entre le milieu et la fin du printemps.",
+      "keeps": "Pour faire sécher la sauge, suspendez des brins dans un endroit chaud, sombre et aéré. Gardez ensuite les feuilles dans un bocal bien fermé. Vous pouvez aussi hacher les feuilles et les congeler dans un bac à glaçons.",
+      "problems": [
+        {
+          "name": "Chrysomèle du romarin",
+          "fix": "De petits coléoptères rayés de vert et de violet métallique mangent les feuilles de la fin de l'été au printemps. Leurs larves grises font pareil. Ramassez-les à la main ou secouez la plante au-dessus d'une feuille de papier."
+        },
+        {
+          "name": "Cicadelles",
+          "fix": "Les marbrures claires sur les feuilles viennent de petits insectes sauteurs qui sucent la sève. C'est rarement grave. Enlevez simplement les feuilles les plus abîmées."
+        },
+        {
+          "name": "Pied ligneux et dégarni",
+          "fix": "Les vieux pieds font de longues tiges nues avec peu de feuilles. Taillez-les légèrement chaque printemps. Après quelques années, remplacez le pied par des boutures prises sur les jeunes pousses tendres à la fin du printemps."
+        }
+      ],
+      "source": "Culture de la sauge : RHS. pH : UC Master Gardeners, université de Californie."
+    },
+    "mint": {
+      "about": "La menthe pousse vite, vit des années et sert pour les tisanes, les boissons et la cuisine. Ses racines courent vite sous terre et envahissent la planche. Cultivez-la donc en pot, ou enterrez un pot sans fond en laissant le bord dépasser du sol. Elle disparaît en hiver et repart au printemps.",
+      "water": "La menthe a besoin de beaucoup d'eau. Gardez la terre toujours humide, car elle fane vite dans un pot sec. En été, vérifiez souvent les pots et mettez-les à mi-ombre quand il fait chaud.",
+      "feed": "La menthe est moyennement gourmande, surtout quand elle est en pot. En pleine terre, elle demande peu. En pot, donnez-lui un engrais liquide au printemps, puis toutes les 4 à 6 semaines pendant qu'elle pousse.",
+      "harvest": "De la fin du printemps à l'automne, cueillez souvent le bout des jeunes tiges. Des cueillettes régulières gardent la plante compacte et pleine de nouvelles pousses. Rabattez les tiges en fleurs pour avoir de nouvelles feuilles.",
+      "keeps": "Les brins frais se gardent quelques jours dans un verre d'eau ou au réfrigérateur. La congélation garde mieux le goût que le séchage. Congelez les feuilles dans des glaçons.",
+      "problems": [
+        {
+          "name": "Rouille de la menthe",
+          "fix": "Des pustules poudreuses orange apparaissent sous les feuilles, et au printemps les pousses sortent tordues et gonflées. Coupez les tiges atteintes au ras du sol et jetez-les à la poubelle. Si la rouille revient chaque année, repartez avec des plants sains à un autre endroit."
+        },
+        {
+          "name": "Menthe envahissante",
+          "fix": "Des tiges rampantes sortent partout dans la planche. Gardez la menthe en pot, le bord au-dessus du sol, pour que les stolons ne puissent pas passer par-dessus. Au bout de quelques années, divisez la plante et rempotez les morceaux."
+        },
+        {
+          "name": "Chrysomèle de la menthe",
+          "fix": "En été, de petits coléoptères bleu-vert brillants et leurs larves font des trous dans les feuilles. Ramassez-les. La plante repart en général."
+        }
+      ],
+      "source": "Culture de la menthe : RHS. pH : ministère des Industries primaires de Nouvelle-Galles du Sud. Engrais en pot : université de l'Arizona."
+    },
+    "tulip": {
+      "about": "Les tulipes donnent de grandes fleurs éclatantes du milieu à la fin du printemps. Plantez les bulbes tard à l'automne, dans une terre bien drainée qui ne reste pas humide. Plantés tard, les bulbes attrapent moins souvent le feu de la tulipe, une maladie causée par un champignon. Beaucoup de tulipes ne fleurissent bien que la première année. Aux endroits qui comptent le plus, plantez des bulbes neufs chaque année.",
+      "water": "Les tulipes se contentent d'un arrosage normal. Une fois les pousses sorties, les bulbes en pleine terre n'ont besoin d'eau qu'après deux ou trois semaines sans pluie. Arrosez les pots dès que les feuilles apparaissent, car la sécheresse raccourcit la floraison. Si le terreau d'un pot reste détrempé en hiver, mettez le pot à l'abri de la pluie.",
+      "feed": "Les tulipes sont moyennement gourmandes. Dès le début du printemps, donnez chaque semaine aux tulipes en pot un engrais liquide riche en potasse, comme un engrais pour tomates. Continuez jusqu'à ce que les feuilles jaunissent.",
+      "harvest": "Pour le vase, coupez-les quand le bouton montre sa couleur mais n'est pas encore ouvert. Au jardin, coupez les fleurs fanées juste au-dessus des feuilles. Laissez les feuilles jusqu'à ce qu'elles prennent une couleur paille. Pour garder les bulbes, déterrez-les environ six semaines après la floraison. Faites-les sécher et rangez-les dans un endroit chaud, sombre et aéré jusqu'à l'automne.",
+      "keeps": "Les tulipes coupées tiennent plusieurs jours en vase. Elles continuent de pousser et se penchent vers la lumière. Complétez le vase avec de l'eau froide.",
+      "problems": [
+        {
+          "name": "Feu de la tulipe",
+          "fix": "Des taches brunes apparaissent, puis les feuilles et les fleurs se tordent et se dessèchent, parfois avec de la pourriture grise. Arrachez les plantes malades avec leur bulbe et jetez-les à la poubelle. Plantez tard à l'automne et cultivez les tulipes ailleurs pendant au moins trois ans."
+        },
+        {
+          "name": "Écureuils et souris",
+          "fix": "Ils déterrent les bulbes et les mangent en automne et en hiver. Couvrez la plate-bande ou le pot de grillage à poules jusqu'à ce que les feuilles sortent. Des narcisses plantés entre les tulipes aident aussi, car les écureuils les évitent."
+        },
+        {
+          "name": "Peu ou pas de fleurs",
+          "fix": "À partir de la deuxième année, vous avez des feuilles mais pas de fleurs, ou seulement de petites. Plantez les bulbes à une profondeur d'au moins trois fois leur hauteur et nourrissez les pots tant que les feuilles sont là. Remplacez les bulbes fatigués par des neufs."
+        }
+      ],
+      "source": "Culture de la tulipe : RHS. pH : laboratoire d'analyse des sols de l'université du Connecticut. Taille du pot : université Purdue."
+    },
+    "daffodil": {
+      "about": "Les narcisses jaunes et blancs fleurissent de la fin de l'hiver au milieu du printemps. Au soleil ou à mi-ombre, ils reviennent pendant de nombreuses années et forment peu à peu des touffes. Une seule chose à retenir : laissez les feuilles faner toutes seules après la floraison, car elles nourrissent les fleurs de l'année suivante.",
+      "water": "Les narcisses se contentent d'un arrosage normal. En pleine terre, ils n'ont presque jamais besoin d'eau, sauf pendant les longues périodes sèches quand ils poussent. Les pots sèchent vite, alors arrosez-les jusqu'à ce que les feuilles fanent.",
+      "feed": "Les narcisses sont peu gourmands. En pleine terre, ils n'ont besoin d'aucun engrais. En pot, donnez un engrais liquide riche en potasse, comme un engrais pour tomates, depuis la sortie des pousses jusqu'à ce que les feuilles commencent à faner.",
+      "harvest": "Cassez les fleurs fanées pour que l'énergie retourne au bulbe. Laissez les feuilles jusqu'à ce qu'elles jaunissent, environ six semaines après la floraison. Ne les coupez pas, ne les attachez pas et ne les nouez pas. Pour le vase, coupez les narcisses quand le bouton est sur le point de s'ouvrir.",
+      "keeps": "Les narcisses coupés laissent couler une sève qui fait faner les autres fleurs plus vite. Mettez-les seuls dans l'eau pendant une nuit avant de les mélanger à d'autres fleurs. Ensuite, ne recoupez plus les tiges.",
+      "problems": [
+        {
+          "name": "Narcisses sans fleurs",
+          "fix": "Vous avez beaucoup de feuilles mais pas de fleurs, à cause de touffes trop serrées, de bulbes plantés pas assez profond ou de feuilles coupées trop tôt. Une fois les feuilles fanées, déterrez les touffes trop serrées et séparez les bulbes. Replantez-les plus profond."
+        },
+        {
+          "name": "Mouche du narcisse",
+          "fix": "Des feuilles fines comme de l'herbe sortent, mais pas de fleurs, et le bulbe est mou avec une grosse larve dedans. Jetez les bulbes mous. Quand les feuilles fanent, tassez la terre sur les trous pour que la mouche ne puisse pas atteindre les bulbes."
+        },
+        {
+          "name": "Bulbes qui pourrissent",
+          "fix": "Les bulbes ramollissent et pourrissent par la base, dans une terre humide ou pendant le stockage. Ne plantez que des bulbes fermes, dans une terre bien drainée. Jetez ceux qui sont mous."
+        }
+      ],
+      "source": "Culture du narcisse : RHS. pH : laboratoire d'analyse des sols de l'université du Connecticut. Taille du pot : université Purdue."
+    },
+    "crocus": {
+      "about": "Les crocus poussent à partir de cormes, qui ressemblent à de petits bulbes, et fleurissent à la fin de l'hiver et au début du printemps. Pour les abeilles, c'est l'un des premiers repas de l'année. Ils reviennent chaque année et s'étendent en larges tapis dans les massifs et le gazon court. Laissez les feuilles faner après la floraison. Dans une pelouse, ne tondez pas avant.",
+      "water": "Les crocus supportent la sécheresse et, en pleine terre, n'ont presque jamais besoin d'eau. En pot, gardez le terreau humide à quelques centimètres de profondeur tant que les feuilles sont là.",
+      "feed": "Les crocus sont peu gourmands, et en pleine terre ils n'ont besoin de rien. En pot, donnez un engrais liquide riche en potasse tant que les feuilles sont là. Cela aide les fleurs de l'année suivante.",
+      "harvest": "Inutile de couper les fleurs fanées. Laissez les feuilles jusqu'à ce qu'elles fanent. Dans une pelouse, attendez ce moment pour tondre, afin que les cormes se renforcent et se multiplient. Une fois les feuilles fanées, vous pouvez déterrer les crocus en pot. Gardez-les dans des sacs en papier, au frais et au sec, jusqu'à l'automne.",
+      "problems": [
+        {
+          "name": "Écureuils et souris",
+          "fix": "Ils déterrent les cormes et les mangent après la plantation. Couvrez les nouvelles plantations de grillage à poules ou de treillis métallique jusqu'à la sortie des pousses."
+        },
+        {
+          "name": "Oiseaux qui abîment les fleurs",
+          "fix": "Les moineaux becquettent les fleurs, souvent les jaunes, et les laissent déchirées en lambeaux. Un fil noir ou un filet tendu au-dessus de la touffe les protège pendant la floraison."
+        },
+        {
+          "name": "Peu de fleurs",
+          "fix": "Vous avez de moins en moins de fleurs chaque année. Souvent, les feuilles ont été tondues ou coupées avant de faner, ou l'endroit est devenu trop ombragé. Laissez les feuilles tranquilles et déplacez les touffes vers un endroit plus ensoleillé une fois qu'elles ont fané pour l'année."
+        }
+      ],
+      "source": "Culture du crocus : RHS. pH : laboratoire d'analyse des sols de l'université du Connecticut. Taille du pot : université Purdue."
+    },
+    "sunflower": {
+      "about": "Les tournesols donnent de grandes fleurs d'été, et des graines pour vous ou pour les oiseaux. Les variétés hautes ont besoin d'un tuteur solide ou d'un mur où les attacher. Les variétés naines restent basses et vont bien en pot. Protégez les jeunes plants des limaces jusqu'à ce qu'ils soient robustes.",
+      "water": "Les tournesols demandent un arrosage normal. Par temps sec, arrosez bien au pied de la tige. Les variétés hautes ne doivent pas manquer d'eau. En pot, il faut arroser plus souvent, tous les jours par forte chaleur.",
+      "feed": "Les tournesols sont moyennement gourmands. Incorporez du compost à la planche avant de semer. Quand les boutons floraux se forment, donnez toutes les deux semaines un engrais liquide riche en potasse, comme un engrais pour tomates. Vous aurez de plus grandes fleurs.",
+      "harvest": "Pour le vase, coupez-les le matin, quand les pétales commencent à s'ouvrir. Pour les graines, laissez la fleur sur pied jusqu'à ce que le dos de la tête brunisse. Couvrez-la d'un sac en papier ou d'un filet contre les oiseaux. Ensuite, coupez-la et faites-la sécher à l'intérieur.",
+      "keeps": "Une tige coupée tient environ une semaine en vase. Changez l'eau tous les deux jours. Les graines sèches se gardent des mois dans un endroit frais, sec et sombre.",
+      "problems": [
+        {
+          "name": "Limaces et escargots",
+          "fix": "En une nuit, les jeunes plants sont mangés jusqu'à la tige. Mettez une collerette autour de chaque jeune plant, ou semez en godets et plantez-les quand ils sont robustes."
+        },
+        {
+          "name": "Oiseaux",
+          "fix": "Les oiseaux déterrent les graines après le semis ou vident les têtes qui mûrissent. Couvrez les semis d'un filet. Mettez un sac sur les têtes que vous voulez garder."
+        },
+        {
+          "name": "Tiges couchées",
+          "fix": "Les grandes tiges penchent ou cassent avec le vent ou après la pluie. Attachez-les tôt à un tuteur solide, ou cultivez-les contre un mur ou une clôture."
+        }
+      ],
+      "source": "Culture du tournesol : RHS. pH : université du Minnesota."
+    },
+    "marigold": {
+      "about": "Les œillets d'Inde et les roses d'Inde fleurissent en orange vif et en jaune, du début de l'été jusqu'aux premières gelées. Ils vont bien en massif, en pot et entre les légumes. Ils sont faciles à cultiver, mais les limaces adorent les jeunes plants. Enlevez les fleurs fanées, et il en revient sans arrêt.",
+      "water": "Pour les œillets d'Inde, un arrosage normal suffit. Par temps sec, arrosez au pied plutôt que sur les fleurs. En été, les pots sèchent vite, alors vérifiez-les tous les jours.",
+      "feed": "Les œillets d'Inde sont peu gourmands. Une terre de jardin ordinaire leur suffit. Une terre riche ou trop d'engrais donne des feuilles plutôt que des fleurs. En pot, un engrais liquide à quelques semaines d'intervalle les aide à fleurir longtemps.",
+      "harvest": "Tous les deux ou trois jours, pincez les fleurs fanées juste sous la tête. Pour le vase, coupez-les quand les fleurs sont bien ouvertes.",
+      "keeps": "Les fleurs coupées tiennent environ une semaine en vase. Enlevez les feuilles qui tremperaient dans l'eau.",
+      "problems": [
+        {
+          "name": "Limaces et escargots",
+          "fix": "Vous trouvez des feuilles trouées et des semis disparus en une nuit. Mettez en place des plants déjà robustes, pas des tout petits. Par temps humide, protégez-les la nuit."
+        },
+        {
+          "name": "Pourriture grise",
+          "fix": "Un duvet gris apparaît sur les fleurs et les tiges quand le temps est frais et humide. Enlevez les fleurs qui pourrissent. Laissez de l'espace entre les plants pour qu'ils sèchent vite."
+        },
+        {
+          "name": "Araignée rouge",
+          "fix": "Par temps chaud et sec, les feuilles pâlissent et se couvrent de petits points, avec de fines toiles, surtout en serre et en pot. Arrosez bien les plants. Brumisez ou passez au jet le revers des feuilles."
+        }
+      ],
+      "source": "Culture de l'œillet d'Inde : RHS. pH : laboratoire des sols de l'université du Connecticut."
+    },
+    "calendula": {
+      "about": "Du début de l'été jusqu'en automne, le souci donne des fleurs orange et jaunes. Il ne vit qu'un an mais supporte le froid. Ses pétales se mangent et colorent les salades et le riz. Il pousse dans presque toutes les terres et se ressème tout seul tout autour. Semé à l'automne, il passe l'hiver et fleurit tôt l'année suivante.",
+      "water": "Une fois bien parti, le souci supporte la sécheresse. Arrosez les semis et les plantes en pot. Évitez de mouiller les feuilles pour freiner l'oïdium.",
+      "feed": "Le souci est peu gourmand. Une terre riche ou beaucoup d'engrais donne des feuilles molles et moins de fleurs. En pot, vous pouvez donner un engrais liquide une fois par mois.",
+      "harvest": "Le matin, coupez les fleurs bien ouvertes pour le vase ou pour leurs pétales. Enlevez les fleurs fanées tous les deux ou trois jours. Sinon, les plantes font des graines et arrêtent de fleurir.",
+      "keeps": "Les fleurs coupées tiennent environ une semaine en vase. Faites sécher les pétales sur du papier dans un endroit chaud et aéré, et ils se gardent des mois en bocal.",
+      "problems": [
+        {
+          "name": "Oïdium",
+          "fix": "À partir du milieu de l'été, un feutrage blanc et poudreux couvre les feuilles, surtout en terre sèche. Arrosez quand il fait sec, espacez les plants et arrachez les plus atteints. Les semis tardifs restent plus sains."
+        },
+        {
+          "name": "Puceron noir",
+          "fix": "De petits insectes noirs se regroupent au bout des pousses et sur les boutons. Enlevez-les avec les doigts ou au jet d'eau. Les coccinelles et les autres prédateurs arrivent vite."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Par temps humide, ils mangent les semis en une nuit. Protégez les jeunes plants la nuit jusqu'à ce qu'ils soient bien développés."
+        }
+      ],
+      "source": "Culture du souci : RHS. pH : université d'État de l'Utah."
+    },
+    "nasturtium": {
+      "about": "La capucine rampe sur le sol ou grimpe. Ses fleurs vives et ses feuilles poivrées se mangent. Elle réussit le mieux en terre pauvre et bien drainée. Une terre riche donne une masse de feuilles et peu de fleurs. Elle est facile à faire pousser à partir de graines, même pour les enfants.",
+      "water": "Une fois bien partie en pleine terre, la capucine supporte la sécheresse. Arrosez les semis et les plantes en pot. Si la terre reste très sèche longtemps, la floraison s'arrête.",
+      "feed": "La capucine n'a presque besoin de rien, alors ne lui donnez pas d'engrais du tout. L'engrais vous donne des feuilles au lieu des fleurs. Cultivez-la dans une terre ordinaire ou pauvre, sans compost ni fumier.",
+      "harvest": "Le matin, cueillez les jeunes feuilles et les fleurs ouvertes selon vos besoins. Cueillez les graines vertes avant qu'elles durcissent, et vous pourrez les mettre au vinaigre comme des câpres. Enlever les fleurs fanées fait venir de nouvelles fleurs.",
+      "keeps": "Les feuilles et les fleurs fanent vite. Gardez-les dans un sachet au réfrigérateur et utilisez-les dans un jour ou deux.",
+      "problems": [
+        {
+          "name": "Puceron noir",
+          "fix": "Des colonies serrées d'insectes noirs s'installent sous les feuilles et au bout des pousses. Coupez les pousses les plus atteintes ou passez-les au jet d'eau. Les coccinelles et les syrphes arrivent vite."
+        },
+        {
+          "name": "Chenilles de la piéride du chou",
+          "fix": "Des chenilles vertes dévorent les feuilles en fin d'été. Ce sont les mêmes que sur les choux. Regardez sous les feuilles et retirez-les à la main."
+        },
+        {
+          "name": "Beaucoup de feuilles, peu de fleurs",
+          "fix": "De grosses feuilles luxuriantes cachent quelques rares fleurs, à cause d'une terre riche ou d'engrais. Arrêtez l'engrais. L'année prochaine, semez-la dans un coin plus pauvre et ensoleillé."
+        }
+      ],
+      "source": "Culture de la capucine : RHS et université du Maryland."
+    },
+    "zinnia": {
+      "about": "Les zinnias sont des fleurs à couper aux couleurs vives, du plein été jusqu'aux premières gelées. Plus vous en coupez, plus ils fleurissent. Ils adorent la chaleur et le soleil, et ils ont du mal par temps froid et humide. Ils n'aiment pas qu'on dérange leurs racines. Semez-les donc là où ils fleuriront, ou dans de petits godets.",
+      "water": "Les zinnias se contentent d'un arrosage normal. Quand il fait sec, arrosez-les à fond au pied, car les feuilles mouillées favorisent l'oïdium. En été, vérifiez les pots tous les jours.",
+      "feed": "Les zinnias sont peu gourmands. Une terre ordinaire avec un peu de compost suffit, et trop d'engrais donne des pousses molles. En pot, donnez un engrais liquide toutes les deux semaines dès que la floraison commence.",
+      "harvest": "Coupez une fleur quand elle est bien ouverte et que la tige est ferme juste sous la fleur. Un test simple : quand vous la secouez, la tige ne doit pas plier. Coupez bas, juste au-dessus d'une paire de feuilles. Sur les autres pieds, enlevez les fleurs fanées pour que de nouveaux boutons continuent d'arriver.",
+      "keeps": "Les zinnias coupés tiennent environ une semaine en vase. Changez l'eau tous les deux jours.",
+      "problems": [
+        {
+          "name": "Oïdium",
+          "fix": "À la fin de l'été, un feutrage blanc et poudreux apparaît sur les feuilles. Arrosez la terre plutôt que les feuilles, laissez de la place pour que l'air circule et enlevez les feuilles les plus atteintes. Les variétés résistantes à l'oïdium aident aussi."
+        },
+        {
+          "name": "Taches sur les feuilles",
+          "fix": "Par temps humide, des taches brunes ou sombres à bord clair apparaissent sur les feuilles. Enlevez les feuilles tachées et arrosez au pied. Arrachez les plantes à la fin de la saison."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les semis en une nuit. Protégez-les la nuit, ou élevez-les en petits godets et plantez-les quand ils sont bien solides."
+        }
+      ],
+      "source": "Culture du zinnia : RHS. pH : université de Floride (IFAS)."
+    },
+    "cosmos": {
+      "about": "Le cosmos est une grande plante légère qui ne vit qu'une saison. Il a un feuillage plumeux et des fleurs qui ressemblent à des marguerites, du plein été jusqu'aux premières gelées. Elles sont parfaites pour les bouquets. Il fleurit le mieux en terre pauvre ou ordinaire. Une terre riche donne de grandes plantes pleines de feuilles avec peu de fleurs. Les variétés naines vont bien en pot.",
+      "water": "Une fois installé, le cosmos supporte la sécheresse. Arrosez les semis, les jeunes plants et les pots. Trop d'eau, comme trop d'engrais, vous donne plus de feuilles que de fleurs.",
+      "feed": "Le cosmos n'a presque besoin de rien. En pleine terre, ne lui donnez pas d'engrais. En pot, vous pouvez lui donner une fois par mois un engrais liquide riche en potasse, comme un engrais pour tomates.",
+      "harvest": "Pour le vase, coupez les tiges quand les boutons commencent à s'ouvrir, juste au-dessus d'une pousse latérale. Enlevez les fleurs fanées tous les deux ou trois jours. Sinon, la plante fait des graines et arrête de fleurir.",
+      "keeps": "Les fleurs coupées tiennent de quelques jours à une semaine en vase. Coupez-les à la fraîcheur du matin.",
+      "problems": [
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils mangent les semis et les jeunes plants en une nuit. Ne mettez en place que des plants bien solides, et protégez-les la nuit jusqu'à ce qu'ils soient bien développés."
+        },
+        {
+          "name": "Beaucoup de feuilles, peu de fleurs",
+          "fix": "Les plantes deviennent grandes et luxuriantes mais fleurissent tard et peu, à cause d'une terre riche, d'engrais ou d'ombre. Arrêtez l'engrais et continuez à enlever les fleurs fanées. L'année prochaine, choisissez un endroit plus ensoleillé, avec une terre plus pauvre."
+        },
+        {
+          "name": "Plantes qui se couchent",
+          "fix": "Les grandes plantes se couchent avec le vent et la pluie. Pincez la tête vers 30 cm pour que les plantes deviennent plus touffues. Soutenez-les avec des tuteurs ou des rames."
+        }
+      ],
+      "source": "Culture du cosmos : RHS. pH : laboratoire des sols de l'université du Connecticut."
+    },
+    "sweet_pea": {
+      "about": "Les pois de senteur grimpent et donnent des fleurs parfumées à couper dès le début de l'été. Donnez-leur des tuteurs, un filet ou un grillage où grimper. Pincez la tête quand ils font environ 10 cm, et les plants deviennent plus touffus. La seule règle : coupez sans arrêt, car dès que des gousses se forment, la floraison s'arrête. Les gousses ressemblent à des petits pois, mais elles sont toxiques.",
+      "water": "Les pois de senteur ont besoin de beaucoup d'eau. Gardez la terre humide toute la saison et arrosez copieusement par temps sec. Des racines au sec raccourcissent la floraison. Quand il fait chaud, les pots demandent de l'eau tous les jours.",
+      "feed": "Les pois de senteur sont moyennement gourmands. Avant de semer ou de planter, incorporez beaucoup de compost ou de fumier bien décomposé. Une fois qu'ils sont partis, un engrais liquide chaque semaine ou toutes les deux semaines entretient la floraison.",
+      "harvest": "Tous les deux ou trois jours, coupez des tiges le matin, quand leurs fleurs du bas sont ouvertes. Enlevez toutes les gousses que vous trouvez, sinon la plante arrête de fleurir.",
+      "keeps": "Les tiges coupées tiennent quelques jours en vase. Plus vous coupez, plus il vient de fleurs.",
+      "problems": [
+        {
+          "name": "Pucerons",
+          "fix": "Des insectes verts sur le bout des tiges et les boutons peuvent transmettre des virus qui strient et tordent la plante. Écrasez-les ou chassez-les au jet dès le début. Arrachez les plants striés et rabougris."
+        },
+        {
+          "name": "Oïdium",
+          "fix": "En fin d'été, les feuilles se couvrent d'une poudre blanche, et c'est pire en terre sèche et dans les coins serrés où l'air ne circule pas. Arrosez par temps sec et laissez l'air circuler. Coupez les parties atteintes."
+        },
+        {
+          "name": "Chute des boutons",
+          "fix": "Après des nuits froides, ou quand les racines sont au sec, les boutons jaunissent et tombent avant de s'ouvrir. Gardez la terre humide. En général, ça s'arrête quand le temps se stabilise."
+        }
+      ],
+      "source": "Culture du pois de senteur : RHS. pH : université du Missouri. Oïdium : université d'État de l'Oregon."
+    },
+    "lavender": {
+      "about": "La lavande est un petit arbuste qui reste vert toute l'année. Les abeilles adorent ses fleurs parfumées d'été, qui sèchent bien aussi. Elle a besoin de plein soleil et d'une terre pauvre qui s'égoutte vite. Une terre calcaire lui convient. Une seule chose à retenir : taillez-la chaque année après la floraison, sinon elle se dégarnit et devient ligneuse.",
+      "water": "Une fois installée, la lavande supporte bien la sécheresse. Arrosez régulièrement les jeunes plants pendant leur premier été. Ensuite, en pleine terre, elle n'a presque jamais besoin d'eau. Un pot sèche vite et doit être arrosé régulièrement en été.",
+      "feed": "La lavande n'a presque besoin de rien. Elle aime les terres pauvres, alors ne lui donnez pas d'engrais. L'engrais donne des tiges molles qui s'affaissent.",
+      "harvest": "Pour faire sécher la lavande, coupez les tiges un matin sec, quand les premières fleurs de l'épi s'ouvrent. À la fin de l'été, après la floraison, coupez les vieux épis avec environ 2,5 cm de tige feuillée. Ne coupez jamais dans le bois nu.",
+      "keeps": "Suspendez de petits bouquets tête en bas dans un endroit sombre et aéré jusqu'à ce qu'ils soient secs. Dans un bocal fermé, les fleurs séchées gardent leur parfum pendant des mois.",
+      "problems": [
+        {
+          "name": "Pourriture des racines",
+          "fix": "En terre lourde et mouillée, la plante devient grise et dépérit, souvent en hiver. Plantez-la sur une butte ou en carré surélevé, et ajoutez du gravier dans les pots. Ne laissez jamais un pot tremper dans l'eau."
+        },
+        {
+          "name": "Pied dégarni et ligneux",
+          "fix": "Les tiges deviennent nues et ligneuses, avec des fleurs seulement au bout. Taillez chaque année après la floraison. Un vieux pied dégarni ne repart pas du vieux bois, alors mieux vaut le remplacer."
+        },
+        {
+          "name": "Chrysomèle du romarin",
+          "fix": "De la fin de l'été au printemps, de petits coléoptères rayés de vert et de violet métallique mangent les feuilles et les fleurs. Leurs larves grises aussi. Ramassez-les à la main ou secouez la plante au-dessus d'une feuille de papier."
+        }
+      ],
+      "source": "Culture de la lavande : RHS. pH : UC IPM (université de Californie) et UMass Extension."
+    },
+    "field_beans": {
+      "about": "La féverole est un engrais vert d'hiver, c'est-à-dire une culture qu'on sème pour l'enfouir ensuite dans le sol. Semée à l'automne, elle couvre la terre nue tout l'hiver. Ses racines ameublissent les terres lourdes et, comme toutes les légumineuses, elle apporte de l'azote. Enfouissez-la au printemps, avant la culture suivante.",
+      "water": "La féverole n'a presque pas besoin d'eau. La pluie d'automne et d'hiver suffit, alors n'arrosez que si la terre est sèche au moment du semis.",
+      "feed": "La féverole n'a besoin d'aucun engrais. Elle fabrique son propre azote, qui reste dans le sol pour la culture suivante.",
+      "harvest": "Au printemps, à n'importe quel moment jusqu'à la floraison, coupez les plants. Hachez-les et laissez-les faner, puis enfouissez-les sur 25 cm de profondeur. Attendez environ un mois avant de semer ou de planter quoi que ce soit dans cette planche.",
+      "problems": [
+        {
+          "name": "Puceron noir",
+          "fix": "Au printemps, des colonies serrées de pucerons noirs s'installent au bout des tiges. En général, vous pouvez les laisser, car les plants seront bientôt enfouis. S'ils s'étendent, coupez les plants un peu plus tôt."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils s'abritent dans ce couvert épais, puis passent à la culture suivante. Après l'enfouissement, protégez les jeunes plants et cherchez les limaces les soirs humides."
+        }
+      ],
+      "source": "Engrais verts : RHS. pH : service d'extension d'Oregon State University."
+    },
+    "winter_rye": {
+      "about": "Le seigle est l'engrais vert le plus rustique, une culture qu'on sème pour l'enfouir ensuite dans le sol. Semé de la fin de l'été à l'automne, il continue de pousser tout l'hiver. Il retient la terre et étouffe les mauvaises herbes. Ses racines denses améliorent aussi le sol. Enfouissez-le à l'arrivée du printemps.",
+      "water": "Le seigle a besoin de peu d'eau, et la pluie suffit. N'arrosez que pour faire lever les graines si l'automne est sec.",
+      "feed": "Le seigle n'a besoin d'aucun engrais. Il pousse même en terre pauvre, sableuse ou acide. Il récupère aussi l'azote que la pluie d'hiver emporterait sinon.",
+      "harvest": "Au printemps, coupez-le tant qu'il est encore court et tendre. Hachez-le, laissez-le faner, puis enfouissez-le sur 25 cm de profondeur. Plus âgé, le seigle devient dur et repousse, et il freine la culture suivante.",
+      "problems": [
+        {
+          "name": "Petites graines qui ne lèvent pas",
+          "fix": "En se décomposant, le seigle empêche les petites graines comme les carottes et les oignons de lever. Attendez environ un mois après l'enfouissement avant de semer. Ou bien repiquez des plants ou semez de grosses graines comme les haricots."
+        },
+        {
+          "name": "Coupé trop tard",
+          "fix": "Laissé trop longtemps, le seigle devient haut et dur. Il repousse après la coupe et peut se ressemer. Coupez-le avant qu'il dépasse 30 cm environ."
+        }
+      ],
+      "source": "Culture du seigle : RHS et SARE. pH : université du Vermont."
+    },
+    "crimson_clover": {
+      "about": "Le trèfle incarnat est un engrais vert, une culture qu'on fait pour le sol. Il apporte de l'azote et couvre la terre de feuilles et de fleurs rouges que les abeilles viennent butiner. Semez-le du printemps à la fin de l'été. Semé six à huit semaines environ avant les premières gelées, il passe l'hiver et continue de pousser au printemps.",
+      "water": "Le trèfle incarnat a besoin de peu d'eau. Gardez le lit de semis humide jusqu'à la levée. Ensuite, la pluie suffit en général.",
+      "feed": "Le trèfle incarnat n'a besoin d'aucun engrais. Il fabrique son propre azote et le laisse dans le sol.",
+      "harvest": "Coupez-le quand il fleurit, avant qu'il fasse ses graines. Coupé au ras du sol, il ne repousse pas. Enfouissez-le sur 25 cm de profondeur ou laissez-le se décomposer en surface. Attendez ensuite environ un mois avant de semer.",
+      "problems": [
+        {
+          "name": "Trèfle qui se ressème",
+          "fix": "Si vous le laissez faire ses graines, il revient comme une mauvaise herbe dans vos cultures suivantes. Coupez-le pendant la floraison."
+        },
+        {
+          "name": "Limaces et escargots",
+          "fix": "Ils se cachent dans le feuillage épais, puis passent à la culture suivante. Après la coupe, protégez les jeunes plants et cherchez les limaces les soirs humides."
+        }
+      ],
+      "source": "Culture du trèfle incarnat : RHS et SARE. pH : SAREP de l'université de Californie."
+    },
+    "phacelia": {
+      "about": "La phacélie est un engrais vert rapide, au feuillage plumeux et aux fleurs bleues que les abeilles adorent. On la cultive pour le sol, et on l'enfouit ensuite. Elle couvre la terre nue, retient les éléments nutritifs qui restent et apporte de la matière organique une fois enfouie. Elle n'est parente d'aucun légume courant, alors elle trouve sa place partout dans la rotation des cultures.",
+      "water": "La phacélie a besoin de peu d'eau, et la pluie suffit en général. N'arrosez que pour faire lever un semis en terre sèche.",
+      "feed": "La phacélie n'a besoin d'aucun engrais. Elle récupère les éléments nutritifs restés dans le sol et les rend quand vous l'enfouissez.",
+      "harvest": "Coupez-la quand elle commence à fleurir. Si vous la laissez pour les abeilles, coupez-la juste après, mais toujours avant qu'elle fasse ses graines. Hachez-la et laissez-la faner quelques jours. Ensuite, enfouissez-la dans le haut du sol et attendez deux à trois semaines avant de semer. Un semis d'automne peut passer l'hiver et être enfoui à l'arrivée du printemps.",
+      "problems": [
+        {
+          "name": "Phacélie qui se ressème",
+          "fix": "Des plantules sortent partout dans la planche quand on laisse les plantes faire leurs graines. Coupez-la avant que les fleurs fanent. Arrachez ou binez les plantules pendant qu'elles sont petites."
+        },
+        {
+          "name": "Démangeaisons",
+          "fix": "Les tiges et les feuilles hérissées de poils peuvent faire rougir ou démanger la peau de certaines personnes. Portez des gants et des manches longues pour la couper et l'enfouir."
+        }
+      ],
+      "source": "La phacélie en engrais vert : RHS. pH : USDA NRCS et ministère de l'Agriculture de Colombie-Britannique."
+    },
+    "white_mustard": {
+      "about": "Sur une terre nue, la moutarde blanche couvre le sol en quelques semaines. C'est un engrais vert rapide, une culture qu'on sème puis qu'on enfouit dans le sol. Elle étouffe les mauvaises herbes et apporte de la matière organique une fois enfouie. Semez-la du printemps à la fin de l'été, entre deux cultures. Elle fait partie de la famille des choux, alors ne la cultivez pas là où la hernie du chou, une maladie des racines des choux, pose problème. Dans la rotation entre les planches, comptez-la comme un chou.",
+      "water": "La moutarde blanche a besoin de peu d'eau, et la pluie suffit en général. N'arrosez le semis que par temps sec, pour qu'il lève de façon régulière.",
+      "feed": "La moutarde n'a besoin d'aucun engrais. Elle récupère les éléments nutritifs restés dans le sol et les rend quand vous l'enfouissez.",
+      "harvest": "Coupez-la avant la floraison, en général quatre à huit semaines après le semis. Hachez les tiges et laissez-les faner quelques jours. Ensuite, enfouissez-les dans la couche supérieure du sol. Attendez deux à trois semaines avant de semer ou de planter à cet endroit.",
+      "problems": [
+        {
+          "name": "Hernie du chou",
+          "fix": "Comme elle est parente des choux, elle peut porter la hernie et garder la maladie dans le sol. Ne la semez pas là où la hernie est apparue. Ne la semez pas non plus juste avant des choux, des navets ou des radis."
+        },
+        {
+          "name": "Montée en graines",
+          "fix": "Par temps chaud, elle fleurit en quelques semaines, et ses graines lèvent ensuite comme des mauvaises herbes. Surveillez-la souvent en été et coupez-la dès les premières fleurs."
+        }
+      ],
+      "source": "Engrais vert : RHS. pH : université du Connecticut."
+    }
+  },
+  "map": {
+    "title": "Carte",
+    "description": "Où chaque culture se met en terre cette semaine, les gelées des trois prochains jours, la température du sol et l'arrosage, lieu par lieu.",
+    "crop": "Culture",
+    "layer": "Couche de la carte",
+    "place": "Autour de {{place}}",
+    "layers": {
+      "crop": "Semer ou planter maintenant",
+      "frost": "Gel et nuits froides",
+      "soil": "Température du sol",
+      "water": "Eau cette semaine"
+    },
+    "legend": {
+      "now": "Semer ou planter maintenant",
+      "month": "Semer ou planter ce mois-ci",
+      "wait": "Pas encore",
+      "over": "Trop tard",
+      "frost": "Gel dans les 3 prochains jours",
+      "ground": "Gelée au sol dans les 3 prochains jours",
+      "soilLow": "0 °C",
+      "soilHigh": "26 °C",
+      "waterLow": "1 L/m²",
+      "waterHigh": "35 L/m² ou plus",
+      "later": "Gel possible plus tard dans la semaine",
+      "cold": "Nuit la plus froide, 7 prochains jours",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Pluie contre soleil et vent, 7 prochains jours",
+      "balanceLow": "À arroser",
+      "balanceHigh": "Pluie suffisante"
+    },
+    "year": {
+      "label": "Mois",
+      "month": "Une année typique, en {{month}}",
+      "hint": "Faites glisser pour voir l'année à venir",
+      "note": "Cette semaine d'après les prévisions, les mois suivants d'après une année typique."
+    },
+    "use": "En faire mon potager",
+    "close": "Fermer",
+    "loadingPlace": "Recherche de ce lieu…",
+    "noPlace": "Pas de conseils Huerta ici.",
+    "failed": "La carte n'a pas pu se charger. Réessayez dans un instant.",
+    "search": "Rechercher une culture",
+    "noResults": "Aucune culture ne correspond",
+    "clearFilters": "Effacer les filtres",
+    "useShort": "Mon potager"
+  },
+  "planner": {
+    "title": "Mon potager",
+    "description": "Votre potager planche par planche, et ce qu'il vous demande chaque semaine : quoi semer où, soins, arrosage et récolte, calculés pour votre lieu.",
+    "sample": "Planifié pour un lieu d'exemple, {{place}}.",
+    "choosePlace": "Choisissez votre lieu",
+    "for": "Planifié pour cette semaine autour de {{place}}.",
+    "width": "Largeur",
+    "length": "Longueur",
+    "metres": "m",
+    "shapeLabel": "Forme",
+    "shape": {
+      "rect": "Rectangle",
+      "L": "En L"
+    },
+    "auto": "Planifiez pour moi",
+    "model": "Votre potager, dessiné",
+    "noRoom": "Cette taille ne laisse place à aucune planche.",
+    "beds_one": "{{count}} planche",
+    "beds_other": "{{count}} planches",
+    "plants_one": "{{count}} plant",
+    "plants_other": "{{count}} plants",
+    "allBeds": "Toutes les planches",
+    "bed": "Planche {{n}}",
+    "part": {
+      "northHalf": "moitié nord",
+      "southHalf": "moitié sud",
+      "northEnd": "bout nord",
+      "southEnd": "bout sud",
+      "middle": "milieu",
+      "eastHalf": "moitié est",
+      "westHalf": "moitié ouest",
+      "eastEnd": "bout est",
+      "westEnd": "bout ouest"
+    },
+    "unit": {
+      "plants_one": "{{count}} plant",
+      "plants_other": "{{count}} plants",
+      "cloves_one": "{{count}} gousse",
+      "cloves_other": "{{count}} gousses",
+      "sets_one": "{{count}} bulbille",
+      "sets_other": "{{count}} bulbilles",
+      "seedPotatoes_one": "{{count}} pomme de terre à planter",
+      "seedPotatoes_other": "{{count}} pommes de terre à planter",
+      "bulbs_one": "{{count}} bulbe",
+      "bulbs_other": "{{count}} bulbes",
+      "corms_one": "{{count}} corme",
+      "corms_other": "{{count}} cormes",
+      "crowns_one": "{{count}} griffe",
+      "crowns_other": "{{count}} griffes"
+    },
+    "scattered": "À la volée sur toute la planche",
+    "howMany": "Combien",
+    "spacing": "Espacement",
+    "eachWay": "Tous les {{value}} cm dans les deux sens",
+    "when": "Récolte",
+    "readyNextSpring": "Au printemps prochain ou au début de l'été",
+    "readyAround": "Vers {{month}}",
+    "nextYear": "L'an prochain",
+    "next": {
+      "cabbage": "Les choux : ils profitent de l'azote laissé par les pois et les fèves.",
+      "roots": "Racines et feuilles, comme carottes ou betteraves.",
+      "alliums": "Oignons ou ail.",
+      "legumes": "Pois et haricots.",
+      "stays": "Il reste : il revient chaque année.",
+      "cover": "N'importe quoi : un engrais vert nourrit ce qui suit.",
+      "any": "N'importe quelle culture.",
+      "other": "Une culture d'une autre famille."
+    },
+    "plantedOn": "Planté le {{date}}",
+    "notPlanted": "Pas encore planté",
+    "sownToday": "Semé aujourd'hui",
+    "plantedToday": "Planté aujourd'hui",
+    "sownOrPlantedToday": "Semé ou planté aujourd'hui",
+    "neighbours": "Voisins",
+    "noNeighbours": "Rien à surveiller à côté.",
+    "nextTo": "À côté de {{crop}}",
+    "rule": {
+      "alliumLegume": "Oignons et ail peuvent freiner pois et haricots.",
+      "blight": "Pommes de terre et tomates partagent le mildiou ; l'une contamine l'autre.",
+      "fennel": "Le fenouil freine la plupart des légumes ; donnez-lui un coin à lui.",
+      "carrotFly": "L'odeur de l'oignon aide à cacher les carottes de leur mouche.",
+      "flowers": "Les fleurs attirent pollinisateurs et prédateurs des ravageurs.",
+      "nasturtium": "Les capucines détournent pucerons et chenilles.",
+      "threeSisters": "Les trois sœurs : les haricots grimpent au maïs, la courge couvre le sol.",
+      "basil": "Un duo classique : le basilic occupe la place sous les tomates.",
+      "shade": "{{tall}} fera de l'ombre à {{short}} : les grandes plantes vont au bout nord."
+    },
+    "basis": {
+      "tradition": "Règle de jardiniers",
+      "disease": "Maladie commune",
+      "someTrials": "Quelques essais",
+      "trials": "Testé en essais",
+      "system": "Système traditionnel",
+      "sun": "Lumière du soleil"
+    },
+    "swap": "Remplacer par",
+    "goesInNow": "Se met en terre maintenant autour de {{place}}",
+    "later": "Plus tard",
+    "split": "Couper cette partie en deux",
+    "footnote": "Semis et plantations au {{date}}. Votre plan est enregistré sur votre compte.",
+    "sownOn": "Semé le {{date}}",
+    "groundLabel": "Votre façon de cultiver",
+    "ground": {
+      "raised": "Carrés surélevés",
+      "ground": "Planches en pleine terre",
+      "rows": "Rangs en plein champ"
+    },
+    "runLabel": "Planches",
+    "run": {
+      "along": "En long",
+      "across": "En large"
+    },
+    "undo": "Annuler",
+    "mergePrev": "Réunir avec la précédente",
+    "mergeNext": "Réunir avec la suivante",
+    "shorter": "Plus courte",
+    "longer": "Plus longue",
+    "lengthValue": "{{value}} m",
+    "deleteBed": "Supprimer cette planche",
+    "deleteStrip": "Supprimer cette bande",
+    "bare": "Terre nue",
+    "bareText": "Il y avait une planche ici. Remettez-en une, ou laissez la terre nue.",
+    "putBed": "Remettre une planche",
+    "strip": "Bande {{n}}",
+    "whereNorth": "Où est le nord ?",
+    "northLeft": "Tourner le nord vers la gauche",
+    "northRight": "Tourner le nord vers la droite",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
+    "zoomFit": "Voir tout le potager",
+    "styleLabel": "Que cultiver",
+    "style": {
+      "mixed": "Un potager mixte : légumes, aromatiques et fleurs",
+      "veg": "Légumes seulement",
+      "vegFlowers": "Légumes, avec des fleurs au bout de chaque planche",
+      "fruit": "Les fruits d'abord : fraises, melons, tomates, courges",
+      "herbsFlowers": "Aromatiques et fleurs"
+    },
+    "goodPairs_one": "✓ 1 paire de bons voisins",
+    "goodPairs_other": "✓ {{count}} paires de bons voisins",
+    "badPairs_one": "! 1 paire à séparer",
+    "badPairs_other": "! {{count}} paires à séparer",
+    "noBadPairs": "Aucun voisin à séparer",
+    "goodHint": "Des cultures qui s'aident côte à côte, comme le basilic près des tomates ou les fleurs près des cultures à fruits. Touchez pour les sélectionner.",
+    "badHint": "Des cultures à ne pas mettre côte à côte, comme oignons et haricots ou pommes de terre et tomates, ou une culture haute qui fait de l'ombre à une basse. Touchez pour les sélectionner.",
+    "faded": "Les plantes pâles sont prévues, pas encore plantées",
+    "selected_one": "{{count}} partie sélectionnée",
+    "selected_other": "{{count}} parties sélectionnées",
+    "clearSelection": "Tout désélectionner",
+    "noneSelected": "Touchez une planche pour la voir. Touchez-en d'autres pour les modifier ensemble.",
+    "palette": {
+      "title": "Cultures",
+      "hint": "Maintenez une culture et glissez-la sur une planche, ou sélectionnez des planches et touchez une culture.",
+      "toSelected_one": "Touchez une culture pour la mettre dans la partie sélectionnée.",
+      "toSelected_other": "Touchez une culture pour la mettre dans les {{count}} parties sélectionnées."
+    },
+    "strips_one": "{{count}} bande",
+    "strips_other": "{{count}} bandes",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Effacer",
+    "soilLabel": "Sol",
+    "soil": {
+      "sandy": "Sol sableux",
+      "loam": "Terre franche",
+      "clay": "Sol argileux"
+    },
+    "acidityLabel": "pH du sol",
+    "acidity": {
+      "acid": "Sol acide",
+      "neutral": "Sol neutre",
+      "alkaline": "Sol alcalin"
+    },
+    "soilWord": {
+      "sandy": "sableux",
+      "loam": "franc",
+      "clay": "argileux"
+    },
+    "soilHint": "Autour de {{place}}, le sol est surtout {{texture}}, pH {{ph}}.",
+    "sowIn": "Semer en {{month}}",
+    "plantIn": "Planter en {{month}}",
+    "sownOnInput": "Date de semis",
+    "plantedOnInput": "Date de plantation",
+    "forLabel": "Planifier pour",
+    "thisWeek": "Aujourd'hui",
+    "forMonth": "Planifié pour {{month}} autour de {{place}}.",
+    "forHint": "Ce qui n'est pas encore en terre est planté au moment choisi ici, et la chronologie montre sa croissance à partir de là.",
+    "readyOn": "Vers le {{date}}",
+    "timeline": {
+      "now": "Maintenant",
+      "back": "Revenir à aujourd'hui",
+      "hint": "Faites glisser pour voir votre potager dans les semaines à venir",
+      "ready": "À récolter : {{crops}}",
+      "growing": "En croissance : {{crops}}",
+      "empty": "Rien en terre",
+      "lost": "Perdu : {{crops}}"
+    },
+    "tab": {
+      "week": "À faire",
+      "garden": "Potager"
+    },
+    "warn": {
+      "coldSeeds": "Le sol est encore trop froid : les graines risquent de pourrir avant de lever.",
+      "warmSeeds": "Le sol est trop chaud : les graines risquent de ne pas lever."
+    },
+    "fate": {
+      "frost": "Le gel le tuera probablement vers le {{date}}, avant qu'il soit prêt.",
+      "frostNow": "Il peut geler ici n'importe quelle nuit, et il n'y survivra pas.",
+      "cold": "Les nuits deviennent trop froides pour lui ici vers le {{date}} : il cessera de pousser et mourra avant d'être prêt.",
+      "coldNow": "Les nuits sont déjà trop froides pour lui ici : il ne poussera pas et mourra en quelques semaines.",
+      "winter": "L'hiver ici est plus froid qu'il ne le supporte : il mourra probablement vers le {{date}}.",
+      "winterNow": "L'hiver ici est déjà plus froid qu'il ne le supporte : il ne survivra pas.",
+      "ifNow": "Mis en terre aujourd'hui",
+      "coverFrost": "Il peut encore geler jusque vers le {{date}} : couvrez-le les nuits froides.",
+      "coverWinter": "De fortes gelées restent probables jusque vers le {{date}} : couvrez-le les nuits froides.",
+      "lostAround": "Perdu vers le {{date}}"
+    },
+    "end": {
+      "lost": "Perdu",
+      "why": "Que s'est-il passé ?",
+      "cold": "Gel ou froid",
+      "pests": "Ravageurs ou maladie",
+      "sprout": "N'a pas levé",
+      "dry": "Desséché",
+      "other": "Autre chose"
+    },
+    "before": "Avant",
+    "beforeText": "{{crop}}, sorti le {{date}}"
+  },
+  "year": {
+    "title": "Calendrier",
+    "description": "Quand chaque culture se sème, se plante et se récolte chez vous, d'après votre climat.",
+    "around": "Autour de {{place}}, une année ordinaire.",
+    "noPlace": "Choisissez votre lieu pour voir son année.",
+    "crop": "Culture",
+    "sow": "Semis ou plantation",
+    "harvest": "Récolte ou floraison",
+    "thisMonth": "Ce mois-ci ({{month}})",
+    "notHere": "Pas en plein air ici : {{crops}}.",
+    "backIn": "De retour en {{month}}",
+    "note": "Les mois de semis suivent les mêmes règles que le conseil de chaque semaine, sur une année ordinaire chez vous. Les mois de récolte sont approximatifs. Une culture semée à plusieurs saisons a une ligne pour chacune. Celle qui passe l'hiver se récolte l'année suivante.",
+    "nextYear": "l'année suivante",
+    "season": {
+      "spring": "Printemps",
+      "summer": "Été",
+      "autumn": "Automne",
+      "winter": "Hiver",
+      "overwinter": "Hivernant"
+    }
+  },
+  "alerts": {
+    "more_one": "et {{count}} de plus",
+    "more_other": "et {{count}} de plus",
+    "title": "Alertes du matin",
+    "text": "Une notification vers 8 h quand votre potager a besoin de quelque chose de nouveau.",
+    "kinds": {
+      "frost": "Gel en vue",
+      "care": "Soins",
+      "water": "Arrosage et pluie",
+      "sow": "Moment de semer"
+    },
+    "homeScreen": "Sur iPhone, ajoutez d'abord Funges à l'écran d'accueil (Partager, puis Sur l'écran d'accueil) et activez-y les alertes.",
+    "unsupported": "Ce navigateur ne peut pas afficher de notifications.",
+    "denied": "Les notifications de Funges sont bloquées. Autorisez-les dans les réglages du navigateur."
+  },
+  "early": "Accès anticipé",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "Funges vous dit quoi cultiver, où le mettre, quand le planter et ce dont votre potager a besoin cette semaine, selon le climat réel de l'endroit où il se trouve.",
+    "button": "Se connecter avec Google",
+    "small": "Gratuit pendant l’accès anticipé. Nous gardons votre e-mail et vos potagers, rien d’autre, et vous pouvez les supprimer à tout moment depuis votre compte.",
+    "privacy": "Confidentialité",
+    "working": "Connexion en cours…",
+    "doneElsewhere": "Vous êtes connecté. Revenez à l'application Funges.",
+    "failed": "La connexion n'a pas abouti.",
+    "retry": "Réessayer"
+  },
+  "account": {
+    "title": "Compte Huerta",
+    "signedInAs": "Connecté en tant que {{email}}",
+    "signOut": "Se déconnecter",
+    "delete": "Supprimer le compte",
+    "deleteTitle": "Supprimer votre compte ?",
+    "deleteText": "Vos potagers et vos alertes disparaissent avec lui, sur tous vos appareils. C'est définitif.",
+    "deleteConfirm": "Supprimer définitivement",
+    "cancel": "Annuler",
+    "failed": "Cela n'a pas fonctionné. Vérifiez votre connexion et réessayez."
+  },
+  "gardens": {
+    "label": "Vos potagers",
+    "default": "Mon potager",
+    "new": "Nouveau potager",
+    "rename": "Renommer",
+    "name": "Nom",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer ce potager",
+    "deleteText": "Son plan disparaît aussi, sur tous vos appareils.",
+    "offline": "Impossible de joindre Funges. Réessayez une fois en ligne.",
+    "numbered": "Potager {{n}}"
+  },
+  "guide": {
+    "title": "Pour commencer",
+    "hide": "Masquer",
+    "place": {
+      "title": "Où est votre potager ?",
+      "text": "Trouvez-le sur la carte, pour que tout ici soit calculé pour votre propre lieu.",
+      "action": "Le trouver sur la carte"
+    },
+    "plan": {
+      "title": "Planifiez vos planches",
+      "text": "Nous avons rempli vos planches avec ce qui se met en terre maintenant chez vous. Touchez une planche, puis une culture, pour la changer.",
+      "keep": "Garder ce plan",
+      "empty": "Rien ne se met en terre chez vous en ce moment. Touchez une planche, puis une culture : Huerta la date pour quand elle pourra aller en terre."
+    },
+    "sow": {
+      "title": "Semez et cochez",
+      "text": "La liste de la semaine dit quoi semer, où et comment. Cochez chaque ligne une fois en terre, et Huerta suit la suite."
+    },
+    "step": "Étape {{n}} sur 3"
+  },
+  "views": {
+    "all": "Tout",
+    "harvest": "À récolter",
+    "none": "Rien cette semaine.",
+    "until": "Jusqu'en {{month}}",
+    "allYear": "Toute l'année",
+    "allGardens": "Toutes les cultures"
+  },
+  "landing": {
+    "headline": "Votre potager, semaine après semaine",
+    "intro": "Quoi semer, planter, arroser et récolter chez vous, d'après la prévision de cette nuit",
+    "headerLink": "Quoi semer maintenant",
+    "cta": "Planifier mon potager",
+    "week": {
+      "heading": "Il vous dit quoi faire cette semaine",
+      "body": "Chaque tâche datée pour votre potager : quand semer, quand planter, quand arroser et quand protéger du gel. Cochez-la une fois faite",
+      "title": "Cette semaine",
+      "plant": {
+        "job": "Plantez l'ail",
+        "why": "Le sol est descendu à 12 °C, c'est idéal"
+      },
+      "water": {
+        "job": "Arrosez la laitue",
+        "why": "Six jours sans pluie"
+      },
+      "frost": {
+        "job": "Couvrez les blettes jeudi",
+        "why": "Gel probable cette nuit-là"
+      }
+    },
+    "coverage": "Pour les potagers d'Europe et d'Amérique du Nord",
+    "journey": "De la graine à l'assiette",
+    "plan": {
+      "heading": "Planifier",
+      "body": "Dessinez vos planches et obtenez un plan adapté à votre lieu et à la saison",
+      "link": "Planifier mon potager"
+    },
+    "plant": {
+      "heading": "Semer et planter",
+      "body": "Chaque culture quand votre sol est prêt, pas quand le sachet le dit",
+      "link": "Quoi semer maintenant"
+    },
+    "care": {
+      "heading": "Entretenir",
+      "body": "Gel en approche ou semaine sèche : la carte le montre pour chez vous",
+      "link": "Ouvrir la carte du potager"
+    },
+    "harvest": {
+      "heading": "Récolter",
+      "body": "Voyez quand chaque culture sera prête, selon la chaleur de vos semaines",
+      "link": "Ouvrir le calendrier"
+    },
+    "closing": "Commencez votre potager",
+    "early": "Huerta est en accès anticipé : ses conseils s'améliorent chaque semaine.",
+    "feedback": "Dites-moi ce qui cloche !"
+  },
+  "page": {
+    "title": "{{name}} : {{start}}, entretien et {{end}}",
+    "start": {
+      "sow": "semis",
+      "plant": "plantation"
+    },
+    "end": {
+      "vegetable": "récolte",
+      "fruit": "récolte",
+      "herb": "cueillette",
+      "flower": "floraison",
+      "cover": "enfouissement"
+    },
+    "signIn": "Connectez-vous pour planifier votre potager",
+    "home": "Huerta",
+    "allCrops": "Toutes les cultures"
+  }
+}

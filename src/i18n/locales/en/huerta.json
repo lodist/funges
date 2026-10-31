@@ -1,0 +1,2385 @@
+{
+  "title": "Crops",
+  "description": "Every crop: whether it goes in this week around your town, how to grow it and what to watch for.",
+  "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
+  "around": "Around {{place}}, {{day}}",
+  "change": "Change place",
+  "find": {
+    "placeholder": "Search for a crop",
+    "none": "No crops found",
+    "noneHelp": "Try another name, or clear the search and filters.",
+    "clear": "Clear"
+  },
+  "noPlace": "Huerta has no advice for this spot yet: it covers Europe and the contiguous United States.",
+  "loadFailed": "The advice could not be loaded. Try again in a moment.",
+  "picker": {
+    "title": "Where is your garden?",
+    "help": "Use your location, or search for the nearest town or village. The advice is for the area around it.",
+    "locate": "Use my location",
+    "locating": "Finding you…",
+    "locateFailed": "Your location could not be found. Search for your town instead.",
+    "search": "Town or village",
+    "placeholder": "Start typing a name",
+    "noResults": "No town by that name",
+    "searchFailed": "The town search can't be reached right now. Try again in a moment, or use your location."
+  },
+  "count_one": "{{count}} crop",
+  "count_other": "{{count}} crops",
+  "frost": {
+    "none": "No frost in the next 3 days",
+    "ground_frost": "Ground frost possible in the next 3 days: cover tender plants",
+    "frost": "Frost in the next 3 days: protect tender plants",
+    "noneWeek": "No frost in the next 7 days"
+  },
+  "week": {
+    "label": "This week",
+    "soil": "Soil",
+    "nights": "Nights",
+    "rain": "Rain this week",
+    "water": "Watering needed",
+    "noWater": "None needed",
+    "lastFrost": "Last frost here usually around {{date}}",
+    "firstFrost": "First frost usually around {{date}}",
+    "noFrostDates": "Frost is rare here",
+    "later": {
+      "frost": "Frost possible later this week: {{night}} night",
+      "ground_frost": "Ground frost possible later this week: {{night}} night"
+    },
+    "todo": {
+      "title": "To do this week",
+      "frost": {
+        "frost": "Frost in the next 3 days",
+        "ground_frost": "Ground frost in the next 3 days",
+        "text": "Cover {{crops}} on the cold nights."
+      },
+      "laterFrost": {
+        "text": "Have covers ready for {{crops}}.",
+        "title": "Frost possible {{night}} night"
+      },
+      "water": {
+        "title": "Water about {{mm}} L/m² this week",
+        "text": "The rain won't make up for what sun and wind take. Two good soakings beat a daily sprinkle.",
+        "sandy": "Sandy soil dries out fast: give it in three or four smaller waterings through the week.",
+        "clay": "Clay holds water: one deep soaking, then wait until the top few centimetres are dry."
+      },
+      "rain": {
+        "title": "Rain this week, about {{mm}} mm",
+        "text": "No need to water the beds."
+      },
+      "plantNow": {
+        "title": "From your plan, ready to go in"
+      },
+      "sowAgain": {
+        "title": "{{crop}}: sow another row",
+        "text": "The last went in {{weeks}} weeks ago. Sowing again keeps the harvest coming."
+      },
+      "from": {
+        "forecast": "From the forecast",
+        "plan": "From your plan",
+        "soil": "From your soil",
+        "climate": "From your place's climate"
+      },
+      "nothing": "Nothing your garden needs from you this week.",
+      "openPlanner": "Open My garden",
+      "stage": {
+        "thin": {
+          "title": "{{crop}}: thin the seedlings",
+          "text": "Leave one every {{cm}} cm, so each has room to grow."
+        },
+        "support": {
+          "title": "{{crop}}: put up supports",
+          "text": "Canes, netting or twiggy sticks to climb, before they flop. Dwarf kinds can do without."
+        },
+        "tieTomato": {
+          "title": "{{crop}}: tie in and pinch out",
+          "text": "Tie the stem to its cane and pinch out the side shoots, once a week. Bush kinds need neither."
+        },
+        "earthUp": {
+          "title": "{{crop}}: earth up",
+          "text": "Draw soil up around the stems, leaving the tops showing. Potatoes in the light turn green."
+        },
+        "blanch": {
+          "title": "{{crop}}: earth up the stems",
+          "text": "Draw soil up around them a little at a time, for longer white stems."
+        },
+        "net": {
+          "title": "{{crop}}: keep under netting",
+          "text": "Fine netting keeps cabbage white butterflies and pigeons off."
+        },
+        "pinchBeans": {
+          "title": "{{crop}}: pinch out the tips",
+          "text": "Now the first pods are forming. It keeps blackfly away."
+        },
+        "pinchSweetPea": {
+          "title": "{{crop}}: pinch out the tips",
+          "text": "Just above the third pair of leaves, for bushier plants and more flowers."
+        },
+        "feed": {
+          "title": "{{crop}}: feed every week or two",
+          "text": "Now it is flowering and setting fruit, a high-potash feed such as tomato feed keeps the crop coming."
+        },
+        "stake": {
+          "title": "{{crop}}: stake the stems",
+          "text": "Firm the soil around them and tie tall stems to a stake before the autumn winds."
+        },
+        "harvestSoon": {
+          "title_one": "{{crop}}: ready in about a week",
+          "title_other": "{{crop}}: ready in about {{count}} weeks",
+          "text": "Worked out from the warmth it has had since it went in."
+        },
+        "ripen": {
+          "title": "{{crop}}: water less",
+          "text_one": "Let the bulbs ripen. They are ready to lift in about a week, once the leaves turn yellow.",
+          "text_other": "Let the bulbs ripen. They are ready to lift in about {{count}} weeks, once the leaves turn yellow."
+        },
+        "harvest": {
+          "title": "{{crop}}: ready to harvest",
+          "text": "It has had the warmth it needs since it went in."
+        }
+      },
+      "soil": {
+        "lime": {
+          "title": "{{crops}}: lime the bed first",
+          "text": "On acid soil the cabbage family gets clubroot. Lime raises the pH: spread it a few weeks before planting, never together with manure."
+        },
+        "scab": {
+          "title": "{{crops}}: no lime this year",
+          "text": "On alkaline soil potatoes get scab. Leave out lime and fresh manure and keep the soil moist while the tubers form."
+        },
+        "forking": {
+          "title": "{{crops}}: loosen the clay",
+          "text": "Roots fork in heavy clay. Dig the row deep and free of stones, with some compost, or grow them in a raised bed or short-rooted kinds."
+        }
+      },
+      "done": "Done",
+      "sow": {
+        "title": "{{crop}}: sow this week"
+      },
+      "plant": {
+        "title": "{{crop}}: plant this week"
+      },
+      "forgot": {
+        "title": "{{crop}}: planned for {{date}}",
+        "text": "Did it go in? Tick it off so Huerta can follow how it grows."
+      },
+      "tooLate": {
+        "title": "{{crops}}: too late now",
+        "text": "Pick something else for its beds, or let “Plan it for me” fill them."
+      },
+      "fate": {
+        "lost": "{{crops}}: won't survive here",
+        "soon": "{{crops}}: won't make it past {{date}}",
+        "last": "Pick the last {{crops}} before {{date}}",
+        "frost": "Frost usually comes here by then and they can't take it.",
+        "frostNow": "Frost is likely here any night now and they can't take it.",
+        "cold": "The nights here get too cold for them by then.",
+        "coldNow": "The nights here are too cold for them now: they won't grow.",
+        "winter": "Winter here gets colder than they can take by then.",
+        "winterNow": "Winter here is already colder than they can take.",
+        "clear": "Use the bed for something that grows now.",
+        "pick": "Pick what you can before then.",
+        "replace": "They won't be ready in time: use the bed for something that grows now."
+      },
+      "over": {
+        "title": "{{crops}}: done for this year?",
+        "text": "Clear the bed and it's free for what can go in next."
+      },
+      "end": {
+        "harvested": "Harvested",
+        "allPicked": "All picked",
+        "finished": "Finished",
+        "dugIn": "Dug in",
+        "cleared": "Cleared"
+      }
+    },
+    "short": {
+      "soil": "Soil",
+      "nights": "Nights",
+      "rain": "Rain",
+      "water": "Watering",
+      "lastFrost": "Last frost ~{{date}}",
+      "firstFrost": "First frost ~{{date}}"
+    },
+    "coming": {
+      "title": "Coming up",
+      "ready": "{{crop}}: harvest time",
+      "sow": "{{crop}}: sow",
+      "plant": "{{crop}}: plant",
+      "wait": "{{crop}}: {{reason}}",
+      "waiting": "Waiting",
+      "note": "Harvest dates are approximate, from the usual temperatures at your place."
+    },
+    "done": {
+      "title": "Done this week",
+      "undo": "Undo",
+      "sown": "{{crop}}: sown {{date}}",
+      "planted": "{{crop}}: planted {{date}}"
+    },
+    "season": {
+      "title": "This season",
+      "forget": {
+        "remove": "Remove",
+        "label": "Remove {{crop}} from this season's record",
+        "ask": "Remove it from the record?",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "entries_one": "{{count}} entry",
+      "entries_other": "{{count}} entries",
+      "harvested": "In {{from}}, out {{to}}",
+      "lost": "In {{from}}, lost {{to}} · {{why}}",
+      "said": "we said {{date}}",
+      "rate": "How did it do: {{crop}}",
+      "rating": {
+        "1": "Poor",
+        "2": "OK",
+        "3": "Good"
+      }
+    }
+  },
+  "units": {
+    "celsius": "{{value}} °C",
+    "mm": "{{value}} mm",
+    "litres": "{{value}} L/m²"
+  },
+  "now": {
+    "title": "Sow or plant now",
+    "none": "Nothing to sow or plant here this week."
+  },
+  "waiting": {
+    "title": "Not yet"
+  },
+  "over": {
+    "title": "Too late",
+    "show": "Show all {{count}}"
+  },
+  "how": {
+    "sow": "Sow",
+    "plant": "Plant"
+  },
+  "status": {
+    "now": "Now",
+    "wait_frost": "Frost still likely",
+    "wait_soil": "Soil still too cold",
+    "wait_warm": "Nights still too cold",
+    "too_warm": "Soil too warm for now",
+    "too_late": "Too late",
+    "not_here": "Not outdoors here",
+    "wait_autumn": "In autumn",
+    "wait_spring": "In spring",
+    "wait_days": "Days too long for now"
+  },
+  "crops": {
+    "garlic": "Garlic",
+    "broad_beans": "Broad beans",
+    "lettuce": "Lettuce",
+    "spinach": "Spinach",
+    "peas": "Peas",
+    "radish": "Radish",
+    "carrot": "Carrot",
+    "beetroot": "Beetroot",
+    "chard": "Chard",
+    "kale": "Kale",
+    "cabbage": "Cabbage",
+    "broccoli": "Broccoli",
+    "onion_sets": "Onion sets",
+    "potato": "Potato",
+    "tomato": "Tomato",
+    "pepper": "Pepper",
+    "aubergine": "Aubergine",
+    "cucumber": "Cucumber",
+    "courgette": "Courgette",
+    "pumpkin": "Pumpkin",
+    "melon": "Melon",
+    "green_beans": "Green beans",
+    "sweetcorn": "Sweetcorn",
+    "basil": "Basil",
+    "parsley": "Parsley",
+    "coriander": "Coriander",
+    "sunflower": "Sunflower",
+    "marigold": "Marigold",
+    "sweet_pea": "Sweet pea",
+    "onion": "Onion from seed",
+    "leek": "Leek",
+    "cauliflower": "Cauliflower",
+    "brussels_sprouts": "Brussels sprouts",
+    "kohlrabi": "Kohlrabi",
+    "rocket": "Rocket",
+    "lambs_lettuce": "Lamb's lettuce",
+    "chicory": "Radicchio and endive",
+    "fennel": "Florence fennel",
+    "parsnip": "Parsnip",
+    "turnip": "Turnip",
+    "celery": "Celery",
+    "chilli": "Chilli",
+    "winter_squash": "Winter squash",
+    "watermelon": "Watermelon",
+    "strawberry": "Strawberries",
+    "asparagus": "Asparagus",
+    "rhubarb": "Rhubarb",
+    "artichoke": "Globe artichoke",
+    "dill": "Dill",
+    "chervil": "Chervil",
+    "chives": "Chives",
+    "thyme": "Thyme",
+    "rosemary": "Rosemary",
+    "oregano": "Oregano",
+    "sage": "Sage",
+    "mint": "Mint",
+    "tulip": "Tulips",
+    "daffodil": "Daffodils",
+    "crocus": "Crocus",
+    "calendula": "Calendula",
+    "nasturtium": "Nasturtium",
+    "zinnia": "Zinnia",
+    "cosmos": "Cosmos",
+    "lavender": "Lavender",
+    "field_beans": "Field beans",
+    "winter_rye": "Winter rye",
+    "crimson_clover": "Crimson clover",
+    "phacelia": "Phacelia",
+    "white_mustard": "White mustard"
+  },
+  "kinds": {
+    "all": "All",
+    "vegetable": "Vegetables",
+    "fruit": "Fruit",
+    "herb": "Herbs",
+    "flower": "Flowers",
+    "cover": "Green manures"
+  },
+  "sheet": {
+    "sowNow": "Sow now",
+    "plantNow": "Plant now",
+    "week": "This week around {{place}}",
+    "why": {
+      "soilRange": "Soil {{soil}} °C. It goes in between {{min}} and {{max}} °C.",
+      "soilFrom": "Soil {{soil}} °C. It goes in from {{min}} °C.",
+      "soilLow": "Soil {{soil}} °C. It needs at least {{min}} °C.",
+      "soilHigh": "Soil {{soil}} °C. It goes in below {{max}} °C.",
+      "nights": "Nights {{nights}} °C. It needs nights above {{night}} °C.",
+      "frost": "Frost is still likely here.",
+      "late": "Its time here is over for now.",
+      "notHere": "Summers here are too cool for it outdoors.",
+      "autumn": "Here it goes in in autumn.",
+      "spring": "Here it goes in in spring.",
+      "warmSeason": "The warm nights it needs haven't begun here yet.",
+      "noFrost": "No frost is likely before it's ready.",
+      "hardy": "It gets through the frosts here.",
+      "frostSoon": "Frost in the next 3 days.",
+      "frostLater": "Frost possible on {{night}} night.",
+      "longDays": "The days are too long: sown now, it would bolt.",
+      "heat": "Too warm for it now: it goes in when the summer heat eases.",
+      "coldSeason": "The soil here is usually still too cold for it at this time of year."
+    },
+    "how": {
+      "sow": "How to sow",
+      "plant": "How to plant"
+    },
+    "facts": {
+      "depth": "Depth",
+      "spacing": "Spacing",
+      "place": "Place",
+      "ready": "Ready",
+      "height": "Height",
+      "howMany": "How many"
+    },
+    "depthCm": "{{value}} cm deep",
+    "depthPot": "As deep as it sat in its pot",
+    "scatter": "Scatter thinly and rake in",
+    "apart": "{{value}} cm apart",
+    "apartRows": "{{value}} cm apart, rows {{rows}} cm apart",
+    "sun": {
+      "full": "Full sun",
+      "part": "Sun or light shade"
+    },
+    "ready": {
+      "weeks_one": "In about {{count}} week",
+      "weeks_other": "In about {{count}} weeks",
+      "months_one": "In about {{count}} month",
+      "months_other": "In about {{count}} months",
+      "flowers_one": "Flowers in about {{count}} week",
+      "flowers_other": "Flowers in about {{count}} weeks",
+      "cover_one": "Covers the soil in about {{count}} week",
+      "cover_other": "Covers the soil in about {{count}} weeks",
+      "spring_flowers": "Flowers next spring",
+      "next_year": "Crops from next year",
+      "second_year": "Pull stalks from its second year",
+      "third_year": "Cut spears from its third spring",
+      "perennial": "Comes back every year",
+      "next_year_at": "From {{month}}, the year after planting",
+      "second_year_at": "Stalks from {{month}} of its second year",
+      "third_year_at": "Spears from {{month}} of its third spring",
+      "perennial_at": "From {{month}}, every year",
+      "perennial_all": "All year round, every year",
+      "spring_flowers_at": "Flowers from {{month}}, the spring after planting"
+    },
+    "source": "Growing facts: RHS, UC ANR and seed-company sowing guides.",
+    "year": "Its year around {{place}}"
+  },
+  "grow": {
+    "weather": "Cold, warmth and soil",
+    "care": "Looking after it",
+    "goodWith": "Good next to",
+    "apartFrom": "Keep apart from",
+    "harvest": {
+      "vegetable": "Harvest and keeping",
+      "fruit": "Harvest and keeping",
+      "herb": "Picking and keeping",
+      "flower": "Cutting and after flowering",
+      "cover": "Cutting and digging in"
+    },
+    "problems": "What can go wrong",
+    "facts": {
+      "frost": "Frost",
+      "warmth": "Warmth",
+      "ph": "Soil pH",
+      "water": "Water",
+      "feed": "Feeding",
+      "pot": "In a pot",
+      "nextYear": "Next year in its bed"
+    },
+    "frost": {
+      "tender": "A frost kills it.",
+      "half_hardy": "It takes a light frost.",
+      "hardy": "It takes hard frost.",
+      "to": "It takes frost down to about {{value}} °C."
+    },
+    "warmth": {
+      "sow": "Comes up in soil from {{min}} °C.",
+      "sowRange": "Comes up in soil from {{min}} to {{max}} °C.",
+      "plant": "Plant it out once the soil reaches {{min}} °C.",
+      "nights": "It needs nights above {{night}} °C."
+    },
+    "ph": {
+      "range": "Best at pH {{from}} to {{to}}.",
+      "acid": "Your soil is more acid than it likes: spread garden lime a few weeks before planting.",
+      "alkaline": "Your soil is more alkaline than it likes: dig in plenty of compost.",
+      "fits": "Your soil suits it."
+    },
+    "pot": "A pot at least {{value}} cm across.",
+    "noPot": "Better in the ground.",
+    "perPerson": "{{from}}–{{to}} plants per person to eat fresh",
+    "perPersonKeep": "{{from}}–{{to}} plants per person to eat fresh, {{keepFrom}}–{{keepTo}} to keep some for winter",
+    "garlic": {
+      "about": "Every clove you plant grows into a whole new bulb. Plant single cloves in autumn or early spring. Most kinds need a spell of cold before they split into cloves. That is why autumn planting gives you the biggest bulbs.",
+      "water": "Garlic needs normal watering. Water it in dry spells in spring and early summer, while the bulbs are swelling. Stop once the leaves start to turn yellow. Always water the soil, not the leaves.",
+      "feed": "Garlic needs an average amount of food. Dig in about two bucketfuls of well-rotted manure or compost per square metre before planting. That is usually all it needs.",
+      "harvest": "Dig the bulbs up with a fork once the leaves turn yellow. Autumn-planted garlic is ready in early summer, spring-planted garlic a bit later. Don't wait too long, or the bulbs split open and won't keep well.",
+      "keeps": "Dry the bulbs in a single layer for two to four weeks, in the sun or an airy shed. Then keep them somewhere cool and dry. Hardneck types keep four to six months, softneck types up to a year.",
+      "problems": [
+        {
+          "name": "Rust",
+          "fix": "Raised orange spots appear on the leaves, worst in damp weather. Space the plants out and water the soil, not the leaves. Clear the leaves away at harvest."
+        },
+        {
+          "name": "White rot",
+          "fix": "The leaves turn yellow and wilt while a fluffy white mould grows on the base of the bulb. There is no cure, so dig up the sick plants and put them in the bin. Don't grow garlic, onions or leeks in that bed for many years."
+        },
+        {
+          "name": "Bulbs without cloves",
+          "fix": "You get one round bulb instead of cloves, usually because the winter wasn't cold enough. The bulb is still good to eat. Plant in autumn next time."
+        }
+      ],
+      "source": "Garlic care: RHS. How many to grow: Kansas State extension. pH: University of Minnesota extension."
+    },
+    "broad_beans": {
+      "about": "Broad beans are the first beans of the year, big and tender inside fat pods. Sow them in autumn, or from late winter into spring. Tall kinds need a stake at each corner of the row with string run around them. Once the first pods form, pinch off the plant tips to keep blackfly away.",
+      "water": "Normal watering is all they need. In the ground, soak them well when flowering starts and again two weeks later. Pots dry out fast and need water often.",
+      "feed": "They need very little food. Like all beans, they add nitrogen to the soil, so in the ground they need no feed at all. In a pot, give a high-potassium liquid feed every two weeks from the first flowers.",
+      "harvest": "Pick the pods when they are full but the beans inside are still small. The scar on each bean should be white or green, not black. Check the lower pods every few days, because they ripen fast.",
+      "keeps": "Eat the shelled beans soon after picking. To keep them longer, blanch and freeze them.",
+      "problems": [
+        {
+          "name": "Blackfly",
+          "fix": "In late spring, small black aphids crowd onto the soft shoot tips. Pinch off the tips once the first pods form. Squash or wash off any that are left."
+        },
+        {
+          "name": "Chocolate spot",
+          "fix": "Dark brown spots appear on leaves and stems, worst in damp weather and on crowded plants. Give the plants room and don't add any nitrogen feed. Clear away the old plants after harvest."
+        },
+        {
+          "name": "Mice",
+          "fix": "Seeds sown outdoors in autumn and winter vanish because mice dig them up and eat them. Start the seeds in pots under cover instead, then plant them out."
+        }
+      ],
+      "source": "Broad bean care: RHS. pH: Oregon State University and University of Connecticut extension."
+    },
+    "lettuce": {
+      "about": "With loose-leaf lettuce you pick a few leaves at a time for weeks. Hearting kinds are cut whole once the heart is firm. Lettuce grows fast in cool weather but runs to seed when it's hot. So sow a short row every two to three weeks, not all at once.",
+      "water": "Lettuce needs a lot of water, so keep the soil moist all the time. In a dry spell the leaves turn bitter and the plants bolt, shooting up a flower stem. Water in the morning, not the evening, to keep slugs and mould down.",
+      "feed": "It needs little food. If compost went in before sowing, plants in the ground need no feeding. In a pot, give a general liquid feed every two weeks in summer.",
+      "harvest": "On loose-leaf types, pick the outer leaves once they are about 10 cm long. Or cut the whole plant down to a 2.5 cm stump and let it grow back. Cut hearting types at the base once the heart feels firm. Pick in the morning, when the leaves are crisp.",
+      "keeps": "Eat butterhead lettuces soon. Crisphead types keep longer in a bag in the fridge.",
+      "problems": [
+        {
+          "name": "Slugs and snails",
+          "fix": "You find ragged holes and slime trails, worst on seedlings in damp weather. Pick the slugs and snails off at dusk and water in the morning."
+        },
+        {
+          "name": "Bolting",
+          "fix": "After heat or dry soil, a tall flower stem shoots up from the centre and the leaves turn bitter. Water regularly and sow summer lettuce in light shade. Pick the plants before they get old."
+        },
+        {
+          "name": "Downy mildew",
+          "fix": "In cool, damp weather, angular yellow patches appear on top of the leaves with white fuzz underneath. Space the plants so air can move and water the soil, not the leaves. Pick off the affected leaves."
+        }
+      ],
+      "source": "Lettuce care: RHS. How many to grow: University of Missouri and Kansas State extension. pH: Washington State University extension."
+    },
+    "lambs_lettuce": {
+      "about": "This small salad stands the cold and gives mild leaves in autumn, winter and early spring, when little else is fresh. It grows slowly and stays low, so keep the bed weeded. The seed won't come up in warm soil. That's why most sowing is done in late summer and early autumn.",
+      "water": "Lamb's lettuce needs normal watering. Water it regularly in dry weather, because uneven moisture makes the leaves tough. Outdoors in winter it rarely needs watering.",
+      "feed": "It needs very little feeding. Any reasonable soil will do without extra feed, especially after a summer crop that was well fed.",
+      "harvest": "Cut whole plants at the base. Or pick a few outer leaves from each plant and new ones grow from the centre. Keep picking through winter in mild spells. Under a cloche or fleece it keeps growing for longer.",
+      "keeps": "The leaves keep 5 to 7 days in the fridge. Wash them just before you use them.",
+      "problems": [
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat the low plants, mostly in damp weather. Pick them off at dusk. Keep the bed free of weeds, because that's where they hide."
+        },
+        {
+          "name": "Aphids",
+          "fix": "Small green or black insects sit on the young leaves, which curl and weaken. Rub them off or wash them away with a strong jet of water."
+        },
+        {
+          "name": "Seeds not coming up",
+          "fix": "Nothing comes up, because above about 21 °C the seed just rests and waits. Sow again when the weather cools. Keep the soil moist until the seedlings appear."
+        }
+      ],
+      "source": "Lamb's lettuce care: RHS and Utah State University extension. pH and keeping: Utah State University extension."
+    },
+    "rocket": {
+      "about": "Rocket's peppery leaves are ready four to six weeks after sowing. Salad rocket lives only one season and soon flowers, so sow a little every few weeks. Wild rocket comes back every year and keeps giving leaves through summer and autumn.",
+      "water": "It needs normal watering. In dry spells keep the soil moist, because dry soil makes it flower and go to seed early. In warm weather, a pot can need water every day.",
+      "feed": "Rocket needs very little. It grows quickly in most soils and in fresh potting compost, with no feeding.",
+      "harvest": "Pick a few leaves from each plant, little and often. That keeps new ones coming. Once the plant flowers, the leaves turn tough and hot. The flowers are good to eat in salads.",
+      "keeps": "It's best eaten soon. The leaves keep a few days in a bag in the fridge.",
+      "problems": [
+        {
+          "name": "Flea beetles",
+          "fix": "The leaves get lots of small round holes, worst in warm, dry spells. The damage mostly just spoils the look. Keep seedlings watered and cover them with fine insect mesh."
+        },
+        {
+          "name": "Bolting",
+          "fix": "Flower stems shoot up early in hot, dry weather or when the plants are crowded. Thin the seedlings and water well. Sow summer crops in light shade."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat the seedlings and young plants. Pick them off at dusk and protect seedlings in damp weather."
+        }
+      ],
+      "source": "Rocket care: RHS. pH: University of Delaware and Oregon State University extension."
+    },
+    "spinach": {
+      "about": "You can pick spinach as baby leaves about a month after sowing, or full-size after about two. It likes cool weather and runs to seed in heat and long summer days. So sow it in spring and late summer. For summer, choose a bolt-resistant variety, one that is slow to run to seed.",
+      "water": "Spinach needs a lot of water. Water it regularly in dry weather and never let a pot dry out, or it bolts and runs to seed. Water in the morning.",
+      "feed": "Its food needs are average. Dig in compost or well-rotted manure before sowing. On poor soil, rake in a general fertiliser as well.",
+      "harvest": "Pick a few outer leaves from each plant every week or so. That keeps new ones coming. Or cut the whole crop just above the base and it will grow back once. Pull out any plants that start to flower.",
+      "keeps": "Spinach is best eaten fresh, but it keeps a few days in a bag in the fridge. To freeze it, blanch the leaves in boiling water for 2 minutes. Cool them in iced water, then pack them.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "After heat, dry soil or long days, a flower stalk appears and the leaves turn bitter. Keep the soil moist and grow bolt-resistant varieties. Pull up plants that have started to flower."
+        },
+        {
+          "name": "Downy mildew",
+          "fix": "In cool, humid weather, yellow patches appear on the leaves with grey-purple fuzz underneath. Thin out the plants so air can move and water in the morning. Pick off the affected leaves."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "Slugs and snails eat the soft young leaves. Pick them off at dusk and water in the morning. Keep the weeds down too."
+        }
+      ],
+      "source": "Spinach care: RHS. How many to grow: University of Missouri and Kansas State extension. pH: Washington State University extension. Freezing: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "peas": {
+      "about": "Some peas are for shelling. Others, mangetout and sugar snaps, are eaten pod and all. Sow from early spring. All but the smallest kinds climb with little curly tendrils, so give them netting or twiggy sticks from the start.",
+      "water": "Peas need normal watering. Give them a good drink once they start flowering and again two weeks later, so the pods swell. Water the soil, not the leaves. Pots need watering often.",
+      "feed": "Peas need little food. They make their own nitrogen, so in the ground they need no feed. In a pot, give a high-potassium liquid feed every two weeks from the first flowers.",
+      "harvest": "Pick shelling peas when the pods are well filled. Pick mangetout and sugar snaps at about 7.5 cm long. Start at the bottom of the plant and pick every few days, or it stops making new pods.",
+      "keeps": "Peas lose their sweetness fast. Eat them the day you pick them, or blanch and freeze them straight away.",
+      "problems": [
+        {
+          "name": "Pea moth",
+          "fix": "You find small caterpillars inside the pods, often only when you shell them. The moth flies in early summer, so very early and late sowings miss it. Fine insect mesh keeps it out."
+        },
+        {
+          "name": "Powdery mildew",
+          "fix": "A white powder covers the leaves, mostly in dry weather in late summer. Keep the soil moist and leave room between the rows. Pull out plants that have finished."
+        },
+        {
+          "name": "Mice and birds",
+          "fix": "Mice dig up the seeds and pigeons eat the young plants. Start seeds in pots under cover and protect the rows with netting."
+        }
+      ],
+      "source": "Pea care: RHS. How many to grow: Kansas State extension. pH: University of Minnesota extension."
+    },
+    "radish": {
+      "about": "No root crop is quicker. Radishes are crisp, peppery and ready four to six weeks after sowing. Sow a short row every couple of weeks for a steady supply. Spring and late summer sowings do best, because summer heat makes the plants flower and the roots hot. They fit nicely in the gaps between slower vegetables.",
+      "water": "Radishes need normal watering, but keep it steady so the roots grow fast and mild. Dry soil makes them woody and hot. A soaking after a dry spell splits them.",
+      "feed": "No feeding is needed at all. Radishes grow so fast that ordinary garden soil is enough.",
+      "harvest": "Pull a few at a time once the roots are about 2.5 cm across. If you leave them in the ground, they soon turn woody, bitter and very hot.",
+      "keeps": "Cut off the leaves and the thin tip of the root. In a plastic bag in the fridge, they keep up to a month.",
+      "problems": [
+        {
+          "name": "Flea beetles",
+          "fix": "Tiny round holes appear in the leaves, mostly in warm, dry weather. The damage usually only spoils the look. Keep seedlings watered and cover them with fine insect mesh."
+        },
+        {
+          "name": "Bolting",
+          "fix": "In hot, dry weather the plants send up a flower stalk and the root stops swelling. Sow in spring and late summer and keep watering. Pull up plants that flower, but you can eat their young pods."
+        },
+        {
+          "name": "Split or woody roots",
+          "fix": "Roots split when watering is uneven and turn woody when they get old. Water regularly and pick them at about 2.5 cm across. Split roots are still good to eat."
+        }
+      ],
+      "source": "Radish care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Keeping: University of Missouri extension."
+    },
+    "carrot": {
+      "about": "Carrots need loose soil with no stones. Stones, clods and fresh manure make the roots fork into several legs. Sow the seed thinly, right where the carrots will grow. The seedlings are small and slow at first, so keep the row free of weeds.",
+      "water": "Carrots cope with dry spells and seldom need watering. In a long drought, give them a good soaking every two weeks. Steady moisture matters more than lots of it. A heavy watering after a dry spell splits the roots.",
+      "feed": "Carrots need no feeding. Don't dig in fresh manure or compost just before sowing, because it makes the roots fork. Use ground that was manured for an earlier crop instead.",
+      "harvest": "Pull carrots as soon as they are big enough to use. Loosen the soil with a fork first so they don't snap. Very large roots lose their flavour. When you thin the row, pulling out spare seedlings, touch the leaves as little as you can. Their smell draws carrot fly.",
+      "keeps": "Cut the leaves back to about 1 cm. In a bag with holes in the fridge they keep 2 to 4 months. They keep as long in a box of moist sand somewhere cool. Maincrop carrots can also stay in the ground under straw until you need them.",
+      "problems": [
+        {
+          "name": "Carrot fly",
+          "fix": "Small maggots leave rusty-brown tunnels in the roots. Cover the whole crop with fine insect mesh from the day you sow."
+        },
+        {
+          "name": "Forked roots",
+          "fix": "In stony, lumpy or freshly manured soil, the roots split into several legs. Dig the bed over well and take out the stones. Or grow short, round varieties."
+        },
+        {
+          "name": "Split roots",
+          "fix": "Cracks run along the roots when heavy rain or watering follows a dry spell. In long dry spells, water deeply and regularly."
+        }
+      ],
+      "source": "Carrot care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Pot size: University of Illinois extension. Keeping: University of Missouri extension."
+    },
+    "parsnip": {
+      "about": "Parsnips stay in the ground from spring into winter and they taste sweeter after frost. Buy fresh seed every year, because old seed comes up poorly. Even fresh seed takes two to four weeks to appear. In sunshine the leaves can blister your skin, so wear gloves and long sleeves when you weed.",
+      "water": "Once settled in, they cope well with dry spells. Until then, water young plants when the weather is dry. After that, their deep roots get them through. Keep the moisture even, though, because a soaking after a drought splits the roots.",
+      "feed": "Parsnips need very little. Don't feed them. Use ground manured for an earlier crop, because fresh manure or compost makes the roots fork.",
+      "harvest": "Dig the roots from autumn, once the leaves die down, ideally after the first hard frost. The roots are long, so loosen the soil deeply with a fork first. Mark the row so you can find it in winter.",
+      "keeps": "The best place for them all winter is the ground. Before hard frost, dig up a few extra or cover the row with straw. Once dug, they keep 2 to 4 months in the fridge in a bag with holes in it.",
+      "problems": [
+        {
+          "name": "Canker",
+          "fix": "Rough orange-brown or black patches appear on top of the root, often where it was damaged. Grow resistant varieties. Take care not to nick the roots when you hoe."
+        },
+        {
+          "name": "Carrot fly",
+          "fix": "Small maggots make rusty-brown tunnels in the roots. Cover the crop with fine insect mesh. Don't sow where carrots or parsnips grew recently."
+        },
+        {
+          "name": "Gaps in the row",
+          "fix": "Gaps in the row come from old seed or cold, wet soil. Use fresh seed and wait for the soil to warm up. Sow a few seeds at each spot and keep the strongest."
+        }
+      ],
+      "source": "Parsnip care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Keeping: University of Missouri extension."
+    },
+    "beetroot": {
+      "about": "Beetroot gives you sweet roots and young leaves for salads. Each seed is really a cluster that comes up as several seedlings. Pull out the extras early, or let them grow on as a small group for baby beets. Sow a little every few weeks from spring to midsummer. The roots from summer sowings are the ones that keep.",
+      "water": "Beetroot needs normal watering. Water seedlings in dry spells. Once the plants are settled, they need water only every 10 to 14 days in dry weather. Too little water makes the roots woody and uneven watering splits them. Too much gives you leaves instead of roots.",
+      "feed": "Its food needs are average. Soil improved with compost needs no extra feed. If the plants grow poorly, give them a high-nitrogen liquid feed. Keep weeds away, because they take food and water.",
+      "harvest": "Once the roots reach golf-ball size, pull every other one and leave the rest to grow. Don't let any get bigger than about 7 cm across. Twist the leaves off instead of cutting them, so the roots don't bleed.",
+      "keeps": "Twist off the leaves 2.5 cm above the root. The roots keep 2 to 4 months in a bag with holes in the fridge. They keep as long in boxes of dry sand in a cool shed.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "After hot, dry weather or a very early, cold sowing, the plants flower instead of swelling their roots. Choose bolt-resistant varieties and don't sow too early."
+        },
+        {
+          "name": "Leaf miner",
+          "fix": "Pale brown blotches appear where small maggots feed inside the leaves. Pinch off the affected leaves. The roots are rarely harmed."
+        },
+        {
+          "name": "Downy mildew",
+          "fix": "In damp weather, pale yellow patches appear on the leaves with grey-purple mould underneath. Pick off the affected leaves and leave room between plants for air. Water the soil, not the leaves."
+        }
+      ],
+      "source": "Beetroot care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Keeping: University of Missouri extension."
+    },
+    "turnip": {
+      "about": "Turnips give you round roots and tender young leaves. Early kinds are ready in about six weeks. Sow a little and often in spring, then again in late summer for roots in autumn and winter. They need steady moisture. In dry soil the roots stay small and woody and the plants flower early.",
+      "water": "Normal watering suits them. Water in dry weather so the roots grow quickly and stay tender. A pot dries out fast, so water it often in summer.",
+      "feed": "They need little feeding. Soil improved with compost or well-rotted manure is enough, ideally dug in the autumn before. No extra feed is needed.",
+      "harvest": "Pull early turnips at golf-ball size to eat raw, or at tennis-ball size to cook. Bigger roots turn woody and bitter. You can cook young leaves up to 15 cm long like spinach.",
+      "keeps": "Twist off the leaves first. Autumn roots keep several weeks in trays of moist sand somewhere cool and frost-free. In mild areas you can leave them in the ground under fleece.",
+      "problems": [
+        {
+          "name": "Cabbage root fly",
+          "fix": "Young plants wilt because small white maggots tunnel into the roots. Cover the crop with fine insect mesh from the day you sow."
+        },
+        {
+          "name": "Clubroot",
+          "fix": "The roots are swollen and misshapen and the plants wilt on warm days. It stays in the soil for many years. Add lime to acid soil and don't grow turnips or other cabbages where it has appeared."
+        },
+        {
+          "name": "Slugs",
+          "fix": "Seedlings are eaten overnight and you see slime trails. Protect young plants, especially in damp weather."
+        }
+      ],
+      "source": "Turnip care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension."
+    },
+    "chard": {
+      "about": "Chard has big leaves on thick white, red or yellow stalks. You pick it from summer until the cold stops it and again in spring. One sowing keeps giving for months. It is also slower than spinach to run to seed, which makes it one of the easiest leafy crops.",
+      "water": "Normal watering is enough. Water young plants regularly until they are settled. After that, chard copes with short dry spells, but water it in long ones. In a pot, water whenever the compost starts to dry.",
+      "feed": "Little food is needed and usually no feeding at all. It grows well in most soils and in fresh potting compost.",
+      "harvest": "Cut the outer leaves with their stalks at the base and leave the centre to keep growing. Small young leaves can go raw into salads. Cook bigger ones like spinach, giving the stalks a little longer.",
+      "keeps": "The leaves keep a few days in the fridge. To freeze them, blanch them in boiling water for 2 minutes, cool them in iced water and pack them.",
+      "problems": [
+        {
+          "name": "Leaf miner",
+          "fix": "Pale brown blotches show where small grubs tunnel inside the leaf. Pick off the affected leaves and put them in the bin. Fine insect mesh keeps the fly off."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "Holes appear in young plants, mostly in damp weather. Pick the slugs and snails off at dusk and protect the seedlings."
+        },
+        {
+          "name": "Downy mildew",
+          "fix": "On crowded plants in damp weather, pale patches appear with grey fuzz underneath. Space the plants well and pick off the affected leaves."
+        }
+      ],
+      "source": "Chard care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: Washington State University extension. Freezing: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "chicory": {
+      "about": "These bitter salad leaves all come from one family. Radicchio forms a tight red head and sugarloaf a tall green heart. Endive and escarole make a loose clump of leaves, which you cover from the light to make them milder. Sown in early summer, they give leaves from late summer into autumn. Sown outdoors too early in spring, they tend to shoot up and flower.",
+      "water": "These salads need normal watering. Water thoroughly in dry weather, because dry soil makes the leaves more bitter and the plants flower early. Keep the bed weeded so nothing competes for water.",
+      "feed": "They need little feeding. In the ground they usually need none. In a pot or on light soil, give a general liquid feed every two weeks in summer.",
+      "harvest": "Cut radicchio and sugarloaf heads at the base once they are firm. The stump often sprouts a second, smaller head. To make endive milder, cover the dry heart with a plate or a bucket for about two weeks. Then cut it and use it soon.",
+      "keeps": "The heads keep several days in the fridge. Keep the pale, covered hearts in the dark, because light turns them green and bitter again.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "Flower stems shoot up after cold spells while the plants are young, or in hot, dry weather. Don't sow outdoors too early and water in dry spells. For early sowings, choose varieties that resist bolting."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat seedlings and hide under the covers you put over endive. Look under the covers every few days and pick them out."
+        },
+        {
+          "name": "Rot under the cover",
+          "fix": "The inner leaves rot when the heart is wet under the cover. Cover only dry plants and do a few at a time. Check them often."
+        }
+      ],
+      "source": "Radicchio and endive care: RHS. How many to grow: University of Missouri extension. pH: University of Arkansas extension."
+    },
+    "kale": {
+      "about": "From autumn right through winter, kale keeps giving leaves and frost makes them sweeter. It is the toughest and least fussy member of the cabbage family. Keep caterpillars and pigeons off it and each plant gives you many pickings.",
+      "water": "Kale needs normal watering. Water young plants regularly so the soil never dries out. Once they are settled, water only in long dry spells. A pot needs regular watering in summer.",
+      "feed": "It needs an average amount of food. Plant it into ground that has had compost dug in. Feed it only on poor soil or in a pot, where a nitrogen-rich fertiliser gives it a boost.",
+      "harvest": "Pick two or three of the lower leaves from each plant at a time, working your way up the stem. Leave the top to keep growing. Regular picking keeps new leaves coming until spring.",
+      "keeps": "Picked leaves keep a few days in the fridge. But the plants stand in the garden all winter, so just pick what you need. To freeze, blanch the leaves for 2 minutes and cool them in iced water.",
+      "problems": [
+        {
+          "name": "Caterpillars",
+          "fix": "From early summer to autumn, you see holes in the leaves and green caterpillars. Cover the plants with fine insect mesh from the day you plant them. Rub off any clusters of yellow eggs under the leaves."
+        },
+        {
+          "name": "Cabbage aphids",
+          "fix": "Grey, waxy clusters of aphids sit on the young leaves, which curl and spoil. Squash or wash off small groups early. Remove leaves that are badly hit."
+        },
+        {
+          "name": "Pigeons",
+          "fix": "In winter, pigeons tear the leaves until only stalks and veins are left. Cover the plants with netting held clear of the leaves on hoops or canes."
+        }
+      ],
+      "source": "Kale care: RHS. How many to grow: University of Missouri and Kansas State extension. pH: Washington State University extension. Freezing: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "cabbage": {
+      "about": "There are spring, summer, autumn and winter varieties, so you can cut cabbage most of the year. It likes firm, rich ground. Protect it from caterpillars, pigeons and root fly. Don't grow it where any of the cabbage family grew in the last two years.",
+      "water": "Give cabbages normal watering. Water young plants regularly. Once they are settled, soak them well about every 10 days in dry spells. Water more once the heads start to form. A layer of compost over the soil keeps it moist.",
+      "feed": "Cabbages need rich soil and plenty of food. Dig in compost the autumn before you plant. On poor soil, give a nitrogen-rich fertiliser once the plants have settled in and before the hearts form.",
+      "harvest": "Once the head is firm, cut it just above the ground with a sharp knife. On spring and summer cabbages, cut a shallow cross into the stump. It often grows a second, smaller head.",
+      "keeps": "A cut head keeps at least a week in the fridge. Winter cabbages keep for months somewhere cool, dry and frost-free. Or leave them standing in the ground until you need them.",
+      "problems": [
+        {
+          "name": "Caterpillars",
+          "fix": "From early summer to autumn, you see holes in the leaves and green caterpillars. Cover the plants with fine insect mesh from the day you plant them. Rub off any clusters of yellow eggs under the leaves."
+        },
+        {
+          "name": "Cabbage root fly",
+          "fix": "Young plants wilt and die while white maggots eat the roots. Cover new plants with fine insect mesh pinned to the ground. Grow the crop in a different spot each year."
+        },
+        {
+          "name": "Club root",
+          "fix": "Plants stay small and wilt on warm days, with swollen, knotted roots. It can't be cured and stays in the soil for years, so add lime to acid soil and move the crop each year. Raise plants in pots so they go out with strong roots, or grow resistant varieties."
+        }
+      ],
+      "source": "Cabbage care and keeping: RHS. How many to grow: University of Missouri and Kansas State extension. pH: Washington State University extension."
+    },
+    "cauliflower": {
+      "about": "Each plant makes one white head, called the curd, in the middle. Cauliflower is the fussiest of the cabbage family. Anything that holds it back, like dry soil, loose ground or late planting, gives small heads that form too early. So keep it growing steadily. In a pot, grow a mini variety.",
+      "water": "It needs a lot of water. Keep the soil damp all the time but never soggy, especially while the heads form. A mulch holds the moisture in. A pot needs water whenever the compost starts to dry.",
+      "feed": "Cauliflower needs rich soil. Dig in compost before planting. On poor soil, give young plants a fertiliser rich in nitrogen before the heads form.",
+      "harvest": "Cut the head with a few leaves once it is firm, before it starts to break apart. In summer sun, fold a few leaves over the curd to keep it white. In winter, tie them over it to protect it from hard frost.",
+      "keeps": "It's best eaten fresh. With a few leaves left on, it keeps several days in the fridge. You can also freeze the florets after a quick dip in boiling water.",
+      "problems": [
+        {
+          "name": "Tiny heads",
+          "fix": "Small heads form too early after something has held the plant back. Plant young plants on time into firm soil and water steadily."
+        },
+        {
+          "name": "Club root",
+          "fix": "The plants stay small, wilt on warm days and have swollen, knotted roots. There is no cure and it stays in the soil for years, so add lime to acid soil until it reaches about pH 6.5. Grow these crops in a new bed each year and start plants in pots, so they go out with strong roots."
+        },
+        {
+          "name": "Cabbage caterpillars",
+          "fix": "From early summer to autumn you find holes in the leaves and green caterpillars. Cover plants with fine insect mesh from the day you plant them. Rub off any clusters of yellow eggs under the leaves."
+        }
+      ],
+      "source": "Cauliflower care and keeping: RHS. How many to grow: University of Missouri and Kansas State extension. pH: University of Minnesota extension."
+    },
+    "broccoli": {
+      "about": "The part you eat is a head of green flower buds. Once you cut the main head, side shoots keep coming for weeks. Pick before the buds open into yellow flowers, which happens fast in warm weather. Sprouting broccoli is a tougher kind that lasts through winter and gives its crop in spring.",
+      "water": "Broccoli needs normal watering. Water young plants regularly until they are settled, then in dry spells. If growth stalls, the plants flower early. A layer of compost over the soil keeps it moist.",
+      "feed": "It needs rich soil and plenty of food. Dig in compost or manure before planting. On poor soil, or if growth is slow, give a high-nitrogen feed when the plants are about 20 cm tall.",
+      "harvest": "Cut the main head with some stem while it is firm and the buds are still closed. Then check every few days and cut the side shoots before they flower. Regular picking keeps them coming for up to two months.",
+      "keeps": "Broccoli keeps a few days in the fridge. It freezes well once blanched.",
+      "problems": [
+        {
+          "name": "Early flowering",
+          "fix": "In hot weather, or when the plants stop growing for a while, the heads stay small and open into yellow flowers. Water in dry spells and, where summers are hot, grow bolt-resistant varieties, which are slow to flower. Cut the heads as soon as they are ready."
+        },
+        {
+          "name": "Caterpillars",
+          "fix": "From early summer to autumn, you see holes in the leaves and green caterpillars. Cover the plants with fine insect mesh from the day you plant them. Rub off any clusters of yellow eggs under the leaves."
+        },
+        {
+          "name": "Pigeons",
+          "fix": "Pigeons tear the leaves until only stalks and veins are left. Cover the plants with netting held clear of the leaves on hoops or canes."
+        }
+      ],
+      "source": "Broccoli care and keeping: RHS. How many to grow: Kansas State and University of Missouri extension. pH: Washington State University extension. Pot size: Texas A&M AgriLife extension."
+    },
+    "brussels_sprouts": {
+      "about": "The sprouts grow up the tall stem and you pick them through autumn and winter. They taste sweetest after frost. The plants stay in the ground a long time and need firm soil. Tread the ground before planting and press each plant in firmly, or the sprouts grow loose.",
+      "water": "Brussels sprouts need normal watering. Water young plants regularly so the soil never dries out. Once they are settled, water only in dry weather. A thick mulch keeps the soil moist.",
+      "feed": "They need rich soil. Dig in compost the autumn before. On poor soil, or if growth is slow, give a fertiliser rich in nitrogen in early to mid summer.",
+      "harvest": "Start with the lowest sprouts, once they are firm and about the size of a walnut. Snap them off with a downward tug and work your way up the stem. When the sprouts are done, cook the top like spring greens.",
+      "keeps": "A whole stem, once cut, keeps a few days standing in water or hung in a cool, frost-free shed. Pick off the sprouts as you need them. You can freeze them too, after a quick dip in boiling water.",
+      "problems": [
+        {
+          "name": "Loose sprouts",
+          "fix": "Loose soil gives open, leafy sprouts instead of tight buttons. Firm the soil before planting and pile soil around the stems in late summer. Stake tall plants in windy places."
+        },
+        {
+          "name": "Mealy aphids",
+          "fix": "Grey, waxy aphids gather on the leaves and inside the sprouts. Squash or wash off small groups early. Remove leaves that are badly affected."
+        },
+        {
+          "name": "Club root",
+          "fix": "The plants stay small and wilt on warm days. Their roots are swollen and knotted. There is no cure and it stays in the soil for years, so add lime to acid soil until it reaches at least pH 6.5. Move these crops to a new bed each year and start plants in pots, so they go out with strong roots."
+        }
+      ],
+      "source": "Brussels sprouts care and keeping: RHS. How many to grow: Kansas State extension. pH: University of Georgia extension. Freezing: National Center for Home Food Preservation (University of Georgia)."
+    },
+    "kohlrabi": {
+      "about": "The part you eat is a swollen stem, a crisp ball just above the soil. It tastes like a mild, sweet cabbage. Kohlrabi grows fast, so sow a short row every few weeks from spring to late summer, not all at once. Pick it young, because a bulb left to grow big turns woody.",
+      "water": "Kohlrabi needs normal watering. Keep the soil evenly moist, because dry spells slow growth and make the bulbs tough. Water young plants regularly until they are well rooted.",
+      "feed": "Average feeding is enough. Dig in compost before sowing and mulch once plants are growing. It needs less nitrogen than other cabbages, so you don't need to give extra feed.",
+      "harvest": "Cut the stem below the bulb when it is between golf-ball and tennis-ball size. You can cook the young leaves like kale.",
+      "keeps": "Cut off the leaves and the root. In a plastic bag in the fridge it keeps 2 to 4 weeks.",
+      "problems": [
+        {
+          "name": "Cabbage caterpillars",
+          "fix": "Green caterpillars eat holes in the leaves. Cover plants with fine insect mesh. Or look under the leaves for eggs and caterpillars and pick them off."
+        },
+        {
+          "name": "Flea beetles",
+          "fix": "In warm, dry weather young leaves get lots of tiny round holes. Keep seedlings watered and cover them with fine mesh until they are big and growing strongly."
+        },
+        {
+          "name": "Woody bulbs",
+          "fix": "The flesh turns tough and stringy after hot, dry weather or when you pick too late. Water in dry spells and pick before the bulb is bigger than a tennis ball."
+        }
+      ],
+      "source": "Kohlrabi care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Keeping: University of Missouri extension."
+    },
+    "onion_sets": {
+      "about": "Sets are small onions grown the year before. You plant them and they swell into full-size bulbs. It's the easiest way to grow onions. Push each one in with the tip just showing and firm the soil so birds don't pull them out.",
+      "water": "Onions need normal watering. Water them in long dry spells, mainly while the plants are young. Stop once the bulbs have swollen in midsummer. Late watering means the onions won't keep as long.",
+      "feed": "Their food needs are average. Compost dug in before planting is usually enough. On poor soil, give autumn-planted sets a nitrogen-rich feed in late winter.",
+      "harvest": "When the leaves turn yellow and flop over, dig up the bulbs before the leaves die off completely. That's June to July for autumn sets and July to October for spring ones. Dry them in the sun for about two weeks.",
+      "keeps": "Keep the dried onions in nets or slatted trays somewhere cool, dry, airy and light. In the dark they start to sprout. Autumn-planted onions keep until early winter, spring-planted ones into the next spring.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "A flower stalk grows from the middle, often after a cold spring. Snap it off and eat that onion first, as it won't keep. Heat-treated sets are less likely to do this."
+        },
+        {
+          "name": "White rot",
+          "fix": "The leaves turn yellow and wilt while a fluffy white mould grows on the base of the bulb. There is no cure, so dig up the sick plants and put them in the bin. Don't grow onions, garlic or leeks in that bed for many years."
+        },
+        {
+          "name": "Onion fly",
+          "fix": "Young plants turn yellow, wilt and die while maggots eat the roots and bulb. Dig up and destroy affected plants. Cover the crop with fine insect mesh."
+        }
+      ],
+      "source": "Onion care: RHS. How many to grow: Kansas State extension. pH: University of Connecticut extension."
+    },
+    "onion": {
+      "about": "Onions from seed keep through winter. They cost less than sets (the small bulbs you plant instead) and come in more varieties. They are also less likely to bolt, or flower too early. Sow in early spring, indoors or in the row. Thin the seedlings in two steps so each bulb has room.",
+      "water": "Onions need normal watering. Keep the seedlings moist. Later on, water only in long dry spells. Stop once the bulbs have swollen in midsummer, so they keep longer.",
+      "feed": "Average feeding is fine. Compost dug in before sowing is usually enough. Extra nitrogen late on gives soft bulbs that keep badly.",
+      "harvest": "From July to October the leaves turn yellow and fall over. Then lift the bulbs, before the leaves die off completely. Dry them in the sun for about two weeks.",
+      "keeps": "Onions from seed keep until the next spring. Store them in nets or slatted trays somewhere cool, dry, airy and light. In the dark they sprout.",
+      "problems": [
+        {
+          "name": "Downy mildew",
+          "fix": "In cool, wet weather the leaves get pale patches with a grey-purple mould, then collapse. Remove the affected leaves and give the plants room. Grow your onions in a different bed next year."
+        },
+        {
+          "name": "Onion fly",
+          "fix": "Seedlings turn yellow, wilt and die because maggots are eating the roots and bulb. Dig up the affected plants and destroy them. Cover the crop with fine insect mesh."
+        },
+        {
+          "name": "Weeds",
+          "fix": "Onion seedlings are thin and slow to grow, so weeds soon smother them. Weed by hand often while they are small."
+        }
+      ],
+      "source": "Onion care: RHS. How many to grow: Kansas State extension. pH: University of Connecticut extension."
+    },
+    "leek": {
+      "about": "You can dig leeks from late summer right through winter. Sow them in a seedbed or in pots. When the young plants are about as thick as a pencil, move them into deep holes made with a dibber, a pointed planting stick. Fill each hole with water. Planting them deep gives you a long white stem.",
+      "water": "They need normal watering. Water young plants until they are growing well. After that, water only in long dry spells. Water the soil and keep the leaves dry, which helps hold rust back.",
+      "feed": "Leeks need rich soil. They stay in the ground for months, so dig in plenty of compost or manure before planting. On poor soil, a nitrogen feed in midsummer helps.",
+      "harvest": "From late summer, lift leeks with a fork as you need them. Take every other one and the rest grow bigger. Late kinds can stay in the ground all winter. Frost makes them sweeter.",
+      "keeps": "Leeks keep best in the ground until you need them. Once they are out, keep them unwashed in the fridge and use them soon.",
+      "problems": [
+        {
+          "name": "Leek rust",
+          "fix": "Raised orange spots appear on the leaves, worst in late summer. Water the soil rather than the leaves and grow a resistant variety if it comes back. Leeks with a little rust are fine to eat."
+        },
+        {
+          "name": "Allium leaf miner",
+          "fix": "The first sign is lines of tiny white dots on the leaves. Then small grubs tunnel into the stems, which twist and rot. Cover leeks with fine insect mesh from the day you plant them."
+        },
+        {
+          "name": "Leek moth",
+          "fix": "Caterpillars tunnel in the leaves and leave white, papery patches. Cut off the damaged leaves. The same fine mesh keeps the moth out."
+        }
+      ],
+      "source": "Leek care: RHS. pH: University of Connecticut extension."
+    },
+    "celery": {
+      "about": "The easiest kind is self-blanching celery, whose stalks stay pale without being covered. Plant it in a block, not a row, so the plants shade each other's stems. Celery needs warmth and steady water. Young plants left below 10 °C for long can flower and go to seed, so plant out only once the nights stay mild.",
+      "water": "It needs a lot of water. Never let the soil dry out, because dry spells make the stalks stringy and too strong in flavour. In summer, water generously in the morning or evening, with rainwater if you can.",
+      "feed": "Celery needs rich soil. Plant it into ground full of compost or manure. On poor soil, scatter a little fertiliser high in nitrogen in summer. In a pot, give a balanced liquid feed every two weeks.",
+      "harvest": "From late summer, dig up whole plants before the leaves turn yellow and before the first frost. Cover them with fleece when the nights turn cold. Use them soon after you dig them up.",
+      "keeps": "Wrap it in a damp cloth or a bag and keep it in the fridge. It stays crisp only for a short time, so use it soon.",
+      "problems": [
+        {
+          "name": "Celery leaf miner",
+          "fix": "Brown, dried-up blotches show on the leaves, where small maggots feed inside. Pinch off those leaves. Cover young plants with fine insect mesh."
+        },
+        {
+          "name": "Leaf spot",
+          "fix": "In wet weather, small brown spots with tiny black dots spread over the leaves. Remove the spotted leaves. Don't grow celery or celeriac in the same soil for a few years."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "Slugs love celery and eat both young plants and stalks. Protect your plants, especially in damp weather."
+        }
+      ],
+      "source": "Celery care: RHS. pH: University of Connecticut and University of Maryland extension."
+    },
+    "fennel": {
+      "about": "Florence fennel makes a swollen bulb with an aniseed flavour at the base of its leaves. The main problem is bolting, when it flowers instead of making a bulb. To avoid it, sow in early summer rather than spring and choose a variety that resists bolting. Sow in modules, small trays of separate cells, so the roots aren't disturbed. Once the base starts to swell, pile soil up around it to keep it white and sweet.",
+      "water": "It needs a lot of water. Keep the soil moist all the time, because a dry spell is one of the main causes of bolting. Water generously in the morning. In summer, check a pot every day.",
+      "feed": "Fennel needs only average feeding. Dig in compost before sowing and mulch once plants are growing. It needs no other feed.",
+      "harvest": "Cut the bulb just above the soil when it is 10 to 15 cm across. Small ones you can cut from 5 cm. Don't wait until it gets longer and sends up a stem, because then it turns woody.",
+      "keeps": "It's best eaten fresh. In a bag in the fridge it keeps a few days.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "After cold, a dry spell or disturbed roots, a flower stem shoots up and the bulb stays flat and tough. Sow later and keep watering. Use any plant that starts to bolt straight away."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat seedlings and young plants. Protect the plants in damp weather. Weed by hand around them, because weeds give slugs a place to hide."
+        }
+      ],
+      "source": "Florence fennel care: RHS. pH: Utah State University and University of Arkansas extension."
+    },
+    "potato": {
+      "about": "Early potatoes are ready in early summer. Maincrop potatoes come out of the ground in autumn and keep all winter. While the plants grow, pile soil up around the stems every few weeks. That protects the shoots from frost and keeps the potatoes in the dark, so they don't turn green.",
+      "water": "Potatoes need normal watering. Water them in dry spells, especially once the plants flower and the potatoes are forming. Steady moisture then also helps against scab. A pot needs regular watering even when it rains, because the leaves keep the rain off the compost.",
+      "feed": "Rich soil matters for potatoes, so grow them in ground improved with compost or manure. On poor soil, give a nitrogen-rich fertiliser the second time you pile soil around the stems. In a pot, mix a general fertiliser in at planting, or give a liquid feed after about six weeks.",
+      "harvest": "Dig early potatoes when the flowers open, once the potatoes are the size of hens' eggs. For maincrops you want to store, cut off the tops once they turn yellow. Wait 10 days, then dig. Start 30 cm from the stem so you don't spear any potatoes with the fork.",
+      "keeps": "Let the potatoes dry for a few hours and brush off the soil. Healthy, undamaged ones keep 2 to 4 months in paper or hessian sacks somewhere dark, cool and frost-free. Check them every few weeks and take out any that rot.",
+      "problems": [
+        {
+          "name": "Blight",
+          "fix": "In warm, wet weather, brown patches spread fast over the leaves and then rot the potatoes. As soon as you see it, cut off the tops and take them away. Wait two to three weeks before you dig and grow resistant varieties."
+        },
+        {
+          "name": "Scab",
+          "fix": "Rough, corky patches appear on the skin, but the potatoes are still good to eat once peeled. Water in dry spells while the potatoes form and don't add lime before planting. Grow resistant varieties."
+        },
+        {
+          "name": "Green potatoes",
+          "fix": "Potatoes that get light turn green and are poisonous. Keep them well covered with soil and store them in the dark. Throw green potatoes away."
+        }
+      ],
+      "source": "Potato care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Georgia extension. Pot size: Cornell Cooperative Extension. Keeping: University of Missouri extension."
+    },
+    "asparagus": {
+      "about": "Asparagus comes back every year. A good bed gives spears every spring for 20 years or more. Plant the crowns, the young root clumps, in a weed-free bed where they can stay for good. Don't cut any spears for the first two years, so the roots can build up strength.",
+      "water": "Once settled, it copes with dry spells. Water new crowns regularly through their first summer. After that the roots go deep and the plants need water only in long dry spells.",
+      "feed": "Asparagus needs an average amount of feeding. Every late winter, spread 5 cm of compost or well-rotted manure over the bed. If growth is weak, scatter a general fertiliser in early spring, before the spears appear.",
+      "harvest": "Cut the spears with a sharp knife just below the soil when they are about 18 cm tall. In warm weather, that means every two or three days. In the first year you cut, stop after six weeks. In later years, stop after eight. Then let the ferny leaves grow and cut them down only when they turn yellow in autumn.",
+      "keeps": "Spears keep a few days in the fridge. Stand them in a little water or wrap the cut ends in damp paper. They freeze well after a quick dip in boiling water.",
+      "problems": [
+        {
+          "name": "Asparagus beetle",
+          "fix": "In summer, red and black beetles with cream spots and their grey grubs strip the stems and ferny leaves. Pick them off by hand from late spring. Clear away old stems in autumn, because the adults spend the winter there."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They nibble young spears in damp spring weather. Check after dark and pick them off. Keep the bed clear of weeds and debris, where they hide."
+        },
+        {
+          "name": "Root rot",
+          "fix": "On wet, heavy soil, plants turn yellow and die back in patches. On heavy ground, grow asparagus in a raised bed. Never plant new crowns where asparagus grew before."
+        }
+      ],
+      "source": "Asparagus care: RHS. How many to grow: University of Missouri and Kansas State extension. pH: Cornell and University of Maryland extension."
+    },
+    "rhubarb": {
+      "about": "Rhubarb comes back year after year and you pick its tart stalks from spring to early summer. Only eat the stalks. The leaves contain oxalic acid and must never be eaten. One clump keeps going for many years. Every five years or so, dig it up, cut it into a few pieces and replant them to keep it strong.",
+      "water": "Normal watering is all rhubarb needs. Water new plants in dry spells right through their first season. After that, a settled clump only needs water in long, dry summers. Never let the crown, the base of the plant, sit in soggy soil.",
+      "feed": "Rhubarb needs an average amount of feeding. Each spring, spread a 7 cm layer of well-rotted manure or compost around the plant. Keep it off the crown, though. On poor soil, also give a high-nitrogen feed in spring.",
+      "harvest": "In the second year, pull only a few stalks. From the third year on, pick stalks about 30 cm long. Hold each one at the base and twist it off instead of cutting it. Never take more than a third of the stalks at a time. Stop in early July so the plant can recover.",
+      "keeps": "The stalks keep about a week in a bag in the fridge. Put the leaves on the compost. Chopped stalks freeze well too.",
+      "problems": [
+        {
+          "name": "Crown rot",
+          "fix": "The crown goes soft and brown and the buds die, usually in wet soil in winter. Cut out the rotten parts straight away. If the whole crown is affected, replant healthy pieces in fresh ground that drains well."
+        },
+        {
+          "name": "Flower stalks",
+          "fix": "Tall, thick stems with a big flower head take strength from the plant. Cut them off at the base as soon as you see them."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat the young shoots in spring. Check the plants after dark and pick them off."
+        }
+      ],
+      "source": "Rhubarb care: RHS. How many to grow: University of Missouri extension. pH: Cornell and University of Maryland extension."
+    },
+    "artichoke": {
+      "about": "With artichokes, you eat the flower buds before they open. They grow on a large plant with silver leaves that comes back every year. Give it space, sun and soil that drains quickly. Cold, wet winters kill it more often than frost on its own. In the first summer, cut off the flower stalks so the plant can settle in.",
+      "water": "Artichokes need normal watering. Water regularly in the first season and while the buds are forming. In dry soil you get fewer, smaller buds. Once the plant is settled, it copes with short dry spells.",
+      "feed": "It needs average feeding. Dig in plenty of compost before planting and mulch around it each spring. On poor soil or in a pot, add a high-potassium feed in spring.",
+      "harvest": "Cut the buds when they are full size but still tightly closed, with a few centimetres of stem. Cut the main bud first and the smaller side buds will follow. In warm weather, check every few days, because the buds open fast.",
+      "keeps": "The buds keep 3 to 5 days in a bag in the fridge.",
+      "problems": [
+        {
+          "name": "Aphids",
+          "fix": "Clusters of small black or green insects sit on the buds and shoot tips. Wash them off with a strong jet of water. Let ladybirds and their larvae eat the rest."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat young plants and new shoots in spring. Protect young plants and pick off slugs after dark."
+        },
+        {
+          "name": "Dying in winter",
+          "fix": "Plants rot or die in cold, wet winters, young ones most of all. In late autumn, cut the stems down and cover the base of the plant with a thick layer of straw or leaves. Take the cover off in spring."
+        }
+      ],
+      "source": "Globe artichoke care: RHS and Utah State extension. pH: Cornell extension. Keeping: Utah State extension."
+    },
+    "tomato": {
+      "about": "From midsummer until the first frost, tomatoes keep ripening. Tie tall types to a cane and keep them to one stem by pinching off the side shoots. Bush types stay compact and suit pots.",
+      "water": "Tomatoes need a lot of water and they need it evenly. Uneven watering splits the fruit and causes blossom end rot. In hot weather a pot can need water every day.",
+      "feed": "Tomatoes need a lot of feeding. Once the first fruits swell, give a liquid tomato feed, high in potassium, every 10 to 14 days. Rich ground needs less, but a feed every two weeks still gives a bigger crop.",
+      "harvest": "Pick each tomato with its stalk once it is fully coloured. At the end of the season, ripen green ones somewhere warm and dark, or in a drawer with a banana.",
+      "keeps": "Ripe tomatoes keep a few days at room temperature, out of the sun. The fridge spoils their taste.",
+      "problems": [
+        {
+          "name": "Blight",
+          "fix": "In warm, wet weather, brown patches spread fast over leaves and fruit. Remove affected leaves and fruit as soon as you see them. Grow tomatoes away from potatoes, because both catch it."
+        },
+        {
+          "name": "Blossom end rot",
+          "fix": "A dark, sunken patch forms at the bottom of the fruit, caused by uneven watering. Water regularly and never let a pot dry out."
+        },
+        {
+          "name": "Split fruit",
+          "fix": "Ripening fruit cracks when heavy rain or a big watering follows a dry spell. Keep the soil evenly moist and eat split fruit soon."
+        }
+      ],
+      "source": "Tomato care: RHS. How many to grow: University of Missouri and Kansas State extension. pH: University of Georgia extension. Keeping: University of Arizona extension."
+    },
+    "pepper": {
+      "about": "You can eat sweet peppers green or leave them to turn red, yellow or orange. They need a long, warm summer. Where summers are cool, they do best in a greenhouse or a sunny, sheltered spot. Tie each plant to a cane, because the stems are brittle and snap under a heavy crop.",
+      "water": "Normal watering suits peppers, but keep the soil evenly moist. If it dries out, the flower buds drop. In hot weather a pot can need water every day.",
+      "feed": "Peppers need an average amount of food. Once plants in pots flower, give them a liquid tomato feed, which is high in potassium, every week. Rich ground needs less, but feeding still gives a bigger crop.",
+      "harvest": "Pick when the fruit is full size and glossy, either green or once it has coloured. Peppers get sweeter as they colour, but fruit left to ripen slows down new ones. Cut the stalk with secateurs instead of pulling.",
+      "keeps": "Peppers keep best at cool room temperature. In the fridge they last 1 to 3 days, if you eat them soon after taking them out.",
+      "problems": [
+        {
+          "name": "Aphids",
+          "fix": "Small green or black insects gather on shoot tips and under the leaves. The leaves curl and the plant stops growing well. Check often and rub or hose off small groups. Ladybirds and other insects that eat them help."
+        },
+        {
+          "name": "Blossom end rot",
+          "fix": "A dark, sunken patch forms at the bottom of the fruit, caused by uneven watering. Water regularly. The rest of the crop is usually fine."
+        },
+        {
+          "name": "Flowers dropping",
+          "fix": "Buds and flowers fall without making fruit when the soil dries out, in great heat or on cold nights. Keep the soil evenly moist. On hot days, open up a greenhouse and shade it."
+        }
+      ],
+      "source": "Pepper care: RHS. How many to grow: Kansas State and Virginia Tech extension. pH: Virginia Tech extension. Keeping: Kansas State and University of Missouri extension."
+    },
+    "chilli": {
+      "about": "You can use chillies fresh, dried or pickled. They need warmth all summer, so grow them in a greenhouse, on a sunny windowsill or in a warm, sheltered spot outside. A plant in a pot can come indoors before the cold. Over winter, keep it somewhere bright and warm. Give it only a little water.",
+      "water": "Chillies need normal watering. Keep the compost evenly moist, because dry compost makes the buds drop. In hot weather, a pot in full sun can need water every day.",
+      "feed": "Their feeding needs are average. Once plants in pots start to flower, give them a liquid feed high in potassium, such as tomato feed, every week. Plants in rich ground need less.",
+      "harvest": "Pick them green for the biggest crop. Fruit left to turn red is hotter, but then the plant makes fewer new flowers. Late in the season, let the last fruits colour. Cut them with the stalk on. Wash your hands after handling hot kinds.",
+      "keeps": "Keep fresh chillies cool and use them soon. For winter, dry, freeze or pickle them.",
+      "problems": [
+        {
+          "name": "Aphids",
+          "fix": "Small green or black insects sit on the shoot tips and under the leaves, which curl. Check often (especially indoors) and rub or hose off small groups. Ladybirds and other insects that eat them help too."
+        },
+        {
+          "name": "Red spider mite",
+          "fix": "In hot, dry air, mostly under cover, the leaves get fine pale mottling and thin webbing. Mist the plants and wet the greenhouse floor to make the air more humid."
+        },
+        {
+          "name": "Too much heat",
+          "fix": "Above about 30 °C the flowers fall and few fruits set. Open up the greenhouse for air and shade it. Wet the floor every day."
+        }
+      ],
+      "source": "Chilli care and keeping: RHS. pH: Virginia Tech extension (peppers)."
+    },
+    "aubergine": {
+      "about": "Aubergines come in purple, white or striped. They need more heat than tomatoes and about five months from sowing to harvest. In a cool summer, grow them in a greenhouse or your sunniest, most sheltered spot. Pinch off the tip at about 30 cm for a bushier plant. On large-fruited types, keep five or six fruits.",
+      "water": "Aubergines need a lot of water, so keep the soil steadily moist. In hot weather a pot can need water every day. Under cover, misting the leaves twice a day also keeps red spider mite away.",
+      "feed": "They need a lot of feeding. Once the first flowers open, give a high-potassium liquid feed every two weeks. Rich ground needs less, but feeding still gives a bigger crop.",
+      "harvest": "Cut each fruit with a few centimetres of stalk once it is full size, glossy and well coloured. Dull skin means it is over-ripe and may taste bitter. Pick regularly and watch out for the small spines on the stalk.",
+      "keeps": "Aubergines keep best at cool room temperature, so eat them within days. In the fridge they last 1 to 3 days, if you cook them soon after.",
+      "problems": [
+        {
+          "name": "Few or no fruits",
+          "fix": "Plants set few fruits or none, usually because of a cool summer or a cold spot. Give them your hottest, sunniest spot and steady moisture. Pick off flowers that open after late summer, as their fruit won't ripen."
+        },
+        {
+          "name": "Red spider mite",
+          "fix": "In hot, dry air under cover, the leaves get fine pale speckles and thin webbing. On hot mornings, mist the leaves and wet the greenhouse floor."
+        },
+        {
+          "name": "Aphids and whitefly",
+          "fix": "Small insects suck sap under the leaves, which turn sticky and pale. Check the undersides often and wash off small groups. In a greenhouse, yellow sticky traps catch whitefly."
+        }
+      ],
+      "source": "Aubergine care: RHS. How many to grow: Kansas State and Virginia Tech extension. pH: Virginia Tech extension. Keeping: Kansas State and University of Missouri extension."
+    },
+    "cucumber": {
+      "about": "You start picking cucumbers in midsummer. Most varieties climb, so train them up a cane, netting or trellis. That saves room and keeps the fruit clean. Greenhouse types usually make only female flowers, so remove any male flowers that appear. Outdoor types need their male flowers for pollination.",
+      "water": "Cucumbers need a lot of water, especially once the fruit forms. Keep the soil evenly moist. Water at the base in the morning and keep the leaves dry. In a hot spell a pot can need water every day.",
+      "feed": "Their food needs are average. In the ground they rarely need feeding unless the soil is poor. In a pot, give a general liquid feed every 10 to 14 days. Once the plant flowers, switch to a high-potassium tomato feed.",
+      "harvest": "Cut the fruit with a knife once it is big enough. That's about 15 cm for small types and 20 to 25 cm for full-size ones. Check every few days, because the fruit grows fast and regular picking keeps more coming. Yellow, swollen fruit is over-ripe.",
+      "keeps": "Cool room temperature suits cucumbers best. In the fridge they last 1 to 3 days, if you eat them soon after taking them out.",
+      "problems": [
+        {
+          "name": "Powdery mildew",
+          "fix": "A white powder covers the leaves, worse when the roots are dry. Water at the base so the leaves stay dry and the soil stays moist. Choose resistant varieties."
+        },
+        {
+          "name": "Mosaic virus",
+          "fix": "The leaves turn mottled yellow and puckered and the plants stay stunted. Pull up affected plants and throw them away, not on the compost heap. Keep aphids down, because they spread it."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "Young plants get eaten, especially in damp weather. Protect them after planting out and check them at dusk. Training plants upwards keeps the fruit out of reach."
+        }
+      ],
+      "source": "Cucumber care: RHS. How many to grow: Virginia Tech extension. pH: Cornell Cooperative Extension. Keeping: Kansas State and University of Missouri extension."
+    },
+    "courgette": {
+      "about": "You pick courgettes small all summer long and the flowers are good to eat too. One plant spreads wide and gives a lot of fruit. Pick often. A courgette left for a few days grows into a marrow and slows the plant down.",
+      "water": "Courgettes need a lot of water, so keep the soil moist all summer. Water the base, not the leaves. A small pot buried next to each plant and filled with water sends it straight to the roots.",
+      "feed": "Rich soil is a must. Dig plenty of compost or well-rotted manure in before planting and in good soil they need little more. In a pot, give a high-potassium liquid feed every 10 to 14 days once the first fruits swell.",
+      "harvest": "Cut them at 10 to 12 cm long, while they are small and tender. In good weather, check every day or two, because one plant can give three or four a week. You can pick the male flowers without losing any fruit.",
+      "keeps": "Courgettes keep a few days in the fridge. Eat them while still firm.",
+      "problems": [
+        {
+          "name": "Powdery mildew",
+          "fix": "From midsummer, white powder covers the leaves, worse in dry soil. Keep the soil moist and water the base of the plant. Cut off the worst leaves."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "Young plants, flowers and small fruits get eaten. Protect plants after planting out, or sow indoors so they go out bigger."
+        },
+        {
+          "name": "Fruit rotting or not forming",
+          "fix": "In a cool early summer, few insects carry pollen and small fruits rot from the tip. It passes as the weather warms. You can also pollinate them by hand with a male flower."
+        }
+      ],
+      "source": "Courgette care: RHS. How many to grow: Virginia Tech extension. pH: Virginia Tech extension. Keeping: Kansas State and University of Missouri extension."
+    },
+    "pumpkin": {
+      "about": "Pumpkins ripen in autumn and keep well into winter. The plants trail a long way, so give them plenty of space. For big pumpkins, leave two or three on each plant. For one giant, leave only one.",
+      "water": "Pumpkins need a lot of water, especially once the fruit starts to grow. Water the ground, not the leaves. A good trick: bury a pot next to the plant and fill that, so the water goes straight to the roots.",
+      "feed": "Rich soil is what pumpkins need. Dig plenty of compost or well-rotted manure into the planting spot and most plants then need nothing more. For very large fruit, give a high-potassium liquid feed every 10 to 14 days once the fruit swells.",
+      "harvest": "Leave the fruit on the plant until it has fully coloured. The skin should be hard and not dent when you press a fingernail into it. Cut it before the first frost with at least 10 cm of stalk. Then leave it in the sun for a week to 10 days to harden the skin.",
+      "keeps": "Store hardened pumpkins in an airy place at 10 to 15 °C, not touching. They keep at least three months, up to six in good conditions. Frosted fruit won't keep.",
+      "problems": [
+        {
+          "name": "Fruit rot",
+          "fix": "Fruit rots if it lies on wet soil or is cut with too short a stalk. Set each one on a tile, brick or piece of wood. Never carry it by the stalk."
+        },
+        {
+          "name": "Powdery mildew",
+          "fix": "White powder covers the leaves, worse when plants go dry. Water steadily and give plants room so air can move."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "Young plants and flowers get eaten. Protect plants after planting out, especially in damp weather."
+        }
+      ],
+      "source": "Pumpkin care and keeping: RHS. Ripeness: University of Minnesota extension. How many to grow: Kansas State and Virginia Tech extension. pH: Virginia Tech extension."
+    },
+    "winter_squash": {
+      "about": "Butternut, acorn and onion squash are all winter squashes. They have hard skins and keep through winter. Trailing kinds spread a long way. Smaller ones can be trained up a sturdy support. Leave the fruit on the plant until it is fully ripe, because an unripe squash won't keep.",
+      "water": "Winter squash needs a lot of water. Water generously while the fruit swells, onto the ground and not over the leaves. A mulch around the plants holds moisture in the soil.",
+      "feed": "It needs rich soil. Dig plenty of compost or well-rotted manure into the planting spot. On poor soil, give a liquid feed high in potassium every 10 to 14 days once the fruit swells.",
+      "harvest": "A squash is ready when the skin is hard and dull, a fingernail doesn't dent it and the stalk is firm. Cut it before the first frost, with a long piece of stalk. Then leave it in the sun for about 10 days so the skin hardens.",
+      "keeps": "Store the hardened squashes somewhere dry and airy at 10 to 15 °C. Depending on the kind, they keep one to six months. Check them often and use any that go soft.",
+      "problems": [
+        {
+          "name": "Powdery mildew",
+          "fix": "White powder appears on the leaves, worse when the plants go dry. Water steadily and give plants room so air can move."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat young plants and flowers. Protect the plants after you plant them out, especially in damp weather."
+        },
+        {
+          "name": "Small fruits shrivel",
+          "fix": "In cool weather few insects visit the flowers, so the small fruits shrivel or rot. To pollinate by hand, brush pollen from a male flower into a female flower. You can tell the female by the small fruit behind it."
+        }
+      ],
+      "source": "Squash care: RHS. Ripeness and keeping: University of Minnesota extension and RHS. How many to grow: Kansas State and Virginia Tech extension. pH: Virginia Tech extension."
+    },
+    "green_beans": {
+      "about": "Pick green beans young, while the pods are tender. Dwarf types grow to about 45 cm and suit pots. Climbing types need tall canes but keep giving beans for longer. Frost kills them and cold, wet soil rots them, so sow only once the soil is warm.",
+      "water": "Green beans need normal watering. Water in dry weather, most of all once they flower and set pods. Dry soil makes the flowers drop. Pots need water often.",
+      "feed": "They need little food. In the ground they need no feed at all and too much nitrogen gives you leaves instead of pods. In a pot, give a high-potassium liquid feed every two weeks from the first flowers.",
+      "harvest": "Pick the pods at 15 to 20 cm, when they snap cleanly and before the beans show through. Pick every few days. The more you pick, the more pods come.",
+      "keeps": "The pods keep a few days in a bag in the fridge. For winter, blanch and freeze them.",
+      "problems": [
+        {
+          "name": "Slugs and snails",
+          "fix": "Seedlings get eaten overnight. Raise plants in pots and plant them out once they are sturdy. Check for slugs on damp evenings."
+        },
+        {
+          "name": "Blackfly",
+          "fix": "Small black aphids crowd onto the shoot tips. Squash them or wash them off with a jet of water."
+        },
+        {
+          "name": "Flowers dropping",
+          "fix": "In hot, dry or windy weather, the flowers fall off without making pods. Keep the soil moist, especially while the plants flower."
+        }
+      ],
+      "source": "Bean care: RHS and Virginia Tech extension. How many to grow: Kansas State and Texas A&M extension. pH: Virginia Tech and Penn State extension."
+    },
+    "sweetcorn": {
+      "about": "Plant sweetcorn in a block of short rows, not one long row. The wind carries the pollen and only a block gets the cobs well filled. Keep supersweet varieties away from other sweetcorn, or the kernels turn starchy.",
+      "water": "Normal watering is enough. Water young plants until they are settled, then in dry spells. It matters most when the tassels appear at the top and while the cobs swell.",
+      "feed": "Sweetcorn needs rich soil, so grow it in ground full of compost or manure. A nitrogen feed when the plants are about knee-high gives a bigger crop.",
+      "harvest": "Once the silky threads at the end of each cob turn brown, check the cobs. Peel back a little husk and press a kernel with your fingernail. Creamy juice means it's ready, watery juice means wait. Twist the cob off and eat it soon, because its sugar turns to starch.",
+      "keeps": "Keep the cobs in the fridge and eat them within 2 days. Supersweet types last about a week. Freeze any you can't eat in time.",
+      "problems": [
+        {
+          "name": "Gappy cobs",
+          "fix": "The cobs have gaps where kernels never formed, because too little pollen reached them. Plant in a block. On a still day, tap the tassels at the top of the plants to shake the pollen down."
+        },
+        {
+          "name": "Birds and mice",
+          "fix": "Birds, mice and squirrels eat the seed and the ripening cobs. Sow indoors or net the seed bed. Cover the cobs once they form."
+        },
+        {
+          "name": "Smut",
+          "fix": "Large grey-white swellings grow on cobs and stems, then burst into black powder. Cut them off before they burst and throw them away. Grow sweetcorn somewhere else next year."
+        }
+      ],
+      "source": "Sweetcorn care: RHS. How many to grow: Kansas State and University of Missouri extension. pH: University of Connecticut and University of Maryland extension. Keeping: University of Missouri extension."
+    },
+    "strawberry": {
+      "about": "Strawberry plants come back every year. Summer-fruiting kinds give berries in early summer. Everbearing kinds fruit from summer into autumn. A bed gives a good crop for three or four years. Then replant in a new spot to avoid soil diseases. Use rooted runners, the young plants the old ones send out.",
+      "water": "Strawberries need normal watering. Water regularly in dry spells. Pots and hanging baskets dry out fast, so water them often. Water the soil in the morning, so the fruit and the heart of each plant stay dry.",
+      "feed": "Their feeding needs are average. In the ground, a mulch of compost each spring is usually all they need. In pots, give a general liquid feed every two weeks. Once the flower buds form, switch to a feed high in potassium.",
+      "harvest": "Pick the berries when they are red all over, in the warmest part of the day. They don't ripen after picking. As the fruits form, spread straw under the plants to keep them clean. Take the straw away in autumn.",
+      "keeps": "They are best eaten the day you pick them. Keep them in the fridge and wash them just before eating. Frozen berries lose their shape, so use them in smoothies and desserts.",
+      "problems": [
+        {
+          "name": "Grey mould",
+          "fix": "In wet weather the fruit gets a fuzzy grey rot. Water in the morning without splashing and keep the fruit on straw. Remove rotten berries straight away."
+        },
+        {
+          "name": "Birds",
+          "fix": "Birds take the fruit as it ripens. Before the berries colour, cover the plants with netting on a frame. Pull it tight and fix it down well."
+        },
+        {
+          "name": "Vine weevil",
+          "fix": "In pots, plants wilt and collapse because white, C-shaped grubs are eating the roots. In late summer, water a biological control into the compost. It is made of tiny worms called nematodes."
+        }
+      ],
+      "source": "Strawberry care: RHS. Pot size: Iowa State University extension. pH: Cornell Cooperative Extension. Keeping: Kansas State and University of Missouri extension."
+    },
+    "melon": {
+      "about": "Melons ripen in late summer and need real heat. Where summers are cool, grow them in a greenhouse, tunnel or cold frame. To make sure the fruits ripen, keep up to four on each plant outdoors and four to six under cover. Remove the rest when they are about 2.5 cm across.",
+      "water": "Melons need normal watering. Keep the soil evenly moist but not soggy and water at the base in the morning. Water less once the fruit starts to ripen in late summer.",
+      "feed": "An average amount of food suits melons. In a pot, give a general liquid feed every 10 to 14 days in early summer. Once the fruits are the size of a walnut, switch to a high-potassium feed. Stop feeding as they ripen.",
+      "harvest": "A ripe melon smells sweet and the stalk starts to crack where it meets the fruit. The end opposite the stalk gives a little when you press it. Cantaloupe types then come away from the stalk with a light push.",
+      "keeps": "A ripe melon keeps a few days at room temperature. Once you cut it, cover it and keep it in the fridge.",
+      "problems": [
+        {
+          "name": "No fruit forming",
+          "fix": "Under cover, few insects reach the flowers. Open vents and doors on warm days. Pollinate by hand with a small brush, from male flowers into female ones, which have a tiny fruit behind the flower."
+        },
+        {
+          "name": "Powdery mildew",
+          "fix": "White powder covers the leaves, worse when plants go dry. Water steadily and keep the leaves dry."
+        },
+        {
+          "name": "Red spider mite",
+          "fix": "In dry air under cover, the leaves get fine pale speckles and thin webbing. In hot weather, wet the greenhouse floor and mist the plants."
+        }
+      ],
+      "source": "Melon care: RHS. Ripeness: University of Minnesota extension. How many to grow: Virginia Tech and Kansas State extension. pH: Virginia Tech extension. Keeping: Kansas State and University of Missouri extension."
+    },
+    "watermelon": {
+      "about": "Watermelons need a long, hot summer. In a cool area, choose a small, early kind and grow it under cover. Unlike other melons, they don't ripen after picking. So you have to judge ripeness while the fruit is still on the plant.",
+      "water": "They need normal watering. While the vines grow and the fruit swells, water deeply and regularly. Water the ground, in the morning. Once the fruit is close to full size, water less.",
+      "feed": "Average feeding is enough. Work compost into the soil before planting. Too much nitrogen gives you leaves instead of fruit. If you do feed, use a feed high in potassium once fruits form.",
+      "harvest": "Look for three signs that it's ripe. The curly tendril nearest the fruit is brown and dry. The patch where it lies on the ground turns from white to creamy yellow. The skin turns from shiny to dull. When you see all three, cut it off with a knife.",
+      "keeps": "A whole watermelon keeps 2 to 3 weeks somewhere cool, at 10 to 15 °C. Keep it away from apples, bananas and tomatoes. Once it's cut, cover it and keep it in the fridge.",
+      "problems": [
+        {
+          "name": "Picked too early",
+          "fix": "A watermelon cut too early stays pale and bland, because it won't ripen off the plant. Wait until you see the dry tendril, the yellow patch underneath and the dull skin together."
+        },
+        {
+          "name": "Powdery mildew",
+          "fix": "The leaves get a white powder, worse when the plants go dry. Water the ground steadily and keep the leaves dry."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat young plants. Protect them once they are planted out, especially in damp weather."
+        }
+      ],
+      "source": "Watermelon care: RHS. Ripeness and keeping: University of Minnesota extension. How many to grow: Virginia Tech and Kansas State extension. pH: University of Maryland extension."
+    },
+    "basil": {
+      "about": "Basil lives for one summer and can't stand cold. Its scented leaves last from early summer until the first cold nights. Pinch out the tips of the shoots and the plant stays bushy and leafy. It grows well in a pot in a warm, sunny spot out of the wind.",
+      "water": "Normal watering is right for basil. Keep the soil evenly moist. Water in the morning, at the foot of the plant rather than over the leaves. It hates having wet roots overnight. In hot weather a pot may need water every day.",
+      "feed": "It needs very little feeding. In the ground, give it none at all. In a pot, give a balanced liquid feed every few weeks in summer. Don't use tomato feed, because it pushes basil into flower.",
+      "harvest": "Pick the shoot tips just above a pair of leaves, a few from each plant. New side shoots then grow from there. Pinch out flower buds as soon as they appear, so the leaves stay tender.",
+      "keeps": "In the fridge, basil turns black. Stand the stems in a glass of water at room temperature instead and it keeps for a few days. For longer, freeze the chopped leaves in oil or make pesto.",
+      "problems": [
+        {
+          "name": "Downy mildew",
+          "fix": "The leaves turn yellow between the veins, with a grey-purple fuzz underneath, mostly in humid weather. Water the soil in the morning and give plants room. Pull out any plants that have it."
+        },
+        {
+          "name": "Cold damage",
+          "fix": "The leaves turn black and limp after cold nights. Keep basil indoors until the nights stay warm. As autumn cools, bring pots in or cover the plants."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They can eat young plants overnight. Grow basil in pots, then check after dark and pick them off."
+        }
+      ],
+      "source": "Basil care: RHS. pH: Clemson and University of Connecticut extension."
+    },
+    "parsley": {
+      "about": "Curly or flat, parsley lives for two years, but you only grow it for one. In its second year it flowers and the leaves get worse, so sow fresh seed every year. The seed is slow. Outdoors it can take up to six weeks to come up, so mark the row and keep it moist.",
+      "water": "It needs normal watering. Keep the soil moist but never soggy, especially while the seedlings are small and in hot, dry spells. Pots dry out quickly. In summer heat, move them into light shade.",
+      "feed": "Parsley needs little feeding. In the ground it needs none. In a pot, give a balanced liquid feed every few weeks while it is growing.",
+      "harvest": "Cut a few of the outer stems at the base and leave the middle to keep growing. If you pick regularly, new leaves keep coming from late spring to autumn.",
+      "keeps": "Stand a bunch in water in the fridge and it keeps for several days. Chopped leaves freeze well in ice cube trays. They keep more flavour than dried parsley.",
+      "problems": [
+        {
+          "name": "Carrot fly",
+          "fix": "The plants turn reddish, wilt and stop growing, because small maggots are tunnelling into the roots. Cover the bed with fine insect mesh from the day you sow."
+        },
+        {
+          "name": "Celery leaf miner",
+          "fix": "You see pale brown blisters on the leaves, where tiny grubs feed inside. Pick off those leaves and bin them. The plant will grow new ones."
+        },
+        {
+          "name": "Slow to come up",
+          "fix": "Nothing shows for weeks and people often dig the row over by mistake. Soak the seed overnight before sowing. Keep the soil moist and give it up to six weeks."
+        }
+      ],
+      "source": "Parsley care: RHS. pH: Cornell and University of Maryland extension."
+    },
+    "coriander": {
+      "about": "Coriander leaves (cilantro) are ready fast and the seeds come later. In heat or dry soil the plants soon shoot up and flower. So sow a small batch every month or so from spring, rather than one big sowing. It grows well in a pot.",
+      "water": "It needs a normal amount of water. In dry spells keep the soil moist, because dry roots make it flower early. In warm weather, check pots every day.",
+      "feed": "Coriander needs very little. It's a quick crop, so garden soil or fresh compost is enough without any feed.",
+      "harvest": "Start cutting leaves when the plants are 10 to 15 cm tall. Take a few from each plant, then give them about two weeks to grow back. For seed, let some plants flower. Cut the stems when the seeds turn brown and dry them in a paper bag.",
+      "keeps": "A fresh bunch lasts a few days in the fridge. Dried seed keeps for months in an airtight jar.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "In hot, dry weather or after being moved, the plants send up a flower stalk and stop making leaves. Sow the seed where the plants will grow, in a spot with shade at midday. Water in dry spells and choose a variety that is slow to bolt."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "In damp weather they eat the seedlings. Go out after dark and pick them off."
+        },
+        {
+          "name": "Aphids",
+          "fix": "Small green or black insects crowd onto the shoot tips and weaken the plant. Rub them off or wash them away. Leave ladybirds alone, as they eat them."
+        }
+      ],
+      "source": "Coriander care: RHS. pH: University of Connecticut extension. Pot size: Oregon State extension."
+    },
+    "dill": {
+      "about": "Dill gives you feathery leaves and, later on, seeds. It has one long main root and hates being moved. So sow it where it will grow, a little at a time every few weeks from mid-spring to midsummer. Like coriander, it bolts in hot, dry weather, which means it flowers too soon.",
+      "water": "Normal watering suits dill. Water it in dry spells, because dry soil makes it flower early and stop making leaves. Pots dry out quickly in warm weather.",
+      "feed": "It needs little food. In garden soil or fresh compost, you don't need to feed it at all.",
+      "harvest": "You can start picking leaves about six weeks after sowing. Take a few at a time and leave at least a third of the plant. For seed, cut the heads in late summer when they are dry and brown. Hang them upside down in a paper bag.",
+      "keeps": "Fresh leaves wilt fast and don't keep well, even in the fridge. Use them soon or dry them. Dried leaves and seeds keep in an airtight jar.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "In hot, dry weather the plants flower early and stop making leaves. Water in dry spells and sow again every few weeks. If you only want leaves, cut off the flower stems."
+        },
+        {
+          "name": "Aphids",
+          "fix": "Small green or black insects cluster on the soft shoots and leaves. Rub or wash them off. Leave the ladybirds alone to eat the ones you miss."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "In damp weather they eat the tender seedlings. Check after dark and pick them off."
+        }
+      ],
+      "source": "Dill care: RHS. pH: University of Connecticut extension."
+    },
+    "chervil": {
+      "about": "This small, delicate herb has a mild taste of aniseed. It likes cool weather and light shade. In hot sun it flowers too soon, so it does best in spring and autumn. Sow a little every few weeks for a steady supply.",
+      "water": "Chervil needs normal watering. Keep the soil evenly damp but not soggy, as dry soil makes it flower early. Pots need extra water in warm weather.",
+      "feed": "It needs very little food. Garden soil or fresh compost is enough, so don't feed it.",
+      "harvest": "The leaves are ready about eight weeks after sowing, once the plants are 10 cm tall. Pick a few young leaves from each plant. Or cut whole stems back to 5 cm and let them grow again.",
+      "keeps": "Use chervil fresh. It wilts within a day or two and it loses most of its flavour when dried.",
+      "problems": [
+        {
+          "name": "Bolting",
+          "fix": "In hot sun and dry soil the plants flower early and the leaves lose their taste. Grow it in light shade, water regularly and sow again every few weeks."
+        },
+        {
+          "name": "Aphids",
+          "fix": "Small green insects cluster on the soft leaves and shoots. Rub or wash them off and let ladybirds eat the rest."
+        }
+      ],
+      "source": "Chervil care: RHS. pH: University of Connecticut extension."
+    },
+    "chives": {
+      "about": "The leaves taste mildly of onion and you can eat the purple flowers too. The clump comes back every spring. Every three or four years, dig it up, pull it into smaller clumps and replant them to keep it strong.",
+      "water": "Chives need normal watering. In the first summer, water them in dry spells. After that, chives in the ground manage on their own. In a pot, keep the compost evenly moist.",
+      "feed": "They need little food. In the ground, some compost at planting time is enough. In a pot, a general liquid feed now and then in summer keeps new leaves coming.",
+      "harvest": "Snip leaves just above the base whenever you need them. The more often you cut, the more you get. After flowering, cut the whole clump back to about 5 cm and it will send up lots of fresh leaves.",
+      "keeps": "Cut chives wilt within a few days. To use them in winter, chop them and freeze them in a bag or an ice cube tray.",
+      "problems": [
+        {
+          "name": "Rust",
+          "fix": "Raised orange spots appear on the leaves. Cut the clump right back and put the leaves in the bin. The new growth usually comes up clean."
+        },
+        {
+          "name": "Aphids",
+          "fix": "Small greenfly cluster on the leaves and flower stalks. Rub them off or wash them off with a jet of water."
+        }
+      ],
+      "source": "Chive care: RHS. pH: University of Minnesota extension."
+    },
+    "thyme": {
+      "about": "Thyme stays green all year, so you can pick it fresh in any season or dry it. It's a small shrub that needs sun and soil where water drains away fast. Wet ground in winter kills it more often than cold does. After a few years the plants turn woody. Replace them with new plants grown from cuttings.",
+      "water": "Thyme copes well with dry spells. Water new plants in dry weather until they settle in. After that, plants in the ground rarely need water. In a pot, water in hot, dry weather and let the compost dry out a little in between.",
+      "feed": "It needs very little food. Thyme grows best in poor soil, so don't feed it in the ground. Rich soil gives soft growth with less flavour. A plant that has been in the same pot for over a year can have a light sprinkle of general fertiliser in late spring.",
+      "harvest": "Snip sprigs whenever you need them. The soft new growth of late spring and summer has the best flavour. Cutting it often keeps the plant compact. Trim it lightly after flowering, but don't cut into the bare wood.",
+      "keeps": "Fresh sprigs keep a few days in a bag in the fridge. To dry thyme, hang bunches in a warm, dark, airy place for a few weeks. Then keep the leaves in an airtight jar.",
+      "problems": [
+        {
+          "name": "Root rot",
+          "fix": "The plant wilts and turns brown from the base while the soil is wet. Grow it in soil that drains fast, a raised bed or a pot with grit mixed in. Never leave a pot standing in water."
+        },
+        {
+          "name": "Bare, woody plant",
+          "fix": "After a few years the middle of the plant goes bare and woody. Trim it lightly every year after flowering. Replace old plants with cuttings taken in late spring."
+        },
+        {
+          "name": "Rosemary beetle",
+          "fix": "Small beetles with metallic green and purple stripes eat the leaves from late summer to spring. Their grey grubs eat them too. Pick them off by hand or shake the plant over a sheet of paper."
+        }
+      ],
+      "source": "Thyme care: RHS. pH: University of Connecticut soil testing lab."
+    },
+    "rosemary": {
+      "about": "You can pick rosemary all year, as this shrub keeps its leaves in every season. Give it full sun and soil that drains quickly. Wet, heavy ground kills it faster than cold does. In cold areas, grow it against a sunny wall or in a pot you can move to shelter.",
+      "water": "Rosemary handles dry spells well. In the first year, water it when the weather is dry. After that, plants in the ground rarely need water. A pot needs water in hot weather, but never let the compost get waterlogged.",
+      "feed": "It needs very little food. Plants in the ground don't need feeding at all. If a plant has been in the same pot for more than a year, give it some general fertiliser granules in late spring or early summer.",
+      "harvest": "Snip shoots whenever you need them, all year round. The soft new growth of late spring and summer tastes best. Trim the plant after flowering to keep it bushy. Don't cut into old, bare wood, because it rarely sprouts again.",
+      "keeps": "Fresh sprigs keep several days in the fridge. To dry them, hang them in a warm, dark, airy place. Then strip off the leaves and keep them in an airtight jar.",
+      "problems": [
+        {
+          "name": "Rosemary beetle",
+          "fix": "From late summer to spring, small beetles with metallic green and purple stripes eat the leaves and so do their grey grubs. Pick them off by hand or shake the plant over a sheet of paper."
+        },
+        {
+          "name": "Frost and wet damage",
+          "fix": "Shoots turn brown and die after a hard frost, cold wind or a wet winter. In very cold spells, cover the plant with fleece and move pots somewhere sheltered. Cut out the dead shoots in spring."
+        },
+        {
+          "name": "Cuckoo spit",
+          "fix": "Blobs of white froth appear on the shoots in late spring. Each one hides a small insect that sucks sap. It does little harm, so wipe it off or rinse it away with water."
+        }
+      ],
+      "source": "Rosemary care: RHS. pH: Texas A&M AgriLife extension."
+    },
+    "oregano": {
+      "about": "You can use oregano fresh or dried. It spreads out over time and comes back every year. Most of the top dies back in winter and new shoots come up in spring. It has the most flavour in full sun and in poor soil that drains quickly. It's best picked just before the flowers open.",
+      "water": "Once settled, oregano copes with dry spells. Water new plants when it's dry. Settled plants in the ground need no extra water. In a pot, water it in hot, dry weather, but never let the compost stay soggy.",
+      "feed": "Oregano needs very little food. Plants in the ground need no feeding. A plant that has been in the same pot for more than a year can have a sprinkle of general fertiliser granules in late spring or early summer.",
+      "harvest": "Pick shoots from late spring to autumn and strip off the leaves. The flavour is best before the flowers open. After flowering, cut the plant back and it will grow a fresh batch of leaves. Clear away the old stems in late winter.",
+      "keeps": "It dries well. Hang sprigs in a dark, airy place for a few weeks. Then strip off the leaves and keep them in an airtight jar.",
+      "problems": [
+        {
+          "name": "Mint rust",
+          "fix": "Orange or brown powdery spots appear under the leaves and shoots come up twisted in spring. Cut the affected stems down to the ground. Put them in the bin, not on the compost."
+        },
+        {
+          "name": "Leafhoppers",
+          "fix": "Small jumping insects suck the sap and leave pale, blotchy patches on the leaves. The damage only spoils the look, so you can leave them alone."
+        },
+        {
+          "name": "Mint moth",
+          "fix": "Small caterpillars eat the leaves in summer and spin them together. The damage is usually slight. Pick off the caterpillars if it bothers you."
+        }
+      ],
+      "source": "Oregano care: RHS. pH: University of Connecticut soil testing lab (marjoram) and NC State extension."
+    },
+    "sage": {
+      "about": "Soft grey-green leaves stay on this shrub all year, so you can pick sage in any season. It needs sun and soil that never stays soggy. After six or seven years the plants get woody and straggly. Then replace them with new plants grown from cuttings.",
+      "water": "Sage copes with dry spells once it has settled. Water it in dry weather during the first year. After that, plants in the ground can take drought. In a pot, keep the compost just moist, not soggy. In winter, move the pot beside a wall, out of the rain.",
+      "feed": "It needs very little food. Don't feed plants in the ground at all. If a plant has been in the same pot for more than a year, give it a light sprinkle of general fertiliser granules in late spring or early summer.",
+      "harvest": "Pick young leaves or whole shoots whenever you need them. Growth from spring and summer tastes best. Picking often keeps the plant bushy. Give it a light trim every year in mid to late spring.",
+      "keeps": "To dry sage, hang sprigs in a warm, dark, airy place. Then keep the leaves in an airtight jar. You can also chop the leaves and freeze them in an ice cube tray.",
+      "problems": [
+        {
+          "name": "Rosemary beetle",
+          "fix": "Small beetles striped in metallic green and purple eat the leaves from late summer to spring. Their grey grubs do the same. Pick them off by hand or shake the plant over a sheet of paper."
+        },
+        {
+          "name": "Leafhoppers",
+          "fix": "Pale, blotchy patches on the leaves come from small jumping insects that suck sap. The damage is rarely serious. Just pick off the worst leaves."
+        },
+        {
+          "name": "Woody, straggly plant",
+          "fix": "Old plants grow long, bare stems with few leaves. Trim lightly every spring. Every few years, take cuttings from the soft new shoots in late spring to replace the plant."
+        }
+      ],
+      "source": "Sage care: RHS. pH: UC Master Gardeners, University of California."
+    },
+    "mint": {
+      "about": "This fast grower lasts for years and goes into tea, drinks and cooking. Its roots run fast underground and take over a bed. So grow it in a pot, or sink a pot with no bottom into the ground with the rim above the soil. It dies down in winter and comes back in spring.",
+      "water": "Mint needs a lot of water. Keep the soil evenly moist, because it wilts fast in a dry pot. Check pots often in summer and move them into light shade when it's hot.",
+      "feed": "Mint needs average feeding, mostly in pots. In the ground it needs little. Give a potted plant liquid fertiliser in spring, then every 4 to 6 weeks while it grows.",
+      "harvest": "From late spring to autumn, pick the young shoot tips often. Regular picking keeps the plant compact and full of fresh growth. Cut back stems that are flowering to get new leaves.",
+      "keeps": "Fresh sprigs keep a few days in a glass of water or in the fridge. Freezing keeps the flavour better than drying. Freeze the leaves in ice cubes.",
+      "problems": [
+        {
+          "name": "Mint rust",
+          "fix": "Orange powdery spots appear under the leaves and in spring the shoots come up twisted and swollen. Cut affected stems to the ground and put them in the bin. If it comes back every year, start again with healthy plants in a new spot."
+        },
+        {
+          "name": "Spreading everywhere",
+          "fix": "Creeping shoots pop up all over the bed. Keep mint in a pot with the rim above the soil, so the runners can't climb over it. Every few years, split the plant into pieces and repot it."
+        },
+        {
+          "name": "Mint beetle",
+          "fix": "In summer, small shiny blue-green beetles and their grubs eat holes in the leaves. Pick them off. The plant usually grows back."
+        }
+      ],
+      "source": "Mint care: RHS. pH: NSW Department of Primary Industries. Feeding in pots: University of Arizona extension."
+    },
+    "tulip": {
+      "about": "Big, bright tulips flower in mid to late spring. Plant the bulbs late in autumn, in soil that drains well and doesn't stay wet. Bulbs planted late get tulip fire, a fungal disease, less often. Many tulips only flower well in their first year. Where it matters most, plant fresh bulbs every year.",
+      "water": "Tulips need normal watering. Once the shoots are up, bulbs in the ground only need water after two or three weeks without rain. Keep pots watered from when the leaves appear, as drought cuts the flowering short. If the compost in a pot stays sodden in winter, move it out of the rain.",
+      "feed": "An average amount of feeding suits them. From early spring, give tulips in pots a high-potassium liquid feed, such as tomato feed, every week until the leaves turn yellow.",
+      "harvest": "For the vase, cut them when the bud shows colour but hasn't opened yet. In the garden, cut off faded flowers just above the leaves. Leave the leaves until they turn the colour of straw. To keep the bulbs, dig them up about six weeks after flowering. Dry them and store them somewhere warm, dark and airy until autumn.",
+      "keeps": "Cut tulips last several days in a vase. They keep growing and bend towards the light. Top up the vase with cold water.",
+      "problems": [
+        {
+          "name": "Tulip fire",
+          "fix": "Brown spots appear and the leaves and flowers twist and wither, sometimes with grey mould. Dig out sick plants with their bulbs and put them in the bin. Plant late in autumn and grow tulips somewhere else for at least three years."
+        },
+        {
+          "name": "Squirrels and mice",
+          "fix": "They dig up the bulbs and eat them in autumn and winter. Cover the bed or pot with chicken wire until the leaves are up. Daffodils planted among them help, as squirrels avoid them."
+        },
+        {
+          "name": "Few or no flowers",
+          "fix": "From the second year on you get leaves but no flowers, or only small ones. Plant bulbs at least three times their own height deep and feed pots while the leaves are up. Replace tired bulbs with fresh ones."
+        }
+      ],
+      "source": "Tulip care: RHS. pH: University of Connecticut soil testing lab. Pot size: Purdue University extension."
+    },
+    "daffodil": {
+      "about": "Yellow and white daffodils flower from late winter to mid spring. In sun or light shade, they come back for many years and slowly spread into clumps. The one thing to remember: let the leaves die back on their own after flowering, because they feed next year's flowers.",
+      "water": "Normal watering is enough for daffodils. Bulbs in the ground rarely need any, only in long dry spells while they are growing. Pots dry out fast, so water them until the leaves die down.",
+      "feed": "They need little food. In the ground they need no feeding at all. In pots, give a high-potassium liquid feed, such as tomato feed, from when the shoots appear until the leaves start to die down.",
+      "harvest": "Snap off faded flowers so the energy goes back into the bulb. Leave the leaves until they turn yellow, about six weeks after flowering. Don't cut, tie or knot them. For the vase, cut daffodils when the bud is about to open.",
+      "keeps": "Cut daffodils ooze a sap that makes other flowers die sooner. Stand them in water on their own overnight before you mix them with others. Don't cut the stems again after that.",
+      "problems": [
+        {
+          "name": "No flowers (blind daffodils)",
+          "fix": "You get plenty of leaves but no flowers, from crowded clumps, bulbs planted too shallow or leaves cut off too early. Once the leaves have died back, dig up crowded clumps and pull them apart. Replant the bulbs deeper."
+        },
+        {
+          "name": "Bulb fly",
+          "fix": "Thin, grassy leaves come up but no flowers and the bulb is soft with a fat grub inside. Throw away soft bulbs. As the leaves die back, firm the soil over the holes so the fly can't reach the bulbs."
+        },
+        {
+          "name": "Rotting bulbs",
+          "fix": "Bulbs go soft and rot from the bottom, in wet soil or in storage. Plant only firm bulbs, in soil that drains well. Throw away any that feel soft."
+        }
+      ],
+      "source": "Daffodil care: RHS. pH: University of Connecticut soil testing lab. Pot size: Purdue University extension."
+    },
+    "crocus": {
+      "about": "Crocuses grow from corms (like small bulbs) and flower in late winter and early spring. They are among the first food of the year for bees. They come back every year and spread into wide patches in borders and short grass. Let the leaves die back after flowering. In a lawn, don't mow until they have.",
+      "water": "Crocuses cope with dry spells and in the ground rarely need water. In a pot, keep the compost moist a few centimetres down while the leaves are up.",
+      "feed": "They need little food and none at all in the ground. In a pot, give a high-potassium liquid feed while the leaves are up. It helps next year's flowers.",
+      "harvest": "There's no need to snip off the faded flowers. Leave the leaves until they die back. In a lawn, wait to mow until then, so the corms can build up and spread. Once the leaves have died, you can dig up crocuses in pots. Keep them in paper bags somewhere cool and dry until autumn.",
+      "problems": [
+        {
+          "name": "Squirrels and mice",
+          "fix": "They dig up and eat the corms after planting. Cover new plantings with chicken wire or metal mesh until the shoots are up."
+        },
+        {
+          "name": "Birds pecking flowers",
+          "fix": "Sparrows peck the flowers (often the yellow ones) and leave them torn and shredded. Black thread or netting over the clump protects them while they flower."
+        },
+        {
+          "name": "Few flowers",
+          "fix": "You get fewer flowers each year. Often the leaves were mown or cut before they died back, or the spot has become too shady. Leave the leaves alone and move clumps to a sunnier spot once they have died down for the year."
+        }
+      ],
+      "source": "Crocus care: RHS. pH: University of Connecticut soil testing lab. Pot size: Purdue University extension."
+    },
+    "sunflower": {
+      "about": "Sunflowers give you big summer flowers, plus seed for you or the birds. Tall kinds need a strong cane or a wall to be tied to. Dwarf kinds stay short and do well in pots. Protect the seedlings from slugs until they are sturdy.",
+      "water": "They need normal watering. In dry spells, water well at the base of the stem. Tall kinds must not dry out. Plants in pots need water more often, every day in hot weather.",
+      "feed": "Average feeding is right. Dig compost into the bed before sowing. Once flower buds form, give a liquid feed rich in potassium, such as tomato feed, every two weeks. It gives you bigger flowers.",
+      "harvest": "For the vase, cut them in the morning as the petals start to open. For seed, leave the head on until its back turns brown. Cover it with a paper bag or a net to keep the birds off. Then cut it and dry it indoors.",
+      "keeps": "A cut stem lasts about a week in a vase. Change the water every couple of days. Dry seed keeps for months somewhere cool, dry and dark.",
+      "problems": [
+        {
+          "name": "Slugs and snails",
+          "fix": "Young plants get eaten down to the stem overnight. Put a collar round each seedling, or start them in pots and plant them out once they are sturdy."
+        },
+        {
+          "name": "Birds",
+          "fix": "Birds dig up the seed after sowing or pick the ripening heads clean. Cover new sowings with netting. Put a bag over the heads you want to keep."
+        },
+        {
+          "name": "Falling over",
+          "fix": "Tall stems lean or snap in wind or after rain. Tie them to a strong cane early on, or grow them against a wall or fence."
+        }
+      ],
+      "source": "Sunflower care: RHS. pH: University of Minnesota extension."
+    },
+    "marigold": {
+      "about": "French and African marigolds flower bright orange and yellow from early summer until the first frost. They suit beds, pots and the gaps between vegetables. They are easy to grow, but slugs love the young plants. Pick off the faded flowers and new ones keep coming.",
+      "water": "Normal watering is enough. Water in dry spells, at the foot of the plant rather than over the flowers. Pots dry out fast in summer, so check them every day.",
+      "feed": "Marigolds need little feeding. Ordinary garden soil is enough. Rich soil or too much feed gives you leaves instead of flowers. In pots, a liquid feed every few weeks keeps them flowering.",
+      "harvest": "Every few days, pinch off the faded flowers just below the head. For the vase, cut them when the flowers are fully open.",
+      "keeps": "Cut flowers last about a week in a vase. Strip off any leaves that would sit in the water.",
+      "problems": [
+        {
+          "name": "Slugs and snails",
+          "fix": "You find holes in the leaves and seedlings gone overnight. Plant out sturdy young plants, not tiny ones. In wet weather, protect them at night."
+        },
+        {
+          "name": "Grey mould",
+          "fix": "Grey fuzz appears on flowers and stems in cool, wet weather. Take off the rotting flowers. Leave space between plants so they dry quickly."
+        },
+        {
+          "name": "Red spider mite",
+          "fix": "In hot, dry weather the leaves go pale and speckled, with fine webbing, mostly in greenhouses and pots. Keep plants watered. Mist or hose the undersides of the leaves."
+        }
+      ],
+      "source": "Marigold care: RHS. pH: University of Connecticut soil testing lab."
+    },
+    "calendula": {
+      "about": "From early summer into autumn, calendula gives you orange and yellow flowers. It lives for one year but copes with cold. The petals are edible and add colour to salads and rice. It grows in almost any soil and drops seed that comes up all around. Sown in autumn, it survives the winter and flowers early the next year.",
+      "water": "Once it's growing well, calendula copes with dry spells. Water seedlings and plants in pots. Keep water off the leaves to slow down powdery mildew.",
+      "feed": "It needs little food. Rich soil or a lot of feeding gives soft leaves and fewer flowers. Plants in pots can have a liquid feed once a month.",
+      "harvest": "In the morning, cut fully open flowers for the vase or for their petals. Snip off the faded ones every few days. Otherwise the plants set seed and stop flowering.",
+      "keeps": "Cut flowers last about a week in a vase. Dry the petals on paper in a warm, airy place and they keep for months in a jar.",
+      "problems": [
+        {
+          "name": "Powdery mildew",
+          "fix": "From midsummer a white, dusty coat covers the leaves, worst in dry soil. Water in dry spells, give plants space and pull out badly affected ones. Late sowings stay cleaner."
+        },
+        {
+          "name": "Blackfly",
+          "fix": "Small black insects cluster on the shoot tips and buds. Rub them off or spray them off with water. Ladybirds and other predators soon follow."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "In wet weather they eat seedlings overnight. Protect young plants at night until they are well grown."
+        }
+      ],
+      "source": "Calendula care: RHS. pH: Utah State University extension."
+    },
+    "nasturtium": {
+      "about": "Nasturtiums trail along the ground or climb. You can eat both the bright flowers and the peppery leaves. They do best in poor soil that drains well. Rich soil gives you a mass of leaves and few flowers. They're easy to grow from seed, even for children.",
+      "water": "Once they're growing in the ground, they cope with dry spells. Water seedlings and plants in pots. If the soil stays very dry for a long time, the flowering stops.",
+      "feed": "Nasturtiums need very little, so don't feed them at all. Feeding gives you leaves instead of flowers. Grow them in ordinary or poor soil, without compost or manure.",
+      "harvest": "Pick young leaves and open flowers in the morning, as you need them. Pick the green seeds before they harden and you can pickle them like capers. Picking off faded flowers keeps new ones coming.",
+      "keeps": "Leaves and flowers wilt quickly. Keep them in a bag in the fridge and use them within a day or two.",
+      "problems": [
+        {
+          "name": "Blackfly",
+          "fix": "Thick clusters of black insects sit under the leaves and on the shoot tips. Pick off the worst shoots or hose them down. Ladybirds and hoverflies soon move in."
+        },
+        {
+          "name": "Cabbage white caterpillars",
+          "fix": "Green caterpillars strip the leaves in late summer. They're the same ones that eat cabbages. Check under the leaves and pick them off by hand."
+        },
+        {
+          "name": "All leaves, few flowers",
+          "fix": "Big, lush leaves hide just a few flowers, because of rich soil or feeding. Stop feeding. Next year, sow them in a poorer, sunny spot."
+        }
+      ],
+      "source": "Nasturtium care: RHS and University of Maryland extension."
+    },
+    "zinnia": {
+      "about": "These cut flowers come in bold colours from midsummer to the first frost. The more you cut, the more they flower. Zinnias love heat and sun and they struggle in cold, wet weather. They don't like their roots being disturbed, so sow them where they will flower or in small pots.",
+      "water": "Zinnias need normal watering. In dry spells, water deeply at the base of the plant, because wet leaves bring mildew. Check plants in pots every day in summer.",
+      "feed": "They need little food. Ordinary soil with some compost is enough and too much feed gives soft growth. In pots, give a liquid feed every two weeks once flowering starts.",
+      "harvest": "Cut a flower when it's fully open and the stem is stiff just below the head. A simple test: shake it and the stem shouldn't bend. Cut low down, just above a pair of leaves. Snip off the faded flowers on the rest so new buds keep coming.",
+      "keeps": "Cut zinnias last about a week in a vase. Give them fresh water every couple of days.",
+      "problems": [
+        {
+          "name": "Powdery mildew",
+          "fix": "A white, dusty coat appears on the leaves in late summer. Water the soil rather than the leaves, leave space for air and remove the worst leaves. Varieties that resist mildew help too."
+        },
+        {
+          "name": "Leaf spots",
+          "fix": "In wet weather, brown or dark spots with a pale edge appear on the leaves. Remove spotted leaves and water at the base. Clear the plants away at the end of the season."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat seedlings overnight. Protect them at night or raise them in small pots, then plant them out once they're sturdy."
+        }
+      ],
+      "source": "Zinnia care: RHS. pH: University of Florida IFAS extension."
+    },
+    "cosmos": {
+      "about": "This tall, airy plant lives for one season. It has feathery leaves and daisy-like flowers from midsummer to the first frost and they're good for cutting. It flowers best in poor to average soil. Rich soil gives tall, leafy plants with few flowers. Dwarf types suit pots.",
+      "water": "Once it's settled, cosmos copes with dry spells. Water seedlings, new plants and pots. Too much water, like too much feed, gives you more leaves than flowers.",
+      "feed": "Cosmos needs very little. Don't feed it in the ground. Plants in pots can have a high-potassium liquid feed, such as tomato feed, once a month.",
+      "harvest": "For the vase, cut stems when the buds are just opening, back to a side shoot. Pick off faded flowers every few days, or the plant sets seed and stops flowering.",
+      "keeps": "Cut flowers last from a few days to a week in a vase. Cut them in the cool of the morning.",
+      "problems": [
+        {
+          "name": "Slugs and snails",
+          "fix": "They eat seedlings and young plants overnight. Only plant out sturdy plants and protect them at night until they are well grown."
+        },
+        {
+          "name": "All leaves, few flowers",
+          "fix": "The plants grow tall and lush but flower late and sparsely, because of rich soil, feeding or shade. Stop feeding and keep picking off faded flowers. Next year, choose a sunnier spot with poorer soil."
+        },
+        {
+          "name": "Falling over",
+          "fix": "Tall plants flop over in wind and rain. Pinch out the tip at about 30 cm so the plants grow bushier. Support them with canes or twiggy sticks."
+        }
+      ],
+      "source": "Cosmos care: RHS. pH: University of Connecticut soil testing lab."
+    },
+    "sweet_pea": {
+      "about": "Sweet peas climb and give scented flowers to cut from early summer. Give them canes, netting or a fence to climb. Pinch out the tip when they are about 10 cm tall and the plants grow bushier. The one rule: keep picking, because once seed pods form they stop flowering. The pods look like garden peas, but they are poisonous.",
+      "water": "They need a lot of water. Keep the soil moist all season and water well in dry spells. Dry roots cut the flowering short. In warm weather, pots need water every day.",
+      "feed": "Average feeding is right for sweet peas. Before sowing or planting, dig in plenty of compost or well-rotted manure. Once they are growing, a liquid feed every week or two keeps the flowers coming.",
+      "harvest": "Every few days, cut stems in the morning when the lowest flowers on them are open. Take off any seed pods you find, or the plant stops flowering.",
+      "keeps": "Cut stems last a few days in a vase. The more you cut, the more new flowers come.",
+      "problems": [
+        {
+          "name": "Aphids",
+          "fix": "Green insects on the shoot tips and buds can spread viruses that streak and twist the plant. Squash them or hose them off early. Pull out any plants with streaked, stunted growth."
+        },
+        {
+          "name": "Powdery mildew",
+          "fix": "Late in summer the leaves get a white, dusty coat, worse in dry soil and in crowded spots with still air. Water in dry spells and keep the air moving. Cut out the affected growth."
+        },
+        {
+          "name": "Buds falling off",
+          "fix": "After cold nights or when the roots are dry, the flower buds turn yellow and fall before they open. Keep the soil moist. It usually stops once the weather settles."
+        }
+      ],
+      "source": "Sweet pea care: RHS. pH: University of Missouri extension. Powdery mildew: Oregon State University extension."
+    },
+    "lavender": {
+      "about": "Lavender is a small shrub that stays green all year. Bees love its scented summer flowers, which also dry well. It needs full sun and poor soil that drains quickly. Chalky soil suits it. The one thing to remember: trim it every year after flowering, or it gets straggly and woody.",
+      "water": "Once settled, lavender copes well with dry spells. Water new plants regularly in their first summer. After that, plants in the ground rarely need water. A pot dries out fast and needs regular watering in summer.",
+      "feed": "It needs very little. Lavender likes soil low in nutrients, so don't feed it. Fertiliser gives soft, floppy growth.",
+      "harvest": "For drying, cut stems on a dry morning when the first flowers on the spike open. In late summer, after flowering, cut off the old flower stalks with about 2.5 cm of leafy growth. Never cut into bare wood.",
+      "keeps": "Hang small bunches upside down in a dark, airy place until they're dry. In a closed jar, the dried flowers keep their scent for months.",
+      "problems": [
+        {
+          "name": "Root rot",
+          "fix": "In wet, heavy soil the plants turn grey and die back, often in winter. Plant on a mound or in a raised bed and add grit to pots. Never leave a pot standing in water."
+        },
+        {
+          "name": "Straggly, woody plant",
+          "fix": "The stems go bare and woody, with flowers only at the tips. Trim every year after flowering. An old plant that has gone bare won't grow back from old wood, so it's best to replace it."
+        },
+        {
+          "name": "Rosemary beetle",
+          "fix": "From late summer to spring, small beetles with metallic green and purple stripes eat the leaves and flowers. Their grey grubs do too. Pick them off by hand or shake the plant over a sheet of paper."
+        }
+      ],
+      "source": "Lavender care: RHS. pH: University of California IPM and UMass extension."
+    },
+    "field_beans": {
+      "about": "Field beans are a winter green manure, a crop you grow to dig back into the soil. Sown in autumn, they cover bare ground through winter. Their roots open up heavy soil and like all beans they add nitrogen. Dig them in during spring, before the next crop.",
+      "water": "Field beans need very little water. Autumn and winter rain is enough, so only water if the soil is dry when you sow.",
+      "feed": "They need no feeding at all. They make their own nitrogen and it stays in the soil for the next crop.",
+      "harvest": "In spring, any time up to flowering, cut the plants down. Chop them up and let them wilt, then dig them into the top 25 cm of soil. Wait about a month before you sow or plant anything in that bed.",
+      "problems": [
+        {
+          "name": "Blackfly",
+          "fix": "In spring, thick clusters of black aphids sit on the shoot tips. Usually you can leave them, as the plants will be dug in soon. If they spread, cut the plants down a little earlier."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They shelter in the thick cover and then move on to the next crop. After digging in, protect young plants and check for slugs on damp evenings."
+        }
+      ],
+      "source": "Green manure care: RHS. pH: Oregon State University extension."
+    },
+    "winter_rye": {
+      "about": "Winter rye is the hardiest green manure, a crop you grow to dig back into the soil. Sown from late summer to autumn, it keeps growing through winter. It holds the soil and smothers weeds. Its thick roots improve the soil too. Dig it in when spring comes.",
+      "water": "Rye needs little water and rain is enough. Water only to get the seed going in a dry autumn.",
+      "feed": "It needs no feeding. Rye grows even on poor, sandy or acid soil. It also takes up nitrogen that winter rain would otherwise wash away.",
+      "harvest": "In spring, cut it down while it is still short and soft. Chop it, let it wilt and then dig it into the top 25 cm of soil. Older rye is tough and grows back. It holds back the next crop.",
+      "problems": [
+        {
+          "name": "Small seeds won't come up",
+          "fix": "While rye rots, it stops small seeds such as carrots and onions from coming up. Wait about a month after digging in before you sow. Or put in young plants or large seeds such as beans instead."
+        },
+        {
+          "name": "Cut too late",
+          "fix": "Left too long, rye grows tall and tough. It grows back after cutting and can seed itself. Cut it before it reaches about 30 cm."
+        }
+      ],
+      "source": "Rye care: RHS and SARE. pH: University of Vermont extension."
+    },
+    "crimson_clover": {
+      "about": "Crimson clover is a green manure, a crop you grow for the soil. It adds nitrogen and covers the ground with leaves and red flowers that bees visit. Sow it from spring to late summer. Sown about six to eight weeks before the first frost, it lives through winter and grows on in spring.",
+      "water": "It needs little water. Keep the seedbed moist until the seedlings are up. After that, rain is usually enough.",
+      "feed": "It needs no feeding. The clover makes its own nitrogen and leaves it in the soil.",
+      "harvest": "Cut it down when it flowers, before it sets seed. Once cut to the ground, it doesn't grow back. Dig it into the top 25 cm of soil or leave it on the surface to rot. Then wait about a month before sowing.",
+      "problems": [
+        {
+          "name": "Clover seeding itself",
+          "fix": "If you let it set seed, it comes back as a weed among your next crops. Cut it while it's flowering."
+        },
+        {
+          "name": "Slugs and snails",
+          "fix": "They hide in the thick leaves and then move on to the next crop. After cutting, protect young plants and look for slugs on damp evenings."
+        }
+      ],
+      "source": "Crimson clover care: RHS and SARE. pH: University of California SAREP."
+    },
+    "phacelia": {
+      "about": "This fast green manure has feathery leaves and blue flowers that bees love. You grow it for the soil and dig it in later. It covers bare soil, holds on to leftover nutrients and adds organic matter when dug in. It isn't related to any of the usual vegetables, so it fits anywhere when you rotate crops.",
+      "water": "Phacelia needs little water and rain is usually enough. Only water to get a sowing going in dry soil.",
+      "feed": "It needs no feeding. It takes up the nutrients left in the soil and gives them back when you dig it in.",
+      "harvest": "Cut it down when it starts to flower. If you're leaving it for the bees, cut just after, but always before it sets seed. Chop it up and leave it to wilt for a few days. Then dig it into the top of the soil and wait two to three weeks before sowing. An autumn sowing can stay over winter and be dug in when spring comes.",
+      "problems": [
+        {
+          "name": "Seedlings everywhere",
+          "fix": "Seedlings come up all over the bed when plants are left to seed. Cut it down before the flowers fade. Pull or hoe the seedlings while they're small."
+        },
+        {
+          "name": "Itchy skin",
+          "fix": "The bristly stems and leaves can make some people's skin itch or go red. Wear gloves and long sleeves when you cut it and dig it in."
+        }
+      ],
+      "source": "Phacelia as green manure: RHS. pH: USDA NRCS and British Columbia Ministry of Agriculture."
+    },
+    "white_mustard": {
+      "about": "On bare ground, white mustard covers the soil in a few weeks. It's a fast green manure, a crop you grow and then dig into the soil. It smothers weeds and adds organic matter when you dig it in. Sow it from spring to late summer in gaps between crops. It belongs to the cabbage family, so don't grow it where clubroot, a root disease of cabbages, is a problem. When you rotate crops between beds, count it as a cabbage.",
+      "water": "It needs little water and rain is usually enough. Water the seedbed only in a dry spell, so the seed comes up evenly.",
+      "feed": "Mustard needs no feeding at all. It takes up the nutrients left in the soil and gives them back when you dig it in.",
+      "harvest": "Cut it down before it flowers, usually four to eight weeks after sowing. Chop the stems and let them wilt for a few days. Then dig them into the top layer of soil. Wait two to three weeks before sowing or planting there.",
+      "problems": [
+        {
+          "name": "Clubroot",
+          "fix": "Because it's related to cabbages, it can carry clubroot and keep the disease in the soil. Don't sow it where clubroot has appeared. Don't sow it just before cabbages, turnips or radishes either."
+        },
+        {
+          "name": "Going to seed",
+          "fix": "In warm weather it flowers within weeks and the seed comes up as weeds. Check it often in summer and cut it down at the first flowers."
+        }
+      ],
+      "source": "Green manure: RHS. pH: University of Connecticut extension."
+    }
+  },
+  "map": {
+    "title": "Map",
+    "description": "Where each crop goes in this week, frost in the next three days, soil temperature and watering, place by place.",
+    "crop": "Crop",
+    "layer": "Map layer",
+    "place": "Around {{place}}",
+    "layers": {
+      "crop": "Sow or plant now",
+      "frost": "Frost and cold nights",
+      "soil": "Soil temperature",
+      "water": "Water this week"
+    },
+    "legend": {
+      "now": "Sow or plant now",
+      "month": "Sow or plant this month",
+      "wait": "Not yet",
+      "over": "Too late",
+      "frost": "Frost in the next 3 days",
+      "ground": "Ground frost in the next 3 days",
+      "soilLow": "0 °C",
+      "soilHigh": "26 °C",
+      "waterLow": "1 L/m²",
+      "waterHigh": "35 L/m² or more",
+      "later": "Frost possible later this week",
+      "cold": "Coldest night, next 7 days",
+      "coldLow": "−6 °C",
+      "coldHigh": "14 °C",
+      "balance": "Rain against sun and wind, next 7 days",
+      "balanceLow": "Needs water",
+      "balanceHigh": "Rain to spare"
+    },
+    "year": {
+      "label": "Month",
+      "month": "A typical {{month}}",
+      "hint": "Slide to see the year ahead",
+      "note": "This week from the forecast, later months from a typical year."
+    },
+    "use": "Make this my garden",
+    "close": "Close",
+    "loadingPlace": "Looking up this place…",
+    "noPlace": "No Huerta advice here.",
+    "failed": "The map could not load. Try again in a moment.",
+    "search": "Search crops",
+    "noResults": "No crop matches",
+    "clearFilters": "Clear filters",
+    "useShort": "My garden"
+  },
+  "planner": {
+    "title": "My garden",
+    "description": "Your garden bed by bed and what it needs from you each week: what to sow where, care, watering and harvest, worked out for your place.",
+    "sample": "Planned for a sample place, {{place}}.",
+    "choosePlace": "Choose your place",
+    "for": "Planned for this week around {{place}}.",
+    "width": "Width",
+    "length": "Length",
+    "metres": "m",
+    "shapeLabel": "Shape",
+    "shape": {
+      "rect": "Rectangle",
+      "L": "L-shape"
+    },
+    "auto": "Plan it for me",
+    "model": "Your garden, drawn",
+    "noRoom": "This size leaves no room for a bed.",
+    "beds_one": "{{count}} bed",
+    "beds_other": "{{count}} beds",
+    "plants_one": "{{count}} plant",
+    "plants_other": "{{count}} plants",
+    "allBeds": "All beds",
+    "bed": "Bed {{n}}",
+    "part": {
+      "northHalf": "north half",
+      "southHalf": "south half",
+      "northEnd": "north end",
+      "southEnd": "south end",
+      "middle": "middle",
+      "eastHalf": "east half",
+      "westHalf": "west half",
+      "eastEnd": "east end",
+      "westEnd": "west end"
+    },
+    "unit": {
+      "plants_one": "{{count}} plant",
+      "plants_other": "{{count}} plants",
+      "cloves_one": "{{count}} clove",
+      "cloves_other": "{{count}} cloves",
+      "sets_one": "{{count}} set",
+      "sets_other": "{{count}} sets",
+      "seedPotatoes_one": "{{count}} seed potato",
+      "seedPotatoes_other": "{{count}} seed potatoes",
+      "bulbs_one": "{{count}} bulb",
+      "bulbs_other": "{{count}} bulbs",
+      "corms_one": "{{count}} corm",
+      "corms_other": "{{count}} corms",
+      "crowns_one": "{{count}} crown",
+      "crowns_other": "{{count}} crowns"
+    },
+    "scattered": "Scattered over the bed",
+    "howMany": "How many",
+    "spacing": "Spacing",
+    "eachWay": "{{value}} cm apart each way",
+    "when": "Ready",
+    "readyNextSpring": "Next spring or early summer",
+    "readyAround": "Around {{month}}",
+    "nextYear": "Next year",
+    "next": {
+      "cabbage": "The cabbage family: it uses the nitrogen peas and beans leave.",
+      "roots": "Roots and leaves, like carrots or beetroot.",
+      "alliums": "Onions or garlic.",
+      "legumes": "Peas and beans.",
+      "stays": "It stays: it comes back every year.",
+      "cover": "Anything: a green manure feeds what comes after.",
+      "any": "Any crop.",
+      "other": "A crop from another family."
+    },
+    "plantedOn": "Planted on {{date}}",
+    "notPlanted": "Not planted yet",
+    "sownToday": "Sown today",
+    "plantedToday": "Planted today",
+    "sownOrPlantedToday": "Sown or planted today",
+    "neighbours": "Neighbours",
+    "noNeighbours": "Nothing to watch next to it.",
+    "nextTo": "Next to {{crop}}",
+    "rule": {
+      "alliumLegume": "Onions and garlic can hold back peas and beans.",
+      "blight": "Potatoes and tomatoes share blight; one infects the other.",
+      "fennel": "Fennel holds back most vegetables; give it a corner of its own.",
+      "carrotFly": "The onion smell helps hide carrots from carrot fly.",
+      "flowers": "Flowers bring pollinators and pest-eaters.",
+      "nasturtium": "Nasturtiums lure aphids and caterpillars away.",
+      "threeSisters": "The three sisters: beans climb the corn, squash covers the soil.",
+      "basil": "A classic pair: basil fills the space under tomatoes.",
+      "shade": "{{tall}} will shade {{short}}: tall crops go at the north end."
+    },
+    "basis": {
+      "tradition": "Gardeners' rule",
+      "disease": "Shared disease",
+      "someTrials": "Some trials",
+      "trials": "Tested in trials",
+      "system": "Traditional system",
+      "sun": "Sunlight"
+    },
+    "swap": "Swap for",
+    "goesInNow": "Goes in now around {{place}}",
+    "later": "Later",
+    "split": "Split this section in two",
+    "footnote": "Sowing and planting as of {{date}}. Your plan is kept on your account.",
+    "sownOn": "Sown on {{date}}",
+    "groundLabel": "How you grow",
+    "ground": {
+      "raised": "Raised beds",
+      "ground": "Beds in the ground",
+      "rows": "Open rows"
+    },
+    "runLabel": "Beds run",
+    "run": {
+      "along": "Along",
+      "across": "Across"
+    },
+    "undo": "Undo",
+    "mergePrev": "Join with the one before",
+    "mergeNext": "Join with the one after",
+    "shorter": "Shorter",
+    "longer": "Longer",
+    "lengthValue": "{{value}} m",
+    "deleteBed": "Delete this bed",
+    "deleteStrip": "Delete this strip",
+    "bare": "Plain earth",
+    "bareText": "A bed was here. Put one back, or leave the earth bare.",
+    "putBed": "Put a bed back",
+    "strip": "Strip {{n}}",
+    "whereNorth": "Which way is north?",
+    "northLeft": "Turn north to the left",
+    "northRight": "Turn north to the right",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "zoomFit": "Show the whole garden",
+    "styleLabel": "What to grow",
+    "style": {
+      "mixed": "A mixed garden: vegetables, herbs and flowers",
+      "veg": "Vegetables only",
+      "vegFlowers": "Vegetables, with flowers at each bed's end",
+      "fruit": "Fruit first: strawberries, melons, tomatoes, squash",
+      "herbsFlowers": "Herbs and flowers"
+    },
+    "goodPairs_one": "✓ 1 pair of good neighbours",
+    "goodPairs_other": "✓ {{count}} pairs of good neighbours",
+    "badPairs_one": "! 1 pair to keep apart",
+    "badPairs_other": "! {{count}} pairs to keep apart",
+    "noBadPairs": "No neighbours to keep apart",
+    "goodHint": "Crops that help each other side by side, like basil by tomatoes or flowers by fruiting crops. Tap to select them.",
+    "badHint": "Crops that should not grow side by side, like onions by beans or potatoes by tomatoes, or a tall crop shading a low one. Tap to select them.",
+    "faded": "Faded plants are planned, not planted yet",
+    "selected_one": "{{count}} section selected",
+    "selected_other": "{{count}} sections selected",
+    "clearSelection": "Clear selection",
+    "noneSelected": "Tap a bed to see it. Tap more beds to change them together.",
+    "palette": {
+      "title": "Crops",
+      "hint": "Hold a crop and drag it onto a bed, or select beds and tap a crop.",
+      "toSelected_one": "Tap a crop to put it in the selected section.",
+      "toSelected_other": "Tap a crop to put it in the {{count}} selected sections."
+    },
+    "strips_one": "{{count}} strip",
+    "strips_other": "{{count}} strips",
+    "setup": "{{width}} × {{length}} m · {{ground}}",
+    "clear": "Clear",
+    "soilLabel": "Soil",
+    "soil": {
+      "sandy": "Sandy soil",
+      "loam": "Loam",
+      "clay": "Clay soil"
+    },
+    "acidityLabel": "Soil pH",
+    "acidity": {
+      "acid": "Acid soil",
+      "neutral": "Neutral soil",
+      "alkaline": "Alkaline soil"
+    },
+    "soilWord": {
+      "sandy": "sandy",
+      "loam": "loam",
+      "clay": "clay"
+    },
+    "soilHint": "Around {{place}} the ground is mostly {{texture}}, pH {{ph}}.",
+    "sowIn": "Sow in {{month}}",
+    "plantIn": "Plant in {{month}}",
+    "sownOnInput": "Sown on",
+    "plantedOnInput": "Planted on",
+    "forLabel": "Plan for",
+    "thisWeek": "Today",
+    "forMonth": "Planned for {{month}} around {{place}}.",
+    "forHint": "What isn't in the ground yet goes in at the time picked here and the timeline shows it growing from then.",
+    "readyOn": "Around {{date}}",
+    "timeline": {
+      "now": "Now",
+      "back": "Back to now",
+      "hint": "Slide to see your garden in the weeks ahead",
+      "ready": "Ready: {{crops}}",
+      "growing": "Growing: {{crops}}",
+      "empty": "Nothing in the ground",
+      "lost": "Lost: {{crops}}"
+    },
+    "tab": {
+      "week": "To do",
+      "garden": "Garden"
+    },
+    "warn": {
+      "coldSeeds": "The soil is still too cold: its seeds may rot before they come up.",
+      "warmSeeds": "The soil is too warm: its seeds may not come up."
+    },
+    "fate": {
+      "frost": "Frost will likely kill it around {{date}}, before it's ready.",
+      "frostNow": "Frost is likely any night now here and it won't survive one.",
+      "cold": "The nights here get too cold for it from about {{date}}: it will stop growing and die before it's ready.",
+      "coldNow": "The nights here are too cold for it now: it won't grow and it will die within weeks.",
+      "winter": "Winter here gets colder than it can take: it will likely die around {{date}}.",
+      "winterNow": "Winter here is already colder than it can take: it won't survive.",
+      "ifNow": "If it goes in today",
+      "coverFrost": "Frost is still likely until about {{date}}: cover it on cold nights.",
+      "coverWinter": "Hard frosts are still likely until about {{date}}: cover it on cold nights.",
+      "lostAround": "Lost around {{date}}"
+    },
+    "end": {
+      "lost": "Lost",
+      "why": "What happened?",
+      "cold": "Frost or cold",
+      "pests": "Pests or disease",
+      "sprout": "Didn't come up",
+      "dry": "Dried out",
+      "other": "Something else"
+    },
+    "before": "Before",
+    "beforeText": "{{crop}}, out {{date}}"
+  },
+  "year": {
+    "title": "Calendar",
+    "description": "When each crop is sown, planted and harvested at your own place, worked out from its climate.",
+    "around": "Around {{place}}, in a typical year.",
+    "noPlace": "Choose your place to see its year.",
+    "crop": "Crop",
+    "sow": "Sow or plant",
+    "harvest": "Harvest or flowers",
+    "thisMonth": "This month ({{month}})",
+    "notHere": "Not outdoors here: {{crops}}.",
+    "backIn": "Back in {{month}}",
+    "note": "Sowing months follow the same rules as each week's advice, over a typical year at your place. Harvest months are approximate. A crop sown in more than one season has a row for each. One that overwinters is harvested the following year.",
+    "nextYear": "the following year",
+    "season": {
+      "spring": "Spring",
+      "summer": "Summer",
+      "autumn": "Autumn",
+      "winter": "Winter",
+      "overwinter": "Over­wintering"
+    }
+  },
+  "alerts": {
+    "more_one": "and {{count}} more",
+    "more_other": "and {{count}} more",
+    "title": "Morning alerts",
+    "text": "One notification at about 8:00 when your garden needs something new.",
+    "kinds": {
+      "frost": "Frost coming",
+      "care": "Care steps",
+      "water": "Water and rain",
+      "sow": "Time to sow"
+    },
+    "homeScreen": "On iPhone, add Funges to your Home Screen first (Share, then Add to Home Screen) and turn alerts on there.",
+    "unsupported": "This browser can't show notifications.",
+    "denied": "Notifications are blocked for Funges. Allow them in your browser's settings."
+  },
+  "early": "Early access",
+  "signin": {
+    "title": "Funges Huerta",
+    "pitch": "Funges tells you what to grow, where to put it, when to plant it and what your garden needs this week, based on the actual climate where your garden is.",
+    "button": "Sign in with Google",
+    "small": "Free while in early access. We keep your email and your gardens, nothing else. You can delete them any time from your account.",
+    "privacy": "Privacy",
+    "working": "Signing you in…",
+    "doneElsewhere": "You're signed in. Go back to the Funges app.",
+    "failed": "Signing in didn't work.",
+    "retry": "Try again"
+  },
+  "account": {
+    "title": "Huerta account",
+    "signedInAs": "Signed in as {{email}}",
+    "signOut": "Sign out",
+    "delete": "Delete account",
+    "deleteTitle": "Delete your account?",
+    "deleteText": "Your gardens and alerts go with it, on every device. This can't be undone.",
+    "deleteConfirm": "Delete for good",
+    "cancel": "Cancel",
+    "failed": "That didn't work. Check your connection and try again."
+  },
+  "gardens": {
+    "label": "Your gardens",
+    "default": "My garden",
+    "new": "New garden",
+    "rename": "Rename",
+    "name": "Name",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete this garden",
+    "deleteText": "Its plan goes too, on every device.",
+    "offline": "Couldn't reach Funges. Try again when you're online.",
+    "numbered": "Garden {{n}}"
+  },
+  "guide": {
+    "title": "Getting started",
+    "hide": "Hide",
+    "place": {
+      "title": "Where is your garden?",
+      "text": "Find it on the map, so everything here is worked out for your own place.",
+      "action": "Find it on the map"
+    },
+    "plan": {
+      "title": "Plan your beds",
+      "text": "We filled your beds with what goes in now at your place. Tap a bed, then a crop, to change it.",
+      "keep": "Keep this plan",
+      "empty": "Nothing goes in at your place right now. Tap a bed, then a crop: Huerta dates it for when it can go in."
+    },
+    "sow": {
+      "title": "Sow and tick off",
+      "text": "This week's list says what to sow, where and how. Tick each one off when it's in and Huerta follows it from there."
+    },
+    "step": "Step {{n}} of 3"
+  },
+  "views": {
+    "all": "All",
+    "harvest": "Harvest now",
+    "none": "Nothing here this week.",
+    "until": "Until {{month}}",
+    "allYear": "All year",
+    "allGardens": "All crops"
+  },
+  "landing": {
+    "headline": "Your garden, week by week",
+    "intro": "What to sow, plant, water and pick at your place, from tonight's forecast",
+    "headerLink": "What to sow now",
+    "cta": "Plan my garden",
+    "week": {
+      "heading": "It tells you what to do this week",
+      "body": "Every job dated for your own garden: when to sow, when to plant, when to water and when to cover against frost. Tick it off once it's done",
+      "title": "This week",
+      "plant": {
+        "job": "Plant the garlic",
+        "why": "The soil has cooled to 12 °C, just right"
+      },
+      "water": {
+        "job": "Water the lettuce",
+        "why": "No rain for six days"
+      },
+      "frost": {
+        "job": "Cover the chard on Thursday",
+        "why": "Frost likely that night"
+      }
+    },
+    "coverage": "For gardens across Europe and North America",
+    "journey": "From seed to plate",
+    "plan": {
+      "heading": "Plan",
+      "body": "Draw your beds and get a plan that suits your place and the season",
+      "link": "Plan my garden"
+    },
+    "plant": {
+      "heading": "Sow and plant",
+      "body": "Each crop when your soil is ready for it, not when the packet says",
+      "link": "What to sow now"
+    },
+    "care": {
+      "heading": "Care",
+      "body": "Frost on the way or a dry week ahead: the map shows it for your place",
+      "link": "Open the garden map"
+    },
+    "harvest": {
+      "heading": "Harvest",
+      "body": "See when each crop will be ready, from how warm your weeks turn out",
+      "link": "Open the calendar"
+    },
+    "closing": "Start your garden",
+    "early": "Huerta is in early release: its advice gets better every week.",
+    "feedback": "Tell me what's off!"
+  },
+  "page": {
+    "title": "{{name}}: {{start}}, care and {{end}}",
+    "start": {
+      "sow": "sowing",
+      "plant": "planting"
+    },
+    "end": {
+      "vegetable": "harvest",
+      "fruit": "harvest",
+      "herb": "picking",
+      "flower": "flowering",
+      "cover": "digging in"
+    },
+    "signIn": "Sign in to plan your garden",
+    "home": "Huerta",
+    "allCrops": "All crops"
+  }
+}

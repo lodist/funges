@@ -103,6 +103,13 @@ if (sw && import.meta.env.PROD) {
       .then(r => (registration = r))
       .catch(() => {});
   });
+  // Only the visitor's languages are kept offline, each file once loaded. A
+  // first visit loads its language before the worker runs: when the worker
+  // takes over, fetch those files again through it so it keeps them.
+  sw.addEventListener('controllerchange', () => {
+    for (const entry of performance.getEntriesByType('resource'))
+      if (entry.name.includes('/assets/locales/')) void fetch(entry.name);
+  });
 } else if (sw) {
   // ponytail: removes the empty-precache worker the dev server registered
   // until Oct 2026, which would keep serving cached images on localhost.

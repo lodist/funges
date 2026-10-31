@@ -2,6 +2,7 @@ import type { ComponentType, ReactElement } from 'react';
 import type { LucideProps } from 'lucide-react';
 import {
   AlertTriangle as LucideAlertTriangle,
+  ArrowLeft as LucideArrowLeft,
   ArrowRight as LucideArrowRight,
   ArrowUpRight as LucideArrowUpRight,
   BarChart2 as LucideBarChart2,
@@ -24,11 +25,13 @@ import {
   ChevronUpIcon as LucideChevronUpIcon,
   CircleIcon as LucideCircleIcon,
   Clock as LucideClock,
+  CloudRain as LucideCloudRain,
   Coffee as LucideCoffee,
   Coins as LucideCoins,
   Copy as LucideCopy,
   Database as LucideDatabase,
   Download as LucideDownload,
+  Droplets as LucideDroplets,
   ExternalLink as LucideExternalLink,
   Filter as LucideFilter,
   FlaskConical as LucideFlaskConical,
@@ -41,6 +44,7 @@ import {
   HelpCircle as LucideHelpCircle,
   ImageIcon as LucideImageIcon,
   Info as LucideInfo,
+  LayoutGrid as LucideLayoutGrid,
   Leaf as LucideLeaf,
   LifeBuoy as LucideLifeBuoy,
   Lightbulb as LucideLightbulb,
@@ -49,6 +53,7 @@ import {
   Lock as LucideLock,
   Mail as LucideMail,
   Map as LucideMap,
+  Maximize2 as LucideMaximize2,
   MapPin as LucideMapPin,
   MapPinned as LucideMapPinned,
   Minus as LucideMinus,
@@ -65,6 +70,8 @@ import {
   Plus as LucidePlus,
   QrCode as LucideQrCode,
   RefreshCw as LucideRefreshCw,
+  RotateCcw as LucideRotateCcw,
+  RotateCw as LucideRotateCw,
   RouteIcon as LucideRouteIcon,
   RouteOff as LucideRouteOff,
   ScanSearch as LucideScanSearch,
@@ -74,16 +81,23 @@ import {
   Smartphone as LucideSmartphone,
   ShieldCheck as LucideShieldCheck,
   Skull as LucideSkull,
+  Shovel as LucideShovel,
+  Snowflake as LucideSnowflake,
   Sprout as LucideSprout,
   Star as LucideStar,
   Sun as LucideSun,
   Target as LucideTarget,
   Thermometer as LucideThermometer,
+  Trash2 as LucideTrash2,
+  Undo2 as LucideUndo2,
   User as LucideUser,
   Users as LucideUsers,
   WifiOff as LucideWifiOff,
   X as LucideX,
   XIcon as LucideXIcon,
+  ZoomIn as LucideZoomIn,
+  ZoomOut as LucideZoomOut,
+  SlidersHorizontal as LucideSlidersHorizontal,
   createLucideIcon,
 } from 'lucide-react';
 
@@ -121,6 +135,7 @@ const decorativeByDefault = (Icon: ComponentType<LucideProps>): LucideIcon => {
 };
 
 export const AlertTriangle = decorativeByDefault(LucideAlertTriangle);
+export const ArrowLeft = decorativeByDefault(LucideArrowLeft);
 export const ArrowRight = decorativeByDefault(LucideArrowRight);
 export const ArrowUpRight = decorativeByDefault(LucideArrowUpRight);
 export const BarChart2 = decorativeByDefault(LucideBarChart2);
@@ -143,11 +158,13 @@ export const ChevronRightIcon = decorativeByDefault(LucideChevronRightIcon);
 export const ChevronUpIcon = decorativeByDefault(LucideChevronUpIcon);
 export const CircleIcon = decorativeByDefault(LucideCircleIcon);
 export const Clock = decorativeByDefault(LucideClock);
+export const CloudRain = decorativeByDefault(LucideCloudRain);
 export const Coffee = decorativeByDefault(LucideCoffee);
 export const Coins = decorativeByDefault(LucideCoins);
 export const Copy = decorativeByDefault(LucideCopy);
 export const Database = decorativeByDefault(LucideDatabase);
 export const Download = decorativeByDefault(LucideDownload);
+export const Droplets = decorativeByDefault(LucideDroplets);
 export const ExternalLink = decorativeByDefault(LucideExternalLink);
 export const Filter = decorativeByDefault(LucideFilter);
 export const FlaskConical = decorativeByDefault(LucideFlaskConical);
@@ -160,6 +177,7 @@ export const Heart = decorativeByDefault(LucideHeart);
 export const HelpCircle = decorativeByDefault(LucideHelpCircle);
 export const ImageIcon = decorativeByDefault(LucideImageIcon);
 export const Info = decorativeByDefault(LucideInfo);
+export const LayoutGrid = decorativeByDefault(LucideLayoutGrid);
 export const Leaf = decorativeByDefault(LucideLeaf);
 export const LifeBuoy = decorativeByDefault(LucideLifeBuoy);
 export const Lightbulb = decorativeByDefault(LucideLightbulb);
@@ -168,6 +186,7 @@ export const Loader2 = decorativeByDefault(LucideLoader2);
 export const Lock = decorativeByDefault(LucideLock);
 export const Mail = decorativeByDefault(LucideMail);
 export const Map = decorativeByDefault(LucideMap);
+export const Maximize2 = decorativeByDefault(LucideMaximize2);
 export const MapPin = decorativeByDefault(LucideMapPin);
 export const MapPinned = decorativeByDefault(LucideMapPinned);
 export const Minus = decorativeByDefault(LucideMinus);
@@ -184,6 +203,8 @@ export const Play = decorativeByDefault(LucidePlay);
 export const Plus = decorativeByDefault(LucidePlus);
 export const QrCode = decorativeByDefault(LucideQrCode);
 export const RefreshCw = decorativeByDefault(LucideRefreshCw);
+export const RotateCcw = decorativeByDefault(LucideRotateCcw);
+export const RotateCw = decorativeByDefault(LucideRotateCw);
 export const RouteIcon = decorativeByDefault(LucideRouteIcon);
 export const RouteOff = decorativeByDefault(LucideRouteOff);
 export const ScanSearch = decorativeByDefault(LucideScanSearch);
@@ -193,16 +214,23 @@ export const Share = decorativeByDefault(LucideShare);
 export const Smartphone = decorativeByDefault(LucideSmartphone);
 export const ShieldCheck = decorativeByDefault(LucideShieldCheck);
 export const Skull = decorativeByDefault(LucideSkull);
+export const Shovel = decorativeByDefault(LucideShovel);
+export const Snowflake = decorativeByDefault(LucideSnowflake);
 export const Sprout = decorativeByDefault(LucideSprout);
 export const Star = decorativeByDefault(LucideStar);
 export const Sun = decorativeByDefault(LucideSun);
 export const Target = decorativeByDefault(LucideTarget);
 export const Thermometer = decorativeByDefault(LucideThermometer);
+export const Trash2 = decorativeByDefault(LucideTrash2);
+export const Undo2 = decorativeByDefault(LucideUndo2);
 export const User = decorativeByDefault(LucideUser);
 export const Users = decorativeByDefault(LucideUsers);
 export const WifiOff = decorativeByDefault(LucideWifiOff);
 export const X = decorativeByDefault(LucideX);
 export const XIcon = decorativeByDefault(LucideXIcon);
+export const ZoomIn = decorativeByDefault(LucideZoomIn);
+export const ZoomOut = decorativeByDefault(LucideZoomOut);
+export const SlidersHorizontal = decorativeByDefault(LucideSlidersHorizontal);
 
 // Trailhead: lucide has no mushroom and this app forages them. Built with
 // createLucideIcon so it takes the same size/strokeWidth/currentColor contract

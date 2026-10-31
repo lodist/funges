@@ -34,6 +34,38 @@ export default function TermsUsePage() {
             </p>
           </section>
 
+          {/* Huerta: gardening advice, accounts, early access. */}
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h2 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
+              {t('huerta.title')}
+            </h2>
+            <div className='space-y-4 text-foreground leading-relaxed'>
+              <p>{t('huerta.content')}</p>
+              <p>{t('huerta.frost')}</p>
+            </div>
+          </section>
+
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h2 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
+              {t('accounts.title')}
+            </h2>
+            <div className='space-y-4 text-foreground leading-relaxed'>
+              <p>{t('accounts.content')}</p>
+              <p>{t('accounts.conduct')}</p>
+              <p>{t('accounts.delete')}</p>
+            </div>
+          </section>
+
+          <section className='bg-card rounded-lg p-6 shadow-sm'>
+            <h2 className='text-xl font-semibold text-foreground dark:text-white mb-4'>
+              {t('earlyAccess.title')}
+            </h2>
+            <div className='space-y-4 text-foreground leading-relaxed'>
+              <p>{t('earlyAccess.content')}</p>
+              <p>{t('earlyAccess.price')}</p>
+            </div>
+          </section>
+
           {/* Foraging Disclaimer */}
           <section className='bg-card rounded-lg p-6 shadow-sm'>
             <h2 className='text-xl font-semibold text-foreground dark:text-white mb-4'>

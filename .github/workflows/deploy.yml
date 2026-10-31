@@ -21,6 +21,8 @@ jobs:
     env:
       VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
       VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}
+      # The Huerta Worker (sign-in and garden data), e.g. https://huerta-api.fung.es
+      VITE_HUERTA_API: ${{ vars.VITE_HUERTA_API }}
 
     steps:
       - name: Checkout
@@ -46,6 +48,12 @@ jobs:
           if [ -z "$VITE_HOSTNAME" ]; then
             echo "❌ ERROR: VITE_HOSTNAME is not defined"
             echo "   Please set VITE_HOSTNAME in your repository variables"
+            exit 1
+          fi
+
+          if [ -z "$VITE_HUERTA_API" ]; then
+            echo "❌ ERROR: VITE_HUERTA_API is not defined"
+            echo "   Please set VITE_HUERTA_API in your repository variables"
             exit 1
           fi
 
@@ -81,6 +89,7 @@ jobs:
           cat > .env << EOF
           VITE_BASE_URL=$VITE_BASE_URL
           VITE_HOSTNAME=$VITE_HOSTNAME
+          VITE_HUERTA_API=$VITE_HUERTA_API
           EOF
           echo "✅ .env file created successfully"
 
@@ -89,6 +98,7 @@ jobs:
           echo "🔧 Exporting environment variables..."
           export VITE_BASE_URL="$VITE_BASE_URL"
           export VITE_HOSTNAME="$VITE_HOSTNAME"
+          export VITE_HUERTA_API="$VITE_HUERTA_API"
 
       - name: Debug .env file
         run: |
@@ -131,10 +141,14 @@ jobs:
       - name: Create SPA route directories for GitHub Pages
         run: |
           echo "Creating route subdirectories so GitHub Pages serves them with HTTP 200..."
-          routes=(data identify impressum instructions map offline privacy-policy recipes settings species support termsuse worth-foraging-now)
+          # Huerta's pages behind sign-in get one too, or a reload, a shared link
+          # or a morning alert lands on 404.html, which sends it to the home page;
+          # only /huerta itself is in the sitemap.
+          routes=(data delete-account huerta huerta/account huerta/map huerta/garden-planner huerta/signin huerta/crops huerta/planting-calendar identify impressum instructions map offline privacy-policy recipes settings species support termsuse worth-foraging-now)
           for route in "${routes[@]}"; do
             mkdir -p dist/$route
-            cp dist/index.html dist/$route/index.html
+            # A page the build wrote for search engines (/huerta) stays.
+            [ -f dist/$route/index.html ] || cp dist/index.html dist/$route/index.html
             echo "  created dist/$route/index.html"
           done
           echo "Route directories created"
@@ -142,12 +156,6 @@ jobs:
           # The season atlas's /data/seasons/<place>/<species>/ URLs, from the
           # atlas index; without them 404.html sends links and reloads to /data/.
           python scripts/build_season_atlas_site.py --pages dist || echo "::warning::season atlas pages not written"
-
-          # Those directories make /species 301 to /species/; the plugin strips
-          # the slash, so without this every sitemap URL is a redirect.
-          sed -i -E 's#<loc>([^<]*[^/<])</loc>#<loc>\1/</loc>#g' dist/sitemap.xml
-          echo "Sitemap URLs normalised to trailing slashes:"
-          grep -o '<loc>[^<]*</loc>' dist/sitemap.xml
 
       - name: Verify static files in dist
         run: |

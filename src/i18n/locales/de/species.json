@@ -60,298 +60,829 @@
   "list_of_species": {
     "chant": {
       "name": "Pfifferling",
-      "description": "Ein goldgelber Pilz mit charakteristischer Trichterform und fruchtigem Aroma",
-      "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen"
+      "description": "Ein goldgelber Pilz in Trichterform. Er riecht fruchtig, ein bisschen nach Aprikose.",
+      "howTo": "Suche in Laubwäldern, besonders in der Nähe von Eichen und Buchen",
+      "guide": {
+        "identify": "Pfifferlinge sind eigelb bis goldgelb und werden bis 10 cm breit. Der Hut ist ein flacher Trichter mit welligem Rand, der nach unten eingerollt ist. Darunter sitzen keine echten Lamellen, sondern stumpfe, gegabelte Leisten, die am Stiel herablaufen. Anders als Lamellen kannst du sie nicht einzeln abheben. Der Stiel ist voll, das Fleisch fest und weiss bis blassgelb. Er riecht leicht nach Aprikose. Zwei Doppelgänger musst du kennen. Ölbaumtrichterlinge (Omphalotus) haben dünne, dicht stehende echte Lamellen, wachsen büschelig aus Holz oder vergrabenen Wurzeln und sind bis ins Fleisch orange. Der Falsche Pfifferling (Hygrophoropsis aurantiaca) ist kräftiger orange, weich und hat ebenfalls dünne, dichte Lamellen.",
+        "habitat": "Pfifferlinge leben mit Baumwurzeln zusammen. Sie wachsen unter Eiche, Buche, Birke, Kastanie, Fichte und Kiefer, meist auf saurem Boden im Moos. Oft findest du sie an Böschungen und neben Wegen. In ganz Europa sind sie häufig, vom Flachland bis ins Gebirge. In Nordamerika steckt hinter dem Pfifferling eigentlich eine Gruppe naher Arten. Beispiele sind Cantharellus flavus im Osten, C. californicus unter immergrünen Eichen in Kalifornien und C. cascadensis im pazifischen Nordwesten.",
+        "season": "In Mittel- und Nordeuropa kommen sie von Ende Juni bis Oktober, nach warmem, durchdringendem Regen. In Südeuropa beginnt die Saison später und dauert länger, in den Eichenwäldern am Mittelmeer bis in den Winter. Im Osten der USA wachsen sie im Sommer nach warmem Regen. Im Westen folgen sie den Herbstregen, und in Kalifornien gehen sie bis in den Winter.",
+        "picking": "Schneide oder dreh sie am Grund ab und bürste die Erde gleich vor Ort ab. Lass die kleinen weiterwachsen. In Deutschland sind sie besonders geschützt. Dort darfst du nur kleine Mengen für den eigenen Bedarf sammeln. Schweizer Kantone, italienische Regionen, Teile Frankreichs und Spaniens und öffentliches Land in den USA haben eigene Höchstmengen oder Genehmigungen. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du dir sicher bist, bürste die Pfifferlinge ab, statt sie zu waschen. Sie saugen sich sonst mit Wasser voll. Iss sie nie roh. Gare sie gut durch, erst in der trockenen Pfanne, bis das Wasser verdampft ist, dann in Butter. Sie schmecken mild, fruchtig und leicht pfeffrig und haben einen festen Biss. Sie passen gut zu Eiern, Sahne, Kartoffeln, Pasta und Hähnchen.",
+        "keeps": "Im Kühlschrank halten sie sich ein paar Tage, in Papier, nicht in Plastik. Getrocknet werden Pfifferlinge zäh. Wenn du sie länger aufheben willst, brat sie in Butter an und frier sie ein.",
+        "source": "Bestimmung und Standort: First Nature (UK) und MushroomExpert.com. Nordamerikanische Arten und Doppelgänger: University of Florida IFAS Extension. Schutz: Bundesartenschutzverordnung. Saison: GBIF-Funddaten."
+      }
     },
     "mushroom": {
       "name": "Steinpilz",
-      "description": "Der Herrenpilz: brauner Hut, gedrungener genetzter Stiel und weisse Röhren, die sich nie blau verfärben",
-      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst"
+      "description": "Der Steinpilz: ein kräftiger Pilz mit braunem Hut, hellem, genetztem Stiel und weissen Poren, die nie blau anlaufen.",
+      "howTo": "Kommt in Nadel- und Laubwäldern vor, oft bei Fichten und Buchen, vom Spätsommer bis in den Herbst",
+      "guide": {
+        "identify": "Der Steinpilz ist ein kräftiger Röhrling mit hell- bis kastanienbraunem Hut. Der Hut ist glatt und fettig, aber nie samtig. Oft hat er einen schmalen weisslichen Rand. Die Poren sind jung weiss, später gelb und oliv. Auf Druck verfärben sie sich nicht. Der helle Stiel trägt oben ein feines weisses Netz. Das weisse Fleisch verfärbt sich beim Schneiden nicht. Rosa Poren und ein dunkelbraunes Netz bedeuten Gallenröhrling (Tylopilus felleus). Rote oder orange Poren zeigen einen anderen Röhrling, der giftig sein kann. Das gilt auch für Fleisch, das blau anläuft.",
+        "habitat": "Er wächst bei Fichte, Kiefer, Buche, Eiche, Edelkastanie und Birke auf saurem Boden. Du findest ihn vom Tiefland bis zur Waldgrenze, in ganz Europa. In Nordamerika wächst er vor allem in den Pazifikstaaten. In den südlichen Rocky Mountains ist der rötere Rocky-Mountains-Steinpilz häufiger.",
+        "season": "Die Hauptsaison ist von August bis Oktober. Im Gebirge geht es schon im Juni los, und im Süden dauert sie bis in den November. An der Pazifikküste der USA kommt er mit den Herbstregen. Ein Schub kommt meist etwa zwei Wochen nach einem ausgiebigen Regen, der auf eine warme, trockene Zeit folgt.",
+        "picking": "Dreh ihn heraus oder schneide ihn unten ab. Lass die jungen Knöpfe stehen, ebenso alte oder madige Hüte. In Deutschland darfst du nur kleine Mengen für den eigenen Bedarf sammeln. In den meisten Regionen Italiens brauchst du eine Genehmigung. Jeder National Forest in den USA hat eigene Regeln.",
+        "kitchen": "Bestimme ihn zuerst sicher. Bürste ihn sauber und schneide ihn der Länge nach auf, um nach Maden zu sehen. Brate ihn oder gib ihn in Risotto, Nudeln und Suppen. Gare ihn gut durch. Nicht jeder verträgt ihn roh, und alte oder schlecht gelagerte Pilze schlagen auf den Magen.",
+        "keeps": "Bewahr ihn kühl auf, in Papier statt in Plastik, ein bis zwei Tage lang. In dünnen Scheiben lässt er sich sehr gut trocknen, und auch Einfrieren klappt gut.",
+        "source": "Bestimmung und Standort: Regione Piemonte, First Nature und MushroomExpert. Saison: GBIF-Funddaten. Regeln: Bundesartenschutzverordnung (BArtSchV) und US Forest Service. Küche: Regione Piemonte und VIDAL."
+      }
     },
     "morel": {
-      "name": "Morchella",
-      "description": "Charakteristischer Pilz mit wabenförmigem Hut, erscheint im Frühling",
-      "howTo": "Suche in gestörten Gebieten, verbrannten Wäldern und bei toten Bäumen im Frühling"
+      "name": "Morcheln",
+      "description": "Ein Pilz mit einem Hut wie eine Bienenwabe. Er erscheint im Frühling.",
+      "howTo": "Suche in gestörten Gebieten, verbrannten Wäldern und bei toten Bäumen im Frühling",
+      "guide": {
+        "identify": "Der Hut ist eine Wabe aus Gruben und Rippen. Er kann gelblich, graubraun oder fast schwarz sein und sitzt auf einem hellen Stiel. Schneide jede Morchel der Länge nach durch. Eine echte Morchel ist von der Hutspitze bis zum Stielgrund ein einziger Hohlraum. Ihr Hut ist mit dem unteren Rand am Stiel angewachsen. Die tödlich giftige Frühjahrs-Lorchel (Gyromitra esculenta) hat einen hirnartig gewundenen, rotbraunen Kopf. Innen ist sie gekammert oder wattig. Auch Kochen macht sie nicht sicher. Bei der Böhmischen Verpel (Verpa bohemica) sitzt der Hut nur ganz oben am Stiel, wie ein Fingerhut. Ihr Stiel ist mit wattigem Mark gefüllt.",
+        "habitat": "Such am Boden in lichten Laub- und Auwäldern, in alten Obstgärten und in Gärten. Morcheln wachsen oft bei Esche, Ulme, Pappel oder Apfelbaum, auf kalkreichem Boden oder Rindenmulch. Im Osten der USA such bei absterbenden Ulmen, Eschen und alten Apfelbäumen. Im Westen der USA erscheinen sie im Nadelwald, im Frühjahr nach einem Waldbrand.",
+        "season": "Morcheln kommen von März bis Mai. Im Tiefland Südeuropas erscheinen sie früher. Im Norden und im Gebirge kommen sie später, bis in den Juni. Sie folgen auf ausgiebigen Frühlingsregen, sobald sich der Boden erwärmt. In den Bergen im Westen der USA folgen sie der Schneeschmelze.",
+        "picking": "Schneide den Stiel mit dem Messer am Boden ab. Trag Morcheln im Korb oder im Netzbeutel. In Deutschland sind alle Morcheln geschützt, und du darfst nur kleine Mengen für den eigenen Bedarf mitnehmen. Anderswo setzen viele Regionen und die National Forests der USA Höchstmengen fest oder verlangen eine Genehmigung. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, gare Morcheln gründlich durch. Roh oder zu kurz gegart sind sie giftig, auch getrocknete. Die französische Lebensmittelbehörde ANSES empfiehlt für Wildpilze 20 bis 30 Minuten in der Pfanne. Grosse Portionen haben schon Schwindel und Zittern ausgelöst, selbst gut gegart. Iss also nur mässige Mengen. Morcheln passen zu Butter, Sahne, Spargel und Hähnchen.",
+        "keeps": "In einer Papiertüte halten sie sich zwei Tage im Kühlschrank. Morcheln lassen sich sehr gut trocknen. Weich getrocknete Morcheln ein und giess das Einweichwasser durch ein Sieb in die Sosse. Gare sie so lange wie frische.",
+        "source": "Bestimmung und Standort: Missouri Department of Conservation und First Nature. Giftigkeit und Zubereitung: ANSES sowie Lagrange und Vernoux (Toxins, 2020). Regeln: Bundesartenschutzverordnung und US Forest Service. Saison: GBIF-Funddaten."
+      }
     },
     "blackberry": {
       "name": "Brombeere",
-      "description": "Süsse, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
-      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer"
+      "description": "Süsse, dunkelviolette Beeren an dornigen Sträuchern.",
+      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer",
+      "guide": {
+        "identify": "Brombeeren haben lange, bogig überhängende Triebe voller hakiger Stacheln. Jedes Blatt besteht aus drei oder fünf gesägten Blättchen, die wie eine Hand gespreizt sind. Oben sind sie dunkelgrün, unten heller. Die Blüten sind weiss oder rosa und haben fünf Blütenblätter. Die Beeren bestehen aus vielen kleinen runden Kügelchen. Sie werden erst grün, dann rot und schliesslich glänzend schwarz. Eine reife Brombeere löst sich mitsamt ihrem weissen Zapfen. Eine Himbeere lässt den Zapfen an der Pflanze und ist innen hohl. Rubus fruticosus ist eine Gruppe aus Hunderten eng verwandter Brombeeren. Du verwendest sie alle gleich.",
+        "habitat": "Such in Hecken, an Waldrändern und auf Lichtungen, in Gebüschen, auf Brachen und an Bahndämmen. Sie wächst auf fast jedem Boden, in ganz Europa ausser dem hohen Norden. In den USA wachsen heimische Brombeeren auf alten Feldern und an Waldrändern. Die eingeschleppte Armenische Brombeere bildet im pazifischen Nordwesten und in Kalifornien dichte Gestrüppe.",
+        "season": "Im Süden Europas und in den USA reifen die Beeren ab Juli. Weiter nördlich geht es Ende Juli oder im August los. Sie reifen weiter bis zu den ersten Frösten im September und Oktober. Blüten, grüne und reife Früchte hängen oft am selben Strauch.",
+        "picking": "Pflück nur ganz schwarze Beeren, die sich mit leichtem Zug lösen. Lass die roten hängen und einige für die Tiere. Meide stark befahrene Strassenränder und Ränder, die mit Unkrautvernichter gespritzt werden. In Mitteleuropa solltest du an den Fuchsbandwurm denken. Das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL) sagt, dass das Essen von Waldbeeren bisher nicht als Risikofaktor dafür nachgewiesen ist. Es rät trotzdem, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Bist du dir bei der Pflanze sicher, kannst du die Beeren roh oder gekocht essen. Back sie mit Äpfeln in Crumble und Kuchen, oder mach Marmelade, Gelee, Sirup und Essig daraus. Wasch sie erst kurz vor dem Verwenden und schau nach Insekten. Der Geschmack reicht von süss bis herb, je nach Strauch.",
+        "keeps": "Ungewaschen und flach in einer Schale ausgebreitet halten sie sich ein bis zwei Tage im Kühlschrank. Zum Einfrieren breitest du sie auf einem Blech aus und füllst sie in Beutel, sobald sie hart sind. Gefrorene Beeren eignen sich zum Kochen.",
+        "source": "Bestimmung, Standort und Verwendung: Woodland Trust. Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "elderberry": {
       "name": "Holunderbeere",
-      "description": "Kleine, dunkelviolette Beeren, die in Dolden an Holunderbäumen wachsen",
-      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im Herbst"
+      "description": "Kleine, dunkelviolette Beeren, die in Dolden am Holunder hängen.",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im Herbst",
+      "guide": {
+        "identify": "Der Holunder ist ein Strauch oder kleiner Baum mit graubrauner, korkiger, gefurchter Rinde. In den Zweigen steckt weiches weisses Mark. Die Blätter stehen gegenständig und haben fünf bis sieben gesägte Fiederblättchen. Beim Amerikanischen Holunder können es bis zu elf sein. Im Frühsommer trägt er flache Dolden aus cremeweissen, duftenden Blüten. Daraus werden breite Dolden kleiner schwarzvioletter Beeren an rötlichen Stielen. Reif hängen die Dolden unter ihrem Gewicht nach unten. Der Attich oder Zwerg-Holunder (Sambucus ebulus) ist eine krautige Pflanze, die jeden Winter abstirbt. Seine Fruchtstände stehen aufrecht über den Blättern. Der Trauben-Holunder (Sambucus racemosa) hat rote Beeren in aufrechten, kuppelförmigen Ständen. Die Amerikanische Kermesbeere (Phytolacca americana) ist eine hohe Staude mit glatten, purpurroten Stängeln. Ihre Beeren sitzen an langen Ähren aufgereiht, nicht in flachen Dolden.",
+        "habitat": "Such in Hecken, an Waldrändern, in Gebüschen, an Flussufern, auf Brachen und am Dorfrand. Er mag nährstoffreichen, feuchten Boden und wächst in ganz Europa ausser dem hohen Norden. Im Osten der USA wächst der heimische Amerikanische Holunder an Bächen, nassen Gräben und Feldrändern. Im Westen findest du den Blauen Holunder an offenen Hängen und in Tälern. Seine reifen Beeren tragen einen staubig blauen Reif.",
+        "season": "Die Beeren reifen im Frühherbst. In warmen Tieflagen geht es Ende August los. Weiter nördlich und in den Bergen reifen sie durch den September bis in den Oktober. Die cremeweissen Blütendolden kommen früher, ab Ende Mai.",
+        "picking": "Schneide ganze Dolden mit der Schere ab, wenn jede Beere schwarzviolett ist. Lass Dolden hängen, an denen noch grüne oder rote Beeren sind. Meide stark befahrene Strassenränder und lass an jedem Strauch reichlich für die Vögel.",
+        "kitchen": "Holunderbeeren musst du kochen. Rohe oder unreife Beeren, Stiele, Blätter und Kerne enthalten Stoffe, die bei der Verdauung Blausäure freisetzen. Sie können Übelkeit, Erbrechen und Bauchkrämpfe auslösen. Gründliches Kochen baut sie ab. Wenn du sie sicher bestimmt hast, streif die Beeren mit einer Gabel von den Stielen. Wirf grüne Beeren und alle Stielreste weg. Koch sie zu Sirup, Gelee, Saft, Suppe oder Kuchenfüllung. Sie schmecken dunkel, erdig und säuerlich. Gut dazu passen Apfel, Birne, Zimt und Zitrone. Rote Holunderbeeren verwendest du nie zum Essen.",
+        "keeps": "Frische Dolden halten sich ein bis zwei Tage im Kühlschrank. Wenn du sie ganz einfrierst, lassen sich die Beeren danach leicht von den Stielen schütteln. Auch gefrorene oder getrocknete Beeren musst du vor dem Essen kochen.",
+        "source": "Bestimmung und Standort: Woodland Trust. Giftigkeit, Kochen und Lagern: Oregon State University Extension."
+      }
     },
     "nettle": {
       "name": "Brennnessel",
-      "description": "Nährstoffreiche grüne Pflanze mit Brennhaaren, muss gekocht werden",
-      "howTo": "Zu finden in gestörten Gebieten, Hecken und Waldrändern im Frühling und Sommer"
+      "description": "Eine nahrhafte grüne Pflanze mit Brennhaaren. Bevor du sie isst, kochst du sie immer.",
+      "howTo": "Zu finden in gestörten Gebieten, Hecken und Waldrändern im Frühling und Sommer",
+      "guide": {
+        "identify": "Brennnesseln wachsen aufrecht, mit vierkantigen Stängeln und gegenständigen Blättern. Die Blätter sind herz- bis eiförmig, grob gesägt und zugespitzt. Stängel und Blätter sind mit Brennhaaren besetzt. Ab dem Frühsommer hängen dünne Rispen winziger grünlicher Blüten aus den Blattachseln. Taubnesseln sehen ähnlich aus, brennen aber nicht. Ausserdem haben sie auffällige weisse, gelbe oder violette Lippenblüten.",
+        "habitat": "Brennnesseln wachsen in dichten Beständen auf nährstoffreichem, feuchtem Boden. Such an Waldrändern, Flussufern, Gräben und Hecken und rund um Höfe und alte Gebäude. In ganz Europa sind sie häufig. Im Süden halten sie sich meist an feuchte, schattige Stellen. Sie wachsen auch in den meisten Teilen der USA, besonders an Bächen und in feuchten, lichten Wäldern.",
+        "season": "In milden Gegenden erscheinen die jungen Triebe ab Februar, weiter nördlich ab März. Sammeln kannst du sie, bis die Pflanze blüht, etwa ab Juni. Geschnittene oder gemähte Bestände treiben frisch aus. So kannst du im Spätsommer und Herbst ein zweites Mal ernten.",
+        "picking": "Zieh Handschuhe an. Schneide die obersten Blattpaare mit der Schere ab und lass die Wurzeln stehen. Meide Strassenränder, gespritzte Feldränder und Wege, auf denen Hunde ausgeführt werden. Brennnesseln sind ausserdem Futter für die Raupen vieler Schmetterlinge.",
+        "kitchen": "Brennnesseln immer kochen oder blanchieren, bevor du sie isst. Hitze nimmt ihnen das Brennen, gründliches Trocknen auch. Gib die gewaschenen Spitzen für ein paar Minuten in kochendes Salzwasser. Danach verwendest du sie wie Spinat, in Suppe, Risotto, Omelette oder Pesto. Sie schmecken wie Spinat, nur etwas erdiger.",
+        "keeps": "Blanchiert, ausgedrückt und portionsweise eingefroren halten sie sich monatelang. Für Tee trocknest du die Blätter an einem schattigen, luftigen Ort.",
+        "source": "Bestimmung, Standort und Zubereitung: NC State Extension und Woodland Trust. Saison: Woodland Trust und GBIF-Funddaten."
+      }
     },
     "dandelion": {
       "name": "Löwenzahn",
-      "description": "Häufiges Wildkraut mit leuchtend gelben Blüten und essbaren Blättern",
-      "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit"
+      "description": "Ein häufiges Wildkraut mit leuchtend gelben Blüten. Die Blätter sind essbar.",
+      "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit",
+      "guide": {
+        "identify": "Der Löwenzahn wächst als Rosette dicht am Boden. Die Blätter sind kahl und tief und unregelmässig eingeschnitten. Ihre Zähne zeigen zurück zur Mitte. Blätter und Stiele geben weissen Milchsaft ab, wenn du sie abbrichst. Jeder Blütenstiel ist blattlos, unverzweigt und hohl. Er trägt ein einzelnes Köpfchen aus gelben Zungenblüten. Später wird daraus die runde weisse Pusteblume. Das Ferkelkraut hat verzweigte, markige Stiele und behaarte Blätter. Leontodon-Arten wie der Herbst-Löwenzahn haben gegabelte Haare auf den Blättern. Gänsedisteln tragen mehrere Blüten an beblätterten Stängeln. Pflück nur Pflanzen, die in jedem Punkt passen.",
+        "habitat": "Er wächst in Rasen, Wiesen und Weiden, an Wegrändern und auf Brachland, in der Sonne, vom Tiefland bis ins Gebirge. Du findest ihn fast überall in Europa. Aus Europa kam er in die USA und wächst dort heute im ganzen Land.",
+        "season": "Im zeitigen Frühjahr kommt eine grosse Blühwelle, vor allem im April und Mai. Im milden Süden kommt sie früher. Danach blüht er immer wieder vereinzelt bis in den Herbst. Die Blätter sind im zeitigen Frühjahr am wenigsten bitter, bevor die ersten Knospen erscheinen.",
+        "picking": "Schneide junge Blätter am Grund ab. Pflück die Blüten an einem sonnigen Tag, wenn sie ganz offen sind, und lass genug für die frühen Bienen. Meide Rasen, die mit Unkrautvernichter behandelt wurden. Meide auch Strassenränder und Stellen, an denen Hunde Gassi gehen. Grab Wurzeln nur aus, wo der Grundbesitzer es erlaubt, zum Beispiel im eigenen Garten.",
+        "kitchen": "Wenn du dir bei der Pflanze sicher bist, iss junge Blätter roh im Salat. Sie sind angenehm bitter, wie im französischen Salat mit Speck. Ältere Blätter kochst du etwa 10 Minuten, damit sie weniger bitter sind. Dann brätst du sie mit Knoblauch und Öl an. Die Blüten verwendest du gekocht. Back sie im Teig aus oder koch sie mit Zucker und Zitrone zu einem dicken Sirup ein, dem Löwenzahnhonig. Gesäuberte Wurzeln kannst du als Kaffee-Ersatz rösten. In grösseren Mengen wirken die Wurzeln abführend. Der Milchsaft kann die Haut reizen. Wer gegen Korbblütler allergisch ist, kann darauf reagieren, also probier zuerst eine kleine Menge.",
+        "keeps": "Die Blätter halten sich im Beutel ein paar Tage im Kühlschrank. Die Blüten verwendest du gleich nach dem Pflücken, weil sie sich schnell schliessen. Geröstete Wurzeln halten sich in einem luftdichten Glas.",
+        "source": "Bestimmung: BSBI und NC State Extension. Ernte und Küche: University of Wisconsin-Madison Extension und Colorado State University Extension. Sicherheit: National Center for Complementary and Integrative Health (USA)."
+      }
     },
     "hazelnut": {
       "name": "Haselnuss",
-      "description": "Süsse, runde Nüsse, die an Haselsträuchern wachsen",
-      "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst"
+      "description": "Süsse, runde Nüsse vom Haselstrauch.",
+      "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst",
+      "guide": {
+        "identify": "Die Hasel ist ein Strauch oder kleiner Baum mit vielen Stämmen. Ihre Blätter sind rund und doppelt gesägt, vorne zugespitzt und unten weich und flaumig. Im Spätwinter hängen gelbe Kätzchen an den kahlen Zweigen. Die Nüsse wachsen in Büscheln zu eins bis vier. Jede sitzt in einer gefransten grünen Blatthülle, die etwa drei Viertel von ihr bedeckt. Beim Reifen werden sie braun. Die wilden Haseln Nordamerikas sind nahe Verwandte. Bei der Schnabel-Hasel bildet die Hülle eine lange, borstige Röhre.",
+        "habitat": "Sie wächst im Unterholz von Wäldern, in Hecken und Gebüschen in ganz Europa. Im Süden findest du sie vor allem im Hügel- und Bergland. Am meisten trägt sie in der Sonne, am Waldrand. In den USA wächst die Europäische Hasel vor allem in Plantagen in Oregon. Die wilden Arten wachsen in Dickichten, auf Lichtungen und an Waldrändern.",
+        "season": "Die Nüsse kommen von Ende August bis Oktober. Sie sind reif, wenn die Hülle braun wird und sie herunterfallen oder sich bei leichtem Schütteln lösen. Eichhörnchen, Eichelhäher und Haselmäuse sind oft schneller als du.",
+        "picking": "Sammle heruntergefallene Nüsse oder schüttle die Zweige leicht. Lass genug für die Tiere übrig. Lass Nüsse mit einem kleinen runden Loch liegen, denn da hat eine Rüsselkäferlarve den Kern gefressen. Leichte Nüsse lässt du auch liegen. Meide stark befahrene Strassenränder und gespritzte Feldränder.",
+        "kitchen": "Wenn du dir bei der Pflanze sicher bist, iss sie roh oder röste sie, bis die Haut aufplatzt. Dann reibst du die Haut in einem rauen Tuch ab. Sie passen in Kuchen, Pralinen, Pesto und Salate. Haselnüsse lösen häufig Nussallergien aus.",
+        "keeps": "Trockne sie in der Schale an einem luftigen Ort, bis der Kern durch und durch cremefarben ist. Dann lagerst du sie kühl und trocken. Getrocknete Nüsse halten sich im Kühlschrank bis zu einem Jahr.",
+        "source": "Bestimmung und Standort: Woodland Trust und Minnesota Department of Natural Resources. Trocknen und Lagern: Oregon State University Extension."
+      }
     },
     "garlic": {
       "name": "Bärlauch",
-      "description": "Kräftig duftendes Kraut mit breiten Blättern und weissen Blüten",
-      "howTo": "Zu finden in Laubwäldern im Frühling, oft in grossen Beständen"
+      "description": "Ein kräftig duftendes Wildkraut mit breiten Blättern und weissen Blüten.",
+      "howTo": "Zu finden in Laubwäldern im Frühling, oft in grossen Beständen",
+      "guide": {
+        "identify": "Jedes Bärlauchblatt wächst an einem eigenen dünnen Stiel direkt aus dem Boden. Die Blattfläche ist weich, hellgrün und spitz-oval, mit parallelen Nerven. Die Unterseite ist matt. Ab April trägt ein blattloser Stängel eine runde Dolde aus weissen, sternförmigen Blüten. Zerreibst du ein Blatt, riecht Bärlauch stark nach Knoblauch. Seine tödlichen Doppelgänger tun das nicht. Der Geruch bleibt aber an den Fingern hängen, deshalb beweist der Test nach den ersten paar Blättern nichts mehr. Prüf darum jedes Blatt auch an Stiel und Form. Das Maiglöckchen hat zwei bis drei Blätter, die sich am Grund gegenseitig umhüllen. Die Herbstzeitlose hat zähe, ungestielte Blätter in einem Büschel. Der Aronstab hat pfeilförmige Blätter mit netzartigen Nerven. Der Weisse Germer hat gefaltete Blätter an einem aufrechten Stängel. Bei der Weisswurz sitzen die Blätter abwechselnd an einem bogigen Stängel.",
+        "habitat": "Er bildet Teppiche in feuchten, schattigen Laubwäldern. Besonders wächst er in Buchen- und Auwäldern auf nährstoffreichem Boden und an schattigen Bächen. In Mittel- und Nordeuropa ist er häufig, auch in Grossbritannien. In Südeuropa findest du ihn vor allem in Bergwäldern.",
+        "season": "In milden Lagen kommen die Blätter ab Februar, sonst im März und April. Am besten sind sie, bevor sich die Blüten öffnen. Er blüht von April bis Juni, in den Bergen später. Im Frühsommer sind die Blätter verschwunden.",
+        "picking": "Pflück Blatt für Blatt, nie büschelweise. So landet kein Doppelgänger aus demselben Bestand in deinem Korb. Lass die Zwiebeln im Boden. Grossbritannien verbietet, wilde Pflanzen ohne Erlaubnis des Grundbesitzers auszugraben. Deutschland erlaubt nur eine kleine Menge für den eigenen Bedarf. Viele Naturschutzgebiete verbieten das Sammeln, also prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du dir sicher bist, nimm die Blätter roh oder gib sie erst am Ende des Kochens dazu. Sie passen in Pesto, Suppen, Risotto und Butter oder zu Eiern. Die Blüten kommen auf Salate. Wasch jedes Blatt unter fliessendem Wasser. Das raten die Behörden in Mitteleuropa wegen des Fuchsbandwurms. Seine Eier überstehen das Einfrieren, aber nicht das Kochen.",
+        "keeps": "In ein feuchtes Tuch gewickelt halten sich die Blätter zwei bis drei Tage im Kühlschrank. Gehackte Blätter und Pesto lassen sich gut einfrieren. Alles, was in Öl liegt, gehört in den Kühlschrank und wird innerhalb weniger Tage gegessen.",
+        "source": "Bestimmung und Doppelgänger: Österreichische Agentur für Gesundheit und Ernährungssicherheit (AGES), Bundesinstitut für Risikobewertung (BfR) und Woodland Trust. Saison: Woodland Trust und GBIF-Funddaten."
+      }
     },
     "chickenOfTheWoods": {
       "name": "Schwefelporling",
-      "description": "Leuchtend orange-gelber Baumpilz, der an Bäumen wächst",
-      "howTo": "Suche an toten oder sterbenden Bäumen, besonders Eichen"
+      "description": "Ein leuchtend orangegelber Porling, der an Bäumen wächst.",
+      "howTo": "Suche an toten oder sterbenden Bäumen, besonders Eichen",
+      "guide": {
+        "identify": "Der Schwefelporling wächst als fächerförmige Konsolen ohne Stiel, 10 bis 40 cm breit und dachziegelartig übereinander. Junge Konsolen sind weich, saftig und leuchtend gelb bis orange. Mit dem Alter verblassen sie zu Cremeweiss und werden kreidig. Die Unterseite ist schwefelgelb und hat winzige Poren, keine Lamellen. Das Fleisch ist weiss bis blassgelb und verfärbt sich beim Anschneiden nicht. Ein oranges Büschel auf Holz mit Lamellen auf der Unterseite ist der giftige Ölbaumtrichterling (Omphalotus). Im Westen der USA sehen die nah verwandten Laetiporus gilbertsonii und Laetiporus conifericola fast gleich aus.",
+        "habitat": "Dieser Pilz zersetzt Holz. Er wächst an lebenden und toten Laubbäumen, am häufigsten an Eiche. Du siehst ihn auch an Edelkastanie, Kirsche, Weide und Buche und hin und wieder an Eibe. Im Flachland Europas und im Osten der USA ist er häufig, in Wäldern, Parks und an Strassen. Im Westen der USA wachsen seine Verwandten an Eichen, Eukalyptus und Nadelbäumen.",
+        "season": "Er erscheint vom späten Frühjahr bis in den Herbst, meist im Sommer, ein paar Tage nach warmem Regen. Im Westen der USA kommt er vor allem im Herbst. Derselbe Baum trägt ihn oft mehrere Jahre lang.",
+        "picking": "Schneide die weichen Ränder junger Konsolen mit dem Messer ab. Lass den zähen Ansatz und die alten, kreidigen Konsolen stehen. Sammle ihn nie von Eiben, denn die sind stark giftig. Auch von Bäumen an stark befahrenen Strassen nimmst du ihn nicht. Wo Pilzesammeln eine Genehmigung braucht oder Tageshöchstmengen gelten, prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du dir sicher bist, was es ist, gare ihn gründlich durch. Roh oder halb gar schlägt er auf den Magen. Selbst gut gegart verträgt ihn nicht jeder. Manchen wird davon übel und schwindlig, und sie müssen erbrechen. Probier also zuerst eine kleine Menge. Schneide ihn in Scheiben und brate oder schmore ihn. Das feste Fleisch erinnert viele an Hähnchen. Er passt gut zu Zitrone, Knoblauch und Kräutern.",
+        "keeps": "In einer Papiertüte hält er sich ein paar Tage im Kühlschrank. Er lässt sich gut einfrieren, roh oder gegart.",
+        "source": "Bestimmung und Wirtsbäume: Woodland Trust, First Nature und MushroomExpert.com. Arten im Westen der USA: Bay Area Mycological Society. Unverträglichkeit: University of Florida IFAS Extension."
+      }
     },
     "oysterMushroom": {
       "name": "Austernpilz",
-      "description": "Weiss-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
-      "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter"
+      "description": "Ein weissgrauer Pilz mit fächerförmigen Hüten. Er wächst in Büscheln an totem Holz.",
+      "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter",
+      "guide": {
+        "identify": "Austernseitlinge haben einen muschel- oder fächerförmigen Hut von 5 bis 18 cm. Er kann blaugrau, graubraun oder cremefarben sein. Sie wachsen dachziegelartig übereinander am Holz. Die weissen bis cremefarbenen Lamellen laufen an einem kurzen, seitlichen Stiel herab, oder es gibt gar keinen Stiel. Das Fleisch ist weiss und fest, der Geruch mild. Das Sporenpulver ist weiss bis blasslila. Drei Doppelgänger musst du kennen. Der giftige Ölbaumtrichterling (Omphalotus) ist leuchtend orange, auch an den Lamellen. Er wächst büschelig am Stammfuss. Der Grünblättrige Schwefelkopf (Hypholoma fasciculare) hat schwefelgelbe Hüte auf mittigen Stielen. Seine Lamellen sind grünlich gelb und werden purpurbraun, und er schmeckt bitter. Der Ohrförmige Seitling (Pleurocybella porrigens) wird mit Todesfällen in Japan in Verbindung gebracht. Er ist reinweiss, dünn und durchscheinend und wächst nur auf morschem Nadelholz.",
+        "habitat": "Er wächst an toten oder absterbenden Laubbäumen, vor allem an Buche. Du findest ihn auch an Pappel, Weide, Eiche und Esche, selten an Nadelholz. Such an stehenden Stämmen, an Stümpfen und an liegenden Stämmen. In Europa und Nordamerika ist er überall häufig.",
+        "season": "Der Austernseitling ist ein Pilz des Spätherbsts und des Winters. Eine Kältewelle oder die ersten Fröste nach Regen lösen ihn aus. In Südeuropa kommt er bis in den Januar oder Februar. Im Osten der USA fruchtet er von Oktober bis Anfang April.",
+        "picking": "Schneide das Büschel mit dem Messer am Grund ab. Nimm feste junge Hüte und lass alte oder von Käfern zerfressene stehen. Manche Gegenden verlangen fürs Pilzesammeln eine Genehmigung oder setzen Tageshöchstmengen fest. Prüf also die Regeln vor Ort.",
+        "kitchen": "Sei dir bei der Bestimmung sicher, bevor du ihn kochst. Gare ihn gut durch und iss ihn nicht roh. Schneide das zähe Stielende ab und reiss die Hüte in Streifen. Brate sie scharf an, bis die Ränder knusprig sind. Er schmeckt mild und leicht süsslich. Er passt zu Knoblauch, Butter, Sojasosse und Eiern.",
+        "keeps": "Er verdirbt schnell. Bewahr ihn ein paar Tage in einer Papiertüte im Kühlschrank auf, oder gare ihn und friere ihn ein.",
+        "source": "Bestimmung und Saison: First Nature und MushroomExpert.com. Ohrförmiger Seitling: Beaty Biodiversity Museum, University of British Columbia."
+      }
     },
     "shiitake": {
       "name": "Shiitake",
-      "description": "Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt",
-      "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst"
+      "description": "Ein Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt.",
+      "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst",
+      "guide": {
+        "identify": "Der Hut ist braun bis dunkel rotbraun und wird im Alter flach. Am Rand hat er oft weissliche Flocken, und bei Trockenheit reisst er auf. Die Lamellen sind weiss bis cremefarben und werden bei Druck braun. Der Stiel ist zäh, faserig und sitzt oft aussermittig. Das Sporenpulver ist weiss. Der tödlich giftige Gift-Häubling (Galerina marginata) wächst ebenfalls auf Holzstämmen. Er ist kleiner und honigbraun, hat einen Ring am Stiel und rostbraunes Sporenpulver.",
+        "habitat": "Der Shiitake stammt aus Ostasien. Dort wächst er auf totem Laubholz wie Eiche und Castanopsis. In Europa und Nordamerika wird er auf Eichenstämmen oder Sägemehlblöcken gezüchtet. Ausserhalb der Zucht wurde er nur ein paar Mal gefunden, zum Beispiel in den Niederlanden. Ein brauner Pilz an einem umgestürzten Stamm im Wald ist also so gut wie sicher etwas anderes.",
+        "season": "Stämme im Freien fruchten im Frühjahr und Herbst. Ein Schub kommt ein paar Tage nach ausgiebigem Regen bei mildem Wetter. Züchter lösen einen Schub auch aus, indem sie einen Stamm in kaltem Wasser einweichen.",
+        "picking": "Ernte die Hüte, solange der Rand noch eingerollt ist. Dreh sie ab oder schneide den Stiel am Stamm ab. Ernte nur von Stämmen, die du selbst ziehst oder an denen du ernten darfst.",
+        "kitchen": "Stell sicher, dass die Bestimmung stimmt, und gare ihn dann gründlich. Roh oder nur kurz gegart kann Shiitake die Shiitake-Dermatitis auslösen. Das ist ein juckender Ausschlag aus Streifen wie von Peitschenhieben, der etwa einen Tag später auftritt. Die Stiele sind zum Essen zu zäh, geben aber Brühe Geschmack. Brate die Hüte oder schmor sie mit Sojasosse, Ingwer und Knoblauch. Sie schmecken tief und würzig.",
+        "keeps": "In einer Papiertüte hält er sich ein paar Tage im Kühlschrank. Er lässt sich sehr gut trocknen. Weich getrocknete Hüte vor dem Gebrauch ein und heb das Wasser als Brühe auf.",
+        "source": "Herkunft und Verbreitung: Naturalis Biodiversity Center. Anbau auf Stämmen: Cornell Cooperative Extension. Shiitake-Dermatitis: DermNet."
+      }
     },
     "raspberry": {
       "name": "Waldhimbeere",
-      "description": "Süsse rote Beeren an dornigen Ruten mit charakteristischen gefiederten Blättern",
-      "howTo": "Suche Himbeersträucher in Hecken, Waldrändern und gestörten Gebieten im Sommer"
+      "description": "Süsse rote Beeren an dornigen Ruten.",
+      "howTo": "Suche Himbeersträucher in Hecken, Waldrändern und gestörten Gebieten im Sommer",
+      "guide": {
+        "identify": "Himbeeren wachsen an aufrechten Ruten, die oft mannshoch werden. Die Ruten sind mit kleinen, feinen Stacheln besetzt, nicht mit den hakigen Stacheln der Brombeere. Jedes Blatt hat drei bis sieben gesägte Fiederblättchen an einem Stiel. Sie sind oben grün und unten weissfilzig. Die kleinen weissen Blüten hängen nach unten. Wenn du eine rote Beere pflückst, bleibt ihr weisser Zapfen an der Pflanze. Eine gepflückte Himbeere ist deshalb ein hohles Hütchen.",
+        "habitat": "Such auf Waldlichtungen und an Waldrändern, auf Kahlschlägen, Brandflächen und steinigen Hängen. Sie wächst auch in Gebüschen, Heiden und Hecken, vom Tiefland bis ins Gebirge, in ganz Europa. Neue Lichtungen besiedelt sie schnell, und wenn der Wald nachwächst, verschwindet sie wieder. In den USA wächst die Amerikanische Himbeere im Norden und in den Bergen des Westens. Im Osten wächst die Schwarze Himbeere mit schwarzvioletten, hohlen Beeren.",
+        "season": "Himbeeren reifen im Sommer. In Südeuropa und im Tiefland geht es im Juni los. Im Norden und im Gebirge reifen sie im Juli und August. In Hochlagen gibt es sie manchmal bis in den September.",
+        "picking": "Pflück Beeren, die ganz rot sind und sich ohne Ziehen vom Zapfen lösen. Leg sie in ein flaches Gefäss, denn sie werden leicht zerdrückt. Für Mitteleuropa sagt das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL), dass Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm nachgewiesen sind. Trotzdem rät es, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier des Bandwurms ab. Einfrieren im Haushalt reicht nicht.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, iss sie roh oder mach Marmelade, Sirup, Kuchen und Desserts daraus. Waldhimbeeren sind kleiner und aromatischer als Gartenhimbeeren. Spül sie erst kurz vor dem Verwenden ab. Achte auf die kleinen weissen Larven des Himbeerkäfers.",
+        "keeps": "Himbeeren sind sehr empfindlich. Iss sie am selben Tag, oder bewahr sie ungewaschen ein bis zwei Tage im Kühlschrank auf. Zum Einfrieren breitest du sie zuerst auf einem Blech aus und füllst sie dann in Beutel. Gefrorene Beeren eignen sich für Sossen und zum Backen.",
+        "source": "Bestimmung und Standort: Woodland Trust. Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "blueberry": {
       "name": "Waldheidelbeere",
-      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden",
-      "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst"
+      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden.",
+      "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst",
+      "guide": {
+        "identify": "Die Heidelbeere, auch Blaubeere genannt, ist ein niedriger Zwergstrauch, der im Winter die Blätter verliert. Meist bleibt sie unter Kniehöhe. Ihre Zweige sind grün und kantig. Die Blätter sind klein und oval, mit fein gesägtem Rand. Im Frühling hängen einzeln rötliche Blüten, die wie kleine Laternen aussehen. Aus jeder wird eine blauschwarze Beere mit hellem Reif. An der Spitze der Beere sitzt ein kleines Krönchen. Das Fruchtfleisch ist durch und durch violettrot. Kulturheidelbeeren haben helles Fruchtfleisch. Ihre giftigen Doppelgänger sind krautige Pflanzen, keine verholzten Zwergsträucher. Die Tollkirsche (Atropa bella-donna) ist hoch, und ihre glänzend schwarzen Beeren sitzen in einem grünen Stern aus fünf Kelchblättern. Die Einbeere (Paris quadrifolia) trägt eine einzige Beere oben auf einem Stängel mit einem Quirl aus vier Blättern. Bei der Weisswurz (Polygonatum) hängen blauschwarze Beeren unter einem bogigen, unverzweigten Stängel.",
+        "habitat": "Sie braucht sauren, nährstoffarmen Boden. Such in Nadel-, Birken- und Eichenwäldern, auf Heiden und in Mooren, vom Tiefland bis über die Baumgrenze. In Nord- und Mitteleuropa ist sie häufig, im Süden in den Bergen. Auf Kalk findest du sie nicht. In Nordamerika wächst sie wild in den Bergen des Westens. Im Osten pflückt man dort andere wilde Heidelbeeren (Vaccinium angustifolium, Vaccinium corymbosum). Das sind nahe Verwandte mit hellem Fruchtfleisch.",
+        "season": "Im Tiefland reifen die Beeren ab Juli. In den Bergen und im Norden geht die Saison durch den August bis in den September. Ein Spätfrost zur Blütezeit kann die Ernte schmälern.",
+        "picking": "Pflück mit der Hand. Beerenkämme reissen Blätter ab und schädigen die Pflanzen. Manche Gegenden verbieten sie oder legen Tageshöchstmengen fest, etwa die Vogesen in Frankreich und die Toskana in Italien. Prüf also die Regeln vor Ort. In Mitteleuropa sagt das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL), dass das Essen von Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm nachgewiesen ist. Es rät trotzdem, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Bist du dir bei der Pflanze sicher, iss sie roh oder mach Kuchen, Pfannkuchen, Marmelade und Kompott daraus. Sie schmecken süss und säuerlich. Sie färben aber Finger, Zähne und Kleidung. Spül sie erst kurz vor dem Verwenden ab und lies Blätter und grüne Beeren aus.",
+        "keeps": "Ungewaschen und ausgebreitet halten sie sich ein paar Tage im Kühlschrank. Frier sie auf einem Blech ein und füll sie dann in Beutel. Sie lassen sich auch gut trocknen.",
+        "source": "Bestimmung und Standort: Woodland Trust; Doppelgänger: Yle (finnischer öffentlicher Rundfunk). Sammelregeln: Präfektur Vosges und Region Toskana. Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "strawberry": {
       "name": "Walderdbeere",
-      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern",
-      "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer"
+      "description": "Kleine, aromatische rote Beeren mit weissen Blüten und dreiteiligen Blättern.",
+      "howTo": "Zu finden auf Wiesen, Waldrändern und Grasflächen im Frühling und Sommer",
+      "guide": {
+        "identify": "Die Walderdbeere ist eine niedrige Pflanze. Ihre langgestielten Blätter haben drei gezähnte Blättchen, hellgrün und leicht glänzend. Sie breitet sich mit Ausläufern aus, die am Boden Wurzeln schlagen. Der Endzahn jedes Blättchens ist so lang wie seine Nachbarn oder länger. Die Blüten sind weiss, mit fünf runden Blütenblättern und gelber Mitte. Die Frucht ist ein kleiner roter Kegel mit winzigen Nüsschen auf der Oberfläche und hängt an einem dünnen Stiel. Das Erdbeer-Fingerkraut (Potentilla sterilis) blüht früher. Es hat Lücken zwischen den eingekerbten Blütenblättern, und sein Endzahn ist kürzer als die Nachbarn. Eine fleischige Frucht hat es nicht. Die Indische Scheinerdbeere (Potentilla indica) hat gelbe Blüten und runde, schwammige Früchte ohne Geschmack.",
+        "habitat": "Such an Waldrändern und auf Lichtungen, an sonnigen Böschungen und Wegrändern, am Fuss von Hecken und auf alten Wiesen. Oft wächst sie auf trockenem, steinigem oder kalkreichem Boden, vom Tiefland bis ins Gebirge, in ganz Europa. In den USA wächst sie in lichten Wäldern und auf Lichtungen im Norden und in den Bergen des Westens. Dort ist die grössere Virginia-Erdbeere (Fragaria virginiana) die übliche wilde Erdbeere auf Feldern und Wiesen.",
+        "season": "Sie blüht ab April. In Südeuropa reifen die Früchte ab Ende Mai, anderswo ab Juni. Die Pflanzen tragen den ganzen Sommer über weiter. Im Gebirge und im Norden gibt es sie bis in den August.",
+        "picking": "Pflück nur ganz rote Früchte und knips dabei den Stiel ab. Reiss nie die Pflanzen aus. In England gilt die Walderdbeere als potenziell gefährdet, also sammle dort sparsam. Für Mitteleuropa sagt das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL), dass Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm nachgewiesen sind. Trotzdem rät es, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier des Bandwurms ab. Einfrieren im Haushalt reicht nicht.",
+        "kitchen": "Wenn du die Pflanze sicher bestimmt hast, iss die Früchte roh und bald. Spül sie erst kurz vor dem Essen ab. Sie schmecken intensiver als Gartenerdbeeren, aber von Pflanze zu Pflanze verschieden. Eine Handvoll reicht, um Sahne, Joghurt oder eine Tarte zu aromatisieren.",
+        "keeps": "Im warmen Korb verderben sie schnell. Halt sie kühl und iss sie am selben Tag. Einfrieren geht, aber aufgetaut sind sie weich.",
+        "source": "Bestimmung und Standort: Woodland Trust und Botanical Society of Britain and Ireland (BSBI). Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "wildMint": {
       "name": "Wilde Minzen",
-      "description": "Jede wilde Minze: Wasserminze, Rossminze, Apfelminze, Ackerminze und Polei-Minze. Vierkantige Stängel, gegenständige Blätter und Minzduft beim Zerreiben",
-      "howTo": "Zu finden auf feuchten Böden, in Gräben und an Bächen. Polei-Minze ist als leichter Tee unbedenklich, als Öl oder in grösseren Mengen aber giftig: in der Schwangerschaft meiden"
+      "description": "Jede wilde Minze: Wasserminze, Rossminze, Apfelminze, Ackerminze und Polei-Minze. Sie haben vierkantige Stängel, gegenständige Blätter und riechen beim Zerreiben nach Minze.",
+      "howTo": "Zu finden auf feuchten Böden, in Gräben und an Bächen. Polei-Minze ist als leichter Tee unbedenklich, als Öl oder in grösseren Mengen aber giftig: in der Schwangerschaft meiden",
+      "guide": {
+        "identify": "Alle Minzen haben vierkantige Stängel und gegenständige Blätter. Ein zerriebenes Blatt riecht deutlich nach Minze. Kleine lila, rosa oder weisse Blüten stehen in Quirlen oder in Köpfchen und Ähren an den Triebspitzen. Die Wasserminze hat behaarte, eiförmige Blätter und ein rundes Blütenköpfchen. Die Rossminze hat lange, graufilzige Blätter. Die Apfelminze hat runde, runzlige, weiche Blätter. Die Ackerminze blüht nur in Quirlen entlang des Stängels. Die Polei-Minze ist klein und kriechend, mit winzigen Blättern und scharfem Geruch. Zwischen ihnen wachsen geruchlose Pflanzen mit Vierkantstängel, etwa der Wolfstrapp. Ausserdem bleibt der Duft an deinen Fingern hängen. Riech deshalb an jedem Stängel einzeln und lass alle stehen, die nicht nach Minze riechen.",
+        "habitat": "Die meisten wilden Minzen mögen nassen Boden. Such an Ufern von Bächen und Teichen, in Gräben, Sümpfen und Feuchtwiesen. Die Ackerminze wächst auch auf feuchten Äckern. Die Polei-Minze wächst auf Grasland, das im Winter überschwemmt wird, vor allem in Süd- und Westeuropa. In den USA wächst die heimische Amerikanische Minze fast im ganzen Land an nassen Stellen. Grüne Minze, Pfefferminze und Polei-Minze sind dort aus Gärten verwildert.",
+        "season": "Die Triebe erscheinen im Frühling und sind vor der Blüte am zartesten. Die meisten Minzen blühen vom Hochsommer bis in den Herbst. In Südeuropa beginnt das Wachstum früher.",
+        "picking": "Kneif die obersten Blattpaare knapp über einem Blattknoten ab und lass die Wurzeln im Boden. Pflück Stängel für Stängel, nicht büschelweise. Die tödliche Safranrebendolde und der Wasserschierling wachsen an denselben nassen Stellen. Meide Wasser unterhalb von Höfen oder Abwassereinleitungen.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, nimm die Blätter für Tee. Sie passen auch in Salate, in Joghurtsossen und zu Erbsen, Kartoffeln und Lamm. Minze aus Bächen, Gräben oder beweideten Feuchtwiesen kann Leberegel tragen, wie wilde Brunnenkresse. Verwende solche Minze nur für heissen Tee oder gekocht. Polei-Minze enthält Pulegon, das die Leber schädigt. In Spanien und Portugal ist ein leichter Tee aus ihr Tradition. Verwende aber nie das Öl und trink den Tee nie stark oder oft. Gib ihn nie Babys, Kindern, Schwangeren, Stillenden oder Menschen mit einer Lebererkrankung.",
+        "keeps": "Häng Bündel an einen dunklen, luftigen Ort, dann trocknen sie gut für Tee. Gehackte Blätter kannst du in Eiswürfeln einfrieren.",
+        "source": "Bestimmung und Standort: Botanical Society of Britain and Ireland, The Wildlife Trusts und Native Plant Trust (Go Botany). Polei-Minze: Europäische Arzneimittel-Agentur und National Capital Poison Center. Leberegel: Panamerikanische Gesundheitsorganisation. Saison: GBIF-Funddaten."
+      }
     },
     "chickweed": {
       "name": "Vogelmiere",
-      "description": "Niedrig wachsende Pflanze mit kleinen weissen Blüten und ovalen Blättern, sehr nahrhaft",
-      "howTo": "Häufig in Gärten, gestörten Gebieten und Wiesen während der Wachstumszeit"
+      "description": "Eine niedrige Pflanze mit kleinen weissen Blüten und ovalen Blättern. Sie ist sehr nahrhaft.",
+      "howTo": "Häufig in Gärten, gestörten Gebieten und Wiesen während der Wachstumszeit",
+      "guide": {
+        "identify": "Die Vogelmiere ist eine niedrige Pflanze, die sich am Boden ausbreitet. Ihre Stängel sind schwach, rund und saftig. Die Blätter sind kleine, spitze Ovale und stehen paarweise gegenüber. Die unteren sitzen auf kurzen Stielen. Am Stängel läuft eine einzelne Reihe feiner Haare entlang. An jedem Blattpaar wechselt sie die Seite. Die weissen Blüten sind sternförmig und haben fünf Blütenblätter. Jedes ist so tief gespalten, dass es aussieht, als wären es zehn. Es gibt zwei giftige Doppelgänger. Der Acker-Gauchheil hat vierkantige, kahle Stängel und ungestielte Blätter mit schwarzen Punkten auf der Unterseite. Seine Blüten sind orangerot oder blau. Wolfsmilch gibt aus einem abgebrochenen Stängel weissen Milchsaft ab. Die Vogelmiere tut das nie.",
+        "habitat": "Such in Gärten und Gemüsebeeten, an Ackerrändern und auf Hofplätzen. Sie mag offenen, nährstoffreichen, feuchten Boden, der oft bearbeitet wird, gern im Halbschatten. Sie ist eine der häufigsten Pflanzen Europas und kommt in den ganzen USA vor.",
+        "season": "Am besten wächst sie bei kühlem, feuchtem Wetter. Im Norden heisst das Frühling und Herbst. In milden Gegenden wie Südeuropa und dem Süden der USA wächst sie vom Herbst bis ins Frühjahr. Bei Sommerhitze und Trockenheit stirbt sie ab, bis der Herbstregen kommt.",
+        "picking": "Schneide oder kneif die oberen paar Zentimeter mit den Blättern ab. Die Pflanze wächst nach. Pflück nur, wo kein Unkrautvernichter gespritzt wurde. Halte dich von Strassen fern und von Stellen, an denen Hunde und Katzen unterwegs sind.",
+        "kitchen": "Wenn du dir sicher bist, kannst du Blätter, Stängel und Blüten roh oder kurz gegart essen. Sie schmecken mild und frisch, ein wenig wie junge Erbsen. Gib sie in Salate, auf Brote und in Pesto, oder rühr sie am Schluss in Suppen. Wasch sie gründlich.",
+        "keeps": "Vogelmiere welkt schnell. Bewahr sie im Beutel im Kühlschrank auf und iss sie innerhalb von ein bis zwei Tagen.",
+        "source": "Bestimmung: UC Statewide IPM Program und Woodland Trust. Acker-Gauchheil: Landwirtschaftsministerium von Ontario. Saison: Woodland Trust und GBIF-Funddaten."
+      }
     },
     "plantain": {
       "name": "Breitwegerich",
-      "description": "Niedrig wachsende Pflanze mit breiten, ovalen Blättern und hohen Blütenständen",
-      "howTo": "Zu finden auf Rasenflächen, Wiesen und gestörten Gebieten während der Wachstumszeit"
+      "description": "Eine niedrige Pflanze mit breiten, ovalen Blättern und hohen Blütenähren.",
+      "howTo": "Zu finden auf Rasenflächen, Wiesen und gestörten Gebieten während der Wachstumszeit",
+      "guide": {
+        "identify": "Der Breitwegerich wächst als flache Rosette aus breiten, ovalen Blättern an kurzen, breiten Stielen. Jedes Blatt hat drei bis sieben kräftige Nerven. Sie laufen parallel vom Grund bis zur Spitze. Reisst du einen Blattstiel ab, ziehen sie sich als zähe Fäden heraus. Ab dem Frühsommer tragen blattlose Stängel lange, schmale Ähren aus winzigen grünlichen Blüten, wie Rattenschwänze. Später füllen sie sich mit kleinen braunen Samen. Der Fingerhut ist tödlich giftig, und auf seine Rosette im ersten Jahr musst du achten. Sie hat weiche, behaarte, runzlige Blätter mit einem Netz aus Nerven und ohne Fäden. Fingerhutblätter wurden schon aus Versehen als Wegerich verkauft.",
+        "habitat": "Such auf Rasen, Wegen und Feldwegen, an Ackerrändern, auf Wiesen und in Gärten. Er wächst überall, wo der Boden festgetreten und verdichtet ist. Er stammt aus Europa und Asien und ist in ganz Europa häufig. Auch in den ganzen USA ist er häufig. Dorthin kam er mit europäischen Siedlern.",
+        "season": "Neue Blätter wachsen vom zeitigen Frühjahr bis in den Herbst. Am zartesten sind sie im Frühling und nach dem Mähen. Die Blütenähren erscheinen ab dem Frühsommer, und die Samen reifen bis in den Herbst.",
+        "picking": "Pflück junge Blätter aus der Mitte der Rosette, nur ein paar pro Pflanze. Lass die Wurzel im Boden. Meide Strassenränder und Wege, auf denen Hunde ausgeführt werden. Meide auch Rasen und Wegränder, die mit Unkrautvernichter gespritzt sein könnten.",
+        "kitchen": "Wenn du sicher bist, dass es Breitwegerich ist, kannst du junge Blätter roh in den Salat geben. Ältere Blätter sind zäh und faserig. Blanchier sie oder gare sie wie Spinat und zieh die Fäden heraus. Er schmeckt mild, grasig und leicht bitter. Laut NC State Extension können sehr grosse Mengen den Blutdruck senken. Iss ihn also als ein Blattgemüse unter mehreren.",
+        "keeps": "Die Blätter welken schnell. Bewahr sie ein, zwei Tage in einem Beutel im Kühlschrank auf, oder trockne sie im Schatten für Tee.",
+        "source": "Bestimmung, Standort und Saison: NC State Extension, Michigan State University Extension und UC IPM. Verwechslung mit Fingerhut: US-Behörde FDA (1997). Küche: NC State Extension."
+      }
     },
     "walnut": {
       "name": "Walnuss",
-      "description": "Grosse, runde Nüsse mit harter Schale und aromatischem, ölhaltigem Kern",
-      "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst"
+      "description": "Grosse, runde Nüsse mit harter Schale und einem aromatischen, öligen Kern.",
+      "howTo": "Suche Walnussbäume in Parks, Gärten und Waldrändern im Herbst",
+      "guide": {
+        "identify": "Der Walnussbaum ist ein grosser Baum. Seine Rinde ist glatt und olivbraun und wird im Alter grau und rissig. Die Blätter haben fünf bis neun ganzrandige, ovale Fiederblättchen. Zerrieben riechen sie nach Möbelpolitur. Die Nuss steckt in einer dicken, glatten grünen Hülle, die beim Reifen dunkel wird und aufplatzt. Die Schwarznuss im Osten der USA hat mehr Fiederblättchen, und die sind schmaler und gesägt. Ihre runde Hülle platzt nicht auf. Darin steckt eine sehr harte, gefurchte Schale.",
+        "habitat": "Die Walnuss stammt aus dem Gebiet von Südosteuropa bis Südwestchina. In ganz Europa wurde sie gepflanzt und ist in Hecken, an Feldrändern, Flussufern und in jungen Wäldern verwildert. Meist wächst sie in tiefen Lagen auf tiefgründigem, fruchtbarem Boden. In den USA stehen die Plantagen vor allem in Kalifornien. In den Wäldern im Osten ist die Schwarznuss die wilde Art.",
+        "season": "Walnüsse kommen im September und Oktober, wenn die Hüllen aufplatzen und die Nüsse fallen. Grüne Walnüsse zum Einlegen oder für Nusslikör pflückt man Ende Juni oder Anfang Juli. Dann lässt sich noch glatt ein Spiess durch sie stechen.",
+        "picking": "Sammle heruntergefallene Nüsse alle ein bis zwei Tage, bevor Schimmel und Insekten sie verderben. Trag Handschuhe, denn die Hülle färbt die Haut tagelang braun. Entferne die Hüllen bald. Die meisten Walnussbäume gehören jemandem, also frag vorher.",
+        "kitchen": "Wenn du dir beim Baum sicher bist, iss frische Walnüsse und zieh vorher die bittere Haut ab. Oder trockne sie für Brot, Kuchen, Salate und Sossen. Wirf schimmelige, verschrumpelte oder ranzige Kerne weg. Walnüsse lösen häufig Nussallergien aus.",
+        "keeps": "Trockne sie in der Schale an einem luftigen, schattigen Ort, bis die Trennwand zwischen den Hälften knackend bricht. Getrocknete Nüsse halten sich im Kühlschrank bis zu einem Jahr.",
+        "source": "Bestimmung und Verbreitung: Woodland Trust. Ernte und Lagern: Oregon State University und Kansas State University Extension."
+      }
     },
     "chestnut": {
       "name": "Esskastanie",
-      "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die bei Reife aufplatzen",
-      "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen"
+      "description": "Grosse, süsse Nüsse in stacheligen grünen Hüllen, die aufplatzen, wenn sie reif sind.",
+      "howTo": "Zu finden in Kastanienhainen und Mischwäldern im Herbst, oft in der Nähe von Wegen",
+      "guide": {
+        "identify": "Die Blätter der Esskastanie sind lang, schmal und glänzend, 16 bis 28 cm lang. Sie haben spitze Sägezähne und viele gerade, parallele Nerven. Die Fruchthülle ist rundum mit langen, feinen Stacheln besetzt, spitz wie Nadeln. Meist stecken zwei oder drei Kastanien darin. Sie sind auf einer oder beiden Seiten abgeflacht und enden in einer kleinen Spitze mit einem Haarbüschel. Verwechsle sie nicht mit der giftigen Rosskastanie (Aesculus hippocastanum) in Parks und an Strassen. Sie hat handförmige Blätter aus fünf bis sieben Blättchen. Ihre dicke grüne Hülle hat nur wenige kurze Stacheln. Darin stecken eine oder zwei runde, glänzende Kastanien ohne Spitze. In Nordamerika sind auch die Buckeyes (andere Aesculus-Arten) giftig. Ein Baum mit handförmigen Blättern ist nie eine Esskastanie.",
+        "habitat": "Ihre Heimat sind Südeuropa, Westasien und Nordafrika, und sie wird seit langem wegen ihrer Früchte gepflanzt. Sie wächst auf saurem, durchlässigem Boden und meidet Kalk. Grosse Kastanienwälder bedecken die Hügel von Nordportugal und Galicien bis in die Cevennen, nach Korsika und in den Apennin. In den USA sind die meisten Kastanien gepflanzt. Der Kastanienrindenkrebs hat die heimische Art fast ausgerottet.",
+        "season": "Die Kastanien fallen von Ende September bis Anfang November, vor allem im Oktober. Im Tiefland kommen sie früher als in den Bergen.",
+        "picking": "Geh alle paar Tage hin und sammle die Kastanien, die von selbst heruntergefallen sind. Trag dicke Handschuhe oder roll die Hüllen mit dem Schuh auf. Lass Kastanien mit kleinen Löchern liegen, darin waren Larven von Rüsselkäfern oder Wicklern. Viele Kastanienwälder sind privat, und die Kastanien am Boden gehören dem Besitzer. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du sicher bist, dass es Esskastanien sind, gare sie. Roh sind sie herb und schwer verdaulich. Wirf alle weg, die im Wasser oben schwimmen. Ritz die Schale ein, damit sie nicht platzen. Dann röstest du sie oder lässt sie etwa 30 Minuten köcheln. Schäl die Schale und die bittere Innenhaut ab, solange sie warm sind. Sie schmecken süss und mehlig und passen in Suppen, Füllungen und Pürees.",
+        "keeps": "Bei Zimmertemperatur schimmeln frische Kastanien innerhalb von etwa zwei Wochen. Im Kühlschrank halten sie sich etwa zwei Monate. Du kannst sie auch einfrieren oder trocknen.",
+        "source": "Bestimmung: Woodland Trust, ANSES und Oregon State University Extension. Ernte, Zubereitung und Lagerung: Oregon State University Extension."
+      }
     },
     "elderflower": {
       "name": "Holunderblüte",
-      "description": "Cremeweisse Blüten in grossen, flachen Dolden an Holunderbäumen",
-      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer"
+      "description": "Cremeweisse Blüten in grossen, flachen Dolden am Holunder.",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im späten Frühling und Frühsommer",
+      "guide": {
+        "identify": "Der Holunder ist ein verholzter Strauch oder kleiner Baum mit korkiger, gefurchter, graubrauner Rinde. Seine Blätter stehen gegenständig und haben 5 bis 7 gezähnte Fiederblättchen. Zerreibst du sie, riechen sie unangenehm. Im späten Frühling trägt er flache, verzweigte Dolden aus winzigen cremeweissen Blüten. Sie haben hellgelbe Staubbeutel und duften süss und schwer. Der Attich oder Zwerg-Holunder ist eine krautige Pflanze, die jeden Winter abstirbt. Er hat aufrechte Blütenstände und violette Staubbeutel. Der Rote Holunder blüht früher, in eiförmigen oder kuppelförmigen Ständen. Beide sind giftig. Gefleckter Schierling, Wasserschierling und Riesen-Bärenklau sind weiche grüne Kräuter, keine Sträucher. Der Saft des Riesen-Bärenklaus verbrennt bei Sonne die Haut. Der Gefleckte Schierling hat einen glatten, hohlen, purpurn gefleckten Stängel und riecht nach Mäusen. Bei allen dreien gehen die Blütenstiele von einem Punkt aus, wie die Speichen eines Schirms.",
+        "habitat": "Er wächst in Hecken, an Waldrändern, in Gebüschen, an Flussufern und auf Brachen. Oft steht er nahe bei Häusern, auf nährstoffreichem Boden. In ganz Europa ist er häufig, vom Tiefland bis ins Hügelland. In den USA wachsen der heimische Amerikanische Holunder im Osten und der Blaue Holunder im Westen an ähnlichen Orten.",
+        "season": "In Nord- und Mitteleuropa blüht der Holunder von Ende Mai bis in den Juni. Im warmen Süden beginnt er früher. Im Osten der USA blüht der Amerikanische Holunder später und länger, meist im Juni und Juli.",
+        "picking": "Pflück an einem trockenen, sonnigen Vormittag. Such dir Dolden aus, die ganz offen, cremefarben und duftend sind, und lass bräunliche hängen. Schneide oder brich sie am Ansatz ab. Nimm nur wenige pro Strauch, damit er noch Beeren tragen kann. Schüttle Insekten vorsichtig aus.",
+        "kitchen": "Wenn du sicher bist, dass es Holunder ist, verwende nur die Blüten. Streif sie von den Stielen, denn Stiele, Blätter, Rinde, Wurzeln und unreife Beeren sind giftig. Für Holunderblütensirup lässt du die Blüten in heissem Zuckersirup mit Zitrone ziehen. Du kannst auch ganze Dolden in Teig tauchen und als Holunderküchle ausbacken. Den dicken Stiel isst du nicht mit. Oder du trocknest die Blüten für Tee. Sie schmecken süss und blumig und passen gut zu Stachelbeeren und Erdbeeren. Die Beeren, die im Herbst folgen, musst du kochen.",
+        "keeps": "Die Blüten welken schnell, also verarbeite sie am Tag des Pflückens. Im Schatten getrocknete Dolden halten sich für Tee in einem luftdichten Glas. Sirup hält sich ein paar Wochen im Kühlschrank, oder du frierst ihn ein.",
+        "source": "Bestimmung und Standort: Woodland Trust und BSBI. Doppelgänger: University of Minnesota Extension. Ernte und Küche: Penn State Extension und UMass Extension."
+      }
     },
     "daisy": {
       "name": "Gänseblümchen",
-      "description": "Kleine weisse Blüten mit gelber Mitte, wachsen bodennah",
-      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer"
+      "description": "Kleine weisse Blüten mit gelber Mitte, dicht am Boden.",
+      "howTo": "Häufig auf Rasenflächen, Wiesen und Grasflächen im Frühling und Sommer",
+      "guide": {
+        "identify": "Das Gänseblümchen ist eine niedrige Pflanze. Seine spatelförmigen, leicht behaarten Blätter bilden eine flache Rosette, die dicht am Boden liegt. Jeder blattlose, behaarte Stiel trägt ein Blütenköpfchen von etwa 2 cm. Es hat weisse Blütenblätter, oft mit rosa Spitzen, um eine gelbe Mitte. Nachts und bei trübem Wetter schliessen sich die Köpfchen. Manche Pflanzen sehen ähnlich aus, sind aber andere. Die Margerite und andere grössere Blüten dieser Art wachsen an beblätterten Stängeln. Hundskamillen und Kamillen haben fein gefiederte Blätter.",
+        "habitat": "Es wächst in Rasen und kurzem Gras, auf Weiden, an Wegrändern und auf Pfaden, sonnig und auf feuchtem Boden. Du findest es fast überall in Europa. In die USA kam es aus Europa. Dort wächst es heute in Rasen und auf feuchtem, offenem Boden, vor allem wo die Sommer kühl sind.",
+        "season": "Wo die Winter mild sind, blüht es fast das ganze Jahr. Am meisten blüht es vom Frühling bis in den Frühsommer. In kalten Gegenden und in weiten Teilen der USA blüht es vom Frühling bis zum Frühsommer. Danach siehst du bis zum Frost nur noch vereinzelte Blüten.",
+        "picking": "Knips Blütenköpfchen und ein paar junge Blätter ab. Nimm von vielen Pflanzen und lass die Rosetten stehen. Meide Rasen, die mit Unkrautvernichter oder Dünger behandelt wurden. Meide auch Strassenränder und Stellen, an denen Hunde Gassi gehen.",
+        "kitchen": "Wenn du es sicher bestimmt hast, kannst du Blüten und junge Blätter in kleinen Mengen roh essen. Sie passen in Salate und auf Brote oder dienen als Garnitur. Sie schmecken mild bis leicht bitter, ältere Blätter sind zäh. Spül sie vorsichtig in kaltem Wasser ab. Probier zuerst nur wenig. Wer gegen Korbblütler allergisch ist, kann darauf reagieren, und grosse Mengen können auf den Magen schlagen. In der Schwangerschaft und Stillzeit isst du es besser nicht.",
+        "keeps": "Pflück sie erst kurz vor dem Essen, denn die Blüten welken schnell. Bis dahin legst du sie zwischen feuchtes Küchenpapier in den Kühlschrank.",
+        "source": "Bestimmung und Standort: The Wildlife Trusts und NC State Extension. Küche und Sicherheit: Colorado State University Extension und NC State Extension."
+      }
     },
     "violets": {
       "name": "Duftveilchen",
-      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft",
-      "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling"
+      "description": "Kleine violette Blüten mit herzförmigen Blättern und süssem Duft.",
+      "howTo": "Zu finden an Waldrändern, in Hecken und schattigen Bereichen im zeitigen Frühling",
+      "guide": {
+        "identify": "Das Duftveilchen ist eine niedrige Pflanze mit einer Rosette aus lang gestielten Blättern. Sie sind herzförmig mit rundem Grund, gekerbtem Rand und kurzen Haaren. Es breitet sich mit langen Ausläufern aus, die Wurzeln schlagen. Jede Blüte steht auf einem eigenen Stiel, der aus der Rosette kommt. Sie hat fünf ungleiche Blütenblätter, und das unterste hat hinten einen kurzen Sporn. Die Blüten sind meist tief violett, manchmal weiss, haben stumpfe Kelchblätter und duften süss. Hundsveilchen sehen ähnlich aus, duften aber nicht. Das Scharbockskraut ist giftig und wächst an denselben Stellen. Es hat glänzende, fleischige, kahle Blätter und Blüten mit 8 bis 12 glänzend gelben Blütenblättern. Auch der Aronstab ist giftig. Er hat glänzende, pfeilförmige Blätter, deren Lappen nach hinten zeigen.",
+        "habitat": "Such an Waldrändern, an Heckenböschungen und im schattigen Gras, auf Friedhöfen, in Parks und alten Gärten. Es mag feuchten, nährstoffreichen Boden im Halbschatten. Es wächst in fast ganz Europa und ist vielerorts aus Gärten verwildert. In den USA wächst es stellenweise wild, auf Rasen und an Waldrändern.",
+        "season": "Es blüht von Februar bis Mai, im milden Süden früher. In weiten Teilen der USA blüht es im April und Mai. Manchmal erscheinen im Spätsommer noch einmal ein paar Blüten. Die Blätter sind jung im Frühling am besten.",
+        "picking": "Pflück von jedem Bestand nur ein paar Blüten und junge Blätter. Lass Rosette und Wurzeln im Boden und grab nie Pflanzen aus. Meide gespritzte Rasen, Wegränder und Stellen, an denen Hunde ausgeführt werden.",
+        "kitchen": "Wenn du es sicher bestimmt hast, kannst du die Blüten roh auf Salate und Desserts geben. Du kannst sie auch mit pasteurisiertem Eiweiss und feinem Zucker kandieren. Oder übergiess sie mit kochendem Wasser und süss es, dann hast du Veilchensirup. Junge Blätter isst man roh im Salat oder gekocht wie Spinat. Sie sind mild und machen Suppen etwas sämiger. Iss nie Wurzeln oder Samen, denn sie können Erbrechen auslösen. Probier zuerst eine kleine Menge.",
+        "keeps": "Die Blüten welken schnell. Bewahr sie zwischen feuchtem Küchenpapier im Kühlschrank auf und verwende sie am selben Tag. Kandierte Blüten halten sich in einer luftdichten Dose an einem kühlen, dunklen Ort.",
+        "source": "Bestimmung und Standort: NatureSpot und NC State Extension. Küche: Colorado State University Extension und NC State Extension."
+      }
     },
     "amaranth": {
       "name": "Amarant",
-      "description": "Eine krautige Pflanze mit essbaren Blättern und Samen, reich an Nährstoffen.",
-      "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte."
+      "description": "Eine Blattpflanze, die oft als Unkraut gilt. Blätter und Samen sind essbar und stecken voller Nährstoffe.",
+      "howTo": "Wächst in gestörten Böden, Gärten und Feldern im Sommer. Pflücke die jungen Blätter vor der Blüte.",
+      "guide": {
+        "identify": "Der Zurückgekrümmte Amarant ist eine kräftige, aufrechte einjährige Pflanze. Der Stängel ist fein weiss behaart und unten rot. Die Pfahlwurzel ist rosa bis rot. Die Blätter stehen wechselständig. Sie sind eiförmig bis rautenförmig, ganzrandig und lang gestielt. An der Spitze haben sie oft eine kleine Kerbe oder ein winziges Spitzchen. Die winzigen grünen Blüten sitzen in dichten, borstigen, stechenden Ähren. Später stecken darin winzige, glänzend schwarze Samen. Auf demselben Boden wachsen zwei giftige Unkräuter. Der Stechapfel (Datura) hat grosse, grob gezähnte Blätter, die unangenehm riechen, weisse Trichterblüten und stachelige Kapseln. Der Schwarze Nachtschatten hat Blätter mit welligem Rand, kleine weisse Sternblüten und schwarze Beeren.",
+        "habitat": "Du findest ihn in Gärten, auf Äckern und Hofplätzen und auf Brachland. Er braucht offenen, nährstoffreichen Boden, der immer wieder aufgewühlt wird, und volle Sonne. Ursprünglich stammt er aus dem mittleren und östlichen Nordamerika. Heute ist er in den ganzen USA und in weiten Teilen Europas ein häufiges Unkraut, vor allem in warmen Tieflagen.",
+        "season": "Er ist ein Sommerunkraut und lebt nur ein Jahr. Er keimt im späten Frühjahr, sobald der Boden warm ist. Er blüht etwa von Juli bis September. Die Samen reifen von August bis Oktober, bis zum ersten Frost. Die Blätter sind jung am besten, vor der Blüte.",
+        "picking": "Pflück die jungen Blätter und zarten Triebspitzen vor der Blüte von Hand. Sind die Samen schwarz, reibst du sie aus den Fruchtständen. Halte dich von Strassenrändern und gespritzten Feldern fern. Lass stark gedüngte oder mit Mist versorgte Flächen aus, ebenso Pflanzen, die unter Trockenheit leiden. Die reichern am meisten Nitrat an.",
+        "kitchen": "Bestimm ihn zuerst sicher. Dann garst du die Blätter wie Spinat. Koch sie kurz und giess das Wasser weg, das senkt Nitrat und Oxalsäure. Iss sie in Massen. Bei Nierensteinen oder Nierenkrankheiten lässt du sie ganz weg. Sie schmecken mild und erdig und passen gut zu Knoblauch, Bohnen und Eiern. Die Samen kannst du rösten oder wie Getreide kochen.",
+        "keeps": "Die Blätter welken innerhalb eines Tages. Bewahr sie im Beutel im Kühlschrank auf oder blanchier sie und frier sie ein. Die Samenstände trocknest du in einer Papiertüte. Danach reibst du die Samen aus, bläst die Spreu weg und füllst sie in ein verschlossenes Glas.",
+        "source": "Bestimmung und Saison: Cornell University und NC State Extension. Nitrat und Oxalsäure: NC State Extension und Michigan State University Extension. Verwechslung mit Stechapfel: Giftnotrufzentrale Marseille."
+      }
     },
     "artichoke": {
-      "name": "Wilder Artischocke",
-      "description": "Dornige Pflanze ähnlich der kultivierten Artischocke, mit essbaren Blütenköpfen und Stängeln.",
-      "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer."
+      "name": "Wilde Artischocke",
+      "description": "Eine distelartige Pflanze, verwandt mit der Gartenartischocke. Du isst die Blütenknospen und die Stängel.",
+      "howTo": "Findet man auf Wiesen und Feldern; sammle junge Blütenköpfe und zarte Stängel im Frühling und Frühsommer.",
+      "guide": {
+        "identify": "Die Wilde Artischocke, auch Wilde Kardone genannt, bildet eine grosse Rosette aus tief eingeschnittenen Blättern. Oben sind sie silbrig graugrün, unten durch dichten Filz fast weiss. Jeder Blattlappen endet in einem starren gelben Dorn. Im späten Frühjahr wächst ein steifer, verzweigter Stängel bis etwa auf Kopfhöhe. Er trägt Köpfe wie kleine Artischocken, umhüllt von Hüllblättern mit Dornspitzen. Sie öffnen sich zu blauvioletten Distelblüten. Pass auf Atractylis gummifera auf, eine tödlich giftige Distel aus dem Mittelmeerraum. Sie wurde schon mit der Wilden Artischocke verwechselt und hat in Marokko Menschen getötet. Sie hat keinen Stängel. Ihr rosa Blütenkopf sitzt flach in der Mitte der stacheligen Rosette. Sie blüht im Spätsommer und Herbst, und aus ihrer Wurzel tritt ein klebriger Saft. Iss nie eine stängellose Distelrosette oder eine Distelwurzel.",
+        "habitat": "Sie mag trockenes, sonniges, offenes Gelände. Du findest sie auf Weiden, an Acker- und Wegrändern, auf Brachen und im Gebüsch, oft auf Lehm. Ihre Heimat ist der Mittelmeerraum, von Portugal bis Griechenland und Nordafrika. In Nord- und Mitteleuropa kommt sie nur aus Gärten verwildert vor. In Kalifornien ist sie ein invasives Unkraut im Grasland und im Küstengebüsch unter 500 m. Im Rest der USA ist sie eine Gartenpflanze.",
+        "season": "Die Rosette wächst nach den Herbstregen und den ganzen milden Winter durch. Die Blattstiele erntest du vom späten Winter bis ins Frühjahr. Die Köpfe kommen im späten Frühjahr und Frühsommer. Sie blüht vor allem im Juni und Juli. Danach vertrocknet sie in der Sommerdürre.",
+        "picking": "Zieh dicke Handschuhe an und schneide Stiele oder Köpfe mit dem Messer ab. Die Wurzel bleibt im Boden. In ihrer Heimat lässt du einige Köpfe blühen. In Kalifornien ist es anders, weil sie dort invasiv ist. Nimm die Köpfe dort, bevor sie Samen bilden, und trag nie Samenstände herum. Auf öffentlichem Land prüfst du die Regeln vor Ort.",
+        "kitchen": "Sei dir bei der Bestimmung sicher, bevor du anfängst. Schäl Dornen und Fasern von den Blattstielen. Leg die Stücke sofort in Zitronenwasser, weil sie sonst schwarz werden. Dann kochst du sie weich. Sie schmecken wie eine bittere Artischocke. Man schmort sie oder backt sie im Teig aus. Bei den Köpfen zupfst du die stacheligen Hüllblätter ab und isst den zarten Boden und das Herz. Die getrockneten Blüten bringen Milch zum Gerinnen, etwa für Käse wie Serra da Estrela und Torta del Casar.",
+        "keeps": "Die Stiele halten sich in ein feuchtes Tuch gewickelt ein paar Tage im Kühlschrank. Gekocht lassen sie sich gut einfrieren.",
+        "source": "Bestimmung, Verbreitung und Saison: IUCN Global Invasive Species Database und California Invasive Plant Council. Atractylis-Vergiftungen: Daten der marokkanischen Giftnotrufzentrale."
+      }
     },
     "asparagus": {
       "name": "Wilder Spargel",
-      "description": "Mehrjährige Pflanze mit dünnen, essbaren Trieben, die im Frühling erscheinen.",
-      "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling."
+      "description": "Eine mehrjährige Pflanze, deren dünne Triebe im Frühling aus dem Boden kommen.",
+      "howTo": "Suche die jungen Triebe auf offenen Feldern, Wiesen und entlang von Hecken im Frühling.",
+      "guide": {
+        "identify": "Der Wilde Spargel ist ein verworrener, immergrüner, verholzter Strauch, bis etwa 1,5 m hoch. Echte Blätter hat er nicht. Stattdessen trägt er Büschel kurzer, steifer, nadelartiger grüner Zweiglein. Jedes endet in einem spitzen Dorn. Seine schwarzen Beeren isst man nicht. Im Frühling schieben sich dünne Triebe aus dem Fuss des alten, stacheligen Strauchs. Sie sind dunkelgrün bis violett und oft dünner als ein Bleistift. Kleine spitze Schuppen liegen dem Trieb an, Blätter gibt es keine. Schmerwurz und Zaunrübe sind giftige Kletterpflanzen in denselben Hecken und treiben ebenfalls im Frühling aus. Die Schmerwurz entfaltet bald glänzende, herzförmige Blätter. Die Zaunrübe ist behaart und hat gelappte Blätter und Ranken. Pflück nur Triebe, die sichtbar aus einem Spargelstrauch kommen.",
+        "habitat": "Er wächst in der Macchia am Mittelmeer, an den Rändern von Steineichen- und Kiefernwäldern, in Olivenhainen und Hecken und entlang von Trockenmauern und Wegrändern. Du findest ihn von der Küste bis ins Hügelland, in Portugal, Spanien, Südfrankreich, Italien, auf dem Balkan und in Griechenland. In Nord- und Mitteleuropa wächst er nicht wild. Spargel dort ist verwilderter Gemüsespargel, meist auf Sandboden.",
+        "season": "Die Triebe kommen vom Spätwinter bis ins Frühjahr, nach den Herbst- und Winterregen. An warmen Küsten geht es im Februar los. Im Hügelland dauert es bis in den April und Mai. Regen und danach milde, sonnige Tage bringen einen neuen Schub.",
+        "picking": "Brich jeden Trieb mit der Hand dort ab, wo er leicht bricht. Lass an jedem Strauch einige stehen, und schneide oder reiss den Strauch nie aus. In Italien legt jede Region eigene Regeln fest. Die Toskana zum Beispiel erlaubt das Sammeln nur bis zum 31. Mai. In Spanien entscheiden der Grundbesitzer und die Regionalregierung, und in Naturparks ist das Sammeln oft verboten. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du dir sicher bist, nimm nur den zarten Teil oberhalb der Bruchstelle. Er ist bitterer als Gemüsespargel. Gare ihn nur kurz. Er passt gut in Omelett und Rührei, in Risotto oder Pasta oder mit Knoblauch und Olivenöl angebraten.",
+        "keeps": "Am besten isst du ihn noch am selben Tag. Aufrecht in etwas Wasser hält er sich ein paar Tage im Kühlschrank. Du kannst ihn auch blanchieren und einfrieren.",
+        "source": "Bestimmung, Standort und Saison: Mittelmeerfloren und das virtuelle Herbarium der Universität der Balearen. Zaunrübe und Schmerwurz: RHS. Sammelregeln: Regione Toscana."
+      }
     },
     "black_chant": {
       "name": "Totentrompete",
-      "description": "Ein dunkler trompetenförmiger Pilz mit intensivem Geschmack, sehr geschätzt in der Küche.",
-      "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst."
+      "description": "Ein dunkler, trichterförmiger Pilz mit kräftigem, rauchigem Geschmack. In der Küche ist er sehr begehrt.",
+      "howTo": "Findet man in Laubwäldern, besonders unter Eichen und Buchen, von Spätsommer bis Herbst.",
+      "guide": {
+        "identify": "Du suchst ein dünnes, hohles Horn, 4 bis 8 cm breit. Es ist bis ganz unten offen und hat keinen abgesetzten Hut. Innen ist die Totentrompete graubraun bis schwarz und fein schuppig. Aussen ist sie aschgrau und glatt oder nur leicht runzelig, ohne Lamellen oder Leisten. Wenn sie reift, wird sie heller und bekommt einen weisslichen Reif. Das Fleisch ist dünn, brüchig und grauschwarz und riecht schwach süsslich. Die Totentrompeten im Osten der USA (Craterellus fallax) sehen genauso aus. Ihr Sporenpulver ist aber rosa-orange statt weiss. Die Graue Kraterelle (Craterellus cinereus) hat aussen deutliche, gegabelte Leisten.",
+        "habitat": "Sie lebt mit Laubbäumen zusammen, vor allem mit Buche und Eiche, auch mit Hainbuche und Hasel. Such in feuchtem Laub und Moos auf nährstoffreichem, lehmigem Boden, in Gräben und an Böschungen. Oft wächst sie in grossen Gruppen. In ganz Europa ist sie häufig. Im Osten der USA wächst ihr Gegenstück unter Eiche und Buche. An der Pazifikküste wächst eine westliche Totentrompete unter Tanoak, immergrünen Eichen und Madrone.",
+        "season": "Sie ist vor allem ein Herbstpilz. In Europa kommt sie vom Spätsommer bis November, in milden Jahren bis in den Dezember und rund ums Mittelmeer noch länger. Im Osten der USA erscheint sie von Juli bis Oktober, nach starkem Regen. An der Pazifikküste wächst die westliche Totentrompete vom Hochwinter bis ins Frühjahr.",
+        "picking": "Kneif oder schneide sie am Grund ab. Lass die kleinen stehen und nimm nur, was du auch isst. Es gelten die Höchstmengen vor Ort für Wildpilze. Im dunklen Laub ist sie gut getarnt. Wo du eine findest, such deshalb die Umgebung genau ab.",
+        "kitchen": "Sei dir sicher, was du gefunden hast, bevor sie in die Pfanne kommt. Schneide jede Trompete längs auf und spül Laub, Insekten und Sand heraus. Dann lässt du sie gut abtropfen. Iss sie nie roh. Gare sie gut durch, in Butter, in Sahnesossen, Risotto oder Pasta oder zu Fisch und Eiern. Sie schmeckt tief und rauchig, getrocknet noch kräftiger.",
+        "keeps": "Frisch hält sie sich nur ein paar Tage im Kühlschrank. Sie trocknet schnell und sehr gut. Bewahr sie in einem verschlossenen Glas auf oder mahl sie zu Pulver für Sossen und Suppen.",
+        "source": "Bestimmung und Standort: First Nature (UK), MushroomExpert.com und MykoWeb (California Fungi). Saison: GBIF-Funddaten."
+      }
     },
     "lingonb": {
       "name": "Preiselbeere",
-      "description": "Kleine rote, säuerliche Beeren, die auf immergrünen Sträuchern in saurem Boden wachsen.",
-      "howTo": "Suche in Nadelwäldern, Heideflächen und Mooren von Spätsommer bis Herbst."
+      "description": "Kleine, rote, säuerliche Beeren an niedrigen immergrünen Sträuchern auf saurem Boden.",
+      "howTo": "Suche in Nadelwäldern, Heideflächen und Mooren von Spätsommer bis Herbst.",
+      "guide": {
+        "identify": "Die Preiselbeere ist ein kriechender, immergrüner Zwergstrauch. Ihre Blätter sind dick, glänzend und dunkelgrün, mit nach unten eingerollten Rändern. Die helle Unterseite ist mit winzigen dunklen Punkten übersät. Kleine weisse bis rosa Glöckchenblüten sitzen in kurzen Trauben an den Triebspitzen. Daraus werden runde, glänzend rote Beeren, die in kleinen Büscheln hängen. Die Echte Bärentraube (Arctostaphylos uva-ursi) ist ein kriechender Strauch an denselben Stellen. Ihre Blätter sind netzartig geadert und haben keine Punkte, und ihre Beeren sind trocken und mehlig. Die giftigen roten und schwarzen Beeren wachsen nicht auf einem niedrigen immergrünen Teppich. Die Eibe (Taxus) ist ein Baum oder hoher Strauch mit flachen Nadeln. Ihr roter Becher ist vorne offen und umschliesst einen dunklen Samen. Der Seidelbast (Daphne mezereum) ist ein aufrechter Strauch, dessen Beeren dicht am Zweig sitzen. Die Tollkirsche (Atropa bella-donna) ist eine hohe Staude mit schwarzen Beeren. Das Rote Christophskraut (Actaea) und das Maiglöckchen (Convallaria majalis) sind krautige Pflanzen.",
+        "habitat": "Sie braucht sauren, mageren Boden. Such in Kiefern- und Fichtenwäldern, in Birkenwäldern, auf Heiden und Mooren und an Berghängen über der Baumgrenze. In Skandinavien und im Baltikum ist sie sehr häufig, und du findest sie auch in den Alpen und anderen Gebirgen. In Nordamerika wächst sie vor allem in Kanada und Alaska. Die USA erreicht sie nur im hohen Norden, von Minnesota bis Maine. Dort ist sie selten, und in Wisconsin gilt sie als bedroht.",
+        "season": "Ab August färben sich die Beeren rot. Am besten sind sie, wenn sie ganz dunkelrot sind, von September bis in den Oktober. Sie bleiben bis in den Winter an den Pflanzen.",
+        "picking": "Pflück dunkelrote Beeren mit der Hand oder, wo es erlaubt ist, mit einem Beerenpflücker. In Schweden, Finnland und Norwegen darf nach dem Jedermannsrecht jeder wilde Beeren sammeln, abseits von Häusern und Gärten. Naturschutzgebiete können aber eigene Regeln haben. In Mitteleuropa sagt das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL), dass das Essen von Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm nachgewiesen ist. Es rät trotzdem, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Roh sind die Beeren sauer und etwas bitter. Wenn du sie sicher bestimmt hast, kochst du sie deshalb meist mit Zucker zu einer Sosse oder Marmelade. In Schweden rührt man sie auch roh mit Zucker. Dazu passen Fleischbällchen, Wild, Braten, Kartoffelpuffer oder Porridge.",
+        "keeps": "Im Kühlschrank halten sie länger als die meisten Beeren. Mit Zucker gerührt halten sie sich kühl gelagert lange, dank ihrer natürlichen Benzoesäure. Du kannst sie auch einfach so einfrieren.",
+        "source": "Bestimmung und Verbreitung: Minnesota Wildflowers und CREA Mont-Blanc. Sammelrecht: Schwedisches Naturschutzamt (Naturvårdsverket). Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "masterwort": {
       "name": "Meisterwurz",
-      "description": "Mehrjährige Pflanze mit aromatischen Blättern und weissen Doldenblüten, verwendet in der traditionellen Medizin und als Gewürz.",
-      "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer."
+      "description": "Eine mehrjährige Pflanze mit aromatischen Blättern und weissen Blütendolden. Sie dient seit langem als Gewürz und in der Volksmedizin.",
+      "howTo": "Findet man auf Bergwiesen und in lichten Waldlichtungen; sammle Blätter und Wurzeln im Frühling und Sommer.",
+      "guide": {
+        "identify": "Die Meisterwurz ist ein kahler Doldenblütler, 30 bis 100 cm hoch. Ihr Stängel ist rund, gerillt und hohl. Die Blätter teilen sich in drei und dann noch einmal in drei. Am Ende stehen breite, eiförmige, doppelt gesägte Teilblätter von 5 bis 10 cm Länge. Die oberen Blätter sitzen auf grossen, aufgeblasenen Scheiden. Die Dolden sind flach, weiss oder rosa und haben bis zu 50 Strahlen. Die Früchte sind rund, flach und breit geflügelt. Ein zerriebenes Blatt oder der dicke braune Wurzelstock riecht kräftig würzig, nach Sellerie und Möhre. Ihre tödlichen Doppelgänger haben fein zerteilte Blätter, fiedrig oder wie bei einem Farn. Der Gefleckte Schierling hat einen glatten, purpurn gefleckten Stängel und riecht nach Mäusen. Die Hundspetersilie hat lange Hüllblättchen, die unter jedem Döldchen herabhängen. Beim Wasserschierling ist der Wurzelstock in hohle Kammern geteilt, wenn du ihn längs aufschneidest. Die Safran-Rebendolde hat helle Knollen in nassem Boden. Der Riesen-Bärenklau ist viel grösser und hat einen borstigen, purpurn gefleckten Stängel. Sein Saft verbrennt bei Sonne die Haut. Auch der Saft der Meisterwurz kann die Haut lichtempfindlich machen.",
+        "habitat": "Sie wächst auf feuchten Bergwiesen und in Hochstaudenfluren, an Bachufern, auf Schutthalden und im Grünerlengebüsch. Meist findest du sie zwischen 1400 und 2700 m. Sie wächst in den Alpen, den Pyrenäen, den Karpaten und anderen Gebirgen Mittel- und Südeuropas. In Deutschland ist sie nur in den Bayerischen Alpen heimisch. Weiter unten ist sie selten und meist aus alten Gärten verwildert, etwa in Grossbritannien und Skandinavien.",
+        "season": "Die Blätter wachsen, wenn der Schnee schmilzt. Am besten sind sie jung, im Frühsommer. Sie blüht von Ende Juni bis August, und die Früchte reifen im September und Oktober.",
+        "picking": "Zieh Handschuhe an. Nimm ein paar Blätter aus einem grossen Bestand und lass den Wurzelstock im Boden. Zum Ausgraben der Wurzel brauchst du oft eine Genehmigung. In Tirol bekommst du sie von der Bezirkshauptmannschaft. Viele Schutzgebiete und Nationalparks verbieten das Pflücken. Sie wächst zwischen Eisenhut und Weissem Germer, und beide sind tödlich giftig. Pflück Blatt für Blatt und nur von einer Pflanze, die du als Ganzes bestimmt hast.",
+        "kitchen": "Sei dir bei der Bestimmung zuerst ganz sicher. Verwende sie als Gewürz, nicht als Gemüse, denn sie schmeckt kräftig bitter und würzig, ähnlich wie Liebstöckel. In den Alpen würzt die Wurzel Schnaps (Meisterwurzbrand) und Kräuterkäse. Hack ein paar junge Blätter fein und gib sie sparsam in Suppen und Frischkäse. Wasch dir nach dem Anfassen die Hände.",
+        "keeps": "Trockne die Blätter oder Wurzelscheiben luftig im Schatten. Dann bewahrst du sie in einem verschlossenen Glas auf.",
+        "source": "Bestimmung, Standort und Saison: Botanical Society of Britain and Ireland und Alpenfloren. Wurzelgraben und Schnaps: österreichisches Landwirtschaftsministerium (Register traditioneller Lebensmittel). Hautreaktionen: Botanical Dermatology Database."
+      }
     },
     "parasol": {
       "name": "Parasolpilz",
-      "description": "Grosser Pilz mit breitem, schuppigem Hut, der einem Regenschirm ähnelt, jung essbar.",
-      "howTo": "Suche auf Wiesen, Weiden und an Waldrändern von Spätsommer bis Herbst."
+      "description": "Ein grosser, hoher Pilz mit breitem, schuppigem Hut, der sich wie ein Sonnenschirm öffnet. Iss ihn jung.",
+      "howTo": "Suche auf Wiesen, Weiden und an Waldrändern von Spätsommer bis Herbst.",
+      "guide": {
+        "identify": "Der Parasol ist ein hoher Pilz. Sein Hut beginnt als geschlossener, eiförmiger Paukenschlegel. Dann öffnet er sich zu einem flachen Schirm von 10 bis 25 cm. Der Hut ist cremefarben mit braunen Schuppen und hat in der Mitte einen glatten braunen Buckel. Die Lamellen sind weiss, frei und stehen dicht. Der schlanke Stiel wird bis 30 cm hoch und hat unten eine Knolle. Er ist braun genattert wie eine Schlangenhaut und trägt einen dicken, doppelten Ring, der sich verschieben lässt. Das Sporenpulver ist weiss. Mehrere Doppelgänger musst du kennen. Die tödlich giftigen Schirmlinge (Lepiota) sind klein, ihr Hut misst nur wenige Zentimeter. Chlorophyllum molybdites hat grünliches Sporenpulver. Die Safranschirmlinge (Chlorophyllum rhacodes und C. brunneum) vertragen viele Menschen nicht. Sie haben einen glatten Stiel, und ihr Fleisch färbt sich beim Anschneiden orangerot. Der Pantherpilz (Amanita pantherina) hat weisse Flocken auf dem Hut und einen Ring, der sich nicht verschieben lässt. Ausserdem hat er unten eine gerandete Knolle.",
+        "habitat": "Er wächst im Grasland und an Waldrändern. Such auf Weiden und Wiesen, auf Lichtungen, an Waldwegen und in Dünen. Er mag durchlässigen Boden, vom Tiefland bis ins Gebirge. In ganz Europa ist er häufig.",
+        "season": "Parasole kommen im Sommer und Herbst, vor allem von Juli bis Oktober. In Südeuropa gibt es sie bis in den November. Sie erscheinen nach einer warmen, feuchten Wetterphase.",
+        "picking": "Nimm nur offene, ausgewachsene Hüte, an denen du jedes Merkmal prüfen kannst. Heb den ganzen Pilz heraus, damit du den Stielgrund siehst. Lass jeden parasolähnlichen Pilz stehen, dessen Hut kleiner als 10 cm ist. Lass auch alte, zähe Exemplare stehen. Prüf die Regeln vor Ort, denn viele Regionen begrenzen die Sammelmenge.",
+        "kitchen": "Wenn du dir sicher bist, iss nur den Hut, und zwar gegart. Wie die meisten Wildpilze kann er roh auf den Magen schlagen. Paniere ihn und brate ihn wie ein Schnitzel, oder grill ihn mit Butter und Knoblauch. Er schmeckt mild und nussig. Die zähen Stiele kannst du trocknen und für Suppen mahlen.",
+        "keeps": "Im Kühlschrank hält er sich zwei Tage. In Scheiben geschnittene Hüte lassen sich gut trocknen.",
+        "source": "Bestimmung und Standort: First Nature. Doppelgänger und Vergiftungen: ANSES. Saison: GBIF-Funddaten."
+      }
     },
     "sorrel": {
       "name": "Gewöhnlicher Sauerampfer",
-      "description": "Pflanze mit säuerlich-zitronigem Geschmack, verwendet in Salaten und Suppen.",
-      "howTo": "Pflücke die jungen Blätter auf Wiesen, Weiden und entlang von Wegen im Frühling und Sommer."
+      "description": "Eine Blattpflanze mit säuerlich-zitronigem Geschmack, gut in Salaten und Suppen.",
+      "howTo": "Pflücke die jungen Blätter auf Wiesen, Weiden und entlang von Wegen im Frühling und Sommer.",
+      "guide": {
+        "identify": "Sauerampfer hat zarte, pfeilförmige Blätter. Ihre zwei spitzen Grundlappen zeigen nach hinten, den Stiel hinunter. Die oberen Blätter umfassen den Stängel. Wo ein Blatt am Stängel ansetzt, umhüllt ihn eine dünne, häutige Scheide. Ab Mai tragen die Blütenstängel lockere Rispen kleiner rötlicher Blüten. Der Gefleckte Aronstab (Arum maculatum) ist giftig, und seine jungen Blätter haben eine ähnliche Form. Sie haben aber oft dunkle Flecken und abgerundete Lappen. Ausserdem wächst er in Wäldern und Hecken statt auf offenen Wiesen. Probier nie ein Blatt zur Kontrolle, denn Aronstab brennt im Mund.",
+        "habitat": "Such auf Wiesen, Weiden und Rasen, an Wegrändern und in lichten Wäldern, vom Tiefland bis in die Berge. In ganz Europa ist er sehr häufig. In den USA ist er eingeschleppt und kommt nur verstreut vor. Du findest ihn vor allem im Nordosten, um die Grossen Seen, in Oregon und in Alaska. Dort ist der Kleine Sauerampfer viel häufiger.",
+        "season": "Die Blätter wachsen ab dem zeitigen Frühjahr, in milden Gegenden fast das ganze Jahr. Jung sind sie am besten. Sobald die Pflanze ab Mai blüht, werden sie zäher und bitterer. Geschnittene Pflanzen treiben aber neue Blätter.",
+        "picking": "Pflück von jeder Pflanze einzelne junge Blätter und lass die Wurzel stehen. Such dir Wiesen, die weder gespritzt noch gedüngt sind, abseits von Strassen und Hundewegen.",
+        "kitchen": "Bestimme ihn zuerst sicher. Die Blätter schmecken kräftig sauer, wie Zitronenschale. Schneide junge Blätter fein in den Salat, oder gare sie kurz in Suppen, Omeletts und Sossen zu Fisch und Eiern. Die Säure kommt von der Oxalsäure. Iss Sauerampfer nur mässig und meide ihn, wenn du Nierensteine hast. Koch ihn in Edelstahl oder Email, nicht in Aluminium oder Gusseisen.",
+        "keeps": "Im Kühlschrank welken die Blätter nach zwei bis drei Tagen. Zu Püree eingekocht lässt sich Sauerampfer gut einfrieren.",
+        "source": "Bestimmung und Doppelgänger: Woodland Trust und Wild Food UK. Verbreitung in den USA: Flora of North America. Oxalsäure: Wild Food UK. Saison: GBIF-Funddaten."
+      }
     },
     "st_george": {
       "name": "Georgsritterling",
-      "description": "Fester, weisser Pilz mit mehlartigem Geruch, erscheint um den Georgstag im Frühling.",
-      "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling."
+      "description": "Ein fester weisser Pilz, der nach frischem Mehl riecht. Er erscheint im Frühling, um den Georgstag.",
+      "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling.",
+      "guide": {
+        "identify": "Der Mairitterling ist kräftig und fleischig, weiss bis cremefarben. Der Hut wird 5 bis 15 cm breit, ist oft buckelig und hat einen eingerollten Rand. Die Lamellen sind weiss, schmal und stehen sehr dicht. Der dicke, volle Stiel hat keinen Ring und unten keine Scheide. Das feste weisse Fleisch verfärbt sich nicht. Es riecht stark nach frischem Mehl. Das Sporenpulver ist weiss. Der tödlich giftige Ziegelrote Risspilz (Inosperma erubescens) hat einen spitzen, faserig gestreiften Hut. Wo man ihn anfasst, rötet er sich, und sein Sporenpulver ist braun. Der Riesen-Rötling (Entoloma sinuatum) kann ebenfalls nach Mehl riechen. Seine Lamellen werden aber rosa, und sein Sporenpulver ist rosa. Auch weisse Knollenblätterpilze wie der tödliche Frühlings-Knollenblätterpilz (Amanita verna) erscheinen im Frühjahr. Sie haben einen Ring und unten eine Scheide.",
+        "habitat": "Er wächst im Gras, auf Weiden, an gemähten Wegrändern, in Parks und an Waldrändern. Oft findest du ihn bei Weissdorn, Schlehe und anderen Heckensträuchern, meist auf kalkreichem Boden. Jahrelang kommt er an dieselben Stellen zurück, oft in Hexenringen. Er wächst in ganz Europa und ist in Nordspanien und Mittelitalien sehr begehrt.",
+        "season": "Er kommt im Frühjahr, vor allem im April und Mai. Im Norden und im Gebirge gibt es ihn bis in den Juni. Er heisst auch Georgsritterling, nach dem Georgstag am 23. April. Ein milder, feuchter Frühling lässt ihn erscheinen.",
+        "picking": "Schneide den Stiel am Grund ab und lass die kleinen stehen. Nimm junge, feste Hüte, denn ältere sind oft voller Maden. Meide stark befahrene Wegränder. Prüf auch die Regeln vor Ort, denn manche Regionen verlangen eine Genehmigung oder begrenzen die Tagesmenge.",
+        "kitchen": "Wenn du dir sicher bist, iss ihn gegart. Beim Garen verliert sich der Mehlgeruch grösstenteils. Das feste, milde Fleisch passt zu Omeletts, Rührei, Risotto und Sahnesossen. Schneide vorher jeden Pilz der Länge nach durch, um nach Maden zu sehen.",
+        "keeps": "In Papier eingeschlagen hält er sich bis zu zwei Tage im Kühlschrank. Kurz angebraten lässt er sich gut einfrieren.",
+        "source": "Bestimmung und Standort: First Nature. Doppelgänger: First Nature und ANSES. Saison: GBIF-Funddaten."
+      }
     },
     "truffle_b": {
       "name": "Schwarzer Trüffel",
-      "description": "Sehr geschätzter unterirdischer Pilz mit intensivem Aroma, in der Gourmetküche verwendet.",
-      "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt."
+      "description": "Ein sehr begehrter Pilz, der unter der Erde wächst und kräftig duftet. In der Küche nimmt man ihn sparsam.",
+      "howTo": "Wächst unterirdisch in der Nähe der Wurzeln von Eichen und Haseln, wird im Winter mit ausgebildeten Tieren gesammelt.",
+      "guide": {
+        "identify": "Der Schwarze Trüffel ist rundlich und knollig und wächst unter der Erde. Er wird walnuss- bis faustgross. Die schwarze Haut ist jung rötlich und mit kleinen, harten, vieleckigen Warzen besetzt. Schneide ihn durch. Reifes Fleisch ist violettschwarz und von feinen weissen Adern marmoriert, die sich an der Luft rotbraun färben. Er riecht stark und erdig. Kartoffelboviste (Scleroderma) sind giftig. Sie haben eine dicke, gelbliche bis braune, schuppige Haut und riechen nach Gas. Innen sind sie fest und dunkel. Der Wintertrüffel (Tuber brumale) und der importierte Chinesische Trüffel (Tuber indicum) sehen ähnlich aus. Sie sind aber viel weniger wert.",
+        "habitat": "Er wächst unter der Erde zwischen den Wurzeln von Eichen, vor allem Stein- und Flaumeiche, und von Haseln. Er braucht durchlässigen, kalkreichen Boden in sonnigem Hügelland. Ein Fleck kahler, wie verbrannter Erde um einen Baum zeigt oft, wo er wächst. Heimisch ist er in Südfrankreich, Ostspanien und Mittelitalien. Ein grosser Teil der Ernte kommt heute aus angelegten Trüffelplantagen.",
+        "season": "Er reift im Winter, von Dezember bis März. Auf den Märkten ist im Januar Hochsaison. Gewitter Ende Juli und im August, wenn er heranwächst, entscheiden über die Grösse der Ernte.",
+        "picking": "Du findest ihn mit einem ausgebildeten Hund. Grab nur dort, wo der Hund anzeigt, mit einer kleinen Trüffelhacke. Nimm nur reife Trüffel und füll das Loch wieder auf. Die Trüffelsuche ist geregelt. Italien verlangt eine Lizenz nach einer Prüfung, und die Regionen legen die Saison fest. In Spanien bestimmen die Regionen Saison und Genehmigungen. In Frankreich gehören Trüffel dem Grundbesitzer. In Deutschland sind wilde Trüffel geschützt. Prüf die Regeln vor Ort, bevor du suchst.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, bürste ihn kurz vor dem Verwenden unter kaltem Wasser sauber. Hobel oder reib ihn roh über warme Gerichte. Oder erwärme ihn sanft in Fett, mit Eiern, Butter, Nudeln, Risotto oder Kartoffeln. Langes Kochen zerstört das Aroma.",
+        "keeps": "Wickel ihn in Küchenpapier und bewahr ihn in einem geschlossenen Glas im Kühlschrank auf. Wechsle das Papier täglich und verbrauche ihn innerhalb weniger Tage, denn das Aroma lässt nach. Eier im selben Glas nehmen seinen Duft an. Einfrieren erhält das Aroma besser als Trocknen.",
+        "source": "Bestimmung und Standort: CRPF Languedoc-Roussillon und Trufamania. Regeln: italienisches Trüffelgesetz 752/1985, spanische Regionalvorschriften und Bundesartenschutzverordnung. Saison: GBIF-Funddaten."
+      }
     },
     "bronze_bolete": {
       "name": "Bronze-Steinpilz",
-      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hell genetztem Stiel und festem weissem Fleisch",
-      "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz"
+      "description": "Ein Steinpilz mit dunkel bronzefarbenem bis fast schwarzem Hut, hellem, genetztem Stiel und festem weissem Fleisch.",
+      "howTo": "Suche an warmen Tieflandhängen unter Eichen und Edelkastanien, später als der Sommersteinpilz",
+      "guide": {
+        "identify": "Das ist der dunkelste Steinpilz. Der Hut ist dunkel kastanienbraun bis fast schwarz, oft mit bronzefarbenen Flecken. Er bleibt trocken und fein samtig, auch bei Nässe. Die Poren sind erst weiss, dann gelb bis oliv, und sie laufen nicht blau an. Der hellbraune Stiel trägt ein feines braunes Netz, oben am dichtesten. Das sehr feste weisse Fleisch verfärbt sich beim Anschneiden nicht. Der Sommersteinpilz ist heller, und sein Netz reicht weiter den Stiel hinunter. Zwei andere Röhrlinge wachsen in denselben Eichenwäldern. Das sind der Satansröhrling (Rubroboletus satanas) und der Falsche Satansröhrling (Rubroboletus legaliae). Beide haben rote Poren und Fleisch, das blau anläuft.",
+        "habitat": "Er mag warme, sonnige Hänge mit Eiche, Edelkastanie und Buche, meist zwischen 200 und 1000 m. Rund ums Mittelmeer ist er häufig. In Italien findest du ihn entlang des Apennins und auf den Inseln. In Grossbritannien und Deutschland ist er selten.",
+        "season": "Nach Sommergewittern kann er schon ab Juli kommen. Seine Hauptsaison sind September und Oktober, später als beim Sommersteinpilz. Im Süden geht sie bis in den November. Er wächst, wenn nach einer Hitzeperiode ein durchdringender Regen fällt und der Boden abkühlt.",
+        "picking": "Schneide ihn ab oder dreh ihn heraus, und lass die jungen weiterwachsen. In Deutschland ist er selten und besonders geschützt, also sammle ihn dort nicht. Italien und Spanien haben regionale Genehmigungen und Tageshöchstmengen.",
+        "kitchen": "Er ist der festeste aller Steinpilze. Er schmeckt nussig, getrocknet noch kräftiger. Wenn du ihn sicher bestimmt hast, behandelst du ihn wie Steinpilze. Bürste ihn ab, schau nach Maden und gare ihn gut durch.",
+        "keeps": "In Scheiben lässt er sich sehr gut trocknen und einfrieren.",
+        "source": "Bestimmung, Standort und Saison: Regione Piemonte und First Nature; GBIF-Funddaten. Schutz: Bundesartenschutzverordnung (BArtSchV). Küche: Regione Piemonte."
+      }
     },
     "pine_bolete": {
       "name": "Kiefern-Steinpilz",
-      "description": "Ein rotbrauner Steinpilz der Kiefernwälder mit gedrungenem, rötlich genetztem Stiel und festem Fleisch",
-      "howTo": "Suche in moosigen Kiefern- und Fichtenwäldern auf saurem Sandboden, im späten Frühjahr und wieder im Herbst"
+      "description": "Ein Steinpilz der Kiefernwälder mit rotbraunem Hut, kräftigem, rötlich genetztem Stiel und festem Fleisch.",
+      "howTo": "Suche in moosigen Kiefern- und Fichtenwäldern auf saurem Sandboden, im späten Frühjahr und wieder im Herbst",
+      "guide": {
+        "identify": "Der Kiefern-Steinpilz ist der rote unter den Steinpilzen. Sein Hut ist weinrot bis mahagonibraun und oft beulig. Jung ist er samtig, bei Nässe fettig bis schmierig, und am Rand hat er einen weisslichen Reif. Der Stiel ist kurz und dick, rotbraun überhaucht und hat ein feines weissliches bis rötliches Netz. Das Fleisch ist weiss, direkt unter der Huthaut aber weinrot. Die Poren werden von weiss über gelb zu oliv. Auf Druck verfärben sie sich kaum. Der Schwarzhütige Steinpilz ist sepiabraun bis schwarz, ohne Rot. Rote oder orange Poren (Rubroboletus satanas) schliessen ihn aus. Das gilt auch für rosa Poren mit dunklem Netz (Tylopilus felleus).",
+        "habitat": "Er wächst meist bei Waldkiefer und Fichte auf saurem Boden, oft im Moos. Im Gebirge wächst er auch bei Kastanie, Buche und Tanne, vor allem zwischen 400 und 1400 m. Häufig ist er in Skandinavien, in den Kiefernwäldern Schottlands und in den Bergen Mittel- und Südeuropas.",
+        "season": "Oft ist er der erste Steinpilz des Jahres und auch der letzte. Ein erster Schub kommt im Mai und Juni, wo es kühl und feucht bleibt. Die Hauptsaison folgt im September und Oktober. Sie dauert bis in den November, über die ersten Fröste hinaus.",
+        "picking": "Schneide oder dreh ihn heraus und reche das Moos nicht auf, denn es schützt das Pilzgeflecht. In vielen Regionen Italiens und Spaniens brauchst du eine Genehmigung. Manche Schweizer Kantone begrenzen die Menge. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare ihn gut durch wie den Steinpilz. Er ist milder und leicht harzig. Sehr feste junge Exemplare brauchen länger. Das Kochwasser färbt er grün. Er eignet sich für Sossen, zum Einlegen und zum Trocknen.",
+        "keeps": "In Scheiben lässt er sich gut trocknen. Frisch solltest du ihn innerhalb von ein, zwei Tagen verbrauchen.",
+        "source": "Bestimmung, Standort und Saison: Regione Piemonte und First Nature; GBIF-Funddaten. Küche: Regione Piemonte."
+      }
     },
     "summer_bolete": {
       "name": "Sommersteinpilz",
-      "description": "Der früheste Steinpilz, mit fein rissigem hellbraunem Hut und einem von oben bis unten genetzten Stiel",
-      "howTo": "Suche unter Eichen und Buchen ab dem späten Frühjahr, lange vor den anderen Steinpilzen"
+      "description": "Der früheste Steinpilz. Sein hellbrauner Hut ist fein rissig, und der Stiel ist von oben bis unten genetzt.",
+      "howTo": "Suche unter Eichen und Buchen ab dem späten Frühjahr, lange vor den anderen Steinpilzen",
+      "guide": {
+        "identify": "Der Sommer-Steinpilz hat einen matten, trockenen, samtigen Hut, hell haselnussbraun bis mittelbraun. Bei Trockenheit reisst der Hut fein netzartig auf. Er ist nie fettig, und sein Rand ist nicht heller als die Mitte. Sein deutlichstes Merkmal ist ein erhabenes Netz, das fast bis zum Stielgrund reicht. Die Poren sind weiss, dann gelboliv, und verfärben sich nicht. Das weisse Fleisch ist weicher als beim Steinpilz. Der Satansröhrling (Rubroboletus satanas) und Rubroboletus legaliae wachsen in denselben Eichenwäldern. Sie haben aber rote Poren und Fleisch, das blau anläuft. Der Gallenröhrling (Tylopilus felleus) hat rosa Poren und ein dunkles Netz.",
+        "habitat": "Er wächst bei Eiche und Edelkastanie, auch bei Buche, Linde und Birke. Such an Waldrändern, in Parks und an sonnigen Hängen, vom Tiefland bis etwa 1000 m. In Mittel- und Südeuropa ist er häufig, besonders in Südwestfrankreich und Portugal. In Grossbritannien ist er selten.",
+        "season": "Er ist der erste Steinpilz des Jahres. Im Tiefland geht es im Mai los, im Gebirge im Juni. Die Hauptsaison ist von Juli bis Anfang September, nach warmem Regen. Er hält sich bis zur ersten Herbstkälte.",
+        "picking": "Schneide oder dreh ihn heraus und lass die kleinen stehen. Bei Hitze sind viele madig. Halbiere sie gleich vor Ort und lass befallene im Wald. In vielen Regionen Italiens und Spaniens brauchst du eine Genehmigung.",
+        "kitchen": "Viele Köche halten ihn für den besten Steinpilz. Er schmeckt süsslich und nussig und duftet. Er eignet sich zum Trocknen, für Sossen und für Eiergerichte. Wenn du ihn sicher bestimmt hast, schneide madige Stellen weg und gare ihn gut durch.",
+        "keeps": "Von allen Steinpilzen hält er sich am schlechtesten. Gare oder trockne ihn noch am Tag, an dem du ihn sammelst.",
+        "source": "Bestimmung, Standort und Saison: Regione Piemonte und First Nature; GBIF-Funddaten. Küche: Regione Piemonte."
+      }
     },
     "pacific_chant": {
       "name": "Pazifik-Pfifferling",
-      "description": "Ein grosser goldener Pfifferling des pazifischen Nordwestens, blasser und rosiger als sein europäischer Verwandter",
-      "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben"
+      "description": "Ein grosser goldener Pfifferling aus dem pazifischen Nordwesten. Er ist blasser und rosiger als der europäische.",
+      "howTo": "Suche in moosigen Douglasien- und Hemlockwäldern, sobald die Herbstregen eingesetzt haben",
+      "guide": {
+        "identify": "Das ist ein grosser Pfifferling, blasser und rosiger als der europäische. Der Hut ist orangegelb bis aprikosenfarben. Junge Hüte haben oft feine bräunliche Schüppchen und einen rosa Schimmer. Bei nassem Wetter können beide verschwinden. Darunter sitzen stumpfe, gegabelte Leisten, die am Stiel herablaufen. Sie sind blass orangegelb und meist rosa überhaucht. Der Stiel wird nach unten schmaler, das Fleisch ist weisslich und fest. Auf Druck färbt sich der Hut gelblich. Ölbaumtrichterlinge (Omphalotus) und der Falsche Pfifferling haben dünne, dicht stehende echte Lamellen. Turbinellus floccosus ist eine tiefe, hohle, orangerote Trompete mit groben Schuppen. Vielen Menschen schlägt er auf den Magen.",
+        "habitat": "Er lebt mit Nadelbäumen zusammen, vor allem mit Douglasie und Westamerikanischer Hemlocktanne, auch mit Sitka-Fichte. Such im Moos und in der Nadelstreu, in jungen wie in alten Wäldern. Er wächst meist im Flachland und im Vorgebirge. Sein Gebiet reicht von British Columbia über Washington und Oregon bis Nordkalifornien. In Oregon ist er der offizielle Staatspilz.",
+        "season": "Du findest ihn von September bis Dezember, manchmal bis in den Januar. Zuerst müssen die Herbstregen den Boden durchnässen, deshalb kommt er in einem trockenen Herbst später. Jeder Pilz wächst langsam. Bei kühlem, nassem Wetter kann er wochenlang weiterwachsen.",
+        "picking": "Schneide ihn am Grund ab und lass die kleinen Knöpfe weiterwachsen. Nimm nur, was du auch isst. Die Regeln sind je nach National Forest, Bundesstaat und Park verschieden. Manche verlangen eine kostenlose Genehmigung und setzen Tageslimits. Viele State Parks verbieten das Sammeln. Für den Verkauf brauchst du eine gewerbliche Genehmigung. Frag bei der zuständigen Verwaltung nach.",
+        "kitchen": "Wenn du sicher weisst, was du hast, bürste Nadeln und Erde ab. Spül ihn nur ab, wenn er sandig ist, und trockne ihn danach, denn nach Regen steckt viel Wasser in ihm. Iss ihn nie roh. Brate ihn zuerst in der trockenen Pfanne, bis das Wasser verdampft ist. Dann brätst du ihn in Butter fertig. Er ist mild, fruchtig und fest. Er passt gut zu Eiern, Sahne, Nudeln, Lachs und Wild.",
+        "keeps": "In einer Papiertüte hält er sich mehrere Tage im Kühlschrank. Getrocknet wird er zäh. Wenn du ihn länger aufheben willst, brate ihn in Butter an und friere ihn ein.",
+        "source": "Bestimmung: MushroomExpert.com und UBC Beaty Biodiversity Museum. Sammelregeln: US Forest Service. Saison: GBIF-Funddaten."
+      }
     },
     "smooth_chant": {
       "name": "Glatter Pfifferling",
-      "description": "Ein orangefarbener Pfifferling mit fast glatter statt geriefter Unterseite und starkem Aprikosengeruch",
-      "howTo": "Suche in den Eichenwäldern des amerikanischen Südostens im feuchten Sommer, oft truppweise auf offenem Boden"
+      "description": "Ein orangefarbener Pfifferling mit fast glatter Unterseite statt Leisten. Er riecht stark nach Aprikose.",
+      "howTo": "Suche in den Eichenwäldern des amerikanischen Südostens im feuchten Sommer, oft truppweise auf offenem Boden",
+      "guide": {
+        "identify": "Der Glatte Pfifferling ist leuchtend orangegelb bis eigelb und 2,5 bis 8 cm breit. Erst ist er flach, später wird er zu einer flachen Vase mit welligem Rand. An seiner Unterseite erkennst du ihn. Sie ist glatt oder nur leicht runzelig und hat keine echten Lamellen. Sie ist blasser als der Hut, oft rosa, und läuft am Stiel herab. Der Stiel wird nach unten schmaler. Das Fleisch ist weiss und verfärbt sich beim Schneiden nicht. Meist riecht er stark und süss, nach Aprikose. In denselben Eichenwäldern ist der Ölbaumtrichterling Omphalotus illudens häufig. Er hat scharfe, dicht stehende echte Lamellen und wächst in dichten Büscheln aus Holz oder vergrabenen Wurzeln. Ausserdem ist er auch innen orange.",
+        "habitat": "Er lebt mit Eichen und manchmal mit Hickorys zusammen. Such in Laubwäldern und Eichen-Kiefern-Wäldern im Osten der USA, östlich der Rocky Mountains. Am häufigsten ist er im Südosten. Oft erscheint er in Trupps auf nacktem oder moosigem Boden an Wegen, Bachufern und Böschungen.",
+        "season": "Er ist ein Sommerpfifferling, von Juni bis September und meist ab Juli. Er kommt bald nach warmem, starkem Regen bei schwülem Wetter.",
+        "picking": "Schneide ihn am Grund ab, lass die kleinen stehen und nimm nur, was du isst. Die Regeln sind je nach Bundesstaat, Park und National Forest verschieden. Viele State Parks verbieten das Sammeln, also informier dich vorher.",
+        "kitchen": "Bestimme ihn sicher und bürste dann die Erde ab. In der glatten Unterseite sitzt kaum Sand. Iss ihn nie roh. Gare ihn gut durch, langsam in Butter oder in einer Sahnesosse. Er ist fruchtig und mild wie andere Pfifferlinge. Er passt zu Eiern, Grits, Nudeln, Hähnchen und Schweinefleisch.",
+        "keeps": "In einer Papiertüte im Kühlschrank hält er sich ein paar Tage. Getrocknet wird er zäh. Wenn du ihn länger aufheben willst, brate ihn in Butter an und friere ihn ein.",
+        "source": "Bestimmung und Standort: MushroomExpert.com und University of Florida IFAS Extension. Saison: GBIF-Funddaten."
+      }
     },
     "winter_chant": {
       "name": "Trompetenpfifferling",
-      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel, der bis in die ersten Fröste fruchtet",
-      "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz"
+      "description": "Ein kleiner Pfifferling mit braunem Hut auf hohlem gelbem Stiel. Er wächst bis in die ersten Fröste.",
+      "howTo": "Suche spät in der Saison in moosiger Nadelstreu, oft in dichten Trupps auf morschem Holz",
+      "guide": {
+        "identify": "Der Trompetenpfifferling ist klein und schlank. Der Hut misst 1 bis 4 cm und ist braun bis gelbbraun. Er ist ein dünner Trichter, dessen Mitte sich zum hohlen Stiel hin öffnet. Darunter laufen stumpfe, gegabelte Leisten am Stiel herab, grau bis gelblichgrau. Der Stiel ist gelb bis orangegelb, hohl und oft zusammengedrückt oder gefurcht. Der Spitzgebuckelte Raukopf (Cortinarius rubellus) wächst in denselben moosigen Nadelwäldern. Er hat einen spitzen, rotbraunen Hut und echte rostbraune Lamellen. Sein Stiel ist voll und hat schwache gelbe Bänder. Er zerstört die Nieren. Prüf jeden Pilz beim Sammeln und noch einmal beim Putzen. Die norwegische Giftinformation rät, den ganzen Korb wegzuwerfen, wenn auch nur ein Raukopf darin ist.",
+        "habitat": "Er wächst auf nassem, saurem Boden in Nadelwäldern, vor allem unter Fichte und Kiefer. Such im Moos, an Moorrändern und auf bemoostem, morschem Holz. In Nord- und Mitteleuropa und in den Bergen des Südens ist er häufig. In Nordamerika wächst er im pazifischen Nordwesten und in Nordkalifornien. Auch in den nördlichen und östlichen Nadelwäldern kommt er vor.",
+        "season": "Er kommt spät im Jahr. In Europa fruchtet er von September bis zum starken Frost, oft noch im November und Dezember. An der Pazifikküste der USA gibt es ihn vom Herbst durch den Winter. Er braucht einen nassen Herbst, und leichter Frost hält ihn nicht auf.",
+        "picking": "Schneide die Stiele über dem Moos ab, damit der Korb sauber bleibt. Lass die kleinsten stehen. Halte dich an die Regeln vor Ort, in Deutschland etwa nur kleine Mengen für den eigenen Bedarf. In Südbayern und im Bayerischen Wald trägt er noch Cäsium aus Tschernobyl. Iss ihn dort nur ab und zu.",
+        "kitchen": "Bestimme ihn zuerst sicher. Dann schneide die hohlen Stiele auf und spül Nadeln und Sand heraus. Iss ihn nie roh. Gare ihn gut durch, in Butter, in Sossen oder Suppen oder zu Wild. Er schmeckt erdig und kräftiger, als seine Grösse vermuten lässt.",
+        "keeps": "In Papier hält er sich ein paar Tage im Kühlschrank. Er lässt sich sehr gut trocknen und behält im geschlossenen Glas monatelang sein Aroma. Du kannst ihn auch gegart einfrieren.",
+        "source": "Bestimmung: MykoWeb (California Fungi) und First Nature (UK). Spitzgebuckelter Raukopf: Norwegisches Institut für Volksgesundheit. Cäsium: Bundesamt für Strahlenschutz (BfS). Saison: GBIF-Funddaten."
+      }
     },
     "eastern_king": {
       "name": "Ostamerika-Steinpilz",
-      "description": "Die Steinpilze der ostamerikanischen Eichenwälder: hellbrauner bis lilabrauner Hut, weisse, im Alter gilbende Poren und genetzter Stiel, nie blau verfärbend",
-      "howTo": "Suche unter Eichen, Buchen und Hickorys in den Laubwäldern des Ostens ab Juni, wenige Tage nach warmem Sommerregen"
+      "description": "Der Steinpilz der Eichenwälder im Osten der USA. Der Hut ist hellbraun bis lilabraun, die Poren sind weiss und werden gelb, und er läuft nie blau an.",
+      "howTo": "Suche unter Eichen, Buchen und Hickorys in den Laubwäldern des Ostens ab Juni, wenige Tage nach warmem Sommerregen",
+      "guide": {
+        "identify": "Das ist eine kleine Gruppe von Steinpilzen aus dem Osten Nordamerikas. Boletus variipes hat einen trockenen, samtigen Hut, hellbraun bis graubraun, der oft aufreisst. Boletus separans hat einen lilabraunen bis leberroten Hut, der zu Gelbbraun verblasst. Auch am Stiel zeigt er Lila. Beide haben jung weisse Poren, die später gelblich werden. Beide haben ein deutliches weisses bis bräunliches Netz am Stiel. Ihr weisses Fleisch verfärbt sich nicht. Bittere Tylopilus-Arten haben Poren, die rosa werden. Ein Beispiel ist der violettgraue Tylopilus plumbeoviolaceus. Rote oder orange Poren (Neoboletus subvelutipes) zeigen einen giftigen Röhrling. Das gilt auch für Poren und Fleisch, die blau anlaufen (Boletus sensibilis, Boletus huronensis).",
+        "habitat": "Er wächst bei Eichen, auch bei Buchen und anderen Laubbäumen, östlich der Rocky Mountains. Am häufigsten ist er von New York und den Grossen Seen über Pennsylvania und die Appalachen bis nach Georgia und in die Ozarks. Boletus nobilis und Boletus atkinsonii gehören zur selben Gruppe.",
+        "season": "Er wächst von Juni bis September, am meisten im Juli und August. Such nach warmem, durchdringendem Sommerregen.",
+        "picking": "Schneide ihn ab oder dreh ihn heraus und schneide ihn gleich vor Ort auf. Sommersteinpilze sind oft madig. Manche National Forests verlangen eine kostenlose Genehmigung und legen Tageshöchstmengen fest. Parks haben eigene Regeln, die oft strenger sind.",
+        "kitchen": "Bestimm ihn sicher und gare ihn dann wie Steinpilze gut durch. Brat ihn an oder gib ihn in Pasta, Suppen und Eintöpfe. Du kannst ihn auch trocknen, dann schmeckt er kräftiger. Nimm nur feste, frische Exemplare.",
+        "keeps": "In dünnen Scheiben lässt er sich sehr gut trocknen. Frisch verbrauchst du ihn innerhalb von ein bis zwei Tagen.",
+        "source": "Bestimmung und Standort: MushroomExpert (Michael Kuo). Saison: GBIF- und iNaturalist-Funddaten. Regeln: US Forest Service."
+      }
     },
     "rocky_king": {
       "name": "Rocky-Mountains-Steinpilz",
-      "description": "Ein gedrungener Hochgebirgs-Steinpilz mit ziegelrotem bis rotbraunem Hut, weissen Poren und dickem hellem Stiel, oben genetzt",
-      "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September"
+      "description": "Ein kräftiger Steinpilz aus dem Hochgebirge. Er hat einen ziegelroten bis rotbraunen Hut, weisse Poren und einen dicken, hellen Stiel, der oben genetzt ist.",
+      "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September",
+      "guide": {
+        "identify": "Das ist ein grosser, gedrungener Steinpilz der hohen Rocky Mountains. Sein Hut ist ziegelrot bis rotbraun und frisch etwas klebrig. Junge Hüte sind oft weisslich bereift. Er ist röter als der Steinpilz (Boletus edulis), der dort ebenfalls wächst. Die Poren sind jung weiss und wie ausgestopft, dann werden sie gelb und oliv. Auf Druck verfärben sie sich nicht. Der dicke, helle Stiel trägt ein feines weisses Netz, zumindest im oberen Teil. Das weisse Fleisch läuft nicht blau an. Espen-Rotkappen (Leccinum) haben dunkle Schüppchen am Stiel. Rotkappen mit orangem Hut haben in Colorado schwere Magen-Darm-Vergiftungen ausgelöst. Rote oder orange Poren zeigen einen giftigen Röhrling.",
+        "habitat": "Er wächst vor allem bei Engelmann-Fichte, auch bei Tanne und Douglasie. Du findest ihn ab etwa 2400 m bis zur Waldgrenze. Er wächst in Colorado, New Mexico und in den Bergen Arizonas.",
+        "season": "Er fruchtet von Juli bis September, manchmal bis in den Oktober. Los geht es mit den Monsungewittern, und im Lauf der Saison steigt er höher hinauf. In trockenen Sommern fruchtet er kaum.",
+        "picking": "Dreh ihn vorsichtig heraus, denn ein grosser Teil des Stiels steckt im Boden. Lass stark madige stehen. Jeder National Forest hat eigene Regeln. Manche verlangen eine kostenlose Genehmigung und setzen Tagesgrenzen.",
+        "kitchen": "Bestimme ihn zuerst sicher. Entferne bei älteren Hüten die gelben, weichen Poren. Sie können bitter schmecken und schleimig werden. Dann gare ihn gut durch wie einen Steinpilz, oder trockne ihn.",
+        "keeps": "Trockne ihn in dünnen Scheiben, oder brate ihn an und friere ihn ein.",
+        "source": "Bestimmung und Standort: Arora und Frank (2014), MushroomExpert und Forage Colorado. Saison: GBIF-Funddaten. Regeln: US Forest Service."
+      }
     },
     "lions_mane": {
       "name": "Igel-Stachelbart",
-      "description": "Ein weißer, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen, der gebraten an Krabbenfleisch erinnert",
-      "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen"
+      "description": "Ein weisser, zotteliger Schopf aus langen, herabhängenden Stacheln an Laubbäumen. Gebraten erinnert er an Krabbenfleisch.",
+      "howTo": "Suche an verletzten oder toten Eichen, Buchen und Ahornen vom Spätsommer bis in den Herbst, oft hoch am Stamm. In Europa ist er selten und vielerorts geschützt: lass ihn stehen",
+      "guide": {
+        "identify": "Der Igel-Stachelbart ist ein einzelner, weisser, rundlicher Klumpen von 8 bis 24 cm. Er hat keinen Hut und keine Lamellen. Weiche, 1 bis 5 cm lange Stacheln hängen wie Eiszapfen herab. Im Alter wird er gelb. Das Fleisch ist weiss und weich und verfärbt sich beim Anschneiden nicht. Das Sporenpulver ist weiss. Seine Verwandten, der Ästige Stachelbart (Hericium coralloides) und Hericium americanum, sind verzweigt und haben kürzere Stacheln.",
+        "habitat": "Er wächst aus Wunden lebender Laubbäume und an toten Stämmen. Meist ist das Eiche, aber auch Buche und Ahorn, und oft sitzt er hoch oben. In den USA findest du ihn im ganzen Land, im Osten häufiger. In Europa ist er selten und wächst an alten Buchen und Eichen in alten Wäldern.",
+        "season": "Such vom Spätsommer bis in den Spätherbst, nach Regen. In warmen Gegenden wie Kalifornien wächst er auch den Winter über. Oft kommt er am selben Baum wieder.",
+        "picking": "In Europa lässt du ihn stehen. Er ist selten und in mehreren Ländern gesetzlich geschützt, darunter Grossbritannien, Polen, Ungarn, Kroatien, Slowenien und Schweden. Mach ein Foto und melde den Fund. In den USA schneidest du frische, weisse Exemplare mit dem Messer am Grund ab. In National Forests und Parks brauchst du vielleicht eine Genehmigung, oder das Sammeln ist verboten. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du dir sicher bist, gare ihn. Schneide ihn in Scheiben und brate ihn ohne Fett, bis das Wasser verdampft ist. Dann bräunst du ihn in Butter. Der milde, süssliche Geschmack und die faserige Textur erinnern viele an Krebsfleisch. Gelb gewordene Exemplare schmecken säuerlich.",
+        "keeps": "In einer Papiertüte hält er sich ein paar Tage im Kühlschrank. Einfrieren kannst du ihn, wenn er gegart ist.",
+        "source": "Bestimmung und Saison: MushroomExpert.com und Wild Food UK. Schutzstatus: Rote Liste der IUCN und britischer Wildlife and Countryside Act 1981."
+      }
     },
     "hen_of_the_woods": {
       "name": "Klapperschwamm",
-      "description": "Eine große Rosette aus sich überlappenden, graubraunen Hütchen am Fuß alter Eichen, unterseits mit weißen Poren",
-      "howTo": "Suche am Fuß alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt"
+      "description": "Eine grosse Rosette aus überlappenden, graubraunen Hütchen am Fuss alter Eichen, mit weissen Poren darunter.",
+      "howTo": "Suche am Fuss alter oder absterbender Eichen von Ende August bis Oktober; er erscheint oft Jahr für Jahr am selben Baum. In Teilen Mittel- und Nordeuropas ist er geschützt",
+      "guide": {
+        "identify": "Der Klapperschwamm bildet eine Rosette von 15 bis 40 cm. Sie besteht aus vielen graubraunen Hütchen, die dachziegelartig übereinanderliegen. Sie sind löffel- oder fächerförmig und je 3 bis 14 cm breit. Alle verzweigen sich aus einem gemeinsamen weissen Strunk. Die Unterseite ist weiss und hat winzige Poren, keine Lamellen. Das Fleisch ist weiss und fest und verfärbt sich weder beim Schneiden noch auf Druck. Der Riesenporling (Meripilus) hat grössere, dickere Hüte, die auf Druck schwarz anlaufen. Der Eichhase (Polyporus umbellatus) hat runde Hütchen auf kleinen Stielen in der Mitte.",
+        "habitat": "Such am Fuss alter Eichen. Manchmal wächst er auch an Stümpfen oder an anderen Laubbäumen. Er zersetzt die Wurzeln und kommt jahrelang am selben Baum wieder. Im Osten der USA ist er häufig, im Westen selten. In Europa ist er nicht häufig und wird immer seltener. Du findest ihn dort unter alten Eichen und Edelkastanien.",
+        "season": "Er wächst vom Spätsommer bis in den Spätherbst, meist im September und Oktober. Oft erscheint er nach den ersten kühlen Nächten, die auf Regen folgen.",
+        "picking": "Schneide die Rosette mit dem Messer am Grund ab. Nimm nur frische, feste Exemplare und lass den Baum wieder fruchten. In Europa ist er in Polen, Estland, Lettland und Litauen gesetzlich geschützt. In Deutschland, Österreich und anderswo steht er auf der Roten Liste. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn er sicher bestimmt ist, gare ihn gründlich durch. Schüttle und spül Erde und Insekten zwischen den Hütchen heraus und schneide den zähen Kern weg. Brat ihn in der Pfanne oder im Ofen. Die Hütchen werden an den Rändern knusprig und schmecken kräftig, erdig und leicht pfeffrig.",
+        "keeps": "In einer Papiertüte hält er sich mehrere Tage im Kühlschrank. Gegart lässt er sich gut einfrieren, und er lässt sich auch gut trocknen.",
+        "source": "Bestimmung und Standort: MushroomExpert.com. Status in Europa: Rote Liste der IUCN."
+      }
     },
     "saffron_milk_cap": {
       "name": "Edel-Reizker",
-      "description": "Ein orangefarbener Hut mit dunkleren Ringen, der karottenorange Milch blutet und grün anläuft; in Spanien und Italien heiß begehrt",
-      "howTo": "Suche unter Kiefern und Fichten vom Spätsommer bis November, am Mittelmeer und an der US-Pazifikküste bis in den Winter. Brich eine Lamelle ab: Die Milch muss orange bis rot sein, niemals weiß"
+      "description": "Ein orangefarbener Hut mit dunkleren Ringen. Er blutet karottenorange Milch und läuft grün an, und in Spanien und Italien ist er heiss begehrt.",
+      "howTo": "Suche unter Kiefern und Fichten vom Spätsommer bis November, am Mittelmeer und an der US-Pazifikküste bis in den Winter. Brich eine Lamelle ab: Die Milch muss orange bis rot sein, niemals weiss",
+      "guide": {
+        "identify": "Der Hut des Edel-Reizkers ist orange mit dunkleren, ringförmigen Zonen. Jung ist sein Rand eingerollt. Später wird er trichterförmig und ist oft grün gefleckt. Die dichten orangen Lamellen laufen leicht am Stiel herab. Der Stiel ist kurz, hohl und orange, oft mit dunkler orangen Grübchen. Brich eine Lamelle an und schau dir die Milch an. Sie ist karottenorange und kann langsam weinrot werden. Lamellen und Fleisch verfärben sich auf Druck grün. Weisse oder gelb werdende Milch zeigt einen anderen Milchling. Einer davon ist der Birken-Reizker (Lactarius torminosus). Er ist rosiger, hat einen zottig bärtigen Hutrand und wächst bei Birken.",
+        "habitat": "Er wächst unter Kiefern, auf sandigem oder kalkreichem Boden. Such in jungen Pflanzungen und auf grasigen Lichtungen, dort taucht er oft auf. Nahe Verwandte wachsen unter Fichten (Fichten-Reizker, Lactarius deterrimus) und unter Tannen (Lachs-Reizker, Lactarius salmonicolor). In ganz Europa ist er verbreitet, vor allem in den Kiefernwäldern Spaniens, Portugals und Italiens. In Nordamerika wachsen mehrere verwandte Arten mit oranger Milch unter Nadelbäumen.",
+        "season": "Er ist ein Herbstpilz. In Mittel- und Nordeuropa kommt er vom Spätsommer bis November. In den Kiefernwäldern am Mittelmeer folgt er den Herbstregen, von Oktober bis in den Januar. An der Pazifikküste der USA fruchtet er den nassen Winter hindurch.",
+        "picking": "Schneide den Stiel am Grund ab und prüf ihn auf Maden. Lass die kleinen stehen. In vielen Regionen Spaniens und Italiens brauchst du eine Genehmigung oder musst dich an eine Tagesmenge halten. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare ihn gut durch. Grill ihn mit Knoblauch, Olivenöl und Petersilie, oder schmor ihn mit Kartoffeln oder Reis. Er passt auch zu Fleisch. Sein Fleisch ist fest und leicht körnig und schmeckt mild und harzig. Langsames Garen nimmt ihm jede Bitterkeit. Die grünen Flecken sind harmlos. Sein Farbstoff kann deinen Urin rot färben, und auch das ist harmlos.",
+        "keeps": "Im Kühlschrank hält er sich zwei Tage. Zum Trocknen eignet er sich nicht gut. Gare ihn lieber und friere ihn ein, oder leg ihn in Öl oder Essig ein.",
+        "source": "Bestimmung und Standort: First Nature. Lagern: ANSES. Saison: GBIF-Funddaten."
+      }
     },
     "hedgehog_mushroom": {
       "name": "Semmel-Stoppelpilz",
-      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen: einer der sichersten Wildpilze für Einsteiger",
-      "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen"
+      "description": "Ein semmelgelber bis orangefarbener Hut mit weichen Stacheln statt Lamellen darunter. Einer der sichersten Wildpilze für den Anfang.",
+      "howTo": "Suche in moosigen Nadel- und Laubwäldern vom Spätsommer bis zum Spätherbst, oft in Ringen oder Reihen; an der US-Pazifikküste den ganzen Winter über. Dreh ihn um: Stacheln, keine Lamellen",
+      "guide": {
+        "identify": "Dreh ihn um. Unter dem Hut hängen weiche, brüchige Stacheln, 2 bis 6 mm lang, wie kleine Eiszapfen. Lamellen oder Leisten gibt es nicht. Die Stacheln lassen sich leicht abstreifen. Der Hut ist 4 bis 15 cm breit und cremefarben bis semmelgelb oder blass orange. Er ist trocken, samtig und oft buckelig. Der Stiel ist weiss, voll und sitzt oft nicht in der Mitte. Das feste weisse Fleisch verfärbt sich auf Druck langsam gelblich bis orangebraun. Der Rotgelbe Stoppelpilz (Hydnum rufescens) ist kleiner und kräftiger orange. Er hat dieselben weichen Stacheln, genau wie die amerikanischen Hydnum-Arten. Andere Stachelpilze wie Korkstachlinge (Hydnellum) und Habichtspilze (Sarcodon) sind zäh und korkig oder braun und schuppig. Viele davon sind bitter.",
+        "habitat": "Er lebt mit Nadel- und Laubbäumen gleichermassen zusammen, etwa mit Fichte, Kiefer, Buche, Eiche und Birke. Such im Moos und im Laub. Oft wächst er in Ringen oder Reihen. In ganz Europa ist er häufig, vom Flachland bis ins Gebirge, und ebenso in ganz Nordamerika. An der US-Pazifikküste wachsen mehrere Hydnum-Arten unter Douglasie, Tanoak und anderen Bäumen.",
+        "season": "In Mittel- und Nordeuropa kommt er vom Spätsommer bis in den Spätherbst, oft bis zum starken Frost. In Südeuropa beginnt die Saison später und dauert länger, bis in den Winter. An der US-Pazifikküste kommt er mit den Herbstregen und bleibt den ganzen Winter.",
+        "picking": "Schneide ihn am Grund ab. Putz Schmutz gleich vor Ort ab, damit er nicht zwischen den Stacheln hängen bleibt. Lass die kleinen stehen. In Südbayern und im Bayerischen Wald enthält er noch Cäsium aus Tschernobyl. Iss ihn dort nur ab und zu.",
+        "kitchen": "Bestimm ihn zuerst sicher. Bürste den Hut ab. Bei grossen Exemplaren streifst du die Stacheln ab. Sie brechen in der Pfanne ab und können bitter schmecken. Iss ihn nie roh. Gare ihn gut durch, in Butter gebraten oder geschmort. Er schmeckt mild, nussig und süsslich und hat einen festen, fleischigen Biss. Er passt gut zu Eiern, Kartoffeln und Wild und in Sossen.",
+        "keeps": "Weil er so fest ist, hält er sich besser als die meisten Wildpilze. In Papier bleibt er mehrere Tage im Kühlschrank frisch. Für länger garst du ihn und frierst ihn ein.",
+        "source": "Bestimmung: First Nature (UK) und MykoWeb (California Fungi). Cäsium: Bundesamt für Strahlenschutz (BfS). Saison: GBIF-Funddaten."
+      }
     },
     "shaggy_mane": {
       "name": "Schopf-Tintling",
-      "description": "Ein hoher weißer, zottig beschuppter Zylinder auf Rasen und an Wegrändern, der sich binnen eines Tages nach dem Pflücken in schwarze Tinte auflöst",
-      "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weiße Exemplare und koche sie noch am selben Tag; meide stark befahrene Straßen, dort nimmt er Schwermetalle auf"
+      "description": "Ein hoher weisser Zylinder mit zottigen Schuppen, auf Rasen und an Wegrändern. Innerhalb eines Tages nach dem Pflücken zerfliesst er zu schwarzer Tinte.",
+      "howTo": "Suche auf Rasen, an Wegrändern und auf aufgewühltem Boden einige Tage nach Herbstregen, auch nach Frühjahrsregen. Nimm nur junge, ganz weisse Exemplare und koche sie noch am selben Tag; meide stark befahrene Strassen, dort nimmt er Schwermetalle auf",
+      "guide": {
+        "identify": "Der Schopftintling ist ein hoher weisser Zylinder, 5 bis 15 cm hoch. Er ist mit zottigen, abstehenden Schuppen bedeckt und hat einen blassbraunen Scheitel. Im Alter öffnet er sich zu einer Glocke. Die dicht stehenden Lamellen werden von weiss über rosa zu schwarz. Dann zerfliessen sie vom Hutrand her nach oben zu schwarzer Tinte. Der weisse Stiel ist glatt und hohl. Sein dünner Ring lässt sich verschieben und rutscht oft bis zum Grund. Das Sporenpulver ist schwarz. Der Falten-Tintling (Coprinopsis atramentaria) hat einen glatten, graubraunen, fein gerieften Hut ohne zottige Schuppen. Er wächst büschelig aus vergrabenem Holz. Auf Rasen in den USA kann der junge Chlorophyllum molybdites mit grünem Sporenpulver ähnlich aussehen. Seine Lamellen werden aber nie schwarz.",
+        "habitat": "Such auf Rasen, an Wegrändern, in Parks, an Wegen, auf Baustellen und auf anderem gestörtem, grasigem Boden. Oft wächst er in Reihen oder Gruppen. In Europa und Nordamerika ist er häufig.",
+        "season": "Er kommt vor allem im Spätsommer und Herbst, ein paar Tage nach Regen. Im Frühjahr kommt er noch einmal. An der Pazifikküste der USA wächst er auch den milden, nassen Winter hindurch.",
+        "picking": "Nimm nur junge, geschlossene Hüte, die rundum weiss sind und weisse Lamellen haben. Nimm nur so viele, wie du am selben Tag kochst. Meide stark befahrene Strassen, Deponien und belasteten Boden, denn er nimmt Schwermetalle auf.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare ihn innerhalb weniger Stunden. Schneide rosa oder schwarze Stellen weg, denn sie werden bitter. Brate ihn in Butter an oder gib ihn in Suppen und Omeletts. Er schmeckt mild und fein. Mit Alkohol reagiert er nach heutigem Wissen nicht. Der Falten-Tintling aber schon, sogar mit Getränken, die du Tage vor oder nach dem Essen trinkst. Wenn du nicht sicher weisst, welchen Tintling du hast, iss ihn nicht.",
+        "keeps": "Er hält sich nicht. Innerhalb eines Tages zerfliesst er zu Tinte, auch im Kühlschrank. Gare ihn sofort. Gegart hält er sich ein bis zwei Tage im Kühlschrank, oder du frierst ihn ein.",
+        "source": "Bestimmung und Standort: First Nature und Missouri Department of Conservation. Reaktion mit Alkohol: First Nature. Saison: GBIF-Funddaten."
+      }
     },
     "giant_puffball": {
       "name": "Riesenbovist",
-      "description": "Eine glatte weiße Kugel, fußballgroß oder größer, auf Wiesen und Weiden, mit festem, weißem Fleisch wie frischer Mozzarella",
-      "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiß sein, ohne jede Spur von Hut oder Stiel"
+      "description": "Eine glatte weisse Kugel, so gross wie ein Fussball oder grösser, auf Wiesen und Weiden. Das Fleisch ist fest und weiss wie frischer Mozzarella.",
+      "howTo": "Suche auf Wiesen, Weiden, in Parks und an Waldrändern vom Spätsommer bis in den Herbst, oft bei Brennnesseln. Schneide jeden von oben nach unten durch: Innen muss er rein weiss sein, ohne jede Spur von Hut oder Stiel",
+      "guide": {
+        "identify": "Der Riesenbovist ist eine glatte weisse Kugel, oft 20 bis 50 cm gross. Er hat eine dünne, lederartige Haut und keinen Stiel. Ein wurzelartiger Strang verbindet ihn mit dem Boden. Schneide jeden einzelnen von oben nach unten in der Mitte durch. Innen muss er fest und durchgehend reinweiss sein, wie frischer Mozzarella. Siehst du im Schnitt die Umrisse von Hut, Lamellen oder Stiel, kann es ein junger Wulstling (Amanita) sein, der noch im Ei steckt. Der kann tödlich sein. Eine dicke, schuppige, gelbliche Haut und ein dunkles, violettschwarzes Inneres zeigen einen Kartoffelbovist (Scleroderma), und der ist giftig. Gelbes, olivfarbenes oder braunes Fleisch heisst, dass die Sporen reifen. Dann ist er nicht mehr essbar.",
+        "habitat": "Such auf Wiesen und Weiden, in Parks und Gärten, an Hecken und Waldrändern auf nährstoffreichem Boden. Oft wächst er zwischen Brennnesseln und oft jedes Jahr an derselben Stelle. In Europa und im Osten der USA ist er weit verbreitet. Im trockenen Inland des US-Westens wächst der ähnliche Westliche Riesenbovist (Calvatia booniana) in Beifusssteppen und offenem Grasland.",
+        "season": "Er wächst vom Sommer bis in den Herbst. In Europa ist das vor allem Juli bis Oktober. Im Osten der USA ist es der Spätsommer bis Frühherbst. Nach warmem, kräftigem Regen schwillt er schnell an.",
+        "picking": "Schneide ihn am Grund ab und nimm nur feste Exemplare, die innen weiss sind. Einer reicht meist für mehrere Leute. Lass alte, gelb werdende stehen, damit sie ihre Sporen verbreiten. Meide Strassenränder und Rasen, die mit Chemie behandelt wurden.",
+        "kitchen": "Wenn du dir sicher bist, zieh die Haut ab, denn sie kann schwer verdaulich sein. Dann garst du ihn. Brat dicke Scheiben in Butter, oder paniere sie vorher. Er schmeckt mild und nimmt andere Aromen an. Probier beim ersten Mal nur eine kleine Menge.",
+        "keeps": "Bewahr ihn im Kühlschrank auf und iss ihn innerhalb von zwei Tagen. Sobald das Fleisch gelb wird, wirf ihn weg. Gebratene Scheiben lassen sich gut einfrieren.",
+        "source": "Bestimmung und Standort: Missouri Department of Conservation und First Nature. Lagern: ANSES. Saison: GBIF-Funddaten."
+      }
     },
     "matsutake": {
       "name": "Matsutake",
-      "description": "Ein fester, weiß-brauner Pilz mit würzigem, zimtartigem Duft, in Japan der begehrteste aller Speisepilze",
-      "howTo": "Suche ab August in trockenen, sandigen Kiefernheiden Skandinaviens und Finnlands und von September bis November unter Nadelbäumen und Tanoak im Westen der USA. Harke nie den Waldboden auf. In Schweden und Norwegen steht er wegen der Kahlschläge auf der Roten Liste, nicht wegen des Sammelns; in den US-Nationalforsten brauchst du eine Genehmigung"
+      "description": "Ein fester, weiss-brauner Pilz, der würzig riecht, ein bisschen nach Zimt. In Japan ist er der begehrteste aller Pilze.",
+      "howTo": "Suche ab August in trockenen, sandigen Kiefernheiden Skandinaviens und Finnlands und von September bis November unter Nadelbäumen und Tanoak im Westen der USA. Harke nie den Waldboden auf. In Schweden und Norwegen steht er wegen der Kahlschläge auf der Roten Liste, nicht wegen des Sammelns; in den US-Nationalforsten brauchst du eine Genehmigung",
+      "guide": {
+        "identify": "Der Matsutake ist ein fester, schwerer Pilz. Sein Hut wird 6 bis 20 cm breit und ist weiss mit braunen Fasern und Schuppen. In Europa und Asien ist er brauner. Jung ist der Hutrand eingerollt. Die Lamellen stehen dicht, sind weiss bis cremefarben und am Stiel angewachsen. Ein dickes weisses Velum hinterlässt einen abstehenden Ring. Unterhalb des Rings steckt der Stiel in braunen Schuppen. Der volle Stiel wird nach unten schmaler und hat weder Knolle noch sackartige Scheide. Er riecht stark und würzig, nach Zimt mit einem Hauch von schmutzigen Socken. Ohne diesen Geruch ist es kein Matsutake. Der Geruch allein beweist aber nichts. Amanita smithiana und die weissen Knollenblätterpilze sind ebenfalls weiss. Das sind der Kegelhütige Knollenblätterpilz (Amanita virosa) in Europa, A. bisporigera im Osten und A. ocreata im Westen Nordamerikas. Sie haben ganz unten am Stiel eine Knolle, eine Scheide oder warzige Ringe. Ihr Ring ist zerrissen oder hängt wie ein Rock, und sie riechen nicht würzig. Sie zerstören Nieren oder Leber.",
+        "habitat": "Er lebt mit Bäumen zusammen, auf mageren, gut durchlässigen Böden. In Europa findest du ihn vor allem in Finnland, Schweden und Norwegen. Dort wächst er in trockenen, flechtenreichen Kiefernheiden auf Sand oder Kies. Im Westen Nordamerikas wächst er unter Kiefern, Douglasien, Hemlocktannen, Tannen und Tanoak, oft auf Sand- oder Bimsboden. Im Osten such ihn unter Banks-Kiefer, Amerikanischer Rot-Kiefer und Kanadischer Hemlocktanne, im Norden und in den Appalachen.",
+        "season": "In Skandinavien und Finnland kommt er von August bis Oktober. Er folgt auf Regen im Spätsommer, sobald die Nächte kühl werden. In Nordamerika dauert die Saison von September bis November. An der Pazifikküste geht sie bis in den Dezember.",
+        "picking": "Beweg ihn behutsam hin und her, bis er sich aus dem Boden löst. Dann füll das Loch und leg Moos und Nadeln zurück. Harke oder grab nie, denn das schadet dem Pilz und künftigen Ernten. Weltweit gilt der Matsutake als gefährdet (IUCN, Vulnerable). In Schweden und Norwegen steht er auf der Roten Liste. Bedroht ist er dort durch den Verlust alter Kiefernwälder, nicht durch das Sammeln. In den USA legt jeder National Forest eigene Genehmigungen und Höchstmengen für Matsutake fest. Frag also beim zuständigen Ranger District nach.",
+        "kitchen": "Warte, bis du ihn sicher bestimmt hast. Dann wisch ihn sauber und schneide das Stielende ab, aber wasch ihn nicht. Iss ihn nie roh. Gare ihn sanft und kurz, damit das Aroma bleibt. Schneide ihn in Scheiben und grill ihn, koch ihn mit Reis oder gib ihn in eine klare Brühe. Er ist fest und bissfest und duftet würzig nach Kiefer.",
+        "keeps": "Wickel ihn in Papier und leg ihn in den Kühlschrank. Verbrauch ihn innerhalb weniger Tage, bevor der Duft nachlässt.",
+        "source": "Bestimmung: UBC Beaty Biodiversity Museum und MushroomExpert.com. Doppelgänger: Vergiftungsberichte der North American Mycological Association. Gefährdung: Rote Liste der IUCN. Sammelregeln: US Forest Service. Saison: GBIF-Funddaten."
+      }
     },
     "ramps": {
       "name": "Ramp-Lauch",
-      "description": "Der wilde Knoblauch Amerikas: breite, glatte grüne Blätter an violetten Stielen, die stark nach Zwiebel und Knoblauch riechen",
-      "howTo": "Suche in reichen, feuchten Laubwäldern im Osten der USA von März bis Mai, bevor die Bäume austreiben. Nimm ein Blatt pro Pflanze und lass die Zwiebel stehen; manche Parks verbieten das Sammeln, und Québec verbietet den Verkauf"
+      "description": "Der wilde Knoblauch Amerikas: breite, glatte grüne Blätter an violetten Stielen, die stark nach Zwiebel und Knoblauch riechen.",
+      "howTo": "Suche in reichen, feuchten Laubwäldern im Osten der USA von März bis Mai, bevor die Bäume austreiben. Nimm ein Blatt pro Pflanze und lass die Zwiebel stehen; manche Parks verbieten das Sammeln, und Québec verbietet den Verkauf",
+      "guide": {
+        "identify": "Ramp-Lauch treibt zwei oder drei breite, glatte, flache Blätter direkt aus einer kleinen Zwiebel im Boden. Jedes Blatt hat einen eigenen Stiel, der unten oft purpurrot ist. Bis zum Frühsommer welken die Blätter. Danach trägt ein blattloser Stängel eine runde Dolde kleiner weisser Blüten. Zerreib ein Blatt. Ramp-Lauch riecht stark nach Zwiebel und Knoblauch, seine tödlichen Doppelgänger nicht. Der Geruch bleibt aber an deinen Fingern hängen. Nach den ersten Blättern beweist der Test deshalb nichts mehr. Prüf darum jede Pflanze auch an Blättern und Stielen. Der Germer hat gefaltete Blätter an einem aufrechten Stängel und wächst auf nassem Boden. Das Maiglöckchen hat zwei oder drei Blätter, die sich am Grund gegenseitig umhüllen. Die Herbstzeitlose ist aus Gärten verwildert. Sie hat ungestielte Blätter in einem Büschel. Melanthium parviflorum hat ähnliche grundständige Blätter, riecht aber nicht nach Zwiebel.",
+        "habitat": "Ramp-Lauch wächst in reichem, feuchtem Laubwald mit dicker Laubschicht. Such an schattigen Hängen und in Bachtälern. Er kommt von Québec und Neuengland über die Appalachen bis Georgia vor und westwärts bis Minnesota.",
+        "season": "In den südlichen Appalachen erscheinen die Blätter ab März. Weiter nördlich kommen sie im April und Mai. Du findest sie in den wenigen Wochen, bevor die Bäume austreiben. Ende Mai oder im Juni vergilben sie und ziehen ein.",
+        "picking": "Nimm ein Blatt pro Pflanze, mit dem Messer abgeschnitten, und lass die Zwiebel im Boden. Wer sie ausgräbt, tötet die Pflanze. Vom Samen bis zur Erntegrösse braucht sie mindestens fünf Jahre. In Teilen seines Verbreitungsgebiets ist Ramp-Lauch zurückgegangen. Im Great-Smoky-Mountains-Nationalpark ist das Sammeln verboten. Manche National Forests begrenzen es und verbieten den Verkauf. Québec führt Ramp-Lauch als gefährdet und verbietet den Verkauf. Prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, wirst du merken, dass die Blätter kräftig nach Knoblauch und Zwiebel schmecken. Nimm ein paar roh, oder lass sie kurz mit Eiern, Kartoffeln, Nudeln und Butter zusammenfallen.",
+        "keeps": "In ein feuchtes Tuch gewickelt halten sich die Blätter ein paar Tage im Kühlschrank. Gehackte Blätter, Ramp-Butter und Pesto lassen sich gut einfrieren.",
+        "source": "Bestimmung, Standort und Sammeln: NC State Extension und United Plant Savers. Doppelgänger: Vermont Department of Health. Regeln: National Park Service, USDA Forest Service und Umweltministerium von Québec. Saison: GBIF-Funddaten."
+      }
     },
     "fiddleheads": {
-      "name": "Straußenfarn-Triebe",
-      "description": "Die fest eingerollten jungen Wedel des Straußenfarns: glatt, leuchtend grün, mit braunen, papierartigen Schuppen",
-      "howTo": "Suche in Flussauen und feuchten Wäldern von Ende April bis Mai, solange die Wedel noch eingerollt sind. Koche sie immer vor dem Essen ab und nimm höchstens die Hälfte der Triebe eines Horsts"
+      "name": "Straussenfarn-Triebe",
+      "description": "Die fest eingerollten jungen Wedel des Straussenfarns. Sie sind glatt und leuchtend grün, mit braunen, papierartigen Schuppen.",
+      "howTo": "Suche in Flussauen und feuchten Wäldern von Ende April bis Mai, solange die Wedel noch eingerollt sind. Koche sie immer vor dem Essen ab und nimm höchstens die Hälfte der Triebe eines Horsts",
+      "guide": {
+        "identify": "Gesammelt wird nur der Straussenfarn. Er wächst in Horsten mit etwa drei bis zwölf eingerollten Trieben. Das sind feste grüne Spiralen von etwa 2,5 cm Durchmesser. Der Stiel ist glatt und hat auf der Innenseite eine tiefe, U-förmige Rinne. Dünne braune, papierartige Schuppen bedecken die Triebe und lassen sich abreiben. Die fruchtbaren Wedel vom Vorjahr stehen oft noch im Horst. Sie sind dunkelbraun, steif und sehen aus wie Federn. Der Adlerfarn ist krebserregend. Er treibt einzeln aus kriechenden Sprossen unter der Erde. Sein Stiel ist flaumig behaart und rund, er hat keine Papierschuppen, und seine Spitze teilt sich in drei. Andere Farne wie der Zimtfarn haben wollige Triebe und sind nicht zu empfehlen.",
+        "habitat": "Er wächst in schattigen Flussauen, auf Sandbänken und in feuchten, nährstoffreichen Wäldern, oft unter Ahorn und Esche. In den USA ist er im Nordosten und um die Grossen Seen häufig. Nach Süden reicht er bis Pennsylvania, nach Westen bis zu den Dakotas. Im Westen ist er ausserhalb Alaskas selten. In Europa wächst er an Bächen im Norden und in der Mitte.",
+        "season": "Die Triebe kommen im Frühling, wenn sich der Boden nach Schneeschmelze und Hochwasser erwärmt. Im Süden von Maine ist das Ende April. Im hohen Norden ist es Mitte bis Ende Mai, stellenweise bis Anfang Juni. Ernte sie, solange sie 5 bis 15 cm hoch und fest eingerollt sind. Nach wenigen Tagen entrollen sie sich, und dann kannst du sie nicht mehr essen.",
+        "picking": "Ernte nur an kräftigen Horsten mit mindestens vier Trieben. Nimm höchstens die Hälfte und komm in derselben Saison nicht wieder. Wer alle Triebe nimmt, schwächt oder tötet den Farn. Frag vorher den Grundbesitzer. In Deutschland ist der wilde Straussenfarn gesetzlich geschützt, lass ihn dort also stehen.",
+        "kitchen": "Iss die Triebe nie roh oder nur kurz gegart. Sie haben schon Ausbrüche von Lebensmittelvergiftungen mit Übelkeit, Erbrechen, Durchfall und Krämpfen ausgelöst, die die US-Gesundheitsbehörde CDC untersucht hat. Bestimm sie zuerst sicher. Reib die braunen Schuppen ab und wasch die Triebe in mehrmals gewechseltem kaltem Wasser. Dann kochst du sie in kleinen Portionen 15 Minuten in reichlich Salzwasser. Oder du dämpfst sie 10 bis 12 Minuten. Giess das Wasser weg. Erst danach brätst du sie an oder gibst sie in andere Gerichte. Sie schmecken nach Spargel und grünen Bohnen.",
+        "keeps": "Bewahr sie im Kühlschrank auf und verbrauch sie innerhalb einer Woche. Zum Einfrieren blanchierst du kleine Portionen 2 Minuten. Kühl sie in Eiswasser ab, lass sie abtropfen und frier sie ein. Vor dem Essen müssen sie trotzdem die vollen 15 Minuten kochen.",
+        "source": "Bestimmung, Saison, Ernte und Zubereitung: University of Maine Cooperative Extension. Lebensmittelvergiftungen: US-Gesundheitsbehörde CDC. Verbreitung in den USA: Penn State Extension. Schutz in Deutschland: Bundesartenschutzverordnung."
+      }
     },
     "cloudberry": {
       "name": "Moltebeere",
-      "description": "Eine bernsteinorange Beere nordischer Moore, wie eine weiche Himbeere, in Skandinavien heiß begehrt",
-      "howTo": "Suche im Juli und August auf offenen Mooren und feuchten Heiden Fennoskandiens, wenn die Beeren von hartem Rot zu weichem Bernsteingelb wechseln. Frost zur Blütezeit kann die Ernte eines Jahres vernichten"
+      "description": "Eine bernsteinorange Beere aus nordischen Mooren. Sie sieht aus wie eine weiche Himbeere, und in Skandinavien ist sie heiss begehrt.",
+      "howTo": "Suche im Juli und August auf offenen Mooren und feuchten Heiden Fennoskandiens, wenn die Beeren von hartem Rot zu weichem Bernsteingelb wechseln. Frost zur Blütezeit kann die Ernte eines Jahres vernichten",
+      "guide": {
+        "identify": "Die Moltebeere ist eine niedrige krautige Pflanze, kein Strauch, etwa eine Hand hoch. Sie wächst aus kriechenden Sprossen unter der Erde. Jeder aufrechte Trieb trägt ein bis drei rundliche, runzlige Blätter mit fünf bis sieben flachen Lappen. Dazu kommt eine einzelne weisse Blüte. Männliche und weibliche Blüten wachsen auf verschiedenen Pflanzen, deshalb tragen nur manche Triebe Früchte. Die Beere sieht aus wie eine Himbeere aus wenigen grossen Kügelchen. Erst ist sie hart und rot. Reif wird sie weich und bernsteinorange.",
+        "habitat": "Sie wächst in offenen Mooren, auf nassen Heiden, in Sümpfen und in der Tundra, oft zwischen Torfmoos und Zwergbirken. In Norwegen, Schweden, Finnland, im Baltikum und in Russland ist sie häufig. Du findest sie auch im Hochmoor in Schottland und Nordengland. In Deutschland, Polen und Tschechien überlebt sie nur in wenigen Mooren, als Relikt der Eiszeit. Dort ist sie geschützt oder als gefährdet eingestuft.",
+        "season": "Sie blüht im Juni. Im Süden Skandinaviens und im Baltikum reifen die Beeren ab Mitte Juli. Im hohen Norden und in den Bergen reifen sie im August. Ein Frost zur Blütezeit kann die Ernte eines ganzen Jahres verderben.",
+        "picking": "Pflück nur weiche, bernsteinfarbene Beeren, die sich leicht lösen. Harte rote sind noch nicht reif. In Schweden, Finnland und Norwegen darf nach dem Jedermannsrecht jeder sie pflücken. In Nordland, Troms und Finnmark darf der Grundbesitzer das Pflücken auf ertragreichen Moltebeermooren aber verbieten. Das Verbot wird mit Schildern oder in der Zeitung bekannt gemacht. Essen darfst du die Beeren an Ort und Stelle trotzdem. Auf öffentlichem Land in der Finnmark dürfen nur Einwohner sie zum Verkauf pflücken. Naturschutzgebiete können eigene Regeln haben. In Mitteleuropa lässt du die Pflanze in Ruhe. Prüf die Regeln vor Ort, bevor du losgehst.",
+        "kitchen": "Sei dir zuerst sicher, was du hast. Dann iss sie frisch mit Sahne oder auf Waffeln oder koch Marmelade daraus. In Finnland isst man die Marmelade zu warmem Quietschkäse (Leipäjuusto). In Schweden kommt sie über Eis. Sie schmecken säuerlich und aromatisch.",
+        "keeps": "Reife Beeren halten sich nur ein bis zwei Tage im Kühlschrank. Sie lassen sich gut einfrieren. Ihre natürliche Benzoesäure hilft der Marmelade, länger zu halten.",
+        "source": "Bestimmung und Standort: University of Alberta und Minnesota Wildflowers. Sammelregeln: Norwegisches Umweltamt (Miljødirektoratet) und Schwedisches Naturschutzamt (Naturvårdsverket). Status in Mitteleuropa: tschechische und deutsche Rote Listen."
+      }
     },
     "huckleberry": {
       "name": "Huckleberry",
-      "description": "Eine violettschwarze Bergbeere aus dem Nordwesten der USA, süßer und herber als eine Heidelbeere",
-      "howTo": "Suche von Juli bis September an subalpinen Hängen und auf alten Brandflächen in 1.000–2.000 m in Montana, Idaho und den Cascades. Dort leben Bären: Mach dich bemerkbar und trag Bärenspray bei dir"
+      "description": "Eine violettschwarze Bergbeere aus dem Nordwesten der USA. Sie ist süsser und herber als eine Heidelbeere.",
+      "howTo": "Suche von Juli bis September an subalpinen Hängen und auf alten Brandflächen in 1.000–2.000 m in Montana, Idaho und den Cascades. Dort leben Bären: Mach dich bemerkbar und trag Bärenspray bei dir",
+      "guide": {
+        "identify": "Die Huckleberry ist ein Strauch, der im Winter die Blätter verliert. Meist ist sie hüft- bis schulterhoch. Ihre jungen Zweige sind leicht kantig und gelbgrün. Die Blätter sind dünn und oval, mit spitzem Ende und fein gesägtem Rand. Im Frühsommer hängen cremerosa, krugförmige Blüten einzeln in den Blattachseln. Aus jeder wird eine einzelne violette bis rötlich schwarze Beere, meist ohne hellen Reif. An der Spitze sitzt ein kleines Krönchen. In denselben Wäldern wachsen Beeren, die du nicht essen solltest, aber sie wachsen anders. Die Behüllte Heckenkirsche (Lonicera involucrata) trägt schwarze Beeren paarweise in roten Hochblättern. Das Rote Christophskraut (Actaea rubra) ist eine krautige Pflanze mit roten oder weissen Beeren in Büscheln.",
+        "habitat": "Such in Nadelwäldern im Gebirge, an offenen subalpinen Hängen und auf alten Brandflächen. Die Sträucher tragen in der Sonne am besten. Ihr Gebiet reicht von British Columbia nach Süden durch die Cascades und die nördlichen Rocky Mountains bis nach Kalifornien. Dazu gehören Washington, Oregon, Idaho, Montana und Wyoming. Einzelne Vorkommen reichen nach Osten bis in die Black Hills und an die oberen Grossen Seen. Im Osten der USA meint man mit Huckleberry meist Gaylussacia. Das ist ein anderer Strauch, dessen Beeren zehn kleine, harte Samen enthalten.",
+        "season": "In tieferen Lagen reifen die Beeren ab Juli, weiter oben bis in den September. An jedem Strauch werden sie nach und nach reif. Ein Spätfrost zur Blütezeit kann die Ernte schmälern.",
+        "picking": "Pflück mit der Hand, Beere für Beere, ohne Zweige abzubrechen. In den National Forests der USA ist das Sammeln für den Eigenbedarf oft erlaubt. Manchmal brauchst du eine kostenlose Genehmigung, und es gibt Tages- und Saisonhöchstmengen. Gewerbliches Sammeln braucht eine Genehmigung oder ist verboten. Manche Beerenfelder sind indigenen Stämmen vorbehalten, etwa ein Teil der Sawtooth Berry Fields in Washington. Prüf die Regeln des jeweiligen Forests. Wo Huckleberrys wachsen, leben Bären, also mach Lärm und trag Bärenspray bei dir.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, iss sie roh oder koch sie. Sie kommen in Kuchen, Marmelade, Sirup und Pfannkuchen und in Sossen zu Wild. Sie schmecken intensiver als Kulturheidelbeeren, süss mit einer säuerlichen Note. Wasch sie erst kurz vor dem Verwenden.",
+        "keeps": "Ungewaschen und ausgebreitet halten sie sich ein paar Tage im Kühlschrank. Frier sie auf einem Blech ein und füll sie dann in Beutel.",
+        "source": "Bestimmung und Verbreitung: USDA Forest Service (Fire Effects Information System) und University of British Columbia. Sammelregeln: Gifford Pinchot National Forest. Doppelgänger: US National Park Service."
+      }
     },
     "pawpaw": {
       "name": "Indianerbanane",
-      "description": "Die größte heimische Frucht Nordamerikas: grün, mangoförmig, mit cremigem Fruchtfleisch, das nach Banane und Mango schmeckt",
-      "howTo": "Suche von Ende August bis Oktober im Unterholz der Auwälder im Osten der USA, wenn die Früchte weich werden und fallen. Iss nur das Fruchtfleisch: Schale und Samen sind giftig"
+      "description": "Die grösste heimische Frucht Nordamerikas. Sie ist grün und geformt wie eine Mango, mit puddingweichem Fruchtfleisch, das nach Banane und Mango schmeckt.",
+      "howTo": "Suche von Ende August bis Oktober im Unterholz der Auwälder im Osten der USA, wenn die Früchte weich werden und fallen. Iss nur das Fruchtfleisch: Schale und Samen sind giftig",
+      "guide": {
+        "identify": "Die Indianerbanane ist ein kleiner Baum im Unterholz. Durch Wurzelausläufer bildet sie oft ganze Gruppen. Die Blätter sind gross, hängen herab und sind oberhalb der Mitte am breitesten. Zerrieben riechen sie nach grüner Paprika. Im Frühjahr öffnen sich vor den Blättern tief weinrote Blüten mit sechs Blütenblättern. Die Frucht ist länglich und grün bis gelbgrün. Sie wächst einzeln oder in Büscheln von zwei bis neun Früchten. Innen umgibt weiches, gelbes Fruchtfleisch wie Pudding zwei Reihen grosser, flacher brauner Samen.",
+        "habitat": "Die Indianerbanane wächst in feuchten, nährstoffreichen Wäldern, in Flussauen, an Bachufern und an schattigen Unterhängen. Heimisch ist sie im ganzen Osten der USA, von Nordflorida bis zu den Grossen Seen und ins südliche Ontario. Nach Westen reicht sie bis ins östliche Nebraska, nach Kansas, Oklahoma und Texas. Im Westen der USA wächst sie nicht wild.",
+        "season": "Im Süden reifen die Früchte ab Ende August, im Norden im September und Oktober. Die Früchte eines Baumes reifen über ein bis zwei Wochen. Reife Früchte fallen zu Boden.",
+        "picking": "Eine reife Frucht gibt auf leichten Druck etwas nach, wie ein Pfirsich. Ausserdem duftet sie stark fruchtig. Auf die Farbe der Schale ist kein Verlass. Sammle frisch gefallene Früchte oder schüttle den Stamm sanft. Schau in der Saison alle ein bis zwei Tage nach. Geh vorsichtig mit den Früchten um, denn sie bekommen leicht Druckstellen.",
+        "kitchen": "Wenn du dir beim Baum sicher bist, iss nur das Fruchtfleisch. Schneide die Frucht der Länge nach auf und löffle das Fleisch von Schale und Samen. Iss oder zerkau Schale und Samen nie. Das Fruchtfleisch schmeckt nach Banane und Mango. In Brot, Eis und Desserts kann es Banane ersetzen. Wilde Früchte können bitter nachschmecken. Manche Menschen reagieren mit Erbrechen oder einer allergischen Reaktion, also probier zuerst eine kleine Menge. Medizinische Quellen raten ausserdem davon ab, über lange Zeit grosse Mengen zu essen. Das Fruchtfleisch enthält Annonacin, einen Stoff, der in Laborstudien Nervenzellen geschädigt hat.",
+        "keeps": "Reife Früchte halten sich bei Zimmertemperatur nur wenige Tage und im Kühlschrank etwa eine Woche. Kurz vor der vollen Reife gepflückt halten sie sich im Kühlschrank bis zu drei Wochen. Danach reifen sie bei Zimmertemperatur nach. Das ausgelöffelte Fruchtfleisch kannst du bis zu einem Jahr einfrieren.",
+        "source": "Bestimmung und Verbreitung: University of Kentucky, Center for Crop Diversification. Reife, Zubereitung und Lagern: Purdue Extension. Reaktionen: Memorial Sloan Kettering Cancer Center."
+      }
     },
     "rose_hips": {
       "name": "Hagebutten",
-      "description": "Die roten Herbstfrüchte der Wildrosen, reich an Vitamin C und voller Samen mit juckenden Haaren",
-      "howTo": "Suche von Ende August bis November an Hecken, Gebüschen und Waldrändern; nach den ersten Frösten sind sie am weichsten. Entferne Samen und Haare, sie reizen Mund und Darm"
+      "description": "Die roten Herbstfrüchte der Wildrosen. Sie sind reich an Vitamin C, und die Samen darin stecken in juckenden Härchen.",
+      "howTo": "Suche von Ende August bis November an Hecken, Gebüschen und Waldrändern; nach den ersten Frösten sind sie am weichsten. Entferne Samen und Haare, sie reizen Mund und Darm",
+      "guide": {
+        "identify": "Die Hundsrose ist ein Strauch mit langen, bogig überhängenden Trieben und kräftigen, hakigen Stacheln. Ihre Blätter haben 5 bis 7 gezähnte Fiederblättchen. Die Hagebutten sind eiförmig, glatt und glänzend scharlachrot, 1 bis 2 cm lang. Reif tragen sie keine Kelchblätter mehr. Innen sitzen harte Kerne in feinen, juckenden Härchen. Schmerwurz, Rotfrüchtige Zaunrübe und Bittersüsser Nachtschatten wachsen in denselben Hecken. Sie tragen glänzend rote, giftige Beeren in Büscheln, an kletternden Stängeln ohne Stacheln. Eine Hagebutte dagegen wächst an einem stacheligen Rosenzweig und ist voller behaarter Kerne.",
+        "habitat": "Die Hundsrose wächst in Hecken und Gebüschen, an Waldrändern und auf rauem Grasland in ganz Europa. Du findest sie vom Tiefland bis in die Berge. In den USA wächst sie stellenweise wild. Dort kannst du auch die Hagebutten heimischer Wildrosen und der Kartoffel-Rose genauso verwenden.",
+        "season": "Hagebutten reifen von September bis November. Viele hängen bis in den Winter am Strauch. Frost macht sie weicher und süsser. Aber je länger sie hängen, desto weniger Vitamin C steckt in ihnen.",
+        "picking": "Pflück feste, voll ausgefärbte Hagebutten, die auf Druck etwas nachgeben. Nimm von jedem Strauch nur einige und lass den Vögeln genug übrig. Trag Handschuhe und meide Strassenränder und gespritzte Hecken.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, iss nur das Fruchtfleisch. Kerne und Härchen reizen Mund, Darm und Haut. Schneide Stiel und Spitze ab, halbiere die Hagebutten und kratz alle Kerne und Härchen heraus. Oder koch sie ganz weich und streich sie durch ein feines Sieb. Den Saft seihst du danach noch einmal durch ein Tuch. Aus dem Mark machst du Sirup, Gelee, Marmelade und Tee. Es passt gut zu Apfel.",
+        "keeps": "Frische Hagebutten halten sich etwa eine Woche im Kühlschrank. Sie lassen sich gut einfrieren. Entkernte Hälften, bei höchstens 50 °C getrocknet, halten sich in einem luftdichten Glas viele Monate.",
+        "source": "Bestimmung und Standort: Woodland Trust und The Wildlife Trusts. Saison, Ernte und Küche: University of Alaska Fairbanks Cooperative Extension und Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "sloes": {
       "name": "Schlehen",
-      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns, bereift und herb-sauer",
-      "howTo": "Suche von September bis November an Hecken und buschigen Hängen; nach den ersten Frösten werden sie milder. Zerdrück die Kerne nicht und achte auf glänzend schwarze Doppelgänger wie Kreuzdorn und Tollkirsche"
+      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns. Sie haben einen bläulichen Reif und schmecken herb und sauer.",
+      "howTo": "Suche von September bis November an Hecken und buschigen Hängen; nach den ersten Frösten werden sie milder. Zerdrück die Kerne nicht und achte auf glänzend schwarze Doppelgänger wie Kreuzdorn und Tollkirsche",
+      "guide": {
+        "identify": "Schlehen wachsen am Schlehdorn. Das ist ein dichter, holziger Strauch mit dunkler Rinde, und seine Seitentriebe enden in spitzen Dornen. Im März und April blüht er weiss, noch vor dem Laub. Die Frucht ist rund und etwa 1 cm gross. Sie ist blauschwarz mit einem matten Reif, der sich abwischen lässt. Schlehen sitzen einzeln oder zu zweit an den Zweigen. Innen umgibt grünes, sehr herbes Fruchtfleisch einen einzigen Stein. Der Kreuzdorn hat glänzend schwarze Beeren in Büscheln, ohne Reif. Die Tollkirsche ist eine weiche, belaubte Staude, kein Dornstrauch. Ihre glänzend schwarzen Beeren sitzen einzeln, jede in einem grünen Stern aus Kelchblättern.",
+        "habitat": "Der Schlehdorn wächst in Hecken und Gebüschen, an Waldrändern und an sonnigen, steinigen Hängen. Oft bildet er Dickichte, die sich durch Wurzelausläufer ausbreiten. Du findest ihn in fast ganz Europa, im Norden wie im Süden, vom Tiefland bis ins Hügelland.",
+        "season": "Schlehen reifen von September bis November. Sie sind reif, wenn sie dunkel sind und sich zwischen den Fingern zerdrücken lassen. Traditionell pflückt man sie nach dem ersten Frost. Frost lässt die Haut platzen und macht die Früchte weich, sodass der Saft austritt. Du kannst sie auch früher pflücken und über Nacht einfrieren, das hat dieselbe Wirkung.",
+        "picking": "Trag Handschuhe, denn die Dornen sind lang und spitz. Pflück an mehreren Sträuchern und lass den Vögeln genug übrig. Meide Hecken an Strassen und gespritzte Feldränder.",
+        "kitchen": "Vergewissere dich zuerst, dass es Schlehen sind. Roh sind sie zu sauer und zu herb. Man macht aus ihnen aber Schlehengin und andere Liköre, etwa den spanischen Pacharán mit Anisschnaps. Mit Äpfeln ergeben sie auch ein Gelee. Für Gin stichst du sie an oder frierst sie ein. Dann bedeckst du sie mit Zucker und Gin. Lass sie einige Monate an einem dunklen Ort ziehen, schüttle ab und zu und seih sie dann ab. Zerdrück oder knack die Steine nie. Die Kerne enthalten Amygdalin, das Blausäure freisetzt.",
+        "keeps": "Frische Schlehen halten sich ein paar Tage im Kühlschrank. In dichten Beuteln eingefroren halten sie monatelang. Aus dem Gefrierfach kommen sie direkt ins Glas.",
+        "source": "Bestimmung, Standort und die Frostregel: Woodland Trust. Steine: USDA Phytochemical and Ethnobotanical Databases."
+      }
     },
     "sea_buckthorn": {
       "name": "Sanddorn",
-      "description": "Leuchtend orange Beeren dicht an dornigen, silbrig belaubten Zweigen: sauer und reich an Vitamin C",
-      "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten"
+      "description": "Leuchtend orange Beeren, dicht an dornigen Zweigen mit silbrigen Blättern. Sie sind sauer und reich an Vitamin C.",
+      "howTo": "Suche von August bis Oktober in Küstendünen und an kiesigen Flussufern. Trag Handschuhe gegen die Dornen und informiere dich: In Dünenschutzgebieten ist das Pflücken oft verboten",
+      "guide": {
+        "identify": "Sanddorn ist ein dorniger, stark verzweigter Strauch, der Dickichte bildet. Seine schmalen, weidenähnlichen Blätter sind mit silbrigen Schuppen bedeckt, vor allem auf der Unterseite. Männliche und weibliche Blüten wachsen an getrennten Sträuchern, deshalb tragen nur die weiblichen Früchte. Die Beeren sind rund, leuchtend orange und 6 bis 8 mm gross. Sie sitzen dicht gedrängt auf sehr kurzen Stielen an den Zweigen. Sie sind saftig und sehr sauer und platzen bei der kleinsten Berührung. Auch Eberesche und Feuerdorn haben orange Beeren. Sie tragen sie aber in gestielten Büscheln zwischen grünen Blättern.",
+        "habitat": "Er braucht volle Sonne und offenen Sand oder Kies. Such in den Küstendünen an Nord- und Ostsee und in Ostengland. Er wächst auch auf trockenen Kiesbänken und Flussterrassen in den Alpen und im Alpenvorland. In Südeuropa wächst er vor allem auf Flussschotter im Gebirge, in den Alpen und den Pyrenäen. Ausserdem wird er an Böschungen und Strassenrändern gepflanzt.",
+        "season": "Die Beeren reifen von August bis in den Oktober. Am aromatischsten sind sie zu Beginn der Reife. Sie hängen bis in den Winter, aber überreife Beeren schmecken ranzig.",
+        "picking": "Wilder Sanddorn steht oft in Naturschutzgebieten in Dünen und Flussauen, wo Pflücken verboten ist. Prüf also zuerst die Regeln vor Ort. Schneide nie Zweige von wilden Sträuchern ab. Trag Handschuhe. Halt beim Pflücken eine Schüssel unter den Zweig, denn die Beeren platzen. Lass den überwinternden Drosseln genug übrig.",
+        "kitchen": "Wenn du dir bei der Bestimmung sicher bist, kannst du die Beeren roh essen. Sie sind aber sehr sauer und leicht bitter, und sie färben ab. Meist kocht man sie kurz mit wenig Wasser und Honig oder Zucker auf. Danach seiht man sie ab, für Saft, Sirup, Gelee oder Mus. Apfel oder Aprikose mildern die Säure. Das Mus passt zu Joghurt, Müsli, Eis und Suppen.",
+        "keeps": "Frische Beeren verderben schnell. Friere sie ein, oder friere den Saft portionsweise ein. Den Trester, der beim Pressen übrig bleibt, kannst du für Tee trocknen.",
+        "source": "Bestimmung und Standort: The Wildlife Trusts und Europäische Umweltagentur (EUNIS). Saison, Küche und Lagerung: Bundeszentrum für Ernährung (BZfE)."
+      }
     },
     "boletus": {
       "name": "Boletus (Steinpilze & Maronen)",
-      "description": "Steinpilze und Maronen in einem Wert: Fichten-, Kiefern-, Bronze- und Sommer-Steinpilz, in Europa der Maronen-Röhrling und die nordamerikanischen Königsröhrlinge",
-      "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen"
+      "description": "Steinpilze und Maronen zusammen: Fichten-, Kiefern-, Bronze- und Sommersteinpilz, in Europa der Maronenröhrling und die nordamerikanischen Steinpilze.",
+      "howTo": "Jeder Ort zeigt den besten ihrer Werte; such in Buchen-, Eichen-, Kastanien-, Kiefern- und Fichtenwäldern zwei bis vier Wochen nach ergiebigem Regen",
+      "guide": {
+        "identify": "In dieser Gruppe stecken mehrere Röhrlinge. In Europa sind das der Steinpilz (Boletus edulis) sowie Kiefern-, Bronze- und Sommersteinpilz. In Nordamerika kommen der Ostamerika-Steinpilz und der Rocky-Mountains-Steinpilz hinzu. Auch der Maronenröhrling (Imleria badia) gehört in die Gruppe. Die Steinpilze haben jung weisse Poren, ein Netz am Stiel und weisses Fleisch, das nicht blau wird. Der Maronenröhrling hat gelbe Poren, die blaugrün anlaufen, und einen gestreiften Stiel ohne Netz. Am Hut erkennst du sie. Beim Steinpilz ist er braun und fettig, beim Kiefern-Steinpilz weinrot und beim Bronze-Steinpilz fast schwarz und samtig. Der Sommersteinpilz hat einen hellen, rissigen Hut, der Ostamerika-Steinpilz einen hellbraunen bis lilabraunen. Der Rocky-Mountains-Steinpilz hat einen ziegelroten Hut, der Maronenröhrling einen kastanienbraunen, klebrigen. Rote oder orange Poren zeigen einen giftigen Röhrling, etwa den Satansröhrling (Rubroboletus satanas). Rosa Poren und ein dunkles Stielnetz zeigen den bitteren Gallenröhrling (Tylopilus felleus).",
+        "habitat": "Alle leben mit Bäumen zusammen. Steinpilze wachsen bei Nadelbäumen, Buche und Eiche. Der Kiefern-Steinpilz wächst bei Kiefer und Fichte. Bronze- und Sommersteinpilz mögen Eiche und Kastanie in warmen Wäldern. Der Maronenröhrling wächst bei Nadelbäumen auf saurem Sand. Der Ostamerika-Steinpilz wächst in den Eichenwäldern im Osten der USA, der Rocky-Mountains-Steinpilz unter Fichten in den Hochlagen.",
+        "season": "Zusammen reichen sie von Mai bis zu den ersten Frösten. Der Sommersteinpilz beginnt im Mai. Am anderen Ende steht der Maronenröhrling, der im Oktober und November am häufigsten ist. Steinpilze wachsen vor allem von August bis Oktober. Ein Schub kommt zwei bis drei Wochen nach einem durchdringenden Regen.",
+        "picking": "Sammle nur, was du sicher benennen kannst, und halte die Arten im Korb getrennt. In Deutschland sind Steinpilze nur in kleinen Mengen für den eigenen Bedarf erlaubt, und der Bronze-Steinpilz ist geschützt. In Italien und Spanien brauchst du oft eine Genehmigung.",
+        "kitchen": "Bestimm zuerst jeden Pilz sicher. Dann bürstest du alle ab, schneidest sie auf, um nach Maden zu schauen, und garst sie gut durch. Der Maronenröhrling speichert radioaktives Cäsium. In Teilen Bayerns und Österreichs isst du ihn nur ab und zu.",
+        "keeps": "Alle lassen sich in dünnen Scheiben gut trocknen.",
+        "source": "Bestimmung und Standort: Regione Piemonte, First Nature und MushroomExpert. Saison: GBIF-Funddaten. Regeln: Bundesartenschutzverordnung (BArtSchV). Cäsium: Bundesamt für Strahlenschutz (BfS)."
+      }
     },
     "cantharellus": {
       "name": "Pfifferlinge (alle)",
-      "description": "Alle Pfifferlinge in einem Wert: die goldenen Pfifferlinge, die Totentrompete und der Trompetenpfifferling und in Nordamerika der glatte Pfifferling und der Pazifik-Pfifferling",
-      "howTo": "Jeder Ort zeigt den besten ihrer Werte; goldene Pfifferlinge an moosigen Hängen unter Eichen, Buchen und Nadelbäumen nach warmem Regen, Totentrompeten in feuchtem Laub unter Laubbäumen, Trompetenpfifferlinge auf nassem Moos unter Nadelbäumen spät in der Saison"
+      "description": "Alle Pfifferlinge zusammen: der Echte Pfifferling, die Totentrompete, der Trompetenpfifferling und in Nordamerika der Glatte und der Pazifik-Pfifferling.",
+      "howTo": "Jeder Ort zeigt den besten ihrer Werte; goldene Pfifferlinge an moosigen Hängen unter Eichen, Buchen und Nadelbäumen nach warmem Regen, Totentrompeten in feuchtem Laub unter Laubbäumen, Trompetenpfifferlinge auf nassem Moos unter Nadelbäumen spät in der Saison",
+      "guide": {
+        "identify": "Zu dieser Gruppe gehören fünf Arten. Das sind der Pfifferling, der Glatte und der Pazifik-Pfifferling aus Nordamerika, die Totentrompete und der Trompetenpfifferling. Die letzten beiden gehören zur nahe verwandten Gattung Craterellus. Alle haben stumpfe, gegabelte Leisten oder eine fast glatte Unterseite, die am Stiel herabläuft. Dünne, messerartige Lamellen haben sie nie. Pfifferling, Glatter und Pazifik-Pfifferling sind gelb bis orange und fleischig und haben einen vollen Stiel. Der Trompetenpfifferling ist klein, mit braunem Hut und hohlem gelbem Stiel. Die Totentrompete ist ein dünnes, hohles, grauschwarzes Horn. Jede Art hat ihren eigenen gefährlichen Doppelgänger. Bei den gelben ist es der Ölbaumtrichterling (Omphalotus), mit echten Lamellen und büschelig auf Holz. Zwischen Trompetenpfifferlingen ist es der tödliche Spitzgebuckelte Raukopf (Cortinarius rubellus), mit rostbraunen Lamellen.",
+        "habitat": "Alle leben mit Baumwurzeln zusammen. Der Pfifferling wächst unter Laub- und Nadelbäumen in ganz Europa und Nordamerika. Die Totentrompete mag feuchtes Laub, vor allem unter Buche und Eiche. Der Trompetenpfifferling wächst auf nassem Moos und morschem Holz unter Nadelbäumen. Der Glatte Pfifferling gehört in die Eichenwälder im Osten der USA. Der Pazifik-Pfifferling gehört in die Douglasien- und Hemlockwälder im pazifischen Nordwesten.",
+        "season": "Zusammen reichen sie vom Frühsommer bis in den Winter. Pfifferling und Glatter Pfifferling kommen ab dem Frühsommer, nach warmem Regen. Die Totentrompete folgt vom Spätsommer durch den Herbst. Pazifik- und Trompetenpfifferling wachsen vom Herbst bis in den Winter, bis zum starken Frost. Im Westen der USA richten sie sich nach den Herbst- und Winterregen.",
+        "picking": "Schneide oder dreh sie am Grund ab. Lass die kleinen stehen und nimm nur, was du auch isst. In Deutschland ist der Pfifferling besonders geschützt. Dort darfst du nur kleine Mengen für den eigenen Bedarf sammeln. Andere Länder, Regionen und öffentliches Land in den USA haben eigene Höchstmengen oder Genehmigungen, also prüf die Regeln vor Ort.",
+        "kitchen": "Bestimm zuerst jeden Pilz sicher. Gare alle gut durch und iss sie nie roh. Pfifferling, Glatter und Pazifik-Pfifferling sind fruchtig und fest. Am besten brätst du sie langsam in Butter. Die Totentrompete schmeckt rauchig, der Trompetenpfifferling erdig. Beide passen gut in Sossen und Risotto und zu Eiern. Schneide Totentrompeten und Trompetenpfifferlinge längs auf, um den Sand auszuspülen.",
+        "keeps": "Frisch halten sie sich ein paar Tage im Kühlschrank, in Papier, nicht in Plastik. Totentrompeten und Trompetenpfifferlinge lassen sich sehr gut trocknen. Pfifferlinge werden getrocknet zäh. Brate sie lieber an und frier sie ein.",
+        "source": "Bestimmung und Standort: First Nature (UK), MushroomExpert.com und MykoWeb (California Fungi). Spitzgebuckelter Raukopf: Norwegisches Institut für Volksgesundheit. Schutz: Bundesartenschutzverordnung. Saison: GBIF-Funddaten."
+      }
     },
     "bay_bolete": {
       "name": "Maronen-Röhrling",
-      "description": "Ein Röhrling mit kastanienbraunem, bei Nässe schmierigem Hut, cremefarbenen bis olivgelben Poren, die auf Druck blaugrün anlaufen, und gestreiftem Stiel ohne Netz",
-      "howTo": "Such im Moos unter Kiefern und Fichten, aber auch unter Buchen und Eichen, auf saurem Sandboden von August bis zu den ersten Frösten; am meisten gibt es im Oktober, wenn die Steinpilze nachlassen. Er speichert mehr Tschernobyl-Cäsium als die meisten Pilze, iss ihn in Bayern und Österreich deshalb nur gelegentlich"
+      "description": "Ein Röhrling mit kastanienbraunem Hut, der bei Nässe schmierig wird. Die Poren laufen blaugrün an, und der gestreifte Stiel hat kein Netz.",
+      "howTo": "Such im Moos unter Kiefern und Fichten, aber auch unter Buchen und Eichen, auf saurem Sandboden von August bis zu den ersten Frösten; am meisten gibt es im Oktober, wenn die Steinpilze nachlassen. Er speichert mehr Tschernobyl-Cäsium als die meisten Pilze, iss ihn in Bayern und Österreich deshalb nur gelegentlich",
+      "guide": {
+        "identify": "Der Maronenröhrling, kurz Marone, ist ein Röhrling ohne das Stielnetz der Steinpilze. Der Hut ist kastanienbraun. Trocken fühlt er sich an wie Wildleder, bei Nässe wird er schmierig. Die Poren sind cremefarben bis blassgelb, später oliv, und laufen auf Druck blaugrün an. Das Fleisch ist weiss bis blassgelb und kann beim Anschneiden leicht blau werden. Der Stiel ist schlanker und braun gestreift auf hellerem Grund. Rote oder orange Poren schliessen ihn aus (Rubroboletus satanas, Neoboletus subvelutipes). Das gilt auch für rosa Poren mit genetztem Stiel (Tylopilus felleus). Im Osten Nordamerikas musst du noch zwei weitere kennen. Boletus sensibilis wird sofort überall dunkelblau und hat einen gelben Stiel. Boletus huronensis ist kompakt, geformt wie ein Steinpilz und hat einen gelblichen Stiel.",
+        "habitat": "Er wächst bei Kiefer und Fichte, aber auch bei Buche, Eiche und Kastanie. Er mag sauren, sandigen Boden und sitzt oft im Moos bei alten Stümpfen. Im Flachland Nord- und Mitteleuropas ist er häufig. In Nordamerika wächst er im Nordosten, an den Grossen Seen und in den Appalachen, unter Kiefern und Hemlocktannen.",
+        "season": "In Europa erscheint er von August bis zu den ersten starken Frösten. Am meisten gibt es im Oktober, nach den Steinpilzen, im Süden bis in den Dezember. Im Nordosten Nordamerikas kommt er früher, vor allem von Juli bis September.",
+        "picking": "Dreh ihn heraus oder schneide ihn ab, und lass junge und alte stehen. Prüf die Regeln vor Ort, denn in Naturschutzgebieten ist das Sammeln oft verboten.",
+        "kitchen": "Bestimm ihn zuerst sicher. Wisch den Hut ab und zieh die Haut ab, wenn sie schmierig ist. Entferne weiche, alte Röhren und gare ihn gut durch. Das Blau verschwindet beim Garen, und er schmeckt mild. Er speichert mehr radioaktives Cäsium als die meisten Pilze. In Teilen Bayerns und Österreichs isst du ihn deshalb nur ab und zu.",
+        "keeps": "In dünnen Scheiben lässt er sich gut trocknen. Gegart kannst du ihn auch gut einfrieren.",
+        "source": "Bestimmung und Standort: First Nature und MushroomExpert. Saison: GBIF-Funddaten. Cäsium: Bundesamt für Strahlenschutz (BfS) und Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     }
   },
   "place": {
@@ -384,7 +915,21 @@
     "lookalikes": "Giftige Doppelgänger",
     "tellApart": "So unterscheidest du sie",
     "testedLabel": "Geprüft · Saison {{year}}",
-    "tested": "An derselben Stelle bewertete die Vorhersage Tage in seiner Saison <strong>{{times}} von 10 Mal</strong> besser als Tage außerhalb.",
+    "tested": "An derselben Stelle bewertete die Vorhersage Tage in seiner Saison <strong>{{times}} von 10 Mal</strong> besser als Tage ausserhalb.",
     "howWeCheck": "So prüfen wir"
+  },
+  "guide": {
+    "identify": "So erkennst du ihn",
+    "habitat": "Wo er wächst",
+    "season": "Wann",
+    "picking": "Sammeln",
+    "kitchen": "Zubereitung",
+    "keeps": "Aufbewahren",
+    "source": "Quellen"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}): Saison, Standort und Doppelgänger",
+    "description": "{{name}} ({{latin}}) erkennen: Merkmale, Standort, Saison, Doppelgänger und Tipps für die Küche.",
+    "allSpecies": "Alle Arten"
   }
 }

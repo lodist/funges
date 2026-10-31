@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Oyster Mushroom",
-      "description": "A white-grey mushroom with fan-shaped cap that grows in clusters on dead wood",
-      "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter"
+      "description": "A white-grey mushroom with fan-shaped caps. It grows in clusters on dead wood.",
+      "howTo": "Look for them growing on dead trees, especially beech and oak, in autumn and winter",
+      "guide": {
+        "identify": "Oyster mushrooms have a shell- or fan-shaped cap, 5 to 18 cm across. It can be blue-grey, grey-brown or cream. They grow on wood in overlapping tiers. The white to cream gills run down into a short, off-centre stem, or there is no stem at all. The flesh is white and firm and the smell is mild. The spore print is white to pale lilac. Three look-alikes matter. The poisonous jack-o'-lantern (Omphalotus) is bright orange, gills included. It grows in tufts at the foot of trees. Sulphur tuft (Hypholoma fasciculare) has sulphur-yellow caps on central stems. Its gills are greenish-yellow and turn purple-brown. It tastes bitter. Angel wings (Pleurocybella porrigens) have been linked to deaths in Japan. They are pure white, thin and translucent. They grow only on rotting conifer wood.",
+        "habitat": "It grows on dead or dying broadleaf trees, mainly beech. You also find it on poplar, willow, oak and ash (rarely on conifers). Look on standing trunks, stumps and fallen logs. It is common across Europe and North America.",
+        "season": "This is a mushroom of late autumn and winter. A cold spell or the first frosts after rain set it off. In southern Europe it goes on into January or February. In the eastern US it fruits from October to early April.",
+        "picking": "Cut the cluster at the base with a knife. Take firm young caps and leave old or beetle-riddled ones. Some places need a permit for mushroom picking or set daily limits, so check the local rules.",
+        "kitchen": "Be certain of the identification before you cook it. Cook it well and don't eat it raw. Trim the tough base and tear the caps into strips. Fry them hot until the edges crisp. The taste is mild and slightly sweet. It goes with garlic, butter, soy sauce and eggs.",
+        "keeps": "It spoils fast. Keep it in a paper bag in the fridge for a few days, or cook it and freeze it.",
+        "source": "Identification and season: First Nature and MushroomExpert.com. Angel wings: Beaty Biodiversity Museum, University of British Columbia."
+      }
     },
     "it": {
       "name": "Pleurotus ostreatus",
-      "description": "Un fungo bianco-grigio con cappello a ventaglio che cresce in grappoli su legno morto",
-      "howTo": "Cercali che crescono su alberi morti, specialmente faggi e querce, in autunno e inverno"
+      "description": "Un fungo bianco-grigio con il cappello a ventaglio. Cresce a cespi sul legno morto.",
+      "howTo": "Cercali che crescono su alberi morti, specialmente faggi e querce, in autunno e inverno",
+      "guide": {
+        "identify": "I pleurotus, detti anche orecchioni o geloni, hanno il cappello a conchiglia o a ventaglio, largo da 5 a 18 cm. Può essere grigio-azzurro, grigio-bruno o color crema. Crescono sul legno, a mensole sovrapposte. Le lamelle vanno dal bianco al crema e scendono su un gambo corto e laterale, che a volte manca del tutto. La carne è bianca e soda, l'odore leggero. La sporata va dal bianco al lilla pallido. Ci sono tre sosia da conoscere. Il fungo dell'olivo (Omphalotus) è velenoso ed è arancione vivo, lamelle comprese. Cresce a cespi ai piedi degli alberi. Il falso chiodino (Hypholoma fasciculare) ha cappelli giallo zolfo su gambi centrali. Le sue lamelle sono giallo-verdastre e poi diventano bruno-viola. Ha un sapore amaro. La Pleurocybella porrigens è stata collegata ad alcuni morti in Giappone. È bianca pura, sottile e traslucida e cresce solo su legno marcio di conifere.",
+        "habitat": "Cresce su latifoglie morte o deperienti, soprattutto sul faggio. Lo trovi anche su pioppo, salice, quercia e frassino. Di rado cresce sulle conifere. Cercalo su tronchi in piedi, ceppaie e tronchi caduti. È comune in tutta Europa e in Nord America.",
+        "season": "È un fungo di tardo autunno e d'inverno. Lo fa partire un'ondata di freddo o le prime gelate dopo la pioggia. Nel sud Europa continua fino a gennaio o febbraio. Nell'est degli Stati Uniti esce da ottobre a inizio aprile.",
+        "picking": "Taglia il cespo alla base con il coltello. Prendi i cappelli giovani e sodi e lascia quelli vecchi o mangiati dai coleotteri. In alcuni posti per raccogliere funghi serve un permesso o ci sono limiti giornalieri. Informati sulle regole del posto.",
+        "kitchen": "Cucinalo solo quando l'hai riconosciuto con certezza. Cuocilo bene e non mangiarlo crudo. Togli la base dura e strappa i cappelli a striscioline. Saltale a fuoco vivo finché i bordi diventano croccanti. Il sapore è delicato e un po' dolce. Sta bene con aglio, burro, salsa di soia e uova.",
+        "keeps": "Si guasta presto. Tienilo in frigo in un sacchetto di carta per qualche giorno, oppure cuocilo e congelalo.",
+        "source": "Riconoscimento e stagione: First Nature e MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, University of British Columbia."
+      }
     },
     "fr": {
       "name": "Pleurote",
-      "description": "Champignon blanc-gris à chapeau en éventail poussant en touffes sur le bois mort",
-      "howTo": "Cherchez-les sur les arbres morts, surtout hêtre et chêne, en automne et hiver"
+      "description": "Un champignon gris-blanc aux chapeaux en éventail. Il pousse en touffes sur le bois mort.",
+      "howTo": "Cherchez-les sur les arbres morts, surtout hêtre et chêne, en automne et hiver",
+      "guide": {
+        "identify": "Le pleurote a un chapeau en forme de coquille ou d'éventail, de 5 à 18 cm. Il peut être gris bleuté, gris-brun ou crème. Il pousse sur le bois, en étages qui se chevauchent. Les lames, blanches à crème, descendent sur un pied court et décentré. Parfois, il n'y a pas de pied du tout. La chair est blanche et ferme. L'odeur est douce. La sporée est blanche à lilas pâle. Il faut connaître trois sosies. Le clitocybe de l'olivier (Omphalotus) est toxique. Il est orange vif, lames comprises. Il pousse en touffes au pied des arbres. L'hypholome en touffe (Hypholoma fasciculare) a des chapeaux jaune soufre sur des pieds centraux. Ses lames jaune verdâtre deviennent brun pourpre. Il a un goût amer. Pleurocybella porrigens a été associée à des décès au Japon. Elle est d'un blanc pur, mince et translucide. Elle ne pousse que sur du bois de conifère pourri.",
+        "habitat": "Il pousse sur les feuillus morts ou mourants, surtout le hêtre. On le trouve aussi sur le peuplier, le saule, le chêne et le frêne. Il est rare sur les conifères. Cherchez-le sur les troncs debout, les souches et les troncs à terre. Il est commun dans toute l'Europe et en Amérique du Nord.",
+        "season": "C'est un champignon de fin d'automne et d'hiver. Une vague de froid ou les premières gelées après la pluie le font sortir. Dans le sud de l'Europe, il continue jusqu'en janvier ou février. Dans l'est des États-Unis, il pousse d'octobre à début avril.",
+        "picking": "Coupez la touffe à la base avec un couteau. Prenez les chapeaux jeunes et fermes et laissez les vieux ou ceux criblés par les coléoptères. Certains endroits exigent un permis pour cueillir des champignons ou fixent des limites par jour. Renseignez-vous donc sur les règles locales.",
+        "kitchen": "Assurez-vous de l'identification avant de le cuisiner. Faites-le bien cuire et ne le mangez pas cru. Coupez la base dure et déchirez les chapeaux en lanières. Faites-les sauter à feu vif jusqu'à ce que les bords soient croustillants. Le goût est doux et un peu sucré. Il va bien avec l'ail, le beurre, la sauce soja et les œufs.",
+        "keeps": "Il s'abîme vite. Gardez-le quelques jours au réfrigérateur dans un sac en papier. Vous pouvez aussi le cuire et le congeler.",
+        "source": "Identification et saison : First Nature et MushroomExpert.com. Pleurocybella porrigens : Beaty Biodiversity Museum, université de la Colombie-Britannique."
+      }
     },
     "de": {
       "name": "Austernpilz",
-      "description": "Weiss-grauer Pilz mit fächerförmigem Hut, wächst in Büscheln an Totholz",
-      "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter"
+      "description": "Ein weissgrauer Pilz mit fächerförmigen Hüten. Er wächst in Büscheln an totem Holz.",
+      "howTo": "Zu finden an totem Holz, besonders Buche und Eiche, im Herbst und Winter",
+      "guide": {
+        "identify": "Austernseitlinge haben einen muschel- oder fächerförmigen Hut von 5 bis 18 cm. Er kann blaugrau, graubraun oder cremefarben sein. Sie wachsen dachziegelartig übereinander am Holz. Die weissen bis cremefarbenen Lamellen laufen an einem kurzen, seitlichen Stiel herab, oder es gibt gar keinen Stiel. Das Fleisch ist weiss und fest, der Geruch mild. Das Sporenpulver ist weiss bis blasslila. Drei Doppelgänger musst du kennen. Der giftige Ölbaumtrichterling (Omphalotus) ist leuchtend orange, auch an den Lamellen. Er wächst büschelig am Stammfuss. Der Grünblättrige Schwefelkopf (Hypholoma fasciculare) hat schwefelgelbe Hüte auf mittigen Stielen. Seine Lamellen sind grünlich gelb und werden purpurbraun, und er schmeckt bitter. Der Ohrförmige Seitling (Pleurocybella porrigens) wird mit Todesfällen in Japan in Verbindung gebracht. Er ist reinweiss, dünn und durchscheinend und wächst nur auf morschem Nadelholz.",
+        "habitat": "Er wächst an toten oder absterbenden Laubbäumen, vor allem an Buche. Du findest ihn auch an Pappel, Weide, Eiche und Esche, selten an Nadelholz. Such an stehenden Stämmen, an Stümpfen und an liegenden Stämmen. In Europa und Nordamerika ist er überall häufig.",
+        "season": "Der Austernseitling ist ein Pilz des Spätherbsts und des Winters. Eine Kältewelle oder die ersten Fröste nach Regen lösen ihn aus. In Südeuropa kommt er bis in den Januar oder Februar. Im Osten der USA fruchtet er von Oktober bis Anfang April.",
+        "picking": "Schneide das Büschel mit dem Messer am Grund ab. Nimm feste junge Hüte und lass alte oder von Käfern zerfressene stehen. Manche Gegenden verlangen fürs Pilzesammeln eine Genehmigung oder setzen Tageshöchstmengen fest. Prüf also die Regeln vor Ort.",
+        "kitchen": "Sei dir bei der Bestimmung sicher, bevor du ihn kochst. Gare ihn gut durch und iss ihn nicht roh. Schneide das zähe Stielende ab und reiss die Hüte in Streifen. Brate sie scharf an, bis die Ränder knusprig sind. Er schmeckt mild und leicht süsslich. Er passt zu Knoblauch, Butter, Sojasosse und Eiern.",
+        "keeps": "Er verdirbt schnell. Bewahr ihn ein paar Tage in einer Papiertüte im Kühlschrank auf, oder gare ihn und friere ihn ein.",
+        "source": "Bestimmung und Saison: First Nature und MushroomExpert.com. Ohrförmiger Seitling: Beaty Biodiversity Museum, University of British Columbia."
+      }
     },
     "es": {
       "name": "Seta de ostra",
-      "description": "Hongo blanco-grisáceo con sombrero en forma de abanico que crece en racimos sobre madera muerta",
-      "howTo": "Búscalas creciendo en árboles muertos, especialmente hayas y robles, en otoño e invierno"
+      "description": "Una seta de color blanco grisáceo con sombreros en forma de abanico. Crece en grupos apiñados sobre madera muerta.",
+      "howTo": "Búscalas creciendo en árboles muertos, especialmente hayas y robles, en otoño e invierno",
+      "guide": {
+        "identify": "La seta de ostra tiene el sombrero en forma de concha o de abanico, de 5 a 18 cm. Puede ser gris azulado, pardo grisáceo o crema. Crece sobre madera, en pisos que se solapan. Las láminas son de blancas a crema y bajan hasta un pie corto y descentrado, o no hay pie. La carne es blanca y firme, y el olor es suave. La esporada es de blanca a lila pálido. Hay tres parecidas que debes conocer. La venenosa seta de olivo (Omphalotus) es de un naranja vivo, láminas incluidas. Crece en matas al pie de los árboles. Hypholoma fasciculare tiene sombreros amarillo azufre con el pie en el centro. Sus láminas son amarillo verdosas y se vuelven pardo púrpura, y sabe amarga. Las orejas de ángel (Pleurocybella porrigens) se han relacionado con muertes en Japón. Son de un blanco puro, finas y translúcidas. Solo crecen sobre madera podrida de coníferas.",
+        "habitat": "Crece en frondosas muertas o que se están muriendo, sobre todo en hayas. También sale en chopos, sauces, robles y fresnos. En coníferas sale rara vez. Búscala en troncos en pie, tocones y troncos caídos. Es común en toda Europa y Norteamérica.",
+        "season": "Es una seta de finales de otoño y de invierno. La hace salir una ola de frío o las primeras heladas después de llover. En el sur de Europa sigue hasta enero o febrero. En el este de EE. UU. sale de octubre a principios de abril.",
+        "picking": "Corta el grupo por la base con una navaja. Coge los sombreros jóvenes y firmes, y deja los viejos o llenos de escarabajos. En algunos sitios hace falta permiso para coger setas o hay límites diarios, así que infórmate de las normas del lugar.",
+        "kitchen": "Antes de cocinarla, asegúrate de que la has identificado sin ninguna duda. Cocínala bien y no la comas cruda. Quita la base dura y rasga los sombreros en tiras. Saltéalas a fuego vivo hasta que los bordes queden crujientes. Tiene un sabor suave y algo dulce. Va bien con ajo, mantequilla, salsa de soja y huevos.",
+        "keeps": "Se estropea rápido. Guárdala unos días en la nevera en una bolsa de papel, o cocínala y congélala.",
+        "source": "Identificación y temporada: First Nature y MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, Universidad de la Columbia Británica."
+      }
     },
     "pt": {
       "name": "Cogumelo-ostra",
-      "description": "Cogumelo branco-acinzentado com chapéu em forma de leque que cresce em grupos sobre madeira morta",
-      "howTo": "Procure crescendo em árvores mortas, especialmente faia e carvalho, no outono e inverno"
+      "description": "Um cogumelo branco-acinzentado, de chapéus em forma de leque. Cresce em grupos sobre madeira morta.",
+      "howTo": "Procure crescendo em árvores mortas, especialmente faia e carvalho, no outono e inverno",
+      "guide": {
+        "identify": "O cogumelo-ostra tem o chapéu em forma de concha ou de leque, com 5 a 18 cm. Pode ser cinzento-azulado, cinzento-acastanhado ou creme. Cresce na madeira, em andares sobrepostos. As lâminas, brancas a creme, descem por um pé curto e descentrado. Às vezes nem tem pé. A carne é branca e firme. O cheiro é suave. A esporada é branca a lilás-pálido. Há três sósias que tem de conhecer. O Omphalotus é venenoso e cor de laranja viva, lâminas incluídas. Cresce em tufos na base das árvores. O Hypholoma fasciculare tem chapéus amarelo-enxofre, com o pé ao centro. As lâminas são amarelo-esverdeadas e passam a castanho-arroxeado. Tem sabor amargo. A Pleurocybella porrigens está ligada a mortes no Japão. É branca pura, fina e translúcida e só cresce em madeira podre de coníferas.",
+        "habitat": "Cresce em árvores de folha larga mortas ou a morrer, sobretudo faias. Também aparece em choupos, salgueiros, carvalhos e freixos. Em coníferas é raro. Procure em troncos de pé, cepos e troncos caídos. É comum em toda a Europa e na América do Norte.",
+        "season": "É um cogumelo do fim do outono e do inverno. Uma vaga de frio ou as primeiras geadas depois da chuva fazem-no sair. No sul da Europa continua até janeiro ou fevereiro. No leste dos EUA frutifica de outubro ao início de abril.",
+        "picking": "Corte o tufo pela base com uma faca. Apanhe os chapéus novos e firmes e deixe os velhos ou roídos pelos escaravelhos. Nalguns sítios a apanha de cogumelos precisa de licença ou tem limites diários, por isso informe-se sobre as regras locais.",
+        "kitchen": "Antes de o cozinhar, tenha a certeza da identificação. Cozinhe-o bem e não o coma cru. Corte a base rija e rasgue os chapéus em tiras. Salteie-as em lume forte até as bordas ficarem estaladiças. O sabor é suave e um pouco doce. Vai bem com alho, manteiga, molho de soja e ovos.",
+        "keeps": "Estraga-se depressa. Guarde-o uns dias no frigorífico, num saco de papel. Também o pode cozinhar e congelar.",
+        "source": "Identificação e época: First Nature e MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, Universidade da Colúmbia Britânica."
+      }
     }
   },
   "identification": {
@@ -247,6 +301,8 @@
       "taxonKeys": [2518610],
       "references": ["https://www.gbif.org/species/2518610"]
     },
-    "rangePrior": { "taxonKeys": [2518610] }
+    "rangePrior": {
+      "taxonKeys": [2518610]
+    }
   }
 }
