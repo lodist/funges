@@ -1994,6 +1994,29 @@
     "useShort": "Mein Garten"
   },
   "planner": {
+    "family": {
+      "legumes": "Hülsenfrüchte",
+      "brassicas": "Kohlgewächse",
+      "leaves": "Blatt- und Wurzelgemüse",
+      "alliums": "Zwiebelgewächse",
+      "fruiting": "Fruchtgemüse",
+      "flowers": "Blumen",
+      "herbs": "Kräuter",
+      "fruit": "Obst",
+      "cover": "Gründüngung",
+      "other": "Andere"
+    },
+    "view": {
+      "label": "Darstellung des Gartens",
+      "model": "3D",
+      "plan": "Plan"
+    },
+    "bedNo": "Beet {{n}} auswählen",
+    "stripNo": "Streifen {{n}} auswählen",
+    "many": {
+      "join": "Verbinden",
+      "split": "Jeden zweiteilen"
+    },
     "move": "Zeichnung verschieben",
     "area": {
       "short": "Auswählen",

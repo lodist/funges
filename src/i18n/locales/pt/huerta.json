@@ -1994,6 +1994,29 @@
     "useShort": "Minha horta"
   },
   "planner": {
+    "family": {
+      "legumes": "Leguminosas",
+      "brassicas": "Couves",
+      "leaves": "Folhas e raízes",
+      "alliums": "Alhos e cebolas",
+      "fruiting": "Hortaliças de fruto",
+      "flowers": "Flores",
+      "herbs": "Ervas",
+      "fruit": "Fruta",
+      "cover": "Adubos verdes",
+      "other": "Outros"
+    },
+    "view": {
+      "label": "Como a horta é desenhada",
+      "model": "3D",
+      "plan": "Planta"
+    },
+    "bedNo": "Selecionar o canteiro {{n}}",
+    "stripNo": "Selecionar a faixa {{n}}",
+    "many": {
+      "join": "Juntar",
+      "split": "Dividir cada uma em duas"
+    },
     "move": "Mover o desenho",
     "area": {
       "short": "Selecionar",

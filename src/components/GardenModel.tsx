@@ -1,14 +1,22 @@
-import { useRef, useState, type DragEvent, type ReactNode } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type DragEvent,
+  type ReactNode,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  axisOf,
   BED_HEIGHT,
+  familyOf,
   fit,
   regions,
   type Garden,
   type Rect,
   type Section,
 } from '@/lib/planner';
-import { huertaImage } from '@/lib/huerta';
+import { CROPS, huertaImage } from '@/lib/huerta';
 import {
   Hand,
   Maximize2,
@@ -43,6 +51,34 @@ const ZOOM_STEP = 1.5;
 /** How far off a bed (metres, on the ground) a tap still picks it. */
 const REACH = 0.6;
 const PLOT = '#ece5db';
+/** Past this many sections the garden opens as a plan: the model's plants
+ *  are a picture each (some 7,000 at 60 x 60 m), the plan a block a section. */
+const PLAN_FROM = 120;
+/** Round the plan, room for the beds' numbers and what stands along a side. */
+const PLAN_MARGIN = 0.9;
+/** The drawing's tallest, as its class says (max-h-[38rem]). */
+const MAX_HEIGHT = 608;
+/** The controls over the drawing's top, in screen pixels. */
+const CONTROLS = 44;
+// The plan's flat colours: a section by its crop's family, its earth, and
+// what stands along a side.
+const FAMILY: Record<string, string> = {
+  legumes: '#86ab6a',
+  brassicas: '#6e9a8c',
+  leaves: '#a8c36b',
+  alliums: '#c8b26c',
+  fruiting: '#d98a5f',
+  flowers: '#dfa3b9',
+  herbs: '#7fae9a',
+  fruit: '#c9706d',
+};
+const COVER = '#b7c78e';
+const GREEN_MANURE = new Set(
+  CROPS.filter(c => c.kind === 'cover').map(c => c.id)
+);
+const OTHER = '#9fae84';
+const OPEN_EARTH = '#8a6f58';
+const SIDE = { fence: '#b08d63', house: '#9c968f', trees: '#5d7a4a' };
 const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
 const MARK = '#c9603a';
@@ -153,6 +189,12 @@ interface GardenModelProps {
   /** How far a section has grown (the page draws planned ones grown, but
    *  for the timeline's days ahead). */
   stage?: (s: Section) => Stage;
+  /** Whole beds chosen by their numbers on the plan (a tap, or a drag
+   *  along them). */
+  onBeds?: (beds: number[]) => void;
+  /** How much sun a section gets in the month shown (lib/sun, a later
+   *  step): a flat tone on the plan, none where not known. */
+  sunAt?: (s: Section) => 'full' | 'part' | 'little' | undefined;
   /** The sections just planted: their plants come up out of the soil. */
   fresh?: number[];
   /** Beds deleted: plain earth, which can be tapped to put a bed back. */
@@ -186,6 +228,8 @@ export function GardenModel({
   onBed,
   label,
   stage,
+  onBeds,
+  sunAt,
   fresh,
   bare = [],
   onBare,
@@ -195,6 +239,17 @@ export function GardenModel({
   title,
 }: GardenModelProps) {
   const { t } = useTranslation('huerta');
+  // Drawn as the model (a plant a picture) or the plan from above (a block a
+  // section): a big garden opens as the plan.
+  const [view, setView] = useState<'model' | 'plan'>(() =>
+    sections.length > PLAN_FROM ? 'plan' : 'model'
+  );
+  // The beds a drag along their numbers has run over, while it lasts.
+  const bedDrag = useRef<[number, number] | null>(null);
+  const [bedRange, setBedRange] = useState<[number, number] | null>(null);
+  // The drawing's width on screen, for the plan's labels: a name only where
+  // it can be read.
+  const [frameWidth, setFrameWidth] = useState(0);
   // The section a crop is being dragged over.
   const [over, setOver] = useState<number | null>(null);
   const sectionAt = (e: DragEvent) => {
@@ -210,6 +265,15 @@ export function GardenModel({
   const area = tool === 'area';
   const moving = tool === 'move';
   const frame = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = frame.current;
+    if (!el) return;
+    const watch = new ResizeObserver(([entry]) =>
+      setFrameWidth(entry.contentRect.width)
+    );
+    watch.observe(el);
+    return () => watch.disconnect();
+  }, []);
   const [areaBox, setAreaBox] = useState<
     [number, number, number, number] | null
   >(null);
@@ -305,7 +369,8 @@ export function GardenModel({
     const p = new DOMPoint(cx, cy).matrixTransform(m.inverse());
     const u = p.x / (COS * S),
       v = (p.y + soilZ * S) / (SIN * S);
-    const [x, y] = unturn((u + v) / 2, (v - u) / 2);
+    const [x, y] =
+      view === 'plan' ? [p.x / S, p.y / S] : unturn((u + v) / 2, (v - u) / 2);
     let best: number | null = null,
       reach = REACH;
     sections.forEach((s, i) => {
@@ -328,6 +393,309 @@ export function GardenModel({
       y1: Math.max(...parts.map(s => s.y1)),
     };
   });
+
+  // ---------- the plan ----------
+  // Seen from above, a block a section, S units a metre: far less to draw
+  // than the model's plants. Its beds are square to the screen, so a box
+  // takes what it seems to, and a bed's number takes its bed.
+  // Screen pixels a plan unit, at this zoom: the drawing fills its width up
+  // to its tallest.
+  const pxOf = ([x0, y0, x1, y1]: number[]) =>
+    frameWidth
+      ? Math.min(
+          frameWidth / ((x1 - x0) / zoom),
+          MAX_HEIGHT / ((y1 - y0) / zoom)
+        )
+      : 0;
+  const margin = PLAN_MARGIN * S;
+  const around = [-margin, -margin, W * S + margin, L * S + margin];
+  // Above the beds' numbers and below the beds, room for the controls over
+  // the drawing (a phone's plan is small: they would cover them).
+  const lift = pxOf(around) ? CONTROLS / pxOf(around) : 0;
+  const planBox: [number, number, number, number] = [
+    around[0],
+    around[1] - lift,
+    around[2],
+    around[3] + lift,
+  ];
+  const unitPx = pxOf(planBox);
+  const drawPlan = () => {
+    const nodes: ReactNode[] = [];
+    const at = (x0: number, y0: number, x1: number, y1: number) => ({
+      x: x0 * S,
+      y: y0 * S,
+      width: (x1 - x0) * S,
+      height: (y1 - y0) * S,
+    });
+    // What stands along a side, a band outside it (a later step sets them).
+    const band = PLAN_MARGIN * 0.5;
+    const edges = {
+      top: [0, -band, W, 0],
+      bottom: [0, L, W, L + band],
+      left: [-band, 0, 0, L],
+      right: [W, 0, W + band, L],
+    } as const;
+    for (const side of ['top', 'bottom', 'left', 'right'] as const) {
+      const kind = garden.sides?.[side];
+      if (kind)
+        nodes.push(
+          <rect
+            key={`side-${side}`}
+            {...at(
+              edges[side][0],
+              edges[side][1],
+              edges[side][2],
+              edges[side][3]
+            )}
+            fill={SIDE[kind]}
+          />
+        );
+    }
+    regions(garden).forEach(r =>
+      nodes.push(
+        <rect
+          key={`plot${r.join('|')}`}
+          {...at(...r)}
+          fill={PLOT}
+          stroke='#d6cabb'
+          strokeWidth={1.5}
+          vectorEffect='non-scaling-stroke'
+        />
+      )
+    );
+    bare.forEach((r, k) =>
+      nodes.push(
+        <rect
+          key={`bare${r.join('|')}`}
+          {...at(...r)}
+          fill='#ddd2c4'
+          stroke='#bfb19e'
+          strokeWidth={1.5}
+          strokeDasharray='4 3'
+          vectorEffect='non-scaling-stroke'
+          className={onBare ? 'cursor-pointer' : undefined}
+          onClick={onBare ? () => onBare(k) : undefined}
+        />
+      )
+    );
+    // Raised beds in their boards.
+    if (raised)
+      beds.forEach(bed =>
+        nodes.push(
+          <rect
+            key={`board${bed.parts[0].bed}`}
+            {...at(bed.x0 - 0.05, bed.y0 - 0.05, bed.x1 + 0.05, bed.y1 + 0.05)}
+            fill={TIMBER[1]}
+          />
+        )
+      );
+    sections.forEach((s, i) => {
+      // Keyed by where it lies (sections never overlap).
+      const id = `${s.x0}|${s.y0}`;
+      // What is over or lost the page has already emptied.
+      const crop = s.crop;
+      const family = crop ? familyOf(crop) : undefined;
+      const box = at(s.x0, s.y0, s.x1, s.y1);
+      nodes.push(
+        <rect
+          key={`sec${id}`}
+          data-sec={i}
+          {...box}
+          // A planned crop pale, as on the model; earth where nothing is.
+          fill={
+            !crop
+              ? raised
+                ? SOIL
+                : OPEN_EARTH
+              : GREEN_MANURE.has(crop)
+                ? COVER
+                : ((family && FAMILY[family]) ?? OTHER)
+          }
+          fillOpacity={crop && !s.planted ? 0.55 : 1}
+          stroke='#4a3a2d'
+          strokeOpacity={0.35}
+          strokeWidth={1}
+          vectorEffect='non-scaling-stroke'
+          className='cursor-pointer'
+          onClick={select(i)}
+          onDoubleClick={onBed ? () => onBed(i) : undefined}
+        />
+      );
+      const sun = sunAt?.(s);
+      if (sun === 'part' || sun === 'little')
+        nodes.push(
+          <rect
+            key={`sun${id}`}
+            {...box}
+            fill='#1f1a17'
+            fillOpacity={sun === 'part' ? 0.16 : 0.34}
+            pointerEvents='none'
+          />
+        );
+      if (!crop || !unitPx) return;
+      // Its crop's photo, and its name, where they can be seen and read.
+      const w = box.width * unitPx,
+        h = box.height * unitPx;
+      const icon = Math.min(box.width, box.height) * 0.55;
+      const named = w >= 70 && h >= 46;
+      if (icon * unitPx >= 18)
+        nodes.push(
+          <image
+            key={`icon${id}`}
+            href={huertaImage(`crops/${crop}`)}
+            x={box.x + (box.width - icon) / 2}
+            y={box.y + (box.height - icon) / 2 - (named ? 7 / unitPx : 0)}
+            width={icon}
+            height={icon}
+            preserveAspectRatio='xMidYMid slice'
+            pointerEvents='none'
+          />
+        );
+      if (named)
+        nodes.push(
+          <text
+            key={`name${id}`}
+            x={box.x + box.width / 2}
+            y={box.y + box.height - 6 / unitPx}
+            textAnchor='middle'
+            pointerEvents='none'
+            style={{
+              font: `600 ${11 / unitPx}px var(--font-sans)`,
+              fill: '#1f1a17',
+            }}
+          >
+            {t(`crops.${crop}`).slice(0, Math.floor(w / 7))}
+          </text>
+        );
+    });
+    for (const k of selected)
+      if (sections[k])
+        nodes.push(
+          <rect
+            key={`mark${k}`}
+            {...at(
+              sections[k].x0,
+              sections[k].y0,
+              sections[k].x1,
+              sections[k].y1
+            )}
+            fill='none'
+            stroke={MARK}
+            strokeWidth={2.5}
+            vectorEffect='non-scaling-stroke'
+            pointerEvents='none'
+          />
+        );
+    if (over !== null && sections[over])
+      nodes.push(
+        <rect
+          key='over'
+          {...at(
+            sections[over].x0,
+            sections[over].y0,
+            sections[over].x1,
+            sections[over].y1
+          )}
+          fill='rgba(154,63,31,0.18)'
+          stroke={MARK}
+          strokeWidth={2}
+          strokeDasharray='6 4'
+          vectorEffect='non-scaling-stroke'
+          pointerEvents='none'
+        />
+      );
+    // The beds' numbers at their north ends (or west, where they run
+    // across): a tap takes a bed, a drag along them the beds it runs over.
+    if (onBeds && unitPx) {
+      const across = axisOf(garden) === 'x';
+      const pitch = Math.min(
+        ...beds.map(b => (across ? b.y1 - b.y0 : b.x1 - b.x0))
+      );
+      const r = Math.min(12 / unitPx, (pitch * S) / 2);
+      const chosen = (n: number) =>
+        bedRange !== null &&
+        n >= Math.min(...bedRange) &&
+        n <= Math.max(...bedRange);
+      const end = () => {
+        const range = bedDrag.current;
+        bedDrag.current = null;
+        setBedRange(null);
+        if (!range) return;
+        const [lo, hi] = [Math.min(...range), Math.max(...range)];
+        onBeds(
+          [...new Set(sections.map(s => s.bed))].filter(b => b >= lo && b <= hi)
+        );
+      };
+      beds.forEach(bed => {
+        const n = bed.parts[0].bed;
+        const cx = across
+            ? -PLAN_MARGIN * 0.5 * S
+            : ((bed.x0 + bed.x1) / 2) * S,
+          cy = across ? ((bed.y0 + bed.y1) / 2) * S : -PLAN_MARGIN * 0.5 * S;
+        nodes.push(
+          <g
+            key={`no${n}`}
+            data-bed={n}
+            role='button'
+            aria-label={t(open ? 'planner.stripNo' : 'planner.bedNo', {
+              n: n + 1,
+            })}
+            className='cursor-pointer'
+            style={{ touchAction: 'none' }}
+            onPointerDown={e => {
+              e.stopPropagation();
+              e.currentTarget.setPointerCapture(e.pointerId);
+              bedDrag.current = [n, n];
+              setBedRange([n, n]);
+            }}
+            onPointerMove={e => {
+              const range = bedDrag.current;
+              if (!range) return;
+              const under = document
+                .elementFromPoint(e.clientX, e.clientY)
+                ?.closest('[data-bed]');
+              const to = under ? Number(under.getAttribute('data-bed')) : null;
+              if (to !== null && to !== range[1]) {
+                bedDrag.current = [range[0], to];
+                setBedRange([range[0], to]);
+              }
+            }}
+            onPointerUp={end}
+            onPointerCancel={() => {
+              bedDrag.current = null;
+              setBedRange(null);
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            <circle
+              cx={cx}
+              cy={cy}
+              r={r}
+              fill={chosen(n) ? MARK : '#fff'}
+              stroke={MARK}
+              strokeWidth={1.5}
+              vectorEffect='non-scaling-stroke'
+            />
+            <text
+              x={cx}
+              y={cy}
+              textAnchor='middle'
+              dominantBaseline='central'
+              pointerEvents='none'
+              style={{
+                font: `600 ${r * 1.05}px var(--font-sans)`,
+                fill: chosen(n) ? '#fff' : '#782c0c',
+              }}
+            >
+              {n + 1}
+            </text>
+          </g>
+        );
+      });
+    }
+    return nodes;
+  };
+  const plan = view === 'plan' ? drawPlan() : null;
 
   // ---------- the model ----------
   const box = (
@@ -588,287 +956,292 @@ export function GardenModel({
       depth((a[0] + a[2]) / 2, (a[1] + a[3]) / 2) -
       depth((z[0] + z[2]) / 2, (z[1] + z[3]) / 2)
   );
-  const drawn: ReactNode[] = [
-    <defs key='textures'>
-      <Texture
-        id='iso-soil'
-        name='soil'
-        size={TILE.soil * S}
-        transform={flat}
-      />
-      <Texture
-        id='iso-gravel'
-        name={raised ? 'gravel' : ground === 'ground' ? 'woodchip' : 'trodden'}
-        size={TILE.gravel * S}
-        transform={flat}
-      />
-      <Texture
-        id='iso-bare'
-        name='trodden'
-        size={TILE.soil * S}
-        transform={flat}
-      />
-      <Texture
-        id='iso-board-a'
-        name='timber'
-        size={BOARD * 3 * S}
-        transform={flat}
-      />
-      <Texture
-        id='iso-board-b'
-        name='timber'
-        size={BOARD * 3 * S}
-        transform={along}
-      />
-      <filter id='iso-blur' x='-10%' y='-10%' width='120%' height='120%'>
-        <feGaussianBlur stdDeviation={3} />
-      </filter>
-    </defs>,
-  ];
-  // The plot as a block of earth cut out of the ground.
-  regs.forEach((r, i) => {
-    const [a0, b0] = turn(r[0], r[1]),
-      [a1, b1] = turn(r[2], r[3]);
-    const A0 = Math.min(a0, a1),
-      A1 = Math.max(a0, a1),
-      B0 = Math.min(b0, b1),
-      B1 = Math.max(b0, b1);
-    drawn.push(
-      box(
-        r[0],
-        r[1],
-        r[2],
-        r[3],
-        -EARTH,
-        0,
-        PLOT,
-        EARTH_SIDE[0],
-        EARTH_SIDE[1],
-        `slab${i}`
-      ),
-      ...wall(
-        `earth${i}-r`,
-        'a',
-        A1,
-        [B0, B1],
-        [-EARTH, 0],
-        'earth',
-        EARTH,
-        0.3
-      ),
-      ...wall(
-        `earth${i}-l`,
-        'b',
-        B1,
-        [A0, A1],
-        [-EARTH, 0],
-        'earth',
-        EARTH,
-        0.05
-      )
-    );
-  });
-  regs.forEach(r => {
-    const ground = pts([
-      P(r[0], r[1]),
-      P(r[2], r[1]),
-      P(r[2], r[3]),
-      P(r[0], r[3]),
-    ]);
-    drawn.push(
-      <polygon key={`plot${r.join()}`} points={ground} fill={PLOT} />,
-      <polygon
-        key={`gravel${r.join()}`}
-        points={ground}
-        fill='url(#iso-gravel)'
-      />
-    );
-  });
-  // Deleted beds: plain earth, tapped to put a bed back.
-  bare.forEach((r, i) =>
-    drawn.push(
-      <polygon
-        key={`bare${r.join()}`}
-        points={pts([
-          P(r[0], r[1], 0.005),
-          P(r[2], r[1], 0.005),
-          P(r[2], r[3], 0.005),
-          P(r[0], r[3], 0.005),
-        ])}
-        fill='url(#iso-bare)'
-        className={onBare ? 'cursor-pointer' : undefined}
-        onClick={onBare ? () => onBare(i) : undefined}
-      />
-    )
-  );
-  if (raised)
-    beds.forEach((bed, bi) =>
-      drawn.push(shadow(bed.x0, bed.y0, bed.x1, bed.y1, `shadow${bi}`))
-    );
+  const drawn: ReactNode[] = [];
   let tallest = 0;
-  beds
-    .sort(
-      (a, z) =>
-        depth((a.x0 + a.x1) / 2, (a.y0 + a.y1) / 2) -
-        depth((z.x0 + z.x1) / 2, (z.y0 + z.y1) / 2)
-    )
-    .forEach((bed, bi) => {
+  if (!plan) {
+    drawn.push(
+      <defs key='textures'>
+        <Texture
+          id='iso-soil'
+          name='soil'
+          size={TILE.soil * S}
+          transform={flat}
+        />
+        <Texture
+          id='iso-gravel'
+          name={
+            raised ? 'gravel' : ground === 'ground' ? 'woodchip' : 'trodden'
+          }
+          size={TILE.gravel * S}
+          transform={flat}
+        />
+        <Texture
+          id='iso-bare'
+          name='trodden'
+          size={TILE.soil * S}
+          transform={flat}
+        />
+        <Texture
+          id='iso-board-a'
+          name='timber'
+          size={BOARD * 3 * S}
+          transform={flat}
+        />
+        <Texture
+          id='iso-board-b'
+          name='timber'
+          size={BOARD * 3 * S}
+          transform={along}
+        />
+        <filter id='iso-blur' x='-10%' y='-10%' width='120%' height='120%'>
+          <feGaussianBlur stdDeviation={3} />
+        </filter>
+      </defs>
+    );
+    // The plot as a block of earth cut out of the ground.
+    regs.forEach((r, i) => {
+      const [a0, b0] = turn(r[0], r[1]),
+        [a1, b1] = turn(r[2], r[3]);
+      const A0 = Math.min(a0, a1),
+        A1 = Math.max(a0, a1),
+        B0 = Math.min(b0, b1),
+        B1 = Math.max(b0, b1);
       drawn.push(
-        ...(raised
-          ? [
-              box(
-                bed.x0,
-                bed.y0,
-                bed.x1,
-                bed.y1,
-                0,
-                BED_HEIGHT,
-                SOIL,
-                TIMBER[0],
-                TIMBER[1],
-                `bed${bi}`
-              ),
-              skin(bed.x0, bed.y0, bed.x1, bed.y1, `skin${bi}`),
-            ]
-          : [mound(bed.x0, bed.y0, bed.x1, bed.y1, `mound${bi}`)])
+        box(
+          r[0],
+          r[1],
+          r[2],
+          r[3],
+          -EARTH,
+          0,
+          PLOT,
+          EARTH_SIDE[0],
+          EARTH_SIDE[1],
+          `slab${i}`
+        ),
+        ...wall(
+          `earth${i}-r`,
+          'a',
+          A1,
+          [B0, B1],
+          [-EARTH, 0],
+          'earth',
+          EARTH,
+          0.3
+        ),
+        ...wall(
+          `earth${i}-l`,
+          'b',
+          B1,
+          [A0, A1],
+          [-EARTH, 0],
+          'earth',
+          EARTH,
+          0.05
+        )
       );
-      const plants: { d: number; node: ReactNode }[] = [];
-      for (const s of bed.parts) {
-        const i = sections.indexOf(s);
-        drawn.push(
-          <polygon
-            key={`sec${i}`}
-            points={top(s)}
-            fill='transparent'
-            className='cursor-pointer'
-            data-sec={i}
-            onClick={select(i)}
-            onDoubleClick={onBed ? () => onBed(i) : undefined}
-          />
-        );
-        if (!s.crop) continue;
-        const crop = s.crop;
-        const look = PLANT_LOOK[crop];
-        tallest = Math.max(tallest, look.height);
-        const f = fit(s, open);
-        const opacity = s.planted ? 1 : 0.6;
-        if (!f)
-          // A green manure sown thick: its photographed patches over the section.
-          carpet(s, i).forEach(([x, y], k) =>
-            plants.push({
-              d: depth(x, y),
-              node: (
-                <g
-                  key={`c${i}-${x}-${y}`}
-                  opacity={opacity}
-                  pointerEvents='none'
-                >
-                  <Staged
-                    id={crop}
-                    stage={stage ? stage(s) : 'grown'}
-                    at={P(x, y, soilZ)}
-                    seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
-                    pop={fresh?.includes(i) ? k : null}
-                  />
-                </g>
-              ),
-            })
-          );
-        else
-          thin(f.points, share).forEach(([x, y], k) =>
-            plants.push({
-              d: depth(x, y),
-              node: (
-                <g
-                  key={`p${i}-${x}-${y}`}
-                  opacity={opacity}
-                  pointerEvents='none'
-                >
-                  <Staged
-                    id={crop}
-                    stage={stage ? stage(s) : 'grown'}
-                    at={P(x, y, soilZ)}
-                    seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
-                    pop={fresh?.includes(i) ? k : null}
-                  />
-                </g>
-              ),
-            })
-          );
-      }
-      plants.sort((a, z) => a.d - z.d).forEach(p => drawn.push(p.node));
     });
-
-  for (const k of selected)
-    if (sections[k])
+    regs.forEach(r => {
+      const ground = pts([
+        P(r[0], r[1]),
+        P(r[2], r[1]),
+        P(r[2], r[3]),
+        P(r[0], r[3]),
+      ]);
+      drawn.push(
+        <polygon key={`plot${r.join()}`} points={ground} fill={PLOT} />,
+        <polygon
+          key={`gravel${r.join()}`}
+          points={ground}
+          fill='url(#iso-gravel)'
+        />
+      );
+    });
+    // Deleted beds: plain earth, tapped to put a bed back.
+    bare.forEach((r, i) =>
       drawn.push(
         <polygon
-          key={`mark${k}`}
-          points={top(sections[k])}
-          fill='none'
+          key={`bare${r.join()}`}
+          points={pts([
+            P(r[0], r[1], 0.005),
+            P(r[2], r[1], 0.005),
+            P(r[2], r[3], 0.005),
+            P(r[0], r[3], 0.005),
+          ])}
+          fill='url(#iso-bare)'
+          className={onBare ? 'cursor-pointer' : undefined}
+          onClick={onBare ? () => onBare(i) : undefined}
+        />
+      )
+    );
+    if (raised)
+      beds.forEach((bed, bi) =>
+        drawn.push(shadow(bed.x0, bed.y0, bed.x1, bed.y1, `shadow${bi}`))
+      );
+    beds
+      .sort(
+        (a, z) =>
+          depth((a.x0 + a.x1) / 2, (a.y0 + a.y1) / 2) -
+          depth((z.x0 + z.x1) / 2, (z.y0 + z.y1) / 2)
+      )
+      .forEach((bed, bi) => {
+        drawn.push(
+          ...(raised
+            ? [
+                box(
+                  bed.x0,
+                  bed.y0,
+                  bed.x1,
+                  bed.y1,
+                  0,
+                  BED_HEIGHT,
+                  SOIL,
+                  TIMBER[0],
+                  TIMBER[1],
+                  `bed${bi}`
+                ),
+                skin(bed.x0, bed.y0, bed.x1, bed.y1, `skin${bi}`),
+              ]
+            : [mound(bed.x0, bed.y0, bed.x1, bed.y1, `mound${bi}`)])
+        );
+        const plants: { d: number; node: ReactNode }[] = [];
+        for (const s of bed.parts) {
+          const i = sections.indexOf(s);
+          drawn.push(
+            <polygon
+              key={`sec${i}`}
+              points={top(s)}
+              fill='transparent'
+              className='cursor-pointer'
+              data-sec={i}
+              onClick={select(i)}
+              onDoubleClick={onBed ? () => onBed(i) : undefined}
+            />
+          );
+          if (!s.crop) continue;
+          const crop = s.crop;
+          const look = PLANT_LOOK[crop];
+          tallest = Math.max(tallest, look.height);
+          const f = fit(s, open);
+          const opacity = s.planted ? 1 : 0.6;
+          if (!f)
+            // A green manure sown thick: its photographed patches over the section.
+            carpet(s, i).forEach(([x, y], k) =>
+              plants.push({
+                d: depth(x, y),
+                node: (
+                  <g
+                    key={`c${i}-${x}-${y}`}
+                    opacity={opacity}
+                    pointerEvents='none'
+                  >
+                    <Staged
+                      id={crop}
+                      stage={stage ? stage(s) : 'grown'}
+                      at={P(x, y, soilZ)}
+                      seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
+                      pop={fresh?.includes(i) ? k : null}
+                    />
+                  </g>
+                ),
+              })
+            );
+          else
+            thin(f.points, share).forEach(([x, y], k) =>
+              plants.push({
+                d: depth(x, y),
+                node: (
+                  <g
+                    key={`p${i}-${x}-${y}`}
+                    opacity={opacity}
+                    pointerEvents='none'
+                  >
+                    <Staged
+                      id={crop}
+                      stage={stage ? stage(s) : 'grown'}
+                      at={P(x, y, soilZ)}
+                      seed={Math.round(x * 100) * 31 + Math.round(y * 100) * 17}
+                      pop={fresh?.includes(i) ? k : null}
+                    />
+                  </g>
+                ),
+              })
+            );
+        }
+        plants.sort((a, z) => a.d - z.d).forEach(p => drawn.push(p.node));
+      });
+
+    for (const k of selected)
+      if (sections[k])
+        drawn.push(
+          <polygon
+            key={`mark${k}`}
+            points={top(sections[k])}
+            fill='none'
+            stroke={MARK}
+            strokeWidth={2.5}
+            pointerEvents='none'
+          />
+        );
+    if (over !== null && sections[over])
+      drawn.push(
+        <polygon
+          key='over'
+          points={top(sections[over])}
+          fill='rgba(154,63,31,0.18)'
           stroke={MARK}
-          strokeWidth={2.5}
+          strokeWidth={2}
+          strokeDasharray='6 4'
           pointerEvents='none'
         />
       );
-  if (over !== null && sections[over])
-    drawn.push(
-      <polygon
-        key='over'
-        points={top(sections[over])}
-        fill='rgba(154,63,31,0.18)'
-        stroke={MARK}
-        strokeWidth={2}
-        strokeDasharray='6 4'
-        pointerEvents='none'
-      />
-    );
-  const sel = selected.length === 1 ? sections[selected[0]] : undefined;
-  if (sel) {
-    if (sel.crop && label) {
-      const [lx, ly] = P(
-        (sel.x0 + sel.x1) / 2,
-        (sel.y0 + sel.y1) / 2,
-        rim + PLANT_LOOK[sel.crop].height + 0.35
-      );
-      const w = Math.max(label.name.length, label.count.length) * 6.6 + 20;
-      drawn.push(
-        <g key='label' pointerEvents='none'>
-          <line
-            x1={lx}
-            y1={ly}
-            x2={lx}
-            y2={ly + 18}
-            stroke='#782c0c'
-            strokeWidth={1.2}
-          />
-          <rect
-            x={lx - w / 2}
-            y={ly - 38}
-            width={w}
-            height={38}
-            rx={9}
-            fill='#fff'
-            stroke='#e6ded4'
-          />
-          <text
-            x={lx}
-            y={ly - 22}
-            textAnchor='middle'
-            style={{ font: '600 12px var(--font-sans)', fill: '#1f1a17' }}
-          >
-            {label.name}
-          </text>
-          <text
-            x={lx}
-            y={ly - 8}
-            textAnchor='middle'
-            style={{ font: '500 12px var(--font-sans)', fill: '#776c64' }}
-          >
-            {label.count}
-          </text>
-        </g>
-      );
+    const sel = selected.length === 1 ? sections[selected[0]] : undefined;
+    if (sel) {
+      if (sel.crop && label) {
+        const [lx, ly] = P(
+          (sel.x0 + sel.x1) / 2,
+          (sel.y0 + sel.y1) / 2,
+          rim + PLANT_LOOK[sel.crop].height + 0.35
+        );
+        const w = Math.max(label.name.length, label.count.length) * 6.6 + 20;
+        drawn.push(
+          <g key='label' pointerEvents='none'>
+            <line
+              x1={lx}
+              y1={ly}
+              x2={lx}
+              y2={ly + 18}
+              stroke='#782c0c'
+              strokeWidth={1.2}
+            />
+            <rect
+              x={lx - w / 2}
+              y={ly - 38}
+              width={w}
+              height={38}
+              rx={9}
+              fill='#fff'
+              stroke='#e6ded4'
+            />
+            <text
+              x={lx}
+              y={ly - 22}
+              textAnchor='middle'
+              style={{ font: '600 12px var(--font-sans)', fill: '#1f1a17' }}
+            >
+              {label.name}
+            </text>
+            <text
+              x={lx}
+              y={ly - 8}
+              textAnchor='middle'
+              style={{ font: '500 12px var(--font-sans)', fill: '#776c64' }}
+            >
+              {label.count}
+            </text>
+          </g>
+        );
+      }
     }
   }
 
@@ -889,10 +1262,14 @@ export function GardenModel({
   const padX = Math.max(0, MIN_VIEW - (Math.max(...xs) - Math.min(...xs))) / 2,
     padY =
       Math.max(0, MIN_VIEW * 0.6 - (Math.max(...ys) - Math.min(...ys))) / 2;
-  const minX = Math.min(...xs) - 30 - padX,
-    maxX = Math.max(...xs) + 30 + padX,
-    minY = Math.min(...ys) - 10 - padY,
-    maxY = Math.max(...ys) + 24 + padY;
+  const [minX, minY, maxX, maxY] = plan
+    ? planBox
+    : [
+        Math.min(...xs) - 30 - padX,
+        Math.min(...ys) - 10 - padY,
+        Math.max(...xs) + 30 + padX,
+        Math.max(...ys) + 24 + padY,
+      ];
   // The needle points to true north: the plot's top faces `garden.north`.
   const bearing = ((garden.north ?? 0) * Math.PI) / 180;
   const n0 = P(0, 0),
@@ -917,236 +1294,306 @@ export function GardenModel({
     setZoom(1);
     setPan([0, 0]);
   };
+  // The plan's key: the colour of each family the garden grows.
+  const families = plan
+    ? [
+        ...new Set(
+          sections.flatMap(s => {
+            if (!s.crop) return [];
+            const family = familyOf(s.crop);
+            return [
+              GREEN_MANURE.has(s.crop)
+                ? 'cover'
+                : family && FAMILY[family]
+                  ? family
+                  : 'other',
+            ];
+          })
+        ),
+      ]
+    : [];
   return (
-    <div ref={frame} className='relative'>
-      <svg
-        role='img'
-        aria-label={title}
-        viewBox={`${minX + (w - vw) / 2 + px} ${minY + (h - vh) / 2 + py} ${vw} ${vh}`}
-        className={cn(
-          'block h-auto max-h-[38rem] w-full',
-          // Two fingers pinch the model, one scrolls the page; zoomed in or
-          // with the hand, one finger moves the view (a mouse always does).
-          area
-            ? 'cursor-crosshair touch-none'
-            : moving || zoom > 1
-              ? 'cursor-grab touch-none active:cursor-grabbing'
-              : 'cursor-grab touch-pan-y active:cursor-grabbing'
-        )}
-        onPointerDown={e => {
-          // An area: in its mode, or a mouse with Shift held.
-          if (onSelectArea && e.isPrimary && (area || e.shiftKey)) {
-            const [x, y] = local(e.clientX, e.clientY);
-            boxFrom.current = [x, y];
-            setAreaBox([x, y, x, y]);
-            e.currentTarget.setPointerCapture(e.pointerId);
-            return;
-          }
-          fingers.current.set(e.pointerId, [e.clientX, e.clientY]);
-          if (fingers.current.size === 2) {
-            pinch.current = { d: spread(), zoom };
-            drag.current = { x: 0, y: 0, pan: [px, py], moved: true };
-            return;
-          }
-          if (zoom > 1 || moving || e.pointerType === 'mouse')
-            drag.current = {
-              x: e.clientX,
-              y: e.clientY,
-              pan: [px, py],
-              moved: false,
-            };
-        }}
-        onPointerMove={e => {
-          if (boxFrom.current) {
-            const [x, y] = local(e.clientX, e.clientY);
-            setAreaBox([boxFrom.current[0], boxFrom.current[1], x, y]);
-            return;
-          }
-          if (fingers.current.has(e.pointerId))
+    <>
+      <div ref={frame} className='relative'>
+        <svg
+          role='img'
+          aria-label={title}
+          viewBox={`${minX + (w - vw) / 2 + px} ${minY + (h - vh) / 2 + py} ${vw} ${vh}`}
+          className={cn(
+            'block h-auto max-h-[38rem] w-full',
+            // Two fingers pinch the model, one scrolls the page; zoomed in or
+            // with the hand, one finger moves the view (a mouse always does).
+            area
+              ? 'cursor-crosshair touch-none'
+              : moving || zoom > 1
+                ? 'cursor-grab touch-none active:cursor-grabbing'
+                : 'cursor-grab touch-pan-y active:cursor-grabbing'
+          )}
+          onPointerDown={e => {
+            // An area: in its mode, or a mouse with Shift held.
+            if (onSelectArea && e.isPrimary && (area || e.shiftKey)) {
+              const [x, y] = local(e.clientX, e.clientY);
+              boxFrom.current = [x, y];
+              setAreaBox([x, y, x, y]);
+              e.currentTarget.setPointerCapture(e.pointerId);
+              return;
+            }
             fingers.current.set(e.pointerId, [e.clientX, e.clientY]);
-          if (pinch.current && fingers.current.size === 2) {
-            zoomTo((pinch.current.zoom * spread()) / pinch.current.d);
-            return;
-          }
-          const d = drag.current;
-          if (!d || pinch.current) return;
-          const dx = e.clientX - d.x,
-            dy = e.clientY - d.y;
-          if (Math.abs(dx) + Math.abs(dy) > 4) d.moved = true;
-          const k = vw / e.currentTarget.clientWidth;
-          if (d.moved) setPan(limit([d.pan[0] - dx * k, d.pan[1] - dy * k]));
-        }}
-        onPointerUp={e => {
-          const from = boxFrom.current;
-          if (from) {
+            if (fingers.current.size === 2) {
+              pinch.current = { d: spread(), zoom };
+              drag.current = { x: 0, y: 0, pan: [px, py], moved: true };
+              return;
+            }
+            if (zoom > 1 || moving || e.pointerType === 'mouse')
+              drag.current = {
+                x: e.clientX,
+                y: e.clientY,
+                pan: [px, py],
+                moved: false,
+              };
+          }}
+          onPointerMove={e => {
+            if (boxFrom.current) {
+              const [x, y] = local(e.clientX, e.clientY);
+              setAreaBox([boxFrom.current[0], boxFrom.current[1], x, y]);
+              return;
+            }
+            if (fingers.current.has(e.pointerId))
+              fingers.current.set(e.pointerId, [e.clientX, e.clientY]);
+            if (pinch.current && fingers.current.size === 2) {
+              zoomTo((pinch.current.zoom * spread()) / pinch.current.d);
+              return;
+            }
+            const d = drag.current;
+            if (!d || pinch.current) return;
+            const dx = e.clientX - d.x,
+              dy = e.clientY - d.y;
+            if (Math.abs(dx) + Math.abs(dy) > 4) d.moved = true;
+            const k = vw / e.currentTarget.clientWidth;
+            if (d.moved) setPan(limit([d.pan[0] - dx * k, d.pan[1] - dy * k]));
+          }}
+          onPointerUp={e => {
+            const from = boxFrom.current;
+            if (from) {
+              boxFrom.current = null;
+              setAreaBox(null);
+              const [x, y] = local(e.clientX, e.clientY);
+              // Barely moved: a tap, which selects as a tap does.
+              if (Math.abs(x - from[0]) + Math.abs(y - from[1]) > 8) {
+                onSelectArea?.(
+                  inBox(e.currentTarget, [from[0], from[1], x, y])
+                );
+                drag.current = { x: 0, y: 0, pan: [px, py], moved: true };
+                setTimeout(() => (drag.current = null));
+              }
+              return;
+            }
+            fingers.current.delete(e.pointerId);
+            if (fingers.current.size < 2) pinch.current = null;
+            setTimeout(() => (drag.current = null));
+          }}
+          onPointerCancel={e => {
             boxFrom.current = null;
             setAreaBox(null);
-            const [x, y] = local(e.clientX, e.clientY);
-            // Barely moved: a tap, which selects as a tap does.
-            if (Math.abs(x - from[0]) + Math.abs(y - from[1]) > 8) {
-              onSelectArea?.(inBox(e.currentTarget, [from[0], from[1], x, y]));
-              drag.current = { x: 0, y: 0, pan: [px, py], moved: true };
-              setTimeout(() => (drag.current = null));
-            }
-            return;
-          }
-          fingers.current.delete(e.pointerId);
-          if (fingers.current.size < 2) pinch.current = null;
-          setTimeout(() => (drag.current = null));
-        }}
-        onPointerCancel={e => {
-          boxFrom.current = null;
-          setAreaBox(null);
-          fingers.current.delete(e.pointerId);
-          pinch.current = null;
-          drag.current = null;
-        }}
-        onPointerLeave={e => {
-          fingers.current.delete(e.pointerId);
-          drag.current = null;
-        }}
-        onClickCapture={e => {
-          if (drag.current?.moved) e.stopPropagation();
-        }}
-        onClick={e => {
-          if ((e.target as Element).closest('[data-sec]')) return;
-          const i = nearest(e.currentTarget, e.clientX, e.clientY);
-          if (i !== null) onSelect(i);
-        }}
-        onDragOver={e => {
-          if (!onDropCrop || !e.dataTransfer.types.includes(CROP_DRAG)) return;
-          e.preventDefault();
-          e.dataTransfer.dropEffect = 'copy';
-          const k = sectionAt(e);
-          if (k !== over) setOver(k);
-        }}
-        onDragLeave={e => {
-          if (!e.currentTarget.contains(e.relatedTarget as Node)) setOver(null);
-        }}
-        onDrop={e => {
-          e.preventDefault();
-          setOver(null);
-          const k = sectionAt(e);
-          const crop = e.dataTransfer.getData(CROP_DRAG);
-          if (k !== null && crop) onDropCrop?.(k, crop);
-        }}
-      >
-        {drawn}
-        {/* The bed under a crop dragged by touch: the drag points this outline
-            at it (TOUCH_OVER), so a move never re-renders the garden. */}
-        <polygon
-          data-touch-over=''
-          points=''
-          visibility='hidden'
-          fill='rgba(154,63,31,0.18)'
-          stroke={MARK}
-          strokeWidth={2}
-          strokeDasharray='6 4'
-          pointerEvents='none'
-        />
-      </svg>
-      {areaBox ? (
-        <div
-          aria-hidden
-          className='pointer-events-none absolute rounded-sm border-2 border-dashed border-primary bg-primary/10'
-          style={{
-            left: Math.min(areaBox[0], areaBox[2]),
-            top: Math.min(areaBox[1], areaBox[3]),
-            width: Math.abs(areaBox[2] - areaBox[0]),
-            height: Math.abs(areaBox[3] - areaBox[1]),
+            fingers.current.delete(e.pointerId);
+            pinch.current = null;
+            drag.current = null;
           }}
-        />
-      ) : null}
-      {/* The tools together: the hand moves the drawing, Select draws a box
+          onPointerLeave={e => {
+            fingers.current.delete(e.pointerId);
+            drag.current = null;
+          }}
+          onClickCapture={e => {
+            if (drag.current?.moved) e.stopPropagation();
+          }}
+          onClick={e => {
+            if ((e.target as Element).closest('[data-sec]')) return;
+            const i = nearest(e.currentTarget, e.clientX, e.clientY);
+            if (i !== null) onSelect(i);
+          }}
+          onDragOver={e => {
+            if (!onDropCrop || !e.dataTransfer.types.includes(CROP_DRAG))
+              return;
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'copy';
+            const k = sectionAt(e);
+            if (k !== over) setOver(k);
+          }}
+          onDragLeave={e => {
+            if (!e.currentTarget.contains(e.relatedTarget as Node))
+              setOver(null);
+          }}
+          onDrop={e => {
+            e.preventDefault();
+            setOver(null);
+            const k = sectionAt(e);
+            const crop = e.dataTransfer.getData(CROP_DRAG);
+            if (k !== null && crop) onDropCrop?.(k, crop);
+          }}
+        >
+          {plan ?? drawn}
+          {/* The bed under a crop dragged by touch: the drag points this outline
+            at it (TOUCH_OVER), so a move never re-renders the garden. */}
+          <polygon
+            data-touch-over=''
+            points=''
+            visibility='hidden'
+            fill='rgba(154,63,31,0.18)'
+            stroke={MARK}
+            strokeWidth={2}
+            strokeDasharray='6 4'
+            pointerEvents='none'
+          />
+        </svg>
+        {areaBox ? (
+          <div
+            aria-hidden
+            className='pointer-events-none absolute rounded-sm border-2 border-dashed border-primary bg-primary/10'
+            style={{
+              left: Math.min(areaBox[0], areaBox[2]),
+              top: Math.min(areaBox[1], areaBox[3]),
+              width: Math.abs(areaBox[2] - areaBox[0]),
+              height: Math.abs(areaBox[3] - areaBox[1]),
+            }}
+          />
+        ) : null}
+        {/* The model or the plan from above. */}
+        <div
+          role='group'
+          aria-label={t('planner.view.label')}
+          className='absolute top-2 right-2 flex rounded-lg bg-card/90 p-0.5 elevation-raised'
+        >
+          {(['model', 'plan'] as const).map(v => (
+            <button
+              key={v}
+              type='button'
+              aria-pressed={view === v}
+              onClick={() => setView(v)}
+              className={cn(
+                'focus-ring h-7 rounded-md px-2.5 text-xs font-medium sm:h-9 sm:px-3 sm:text-sm',
+                view === v
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-foreground hover:bg-muted'
+              )}
+            >
+              {t(`planner.view.${v}`)}
+            </button>
+          ))}
+        </div>
+        {/* The tools together: the hand moves the drawing, Select draws a box
           over sections (on a phone both are modes, a finger otherwise
           scrolling the page), and what is selected is cleared beside them. */}
-      <div className='absolute bottom-2 left-2 flex max-w-[calc(100%-4rem)] flex-col items-start gap-1.5'>
-        {area && onSelectArea ? (
-          <p className='rounded-md bg-card/90 px-2 py-1 text-xs text-foreground elevation-raised'>
-            {t('planner.area.hint')}{' '}
-            <button
-              type='button'
-              onClick={() => onSelectArea(sections.map((_, i) => i))}
-              className='focus-ring font-medium text-primary-text underline underline-offset-2'
-            >
-              {t('planner.area.all')}
-            </button>
-          </p>
-        ) : null}
-        <div className='flex flex-wrap items-center gap-1.5'>
-          <ToolButton
-            pressed={moving}
-            label={t('planner.move')}
-            onClick={() => setTool(moving ? null : 'move')}
-          >
-            <Hand className='size-4' />
-          </ToolButton>
-          {onSelectArea ? (
-            <ToolButton
-              pressed={area}
-              label={t('planner.area.select')}
-              onClick={() => setTool(area ? null : 'area')}
-            >
-              <SquareDashedMousePointer className='size-4' />
-              {area ? t('planner.area.done') : t('planner.area.short')}
-            </ToolButton>
+        <div className='absolute bottom-2 left-2 flex max-w-[calc(100%-4rem)] flex-col items-start gap-1.5'>
+          {area && onSelectArea ? (
+            <p className='rounded-md bg-card/90 px-2 py-1 text-xs text-foreground elevation-raised'>
+              {t('planner.area.hint')}{' '}
+              <button
+                type='button'
+                onClick={() => onSelectArea(sections.map((_, i) => i))}
+                className='focus-ring font-medium text-primary-text underline underline-offset-2'
+              >
+                {t('planner.area.all')}
+              </button>
+            </p>
           ) : null}
-          {onClear && selected.length > 0 ? (
-            <ToolButton label={t('planner.clearSelection')} onClick={onClear}>
-              <X className='size-3.5' />
-              {t('planner.clearSelection')}
+          <div className='flex flex-wrap items-center gap-1.5'>
+            <ToolButton
+              pressed={moving}
+              label={t('planner.move')}
+              onClick={() => setTool(moving ? null : 'move')}
+            >
+              <Hand className='size-4' />
             </ToolButton>
+            {onSelectArea ? (
+              <ToolButton
+                pressed={area}
+                label={t('planner.area.select')}
+                onClick={() => setTool(area ? null : 'area')}
+              >
+                <SquareDashedMousePointer className='size-4' />
+                {area ? t('planner.area.done') : t('planner.area.short')}
+              </ToolButton>
+            ) : null}
+            {onClear && selected.length > 0 ? (
+              <ToolButton label={t('planner.clearSelection')} onClick={onClear}>
+                <X className='size-3.5' />
+                {t('planner.clearSelection')}
+              </ToolButton>
+            ) : null}
+          </div>
+        </div>
+        <div
+          role='group'
+          aria-label={t('planner.whereNorth')}
+          title={t('planner.whereNorth')}
+          className='absolute top-2 left-2 flex items-center rounded-lg bg-card/90 elevation-raised'
+        >
+          {onTurnNorth ? (
+            <ModelControl
+              label={t('planner.northLeft')}
+              onClick={() => onTurnNorth(45)}
+            >
+              <RotateCcw className='size-4' />
+            </ModelControl>
+          ) : null}
+          <Needle
+            d={
+              plan
+                ? [-Math.sin(bearing), -Math.cos(bearing)]
+                : [n1[0] - n0[0], n1[1] - n0[1]]
+            }
+          />
+          {onTurnNorth ? (
+            <ModelControl
+              label={t('planner.northRight')}
+              onClick={() => onTurnNorth(-45)}
+            >
+              <RotateCw className='size-4' />
+            </ModelControl>
           ) : null}
         </div>
-      </div>
-      <div
-        role='group'
-        aria-label={t('planner.whereNorth')}
-        title={t('planner.whereNorth')}
-        className='absolute top-2 left-2 flex items-center rounded-lg bg-card/90 elevation-raised'
-      >
-        {onTurnNorth ? (
+        <div className='absolute right-2 bottom-2 flex flex-col rounded-lg bg-card/90 elevation-raised'>
           <ModelControl
-            label={t('planner.northLeft')}
-            onClick={() => onTurnNorth(45)}
+            label={t('planner.zoomIn')}
+            disabled={zoom >= MAX_ZOOM}
+            onClick={() => zoomTo(zoom * ZOOM_STEP)}
           >
-            <RotateCcw className='size-4' />
+            <ZoomIn className='size-4' />
           </ModelControl>
-        ) : null}
-        <Needle d={[n1[0] - n0[0], n1[1] - n0[1]]} />
-        {onTurnNorth ? (
           <ModelControl
-            label={t('planner.northRight')}
-            onClick={() => onTurnNorth(-45)}
+            label={t('planner.zoomOut')}
+            disabled={zoom <= MIN_ZOOM}
+            onClick={() => zoomTo(zoom / ZOOM_STEP)}
           >
-            <RotateCw className='size-4' />
+            <ZoomOut className='size-4' />
           </ModelControl>
-        ) : null}
+          <ModelControl
+            label={t('planner.zoomFit')}
+            disabled={zoom === 1 && px === 0 && py === 0}
+            onClick={fitView}
+          >
+            <Maximize2 className='size-4' />
+          </ModelControl>
+        </div>
       </div>
-      <div className='absolute right-2 bottom-2 flex flex-col rounded-lg bg-card/90 elevation-raised'>
-        <ModelControl
-          label={t('planner.zoomIn')}
-          disabled={zoom >= MAX_ZOOM}
-          onClick={() => zoomTo(zoom * ZOOM_STEP)}
-        >
-          <ZoomIn className='size-4' />
-        </ModelControl>
-        <ModelControl
-          label={t('planner.zoomOut')}
-          disabled={zoom <= MIN_ZOOM}
-          onClick={() => zoomTo(zoom / ZOOM_STEP)}
-        >
-          <ZoomOut className='size-4' />
-        </ModelControl>
-        <ModelControl
-          label={t('planner.zoomFit')}
-          disabled={zoom === 1 && px === 0 && py === 0}
-          onClick={fitView}
-        >
-          <Maximize2 className='size-4' />
-        </ModelControl>
-      </div>
-    </div>
+      {families.length ? (
+        <ul className='flex flex-wrap gap-x-4 gap-y-1 px-4 pt-2 text-xs text-muted-foreground'>
+          {families.map(k => (
+            <li key={k} className='flex items-center gap-1.5'>
+              <span
+                aria-hidden
+                className='size-3 rounded-sm'
+                style={{
+                  background:
+                    k === 'cover' ? COVER : k === 'other' ? OTHER : FAMILY[k],
+                }}
+              />
+              {t(`planner.family.${k}`)}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </>
   );
 }
 
