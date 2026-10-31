@@ -52,7 +52,14 @@ export interface Garden {
   /** The soil as the gardener knows it; unset, the map's (lib/soil). */
   soil?: Texture;
   acidity?: Acidity;
+  /** What stands along each side of the plot as drawn (absent: open), and
+   *  the L's cut corner: for the sun its beds get (a later step). */
+  sides?: Partial<Record<'top' | 'right' | 'bottom' | 'left' | 'corner', Side>>;
 }
+
+/** Along a side of the plot: a fence or hedge (about 2 m), a house or wall
+ *  (about 6 m) or tall trees (about 10 m). */
+export type Side = 'fence' | 'house' | 'trees';
 
 export interface Section {
   bed: number;
@@ -616,6 +623,72 @@ export function split(
     ...sections.slice(index + 1),
   ];
   return renumber(out, s.bed, a);
+}
+
+/** Where a bed's section starts along it, to find it again after a change. */
+const spot = (s: Section, a: Axis) => `${s.bed}|${span(s, a)[0].toFixed(3)}`;
+const pick = (out: Section[], spots: Set<string>, a: Axis) =>
+  out.flatMap((s, i) => (spots.has(spot(s, a)) ? [i] : []));
+
+/** The chosen sections joined where they follow one another in a bed: each
+ *  run one section with its first one's crop and planting. With what is
+ *  chosen now. */
+export function joinSections(
+  sections: Section[],
+  ids: number[],
+  a: Axis = 'y'
+): { sections: Section[]; ids: number[] } {
+  const chosen = ids.map(i => sections[i]).filter(Boolean);
+  const gone = new Set<Section>();
+  const grown = new Map<Section, Section>();
+  for (const bed of new Set(chosen.map(s => s.bed))) {
+    const row = chosen
+      .filter(s => s.bed === bed)
+      .sort((p, q) => span(p, a)[0] - span(q, a)[0]);
+    let first = row[0];
+    let end = span(first, a)[1];
+    for (const s of row.slice(1)) {
+      if (Math.abs(span(s, a)[0] - end) < 1e-6) {
+        gone.add(s);
+        end = span(s, a)[1];
+        grown.set(first, along(first, a, span(first, a)[0], end));
+      } else {
+        first = s;
+        end = span(s, a)[1];
+      }
+    }
+  }
+  let out = sections.filter(s => !gone.has(s)).map(s => grown.get(s) ?? s);
+  for (const bed of new Set(chosen.map(s => s.bed)))
+    out = renumber(out, bed, a);
+  const spots = new Set(
+    chosen.filter(s => !gone.has(s)).map(s => spot(grown.get(s) ?? s, a))
+  );
+  return { sections: out, ids: pick(out, spots, a) };
+}
+
+/** Each chosen section cut in two along its bed (as `split`), unless a half
+ *  would be shorter than 30 cm. With the halves chosen. */
+export function splitSections(
+  sections: Section[],
+  ids: number[],
+  a: Axis = 'y'
+): { sections: Section[]; ids: number[] } {
+  const spots = new Set<string>();
+  let out = sections;
+  for (const i of [...ids].sort((p, q) => q - p)) {
+    const s = out[i];
+    if (!s) continue;
+    const [lo, hi] = span(s, a);
+    if ((hi - lo) / 2 < SHORTEST) {
+      spots.add(spot(s, a));
+      continue;
+    }
+    out = split(out, i, a);
+    spots.add(spot(along(s, a, lo, (lo + hi) / 2), a));
+    spots.add(spot(along(s, a, (lo + hi) / 2, hi), a));
+  }
+  return { sections: out, ids: pick(out, spots, a) };
 }
 
 /** A section joined with the one before (-1) or after (1) it in its bed,

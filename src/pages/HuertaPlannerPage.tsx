@@ -73,6 +73,8 @@ import {
   finish,
   fit,
   inMonth,
+  joinSections,
+  splitSections,
   layout,
   lengthen,
   loadPlan,
@@ -170,6 +172,9 @@ const drawnAs = (g: GrowthStage): Stage =>
   g === 'seedling' || g === 'young' ? g : 'grown';
 /** The tick for the guide's second step: the plan kept or changed. */
 const KEPT = 'guide:plan';
+/** Sown or planted at once up to this many, their plants come up on the
+ *  drawing. */
+const FRESH_MAX = 24;
 /** Selected sections listed one by one up to this many; past it, by crop. */
 const SHORT_LIST = 6;
 
@@ -348,7 +353,9 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const plantOn = (ids: number[], planted: string | undefined) => {
     const withCrop = ids.filter(i => plan?.sections[i]?.crop);
     edit(withCrop, x => ({ ...x, planted }));
-    if (planted) {
+    // Plants coming up out of the soil, for a few sections: hundreds at once
+    // froze a big garden's drawing for seconds.
+    if (planted && withCrop.length <= FRESH_MAX) {
       setFresh(withCrop);
       setTimeout(() => setFresh([]), 2500);
     }
@@ -994,6 +1001,14 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                       setSel(cur => [...new Set([...cur, ...ids])]);
                       setPatch(null);
                     }}
+                    onBeds={beds => {
+                      setSel(
+                        plan.sections.flatMap((x, k) =>
+                          beds.includes(x.bed) ? [k] : []
+                        )
+                      );
+                      setPatch(null);
+                    }}
                     onBed={i =>
                       setSel(
                         plan.sections.flatMap((x, k) =>
@@ -1201,6 +1216,47 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                               )}
                             </Button>
                           )}
+                          {/* Many sections reshaped at once: those that follow
+                              one another in a bed joined, or each cut in two. */}
+                          <Button
+                            variant='outline'
+                            disabled={
+                              !chosen.some(i =>
+                                chosen.some(
+                                  j =>
+                                    plan.sections[j].bed ===
+                                      plan.sections[i].bed &&
+                                    plan.sections[j].part ===
+                                      plan.sections[i].part + 1
+                                )
+                              )
+                            }
+                            onClick={() => {
+                              const next = joinSections(
+                                plan.sections,
+                                chosen,
+                                axis
+                              );
+                              update({ ...plan, sections: next.sections });
+                              setSel(next.ids);
+                            }}
+                          >
+                            {t('planner.many.join')}
+                          </Button>
+                          <Button
+                            variant='outline'
+                            onClick={() => {
+                              const next = splitSections(
+                                plan.sections,
+                                chosen,
+                                axis
+                              );
+                              update({ ...plan, sections: next.sections });
+                              setSel(next.ids);
+                            }}
+                          >
+                            {t('planner.many.split')}
+                          </Button>
                           <Button variant='ghost' onClick={() => setSel([])}>
                             {t('planner.clearSelection')}
                           </Button>
