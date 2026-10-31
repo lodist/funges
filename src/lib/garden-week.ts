@@ -736,8 +736,55 @@ export type Coming =
   | { kind: 'wait'; crop: string; status: CropStatus; at: number[] };
 const AHEAD_DAYS = 28;
 /** Crops whose first harvest is not a matter of weeks (perennials, flowers
- *  next spring): no ready day. */
+ *  next spring): first picked in the place's harvest months, from the year
+ *  their note gives (firstCrop). */
 const NOTED = new Set(CROPS.filter(c => c.note).map(c => c.id));
+const NOTE = Object.fromEntries(CROPS.map(c => [c.id, c.note]));
+
+/** The month (0-11) a crop's harvest months begin at the place: the first
+ *  that follows a month without; null with none, or all year. */
+export function harvestFrom(bits: number | undefined): number | null {
+  if (!bits || bits === 0xfff) return null;
+  for (let m = 0; m < 12; m++)
+    if ((bits >> m) & 1 && !((bits >> ((m + 11) % 12)) & 1)) return m;
+  return null;
+}
+
+/** The day a perennial, next-year crop or bulb put in on `planted` is first
+ *  picked (or flowers): the first of the place's harvest months on or after
+ *  its note's year. Its first season is the year it went in if before July,
+ *  else the next; herbs settle in for four weeks first. */
+// ponytail: four weeks to settle is a round figure, not a fitted one.
+export function firstCrop(
+  crop: string,
+  year: PlaceYear | null | undefined,
+  planted: string
+): string | null {
+  const note = NOTE[crop];
+  const bits = year?.crops[crop]?.harvest;
+  if (!note || !bits) return null;
+  const y = Number(planted.slice(0, 4));
+  const first = Number(planted.slice(5, 7)) <= 6 ? y : y + 1;
+  const from =
+    note === 'next_year'
+      ? `${y + 1}-01-01`
+      : note === 'second_year'
+        ? `${first + 1}-01-01`
+        : note === 'third_year'
+          ? `${first + 2}-01-01`
+          : note === 'perennial'
+            ? addDays(planted, 28)
+            : planted;
+  let fy = Number(from.slice(0, 4));
+  let fm = Number(from.slice(5, 7)) - 1;
+  if ((bits >> fm) & 1) return from;
+  for (let k = 0; k < 12; k++) {
+    fm = (fm + 1) % 12;
+    if (fm === 0) fy++;
+    if ((bits >> fm) & 1) return `${fy}-${String(fm + 1).padStart(2, '0')}-01`;
+  }
+  return null;
+}
 const COVER = new Set(CROPS.filter(c => c.kind === 'cover').map(c => c.id));
 
 /** The harvest months a planted crop's steps follow: none for perennials,
@@ -810,7 +857,9 @@ export type GrowthStage =
  *  is over (the place's harvest months, `harvest`, or a few weeks past
  *  ready; a quick crop, sown again for more, is picked within weeks
  *  wherever its season goes on); between, its stage from the warmth since,
- *  as the drawing's plants. Perennials and next-year crops stay grown. With
+ *  as the drawing's plants. Perennials, next-year crops and bulbs are young
+ *  until their first crop (firstCrop), then ready in the place's harvest
+ *  months. With
  *  the place, its fate ends a crop: lost if it was not ready by then, over if
  *  it was. */
 export function stageOn(
@@ -831,7 +880,17 @@ export function stageOn(
     return need?.days && readyBy(s.crop, need, grow, start, dies.day)
       ? 'bare'
       : 'lost';
-  if (!need?.days || NOTED.has(s.crop)) return 'grown';
+  if (NOTED.has(s.crop)) {
+    // Young until its first crop; then picked (or in flower) in the place's
+    // harvest months, grown between.
+    const first = firstCrop(s.crop, place?.year, start);
+    if (!first) return 'grown';
+    if (day < first) return 'young';
+    const bits = place?.year?.crops[s.crop]?.harvest ?? 0;
+    const month = new Date(`${day}T12:00:00`).getMonth();
+    return (bits >> month) & 1 ? 'ready' : 'grown';
+  }
+  if (!need?.days) return 'grown';
   const m = asGrow(grow).model?.(s.crop, start);
   if (m) {
     // Its stage from the warmth it has had; picked from its ready day to its

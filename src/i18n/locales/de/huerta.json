@@ -266,7 +266,8 @@
     "too_late": "Zu spät",
     "not_here": "Hier nicht im Freien",
     "wait_autumn": "Im Herbst",
-    "wait_spring": "Im Frühling"
+    "wait_spring": "Im Frühling",
+    "wait_days": "Tage noch zu lang"
   },
   "crops": {
     "garlic": "Knoblauch",
@@ -405,7 +406,13 @@
       "next_year": "Trägt ab dem nächsten Jahr",
       "second_year": "Stiele ab dem zweiten Jahr ernten",
       "third_year": "Stangen ab dem dritten Frühling stechen",
-      "perennial": "Kommt jedes Jahr wieder"
+      "perennial": "Kommt jedes Jahr wieder",
+      "next_year_at": "Ab {{month}}, im Jahr nach dem Pflanzen",
+      "second_year_at": "Stiele ab {{month}} im zweiten Jahr",
+      "third_year_at": "Stangen ab {{month}} im dritten Frühling",
+      "perennial_at": "Ab {{month}}, jedes Jahr",
+      "perennial_all": "Das ganze Jahr, jedes Jahr",
+      "spring_flowers_at": "Blüht ab {{month}}, im Frühling nach dem Pflanzen"
     },
     "source": "Anbaudaten: RHS, UC ANR und Aussaatanleitungen der Saatgutfirmen.",
     "year": "Sein Jahr rund um {{place}}"
