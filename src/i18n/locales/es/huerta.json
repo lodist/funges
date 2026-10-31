@@ -2222,6 +2222,8 @@
   "year": {
     "title": "Calendario",
     "seoTitle": "Calendario de siembra para tu zona",
+    "failed": "El calendario no ha cargado. Prueba de nuevo en un momento.",
+    "none": "Aquí no hay calendario de Huerta. Prueba con un pueblo cercano.",
     "description": "Cuándo se siembra, se planta y se cosecha cada cultivo en tu zona, a partir de su clima.",
     "around": "En {{place}}, en un año normal.",
     "noPlace": "Elige tu lugar para ver su año.",

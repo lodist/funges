@@ -2222,6 +2222,8 @@
   "year": {
     "title": "Calendrier",
     "seoTitle": "Calendrier des semis pour chez vous",
+    "failed": "Le calendrier n'a pas pu se charger. Réessayez dans un instant.",
+    "none": "Pas de calendrier Huerta ici. Essayez une localité proche.",
     "description": "Quand chaque culture se sème, se plante et se récolte chez vous, d'après votre climat.",
     "around": "Autour de {{place}}, une année ordinaire.",
     "noPlace": "Choisissez votre lieu pour voir son année.",
