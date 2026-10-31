@@ -392,8 +392,9 @@
     "apart": "{{value}} cm Abstand",
     "apartRows": "{{value}} cm Abstand, Reihen {{rows}} cm",
     "sun": {
-      "full": "Volle Sonne",
-      "part": "Sonne bis Halbschatten"
+      "6": "Volle Sonne: 6 Stunden am Tag oder mehr",
+      "4": "Halbschatten geht: 4 Stunden Sonne oder mehr",
+      "3": "Lichter Schatten geht: 3 Stunden Sonne oder mehr"
     },
     "ready": {
       "weeks_one": "In etwa {{count}} Woche",
@@ -2304,7 +2305,42 @@
       "other": "Etwas anderes"
     },
     "before": "Vorher",
-    "beforeText": "{{crop}}, raus am {{date}}"
+    "beforeText": "{{crop}}, raus am {{date}}",
+    "aroundLabel": "Rund um den Garten",
+    "aroundHint": "Ein Zaun, ein Haus oder Bäume an einer Seite beschatten die Beete daneben. Die Zeichnung zeigt den Schatten im geplanten Monat.",
+    "side": {
+      "n": "Nord",
+      "ne": "Nordost",
+      "e": "Ost",
+      "se": "Südost",
+      "s": "Süd",
+      "sw": "Südwest",
+      "w": "West",
+      "nw": "Nordwest",
+      "corner": "Ecke"
+    },
+    "sideKind": {
+      "open": "Offen",
+      "fence": "Zaun oder Hecke",
+      "house": "Haus oder Mauer",
+      "trees": "Hohe Bäume"
+    },
+    "sun": {
+      "here_one": "Hier im {{month}} etwa {{count}} Stunde Sonne am Tag, {{when}}.",
+      "here_other": "Hier im {{month}} etwa {{count}} Stunden Sonne am Tag, {{when}}.",
+      "none": "Hier im {{month}} kaum direkte Sonne.",
+      "when": {
+        "allDay": "fast den ganzen Tag",
+        "morning": "vor allem am Morgen",
+        "afternoon": "vor allem am Nachmittag",
+        "midday": "um die Mittagszeit",
+        "morningEvening": "am Morgen und am Abend"
+      },
+      "short": "Dieser Platz ist zu schattig für {{crop}}: Nötig sind {{hours}} Stunden Sonne am Tag oder mehr.",
+      "shortCount_one": "! 1 Kultur mit zu viel Schatten",
+      "shortCount_other": "! {{count}} Kulturen mit zu viel Schatten",
+      "shortHint": "Kulturen an einem Platz mit weniger Sonne, als sie brauchen. Tippen, um sie auszuwählen."
+    }
   },
   "year": {
     "title": "Kalender",

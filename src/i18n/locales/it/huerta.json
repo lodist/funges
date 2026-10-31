@@ -392,8 +392,9 @@
     "apart": "A {{value}} cm",
     "apartRows": "A {{value}} cm, file a {{rows}} cm",
     "sun": {
-      "full": "Pieno sole",
-      "part": "Sole o mezz'ombra"
+      "6": "Pieno sole: 6 ore al giorno o più",
+      "4": "Tollera la mezz'ombra: 4 ore di sole o più",
+      "3": "Tollera l'ombra leggera: 3 ore di sole o più"
     },
     "ready": {
       "weeks_one": "In circa {{count}} settimana",
@@ -2304,7 +2305,42 @@
       "other": "Qualcos'altro"
     },
     "before": "Prima",
-    "beforeText": "{{crop}}, fuori il {{date}}"
+    "beforeText": "{{crop}}, fuori il {{date}}",
+    "aroundLabel": "Intorno all'orto",
+    "aroundHint": "Una recinzione, una casa o alberi su un lato fanno ombra alle aiuole vicine. Il disegno mostra l'ombra del mese che stai pianificando.",
+    "side": {
+      "n": "Nord",
+      "ne": "Nord-est",
+      "e": "Est",
+      "se": "Sud-est",
+      "s": "Sud",
+      "sw": "Sud-ovest",
+      "w": "Ovest",
+      "nw": "Nord-ovest",
+      "corner": "Angolo"
+    },
+    "sideKind": {
+      "open": "Libero",
+      "fence": "Recinzione o siepe",
+      "house": "Casa o muro",
+      "trees": "Alberi alti"
+    },
+    "sun": {
+      "here_one": "Qui, a {{month}}, circa {{count}} ora di sole al giorno, {{when}}.",
+      "here_other": "Qui, a {{month}}, circa {{count}} ore di sole al giorno, {{when}}.",
+      "none": "Qui, a {{month}}, quasi niente sole diretto.",
+      "when": {
+        "allDay": "quasi tutto il giorno",
+        "morning": "soprattutto al mattino",
+        "afternoon": "soprattutto al pomeriggio",
+        "midday": "verso mezzogiorno",
+        "morningEvening": "al mattino e alla sera"
+      },
+      "short": "Questo posto è troppo in ombra per {{crop}}: servono {{hours}} ore di sole al giorno o più.",
+      "shortCount_one": "! 1 coltura troppo in ombra",
+      "shortCount_other": "! {{count}} colture troppo in ombra",
+      "shortHint": "Colture in un posto con meno sole di quanto serva loro. Tocca per selezionarle."
+    }
   },
   "year": {
     "title": "Calendario",

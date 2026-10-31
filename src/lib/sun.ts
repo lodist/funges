@@ -190,13 +190,22 @@ export function level(light: Light, s: Box, month: number) {
   return (h >= 6 ? 'full' : h >= 3 ? 'part' : 'little') as SunLevel;
 }
 
-/** A spot's hours as at midsummer over the three months from `day`'s (those
- *  a crop going in then grows through), their mean; null when every one is
- *  left out. */
-export function season(light: Light, s: Box, day: string) {
+/** A spot's hours as at midsummer over the first three months from `day`'s
+ *  that a crop going in then grows through (`grows`: warm enough; every
+ *  month without it), their mean; null when every one is left out. A crop
+ *  that goes in in autumn so counts the spring it grows on in, not the
+ *  winter it stands still through. */
+export function season(
+  light: Light,
+  s: Box,
+  day: string,
+  grows: (month: number) => boolean = () => true
+) {
   const first = Number(day.slice(5, 7)) - 1;
-  const each = [0, 1, 2].flatMap(k => {
-    const m = (first + k) % 12;
+  const months = Array.from({ length: 12 }, (_, k) => (first + k) % 12)
+    .filter(grows)
+    .slice(0, 3);
+  const each = months.flatMap(m => {
     const h = asMidsummer(light, light.months(s)[m].hours, m);
     return h === null ? [] : [h];
   });

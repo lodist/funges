@@ -11,11 +11,13 @@ import {
   BED_HEIGHT,
   familyOf,
   fit,
+  L_CUT,
   regions,
   type Garden,
   type Rect,
   type Section,
 } from '@/lib/planner';
+import { wallsOf } from '@/lib/sun';
 import { CROPS, huertaImage } from '@/lib/huerta';
 import {
   Hand,
@@ -79,6 +81,17 @@ const GREEN_MANURE = new Set(
 const OTHER = '#9fae84';
 const OPEN_EARTH = '#8a6f58';
 const SIDE = { fence: '#b08d63', house: '#9c968f', trees: '#5d7a4a' };
+/** What stands along a side, in the model: a block this thick and high
+ *  (metres; low, as an architect's model shows its surroundings), and its
+ *  two lit faces. One between the plot and the viewer is cut to a sill. */
+const SIDE_BLOCK = { fence: 0.6, house: 1, trees: 1.3 };
+const SIDE_FACES = {
+  fence: ['#94744f', '#a3825b'],
+  house: ['#827d77', '#8f8a84'],
+  trees: ['#4a633a', '#536e42'],
+};
+const SIDE_DEEP = 0.3;
+const SILL = 0.12;
 const SOIL = '#6c5544';
 const TIMBER = ['#e5d5bb', '#cfba98', '#eadcc5'];
 const MARK = '#c9603a';
@@ -192,8 +205,8 @@ interface GardenModelProps {
   /** Whole beds chosen by their numbers on the plan (a tap, or a drag
    *  along them). */
   onBeds?: (beds: number[]) => void;
-  /** How much sun a section gets in the month shown (lib/sun, a later
-   *  step): a flat tone on the plan, none where not known. */
+  /** How much sun a section gets in the month shown (lib/sun): a flat tone
+   *  on it, none where not known. */
   sunAt?: (s: Section) => 'full' | 'part' | 'little' | undefined;
   /** The sections just planted: their plants come up out of the soil. */
   fresh?: number[];
@@ -427,30 +440,41 @@ export function GardenModel({
       width: (x1 - x0) * S,
       height: (y1 - y0) * S,
     });
-    // What stands along a side, a band outside it (a later step sets them).
+    // What stands along a side, a band outside it; in the L's cut corner,
+    // the corner filled.
     const band = PLAN_MARGIN * 0.5;
-    const edges = {
-      top: [0, -band, W, 0],
-      bottom: [0, L, W, L + band],
-      left: [-band, 0, 0, L],
-      right: [W, 0, W + band, L],
-    } as const;
-    for (const side of ['top', 'bottom', 'left', 'right'] as const) {
-      const kind = garden.sides?.[side];
-      if (kind)
-        nodes.push(
-          <rect
-            key={`side-${side}`}
-            {...at(
-              edges[side][0],
-              edges[side][1],
-              edges[side][2],
-              edges[side][3]
-            )}
-            fill={SIDE[kind]}
-          />
-        );
+    for (const w of wallsOf(garden)) {
+      if (w.side === 'corner') continue;
+      const out = w.side === 'top' || w.side === 'left' ? -band : band;
+      nodes.push(
+        <rect
+          key={`side-${w.side}`}
+          {...(w.x0 === w.x1
+            ? at(
+                Math.min(w.x0, w.x0 + out),
+                w.y0,
+                Math.max(w.x0, w.x0 + out),
+                w.y1
+              )
+            : at(
+                w.x0,
+                Math.min(w.y0, w.y0 + out),
+                w.x1,
+                Math.max(w.y0, w.y0 + out)
+              ))}
+          fill={SIDE[w.kind]}
+        />
+      );
     }
+    const corner = garden.shape === 'L' ? garden.sides?.corner : undefined;
+    if (corner)
+      nodes.push(
+        <rect
+          key='side-corner'
+          {...at(W * L_CUT.width, L * L_CUT.length, W, L)}
+          fill={SIDE[corner]}
+        />
+      );
     regions(garden).forEach(r =>
       nodes.push(
         <rect
@@ -951,6 +975,61 @@ export function GardenModel({
       P(s.x0, s.y1, rim),
     ]);
 
+  // What stands along the sides, as blocks outside the plot (the L's cut
+  // corner whole); one between the plot and the viewer is cut to a sill.
+  const blocks = wallsOf(garden)
+    .filter(w => w.side !== 'corner')
+    .map(w => {
+      const d = SIDE_DEEP;
+      const r: Rect =
+        w.side === 'left'
+          ? [w.x0 - d, w.y0, w.x0, w.y1]
+          : w.side === 'right'
+            ? [w.x0, w.y0, w.x0 + d, w.y1]
+            : w.side === 'top'
+              ? [w.x0, w.y0 - d, w.x1, w.y0]
+              : [w.x0, w.y0, w.x1, w.y0 + d];
+      const n = { left: [-1, 0], right: [1, 0], top: [0, -1], bottom: [0, 1] }[
+        w.side as 'left' | 'right' | 'top' | 'bottom'
+      ];
+      return { r, kind: w.kind, n };
+    })
+    .concat(
+      garden.shape === 'L' && garden.sides?.corner
+        ? [
+            {
+              r: [W * L_CUT.width, L * L_CUT.length, W, L] as Rect,
+              kind: garden.sides.corner,
+              n: [1, 1],
+            },
+          ]
+        : []
+    )
+    .map(({ r, kind, n }) => {
+      const cx = (r[0] + r[2]) / 2,
+        cy = (r[1] + r[3]) / 2;
+      const near = depth(cx + n[0], cy + n[1]) > depth(cx, cy);
+      return { r, kind, near, h: near ? SILL : SIDE_BLOCK[kind] };
+    })
+    .sort(
+      (a, z) =>
+        depth((a.r[0] + a.r[2]) / 2, (a.r[1] + a.r[3]) / 2) -
+        depth((z.r[0] + z.r[2]) / 2, (z.r[1] + z.r[3]) / 2)
+    );
+  const block = (b: (typeof blocks)[number], k: number) =>
+    box(
+      b.r[0],
+      b.r[1],
+      b.r[2],
+      b.r[3],
+      0,
+      b.h,
+      SIDE[b.kind],
+      SIDE_FACES[b.kind][0],
+      SIDE_FACES[b.kind][1],
+      `block${k}`
+    );
+
   const regs = regions(garden).sort(
     (a, z) =>
       depth((a[0] + a[2]) / 2, (a[1] + a[3]) / 2) -
@@ -998,6 +1077,10 @@ export function GardenModel({
         </filter>
       </defs>
     );
+    // Behind the plot, what stands along its far sides.
+    blocks.forEach((b, k) => {
+      if (!b.near) drawn.push(block(b, k));
+    });
     // The plot as a block of earth cut out of the ground.
     regs.forEach((r, i) => {
       const [a0, b0] = turn(r[0], r[1]),
@@ -1118,6 +1201,17 @@ export function GardenModel({
               onDoubleClick={onBed ? () => onBed(i) : undefined}
             />
           );
+          const sun = sunAt?.(s);
+          if (sun === 'part' || sun === 'little')
+            drawn.push(
+              <polygon
+                key={`sun${i}`}
+                points={top(s)}
+                fill='#1f1a17'
+                fillOpacity={sun === 'part' ? 0.16 : 0.34}
+                pointerEvents='none'
+              />
+            );
           if (!s.crop) continue;
           const crop = s.crop;
           const look = PLANT_LOOK[crop];
@@ -1171,6 +1265,10 @@ export function GardenModel({
         plants.sort((a, z) => a.d - z.d).forEach(p => drawn.push(p.node));
       });
 
+    // In front, what stands along the near sides, as a sill.
+    blocks.forEach((b, k) => {
+      if (b.near) drawn.push(block(b, k));
+    });
     for (const k of selected)
       if (sections[k])
         drawn.push(
@@ -1247,13 +1345,18 @@ export function GardenModel({
 
   const xs: number[] = [],
     ys: number[] = [];
+  const m = blocks.length ? SIDE_DEEP : 0;
+  const high = Math.max(
+    BED_HEIGHT + tallest + 0.9,
+    ...blocks.map(b => b.h + 0.2)
+  );
   for (const [x, y] of [
-    [0, 0],
-    [W, 0],
-    [0, L],
-    [W, L],
+    [-m, -m],
+    [W + m, -m],
+    [-m, L + m],
+    [W + m, L + m],
   ])
-    for (const z of [-0.12, BED_HEIGHT + tallest + 0.9]) {
+    for (const z of [-0.12, high]) {
       const [px, py] = P(x, y, z);
       xs.push(px);
       ys.push(py);

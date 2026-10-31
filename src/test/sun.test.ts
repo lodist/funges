@@ -80,6 +80,17 @@ describe('the sun a garden gets', () => {
     expect(season(light, spot(10, 10), '2026-06-01')).toBeGreaterThan(6);
   });
 
+  it('judges an autumn crop by the months it grows through', () => {
+    // 2 m north of a fence to the south: dark from October to February.
+    const light = sunlight(plot({ bottom: 'fence' }), 47)!;
+    const by = spot(10, 18);
+    const winter = season(light, by, '2026-10-20')!;
+    // Too cold to grow from November to February: October, March, April.
+    const growing = season(light, by, '2026-10-20', m => m < 10 && m > 1)!;
+    expect(winter).toBeLessThan(3);
+    expect(growing).toBeGreaterThan(winter + 2);
+  });
+
   it("stands a house in the L's cut corner", () => {
     const g: Garden = {
       width: 20,
