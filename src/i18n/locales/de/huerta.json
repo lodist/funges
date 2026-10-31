@@ -2221,6 +2221,7 @@
   },
   "year": {
     "title": "Kalender",
+    "seoTitle": "Pflanzkalender für deinen Ort",
     "description": "Wann jede Kultur bei dir gesät, gepflanzt und geerntet wird, berechnet aus deinem Klima.",
     "around": "Rund um {{place}}, in einem typischen Jahr.",
     "noPlace": "Wähle deinen Ort, um sein Jahr zu sehen.",

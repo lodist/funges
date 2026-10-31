@@ -115,6 +115,7 @@ import {
 } from '@/lib/garden-week';
 import type { PlaceYear } from '@/lib/huerta-wire';
 import { prefersReducedMotion } from '@/lib/motion';
+import { localizedPath, pathLanguage } from '@/lib/seo-pages';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
@@ -536,7 +537,10 @@ function Planner({ onMoved }: { onMoved: () => void }) {
       <SEO
         title={t('planner.title')}
         description={t('planner.description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta/garden-planner`}
+        canonicalUrl={localizedPath(
+          '/huerta/garden-planner/',
+          pathLanguage(window.location.pathname) ?? 'en'
+        )}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>

@@ -87,7 +87,7 @@ function RootComponent() {
   }, [navigate]);
 
   // The maps (Terra's and Huerta's garden map) own the viewport (no document scroll).
-  const isMapPage = ['map', 'huerta/map'].some(
+  const isMapPage = ['map', 'huerta/map', 'de/huerta/karte'].some(
     page =>
       location.pathname.replace(/\/+$/, '') ===
       `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')

@@ -1,4 +1,5 @@
 import { Link, useLocation } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import {
   LayoutGrid,
   Map,
@@ -14,6 +15,7 @@ import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
 import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
+import { huertaPage } from '@/lib/seo-pages';
 import { cn } from '@/lib/utils';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 
@@ -45,11 +47,18 @@ const items = [
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 // Huerta's own pages; the hub (Settings) is shared and holds the switcher.
-const huertaItems: typeof items = [
-  { url: `${basePath}huerta/map`, icon: Map },
-  { url: `${basePath}huerta/garden-planner`, icon: LayoutGrid },
-  { url: `${basePath}huerta/crops`, icon: Database },
-  { url: `${basePath}huerta/planting-calendar`, icon: CalendarRange },
+// In the app language's words (German pages under /de).
+const huertaItems = (language: string): typeof items => [
+  { url: basePath + huertaPage('map', language).slice(1), icon: Map },
+  {
+    url: basePath + huertaPage('planner', language).slice(1),
+    icon: LayoutGrid,
+  },
+  { url: basePath + huertaPage('crops', language).slice(1), icon: Database },
+  {
+    url: basePath + huertaPage('calendar', language).slice(1),
+    icon: CalendarRange,
+  },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {
@@ -60,6 +69,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
   const isMobile = useIsMobile();
   const isAppleMobile = useIsAppleMobile();
   const location = useLocation();
+  const { i18n } = useTranslation();
 
   if (!isMobile) return null;
 
@@ -98,7 +108,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
           </li>
         )}
         {(currentSpace(location.pathname) === 'huerta'
-          ? huertaItems
+          ? huertaItems(i18n.language)
           : items
         ).map(item => {
           const isActive =

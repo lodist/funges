@@ -166,7 +166,9 @@ export async function apiFetch(
   init?: RequestInit
 ) {
   const response = await fetch(apiUrl(path, query), init);
-  if (response.status === 401) forget();
+  // A session the Worker no longer knows: this device signs out. Without one
+  // (the public calendar) there is nothing to forget.
+  if (response.status === 401 && session()) forget();
   return response;
 }
 

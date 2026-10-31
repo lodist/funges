@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/sidebar';
 import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
+import { huertaPage } from '@/lib/seo-pages';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
@@ -43,8 +44,11 @@ import { Logo, LogoMark } from '@/components/Logo';
 const basePath = import.meta.env.BASE_URL || '/';
 
 export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
-  const { t } = useTranslation('sidebar');
+  const { t, i18n } = useTranslation('sidebar');
   const { t: tCommon } = useTranslation('common');
+  // Huerta's pages in the app language's words (German under /de).
+  const huerta = (page: Parameters<typeof huertaPage>[0]) =>
+    basePath + huertaPage(page, i18n.language).slice(1);
   const { state, toggleSidebar } = useSidebar();
   const isMobile = useIsMobile();
   const { pathname } = useLocation();
@@ -52,25 +56,25 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
   const huertaNav = [
     {
       title: t('huertaMap'),
-      url: `${basePath}huerta/map`,
+      url: huerta('map'),
       icon: Map,
       isActive: true,
     },
     {
       title: t('huertaPlanner'),
-      url: `${basePath}huerta/garden-planner`,
+      url: huerta('planner'),
       icon: LayoutGrid,
       isActive: false,
     },
     {
       title: t('huertaWeek'),
-      url: `${basePath}huerta/crops`,
+      url: huerta('crops'),
       icon: Database,
       isActive: false,
     },
     {
       title: t('huertaYear'),
-      url: `${basePath}huerta/planting-calendar`,
+      url: huerta('calendar'),
       icon: CalendarRange,
       isActive: false,
     },
