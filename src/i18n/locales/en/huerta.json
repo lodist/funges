@@ -217,6 +217,8 @@
     },
     "season": {
       "title": "This season",
+      "entries_one": "{{count}} entry",
+      "entries_other": "{{count}} entries",
       "harvested": "In {{from}}, out {{to}}",
       "lost": "In {{from}}, lost {{to}} · {{why}}",
       "said": "we said {{date}}",

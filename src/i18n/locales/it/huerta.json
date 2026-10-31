@@ -217,6 +217,8 @@
     },
     "season": {
       "title": "Questa stagione",
+      "entries_one": "{{count}} voce",
+      "entries_other": "{{count}} voci",
       "harvested": "Dentro il {{from}}, fuori il {{to}}",
       "lost": "Dentro il {{from}}, perso il {{to}} · {{why}}",
       "said": "avevamo detto {{date}}",
