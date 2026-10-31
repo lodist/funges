@@ -9,10 +9,63 @@ import {
   type CropStatus,
   type PlaceAdvice,
 } from '@/lib/huerta';
+import {
+  growthPlace,
+  plantedGrowth,
+  type Growth,
+  type Warm,
+} from '@/lib/growth';
 import type { Climate, PlaceYear } from '@/lib/huerta-wire';
 import type { Plan, Section } from '@/lib/planner';
 import { PLANT_LOOK } from '@/lib/planner-data';
-import { forSoil, gardenSoil, soilTemps, type Texture } from '@/lib/soil';
+import {
+  forSoil,
+  gardenSoil,
+  soilTemps,
+  WARMS,
+  type Texture,
+} from '@/lib/soil';
+
+/** How crops grow in the garden: the place's monthly means as its soil grows
+ *  them (soilTemps), and where the year files carry it, a planted crop's
+ *  growth on the calendar's own model (lib/growth), fed by the warmth it
+ *  actually had (the advice's daily air) and then the typical year. */
+export interface Grow {
+  temps: number[];
+  model?: (crop: string, planted: string) => Growth | null;
+}
+
+/** The garden's Grow; null without the place's year. */
+export function growIn(
+  year: PlaceYear | null | undefined,
+  texture: Texture,
+  warm?: Warm
+): Grow | null {
+  if (!year?.temps) return null;
+  const temps = soilTemps(year.temps, texture);
+  const place = growthPlace(year);
+  if (!place) return { temps };
+  const kept = new Map<string, Growth | null>();
+  return {
+    temps,
+    model: (crop, planted) => {
+      const bio = year.bio?.[crop];
+      if (!bio) return null;
+      const key = `${crop}|${planted}`;
+      if (!kept.has(key))
+        kept.set(
+          key,
+          plantedGrowth(crop, bio, place, planted, warm, WARMS[texture])
+        );
+      return kept.get(key)!;
+    },
+  };
+}
+
+const asGrow = (grow: Grow | number[]): Grow =>
+  Array.isArray(grow) ? { temps: grow } : grow;
+// A planted crop's harvest is "soon" from three weeks before its ready day.
+const SOON_DAYS = 21;
 
 /** What the garden's soil asks of a crop as it goes in: lime for the cabbage
  *  family on acid soil (clubroot), care with potatoes on alkaline soil (scab),
@@ -142,10 +195,13 @@ function warmth(id: string, needs: CropNeeds) {
 export function growth(
   id: string,
   needs: CropNeeds,
-  temps: number[],
+  grow: Grow | number[],
   planted: string,
   today: string
 ) {
+  const { temps, model } = asGrow(grow);
+  const m = model?.(id, planted);
+  if (m) return m.progress(today);
   const { base, need } = warmth(id, needs);
   // ponytail: a month's mean for each of its days; blend mid-months if a
   // week either side of a month's end ever matters.
@@ -166,19 +222,35 @@ export function growth(
 function stage(
   id: string,
   needs: CropNeeds,
-  temps: number[],
+  grow: Grow,
   harvest: number,
   planted: string,
   today: string
 ): Task | null {
-  const done = growth(id, needs, temps, planted, today);
+  const done = growth(id, needs, grow, planted, today);
+  const m = grow.model?.(id, planted);
+  if (m) {
+    // Picked from its ready day to its last; soon when it is three weeks off.
+    if (harvest && m.ready && today >= m.ready)
+      return today <= m.end!
+        ? { kind: 'stage', crop: id, step: 'harvest' }
+        : null;
+    if (harvest && m.ready && days(today, m.ready) <= SOON_DAYS)
+      return {
+        kind: 'stage',
+        crop: id,
+        step: BULBS.has(id) ? 'ripen' : 'harvestSoon',
+        weeks: Math.max(1, Math.round(days(today, m.ready) / 7)),
+      };
+  }
+  const { temps } = grow;
   const month = new Date(`${today}T12:00:00`).getMonth();
-  if (harvest && done >= 1)
+  if (!m && harvest && done >= 1)
     // Picked through the place's harvest months, or a few weeks past ready.
     return (harvest >> month) & 1 || done < 1.2
       ? { kind: 'stage', crop: id, step: 'harvest' }
       : null;
-  if (harvest && done >= 0.85) {
+  if (!m && harvest && done >= 0.85) {
     const { base, need } = warmth(id, needs);
     const perDay = Math.max(1, temps[month] - base);
     const weeks = Math.max(1, Math.round(((1 - done) * need) / perDay / 7));
@@ -439,7 +511,7 @@ export function gardenWeek(
   // (put in out of its season), from the day it goes in; one whose season
   // ends, three weeks ahead (the last to pick). One task per cause, day and
   // outcome.
-  const grow = year?.temps && soilTemps(year.temps, soil.texture);
+  const grow = growIn(year, soil.texture, advice.warm);
   const fates = new Map<string, Extract<Task, { kind: 'fate' }>>();
   for (const s of planted) {
     const crop = s.crop!;
@@ -447,7 +519,7 @@ export function gardenWeek(
     const dies = fate(crop, need, s.planted!, { year, frost: advice });
     if (!dies) continue;
     const ready = Boolean(
-      grow && need?.days && growth(crop, need, grow, s.planted!, dies.day) >= 1
+      grow && need?.days && readyBy(crop, need, grow, s.planted!, dies.day)
     );
     // Ready by then: worth a word only near its end, while still picked.
     const harvest = stageHarvest(year, crop);
@@ -551,8 +623,7 @@ export function gardenWeek(
   // Each planted crop's care for where it has got to.
   // ponytail: one step per crop, from its first sowing; per sowing if
   // succession rows ever need their own thinning reminder.
-  const temps = year?.temps && soilTemps(year.temps, soil.texture);
-  if (year && temps)
+  if (year && grow)
     for (const crop of growing) {
       if (!needs[crop]?.days) continue;
       const first = planted
@@ -560,7 +631,7 @@ export function gardenWeek(
         .map(s => s.planted!)
         .sort()[0];
       const harvest = stageHarvest(year, crop);
-      const task = stage(crop, needs[crop], temps, harvest, first, today);
+      const task = stage(crop, needs[crop], grow, harvest, first, today);
       if (task) tasks.push(task);
     }
   // A job ticked off stays off until it comes round again (a new key); a row
@@ -608,16 +679,33 @@ export const pruneDone = (done: Record<string, string>, today: string) =>
     Object.entries(done).filter(([, day]) => days(day, today) <= KEEP_DAYS)
   );
 
+/** Whether a crop that went in on `planted` is ready by `day`. */
+function readyBy(
+  id: string,
+  needs: CropNeeds,
+  grow: Grow | number[],
+  planted: string,
+  day: string
+) {
+  const m = asGrow(grow).model?.(id, planted);
+  return m
+    ? Boolean(m.ready && m.ready <= day)
+    : growth(id, needs, grow, planted, day) >= 1;
+}
+
 /** The day a crop that went in on `planted` is ready: when the warmth since
  *  reaches what it needs (as `growth`), from the place's monthly means; null
  *  if not within two years, or if it dies first (`dies`: its fate's day). */
 export function readyDay(
   id: string,
   needs: CropNeeds,
-  temps: number[],
+  grow: Grow | number[],
   planted: string,
   dies?: string | null
 ) {
+  const { temps, model } = asGrow(grow);
+  const m = model?.(id, planted);
+  if (m) return m.ready && (!dies || m.ready <= dies) ? m.ready : null;
   const { base, need } = warmth(id, needs);
   const limit = dies ? days(planted, dies) : 730;
   let gained = 0;
@@ -675,7 +763,7 @@ export function comingUp(
 ): Coming[] {
   const soil = gardenSoil(plan.garden, year?.soil);
   const week = forSoil(advice, needs, soil.texture, today);
-  const temps = year?.temps && soilTemps(year.temps, soil.texture);
+  const grow = growIn(year, soil.texture, advice.warm);
   const byKey = new Map<string, Coming>();
   const add = (key: string, make: () => Coming, i: number) => {
     const item = byKey.get(key) ?? make();
@@ -687,9 +775,9 @@ export function comingUp(
     if (!crop) return;
     if (s.planted) {
       const need = needs[crop];
-      if (!temps || !need?.days || NOTED.has(crop)) return;
+      if (!grow || !need?.days || NOTED.has(crop)) return;
       const dies = fate(crop, need, s.planted, { year, frost: advice });
-      const day = readyDay(crop, need, temps, s.planted, dies?.day);
+      const day = readyDay(crop, need, grow, s.planted, dies?.day);
       if (day && day > today && days(today, day) <= AHEAD_DAYS)
         add(
           `ready:${crop}:${day}`,
@@ -728,7 +816,7 @@ export type GrowthStage =
 export function stageOn(
   s: Section,
   needs: Record<string, CropNeeds>,
-  temps: number[],
+  grow: Grow | number[],
   harvest: number,
   day: string,
   today: string,
@@ -740,11 +828,19 @@ export function stageOn(
   const need = needs[s.crop];
   const dies = place && fate(s.crop, need, start, place);
   if (dies && day >= dies.day)
-    return need?.days && growth(s.crop, need, temps, start, dies.day) >= 1
+    return need?.days && readyBy(s.crop, need, grow, start, dies.day)
       ? 'bare'
       : 'lost';
   if (!need?.days || NOTED.has(s.crop)) return 'grown';
-  const done = growth(s.crop, need, temps, start, day);
+  const m = asGrow(grow).model?.(s.crop, start);
+  if (m) {
+    // Its stage from the warmth it has had; picked from its ready day to its
+    // last, then over.
+    if (m.ready && day >= m.ready) return day <= m.end! ? 'ready' : 'bare';
+    const done = m.progress(day);
+    return done < 0.3 ? 'seedling' : done < 0.75 ? 'young' : 'grown';
+  }
+  const done = growth(s.crop, need, grow, start, day);
   if (done < 0.3) return 'seedling';
   if (done < 0.75) return 'young';
   if (done < 1) return 'grown';

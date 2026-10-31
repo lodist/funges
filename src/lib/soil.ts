@@ -38,7 +38,11 @@ export function gardenSoil(
 
 /** How much sooner light soil warms in spring than loam, and heavy clay later,
  *  at sowing depth (°C). */
-const WARMS: Record<Texture, number> = { sandy: 1.5, loam: 0, clay: -1.5 };
+export const WARMS: Record<Texture, number> = {
+  sandy: 1.5,
+  loam: 0,
+  clay: -1.5,
+};
 
 /** The place's monthly means as a garden's soil grows crops: in spring (the
  *  months forSoil shifts) light soil is warmer and heavy clay colder, so what

@@ -5,6 +5,7 @@ import {
   coverUntil,
   fate,
   gardenWeek,
+  growIn,
   growth,
   jobKey,
   pruneDone,
@@ -586,5 +587,64 @@ describe('the simulator: what kills a planted crop', () => {
       { kind: 'water', mm: 4, soil: 'sandy' },
     ]);
     expect(gardenWeek(on('loam'), dry, NEEDS, '2026-10-21')).toEqual([]);
+  });
+});
+
+describe("a planted crop on the calendar's model", () => {
+  // A year that carries the model: a flat 20 C, sunny, frost-free place.
+  const year: PlaceYear = {
+    place: 'Testville',
+    lat: 47,
+    crops: { lettuce: { sow: 0xfff, harvest: 0xfff } },
+    temps: Array(12).fill(20),
+    sun: Array(12).fill(20),
+    climate: {
+      frost: null,
+      hard: null,
+      warm10: null,
+      warm13: null,
+      low: 5,
+      light: 0,
+    },
+    bio: {
+      lettuce: {
+        tb: 4.4,
+        tlo: 15.5556,
+        thi: 18.3333,
+        tmax: 23.8889,
+        days: 45,
+        kill: 's',
+        end: 'growth',
+        pick: 4,
+        strict: true,
+        hardy: -5,
+        night: false,
+      },
+    },
+  };
+  const grow = growIn(year, 'loam')!;
+  const s: Section = { ...beds[0], crop: 'lettuce', planted: '2027-05-01' };
+  const stage = (day: string) =>
+    stageOn(s, NEEDS, grow, 0xfff, day, '2027-05-01');
+
+  it('is ready on its model day and picked for its weeks, then over', () => {
+    expect(readyDay('lettuce', NEEDS.lettuce, grow, '2027-05-01')).toBe(
+      '2027-06-11'
+    );
+    expect(stage('2027-05-05')).toBe('seedling');
+    expect(stage('2027-06-20')).toBe('ready');
+    expect(stage('2027-07-20')).toBe('bare');
+  });
+
+  it('counts the warmth it actually had', () => {
+    const cool = growIn({ ...year, temps: Array(12).fill(10) }, 'loam')!;
+    const warm = growIn({ ...year, temps: Array(12).fill(10) }, 'loam', {
+      start: '2027-05-01',
+      t: Array(30).fill(20),
+    })!;
+    const typical = readyDay('lettuce', NEEDS.lettuce, cool, '2027-05-01')!;
+    expect(
+      readyDay('lettuce', NEEDS.lettuce, warm, '2027-05-01')! < typical
+    ).toBe(true);
   });
 });
