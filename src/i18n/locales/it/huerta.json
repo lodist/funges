@@ -266,7 +266,8 @@
     "too_late": "Troppo tardi",
     "not_here": "Non all'aperto qui",
     "wait_autumn": "In autunno",
-    "wait_spring": "In primavera"
+    "wait_spring": "In primavera",
+    "wait_days": "Giorni ancora troppo lunghi"
   },
   "crops": {
     "garlic": "Aglio",
@@ -405,7 +406,13 @@
       "next_year": "Produce dall'anno prossimo",
       "second_year": "Si raccolgono i gambi dal secondo anno",
       "third_year": "Si tagliano i turioni dalla terza primavera",
-      "perennial": "Ritorna ogni anno"
+      "perennial": "Ritorna ogni anno",
+      "next_year_at": "Da {{month}}, l'anno dopo la messa a dimora",
+      "second_year_at": "Gambi da {{month}} del secondo anno",
+      "third_year_at": "Turioni da {{month}} della terza primavera",
+      "perennial_at": "Da {{month}}, ogni anno",
+      "perennial_all": "Tutto l'anno, ogni anno",
+      "spring_flowers_at": "Fiorisce da {{month}}, la primavera dopo la messa a dimora"
     },
     "source": "Dati di coltivazione: RHS, UC ANR e guide di semina delle ditte sementiere.",
     "year": "Il suo anno a {{place}}"

@@ -88,6 +88,7 @@ import {
   split,
   summary,
   UNIT,
+  WONT_GROW,
   type Axis,
   type Garden,
   type Grown,
@@ -103,6 +104,7 @@ import {
   coverUntil,
   due,
   fate,
+  firstCrop,
   pruneDone,
   readyDay,
   stageHarvest,
@@ -371,15 +373,18 @@ function Planner({ onMoved }: { onMoved: () => void }) {
       how === 'harvested' && grow
         ? ids.filter(i => {
             const x = plan.sections[i];
-            return ['ready', 'bare'].includes(
-              stageOn(
-                x,
-                needs,
-                grow,
-                stageHarvest(year, x.crop ?? ''),
-                today(),
-                today(),
-                site
+            return (
+              !CROP[x.crop ?? '']?.note &&
+              ['ready', 'bare'].includes(
+                stageOn(
+                  x,
+                  needs,
+                  grow,
+                  stageHarvest(year, x.crop ?? ''),
+                  today(),
+                  today(),
+                  site
+                )
               )
             );
           })
@@ -462,9 +467,22 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const stages =
     later && grow
       ? plan.sections.map(x =>
-          // Planned, its day come, but it can't grow here: it won't go in.
-          // (One put in too late grows until the place's climate ends it.)
-          !x.planted && due(x, today()) && status(x.crop ?? '') === 'not_here'
+          // Planned, but going in when it comes to nothing (soil too warm
+          // for its seed, days long enough to bolt it, none outdoors here):
+          // it won't go in. (One put in too late grows until the place's
+          // climate ends it.)
+          !x.planted &&
+          x.crop &&
+          WONT_GROW.includes(
+            due(x, today())
+              ? status(x.crop)
+              : inMonth(
+                  x.crop,
+                  Number(x.sow!.slice(5, 7)) - 1,
+                  year,
+                  needs[x.crop]
+                )
+          )
             ? 'bare'
             : stageOn(
                 x,
@@ -1631,7 +1649,9 @@ function SectionPanel({
       new Date(2026, m, 1)
     );
   // Put where it can't go in any more: no ready day to promise.
-  const gone = !s.planted && (then === 'too_late' || then === 'not_here');
+  const gone =
+    !s.planted &&
+    (then === 'too_late' || (then !== undefined && WONT_GROW.includes(then)));
   const start = s.planted ?? (s.sow && s.sow > today() ? s.sow : today());
   const site = { year, frost: advice };
   // When the place's climate kills it, going in on `from`, if before it is
@@ -1661,6 +1681,13 @@ function SectionPanel({
           fate(crop.id, need, start, site)?.day
         )
       : null;
+  // A perennial, next-year crop or bulb: its first crop at the place.
+  const firstOn = crop?.note && !gone ? firstCrop(crop.id, year, start) : null;
+  const monthYear = (day: string) =>
+    new Intl.DateTimeFormat(i18n.language, {
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date(`${day}T12:00:00`));
   // Put in late in its cold season: until when it needs covering.
   const cover =
     crop && !gone && !lost ? coverUntil(crop.id, need, start, site) : null;
@@ -1783,7 +1810,9 @@ function SectionPanel({
             <dt className='text-muted-foreground'>{t('planner.when')}</dt>
             <dd className='text-foreground'>
               {crop.note
-                ? t(`sheet.ready.${crop.note}`)
+                ? firstOn
+                  ? t('planner.readyAround', { month: monthYear(firstOn) })
+                  : t(`sheet.ready.${crop.note}`)
                 : gone
                   ? '–'
                   : lost

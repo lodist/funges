@@ -266,7 +266,8 @@
     "too_late": "Demasiado tarde",
     "not_here": "No al aire libre aquí",
     "wait_autumn": "En otoño",
-    "wait_spring": "En primavera"
+    "wait_spring": "En primavera",
+    "wait_days": "Días demasiado largos"
   },
   "crops": {
     "garlic": "Ajo",
@@ -405,7 +406,13 @@
       "next_year": "Da cosecha desde el año que viene",
       "second_year": "Se cosechan tallos desde el segundo año",
       "third_year": "Se cortan turiones desde la tercera primavera",
-      "perennial": "Vuelve cada año"
+      "perennial": "Vuelve cada año",
+      "next_year_at": "Desde {{month}}, el año después de plantar",
+      "second_year_at": "Tallos desde {{month}} de su segundo año",
+      "third_year_at": "Turiones desde {{month}} de su tercera primavera",
+      "perennial_at": "Desde {{month}}, cada año",
+      "perennial_all": "Todo el año, cada año",
+      "spring_flowers_at": "Florece desde {{month}}, la primavera después de plantar"
     },
     "source": "Datos de cultivo: RHS, UC ANR y guías de siembra de casas de semillas.",
     "year": "Su año en {{place}}"

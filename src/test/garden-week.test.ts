@@ -4,9 +4,11 @@ import {
   comingUp,
   coverUntil,
   fate,
+  firstCrop,
   gardenWeek,
   growIn,
   growth,
+  harvestFrom,
   jobKey,
   pruneDone,
   readyDay,
@@ -358,6 +360,55 @@ describe('ready days and the weeks ahead', () => {
       status: 'wait_soil',
       at: [2],
     });
+  });
+});
+
+describe('the first crop of perennials, next-year crops and bulbs', () => {
+  const year = {
+    place: 'Valencia',
+    crops: {
+      strawberry: { sow: 0b1100000000, harvest: 0b1110000 },
+      rhubarb: { sow: 0b110000000110, harvest: 0b111000 },
+      asparagus: { sow: 0b1100, harvest: 0b11000 },
+      thyme: { sow: 0b1100001100, harvest: 0b1111111000 },
+      tulip: { sow: 0b1100000000, harvest: 0b11000 },
+    },
+  } as unknown as PlaceYear;
+
+  it("is the first of the place's harvest months from its note's year", () => {
+    // Strawberries planted in October fruit from May the next year; planted
+    // in spring, the year after.
+    expect(firstCrop('strawberry', year, '2026-10-31')).toBe('2027-05-01');
+    expect(firstCrop('strawberry', year, '2027-03-10')).toBe('2028-05-01');
+    // Rhubarb: its second season (an autumn planting's first is the next year).
+    expect(firstCrop('rhubarb', year, '2026-11-15')).toBe('2028-04-01');
+    expect(firstCrop('rhubarb', year, '2027-03-01')).toBe('2028-04-01');
+    // Asparagus: its third spring.
+    expect(firstCrop('asparagus', year, '2027-03-15')).toBe('2029-04-01');
+    // Herbs settle in for four weeks; bulbs flower the spring after.
+    expect(firstCrop('thyme', year, '2027-03-20')).toBe('2027-04-17');
+    expect(firstCrop('thyme', year, '2027-10-20')).toBe('2028-04-01');
+    expect(firstCrop('tulip', year, '2026-10-31')).toBe('2027-04-01');
+    // Without the place's harvest months, or for a crop of weeks: none.
+    expect(firstCrop('strawberry', null, '2026-10-31')).toBeNull();
+    expect(firstCrop('lettuce', year, '2026-10-31')).toBeNull();
+  });
+
+  it('the sheet names the month its harvest begins, across the new year too', () => {
+    expect(harvestFrom(0b1110000)).toBe(4);
+    expect(harvestFrom(0b100000000111)).toBe(11);
+    expect(harvestFrom(0xfff)).toBeNull();
+    expect(harvestFrom(0)).toBeNull();
+  });
+
+  it('on the timeline: young until then, ready in its months, grown between', () => {
+    const s = { ...beds[0], crop: 'strawberry', planted: '2026-10-31' };
+    const on = (day: string) =>
+      stageOn(s, NEEDS, Array(12).fill(12), 0, day, '2026-10-31', { year });
+    expect(on('2027-02-01')).toBe('young');
+    expect(on('2027-05-10')).toBe('ready');
+    expect(on('2027-09-01')).toBe('grown');
+    expect(on('2028-06-01')).toBe('ready');
   });
 });
 

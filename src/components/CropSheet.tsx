@@ -16,6 +16,7 @@ import {
   type PlaceAdvice,
 } from '@/lib/huerta';
 import { GUIDES, type CropGuide } from '@/lib/crop-guides';
+import { harvestFrom } from '@/lib/garden-week';
 import { fetchNeeds, huertaApiConfigured } from '@/lib/huerta-api';
 import type { CropYear } from '@/lib/huerta-api';
 import type { PlaceYear } from '@/lib/huerta-wire';
@@ -182,7 +183,7 @@ export function CropBody({
       {months && advice ? (
         <YearStrip year={months} place={advice.place} />
       ) : null}
-      <Facts crop={crop} need={need} />
+      <Facts crop={crop} need={need} harvest={months?.harvest} />
       <Weather
         crop={crop}
         need={need}
@@ -302,12 +303,31 @@ function YearStrip({ year, place }: { year: CropYear; place: string }) {
 }
 
 /** How to grow it: depth, spacing, place, when it is ready, how tall it
- *  grows and how many to grow. */
-function Facts({ crop, need }: { crop: Crop; need?: CropNeeds }) {
+ *  grows and how many to grow. A perennial's, next-year crop's or bulb's
+ *  first crop is the month its harvest begins at the place (`harvest`, the
+ *  calendar's months), where there is one. */
+function Facts({
+  crop,
+  need,
+  harvest,
+}: {
+  crop: Crop;
+  need?: CropNeeds;
+  harvest?: number;
+}) {
   const { t, i18n } = useTranslation('huerta');
   const days = need?.days ?? null;
+  const from = harvestFrom(harvest);
   const ready = crop.note
-    ? t(`sheet.ready.${crop.note}`)
+    ? crop.note === 'perennial' && harvest === 0xfff
+      ? t('sheet.ready.perennial_all')
+      : from !== null
+        ? t(`sheet.ready.${crop.note}_at`, {
+            month: new Intl.DateTimeFormat(i18n.language, {
+              month: 'long',
+            }).format(new Date(2026, from, 1)),
+          })
+        : t(`sheet.ready.${crop.note}`)
     : days === null
       ? null
       : crop.kind === 'flower'

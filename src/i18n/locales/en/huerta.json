@@ -266,7 +266,8 @@
     "too_late": "Too late",
     "not_here": "Not outdoors here",
     "wait_autumn": "In autumn",
-    "wait_spring": "In spring"
+    "wait_spring": "In spring",
+    "wait_days": "Days too long for now"
   },
   "crops": {
     "garlic": "Garlic",
@@ -405,7 +406,13 @@
       "next_year": "Crops from next year",
       "second_year": "Pull stalks from its second year",
       "third_year": "Cut spears from its third spring",
-      "perennial": "Comes back every year"
+      "perennial": "Comes back every year",
+      "next_year_at": "From {{month}}, the year after planting",
+      "second_year_at": "Stalks from {{month}} of its second year",
+      "third_year_at": "Spears from {{month}} of its third spring",
+      "perennial_at": "From {{month}}, every year",
+      "perennial_all": "All year round, every year",
+      "spring_flowers_at": "Flowers from {{month}}, the spring after planting"
     },
     "source": "Growing facts: RHS, UC ANR and seed-company sowing guides.",
     "year": "Its year around {{place}}"

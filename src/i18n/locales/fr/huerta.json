@@ -266,7 +266,8 @@
     "too_late": "Trop tard",
     "not_here": "Pas en plein air ici",
     "wait_autumn": "En automne",
-    "wait_spring": "Au printemps"
+    "wait_spring": "Au printemps",
+    "wait_days": "Jours trop longs pour l'instant"
   },
   "crops": {
     "garlic": "Ail",
@@ -405,7 +406,13 @@
       "next_year": "Produit dès l'an prochain",
       "second_year": "On récolte les tiges dès la deuxième année",
       "third_year": "On coupe les turions dès le troisième printemps",
-      "perennial": "Revient chaque année"
+      "perennial": "Revient chaque année",
+      "next_year_at": "Dès {{month}}, l'année après la plantation",
+      "second_year_at": "Tiges dès {{month}} de sa deuxième année",
+      "third_year_at": "Turions dès {{month}} de son troisième printemps",
+      "perennial_at": "Dès {{month}}, chaque année",
+      "perennial_all": "Toute l'année, chaque année",
+      "spring_flowers_at": "Fleurit dès {{month}}, au printemps après la plantation"
     },
     "source": "Données de culture : RHS, UC ANR et guides de semis des semenciers.",
     "year": "Son année autour de {{place}}"

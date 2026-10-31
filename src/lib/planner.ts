@@ -997,6 +997,18 @@ const SEASON: Partial<Record<string, 'autumn' | 'spring'>> = {
   asparagus: 'spring',
 };
 
+/** Crops that bolt when sown under long days: spinach from spring to late
+ *  summer, fennel before midsummer (the calendar's own rule,
+ *  build_huerta_windows.py long_day, weighs the place's day lengths). */
+const BOLTS: Partial<Record<string, (month: number) => boolean>> = {
+  spinach: m => m >= 3 && m <= 7,
+  fennel: m => m <= 4,
+};
+
+/** Statuses a crop goes in under and comes to nothing: no seedlings in soil
+ *  too warm, bolting in long days, none where it can't grow outdoors. */
+export const WONT_GROW: CropStatus[] = ['too_warm', 'wait_days', 'not_here'];
+
 /** A crop's status in a later month (0-11): in when the place's calendar
  *  has it going in then; else why not, by the nightly rules over a typical
  *  month, as the calendar is built (data_tools/build_huerta_year.py): the
@@ -1043,6 +1055,7 @@ export function inMonth(
     if (need?.frost === 'half_hardy' && frost && day <= frost[1])
       return 'wait_frost';
   }
+  if (BOLTS[id]?.(month)) return 'wait_days';
   return autumn ? 'too_late' : 'wait_frost';
 }
 
