@@ -1,5 +1,5 @@
 {
-  "title": "Espécies",
+  "title": "Culturas",
   "description": "Cada cultura: se vai para a terra esta semana na sua cidade, como cultivá-la e o que vigiar.",
   "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
   "around": "Arredores de {{place}}, {{day}}",

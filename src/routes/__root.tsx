@@ -1,6 +1,7 @@
 import {
   createRootRoute,
   Outlet,
+  redirect,
   useLocation,
   useNavigate,
 } from '@tanstack/react-router';
@@ -15,7 +16,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { recordPath } from '@/lib/nav-history';
 import { crossesIsolationBoundary } from '@/lib/isolation';
 import { activateUpdate, isOutdated } from '@/lib/pwa';
-import { currentSpace, rememberPath } from '@/lib/spaces';
+import { currentSpace, rememberPath, renamedPath } from '@/lib/spaces';
 import { pathLanguage, stripLanguage } from '@/lib/seo-pages';
 import i18n from '@/i18n';
 
@@ -35,6 +36,10 @@ export const Route = createRootRoute({
   // (blurred, by index.html's view transition) until the new one has drawn.
   beforeLoad: ({ location, preload }) => {
     if (preload) return;
+    // A Huerta page's old path: on to its new one.
+    const renamed = renamedPath(location.pathname);
+    if (renamed !== location.pathname)
+      throw redirect({ href: renamed + location.searchStr, replace: true });
     const pageChanged = location.pathname !== shownPath;
     shownPath = location.pathname;
     if (

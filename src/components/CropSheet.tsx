@@ -65,7 +65,7 @@ export function CropSheet({
 }
 
 /** The sheet's content: in the dialog for a garden, or as the public page
- *  /huerta/species/$id, which has no place (no advice): then it says how to
+ *  /huerta/crops/$id, which has no place (no advice): then it says how to
  *  grow the crop and nothing about this week or a garden. */
 export function CropBody({
   crop,

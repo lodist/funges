@@ -1,5 +1,5 @@
 {
-  "title": "Specie",
+  "title": "Colture",
   "description": "Ogni coltura: se va in terra questa settimana nel tuo comune, come coltivarla e a cosa fare attenzione.",
   "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
   "around": "Dintorni di {{place}}, {{day}}",

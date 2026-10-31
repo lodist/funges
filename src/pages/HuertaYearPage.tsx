@@ -58,7 +58,7 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
       <SEO
         title={t('year.title')}
         description={t('year.description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta/year`}
+        canonicalUrl={`${import.meta.env.BASE_URL}huerta/planting-calendar`}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>
@@ -115,7 +115,7 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
           <p className='text-foreground'>
             {t('year.noPlace')}{' '}
             <Link
-              to='/huerta/species'
+              to='/huerta/crops'
               className='font-medium text-primary-text underline underline-offset-4'
             >
               {t('planner.choosePlace')}

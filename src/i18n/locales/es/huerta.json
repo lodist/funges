@@ -1,5 +1,5 @@
 {
-  "title": "Especies",
+  "title": "Cultivos",
   "description": "Cada cultivo: si va a la tierra esta semana en tu localidad, cómo cultivarlo y qué vigilar.",
   "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
   "around": "Alrededores de {{place}}, {{day}}",

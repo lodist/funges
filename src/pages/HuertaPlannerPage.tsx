@@ -536,7 +536,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
       <SEO
         title={t('planner.title')}
         description={t('planner.description')}
-        canonicalUrl={`${import.meta.env.BASE_URL}huerta/planner`}
+        canonicalUrl={`${import.meta.env.BASE_URL}huerta/garden-planner`}
       />
       <div className='container mx-auto max-w-7xl px-4 py-8'>
         <header className='mb-8 flex flex-col gap-6'>

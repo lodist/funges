@@ -25,7 +25,7 @@ describe('seo-pages', () => {
   });
 
   it('reads the language from the path, null when unprefixed', () => {
-    expect(pathLanguage('/de/huerta/species/tomato/')).toBe('de');
+    expect(pathLanguage('/de/huerta/crops/tomato/')).toBe('de');
     expect(pathLanguage('/de')).toBe('de');
     expect(pathLanguage('/species/porcini/')).toBeNull();
     expect(pathLanguage('/delete-account/')).toBeNull();
@@ -71,7 +71,7 @@ describe('buildPages', () => {
       for (const c of CROPS)
         expect(
           pages.some(
-            p => p.path === localizedPath(`/huerta/species/${c.id}/`, lang)
+            p => p.path === localizedPath(`/huerta/crops/${c.id}/`, lang)
           ),
           `${lang} ${c.id}`
         ).toBe(true);

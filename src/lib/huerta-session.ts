@@ -134,7 +134,7 @@ export async function finishSignIn(hash: string) {
     // Nobody else will collect it: the Worker deletes it on this read.
     void fetch(`${API}/v1/auth/handoff?id=${handoff}`).catch(() => {});
   }
-  return { back: here ? started.back : '/huerta/species', here };
+  return { back: here ? started.back : '/huerta/crops', here };
 }
 
 /** Back in view after signing in in another browser view: the session, once. */
