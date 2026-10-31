@@ -56,6 +56,7 @@ import {
   Plus,
   Search,
   SlidersHorizontal,
+  Sun,
   Trash2,
   Undo2,
 } from '@/lib/icons';
@@ -67,11 +68,13 @@ import {
   textureOf,
 } from '@/lib/soil';
 import {
+  allows,
   autoPlan,
   axisOf,
   endAs,
   finish,
   fit,
+  fitSun,
   inMonth,
   joinSections,
   splitSections,
@@ -90,6 +93,7 @@ import {
   reshape,
   restoreBed,
   savePlan,
+  shortOfSun,
   split,
   summary,
   UNIT,
@@ -102,7 +106,16 @@ import {
   type Plan,
   type PlanStyle,
   type Section,
+  type Side,
+  type SunAt,
 } from '@/lib/planner';
+import {
+  level,
+  season,
+  sunlight,
+  when as sunWhen,
+  type Light,
+} from '@/lib/sun';
 import {
   growth,
   growIn,
@@ -282,6 +295,23 @@ function Planner({ onMoved }: { onMoved: () => void }) {
     forMonths
       ? inMonth(id, Number(target.slice(5, 7)) - 1, year, needs[id])
       : status(id);
+  // The sun each spot gets from what stands along the plot's sides
+  // (lib/sun): in the month planned for, and over the months a crop grows
+  // from the day it goes in.
+  const lat = year?.lat ?? 45;
+  const garden = plan?.garden;
+  const light = useMemo(
+    () => (garden ? sunlight(garden, lat) : null),
+    [garden, lat]
+  );
+  const planDay = forMonths ? target : today();
+  const shownMonth = Number(planDay.slice(5, 7)) - 1;
+  // The months crops grow through at the place: a mean above 5 °C.
+  const temps = year?.temps;
+  const grows = temps ? (m: number) => temps[m] > 5 : undefined;
+  const sunOf = (l: Light | null, day: string): SunAt | undefined =>
+    l ? x => season(l, x, x.planted ?? x.sow ?? day, grows) : undefined;
+  const sun = sunOf(light, planDay);
   const monthName = (day: string, withYear = false) =>
     new Intl.DateTimeFormat(i18n.language, {
       month: 'long',
@@ -321,9 +351,36 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   // A new size, shape, direction or way of growing keeps what it can.
   const resize = (garden: Garden) => {
     if (!plan) return;
-    update(reshape(plan, garden, status, today()));
+    update(
+      reshape(
+        plan,
+        garden,
+        status,
+        today(),
+        sunOf(sunlight(garden, lat), today())
+      )
+    );
     only(0);
   };
+  // What stands along a side: the crops stay where they are; the shade and
+  // the crops short of sun show at once.
+  const setSide = (edge: Edge, kind: Side | 'open') => {
+    if (!plan) return;
+    const sides = { ...plan.garden.sides };
+    if (kind === 'open') delete sides[edge];
+    else sides[edge] = kind;
+    update({ ...plan, garden: { ...plan.garden, sides } });
+  };
+  // A field arranged crop by crop, each moved out of a spot too shady for it.
+  const shaded = (sections: Section[], style: PlanStyle) =>
+    sun
+      ? fitSun(
+          sections,
+          sun,
+          id => allows(style, id) && planStatus(id) === 'now',
+          x => !x.planted
+        )
+      : sections;
   const pick = (i: number) => {
     setSel(cur => (cur.includes(i) ? cur.filter(k => k !== i) : [...cur, i]));
     setPatch(null);
@@ -426,6 +483,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
         only: out,
         sow: today(),
         past: next.past,
+        sun,
       }),
     });
   };
@@ -502,6 +560,24 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const north = plan.garden.north ?? 0;
   const axis = axisOf(plan.garden);
   const totals = summary(plan.sections, north);
+  // Crops in spots with less sun than they need.
+  const shady = plan.sections.flatMap((x, i) =>
+    shortOfSun(x, sun) ? [i] : []
+  );
+  // A spot's sun in the month planned for, said plainly.
+  const sunHere = (x: Section) => {
+    if (!light) return undefined;
+    const m = light.months(x)[shownMonth];
+    const w = sunWhen(light, m, shownMonth);
+    const month = monthName(planDay);
+    return w === 'none'
+      ? t('planner.sun.none', { month })
+      : t('planner.sun.here', {
+          month,
+          count: Math.max(1, Math.round(m.hours)),
+          when: t(`planner.sun.when.${w}`),
+        });
+  };
   const open = plan.garden.ground === 'rows';
   const plants = plan.sections.reduce(
     (n, x) => n + (fit(x, open)?.count ?? 0),
@@ -682,6 +758,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                     only: ids,
                     sow: today(),
                     past: next.past,
+                    sun,
                   }),
                 });
               }}
@@ -846,6 +923,44 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                       </Button>
                     ))}
                   </div>
+                  <div
+                    className='flex flex-wrap items-center gap-2'
+                    role='group'
+                    aria-label={t('planner.aroundLabel')}
+                  >
+                    <span className='text-sm text-muted-foreground'>
+                      {t('planner.aroundLabel')}
+                    </span>
+                    {edgesOf(plan.garden).map(edge => (
+                      <Select
+                        key={edge}
+                        value={plan.garden.sides?.[edge] ?? 'open'}
+                        onValueChange={v => setSide(edge, v as Side | 'open')}
+                      >
+                        <SelectTrigger
+                          aria-label={t(
+                            `planner.side.${facing(plan.garden, edge)}`
+                          )}
+                          className='h-9 w-auto max-sm:text-sm'
+                        >
+                          <span className='text-muted-foreground'>
+                            {t(`planner.side.${facing(plan.garden, edge)}`)}
+                          </span>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {SIDE_KINDS.map(kind => (
+                            <SelectItem key={kind} value={kind}>
+                              {t(`planner.sideKind.${kind}`)}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    ))}
+                    <p className='basis-full text-xs text-muted-foreground'>
+                      {t('planner.aroundHint')}
+                    </p>
+                  </div>
                   {(
                     [
                       ['soil', TEXTURES, soil.texture],
@@ -939,11 +1054,14 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                             // A field (open rows) comes out arranged: each
                             // crop in one piece, not a patchwork of blocks.
                             open && !(patch === null && chosen.length)
-                              ? arrange(sections, {
-                                  north: plan.garden.north,
-                                  past: plan.past,
-                                  today: today(),
-                                })
+                              ? shaded(
+                                  arrange(sections, {
+                                    north: plan.garden.north,
+                                    past: plan.past,
+                                    today: today(),
+                                  }),
+                                  style
+                                )
                               : sections)(
                             autoPlan(plan.sections, planStatus, {
                               north: plan.garden.north,
@@ -955,6 +1073,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                                   : undefined,
                               sow: forMonths ? target : today(),
                               past: plan.past,
+                              sun,
                             })
                           ),
                         })
@@ -994,6 +1113,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                 {plan.sections.length > 0 || plan.bare?.length ? (
                   <GardenModel
                     garden={plan.garden}
+                    sunAt={light ? x => level(light, x, shownMonth) : undefined}
                     sections={drawn}
                     selected={patch === null ? chosen : []}
                     onSelect={pick}
@@ -1117,6 +1237,16 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                       ? t('planner.badPairs', { count: totals.bad.length })
                       : t('planner.noBadPairs')}
                   </Button>
+                  {shady.length ? (
+                    <Button
+                      variant='link'
+                      className='h-auto p-0 text-destructive-text'
+                      title={t('planner.sun.shortHint')}
+                      onClick={() => setSel(shady)}
+                    >
+                      {t('planner.sun.shortCount', { count: shady.length })}
+                    </Button>
+                  ) : null}
                   <span>{t('planner.faded')}</span>
                 </div>
               </div>
@@ -1285,6 +1415,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                                 axis,
                                 sow: today(),
                                 past: plan.past,
+                                sun,
                               }),
                             });
                             only(first);
@@ -1310,6 +1441,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                         year={year}
                         need={s.crop ? needs[s.crop] : undefined}
                         count={count}
+                        sunHere={sunHere(s)}
+                        short={shortOfSun(s, sun)}
                         onSwap={crop => place(chosen, crop)}
                         onPlanted={planted => plantOn(chosen, planted)}
                         past={plan.past}
@@ -1757,6 +1890,23 @@ const WARNING =
   'flex gap-2 rounded-lg border-2 border-status-warning-border bg-status-warning-background p-3 text-sm text-status-warning-text';
 
 const COMPASS = ['north', 'east', 'south', 'west'] as const;
+
+type Edge = keyof NonNullable<Garden['sides']>;
+const SIDE_KINDS = ['open', 'fence', 'house', 'trees'] as const;
+const EIGHT = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'] as const;
+/** The plot's sides as drawn, and the L's cut corner. */
+const edgesOf = (g: Garden): Edge[] =>
+  g.shape === 'L'
+    ? ['top', 'right', 'bottom', 'left', 'corner']
+    : ['top', 'right', 'bottom', 'left'];
+/** The compass point a side faces (the plot's top faces `north`); the L's
+ *  cut corner is just the corner. */
+function facing(g: Garden, edge: Edge) {
+  if (edge === 'corner') return 'corner';
+  const bearing =
+    (g.north ?? 0) + 90 * ['top', 'right', 'bottom', 'left'].indexOf(edge);
+  return EIGHT[Math.round((((bearing % 360) + 360) % 360) / 45) % 8];
+}
 /** The compass side of a bed's first section: its top end, or its left end
  *  when beds run across. */
 function firstEnd(g: Garden) {
@@ -1799,6 +1949,8 @@ function SectionPanel({
   grow,
   year,
   count,
+  sunHere,
+  short,
   onSwap,
   onPlanted,
   onDay,
@@ -1823,6 +1975,10 @@ function SectionPanel({
   /** The place's year (its climate and the crops' hardiness), when known. */
   year?: PlaceYear | null;
   count: (s: Section) => string;
+  /** Its sun in the month planned for, in words; none where not known. */
+  sunHere?: string;
+  /** Its crop gets less sun than it needs. */
+  short?: boolean;
   onSwap: (crop: string) => void;
   onPlanted: (day: string | undefined) => void;
   /** The day it went in, put right. */
@@ -1933,6 +2089,12 @@ function SectionPanel({
           ? 'planner.warn.warmSeeds'
           : 'planner.warn.coldSeeds'
       ),
+    short &&
+      crop &&
+      t('planner.sun.short', {
+        crop: t(`crops.${crop.id}`),
+        count: crop.sun,
+      }),
   ].filter((w): w is string => Boolean(w));
   const options = useMemo(() => {
     const sorted = [...CROPS].sort((a, z) =>
@@ -1960,6 +2122,12 @@ function SectionPanel({
       <h2 className='type-micro text-muted-foreground'>
         {placeName(t, s, garden)}
       </h2>
+      {sunHere ? (
+        <p className='-mt-2 flex items-start gap-2 text-sm text-muted-foreground'>
+          <Sun className='mt-0.5 size-4 shrink-0' />
+          {sunHere}
+        </p>
+      ) : null}
       {/* Many at once, without a tap each: its bed, or every section of its
           crop. */}
       {bedIds.length > 1 || cropIds.length > 1 ? (

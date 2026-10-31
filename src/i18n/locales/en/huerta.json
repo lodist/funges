@@ -392,8 +392,9 @@
     "apart": "{{value}} cm apart",
     "apartRows": "{{value}} cm apart, rows {{rows}} cm apart",
     "sun": {
-      "full": "Full sun",
-      "part": "Sun or light shade"
+      "6": "Full sun: 6 hours a day or more",
+      "4": "Half a day of sun: 4 hours or more",
+      "3": "Light shade is fine: 3 hours of sun or more"
     },
     "ready": {
       "weeks_one": "In about {{count}} week",
@@ -2304,7 +2305,42 @@
       "other": "Something else"
     },
     "before": "Before",
-    "beforeText": "{{crop}}, out {{date}}"
+    "beforeText": "{{crop}}, out {{date}}",
+    "aroundLabel": "Around the garden",
+    "aroundHint": "A fence, a house or trees along a side shade the beds next to it. The drawing shows the shade in the month you plan for.",
+    "side": {
+      "n": "North",
+      "ne": "North-east",
+      "e": "East",
+      "se": "South-east",
+      "s": "South",
+      "sw": "South-west",
+      "w": "West",
+      "nw": "North-west",
+      "corner": "Corner"
+    },
+    "sideKind": {
+      "open": "Open",
+      "fence": "Fence or hedge",
+      "house": "House or wall",
+      "trees": "Tall trees"
+    },
+    "sun": {
+      "here_one": "About {{count}} hour of sun a day here in {{month}}, {{when}}.",
+      "here_other": "About {{count}} hours of sun a day here in {{month}}, {{when}}.",
+      "none": "Hardly any direct sun here in {{month}}.",
+      "when": {
+        "allDay": "most of the day",
+        "morning": "mostly in the morning",
+        "afternoon": "mostly in the afternoon",
+        "midday": "around midday",
+        "morningEvening": "in the morning and evening"
+      },
+      "short": "This spot is too shady for {{crop}}: it needs {{hours}} hours of sun a day or more.",
+      "shortCount_one": "! 1 crop in too much shade",
+      "shortCount_other": "! {{count}} crops in too much shade",
+      "shortHint": "Crops in a spot with less sun than they need. Tap to select them."
+    }
   },
   "year": {
     "title": "Calendar",
