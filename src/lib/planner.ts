@@ -195,14 +195,18 @@ export const border = (g: Garden) =>
 export const axisOf = (g: Garden): Axis =>
   (g.ground === 'rows') !== Boolean(g.across) ? 'x' : 'y';
 
+/** Where the L's corner is cut: its narrow part's share of the width, and
+ *  its wide part's share of the length. */
+export const L_CUT = { width: 0.55, length: 0.5 };
+
 /** The plot's rectangles: one, or two for the L (its bottom-right corner cut away). */
 export function regions(g: Garden): Rect[] {
   const b = border(g);
   const all: Rect[] =
     g.shape === 'L'
       ? [
-          [0, 0, g.width, g.length * 0.5],
-          [0, g.length * 0.5, g.width * 0.55, g.length],
+          [0, 0, g.width, g.length * L_CUT.length],
+          [0, g.length * L_CUT.length, g.width * L_CUT.width, g.length],
         ]
       : [[0, 0, g.width, g.length]];
   return all.filter(
@@ -365,6 +369,19 @@ const GROUP_OF = Object.fromEntries(
  *  outside it. */
 export const familyOf = (id: string): string | undefined => GROUP_OF[id];
 
+/** The hours of direct sun a day a crop needs (Crop.sun). */
+export const sunNeed = (id: string): number => CROP[id]?.sun ?? 0;
+
+/** A spot's hours of sun over the months its crop grows, as at midsummer
+ *  (lib/sun `season`); null where not known. */
+export type SunAt = (s: Section) => number | null;
+
+/** A section's crop gets less sun than it needs. */
+export const shortOfSun = (s: Section, sun?: SunAt) => {
+  const h = s.crop && sun ? sun(s) : null;
+  return h !== null && sunNeed(s.crop!) > h + 1e-9;
+};
+
 const ORDER: Record<number, Group[]> = {
   1: ['leaves'],
   2: ['brassicas', 'leaves'],
@@ -438,6 +455,10 @@ const STYLES: Record<
   },
 };
 
+/** Whether a style of garden grows a crop. */
+export const allows = (style: PlanStyle | undefined, id: string) =>
+  STYLES[style ?? 'mixed'].allow(id);
+
 /** The order of bed groups in which onions and garlic never sit beside peas
  *  and beans: Heap's permutations, up to 7 beds. */
 function arrange(sections: Section[], beds: number[], groups: Group[]) {
@@ -480,7 +501,9 @@ function arrange(sections: Section[], beds: number[], groups: Group[]) {
  *  peas and beans, the tallest crop of a bed at its north end. Planted
  *  sections keep their crop, and with `keepChosen` every section that has one;
  *  with `only`, just those sections (by index) are planned. With `past`, a
- *  bed is not given a family that grew in it in the year before. */
+ *  bed is not given a family that grew in it in the year before. With
+ *  `sun`, a bed takes a family that has the sun it needs there, and no crop
+ *  is left where it gets less sun than it needs (fitSun). */
 export function autoPlan(
   sections: Section[],
   status: (crop: string) => CropStatus | undefined,
@@ -492,6 +515,7 @@ export function autoPlan(
     axis = 'y',
     sow,
     past,
+    sun,
   }: {
     north?: number;
     keepChosen?: boolean;
@@ -501,6 +525,8 @@ export function autoPlan(
     /** The day the sections it fills are planned to go in. */
     sow?: string;
     past?: Grown[];
+    /** Each spot's sun while its crop grows (lib/sun); none: sun everywhere. */
+    sun?: SunAt;
   } = {}
 ): Section[] {
   // Only what goes in this week: a crop that must wait, or whose time is
@@ -508,9 +534,12 @@ export function autoPlan(
   const how = STYLES[style];
   const now = (id: string) => how.allow(id) && status(id) === 'now';
   let out = sections.map(s => ({ ...s }));
+  // The sections it fills: the only ones fitSun may change.
+  const filled = new Set<Section>();
   const put = (s: Section, crop: string | null) => {
     s.crop = crop;
     s.sow = crop ? sow : undefined;
+    filled.add(s);
   };
   const open = new Set(only ? only.map(i => out[i]) : out);
   const beds = [...new Set(out.map(s => s.bed))];
@@ -538,22 +567,32 @@ export function autoPlan(
     // now; with none, the bed is left empty.
     // ponytail: a bed's last family is skipped, not the whole rotation
     // cycle; the next bed's family may end up beside the one it should not.
-    const before = since(bed);
-    const choices = [groups[i], ...how.fallback, ...how.cycle];
-    const group =
-      choices.find(k => !before.has(k) && GROUPS[k].some(now)) ??
-      choices.find(k => GROUPS[k].some(now));
-    const pick = group
-      ? GROUPS[group]
-          .filter(now)
-          .sort((a, z) => Number(used.has(a)) - Number(used.has(z)))
-      : [];
     const parts = out
       .filter(
         s =>
           s.bed === bed && open.has(s) && !s.planted && !(keepChosen && s.crop)
       )
       .sort((a, z) => northOf(north, z) - northOf(north, a));
+    // The sun most of the bed gets while it grows: a family with a crop that
+    // has the sun it needs there comes first.
+    const lit = sun
+      ? parts.map(s => sun({ ...s, sow }) ?? Infinity).sort((a, z) => a - z)
+      : [];
+    const bedSun = lit.length ? lit[Math.floor(lit.length / 2)] : Infinity;
+    const fits = (id: string) => now(id) && sunNeed(id) <= bedSun + 1e-9;
+    const before = since(bed);
+    const choices = [groups[i], ...how.fallback, ...how.cycle];
+    const group =
+      choices.find(k => !before.has(k) && GROUPS[k].some(fits)) ??
+      choices.find(k => GROUPS[k].some(fits)) ??
+      choices.find(k => !before.has(k) && GROUPS[k].some(now)) ??
+      choices.find(k => GROUPS[k].some(now));
+    const pick = group
+      ? (GROUPS[group].some(fits)
+          ? GROUPS[group].filter(fits)
+          : GROUPS[group].filter(now)
+        ).sort((a, z) => Number(used.has(a)) - Number(used.has(z)))
+      : [];
     // Vegetables with flowers: a strip of a low companion flower across the
     // bed's sunny end, cut from its last section (unless that is a strip).
     const flower = COMPANIONS.find(id => status(id) === 'now');
@@ -585,8 +624,52 @@ export function autoPlan(
       used.add(crops[j]);
     });
   });
+  if (sun) out = fitSun(out, sun, now, s => filled.has(s));
   if (style === 'vegFlowers')
     for (const bed of beds) out = renumber(out, bed, axis);
+  return out;
+}
+
+/** Crops moved out of spots with less sun than they need, among the sections
+ *  `movable` allows: one swaps with a crop of its bed (else of the garden)
+ *  when each then has the sun it needs; else its spot takes a crop going in
+ *  `now` that fits it, of its own family first; else it is left empty. */
+export function fitSun(
+  sections: Section[],
+  sun: SunAt,
+  now: (id: string) => boolean,
+  movable: (s: Section) => boolean
+): Section[] {
+  const out = sections.map(s => ({ ...s }));
+  const fits = (id: string | null, s: Section) => {
+    const h = id ? sun(s) : null;
+    return h === null || sunNeed(id!) <= h + 1e-9;
+  };
+  const ids = out.flatMap((_, i) => (movable(sections[i]) ? [i] : []));
+  for (const i of ids) {
+    const s = out[i];
+    if (fits(s.crop, s)) continue;
+    const swap = ids
+      .filter(j => j !== i && fits(s.crop, out[j]) && fits(out[j].crop, s))
+      .sort(
+        (a, z) => Number(out[z].bed === s.bed) - Number(out[a].bed === s.bed)
+      )[0];
+    if (swap !== undefined) {
+      const t = out[swap];
+      [s.crop, t.crop] = [t.crop, s.crop];
+      [s.sow, t.sow] = [t.sow, s.sow];
+      continue;
+    }
+    const family = GROUP_OF[s.crop!];
+    const instead = CROPS.map(c => c.id)
+      .filter(id => now(id) && fits(id, s))
+      .sort(
+        (a, z) =>
+          Number(GROUP_OF[z] === family) - Number(GROUP_OF[a] === family)
+      )[0];
+    s.crop = instead ?? null;
+    if (!instead) s.sow = undefined;
+  }
   return out;
 }
 
@@ -810,14 +893,16 @@ export function restoreBed(plan: Plan, i: number): Plan {
   };
 }
 
-/** The plan on a new size, shape, north, bed direction or way of growing:
- *  each new section keeps the crop and planting of the old one it
+/** The plan on a new size, shape, north, bed direction, way of growing or
+ *  sides: each new section keeps the crop and planting of the old one it
  *  mostly lies on, deleted beds stay deleted, and the rest is planned. */
 export function reshape(
   plan: Plan,
   garden: Garden,
   status: (crop: string) => CropStatus | undefined,
-  sow?: string
+  sow?: string,
+  /** Each spot's sun in the new garden (lib/sun). */
+  sun?: SunAt
 ): Plan {
   const plot = regions(garden);
   const bare = (plan.bare ?? []).filter(r =>
@@ -847,6 +932,7 @@ export function reshape(
       axis: axisOf(garden),
       sow,
       past: plan.past,
+      sun,
     }),
     bare,
   };

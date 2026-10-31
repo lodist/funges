@@ -10,6 +10,7 @@ import {
   endAs,
   finish,
   fit,
+  fitSun,
   inMonth,
   joinSections,
   splitSections,
@@ -29,8 +30,10 @@ import {
   removeBed,
   reshape,
   restoreBed,
+  shortOfSun,
   split,
   summary,
+  sunNeed,
   type Garden,
   type Plan,
   type PlanStyle,
@@ -543,5 +546,86 @@ describe('joining and splitting many sections', () => {
       ...thrice.sections.filter(s => s.bed === 0).map(s => s.y1 - s.y0)
     );
     expect(shortest).toBeGreaterThanOrEqual(0.3 - 1e-9);
+  });
+});
+
+describe('Plan it for me and the sun', () => {
+  // A plot whose west half gets 2 hours of sun, its east half 12.
+  const g: Garden = { width: 6, length: 4, shape: 'rect' };
+  const shady = (s: Section) => ((s.x0 + s.x1) / 2 < 3 ? 2 : 12);
+  const everything = (): CropStatus => 'now';
+
+  it('never plans a crop where it gets less sun than it needs', () => {
+    const out = autoPlan(layout(g), everything, {
+      sun: shady,
+      sow: '2026-05-01',
+    });
+    for (const s of out)
+      if (s.crop) expect(sunNeed(s.crop)).toBeLessThanOrEqual(shady(s));
+    // The sunny half still grows what needs sun.
+    expect(out.some(s => s.crop && sunNeed(s.crop) === 6)).toBe(true);
+  });
+
+  it('plans as before where every spot has the sun', () => {
+    const plain = autoPlan(layout(g), everything, { sow: '2026-05-01' });
+    const sunny = autoPlan(layout(g), everything, {
+      sow: '2026-05-01',
+      sun: () => 24,
+    });
+    expect(sunny).toEqual(plain);
+  });
+
+  it('swaps a crop into the sun with one that copes with shade', () => {
+    // One bed, two sections: the first in shade, the second in the sun.
+    const bed = layout({ width: 1.5, length: 4, shape: 'rect' }).map(
+      (s, i) => ({ ...s, crop: i ? 'lettuce' : 'tomato' })
+    );
+    const sun = (s: Section) => (s.part === 0 ? 3 : 12);
+    const out = fitSun(
+      bed,
+      sun,
+      () => true,
+      () => true
+    );
+    expect(out.map(s => s.crop)).toEqual(['lettuce', 'tomato']);
+    // Planted, nothing moves.
+    expect(
+      fitSun(
+        bed,
+        sun,
+        () => true,
+        () => false
+      )
+    ).toEqual(bed);
+  });
+
+  it('else gives the spot to a crop that fits, or leaves it empty', () => {
+    const [one] = layout({ width: 1.5, length: 2, shape: 'rect' });
+    const tomato = { ...one, crop: 'tomato', sow: '2026-05-01' };
+    const lettuce = (id: string) => id === 'lettuce' || id === 'tomato';
+    expect(
+      fitSun(
+        [tomato],
+        () => 3,
+        lettuce,
+        () => true
+      )[0].crop
+    ).toBe('lettuce');
+    const none = fitSun(
+      [tomato],
+      () => 1,
+      lettuce,
+      () => true
+    )[0];
+    expect(none.crop).toBeNull();
+    expect(none.sow).toBeUndefined();
+  });
+
+  it('says when a crop is short of sun', () => {
+    const [one] = layout({ width: 1.5, length: 2, shape: 'rect' });
+    expect(shortOfSun({ ...one, crop: 'tomato' }, () => 4)).toBe(true);
+    expect(shortOfSun({ ...one, crop: 'lettuce' }, () => 4)).toBe(false);
+    expect(shortOfSun({ ...one, crop: 'tomato' }, () => null)).toBe(false);
+    expect(shortOfSun({ ...one, crop: 'tomato' })).toBe(false);
   });
 });

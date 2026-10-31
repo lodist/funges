@@ -37,7 +37,9 @@ export interface Crop {
   spacing: number | null;
   /** Between rows, cm; null: no rows (bulbs in groups, scattered seed). */
   rows: number | null;
-  sun: 'full' | 'part';
+  /** Hours of direct sun a day it needs to do well: 6 (full sun), 4 (it
+   *  copes with part shade) or 3 (with light shade); RHS, by crop. */
+  sun: 6 | 4 | 3;
   /** When it gives its first harvest, where that is not a matter of weeks. */
   note?:
     'spring_flowers' | 'next_year' | 'second_year' | 'third_year' | 'perennial';
@@ -53,7 +55,7 @@ export const CROPS: Crop[] = [
     depth: 3,
     spacing: 15,
     rows: 30,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'broad_beans',
@@ -63,7 +65,7 @@ export const CROPS: Crop[] = [
     depth: 5,
     spacing: 20,
     rows: 45,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'lettuce',
@@ -73,7 +75,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 25,
     rows: 30,
-    sun: 'part',
+    sun: 3,
   },
   {
     id: 'lambs_lettuce',
@@ -83,7 +85,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 10,
     rows: 15,
-    sun: 'part',
+    sun: 3,
   },
   {
     id: 'rocket',
@@ -93,7 +95,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 15,
     rows: 30,
-    sun: 'part',
+    sun: 3,
   },
   {
     id: 'spinach',
@@ -103,7 +105,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 15,
     rows: 30,
-    sun: 'part',
+    sun: 3,
   },
   {
     id: 'peas',
@@ -113,7 +115,7 @@ export const CROPS: Crop[] = [
     depth: 4,
     spacing: 8,
     rows: 60,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'radish',
@@ -123,7 +125,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 3,
     rows: 15,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'carrot',
@@ -133,7 +135,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 5,
     rows: 20,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'parsnip',
@@ -143,7 +145,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 15,
     rows: 30,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'beetroot',
@@ -153,7 +155,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 10,
     rows: 30,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'turnip',
@@ -163,7 +165,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 15,
     rows: 30,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'chard',
@@ -173,7 +175,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 30,
     rows: 40,
-    sun: 'part',
+    sun: 4,
   },
   {
     id: 'chicory',
@@ -183,7 +185,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 30,
     rows: 40,
-    sun: 'full',
+    sun: 3,
   },
   {
     id: 'kale',
@@ -193,7 +195,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'cabbage',
@@ -203,7 +205,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'cauliflower',
@@ -213,7 +215,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 60,
     rows: 60,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'broccoli',
@@ -223,7 +225,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'brussels_sprouts',
@@ -233,7 +235,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 60,
     rows: 75,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'kohlrabi',
@@ -243,7 +245,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 25,
     rows: 30,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'onion_sets',
@@ -253,7 +255,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 10,
     rows: 30,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'onion',
@@ -263,7 +265,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 10,
     rows: 30,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'leek',
@@ -273,7 +275,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 15,
     rows: 30,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'celery',
@@ -283,7 +285,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 30,
     rows: 30,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'fennel',
@@ -293,7 +295,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 30,
     rows: 45,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'potato',
@@ -303,7 +305,7 @@ export const CROPS: Crop[] = [
     depth: 12,
     spacing: 30,
     rows: 75,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'asparagus',
@@ -313,7 +315,7 @@ export const CROPS: Crop[] = [
     depth: 20,
     spacing: 40,
     rows: 90,
-    sun: 'full',
+    sun: 4,
     note: 'third_year',
   },
   {
@@ -324,7 +326,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 90,
     rows: 90,
-    sun: 'full',
+    sun: 4,
     note: 'second_year',
   },
   {
@@ -335,7 +337,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 90,
     rows: 90,
-    sun: 'full',
+    sun: 6,
     note: 'next_year',
   },
   {
@@ -346,7 +348,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 50,
     rows: 75,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'pepper',
@@ -356,7 +358,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'chilli',
@@ -366,7 +368,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'aubergine',
@@ -376,7 +378,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 60,
     rows: 75,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'cucumber',
@@ -386,7 +388,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 45,
     rows: 90,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'courgette',
@@ -396,7 +398,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 90,
     rows: 90,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'pumpkin',
@@ -406,7 +408,7 @@ export const CROPS: Crop[] = [
     depth: 3,
     spacing: 150,
     rows: 180,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'winter_squash',
@@ -416,7 +418,7 @@ export const CROPS: Crop[] = [
     depth: 3,
     spacing: 100,
     rows: 150,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'green_beans',
@@ -426,7 +428,7 @@ export const CROPS: Crop[] = [
     depth: 4,
     spacing: 15,
     rows: 45,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'sweetcorn',
@@ -436,7 +438,7 @@ export const CROPS: Crop[] = [
     depth: 4,
     spacing: 35,
     rows: 60,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'strawberry',
@@ -446,7 +448,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 35,
     rows: 75,
-    sun: 'full',
+    sun: 4,
     note: 'next_year',
   },
   {
@@ -457,7 +459,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 90,
     rows: 150,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'watermelon',
@@ -467,7 +469,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 100,
     rows: 180,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'basil',
@@ -477,7 +479,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 25,
     rows: 30,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'parsley',
@@ -487,7 +489,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 20,
     rows: 30,
-    sun: 'part',
+    sun: 3,
   },
   {
     id: 'coriander',
@@ -497,7 +499,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 15,
     rows: 30,
-    sun: 'part',
+    sun: 3,
   },
   {
     id: 'dill',
@@ -507,7 +509,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 25,
     rows: 40,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'chervil',
@@ -517,7 +519,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 20,
     rows: 30,
-    sun: 'part',
+    sun: 3,
   },
   {
     id: 'chives',
@@ -527,7 +529,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 25,
     rows: 30,
-    sun: 'full',
+    sun: 3,
     note: 'perennial',
   },
   {
@@ -538,7 +540,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 30,
     rows: 40,
-    sun: 'full',
+    sun: 6,
     note: 'perennial',
   },
   {
@@ -549,7 +551,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 60,
     rows: 90,
-    sun: 'full',
+    sun: 6,
     note: 'perennial',
   },
   {
@@ -560,7 +562,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 30,
     rows: 40,
-    sun: 'full',
+    sun: 4,
     note: 'perennial',
   },
   {
@@ -571,7 +573,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 'full',
+    sun: 6,
     note: 'perennial',
   },
   {
@@ -582,7 +584,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 45,
     rows: 60,
-    sun: 'part',
+    sun: 3,
     note: 'perennial',
   },
   {
@@ -593,7 +595,7 @@ export const CROPS: Crop[] = [
     depth: 15,
     spacing: 10,
     rows: null,
-    sun: 'full',
+    sun: 6,
     note: 'spring_flowers',
   },
   {
@@ -604,7 +606,7 @@ export const CROPS: Crop[] = [
     depth: 15,
     spacing: 10,
     rows: null,
-    sun: 'full',
+    sun: 4,
     note: 'spring_flowers',
   },
   {
@@ -615,7 +617,7 @@ export const CROPS: Crop[] = [
     depth: 8,
     spacing: 8,
     rows: null,
-    sun: 'full',
+    sun: 6,
     note: 'spring_flowers',
   },
   {
@@ -626,7 +628,7 @@ export const CROPS: Crop[] = [
     depth: 3,
     spacing: 45,
     rows: 60,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'marigold',
@@ -636,7 +638,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 25,
     rows: 30,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'calendula',
@@ -646,7 +648,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 30,
     rows: 30,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'nasturtium',
@@ -656,7 +658,7 @@ export const CROPS: Crop[] = [
     depth: 2,
     spacing: 30,
     rows: 45,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'zinnia',
@@ -666,7 +668,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 30,
     rows: 30,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'cosmos',
@@ -676,7 +678,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: 40,
     rows: 45,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'sweet_pea',
@@ -686,7 +688,7 @@ export const CROPS: Crop[] = [
     depth: 3,
     spacing: 15,
     rows: null,
-    sun: 'full',
+    sun: 4,
   },
   {
     id: 'lavender',
@@ -696,7 +698,7 @@ export const CROPS: Crop[] = [
     depth: null,
     spacing: 60,
     rows: 90,
-    sun: 'full',
+    sun: 6,
     note: 'perennial',
   },
   {
@@ -707,7 +709,7 @@ export const CROPS: Crop[] = [
     depth: 5,
     spacing: 15,
     rows: 20,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'winter_rye',
@@ -717,7 +719,7 @@ export const CROPS: Crop[] = [
     depth: 3,
     spacing: null,
     rows: null,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'crimson_clover',
@@ -727,7 +729,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: null,
     rows: null,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'phacelia',
@@ -737,7 +739,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: null,
     rows: null,
-    sun: 'full',
+    sun: 6,
   },
   {
     id: 'white_mustard',
@@ -747,7 +749,7 @@ export const CROPS: Crop[] = [
     depth: 1,
     spacing: null,
     rows: null,
-    sun: 'full',
+    sun: 6,
   },
 ];
 

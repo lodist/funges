@@ -392,8 +392,9 @@
     "apart": "Tous les {{value}} cm",
     "apartRows": "Tous les {{value}} cm, rangs à {{rows}} cm",
     "sun": {
-      "full": "Plein soleil",
-      "part": "Soleil ou mi-ombre"
+      "6": "Plein soleil : 6 heures par jour ou plus",
+      "4": "Supporte la mi-ombre : 4 heures de soleil ou plus",
+      "3": "Supporte l'ombre légère : 3 heures de soleil ou plus"
     },
     "ready": {
       "weeks_one": "Dans {{count}} semaine environ",
@@ -2304,7 +2305,42 @@
       "other": "Autre chose"
     },
     "before": "Avant",
-    "beforeText": "{{crop}}, sorti le {{date}}"
+    "beforeText": "{{crop}}, sorti le {{date}}",
+    "aroundLabel": "Autour du jardin",
+    "aroundHint": "Une clôture, une maison ou des arbres sur un côté ombragent les planches voisines. Le dessin montre l'ombre du mois que vous planifiez.",
+    "side": {
+      "n": "Nord",
+      "ne": "Nord-est",
+      "e": "Est",
+      "se": "Sud-est",
+      "s": "Sud",
+      "sw": "Sud-ouest",
+      "w": "Ouest",
+      "nw": "Nord-ouest",
+      "corner": "Coin"
+    },
+    "sideKind": {
+      "open": "Dégagé",
+      "fence": "Clôture ou haie",
+      "house": "Maison ou mur",
+      "trees": "Grands arbres"
+    },
+    "sun": {
+      "here_one": "Ici, en {{month}}, environ {{count}} heure de soleil par jour, {{when}}.",
+      "here_other": "Ici, en {{month}}, environ {{count}} heures de soleil par jour, {{when}}.",
+      "none": "Ici, en {{month}}, presque pas de soleil direct.",
+      "when": {
+        "allDay": "presque toute la journée",
+        "morning": "surtout le matin",
+        "afternoon": "surtout l'après-midi",
+        "midday": "vers midi",
+        "morningEvening": "le matin et le soir"
+      },
+      "short": "Cet endroit est trop ombragé pour {{crop}} : il faut {{hours}} heures de soleil par jour ou plus.",
+      "shortCount_one": "! 1 culture trop à l'ombre",
+      "shortCount_other": "! {{count}} cultures trop à l'ombre",
+      "shortHint": "Des cultures à un endroit qui reçoit moins de soleil qu'il ne leur en faut. Touchez pour les sélectionner."
+    }
   },
   "year": {
     "title": "Calendrier",
