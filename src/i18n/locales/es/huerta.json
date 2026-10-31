@@ -1994,6 +1994,61 @@
     "useShort": "Mi huerto"
   },
   "planner": {
+    "area": {
+      "select": "Seleccionar una zona",
+      "done": "Listo",
+      "hint": "Arrastra sobre los bancales que quieras."
+    },
+    "pick": {
+      "bed_one": "Todo el bancal ({{count}})",
+      "bed_other": "Todo el bancal ({{count}})",
+      "strip_one": "Toda la franja ({{count}})",
+      "strip_other": "Toda la franja ({{count}})",
+      "crop_one": "{{crop}}: todo ({{count}})",
+      "crop_other": "{{crop}}: todo ({{count}})"
+    },
+    "mix": {
+      "empty": "Vacío"
+    },
+    "list": {
+      "title": "Qué crece aquí",
+      "hint": "Ordenar pone cada cultivo en una sola pieza, las familias juntas y lejos de donde crecieron los últimos tres años.",
+      "full": "No queda ninguna parte libre. Agranda el huerto o quita un cultivo del plan.",
+      "empty": "Todavía no hay nada planeado. Añade un cultivo o deja que «Planifícalo por mí» llene el huerto.",
+      "add": "Añadir un cultivo",
+      "arrange": "Ordenar",
+      "sections_one": "{{count}} parte",
+      "sections_other": "{{count}} partes",
+      "area": "{{value}} m²",
+      "plants_one": "unas {{count}} planta",
+      "plants_other": "unas {{count}} plantas",
+      "feeds_one": "da para unas {{count}} persona",
+      "feeds_other": "da para unas {{count}} personas",
+      "goesIn": "Se siembra el {{date}}",
+      "goesNow": "Se siembra en cuanto se pueda",
+      "inSince": "En la tierra desde el {{date}}",
+      "ready": "lista hacia el {{date}}",
+      "more": "Una parte más",
+      "less": "Una parte menos",
+      "menu": "Más sobre {{crop}}",
+      "show": "Mostrar en el dibujo",
+      "rounds": "Volver a sembrar por tandas",
+      "remove": "Quitar del plan",
+      "addTitle": "Añadir un cultivo",
+      "addText": "Va junto a su familia o donde el huerto esté libre.",
+      "roundsTitle": "Volver a sembrar {{crop}} por tandas",
+      "roundsText": "Cada tanda del tamaño de esta, junto a la anterior.",
+      "every": "Cada",
+      "weeks_one": "{{count}} semana",
+      "weeks_other": "{{count}} semanas",
+      "times": "Tandas",
+      "fewer": "Una tanda menos",
+      "moreRounds": "Una tanda más",
+      "dates": "Se siembra el {{dates}}",
+      "room_one": "Solo había sitio para {{count}} tanda.",
+      "room_other": "Solo había sitio para {{count}} tandas.",
+      "addRounds": "Añadir las tandas"
+    },
     "title": "Mi huerto",
     "description": "Tu huerto bancal a bancal, y lo que necesita de ti cada semana: qué sembrar y dónde, cuidados, riego y cosecha, calculado para tu lugar.",
     "sample": "Planificado para un lugar de ejemplo, {{place}}.",
@@ -2190,6 +2245,7 @@
       "lost": "Perdido: {{crops}}"
     },
     "tab": {
+      "list": "Lista",
       "week": "Tareas",
       "garden": "Huerto"
     },

@@ -1994,6 +1994,61 @@
     "useShort": "Il mio orto"
   },
   "planner": {
+    "area": {
+      "select": "Seleziona un'area",
+      "done": "Fatto",
+      "hint": "Trascina sulle aiuole che vuoi."
+    },
+    "pick": {
+      "bed_one": "Tutta l'aiuola ({{count}})",
+      "bed_other": "Tutta l'aiuola ({{count}})",
+      "strip_one": "Tutta la striscia ({{count}})",
+      "strip_other": "Tutta la striscia ({{count}})",
+      "crop_one": "{{crop}}: tutto ({{count}})",
+      "crop_other": "{{crop}}: tutto ({{count}})"
+    },
+    "mix": {
+      "empty": "Vuoto"
+    },
+    "list": {
+      "title": "Cosa cresce qui",
+      "hint": "Ordina mette ogni coltura in un solo pezzo, le famiglie insieme e lontano da dove sono cresciute negli ultimi tre anni.",
+      "full": "Non resta nessuna parte libera. Ingrandisci l'orto o togli una coltura dal piano.",
+      "empty": "Ancora niente in programma. Aggiungi una coltura o lascia che «Pianificalo per me» riempia l'orto.",
+      "add": "Aggiungi una coltura",
+      "arrange": "Ordina",
+      "sections_one": "{{count}} parte",
+      "sections_other": "{{count}} parti",
+      "area": "{{value}} m²",
+      "plants_one": "circa {{count}} pianta",
+      "plants_other": "circa {{count}} piante",
+      "feeds_one": "basta per circa {{count}} persona",
+      "feeds_other": "basta per circa {{count}} persone",
+      "goesIn": "Va in terra il {{date}}",
+      "goesNow": "Va in terra appena si può",
+      "inSince": "In terra dal {{date}}",
+      "ready": "pronta verso il {{date}}",
+      "more": "Una parte in più",
+      "less": "Una parte in meno",
+      "menu": "Altro per {{crop}}",
+      "show": "Mostra sul disegno",
+      "rounds": "Riseminare a scaglioni",
+      "remove": "Togli dal piano",
+      "addTitle": "Aggiungi una coltura",
+      "addText": "Va accanto alla sua famiglia, o dove l'orto è libero.",
+      "roundsTitle": "Riseminare {{crop}} a scaglioni",
+      "roundsText": "Ogni scaglione grande come questo, accanto al precedente.",
+      "every": "Ogni",
+      "weeks_one": "{{count}} settimana",
+      "weeks_other": "{{count}} settimane",
+      "times": "Scaglioni",
+      "fewer": "Uno scaglione in meno",
+      "moreRounds": "Uno scaglione in più",
+      "dates": "In terra il {{dates}}",
+      "room_one": "C'era posto solo per {{count}} scaglione.",
+      "room_other": "C'era posto solo per {{count}} scaglioni.",
+      "addRounds": "Aggiungi gli scaglioni"
+    },
     "title": "Il mio orto",
     "description": "Il tuo orto aiuola per aiuola, e ciò che ti chiede ogni settimana: cosa seminare e dove, cure, irrigazione e raccolto, calcolati per il tuo luogo.",
     "sample": "Pianificato per un luogo di esempio, {{place}}.",
@@ -2190,6 +2245,7 @@
       "lost": "Perso: {{crops}}"
     },
     "tab": {
+      "list": "Elenco",
       "week": "Da fare",
       "garden": "Orto"
     },
