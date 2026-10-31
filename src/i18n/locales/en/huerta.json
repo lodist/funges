@@ -415,7 +415,9 @@
       "spring_flowers_at": "Flowers from {{month}}, the spring after planting"
     },
     "source": "Growing facts: RHS, UC ANR and seed-company sowing guides.",
-    "year": "Its year around {{place}}"
+    "year": "Its year around {{place}}",
+    "viewOnMap": "View on map",
+    "viewOnCalendar": "View on calendar"
   },
   "grow": {
     "weather": "Cold, warmth and soil",

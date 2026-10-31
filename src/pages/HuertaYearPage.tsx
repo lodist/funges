@@ -19,6 +19,7 @@ import {
 import { MapPinned, Search } from '@/lib/icons';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import { cn } from '@/lib/utils';
+import { Route as CalendarRoute } from '@/routes/huerta_.planting-calendar';
 
 /** The calendar: every crop's sowing and harvest months at the visitor's place,
  *  like the back of a seed packet, but for this climate. */
@@ -34,7 +35,13 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
   // Choosing the place, open under the header.
   const [picking, setPicking] = useState(false);
   const [kind, setKind] = useState<string>('all');
-  const [query, setQuery] = useState('');
+  // From a crop's sheet: its row alone, its name in the search box, until
+  // the search changes (a name can be part of another's: Kohl, Grünkohl).
+  const asked = CalendarRoute.useSearch().crop;
+  const named =
+    asked && CROPS.some(c => c.id === asked) ? t(`crops.${asked}`) : '';
+  const [query, setQuery] = useState(named);
+  const only = named && query === named ? asked : null;
   const hasPlace = huertaApiConfigured && savedPlace() !== null;
   const thisMonth = new Date().getMonth();
   const backdrop = monthBackdrop(thisMonth);
@@ -46,9 +53,11 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
   const shown = CROPS.filter(
     c =>
       (kind === 'all' || c.kind === kind) &&
-      (!q ||
-        plain(t(`crops.${c.id}`)).includes(q) ||
-        plain(c.scientific).includes(q))
+      (only
+        ? c.id === only
+        : !q ||
+          plain(t(`crops.${c.id}`)).includes(q) ||
+          plain(c.scientific).includes(q))
   );
   const rows = shown.filter(c => year?.crops[c.id]?.sow);
   const absent = shown.filter(c => year && !year.crops[c.id]?.sow);

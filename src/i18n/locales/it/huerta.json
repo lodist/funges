@@ -415,7 +415,9 @@
       "spring_flowers_at": "Fiorisce da {{month}}, la primavera dopo la messa a dimora"
     },
     "source": "Dati di coltivazione: RHS, UC ANR e guide di semina delle ditte sementiere.",
-    "year": "Il suo anno a {{place}}"
+    "year": "Il suo anno a {{place}}",
+    "viewOnMap": "Mostra sulla mappa",
+    "viewOnCalendar": "Mostra nel calendario"
   },
   "grow": {
     "weather": "Freddo, caldo e terreno",

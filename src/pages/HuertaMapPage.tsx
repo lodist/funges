@@ -52,6 +52,7 @@ import { ONLINE_MAX_ZOOM } from '@/lib/offline-packages';
 import { protocol } from '@/lib/pmtiles-protocol';
 import { cn } from '@/lib/utils';
 import { HILLSHADE_LAYER_ID, useMapStore } from '@/store/mapStore';
+import { Route as MapRoute } from '@/routes/huerta_.map';
 import MapThemeSelector from '@/components/MapThemeSelector';
 
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
@@ -299,7 +300,11 @@ export default function HuertaMapPage() {
   const wanted = useRef(new Map<Continent, string>());
   // The advice at the map's centre, for the crop panel's status filter.
   const [centre, setCentre] = useState<PlaceAdvice | null | undefined>();
-  const [crop, setCrop] = useState('garlic');
+  // The crop a sheet's "View on map" asked for, else garlic.
+  const asked = MapRoute.useSearch().crop;
+  const [crop, setCrop] = useState(
+    asked && CROPS.some(c => c.id === asked) ? asked : 'garlic'
+  );
   const mapStyle = useMapStore(state => state.mapStyle);
   // The dark basemaps take the palette turned round.
   const dark = /dark/.test(mapStyle);

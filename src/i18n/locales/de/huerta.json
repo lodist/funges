@@ -415,7 +415,9 @@
       "spring_flowers_at": "Blüht ab {{month}}, im Frühling nach dem Pflanzen"
     },
     "source": "Anbaudaten: RHS, UC ANR und Aussaatanleitungen der Saatgutfirmen.",
-    "year": "Sein Jahr rund um {{place}}"
+    "year": "Sein Jahr rund um {{place}}",
+    "viewOnMap": "Auf der Karte anzeigen",
+    "viewOnCalendar": "Im Kalender anzeigen"
   },
   "grow": {
     "weather": "Kälte, Wärme und Boden",
