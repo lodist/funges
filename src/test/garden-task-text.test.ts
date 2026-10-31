@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import i18n from '@/i18n';
+import i18n, { i18nReady } from '@/i18n';
 import { taskText } from '@/lib/garden-task-text';
 
+// The translations load lazily: the crop's name is read once they're in, as
+// the tests then run (read before, it raced the load: crops.tomato).
+await i18nReady;
 const t = i18n.getFixedT('en', 'huerta');
 const tomato = t('crops.tomato');
 
@@ -17,9 +20,7 @@ describe('what a garden task says', () => {
   });
 
   it('a crop that missed its time says so', () => {
-    expect(
-      taskText({ kind: 'tooLate', crops: ['tomato'] }, t, 'en')
-    ).toEqual({
+    expect(taskText({ kind: 'tooLate', crops: ['tomato'] }, t, 'en')).toEqual({
       title: `${tomato}: too late now`,
       text: 'Pick something else for its beds, or let “Plan it for me” fill them.',
       from: 'plan',
