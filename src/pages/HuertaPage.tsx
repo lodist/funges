@@ -52,8 +52,10 @@ export default function HuertaPage() {
       day: 'numeric',
       month: 'long',
     }).format(new Date(`${advice.day}T12:00:00`));
+    // Its date is already in the line: a kept advice adds only that it is.
     return huertaApiConfigured
-      ? t('around', { place: advice.place, day })
+      ? t('around', { place: advice.place, day }) +
+          (advice.offline ? ` · ${t('offlineShort')}` : '')
       : t('sample', { place: advice.place, day });
   };
   const [place, setPlace] = useState<Place | null>(() =>

@@ -3,6 +3,8 @@
   "description": "Chaque culture : si elle se met en terre cette semaine dans votre commune, comment la cultiver et ce qu'il faut surveiller.",
   "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
   "around": "Environs de {{place}}, {{day}}",
+  "offline": "Hors ligne : conseils du {{day}}",
+  "offlineShort": "Hors ligne",
   "change": "Changer de lieu",
   "find": {
     "placeholder": "Rechercher une culture",

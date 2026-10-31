@@ -40,6 +40,7 @@ const rounded = (value: number) => Math.round(value * 100) / 100;
 
 const localDay = () => new Date().toLocaleDateString('sv'); // YYYY-MM-DD, local
 const ADVICE_KEY = 'huerta-advice';
+const STAND_IN_DAYS = 7; // a kept advice's forecast reaches a week
 const MAP_VIEW_KEY = 'huerta-map-view';
 
 const read = <T>(key: string): T | null => {
@@ -93,17 +94,33 @@ export async function fetchAdvice(
   const kept = read<{ lat: number; lon: number; advice: PlaceAdvice }>(
     ADVICE_KEY
   );
-  if (
+  const here =
     kept &&
     kept.lat === lat &&
     kept.lon === lon &&
-    kept.advice.day >= localDay() &&
     CROPS.every(crop => crop.id in kept.advice.crops)
-  )
-    return kept.advice;
-  const response = await apiFetch('/v1/advice', { lat, lon });
+      ? kept.advice
+      : null;
+  if (here && here.day >= localDay()) return here;
+  // The Worker out of reach: the last advice kept here stands in, marked as
+  // kept, for as long as its week's forecast reaches.
+  const standIn =
+    here &&
+    Date.parse(localDay()) - Date.parse(here.day) <= STAND_IN_DAYS * 864e5
+      ? { ...here, offline: true }
+      : null;
+  let response: Response;
+  try {
+    response = await apiFetch('/v1/advice', { lat, lon });
+  } catch (error) {
+    if (standIn) return standIn;
+    throw error;
+  }
   if (response.status === 404) return null;
-  if (!response.ok) throw new Error(`Huerta advice: ${response.status}`);
+  if (!response.ok) {
+    if (standIn) return standIn;
+    throw new Error(`Huerta advice: ${response.status}`);
+  }
   const advice = decodeAdvice((await response.json()) as AdviceResponse);
   if (keep) write(ADVICE_KEY, { lat, lon, advice });
   return advice;

@@ -134,6 +134,41 @@ describe('the Huerta Worker client', () => {
     expect(savedMapView()).toEqual({ center: [2.35, 48.85], zoom: 6 });
   });
 
+  it("stands in last week's advice when the Worker can't be reached, marked as kept", async () => {
+    const day = (ago: number) =>
+      new Date(Date.now() - ago * 864e5).toLocaleDateString('sv');
+    const place = { lat: 40.44, lon: -3.68 };
+    const keep = (ago: number) =>
+      localStorage.setItem(
+        'huerta-advice',
+        JSON.stringify({
+          lat: 40.44,
+          lon: -3.68,
+          advice: { ...decodeAdvice(FULL), day: day(ago) },
+        })
+      );
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => {
+        throw new TypeError('offline');
+      })
+    );
+    keep(2);
+    expect(await fetchAdvice(place)).toMatchObject({
+      day: day(2),
+      offline: true,
+    });
+    // Older than its week's forecast: none.
+    keep(9);
+    await expect(fetchAdvice(place)).rejects.toThrow();
+    // Back online: today's, not marked.
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Response.json({ ...FULL, day: day(0) }))
+    );
+    expect((await fetchAdvice(place))?.offline).toBeUndefined();
+  });
+
   it('asks again when the app knows a crop the kept answer lacks', async () => {
     const calls = vi.fn(async () => Response.json(ADVICE));
     vi.stubGlobal('fetch', calls);

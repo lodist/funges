@@ -3,6 +3,8 @@
   "description": "Every crop: whether it goes in this week around your town, how to grow it and what to watch for.",
   "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
   "around": "Around {{place}}, {{day}}",
+  "offline": "Offline: advice from {{day}}",
+  "offlineShort": "Offline",
   "change": "Change place",
   "find": {
     "placeholder": "Search for a crop",
