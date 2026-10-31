@@ -217,6 +217,13 @@
     },
     "season": {
       "title": "This season",
+      "forget": {
+        "remove": "Remove",
+        "label": "Remove {{crop}} from this season's record",
+        "ask": "Remove it from the record?",
+        "yes": "Yes",
+        "no": "No"
+      },
       "entries_one": "{{count}} entry",
       "entries_other": "{{count}} entries",
       "harvested": "In {{from}}, out {{to}}",

@@ -217,6 +217,13 @@
     },
     "season": {
       "title": "Cette saison",
+      "forget": {
+        "remove": "Retirer",
+        "label": "Retirer {{crop}} de la liste de la saison",
+        "ask": "Le retirer de la liste ?",
+        "yes": "Oui",
+        "no": "Non"
+      },
       "entries_one": "{{count}} entrée",
       "entries_other": "{{count}} entrées",
       "harvested": "En terre le {{from}}, sorti le {{to}}",

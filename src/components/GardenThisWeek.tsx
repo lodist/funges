@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode } from 'react';
+import { useState, type ComponentType, type ReactNode } from 'react';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
@@ -78,6 +78,7 @@ export function GardenThisWeek({
   onReplan,
   onEnd,
   onRate,
+  onForget,
   folded = false,
 }: {
   plan: Plan;
@@ -103,6 +104,9 @@ export function GardenThisWeek({
   onEnd: (at: number[]) => void;
   /** Rate crops that came out (by their place in the plan's past). */
   onRate: (at: number[], rating: Grown['rating']) => void;
+  /** Take crops that came out off the record (a mistake), by their place in
+   *  the plan's past; the beds' rotation forgets them too. */
+  onForget: (at: number[]) => void;
   folded?: boolean;
 }) {
   const { t, i18n } = useTranslation('huerta');
@@ -304,6 +308,8 @@ export function GardenThisWeek({
   const lines = [...season.values()].sort((a, z) =>
     z.g.ended.localeCompare(a.g.ended)
   );
+  // The line asking whether to take it off the record.
+  const [forgetting, setForgetting] = useState<string | null>(null);
 
   const title = (
     <h2 id='garden-week' className='text-xl font-semibold'>
@@ -429,6 +435,45 @@ export function GardenThisWeek({
                     {g.end === 'harvested' && g.said
                       ? ` · ${t('week.season.said', { date: date(g.said, 'short') })}`
                       : null}
+                  </span>
+                  {/* Off the record, after a second tap: the beds' rotation
+                      reads it too. */}
+                  <span className='mt-0.5 flex gap-3 text-xs'>
+                    {forgetting === at.join() ? (
+                      <>
+                        <span className='text-muted-foreground'>
+                          {t('week.season.forget.ask')}
+                        </span>
+                        <button
+                          type='button'
+                          onClick={() => {
+                            setForgetting(null);
+                            onForget(at);
+                          }}
+                          className='font-medium text-primary-text underline-offset-4 hover:underline'
+                        >
+                          {t('week.season.forget.yes')}
+                        </button>
+                        <button
+                          type='button'
+                          onClick={() => setForgetting(null)}
+                          className='text-muted-foreground underline-offset-4 hover:underline'
+                        >
+                          {t('week.season.forget.no')}
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type='button'
+                        onClick={() => setForgetting(at.join())}
+                        aria-label={t('week.season.forget.label', {
+                          crop: name(g.crop),
+                        })}
+                        className='text-muted-foreground underline-offset-4 hover:underline'
+                      >
+                        {t('week.season.forget.remove')}
+                      </button>
+                    )}
                   </span>
                 </span>
                 {g.end === 'harvested' ? (

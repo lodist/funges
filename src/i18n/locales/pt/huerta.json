@@ -217,6 +217,13 @@
     },
     "season": {
       "title": "Esta temporada",
+      "forget": {
+        "remove": "Remover",
+        "label": "Remover {{crop}} da lista da estação",
+        "ask": "Remover da lista?",
+        "yes": "Sim",
+        "no": "Não"
+      },
       "entries_one": "{{count}} registro",
       "entries_other": "{{count}} registros",
       "harvested": "Entrou em {{from}}, saiu em {{to}}",
