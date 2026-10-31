@@ -779,7 +779,21 @@ export interface PlaceAdvice {
    *  crop's growth counts (lib/growth). */
   warm?: Warm;
   crops: Record<string, CropStatus>;
+  /** Kept from an earlier day and shown because the Worker could not be
+   *  reached (fetchAdvice). */
+  offline?: boolean;
 }
+
+/** The day a kept advice is from, to say so ("Offline: advice from Friday,
+ *  30 October"); null for today's. */
+export const offlineDay = (advice: PlaceAdvice, language: string) =>
+  advice.offline
+    ? new Intl.DateTimeFormat(language, {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+      }).format(new Date(`${advice.day}T12:00:00`))
+    : null;
 
 /** Too late for these in Madrid on 20 October 2026; asparagus waits for
  *  spring; everything else goes in now. */

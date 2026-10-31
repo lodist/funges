@@ -3,6 +3,8 @@
   "description": "Jede Kultur: ob sie diese Woche an deinem Ort in die Erde kann, wie man sie anbaut und worauf du achten musst.",
   "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
   "around": "Rund um {{place}}, {{day}}",
+  "offline": "Offline: Ratschläge vom {{day}}",
+  "offlineShort": "Offline",
   "change": "Ort ändern",
   "find": {
     "placeholder": "Nach einer Kultur suchen",

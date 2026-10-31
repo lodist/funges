@@ -36,6 +36,7 @@ import {
   SAMPLE_ADVICE,
   type CropNeeds,
   type PlaceAdvice,
+  offlineDay,
 } from '@/lib/huerta';
 import {
   fetchAdvice,
@@ -549,12 +550,15 @@ function Planner({ onMoved }: { onMoved: () => void }) {
             scopeLabel={
               sample
                 ? t('planner.sample', { place: advice.place })
-                : forMonths
-                  ? t('planner.forMonth', {
-                      month: monthName(target),
-                      place: advice.place,
-                    })
-                  : t('planner.for', { place: advice.place })
+                : (forMonths
+                    ? t('planner.forMonth', {
+                        month: monthName(target),
+                        place: advice.place,
+                      })
+                    : t('planner.for', { place: advice.place })) +
+                  (offlineDay(advice, i18n.language)
+                    ? ` · ${t('offline', { day: offlineDay(advice, i18n.language) })}`
+                    : '')
             }
             action={
               <div className='flex flex-wrap gap-2'>
