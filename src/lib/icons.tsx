@@ -56,6 +56,7 @@ import {
   Maximize2 as LucideMaximize2,
   MapPin as LucideMapPin,
   MapPinned as LucideMapPinned,
+  Hand as LucideHand,
   Minus as LucideMinus,
   Repeat as LucideRepeat,
   SquareDashedMousePointer as LucideSquareDashedMousePointer,
@@ -191,6 +192,7 @@ export const Map = decorativeByDefault(LucideMap);
 export const Maximize2 = decorativeByDefault(LucideMaximize2);
 export const MapPin = decorativeByDefault(LucideMapPin);
 export const MapPinned = decorativeByDefault(LucideMapPinned);
+export const Hand = decorativeByDefault(LucideHand);
 export const Minus = decorativeByDefault(LucideMinus);
 export const Repeat = decorativeByDefault(LucideRepeat);
 export const SquareDashedMousePointer = decorativeByDefault(

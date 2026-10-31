@@ -25,9 +25,11 @@ import {
   arrange,
   cropLines,
   dropLine,
+  freeSections,
   growLine,
   lastOf,
   nextFree,
+  resizeLine,
   shrinkLine,
   type CropLine,
 } from '@/lib/crop-plan';
@@ -95,6 +97,7 @@ export function CropList({
       month: 'short',
     }).format(new Date(`${day}T12:00:00`));
   const room = nextFree(sections, []) !== null;
+  const freeCount = freeSections(sections);
 
   return (
     <div className='flex flex-col gap-4'>
@@ -248,9 +251,16 @@ export function CropList({
                         >
                           <Minus className='size-4' />
                         </Button>
-                        <span className='min-w-7 text-center text-sm font-medium tabular-nums text-foreground'>
-                          {line.ids.length}
-                        </span>
+                        <CountInput
+                          value={line.ids.length}
+                          max={line.ids.length + freeCount}
+                          label={t('planner.list.count', {
+                            crop: name(line.crop),
+                          })}
+                          onCommit={n =>
+                            onSections(resizeLine(sections, line, n))
+                          }
+                        />
                         <Button
                           variant='outline'
                           size='icon'
@@ -259,6 +269,29 @@ export function CropList({
                           onClick={() => onSections(growLine(sections, line))}
                         >
                           <Plus className='size-4' />
+                        </Button>
+                        {/* All the free ground at once, not a tap a section. */}
+                        <Button
+                          variant='ghost'
+                          className='px-2 text-xs'
+                          disabled={!room}
+                          aria-label={t('planner.list.maxLabel', {
+                            count: line.ids.length + freeCount,
+                          })}
+                          title={t('planner.list.maxLabel', {
+                            count: line.ids.length + freeCount,
+                          })}
+                          onClick={() =>
+                            onSections(
+                              resizeLine(
+                                sections,
+                                line,
+                                line.ids.length + freeCount
+                              )
+                            )
+                          }
+                        >
+                          {t('planner.list.max')}
                         </Button>
                       </div>
                     )}
@@ -292,6 +325,53 @@ export function CropList({
         }}
       />
     </div>
+  );
+}
+
+/** A line's sections as a number to type: applied on Enter or on leaving
+ *  it, between 1 and `max`; past `max`, back to it at once. */
+function CountInput({
+  value,
+  max,
+  label,
+  onCommit,
+}: {
+  value: number;
+  max: number;
+  label: string;
+  onCommit: (n: number) => void;
+}) {
+  const [draft, setDraft] = useState(String(value));
+  const [shown, setShown] = useState(value);
+  // Changed from outside (the stepper, Max, Undo): the field follows.
+  if (shown !== value) {
+    setShown(value);
+    setDraft(String(value));
+  }
+  const commit = () => {
+    const n = Math.min(max, Math.max(1, Math.round(Number(draft)) || value));
+    setDraft(String(n));
+    if (n !== value) onCommit(n);
+  };
+  return (
+    <Input
+      type='number'
+      inputMode='numeric'
+      min={1}
+      max={max}
+      value={draft}
+      aria-label={label}
+      onChange={event =>
+        setDraft(
+          Number(event.target.value) > max ? String(max) : event.target.value
+        )
+      }
+      onKeyDown={event => {
+        if (event.key === 'Enter') event.currentTarget.blur();
+      }}
+      onBlur={commit}
+      className='h-11 w-16 px-2 text-center tabular-nums'
+    />
   );
 }
 

@@ -1994,7 +1994,10 @@
     "useShort": "Il mio orto"
   },
   "planner": {
+    "move": "Sposta il disegno",
     "area": {
+      "short": "Seleziona",
+      "all": "Seleziona tutto",
       "select": "Seleziona un'area",
       "done": "Fatto",
       "hint": "Trascina sulle aiuole che vuoi."
@@ -2011,6 +2014,9 @@
       "empty": "Vuoto"
     },
     "list": {
+      "count": "Parti di {{crop}}",
+      "max": "Max",
+      "maxLabel": "Tutte quelle che ci stanno: {{count}}",
       "title": "Cosa cresce qui",
       "hint": "Ordina mette ogni coltura in un solo pezzo, le famiglie insieme e lontano da dove sono cresciute negli ultimi tre anni.",
       "full": "Non resta nessuna parte libera. Ingrandisci l'orto o togli una coltura dal piano.",

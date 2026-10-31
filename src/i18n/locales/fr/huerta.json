@@ -1994,7 +1994,10 @@
     "useShort": "Mon potager"
   },
   "planner": {
+    "move": "Déplacer le dessin",
     "area": {
+      "short": "Sélectionner",
+      "all": "Tout sélectionner",
       "select": "Sélectionner une zone",
       "done": "Terminé",
       "hint": "Glissez sur les planches voulues."
@@ -2011,6 +2014,9 @@
       "empty": "Vide"
     },
     "list": {
+      "count": "Parties de {{crop}}",
+      "max": "Max",
+      "maxLabel": "Autant que possible : {{count}}",
       "title": "Ce qui pousse ici",
       "hint": "Ranger met chaque culture d'un seul tenant, les familles ensemble et loin de là où elles ont poussé ces trois dernières années.",
       "full": "Plus aucune partie libre. Agrandissez le potager ou retirez une culture du plan.",
