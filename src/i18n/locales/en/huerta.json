@@ -2272,7 +2272,8 @@
       "ready": "Ready: {{crops}}",
       "growing": "Growing: {{crops}}",
       "empty": "Nothing in the ground",
-      "lost": "Lost: {{crops}}"
+      "lost": "Lost: {{crops}}",
+      "resting": "Resting until spring: {{crops}}"
     },
     "tab": {
       "list": "List",

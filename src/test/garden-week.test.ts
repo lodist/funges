@@ -411,6 +411,45 @@ describe('the first crop of perennials, next-year crops and bulbs', () => {
     expect(on('2027-09-01')).toBe('grown');
     expect(on('2028-06-01')).toBe('ready');
   });
+
+  it('bulbs come up two months before their flowers and rest after them', () => {
+    const s = { ...beds[0], crop: 'tulip', planted: '2026-10-31' };
+    const on = (day: string) =>
+      stageOn(s, NEEDS, Array(12).fill(12), 0, day, '2026-10-31', { year });
+    expect(on('2026-12-01')).toBe('resting');
+    expect(on('2027-02-15')).toBe('young');
+    expect(on('2027-04-15')).toBe('ready');
+    expect(on('2027-06-15')).toBe('fading');
+    expect(on('2027-09-05')).toBe('resting');
+    expect(on('2028-03-01')).toBe('young');
+  });
+
+  it('chives rest through the cold months; thyme stays green', () => {
+    // A Zug-like year; chives picked May to September.
+    const cold = [0, 1, 5, 9, 14, 17, 19, 18, 14, 9, 4, 1];
+    const here = {
+      year: {
+        ...year,
+        crops: { ...year.crops, chives: { sow: 0b1100, harvest: 0b111110000 } },
+      } as unknown as PlaceYear,
+    };
+    const on = (crop: string, day: string) =>
+      stageOn(
+        { ...beds[0], crop, planted: '2026-10-01' },
+        NEEDS,
+        cold,
+        0,
+        day,
+        '2026-10-01',
+        here
+      );
+    expect(on('chives', '2027-01-15')).toBe('resting');
+    expect(on('chives', '2027-04-15')).toBe('young');
+    expect(on('chives', '2027-06-15')).toBe('ready');
+    expect(on('chives', '2027-10-15')).toBe('fading');
+    expect(on('chives', '2027-12-15')).toBe('resting');
+    expect(on('thyme', '2027-01-15')).toBe('grown');
+  });
 });
 
 describe('a bed on the timeline', () => {
