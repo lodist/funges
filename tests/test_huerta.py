@@ -280,3 +280,40 @@ def test_area_files_carry_blight_bits_after_the_daily_air():
     bits = pd.Series([0b110], index=pd.MultiIndex.from_tuples([(47.16, 8.55)], names=["key_lat", "key_lon"]))
     rows = json.loads(huerta.area_files(places, advice, "2026-10-31", None, bits)["47_8.json"])["places"]
     assert rows[0][13:] == [None, 6] and rows[1][13:] == [None, 0]          # no daily air known; none at Baar
+
+
+def test_daily_air_keeps_each_days_coldest_hour_for_the_frost_check(tmp_path, monkeypatch):
+    import hourly_weather
+    monkeypatch.setattr(hourly_weather, "OUT_DIR", tmp_path)
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    for day in ("2026-10-20", "2026-10-28", "2026-10-29"):
+        hours = _hours(f"{day} 01:00", 24, 8.0)
+        hours.loc[5, "t2m_c"] = -3.0                                              # a frost at dawn
+        hours.to_parquet(past / f"{day}.parquet")
+    _hours("2026-10-30 01:00", 18, 12.0).to_parquet(past / "2026-10-30.parquet")
+    forecast = _hours("2026-10-30 19:00", 48, 14.0)
+    forecast.loc[10, "t2m_c"] = -1.5                                              # 31 Oct, 05:00
+    lows = huerta.daily_air("SE", forecast, how="min", back=huerta.LOW_DAYS)
+    assert list(lows.columns)[0] == "2026-10-28"                                  # not the 20th: a week back
+    assert lows.loc[(47.16, 8.55), ["2026-10-28", "2026-10-29", "2026-10-30", "2026-10-31"]].tolist() == \
+        [-3.0, -3.0, 12.0, -1.5]
+    assert (tmp_path / "SE" / "daily_min.npz").exists() and not (tmp_path / "SE" / "daily_air.npz").exists()
+
+
+def test_area_files_carry_lows_after_blight_and_keep_the_fields_places():
+    places = pd.DataFrame({
+        "Location_Id": ["Zug_47.160_8.550", "Baar_47.200_8.525"], "Latitude": [47.16, 47.2], "Longitude": [8.55, 8.525],
+        "frost3": [5.0, 5.0], "soil3": [10.0, 10.0], "night7": [6.0, 6.0], "rain7": [4.0, 4.0], "et07": [6.0, 6.0],
+        "last0_median": [116, 116], "first0_median": [319, 319], "frostw": [5.0, 5.0], "frostw_night": [None, None],
+    })
+    advice = pd.DataFrame({"lettuce": ["now", "now"]})
+    at = pd.MultiIndex.from_tuples([(47.16, 8.55)], names=["key_lat", "key_lon"])
+    lows = pd.DataFrame([[-6.0, 1.5]], columns=["2026-10-30", "2026-10-31"], index=at)
+    rows = json.loads(huerta.area_files(places, advice, "2026-10-31", None, None, lows)["47_8.json"])["places"]
+    first, b64 = rows[0][15]
+    assert rows[0][13:15] == [None, None] and first == "2026-10-30" and list(base64.b64decode(b64)) == [48, 63]
+    assert rows[1][13:] == [None, None, None]                                     # nothing known at Baar
+    air = pd.DataFrame([[8.0]], columns=["2026-10-31"], index=at)
+    rows = json.loads(huerta.area_files(places, advice, "2026-10-31", air, None, lows)["47_8.json"])["places"]
+    assert rows[0][13][0] == "2026-10-31" and rows[0][14] is None and rows[0][15][0] == "2026-10-30"
