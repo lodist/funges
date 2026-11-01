@@ -169,15 +169,30 @@ describe('the sun a garden gets', () => {
     expect(december).toBeGreaterThan(june);
   });
 
-  it("gives a bed the sky's light whole and the sun's as far as the sides let it", () => {
+  it('leaves a spot at the foot of a house half its sky, more past trees', () => {
+    // Each way round, the sky above the side's top: the house cuts the half
+    // it stands in, trees let some of it through.
+    const house = sunlight(plot({ bottom: 'house' }), 47)!;
+    const foot = house.months(spot(10, 19.9))[JUN].sky;
+    expect(foot).toBeGreaterThan(0.48);
+    expect(foot).toBeLessThan(0.55);
+    expect(house.months(spot(10, 2))[JUN].sky).toBeGreaterThan(0.97);
+    const trees = sunlight(plot({ bottom: 'trees' }), 47)!;
+    expect(trees.months(spot(10, 19.9))[JUN].sky).toBeGreaterThan(foot + 0.05);
+  });
+
+  it("gives a bed the sky's light past the sides and the sun's as far as they let it", () => {
     const sun = Array(12).fill(12);
     const light = sunlight(plot({ bottom: 'house' }), 47)!;
-    // Far from the house in June: as an open spot.
-    expect(bedLight(light, spot(10, 2), 47, sun)[JUN]).toBeCloseTo(1, 2);
-    // Right behind it in December: only the sky's share.
-    const behind = bedLight(light, spot(10, 19), 47, sun)[DEC];
-    expect(behind).toBeLessThan(1);
-    expect(behind).toBeCloseTo(diffuseShare(47, DEC, 12), 2);
+    // Far from the house in June: about as an open spot.
+    expect(bedLight(light, spot(10, 2), 47, sun)[JUN]).toBeGreaterThan(0.97);
+    // Right behind it in December: no sun, only the sky the house leaves.
+    const behind = light.months(spot(10, 19))[DEC];
+    expect(behind.direct).toBe(0);
+    expect(bedLight(light, spot(10, 19), 47, sun)[DEC]).toBeCloseTo(
+      diffuseShare(47, DEC, 12) * behind.sky,
+      5
+    );
   });
 
   it("carries a side along an L's outline, round its cut corner", () => {

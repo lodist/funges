@@ -68,6 +68,9 @@ export interface SunMonth {
    *  height and the air it shines through weighing each look) that reaches
    *  it past the sides. */
   direct: number;
+  /** The share of the sky's light (an even sky's, on flat ground) that
+   *  reaches it past the sides. */
+  sky: number;
 }
 
 export interface Light {
@@ -149,18 +152,48 @@ interface Look {
   energy: number;
 }
 
-/** Whether `w` stands between the spot (px, py) and the sun: the ray to it
- *  crosses the wall's face lower than the wall's top. */
-function blocks(w: Wall, px: number, py: number, k: Look) {
+/** How far from the spot (px, py) the way (dx, dy) meets `w`'s face, or
+ *  Infinity when it passes it. */
+function meets(w: Wall, px: number, py: number, dx: number, dy: number) {
   const ex = w.x1 - w.x0,
     ey = w.y1 - w.y0;
-  const den = k.dx * ey - k.dy * ex;
-  if (Math.abs(den) < 1e-12) return false;
+  const den = dx * ey - dy * ex;
+  if (Math.abs(den) < 1e-12) return Infinity;
   const qx = w.x0 - px,
     qy = w.y0 - py;
   const t = (qx * ey - qy * ex) / den;
-  const u = (qx * k.dy - qy * k.dx) / den;
-  return t > 1e-9 && u >= 0 && u <= 1 && t * k.tan < HEIGHT[w.kind];
+  const u = (qx * dy - qy * dx) / den;
+  return t > 1e-9 && u >= 0 && u <= 1 ? t : Infinity;
+}
+
+/** Whether `w` stands between the spot (px, py) and the sun: the ray to it
+ *  crosses the wall's face lower than the wall's top. */
+function blocks(w: Wall, px: number, py: number, k: Look) {
+  return meets(w, px, py, k.dx, k.dy) * k.tan < HEIGHT[w.kind];
+}
+
+/** The ways round a spot its sky is looked at in. */
+const WAYS = 72;
+
+/** The share of an even sky's light on flat ground that reaches the spot
+ *  (px, py) past `walls`: each way round, the sky above the highest side's
+ *  top (cos² of how high it stands) and what the side lets through below. */
+function skyView(walls: Wall[], px: number, py: number, leaf: number) {
+  let sum = 0;
+  for (let j = 0; j < WAYS; j++) {
+    const a = (2 * Math.PI * (j + 0.5)) / WAYS;
+    let view = 1;
+    for (const w of walls) {
+      const t = meets(w, px, py, Math.cos(a), Math.sin(a));
+      const h2 = HEIGHT[w.kind] ** 2;
+      view = Math.min(
+        view,
+        1 - (h2 / (h2 + t * t)) * (1 - through(w.kind, leaf))
+      );
+    }
+    sum += view;
+  }
+  return sum / WAYS;
 }
 
 /** The garden's sun, or null when nothing stands along its sides; `leaf`,
@@ -219,7 +252,13 @@ export function sunlight(
             if (k.hour < 12) am += STEP * sun;
             if (sun >= 0.5 && Math.abs(k.hour - 12) < STEP) noon = true;
           }
-          return { hours, am, noon, direct: all ? got / all : 1 };
+          return {
+            hours,
+            am,
+            noon,
+            direct: all ? got / all : 1,
+            sky: skyView(walls, px, py, leaf(m)),
+          };
         });
         kept.set(key, got);
       }
@@ -338,17 +377,15 @@ export function shadows(
   });
 }
 
-/** How much light a crop needs a day before more no longer speeds it,
- *  global sunshine in MJ m-2, by the hours of sun it needs (Crop.sun): the
- *  daily light integrals growers aim for, about 17 mol m-2 for lettuce and
- *  leafy greens and 30 for tomatoes, peppers and cucumbers (Cornell's
- *  greenhouse table; MSU), 20 between (the fruiting crops' least), at
- *  2.19 mol of light a MJ of sunshine (PAR is 48 % of it, 4.57 umol a J). */
-export const LIGHT_NEED: Record<number, number> = {
-  3: 17 / 2.19,
-  4: 20 / 2.19,
-  6: 30 / 2.19,
-};
+/** The share of an open spot's light a crop needs to grow at its full pace,
+ *  by the hours of sun it needs (Crop.sun); with less it grows in proportion
+ *  to the light it gets. Fitted to the shade trials Laub et al. gathered
+ *  (Agron. Sustain. Dev. 42:51, 2022), each class to its own crops', each
+ *  study counted once: lettuce and spinach (3 h), sugar beet and strawberry
+ *  (4 h), maize, beans, potato, peppers, squash and basil (6 h). How sunny
+ *  a place is did not change how its crops took shade (their analysis), so
+ *  it is left out. */
+export const LIGHT_NEED: Record<number, number> = { 3: 0.54, 4: 0.66, 6: 0.89 };
 
 /** The share of a month's daily sunshine `sun` (MJ m-2) that comes as
  *  diffuse light from the sky, from how clear the month is at the place (its
@@ -377,12 +414,12 @@ export function diffuseShare(lat: number, month: number, sun: number) {
 }
 
 /** A bed's light each month, a share of an open spot's: the sky's diffuse
- *  light whole (what the sides cut of the sky is left out), the sun's direct
- *  light as far as the sides let it through. `sun`: the place's monthly
- *  sunshine, MJ m-2 a day. */
+ *  light from the sky the sides leave it, the sun's direct light as far as
+ *  the sides let it through. `sun`: the place's monthly sunshine, MJ m-2 a
+ *  day. */
 export function bedLight(light: Light, s: Box, lat: number, sun: number[]) {
   return light.months(s).map((m, k) => {
-    const sky = diffuseShare(lat, k, sun[k]);
-    return sky + (1 - sky) * m.direct;
+    const diffuse = diffuseShare(lat, k, sun[k]);
+    return diffuse * m.sky + (1 - diffuse) * m.direct;
   });
 }

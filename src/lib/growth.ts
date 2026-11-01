@@ -176,8 +176,8 @@ export function growthPlace(
 }
 
 /** The light a shaded bed gets: each month's share of an open spot's light
- *  (lib/sun bedLight), and the light a day the crop can use at most (MJ m-2,
- *  LIGHT_NEED). */
+ *  (lib/sun bedLight), and the share the crop needs for its full pace
+ *  (LIGHT_NEED). */
 export interface BedLight {
   share: number[];
   need: number;
@@ -210,13 +210,9 @@ export function plantedGrowth(
 
   const pace = Math.min((bio.tlo + bio.thi) / 2, T_TRIAL) - bio.tb;
   const need = bio.days * pace;
-  // A shaded bed: the light it gets of what the crop can use, against an
-  // open bed's.
+  // A shaded bed: the light it gets of what the crop needs for its full pace.
   const shade = bed
-    ? daily(bed.share).map((share, d) => {
-        const open = Math.min(1, sunny[d] / bed.need);
-        return open > 0 ? Math.min(1, (share * sunny[d]) / bed.need) / open : 1;
-      })
+    ? daily(bed.share).map(share => Math.min(1, share / bed.need))
     : null;
   const rate = air.map(
     (a, i) =>
