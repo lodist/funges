@@ -2341,9 +2341,9 @@
       "shortHint": "Kulturen an einem Platz mit weniger Sonne, als sie brauchen. Tippen, um sie auszuwählen."
     },
     "sideBand": {
-      "fence": "Zaun, 2 m",
-      "house": "Haus, 6 m",
-      "trees": "Bäume, 10 m"
+      "fence": "Zaun",
+      "house": "Haus",
+      "trees": "Bäume"
     },
     "shade": {
       "label": "Schatten am {{date}}",

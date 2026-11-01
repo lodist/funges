@@ -2341,9 +2341,9 @@
       "shortHint": "Des cultures à un endroit qui reçoit moins de soleil qu'il ne leur en faut. Touchez pour les sélectionner."
     },
     "sideBand": {
-      "fence": "Clôture, 2 m",
-      "house": "Maison, 6 m",
-      "trees": "Arbres, 10 m"
+      "fence": "Clôture",
+      "house": "Maison",
+      "trees": "Arbres"
     },
     "shade": {
       "label": "Ombre le {{date}}",
