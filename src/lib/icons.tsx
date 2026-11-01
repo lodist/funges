@@ -98,6 +98,7 @@ import {
   User as LucideUser,
   Users as LucideUsers,
   WifiOff as LucideWifiOff,
+  Wind as LucideWind,
   X as LucideX,
   XIcon as LucideXIcon,
   ZoomIn as LucideZoomIn,
@@ -238,6 +239,7 @@ export const Undo2 = decorativeByDefault(LucideUndo2);
 export const User = decorativeByDefault(LucideUser);
 export const Users = decorativeByDefault(LucideUsers);
 export const WifiOff = decorativeByDefault(LucideWifiOff);
+export const Wind = decorativeByDefault(LucideWind);
 export const X = decorativeByDefault(LucideX);
 export const XIcon = decorativeByDefault(LucideXIcon);
 export const ZoomIn = decorativeByDefault(LucideZoomIn);

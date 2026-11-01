@@ -312,6 +312,45 @@ describe('the frost check after a cold night', () => {
   });
 });
 
+describe('storms', () => {
+  // Gusts (km/h) and rain (mm) from 4 May, a day each; 'today' the 9th.
+  //            4   5   6   7   8   9  10  11  12
+  const gust = [20, 70, 20, 20, 20, 20, 20, 90, 80];
+  const rain = [0, 0, 0, 40, 0, 0, 0, 0, 35];
+  const storms = (p: Plan, g = gust, r = rain) =>
+    gardenWeek(
+      p,
+      {
+        ...advice,
+        gusts: { start: '2026-05-04', t: g },
+        rains: { start: '2026-05-04', t: r },
+      },
+      NEEDS,
+      '2026-05-09'
+    ).filter(task => task.kind === 'storm' || task.kind === 'stormCheck');
+
+  it('warns of the first stormy day of the next three and checks the beds after the last one', () => {
+    expect(storms(plan(['tomato', '2026-05-01']))).toEqual([
+      { kind: 'storm', day: '2026-05-11', gust: 90, rain: null },
+      { kind: 'stormCheck', day: '2026-05-07', gust: null, rain: 40 },
+    ]);
+  });
+
+  it('says nothing with nothing planted, nor of a storm before the first crop went in', () => {
+    expect(storms(plan(['tomato']))).toEqual([]);
+    const calm = gust.map(g => Math.min(g, 60));
+    expect(storms(plan(['tomato', '2026-05-07']), calm)).toEqual([]);
+  });
+
+  it('a check ticked off stays off', () => {
+    const p = {
+      ...plan(['tomato', '2026-05-01']),
+      done: { 'stormCheck:2026-05-07': '2026-05-08' },
+    };
+    expect(storms(p).map(task => task.kind)).toEqual(['storm']);
+  });
+});
+
 describe('the dated plan', () => {
   const dated = (
     ...rows: [string, { planted?: string; sow?: string }][]

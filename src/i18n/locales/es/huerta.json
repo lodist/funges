@@ -67,6 +67,19 @@
         "fine": "Están bien",
         "gone": "Se han helado"
       },
+      "storm": {
+        "wind": "Tormenta el {{day}}: rachas de hasta {{gust}}",
+        "rain": "Lluvia fuerte el {{day}}: {{mm}}",
+        "both": "Tormenta el {{day}}: rachas de hasta {{gust}} y {{mm}} de lluvia",
+        "windText": "Ata las plantas altas a sus tutores, sujeta el velo y las mallas con peso y cosecha lo que esté maduro.",
+        "rainText": "Cosecha la fruta madura antes de que se raje, cubre los semilleros de esta semana y deja libres los pasillos para que corra el agua.",
+        "bothText": "Ata las plantas altas a sus tutores, sujeta el velo y las mallas con peso, cubre los semilleros de esta semana y cosecha lo maduro antes de que se raje o se caiga."
+      },
+      "stormCheck": {
+        "wind": "Tormenta el {{day}}: revisa tus bancales",
+        "rain": "Lluvia fuerte el {{day}}: revisa tus bancales",
+        "text": "Endereza lo que se cayó, aprieta la tierra sobre las raíces al aire y vuelve a sembrar donde el agua se llevó la semilla. Lo que se haya perdido, márcalo como perdido en su bancal."
+      },
       "water": {
         "title": "Riega unos {{mm}} L/m² esta semana",
         "text": "La lluvia no repone lo que se llevan el sol y el viento. Dos buenos riegos valen más que uno diario.",
@@ -274,6 +287,7 @@
   "units": {
     "celsius": "{{value}} °C",
     "mm": "{{value}} mm",
+    "kmh": "{{value}} km/h",
     "litres": "{{value}} L/m²"
   },
   "now": {
@@ -2429,7 +2443,7 @@
     "title": "Avisos por la mañana",
     "text": "Una notificación hacia las 8:00 cuando tu huerto necesita algo nuevo.",
     "kinds": {
-      "frost": "Heladas",
+      "frost": "Heladas y tormentas",
       "care": "Cuidados",
       "water": "Riego y lluvia",
       "sow": "Hora de sembrar"

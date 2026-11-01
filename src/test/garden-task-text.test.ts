@@ -46,6 +46,29 @@ describe('what a garden task says', () => {
     );
   });
 
+  it('a storm names its day, its gusts and rain, and what to do', () => {
+    const storm = {
+      kind: 'storm' as const,
+      day: '2026-10-29',
+      gust: 82.4,
+      rain: null,
+    };
+    expect(taskText(storm, t, 'en')).toEqual({
+      title: 'Storm on Thursday: gusts to 82 km/h',
+      text: "Tie tall plants to their stakes, weigh down fleece and nets and pick what's ripe.",
+      from: 'forecast',
+    });
+    expect(taskText({ ...storm, gust: 70, rain: 41 }, t, 'en').title).toBe(
+      'Storm on Thursday: gusts to 70 km/h, 41 mm of rain'
+    );
+    expect(
+      taskText({ ...storm, kind: 'stormCheck', gust: null, rain: 41 }, t, 'en')
+    ).toMatchObject({
+      title: 'Heavy rain on Thursday: check your beds',
+      from: 'weather',
+    });
+  });
+
   it('a later frost names its night', () => {
     expect(
       taskText(
