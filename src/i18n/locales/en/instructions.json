@@ -154,56 +154,97 @@
     "garden": {
       "title": "My garden",
       "intro": "My garden is where you draw your garden, decide what grows where and follow it from sowing to harvest. Set it up once and it tells you what to do each week.",
-      "phone": "On a phone it has three tabs: Garden for the drawing, List for the plan crop by crop and To do for this week's jobs.",
-      "setup": {
-        "title": "Set up your garden",
-        "place": {
-          "title": "Pick your place",
-          "text": "Tap “Choose your place” at the top and search for your town or use your location. Or open the map, tap your spot and choose “Make this my garden”. The place decides the rest: when frost comes, what the soil is like and when each crop can go in."
-        },
+      "phone": "On a phone the settings fold into one line above the drawing (tap it to open them) and there are three tabs: Garden for the drawing, List for the plan crop by crop and To do for this week's jobs.",
+      "place": {
+        "title": "First, your place",
+        "text": "Tap “Choose your place” at the top of My garden and search for your town or use your location. Or open the map, tap your spot and choose “Make this my garden”. The place decides the rest: when frost comes, what the soil is like and when each crop can go in."
+      },
+      "picture": {
+        "alt": "My garden on a computer: the settings on top, the garden drawn in 3D in the middle and the chosen bed on the right. Each numbered part is explained below.",
+        "caption": "My garden on a computer. Each number is explained below.",
+        "swipe": "Swipe it sideways to see all of it."
+      },
+      "steps": {
         "size": {
-          "title": "Draw the garden",
-          "text": "Give its width and length in metres and pick a rectangle or an L-shape. Then say how you grow (raised beds, beds in the ground or open rows) and which way the beds run. Huerta lays out the beds and the paths between them. On a phone these settings fold into one line above the drawing: tap it to open them."
-        },
-        "north": {
-          "title": "Point it north",
-          "text": "Turn the needle on the drawing until it points north, the way your garden really lies. Huerta needs it to work out the sun on each bed and to put tall crops at the north end, where they don't shade the rest."
+          "title": "Garden and beds",
+          "text": "Width and length in metres, a rectangle or an L-shape, how you grow (raised beds, beds in the ground or open rows) and which way the beds run. Huerta lays out the beds and the paths between them."
         },
         "around": {
-          "title": "Say what's around it",
-          "text": "Under “Around the garden”, choose what stands on each side: nothing, a fence or hedge, a house or wall or tall trees. Huerta then counts the hours of sun each bed gets, month by month. Six hours or more is full sun. When a side has something on it, the buttons on the 3D drawing show its shade in the morning, at midday and in the afternoon. Plan, the view from above, shows the sun on each spot."
+          "title": "Around the garden",
+          "text": "What stands on each side: nothing, a fence or hedge, a house or wall or tall trees. Huerta counts the hours of sun each bed gets, month by month. Six or more is full sun."
         },
         "soil": {
-          "title": "Check the soil",
-          "text": "Huerta fills in your soil from soil maps: its type (sandy, loam or clay) and its pH. If you know yours is different, change it. Sandy soil warms up sooner in spring and dries out faster. Clay warms up later and holds water longer. When your soil needs care for a crop, such as lime before cabbages on acid soil, To do says so."
-        }
-      },
-      "plan": {
-        "title": "Plan what goes where",
+          "title": "Soil",
+          "text": "Filled in from soil maps for your place: sandy, loam or clay and how acid it is. Change it if you know yours is different. Sandy soil warms up sooner in spring and needs water more often. Clay warms up later and holds water longer."
+        },
         "when": {
-          "title": "Choose when",
-          "text": "“Plan for” sets when everything not yet in the ground goes in: Today or one of the next twelve months. Pick a month and the timeline starts there."
+          "title": "Plan for",
+          "text": "When everything not yet in the ground goes in: Today or one of the next twelve months. The timeline (12) starts there."
         },
         "auto": {
-          "title": "Let Huerta plan it",
-          "text": "Tap “Plan it for me” and pick what to grow: a mixed garden, vegetables only, vegetables with flowers at each bed's end, fruit first or herbs and flowers. Huerta fills the beds with crops that can go in then at your place. Each bed gets one family. Onions and garlic stay away from peas and beans, tall crops go to the north end and each crop goes where it gets the sun it needs. No family goes back into the bed it grew in last year. A bed stays empty when nothing can go in then. What you've already planted stays as it is. With beds selected, only those are planned."
+          "title": "Plan it for me",
+          "text": "Pick what to grow (a mixed garden, vegetables only, vegetables with flowers at each bed's end, fruit first or herbs and flowers) and Huerta fills the beds with crops that can go in then at your place. Each bed gets one family. Onions and garlic stay away from peas and beans, tall crops go to the north end and each crop goes where it gets the sun it needs. No family goes back into last year's bed. What's planted stays. With beds selected, only those are planned."
         },
-        "change": {
-          "title": "Change it your way",
-          "text": "Tap a bed to see what grows there: how many plants, how far apart, when they're ready and which neighbours to watch. To grow something else, pick it under “Swap for”, drag it from the crops under the drawing onto a bed or select beds and tap a crop. To select several beds, tap Select and drag over them. You can split a section in two, join it with the next one or make it longer or shorter. You can also delete a whole bed. Undo takes back the last change."
+        "undo": {
+          "title": "Undo",
+          "text": "Takes back your last changes, up to twenty, while the page is open."
         },
-        "checks": {
-          "title": "Read the checks",
-          "text": "Under the drawing Huerta counts the good neighbours, the pairs to keep apart and the crops in too much shade. Tap one to select the beds it means. A red label on a bed says the crop can't go in at the time planned and why."
+        "north": {
+          "title": "North",
+          "text": "Turn the needle with the arrows until it points north, the way your garden really lies. Huerta needs it for the sun on each bed and to keep tall crops at the north end."
+        },
+        "view": {
+          "title": "3D or Plan",
+          "text": "3D draws the plants as they grow. Plan shows the garden from above, with the families and the sun on each spot. Zoom with the buttons at the bottom right or with two fingers."
+        },
+        "shade": {
+          "title": "Shade",
+          "text": "When something stands beside the garden, these show where its shade falls in the morning, at midday and in the afternoon."
+        },
+        "bed": {
+          "title": "Tap a bed",
+          "text": "Tap a bed or part of one to open it on the right. The one you tapped is outlined and its label says what grows there. You can also drag a crop from the crops under the drawing onto a bed."
+        },
+        "select": {
+          "title": "Select",
+          "text": "Tap Select and drag over several beds to change them together: put one crop in all of them, join them or split each in two. The hand moves the drawing. “Clear selection” lets them go."
         },
         "timeline": {
-          "title": "Watch it grow",
-          "text": "Slide the timeline under the drawing to see your garden in the weeks ahead: what's growing, what's ready and what the cold will kill. Faded plants are planned but not in the ground yet."
+          "title": "Timeline",
+          "text": "Slide it to see your garden in the weeks ahead: what's growing, what's ready and what the cold will kill. Faded plants are planned but not in the ground yet."
         },
-        "list": {
-          "title": "Plan by crop",
-          "text": "“What grows here” shows the plan crop by crop: its sections, how many plants and how many people they feed. It sits beside the drawing on a computer and under List on a phone. Add a crop, give one a section more or less or sow it again in rounds every few weeks. “Arrange” puts each crop in one piece, families together and away from where they grew the last three years."
+        "sun": {
+          "title": "Sun here",
+          "text": "The hours of direct sun this spot gets this month and when in the day. “Whole bed” selects the rest of the bed."
+        },
+        "status": {
+          "title": "Crop and status",
+          "text": "What's planned here and whether it can go in: now, in the month you planned or not at all. A red label means it can't go in at the time planned."
+        },
+        "facts": {
+          "title": "How it grows here",
+          "text": "How many plants fit, how far apart they go, when they'll be ready and which family should follow next year."
+        },
+        "ifNow": {
+          "title": "If it goes in today",
+          "text": "What the weather here will do to it before it's ready: a frost, cold nights or a winter too hard for it. Once it's in, the same place tells you when to cover it and whether the soil is too cold or too warm for its seeds."
+        },
+        "sown": {
+          "title": "Sown today",
+          "text": "Tap it the day the crop goes in (“Planted today” for seedlings). Huerta then follows how it grows from the warmth it gets and tells you when it's ready. You can change the date afterwards."
+        },
+        "neighbours": {
+          "title": "Neighbours",
+          "text": "The crops beside it that help it or hold it back and how sure that is: a gardeners' rule, a shared disease or tested in trials."
+        },
+        "swap": {
+          "title": "Swap for",
+          "text": "Puts another crop in this spot. Those that can go in now are listed first."
         }
+      },
+      "list": {
+        "title": "Plan by crop",
+        "text": "With no bed selected, “What grows here” on the right (List on a phone) shows the plan crop by crop: its sections, how many plants and how many people they feed. Add a crop, give one a section more or less or sow it again in rounds. “Arrange” puts each crop in one piece, families together and away from where they grew the last three years."
       },
       "week": {
         "title": "Every week",

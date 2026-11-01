@@ -154,56 +154,97 @@
     "garden": {
       "title": "Mon potager",
       "intro": "Dans « Mon potager », vous dessinez votre potager, décidez de ce qui pousse où et suivez tout du semis à la récolte. Une fois installé, il vous dit chaque semaine quoi faire.",
-      "phone": "Sur un téléphone, il a trois onglets : Potager pour le dessin, Liste pour le plan culture par culture et À faire pour les travaux de la semaine.",
-      "setup": {
-        "title": "Installez votre potager",
-        "place": {
-          "title": "Choisissez votre lieu",
-          "text": "Touchez « Choisissez votre lieu » en haut et cherchez votre commune ou utilisez votre position. Ou ouvrez la carte, touchez votre emplacement et choisissez « En faire mon potager ». Le lieu décide du reste : quand vient le gel, comment est le sol et quand chaque culture peut aller en terre."
-        },
+      "phone": "Sur un téléphone, les réglages tiennent sur une ligne au-dessus du dessin (touchez-la pour les ouvrir) et il y a trois onglets : Potager pour le dessin, Liste pour le plan culture par culture et À faire pour les travaux de la semaine.",
+      "place": {
+        "title": "D'abord, votre lieu",
+        "text": "Touchez « Choisissez votre lieu » en haut de « Mon potager » et cherchez votre commune ou utilisez votre position. Ou ouvrez la carte, touchez votre emplacement et choisissez « En faire mon potager ». Le lieu décide du reste : quand vient le gel, comment est le sol et quand chaque culture peut aller en terre."
+      },
+      "picture": {
+        "alt": "« Mon potager » sur un ordinateur : les réglages en haut, le potager dessiné en 3D au milieu et la planche choisie à droite. Chaque partie numérotée est expliquée plus bas.",
+        "caption": "« Mon potager » sur un ordinateur. Chaque numéro est expliqué plus bas.",
+        "swipe": "Faites-la glisser sur le côté pour tout voir."
+      },
+      "steps": {
         "size": {
-          "title": "Dessinez le potager",
-          "text": "Indiquez la largeur et la longueur en mètres et choisissez rectangle ou en L. Dites ensuite comment vous cultivez (carrés surélevés, planches en pleine terre ou rangs en plein champ) et dans quel sens vont les planches. Huerta dispose les planches et les allées entre elles. Sur un téléphone, ces réglages tiennent sur une ligne au-dessus du dessin : touchez-la pour les ouvrir."
-        },
-        "north": {
-          "title": "Orientez-le au nord",
-          "text": "Tournez l'aiguille du dessin jusqu'à ce qu'elle pointe vers le nord, comme votre potager est vraiment orienté. Huerta en a besoin pour calculer le soleil sur chaque planche et mettre les cultures hautes au bout nord, où elles ne font pas d'ombre aux autres."
+          "title": "Potager et planches",
+          "text": "Largeur et longueur en mètres, rectangle ou en L, votre façon de cultiver (carrés surélevés, planches en pleine terre ou rangs en plein champ) et le sens des planches. Huerta dispose les planches et les allées entre elles."
         },
         "around": {
-          "title": "Dites ce qui l'entoure",
-          "text": "Sous « Autour du jardin », choisissez ce qu'il y a de chaque côté : rien, une clôture ou une haie, une maison ou un mur ou de grands arbres. Huerta compte alors les heures de soleil de chaque planche, mois par mois. Six heures ou plus, c'est le plein soleil. Quand un côté a quelque chose, les boutons du dessin en 3D montrent son ombre le matin, à midi et l'après-midi. Le plan, la vue d'en haut, montre le soleil à chaque endroit."
+          "title": "Autour du jardin",
+          "text": "Ce qu'il y a de chaque côté : rien, une clôture ou une haie, une maison ou un mur ou de grands arbres. Huerta compte les heures de soleil de chaque planche, mois par mois. Six ou plus, c'est le plein soleil."
         },
         "soil": {
-          "title": "Vérifiez le sol",
-          "text": "Huerta remplit votre sol à partir de cartes des sols : son type (sableux, terre franche ou argileux) et son pH. Si vous savez que le vôtre est différent, changez-le. Un sol sableux se réchauffe plus tôt au printemps et sèche plus vite. Un sol argileux se réchauffe plus tard et garde l'eau plus longtemps. Quand votre sol demande un soin pour une culture, comme de la chaux avant les choux en sol acide, « À faire » vous le dit."
-        }
-      },
-      "plan": {
-        "title": "Planifiez ce qui va où",
+          "title": "Sol",
+          "text": "Rempli d'après les cartes des sols de votre lieu : sableux, terre franche ou argileux et son acidité. Changez-le si vous savez que le vôtre est différent. Un sol sableux se réchauffe plus tôt au printemps et demande de l'eau plus souvent. Un sol argileux se réchauffe plus tard et garde l'eau plus longtemps."
+        },
         "when": {
-          "title": "Choisissez quand",
-          "text": "« Planifier pour » fixe quand va en terre tout ce qui n'y est pas encore : Aujourd'hui ou l'un des douze prochains mois. Choisissez un mois et la frise du temps commence là."
+          "title": "Planifier pour",
+          "text": "Quand va en terre tout ce qui n'y est pas encore : Aujourd'hui ou l'un des douze prochains mois. La chronologie (12) commence là."
         },
         "auto": {
-          "title": "Laissez Huerta planifier",
-          "text": "Touchez « Planifiez pour moi » et choisissez quoi cultiver : un potager mixte, des légumes seulement, des légumes avec des fleurs au bout de chaque planche, les fruits d'abord ou des aromatiques et des fleurs. Huerta remplit les planches avec les cultures qui peuvent aller en terre à ce moment chez vous. Chaque planche reçoit une famille. Oignons et ail restent loin des pois et des haricots, les cultures hautes vont au bout nord et chaque culture va là où elle a le soleil qu'il lui faut. Aucune famille ne retourne dans la planche où elle était l'an dernier. Si rien ne peut aller en terre à ce moment, la planche reste vide. Ce que vous avez déjà planté ne bouge pas. Si des planches sont sélectionnées, seules celles-ci sont planifiées."
+          "title": "Planifiez pour moi",
+          "text": "Choisissez quoi cultiver (un potager mixte, des légumes seulement, des légumes avec des fleurs au bout de chaque planche, les fruits d'abord ou des aromatiques et des fleurs) et Huerta remplit les planches avec les cultures qui peuvent aller en terre à ce moment chez vous. Chaque planche reçoit une famille. Oignons et ail restent loin des pois et des haricots, les cultures hautes vont au bout nord et chaque culture va là où elle a le soleil qu'il lui faut. Aucune famille ne retourne dans sa planche de l'an dernier. Ce qui est planté reste. Si des planches sont sélectionnées, seules celles-ci sont planifiées."
         },
-        "change": {
-          "title": "Modifiez à votre goût",
-          "text": "Touchez une planche pour voir ce qui y pousse : combien de plants, à quel écart, quand ils seront prêts et quels voisins surveiller. Pour mettre autre chose, choisissez-le sous « Remplacer par », faites-le glisser depuis les cultures sous le dessin jusqu'à une planche ou sélectionnez des planches et touchez une culture. Pour en sélectionner plusieurs, touchez « Sélectionner » et faites glisser dessus. Vous pouvez couper une section en deux, la joindre à la suivante, la rallonger ou la raccourcir. Vous pouvez aussi supprimer une planche entière. « Annuler » reprend le dernier changement."
+        "undo": {
+          "title": "Annuler",
+          "text": "Reprend vos derniers changements, jusqu'à vingt, tant que la page est ouverte."
         },
-        "checks": {
-          "title": "Lisez les repères",
-          "text": "Sous le dessin, Huerta compte les bons voisins, les paires à séparer et les cultures trop à l'ombre. Touchez-en un pour sélectionner les planches concernées. Une étiquette rouge sur une planche dit que la culture ne peut pas aller en terre à la date prévue et pourquoi."
+        "north": {
+          "title": "Nord",
+          "text": "Tournez l'aiguille avec les flèches jusqu'à ce qu'elle pointe vers le nord, comme votre potager est vraiment orienté. Huerta en a besoin pour le soleil sur chaque planche et pour garder les cultures hautes au bout nord."
+        },
+        "view": {
+          "title": "3D ou Plan",
+          "text": "La 3D dessine les plantes comme elles poussent. Le plan montre le potager vu d'en haut, avec les familles et le soleil à chaque endroit. Zoomez avec les boutons en bas à droite ou avec deux doigts."
+        },
+        "shade": {
+          "title": "Ombre",
+          "text": "Quand quelque chose se trouve à côté du potager, ces boutons montrent où tombe son ombre le matin, à midi et l'après-midi."
+        },
+        "bed": {
+          "title": "Touchez une planche",
+          "text": "Touchez une planche ou une partie pour l'ouvrir à droite. Celle que vous avez touchée est entourée et son étiquette dit ce qui y pousse. Vous pouvez aussi faire glisser une culture depuis les cultures sous le dessin jusqu'à une planche."
+        },
+        "select": {
+          "title": "Sélectionner",
+          "text": "Touchez « Sélectionner » et faites glisser sur plusieurs planches pour les modifier ensemble : la même culture partout, les joindre ou couper chacune en deux. La main déplace le dessin. « Tout désélectionner » les relâche."
         },
         "timeline": {
-          "title": "Regardez-le pousser",
-          "text": "Faites glisser la frise sous le dessin pour voir votre potager dans les semaines à venir : ce qui pousse, ce qui est prêt et ce que le froid va tuer. Les plantes pâles sont prévues mais pas encore en terre."
+          "title": "Chronologie",
+          "text": "Faites-la glisser pour voir votre potager dans les semaines à venir : ce qui pousse, ce qui est prêt et ce que le froid va tuer. Les plantes pâles sont prévues mais pas encore en terre."
         },
-        "list": {
-          "title": "Planifiez par culture",
-          "text": "« Ce qui pousse ici » montre le plan culture par culture : ses sections, combien de plants et pour combien de personnes. Sur un ordinateur, il est à côté du dessin, sur un téléphone sous Liste. Ajoutez une culture, donnez-lui une section de plus ou de moins ou ressemez-la en plusieurs fois toutes les quelques semaines. « Ranger » met chaque culture d'un seul tenant, les familles ensemble et loin de là où elles ont poussé les trois dernières années."
+        "sun": {
+          "title": "Soleil ici",
+          "text": "Les heures de soleil direct que reçoit cet endroit ce mois-ci et à quel moment de la journée. « Toute la planche » sélectionne le reste de la planche."
+        },
+        "status": {
+          "title": "Culture et état",
+          "text": "Ce qui est prévu ici et s'il peut aller en terre : maintenant, au mois prévu ou pas du tout. Une étiquette rouge veut dire qu'il ne peut pas aller en terre au moment prévu."
+        },
+        "facts": {
+          "title": "Comment elle pousse ici",
+          "text": "Combien de plants tiennent, à quel écart, quand ils seront prêts et quelle famille doit suivre l'an prochain."
+        },
+        "ifNow": {
+          "title": "Mis en terre aujourd'hui",
+          "text": "Ce que la météo d'ici lui fera avant qu'elle soit prête : un gel, des nuits froides ou un hiver trop dur pour elle. Une fois en terre, le même endroit vous dit quand la couvrir et si le sol est trop froid ou trop chaud pour ses graines."
+        },
+        "sown": {
+          "title": "Semé aujourd'hui",
+          "text": "Touchez-le le jour où la culture va en terre (« Planté aujourd'hui » pour les plants). Huerta suit alors sa croissance d'après la chaleur qu'elle reçoit et vous dit quand elle est prête. Vous pouvez changer la date ensuite."
+        },
+        "neighbours": {
+          "title": "Voisins",
+          "text": "Les cultures d'à côté qui l'aident ou la freinent et à quel point c'est sûr : une règle de jardinier, une maladie commune ou un résultat d'essais."
+        },
+        "swap": {
+          "title": "Remplacer par",
+          "text": "Met une autre culture à cet endroit. Celles qui peuvent aller en terre maintenant viennent en premier."
         }
+      },
+      "list": {
+        "title": "Planifiez par culture",
+        "text": "Sans planche sélectionnée, « Ce qui pousse ici » à droite (Liste sur un téléphone) montre le plan culture par culture : ses sections, combien de plants et pour combien de personnes. Ajoutez une culture, donnez-lui une section de plus ou de moins ou ressemez-la en plusieurs fois. « Ranger » met chaque culture d'un seul tenant, les familles ensemble et loin de là où elles ont poussé les trois dernières années."
       },
       "week": {
         "title": "Chaque semaine",

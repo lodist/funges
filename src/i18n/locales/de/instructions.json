@@ -154,56 +154,97 @@
     "garden": {
       "title": "Mein Garten",
       "intro": "In „Mein Garten“ zeichnest du deinen Garten, legst fest, was wo wächst, und begleitest alles von der Aussaat bis zur Ernte. Einmal eingerichtet, sagt er dir jede Woche, was zu tun ist.",
-      "phone": "Auf dem Handy hat er drei Reiter: Garten für die Zeichnung, Liste für den Plan nach Kulturen und Zu tun für die Arbeiten dieser Woche.",
-      "setup": {
-        "title": "Garten einrichten",
-        "place": {
-          "title": "Ort wählen",
-          "text": "Tippe oben auf „Wähle deinen Ort“ und such deinen Ort oder nimm deinen Standort. Oder öffne die Karte, tippe auf deine Stelle und wähle „Als meinen Garten nehmen“. Der Ort bestimmt alles Weitere: wann Frost kommt, wie der Boden ist und wann jede Pflanze in die Erde kann."
-        },
+      "phone": "Auf dem Handy stecken die Einstellungen in einer Zeile über der Zeichnung (tippe darauf, um sie zu öffnen), und es gibt drei Reiter: Garten für die Zeichnung, Liste für den Plan nach Kulturen und Zu tun für die Arbeiten dieser Woche.",
+      "place": {
+        "title": "Zuerst dein Ort",
+        "text": "Tippe oben in „Mein Garten“ auf „Wähle deinen Ort“ und such deinen Ort oder nimm deinen Standort. Oder öffne die Karte, tippe auf deine Stelle und wähle „Als meinen Garten nehmen“. Der Ort bestimmt alles Weitere: wann Frost kommt, wie der Boden ist und wann jede Pflanze in die Erde kann."
+      },
+      "picture": {
+        "alt": "„Mein Garten“ am Computer: oben die Einstellungen, in der Mitte der Garten in 3D, rechts das gewählte Beet. Jeder nummerierte Teil ist unten erklärt.",
+        "caption": "„Mein Garten“ am Computer. Jede Nummer ist unten erklärt.",
+        "swipe": "Wisch seitlich, um alles zu sehen."
+      },
+      "steps": {
         "size": {
-          "title": "Garten zeichnen",
-          "text": "Gib Breite und Länge in Metern ein und wähle Rechteck oder L-Form. Dann sag, wie du gärtnerst (Hochbeete, Beete im Boden oder Reihen im offenen Feld) und in welche Richtung die Beete laufen. Huerta legt die Beete und die Wege dazwischen an. Auf dem Handy stecken diese Einstellungen in einer Zeile über der Zeichnung: Tippe darauf, um sie zu öffnen."
-        },
-        "north": {
-          "title": "Nach Norden ausrichten",
-          "text": "Dreh die Nadel auf der Zeichnung, bis sie nach Norden zeigt, so wie dein Garten wirklich liegt. Huerta braucht das, um die Sonne auf jedem Beet zu berechnen und hohe Pflanzen ans Nordende zu setzen, wo sie den anderen keinen Schatten machen."
+          "title": "Garten und Beete",
+          "text": "Breite und Länge in Metern, Rechteck oder L-Form, wie du gärtnerst (Hochbeete, Beete im Boden oder Reihen im offenen Feld) und in welche Richtung die Beete laufen. Huerta legt die Beete und die Wege dazwischen an."
         },
         "around": {
-          "title": "Sagen, was rundherum steht",
-          "text": "Wähle unter „Rund um den Garten“, was auf jeder Seite steht: nichts, ein Zaun oder eine Hecke, ein Haus oder eine Mauer oder hohe Bäume. Huerta zählt dann Monat für Monat die Sonnenstunden auf jedem Beet. Ab sechs Stunden ist es volle Sonne. Steht auf einer Seite etwas, zeigen die Knöpfe auf der 3D-Zeichnung seinen Schatten am Morgen, am Mittag und am Nachmittag. Der Plan, die Ansicht von oben, zeigt die Sonne an jeder Stelle."
+          "title": "Rund um den Garten",
+          "text": "Was auf jeder Seite steht: nichts, ein Zaun oder eine Hecke, ein Haus oder eine Mauer oder hohe Bäume. Huerta zählt Monat für Monat die Sonnenstunden auf jedem Beet. Ab sechs ist es volle Sonne."
         },
         "soil": {
-          "title": "Boden prüfen",
-          "text": "Huerta trägt deinen Boden aus Bodenkarten ein: die Art (Sand, Lehm oder Ton) und den pH-Wert. Wenn du weisst, dass deiner anders ist, ändere es. Sandboden wird im Frühling früher warm und trocknet schneller aus. Tonboden wird später warm und hält das Wasser länger. Braucht dein Boden für eine Pflanze Pflege, etwa Kalk vor dem Kohl auf saurem Boden, steht es unter „Zu tun“."
-        }
-      },
-      "plan": {
-        "title": "Planen, was wohin kommt",
+          "title": "Boden",
+          "text": "Aus Bodenkarten für deinen Ort eingetragen: Sand, Lehm oder Ton und wie sauer er ist. Ändere es, wenn du weisst, dass deiner anders ist. Sandboden wird im Frühling früher warm und braucht öfter Wasser. Tonboden wird später warm und hält das Wasser länger."
+        },
         "when": {
-          "title": "Zeitpunkt wählen",
-          "text": "„Planen für“ legt fest, wann alles in die Erde kommt, was noch nicht drin ist: Heute oder einer der nächsten zwölf Monate. Wählst du einen Monat, beginnt die Zeitleiste dort."
+          "title": "Planen für",
+          "text": "Wann alles in die Erde kommt, was noch nicht drin ist: Heute oder einer der nächsten zwölf Monate. Die Zeitleiste (12) beginnt dort."
         },
         "auto": {
-          "title": "Huerta planen lassen",
-          "text": "Tippe auf „Für mich planen“ und wähle, was du anbauen willst: einen gemischten Garten, nur Gemüse, Gemüse mit Blumen am Ende jedes Beets, Obst zuerst oder Kräuter und Blumen. Huerta füllt die Beete mit dem, was dann an deinem Ort in die Erde kann. Jedes Beet bekommt eine Pflanzenfamilie. Zwiebeln und Knoblauch kommen nicht neben Erbsen und Bohnen, hohe Pflanzen kommen ans Nordende und jede Pflanze dorthin, wo sie genug Sonne hat. Keine Familie kommt zurück in das Beet, in dem sie letztes Jahr stand. Kann zu der Zeit nichts in die Erde, bleibt das Beet leer. Was du schon gepflanzt hast, bleibt, wie es ist. Hast du Beete ausgewählt, plant Huerta nur diese."
+          "title": "Für mich planen",
+          "text": "Wähl, was du anbauen willst (einen gemischten Garten, nur Gemüse, Gemüse mit Blumen am Ende jedes Beets, Obst zuerst oder Kräuter und Blumen), und Huerta füllt die Beete mit dem, was dann an deinem Ort in die Erde kann. Jedes Beet bekommt eine Pflanzenfamilie. Zwiebeln und Knoblauch kommen nicht neben Erbsen und Bohnen, hohe Pflanzen kommen ans Nordende und jede Pflanze dorthin, wo sie genug Sonne hat. Keine Familie kommt zurück in ihr Beet vom letzten Jahr. Was schon gepflanzt ist, bleibt. Hast du Beete ausgewählt, plant Huerta nur diese."
         },
-        "change": {
-          "title": "Nach deinem Geschmack ändern",
-          "text": "Tippe auf ein Beet, um zu sehen, was dort wächst: wie viele Pflanzen, in welchem Abstand, wann sie reif sind und auf welche Nachbarn du achten musst. Willst du etwas anderes, wähl es unter „Tauschen gegen“, zieh es aus den Pflanzen unter der Zeichnung auf ein Beet oder wähl Beete aus und tippe auf eine Pflanze. Um mehrere Beete auszuwählen, tippe auf „Auswählen“ und zieh über sie. Du kannst einen Abschnitt teilen, mit dem nächsten verbinden oder länger und kürzer machen. Du kannst auch ein ganzes Beet löschen. „Rückgängig“ nimmt die letzte Änderung zurück."
+        "undo": {
+          "title": "Rückgängig",
+          "text": "Nimmt deine letzten Änderungen zurück, bis zu zwanzig, solange die Seite offen ist."
         },
-        "checks": {
-          "title": "Die Hinweise lesen",
-          "text": "Unter der Zeichnung zählt Huerta die guten Nachbarn, die Paare, die man trennen sollte, und die Pflanzen mit zu wenig Sonne. Tippe darauf, um die Beete auszuwählen, um die es geht. Eine rote Markierung auf einem Beet sagt dir, dass die Pflanze zur geplanten Zeit nicht in die Erde kann, und warum."
+        "north": {
+          "title": "Norden",
+          "text": "Dreh die Nadel mit den Pfeilen, bis sie nach Norden zeigt, so wie dein Garten wirklich liegt. Huerta braucht das für die Sonne auf jedem Beet und um hohe Pflanzen ans Nordende zu setzen."
+        },
+        "view": {
+          "title": "3D oder Plan",
+          "text": "3D zeichnet die Pflanzen, wie sie wachsen. Der Plan zeigt den Garten von oben, mit den Familien und der Sonne an jeder Stelle. Zoomen kannst du mit den Knöpfen unten rechts oder mit zwei Fingern."
+        },
+        "shade": {
+          "title": "Schatten",
+          "text": "Steht etwas neben dem Garten, zeigen diese Knöpfe, wohin sein Schatten am Morgen, am Mittag und am Nachmittag fällt."
+        },
+        "bed": {
+          "title": "Auf ein Beet tippen",
+          "text": "Tippe auf ein Beet oder einen Teil davon, um es rechts zu öffnen. Das angetippte ist umrandet und sein Schild sagt, was dort wächst. Du kannst auch eine Pflanze aus den Kulturen unter der Zeichnung auf ein Beet ziehen."
+        },
+        "select": {
+          "title": "Auswählen",
+          "text": "Tippe auf „Auswählen“ und zieh über mehrere Beete, um sie zusammen zu ändern: überall dieselbe Pflanze, verbinden oder jedes in zwei teilen. Mit der Hand verschiebst du die Zeichnung. „Auswahl aufheben“ lässt sie wieder los."
         },
         "timeline": {
-          "title": "Zusehen, wie es wächst",
-          "text": "Schieb die Zeitleiste unter der Zeichnung, um deinen Garten in den kommenden Wochen zu sehen: was wächst, was reif ist und was die Kälte umbringen wird. Blasse Pflanzen sind geplant, aber noch nicht in der Erde."
+          "title": "Zeitleiste",
+          "text": "Schieb sie, um deinen Garten in den kommenden Wochen zu sehen: was wächst, was reif ist und was die Kälte umbringen wird. Blasse Pflanzen sind geplant, aber noch nicht in der Erde."
         },
-        "list": {
-          "title": "Nach Kulturen planen",
-          "text": "„Was hier wächst“ zeigt den Plan nach Kulturen: ihre Abschnitte, wie viele Pflanzen und für wie viele Leute sie reichen. Am Computer steht es neben der Zeichnung, auf dem Handy unter Liste. Füg eine Kultur hinzu, gib einer einen Abschnitt mehr oder weniger oder säe sie alle paar Wochen in Etappen nach. „Ordnen“ setzt jede Kultur an ein Stück, Familien zusammen und weg von dort, wo sie die letzten drei Jahre standen."
+        "sun": {
+          "title": "Sonne hier",
+          "text": "Wie viele Stunden direkte Sonne diese Stelle in diesem Monat bekommt und zu welcher Tageszeit. „Ganzes Beet“ wählt den Rest des Beets dazu."
+        },
+        "status": {
+          "title": "Pflanze und Stand",
+          "text": "Was hier geplant ist und ob es in die Erde kann: jetzt, im geplanten Monat oder gar nicht. Eine rote Markierung heisst, dass es zur geplanten Zeit nicht geht."
+        },
+        "facts": {
+          "title": "So wächst sie hier",
+          "text": "Wie viele Pflanzen Platz haben, in welchem Abstand, wann sie reif sind und welche Familie nächstes Jahr folgen sollte."
+        },
+        "ifNow": {
+          "title": "Wenn es heute in die Erde kommt",
+          "text": "Was das Wetter hier mit ihr macht, bevor sie reif ist: Frost, kalte Nächte oder ein zu harter Winter. Ist sie in der Erde, sagt dir dieselbe Stelle, wann du sie abdecken sollst und ob der Boden für ihre Samen zu kalt oder zu warm ist."
+        },
+        "sown": {
+          "title": "Heute gesät",
+          "text": "Tippe darauf, wenn die Pflanze in die Erde kommt (bei Setzlingen „Heute gepflanzt“). Huerta verfolgt dann, wie sie mit der Wärme wächst, und sagt dir, wann sie reif ist. Das Datum kannst du danach noch ändern."
+        },
+        "neighbours": {
+          "title": "Nachbarn",
+          "text": "Die Pflanzen daneben, die ihr helfen oder sie bremsen, und wie sicher das ist: eine Gärtnerregel, eine gemeinsame Krankheit oder in Versuchen geprüft."
+        },
+        "swap": {
+          "title": "Tauschen gegen",
+          "text": "Setzt eine andere Pflanze an diese Stelle. Was jetzt in die Erde kann, steht zuerst."
         }
+      },
+      "list": {
+        "title": "Nach Kulturen planen",
+        "text": "Ist kein Beet ausgewählt, zeigt „Was hier wächst“ rechts (auf dem Handy unter Liste) den Plan nach Kulturen: ihre Abschnitte, wie viele Pflanzen und für wie viele Leute sie reichen. Füg eine Kultur hinzu, gib einer einen Abschnitt mehr oder weniger oder säe sie in Etappen nach. „Ordnen“ setzt jede Kultur an ein Stück, Familien zusammen und weg von dort, wo sie die letzten drei Jahre standen."
       },
       "week": {
         "title": "Jede Woche",
