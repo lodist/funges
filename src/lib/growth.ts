@@ -175,15 +175,26 @@ export function growthPlace(
   };
 }
 
+/** The light a shaded bed gets: each month's share of an open spot's light
+ *  (lib/sun bedLight), and the light a day the crop can use at most (MJ m-2,
+ *  LIGHT_NEED). */
+export interface BedLight {
+  share: number[];
+  need: number;
+}
+
 /** The growth of `crop` put in on `planted` at `place`; `shift` warms the
- *  spring months for a light soil (soilTemps). */
+ *  spring months for a light soil (soilTemps); `bed`, a shaded bed's light,
+ *  slows it by the light it lacks for its need (an open bed's pace stays
+ *  the calendar's). */
 export function plantedGrowth(
   crop: string,
   bio: Bio,
   place: GrowthPlace,
   planted: string,
   warm?: Warm | null,
-  shift = 0
+  shift = 0,
+  bed?: BedLight
 ): Growth {
   const s = dayIndex(planted);
   const dateAt = (i: number) => addDays(planted, i - s);
@@ -199,10 +210,19 @@ export function plantedGrowth(
 
   const pace = Math.min((bio.tlo + bio.thi) / 2, T_TRIAL) - bio.tb;
   const need = bio.days * pace;
+  // A shaded bed: the light it gets of what the crop can use, against an
+  // open bed's.
+  const shade = bed
+    ? daily(bed.share).map((share, d) => {
+        const open = Math.min(1, sunny[d] / bed.need);
+        return open > 0 ? Math.min(1, (share * sunny[d]) / bed.need) / open : 1;
+      })
+    : null;
   const rate = air.map(
     (a, i) =>
       Math.max(0, Math.min(a, bio.thi) - bio.tb) *
-      Math.min(1, sunny[i % YEAR] / R_SAT)
+      Math.min(1, sunny[i % YEAR] / R_SAT) *
+      (shade ? shade[i % YEAR] : 1)
   );
   const cum = [0];
   for (let i = 0; i < RUN; i++) cum.push(cum[i] + rate[i]);

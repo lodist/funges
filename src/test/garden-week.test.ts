@@ -6,6 +6,7 @@ import {
   fate,
   firstCrop,
   gardenWeek,
+  growAt,
   growIn,
   growth,
   harvestFrom,
@@ -685,6 +686,30 @@ describe("a planted crop on the calendar's model", () => {
     expect(stage('2027-05-05')).toBe('seedling');
     expect(stage('2027-06-20')).toBe('ready');
     expect(stage('2027-07-20')).toBe('bare');
+  });
+
+  it('is ready later in the shade of a house, where light is short', () => {
+    // A dim place (9 MJ of sunshine a day): a bed right behind a house on
+    // the south side gets less light than lettuce can use, one 5 m off it
+    // more of it; with nothing along the sides every bed is as before.
+    const dim = { ...year, sun: Array(12).fill(9) };
+    const garden = {
+      width: 4,
+      length: 8,
+      shape: 'rect' as const,
+      north: 0,
+      sides: { bottom: 'house' as const },
+    };
+    const beds = layout(garden);
+    const behind = beds.reduce((a, z) => (z.y1 > a.y1 ? z : a));
+    const off = beds.reduce((a, z) => (z.y0 < a.y0 ? z : a));
+    const grow = growIn(dim, 'loam', undefined, garden)!;
+    const open = growIn(dim, 'loam')!;
+    const ready = (g: typeof grow) =>
+      readyDay('lettuce', NEEDS.lettuce, g, '2027-05-01')!;
+    expect(ready(growAt(grow, behind)) > ready(growAt(grow, off))).toBe(true);
+    expect(ready(growAt(grow, off)) >= ready(open)).toBe(true);
+    expect(ready(growAt(open, behind))).toBe(ready(open));
   });
 
   it('counts the warmth it actually had', () => {
