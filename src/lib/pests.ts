@@ -96,6 +96,10 @@ export function flight(
 
 /** How far ahead a fly's first flies are worth covering for. */
 const SOON_DAYS = 14;
+/** °C: where even the coldest month is warmer, there is no winter rest for
+ *  a spring flight to start from; the rules come from cold-winter places
+ *  (Norway, Wisconsin, Michigan). */
+const NO_WINTER = 10;
 const FLIES = ['carrot_fly', 'cabbage_root_fly', 'onion_fly'] as const;
 
 /** This week's pest warnings: blight weather for potatoes and tomatoes in the
@@ -133,7 +137,7 @@ export function pestTasks(
       crops: blighted,
     });
   }
-  if (!temps) return tasks;
+  if (!temps || Math.min(...temps) > NO_WINTER) return tasks;
   for (const pest of FLIES) {
     const f = flight(PESTS[pest].flight!, today, temps, advice.warm);
     if (!f || today >= f.until || between(today, f.from) > SOON_DAYS) continue;

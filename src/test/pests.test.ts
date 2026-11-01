@@ -49,10 +49,13 @@ describe('pest warnings', () => {
       ['parsnip', undefined, '2027-04-10'],
       ['parsley', undefined, '2027-07-01']
     );
-    const advice = { ...SAMPLE_ADVICE, day: '2027-03-12', warm: undefined };
-    // 15 °C every day: carrot fly flies from 26 March, its warning ends 25 April.
-    expect(pestTasks(p, advice, flat(15), '2027-03-10')).toEqual([]);
-    expect(pestTasks(p, advice, flat(15), '2027-03-12')).toEqual([
+    // A spring of 15 °C days after a cold winter: carrot fly flies from 26
+    // March, its warning ends 25 April.
+    const warm = { start: '2027-03-01', t: Array<number>(90).fill(15) };
+    const advice = { ...SAMPLE_ADVICE, day: '2027-03-12', warm };
+    const temps = [1, 2, 6, 10, 14, 17, 19, 19, 15, 10, 5, 2];
+    expect(pestTasks(p, advice, temps, '2027-03-10')).toEqual([]);
+    expect(pestTasks(p, advice, temps, '2027-03-12')).toEqual([
       {
         kind: 'pest',
         pest: 'carrot_fly',
@@ -61,11 +64,28 @@ describe('pest warnings', () => {
         crops: ['carrot', 'parsnip'],
       },
     ]);
-    expect(pestTasks(p, advice, flat(15), '2027-04-20')[0]).toMatchObject({
+    expect(pestTasks(p, advice, temps, '2027-04-20')[0]).toMatchObject({
       phase: 'now',
       crops: ['carrot', 'parsnip'],
     });
-    expect(pestTasks(p, advice, flat(15), '2027-04-25')).toEqual([]);
+    expect(pestTasks(p, advice, temps, '2027-04-25')).toEqual([]);
+  });
+
+  it('warns of no fly where there is no winter for it to rest through', () => {
+    const p = plan(['carrot', '2027-03-01']);
+    const advice = { ...SAMPLE_ADVICE, day: '2027-03-12', warm: undefined };
+    // Coldest month 11 °C (South Florida is 20): no spring flight to time.
+    const mild = [11, 12, 15, 18, 22, 25, 27, 27, 25, 21, 16, 12];
+    expect(pestTasks(p, advice, mild, '2027-03-25')).toEqual([]);
+    // Two degrees cooler (coldest month 9 °C): first flies about 2 April.
+    expect(
+      pestTasks(
+        p,
+        advice,
+        mild.map(t => t - 2),
+        '2027-03-25'
+      )
+    ).toHaveLength(1);
   });
 });
 
