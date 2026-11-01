@@ -58,6 +58,15 @@
         "text": "Gardez de quoi couvrir {{crops}}.",
         "title": "Gel possible dans la nuit de {{night}}"
       },
+      "frostCheck": {
+        "lastNight": "{{crop}} : gel cette nuit",
+        "night": "{{crop}} : gel dans la nuit de {{night}}",
+        "tender": "Environ {{low}} ici. Une fois les plantes dégelées, regardez-les : les feuilles devenues sombres, vitreuses ou molles ont gelé. Si les tiges et les pointes sont noires aussi, elles sont perdues.",
+        "tubers": "Environ {{low}} ici. Le gel noircit les feuilles, mais les tubercules repoussent : elles ne sont perdues que si rien ne repousse en deux semaines.",
+        "hardy": "Environ {{low}} ici, plus froid que ce qu'elles supportent d'habitude. Une fois les plantes dégelées, regardez-les : les feuilles qui restent vitreuses ou visqueuses ont gelé. Si le cœur est encore ferme et vert, elles repartent.",
+        "fine": "Tout va bien",
+        "gone": "Elles ont gelé"
+      },
       "water": {
         "title": "Arrosez environ {{mm}} L/m² cette semaine",
         "text": "La pluie ne compense pas ce que prennent le soleil et le vent. Deux bons arrosages valent mieux qu'un peu chaque jour.",
@@ -77,6 +86,7 @@
       },
       "from": {
         "forecast": "Selon la prévision",
+        "weather": "Selon la météo locale",
         "plan": "Selon votre plan",
         "soil": "Selon votre sol",
         "climate": "D'après le climat de chez vous"

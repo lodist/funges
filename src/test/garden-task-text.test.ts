@@ -27,6 +27,25 @@ describe('what a garden task says', () => {
     });
   });
 
+  it('a frost check names the night and what to look for', () => {
+    const check = {
+      kind: 'frostCheck' as const,
+      crop: 'tomato',
+      day: '2026-10-25',
+      low: -2.4,
+      signs: 'tender' as const,
+    };
+    expect(taskText({ ...check, lastNight: true }, t, 'en')).toMatchObject({
+      title: `${tomato}: frost last night`,
+      from: 'weather',
+    });
+    const older = taskText({ ...check, lastNight: false }, t, 'en');
+    expect(older.title).toBe(`${tomato}: frost on Saturday night`);
+    expect(older.text).toMatch(
+      /^About -2 °C here\. Once the plants have thawed/
+    );
+  });
+
   it('a later frost names its night', () => {
     expect(
       taskText(

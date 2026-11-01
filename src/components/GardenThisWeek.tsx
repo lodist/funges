@@ -56,6 +56,8 @@ interface Job {
   /** The sections it is about: lit up in the drawing when it is tapped. */
   at: number[];
   action?: { label: string; run: () => void; main?: boolean };
+  /** A second answer beside it (a frost check's "it's gone"). */
+  also?: { label: string; run: () => void };
 }
 
 /** "This week" on My garden: the week at the place in one line, the garden's
@@ -225,11 +227,13 @@ export function GardenThisWeek({
           at:
             task.kind === 'fate'
               ? growing(task.crops)
-              : 'crop' in task
-                ? holding([task.crop])
-                : 'crops' in task
-                  ? holding(task.crops)
-                  : [],
+              : task.kind === 'frostCheck'
+                ? growing([task.crop])
+                : 'crop' in task
+                  ? holding([task.crop])
+                  : 'crops' in task
+                    ? holding(task.crops)
+                    : [],
           // A crop that won't be ready before it dies: its beds planned
           // again with what grows now; anything else ticked off once seen to.
           action: end?.as
@@ -243,8 +247,23 @@ export function GardenThisWeek({
                   run: () => onReplan(growing(task.crops)),
                 }
               : key
-                ? { label: t('week.todo.done'), run: () => onDone(key) }
+                ? {
+                    label: t(
+                      task.kind === 'frostCheck'
+                        ? 'week.todo.frostCheck.fine'
+                        : 'week.todo.done'
+                    ),
+                    run: () => onDone(key),
+                  }
                 : undefined,
+          // Gone in the frost: lost to the cold, its beds planned again.
+          also:
+            task.kind === 'frostCheck'
+              ? {
+                  label: t('week.todo.frostCheck.gone'),
+                  run: () => onReplan(growing([task.crop])),
+                }
+              : undefined,
         },
       ];
     });
@@ -361,7 +380,16 @@ export function GardenThisWeek({
                 <Shows at={job.at} onShow={onShow}>
                   {body}
                 </Shows>
-                {job.action ? (
+                {job.action && job.also ? (
+                  <span className='ml-auto flex flex-wrap gap-2'>
+                    <Button variant='outline' onClick={job.action.run}>
+                      {job.action.label}
+                    </Button>
+                    <Button variant='outline' onClick={job.also.run}>
+                      {job.also.label}
+                    </Button>
+                  </span>
+                ) : job.action ? (
                   <Button
                     variant={job.action.main ? 'default' : 'outline'}
                     className='ml-auto'

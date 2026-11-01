@@ -8,7 +8,7 @@ import { weekday } from '@/lib/huerta';
 
 /** A translate function on the huerta namespace: i18next's, or the Worker's. */
 export type T = (key: string, options?: Record<string, unknown>) => string;
-export type From = 'forecast' | 'plan' | 'soil' | 'climate';
+export type From = 'forecast' | 'weather' | 'plan' | 'soil' | 'climate';
 
 const dayMonth = (day: string, lang: string) =>
   new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long' }).format(
@@ -35,6 +35,27 @@ export function taskText(
         }),
         text: t('week.todo.laterFrost.text', { crops: names(task.crops) }),
         from: 'forecast',
+      };
+    case 'frostCheck':
+      // The night before its morning, by its evening's name.
+      return {
+        title: task.lastNight
+          ? t('week.todo.frostCheck.lastNight', {
+              crop: t(`crops.${task.crop}`),
+            })
+          : t('week.todo.frostCheck.night', {
+              crop: t(`crops.${task.crop}`),
+              night: weekday(
+                new Date(Date.parse(`${task.day}T12:00:00Z`) - 864e5)
+                  .toISOString()
+                  .slice(0, 10),
+                lang
+              ),
+            }),
+        text: t(`week.todo.frostCheck.${task.signs}`, {
+          low: t('units.celsius', { value: Math.round(task.low) }),
+        }),
+        from: 'weather',
       };
     case 'water':
       return {

@@ -783,6 +783,9 @@ export interface PlaceAdvice {
   /** Blight weather (warm, humid days in a row): bit k when the day before
    *  `day`, plus k days, is a blight day; absent when not known. */
   blight?: number;
+  /** Each day's coldest hour (°C) from a week back through the forecast:
+   *  what the frost check on planted crops reads (garden-week). */
+  lows?: Warm;
   crops: Record<string, CropStatus>;
   /** Kept from an earlier day and shown because the Worker could not be
    *  reached (fetchAdvice). */
