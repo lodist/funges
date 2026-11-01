@@ -2307,7 +2307,7 @@
     "before": "Before",
     "beforeText": "{{crop}}, out {{date}}",
     "aroundLabel": "Around the garden",
-    "aroundHint": "A fence, a house or trees along a side shade the beds next to it. The drawing shows the shade in the month you plan for.",
+    "aroundHint": "Huerta follows the sun at your place through the day, month by month, and counts the hours each bed gets past what stands around it. Six hours or more is full sun.",
     "side": {
       "n": "North",
       "ne": "North-east",
@@ -2321,9 +2321,9 @@
     },
     "sideKind": {
       "open": "Open",
-      "fence": "Fence or hedge",
-      "house": "House or wall",
-      "trees": "Tall trees"
+      "fence": "Fence or hedge, about 2 m",
+      "house": "House or wall, about 6 m",
+      "trees": "Tall trees, about 10 m"
     },
     "sun": {
       "here_one": "About {{count}} hour of sun a day here in {{month}}, {{when}}.",
@@ -2340,6 +2340,31 @@
       "shortCount_one": "! 1 crop in too much shade",
       "shortCount_other": "! {{count}} crops in too much shade",
       "shortHint": "Crops in a spot with less sun than they need. Tap to select them."
+    },
+    "sideBand": {
+      "fence": "Fence, 2 m",
+      "house": "House, 6 m",
+      "trees": "Trees, 10 m"
+    },
+    "shade": {
+      "label": "Shade on {{date}}",
+      "time": {
+        "morning": "Morning",
+        "midday": "Midday",
+        "afternoon": "Afternoon"
+      },
+      "when": {
+        "morning": "in the morning",
+        "midday": "at midday",
+        "afternoon": "in the afternoon"
+      },
+      "key": "Shade {{when}} on {{date}}"
+    },
+    "sunKey": {
+      "label": "Sun in {{month}}:",
+      "full": "6 hours or more",
+      "part": "3 to 6 hours",
+      "little": "Under 3 hours"
     }
   },
   "year": {

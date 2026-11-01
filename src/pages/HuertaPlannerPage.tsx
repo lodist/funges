@@ -1114,6 +1114,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                   <GardenModel
                     garden={plan.garden}
                     sunAt={light ? x => level(light, x, shownMonth) : undefined}
+                    lat={lat}
+                    month={shownMonth}
                     sections={drawn}
                     selected={patch === null ? chosen : []}
                     onSelect={pick}

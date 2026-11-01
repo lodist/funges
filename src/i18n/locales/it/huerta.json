@@ -2307,7 +2307,7 @@
     "before": "Prima",
     "beforeText": "{{crop}}, fuori il {{date}}",
     "aroundLabel": "Intorno all'orto",
-    "aroundHint": "Una recinzione, una casa o alberi su un lato fanno ombra alle aiuole vicine. Il disegno mostra l'ombra del mese che stai pianificando.",
+    "aroundHint": "Huerta segue il sole nel tuo posto durante il giorno, mese per mese, e conta le ore che ogni aiuola riceve oltre ciò che le sta intorno. Da sei ore in su è pieno sole.",
     "side": {
       "n": "Nord",
       "ne": "Nord-est",
@@ -2321,9 +2321,9 @@
     },
     "sideKind": {
       "open": "Libero",
-      "fence": "Recinzione o siepe",
-      "house": "Casa o muro",
-      "trees": "Alberi alti"
+      "fence": "Recinzione o siepe, circa 2 m",
+      "house": "Casa o muro, circa 6 m",
+      "trees": "Alberi alti, circa 10 m"
     },
     "sun": {
       "here_one": "Qui, a {{month}}, circa {{count}} ora di sole al giorno, {{when}}.",
@@ -2340,6 +2340,31 @@
       "shortCount_one": "! 1 coltura troppo in ombra",
       "shortCount_other": "! {{count}} colture troppo in ombra",
       "shortHint": "Colture in un posto con meno sole di quanto serva loro. Tocca per selezionarle."
+    },
+    "sideBand": {
+      "fence": "Recinzione, 2 m",
+      "house": "Casa, 6 m",
+      "trees": "Alberi, 10 m"
+    },
+    "shade": {
+      "label": "Ombra il {{date}}",
+      "time": {
+        "morning": "Mattino",
+        "midday": "Mezzogiorno",
+        "afternoon": "Pomeriggio"
+      },
+      "when": {
+        "morning": "al mattino",
+        "midday": "a mezzogiorno",
+        "afternoon": "al pomeriggio"
+      },
+      "key": "Ombra {{when}} del {{date}}"
+    },
+    "sunKey": {
+      "label": "Sole a {{month}}:",
+      "full": "6 ore o più",
+      "part": "Da 3 a 6 ore",
+      "little": "Meno di 3 ore"
     }
   },
   "year": {
