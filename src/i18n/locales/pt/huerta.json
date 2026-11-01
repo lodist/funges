@@ -2320,9 +2320,9 @@
     },
     "sideKind": {
       "open": "Aberto",
-      "fence": "Cerca ou sebe, cerca de 2 m",
-      "house": "Casa ou muro, cerca de 6 m",
-      "trees": "Árvores altas, cerca de 10 m"
+      "fence": "Cerca ou sebe",
+      "house": "Casa ou muro",
+      "trees": "Árvores altas"
     },
     "sun": {
       "here_one": "Aqui, em {{month}}, cerca de {{count}} hora de sol por dia, {{when}}.",
