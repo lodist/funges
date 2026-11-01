@@ -30,6 +30,9 @@ import {
   RotateCcw,
   RotateCw,
   SquareDashedMousePointer,
+  Sun,
+  Sunrise,
+  Sunset,
   X,
   ZoomIn,
   ZoomOut,
@@ -102,6 +105,9 @@ const NEAR = 0.24;
 const SIDE_VIEW = 2.6;
 /** The shade the sides cast at a time of day, a flat tone over the plot. */
 const SHADE = 'rgba(31, 26, 23, 0.32)';
+/** The time of day the model's shade is drawn at, as a sun rising, high or
+ *  setting. */
+const SHADE_ICON = { morning: Sunrise, midday: Sun, afternoon: Sunset };
 /** The plan's tone for a section's sun in the month shown, percent. */
 const TONE = { full: 0, part: 16, little: 34 };
 const SOIL = '#6c5544';
@@ -1738,22 +1744,27 @@ export function GardenModel({
             aria-label={t('planner.shade.label', { date: shadeDate })}
             className='absolute top-11 right-2 flex rounded-lg bg-card/90 p-0.5 elevation-raised sm:top-14'
           >
-            {(Object.keys(SHADE_HOURS) as ShadeTime[]).map(k => (
-              <button
-                key={k}
-                type='button'
-                aria-pressed={shadeTime === k}
-                onClick={() => setShadeTime(k)}
-                className={cn(
-                  'focus-ring h-7 rounded-md px-2.5 text-xs font-medium sm:h-9 sm:px-3 sm:text-sm',
-                  shadeTime === k
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-foreground hover:bg-muted'
-                )}
-              >
-                {t(`planner.shade.time.${k}`)}
-              </button>
-            ))}
+            {(Object.keys(SHADE_HOURS) as ShadeTime[]).map(k => {
+              const Icon = SHADE_ICON[k];
+              return (
+                <button
+                  key={k}
+                  type='button'
+                  aria-pressed={shadeTime === k}
+                  aria-label={t(`planner.shade.time.${k}`)}
+                  title={t(`planner.shade.time.${k}`)}
+                  onClick={() => setShadeTime(k)}
+                  className={cn(
+                    'focus-ring flex size-7 items-center justify-center rounded-md sm:size-8',
+                    shadeTime === k
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-foreground hover:bg-muted'
+                  )}
+                >
+                  <Icon className='size-4' />
+                </button>
+              );
+            })}
           </div>
         ) : null}
         {/* The tools together: the hand moves the drawing, Select draws a box
