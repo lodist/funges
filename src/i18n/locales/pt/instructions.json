@@ -214,8 +214,8 @@
           "text": "Deslize para ver sua horta nas próximas semanas: o que cresce, o que está pronto e o que o frio vai matar. Plantas claras estão planejadas, mas ainda não estão na terra."
         },
         "sun": {
-          "title": "Sol aqui",
-          "text": "As horas de sol direto que este ponto recebe neste mês e em que parte do dia. \"Canteiro inteiro\" seleciona o resto do canteiro."
+          "title": "Este ponto",
+          "text": "Qual canteiro e que parte você tocou, as horas de sol direto que recebe neste mês e em que parte do dia. \"Canteiro inteiro\" seleciona o resto do canteiro."
         },
         "status": {
           "title": "Cultura e situação",
