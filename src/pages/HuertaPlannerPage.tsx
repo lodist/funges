@@ -110,6 +110,7 @@ import {
   type SunAt,
 } from '@/lib/planner';
 import {
+  leafOf,
   level,
   season,
   sunlight,
@@ -300,9 +301,11 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   // from the day it goes in.
   const lat = year?.lat ?? 45;
   const garden = plan?.garden;
+  // How far trees are in leaf each month there, for the sun through them.
+  const leaf = useMemo(() => leafOf(year?.temps), [year?.temps]);
   const light = useMemo(
-    () => (garden ? sunlight(garden, lat) : null),
-    [garden, lat]
+    () => (garden ? sunlight(garden, lat, leaf) : null),
+    [garden, lat, leaf]
   );
   const planDay = forMonths ? target : today();
   const shownMonth = Number(planDay.slice(5, 7)) - 1;
@@ -357,7 +360,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
         garden,
         status,
         today(),
-        sunOf(sunlight(garden, lat), today())
+        sunOf(sunlight(garden, lat, leaf), today())
       )
     );
     only(0);
@@ -931,7 +934,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                     <span className='text-sm text-muted-foreground'>
                       {t('planner.aroundLabel')}
                     </span>
-                    {edgesOf(plan.garden).map(edge => (
+                    {EDGES.map(edge => (
                       <Select
                         key={edge}
                         value={plan.garden.sides?.[edge] ?? 'open'}
@@ -1116,6 +1119,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                     sunAt={light ? x => level(light, x, shownMonth) : undefined}
                     lat={lat}
                     month={shownMonth}
+                    leaf={leaf}
                     sections={drawn}
                     selected={patch === null ? chosen : []}
                     onSelect={pick}
@@ -1896,15 +1900,10 @@ const COMPASS = ['north', 'east', 'south', 'west'] as const;
 type Edge = keyof NonNullable<Garden['sides']>;
 const SIDE_KINDS = ['open', 'fence', 'house', 'trees'] as const;
 const EIGHT = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw'] as const;
-/** The plot's sides as drawn, and the L's cut corner. */
-const edgesOf = (g: Garden): Edge[] =>
-  g.shape === 'L'
-    ? ['top', 'right', 'bottom', 'left', 'corner']
-    : ['top', 'right', 'bottom', 'left'];
-/** The compass point a side faces (the plot's top faces `north`); the L's
- *  cut corner is just the corner. */
+/** The plot's sides as drawn (an L's run on round its cut corner). */
+const EDGES: Edge[] = ['top', 'right', 'bottom', 'left'];
+/** The compass point a side faces (the plot's top faces `north`). */
 function facing(g: Garden, edge: Edge) {
-  if (edge === 'corner') return 'corner';
   const bearing =
     (g.north ?? 0) + 90 * ['top', 'right', 'bottom', 'left'].indexOf(edge);
   return EIGHT[Math.round((((bearing % 360) + 360) % 360) / 45) % 8];

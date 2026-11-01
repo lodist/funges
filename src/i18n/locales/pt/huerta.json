@@ -2307,7 +2307,7 @@
     "before": "Antes",
     "beforeText": "{{crop}}, saiu em {{date}}",
     "aroundLabel": "Em volta da horta",
-    "aroundHint": "O Huerta acompanha o sol no seu lugar ao longo do dia, mês a mês, e conta as horas que cada canteiro recebe por cima do que está em volta. Seis horas ou mais é sol pleno.",
+    "aroundHint": "O Huerta conta as horas de sol de cada canteiro, mês a mês. Seis ou mais é sol pleno.",
     "side": {
       "n": "Norte",
       "ne": "Nordeste",
@@ -2316,8 +2316,7 @@
       "s": "Sul",
       "sw": "Sudoeste",
       "w": "Oeste",
-      "nw": "Noroeste",
-      "corner": "Canto"
+      "nw": "Noroeste"
     },
     "sideKind": {
       "open": "Aberto",

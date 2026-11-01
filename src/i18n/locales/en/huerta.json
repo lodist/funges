@@ -2307,7 +2307,7 @@
     "before": "Before",
     "beforeText": "{{crop}}, out {{date}}",
     "aroundLabel": "Around the garden",
-    "aroundHint": "Huerta follows the sun at your place through the day, month by month, and counts the hours each bed gets past what stands around it. Six hours or more is full sun.",
+    "aroundHint": "Huerta counts the hours of sun each bed gets, month by month. Six or more is full sun.",
     "side": {
       "n": "North",
       "ne": "North-east",
@@ -2316,8 +2316,7 @@
       "s": "South",
       "sw": "South-west",
       "w": "West",
-      "nw": "North-west",
-      "corner": "Corner"
+      "nw": "North-west"
     },
     "sideKind": {
       "open": "Open",
