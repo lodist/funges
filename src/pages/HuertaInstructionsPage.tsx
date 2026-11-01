@@ -68,31 +68,161 @@ const KEY_DATASETS = [
   ['towns', LAND],
 ] as const;
 
-// My garden as a picture of the planner on a computer, numbered part by part:
-// each part's spot in the 1013 × 830 screenshot (public/huerta/guide), in the
-// order its explanations are listed.
-const SHOT = { width: 1013, height: 830 };
+// My garden as a picture of the planner on a computer, numbered part by part,
+// in the order the explanations are listed. One screenshot per language
+// (public/huerta/guide/planner-<lang>.webp), all cut to the same 1001 × 830
+// frame; the words differ in length, so each has its own spots.
+const SHOT = { width: 1001, height: 830 };
 const GARDEN_PARTS = [
-  ['size', 752, 21],
-  ['around', 741, 69],
-  ['soil', 247, 136],
-  ['when', 21, 189],
-  ['auto', 111, 189],
-  ['undo', 241, 189],
-  ['north', 122, 284],
-  ['view', 622, 284],
-  ['shade', 622, 320],
-  ['bed', 532, 552],
-  ['select', 248, 726],
-  ['timeline', 62, 783],
-  ['sun', 997, 300],
-  ['status', 862, 423],
-  ['facts', 997, 454],
-  ['ifNow', 984, 562],
-  ['sown', 856, 658],
-  ['neighbours', 820, 693],
-  ['swap', 808, 770],
+  'size',
+  'around',
+  'soil',
+  'when',
+  'auto',
+  'undo',
+  'north',
+  'view',
+  'shade',
+  'bed',
+  'select',
+  'timeline',
+  'sun',
+  'status',
+  'facts',
+  'ifNow',
+  'sown',
+  'neighbours',
+  'swap',
 ] as const;
+type Spots = [number, number][];
+const SPOTS: Record<string, Spots> = {
+  en: [
+    [751, 21],
+    [739, 69],
+    [247, 136],
+    [21, 189],
+    [113, 189],
+    [229, 189],
+    [122, 284],
+    [612, 284],
+    [622, 320],
+    [532, 552],
+    [252, 726],
+    [61, 783],
+    [841, 280],
+    [861, 423],
+    [987, 454],
+    [982, 561],
+    [855, 657],
+    [816, 693],
+    [806, 769],
+  ],
+  de: [
+    [706, 21],
+    [713, 69],
+    [280, 136],
+    [21, 189],
+    [114, 189],
+    [244, 189],
+    [122, 284],
+    [612, 284],
+    [622, 320],
+    [532, 552],
+    [295, 726],
+    [62, 783],
+    [849, 280],
+    [860, 423],
+    [987, 454],
+    [982, 577],
+    [858, 689],
+    [807, 725],
+    [848, 801],
+  ],
+  es: [
+    [805, 21],
+    [746, 69],
+    [286, 136],
+    [21, 189],
+    [103, 189],
+    [240, 189],
+    [122, 284],
+    [606, 284],
+    [622, 320],
+    [532, 552],
+    [300, 726],
+    [69, 783],
+    [866, 280],
+    [902, 423],
+    [987, 454],
+    [982, 561],
+    [870, 673],
+    [795, 709],
+    [825, 785],
+  ],
+  fr: [
+    [795, 21],
+    [756, 69],
+    [260, 136],
+    [21, 189],
+    [142, 189],
+    [282, 189],
+    [122, 284],
+    [612, 284],
+    [622, 320],
+    [532, 552],
+    [311, 726],
+    [97, 783],
+    [869, 280],
+    [867, 423],
+    [987, 454],
+    [982, 577],
+    [885, 689],
+    [792, 725],
+    [840, 801],
+  ],
+  it: [
+    [801, 21],
+    [700, 69],
+    [308, 136],
+    [21, 189],
+    [107, 189],
+    [247, 189],
+    [122, 284],
+    [602, 284],
+    [622, 320],
+    [532, 552],
+    [296, 726],
+    [56, 783],
+    [852, 280],
+    [881, 423],
+    [987, 454],
+    [982, 561],
+    [870, 673],
+    [782, 709],
+    [844, 785],
+  ],
+  pt: [
+    [892, 21],
+    [731, 69],
+    [271, 136],
+    [21, 189],
+    [106, 189],
+    [242, 189],
+    [122, 284],
+    [601, 284],
+    [622, 320],
+    [532, 552],
+    [285, 726],
+    [69, 783],
+    [890, 280],
+    [886, 423],
+    [987, 454],
+    [982, 577],
+    [868, 689],
+    [798, 725],
+    [819, 801],
+  ],
+};
 const NUMBER =
   'flex size-6 shrink-0 items-center justify-center rounded-full bg-band text-xs font-semibold text-band-foreground tabular-nums';
 
@@ -151,6 +281,9 @@ function LayerKey({ layer }: { layer: MapLayer }) {
 
 export default function HuertaInstructionsPage() {
   const { t, i18n } = useTranslation(['instructions', 'huerta']);
+  // The planner in the reader's language (de-CH reads as de), else English.
+  const shot =
+    i18n.language.slice(0, 2) in SPOTS ? i18n.language.slice(0, 2) : 'en';
 
   const functions = [
     { icon: Database, text: t('huerta.functions.crops') },
@@ -266,16 +399,16 @@ export default function HuertaInstructionsPage() {
                 >
                   <div className='relative min-w-[40rem]'>
                     <img
-                      src={`${import.meta.env.BASE_URL}huerta/guide/planner.webp`}
+                      src={`${import.meta.env.BASE_URL}huerta/guide/planner-${shot}.webp`}
                       alt={t('huerta.garden.picture.alt')}
                       width={SHOT.width}
                       height={SHOT.height}
                       loading='lazy'
                       className='block h-auto w-full'
                     />
-                    {GARDEN_PARTS.map(([part, x, y], i) => (
+                    {SPOTS[shot].map(([x, y], i) => (
                       <span
-                        key={part}
+                        key={GARDEN_PARTS[i]}
                         aria-hidden
                         className={cn(
                           NUMBER,
@@ -300,7 +433,7 @@ export default function HuertaInstructionsPage() {
                 </figcaption>
               </figure>
               <ol className='flex flex-col gap-5'>
-                {GARDEN_PARTS.map(([part], i) => (
+                {GARDEN_PARTS.map((part, i) => (
                   // The number beside the title, the text full width under
                   // both: a phone keeps its whole line for it.
                   <li key={part}>

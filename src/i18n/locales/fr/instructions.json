@@ -214,8 +214,8 @@
           "text": "Faites-la glisser pour voir votre potager dans les semaines à venir : ce qui pousse, ce qui est prêt et ce que le froid va tuer. Les plantes pâles sont prévues mais pas encore en terre."
         },
         "sun": {
-          "title": "Soleil ici",
-          "text": "Les heures de soleil direct que reçoit cet endroit ce mois-ci et à quel moment de la journée. « Toute la planche » sélectionne le reste de la planche."
+          "title": "Cet endroit",
+          "text": "La planche et la partie que vous avez touchées, les heures de soleil direct qu'elle reçoit ce mois-ci et à quel moment de la journée. « Toute la planche » sélectionne le reste de la planche."
         },
         "status": {
           "title": "Culture et état",
