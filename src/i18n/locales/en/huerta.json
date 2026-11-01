@@ -58,6 +58,15 @@
         "text": "Have covers ready for {{crops}}.",
         "title": "Frost possible {{night}} night"
       },
+      "frostCheck": {
+        "lastNight": "{{crop}}: frost last night",
+        "night": "{{crop}}: frost on {{night}} night",
+        "tender": "About {{low}} here. Once the plants have thawed, look at them: leaves that went dark, glassy or limp froze. If the stems and tips are black too, they're gone.",
+        "tubers": "About {{low}} here. Frost blackens the leaves, but the tubers send up new shoots: they're only gone if nothing comes back within two weeks.",
+        "hardy": "About {{low}} here, colder than they usually take. Once the plants have thawed, look at them: leaves that stay glassy or slimy froze. If the hearts are still firm and green, they grow on.",
+        "fine": "Looks fine",
+        "gone": "It's gone"
+      },
       "water": {
         "title": "Water about {{mm}} L/m² this week",
         "text": "The rain won't make up for what sun and wind take. Two good soakings beat a daily sprinkle.",
@@ -77,6 +86,7 @@
       },
       "from": {
         "forecast": "From the forecast",
+        "weather": "From the weather here",
         "plan": "From your plan",
         "soil": "From your soil",
         "climate": "From your place's climate"

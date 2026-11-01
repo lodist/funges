@@ -58,6 +58,15 @@
         "text": "Tenha cobertura à mão para {{crops}}.",
         "title": "Possível geada na noite de {{night}}"
       },
+      "frostCheck": {
+        "lastNight": "{{crop}}: geada ontem à noite",
+        "night": "{{crop}}: geada na noite de {{night}}",
+        "tender": "Cerca de {{low}} aqui. Quando as plantas descongelarem, olhe para elas: folhas que ficaram escuras, vítreas ou murchas congelaram. Se os caules e as pontas também estiverem pretos, elas se perderam.",
+        "tubers": "Cerca de {{low}} aqui. A geada escurece as folhas, mas os tubérculos voltam a brotar: só se perderam se nada voltar em duas semanas.",
+        "hardy": "Cerca de {{low}} aqui, mais frio do que costumam aguentar. Quando as plantas descongelarem, olhe para elas: folhas que continuam vítreas ou moles congelaram. Se o miolo ainda estiver firme e verde, elas continuam crescendo.",
+        "fine": "Estão bem",
+        "gone": "Congelaram"
+      },
       "water": {
         "title": "Regue cerca de {{mm}} L/m² esta semana",
         "text": "A chuva não repõe o que o sol e o vento levam. Duas boas regas valem mais que um pouco todo dia.",
@@ -77,6 +86,7 @@
       },
       "from": {
         "forecast": "Pela previsão",
+        "weather": "Pelo tempo no seu local",
         "plan": "Pelo seu plano",
         "soil": "Pelo seu solo",
         "climate": "Do clima do seu local"

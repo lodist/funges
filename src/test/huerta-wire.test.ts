@@ -22,6 +22,17 @@ describe("the Worker's advice answer", () => {
     const older = { ...body, place: { ...body.place, blight: undefined } };
     expect('blight' in decodeAdvice(older)).toBe(false);
   });
+
+  it("reads the past week's coldest hours; a blight the night did not work out is none", () => {
+    // (C + 30) x 2: 48 is -6 C, 255 unknown.
+    const lows = ['2026-11-02', btoa(String.fromCharCode(48, 255, 61))];
+    const advice = decodeAdvice({
+      ...body,
+      place: { ...body.place, blight: null, lows: lows as [string, string] },
+    });
+    expect(advice.lows).toEqual({ start: '2026-11-02', t: [-6, null, 0.5] });
+    expect('blight' in advice).toBe(false);
+  });
 });
 
 describe("the Worker's year answer", () => {
