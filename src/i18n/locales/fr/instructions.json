@@ -153,12 +153,69 @@
     },
     "garden": {
       "title": "Mon potager",
-      "placeTitle": "Où est votre potager ?",
-      "place": "Trouvez-le sur la carte ou cherchez votre commune. Tout ce que Huerta vous dit est calculé pour ce lieu : ses dates de gel, son sol et sa météo.",
-      "planTitle": "Planifiez vos planches",
-      "plan": "Dessinez vos planches et tournez l'aiguille vers le nord. « Planifiez pour moi » les remplit avec ce qui peut aller en terre chez vous et éloigne les cultures qui ne s'entendent pas. Touchez une planche, puis une culture, pour la changer.",
-      "weekTitle": "Chaque semaine",
-      "week": "« À faire cette semaine » vous dit quoi semer, planter, arroser, couvrir et récolter, et où. Cochez chaque tâche une fois faite. Huerta suit ensuite la croissance de chaque culture et vous dit quand elle est prête."
+      "intro": "Dans « Mon potager », vous dessinez votre potager, décidez de ce qui pousse où et suivez tout du semis à la récolte. Une fois installé, il vous dit chaque semaine quoi faire.",
+      "phone": "Sur un téléphone, il a trois onglets : Potager pour le dessin, Liste pour le plan culture par culture et À faire pour les travaux de la semaine.",
+      "setup": {
+        "title": "Installez votre potager",
+        "place": {
+          "title": "Choisissez votre lieu",
+          "text": "Touchez « Choisissez votre lieu » en haut et cherchez votre commune ou utilisez votre position. Ou ouvrez la carte, touchez votre emplacement et choisissez « En faire mon potager ». Le lieu décide du reste : quand vient le gel, comment est le sol et quand chaque culture peut aller en terre."
+        },
+        "size": {
+          "title": "Dessinez le potager",
+          "text": "Indiquez la largeur et la longueur en mètres et choisissez rectangle ou en L. Dites ensuite comment vous cultivez (carrés surélevés, planches en pleine terre ou rangs en plein champ) et dans quel sens vont les planches. Huerta dispose les planches et les allées entre elles. Sur un téléphone, ces réglages tiennent sur une ligne au-dessus du dessin : touchez-la pour les ouvrir."
+        },
+        "north": {
+          "title": "Orientez-le au nord",
+          "text": "Tournez l'aiguille du dessin jusqu'à ce qu'elle pointe vers le nord, comme votre potager est vraiment orienté. Huerta en a besoin pour calculer le soleil sur chaque planche et mettre les cultures hautes au bout nord, où elles ne font pas d'ombre aux autres."
+        },
+        "around": {
+          "title": "Dites ce qui l'entoure",
+          "text": "Sous « Autour du jardin », choisissez ce qu'il y a de chaque côté : rien, une clôture ou une haie, une maison ou un mur ou de grands arbres. Huerta compte alors les heures de soleil de chaque planche, mois par mois. Six heures ou plus, c'est le plein soleil. Quand un côté a quelque chose, les boutons du dessin en 3D montrent son ombre le matin, à midi et l'après-midi. Le plan, la vue d'en haut, montre le soleil à chaque endroit."
+        },
+        "soil": {
+          "title": "Vérifiez le sol",
+          "text": "Huerta remplit votre sol à partir de cartes des sols : son type (sableux, terre franche ou argileux) et son pH. Si vous savez que le vôtre est différent, changez-le. Un sol sableux se réchauffe plus tôt au printemps et sèche plus vite. Un sol argileux se réchauffe plus tard et garde l'eau plus longtemps. Quand votre sol demande un soin pour une culture, comme de la chaux avant les choux en sol acide, « À faire » vous le dit."
+        }
+      },
+      "plan": {
+        "title": "Planifiez ce qui va où",
+        "when": {
+          "title": "Choisissez quand",
+          "text": "« Planifier pour » fixe quand va en terre tout ce qui n'y est pas encore : Aujourd'hui ou l'un des douze prochains mois. Choisissez un mois et la frise du temps commence là."
+        },
+        "auto": {
+          "title": "Laissez Huerta planifier",
+          "text": "Touchez « Planifiez pour moi » et choisissez quoi cultiver : un potager mixte, des légumes seulement, des légumes avec des fleurs au bout de chaque planche, les fruits d'abord ou des aromatiques et des fleurs. Huerta remplit les planches avec les cultures qui peuvent aller en terre à ce moment chez vous. Chaque planche reçoit une famille. Oignons et ail restent loin des pois et des haricots, les cultures hautes vont au bout nord et chaque culture va là où elle a le soleil qu'il lui faut. Aucune famille ne retourne dans la planche où elle était l'an dernier. Si rien ne peut aller en terre à ce moment, la planche reste vide. Ce que vous avez déjà planté ne bouge pas. Si des planches sont sélectionnées, seules celles-ci sont planifiées."
+        },
+        "change": {
+          "title": "Modifiez à votre goût",
+          "text": "Touchez une planche pour voir ce qui y pousse : combien de plants, à quel écart, quand ils seront prêts et quels voisins surveiller. Pour mettre autre chose, choisissez-le sous « Remplacer par », faites-le glisser depuis les cultures sous le dessin jusqu'à une planche ou sélectionnez des planches et touchez une culture. Pour en sélectionner plusieurs, touchez « Sélectionner » et faites glisser dessus. Vous pouvez couper une section en deux, la joindre à la suivante, la rallonger ou la raccourcir. Vous pouvez aussi supprimer une planche entière. « Annuler » reprend le dernier changement."
+        },
+        "checks": {
+          "title": "Lisez les repères",
+          "text": "Sous le dessin, Huerta compte les bons voisins, les paires à séparer et les cultures trop à l'ombre. Touchez-en un pour sélectionner les planches concernées. Une étiquette rouge sur une planche dit que la culture ne peut pas aller en terre à la date prévue et pourquoi."
+        },
+        "timeline": {
+          "title": "Regardez-le pousser",
+          "text": "Faites glisser la frise sous le dessin pour voir votre potager dans les semaines à venir : ce qui pousse, ce qui est prêt et ce que le froid va tuer. Les plantes pâles sont prévues mais pas encore en terre."
+        },
+        "list": {
+          "title": "Planifiez par culture",
+          "text": "« Ce qui pousse ici » montre le plan culture par culture : ses sections, combien de plants et pour combien de personnes. Sur un ordinateur, il est à côté du dessin, sur un téléphone sous Liste. Ajoutez une culture, donnez-lui une section de plus ou de moins ou ressemez-la en plusieurs fois toutes les quelques semaines. « Ranger » met chaque culture d'un seul tenant, les familles ensemble et loin de là où elles ont poussé les trois dernières années."
+        }
+      },
+      "week": {
+        "title": "Chaque semaine",
+        "todo": {
+          "title": "Semez et cochez",
+          "text": "« À faire cette semaine » liste chaque tâche et où la faire : quoi semer ou planter, arroser, protéger du gel, éclaircir, tuteurer, nourrir et récolter, plus les alertes au mildiou et aux mouches. Touchez « Semé aujourd'hui » ou « Planté aujourd'hui » quand une culture va en terre et « Fait » pour le reste. Huerta suit ensuite chaque culture d'après la chaleur qu'elle reçoit et vous dit quand elle est prête. « À venir » montre les quatre semaines suivantes."
+        },
+        "finish": {
+          "title": "Quand une culture est finie",
+          "text": "Quand vous avez récolté le dernier ou qu'elle a échoué, dites-le dans sa planche : récoltée, ou perdue et pourquoi. Elle passe dans « Cette saison ». L'an prochain, Huerta garde chaque famille hors des planches où elle vient de pousser."
+        }
+      }
     },
     "functions": {
       "title": "Fonctions",
@@ -172,8 +229,7 @@
       "title": "Votre compte",
       "intro": "Huerta vous demande de vous connecter avec Google. Vos potagers sont ainsi les mêmes sur votre téléphone et sur votre ordinateur.",
       "kept": "Huerta garde votre adresse e-mail et vos potagers : leurs noms, leurs plans et leur lieu, arrondi à environ 1 km. Il ne connaît jamais votre adresse.",
-      "delete": "Vous pouvez supprimer votre compte et tout ce qu'il contient à tout moment : dans Aide → Compte sur un ordinateur ou dans Paramètres sur un téléphone.",
-      "limits": "Huerta est en version préliminaire. Ses conseils viennent des prévisions météo et d'une année type chez vous. Les prévisions peuvent se tromper : regardez votre sol et le ciel avant de semer et gardez de quoi protéger du gel."
+      "delete": "Vous pouvez supprimer votre compte et tout ce qu'il contient à tout moment : dans Aide → Compte sur un ordinateur ou dans Paramètres sur un téléphone."
     },
     "about": {
       "title": "À propos de Huerta",

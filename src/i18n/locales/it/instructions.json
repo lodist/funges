@@ -153,12 +153,69 @@
     },
     "garden": {
       "title": "Il mio orto",
-      "placeTitle": "Dov'è il tuo orto?",
-      "place": "Trovalo sulla mappa o cerca il tuo paese. Tutto quello che Huerta ti dice è pensato per quel luogo: le sue gelate, il suo terreno e il suo tempo.",
-      "planTitle": "Pianifica le aiuole",
-      "plan": "Disegna le aiuole e gira l'ago verso nord. «Pianificalo per me» le riempie con ciò che può andare in terra da te e tiene lontane le colture che non vanno d'accordo. Tocca un'aiuola e poi una coltura per cambiarla.",
-      "weekTitle": "Ogni settimana",
-      "week": "«Da fare questa settimana» ti dice cosa seminare, piantare, annaffiare, coprire e raccogliere, e dove. Spunta ogni lavoro quando l'hai fatto. Huerta segue poi come cresce ogni coltura e ti dice quando è pronta."
+      "intro": "In «Il mio orto» disegni il tuo orto, decidi cosa va dove e lo segui dalla semina al raccolto. Lo prepari una volta e ogni settimana ti dice cosa fare.",
+      "phone": "Sul telefono ha tre schede: Orto per il disegno, Elenco per il piano coltura per coltura e Da fare per i lavori della settimana.",
+      "setup": {
+        "title": "Prepara il tuo orto",
+        "place": {
+          "title": "Scegli il luogo",
+          "text": "Tocca «Scegli il tuo luogo» in alto e cerca il tuo paese o usa la tua posizione. Oppure apri la mappa, tocca il tuo punto e scegli «Usa come il mio orto». Il luogo decide il resto: quando arriva il gelo, com'è il terreno e quando ogni coltura può andare in terra."
+        },
+        "size": {
+          "title": "Disegna l'orto",
+          "text": "Inserisci larghezza e lunghezza in metri e scegli rettangolo o a L. Poi di' come coltivi (aiuole rialzate, aiuole a terra o file in campo aperto) e in che verso corrono le aiuole. Huerta dispone le aiuole e i vialetti tra loro. Sul telefono queste impostazioni stanno in una riga sopra il disegno: toccala per aprirle."
+        },
+        "north": {
+          "title": "Orientalo a nord",
+          "text": "Gira l'ago sul disegno finché punta a nord, come è davvero il tuo orto. A Huerta serve per calcolare il sole su ogni aiuola e mettere le colture alte in fondo a nord, dove non fanno ombra alle altre."
+        },
+        "around": {
+          "title": "Di' cosa c'è intorno",
+          "text": "In «Intorno all'orto» scegli cosa c'è su ogni lato: niente, una recinzione o una siepe, una casa o un muro o alberi alti. Huerta conta poi le ore di sole di ogni aiuola, mese per mese. Sei ore o più è pieno sole. Se su un lato c'è qualcosa, i pulsanti sul disegno in 3D mostrano la sua ombra al mattino, a mezzogiorno e al pomeriggio. La pianta, la vista dall'alto, mostra il sole in ogni punto."
+        },
+        "soil": {
+          "title": "Controlla il terreno",
+          "text": "Huerta compila il tuo terreno dalle mappe dei suoli: il tipo (sabbioso, medio impasto o argilloso) e il pH. Se sai che il tuo è diverso, cambialo. Il terreno sabbioso si scalda prima in primavera e si asciuga più in fretta. Quello argilloso si scalda più tardi e trattiene l'acqua più a lungo. Se il tuo terreno ha bisogno di qualcosa per una coltura, come la calce prima dei cavoli su terreno acido, te lo dice Da fare."
+        }
+      },
+      "plan": {
+        "title": "Pianifica cosa va dove",
+        "when": {
+          "title": "Scegli quando",
+          "text": "«Pianifica per» stabilisce quando va in terra tutto ciò che non c'è ancora: Oggi o uno dei prossimi dodici mesi. Se scegli un mese, la linea del tempo parte da lì."
+        },
+        "auto": {
+          "title": "Lascia pianificare a Huerta",
+          "text": "Tocca «Pianificalo per me» e scegli cosa coltivare: un orto misto, solo ortaggi, ortaggi con fiori in fondo a ogni aiuola, prima la frutta o aromatiche e fiori. Huerta riempie le aiuole con le colture che possono andare in terra in quel momento da te. Ogni aiuola riceve una famiglia. Cipolle e aglio stanno lontani da piselli e fagioli, le colture alte vanno in fondo a nord e ogni coltura va dove ha il sole che le serve. Nessuna famiglia torna nell'aiuola dove è stata l'anno scorso. Se in quel momento non può andare in terra niente, l'aiuola resta vuota. Quello che hai già piantato resta com'è. Con delle aiuole selezionate, pianifica solo quelle."
+        },
+        "change": {
+          "title": "Cambialo a modo tuo",
+          "text": "Tocca un'aiuola per vedere cosa ci cresce: quante piante, a che distanza, quando saranno pronte e a quali vicini fare attenzione. Per mettere altro, sceglilo in «Sostituisci con», trascinalo dalle colture sotto il disegno su un'aiuola o seleziona delle aiuole e tocca una coltura. Per selezionarne più di una, tocca «Seleziona» e trascina sopra. Puoi dividere una sezione in due, unirla alla successiva, allungarla o accorciarla. Puoi anche eliminare un'aiuola intera. «Annulla» toglie l'ultima modifica."
+        },
+        "checks": {
+          "title": "Leggi i controlli",
+          "text": "Sotto il disegno Huerta conta i buoni vicini, le coppie da tenere separate e le colture con troppa ombra. Toccane uno per selezionare le aiuole di cui parla. Un'etichetta rossa su un'aiuola dice che la coltura non può andare in terra nel momento previsto e perché."
+        },
+        "timeline": {
+          "title": "Guardalo crescere",
+          "text": "Scorri la linea del tempo sotto il disegno per vedere il tuo orto nelle prossime settimane: cosa cresce, cosa è pronto e cosa ucciderà il freddo. Le piante chiare sono previste ma non ancora in terra."
+        },
+        "list": {
+          "title": "Pianifica per coltura",
+          "text": "«Cosa cresce qui» mostra il piano coltura per coltura: le sue sezioni, quante piante e per quante persone bastano. Sul computer sta accanto al disegno, sul telefono in Elenco. Aggiungi una coltura, dalle una sezione in più o in meno o riseminala a scaglioni ogni poche settimane. «Ordina» mette ogni coltura in un solo pezzo, le famiglie insieme e lontano da dove sono state negli ultimi tre anni."
+        }
+      },
+      "week": {
+        "title": "Ogni settimana",
+        "todo": {
+          "title": "Semina e spunta",
+          "text": "«Da fare questa settimana» elenca ogni lavoro e dove farlo: cosa seminare o piantare, annaffiare, coprire dal gelo, diradare, sostenere, concimare e raccogliere, più gli avvisi di peronospora e di mosche. Tocca «Seminato oggi» o «Piantato oggi» quando una coltura va in terra e «Fatto» per il resto. Da lì Huerta segue ogni coltura in base al calore che riceve e ti dice quando è pronta. «In arrivo» mostra le quattro settimane dopo."
+        },
+        "finish": {
+          "title": "Quando una coltura è finita",
+          "text": "Quando hai raccolto l'ultima o è andata persa, dillo nella sua aiuola: raccolta, oppure persa e perché. Finisce in «Questa stagione». L'anno dopo Huerta tiene ogni famiglia fuori dalle aiuole dove è appena stata."
+        }
+      }
     },
     "functions": {
       "title": "Funzioni",
@@ -172,8 +229,7 @@
       "title": "Il tuo account",
       "intro": "Huerta ti chiede di accedere con Google. Così i tuoi orti sono gli stessi sul telefono e sul computer.",
       "kept": "Huerta conserva il tuo indirizzo email e i tuoi orti: i nomi, i piani e il luogo, arrotondato a circa 1 km. Non conosce mai il tuo indirizzo.",
-      "delete": "Puoi eliminare l'account con tutto ciò che contiene quando vuoi: in Aiuto → Account su un computer o in Impostazioni su un telefono.",
-      "limits": "Huerta è in una prima versione. I suoi consigli vengono dalle previsioni del tempo e da un anno tipico nella tua zona. Le previsioni possono sbagliare: guarda il tuo terreno e il cielo prima di seminare e tieni a portata di mano qualcosa per coprire dal gelo."
+      "delete": "Puoi eliminare l'account con tutto ciò che contiene quando vuoi: in Aiuto → Account su un computer o in Impostazioni su un telefono."
     },
     "about": {
       "title": "Su Huerta",

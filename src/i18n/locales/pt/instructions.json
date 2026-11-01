@@ -153,12 +153,69 @@
     },
     "garden": {
       "title": "Minha horta",
-      "placeTitle": "Onde fica sua horta?",
-      "place": "Encontre-a no mapa ou busque sua cidade. Tudo o que o Huerta diz é calculado para esse lugar: as datas de geada, o solo e o tempo de lá.",
-      "planTitle": "Planeje seus canteiros",
-      "plan": "Desenhe seus canteiros e gire a agulha para o norte. \"Planejar por mim\" os preenche com o que pode ir para a terra na sua região e afasta as culturas que não se dão bem. Toque em um canteiro e depois em uma cultura para mudar.",
-      "weekTitle": "Toda semana",
-      "week": "\"Para fazer esta semana\" diz o que semear, plantar, regar, cobrir e colher, e onde. Marque cada tarefa quando terminar. O Huerta então acompanha o crescimento de cada cultura e avisa quando está pronta."
+      "intro": "Em \"Minha horta\" você desenha sua horta, decide o que vai onde e acompanha tudo da semeadura à colheita. Você monta uma vez e toda semana ela diz o que fazer.",
+      "phone": "No celular há três abas: Horta para o desenho, Lista para o plano cultura por cultura e Tarefas para os trabalhos da semana.",
+      "setup": {
+        "title": "Monte sua horta",
+        "place": {
+          "title": "Escolha seu lugar",
+          "text": "Toque em \"Escolha seu lugar\" lá em cima e busque sua cidade ou use sua localização. Ou abra o mapa, toque no seu ponto e escolha \"Usar como minha horta\". O lugar decide o resto: quando vem a geada, como é o solo e quando cada cultura pode ir para a terra."
+        },
+        "size": {
+          "title": "Desenhe a horta",
+          "text": "Informe a largura e o comprimento em metros e escolha retângulo ou em L. Depois diga como você cultiva (canteiros elevados, canteiros no chão ou fileiras em campo aberto) e em que sentido correm os canteiros. O Huerta distribui os canteiros e os caminhos entre eles. No celular esses ajustes ficam numa linha acima do desenho: toque nela para abri-los."
+        },
+        "north": {
+          "title": "Aponte para o norte",
+          "text": "Gire a agulha do desenho até ela apontar para o norte, do jeito que sua horta está de verdade. O Huerta precisa disso para calcular o sol em cada canteiro e pôr as culturas altas no lado norte, onde não fazem sombra às outras."
+        },
+        "around": {
+          "title": "Diga o que há em volta",
+          "text": "Em \"Em volta da horta\", escolha o que há em cada lado: nada, uma cerca ou sebe, uma casa ou muro ou árvores altas. O Huerta então conta as horas de sol de cada canteiro, mês a mês. Seis horas ou mais é sol pleno. Quando um lado tem algo, os botões do desenho em 3D mostram a sombra dele de manhã, ao meio-dia e à tarde. A planta, a vista de cima, mostra o sol em cada ponto."
+        },
+        "soil": {
+          "title": "Confira o solo",
+          "text": "O Huerta preenche seu solo a partir de mapas de solos: o tipo (arenoso, franco ou argiloso) e o pH. Se você sabe que o seu é diferente, mude. Solo arenoso esquenta mais cedo na primavera e seca mais rápido. Solo argiloso esquenta mais tarde e segura a água por mais tempo. Se o seu solo precisa de um cuidado para uma cultura, como calcário antes das couves em solo ácido, Tarefas avisa."
+        }
+      },
+      "plan": {
+        "title": "Planeje o que vai onde",
+        "when": {
+          "title": "Escolha quando",
+          "text": "\"Planejar para\" define quando vai para a terra tudo o que ainda não está nela: Hoje ou um dos próximos doze meses. Escolha um mês e a linha do tempo começa ali."
+        },
+        "auto": {
+          "title": "Deixe o Huerta planejar",
+          "text": "Toque em \"Planejar por mim\" e escolha o que cultivar: uma horta mista, só hortaliças, hortaliças com flores no fim de cada canteiro, fruta primeiro ou ervas e flores. O Huerta preenche os canteiros com culturas que podem ir para a terra nessa época na sua região. Cada canteiro recebe uma família. Cebola e alho ficam longe de ervilha e feijão, as culturas altas vão para o lado norte e cada cultura vai para onde tem o sol de que precisa. Nenhuma família volta ao canteiro onde esteve no ano passado. Se nada pode ir para a terra nessa época, o canteiro fica vazio. O que você já plantou fica como está. Com canteiros selecionados, só esses são planejados."
+        },
+        "change": {
+          "title": "Mude do seu jeito",
+          "text": "Toque em um canteiro para ver o que cresce nele: quantas plantas, a que distância, quando ficam prontas e de que vizinhos cuidar. Para pôr outra coisa, escolha em \"Trocar por\", arraste das culturas embaixo do desenho para um canteiro ou selecione canteiros e toque em uma cultura. Para selecionar vários, toque em \"Selecionar\" e arraste por cima. Você pode dividir uma seção em duas, juntá-la com a seguinte ou deixá-la mais longa ou mais curta. Também pode apagar um canteiro inteiro. \"Desfazer\" volta a última mudança."
+        },
+        "checks": {
+          "title": "Veja os avisos",
+          "text": "Embaixo do desenho o Huerta conta os bons vizinhos, os pares que devem ficar separados e as culturas com sombra demais. Toque em um para selecionar os canteiros a que se refere. Uma etiqueta vermelha num canteiro diz que a cultura não pode ir para a terra na data planejada e por quê."
+        },
+        "timeline": {
+          "title": "Veja crescer",
+          "text": "Deslize a linha do tempo embaixo do desenho para ver sua horta nas próximas semanas: o que cresce, o que está pronto e o que o frio vai matar. Plantas claras estão planejadas, mas ainda não estão na terra."
+        },
+        "list": {
+          "title": "Planeje por cultura",
+          "text": "\"O que cresce aqui\" mostra o plano cultura por cultura: suas seções, quantas plantas e para quantas pessoas dão. No computador fica ao lado do desenho, no celular em Lista. Adicione uma cultura, dê a ela uma seção a mais ou a menos ou semeie de novo em etapas a cada poucas semanas. \"Organizar\" põe cada cultura num pedaço só, as famílias juntas e longe de onde estiveram nos últimos três anos."
+        }
+      },
+      "week": {
+        "title": "Toda semana",
+        "todo": {
+          "title": "Semeie e marque",
+          "text": "\"Para fazer esta semana\" lista cada tarefa e onde fazê-la: o que semear ou plantar, regar, cobrir contra a geada, desbastar, tutorar, adubar e colher, além de avisos de míldio e de moscas. Toque em \"Semeado hoje\" ou \"Plantado hoje\" quando algo vai para a terra e em \"Feito\" para o resto. Daí em diante o Huerta acompanha cada cultura pelo calor que ela recebe e avisa quando está pronta. \"Em breve\" mostra as quatro semanas seguintes."
+        },
+        "finish": {
+          "title": "Quando uma cultura acaba",
+          "text": "Quando você colher o último ou a cultura se perder, diga isso no canteiro dela: colhida, ou perdida e por quê. Ela vai para \"Esta temporada\". No ano seguinte o Huerta mantém cada família fora dos canteiros onde acabou de estar."
+        }
+      }
     },
     "functions": {
       "title": "Funções",
@@ -172,8 +229,7 @@
       "title": "Sua conta",
       "intro": "O Huerta pede que você entre com o Google. Assim suas hortas são as mesmas no celular e no computador.",
       "kept": "O Huerta guarda seu e-mail e suas hortas: os nomes, os planos e o lugar, arredondado para cerca de 1 km. Ele nunca sabe seu endereço.",
-      "delete": "Você pode excluir sua conta e tudo o que ela contém quando quiser: em Ajuda → Conta no computador ou em Configurações no celular.",
-      "limits": "O Huerta está em versão inicial. Os conselhos vêm das previsões do tempo e de um ano típico na sua região. Previsões podem errar: olhe seu solo e o céu antes de semear e tenha à mão algo para cobrir contra a geada."
+      "delete": "Você pode excluir sua conta e tudo o que ela contém quando quiser: em Ajuda → Conta no computador ou em Configurações no celular."
     },
     "about": {
       "title": "Sobre o Huerta",
