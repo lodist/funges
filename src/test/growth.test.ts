@@ -167,7 +167,7 @@ describe("a planted crop's growth (the calendar's model)", () => {
 });
 
 describe('a planted crop in a shaded bed', () => {
-  const need = 17 / 2.19; // lettuce's light need, MJ m-2 a day
+  const need = 0.54; // lettuce's: the share of an open spot's light for its full pace
   it('grows as in the open when its bed gets all the light', () => {
     const open = plantedGrowth('lettuce', lettuce, place({}), '2027-05-01');
     const lit = plantedGrowth(
@@ -187,32 +187,34 @@ describe('a planted crop in a shaded bed', () => {
   });
 
   it('is ready later where the light it needs is short', () => {
-    // A dim spring (9 MJ a day): in a bed that gets half of it, lettuce has
-    // 4.5 of the 7.8 it can use, so it grows at 58 % of the open bed's pace.
-    const dim = place({ sun: flat(9) });
-    const open = plantedGrowth('lettuce', lettuce, dim, '2027-05-01');
+    // In a bed with 30 % of an open spot's light lettuce grows at 30/54 of
+    // its pace.
+    const open = plantedGrowth('lettuce', lettuce, place({}), '2027-05-01');
     const shaded = plantedGrowth(
       'lettuce',
       lettuce,
-      dim,
+      place({}),
       '2027-05-01',
       null,
       0,
       {
-        share: flat(0.5),
+        share: flat(0.3),
         need,
       }
     );
     expect(shaded.ready! > open.ready!).toBe(true);
   });
 
-  it('is not slowed where even the shade gives it all the light it can use', () => {
-    // A bright summer (20 MJ): 60 % of it is still more than lettuce uses.
-    const open = plantedGrowth('lettuce', lettuce, place({}), '2027-05-01');
+  it('is not slowed where the shade leaves it the light it needs, even in a dim place', () => {
+    // 60 % of the light, more than lettuce's 54 %, in a grey spring (9 MJ a
+    // day) as in a bright one: how sunny a place is did not change how the
+    // trials' crops took shade.
+    const dim = place({ sun: flat(9) });
+    const open = plantedGrowth('lettuce', lettuce, dim, '2027-05-01');
     const shaded = plantedGrowth(
       'lettuce',
       lettuce,
-      place({}),
+      dim,
       '2027-05-01',
       null,
       0,

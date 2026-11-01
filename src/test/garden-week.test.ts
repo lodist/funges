@@ -689,10 +689,10 @@ describe("a planted crop on the calendar's model", () => {
   });
 
   it('is ready later in the shade of a house, where light is short', () => {
-    // A dim place (9 MJ of sunshine a day): a bed right behind a house on
-    // the south side gets less light than lettuce can use, one 5 m off it
-    // more of it; with nothing along the sides every bed is as before.
-    const dim = { ...year, sun: Array(12).fill(9) };
+    // In early spring a bed right behind a house on the south side gets less
+    // light than lettuce needs for its full pace (the low sun behind the
+    // house, less of the sky), one 5 m off it enough; with nothing along
+    // the sides every bed is as before.
     const garden = {
       width: 4,
       length: 8,
@@ -703,10 +703,10 @@ describe("a planted crop on the calendar's model", () => {
     const beds = layout(garden);
     const behind = beds.reduce((a, z) => (z.y1 > a.y1 ? z : a));
     const off = beds.reduce((a, z) => (z.y0 < a.y0 ? z : a));
-    const grow = growIn(dim, 'loam', undefined, garden)!;
-    const open = growIn(dim, 'loam')!;
+    const grow = growIn(year, 'loam', undefined, garden)!;
+    const open = growIn(year, 'loam')!;
     const ready = (g: typeof grow) =>
-      readyDay('lettuce', NEEDS.lettuce, g, '2027-05-01')!;
+      readyDay('lettuce', NEEDS.lettuce, g, '2027-03-01')!;
     expect(ready(growAt(grow, behind)) > ready(growAt(grow, off))).toBe(true);
     expect(ready(growAt(grow, off)) >= ready(open)).toBe(true);
     expect(ready(growAt(open, behind))).toBe(ready(open));
