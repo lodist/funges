@@ -3,8 +3,11 @@
  * data_tools/build_huerta_windows.py: its growth and harvest_span for one
  * sowing), fed by the warmth the crop actually had where the place's daily
  * means are known (`warm`, the night's observed days and this week's
- * forecast), else by the place's typical year. In a typical year a crop is
- * ready on the day the calendar's harvest starts and picked until its end.
+ * forecast), else by the place's typical year. The season's turns (its
+ * winter rest, its spring and the heat that ends it) stay the typical year's:
+ * real days cross those lines in any cold snap or heat wave, and one cold or
+ * hot day is no winter or summer. In a typical year a crop is ready on the
+ * day the calendar's harvest starts and picked until its end.
  *
  * Days count as the builder's: a 365-day year (29 February is the 28th), from
  * 1 January of the year the crop went in, over four years.
@@ -214,15 +217,16 @@ export function plantedGrowth(
   const shade = bed
     ? daily(bed.share).map(share => Math.min(1, share / bed.need))
     : null;
-  const rate = air.map(
-    (a, i) =>
-      Math.max(0, Math.min(a, bio.thi) - bio.tb) *
-      Math.min(1, sunny[i % YEAR] / R_SAT) *
-      (shade ? shade[i % YEAR] : 1)
-  );
+  const rateOf = (a: number, i: number) =>
+    Math.max(0, Math.min(a, bio.thi) - bio.tb) *
+    Math.min(1, sunny[i % YEAR] / R_SAT) *
+    (shade ? shade[i % YEAR] : 1);
+  const rate = air.map(rateOf);
   const cum = [0];
   for (let i = 0; i < RUN; i++) cum.push(cum[i] + rate[i]);
-  const dormant = rate.map(r => r < DORMANT * pace);
+  // The season's turns come from the typical year (the header says why).
+  const usual = Array.from({ length: RUN }, (_, i) => normal[i % YEAR]);
+  const dormant = usual.map((a, i) => rateOf(a, i) < DORMANT * pace);
   const rest = nextWhere(dormant);
   const grow = nextWhere(dormant.map(d => !d));
 
@@ -299,14 +303,14 @@ export function plantedGrowth(
       const sleep = rest(s);
       let spring = sleep < NEVER ? grow(sleep) + BOLT : NEVER;
       const coldest = after(coldestMid(normal) + 1, s);
-      const warmAgain = nextWhere(air.map(a => a >= bio.tlo))(coldest);
+      const warmAgain = nextWhere(usual.map(a => a >= bio.tlo))(coldest);
       spring = Math.min(spring, warmAgain + BOLT);
       E = lives
         ? Math.min(E, spring)
         : Math.min(E, winterKill(H, normal, place, bio.hardy ?? 99));
     }
     if (bio.end === 'growth' || bio.end === 'winter' || bio.strict) {
-      const hot = nextWhere(air.map(a => a > bio.tmax));
+      const hot = nextWhere(usual.map(a => a > bio.tmax));
       E = Math.min(E, hot(H) - 1);
     }
   }
