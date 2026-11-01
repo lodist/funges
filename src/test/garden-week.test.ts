@@ -433,7 +433,7 @@ describe('the first crop of perennials, next-year crops and bulbs', () => {
         crops: { ...year.crops, chives: { sow: 0b1100, harvest: 0b111110000 } },
       } as unknown as PlaceYear,
     };
-    const on = (crop: string, day: string) =>
+    const on = (crop: string, day: string, place = here) =>
       stageOn(
         { ...beds[0], crop, planted: '2026-10-01' },
         NEEDS,
@@ -441,7 +441,7 @@ describe('the first crop of perennials, next-year crops and bulbs', () => {
         0,
         day,
         '2026-10-01',
-        here
+        place
       );
     expect(on('chives', '2027-01-15')).toBe('resting');
     expect(on('chives', '2027-04-15')).toBe('young');
@@ -449,6 +449,18 @@ describe('the first crop of perennials, next-year crops and bulbs', () => {
     expect(on('chives', '2027-10-15')).toBe('fading');
     expect(on('chives', '2027-12-15')).toBe('resting');
     expect(on('thyme', '2027-01-15')).toBe('grown');
+    // Where the calendar picks them into a cold November, ready then.
+    const late = {
+      year: {
+        ...here.year,
+        crops: {
+          ...here.year.crops,
+          chives: { sow: 0b1100, harvest: 0b11111110000 },
+        },
+      } as unknown as PlaceYear,
+    };
+    expect(on('chives', '2027-11-15', late)).toBe('ready');
+    expect(on('chives', '2027-12-15', late)).toBe('resting');
   });
 });
 

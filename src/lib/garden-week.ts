@@ -932,8 +932,8 @@ export type GrowthStage =
  *  until their first crop (firstCrop), then ready in the place's harvest
  *  months. Bulbs show only from two months before their flowers, their
  *  leaves fading the month after; perennials that die back rest through
- *  months of 5 °C or less, fading the month before and young the month
- *  after. Resting, nothing of them shows. With the place, its fate ends a
+ *  months of 5 °C or less they are not picked in, fading the month before
+ *  and young the month after. Resting, nothing of them shows. With the place, its fate ends a
  *  crop: lost if it was not ready by then, over if it was. */
 export function stageOn(
   s: Section,
@@ -972,8 +972,8 @@ export function stageOn(
     }
     if (DIES_BACK.has(s.crop)) {
       const cold = (k: number) => asGrow(grow).temps[at(k)] <= REST_AT;
-      if (cold(0)) return 'resting';
       if (day >= first && picked(0)) return 'ready';
+      if (cold(0)) return 'resting';
       if (cold(1)) return 'fading';
       if (cold(-1)) return 'young';
     }
