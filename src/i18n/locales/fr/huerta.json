@@ -2307,7 +2307,7 @@
     "before": "Avant",
     "beforeText": "{{crop}}, sorti le {{date}}",
     "aroundLabel": "Autour du jardin",
-    "aroundHint": "Une clôture, une maison ou des arbres sur un côté ombragent les planches voisines. Le dessin montre l'ombre du mois que vous planifiez.",
+    "aroundHint": "Huerta suit le soleil chez vous au fil de la journée, mois par mois, et compte les heures que chaque planche reçoit par-dessus ce qui l'entoure. Six heures ou plus, c'est le plein soleil.",
     "side": {
       "n": "Nord",
       "ne": "Nord-est",
@@ -2321,9 +2321,9 @@
     },
     "sideKind": {
       "open": "Dégagé",
-      "fence": "Clôture ou haie",
-      "house": "Maison ou mur",
-      "trees": "Grands arbres"
+      "fence": "Clôture ou haie, environ 2 m",
+      "house": "Maison ou mur, environ 6 m",
+      "trees": "Grands arbres, environ 10 m"
     },
     "sun": {
       "here_one": "Ici, en {{month}}, environ {{count}} heure de soleil par jour, {{when}}.",
@@ -2340,6 +2340,31 @@
       "shortCount_one": "! 1 culture trop à l'ombre",
       "shortCount_other": "! {{count}} cultures trop à l'ombre",
       "shortHint": "Des cultures à un endroit qui reçoit moins de soleil qu'il ne leur en faut. Touchez pour les sélectionner."
+    },
+    "sideBand": {
+      "fence": "Clôture, 2 m",
+      "house": "Maison, 6 m",
+      "trees": "Arbres, 10 m"
+    },
+    "shade": {
+      "label": "Ombre le {{date}}",
+      "time": {
+        "morning": "Matin",
+        "midday": "Midi",
+        "afternoon": "Après-midi"
+      },
+      "when": {
+        "morning": "le matin",
+        "midday": "à midi",
+        "afternoon": "l'après-midi"
+      },
+      "key": "Ombre {{when}} du {{date}}"
+    },
+    "sunKey": {
+      "label": "Soleil en {{month}} :",
+      "full": "6 heures ou plus",
+      "part": "De 3 à 6 heures",
+      "little": "Moins de 3 heures"
     }
   },
   "year": {

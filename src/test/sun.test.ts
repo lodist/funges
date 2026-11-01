@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import type { Garden } from '@/lib/planner';
-import { level, season, sunlight, wallsOf, when } from '@/lib/sun';
+import { level, season, shadows, sunlight, wallsOf, when } from '@/lib/sun';
 
 /** A spot: a small section around a point. */
 const spot = (x: number, y: number) => ({
@@ -89,6 +89,43 @@ describe('the sun a garden gets', () => {
     const growing = season(light, by, '2026-10-20', m => m < 10 && m > 1)!;
     expect(winter).toBeLessThan(3);
     expect(growing).toBeGreaterThan(winter + 2);
+  });
+
+  it('casts each side its shadow, as long as its height over the sun', () => {
+    // Zug, 15 March, solar noon: the sun 40° up, due south. A 2 m fence on
+    // the south side (y = 20) throws 2 / tan(40°) = 2.4 m of shade north.
+    const [fence] = shadows(plot({ bottom: 'fence' }), 47.17, 2, 12);
+    const ys = fence.map(([, y]) => y);
+    expect(Math.min(...ys)).toBeCloseTo(
+      20 - 2 / Math.tan((40 * Math.PI) / 180),
+      1
+    );
+    expect(Math.max(...ys)).toBeCloseTo(20, 5);
+    // A 6 m house throws three times as far; in June far less.
+    const [house] = shadows(plot({ bottom: 'house' }), 47.17, 2, 12);
+    expect(20 - Math.min(...house.map(([, y]) => y))).toBeCloseTo(
+      3 * (20 - Math.min(...ys)),
+      1
+    );
+    const [june] = shadows(plot({ bottom: 'house' }), 47.17, 5, 12);
+    expect(20 - Math.min(...june.map(([, y]) => y))).toBeLessThan(3);
+    // Before sunrise there is no shadow to draw.
+    expect(shadows(plot({ bottom: 'house' }), 47.17, 11, 5)).toEqual([]);
+  });
+
+  it("shades from the L's corner as a whole box", () => {
+    const g: Garden = {
+      width: 20,
+      length: 20,
+      shape: 'L',
+      north: 0,
+      sides: { corner: 'house' },
+    };
+    // Afternoon sun from the south-west: the box's shadow reaches north-east
+    // of it, past its own north face.
+    const [box] = shadows(g, 47, 5, 16);
+    expect(box.length).toBeGreaterThanOrEqual(4);
+    expect(Math.min(...box.map(([, y]) => y))).toBeLessThan(10);
   });
 
   it("stands a house in the L's cut corner", () => {
