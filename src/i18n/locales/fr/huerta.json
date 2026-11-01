@@ -2227,7 +2227,7 @@
     "selected_one": "{{count}} partie sélectionnée",
     "selected_other": "{{count}} parties sélectionnées",
     "clearSelection": "Tout désélectionner",
-    "noneSelected": "Touchez une planche pour la voir. Touchez-en d'autres pour les modifier ensemble.",
+    "noneSelected": "Touchez une planche pour la voir. Pour en modifier plusieurs à la fois, touchez Sélectionner et glissez dessus.",
     "palette": {
       "title": "Cultures",
       "hint": "Maintenez une culture et glissez-la sur une planche, ou sélectionnez des planches et touchez une culture.",

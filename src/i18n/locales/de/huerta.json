@@ -2227,7 +2227,7 @@
     "selected_one": "{{count}} Teil ausgewählt",
     "selected_other": "{{count}} Teile ausgewählt",
     "clearSelection": "Auswahl aufheben",
-    "noneSelected": "Tippe auf ein Beet, um es zu sehen. Tippe weitere an, um sie gemeinsam zu ändern.",
+    "noneSelected": "Tippe auf ein Beet, um es zu sehen. Um mehrere auf einmal zu ändern, tippe auf Auswählen und zieh über die Beete.",
     "palette": {
       "title": "Kulturen",
       "hint": "Halte eine Kultur gedrückt und zieh sie auf ein Beet, oder wähle Beete aus und tippe eine Kultur an.",
