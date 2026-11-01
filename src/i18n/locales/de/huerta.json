@@ -67,6 +67,19 @@
         "fine": "Sieht gut aus",
         "gone": "Erfroren"
       },
+      "storm": {
+        "wind": "Sturm am {{day}}: Böen bis {{gust}}",
+        "rain": "Starkregen am {{day}}: {{mm}}",
+        "both": "Sturm am {{day}}: Böen bis {{gust}}, {{mm}} Regen",
+        "windText": "Binde hohe Pflanzen an ihre Stäbe, beschwere Vlies und Netze und ernte, was reif ist.",
+        "rainText": "Ernte reife Früchte, bevor sie platzen, deck diese Woche gesäte Beete ab und halte die Wege frei, damit das Wasser abläuft.",
+        "bothText": "Binde hohe Pflanzen an ihre Stäbe, beschwere Vlies und Netze, deck diese Woche gesäte Beete ab und ernte, was reif ist, bevor es platzt oder abfällt."
+      },
+      "stormCheck": {
+        "wind": "Sturm am {{day}}: schau nach deinen Beeten",
+        "rain": "Starkregen am {{day}}: schau nach deinen Beeten",
+        "text": "Richte auf, was umgefallen ist, drück freigelegte Wurzeln an und säe nach, wo Saat weggeschwemmt wurde. Was hin ist, markierst du im Beet als verloren."
+      },
       "water": {
         "title": "Diese Woche etwa {{mm}} L/m² giessen",
         "text": "Der Regen ersetzt nicht, was Sonne und Wind nehmen. Zweimal gründlich giessen ist besser als täglich ein bisschen.",
@@ -274,6 +287,7 @@
   "units": {
     "celsius": "{{value}} °C",
     "mm": "{{value}} mm",
+    "kmh": "{{value}} km/h",
     "litres": "{{value}} L/m²"
   },
   "now": {
@@ -2429,7 +2443,7 @@
     "title": "Morgendliche Hinweise",
     "text": "Eine Benachrichtigung gegen 8:00 Uhr, wenn dein Garten etwas Neues braucht.",
     "kinds": {
-      "frost": "Frost kommt",
+      "frost": "Frost und Sturm",
       "care": "Pflege",
       "water": "Giessen und Regen",
       "sow": "Zeit zum Säen"

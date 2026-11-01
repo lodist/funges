@@ -67,6 +67,19 @@
         "fine": "Estão bem",
         "gone": "Congelaram"
       },
+      "storm": {
+        "wind": "Tempestade prevista para {{day}}: rajadas de até {{gust}}",
+        "rain": "Chuva forte prevista para {{day}}: {{mm}}",
+        "both": "Tempestade prevista para {{day}}: rajadas de até {{gust}} e {{mm}} de chuva",
+        "windText": "Amarre as plantas altas nos tutores, prenda mantas e telas com peso e colha o que estiver maduro.",
+        "rainText": "Colha as frutas maduras antes que rachem, cubra as sementeiras desta semana e deixe os caminhos livres para a água escorrer.",
+        "bothText": "Amarre as plantas altas nos tutores, prenda mantas e telas com peso, cubra as sementeiras desta semana e colha o que estiver maduro antes que rache ou caia."
+      },
+      "stormCheck": {
+        "wind": "Depois da tempestade de {{day}}: confira seus canteiros",
+        "rain": "Depois da chuva forte de {{day}}: confira seus canteiros",
+        "text": "Levante o que caiu, firme a terra sobre raízes expostas e semeie de novo onde a água levou a semente. O que se perdeu, marque como perdido no canteiro."
+      },
       "water": {
         "title": "Regue cerca de {{mm}} L/m² esta semana",
         "text": "A chuva não repõe o que o sol e o vento levam. Duas boas regas valem mais que um pouco todo dia.",
@@ -274,6 +287,7 @@
   "units": {
     "celsius": "{{value}} °C",
     "mm": "{{value}} mm",
+    "kmh": "{{value}} km/h",
     "litres": "{{value}} L/m²"
   },
   "now": {
@@ -2429,7 +2443,7 @@
     "title": "Alertas da manhã",
     "text": "Uma notificação por volta das 8:00 quando sua horta precisar de algo novo.",
     "kinds": {
-      "frost": "Geada chegando",
+      "frost": "Geada e tempestades",
       "care": "Cuidados",
       "water": "Rega e chuva",
       "sow": "Hora de semear"

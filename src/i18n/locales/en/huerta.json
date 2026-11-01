@@ -67,6 +67,19 @@
         "fine": "Looks fine",
         "gone": "It's gone"
       },
+      "storm": {
+        "wind": "Storm on {{day}}: gusts to {{gust}}",
+        "rain": "Heavy rain on {{day}}: {{mm}}",
+        "both": "Storm on {{day}}: gusts to {{gust}}, {{mm}} of rain",
+        "windText": "Tie tall plants to their stakes, weigh down fleece and nets and pick what's ripe.",
+        "rainText": "Pick ripe fruit before it splits, cover seedbeds sown this week and keep paths clear so the water runs off.",
+        "bothText": "Tie tall plants to their stakes, weigh down fleece and nets, cover seedbeds sown this week and pick what's ripe before it splits or falls."
+      },
+      "stormCheck": {
+        "wind": "Storm on {{day}}: check your beds",
+        "rain": "Heavy rain on {{day}}: check your beds",
+        "text": "Stake up what fell over, firm in roots laid bare and sow again where seed washed out. Anything gone: mark it lost in its bed."
+      },
       "water": {
         "title": "Water about {{mm}} L/m² this week",
         "text": "The rain won't make up for what sun and wind take. Two good soakings beat a daily sprinkle.",
@@ -274,6 +287,7 @@
   "units": {
     "celsius": "{{value}} °C",
     "mm": "{{value}} mm",
+    "kmh": "{{value}} km/h",
     "litres": "{{value}} L/m²"
   },
   "now": {
@@ -2429,7 +2443,7 @@
     "title": "Morning alerts",
     "text": "One notification at about 8:00 when your garden needs something new.",
     "kinds": {
-      "frost": "Frost coming",
+      "frost": "Frost and storms",
       "care": "Care steps",
       "water": "Water and rain",
       "sow": "Time to sow"

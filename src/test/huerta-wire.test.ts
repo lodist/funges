@@ -33,6 +33,17 @@ describe("the Worker's advice answer", () => {
     expect(advice.lows).toEqual({ start: '2026-11-02', t: [-6, null, 0.5] });
     expect('blight' in advice).toBe(false);
   });
+
+  it("reads the week's gusts and rain as whole km/h and mm", () => {
+    const days = (...b: number[]) =>
+      ['2026-11-02', btoa(String.fromCharCode(...b))] as [string, string];
+    const advice = decodeAdvice({
+      ...body,
+      place: { ...body.place, gusts: days(85, 255), rains: days(36, 0) },
+    });
+    expect(advice.gusts).toEqual({ start: '2026-11-02', t: [85, null] });
+    expect(advice.rains).toEqual({ start: '2026-11-02', t: [36, 0] });
+  });
 });
 
 describe("the Worker's year answer", () => {

@@ -150,6 +150,16 @@ export type Task =
       lastNight: boolean;
       signs: FrostSigns;
     }
+  /** A stormy day (gusts past STORM_GUST or rain past HEAVY_RAIN; each null
+   *  when it stays under): coming in the next three days, or the check after
+   *  one in the last week. */
+  | { kind: 'storm'; day: string; gust: number | null; rain: number | null }
+  | {
+      kind: 'stormCheck';
+      day: string;
+      gust: number | null;
+      rain: number | null;
+    }
   | { kind: 'water'; mm: number; soil: Texture }
   | { kind: 'soil'; note: SoilNote; crops: string[] }
   | { kind: 'rain'; mm: number }
@@ -597,6 +607,51 @@ function frostChecks(
   return tasks;
 }
 
+/** km/h: gusts that snap stems and blow covers away (Beaufort 8, a gale's). */
+const STORM_GUST = 65;
+/** mm in a day: enough to wash out seed and stand water in beds. */
+const HEAVY_RAIN = 30;
+
+/** Storms where something is planted: the first stormy day of the next
+ *  three, and the check after the last one of the past week since the first
+ *  crop went in. */
+function stormTasks(plan: Plan, advice: PlaceAdvice, today: string): Task[] {
+  const first = plan.sections
+    .filter(s => s.crop && s.planted)
+    .map(s => s.planted!)
+    .sort()[0];
+  if (!first) return [];
+  const value = (series: PlaceAdvice['gusts'], day: string) =>
+    series?.t[days(series.start, day)] ?? null;
+  const stormy = (day: string) => {
+    const gust = value(advice.gusts, day);
+    const rain = value(advice.rains, day);
+    const windy = gust !== null && gust >= STORM_GUST;
+    const wet = rain !== null && rain >= HEAVY_RAIN;
+    return windy || wet
+      ? { day, gust: windy ? gust : null, rain: wet ? rain : null }
+      : null;
+  };
+  const tasks: Task[] = [];
+  for (let k = 0; k < 3; k++) {
+    const coming = stormy(addDays(today, k));
+    if (coming) {
+      tasks.push({ kind: 'storm', ...coming });
+      break;
+    }
+  }
+  for (let k = 1; k < CHECK_DAYS; k++) {
+    const day = addDays(today, -k);
+    if (day <= first) break;
+    const past = stormy(day);
+    if (past) {
+      tasks.push({ kind: 'stormCheck', ...past });
+      break;
+    }
+  }
+  return tasks;
+}
+
 /** The ISO week of a YYYY-MM-DD day, as 2026-W43. */
 export function isoWeek(day: string) {
   const d = new Date(`${day}T12:00:00Z`);
@@ -650,6 +705,8 @@ export function gardenWeek(
 
   // A night colder than a planted crop lives through: ask what it did.
   tasks.push(...frostChecks(plan, advice, needs, today, year));
+  // A storm coming, or the beds to check after one.
+  tasks.push(...stormTasks(plan, advice, today));
 
   // Pests the weather brings: blight weather, flies on the wing.
   tasks.push(...pestTasks(plan, advice, year?.temps, today));
@@ -808,6 +865,9 @@ export function jobKey(task: Task, plan: Plan, today: string): string | null {
       return `laterFrost:${task.night}`;
     case 'frostCheck':
       return `frostCheck:${task.crop}:${task.day}`;
+    case 'storm':
+    case 'stormCheck':
+      return `${task.kind}:${task.day}`;
     case 'water':
     case 'rain':
       return `${task.kind}:${isoWeek(today)}`;
