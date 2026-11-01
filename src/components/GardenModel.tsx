@@ -11,7 +11,6 @@ import {
   BED_HEIGHT,
   familyOf,
   fit,
-  L_CUT,
   regions,
   type Garden,
   type Rect,
@@ -86,18 +85,18 @@ const GREEN_MANURE = new Set(
 );
 const OTHER = '#9fae84';
 const OPEN_EARTH = '#8a6f58';
-const SIDE = { fence: '#b08d63', house: '#9c968f', trees: '#5d7a4a' };
+const SIDE = { fence: '#b08d63', house: '#a4553d', trees: '#5d7a4a' };
 /** What stands along a side, in the model, at the height the sun is worked
- *  out with (lib/sun HEIGHT): a board fence, a rendered wall, a row of
- *  trees this far apart (metres). One between the plot and the viewer is
- *  drawn see-through, so it never hides the beds. */
+ *  out with (lib/sun HEIGHT): a close-boarded fence (a 2 m bay a tile), a
+ *  brick wall (1 m a tile), a row of trees this far apart (metres). One
+ *  between the plot and the viewer is drawn see-through, so it never hides
+ *  the beds. */
 const SIDE_LOOK = {
-  fence: { texture: 'boards', tile: 0.3, long: 4 },
-  house: { texture: 'render', tile: 2, long: 1 },
+  fence: { texture: 'fence', tile: 2, long: 1 },
+  house: { texture: 'brick', tile: 1, long: 1 },
 };
 const TREE_STEP = 3.5;
 const NEAR = 0.24;
-const ROOF = '#8f8a84';
 /** The drawing takes in this much of the sides' height above the plot:
  *  taller walls and trees run out at its top, the garden stays large. */
 const SIDE_VIEW = 2.6;
@@ -224,9 +223,11 @@ interface GardenModelProps {
    *  on it in the plan, none where not known. */
   sunAt?: (s: Section) => 'full' | 'part' | 'little' | undefined;
   /** The place's latitude and the month shown (0 = January): the model then
-   *  draws the shade the sides cast on its 15th at a time of day. */
+   *  draws the shade the sides cast on its 15th at a time of day; `leaf`,
+   *  how far trees are in leaf each month (lib/sun leafOf). */
   lat?: number;
   month?: number;
+  leaf?: (month: number) => number;
   /** The sections just planted: their plants come up out of the soil. */
   fresh?: number[];
   /** Beds deleted: plain earth, which can be tapped to put a bed back. */
@@ -264,6 +265,7 @@ export function GardenModel({
   sunAt,
   lat,
   month,
+  leaf,
   fresh,
   bare = [],
   onBare,
@@ -463,15 +465,14 @@ export function GardenModel({
       width: (x1 - x0) * S,
       height: (y1 - y0) * S,
     });
-    // What stands along a side, a band outside it; in the L's cut corner,
-    // the corner filled.
+    // What stands along a side, a band outside each of its edges (an L's
+    // runs on round its cut corner).
     const band = PLAN_MARGIN * 0.5;
     for (const w of wallsOf(garden)) {
-      if (w.side === 'corner') continue;
       const out = w.side === 'top' || w.side === 'left' ? -band : band;
       nodes.push(
         <rect
-          key={`side-${w.side}`}
+          key={`side-${w.side}-${w.x0}-${w.y0}`}
           {...(w.x0 === w.x1
             ? at(
                 Math.min(w.x0, w.x0 + out),
@@ -489,15 +490,6 @@ export function GardenModel({
         />
       );
     }
-    const corner = garden.shape === 'L' ? garden.sides?.corner : undefined;
-    if (corner)
-      nodes.push(
-        <rect
-          key='side-corner'
-          {...at(W * L_CUT.width, L * L_CUT.length, W, L)}
-          fill={SIDE[corner]}
-        />
-      );
     regions(garden).forEach(r =>
       nodes.push(
         <rect
@@ -1007,9 +999,8 @@ export function GardenModel({
     ]);
 
   // What stands along the sides, at its real height: a fence or a wall is
-  // a face at the plot's edge, trees a row just outside it; in the L's cut
-  // corner a house with its roof, a fence along its two faces, or trees.
-  // Each stands in front of the plot or behind it, as its middle lies.
+  // a face along each edge of a side, trees a row standing on it. Each edge
+  // stands in front of the plot or behind it, as its middle lies.
   const middle = depth(W / 2, L / 2);
   const face = (
     key: string,
@@ -1079,100 +1070,40 @@ export function GardenModel({
   // A face's edges, drawn at full strength over a see-through one.
   const edgesOf = (x0: number, y0: number, x1: number, y1: number, h: number) =>
     pts([P(x0, y0), P(x1, y1), P(x1, y1, h), P(x0, y0, h)]);
-  const sideParts = wallsOf(garden)
-    .filter(w => w.side !== 'corner')
-    .map(w => {
-      const mx = (w.x0 + w.x1) / 2,
-        my = (w.y0 + w.y1) / 2;
-      const [ox, oy] = OUT[w.side as keyof typeof OUT];
-      const n = Math.max(
-        1,
-        Math.round(Math.hypot(w.x1 - w.x0, w.y1 - w.y0) / TREE_STEP)
-      );
-      return {
-        id: w.side,
-        d: depth(mx, my),
-        nodes:
-          w.kind === 'trees'
-            ? trees(
-                `side-${w.side}`,
-                Array.from({ length: n }, (_, k): [number, number] => [
-                  w.x0 + ((w.x1 - w.x0) * (k + 0.5)) / n + ox * 0.8,
-                  w.y0 + ((w.y1 - w.y0) * (k + 0.5)) / n + oy * 0.8,
-                ])
-              )
-            : face(`side-${w.side}`, w.x0, w.y0, w.x1, w.y1, w.kind),
-        outline:
-          w.kind === 'trees'
-            ? []
-            : [edgesOf(w.x0, w.y0, w.x1, w.y1, HEIGHT[w.kind])],
-      };
-    });
-  const corner = garden.shape === 'L' ? garden.sides?.corner : undefined;
-  if (corner) {
-    const cx = W * L_CUT.width,
-      cy = L * L_CUT.length;
-    let nodes: ReactNode[];
-    let outline: string[] = [];
-    if (corner === 'trees') {
-      const nx = Math.max(1, Math.round((W - cx) / TREE_STEP)),
-        ny = Math.max(1, Math.round((L - cy) / TREE_STEP));
-      nodes = trees(
-        'corner',
-        Array.from({ length: nx * ny }, (_, k): [number, number] => [
-          cx + ((W - cx) * ((k % nx) + 0.5)) / nx,
-          cy + ((L - cy) * (Math.floor(k / nx) + 0.5)) / ny,
-        ])
-      );
-    } else if (corner === 'house') {
-      const [a0, b0] = turn(cx, cy),
-        [a1, b1] = turn(W, L);
-      const A0 = Math.min(a0, a1),
-        A1 = Math.max(a0, a1),
-        B0 = Math.min(b0, b1),
-        B1 = Math.max(b0, b1),
-        h = HEIGHT.house;
-      nodes = [
-        ...wall('corner-a', 'a', A1, [B0, B1], [0, h], 'render', 2, 0.22, 1),
-        ...wall('corner-b', 'b', B1, [A0, A1], [0, h], 'render', 2, 0.05, 1),
-        <polygon
-          key='corner-roof'
-          points={pts([V(A0, B0, h), V(A1, B0, h), V(A1, B1, h), V(A0, B1, h)])}
-          fill={ROOF}
-          stroke='#4a3a2d'
-          strokeOpacity={0.6}
-          strokeWidth={1.5}
-        />,
-      ];
-      outline = [
-        pts([V(A0, B0, h), V(A1, B0, h), V(A1, B1, h), V(A0, B1, h)]),
-        pts([V(A1, B0, 0), V(A1, B1, 0), V(A1, B1, h), V(A1, B0, h)]),
-        pts([V(A0, B1, 0), V(A1, B1, 0), V(A1, B1, h), V(A0, B1, h)]),
-      ];
-    } else {
-      nodes = [
-        ...face('corner-x', cx, cy, W, cy, 'fence'),
-        ...face('corner-y', cx, cy, cx, L, 'fence'),
-      ];
-      outline = [
-        edgesOf(cx, cy, W, cy, HEIGHT.fence),
-        edgesOf(cx, cy, cx, L, HEIGHT.fence),
-      ];
-    }
-    sideParts.push({
-      id: 'corner',
-      d: depth((cx + W) / 2, (cy + L) / 2),
-      nodes,
-      outline,
-    });
-  }
+  const sideParts = wallsOf(garden).map(w => {
+    const mx = (w.x0 + w.x1) / 2,
+      my = (w.y0 + w.y1) / 2;
+    const [ox, oy] = OUT[w.side as keyof typeof OUT];
+    const n = Math.max(
+      1,
+      Math.round(Math.hypot(w.x1 - w.x0, w.y1 - w.y0) / TREE_STEP)
+    );
+    return {
+      id: `${w.side}-${w.x0}-${w.y0}`,
+      d: depth(mx, my),
+      nodes:
+        w.kind === 'trees'
+          ? trees(
+              `side-${w.side}`,
+              Array.from({ length: n }, (_, k): [number, number] => [
+                w.x0 + ((w.x1 - w.x0) * (k + 0.5)) / n + ox * 0.05,
+                w.y0 + ((w.y1 - w.y0) * (k + 0.5)) / n + oy * 0.05,
+              ])
+            )
+          : face(`side-${w.side}`, w.x0, w.y0, w.x1, w.y1, w.kind),
+      outline:
+        w.kind === 'trees'
+          ? []
+          : [edgesOf(w.x0, w.y0, w.x1, w.y1, HEIGHT[w.kind])],
+    };
+  });
   sideParts.sort((a, z) => a.d - z.d);
   // The shade they cast at the time of day chosen, on the 15th of the month
   // shown: the same sun and heights the hours are counted with.
   const shady =
     sideParts.length > 0 && lat !== undefined && month !== undefined;
   const shade = shady
-    ? shadows(garden, lat!, month!, SHADE_HOURS[shadeTime])
+    ? shadows(garden, lat!, month!, SHADE_HOURS[shadeTime], leaf)
     : [];
   const kinds = [...new Set(Object.values(garden.sides ?? {}))];
   const shadeDate = new Intl.DateTimeFormat(i18n.language, {
@@ -1425,22 +1356,31 @@ export function GardenModel({
         plants.sort((a, z) => a.d - z.d).forEach(p => drawn.push(p.node));
       });
 
-    // The shade at the time of day chosen, one flat tone however many sides
-    // cast it.
-    if (shade.length)
-      drawn.push(
-        <g
-          key='shade'
-          clipPath='url(#plot-clip)'
-          opacity={0.32}
-          pointerEvents='none'
-        >
-          {shade.map(poly => {
-            const points = pts(poly.map(([x, y]) => P(x, y)));
-            return <polygon key={points} points={points} fill='#1f1a17' />;
-          })}
-        </g>
-      );
+    // The shade at the time of day chosen: one flat tone for the walls and
+    // fences however many cast it, a lighter one for trees by the sun their
+    // crowns let through.
+    for (const [key, cast, tone] of [
+      ['shade', shade.filter(s => !s.through), 0.32],
+      [
+        'shade-trees',
+        shade.filter(s => s.through),
+        0.32 * (1 - (shade.find(s => s.through)?.through ?? 0)),
+      ],
+    ] as const)
+      if (cast.length)
+        drawn.push(
+          <g
+            key={key}
+            clipPath='url(#plot-clip)'
+            opacity={tone}
+            pointerEvents='none'
+          >
+            {cast.map(({ points: poly }) => {
+              const points = pts(poly.map(([x, y]) => P(x, y)));
+              return <polygon key={points} points={points} fill='#1f1a17' />;
+            })}
+          </g>
+        );
     // In front, what stands along the near sides, see-through.
     sideParts.forEach(part => {
       if (part.d > middle)

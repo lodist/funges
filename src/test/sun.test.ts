@@ -1,7 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
 import type { Garden } from '@/lib/planner';
-import { level, season, shadows, sunlight, wallsOf, when } from '@/lib/sun';
+import {
+  leafOf,
+  level,
+  season,
+  shadows,
+  sunlight,
+  THROUGH,
+  wallsOf,
+  when,
+} from '@/lib/sun';
 
 /** A spot: a small section around a point. */
 const spot = (x: number, y: number) => ({
@@ -95,61 +104,74 @@ describe('the sun a garden gets', () => {
     // Zug, 15 March, solar noon: the sun 40° up, due south. A 2 m fence on
     // the south side (y = 20) throws 2 / tan(40°) = 2.4 m of shade north.
     const [fence] = shadows(plot({ bottom: 'fence' }), 47.17, 2, 12);
-    const ys = fence.map(([, y]) => y);
+    const ys = fence.points.map(([, y]) => y);
     expect(Math.min(...ys)).toBeCloseTo(
       20 - 2 / Math.tan((40 * Math.PI) / 180),
       1
     );
     expect(Math.max(...ys)).toBeCloseTo(20, 5);
+    expect(fence.through).toBe(0);
     // A 6 m house throws three times as far; in June far less.
     const [house] = shadows(plot({ bottom: 'house' }), 47.17, 2, 12);
-    expect(20 - Math.min(...house.map(([, y]) => y))).toBeCloseTo(
+    expect(20 - Math.min(...house.points.map(([, y]) => y))).toBeCloseTo(
       3 * (20 - Math.min(...ys)),
       1
     );
     const [june] = shadows(plot({ bottom: 'house' }), 47.17, 5, 12);
-    expect(20 - Math.min(...june.map(([, y]) => y))).toBeLessThan(3);
+    expect(20 - Math.min(...june.points.map(([, y]) => y))).toBeLessThan(3);
     // Before sunrise there is no shadow to draw.
     expect(shadows(plot({ bottom: 'house' }), 47.17, 11, 5)).toEqual([]);
   });
 
-  it("shades from the L's corner as a whole box", () => {
-    const g: Garden = {
-      width: 20,
-      length: 20,
-      shape: 'L',
-      north: 0,
-      sides: { corner: 'house' },
-    };
-    // Afternoon sun from the south-west: the box's shadow reaches north-east
-    // of it, past its own north face.
-    const [box] = shadows(g, 47, 5, 16);
-    expect(box.length).toBeGreaterThanOrEqual(4);
-    expect(Math.min(...box.map(([, y]) => y))).toBeLessThan(10);
+  it('lets the sun through trees, more of it when they are bare', () => {
+    const inLeaf = () => 1,
+      bare = () => 0;
+    // 2 m north of a row of trees on the south side: in December the low sun
+    // is behind them all day, so the spot gets just the share they let
+    // through, three times as much with their leaves off.
+    const by = spot(10, 18);
+    const leafy = sunlight(plot({ bottom: 'trees' }), 47, inLeaf)!;
+    const winter = sunlight(plot({ bottom: 'trees' }), 47, bare)!;
+    expect(leafy.months(by)[DEC].hours).toBeCloseTo(
+      THROUGH.leaf * leafy.open[DEC],
+      5
+    );
+    expect(winter.months(by)[DEC].hours).toBeCloseTo(
+      THROUGH.bare * winter.open[DEC],
+      5
+    );
+    const [shade] = shadows(plot({ bottom: 'trees' }), 47, 5, 12, inLeaf);
+    expect(shade.through).toBeCloseTo(THROUGH.leaf, 5);
+    // By the place's air: bare at 5 °C, in full leaf from 12 °C.
+    const leaf = leafOf([1, 3, 6, 9, 13, 17, 19, 18, 15, 10, 5, 2]);
+    expect(leaf(0)).toBe(0);
+    expect(leaf(4)).toBe(1);
+    expect(leaf(3)).toBeCloseTo(4 / 7, 5);
   });
 
-  it("stands a house in the L's cut corner", () => {
+  it("carries a side along an L's outline, round its cut corner", () => {
     const g: Garden = {
       width: 20,
       length: 20,
       shape: 'L',
       north: 0,
-      sides: { corner: 'house', right: 'fence', bottom: 'fence' },
+      sides: { right: 'house', bottom: 'fence' },
     };
     const walls = wallsOf(g);
-    // The right side runs down the L's top half only, the bottom side along
-    // its narrow part, and the corner's house has two faces on the plot.
-    expect(walls.find(w => w.side === 'right')).toMatchObject({
-      y0: 0,
-      y1: 10,
-    });
-    expect(walls.find(w => w.side === 'bottom')).toMatchObject({
-      x0: 0,
-      x1: 11,
-    });
-    expect(walls.filter(w => w.side === 'corner')).toHaveLength(2);
-    // 1 m west of the corner's house: its morning is shaded.
+    // The right side: the wide part's right edge, then the cut corner's edge
+    // that faces right; the bottom side likewise.
+    expect(walls.filter(w => w.side === 'right')).toMatchObject([
+      { x0: 20, y0: 0, x1: 20, y1: 10 },
+      { x0: 11, y0: 10, x1: 11, y1: 20 },
+    ]);
+    expect(walls.filter(w => w.side === 'bottom')).toMatchObject([
+      { x0: 0, y0: 20, x1: 11, y1: 20 },
+      { x0: 11, y0: 10, x1: 20, y1: 10 },
+    ]);
+    // 1 m west of the house on the cut corner's edge: its morning is shaded.
     const m = sunlight(g, 47)!.months(spot(10, 15))[JUN];
     expect(m.am).toBeLessThan(m.hours - m.am);
+    // Each edge casts its own shadow.
+    expect(shadows(g, 47, 5, 9)).toHaveLength(4);
   });
 });

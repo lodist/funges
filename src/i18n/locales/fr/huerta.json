@@ -2307,7 +2307,7 @@
     "before": "Avant",
     "beforeText": "{{crop}}, sorti le {{date}}",
     "aroundLabel": "Autour du jardin",
-    "aroundHint": "Huerta suit le soleil chez vous au fil de la journée, mois par mois, et compte les heures que chaque planche reçoit par-dessus ce qui l'entoure. Six heures ou plus, c'est le plein soleil.",
+    "aroundHint": "Huerta compte les heures de soleil de chaque planche, mois par mois. Six ou plus, c'est le plein soleil.",
     "side": {
       "n": "Nord",
       "ne": "Nord-est",
@@ -2316,8 +2316,7 @@
       "s": "Sud",
       "sw": "Sud-ouest",
       "w": "Ouest",
-      "nw": "Nord-ouest",
-      "corner": "Coin"
+      "nw": "Nord-ouest"
     },
     "sideKind": {
       "open": "Dégagé",

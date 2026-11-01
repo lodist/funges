@@ -1,10 +1,12 @@
 /**
  * The sun a garden's sections get, from what stands along the plot's sides
- * (Garden.sides): each kind is taken as a wall at the plot's edge, as long as
- * the side and as high as the kind (a fence or hedge 2 m, a house or wall
- * 6 m, tall trees 10 m, solid); in an L, a box filling the cut corner. For
- * each section's middle and each month (its 15th, a clear day), the hours the
- * sun stands at least 10° up and no side blocks it.
+ * (Garden.sides): each kind is taken as a wall along the plot's edge, as
+ * high as the kind (a fence or hedge 2 m, a house or wall 6 m, tall trees
+ * 10 m); in an L a side runs along its outline, the cut corner's edge that
+ * faces the same way too. For each section's middle and each month (its
+ * 15th, a clear day), the hours the sun stands at least 10° up, a minute
+ * behind a fence or a house counting nothing and one behind trees the share
+ * of the sun their crowns let through (THROUGH).
  *
  * Crops' needs are hours at midsummer (RHS: full sun is more than 6), so a
  * month's hours are compared as at midsummer: the spot's share of an open
@@ -20,6 +22,30 @@ type Edge = keyof NonNullable<Garden['sides']>;
 
 /** How high each kind stands, metres. */
 export const HEIGHT: Record<Side, number> = { fence: 2, house: 6, trees: 10 };
+
+/** The share of the direct sun a row of deciduous trees lets through, in
+ *  full leaf and bare. Measured crowns pass 3-30 % in leaf and over 40 %
+ *  bare: horse chestnut in Szeged 3 % and 47 % (Geographica Pannonica 2016),
+ *  oak over 40 % before leaf-out, open urban crowns 9-30 %. */
+export const THROUGH = { leaf: 0.15, bare: 0.45 };
+
+/** How far a month's trees are in leaf, 0-1: by the place's monthly mean
+ *  air, bare at 5 °C or less and in full leaf from 12 °C; without it, May
+ *  to September in leaf, April and October half. */
+export function leafOf(temps?: number[] | null) {
+  return (month: number) =>
+    temps
+      ? Math.min(1, Math.max(0, (temps[month] - 5) / 7))
+      : month >= 4 && month <= 8
+        ? 1
+        : month === 3 || month === 9
+          ? 0.5
+          : 0;
+}
+
+/** The share of the sun a side lets through in a month. */
+const through = (kind: Side, leaf: number) =>
+  kind === 'trees' ? THROUGH.bare + (THROUGH.leaf - THROUGH.bare) * leaf : 0;
 
 /** A wall's face on the plot, metres in the plot's own frame (x across, y
  *  down, the top facing `north`). */
@@ -61,9 +87,9 @@ const STEP = 1 / 6;
 const MID = [14, 45, 73, 104, 134, 165, 195, 226, 257, 287, 318, 348];
 const JUNE = 5;
 
-/** The walls a garden's sides make: each side's edge (the L's right and
- *  bottom sides are as long as its wide and narrow parts), and the two faces
- *  of the L's cut corner. */
+/** The walls a garden's sides make: each side's edge; in an L the right
+ *  and bottom sides go on round the cut corner, along its edge that faces
+ *  the same way. */
 export function wallsOf(g: Garden): Wall[] {
   const { width: W, length: L } = g;
   const L_ = g.shape === 'L';
@@ -71,15 +97,18 @@ export function wallsOf(g: Garden): Wall[] {
     cy = L * L_CUT.length;
   const edges: [Edge, number, number, number, number][] = [
     ['top', 0, 0, W, 0],
-    ['bottom', 0, L, L_ ? cx : W, L],
     ['left', 0, 0, 0, L],
-    ['right', W, 0, W, L_ ? cy : L],
     ...(L_
       ? ([
-          ['corner', cx, cy, W, cy],
-          ['corner', cx, cy, cx, L],
+          ['right', W, 0, W, cy],
+          ['right', cx, cy, cx, L],
+          ['bottom', 0, L, cx, L],
+          ['bottom', cx, cy, W, cy],
         ] as [Edge, number, number, number, number][])
-      : []),
+      : ([
+          ['right', W, 0, W, L],
+          ['bottom', 0, L, W, L],
+        ] as [Edge, number, number, number, number][])),
   ];
   return edges.flatMap(([side, x0, y0, x1, y1]) => {
     const kind = g.sides?.[side];
@@ -127,8 +156,13 @@ function blocks(w: Wall, px: number, py: number, k: Look) {
   return t > 1e-9 && u >= 0 && u <= 1 && t * k.tan < HEIGHT[w.kind];
 }
 
-/** The garden's sun, or null when nothing stands along its sides. */
-export function sunlight(g: Garden, lat: number): Light | null {
+/** The garden's sun, or null when nothing stands along its sides; `leaf`,
+ *  how far its trees are in leaf each month (leafOf). */
+export function sunlight(
+  g: Garden,
+  lat: number,
+  leaf: (month: number) => number = leafOf()
+): Light | null {
   const walls = wallsOf(g);
   if (!walls.length) return null;
   const north = (g.north ?? 0) * DEG;
@@ -155,15 +189,23 @@ export function sunlight(g: Garden, lat: number): Light | null {
       if (!got) {
         const px = (s.x0 + s.x1) / 2,
           py = (s.y0 + s.y1) / 2;
-        got = looks.map(month => {
+        got = looks.map((month, m) => {
           let hours = 0,
             am = 0,
             noon = false;
           for (const k of month) {
-            if (walls.some(w => blocks(w, px, py, k))) continue;
-            hours += STEP;
-            if (k.hour < 12) am += STEP;
-            if (Math.abs(k.hour - 12) < STEP) noon = true;
+            // The share of the sun past every wall in its way.
+            const sun = walls.reduce(
+              (share, w) =>
+                share && blocks(w, px, py, k)
+                  ? share * through(w.kind, leaf(m))
+                  : share,
+              1
+            );
+            if (!sun) continue;
+            hours += STEP * sun;
+            if (k.hour < 12) am += STEP * sun;
+            if (sun >= 0.5 && Math.abs(k.hour - 12) < STEP) noon = true;
           }
           return { hours, am, noon };
         });
@@ -228,35 +270,6 @@ export type ShadeTime = keyof typeof SHADE_HOURS;
 
 type Point = [number, number];
 
-/** What each side stands on, for its shadow: an outer side's edge, and the
- *  L's cut corner whole. */
-function footprints(g: Garden) {
-  const out = wallsOf(g)
-    .filter(w => w.side !== 'corner')
-    .map(w => ({
-      kind: w.kind,
-      points: [
-        [w.x0, w.y0],
-        [w.x1, w.y1],
-      ] as Point[],
-    }));
-  const corner = g.shape === 'L' ? g.sides?.corner : undefined;
-  if (corner) {
-    const cx = g.width * L_CUT.width,
-      cy = g.length * L_CUT.length;
-    out.push({
-      kind: corner,
-      points: [
-        [cx, cy],
-        [g.width, cy],
-        [g.width, g.length],
-        [cx, g.length],
-      ],
-    });
-  }
-  return out;
-}
-
 /** The convex hull of some points (Andrew's monotone chain). */
 function hull(ps: Point[]) {
   const pts = [...ps].sort((a, z) => a[0] - z[0] || a[1] - z[1]);
@@ -278,26 +291,34 @@ function hull(ps: Point[]) {
 }
 
 /** The shadows the sides cast on the ground on the 15th of `month`, `hour`
- *  hours of solar time: a polygon a side in the plot's frame, its footprint
- *  swept away from the sun as far as its height over the tangent of the
- *  sun's height (the same sun and heights the hours are counted with).
- *  None while the sun is under 3°. */
+ *  hours of solar time: a polygon a wall in the plot's frame, its edge swept
+ *  away from the sun as far as its height over the tangent of the sun's
+ *  height (the same sun and heights the hours are counted with), with the
+ *  share of the sun it lets through. None while the sun is under 3°. */
 export function shadows(
   g: Garden,
   lat: number,
   month: number,
-  hour: number
-): Point[][] {
+  hour: number,
+  leaf: (month: number) => number = leafOf()
+): { points: Point[]; through: number }[] {
   const { height, bearing } = sunPosition(lat, MID[month], hour);
   if (height < 3 * DEG) return [];
   const turn = bearing - (g.north ?? 0) * DEG;
   const dx = Math.sin(turn),
     dy = -Math.cos(turn);
-  return footprints(g).map(({ kind, points }) => {
-    const reach = HEIGHT[kind] / Math.tan(height);
-    return hull([
-      ...points,
-      ...points.map(([x, y]): Point => [x - dx * reach, y - dy * reach]),
-    ]);
+  return wallsOf(g).map(w => {
+    const reach = HEIGHT[w.kind] / Math.tan(height);
+    const edge: Point[] = [
+      [w.x0, w.y0],
+      [w.x1, w.y1],
+    ];
+    return {
+      points: hull([
+        ...edge,
+        ...edge.map(([x, y]): Point => [x - dx * reach, y - dy * reach]),
+      ]),
+      through: through(w.kind, leaf(month)),
+    };
   });
 }

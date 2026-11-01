@@ -52,9 +52,10 @@ export interface Garden {
   /** The soil as the gardener knows it; unset, the map's (lib/soil). */
   soil?: Texture;
   acidity?: Acidity;
-  /** What stands along each side of the plot as drawn (absent: open), and
-   *  the L's cut corner: for the sun its beds get (a later step). */
-  sides?: Partial<Record<'top' | 'right' | 'bottom' | 'left' | 'corner', Side>>;
+  /** What stands along each side of the plot as drawn (absent: open); in an
+   *  L it runs on along the cut corner's edge that faces the same way. For
+   *  the sun its beds get (lib/sun). */
+  sides?: Partial<Record<'top' | 'right' | 'bottom' | 'left', Side>>;
 }
 
 /** Along a side of the plot: a fence or hedge (about 2 m), a house or wall
