@@ -2341,9 +2341,9 @@
       "shortHint": "Colture in un posto con meno sole di quanto serva loro. Tocca per selezionarle."
     },
     "sideBand": {
-      "fence": "Recinzione, 2 m",
-      "house": "Casa, 6 m",
-      "trees": "Alberi, 10 m"
+      "fence": "Recinzione",
+      "house": "Casa",
+      "trees": "Alberi"
     },
     "shade": {
       "label": "Ombra il {{date}}",

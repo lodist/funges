@@ -2341,9 +2341,9 @@
       "shortHint": "Cultivos en un sitio con menos sol del que necesitan. Toca para seleccionarlos."
     },
     "sideBand": {
-      "fence": "Valla, 2 m",
-      "house": "Casa, 6 m",
-      "trees": "Árboles, 10 m"
+      "fence": "Valla",
+      "house": "Casa",
+      "trees": "Árboles"
     },
     "shade": {
       "label": "Sombra el {{date}}",
