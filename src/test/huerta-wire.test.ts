@@ -1,5 +1,28 @@
 import { describe, expect, it } from 'vitest';
-import { decodeYear } from '@/lib/huerta-wire';
+import { decodeAdvice, decodeYear } from '@/lib/huerta-wire';
+
+describe("the Worker's advice answer", () => {
+  const body = {
+    day: '2026-11-04',
+    crops: ['potato'],
+    place: {
+      name: 'Zug',
+      frost: '',
+      soil: 9,
+      nights: 5,
+      rain: 4,
+      water: 0,
+      statuses: 'n',
+      blight: 6,
+    },
+  };
+
+  it("keeps the night's blight bits when it has them", () => {
+    expect(decodeAdvice(body).blight).toBe(6);
+    const older = { ...body, place: { ...body.place, blight: undefined } };
+    expect('blight' in decodeAdvice(older)).toBe(false);
+  });
+});
 
 describe("the Worker's year answer", () => {
   it('reads six hex digits per crop, the temperatures and the soil', () => {
