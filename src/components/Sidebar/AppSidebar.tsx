@@ -81,6 +81,17 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
       icon: CalendarRange,
       isActive: false,
     },
+    // As in Terra: on phones it sits in the Settings hub.
+    ...(!isMobile
+      ? [
+          {
+            title: t('instructions'),
+            url: `${basePath}huerta/instructions`,
+            icon: BookOpen,
+            isActive: false,
+          },
+        ]
+      : []),
   ];
   const data = {
     navMain: [

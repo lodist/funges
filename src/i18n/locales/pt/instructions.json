@@ -135,5 +135,133 @@
     "onDevice": "O reconhecimento corre inteiramente no teu telemóvel. As fotografias nunca são carregadas nem guardadas pela aplicação. É por isso que na primeira vez é necessário um descarregamento único do modelo: sem ele, a identificação teria de enviar as tuas fotografias para um servidor.",
     "howTo": "Abre Identificar, permite o descarregamento único por Wi-Fi e depois tira uma fotografia ou escolhe uma da galeria. Enche o enquadramento com o exemplar completo quando puderes, incluindo a base do pé, e fotografa o que realmente desenterraste ou colheste, não um grupo distante. Duas fotos do mesmo achado - a parte de cima e a parte de baixo, incluindo a base do pé - dão uma correspondência bastante melhor do que uma só.",
     "limits": "A identificação leva de cerca de cinco a vinte segundos dependendo do dispositivo, porque o trabalho acontece no teu dispositivo e não num centro de dados. Cobre as espécies desta aplicação mais cerca de duas mil e quinhentas das mesmas regiões; tudo o resto é mostrado apenas com o nome científico e sem informação de segurança. Não comas nada com base nesta aplicação - uma identificação errada pode ser fatal."
+  },
+  "huerta": {
+    "title": "Instruções",
+    "subtitle": "Como usar o Huerta e de onde vêm os conselhos dele",
+    "map": {
+      "intro": "O mapa mostra, lugar por lugar, o que sua horta pode fazer nesta semana.",
+      "pick": "Escolha uma cultura na caixa lá em cima. Os botões à direita alternam entre quatro camadas.",
+      "layers": {
+        "crop": "Onde essa cultura pode ir para a terra nesta semana, onde ainda não é hora e onde já é tarde este ano. Deslize os meses embaixo do mapa para ver o ano que vem.",
+        "frost": "A noite mais fria dos próximos sete dias. Culturas sensíveis, como tomate e feijão, morrem com a geada.",
+        "soil": "O quanto o solo está quente agora. Em solo frio as sementes não germinam, então é isso que decide quando semear cada cultura.",
+        "water": "A chuva dos próximos sete dias contra o que o sol e o vento secam. Onde a chuva não basta, é preciso regar."
+      },
+      "tap": "Toque em um lugar para ver a semana dele: o solo, as noites, a chuva e quando a geada costuma chegar. \"Usar como minha horta\" faz dele o lugar da sua horta.",
+      "coverage": "O Huerta cobre a Europa e os Estados Unidos continentais."
+    },
+    "garden": {
+      "title": "Minha horta",
+      "placeTitle": "Onde fica sua horta?",
+      "place": "Encontre-a no mapa ou busque sua cidade. Tudo o que o Huerta diz é calculado para esse lugar: as datas de geada, o solo e o tempo de lá.",
+      "planTitle": "Planeje seus canteiros",
+      "plan": "Desenhe seus canteiros e gire a agulha para o norte. \"Planejar por mim\" os preenche com o que pode ir para a terra na sua região e afasta as culturas que não se dão bem. Toque em um canteiro e depois em uma cultura para mudar.",
+      "weekTitle": "Toda semana",
+      "week": "\"Para fazer esta semana\" diz o que semear, plantar, regar, cobrir e colher, e onde. Marque cada tarefa quando terminar. O Huerta então acompanha o crescimento de cada cultura e avisa quando está pronta."
+    },
+    "functions": {
+      "title": "Funções",
+      "crops": "Cada cultura: como cultivar e com o que tomar cuidado",
+      "calendar": "Quando cada cultura é semeada, plantada e colhida na sua região",
+      "place": "Busque sua cidade ou use sua localização",
+      "gardens": "Até três hortas, cada uma com seu lugar e seu plano",
+      "sheet": "Na página de uma cultura, \"Ver no mapa\" e \"Ver no calendário\" mostram só essa cultura"
+    },
+    "account": {
+      "title": "Sua conta",
+      "intro": "O Huerta pede que você entre com o Google. Assim suas hortas são as mesmas no celular e no computador.",
+      "kept": "O Huerta guarda seu e-mail e suas hortas: os nomes, os planos e o lugar, arredondado para cerca de 1 km. Ele nunca sabe seu endereço.",
+      "delete": "Você pode excluir sua conta e tudo o que ela contém quando quiser: em Ajuda → Conta no computador ou em Configurações no celular.",
+      "limits": "O Huerta está em versão inicial. Os conselhos vêm das previsões do tempo e de um ano típico na sua região. Previsões podem errar: olhe seu solo e o céu antes de semear e tenha à mão algo para cobrir contra a geada."
+    },
+    "about": {
+      "title": "Sobre o Huerta",
+      "description": "O Huerta é a parte da Funges dedicada à horta. Ele diz o que plantar, onde colocar, quando pôr na terra e do que sua horta precisa nesta semana, segundo o clima real do lugar onde ela fica.",
+      "packet": "Um pacote de sementes traz uma só época de semeadura para um país inteiro. O Huerta a calcula para o seu lugar toda noite, com a nova previsão e dez anos do tempo de lá.",
+      "status": "O Huerta está em versão inicial. Os conselhos melhoram a cada semana e mais culturas estão a caminho.",
+      "keyFeatures": {
+        "title": "Principais funcionalidades",
+        "forecast": "Conselhos para o seu lugar, com a previsão desta noite",
+        "frost": "Datas de geada a partir de dez anos de tempo na sua região",
+        "soil": "Seu solo: arenoso ou argiloso, ácido ou alcalino",
+        "growth": "Cada cultura acompanhada pelo calor que recebe"
+      }
+    },
+    "mission": {
+      "title": "Nossa missão",
+      "learn": "Cultivar a própria comida não deveria custar anos de tentativa e erro. Bons hortelões conhecem o seu pedaço de terra: quando o solo esquenta, quando vem a última geada e o que se dá bem ali. O Huerta coloca esse saber ao alcance de qualquer pessoa, onde quer que esteja a horta.",
+      "climate": "O clima está mudando e as velhas datas do pacote mudam com ele. As datas do Huerta vêm do tempo dos últimos anos na sua região, não de um livro.",
+      "waste": "Semeando na hora certa, menos sementes apodrecem no solo frio e menos plantas morrem numa geada tardia. Isso poupa sementes, trabalho e água."
+    },
+    "advice": {
+      "title": "Como os conselhos são calculados",
+      "description": "Toda noite o Huerta lê a nova previsão do tempo para cada lugar que cobre e a compara com o que cada cultura precisa.",
+      "monitorTitle": "Ele leva em conta:",
+      "variables": {
+        "soil": "A temperatura do solo, que decide quando as sementes germinam",
+        "frost": "A geada e as noites mais frias dos próximos sete dias",
+        "water": "A chuva contra o que o sol e o vento secam",
+        "dates": "Quando costumam chegar a última e a primeira geada na sua região",
+        "ground": "Seu solo: arenoso ou argiloso, ácido ou alcalino",
+        "warmth": "O calor que cada cultura recebeu desde que foi para a terra"
+      },
+      "goal": "Uma cultura vai para a terra quando o solo está quente o bastante para ela e há tempo para crescer antes que a geada ou o calor encerrem a temporada. Os meses seguintes vêm de um ano típico na sua região, calculado do mesmo jeito.",
+      "methodology": {
+        "title": "Fontes de dados e metodologia",
+        "description": "Os conselhos desta semana vêm de modelos do tempo calculados toda noite. O calendário, as datas de geada e a velocidade com que cada cultura cresce vêm de dez anos de tempo passado. Como cultivar cada planta vem de guias de horticultura."
+      },
+      "keyDatasets": {
+        "title": "Principais conjuntos de dados",
+        "icon": {
+          "title": "1. ICON-EU (Previsão para a Europa)",
+          "description": "A previsão do serviço meteorológico alemão para a Europa, numa grade de cerca de 7 km. Toda noite o Huerta tira dela os cinco dias seguintes, hora a hora: temperatura do ar e do solo, chuva, vento e sol.",
+          "source": "Fonte: Deutscher Wetterdienst (DWD), Open Data",
+          "citation": "Data basis: Deutscher Wetterdienst (DWD), ICON-EU model forecasts."
+        },
+        "ecmwf": {
+          "title": "2. ECMWF Open Data (Previsão até o sétimo dia)",
+          "description": "A previsão mundial do Centro Europeu. Ela leva a previsão da Europa até o sétimo dia e cobre o extremo norte, aonde o ICON-EU não chega.",
+          "source": "Fonte: Centro Europeu de Previsões Meteorológicas a Médio Prazo (ECMWF)",
+          "citation": "ECMWF open data, IFS forecasts. CC BY 4.0."
+        },
+        "nbm": {
+          "title": "3. National Blend of Models (Previsão para os EUA)",
+          "description": "A combinação de modelos do tempo da NOAA para os Estados Unidos, numa grade de 2,5 km. Ela dá às hortas dos EUA os seus sete dias.",
+          "source": "Fonte: NOAA National Weather Service, pelo programa NOAA Open Data Dissemination",
+          "citation": "National Blend of Models (NBM), NOAA/NWS. U.S. public domain."
+        },
+        "era5": {
+          "title": "4. Reanálise ERA5 (Tempo passado)",
+          "description": "O registro do ECMWF do tempo passado, feito com modelos e observações do mundo todo. Dez anos dele, de 2016 a 2025, dão a cada lugar as datas de geada habituais, o ano típico do calendário e o calor com que as culturas crescem.",
+          "source": "Fonte: Copernicus Climate Change Service (C3S), ECMWF",
+          "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "soilgrids": {
+          "title": "5. SoilGrids (Solo)",
+          "description": "Os mapas mundiais de solos do ISRIC, modelados a partir de perfis de solo do mundo todo. O Huerta lê deles a argila, a areia e o pH da camada de cima na sua região. Eles decidem com que frequência regar, quão rápido o solo esquenta na primavera e quais culturas precisam de calcário.",
+          "source": "Fonte: ISRIC – World Soil Information",
+          "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+        },
+        "guides": {
+          "title": "6. Guias de horticultura",
+          "description": "Como cultivar cada planta: profundidade, espaçamento, rega, adubação, pH e quantas plantas pôr. A página de cada cultura cita suas próprias fontes.",
+          "source": "Fonte: Royal Horticultural Society (RHS) e serviços de extensão de universidades dos EUA",
+          "citation": "Entre eles os serviços de extensão de Kansas State, Missouri, Virginia Tech, Cornell, Minnesota, Maryland, Connecticut, Georgia e Washington State."
+        },
+        "pests": {
+          "title": "7. Avisos de pragas",
+          "description": "Os avisos de míldio vêm com vários dias e noites seguidos de calor e umidade. Os avisos de moscas somam o calor desde janeiro e o comparam com quando a mosca-da-cenoura, a mosca-da-couve e a mosca-da-cebola foram pegas em armadilhas.",
+          "source": "Fonte: AHDB e James Hutton Institute; NIBIO; University of Wisconsin, Michigan State University e Cornell University (NEWA)",
+          "citation": "Hutton Criteria (AHDB and James Hutton Institute, 2017). VIPS carrot fly model (NIBIO; Markkula et al. 1998). Cabbage maggot and onion maggot degree days (University of Wisconsin, Michigan State University, NEWA)."
+        },
+        "towns": {
+          "title": "8. GeoNames e Natural Earth (Cidades)",
+          "description": "A busca encontra cada cidade de 5000 habitantes ou mais perto de um lugar coberto pelo Huerta, no seu idioma quando o nome tem tradução.",
+          "source": "Fonte: GeoNames; Natural Earth",
+          "citation": "GeoNames (geonames.org), CC BY 4.0. Made with Natural Earth, public domain."
+        }
+      }
+    }
   }
 }

@@ -118,6 +118,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
                   location.pathname === `${basePath}offline`) ||
                 location.pathname === `${basePath}data` ||
                 location.pathname === `${basePath}instructions` ||
+                location.pathname === `${basePath}huerta/instructions` ||
                 location.pathname === `${basePath}support` ||
                 location.pathname === `${basePath}impressum` ||
                 location.pathname === `${basePath}privacy-policy` ||
