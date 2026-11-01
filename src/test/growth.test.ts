@@ -164,6 +164,40 @@ describe("a planted crop's growth (the calendar's model)", () => {
     const warmer = plantedGrowth('lettuce', lettuce, cool, '2027-05-01', warm);
     expect(warmer.ready! < typical.ready!).toBe(true);
   });
+
+  it("keeps the typical year's seasons through a cold snap and a hot day", () => {
+    // Kale put in in April. Three days at 2 C in May once read as its winter
+    // (ready at once, gone to seed three weeks on) and a day at 30 C in July
+    // as heat that ends it; they only slow its warmth.
+    const kale: Bio = {
+      ...lettuce,
+      days: 55,
+      kill: 'h',
+      end: 'winter',
+      pick: 30,
+      strict: false,
+      hardy: -15,
+    };
+    const zug = place({
+      temps: [0, 1, 5, 9, 13, 17, 19, 19, 15, 10, 5, 1],
+      sun: [4, 7, 12, 17, 18, 20, 19, 17, 12, 8, 5, 3],
+      light: 306,
+      first0: 319,
+      firstm3: 329,
+      low: -8,
+    });
+    const t = Array<number | null>(100).fill(null);
+    t[20] = t[21] = t[22] = 2; // 5-7 May
+    t[96] = 30; // 20 July
+    const typical = plantedGrowth('kale', kale, zug, '2027-04-15');
+    const real = plantedGrowth('kale', kale, zug, '2027-04-15', {
+      start: '2027-04-15',
+      t,
+    });
+    expect(typical.end! > '2028-03-01').toBe(true); // picked through the winter
+    expect(real.end).toBe(typical.end);
+    expect(real.ready! > typical.ready!).toBe(true);
+  });
 });
 
 describe('a planted crop in a shaded bed', () => {
