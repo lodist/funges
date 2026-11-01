@@ -2307,7 +2307,7 @@
     "before": "Antes",
     "beforeText": "{{crop}}, salió el {{date}}",
     "aroundLabel": "Alrededor del huerto",
-    "aroundHint": "Huerta sigue el sol en tu lugar a lo largo del día, mes a mes, y cuenta las horas que recibe cada bancal por encima de lo que lo rodea. Seis horas o más es pleno sol.",
+    "aroundHint": "Huerta cuenta las horas de sol de cada bancal, mes a mes. Seis o más es pleno sol.",
     "side": {
       "n": "Norte",
       "ne": "Noreste",
@@ -2316,8 +2316,7 @@
       "s": "Sur",
       "sw": "Suroeste",
       "w": "Oeste",
-      "nw": "Noroeste",
-      "corner": "Esquina"
+      "nw": "Noroeste"
     },
     "sideKind": {
       "open": "Abierto",

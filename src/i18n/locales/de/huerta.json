@@ -2307,7 +2307,7 @@
     "before": "Vorher",
     "beforeText": "{{crop}}, raus am {{date}}",
     "aroundLabel": "Rund um den Garten",
-    "aroundHint": "Huerta verfolgt die Sonne an deinem Ort durch den Tag, Monat für Monat, und zählt die Stunden, die jedes Beet an allem vorbei bekommt, was rundherum steht. Ab sechs Stunden ist es volle Sonne.",
+    "aroundHint": "Huerta zählt die Sonnenstunden jedes Beets, Monat für Monat. Ab sechs ist es volle Sonne.",
     "side": {
       "n": "Nord",
       "ne": "Nordost",
@@ -2316,8 +2316,7 @@
       "s": "Süd",
       "sw": "Südwest",
       "w": "West",
-      "nw": "Nordwest",
-      "corner": "Ecke"
+      "nw": "Nordwest"
     },
     "sideKind": {
       "open": "Offen",

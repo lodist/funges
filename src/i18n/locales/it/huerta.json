@@ -2307,7 +2307,7 @@
     "before": "Prima",
     "beforeText": "{{crop}}, fuori il {{date}}",
     "aroundLabel": "Intorno all'orto",
-    "aroundHint": "Huerta segue il sole nel tuo posto durante il giorno, mese per mese, e conta le ore che ogni aiuola riceve oltre ciò che le sta intorno. Da sei ore in su è pieno sole.",
+    "aroundHint": "Huerta conta le ore di sole di ogni aiuola, mese per mese. Da sei in su è pieno sole.",
     "side": {
       "n": "Nord",
       "ne": "Nord-est",
@@ -2316,8 +2316,7 @@
       "s": "Sud",
       "sw": "Sud-ovest",
       "w": "Ovest",
-      "nw": "Nord-ovest",
-      "corner": "Angolo"
+      "nw": "Nord-ovest"
     },
     "sideKind": {
       "open": "Libero",
