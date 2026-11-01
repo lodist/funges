@@ -228,11 +228,11 @@ interface GardenModelProps {
   /** How much sun a section gets in the month shown (lib/sun): a flat tone
    *  on it in the plan, none where not known. */
   sunAt?: (s: Section) => 'full' | 'part' | 'little' | undefined;
-  /** The place's latitude and the month shown (0 = January): the model then
-   *  draws the shade the sides cast on its 15th at a time of day; `leaf`,
-   *  how far trees are in leaf each month (lib/sun leafOf). */
+  /** The place's latitude and the day shown (YYYY-MM-DD): the model then
+   *  draws the shade the sides cast that day at a time of day; `leaf`, how
+   *  far trees are in leaf each month (lib/sun leafOf). */
   lat?: number;
-  month?: number;
+  day?: string;
   leaf?: (month: number) => number;
   /** The sections just planted: their plants come up out of the soil. */
   fresh?: number[];
@@ -270,7 +270,7 @@ export function GardenModel({
   onBeds,
   sunAt,
   lat,
-  month,
+  day,
   leaf,
   fresh,
   bare = [],
@@ -1106,19 +1106,19 @@ export function GardenModel({
   sideParts.sort((a, z) => a.d - z.d);
   // The shade they cast at the time of day chosen, on the 15th of the month
   // shown: the same sun and heights the hours are counted with.
-  const shady =
-    sideParts.length > 0 && lat !== undefined && month !== undefined;
+  const shady = sideParts.length > 0 && lat !== undefined && day !== undefined;
   const shade = shady
-    ? shadows(garden, lat!, month!, SHADE_HOURS[shadeTime], leaf)
+    ? shadows(garden, lat!, day!, SHADE_HOURS[shadeTime], leaf)
     : [];
   const kinds = [...new Set(Object.values(garden.sides ?? {}))];
+  const shown = new Date(`${day ?? '2026-01-15'}T12:00:00`);
   const shadeDate = new Intl.DateTimeFormat(i18n.language, {
     day: 'numeric',
     month: 'long',
-  }).format(new Date(2026, month ?? 0, 15));
+  }).format(shown);
   const monthLong = new Intl.DateTimeFormat(i18n.language, {
     month: 'long',
-  }).format(new Date(2026, month ?? 0, 15));
+  }).format(shown);
 
   const regs = regions(garden).sort(
     (a, z) =>
