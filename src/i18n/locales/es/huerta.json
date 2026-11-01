@@ -2307,7 +2307,7 @@
     "before": "Antes",
     "beforeText": "{{crop}}, salió el {{date}}",
     "aroundLabel": "Alrededor del huerto",
-    "aroundHint": "Una valla, una casa o árboles en un lado dan sombra a los bancales de al lado. El dibujo muestra la sombra del mes que planificas.",
+    "aroundHint": "Huerta sigue el sol en tu lugar a lo largo del día, mes a mes, y cuenta las horas que recibe cada bancal por encima de lo que lo rodea. Seis horas o más es pleno sol.",
     "side": {
       "n": "Norte",
       "ne": "Noreste",
@@ -2321,9 +2321,9 @@
     },
     "sideKind": {
       "open": "Abierto",
-      "fence": "Valla o seto",
-      "house": "Casa o muro",
-      "trees": "Árboles altos"
+      "fence": "Valla o seto, unos 2 m",
+      "house": "Casa o muro, unos 6 m",
+      "trees": "Árboles altos, unos 10 m"
     },
     "sun": {
       "here_one": "Aquí, en {{month}}, cerca de {{count}} hora de sol al día, {{when}}.",
@@ -2340,6 +2340,31 @@
       "shortCount_one": "! 1 cultivo con demasiada sombra",
       "shortCount_other": "! {{count}} cultivos con demasiada sombra",
       "shortHint": "Cultivos en un sitio con menos sol del que necesitan. Toca para seleccionarlos."
+    },
+    "sideBand": {
+      "fence": "Valla, 2 m",
+      "house": "Casa, 6 m",
+      "trees": "Árboles, 10 m"
+    },
+    "shade": {
+      "label": "Sombra el {{date}}",
+      "time": {
+        "morning": "Mañana",
+        "midday": "Mediodía",
+        "afternoon": "Tarde"
+      },
+      "when": {
+        "morning": "por la mañana",
+        "midday": "a mediodía",
+        "afternoon": "por la tarde"
+      },
+      "key": "Sombra {{when}} del {{date}}"
+    },
+    "sunKey": {
+      "label": "Sol en {{month}}:",
+      "full": "6 horas o más",
+      "part": "De 3 a 6 horas",
+      "little": "Menos de 3 horas"
     }
   },
   "year": {

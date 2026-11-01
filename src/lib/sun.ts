@@ -221,3 +221,83 @@ export function when(light: Light, m: SunMonth, month: number): SunWhen {
   if (pm >= 2 * m.am) return 'afternoon';
   return m.noon ? 'midday' : 'morningEvening';
 }
+
+/** The times of day (solar) the model shows the sides' shade at. */
+export const SHADE_HOURS = { morning: 9, midday: 12, afternoon: 15 } as const;
+export type ShadeTime = keyof typeof SHADE_HOURS;
+
+type Point = [number, number];
+
+/** What each side stands on, for its shadow: an outer side's edge, and the
+ *  L's cut corner whole. */
+function footprints(g: Garden) {
+  const out = wallsOf(g)
+    .filter(w => w.side !== 'corner')
+    .map(w => ({
+      kind: w.kind,
+      points: [
+        [w.x0, w.y0],
+        [w.x1, w.y1],
+      ] as Point[],
+    }));
+  const corner = g.shape === 'L' ? g.sides?.corner : undefined;
+  if (corner) {
+    const cx = g.width * L_CUT.width,
+      cy = g.length * L_CUT.length;
+    out.push({
+      kind: corner,
+      points: [
+        [cx, cy],
+        [g.width, cy],
+        [g.width, g.length],
+        [cx, g.length],
+      ],
+    });
+  }
+  return out;
+}
+
+/** The convex hull of some points (Andrew's monotone chain). */
+function hull(ps: Point[]) {
+  const pts = [...ps].sort((a, z) => a[0] - z[0] || a[1] - z[1]);
+  const cross = (o: Point, a: Point, b: Point) =>
+    (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const half = (list: Point[]) => {
+    const out: Point[] = [];
+    for (const p of list) {
+      while (
+        out.length >= 2 &&
+        cross(out[out.length - 2], out[out.length - 1], p) <= 0
+      )
+        out.pop();
+      out.push(p);
+    }
+    return out.slice(0, -1);
+  };
+  return [...half(pts), ...half([...pts].reverse())];
+}
+
+/** The shadows the sides cast on the ground on the 15th of `month`, `hour`
+ *  hours of solar time: a polygon a side in the plot's frame, its footprint
+ *  swept away from the sun as far as its height over the tangent of the
+ *  sun's height (the same sun and heights the hours are counted with).
+ *  None while the sun is under 3°. */
+export function shadows(
+  g: Garden,
+  lat: number,
+  month: number,
+  hour: number
+): Point[][] {
+  const { height, bearing } = sunPosition(lat, MID[month], hour);
+  if (height < 3 * DEG) return [];
+  const turn = bearing - (g.north ?? 0) * DEG;
+  const dx = Math.sin(turn),
+    dy = -Math.cos(turn);
+  return footprints(g).map(({ kind, points }) => {
+    const reach = HEIGHT[kind] / Math.tan(height);
+    return hull([
+      ...points,
+      ...points.map(([x, y]): Point => [x - dx * reach, y - dy * reach]),
+    ]);
+  });
+}

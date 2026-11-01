@@ -2307,7 +2307,7 @@
     "before": "Vorher",
     "beforeText": "{{crop}}, raus am {{date}}",
     "aroundLabel": "Rund um den Garten",
-    "aroundHint": "Ein Zaun, ein Haus oder Bäume an einer Seite beschatten die Beete daneben. Die Zeichnung zeigt den Schatten im geplanten Monat.",
+    "aroundHint": "Huerta verfolgt die Sonne an deinem Ort durch den Tag, Monat für Monat, und zählt die Stunden, die jedes Beet an allem vorbei bekommt, was rundherum steht. Ab sechs Stunden ist es volle Sonne.",
     "side": {
       "n": "Nord",
       "ne": "Nordost",
@@ -2321,9 +2321,9 @@
     },
     "sideKind": {
       "open": "Offen",
-      "fence": "Zaun oder Hecke",
-      "house": "Haus oder Mauer",
-      "trees": "Hohe Bäume"
+      "fence": "Zaun oder Hecke, etwa 2 m",
+      "house": "Haus oder Mauer, etwa 6 m",
+      "trees": "Hohe Bäume, etwa 10 m"
     },
     "sun": {
       "here_one": "Hier im {{month}} etwa {{count}} Stunde Sonne am Tag, {{when}}.",
@@ -2340,6 +2340,31 @@
       "shortCount_one": "! 1 Kultur mit zu viel Schatten",
       "shortCount_other": "! {{count}} Kulturen mit zu viel Schatten",
       "shortHint": "Kulturen an einem Platz mit weniger Sonne, als sie brauchen. Tippen, um sie auszuwählen."
+    },
+    "sideBand": {
+      "fence": "Zaun, 2 m",
+      "house": "Haus, 6 m",
+      "trees": "Bäume, 10 m"
+    },
+    "shade": {
+      "label": "Schatten am {{date}}",
+      "time": {
+        "morning": "Morgen",
+        "midday": "Mittag",
+        "afternoon": "Nachmittag"
+      },
+      "when": {
+        "morning": "am Morgen",
+        "midday": "am Mittag",
+        "afternoon": "am Nachmittag"
+      },
+      "key": "Schatten {{when}} des {{date}}"
+    },
+    "sunKey": {
+      "label": "Sonne im {{month}}:",
+      "full": "6 Stunden oder mehr",
+      "part": "3 bis 6 Stunden",
+      "little": "Unter 3 Stunden"
     }
   },
   "year": {
