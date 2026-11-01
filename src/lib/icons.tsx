@@ -89,6 +89,8 @@ import {
   Sprout as LucideSprout,
   Star as LucideStar,
   Sun as LucideSun,
+  Sunrise as LucideSunrise,
+  Sunset as LucideSunset,
   Target as LucideTarget,
   Thermometer as LucideThermometer,
   Trash2 as LucideTrash2,
@@ -227,6 +229,8 @@ export const Snowflake = decorativeByDefault(LucideSnowflake);
 export const Sprout = decorativeByDefault(LucideSprout);
 export const Star = decorativeByDefault(LucideStar);
 export const Sun = decorativeByDefault(LucideSun);
+export const Sunrise = decorativeByDefault(LucideSunrise);
+export const Sunset = decorativeByDefault(LucideSunset);
 export const Target = decorativeByDefault(LucideTarget);
 export const Thermometer = decorativeByDefault(LucideThermometer);
 export const Trash2 = decorativeByDefault(LucideTrash2);
