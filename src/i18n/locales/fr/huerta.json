@@ -2320,9 +2320,9 @@
     },
     "sideKind": {
       "open": "Dégagé",
-      "fence": "Clôture ou haie, environ 2 m",
-      "house": "Maison ou mur, environ 6 m",
-      "trees": "Grands arbres, environ 10 m"
+      "fence": "Clôture ou haie",
+      "house": "Maison ou mur",
+      "trees": "Grands arbres"
     },
     "sun": {
       "here_one": "Ici, en {{month}}, environ {{count}} heure de soleil par jour, {{when}}.",

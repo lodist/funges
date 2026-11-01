@@ -2320,9 +2320,9 @@
     },
     "sideKind": {
       "open": "Open",
-      "fence": "Fence or hedge, about 2 m",
-      "house": "House or wall, about 6 m",
-      "trees": "Tall trees, about 10 m"
+      "fence": "Fence or hedge",
+      "house": "House or wall",
+      "trees": "Tall trees"
     },
     "sun": {
       "here_one": "About {{count}} hour of sun a day here in {{month}}, {{when}}.",
