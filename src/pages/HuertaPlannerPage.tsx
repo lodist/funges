@@ -118,6 +118,7 @@ import {
   type Light,
 } from '@/lib/sun';
 import {
+  growAt,
   growth,
   growIn,
   coverUntil,
@@ -258,7 +259,10 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const advice = forSoil(placeAdvice, needs, soil.texture, today());
   // How crops grow here: the calendar's model, fed by the warmth they have
   // had, with the garden's soil (lib/garden-week growIn).
-  const grow = growIn(year, soil.texture, placeAdvice.warm);
+  const grow = useMemo(
+    () => growIn(year, soil.texture, placeAdvice.warm, plan?.garden),
+    [year, soil.texture, placeAdvice.warm, plan?.garden]
+  );
   // Where the simulator reads what kills a crop at the place.
   const site = { year, frost: advice };
   // The visitor's own advice, when they chose a place; else the sample at once.
@@ -451,7 +455,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
     if (!x.crop || !x.planted || !grow || !need?.days || CROP[x.crop]?.note)
       return null;
     const dies = fate(x.crop, need, x.planted, site);
-    return readyDay(x.crop, need, grow, x.planted, dies?.day);
+    return readyDay(x.crop, need, growAt(grow, x), x.planted, dies?.day);
   };
   // Planted sections taken out today, and what goes in now planned in their
   // place (not a family that grew there in the last year). A harvest takes
@@ -528,7 +532,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
     return readyDay(
       x.crop,
       need,
-      grow,
+      growAt(grow, x),
       start,
       fate(x.crop, need, start, site)?.day
     );
@@ -537,7 +541,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const stageOf = (s: Section): Stage => {
     const need = s.crop ? needs[s.crop] : undefined;
     if (!s.crop || !s.planted || !need?.days || !grow) return 'grown';
-    const done = growth(s.crop, need, grow, s.planted, today());
+    const done = growth(s.crop, need, growAt(grow, s), s.planted, today());
     return done < 0.3 ? 'seedling' : done < 0.75 ? 'young' : 'grown';
   };
   const count = (s: Section) => {
@@ -2028,7 +2032,7 @@ function SectionPanel({
     const dies = crop ? fate(crop.id, need, from, site) : null;
     if (!dies || !crop) return null;
     if (!need?.days) return dies;
-    return grow && growth(crop.id, need, grow, from, dies.day) < 1
+    return grow && growth(crop.id, need, growAt(grow, s), from, dies.day) < 1
       ? dies
       : null;
   };
@@ -2044,7 +2048,7 @@ function SectionPanel({
       ? readyDay(
           crop.id,
           need,
-          grow,
+          growAt(grow, s),
           start,
           fate(crop.id, need, start, site)?.day
         )

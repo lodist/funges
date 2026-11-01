@@ -138,3 +138,62 @@ describe("a planted crop's growth (the calendar's model)", () => {
     expect(warmer.ready! < typical.ready!).toBe(true);
   });
 });
+
+describe('a planted crop in a shaded bed', () => {
+  const need = 17 / 2.19; // lettuce's light need, MJ m-2 a day
+  it('grows as in the open when its bed gets all the light', () => {
+    const open = plantedGrowth('lettuce', lettuce, place({}), '2027-05-01');
+    const lit = plantedGrowth(
+      'lettuce',
+      lettuce,
+      place({}),
+      '2027-05-01',
+      null,
+      0,
+      {
+        share: flat(1),
+        need,
+      }
+    );
+    expect(lit.ready).toBe(open.ready);
+    expect(lit.end).toBe(open.end);
+  });
+
+  it('is ready later where the light it needs is short', () => {
+    // A dim spring (9 MJ a day): in a bed that gets half of it, lettuce has
+    // 4.5 of the 7.8 it can use, so it grows at 58 % of the open bed's pace.
+    const dim = place({ sun: flat(9) });
+    const open = plantedGrowth('lettuce', lettuce, dim, '2027-05-01');
+    const shaded = plantedGrowth(
+      'lettuce',
+      lettuce,
+      dim,
+      '2027-05-01',
+      null,
+      0,
+      {
+        share: flat(0.5),
+        need,
+      }
+    );
+    expect(shaded.ready! > open.ready!).toBe(true);
+  });
+
+  it('is not slowed where even the shade gives it all the light it can use', () => {
+    // A bright summer (20 MJ): 60 % of it is still more than lettuce uses.
+    const open = plantedGrowth('lettuce', lettuce, place({}), '2027-05-01');
+    const shaded = plantedGrowth(
+      'lettuce',
+      lettuce,
+      place({}),
+      '2027-05-01',
+      null,
+      0,
+      {
+        share: flat(0.6),
+        need,
+      }
+    );
+    expect(shaded.ready).toBe(open.ready);
+  });
+});

@@ -64,6 +64,10 @@ export interface SunMonth {
   hours: number;
   am: number;
   noon: boolean;
+  /** The share of an open spot's direct sunlight (by energy, the sun's
+   *  height and the air it shines through weighing each look) that reaches
+   *  it past the sides. */
+  direct: number;
 }
 
 export interface Light {
@@ -140,6 +144,9 @@ interface Look {
   dx: number;
   dy: number;
   tan: number;
+  /** Its direct light on flat ground: the sine of its height times what a
+   *  clear sky lets through at that height (Meinel and Meinel's air mass). */
+  energy: number;
 }
 
 /** Whether `w` stands between the spot (px, py) and the sun: the ray to it
@@ -176,6 +183,7 @@ export function sunlight(
         dx: Math.sin(bearing - north),
         dy: -Math.cos(bearing - north),
         tan: Math.tan(height),
+        energy: Math.sin(height) * 0.7 ** ((1 / Math.sin(height)) ** 0.678),
       });
     }
     return out;
@@ -192,7 +200,9 @@ export function sunlight(
         got = looks.map((month, m) => {
           let hours = 0,
             am = 0,
-            noon = false;
+            noon = false,
+            got = 0,
+            all = 0;
           for (const k of month) {
             // The share of the sun past every wall in its way.
             const sun = walls.reduce(
@@ -202,12 +212,14 @@ export function sunlight(
                   : share,
               1
             );
+            all += k.energy;
             if (!sun) continue;
+            got += k.energy * sun;
             hours += STEP * sun;
             if (k.hour < 12) am += STEP * sun;
             if (sun >= 0.5 && Math.abs(k.hour - 12) < STEP) noon = true;
           }
-          return { hours, am, noon };
+          return { hours, am, noon, direct: all ? got / all : 1 };
         });
         kept.set(key, got);
       }
@@ -323,5 +335,54 @@ export function shadows(
       ]),
       through: through(w.kind, leaf(month)),
     };
+  });
+}
+
+/** How much light a crop needs a day before more no longer speeds it,
+ *  global sunshine in MJ m-2, by the hours of sun it needs (Crop.sun): the
+ *  daily light integrals growers aim for, about 17 mol m-2 for lettuce and
+ *  leafy greens and 30 for tomatoes, peppers and cucumbers (Cornell's
+ *  greenhouse table; MSU), 20 between (the fruiting crops' least), at
+ *  2.19 mol of light a MJ of sunshine (PAR is 48 % of it, 4.57 umol a J). */
+export const LIGHT_NEED: Record<number, number> = {
+  3: 17 / 2.19,
+  4: 20 / 2.19,
+  6: 30 / 2.19,
+};
+
+/** The share of a month's daily sunshine `sun` (MJ m-2) that comes as
+ *  diffuse light from the sky, from how clear the month is at the place (its
+ *  sunshine over the sunshine above the air): Erbs, Klein and Duffie's
+ *  monthly correlation (Duffie and Beckman, Solar Engineering of Thermal
+ *  Processes, eq. 2.12.1), for clearness 0.3-0.8. */
+export function diffuseShare(lat: number, month: number, sun: number) {
+  const n = MID[month] + 1;
+  const decl = 23.45 * DEG * Math.sin((2 * Math.PI * (284 + n)) / 365);
+  const phi = lat * DEG;
+  const ws = Math.acos(
+    Math.min(1, Math.max(-1, -Math.tan(phi) * Math.tan(decl)))
+  );
+  const above =
+    ((24 * 3600 * 1367) / Math.PI / 1e6) *
+    (1 + 0.033 * Math.cos((2 * Math.PI * n) / 365)) *
+    (Math.cos(phi) * Math.cos(decl) * Math.sin(ws) +
+      ws * Math.sin(phi) * Math.sin(decl));
+  if (above <= 0) return 1;
+  const k = Math.min(0.8, Math.max(0.3, sun / above));
+  const share =
+    ws <= 81.4 * DEG
+      ? 1.391 - 3.56 * k + 4.189 * k ** 2 - 2.137 * k ** 3
+      : 1.311 - 3.022 * k + 3.427 * k ** 2 - 1.821 * k ** 3;
+  return Math.min(1, Math.max(0, share));
+}
+
+/** A bed's light each month, a share of an open spot's: the sky's diffuse
+ *  light whole (what the sides cut of the sky is left out), the sun's direct
+ *  light as far as the sides let it through. `sun`: the place's monthly
+ *  sunshine, MJ m-2 a day. */
+export function bedLight(light: Light, s: Box, lat: number, sun: number[]) {
+  return light.months(s).map((m, k) => {
+    const sky = diffuseShare(lat, k, sun[k]);
+    return sky + (1 - sky) * m.direct;
   });
 }

@@ -16,7 +16,8 @@ import {
   type Warm,
 } from '@/lib/growth';
 import type { Climate, PlaceYear } from '@/lib/huerta-wire';
-import type { Plan, Section } from '@/lib/planner';
+import type { Garden, Plan, Section } from '@/lib/planner';
+import { bedLight, leafOf, LIGHT_NEED, sunlight } from '@/lib/sun';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import {
   forSoil,
@@ -26,40 +27,82 @@ import {
   type Texture,
 } from '@/lib/soil';
 
+/** The hours of sun each crop needs (Crop.sun). */
+const SUN_NEED: Record<string, number> = Object.fromEntries(
+  CROPS.map(c => [c.id, c.sun])
+);
+
 /** How crops grow in the garden: the place's monthly means as its soil grows
  *  them (soilTemps), and where the year files carry it, a planted crop's
  *  growth on the calendar's own model (lib/growth), fed by the warmth it
- *  actually had (the advice's daily air) and then the typical year. */
+ *  actually had (the advice's daily air) and then the typical year. Where
+ *  something stands along the garden's sides, `at` gives a bed's own, its
+ *  crops slowed by the light its shade takes (growAt). */
 export interface Grow {
   temps: number[];
   model?: (crop: string, planted: string) => Growth | null;
+  at?: (s: Pick<Section, 'x0' | 'x1' | 'y0' | 'y1'>) => Grow;
 }
 
 /** The garden's Grow; null without the place's year. */
 export function growIn(
   year: PlaceYear | null | undefined,
   texture: Texture,
-  warm?: Warm
+  warm?: Warm,
+  garden?: Garden
 ): Grow | null {
   if (!year?.temps) return null;
   const temps = soilTemps(year.temps, texture);
   const place = growthPlace(year);
   if (!place) return { temps };
-  const kept = new Map<string, Growth | null>();
-  return {
-    temps,
-    model: (crop, planted) => {
+  const modelFor = (share?: number[]) => {
+    const kept = new Map<string, Growth | null>();
+    return (crop: string, planted: string) => {
       const bio = year.bio?.[crop];
       if (!bio) return null;
       const key = `${crop}|${planted}`;
       if (!kept.has(key))
         kept.set(
           key,
-          plantedGrowth(crop, bio, place, planted, warm, WARMS[texture])
+          plantedGrowth(
+            crop,
+            bio,
+            place,
+            planted,
+            warm,
+            WARMS[texture],
+            share && { share, need: LIGHT_NEED[SUN_NEED[crop] ?? 6] }
+          )
         );
       return kept.get(key)!;
-    },
+    };
   };
+  const light = garden ? sunlight(garden, place.lat, leafOf(year.temps)) : null;
+  const beds = new Map<string, Grow>();
+  return {
+    temps,
+    model: modelFor(),
+    at: light
+      ? s => {
+          const key = `${s.x0}|${s.y0}|${s.x1}|${s.y1}`;
+          if (!beds.has(key))
+            beds.set(key, {
+              temps,
+              model: modelFor(bedLight(light, s, place.lat, place.sun)),
+            });
+          return beds.get(key)!;
+        }
+      : undefined,
+  };
+}
+
+/** A bed's own Grow (its shade slowing its crops); the garden's where
+ *  nothing stands along its sides. */
+export function growAt<G extends Grow | number[] | null | undefined>(
+  grow: G,
+  s: Pick<Section, 'x0' | 'x1' | 'y0' | 'y1'>
+): G {
+  return grow && !Array.isArray(grow) && grow.at ? (grow.at(s) as G) : grow;
 }
 
 const asGrow = (grow: Grow | number[]): Grow =>
@@ -511,7 +554,7 @@ export function gardenWeek(
   // (put in out of its season), from the day it goes in; one whose season
   // ends, three weeks ahead (the last to pick). One task per cause, day and
   // outcome.
-  const grow = growIn(year, soil.texture, advice.warm);
+  const grow = growIn(year, soil.texture, advice.warm, plan.garden);
   const fates = new Map<string, Extract<Task, { kind: 'fate' }>>();
   for (const s of planted) {
     const crop = s.crop!;
@@ -519,7 +562,9 @@ export function gardenWeek(
     const dies = fate(crop, need, s.planted!, { year, frost: advice });
     if (!dies) continue;
     const ready = Boolean(
-      grow && need?.days && readyBy(crop, need, grow, s.planted!, dies.day)
+      grow &&
+      need?.days &&
+      readyBy(crop, need, growAt(grow, s), s.planted!, dies.day)
     );
     // Ready by then: worth a word only near its end, while still picked.
     const harvest = stageHarvest(year, crop);
@@ -626,12 +671,18 @@ export function gardenWeek(
   if (year && grow)
     for (const crop of growing) {
       if (!needs[crop]?.days) continue;
-      const first = planted
+      const sown = planted
         .filter(s => s.crop === crop)
-        .map(s => s.planted!)
-        .sort()[0];
+        .sort((a, z) => a.planted!.localeCompare(z.planted!))[0];
       const harvest = stageHarvest(year, crop);
-      const task = stage(crop, needs[crop], grow, harvest, first, today);
+      const task = stage(
+        crop,
+        needs[crop],
+        growAt(grow, sown),
+        harvest,
+        sown.planted!,
+        today
+      );
       if (task) tasks.push(task);
     }
   // A job ticked off stays off until it comes round again (a new key); a row
@@ -810,7 +861,7 @@ export function comingUp(
 ): Coming[] {
   const soil = gardenSoil(plan.garden, year?.soil);
   const week = forSoil(advice, needs, soil.texture, today);
-  const grow = growIn(year, soil.texture, advice.warm);
+  const grow = growIn(year, soil.texture, advice.warm, plan.garden);
   const byKey = new Map<string, Coming>();
   const add = (key: string, make: () => Coming, i: number) => {
     const item = byKey.get(key) ?? make();
@@ -824,7 +875,7 @@ export function comingUp(
       const need = needs[crop];
       if (!grow || !need?.days || NOTED.has(crop)) return;
       const dies = fate(crop, need, s.planted, { year, frost: advice });
-      const day = readyDay(crop, need, grow, s.planted, dies?.day);
+      const day = readyDay(crop, need, growAt(grow, s), s.planted, dies?.day);
       if (day && day > today && days(today, day) <= AHEAD_DAYS)
         add(
           `ready:${crop}:${day}`,
@@ -872,6 +923,7 @@ export function stageOn(
   place?: Place
 ): GrowthStage {
   if (!s.crop) return 'bare';
+  grow = growAt(grow, s);
   const start = s.planted ?? (s.sow && s.sow > today ? s.sow : today);
   if (day < start) return 'bare';
   const need = needs[s.crop];
