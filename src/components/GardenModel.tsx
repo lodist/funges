@@ -200,7 +200,9 @@ const SOIL_Z = BED_HEIGHT - 0.03;
 const EARTH = 0.3;
 const EARTH_SIDE = ['#5c4636', '#6b5443'];
 
-export type Stage = 'seedling' | 'young' | 'grown';
+export type Stage = 'seedling' | 'young' | 'grown' | 'fading';
+/** Leaves dying back: the young plant's photo turned straw-brown. */
+const FADED = 'sepia(0.85) saturate(1.3) hue-rotate(-12deg) brightness(0.92)';
 /** The drag data type of a crop dragged from the planner's palette. */
 export const CROP_DRAG = 'application/x-huerta-crop';
 
@@ -2071,18 +2073,18 @@ function Staged({
   return (
     <image
       href={huertaImage(
-        `iso/${id}-${stage === 'grown' ? 1 + (seed % 3) : stage}`
+        `iso/${id}-${stage === 'grown' ? 1 + (seed % 3) : stage === 'fading' ? 'young' : stage}`
       )}
       x={bx - h / 2}
       y={by - h * 0.92}
       width={h}
       height={h}
       className={pop === null ? undefined : 'plant-up'}
-      style={
-        pop === null
-          ? undefined
-          : { animationDelay: `${Math.min(pop * 14, 1400)}ms` }
-      }
+      style={{
+        animationDelay:
+          pop === null ? undefined : `${Math.min(pop * 14, 1400)}ms`,
+        filter: stage === 'fading' ? FADED : undefined,
+      }}
     />
   );
 }

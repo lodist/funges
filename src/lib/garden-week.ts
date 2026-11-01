@@ -791,6 +791,19 @@ const AHEAD_DAYS = 28;
  *  their note gives (firstCrop). */
 const NOTED = new Set(CROPS.filter(c => c.note).map(c => c.id));
 const NOTE = Object.fromEntries(CROPS.map(c => [c.id, c.note]));
+/** Perennials whose leaves die back to the ground in a cold winter and come
+ *  up again in spring (the evergreen herbs and strawberries keep theirs). */
+const DIES_BACK = new Set([
+  'chives',
+  'mint',
+  'oregano',
+  'rhubarb',
+  'asparagus',
+  'artichoke',
+]);
+/** The mean air (°C) of a month they rest through, as trees stand bare
+ *  (lib/sun leafOf). */
+const REST_AT = 5;
 
 /** The month (0-11) a crop's harvest months begin at the place: the first
  *  that follows a month without; null with none, or all year. */
@@ -901,7 +914,14 @@ export function comingUp(
 }
 
 export type GrowthStage =
-  'bare' | 'seedling' | 'young' | 'grown' | 'ready' | 'lost';
+  | 'bare'
+  | 'seedling'
+  | 'young'
+  | 'grown'
+  | 'ready'
+  | 'fading'
+  | 'resting'
+  | 'lost';
 
 /** Where a section's crop has got to on `day`: bare before it goes in (its
  *  planted day, else its planned day, else today) and again once its harvest
@@ -910,9 +930,11 @@ export type GrowthStage =
  *  wherever its season goes on); between, its stage from the warmth since,
  *  as the drawing's plants. Perennials, next-year crops and bulbs are young
  *  until their first crop (firstCrop), then ready in the place's harvest
- *  months. With
- *  the place, its fate ends a crop: lost if it was not ready by then, over if
- *  it was. */
+ *  months. Bulbs show only from two months before their flowers, their
+ *  leaves fading the month after; perennials that die back rest through
+ *  months of 5 °C or less, fading the month before and young the month
+ *  after. Resting, nothing of them shows. With the place, its fate ends a
+ *  crop: lost if it was not ready by then, over if it was. */
 export function stageOn(
   s: Section,
   needs: Record<string, CropNeeds>,
@@ -937,10 +959,26 @@ export function stageOn(
     // harvest months, grown between.
     const first = firstCrop(s.crop, place?.year, start);
     if (!first) return 'grown';
-    if (day < first) return 'young';
     const bits = place?.year?.crops[s.crop]?.harvest ?? 0;
     const month = new Date(`${day}T12:00:00`).getMonth();
-    return (bits >> month) & 1 ? 'ready' : 'grown';
+    const at = (k: number) => (month + k + 12) % 12;
+    const picked = (k: number) => Boolean((bits >> at(k)) & 1);
+    // ponytail: two months up before the flowers and one fading after are
+    // round figures (tulip and daffodil leaves), not fitted ones.
+    if (NOTE[s.crop] === 'spring_flowers') {
+      if (day >= first && picked(0)) return 'ready';
+      if (picked(1) || picked(2)) return 'young';
+      return day >= first && picked(-1) ? 'fading' : 'resting';
+    }
+    if (DIES_BACK.has(s.crop)) {
+      const cold = (k: number) => asGrow(grow).temps[at(k)] <= REST_AT;
+      if (cold(0)) return 'resting';
+      if (day >= first && picked(0)) return 'ready';
+      if (cold(1)) return 'fading';
+      if (cold(-1)) return 'young';
+    }
+    if (day < first) return 'young';
+    return picked(0) ? 'ready' : 'grown';
   }
   if (!need?.days) return 'grown';
   const m = asGrow(grow).model?.(s.crop, start);
