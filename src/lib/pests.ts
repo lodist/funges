@@ -5,8 +5,20 @@
  * superpowers/huerta-pests.md.
  */
 import { daily, dayIndex, type Warm } from '@/lib/growth';
+import type { PlaceAdvice } from '@/lib/huerta';
+import type { Plan } from '@/lib/planner';
 
 export type PestId = 'blight' | 'carrot_fly' | 'cabbage_root_fly' | 'onion_fly';
+
+export interface PestTask {
+  kind: 'pest';
+  pest: PestId;
+  /** In danger now, or from `day`. */
+  phase: 'soon' | 'now';
+  /** The first blight day, or the fly's first flies. */
+  day: string;
+  crops: string[];
+}
 
 /** A fly's spring flight in degree days above `base` °C (daily mean air)
  *  from 1 March: its first flies at `from`, the end of its warning at
@@ -80,4 +92,60 @@ export function flight(
     if (from && sum >= fly.until) return { from, until: addDays(march, i) };
   }
   return from ? { from, until: `${today.slice(0, 4)}-12-31` } : null;
+}
+
+/** How far ahead a fly's first flies are worth covering for. */
+const SOON_DAYS = 14;
+const FLIES = ['carrot_fly', 'cabbage_root_fly', 'onion_fly'] as const;
+
+/** This week's pest warnings: blight weather for potatoes and tomatoes in the
+ *  ground; a fly from two weeks before its first flies to the end of its
+ *  warning, for its crops in the ground or going in by then. */
+export function pestTasks(
+  plan: Plan,
+  advice: PlaceAdvice,
+  temps: number[] | undefined,
+  today: string
+): PestTask[] {
+  const crops = (pest: PestId, by: string | null) => [
+    ...new Set(
+      plan.sections
+        .filter(
+          s =>
+            s.crop &&
+            PESTS[pest].crops.includes(s.crop) &&
+            (s.planted || (by !== null && (s.sow ?? today) <= by))
+        )
+        .map(s => s.crop!)
+    ),
+  ];
+  const tasks: PestTask[] = [];
+  const bits = advice.blight ?? 0;
+  const blighted = crops('blight', null);
+  if (bits && blighted.length) {
+    // The first blight day: bit 0 is the day before the advice's day.
+    const day = addDays(advice.day, Math.log2(bits & -bits) - 1);
+    tasks.push({
+      kind: 'pest',
+      pest: 'blight',
+      phase: day <= today ? 'now' : 'soon',
+      day,
+      crops: blighted,
+    });
+  }
+  if (!temps) return tasks;
+  for (const pest of FLIES) {
+    const f = flight(PESTS[pest].flight!, today, temps, advice.warm);
+    if (!f || today >= f.until || between(today, f.from) > SOON_DAYS) continue;
+    const at = crops(pest, f.until);
+    if (at.length)
+      tasks.push({
+        kind: 'pest',
+        pest,
+        phase: today >= f.from ? 'now' : 'soon',
+        day: f.from,
+        crops: at,
+      });
+  }
+  return tasks;
 }
