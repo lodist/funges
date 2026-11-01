@@ -182,6 +182,28 @@
         "pick": "Récoltez ce que vous pouvez avant.",
         "replace": "Ils ne seront pas prêts à temps : utilisez la planche pour une culture qui pousse maintenant."
       },
+      "pest": {
+        "blight": {
+          "soon": "Temps à mildiou dès {{day}}",
+          "now": "Temps à mildiou en ce moment",
+          "text": "Les jours et les nuits chauds et humides propagent le mildiou. Regardez chaque jour les feuilles de {{crops}} et retirez celles qui ont des taches brunes."
+        },
+        "carrot_fly": {
+          "soon": "Mouche de la carotte, début du vol : vers le {{date}}",
+          "now": "La mouche de la carotte vole ici en ce moment",
+          "text": "Couvrez {{crops}} d'un filet anti-insectes fin dès le jour du semis et laissez-le en place."
+        },
+        "cabbage_root_fly": {
+          "soon": "Mouche du chou, début du vol : vers le {{date}}",
+          "now": "La mouche du chou vole ici en ce moment",
+          "text": "Gardez {{crops}} sous un filet anti-insectes fin, bien fixé au sol. Elle tue surtout les jeunes plants."
+        },
+        "onion_fly": {
+          "soon": "Mouche de l'oignon, début du vol : vers le {{date}}",
+          "now": "La mouche de l'oignon vole ici en ce moment",
+          "text": "Couvrez {{crops}} d'un filet anti-insectes fin tant que les plants sont jeunes."
+        }
+      },
       "over": {
         "title": "{{crops}} : fini pour cette année ?",
         "text": "Libérez la planche : elle sera prête pour ce qui peut venir ensuite."

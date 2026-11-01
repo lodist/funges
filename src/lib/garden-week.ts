@@ -19,6 +19,7 @@ import type { Climate, PlaceYear } from '@/lib/huerta-wire';
 import type { Garden, Plan, Section } from '@/lib/planner';
 import { bedLight, leafOf, LIGHT_NEED, sunlight } from '@/lib/sun';
 import { PLANT_LOOK } from '@/lib/planner-data';
+import { pestTasks, type PestTask } from '@/lib/pests';
 import {
   forSoil,
   gardenSoil,
@@ -152,7 +153,8 @@ export type Task =
   | { kind: 'stage'; crop: string; step: Step; weeks?: number; cm?: number }
   /** Its harvest over, or its season ended after it was ready: still in the
    *  plan, to take out so the bed is free. */
-  | { kind: 'over'; crops: string[] };
+  | { kind: 'over'; crops: string[] }
+  | PestTask;
 
 /** Quick crops worth sowing again, and after how many weeks. */
 const SUCCESSION: Record<string, number> = {
@@ -550,6 +552,9 @@ export function gardenWeek(
       tasks.push({ kind: 'laterFrost', night: advice.laterNight, crops: hurt });
   }
 
+  // Pests the weather brings: blight weather, flies on the wing.
+  tasks.push(...pestTasks(plan, advice, year?.temps, today));
+
   // What the place's climate kills: a crop that dies before it is ready
   // (put in out of its season), from the day it goes in; one whose season
   // ends, three weeks ahead (the last to pick). One task per cause, day and
@@ -718,6 +723,9 @@ export function jobKey(task: Task, plan: Plan, today: string): string | null {
     }
     case 'sowAgain':
       return `sowAgain:${task.crop}`;
+    case 'pest':
+      // Blight comes back with the weather; a fly's warning is its season's.
+      return `pest:${task.pest}:${task.pest === 'blight' ? isoWeek(today) : today.slice(0, 4)}`;
     default:
       return null;
   }

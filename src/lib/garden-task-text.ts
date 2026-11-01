@@ -10,6 +10,11 @@ import { weekday } from '@/lib/huerta';
 export type T = (key: string, options?: Record<string, unknown>) => string;
 export type From = 'forecast' | 'plan' | 'soil' | 'climate';
 
+const dayMonth = (day: string, lang: string) =>
+  new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long' }).format(
+    new Date(`${day}T12:00:00`)
+  );
+
 export function taskText(
   task: Task,
   t: T,
@@ -63,10 +68,7 @@ export function taskText(
     case 'fate': {
       // Lost already, lost by a day to come, or the last to pick before it.
       const { now } = task;
-      const date = new Intl.DateTimeFormat(lang, {
-        day: 'numeric',
-        month: 'long',
-      }).format(new Date(`${task.day}T12:00:00`));
+      const date = dayMonth(task.day, lang);
       const crops = names(task.crops);
       return {
         title: task.ready
@@ -111,6 +113,17 @@ export function taskText(
         title: t('week.todo.sowAgain.title', { crop: t(`crops.${task.crop}`) }),
         text: t('week.todo.sowAgain.text', { weeks: task.weeks }),
         from: 'plan',
+      };
+    case 'pest':
+      return {
+        title: t(`week.todo.pest.${task.pest}.${task.phase}`, {
+          day: weekday(task.day, lang),
+          date: dayMonth(task.day, lang),
+        }),
+        text: t(`week.todo.pest.${task.pest}.text`, {
+          crops: names(task.crops),
+        }),
+        from: task.pest === 'blight' ? 'forecast' : 'climate',
       };
   }
 }

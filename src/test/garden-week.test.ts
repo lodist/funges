@@ -91,6 +91,26 @@ describe("this week's to-do list", () => {
     );
   });
 
+  it('warns of blight weather for a planted tomato; a tick holds it for the week', () => {
+    const p = plan(['tomato', '2026-05-01']);
+    const a = { ...advice, day: '2026-07-10', blight: 0b10 };
+    const [task] = gardenWeek(p, a, NEEDS, '2026-07-10').filter(
+      t => t.kind === 'pest'
+    );
+    expect(task).toEqual({
+      kind: 'pest',
+      pest: 'blight',
+      phase: 'now',
+      day: '2026-07-10',
+      crops: ['tomato'],
+    });
+    expect(jobKey(task, p, '2026-07-10')).toBe('pest:blight:2026-W28');
+    const ticked = { ...p, done: { 'pest:blight:2026-W28': '2026-07-10' } };
+    expect(
+      gardenWeek(ticked, a, NEEDS, '2026-07-10').some(t => t.kind === 'pest')
+    ).toBe(false);
+  });
+
   it('reads the soil: how to water, and what it asks of crops going in', () => {
     const on = (acidity: 'acid' | 'alkaline'): Plan => ({
       ...plan(['garlic', '2026-10-01'], ['cabbage'], ['potato'], ['carrot']),

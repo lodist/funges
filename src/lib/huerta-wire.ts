@@ -44,6 +44,9 @@ export interface AdviceResponse {
     /** The first day, then one byte a day in base64: (C + 30) x 2, 255
      *  unknown. */
     warm?: [string, string];
+    /** Blight weather: bit k when the day before `day`, plus k days, is a
+     *  blight day (k = 0..7). */
+    blight?: number;
   };
 }
 
@@ -76,6 +79,7 @@ export const decodeAdvice = ({
       : (FROST[place.laterFrost] ?? 'none'),
   laterNight: place.laterNight ?? null,
   ...(place.warm ? { warm: decodeWarm(place.warm) } : {}),
+  ...(place.blight !== undefined ? { blight: place.blight } : {}),
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),

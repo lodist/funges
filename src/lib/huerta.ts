@@ -780,6 +780,9 @@ export interface PlaceAdvice {
   /** The place's daily mean air, observed then forecast: what a planted
    *  crop's growth counts (lib/growth). */
   warm?: Warm;
+  /** Blight weather (warm, humid days in a row): bit k when the day before
+   *  `day`, plus k days, is a blight day; absent when not known. */
+  blight?: number;
   crops: Record<string, CropStatus>;
   /** Kept from an earlier day and shown because the Worker could not be
    *  reached (fetchAdvice). */
