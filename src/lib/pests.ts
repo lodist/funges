@@ -4,7 +4,7 @@
  * from the warmth since 1 March. Rules and sources: funges-lab
  * superpowers/huerta-pests.md.
  */
-import { daily, dayIndex, type Warm } from '@/lib/growth';
+import { daily, type Warm } from '@/lib/growth';
 import type { PlaceAdvice } from '@/lib/huerta';
 import type { Plan } from '@/lib/planner';
 
@@ -21,8 +21,11 @@ export interface PestTask {
 }
 
 /** A fly's spring flight in degree days above `base` °C (daily mean air)
- *  from 1 March: its first flies at `from`, the end of its warning at
- *  `until`. */
+ *  from 1 January: its first flies at `from`, the end of its warning at
+ *  `until`. The sources count from the thaw, 1 March where they were built;
+ *  in cold winters that is the same, and in mild ones it ran up to four
+ *  weeks late against published first catches in France and England
+ *  (funges-lab qa/huerta-pests-2026-11-01). */
 export interface Flight {
   base: number;
   from: number;
@@ -70,36 +73,36 @@ const between = (from: string, to: string) =>
   );
 
 /** The days `fly`'s spring flight begins and its warning ends in `today`'s
- *  year, from the degree days since 1 March: the place's daily mean air as
+ *  year, from the degree days since 1 January: the place's daily mean air as
  *  observed and forecast (`warm`), then its typical days (monthly `temps`).
- *  Null before 1 March, or where the year never warms enough. */
+ *  Null where the year never warms enough. */
 export function flight(
   fly: Flight,
   today: string,
   temps: number[],
   warm?: Warm | null
 ) {
-  const march = `${today.slice(0, 4)}-03-01`;
-  if (today < march) return null;
+  const year = today.slice(0, 4);
+  const start = `${year}-01-01`;
   const normal = daily(temps);
-  const first = dayIndex(march);
-  const offset = warm ? between(warm.start, march) : 0;
+  const offset = warm ? between(warm.start, start) : 0;
   let sum = 0;
   let from: string | null = null;
-  for (let i = 0; first + i < normal.length; i++) {
-    sum += Math.max(0, (warm?.t[offset + i] ?? normal[first + i]) - fly.base);
-    if (!from && sum >= fly.from) from = addDays(march, i);
-    if (from && sum >= fly.until) return { from, until: addDays(march, i) };
+  for (let i = 0; i < normal.length; i++) {
+    sum += Math.max(0, (warm?.t[offset + i] ?? normal[i]) - fly.base);
+    if (!from && sum >= fly.from) from = addDays(start, i);
+    if (from && sum >= fly.until) return { from, until: addDays(start, i) };
   }
-  return from ? { from, until: `${today.slice(0, 4)}-12-31` } : null;
+  return from ? { from, until: `${year}-12-31` } : null;
 }
 
 /** How far ahead a fly's first flies are worth covering for. */
 const SOON_DAYS = 14;
-/** °C: where even the coldest month is warmer, there is no winter rest for
- *  a spring flight to start from; the rules come from cold-winter places
- *  (Norway, Wisconsin, Michigan). */
-const NO_WINTER = 10;
+/** °C: fly warnings only where the coldest month is no warmer, as far as
+ *  the rules were checked against trap catches (7.4 °C in the Cotentin).
+ *  Warmer winters give first flies from February, with nothing to check
+ *  them against. */
+const WINTER_MAX = 7.5;
 const FLIES = ['carrot_fly', 'cabbage_root_fly', 'onion_fly'] as const;
 
 /** This week's pest warnings: blight weather for potatoes and tomatoes in the
@@ -137,7 +140,7 @@ export function pestTasks(
       crops: blighted,
     });
   }
-  if (!temps || Math.min(...temps) > NO_WINTER) return tasks;
+  if (!temps || Math.min(...temps) > WINTER_MAX) return tasks;
   for (const pest of FLIES) {
     const f = flight(PESTS[pest].flight!, today, temps, advice.warm);
     if (!f || today >= f.until || between(today, f.from) > SOON_DAYS) continue;
