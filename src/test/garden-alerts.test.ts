@@ -62,6 +62,23 @@ describe('what is news in a garden', () => {
     ).toEqual([feed]);
   });
 
+  it('a pest warning is a care alert, told again when its phase moves on', () => {
+    const soon: Task = {
+      kind: 'pest',
+      pest: 'carrot_fly',
+      phase: 'soon',
+      day: '2027-05-12',
+      crops: ['carrot'],
+    };
+    const now: Task = { ...soon, phase: 'now' };
+    const a = newTasks([soon], {}, '2027-05-01', ALL);
+    expect(a.fresh).toEqual([soon]);
+    expect(
+      newTasks([soon], {}, '2027-05-01', new Set<AlertKind>(['frost'])).fresh
+    ).toEqual([]);
+    expect(newTasks([now], a.memory, '2027-05-12', ALL).fresh).toEqual([now]);
+  });
+
   it('puts frost first', () => {
     expect(
       newTasks([plant, feed, frost], {}, '2026-10-20', ALL).fresh.map(

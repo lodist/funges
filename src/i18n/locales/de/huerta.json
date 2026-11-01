@@ -182,6 +182,28 @@
         "pick": "Ernte vorher, was du kannst.",
         "replace": "Sie werden nicht rechtzeitig reif: Nutze das Beet für etwas, das jetzt wächst."
       },
+      "pest": {
+        "blight": {
+          "soon": "Krautfäule-Wetter ab {{day}}",
+          "now": "Jetzt Krautfäule-Wetter",
+          "text": "Bei warmen, feuchten Tagen und Nächten breitet sich die Krautfäule aus. Schau dir jeden Tag die Blätter von {{crops}} an und entferne alle mit braunen Flecken."
+        },
+        "carrot_fly": {
+          "soon": "Möhrenfliege: fliegt hier ab etwa {{date}}",
+          "now": "Die Möhrenfliege fliegt hier jetzt",
+          "text": "Deck {{crops}} ab dem Tag der Saat mit einem feinen Insektenschutznetz ab und lass es drauf."
+        },
+        "cabbage_root_fly": {
+          "soon": "Kohlfliege: fliegt hier ab etwa {{date}}",
+          "now": "Die Kohlfliege fliegt hier jetzt",
+          "text": "Halte {{crops}} unter einem feinen Insektenschutznetz und befestige es am Boden. Gefährlich ist sie vor allem für junge Pflanzen."
+        },
+        "onion_fly": {
+          "soon": "Zwiebelfliege: fliegt hier ab etwa {{date}}",
+          "now": "Die Zwiebelfliege fliegt hier jetzt",
+          "text": "Deck {{crops}} mit einem feinen Insektenschutznetz ab, solange sie jung sind."
+        }
+      },
       "over": {
         "title": "{{crops}}: fertig für dieses Jahr?",
         "text": "Räum das Beet ab, dann ist es frei für das, was als Nächstes rein kann."

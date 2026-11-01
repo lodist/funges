@@ -182,6 +182,28 @@
         "pick": "Colha o que puder antes.",
         "replace": "Não vão ficar prontos a tempo: use o canteiro para algo que cresce agora."
       },
+      "pest": {
+        "blight": {
+          "soon": "Tempo de míldio a partir de {{day}}",
+          "now": "Tempo de míldio agora",
+          "text": "Dias e noites quentes e úmidos espalham o míldio. Olhe as folhas de {{crops}} todo dia e tire as que tiverem manchas marrons."
+        },
+        "carrot_fly": {
+          "soon": "Mosca-da-cenoura, início do voo: por volta de {{date}}",
+          "now": "A mosca-da-cenoura está voando por aqui agora",
+          "text": "Cubra {{crops}} com tela anti-insetos fina desde o dia da semeadura e deixe-a no lugar."
+        },
+        "cabbage_root_fly": {
+          "soon": "Mosca-da-couve, início do voo: por volta de {{date}}",
+          "now": "A mosca-da-couve está voando por aqui agora",
+          "text": "Mantenha {{crops}} sob tela anti-insetos fina, bem presa ao chão. Ela mata sobretudo as plantas novas."
+        },
+        "onion_fly": {
+          "soon": "Mosca-da-cebola, início do voo: por volta de {{date}}",
+          "now": "A mosca-da-cebola está voando por aqui agora",
+          "text": "Cubra {{crops}} com tela anti-insetos fina enquanto as plantas forem novas."
+        }
+      },
       "over": {
         "title": "{{crops}}: acabou por este ano?",
         "text": "Limpe o canteiro e ele fica livre para o que pode entrar depois."

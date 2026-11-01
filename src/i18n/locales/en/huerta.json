@@ -182,6 +182,28 @@
         "pick": "Pick what you can before then.",
         "replace": "They won't be ready in time: use the bed for something that grows now."
       },
+      "pest": {
+        "blight": {
+          "soon": "Blight weather from {{day}}",
+          "now": "Blight weather now",
+          "text": "Warm, humid days and nights spread blight. Check the leaves of {{crops}} every day and take off any with brown patches."
+        },
+        "carrot_fly": {
+          "soon": "Carrot fly: flying here from about {{date}}",
+          "now": "Carrot fly is flying around here now",
+          "text": "Cover {{crops}} with fine insect mesh from the day you sow and keep it on."
+        },
+        "cabbage_root_fly": {
+          "soon": "Cabbage root fly: flying here from about {{date}}",
+          "now": "Cabbage root fly is flying around here now",
+          "text": "Keep {{crops}} under fine insect mesh pinned to the ground. Young plants are the ones it kills."
+        },
+        "onion_fly": {
+          "soon": "Onion fly: flying here from about {{date}}",
+          "now": "Onion fly is flying around here now",
+          "text": "Cover {{crops}} with fine insect mesh while they are young."
+        }
+      },
       "over": {
         "title": "{{crops}}: done for this year?",
         "text": "Clear the bed and it's free for what can go in next."

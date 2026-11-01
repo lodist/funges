@@ -182,6 +182,28 @@
         "pick": "Raccogli quello che puoi prima.",
         "replace": "Non faranno in tempo a essere pronti: usa l'aiuola per qualcosa che cresce adesso."
       },
+      "pest": {
+        "blight": {
+          "soon": "Tempo da peronospora da {{day}}",
+          "now": "Tempo da peronospora adesso",
+          "text": "Giorni e notti caldi e umidi diffondono la peronospora. Controlla ogni giorno le foglie di {{crops}} e togli quelle con macchie marroni."
+        },
+        "carrot_fly": {
+          "soon": "Mosca della carota, inizio del volo: {{date}} circa",
+          "now": "La mosca della carota vola qui adesso",
+          "text": "Copri {{crops}} con una rete antinsetto fine dal giorno della semina e lasciala su."
+        },
+        "cabbage_root_fly": {
+          "soon": "Mosca del cavolo, inizio del volo: {{date}} circa",
+          "now": "La mosca del cavolo vola qui adesso",
+          "text": "Tieni {{crops}} sotto una rete antinsetto fine fissata a terra. Uccide soprattutto le piante giovani."
+        },
+        "onion_fly": {
+          "soon": "Mosca della cipolla, inizio del volo: {{date}} circa",
+          "now": "La mosca della cipolla vola qui adesso",
+          "text": "Copri {{crops}} con una rete antinsetto fine finché le piante sono giovani."
+        }
+      },
       "over": {
         "title": "{{crops}}: finito per quest'anno?",
         "text": "Libera l'aiuola: sarà pronta per quello che può andarci dopo."
