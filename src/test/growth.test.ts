@@ -83,6 +83,33 @@ describe("a planted crop's growth (the calendar's model)", () => {
     expect(g.progress('2027-11-30')).toBeLessThan(1);
   });
 
+  it("ends a winter crop at the first hard frost where the place's winter low is not known", () => {
+    // Kale picked through the winter where the year files carry no low: it
+    // must not fail (it once gave "Invalid time value").
+    const kale: Bio = {
+      ...lettuce,
+      days: 55,
+      kill: 'h',
+      end: 'winter',
+      pick: 10,
+      strict: false,
+      hardy: -15,
+    };
+    const somewhere = place({
+      temps: [0, 1, 5, 9, 13, 17, 19, 19, 15, 10, 5, 1],
+      sun: [4, 7, 12, 17, 18, 20, 19, 17, 12, 8, 5, 3],
+      light: 306,
+      first0: 319,
+      firstm3: 329,
+      low: null,
+    });
+    const g = plantedGrowth('kale', kale, somewhere, '2027-06-01');
+    expect(g.ready).not.toBeNull();
+    expect(g.end! >= g.ready!).toBe(true);
+    // A hard frost (-3 C) is on 25 November there: picked until about then.
+    expect(g.end! <= '2027-12-31').toBe(true);
+  });
+
   it('ends a tender crop with the warm nights, a month on, before the first light frost', () => {
     const tomato: Bio = {
       tb: 10,

@@ -339,10 +339,12 @@ function winterKill(
   hardy: number
 ) {
   const mid = coldestMid(normal) + 1;
-  const low = place.low ?? NaN;
+  const low = place.low;
   const gap = place.firstm3 > 0 ? mod(mid - (place.firstm3 - 1), YEAR) : 0;
+  // Its winter low not known: the first hard frost ends it, the safe guess
+  // (an unknown low gave no day at all, and the planner failed on it).
   const share =
-    hardy < -3
+    hardy < -3 && low !== null
       ? Math.min(1, Math.max(0, (-3 - hardy) / Math.max(-3 - low, 1e-6)))
       : 0;
   return after(mid + 1, H) - gap + round(share * gap);
