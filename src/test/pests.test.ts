@@ -71,46 +71,48 @@ describe('pest warnings', () => {
     expect(pestTasks(p, advice, temps, '2027-04-25')).toEqual([]);
   });
 
-  it('warns of no fly where there is no winter for it to rest through', () => {
+  it('warns of no fly where winters are warmer than the rules were checked in', () => {
     const p = plan(['carrot', '2027-03-01']);
     const advice = { ...SAMPLE_ADVICE, day: '2027-03-12', warm: undefined };
-    // Coldest month 11 °C (South Florida is 20): no spring flight to time.
-    const mild = [11, 12, 15, 18, 22, 25, 27, 27, 25, 21, 16, 12];
-    expect(pestTasks(p, advice, mild, '2027-03-25')).toEqual([]);
-    // Two degrees cooler (coldest month 9 °C): first flies about 2 April.
+    // Coldest month 8 °C (the trap data go up to 7.4 °C): no warning.
+    const mild = [8, 9, 12, 15, 19, 22, 24, 24, 22, 18, 13, 9];
+    expect(pestTasks(p, advice, mild, '2027-03-10')).toEqual([]);
+    // One degree cooler (coldest month 7 °C): first flies in mid-March.
     expect(
       pestTasks(
         p,
         advice,
-        mild.map(t => t - 2),
-        '2027-03-25'
+        mild.map(t => t - 1),
+        '2027-03-10'
       )
     ).toHaveLength(1);
   });
 });
 
 describe("a fly's spring flight", () => {
-  it('starts and ends at its degree days since 1 March', () => {
-    // 15 °C every day: 10 a day above 5 °C; 260 on 26 March, 560 on 25 April.
+  it('starts and ends at its degree days since 1 January', () => {
+    // 15 °C every day: 10 a day above 5 °C; 260 on 26 January, 560 on 25
+    // February.
     expect(flight(carrotFly, '2027-04-10', flat(15))).toEqual({
-      from: '2027-03-26',
-      until: '2027-04-25',
+      from: '2027-01-26',
+      until: '2027-02-25',
     });
   });
 
   it('counts the observed and forecast days first, the typical ones after', () => {
-    // 25 °C for 1-10 March (200), then 15 °C: 260 on 16 March.
+    // 25 °C for 1-13 January (20 a day): 260 on 13 January; the typical
+    // 5 °C after it adds nothing, so the warning never ends before the year.
     const warm = {
-      start: '2027-02-20',
-      t: [...Array<number>(9).fill(0), ...Array<number>(10).fill(25), null],
+      start: '2026-12-20',
+      t: [...Array<number>(12).fill(0), ...Array<number>(13).fill(25), null],
     };
-    expect(flight(carrotFly, '2027-03-15', flat(15), warm)?.from).toBe(
-      '2027-03-16'
-    );
+    expect(flight(carrotFly, '2027-01-10', flat(5), warm)).toEqual({
+      from: '2027-01-13',
+      until: '2027-12-31',
+    });
   });
 
-  it('says nothing before 1 March, or where the year never warms enough', () => {
-    expect(flight(carrotFly, '2027-02-28', flat(15))).toBeNull();
+  it('says nothing where the year never warms enough', () => {
     expect(flight(carrotFly, '2027-06-01', flat(5))).toBeNull();
   });
 });
