@@ -337,3 +337,39 @@ def test_area_files_carry_lows_after_blight_and_keep_the_fields_places():
     air = pd.DataFrame([[8.0]], columns=["2026-10-31"], index=at)
     rows = json.loads(huerta.area_files(places, advice, "2026-10-31", air, None, lows)["47_8.json"])["places"]
     assert rows[0][13][0] == "2026-10-31" and rows[0][14] is None and rows[0][15][0] == "2026-10-30"
+
+
+def test_daily_air_keeps_each_days_strongest_gust_and_rain(tmp_path, monkeypatch):
+    import hourly_weather
+    monkeypatch.setattr(hourly_weather, "OUT_DIR", tmp_path)
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    _hours("2026-10-28 01:00", 24, 8.0).to_parquet(past / "2026-10-28.parquet")   # from before gusts were fetched
+    windy = _hours("2026-10-29 01:00", 24, 8.0).assign(gust_kmh=30.0, precip_mm=0.5)
+    windy.loc[14, "gust_kmh"] = 85.0
+    windy.to_parquet(past / "2026-10-29.parquet")
+    _hours("2026-10-30 01:00", 18, 12.0).assign(gust_kmh=20.0, precip_mm=2.0).to_parquet(past / "2026-10-30.parquet")
+    forecast = _hours("2026-10-30 19:00", 48, 14.0).assign(gust_kmh=40.0, precip_mm=0.0)
+    gusts = huerta.daily_air("SE", forecast, how="max", back=huerta.LOW_DAYS, column="gust_kmh")
+    rains = huerta.daily_air("SE", forecast, how="sum", back=huerta.LOW_DAYS, column="precip_mm")
+    assert list(gusts.columns) == ["2026-10-29", "2026-10-30", "2026-10-31"]
+    assert gusts.loc[(47.16, 8.55)].tolist() == [85.0, 40.0, 40.0] and rains.loc[(47.16, 8.55)].tolist() == [12.0, 36.0, 0.0]
+    with np.load(tmp_path / "SE" / "daily_max_gust_kmh.npz") as z:                 # whole km/h, not the air's code
+        assert z["b"].tolist() == [[85]]
+
+
+def test_area_files_carry_gusts_and_rains_last():
+    places = pd.DataFrame({
+        "Location_Id": ["Zug_47.160_8.550", "Baar_47.200_8.525"], "Latitude": [47.16, 47.2], "Longitude": [8.55, 8.525],
+        "frost3": [5.0, 5.0], "soil3": [10.0, 10.0], "night7": [6.0, 6.0], "rain7": [4.0, 4.0], "et07": [6.0, 6.0],
+        "last0_median": [116, 116], "first0_median": [319, 319], "frostw": [5.0, 5.0], "frostw_night": [None, None],
+    })
+    at = pd.MultiIndex.from_tuples([(47.16, 8.55)], names=["key_lat", "key_lon"])
+    gusts = pd.DataFrame([[85.0, 140.4]], columns=["2026-10-30", "2026-10-31"], index=at)
+    rains = pd.DataFrame([[36.0, np.nan]], columns=["2026-10-30", "2026-10-31"], index=at)
+    files = huerta.area_files(places, pd.DataFrame({"kale": ["now", "now"]}), "2026-10-31",
+                              storms={"gusts": gusts, "rains": rains})
+    rows = json.loads(files["47_8.json"])["places"]
+    assert rows[0][13:16] == [None, None, None] and rows[0][16][0] == "2026-10-30"
+    assert list(base64.b64decode(rows[0][16][1])) == [85, 140] and list(base64.b64decode(rows[0][17][1])) == [36, 255]
+    assert rows[1][16:] == [None, None]                                            # nothing known at Baar
