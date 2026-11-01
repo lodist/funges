@@ -2320,9 +2320,9 @@
     },
     "sideKind": {
       "open": "Libero",
-      "fence": "Recinzione o siepe, circa 2 m",
-      "house": "Casa o muro, circa 6 m",
-      "trees": "Alberi alti, circa 10 m"
+      "fence": "Recinzione o siepe",
+      "house": "Casa o muro",
+      "trees": "Alberi alti"
     },
     "sun": {
       "here_one": "Qui, a {{month}}, circa {{count}} ora di sole al giorno, {{when}}.",
