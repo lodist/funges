@@ -84,6 +84,10 @@ WINDOW = {"n": "now", "s": "wait_soil", "f": "wait_frost", "w": "wait_warm", "h"
 UPLOAD_WORKERS = 16
 WARM_DAYS = 400   # days of daily mean air a place's advice carries back, for its planted crops' growth
 FULL_DAY = 20     # hours a day's mean needs (the forecast's last day is cut short)
+RH_WET = 90       # %: an hour this humid counts toward blight weather (Hutton criteria, AHDB 2017)
+WET_HOURS = 6     # such hours a blight day needs
+BLIGHT_MIN = 10   # C: the day's minimum a blight day needs
+BLIGHT_DAYS = 8   # the advice's blight bits: the day before its day through the sixth after
 # The garden map's own layers: frost (0 none; in the next 3 days 1 ground frost, 2 frost; 3 either
 # later in the week), soil
 # at 6 cm (degrees C + 40) and the week's water deficit (mm); 255 where unknown.
@@ -329,6 +333,31 @@ def day_means(rows):
                        key_lat=rows["lat"].round(4), key_lon=rows["lon"].round(4))
     g = rows.groupby(["key_lat", "key_lon", "day"])["t2m_c"]
     return g.mean().where(g.count() >= FULL_DAY).unstack("day")
+
+
+def humidity(t, td):
+    """Relative humidity (%) from air and dew point temperature (C): Magnus, Alduchov & Eskridge (1996)."""
+    t, td = np.asarray(t, float), np.asarray(td, float)
+    return 100 * np.exp(17.625 * td / (243.04 + td) - 17.625 * t / (243.04 + t))
+
+
+def blight_bits(hours, day):
+    """Blight weather at each place (key_lat, key_lon), as an int: bit k when the solar day `day` - 1 + k
+    (k = 0..7) is a Hutton day, the second of two days in a row each with a minimum of at least BLIGHT_MIN and
+    WET_HOURS hours or more at RH_WET or more. `hours`: time (UTC), lat, lon, t2m_c, td2m_c. A solar day starts
+    at midnight at the place's longitude (UTC + lon / 15 h), as the Met Office day the criteria were built on;
+    one with fewer than FULL_DAY hours never counts."""
+    h = hours.dropna(subset=["t2m_c", "td2m_c"])
+    solar = h["time"].dt.tz_convert(None) + pd.to_timedelta(h["lon"] * 240, unit="s")
+    d = pd.DataFrame({"key_lat": h["lat"].round(4), "key_lon": h["lon"].round(4), "day": solar.dt.normalize(),
+                      "t": h["t2m_c"], "wet": humidity(h["t2m_c"], h["td2m_c"]) >= RH_WET})
+    days = d.groupby(["key_lat", "key_lon", "day"]).agg(n=("t", "size"), tmin=("t", "min"), wet=("wet", "sum"))
+    ok = (days["n"] >= FULL_DAY) & (days["tmin"] >= BLIGHT_MIN) & (days["wet"] >= WET_HOURS)
+    span = pd.date_range(pd.Timestamp(day) - pd.Timedelta(days=2), periods=BLIGHT_DAYS + 1)
+    grid = ok.unstack("day", fill_value=False).reindex(columns=span, fill_value=False)
+    a = grid.to_numpy(bool)
+    bits = (a[:, 1:] & a[:, :-1]).astype(np.int64) @ (1 << np.arange(BLIGHT_DAYS, dtype=np.int64))
+    return pd.Series(bits, index=grid.index, name="blight")
 
 
 def _past_hours(region, day, s3=None, bucket=None):
