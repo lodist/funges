@@ -39,13 +39,15 @@ windows.
 
 Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REGION>/
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
-codes, last_frost, first_frost, later_frost, later_night, warm]]}: frost '' / 'g' (ground frost) /
+codes, last_frost, first_frost, later_frost, later_night, warm, blight]]}: frost '' / 'g' (ground frost) /
 'f' in the next 3 days, codes one letter per crop (CODES), last/first frost the place's
 typical day of year of its last spring and first autumn frost (null: none in a typical
 year), later_frost the same '' / 'g' / 'f' for days 4-7 and later_night the date of its
 first such night (null: none), warm [first day, base64]: the place's daily mean air, one byte a day
 ((C + 30) x 2, 255 unknown) from up to WARM_DAYS back through the forecast's last full day, what a
-planted crop's growth counts in the app (lib/growth; null where none is known). For the garden map,
+planted crop's growth counts in the app (lib/growth; null where none is known), blight the place's blight
+weather (blight_bits: bit k when the day before the file's day, plus k days, is a Hutton day; k = 0..7; only
+where the run worked it out). For the garden map,
 huerta/map/<REGION>/:
 index.json {day, n, layers}, places.bin (int16 lat x100, lon x100 per place) and layers.bin,
 one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter;
@@ -360,11 +362,11 @@ def blight_bits(hours, day):
     return pd.Series(bits, index=grid.index, name="blight")
 
 
-def _past_hours(region, day, s3=None, bucket=None):
+def _past_hours(region, day, s3=None, bucket=None, columns=("time", "lat", "lon", "t2m_c")):
     """One past day's hours at the region's places: here if kept, else from R2; None if neither has it."""
     import hourly_weather
     path = hourly_weather.OUT_DIR / region / "past" / f"{day}.parquet"
-    columns = ["time", "lat", "lon", "t2m_c"]
+    columns = list(columns)
     if path.exists():
         return pd.read_parquet(path, columns=columns)
     if s3 is None:
@@ -418,28 +420,44 @@ def daily_air(region, forecast, s3=None, bucket=None):
     return air.reindex(columns=pd.date_range(min(air.columns), max(air.columns)).strftime("%Y-%m-%d"))
 
 
-def area_files(place, advice, day, air=None):
+def blight_hours(region, forecast, s3=None, bucket=None):
+    """The hours blight_bits reads: the past hours of the run's day and the two before it (a solar day east of
+    Greenwich starts before UTC midnight), then the forecast's."""
+    cols = ["time", "lat", "lon", "t2m_c", "td2m_c"]
+    start = forecast["time"].min()
+    run = (start - pd.Timedelta(hours=1)).normalize()
+    past = [_past_hours(region, f"{run - pd.Timedelta(days=k):%Y-%m-%d}", s3, bucket, cols) for k in (2, 1, 0)]
+    past = [p[p["time"] < start] for p in past if p is not None]
+    return pd.concat([*past, forecast[cols]], ignore_index=True)
+
+
+def area_files(place, advice, day, air=None, blight=None):
     """{R2 key suffix '<lat>_<lon>.json': file bytes}: every place of a 1° square, compact. With `air`
-    (daily_air), each place's `warm`."""
+    (daily_air), each place's `warm`; with `blight` (blight_bits), its blight bits after `warm`, which is then
+    null where no air is known, so the fields keep their places."""
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], ["f", "g"], "")
     later = np.select([place["frostw"] <= 0, place["frostw"] <= 2], ["f", "g"], "")
     water = (place["et07"] - place["rain7"]).clip(lower=0)
     codes = advice.replace(CODES).agg("".join, axis=1)
+    keys = pd.MultiIndex.from_arrays([place["Latitude"].round(4), place["Longitude"].round(4)])
     warm = [None] * len(place)
     if air is not None and len(air.columns):
-        keys = pd.MultiIndex.from_arrays([place["Latitude"].round(4), place["Longitude"].round(4)])
         b = warm_bytes(air.reindex(keys).to_numpy(float))
         known = (b != 255).any(axis=1)
         warm = [[air.columns[0], base64.b64encode(r.tobytes()).decode()] if k else None for r, k in zip(b, known)]
+    if blight is not None:
+        tails = [[wa, int(bl)] for wa, bl in zip(warm, blight.reindex(keys).fillna(0).astype(int))]
+    else:
+        tails = [[wa] if air is not None else [] for wa in warm]
     rows = pd.DataFrame({
         "square": np.floor(place["Latitude"]).astype(int).astype(str) + "_"
         + np.floor(place["Longitude"]).astype(int).astype(str),
         "row": [[name, float(la), float(lo), fr, _number(s), _number(n), _number(r), _number(w, 0), c,
-                 _day(last), _day(first), lf, ln if lf else None, *([wa] if air is not None else [])]
-                for name, la, lo, fr, s, n, r, w, c, last, first, lf, ln, wa in zip(
+                 _day(last), _day(first), lf, ln if lf else None, *tail]
+                for name, la, lo, fr, s, n, r, w, c, last, first, lf, ln, tail in zip(
                     place["Location_Id"].str.rsplit("_", n=2).str[0], place["Latitude"], place["Longitude"],
                     frost, place["soil3"], place["night7"], place["rain7"], water, codes,
-                    place["last0_median"], place["first0_median"], later, place["frostw_night"], warm)],
+                    place["last0_median"], place["first0_median"], later, place["frostw_night"], tails)],
     })
     crops = list(advice.columns)
     return {f"{square}.json": json.dumps({"day": day, "crops": crops, "places": list(group["row"])},
@@ -474,7 +492,12 @@ def publish(region, forecast):
     except Exception as e:  # noqa: BLE001 - the advice goes out without it
         air = None
         print(f"Huerta: no daily air: {e!r}")
-    files = area_files(place, advice, f"{day:%Y-%m-%d}", air)
+    try:
+        blight = blight_bits(blight_hours(region, forecast, s3, bucket), f"{day:%Y-%m-%d}")
+    except Exception as e:  # noqa: BLE001 - the advice goes out without it
+        blight = None
+        print(f"Huerta: no blight weather: {e!r}")
+    files = area_files(place, advice, f"{day:%Y-%m-%d}", air, blight)
     with ThreadPoolExecutor(UPLOAD_WORKERS) as pool:
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
                                                ContentType="application/json"), files.items()))
@@ -486,5 +509,6 @@ def publish(region, forecast):
                       ContentType="application/json" if name.endswith(".json") else "application/octet-stream")
     print(f"Huerta: {len(place):,} places in {len(files)} area files for {day:%Y-%m-%d}, "
           f"{time.time() - started:.0f} s; sow or plant now at a typical place: "
-          f"{int((advice == 'now').sum(axis=1).median())} of {advice.shape[1]} crops")
+          f"{int((advice == 'now').sum(axis=1).median())} of {advice.shape[1]} crops"
+          + (f"; blight weather this week at {(blight > 0).mean():.0%} of places" if blight is not None else ""))
     return len(files)

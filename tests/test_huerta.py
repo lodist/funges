@@ -254,3 +254,29 @@ def test_blight_bits_skip_a_day_the_forecast_cuts_short():
     _wet(hours, "2026-11-04 01:00", 6)
     _wet(hours, "2026-11-05 01:00", 6)
     assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 0.0)] == 0
+
+
+def test_blight_hours_take_the_runs_day_and_two_before_then_the_forecast(tmp_path, monkeypatch):
+    import hourly_weather
+    monkeypatch.setattr(hourly_weather, "OUT_DIR", tmp_path)
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    for day, n in (("2026-10-28", 24), ("2026-10-29", 24), ("2026-10-30", 24), ("2026-10-31", 18)):
+        _hours(f"{day} 01:00", n, 8.0).assign(td2m_c=5.0).to_parquet(past / f"{day}.parquet")
+    forecast = _hours("2026-10-31 19:00", 48, 14.0).assign(td2m_c=12.0)
+    hours = huerta.blight_hours("SE", forecast)
+    assert hours["time"].min() == pd.Timestamp("2026-10-29 01:00", tz="UTC")   # not the 28th
+    assert hours["time"].is_unique and len(hours) == 24 + 24 + 18 + 48
+    assert list(hours.columns) == ["time", "lat", "lon", "t2m_c", "td2m_c"]
+
+
+def test_area_files_carry_blight_bits_after_the_daily_air():
+    places = pd.DataFrame({
+        "Location_Id": ["Zug_47.160_8.550", "Baar_47.200_8.525"], "Latitude": [47.16, 47.2], "Longitude": [8.55, 8.525],
+        "frost3": [5.0, 5.0], "soil3": [10.0, 10.0], "night7": [6.0, 6.0], "rain7": [4.0, 4.0], "et07": [6.0, 6.0],
+        "last0_median": [116, 116], "first0_median": [319, 319], "frostw": [5.0, 5.0], "frostw_night": [None, None],
+    })
+    advice = pd.DataFrame({"potato": ["now", "now"]})
+    bits = pd.Series([0b110], index=pd.MultiIndex.from_tuples([(47.16, 8.55)], names=["key_lat", "key_lon"]))
+    rows = json.loads(huerta.area_files(places, advice, "2026-10-31", None, bits)["47_8.json"])["places"]
+    assert rows[0][13:] == [None, 6] and rows[1][13:] == [None, 0]          # no daily air known; none at Baar
