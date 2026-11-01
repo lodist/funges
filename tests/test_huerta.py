@@ -211,3 +211,72 @@ def test_area_files_carry_each_places_daily_air():
     first, b64 = rows[0][13]
     assert first == "2026-10-28" and list(base64.b64decode(b64)) == [76, 255, 85]
     assert rows[1][13] is None                                                    # no weather known there
+
+
+def _blight_hours(start, n, lon=0.0):
+    """Warm, dry hours from `start`: 14 C, dew point 8 C (about 67 %)."""
+    return pd.DataFrame({"time": pd.date_range(start, periods=n, freq="h", tz="UTC"), "lat": 50.0, "lon": lon,
+                         "t2m_c": 14.0, "td2m_c": 8.0})
+
+
+def _wet(hours, first, n):
+    """`n` saturated hours from `first` (UTC)."""
+    t0 = pd.Timestamp(first, tz="UTC")
+    at = hours["time"].between(t0, t0 + pd.Timedelta(hours=n - 1))
+    hours.loc[at, "td2m_c"] = hours.loc[at, "t2m_c"]
+
+
+def test_humidity_from_air_and_dew_point():
+    assert float(huerta.humidity(15.0, 15.0)) == 100.0
+    assert abs(float(huerta.humidity(20.0, 10.0)) - 52.6) < 0.5
+
+
+def test_blight_bits_mark_the_second_of_two_warm_wet_days():
+    hours = _blight_hours("2026-11-02 00:00", 9 * 24)                     # 2-10 Nov; solar days = UTC at 0 E
+    for day in ("2026-11-02", "2026-11-03", "2026-11-04", "2026-11-05", "2026-11-07", "2026-11-10"):
+        _wet(hours, f"{day} 01:00", 6)
+    _wet(hours, "2026-11-09 01:00", 5)                                     # one hour short
+    hours.loc[hours["time"].dt.strftime("%Y-%m-%d") == "2026-11-03", "t2m_c"] = 9.0   # 3 Nov too cold
+    # The advice day is 4 Nov, so bit 0 is 3 Nov: only 5 Nov follows a day like itself (4 Nov).
+    assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 0.0)] == 0b100
+
+
+def test_blight_bits_count_solar_days_at_the_place():
+    # At 30 E the day starts at 22:00 UTC: 6 wet hours from 22:00 are one day there, two in UTC.
+    hours = _blight_hours("2026-11-02 00:00", 9 * 24, lon=30.0)
+    _wet(hours, "2026-11-03 22:00", 6)
+    _wet(hours, "2026-11-04 22:00", 6)
+    assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 30.0)] == 0b100
+
+
+def test_blight_bits_skip_a_day_the_forecast_cuts_short():
+    hours = _blight_hours("2026-11-02 00:00", 3 * 24 + 11)                # 5 Nov has 11 hours
+    _wet(hours, "2026-11-04 01:00", 6)
+    _wet(hours, "2026-11-05 01:00", 6)
+    assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 0.0)] == 0
+
+
+def test_blight_hours_take_the_runs_day_and_two_before_then_the_forecast(tmp_path, monkeypatch):
+    import hourly_weather
+    monkeypatch.setattr(hourly_weather, "OUT_DIR", tmp_path)
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    for day, n in (("2026-10-28", 24), ("2026-10-29", 24), ("2026-10-30", 24), ("2026-10-31", 18)):
+        _hours(f"{day} 01:00", n, 8.0).assign(td2m_c=5.0).to_parquet(past / f"{day}.parquet")
+    forecast = _hours("2026-10-31 19:00", 48, 14.0).assign(td2m_c=12.0)
+    hours = huerta.blight_hours("SE", forecast)
+    assert hours["time"].min() == pd.Timestamp("2026-10-29 01:00", tz="UTC")   # not the 28th
+    assert hours["time"].is_unique and len(hours) == 24 + 24 + 18 + 48
+    assert list(hours.columns) == ["time", "lat", "lon", "t2m_c", "td2m_c"]
+
+
+def test_area_files_carry_blight_bits_after_the_daily_air():
+    places = pd.DataFrame({
+        "Location_Id": ["Zug_47.160_8.550", "Baar_47.200_8.525"], "Latitude": [47.16, 47.2], "Longitude": [8.55, 8.525],
+        "frost3": [5.0, 5.0], "soil3": [10.0, 10.0], "night7": [6.0, 6.0], "rain7": [4.0, 4.0], "et07": [6.0, 6.0],
+        "last0_median": [116, 116], "first0_median": [319, 319], "frostw": [5.0, 5.0], "frostw_night": [None, None],
+    })
+    advice = pd.DataFrame({"potato": ["now", "now"]})
+    bits = pd.Series([0b110], index=pd.MultiIndex.from_tuples([(47.16, 8.55)], names=["key_lat", "key_lon"]))
+    rows = json.loads(huerta.area_files(places, advice, "2026-10-31", None, bits)["47_8.json"])["places"]
+    assert rows[0][13:] == [None, 6] and rows[1][13:] == [None, 0]          # no daily air known; none at Baar
