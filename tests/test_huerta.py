@@ -128,6 +128,26 @@ def test_conditions_find_the_first_frost_night_later_in_the_week():
     assert row["frostw_night"] == "2026-10-24"      # the frost night, not the earlier ground frost
 
 
+def test_conditions_move_the_forecast_to_the_villages_height():
+    # Chur: ICON-EU's cell stands 615 m above the town, 4.0 C warmer by day there, 2.8 C at night.
+    place = pd.DataFrame({"Latitude": [46.86], "Longitude": [9.525], "forecast_lift": [4.0], "forecast_lift_min": [2.8]})
+    lift = huerta.forecast_lift(place)
+    hours = pd.date_range("2026-10-20 19:00", periods=7 * 24, freq="h", tz="UTC")
+    temp = np.full(len(hours), 8.0)
+    temp[10] = -1.0                                # a frost at the model's height: none in town
+    temp[4 * 24 + 10] = -4.0                       # day 5: a frost in town too
+    forecast = pd.DataFrame({"time": hours, "lat": 46.86, "lon": 9.525, "t2m_c": temp, "soil_c": np.nan,
+                             "precip_mm": 0.0, "swdown_wm2": 100.0})
+    row = huerta.conditions(forecast, lift)[0].iloc[0]
+    assert round(row["frost3"], 6) == 1.8 and round(row["soil3"], 2) == round(8.0 - 9 / 72 + 4.0, 2)   # no soil: air
+    assert round(row["frostw"], 1) == -1.2 and row["frostw_night"] == "2026-10-24"
+    assert huerta.forecast_lift(place.drop(columns=["forecast_lift", "forecast_lift_min"])) is None
+    air = pd.DataFrame([[8.0, 9.0]], columns=["2026-10-30", "2026-10-31"],
+                       index=pd.MultiIndex.from_tuples([(46.86, 9.525)], names=["key_lat", "key_lon"]))
+    assert huerta.at_village(air, lift, "mean").iloc[0].tolist() == [12.0, 13.0]
+    assert huerta.at_village(None, lift, "min") is None
+
+
 def windows(rows, crops=("tomato", "peas")):
     """A windows file in the builder's run-length form: rows is, per place, per crop, [(start day, letter)]."""
     letters = np.array(list("nsfwhbaplx"))

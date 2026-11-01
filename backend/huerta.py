@@ -5,7 +5,10 @@ Per place: the coldest hour of the next 3 days (frost3) and of the rest of the w
 4-7 (frostw, with the night it comes: frostw_night), the mean soil temperature at 6 cm
 over the next 3 days (soil3; NBM has none, so in the US the air's three-day mean stands
 in), the week's mean night (night7), its rain (rain7) and reference evaporation (et07,
-Hargreaves' radiation formula). Per crop, the first rule that applies:
+Hargreaves' radiation formula). All at the height of the place's village: in mountain valleys the
+forecast's model stands far up the slopes (ICON-EU puts Chur, 601 m, at 1216 m), so its days move
+by the frost table's forecast_lift (means) and forecast_lift_min (minima); so do the advice's
+warm and lows, while blight reads the model's own hours. Per crop, the first rule that applies:
 - a crop that goes in only in autumn (bulbs, winter rye) -> wait_autumn before July; one that
   goes in only in spring (asparagus crowns) -> wait_spring from July;
 - tender: no warm-night season here -> not_here; an autumn frost before harvest in more
@@ -99,8 +102,29 @@ BLIGHT_DAYS = 8   # the advice's blight bits: the day before its day through the
 MAP_LAYERS = ("frost", "soil", "water", "cold", "balance")
 
 
-def conditions(forecast):
-    """Per place (lat, lon): frost3, soil3, night7, rain7, et07; and the forecast's first hour."""
+def forecast_lift(place):
+    """What moves the forecast from its model's height to each place's village's (the frost table's forecast_lift
+    and forecast_lift_min, C: data_tools/build_frost_odds.py), as columns mean and min per (lat, lon) to 4
+    decimals; None for a table without them."""
+    if "forecast_lift" not in place:
+        return None
+    at = pd.MultiIndex.from_arrays([place["Latitude"].round(4), place["Longitude"].round(4)], names=["lat", "lon"])
+    lift = pd.DataFrame({"mean": place["forecast_lift"].to_numpy(float),
+                         "min": place["forecast_lift_min"].to_numpy(float)}, index=at)
+    return lift[~lift.index.duplicated()]
+
+
+def at_village(frame, lift, kind):
+    """Daily values per place, (lat, lon) x day as daily_air's, moved by `lift` (forecast_lift's `kind` column)."""
+    if frame is None or lift is None:
+        return frame
+    at = pd.MultiIndex.from_arrays([frame.index.get_level_values(0), frame.index.get_level_values(1)])
+    return frame.add(lift[kind].reindex(at).fillna(0).to_numpy(), axis=0)
+
+
+def conditions(forecast, lift=None):
+    """Per place (lat, lon): frost3, soil3, night7, rain7, et07; and the forecast's first hour. With `lift`
+    (forecast_lift), its days at each place's village's height: means by its mean, minima by its min."""
     start = forecast["time"].min()
     f = forecast.assign(day=((forecast["time"] - start) // pd.Timedelta(hours=24)).astype("int8"))
     keys = ["lat", "lon"]
@@ -108,6 +132,13 @@ def conditions(forecast):
         frost3=("t2m_c", "min"), soil3=("soil_c", "mean"), air3=("t2m_c", "mean"))
     days = f.groupby([*keys, "day"], sort=False).agg(
         tmin=("t2m_c", "min"), tmean=("t2m_c", "mean"), rain=("precip_mm", "sum"), sun=("swdown_wm2", "sum"))
+    if lift is not None:
+        for frame, cols in ((soon, {"frost3": "min", "soil3": "mean", "air3": "mean"}),
+                            (days, {"tmin": "min", "tmean": "mean"})):
+            at = pd.MultiIndex.from_arrays([frame.index.get_level_values(k).round(4) for k in keys])
+            up = lift.reindex(at).fillna(0)
+            for col, kind in cols.items():
+                frame[col] += up[kind].to_numpy()
     # Hargreaves (1985): ET0 = 0.0135 (T + 17.8) Rs, Rs in mm a day (MJ m-2 x 0.408); sun sums W m-2 over hours
     days["et0"] = 0.0135 * (days["tmean"] + 17.8) * days["sun"] * 3600e-6 * 0.408
     week = days.groupby(level=keys, sort=False).agg(night7=("tmin", "mean"), rain7=("rain", "sum"),
@@ -486,9 +517,10 @@ def publish(region, forecast):
     if not (crops_path.exists() and frost_path.exists()):
         print(f"Huerta: skipped, no {crops_path.name if not crops_path.exists() else frost_path.name}")
         return 0
-    cond, start = conditions(forecast)
-    day = start + pd.Timedelta(hours=12)                             # the morning after the run
     place = pd.read_parquet(frost_path)
+    lift = forecast_lift(place)
+    cond, start = conditions(forecast, lift)
+    day = start + pd.Timedelta(hours=12)                             # the morning after the run
     for frame, (la, lo) in ((place, ("Latitude", "Longitude")), (cond, ("lat", "lon"))):
         frame["key_lat"], frame["key_lon"] = frame[la].round(4), frame[lo].round(4)
     place = place.merge(cond.drop(columns=["lat", "lon"]), on=["key_lat", "key_lon"], how="inner")
@@ -513,6 +545,7 @@ def publish(region, forecast):
     except Exception as e:  # noqa: BLE001 - the advice goes out without it
         lows = None
         print(f"Huerta: no nightly lows: {e!r}")
+    air, lows = at_village(air, lift, "mean"), at_village(lows, lift, "min")
     files = area_files(place, advice, f"{day:%Y-%m-%d}", air, blight, lows)
     with ThreadPoolExecutor(UPLOAD_WORKERS) as pool:
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
