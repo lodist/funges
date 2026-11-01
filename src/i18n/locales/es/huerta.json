@@ -58,6 +58,15 @@
         "text": "Ten a mano con qué cubrir {{crops}}.",
         "title": "Posible helada la noche del {{night}}"
       },
+      "frostCheck": {
+        "lastNight": "{{crop}}: helada anoche",
+        "night": "{{crop}}: helada la noche del {{night}}",
+        "tender": "Unos {{low}} aquí. Cuando las plantas se hayan descongelado, míralas: las hojas que se pusieron oscuras, vidriosas o lacias se helaron. Si los tallos y las puntas también están negros, se han perdido.",
+        "tubers": "Unos {{low}} aquí. La helada ennegrece las hojas, pero los tubérculos vuelven a brotar: solo se han perdido si no sale nada en dos semanas.",
+        "hardy": "Unos {{low}} aquí, más frío del que suelen aguantar. Cuando las plantas se hayan descongelado, míralas: las hojas que siguen vidriosas o blandas se helaron. Si el cogollo sigue firme y verde, seguirán creciendo.",
+        "fine": "Están bien",
+        "gone": "Se han helado"
+      },
       "water": {
         "title": "Riega unos {{mm}} L/m² esta semana",
         "text": "La lluvia no repone lo que se llevan el sol y el viento. Dos buenos riegos valen más que uno diario.",
@@ -77,6 +86,7 @@
       },
       "from": {
         "forecast": "Según la previsión",
+        "weather": "Según el tiempo aquí",
         "plan": "Según tu plan",
         "soil": "Según tu suelo",
         "climate": "Del clima de tu zona"

@@ -46,7 +46,9 @@ export interface AdviceResponse {
     warm?: [string, string];
     /** Blight weather: bit k when the day before `day`, plus k days, is a
      *  blight day (k = 0..7). */
-    blight?: number;
+    blight?: number | null;
+    /** Each day's coldest hour from a week back, as `warm`. */
+    lows?: [string, string];
   };
 }
 
@@ -79,7 +81,8 @@ export const decodeAdvice = ({
       : (FROST[place.laterFrost] ?? 'none'),
   laterNight: place.laterNight ?? null,
   ...(place.warm ? { warm: decodeWarm(place.warm) } : {}),
-  ...(place.blight !== undefined ? { blight: place.blight } : {}),
+  ...(typeof place.blight === 'number' ? { blight: place.blight } : {}),
+  ...(place.lows ? { lows: decodeWarm(place.lows) } : {}),
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),

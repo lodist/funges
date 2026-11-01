@@ -58,6 +58,15 @@
         "text": "Tieni pronte le coperture per {{crops}}.",
         "title": "Possibile gelata {{night}} notte"
       },
+      "frostCheck": {
+        "lastNight": "{{crop}}: gelata stanotte",
+        "night": "{{crop}}: gelata {{night}} notte",
+        "tender": "Circa {{low}} qui. Quando le piante si sono scongelate, guardale: le foglie diventate scure, vitree o molli sono gelate. Se anche i fusti e le punte sono neri, sono perse.",
+        "tubers": "Circa {{low}} qui. Il gelo annerisce le foglie, ma i tuberi ributtano: sono perse solo se in due settimane non spunta niente.",
+        "hardy": "Circa {{low}} qui, più freddo di quanto reggano di solito. Quando le piante si sono scongelate, guardale: le foglie che restano vitree o molli sono gelate. Se il cuore è ancora sodo e verde, continuano a crescere.",
+        "fine": "Stanno bene",
+        "gone": "Sono gelate"
+      },
       "water": {
         "title": "Annaffia circa {{mm}} L/m² questa settimana",
         "text": "La pioggia non rende ciò che sole e vento si portano via. Due buone bagnature valgono più di una spruzzata al giorno.",
@@ -77,6 +86,7 @@
       },
       "from": {
         "forecast": "Dalle previsioni",
+        "weather": "Dal meteo della tua zona",
         "plan": "Dal tuo piano",
         "soil": "Dal tuo terreno",
         "climate": "Dal clima della tua zona"

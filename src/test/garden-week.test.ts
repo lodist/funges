@@ -234,6 +234,84 @@ describe("this week's to-do list", () => {
   });
 });
 
+describe('the frost check after a cold night', () => {
+  const needs = {
+    ...NEEDS,
+    potato: need('tender'),
+    phacelia: need('half_hardy'),
+  };
+  // The coldest hours from 4 May, a day each; 'today' the 9th.
+  const checks = (p: Plan, t: (number | null)[], today = '2026-05-09') =>
+    gardenWeek(
+      p,
+      { ...advice, lows: { start: '2026-05-04', t } },
+      needs,
+      today
+    ).filter(task => task.kind === 'frostCheck');
+
+  it('asks about a tender crop after any frost, a hardier one below what it takes', () => {
+    const p = plan(
+      ['tomato', '2026-05-01'],
+      ['lettuce', '2026-05-01'],
+      ['garlic', '2026-05-01']
+    );
+    expect(checks(p, [5, 5, 5, 5, -2, 3])).toEqual([
+      {
+        kind: 'frostCheck',
+        crop: 'tomato',
+        day: '2026-05-08',
+        low: -2,
+        lastNight: false,
+        signs: 'tender',
+      },
+    ]);
+    // Past -3, a half-hardy crop's limit without a hardiness of its own;
+    // garlic takes -10.
+    expect(
+      checks(p, [5, 5, 5, 5, -2, -4]).map(c => [c.crop, c.day, c.lastNight])
+    ).toEqual([
+      ['tomato', '2026-05-09', true],
+      ['lettuce', '2026-05-09', true],
+    ]);
+  });
+
+  it('only for a night since it went in, in the last week', () => {
+    expect(
+      checks(plan(['tomato', '2026-05-08']), [-2, 5, 5, 5, -1, 5])
+    ).toEqual([]);
+    const p = plan(['tomato', '2026-05-01']);
+    expect(checks(p, [-2, 5, 5, 5, 5, 5], '2026-05-10')).toHaveLength(1);
+    expect(checks(p, [-2, 5, 5, 5, 5, 5], '2026-05-11')).toEqual([]);
+  });
+
+  it('after "looks fine", only a colder night asks again', () => {
+    const p = {
+      ...plan(['tomato', '2026-05-01']),
+      done: { 'frostCheck:tomato:2026-05-08': '2026-05-08' },
+    };
+    expect(checks(p, [5, 5, 5, 5, -2, -1])).toEqual([]);
+    expect(checks(p, [5, 5, 5, 5, -2, -3])).toMatchObject([
+      { day: '2026-05-09', low: -3 },
+    ]);
+  });
+
+  it('a crop covered after the frost warning is asked about only in a harder frost', () => {
+    const p = {
+      ...plan(['tomato', '2026-05-01']),
+      done: { 'frost:frost:2026-W19': '2026-05-06' },
+    };
+    expect(checks(p, [5, 5, 5, 5, -1.5, 5])).toEqual([]);
+    expect(checks(p, [5, 5, 5, 5, -2.5, 5])).toMatchObject([{ low: -2.5 }]);
+  });
+
+  it('potatoes come again from their tubers; green manures are left to the frost', () => {
+    const p = plan(['potato', '2026-05-01'], ['phacelia', '2026-05-01']);
+    expect(checks(p, [5, 5, 5, 5, -5, 5])).toMatchObject([
+      { crop: 'potato', signs: 'tubers' },
+    ]);
+  });
+});
+
 describe('the dated plan', () => {
   const dated = (
     ...rows: [string, { planted?: string; sow?: string }][]

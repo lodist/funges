@@ -132,9 +132,24 @@ export type Step =
   | 'ripen'
   | 'harvest';
 
+/** What a frost does to a crop that shows once it has thawed: tender leaves
+ *  and stems blacken, potatoes come again from their tubers, hardier crops
+ *  hang limp and mostly stand up again. */
+export type FrostSigns = 'tender' | 'tubers' | 'hardy';
+
 export type Task =
   | { kind: 'frost'; level: 'frost' | 'ground_frost'; crops: string[] }
   | { kind: 'laterFrost'; night: string; crops: string[] }
+  /** A night colder than a planted crop lives through: `day` its morning,
+   *  `low` its coldest hour (°C). The gardener looks once it has thawed. */
+  | {
+      kind: 'frostCheck';
+      crop: string;
+      day: string;
+      low: number;
+      lastNight: boolean;
+      signs: FrostSigns;
+    }
   | { kind: 'water'; mm: number; soil: Texture }
   | { kind: 'soil'; note: SoilNote; crops: string[] }
   | { kind: 'rain'; mm: number }
@@ -501,6 +516,87 @@ export function coverUntil(
   return day ? { day, by: 'winter' } : null;
 }
 
+/** Nights looked back on for a frost a planted crop may not have lived
+ *  through (the advice's `lows` reach a week back). */
+const CHECK_DAYS = 7;
+/** °C a fleece takes off a frost: a crop the frost warning named, ticked off
+ *  as covered, is asked about only when the night was this much colder than
+ *  it lives through. */
+const FLEECE = 2;
+
+/** After a night colder than a planted crop lives through (tender crops any
+ *  frost, hardier ones their hardiness), one job per crop asks the gardener
+ *  to look at it once it has thawed: a cover, a frost hollow or new shoots
+ *  decide whether it lived, which the weather cannot tell. It asks about the
+ *  coldest such night in the last week since the crop went in; after "looks
+ *  fine", only a colder night asks again. */
+function frostChecks(
+  plan: Plan,
+  advice: PlaceAdvice,
+  needs: Record<string, CropNeeds>,
+  today: string,
+  year?: PlaceYear | null
+): Task[] {
+  const lows = advice.lows;
+  if (!lows) return [];
+  const done = plan.done ?? {};
+  const lowOn = (day: string) => lows.t[days(lows.start, day)] ?? null;
+  // The days a frost warning was ticked off: covered for the week after.
+  const covered = Object.entries(done)
+    .filter(
+      ([key]) => key.startsWith('frost:') || key.startsWith('laterFrost:')
+    )
+    .map(([, day]) => day);
+  const tasks: Task[] = [];
+  const planted = plan.sections.filter(s => s.crop && s.planted);
+  for (const crop of unique(planted.map(s => s.crop!))) {
+    const need = needs[crop];
+    // Green manures are left to the frost (some are grown to be killed by it).
+    if (!need || COVER.has(crop)) continue;
+    const tender = need.frost === 'tender';
+    const limit = tender
+      ? 0
+      : (year?.hardy?.[crop] ??
+        (need.frost === 'half_hardy' ? HARD_FROST : -10));
+    const since = planted
+      .filter(s => s.crop === crop)
+      .map(s => s.planted!)
+      .sort()[0];
+    // The last night the gardener said it looked fine after.
+    const seen = Object.keys(done)
+      .filter(key => key.startsWith(`frostCheck:${crop}:`))
+      .map(key => key.slice(-10))
+      .sort()
+      .pop();
+    const seenLow = seen ? lowOn(seen) : null;
+    let worst: { day: string; low: number } | null = null;
+    for (let i = 0; i < lows.t.length; i++) {
+      const low = lows.t[i];
+      const day = addDays(lows.start, i);
+      if (low === null || day > today || day <= since) continue;
+      if (days(day, today) >= CHECK_DAYS) continue;
+      if (tender ? low > limit : low >= limit) continue;
+      if (seen && (day <= seen || (seenLow !== null && low >= seenLow)))
+        continue;
+      const warned =
+        need.frost !== 'hardy' &&
+        covered.some(c => c <= day && days(c, day) <= CHECK_DAYS);
+      if (warned && low > limit - FLEECE) continue;
+      if (!worst || low <= worst.low) worst = { day, low };
+    }
+    if (worst)
+      tasks.push({
+        kind: 'frostCheck',
+        crop,
+        day: worst.day,
+        low: worst.low,
+        lastNight: worst.day === today,
+        signs: crop === 'potato' ? 'tubers' : tender ? 'tender' : 'hardy',
+      });
+  }
+  return tasks;
+}
+
 /** The ISO week of a YYYY-MM-DD day, as 2026-W43. */
 export function isoWeek(day: string) {
   const d = new Date(`${day}T12:00:00Z`);
@@ -551,6 +647,9 @@ export function gardenWeek(
     if (hurt.length)
       tasks.push({ kind: 'laterFrost', night: advice.laterNight, crops: hurt });
   }
+
+  // A night colder than a planted crop lives through: ask what it did.
+  tasks.push(...frostChecks(plan, advice, needs, today, year));
 
   // Pests the weather brings: blight weather, flies on the wing.
   tasks.push(...pestTasks(plan, advice, year?.temps, today));
@@ -707,6 +806,8 @@ export function jobKey(task: Task, plan: Plan, today: string): string | null {
       return `frost:${task.level}:${isoWeek(today)}`;
     case 'laterFrost':
       return `laterFrost:${task.night}`;
+    case 'frostCheck':
+      return `frostCheck:${task.crop}:${task.day}`;
     case 'water':
     case 'rain':
       return `${task.kind}:${isoWeek(today)}`;

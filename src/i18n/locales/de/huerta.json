@@ -58,6 +58,15 @@
         "text": "Halte Abdeckungen für {{crops}} bereit.",
         "title": "Frost möglich: {{night}}nacht"
       },
+      "frostCheck": {
+        "lastNight": "{{crop}}: Frost letzte Nacht",
+        "night": "{{crop}}: Frost in der {{night}}nacht",
+        "tender": "Etwa {{low}} hier. Schau dir die Pflanzen an, sobald sie aufgetaut sind: Blätter, die dunkel, glasig oder schlaff geworden sind, sind erfroren. Sind auch Stängel und Triebspitzen schwarz, sind sie hin.",
+        "tubers": "Etwa {{low}} hier. Frost schwärzt das Laub, aber die Knollen treiben wieder aus: Hin sind sie erst, wenn nach zwei Wochen nichts nachkommt.",
+        "hardy": "Etwa {{low}} hier, kälter, als sie meist vertragen. Schau dir die Pflanzen an, sobald sie aufgetaut sind: Blätter, die glasig oder matschig bleiben, sind erfroren. Ist das Herz noch fest und grün, wachsen sie weiter.",
+        "fine": "Sieht gut aus",
+        "gone": "Erfroren"
+      },
       "water": {
         "title": "Diese Woche etwa {{mm}} L/m² giessen",
         "text": "Der Regen ersetzt nicht, was Sonne und Wind nehmen. Zweimal gründlich giessen ist besser als täglich ein bisschen.",
@@ -77,6 +86,7 @@
       },
       "from": {
         "forecast": "Laut Vorhersage",
+        "weather": "Laut Wetter vor Ort",
         "plan": "Laut deinem Plan",
         "soil": "Laut deinem Boden",
         "climate": "Aus dem Klima deines Ortes"
