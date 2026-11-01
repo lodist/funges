@@ -290,7 +290,7 @@ function hull(ps: Point[]) {
   return [...half(pts), ...half([...pts].reverse())];
 }
 
-/** The shadows the sides cast on the ground on the 15th of `month`, `hour`
+/** The shadows the sides cast on the ground on `date` (YYYY-MM-DD), `hour`
  *  hours of solar time: a polygon a wall in the plot's frame, its edge swept
  *  away from the sun as far as its height over the tangent of the sun's
  *  height (the same sun and heights the hours are counted with), with the
@@ -298,11 +298,14 @@ function hull(ps: Point[]) {
 export function shadows(
   g: Garden,
   lat: number,
-  month: number,
+  date: string,
   hour: number,
   leaf: (month: number) => number = leafOf()
 ): { points: Point[]; through: number }[] {
-  const { height, bearing } = sunPosition(lat, MID[month], hour);
+  const [y, m, d] = date.split('-').map(Number);
+  const day = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(y, 0, 1)) / 864e5);
+  const month = m - 1;
+  const { height, bearing } = sunPosition(lat, day, hour);
   if (height < 3 * DEG) return [];
   const turn = bearing - (g.north ?? 0) * DEG;
   const dx = Math.sin(turn),

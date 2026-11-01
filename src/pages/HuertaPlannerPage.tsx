@@ -308,7 +308,10 @@ function Planner({ onMoved }: { onMoved: () => void }) {
     [garden, lat, leaf]
   );
   const planDay = forMonths ? target : today();
-  const shownMonth = Number(planDay.slice(5, 7)) - 1;
+  // The day the drawing shows: the timeline's when it is moved, else the
+  // one planned for. The shade, the tones and each spot's sun are that day's.
+  const shownDay = later ? addDays(today(), 7 * later) : planDay;
+  const shownMonth = Number(shownDay.slice(5, 7)) - 1;
   // The months crops grow through at the place: a mean above 5 °C.
   const temps = year?.temps;
   const grows = temps ? (m: number) => temps[m] > 5 : undefined;
@@ -572,7 +575,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
     if (!light) return undefined;
     const m = light.months(x)[shownMonth];
     const w = sunWhen(light, m, shownMonth);
-    const month = monthName(planDay);
+    const month = monthName(shownDay);
     return w === 'none'
       ? t('planner.sun.none', { month })
       : t('planner.sun.here', {
@@ -1118,7 +1121,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                     garden={plan.garden}
                     sunAt={light ? x => level(light, x, shownMonth) : undefined}
                     lat={lat}
-                    month={shownMonth}
+                    day={shownDay}
                     leaf={leaf}
                     sections={drawn}
                     selected={patch === null ? chosen : []}

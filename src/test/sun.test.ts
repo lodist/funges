@@ -103,7 +103,7 @@ describe('the sun a garden gets', () => {
   it('casts each side its shadow, as long as its height over the sun', () => {
     // Zug, 15 March, solar noon: the sun 40° up, due south. A 2 m fence on
     // the south side (y = 20) throws 2 / tan(40°) = 2.4 m of shade north.
-    const [fence] = shadows(plot({ bottom: 'fence' }), 47.17, 2, 12);
+    const [fence] = shadows(plot({ bottom: 'fence' }), 47.17, '2026-03-15', 12);
     const ys = fence.points.map(([, y]) => y);
     expect(Math.min(...ys)).toBeCloseTo(
       20 - 2 / Math.tan((40 * Math.PI) / 180),
@@ -112,15 +112,17 @@ describe('the sun a garden gets', () => {
     expect(Math.max(...ys)).toBeCloseTo(20, 5);
     expect(fence.through).toBe(0);
     // A 6 m house throws three times as far; in June far less.
-    const [house] = shadows(plot({ bottom: 'house' }), 47.17, 2, 12);
+    const [house] = shadows(plot({ bottom: 'house' }), 47.17, '2026-03-15', 12);
     expect(20 - Math.min(...house.points.map(([, y]) => y))).toBeCloseTo(
       3 * (20 - Math.min(...ys)),
       1
     );
-    const [june] = shadows(plot({ bottom: 'house' }), 47.17, 5, 12);
+    const [june] = shadows(plot({ bottom: 'house' }), 47.17, '2026-06-15', 12);
     expect(20 - Math.min(...june.points.map(([, y]) => y))).toBeLessThan(3);
     // Before sunrise there is no shadow to draw.
-    expect(shadows(plot({ bottom: 'house' }), 47.17, 11, 5)).toEqual([]);
+    expect(shadows(plot({ bottom: 'house' }), 47.17, '2026-12-15', 5)).toEqual(
+      []
+    );
   });
 
   it('lets the sun through trees, more of it when they are bare', () => {
@@ -140,7 +142,13 @@ describe('the sun a garden gets', () => {
       THROUGH.bare * winter.open[DEC],
       5
     );
-    const [shade] = shadows(plot({ bottom: 'trees' }), 47, 5, 12, inLeaf);
+    const [shade] = shadows(
+      plot({ bottom: 'trees' }),
+      47,
+      '2026-06-15',
+      12,
+      inLeaf
+    );
     expect(shade.through).toBeCloseTo(THROUGH.leaf, 5);
     // By the place's air: bare at 5 °C, in full leaf from 12 °C.
     const leaf = leafOf([1, 3, 6, 9, 13, 17, 19, 18, 15, 10, 5, 2]);
@@ -172,6 +180,6 @@ describe('the sun a garden gets', () => {
     const m = sunlight(g, 47)!.months(spot(10, 15))[JUN];
     expect(m.am).toBeLessThan(m.hours - m.am);
     // Each edge casts its own shadow.
-    expect(shadows(g, 47, 5, 9)).toHaveLength(4);
+    expect(shadows(g, 47, '2026-06-15', 9)).toHaveLength(4);
   });
 });
