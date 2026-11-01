@@ -2341,9 +2341,9 @@
       "shortHint": "Culturas num lugar com menos sol do que precisam. Toque para selecioná-las."
     },
     "sideBand": {
-      "fence": "Cerca, 2 m",
-      "house": "Casa, 6 m",
-      "trees": "Árvores, 10 m"
+      "fence": "Cerca",
+      "house": "Casa",
+      "trees": "Árvores"
     },
     "shade": {
       "label": "Sombra em {{date}}",

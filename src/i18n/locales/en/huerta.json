@@ -2341,9 +2341,9 @@
       "shortHint": "Crops in a spot with less sun than they need. Tap to select them."
     },
     "sideBand": {
-      "fence": "Fence, 2 m",
-      "house": "House, 6 m",
-      "trees": "Trees, 10 m"
+      "fence": "Fence",
+      "house": "House",
+      "trees": "Trees"
     },
     "shade": {
       "label": "Shade on {{date}}",
