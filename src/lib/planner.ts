@@ -1275,3 +1275,11 @@ export function withinLimits(plan: Plan): Plan {
 }
 
 export const savePlan = (plan: Plan) => updateGarden({ plan });
+
+/** The sections selected after a tap on section `i`: it alone (none when it
+ *  was already alone), or with `add` (the Select tool on, or a key held) it
+ *  joins the others or leaves them. */
+export function tap(sel: number[], i: number, add: boolean) {
+  if (add) return sel.includes(i) ? sel.filter(k => k !== i) : [...sel, i];
+  return sel.length === 1 && sel[0] === i ? [] : [i];
+}
