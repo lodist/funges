@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import type { Garden } from '@/lib/planner';
 import {
+  bedLight,
+  diffuseShare,
   leafOf,
   level,
   season,
@@ -155,6 +157,27 @@ describe('the sun a garden gets', () => {
     expect(leaf(0)).toBe(0);
     expect(leaf(4)).toBe(1);
     expect(leaf(3)).toBeCloseTo(4 / 7, 5);
+  });
+
+  it("splits the sunshine into the sky's and the sun's by how clear the month is", () => {
+    // Zug's sunny June (20 MJ a day, a clear-ish sky) is mostly direct sun;
+    // its grey December (3 MJ) mostly the sky's.
+    const june = diffuseShare(47, JUN, 20);
+    const december = diffuseShare(47, DEC, 3);
+    expect(june).toBeGreaterThan(0.25);
+    expect(june).toBeLessThan(0.5);
+    expect(december).toBeGreaterThan(june);
+  });
+
+  it("gives a bed the sky's light whole and the sun's as far as the sides let it", () => {
+    const sun = Array(12).fill(12);
+    const light = sunlight(plot({ bottom: 'house' }), 47)!;
+    // Far from the house in June: as an open spot.
+    expect(bedLight(light, spot(10, 2), 47, sun)[JUN]).toBeCloseTo(1, 2);
+    // Right behind it in December: only the sky's share.
+    const behind = bedLight(light, spot(10, 19), 47, sun)[DEC];
+    expect(behind).toBeLessThan(1);
+    expect(behind).toBeCloseTo(diffuseShare(47, DEC, 12), 2);
   });
 
   it("carries a side along an L's outline, round its cut corner", () => {
