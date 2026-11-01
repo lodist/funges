@@ -211,7 +211,9 @@ interface GardenModelProps {
   selected: number[];
   /** Quarter turns from north up the left. */
   turn?: number;
-  onSelect: (index: number) => void;
+  /** A tap on a section; `add` when it joins the selection (the Select
+   *  tool on, or Shift, Ctrl or Cmd held) instead of replacing it. */
+  onSelect: (index: number, add?: boolean) => void;
   /** Sections taken in at once by dragging over them (in area mode, or
    *  with Shift held): added to the selection. */
   onSelectArea?: (indices: number[]) => void;
@@ -404,7 +406,9 @@ export function GardenModel({
   };
   const pts = (ps: [number, number][]) =>
     ps.map(p => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
-  const select = (i: number) => () => onSelect(i);
+  const select =
+    (i: number) => (e: Pick<MouseEvent, 'shiftKey' | 'ctrlKey' | 'metaKey'>) =>
+      onSelect(i, area || e.shiftKey || e.ctrlKey || e.metaKey);
   // A tap off every bed (a path, a board, the border): the bed nearest the
   // ground point under it, within REACH, so a fingertip need not land inside.
   const nearest = (svg: SVGSVGElement, cx: number, cy: number) => {
@@ -1662,7 +1666,7 @@ export function GardenModel({
           onClick={e => {
             if ((e.target as Element).closest('[data-sec]')) return;
             const i = nearest(e.currentTarget, e.clientX, e.clientY);
-            if (i !== null) onSelect(i);
+            if (i !== null) select(i)(e);
           }}
           // Nothing in the drawing is dragged off (a picture, a word): a drag
           // moves the drawing. Crops dragged onto it come from the palette.

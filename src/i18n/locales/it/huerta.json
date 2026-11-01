@@ -2227,7 +2227,7 @@
     "selected_one": "{{count}} parte selezionata",
     "selected_other": "{{count}} parti selezionate",
     "clearSelection": "Annulla la selezione",
-    "noneSelected": "Tocca un'aiuola per vederla. Toccane altre per cambiarle insieme.",
+    "noneSelected": "Tocca un'aiuola per vederla. Per cambiarne diverse insieme, tocca Seleziona e trascina sulle aiuole.",
     "palette": {
       "title": "Colture",
       "hint": "Tieni premuta una coltura e trascinala su un'aiuola, oppure seleziona le aiuole e tocca una coltura.",

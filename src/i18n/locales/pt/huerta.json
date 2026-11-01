@@ -2227,7 +2227,7 @@
     "selected_one": "{{count}} parte selecionada",
     "selected_other": "{{count}} partes selecionadas",
     "clearSelection": "Limpar a seleção",
-    "noneSelected": "Toque num canteiro para vê-lo. Toque em mais para mudá-los juntos.",
+    "noneSelected": "Toque num canteiro para vê-lo. Para mudar vários juntos, toque em Selecionar e arraste sobre eles.",
     "palette": {
       "title": "Culturas",
       "hint": "Mantenha uma cultura premida e arraste-a para um canteiro, ou selecione canteiros e toque numa cultura.",

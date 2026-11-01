@@ -33,6 +33,7 @@ import {
   shortOfSun,
   split,
   summary,
+  tap,
   sunNeed,
   type Garden,
   type Plan,
@@ -627,5 +628,18 @@ describe('Plan it for me and the sun', () => {
     expect(shortOfSun({ ...one, crop: 'lettuce' }, () => 4)).toBe(false);
     expect(shortOfSun({ ...one, crop: 'tomato' }, () => null)).toBe(false);
     expect(shortOfSun({ ...one, crop: 'tomato' })).toBe(false);
+  });
+});
+
+describe('a tap on a section', () => {
+  it('selects it alone, and nothing when it was alone already', () => {
+    expect(tap([2, 5], 3, false)).toEqual([3]);
+    expect(tap([2, 5], 5, false)).toEqual([5]);
+    expect(tap([3], 3, false)).toEqual([]);
+  });
+
+  it('adds it to the others or takes it out with the Select tool', () => {
+    expect(tap([2], 3, true)).toEqual([2, 3]);
+    expect(tap([2, 3], 3, true)).toEqual([2]);
   });
 });

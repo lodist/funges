@@ -96,6 +96,7 @@ import {
   shortOfSun,
   split,
   summary,
+  tap,
   UNIT,
   WONT_GROW,
   type Axis,
@@ -228,7 +229,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const [plan, setPlan] = useState<Plan | null>(() => loadPlan());
   // The sections just planted, while their plants come up.
   const [fresh, setFresh] = useState<number[]>([]);
-  // The sections selected: tapping one adds it, tapping it again takes it out.
+  // The sections selected: a tap picks one alone (again: none), the Select
+  // tool or a held key adds to them.
   const [sel, setSel] = useState<number[]>([]);
   // A deleted bed's patch of earth, when one is picked instead of a section.
   const [patch, setPatch] = useState<number | null>(null);
@@ -391,8 +393,8 @@ function Planner({ onMoved }: { onMoved: () => void }) {
           x => !x.planted
         )
       : sections;
-  const pick = (i: number) => {
-    setSel(cur => (cur.includes(i) ? cur.filter(k => k !== i) : [...cur, i]));
+  const pick = (i: number, add = false) => {
+    setSel(cur => tap(cur, i, add));
     setPatch(null);
   };
   const only = (i: number) => {

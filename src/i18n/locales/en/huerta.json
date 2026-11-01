@@ -2227,7 +2227,7 @@
     "selected_one": "{{count}} section selected",
     "selected_other": "{{count}} sections selected",
     "clearSelection": "Clear selection",
-    "noneSelected": "Tap a bed to see it. Tap more beds to change them together.",
+    "noneSelected": "Tap a bed to see it. To change several together, tap Select and drag over them.",
     "palette": {
       "title": "Crops",
       "hint": "Hold a crop and drag it onto a bed, or select beds and tap a crop.",

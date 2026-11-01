@@ -2227,7 +2227,7 @@
     "selected_one": "{{count}} parte seleccionada",
     "selected_other": "{{count}} partes seleccionadas",
     "clearSelection": "Quitar la selección",
-    "noneSelected": "Toca un bancal para verlo. Toca más para cambiarlos a la vez.",
+    "noneSelected": "Toca un bancal para verlo. Para cambiar varios a la vez, toca Seleccionar y arrastra sobre ellos.",
     "palette": {
       "title": "Cultivos",
       "hint": "Mantén pulsado un cultivo y arrástralo a un bancal, o selecciona bancales y toca un cultivo.",
