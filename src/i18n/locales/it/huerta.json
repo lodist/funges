@@ -2272,7 +2272,8 @@
       "ready": "Da raccogliere: {{crops}}",
       "growing": "In crescita: {{crops}}",
       "empty": "Niente nella terra",
-      "lost": "Perso: {{crops}}"
+      "lost": "Perso: {{crops}}",
+      "resting": "A riposo fino alla primavera: {{crops}}"
     },
     "tab": {
       "list": "Elenco",

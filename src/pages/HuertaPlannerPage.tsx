@@ -185,7 +185,7 @@ function plannedFor(plan: Plan | null) {
 }
 /** A stage on the timeline as the drawing's plants show it. */
 const drawnAs = (g: GrowthStage): Stage =>
-  g === 'seedling' || g === 'young' ? g : 'grown';
+  g === 'seedling' || g === 'young' || g === 'fading' ? g : 'grown';
 /** The tick for the guide's second step: the plan kept or changed. */
 const KEPT = 'guide:plan';
 /** Sown or planted at once up to this many, their plants come up on the
@@ -638,7 +638,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   // Today, a planted crop already lost or over shows bare too.
   const gone = (x: Section, i: number) =>
     stages
-      ? stages[i] === 'bare' || stages[i] === 'lost'
+      ? stages[i] === 'bare' || stages[i] === 'lost' || stages[i] === 'resting'
       : Boolean(
           x.crop &&
           x.planted &&
@@ -669,6 +669,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   const readyThen = cropsAt(['ready']);
   const growingThen = cropsAt(['seedling', 'young', 'grown']);
   const lostThen = cropsAt(['lost']);
+  const restingThen = cropsAt(['fading', 'resting']);
   const beds = new Set(plan.sections.map(x => x.bed)).size;
 
   return (
@@ -1199,6 +1200,10 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                           t('planner.timeline.growing', { crops: growingThen }),
                         lostThen &&
                           t('planner.timeline.lost', { crops: lostThen }),
+                        restingThen &&
+                          t('planner.timeline.resting', {
+                            crops: restingThen,
+                          }),
                       ]
                         .filter(Boolean)
                         .join(' · ') || t('planner.timeline.empty')
