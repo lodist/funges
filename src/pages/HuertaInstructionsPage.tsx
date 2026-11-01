@@ -68,6 +68,15 @@ const KEY_DATASETS = [
   ['towns', LAND],
 ] as const;
 
+// My garden, step by step, in the order the planner is met.
+const GARDEN_STEPS = [
+  ['setup', ['place', 'size', 'north', 'around', 'soil']],
+  ['plan', ['when', 'auto', 'change', 'checks', 'timeline', 'list']],
+  ['week', ['todo', 'finish']],
+] as const;
+const stepsBefore = (group: number) =>
+  GARDEN_STEPS.slice(0, group).reduce((n, [, steps]) => n + steps.length, 0);
+
 /** A palette colour as CSS, without the map's transparency. */
 const css = ([r, g, b]: readonly number[]) => `rgb(${r},${g},${b})`;
 
@@ -212,16 +221,46 @@ export default function HuertaInstructionsPage() {
                 {t('huerta.garden.title')}
               </CardTitle>
             </CardHeader>
-            <CardContent className='space-y-5 text-foreground'>
-              {(['place', 'plan', 'week'] as const).map(item => (
-                <div key={item}>
-                  <h3 className='mb-1 text-base font-semibold text-foreground'>
-                    {t(`huerta.garden.${item}Title`)}
+            <CardContent className='space-y-6 text-foreground'>
+              <div className='space-y-3 leading-relaxed'>
+                <p>{t('huerta.garden.intro')}</p>
+                <p className='text-muted-foreground'>
+                  {t('huerta.garden.phone')}
+                </p>
+              </div>
+              {GARDEN_STEPS.map(([group, steps], g) => (
+                <section key={group} aria-labelledby={`garden-${group}`}>
+                  <h3
+                    id={`garden-${group}`}
+                    className='mb-4 text-lg font-semibold text-foreground'
+                  >
+                    {t(`huerta.garden.${group}.title`)}
                   </h3>
-                  <p className='leading-relaxed'>
-                    {t(`huerta.garden.${item}`)}
-                  </p>
-                </div>
+                  {/* Numbered on from the group before: one walk-through. */}
+                  <ol
+                    start={stepsBefore(g) + 1}
+                    className='flex flex-col gap-5'
+                  >
+                    {steps.map((step, i) => (
+                      // The number beside the title, the text full width
+                      // under both: a phone keeps its whole line for it.
+                      <li key={step}>
+                        <h4 className='mb-1 flex items-center gap-3 text-base font-semibold text-foreground'>
+                          <span
+                            aria-hidden
+                            className='flex size-7 shrink-0 items-center justify-center rounded-full bg-band text-sm font-semibold text-band-foreground tabular-nums'
+                          >
+                            {stepsBefore(g) + i + 1}
+                          </span>
+                          {t(`huerta.garden.${group}.${step}.title`)}
+                        </h4>
+                        <p className='leading-relaxed'>
+                          {t(`huerta.garden.${group}.${step}.text`)}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
               ))}
               <Button asChild variant='outline'>
                 <Link to={huertaPage('planner', i18n.language)}>
@@ -254,7 +293,7 @@ export default function HuertaInstructionsPage() {
           </Card>
 
           {/* The account where Terra has photo ID: the one thing Huerta keeps
-              about you, and the place for its warning. */}
+              about you. */}
           <Card className='mb-8'>
             <CardHeader>
               <CardTitle className='flex items-center gap-3 text-2xl'>
@@ -266,9 +305,6 @@ export default function HuertaInstructionsPage() {
               <p>{t('huerta.account.intro')}</p>
               <p>{t('huerta.account.kept')}</p>
               <p>{t('huerta.account.delete')}</p>
-              <p className='rounded-lg bg-status-warning-background border border-status-warning-border p-4 text-sm text-status-warning-text'>
-                {t('huerta.account.limits')}
-              </p>
             </CardContent>
           </Card>
 

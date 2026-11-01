@@ -153,12 +153,69 @@
     },
     "garden": {
       "title": "Mi huerto",
-      "placeTitle": "¿Dónde está tu huerto?",
-      "place": "Búscalo en el mapa o escribe tu pueblo. Todo lo que te dice Huerta está pensado para ese lugar: sus heladas, su suelo y su tiempo.",
-      "planTitle": "Planifica tus bancales",
-      "plan": "Dibuja tus bancales y gira la aguja hacia el norte. «Planifícalo por mí» los llena con lo que se puede sembrar en tu zona y separa los cultivos que no se llevan bien. Toca un bancal y luego un cultivo para cambiarlo.",
-      "weekTitle": "Cada semana",
-      "week": "«Para hacer esta semana» te dice qué sembrar, plantar, regar, tapar y cosechar, y dónde. Marca cada tarea cuando la hayas hecho. Huerta sigue luego cómo crece cada cultivo y te avisa cuando está listo."
+      "intro": "En «Mi huerto» dibujas tu huerto, decides qué va en cada sitio y lo sigues de la siembra a la cosecha. Lo preparas una vez y cada semana te dice qué hacer.",
+      "phone": "En el móvil tiene tres pestañas: Huerto para el dibujo, Lista para el plan por cultivos y Tareas para los trabajos de la semana.",
+      "setup": {
+        "title": "Prepara tu huerto",
+        "place": {
+          "title": "Elige tu lugar",
+          "text": "Toca «Elige tu lugar» arriba y busca tu pueblo o usa tu ubicación. También puedes abrir el mapa, tocar tu sitio y elegir «Usar como mi huerto». El lugar decide el resto: cuándo hiela, cómo es el suelo y cuándo puede ir cada cultivo."
+        },
+        "size": {
+          "title": "Dibuja el huerto",
+          "text": "Pon el ancho y el largo en metros y elige rectángulo o en L. Luego di cómo cultivas (bancales elevados, bancales en el suelo o surcos en campo abierto) y hacia dónde van los bancales. Huerta reparte los bancales y los pasillos entre ellos. En el móvil estos ajustes se recogen en una línea encima del dibujo: tócala para abrirlos."
+        },
+        "north": {
+          "title": "Oriéntalo al norte",
+          "text": "Gira la aguja del dibujo hasta que apunte al norte, como está de verdad tu huerto. Huerta lo necesita para calcular el sol de cada bancal y poner los cultivos altos en el lado norte, donde no dan sombra a los demás."
+        },
+        "around": {
+          "title": "Di qué hay alrededor",
+          "text": "En «Alrededor del huerto», elige qué hay en cada lado: nada, una valla o un seto, una casa o un muro o árboles altos. Huerta cuenta entonces las horas de sol de cada bancal, mes a mes. Seis horas o más es pleno sol. Si hay algo en un lado, los botones del dibujo en 3D muestran su sombra por la mañana, a mediodía y por la tarde. El plano, la vista desde arriba, muestra el sol de cada sitio."
+        },
+        "soil": {
+          "title": "Revisa el suelo",
+          "text": "Huerta rellena tu suelo a partir de mapas de suelos: el tipo (arenoso, franco o arcilloso) y el pH. Si sabes que el tuyo es distinto, cámbialo. El suelo arenoso se calienta antes en primavera y se seca más rápido. El arcilloso se calienta más tarde y guarda el agua más tiempo. Si tu suelo necesita algo para un cultivo, como cal antes de las coles en suelo ácido, te lo dice Tareas."
+        }
+      },
+      "plan": {
+        "title": "Planifica qué va dónde",
+        "when": {
+          "title": "Elige cuándo",
+          "text": "«Planificar para» fija cuándo va a la tierra todo lo que aún no está: Hoy o uno de los próximos doce meses. Si eliges un mes, la línea de tiempo empieza ahí."
+        },
+        "auto": {
+          "title": "Deja que Huerta lo planifique",
+          "text": "Toca «Planifícalo por mí» y elige qué cultivar: un huerto mixto, solo hortalizas, hortalizas con flores al final de cada bancal, primero fruta o aromáticas y flores. Huerta llena los bancales con cultivos que pueden ir en ese momento en tu zona. Cada bancal lleva una familia. Cebollas y ajos van lejos de guisantes y judías, los cultivos altos van al lado norte y cada cultivo va donde tiene el sol que necesita. Ninguna familia vuelve al bancal donde estuvo el año pasado. Si en ese momento no puede ir nada, el bancal queda vacío. Lo que ya has plantado se queda como está. Con bancales seleccionados, solo planifica esos."
+        },
+        "change": {
+          "title": "Cámbialo a tu gusto",
+          "text": "Toca un bancal para ver qué crece en él: cuántas plantas, a qué distancia, cuándo estarán listas y qué vecinos vigilar. Para poner otra cosa, elígela en «Cambiar por», arrástrala desde los cultivos bajo el dibujo hasta un bancal o selecciona bancales y toca un cultivo. Para seleccionar varios, toca «Seleccionar» y arrastra por encima. Puedes dividir una sección en dos, unirla con la siguiente o hacerla más larga o más corta. También puedes borrar un bancal entero. «Deshacer» quita el último cambio."
+        },
+        "checks": {
+          "title": "Mira los avisos",
+          "text": "Bajo el dibujo, Huerta cuenta los buenos vecinos, las parejas que hay que separar y los cultivos con demasiada sombra. Toca uno para seleccionar los bancales de los que habla. Una etiqueta roja en un bancal dice que el cultivo no puede ir en la fecha planificada y por qué."
+        },
+        "timeline": {
+          "title": "Míralo crecer",
+          "text": "Desliza la línea de tiempo bajo el dibujo para ver tu huerto en las próximas semanas: qué crece, qué está listo y qué matará el frío. Las plantas claras están planificadas pero aún no en la tierra."
+        },
+        "list": {
+          "title": "Planifica por cultivo",
+          "text": "«Qué crece aquí» muestra el plan por cultivos: sus secciones, cuántas plantas y para cuántas personas dan. En el ordenador está junto al dibujo y en el móvil en Lista. Añade un cultivo, dale una sección más o menos o vuelve a sembrarlo por tandas cada pocas semanas. «Ordenar» pone cada cultivo en una sola pieza, las familias juntas y lejos de donde estuvieron los últimos tres años."
+        }
+      },
+      "week": {
+        "title": "Cada semana",
+        "todo": {
+          "title": "Siembra y marca",
+          "text": "«Para hacer esta semana» enumera cada tarea y dónde hacerla: qué sembrar o plantar, regar, tapar contra la helada, aclarar, entutorar, abonar y cosechar, además de avisos de mildiu y de moscas. Toca «Sembrado hoy» o «Plantado hoy» cuando algo va a la tierra y «Hecho» para lo demás. Desde entonces Huerta sigue cada cultivo según el calor que recibe y te dice cuándo está listo. «Próximamente» muestra las cuatro semanas siguientes."
+        },
+        "finish": {
+          "title": "Cuando un cultivo termina",
+          "text": "Cuando hayas cogido lo último o se haya perdido, dilo en su bancal: cosechado, o perdido y por qué. Pasa a «Esta temporada». El año que viene Huerta mantiene cada familia fuera de los bancales donde acaba de estar."
+        }
+      }
     },
     "functions": {
       "title": "Funciones",
@@ -172,8 +229,7 @@
       "title": "Tu cuenta",
       "intro": "Huerta te pide entrar con Google. Así tus huertos son los mismos en el móvil y en el ordenador.",
       "kept": "Huerta guarda tu correo y tus huertos: sus nombres, sus planes y su lugar, redondeado a 1 km más o menos. Nunca sabe tu dirección.",
-      "delete": "Puedes borrar tu cuenta con todo lo que contiene cuando quieras: en Ayuda → Cuenta en un ordenador o en Configuración en un móvil.",
-      "limits": "Huerta está en una primera versión. Sus consejos salen de las previsiones del tiempo y de un año típico en tu zona. Las previsiones pueden fallar: mira tu suelo y el cielo antes de sembrar y ten a mano algo para tapar contra la helada."
+      "delete": "Puedes borrar tu cuenta con todo lo que contiene cuando quieras: en Ayuda → Cuenta en un ordenador o en Configuración en un móvil."
     },
     "about": {
       "title": "Sobre Huerta",

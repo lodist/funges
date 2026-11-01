@@ -153,12 +153,69 @@
     },
     "garden": {
       "title": "Mein Garten",
-      "placeTitle": "Wo ist dein Garten?",
-      "place": "Such ihn auf der Karte oder gib deinen Ort ein. Alles, was Huerta dir sagt, gilt für genau diesen Ort: seine Frosttermine, seinen Boden und sein Wetter.",
-      "planTitle": "Beete planen",
-      "plan": "Zeichne deine Beete und dreh die Nadel nach Norden. „Für mich planen“ füllt sie mit dem, was bei dir jetzt in die Erde kann, und hält Pflanzen auseinander, die sich nicht vertragen. Tippe auf ein Beet und dann auf eine Pflanze, um etwas zu ändern.",
-      "weekTitle": "Jede Woche",
-      "week": "„Diese Woche zu tun“ sagt dir, was du wo säen, pflanzen, giessen, abdecken und ernten sollst. Hake jede Arbeit ab, wenn sie erledigt ist. Huerta verfolgt dann, wie jede Pflanze wächst, und sagt dir, wann du ernten kannst."
+      "intro": "In „Mein Garten“ zeichnest du deinen Garten, legst fest, was wo wächst, und begleitest alles von der Aussaat bis zur Ernte. Einmal eingerichtet, sagt er dir jede Woche, was zu tun ist.",
+      "phone": "Auf dem Handy hat er drei Reiter: Garten für die Zeichnung, Liste für den Plan nach Kulturen und Zu tun für die Arbeiten dieser Woche.",
+      "setup": {
+        "title": "Garten einrichten",
+        "place": {
+          "title": "Ort wählen",
+          "text": "Tippe oben auf „Wähle deinen Ort“ und such deinen Ort oder nimm deinen Standort. Oder öffne die Karte, tippe auf deine Stelle und wähle „Als meinen Garten nehmen“. Der Ort bestimmt alles Weitere: wann Frost kommt, wie der Boden ist und wann jede Pflanze in die Erde kann."
+        },
+        "size": {
+          "title": "Garten zeichnen",
+          "text": "Gib Breite und Länge in Metern ein und wähle Rechteck oder L-Form. Dann sag, wie du gärtnerst (Hochbeete, Beete im Boden oder Reihen im offenen Feld) und in welche Richtung die Beete laufen. Huerta legt die Beete und die Wege dazwischen an. Auf dem Handy stecken diese Einstellungen in einer Zeile über der Zeichnung: Tippe darauf, um sie zu öffnen."
+        },
+        "north": {
+          "title": "Nach Norden ausrichten",
+          "text": "Dreh die Nadel auf der Zeichnung, bis sie nach Norden zeigt, so wie dein Garten wirklich liegt. Huerta braucht das, um die Sonne auf jedem Beet zu berechnen und hohe Pflanzen ans Nordende zu setzen, wo sie den anderen keinen Schatten machen."
+        },
+        "around": {
+          "title": "Sagen, was rundherum steht",
+          "text": "Wähle unter „Rund um den Garten“, was auf jeder Seite steht: nichts, ein Zaun oder eine Hecke, ein Haus oder eine Mauer oder hohe Bäume. Huerta zählt dann Monat für Monat die Sonnenstunden auf jedem Beet. Ab sechs Stunden ist es volle Sonne. Steht auf einer Seite etwas, zeigen die Knöpfe auf der 3D-Zeichnung seinen Schatten am Morgen, am Mittag und am Nachmittag. Der Plan, die Ansicht von oben, zeigt die Sonne an jeder Stelle."
+        },
+        "soil": {
+          "title": "Boden prüfen",
+          "text": "Huerta trägt deinen Boden aus Bodenkarten ein: die Art (Sand, Lehm oder Ton) und den pH-Wert. Wenn du weisst, dass deiner anders ist, ändere es. Sandboden wird im Frühling früher warm und trocknet schneller aus. Tonboden wird später warm und hält das Wasser länger. Braucht dein Boden für eine Pflanze Pflege, etwa Kalk vor dem Kohl auf saurem Boden, steht es unter „Zu tun“."
+        }
+      },
+      "plan": {
+        "title": "Planen, was wohin kommt",
+        "when": {
+          "title": "Zeitpunkt wählen",
+          "text": "„Planen für“ legt fest, wann alles in die Erde kommt, was noch nicht drin ist: Heute oder einer der nächsten zwölf Monate. Wählst du einen Monat, beginnt die Zeitleiste dort."
+        },
+        "auto": {
+          "title": "Huerta planen lassen",
+          "text": "Tippe auf „Für mich planen“ und wähle, was du anbauen willst: einen gemischten Garten, nur Gemüse, Gemüse mit Blumen am Ende jedes Beets, Obst zuerst oder Kräuter und Blumen. Huerta füllt die Beete mit dem, was dann an deinem Ort in die Erde kann. Jedes Beet bekommt eine Pflanzenfamilie. Zwiebeln und Knoblauch kommen nicht neben Erbsen und Bohnen, hohe Pflanzen kommen ans Nordende und jede Pflanze dorthin, wo sie genug Sonne hat. Keine Familie kommt zurück in das Beet, in dem sie letztes Jahr stand. Kann zu der Zeit nichts in die Erde, bleibt das Beet leer. Was du schon gepflanzt hast, bleibt, wie es ist. Hast du Beete ausgewählt, plant Huerta nur diese."
+        },
+        "change": {
+          "title": "Nach deinem Geschmack ändern",
+          "text": "Tippe auf ein Beet, um zu sehen, was dort wächst: wie viele Pflanzen, in welchem Abstand, wann sie reif sind und auf welche Nachbarn du achten musst. Willst du etwas anderes, wähl es unter „Tauschen gegen“, zieh es aus den Pflanzen unter der Zeichnung auf ein Beet oder wähl Beete aus und tippe auf eine Pflanze. Um mehrere Beete auszuwählen, tippe auf „Auswählen“ und zieh über sie. Du kannst einen Abschnitt teilen, mit dem nächsten verbinden oder länger und kürzer machen. Du kannst auch ein ganzes Beet löschen. „Rückgängig“ nimmt die letzte Änderung zurück."
+        },
+        "checks": {
+          "title": "Die Hinweise lesen",
+          "text": "Unter der Zeichnung zählt Huerta die guten Nachbarn, die Paare, die man trennen sollte, und die Pflanzen mit zu wenig Sonne. Tippe darauf, um die Beete auszuwählen, um die es geht. Eine rote Markierung auf einem Beet sagt dir, dass die Pflanze zur geplanten Zeit nicht in die Erde kann, und warum."
+        },
+        "timeline": {
+          "title": "Zusehen, wie es wächst",
+          "text": "Schieb die Zeitleiste unter der Zeichnung, um deinen Garten in den kommenden Wochen zu sehen: was wächst, was reif ist und was die Kälte umbringen wird. Blasse Pflanzen sind geplant, aber noch nicht in der Erde."
+        },
+        "list": {
+          "title": "Nach Kulturen planen",
+          "text": "„Was hier wächst“ zeigt den Plan nach Kulturen: ihre Abschnitte, wie viele Pflanzen und für wie viele Leute sie reichen. Am Computer steht es neben der Zeichnung, auf dem Handy unter Liste. Füg eine Kultur hinzu, gib einer einen Abschnitt mehr oder weniger oder säe sie alle paar Wochen in Etappen nach. „Ordnen“ setzt jede Kultur an ein Stück, Familien zusammen und weg von dort, wo sie die letzten drei Jahre standen."
+        }
+      },
+      "week": {
+        "title": "Jede Woche",
+        "todo": {
+          "title": "Säen und abhaken",
+          "text": "„Diese Woche zu tun“ listet jede Arbeit und wo sie anfällt: was du säen oder pflanzen, giessen, vor Frost schützen, ausdünnen, stützen, düngen und ernten sollst, dazu Warnungen vor Krautfäule und Schädlingsfliegen. Tippe auf „Heute gesät“ oder „Heute gepflanzt“, wenn etwas in die Erde kommt, und auf „Erledigt“ für den Rest. Ab dann verfolgt Huerta jede Pflanze nach der Wärme, die sie bekommt, und sagt dir, wann sie reif ist. „Demnächst“ zeigt die vier Wochen danach."
+        },
+        "finish": {
+          "title": "Wenn eine Kultur fertig ist",
+          "text": "Hast du das Letzte geerntet oder ist etwas eingegangen, sag es in seinem Beet: geerntet oder verloren und warum. Es kommt in „Diese Saison“. Nächstes Jahr hält Huerta jede Familie aus den Beeten fern, in denen sie gerade stand."
+        }
+      }
     },
     "functions": {
       "title": "Funktionen",
@@ -172,8 +229,7 @@
       "title": "Dein Konto",
       "intro": "Für Huerta meldest du dich mit Google an. So hast du auf dem Handy und am Computer dieselben Gärten.",
       "kept": "Huerta speichert deine E-Mail-Adresse und deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet. Deine Adresse kennt Huerta nie.",
-      "delete": "Du kannst dein Konto mit allem darin jederzeit löschen: am Computer unter Hilfe → Konto, am Handy unter Einstellungen.",
-      "limits": "Huerta ist noch in einer frühen Version. Die Ratschläge beruhen auf Wettervorhersagen und einem typischen Jahr an deinem Ort. Vorhersagen können danebenliegen. Schau dir also vor dem Säen selbst Boden und Himmel an und halte Frostschutz bereit."
+      "delete": "Du kannst dein Konto mit allem darin jederzeit löschen: am Computer unter Hilfe → Konto, am Handy unter Einstellungen."
     },
     "about": {
       "title": "Über Huerta",
