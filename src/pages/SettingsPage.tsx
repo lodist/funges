@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import ThemeToggle from '@/components/ThemeToggle';
 import InstallAppButton from '@/components/InstallAppButton';
@@ -16,6 +16,7 @@ import {
   BarChart2,
 } from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
+import { currentSpace } from '@/lib/spaces';
 import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import MapLastUpdated from '@/components/MapLastUpdated';
 import { SpaceSwitcher } from '@/components/SpaceSwitcher';
@@ -25,6 +26,7 @@ export default function SettingsPage() {
   const { t } = useTranslation('settings');
   const { t: tCommon } = useTranslation('common');
   const { t: tNav } = useTranslation('sidebar');
+  const { pathname } = useLocation();
   const links = [
     // On phones the bottom bar gave Data's slot to Identify, so the hub
     // carries it; the desktop sidebar still lists it directly.
@@ -34,7 +36,11 @@ export default function SettingsPage() {
       icon: BarChart2,
     },
     {
-      url: '/instructions',
+      // Each space explains itself: the hub opened from Huerta, Huerta's.
+      url:
+        currentSpace(pathname) === 'huerta'
+          ? '/huerta/instructions'
+          : '/instructions',
       label: t('instructions'),
       icon: BookOpen,
     },

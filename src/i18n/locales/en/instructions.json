@@ -135,5 +135,133 @@
     "onDevice": "Recognition runs entirely on your phone. Photos are never uploaded and never stored by the app. That is why a one-time model download is needed the first time you use it: without it, identification would have to send your photos to a server instead.",
     "howTo": "Open Identify, allow the one-time download over Wi-Fi, then take a photo or pick one from your gallery. Fill the frame with the whole specimen where you can, including the stem base. Photograph what you have actually dug up or picked rather than a distant cluster. Two photos of the same find - the top and the underside including the stem base - give a noticeably better match than one.",
     "limits": "Identification takes from around five to twenty seconds depending on the device, because the work happens on your device rather than in a data centre. It covers the species in this app plus about two and a half thousand more found in the same regions; anything outside that is shown by scientific name only, with no safety information. Never eat anything based on this app - a misidentification can be fatal."
+  },
+  "huerta": {
+    "title": "Instructions",
+    "subtitle": "How to use Huerta and where its advice comes from",
+    "map": {
+      "intro": "The map shows what your garden can do this week, place by place.",
+      "pick": "Pick a crop in the box at the top. The buttons on the right switch between four layers.",
+      "layers": {
+        "crop": "Where this crop can go in this week, where it's not time yet and where it's too late this year. Slide the months under the map to see the year ahead.",
+        "frost": "The coldest night of the next seven days. Tender crops such as tomatoes and beans die in a frost.",
+        "soil": "How warm the soil is now. Seeds won't come up in cold soil, so this decides when each crop can be sown.",
+        "water": "The next seven days of rain against what sun and wind dry out. Where the rain falls short, the beds need watering."
+      },
+      "tap": "Tap a place to see its week: the soil, the nights, the rain and when frost usually comes. “Make this my garden” makes it your garden's place.",
+      "coverage": "Huerta covers Europe and the contiguous United States."
+    },
+    "garden": {
+      "title": "My garden",
+      "placeTitle": "Where is your garden?",
+      "place": "Find it on the map or search for your town. Everything Huerta tells you is worked out for that place: its frost dates, its soil and its weather.",
+      "planTitle": "Plan your beds",
+      "plan": "Draw your beds and turn the needle to north. “Plan it for me” fills them with what can go in at your place and keeps apart the crops that don't get on. Tap a bed, then a crop, to change it.",
+      "weekTitle": "Every week",
+      "week": "“To do this week” lists the week's jobs and where to do them: what to sow, plant, water, cover and pick. Tick each one off when it's done. Huerta then follows each crop as it grows and tells you when it's ready to pick."
+    },
+    "functions": {
+      "title": "Functions",
+      "crops": "Every crop: how to grow it and what to watch for",
+      "calendar": "When each crop is sown, planted and picked at your place",
+      "place": "Search for your town or use your location",
+      "gardens": "Up to three gardens, each with its own place and plan",
+      "sheet": "On a crop's page, “View on map” and “View on calendar” show just that crop"
+    },
+    "account": {
+      "title": "Your account",
+      "intro": "Huerta asks you to sign in with Google. Your gardens are then the same on your phone and on your computer.",
+      "kept": "Huerta keeps your email address and your gardens: their names, their plans and their place, rounded to about 1 km. It never knows your address.",
+      "delete": "You can delete your account and everything in it at any time: under Help → Account on a computer or under Settings on a phone.",
+      "limits": "Huerta is in early release. Its advice comes from weather forecasts and a typical year at your place. Forecasts can be wrong, so look at your own soil and sky before you sow and keep frost covers to hand."
+    },
+    "about": {
+      "title": "About Huerta",
+      "description": "Huerta is the garden side of Funges. It tells you what to grow, where to put it, when to plant it and what your garden needs this week, from the actual climate where your garden is.",
+      "packet": "A seed packet gives one sowing time for a whole country. Huerta works it out for your own place every night, from the new forecast and ten years of the place's weather.",
+      "status": "Huerta is in early release. Its advice gets better every week and more crops are on the way.",
+      "keyFeatures": {
+        "title": "Key features",
+        "forecast": "Advice for your own place, from tonight's forecast",
+        "frost": "Frost dates from ten years of weather at your place",
+        "soil": "Your soil: sandy or clay, acid or alkaline",
+        "growth": "Each crop followed from the warmth it gets"
+      }
+    },
+    "mission": {
+      "title": "Our mission",
+      "learn": "Growing your own food shouldn't take years of trial and error. Good gardeners know their own patch: when the soil warms up, when the last frost comes and what does well there. Huerta gives that knowledge to anyone, wherever their garden is.",
+      "climate": "The climate is changing and the old dates on the packet change with it. Huerta's dates come from the weather of recent years at your place, not from a book.",
+      "waste": "Sown at the right time, fewer seeds rot in cold soil and fewer plants die in a late frost. That saves seeds, work and water."
+    },
+    "advice": {
+      "title": "How the advice is worked out",
+      "description": "Every night Huerta reads the new weather forecast for each place it covers and holds it against what each crop needs.",
+      "monitorTitle": "It looks at:",
+      "variables": {
+        "soil": "Soil temperature, which decides when seeds come up",
+        "frost": "Frost and the coldest nights of the next seven days",
+        "water": "Rain against what sun and wind dry out",
+        "dates": "When the last and first frosts usually come at your place",
+        "ground": "Your soil: sandy or clay, acid or alkaline",
+        "warmth": "The warmth each crop has had since it went in"
+      },
+      "goal": "A crop goes in when the soil is warm enough for it and there is time for it to grow before frost or heat ends its season. The months ahead come from a typical year at your place, worked out the same way.",
+      "methodology": {
+        "title": "Data sources and methodology",
+        "description": "This week's advice comes from weather models that run every night. The calendar, the frost dates and how fast each crop grows come from ten years of past weather. How to grow each crop comes from gardening guides."
+      },
+      "keyDatasets": {
+        "title": "Key datasets",
+        "icon": {
+          "title": "1. ICON-EU (Forecast for Europe)",
+          "description": "The German weather service's forecast for Europe, on a grid of about 7 km. Each night Huerta takes the next five days from it, hour by hour: air and soil temperature, rain, wind and sunshine.",
+          "source": "Source: Deutscher Wetterdienst (DWD), Open Data",
+          "citation": "Data basis: Deutscher Wetterdienst (DWD), ICON-EU model forecasts."
+        },
+        "ecmwf": {
+          "title": "2. ECMWF Open Data (Forecast to day seven)",
+          "description": "The European Centre's forecast for the whole world. It carries Europe's forecast on to the seventh day and covers the far north, where ICON-EU doesn't reach.",
+          "source": "Source: European Centre for Medium-Range Weather Forecasts (ECMWF)",
+          "citation": "ECMWF open data, IFS forecasts. CC BY 4.0."
+        },
+        "nbm": {
+          "title": "3. National Blend of Models (U.S. forecast)",
+          "description": "NOAA's blend of weather models for the United States, on a grid of 2.5 km. It gives U.S. gardens their seven days.",
+          "source": "Source: NOAA National Weather Service, through the NOAA Open Data Dissemination program",
+          "citation": "National Blend of Models (NBM), NOAA/NWS. U.S. public domain."
+        },
+        "era5": {
+          "title": "4. ERA5 Reanalysis (Past weather)",
+          "description": "ECMWF's record of past weather, made from weather models and observations from across the world. Ten years of it, 2016 to 2025, give each place its usual frost dates, the typical year behind the calendar and the warmth crops grow by.",
+          "source": "Source: Copernicus Climate Change Service (C3S), ECMWF",
+          "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "soilgrids": {
+          "title": "5. SoilGrids (Soil)",
+          "description": "ISRIC's global soil maps, modelled from soil profiles worldwide. Huerta reads the clay, the sand and the pH of the topsoil at your place. They decide how often to water, how fast the soil warms in spring and which crops need lime.",
+          "source": "Source: ISRIC – World Soil Information",
+          "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+        },
+        "guides": {
+          "title": "6. Gardening guides",
+          "description": "How to grow each crop: depth, spacing, watering, feeding, pH and how many plants to grow. Each crop's page names its own sources.",
+          "source": "Source: Royal Horticultural Society (RHS) and U.S. university extension services",
+          "citation": "Among them the extension services of Kansas State, Missouri, Virginia Tech, Cornell, Minnesota, Maryland, Connecticut, Georgia and Washington State."
+        },
+        "pests": {
+          "title": "7. Pest warnings",
+          "description": "Blight warnings come with warm, humid days and nights in a row. Fly warnings count the warmth since January and hold it against when carrot fly, cabbage root fly and onion fly were caught in traps.",
+          "source": "Source: AHDB and the James Hutton Institute; NIBIO; University of Wisconsin, Michigan State University and Cornell University (NEWA)",
+          "citation": "Hutton Criteria (AHDB and James Hutton Institute, 2017). VIPS carrot fly model (NIBIO; Markkula et al. 1998). Cabbage maggot and onion maggot degree days (University of Wisconsin, Michigan State University, NEWA)."
+        },
+        "towns": {
+          "title": "8. GeoNames and Natural Earth (Towns)",
+          "description": "The town search finds every town of 5,000 people or more near a place Huerta covers, in your language where the name has a translation.",
+          "source": "Source: GeoNames; Natural Earth",
+          "citation": "GeoNames (geonames.org), CC BY 4.0. Made with Natural Earth, public domain."
+        }
+      }
+    }
   }
 }

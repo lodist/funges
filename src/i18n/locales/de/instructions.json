@@ -135,5 +135,133 @@
     "onDevice": "Die Erkennung läuft vollständig auf deinem Handy. Fotos werden niemals hochgeladen und von der App niemals gespeichert. Deshalb ist beim ersten Mal ein einmaliger Modell-Download nötig: ohne ihn müsste die Identifizierung deine Fotos an einen Server senden.",
     "howTo": "Öffne „Bestimmen“, erlaube den einmaligen Download über WLAN, und mache dann ein Foto oder wähle eines aus der Galerie. Fülle das Bild möglichst mit dem ganzen Exemplar, einschliesslich Stielbasis, und fotografiere das, was du tatsächlich ausgegraben oder gesammelt hast, nicht eine entfernte Gruppe. Zwei Fotos desselben Fundes - Oberseite und Unterseite einschliesslich Stielgrund - liefern einen deutlich besseren Treffer als eines.",
     "limits": "Die Identifizierung dauert je nach Gerät etwa fünf bis zwanzig Sekunden, weil die Arbeit auf deinem Gerät statt in einem Rechenzentrum passiert. Sie deckt die Arten dieser App ab, plus etwa zweieinhalbtausend weitere aus denselben Regionen; alles darüber hinaus wird nur mit dem wissenschaftlichen Namen und ohne Sicherheitsangaben gezeigt. Iss nichts auf Grundlage dieser App - eine falsche Identifizierung kann tödlich sein."
+  },
+  "huerta": {
+    "title": "Anleitung",
+    "subtitle": "Wie du Huerta nutzt und woher die Ratschläge kommen",
+    "map": {
+      "intro": "Die Karte zeigt Ort für Ort, was in deinem Garten diese Woche ansteht.",
+      "pick": "Wähle oben eine Pflanze. Mit den Knöpfen rechts wechselst du zwischen vier Ebenen.",
+      "layers": {
+        "crop": "Wo diese Pflanze diese Woche in die Erde kann, wo es noch zu früh ist und wo es dieses Jahr zu spät ist. Mit dem Regler unter der Karte siehst du die kommenden Monate.",
+        "frost": "Die kälteste Nacht der nächsten sieben Tage. Empfindliche Pflanzen wie Tomaten und Bohnen überstehen keinen Frost.",
+        "soil": "Wie warm der Boden gerade ist. In kaltem Boden keimen die Samen nicht. Darum entscheidet er, wann du was säen kannst.",
+        "water": "Der Regen der nächsten sieben Tage, verglichen mit dem, was Sonne und Wind austrocknen. Wo der Regen nicht reicht, musst du giessen."
+      },
+      "tap": "Tippe auf einen Ort, um seine Woche zu sehen: Boden, Nächte, Regen und wann dort meist der Frost kommt. Mit „Als meinen Garten nehmen“ wird er zum Ort deines Gartens.",
+      "coverage": "Huerta deckt Europa und die kontinentalen USA ab."
+    },
+    "garden": {
+      "title": "Mein Garten",
+      "placeTitle": "Wo ist dein Garten?",
+      "place": "Such ihn auf der Karte oder gib deinen Ort ein. Alles, was Huerta dir sagt, gilt für genau diesen Ort: seine Frosttermine, seinen Boden und sein Wetter.",
+      "planTitle": "Beete planen",
+      "plan": "Zeichne deine Beete und dreh die Nadel nach Norden. „Für mich planen“ füllt sie mit dem, was bei dir jetzt in die Erde kann, und hält Pflanzen auseinander, die sich nicht vertragen. Tippe auf ein Beet und dann auf eine Pflanze, um etwas zu ändern.",
+      "weekTitle": "Jede Woche",
+      "week": "„Diese Woche zu tun“ sagt dir, was du wo säen, pflanzen, giessen, abdecken und ernten sollst. Hake jede Arbeit ab, wenn sie erledigt ist. Huerta verfolgt dann, wie jede Pflanze wächst, und sagt dir, wann du ernten kannst."
+    },
+    "functions": {
+      "title": "Funktionen",
+      "crops": "Jede Pflanze: wie du sie anbaust und worauf du achten musst",
+      "calendar": "Wann du an deinem Ort was säst, pflanzt und erntest",
+      "place": "Such deinen Ort oder nimm deinen Standort",
+      "gardens": "Bis zu drei Gärten, jeder mit eigenem Ort und Plan",
+      "sheet": "Auf der Seite einer Pflanze zeigen „Auf der Karte anzeigen“ und „Im Kalender anzeigen“ nur diese Pflanze"
+    },
+    "account": {
+      "title": "Dein Konto",
+      "intro": "Für Huerta meldest du dich mit Google an. So hast du auf dem Handy und am Computer dieselben Gärten.",
+      "kept": "Huerta speichert deine E-Mail-Adresse und deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet. Deine Adresse kennt Huerta nie.",
+      "delete": "Du kannst dein Konto mit allem darin jederzeit löschen: am Computer unter Hilfe → Konto, am Handy unter Einstellungen.",
+      "limits": "Huerta ist noch in einer frühen Version. Die Ratschläge beruhen auf Wettervorhersagen und einem typischen Jahr an deinem Ort. Vorhersagen können danebenliegen. Schau dir also vor dem Säen selbst Boden und Himmel an und halte Frostschutz bereit."
+    },
+    "about": {
+      "title": "Über Huerta",
+      "description": "Huerta ist der Gartenteil von Funges. Es sagt dir, was du anbauen sollst, wohin es kommt, wann es in die Erde muss und was dein Garten diese Woche braucht. Und zwar nach dem Klima, das bei deinem Garten wirklich herrscht.",
+      "packet": "Auf der Samentüte steht eine Saatzeit für ein ganzes Land. Huerta bestimmt sie jede Nacht neu für deinen Ort: aus der frischen Vorhersage und dem Wetter der letzten zehn Jahre dort.",
+      "status": "Huerta ist noch in einer frühen Version. Die Ratschläge werden jede Woche besser und weitere Pflanzen kommen dazu.",
+      "keyFeatures": {
+        "title": "Hauptfunktionen",
+        "forecast": "Ratschläge für deinen Ort, aus der Vorhersage von heute Nacht",
+        "frost": "Frosttermine aus zehn Jahren Wetter an deinem Ort",
+        "soil": "Dein Boden: sandig oder tonig, sauer oder alkalisch",
+        "growth": "Jede Pflanze begleitet, nach der Wärme, die sie bekommt"
+      }
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "learn": "Eigenes Gemüse anzubauen sollte nicht jahrelanges Ausprobieren brauchen. Erfahrene Gärtner kennen ihr Stück Land: wann der Boden warm wird, wann der letzte Frost kommt und was dort gut wächst. Huerta macht dieses Wissen allen zugänglich, wo auch immer ihr Garten liegt.",
+      "climate": "Das Klima ändert sich und mit ihm die alten Daten auf der Samentüte. Die Daten von Huerta stammen aus dem Wetter der letzten Jahre an deinem Ort, nicht aus einem Buch.",
+      "waste": "Zur richtigen Zeit gesät, verfaulen weniger Samen im kalten Boden und weniger Pflanzen erfrieren im Spätfrost. Das spart Saatgut, Arbeit und Wasser."
+    },
+    "advice": {
+      "title": "Wie die Ratschläge entstehen",
+      "description": "Jede Nacht liest Huerta die neue Wettervorhersage für jeden Ort, den es abdeckt, und vergleicht sie mit dem, was jede Pflanze braucht.",
+      "monitorTitle": "Dabei zählt:",
+      "variables": {
+        "soil": "Die Bodentemperatur, denn sie entscheidet, wann Samen keimen",
+        "frost": "Frost und die kältesten Nächte der nächsten sieben Tage",
+        "water": "Der Regen, verglichen mit dem, was Sonne und Wind austrocknen",
+        "dates": "Wann an deinem Ort meist der letzte und der erste Frost kommen",
+        "ground": "Dein Boden: sandig oder tonig, sauer oder alkalisch",
+        "warmth": "Die Wärme, die jede Pflanze bekommen hat, seit sie in der Erde ist"
+      },
+      "goal": "Eine Pflanze kommt in die Erde, wenn der Boden warm genug für sie ist und sie genug Zeit zum Wachsen hat, bevor Frost oder Hitze ihre Saison beenden. Die kommenden Monate stammen aus einem typischen Jahr an deinem Ort, nach denselben Regeln.",
+      "methodology": {
+        "title": "Datenquellen und Methodik",
+        "description": "Die Ratschläge für diese Woche kommen aus Wettermodellen, die jede Nacht neu rechnen. Der Kalender, die Frosttermine und wie schnell jede Pflanze wächst, stammen aus zehn Jahren vergangenen Wetters. Wie man jede Pflanze anbaut, stammt aus Gartenratgebern."
+      },
+      "keyDatasets": {
+        "title": "Wichtige Datensätze",
+        "icon": {
+          "title": "1. ICON-EU (Vorhersage für Europa)",
+          "description": "Das Vorhersagemodell des Deutschen Wetterdienstes für Europa, mit einem Raster von etwa 7 km. Jede Nacht holt Huerta daraus die nächsten fünf Tage, Stunde für Stunde: Luft- und Bodentemperatur, Regen, Wind und Sonne.",
+          "source": "Quelle: Deutscher Wetterdienst (DWD), Open Data",
+          "citation": "Data basis: Deutscher Wetterdienst (DWD), ICON-EU model forecasts."
+        },
+        "ecmwf": {
+          "title": "2. ECMWF Open Data (Vorhersage bis Tag sieben)",
+          "description": "Die weltweite Vorhersage des Europäischen Zentrums für mittelfristige Wettervorhersage. Sie führt die Vorhersage für Europa bis zum siebten Tag weiter und deckt den hohen Norden ab, wohin ICON-EU nicht reicht.",
+          "source": "Quelle: Europäisches Zentrum für mittelfristige Wettervorhersage (EZMW)",
+          "citation": "ECMWF open data, IFS forecasts. CC BY 4.0."
+        },
+        "nbm": {
+          "title": "3. National Blend of Models (Vorhersage für die USA)",
+          "description": "Die Mischung der Wettermodelle des US-Wetterdienstes NOAA, mit einem Raster von 2,5 km. Daraus bekommen Gärten in den USA ihre sieben Tage.",
+          "source": "Quelle: NOAA National Weather Service, über das NOAA Open Data Dissemination Program",
+          "citation": "National Blend of Models (NBM), NOAA/NWS. U.S. public domain."
+        },
+        "era5": {
+          "title": "4. ERA5-Reanalyse (Vergangenes Wetter)",
+          "description": "Das Archiv des EZMW für vergangenes Wetter, aus Wettermodellen und Messungen aus aller Welt. Zehn Jahre davon, 2016 bis 2025, geben jedem Ort seine üblichen Frosttermine, das typische Jahr hinter dem Kalender und die Wärme, mit der die Pflanzen wachsen.",
+          "source": "Quelle: Copernicus Climate Change Service (C3S), EZMW",
+          "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "soilgrids": {
+          "title": "5. SoilGrids (Boden)",
+          "description": "Die weltweiten Bodenkarten von ISRIC, modelliert aus Bodenprofilen aus aller Welt. Huerta liest daraus Ton, Sand und pH-Wert der obersten Bodenschicht an deinem Ort. Sie entscheiden, wie oft du giessen musst, wie schnell sich der Boden im Frühling erwärmt und welche Pflanzen Kalk brauchen.",
+          "source": "Quelle: ISRIC – World Soil Information",
+          "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+        },
+        "guides": {
+          "title": "6. Gartenratgeber",
+          "description": "Wie du jede Pflanze anbaust: Saattiefe, Abstand, Giessen, Düngen, pH-Wert und wie viele Pflanzen du brauchst. Jede Pflanzenseite nennt ihre eigenen Quellen.",
+          "source": "Quelle: Royal Horticultural Society (RHS) und die Beratungsdienste amerikanischer Universitäten",
+          "citation": "Darunter die Beratungsdienste von Kansas State, Missouri, Virginia Tech, Cornell, Minnesota, Maryland, Connecticut, Georgia und Washington State."
+        },
+        "pests": {
+          "title": "7. Schädlingswarnungen",
+          "description": "Krautfäule-Warnungen kommen, wenn mehrere warme, feuchte Tage und Nächte aufeinanderfolgen. Fliegen-Warnungen zählen die Wärme seit Januar und vergleichen sie damit, wann Möhrenfliege, Kohlfliege und Zwiebelfliege in Fallen gefangen wurden.",
+          "source": "Quelle: AHDB und James Hutton Institute; NIBIO; University of Wisconsin, Michigan State University und Cornell University (NEWA)",
+          "citation": "Hutton Criteria (AHDB and James Hutton Institute, 2017). VIPS carrot fly model (NIBIO; Markkula et al. 1998). Cabbage maggot and onion maggot degree days (University of Wisconsin, Michigan State University, NEWA)."
+        },
+        "towns": {
+          "title": "8. GeoNames und Natural Earth (Orte)",
+          "description": "Die Ortssuche findet jeden Ort ab 5000 Einwohnern in der Nähe eines Huerta-Orts, in deiner Sprache, wo es den Namen übersetzt gibt.",
+          "source": "Quelle: GeoNames; Natural Earth",
+          "citation": "GeoNames (geonames.org), CC BY 4.0. Made with Natural Earth, public domain."
+        }
+      }
+    }
   }
 }

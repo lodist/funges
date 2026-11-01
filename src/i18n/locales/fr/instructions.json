@@ -135,5 +135,133 @@
     "onDevice": "La reconnaissance fonctionne entièrement sur ton téléphone. Les photos ne sont jamais téléversées ni conservées par l’application. C’est pourquoi un téléchargement unique du modèle est nécessaire la première fois : sans lui, l’identification devrait envoyer tes photos à un serveur.",
     "howTo": "Ouvre Identifier, autorise le téléchargement unique en Wi-Fi, puis prends une photo ou choisis-en une dans ta galerie. Remplis le cadre avec le spécimen entier quand c’est possible, base du pied comprise, et photographie ce que tu as réellement déterré ou cueilli plutôt qu’un groupe éloigné. Deux photos de la même trouvaille - le dessus et le dessous, base du pied comprise - donnent une correspondance nettement meilleure qu'une seule.",
     "limits": "L’identification prend d’environ cinq à vingt secondes selon l’appareil, parce que le calcul se fait sur ton appareil et non dans un centre de données. Elle couvre les espèces de cette application plus environ deux mille cinq cents autres présentes dans les mêmes régions ; tout le reste est affiché avec le seul nom scientifique, sans information de sécurité. Ne mange rien en te fondant sur cette application - une erreur d’identification peut être mortelle."
+  },
+  "huerta": {
+    "title": "Instructions",
+    "subtitle": "Comment utiliser Huerta et d'où viennent ses conseils",
+    "map": {
+      "intro": "La carte montre, lieu par lieu, ce que votre potager peut faire cette semaine.",
+      "pick": "Choisissez une culture dans la case en haut. Les boutons à droite passent d'une couche à l'autre, parmi quatre.",
+      "layers": {
+        "crop": "Où cette culture peut aller en terre cette semaine, où ce n'est pas encore le moment et où il est trop tard cette année. Faites glisser les mois sous la carte pour voir l'année à venir.",
+        "frost": "La nuit la plus froide des sept prochains jours. Les cultures fragiles comme la tomate ou le haricot meurent au gel.",
+        "soil": "La chaleur du sol en ce moment. Dans un sol froid, les graines ne lèvent pas : c'est donc lui qui décide quand semer chaque culture.",
+        "water": "La pluie des sept prochains jours face à ce que le soleil et le vent dessèchent. Là où la pluie ne suffit pas, il faut arroser."
+      },
+      "tap": "Touchez un lieu pour voir sa semaine : le sol, les nuits, la pluie et la date habituelle du gel. « En faire mon potager » en fait le lieu de votre potager.",
+      "coverage": "Huerta couvre l'Europe et les États-Unis continentaux."
+    },
+    "garden": {
+      "title": "Mon potager",
+      "placeTitle": "Où est votre potager ?",
+      "place": "Trouvez-le sur la carte ou cherchez votre commune. Tout ce que Huerta vous dit est calculé pour ce lieu : ses dates de gel, son sol et sa météo.",
+      "planTitle": "Planifiez vos planches",
+      "plan": "Dessinez vos planches et tournez l'aiguille vers le nord. « Planifiez pour moi » les remplit avec ce qui peut aller en terre chez vous et éloigne les cultures qui ne s'entendent pas. Touchez une planche, puis une culture, pour la changer.",
+      "weekTitle": "Chaque semaine",
+      "week": "« À faire cette semaine » vous dit quoi semer, planter, arroser, couvrir et récolter, et où. Cochez chaque tâche une fois faite. Huerta suit ensuite la croissance de chaque culture et vous dit quand elle est prête."
+    },
+    "functions": {
+      "title": "Fonctions",
+      "crops": "Chaque culture : comment la cultiver et à quoi faire attention",
+      "calendar": "Quand chaque culture se sème, se plante et se récolte chez vous",
+      "place": "Cherchez votre commune ou utilisez votre position",
+      "gardens": "Jusqu'à trois potagers, chacun avec son lieu et son plan",
+      "sheet": "Sur la page d'une culture, « Voir sur la carte » et « Voir dans le calendrier » montrent cette culture seule"
+    },
+    "account": {
+      "title": "Votre compte",
+      "intro": "Huerta vous demande de vous connecter avec Google. Vos potagers sont ainsi les mêmes sur votre téléphone et sur votre ordinateur.",
+      "kept": "Huerta garde votre adresse e-mail et vos potagers : leurs noms, leurs plans et leur lieu, arrondi à environ 1 km. Il ne connaît jamais votre adresse.",
+      "delete": "Vous pouvez supprimer votre compte et tout ce qu'il contient à tout moment : dans Aide → Compte sur un ordinateur ou dans Paramètres sur un téléphone.",
+      "limits": "Huerta est en version préliminaire. Ses conseils viennent des prévisions météo et d'une année type chez vous. Les prévisions peuvent se tromper : regardez votre sol et le ciel avant de semer et gardez de quoi protéger du gel."
+    },
+    "about": {
+      "title": "À propos de Huerta",
+      "description": "Huerta est le côté potager de Funges. Il vous dit quoi cultiver, où le mettre, quand le planter et ce dont votre potager a besoin cette semaine, d'après le climat réel de l'endroit où il se trouve.",
+      "packet": "Un sachet de graines donne une seule période de semis pour tout un pays. Huerta la calcule pour votre lieu chaque nuit, à partir de la nouvelle prévision et de dix ans de météo sur place.",
+      "status": "Huerta est en version préliminaire. Ses conseils s'améliorent chaque semaine et d'autres cultures arrivent.",
+      "keyFeatures": {
+        "title": "Fonctionnalités clés",
+        "forecast": "Des conseils pour votre lieu, d'après la prévision de cette nuit",
+        "frost": "Des dates de gel tirées de dix ans de météo chez vous",
+        "soil": "Votre sol : sableux ou argileux, acide ou alcalin",
+        "growth": "Chaque culture suivie d'après la chaleur qu'elle reçoit"
+      }
+    },
+    "mission": {
+      "title": "Notre mission",
+      "learn": "Faire pousser sa nourriture ne devrait pas demander des années d'essais et d'erreurs. Les bons jardiniers connaissent leur coin de terre : quand le sol se réchauffe, quand arrive la dernière gelée et ce qui y pousse bien. Huerta met ce savoir à la portée de tous, où que soit leur potager.",
+      "climate": "Le climat change et les vieilles dates du sachet changent avec lui. Les dates de Huerta viennent de la météo des dernières années chez vous, pas d'un livre.",
+      "waste": "Semées au bon moment, moins de graines pourrissent dans un sol froid et moins de plantes meurent d'une gelée tardive. Cela économise des graines, du travail et de l'eau."
+    },
+    "advice": {
+      "title": "Comment les conseils sont établis",
+      "description": "Chaque nuit, Huerta lit la nouvelle prévision météo de chaque lieu qu'il couvre et la compare à ce dont chaque culture a besoin.",
+      "monitorTitle": "Il tient compte de :",
+      "variables": {
+        "soil": "La température du sol, qui décide quand les graines lèvent",
+        "frost": "Le gel et les nuits les plus froides des sept prochains jours",
+        "water": "La pluie face à ce que le soleil et le vent dessèchent",
+        "dates": "Quand arrivent d'habitude la dernière et la première gelée chez vous",
+        "ground": "Votre sol : sableux ou argileux, acide ou alcalin",
+        "warmth": "La chaleur reçue par chaque culture depuis sa mise en terre"
+      },
+      "goal": "Une culture va en terre quand le sol est assez chaud pour elle et qu'elle a le temps de pousser avant que le gel ou la chaleur ne mettent fin à sa saison. Les mois suivants viennent d'une année type chez vous, calculée de la même façon.",
+      "methodology": {
+        "title": "Sources de données et méthodologie",
+        "description": "Les conseils de la semaine viennent de modèles météo calculés chaque nuit. Le calendrier, les dates de gel et la vitesse de croissance de chaque culture viennent de dix ans de météo passée. La façon de cultiver chaque plante vient de guides de jardinage."
+      },
+      "keyDatasets": {
+        "title": "Jeux de données clés",
+        "icon": {
+          "title": "1. ICON-EU (Prévision pour l'Europe)",
+          "description": "La prévision du service météo allemand pour l'Europe, sur une grille d'environ 7 km. Chaque nuit, Huerta y prend les cinq jours suivants, heure par heure : température de l'air et du sol, pluie, vent et soleil.",
+          "source": "Source : Deutscher Wetterdienst (DWD), Open Data",
+          "citation": "Data basis: Deutscher Wetterdienst (DWD), ICON-EU model forecasts."
+        },
+        "ecmwf": {
+          "title": "2. ECMWF Open Data (Prévision jusqu'au septième jour)",
+          "description": "La prévision mondiale du Centre européen. Elle prolonge la prévision pour l'Europe jusqu'au septième jour et couvre le Grand Nord, là où ICON-EU ne va pas.",
+          "source": "Source : Centre européen pour les prévisions météorologiques à moyen terme (CEPMMT)",
+          "citation": "ECMWF open data, IFS forecasts. CC BY 4.0."
+        },
+        "nbm": {
+          "title": "3. National Blend of Models (Prévision pour les États-Unis)",
+          "description": "Le mélange de modèles météo de la NOAA pour les États-Unis, sur une grille de 2,5 km. Il donne aux potagers américains leurs sept jours.",
+          "source": "Source : NOAA National Weather Service, via le programme NOAA Open Data Dissemination",
+          "citation": "National Blend of Models (NBM), NOAA/NWS. U.S. public domain."
+        },
+        "era5": {
+          "title": "4. Réanalyse ERA5 (Météo passée)",
+          "description": "L'archive du CEPMMT sur la météo passée, faite de modèles et d'observations du monde entier. Dix ans, de 2016 à 2025, donnent à chaque lieu ses dates de gel habituelles, l'année type du calendrier et la chaleur qui fait pousser les cultures.",
+          "source": "Source : Copernicus Climate Change Service (C3S), CEPMMT",
+          "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "soilgrids": {
+          "title": "5. SoilGrids (Sol)",
+          "description": "Les cartes mondiales des sols de l'ISRIC, modélisées à partir de profils de sol du monde entier. Huerta y lit l'argile, le sable et le pH de la couche du dessus chez vous. Ils décident à quelle fréquence arroser, à quelle vitesse le sol se réchauffe au printemps et quelles cultures ont besoin de chaux.",
+          "source": "Source : ISRIC – World Soil Information",
+          "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+        },
+        "guides": {
+          "title": "6. Guides de jardinage",
+          "description": "Comment cultiver chaque plante : profondeur, espacement, arrosage, fumure, pH et nombre de plants. La page de chaque culture cite ses propres sources.",
+          "source": "Source : Royal Horticultural Society (RHS) et services de vulgarisation d'universités américaines",
+          "citation": "Parmi eux, les services de vulgarisation de Kansas State, Missouri, Virginia Tech, Cornell, Minnesota, Maryland, Connecticut, Georgia et Washington State."
+        },
+        "pests": {
+          "title": "7. Alertes ravageurs",
+          "description": "Les alertes au mildiou arrivent avec plusieurs jours et nuits chauds et humides de suite. Les alertes aux mouches additionnent la chaleur depuis janvier et la comparent aux dates de capture en piège de la mouche de la carotte, de la mouche du chou et de la mouche de l'oignon.",
+          "source": "Source : AHDB et James Hutton Institute ; NIBIO ; University of Wisconsin, Michigan State University et Cornell University (NEWA)",
+          "citation": "Hutton Criteria (AHDB and James Hutton Institute, 2017). VIPS carrot fly model (NIBIO; Markkula et al. 1998). Cabbage maggot and onion maggot degree days (University of Wisconsin, Michigan State University, NEWA)."
+        },
+        "towns": {
+          "title": "8. GeoNames et Natural Earth (Communes)",
+          "description": "La recherche trouve chaque localité de 5000 habitants ou plus près d'un lieu couvert par Huerta, dans votre langue quand le nom a une traduction.",
+          "source": "Source : GeoNames ; Natural Earth",
+          "citation": "GeoNames (geonames.org), CC BY 4.0. Made with Natural Earth, public domain."
+        }
+      }
+    }
   }
 }
