@@ -68,14 +68,33 @@ const KEY_DATASETS = [
   ['towns', LAND],
 ] as const;
 
-// My garden, step by step, in the order the planner is met.
-const GARDEN_STEPS = [
-  ['setup', ['place', 'size', 'north', 'around', 'soil']],
-  ['plan', ['when', 'auto', 'change', 'checks', 'timeline', 'list']],
-  ['week', ['todo', 'finish']],
+// My garden as a picture of the planner on a computer, numbered part by part:
+// each part's spot in the 1013 × 830 screenshot (public/huerta/guide), in the
+// order its explanations are listed.
+const SHOT = { width: 1013, height: 830 };
+const GARDEN_PARTS = [
+  ['size', 752, 21],
+  ['around', 741, 69],
+  ['soil', 247, 136],
+  ['when', 21, 189],
+  ['auto', 111, 189],
+  ['undo', 241, 189],
+  ['north', 122, 284],
+  ['view', 622, 284],
+  ['shade', 622, 320],
+  ['bed', 532, 552],
+  ['select', 248, 726],
+  ['timeline', 62, 783],
+  ['sun', 997, 300],
+  ['status', 862, 423],
+  ['facts', 997, 454],
+  ['ifNow', 984, 562],
+  ['sown', 856, 658],
+  ['neighbours', 820, 693],
+  ['swap', 808, 770],
 ] as const;
-const stepsBefore = (group: number) =>
-  GARDEN_STEPS.slice(0, group).reduce((n, [, steps]) => n + steps.length, 0);
+const NUMBER =
+  'flex size-6 shrink-0 items-center justify-center rounded-full bg-band text-xs font-semibold text-band-foreground tabular-nums';
 
 /** A palette colour as CSS, without the map's transparency. */
 const css = ([r, g, b]: readonly number[]) => `rgb(${r},${g},${b})`;
@@ -228,40 +247,101 @@ export default function HuertaInstructionsPage() {
                   {t('huerta.garden.phone')}
                 </p>
               </div>
-              {GARDEN_STEPS.map(([group, steps], g) => (
-                <section key={group} aria-labelledby={`garden-${group}`}>
-                  <h3
-                    id={`garden-${group}`}
-                    className='mb-4 text-lg font-semibold text-foreground'
-                  >
-                    {t(`huerta.garden.${group}.title`)}
-                  </h3>
-                  {/* Numbered on from the group before: one walk-through. */}
-                  <ol
-                    start={stepsBefore(g) + 1}
-                    className='flex flex-col gap-5'
-                  >
-                    {steps.map((step, i) => (
-                      // The number beside the title, the text full width
-                      // under both: a phone keeps its whole line for it.
-                      <li key={step}>
-                        <h4 className='mb-1 flex items-center gap-3 text-base font-semibold text-foreground'>
-                          <span
-                            aria-hidden
-                            className='flex size-7 shrink-0 items-center justify-center rounded-full bg-band text-sm font-semibold text-band-foreground tabular-nums'
-                          >
-                            {stepsBefore(g) + i + 1}
-                          </span>
-                          {t(`huerta.garden.${group}.${step}.title`)}
-                        </h4>
-                        <p className='leading-relaxed'>
-                          {t(`huerta.garden.${group}.${step}.text`)}
-                        </p>
-                      </li>
+              <div>
+                <h3 className='mb-1 text-lg font-semibold text-foreground'>
+                  {t('huerta.garden.place.title')}
+                </h3>
+                <p className='leading-relaxed'>
+                  {t('huerta.garden.place.text')}
+                </p>
+              </div>
+              <figure>
+                {/* On a phone the picture keeps a readable width and slides
+                    sideways: shrunk to the screen, its numbers would overlap. */}
+                <div
+                  role='region'
+                  aria-label={t('huerta.garden.picture.caption')}
+                  tabIndex={0}
+                  className='focus-ring overflow-x-auto rounded-lg border border-border'
+                >
+                  <div className='relative min-w-[40rem]'>
+                    <img
+                      src={`${import.meta.env.BASE_URL}huerta/guide/planner.webp`}
+                      alt={t('huerta.garden.picture.alt')}
+                      width={SHOT.width}
+                      height={SHOT.height}
+                      loading='lazy'
+                      className='block h-auto w-full'
+                    />
+                    {GARDEN_PARTS.map(([part, x, y], i) => (
+                      <span
+                        key={part}
+                        aria-hidden
+                        className={cn(
+                          NUMBER,
+                          'absolute -translate-x-1/2 -translate-y-1/2 ring-2 ring-card'
+                        )}
+                        style={{
+                          left: `${(x / SHOT.width) * 100}%`,
+                          top: `${(y / SHOT.height) * 100}%`,
+                        }}
+                      >
+                        {i + 1}
+                      </span>
                     ))}
-                  </ol>
-                </section>
-              ))}
+                  </div>
+                </div>
+                <figcaption className='mt-2 text-sm text-muted-foreground'>
+                  {t('huerta.garden.picture.caption')}
+                  <span className='sm:hidden'>
+                    {' '}
+                    {t('huerta.garden.picture.swipe')}
+                  </span>
+                </figcaption>
+              </figure>
+              <ol className='flex flex-col gap-5'>
+                {GARDEN_PARTS.map(([part], i) => (
+                  // The number beside the title, the text full width under
+                  // both: a phone keeps its whole line for it.
+                  <li key={part}>
+                    <h4 className='mb-1 flex items-center gap-3 text-base font-semibold text-foreground'>
+                      <span aria-hidden className={NUMBER}>
+                        {i + 1}
+                      </span>
+                      {t(`huerta.garden.steps.${part}.title`)}
+                    </h4>
+                    <p className='leading-relaxed'>
+                      {t(`huerta.garden.steps.${part}.text`)}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+              <div>
+                <h3 className='mb-1 text-lg font-semibold text-foreground'>
+                  {t('huerta.garden.list.title')}
+                </h3>
+                <p className='leading-relaxed'>
+                  {t('huerta.garden.list.text')}
+                </p>
+              </div>
+              <section aria-labelledby='garden-week' className='space-y-4'>
+                <h3
+                  id='garden-week'
+                  className='text-lg font-semibold text-foreground'
+                >
+                  {t('huerta.garden.week.title')}
+                </h3>
+                {(['todo', 'finish'] as const).map(item => (
+                  <div key={item}>
+                    <h4 className='mb-1 text-base font-semibold text-foreground'>
+                      {t(`huerta.garden.week.${item}.title`)}
+                    </h4>
+                    <p className='leading-relaxed'>
+                      {t(`huerta.garden.week.${item}.text`)}
+                    </p>
+                  </div>
+                ))}
+              </section>
               <Button asChild variant='outline'>
                 <Link to={huertaPage('planner', i18n.language)}>
                   <LayoutGrid />
