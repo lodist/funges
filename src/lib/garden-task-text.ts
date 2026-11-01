@@ -57,6 +57,33 @@ export function taskText(
         }),
         from: 'weather',
       };
+    case 'storm':
+    case 'stormCheck': {
+      // Wind, rain or both; the day by its name.
+      const day = weekday(task.day, lang);
+      const what =
+        task.gust === null ? 'rain' : task.rain === null ? 'wind' : 'both';
+      if (task.kind === 'stormCheck')
+        return {
+          title: t(
+            `week.todo.stormCheck.${what === 'rain' ? 'rain' : 'wind'}`,
+            {
+              day,
+            }
+          ),
+          text: t('week.todo.stormCheck.text'),
+          from: 'weather',
+        };
+      return {
+        title: t(`week.todo.storm.${what}`, {
+          day,
+          gust: t('units.kmh', { value: Math.round(task.gust ?? 0) }),
+          mm: t('units.mm', { value: Math.round(task.rain ?? 0) }),
+        }),
+        text: t(`week.todo.storm.${what}Text`),
+        from: 'forecast',
+      };
+    }
     case 'water':
       return {
         title: t('week.todo.water.title', { mm: task.mm }),

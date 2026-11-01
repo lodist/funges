@@ -49,6 +49,10 @@ export interface AdviceResponse {
     blight?: number | null;
     /** Each day's coldest hour from a week back, as `warm`. */
     lows?: [string, string];
+    /** Each day's strongest gust (km/h) and its rain (mm) from a week back,
+     *  one byte a day, rounded (255 unknown). */
+    gusts?: [string, string];
+    rains?: [string, string];
   };
 }
 
@@ -58,6 +62,15 @@ export const decodeWarm = ([start, bytes]: [string, string]): Warm => ({
   t: Array.from(atob(bytes), c => {
     const b = c.charCodeAt(0);
     return b === 255 ? null : b / 2 - 30;
+  }),
+});
+
+/** The night's gusts or rain at a place, from the advice's bytes. */
+const decodeLevels = ([start, bytes]: [string, string]): Warm => ({
+  start,
+  t: Array.from(atob(bytes), c => {
+    const b = c.charCodeAt(0);
+    return b === 255 ? null : b;
   }),
 });
 
@@ -83,6 +96,8 @@ export const decodeAdvice = ({
   ...(place.warm ? { warm: decodeWarm(place.warm) } : {}),
   ...(typeof place.blight === 'number' ? { blight: place.blight } : {}),
   ...(place.lows ? { lows: decodeWarm(place.lows) } : {}),
+  ...(place.gusts ? { gusts: decodeLevels(place.gusts) } : {}),
+  ...(place.rains ? { rains: decodeLevels(place.rains) } : {}),
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),

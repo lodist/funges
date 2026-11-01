@@ -22,6 +22,7 @@ import {
   Shovel,
   Snowflake,
   Sprout,
+  Wind,
 } from '@/lib/icons';
 import { endAs, type Grown, type Plan } from '@/lib/planner';
 import { cn } from '@/lib/utils';
@@ -37,6 +38,8 @@ const days = (from: string, to: string) =>
 const ICON: Record<string, ComponentType<{ className?: string }>> = {
   frost: Snowflake,
   laterFrost: Snowflake,
+  storm: Wind,
+  stormCheck: Wind,
   water: Droplets,
   rain: CloudRain,
   soil: Shovel,
