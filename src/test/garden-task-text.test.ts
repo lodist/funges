@@ -37,6 +37,40 @@ describe('what a garden task says', () => {
     ).toBe('Frost possible Saturday night');
   });
 
+  it('blight weather names its day; a fly its first flies', () => {
+    const potato = t('crops.potato');
+    expect(
+      taskText(
+        {
+          kind: 'pest',
+          pest: 'blight',
+          phase: 'soon',
+          day: '2026-07-16',
+          crops: ['potato'],
+        },
+        t,
+        'en'
+      )
+    ).toEqual({
+      title: 'Blight weather from Thursday',
+      text: `Warm, humid days and nights spread blight. Check the leaves of ${potato} every day and take off any with brown patches.`,
+      from: 'forecast',
+    });
+    const fly = taskText(
+      {
+        kind: 'pest',
+        pest: 'carrot_fly',
+        phase: 'soon',
+        day: '2027-05-12',
+        crops: ['carrot'],
+      },
+      t,
+      'en'
+    );
+    expect(fly.title).toBe('Carrot fly: flying here from about May 12');
+    expect(fly.from).toBe('climate');
+  });
+
   it('watering follows the soil', () => {
     expect(
       taskText({ kind: 'water', mm: 12, soil: 'clay' }, t, 'en').text

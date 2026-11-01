@@ -182,6 +182,28 @@
         "pick": "Cosecha lo que puedas antes.",
         "replace": "No llegarán a estar listos: aprovecha el bancal para algo que crezca ahora."
       },
+      "pest": {
+        "blight": {
+          "soon": "Tiempo de mildiu desde el {{day}}",
+          "now": "Tiempo de mildiu ahora",
+          "text": "Los días y las noches cálidos y húmedos propagan el mildiu. Revisa cada día las hojas de {{crops}} y quita las que tengan manchas marrones."
+        },
+        "carrot_fly": {
+          "soon": "Mosca de la zanahoria: vuela aquí desde el {{date}}, más o menos",
+          "now": "La mosca de la zanahoria ya vuela por aquí",
+          "text": "Cubre {{crops}} con malla antiinsectos fina desde el día que siembras y no la quites."
+        },
+        "cabbage_root_fly": {
+          "soon": "Mosca de la col: vuela aquí desde el {{date}}, más o menos",
+          "now": "La mosca de la col ya vuela por aquí",
+          "text": "Mantén {{crops}} bajo malla antiinsectos fina sujeta al suelo. Mata sobre todo a las plantas jóvenes."
+        },
+        "onion_fly": {
+          "soon": "Mosca de la cebolla: vuela aquí desde el {{date}}, más o menos",
+          "now": "La mosca de la cebolla ya vuela por aquí",
+          "text": "Cubre {{crops}} con malla antiinsectos fina mientras sean jóvenes."
+        }
+      },
       "over": {
         "title": "{{crops}}: ¿terminado por este año?",
         "text": "Despeja el bancal y quedará libre para lo que pueda ir después."
