@@ -67,6 +67,19 @@
         "fine": "Tout va bien",
         "gone": "Elles ont gelé"
       },
+      "storm": {
+        "wind": "Tempête {{day}} : rafales jusqu'à {{gust}}",
+        "rain": "Fortes pluies {{day}} : {{mm}}",
+        "both": "Tempête {{day}} : rafales jusqu'à {{gust}}, {{mm}} de pluie",
+        "windText": "Attachez les grandes plantes à leurs tuteurs, lestez voiles et filets et récoltez ce qui est mûr.",
+        "rainText": "Récoltez les fruits mûrs avant qu'ils n'éclatent, couvrez les semis de cette semaine et dégagez les allées pour que l'eau s'écoule.",
+        "bothText": "Attachez les grandes plantes à leurs tuteurs, lestez voiles et filets, couvrez les semis de cette semaine et récoltez ce qui est mûr avant que ça n'éclate ou ne tombe."
+      },
+      "stormCheck": {
+        "wind": "Tempête {{day}} : faites le tour de vos planches",
+        "rain": "Fortes pluies {{day}} : faites le tour de vos planches",
+        "text": "Redressez ce qui est tombé, rechaussez les racines mises à nu et ressemez là où l'eau a emporté les graines. Ce qui est perdu, marquez-le comme perdu dans sa planche."
+      },
       "water": {
         "title": "Arrosez environ {{mm}} L/m² cette semaine",
         "text": "La pluie ne compense pas ce que prennent le soleil et le vent. Deux bons arrosages valent mieux qu'un peu chaque jour.",
@@ -274,6 +287,7 @@
   "units": {
     "celsius": "{{value}} °C",
     "mm": "{{value}} mm",
+    "kmh": "{{value}} km/h",
     "litres": "{{value}} L/m²"
   },
   "now": {
@@ -2429,7 +2443,7 @@
     "title": "Alertes du matin",
     "text": "Une notification vers 8 h quand votre potager a besoin de quelque chose de nouveau.",
     "kinds": {
-      "frost": "Gel en vue",
+      "frost": "Gel et tempêtes",
       "care": "Soins",
       "water": "Arrosage et pluie",
       "sow": "Moment de semer"

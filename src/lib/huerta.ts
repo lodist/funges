@@ -786,6 +786,10 @@ export interface PlaceAdvice {
   /** Each day's coldest hour (°C) from a week back through the forecast:
    *  what the frost check on planted crops reads (garden-week). */
   lows?: Warm;
+  /** Each day's strongest gust (km/h) and its rain (mm) from a week back
+   *  through the forecast: storm warnings and the check after one. */
+  gusts?: Warm;
+  rains?: Warm;
   crops: Record<string, CropStatus>;
   /** Kept from an earlier day and shown because the Worker could not be
    *  reached (fetchAdvice). */
