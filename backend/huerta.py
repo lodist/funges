@@ -459,7 +459,7 @@ def daily_air(region, forecast, s3=None, bucket=None, how="mean", back=WARM_DAYS
     store.parent.mkdir(parents=True, exist_ok=True)
     np.savez(store, lat=past.index.get_level_values(0).to_numpy(float),
              lon=past.index.get_level_values(1).to_numpy(float), days=np.array(past.columns, dtype=str),
-             b=encode(past.to_numpy(float)).reshape(len(past), -1))
+             b=encode(past.to_numpy(float)).reshape(len(past), len(past.columns)))  # no past days yet: (0, 0)
     now = forecast[["time", "lat", "lon", column]]
     kept = _past_hours(region, today, columns=("time", "lat", "lon", column))
     if kept is not None:

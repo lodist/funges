@@ -373,3 +373,15 @@ def test_area_files_carry_gusts_and_rains_last():
     assert rows[0][13:16] == [None, None, None] and rows[0][16][0] == "2026-10-30"
     assert list(base64.b64decode(rows[0][16][1])) == [85, 140] and list(base64.b64decode(rows[0][17][1])) == [36, 255]
     assert rows[1][16:] == [None, None]                                            # nothing known at Baar
+
+
+def test_daily_air_starts_a_store_when_no_past_file_has_the_column(tmp_path, monkeypatch):
+    # The first night after gusts were fetched: every past file predates them (2 Nov 2026 crashed on this).
+    import hourly_weather
+    monkeypatch.setattr(hourly_weather, "OUT_DIR", tmp_path)
+    past = tmp_path / "SE" / "past"
+    past.mkdir(parents=True)
+    _hours("2026-10-29 01:00", 24, 8.0).to_parquet(past / "2026-10-29.parquet")
+    forecast = _hours("2026-10-30 19:00", 48, 14.0).assign(gust_kmh=70.0)
+    gusts = huerta.daily_air("SE", forecast, how="max", back=huerta.LOW_DAYS, column="gust_kmh")
+    assert gusts.loc[(47.16, 8.55)].tolist() == [70.0]                             # the 31st, from the forecast
