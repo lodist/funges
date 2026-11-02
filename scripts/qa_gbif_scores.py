@@ -113,7 +113,7 @@ def active_for_validation(species_id: str, region: str, zone: str, observed: str
     if species_id not in specs[region]["params"]:
         return False, None
     if species_id == "truffle_b":
-        # Catalog says Burgundy Truffle but the configured taxon is T. melanosporum.
+        # T. melanosporum has almost no human-observation records on GBIF: too few to validate.
         return False, None
     region_spec = specs[region]
     if species_id in FUNGI:
@@ -480,10 +480,8 @@ def write_report(
         "phenophase, so plant results are not used in the model verdict or calibration claims.",
         "- Out-of-season taxa—including spring asparagus and autumn chestnut—are explicitly "
         "excluded rather than scored as failures.",
-        "- The catalog label `Burgundy Truffle` is paired with [`Tuber melanosporum`](https://www.gbif.org/species/5258468); "
-        "GBIF calls that Black Périgord Truffle, while [`Tuber aestivum`](https://www.gbif.org/species/5258469) "
-        "includes the Burgundy-truffle synonym `T. uncinatum`. No usable `T. melanosporum` "
-        "observations were available in this window.", "",
+        "- The black truffle ([`Tuber melanosporum`](https://www.gbif.org/species/5258468)) is not "
+        "validated: GBIF holds almost no human observations of it.", "",
         "| Species | Evidence | All | In season | Days | Median | ≥4 | Zone AUC (95% day-bootstrap CI) | Status |",
         "|---|---|---:|---:|---:|---:|---:|---:|---|",
     ]
