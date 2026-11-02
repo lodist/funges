@@ -97,7 +97,10 @@ LOW_DAYS = 7      # days of coldest hours it carries back, for the frost check o
 # and the check after one: (advice field, hourly column, how a day sums it).
 STORMS = (("gusts", "gust_kmh", "max"), ("rains", "precip_mm", "sum"))
 FULL_DAY = 20     # hours a day's mean needs (the forecast's last day is cut short)
-RH_WET = 90       # %: an hour this humid counts toward blight weather (Hutton criteria, AHDB 2017)
+# %: an hour this humid counts toward blight weather (Hutton criteria, AHDB 2017: 90). NBM runs humid against
+# US airports (1.7 times their humid hours, 17 Oct - 1 Nov 2026); at 92 % it keeps every blight day they had
+# and drops 40 % of the false ones. ICON-EU + ECMWF match European airports at 90 %.
+RH_WET = {"SE": 90, "NE": 90, "USE": 92, "USW": 92}
 WET_HOURS = 6     # such hours a blight day needs
 BLIGHT_MIN = 10   # C: the day's minimum a blight day needs
 BLIGHT_DAYS = 8   # the advice's blight bits: the day before its day through the sixth after
@@ -397,16 +400,17 @@ def humidity(t, td):
     return 100 * np.exp(17.625 * td / (243.04 + td) - 17.625 * t / (243.04 + t))
 
 
-def blight_bits(hours, day):
+def blight_bits(hours, day, rh_wet=90):
     """Blight weather at each place (key_lat, key_lon), as an int: bit k when the solar day `day` - 1 + k
     (k = 0..7) is a Hutton day, the second of two days in a row each with a minimum of at least BLIGHT_MIN and
-    WET_HOURS hours or more at RH_WET or more. `hours`: time (UTC), lat, lon, t2m_c, td2m_c. A solar day starts
+    WET_HOURS hours or more at `rh_wet` % or more (RH_WET, by region). `hours`: time (UTC), lat, lon, t2m_c,
+    td2m_c. A solar day starts
     at midnight at the place's longitude (UTC + lon / 15 h), as the Met Office day the criteria were built on;
     one with fewer than FULL_DAY hours never counts."""
     h = hours.dropna(subset=["t2m_c", "td2m_c"])
     solar = h["time"].dt.tz_convert(None) + pd.to_timedelta(h["lon"] * 240, unit="s")
     d = pd.DataFrame({"key_lat": h["lat"].round(4), "key_lon": h["lon"].round(4), "day": solar.dt.normalize(),
-                      "t": h["t2m_c"], "wet": humidity(h["t2m_c"], h["td2m_c"]) >= RH_WET})
+                      "t": h["t2m_c"], "wet": humidity(h["t2m_c"], h["td2m_c"]) >= rh_wet})
     days = d.groupby(["key_lat", "key_lon", "day"]).agg(n=("t", "size"), tmin=("t", "min"), wet=("wet", "sum"))
     ok = (days["n"] >= FULL_DAY) & (days["tmin"] >= BLIGHT_MIN) & (days["wet"] >= WET_HOURS)
     span = pd.date_range(pd.Timestamp(day) - pd.Timedelta(days=2), periods=BLIGHT_DAYS + 1)
@@ -566,7 +570,7 @@ def publish(region, forecast):
         air = None
         print(f"Huerta: no daily air: {e!r}")
     try:
-        blight = blight_bits(blight_hours(region, forecast, s3, bucket), f"{day:%Y-%m-%d}")
+        blight = blight_bits(blight_hours(region, forecast, s3, bucket), f"{day:%Y-%m-%d}", RH_WET[region])
     except Exception as e:  # noqa: BLE001 - the advice goes out without it
         blight = None
         print(f"Huerta: no blight weather: {e!r}")

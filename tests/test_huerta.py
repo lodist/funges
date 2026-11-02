@@ -402,3 +402,14 @@ def test_map_files_carry_the_weeks_blight_days_after_the_weather():
     layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(7, 3)
     assert layers[5].tolist() == [0, 255, 3]
     assert "blight" not in json.loads(huerta.map_files(places, advice, "2026-11-02")["index.json"])["layers"]
+
+
+def test_blight_bits_need_more_humid_hours_from_the_us_forecast():
+    # 91 % at 14 C: humid enough in Europe; NBM runs humid against US airports, so the US needs 92 %.
+    hours = _blight_hours("2026-11-02 00:00", 9 * 24)
+    for day in ("2026-11-04", "2026-11-05"):
+        t0 = pd.Timestamp(f"{day} 01:00", tz="UTC")
+        at = hours["time"].between(t0, t0 + pd.Timedelta(hours=5))
+        hours.loc[at, "td2m_c"] = 12.6                                   # about 91 %
+    assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 0.0)] == 0b100
+    assert huerta.blight_bits(hours, "2026-11-04", rh_wet=huerta.RH_WET["USE"]).loc[(50.0, 0.0)] == 0
