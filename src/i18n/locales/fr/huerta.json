@@ -2003,7 +2003,8 @@
       "crop": "Semer ou planter maintenant",
       "frost": "Gel et nuits froides",
       "soil": "Température du sol",
-      "water": "Eau cette semaine"
+      "water": "Eau cette semaine",
+      "blight": "Temps à mildiou"
     },
     "legend": {
       "now": "Semer ou planter maintenant",
@@ -2022,7 +2023,10 @@
       "coldHigh": "14 °C",
       "balance": "Pluie contre soleil et vent, 7 prochains jours",
       "balanceLow": "À arroser",
-      "balanceHigh": "Pluie suffisante"
+      "balanceHigh": "Pluie suffisante",
+      "blight": "Jours à mildiou pour pommes de terre et tomates, 7 prochains jours",
+      "blightFew": "1 ou 2 jours",
+      "blightMany": "3 jours ou plus"
     },
     "year": {
       "label": "Mois",

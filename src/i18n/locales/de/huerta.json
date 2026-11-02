@@ -2003,7 +2003,8 @@
       "crop": "Jetzt säen oder pflanzen",
       "frost": "Frost und kalte Nächte",
       "soil": "Bodentemperatur",
-      "water": "Wasser diese Woche"
+      "water": "Wasser diese Woche",
+      "blight": "Krautfäule-Wetter"
     },
     "legend": {
       "now": "Jetzt säen oder pflanzen",
@@ -2022,7 +2023,10 @@
       "coldHigh": "14 °C",
       "balance": "Regen gegen Sonne und Wind, nächste 7 Tage",
       "balanceLow": "Giessen nötig",
-      "balanceHigh": "Regen reicht"
+      "balanceHigh": "Regen reicht",
+      "blight": "Krautfäule-Tage für Kartoffeln und Tomaten, nächste 7 Tage",
+      "blightFew": "1 oder 2 Tage",
+      "blightMany": "3 Tage oder mehr"
     },
     "year": {
       "label": "Monat",

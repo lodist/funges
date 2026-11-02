@@ -41,6 +41,7 @@ import {
   type Place,
 } from '@/lib/huerta-api';
 import {
+  Bug,
   Droplets,
   MapPinned,
   Snowflake,
@@ -59,12 +60,13 @@ maplibregl.setWorkerUrl(maplibreWorkerUrl);
 maplibregl.addProtocol('pmtiles', protocol.tile);
 
 type Continent = keyof typeof MAP_REGIONS;
-const LAYERS: MapLayer[] = ['crop', 'frost', 'soil', 'water'];
+const LAYERS: MapLayer[] = ['crop', 'frost', 'soil', 'water', 'blight'];
 const LAYER_ICON: Record<MapLayer, typeof Sprout> = {
   crop: Sprout,
   frost: Snowflake,
   soil: Thermometer,
   water: Droplets,
+  blight: Bug,
 };
 /** Roughly where each continent's places are: its layer loads once in view. */
 const BOX: Record<Continent, [number, number, number, number]> = {
@@ -597,14 +599,19 @@ function Legend({
             [css(palette.frost[1]), t('map.legend.ground')],
             [css(palette.frost[0]), t('map.legend.later')],
           ]
-        : [];
+        : source === 'blight'
+          ? [
+              [css(palette.blight[1]), t('map.legend.blightMany')],
+              [css(palette.blight[0]), t('map.legend.blightFew')],
+            ]
+          : [];
   // A ramp's bands, as the map draws them.
   const steps = bands(source, dark).fills.filter(
     (fill): fill is Exclude<typeof fill, 'over' | null> =>
       fill !== null && fill !== 'over'
   );
   const what =
-    source === 'cold' || source === 'balance'
+    source === 'cold' || source === 'balance' || source === 'blight'
       ? t(`map.legend.${source}`)
       : null;
   const timed = ahead !== null;

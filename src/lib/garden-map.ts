@@ -17,12 +17,13 @@ const LON_STEP = 0.075;
 const REACH_X = 0.06;
 const REACH_Y = 0.04;
 
-export type MapLayer = 'crop' | 'frost' | 'soil' | 'water';
+export type MapLayer = 'crop' | 'frost' | 'soil' | 'water' | 'blight';
 /** The bytes a layer is drawn from: a crop's status, soil warmth, the week's
- *  coldest hour (cold) and water balance (balance), or, in files from before
- *  those, frost codes (frost) and water still to give (water). */
+ *  coldest hour (cold), water balance (balance) and blight days (blight), or,
+ *  in files from before those, frost codes (frost) and water still to give
+ *  (water). */
 export type MapSource =
-  'crop' | 'soil' | 'cold' | 'balance' | 'frost' | 'water';
+  'crop' | 'soil' | 'cold' | 'balance' | 'frost' | 'water' | 'blight';
 type RGBA = [number, number, number, number];
 
 const mercator = (lat: number) =>
@@ -77,6 +78,8 @@ interface Palette {
   cold: Stops;
   balance: Stops;
   water: Stops;
+  /** The week's blight days: one or two, three or more. */
+  blight: [RGBA, RGBA];
   /** The forecast's limit and the too-late hatching. */
   line: string;
 }
@@ -125,6 +128,11 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
       [15, [105, 174, 213, 210]],
       [35, [4, 96, 147, 230]],
     ],
+    // Violet, apart from the warm and cold ramps: a disease, not the weather.
+    blight: [
+      [214, 196, 236, 195],
+      [150, 112, 200, 220],
+    ],
     line: 'rgba(52, 50, 46, 0.75)',
   },
   // The ramps turned round: the "nothing" end dark, the most the brightest.
@@ -165,6 +173,10 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
       [1, [47, 82, 100, 185]],
       [15, [58, 137, 179, 205]],
       [35, [117, 202, 242, 225]],
+    ],
+    blight: [
+      [88, 70, 120, 190],
+      [186, 158, 236, 220],
     ],
     line: 'rgba(236, 234, 228, 0.7)',
   },
@@ -286,6 +298,14 @@ export function bands(source: MapSource, dark = false): Bands {
         smooth: 2,
       };
     }
+    case 'blight':
+      return {
+        value: byte => (byte === 255 ? NaN : byte),
+        edges: [0.5, 2.5],
+        fills: [null, ...palette.blight],
+        step: 0.5,
+        smooth: 1,
+      };
     case 'balance': {
       const edges = [-30, -20, -12, -6, -2, 2, 8, 20, 40];
       return {
