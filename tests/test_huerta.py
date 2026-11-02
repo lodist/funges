@@ -385,3 +385,14 @@ def test_daily_air_starts_a_store_when_no_past_file_has_the_column(tmp_path, mon
     forecast = _hours("2026-10-30 19:00", 48, 14.0).assign(gust_kmh=70.0)
     gusts = huerta.daily_air("SE", forecast, how="max", back=huerta.LOW_DAYS, column="gust_kmh")
     assert gusts.loc[(47.16, 8.55)].tolist() == [70.0]                             # the 31st, from the forecast
+
+
+def test_blight_bits_need_more_humid_hours_from_the_us_forecast():
+    # 91 % at 14 C: humid enough in Europe; NBM runs humid against US airports, so the US needs 92 %.
+    hours = _blight_hours("2026-11-02 00:00", 9 * 24)
+    for day in ("2026-11-04", "2026-11-05"):
+        t0 = pd.Timestamp(f"{day} 01:00", tz="UTC")
+        at = hours["time"].between(t0, t0 + pd.Timedelta(hours=5))
+        hours.loc[at, "td2m_c"] = 12.6                                   # about 91 %
+    assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 0.0)] == 0b100
+    assert huerta.blight_bits(hours, "2026-11-04", rh_wet=huerta.RH_WET["USE"]).loc[(50.0, 0.0)] == 0
