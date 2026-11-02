@@ -62,7 +62,7 @@
   "forecast": {
     "enabled": true,
     "routeToDish": false,
-    "dataColumns": ["Burgundy Truffle"],
+    "dataColumns": ["Black Truffle"],
     "regions": {
       "NE": {
         "available": false
