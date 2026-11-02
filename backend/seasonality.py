@@ -162,27 +162,52 @@ def _interpolate_months(dates, curve):
 
 
 def season_months_ramp(dates, params):
-    """Flat 1.0 inside season_months, linear ramp down to season_factor outside."""
-    return _months_ramp(dates, params["season_months"], params.get("season_factor", 0.5))
+    """Flat 1.0 inside the season, linear ramp down to season_factor outside, times the
+    season_tilt. The season is season_window when a species sets one, else season_months."""
+    ramp = _months_ramp(dates, params["season_months"], params.get("season_factor", 0.5),
+                        window=params.get("season_window"))
+    return ramp * season_tilt(dates, params)
 
 
-def _months_ramp(dates, allowed_months, factor, ramp_days=31):
+def season_tilt(dates, params):
+    """A hand-set shape inside the season, {month: value}, read at mid-month and blended
+    between like the curves. Months it leaves out hold its lowest value, so it never lifts
+    the off-season. 1.0 without one."""
+    tilt = params.get("season_tilt")
+    if not tilt:
+        return 1.0
+    tilt = {int(m): float(v) for m, v in tilt.items()}
+    curve = {m: tilt.get(m, min(tilt.values())) for m in range(1, 13)}
+    return _interpolate_months(pd.Series(pd.to_datetime(dates)), curve)
+
+
+def _months_ramp(dates, allowed_months, factor, ramp_days=31, window=None):
     """The ramp depends only on the date, and a nightly run scores a handful of dates on up to
     ~10^6 rows: worked out once per distinct date. Per row it built a rows x in-season-days
     matrix, ~1 GB per call on US West, twice per species."""
     unique, rows = np.unique(pd.to_datetime(dates).to_numpy(), return_inverse=True)
-    return _months_ramp_rows(pd.Series(unique), allowed_months, factor, ramp_days)[rows.reshape(-1)]
+    return _months_ramp_rows(pd.Series(unique), allowed_months, factor, ramp_days, window)[rows.reshape(-1)]
 
 
-def _months_ramp_rows(dates, allowed_months, factor, ramp_days=31):
-    allowed_months = set(allowed_months)
-    in_season = dates.dt.month.isin(allowed_months)
+def _months_ramp_rows(dates, allowed_months, factor, ramp_days=31, window=None):
     day_of_year = dates.dt.dayofyear
-    valid_days = np.concatenate([
-        pd.date_range(f'2021-{m:02d}-01', f'2021-{m:02d}-{pd.Period(f"2021-{m:02d}").days_in_month}')
-          .dayofyear.to_numpy()
-        for m in sorted(allowed_months)
-    ])
+    if window:
+        # ["MM-DD", "MM-DD"], both days in, day exact (a legal harvest window); may span New Year
+        start, end = (int(d.replace("-", "")) for d in window)
+        month_day = dates.dt.month * 100 + dates.dt.day
+        in_season = (month_day >= start) | (month_day <= end) if start > end else month_day.between(start, end)
+        first, last = (pd.Timestamp(f"2021-{d}") for d in window)
+        days = (pd.date_range(first, last) if first <= last
+                else pd.date_range(first, "2021-12-31").append(pd.date_range("2021-01-01", last)))
+        valid_days = days.dayofyear.to_numpy()
+    else:
+        allowed_months = set(allowed_months)
+        in_season = dates.dt.month.isin(allowed_months)
+        valid_days = np.concatenate([
+            pd.date_range(f'2021-{m:02d}-01', f'2021-{m:02d}-{pd.Period(f"2021-{m:02d}").days_in_month}')
+              .dayofyear.to_numpy()
+            for m in sorted(allowed_months)
+        ])
     dist = np.minimum(
         np.abs(day_of_year.values[:, None] - valid_days[None, :]),
         365 - np.abs(day_of_year.values[:, None] - valid_days[None, :])
@@ -265,7 +290,8 @@ def season_gate_for_species(df, specie, params, zone_curves):
     missing = ~np.isfinite(ratio)
     if missing.any():
         if "season_months" in params:
-            fallback = _months_ramp(df['Date'], params["season_months"], SEASON_MONTHS_GATE_FLOOR)
+            fallback = _months_ramp(df['Date'], params["season_months"], SEASON_MONTHS_GATE_FLOOR,
+                                    window=params.get("season_window"))
         else:
             fallback = np.ones(len(df), dtype=float)
         gate = np.where(missing, fallback, gate)

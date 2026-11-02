@@ -510,6 +510,41 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.scoring.season_months must contain months 1-12`
           );
+        if (
+          scoring?.season_window !== undefined &&
+          (!Array.isArray(scoring.season_window) ||
+            scoring.season_window.length !== 2 ||
+            scoring.season_window.some(
+              day =>
+                typeof day !== 'string' ||
+                !/^\d\d-\d\d$/.test(day) ||
+                Number.isNaN(Date.parse(`2021-${day}T00:00:00Z`)) ||
+                new Date(`2021-${day}T00:00:00Z`).toISOString().slice(5, 10) !==
+                  day
+            ))
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.season_window must be two days as "MM-DD"`
+          );
+        if (
+          scoring?.season_tilt !== undefined &&
+          (typeof scoring.season_tilt !== 'object' ||
+            !Object.keys(scoring.season_tilt).length ||
+            Object.entries(scoring.season_tilt).some(
+              ([month, value]) =>
+                !/^([1-9]|1[0-2])$/.test(month) ||
+                !Number.isFinite(value) ||
+                value <= 0 ||
+                value > 1
+            ))
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.season_tilt must map months 1-12 to values above 0 and at most 1`
+          );
         for (const key of [
           'wind_sensitive',
           'water_relevance',
