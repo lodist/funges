@@ -5,6 +5,7 @@ import {
   field,
   grid,
   monthCodes,
+  PALETTES,
   shapes,
   smoothed,
 } from '@/lib/garden-map';
@@ -100,6 +101,14 @@ describe('the garden map drawing', () => {
     // The old frost codes by how hard: none, later, ground frost, frost.
     expect([0, 3, 1, 2].map(bands('frost').value)).toEqual([0, 1, 2, 3]);
     expect(bands('water').fills[0]).toBeNull(); // nothing to water: no colour
+  });
+
+  it("blight: the week's blight days, none uncoloured, 1-2 and 3 or more", () => {
+    const blight = bands('blight');
+    expect([0, 2, 7, 255].map(blight.value)).toEqual([0, 2, 7, NaN]);
+    expect(blight.edges).toEqual([0.5, 2.5]);
+    expect(blight.fills[0]).toBeNull();
+    expect(blight.fills.slice(1)).toEqual(PALETTES.light.blight);
   });
 
   it('turns the ramps round on a dark basemap', () => {
