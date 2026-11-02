@@ -5,7 +5,10 @@ Per place: the coldest hour of the next 3 days (frost3) and of the rest of the w
 4-7 (frostw, with the night it comes: frostw_night), the mean soil temperature at 6 cm
 over the next 3 days (soil3; NBM has none, so in the US the air's three-day mean stands
 in), the week's mean night (night7), its rain (rain7) and reference evaporation (et07,
-Hargreaves' radiation formula). Per crop, the first rule that applies:
+Hargreaves' radiation formula). All at the height of the place's village: in mountain valleys the
+forecast's model stands far up the slopes (ICON-EU puts Chur, 601 m, at 1216 m), so its days move
+by the frost table's forecast_lift (means) and forecast_lift_min (minima); so do the advice's
+warm and lows, while blight reads the model's own hours. Per crop, the first rule that applies:
 - a crop that goes in only in autumn (bulbs, winter rye) -> wait_autumn before July; one that
   goes in only in spring (asparagus crowns) -> wait_spring from July;
 - tender: no warm-night season here -> not_here; an autumn frost before harvest in more
@@ -39,8 +42,8 @@ windows.
 
 Output, private on R2 like the rest: one file per 1° square, huerta/advice/<REGION>/
 <lat>_<lon>.json, {day, crops, places: [[name, lat, lon, frost, soil, nights, rain, water,
-codes, last_frost, first_frost, later_frost, later_night, warm, blight, lows]]}: frost '' / 'g' (ground frost) /
-'f' in the next 3 days, codes one letter per crop (CODES), last/first frost the place's
+codes, last_frost, first_frost, later_frost, later_night, warm, blight, lows, gusts, rains]]}: frost
+'' / 'g' (ground frost) / 'f' in the next 3 days, codes one letter per crop (CODES), last/first frost the place's
 typical day of year of its last spring and first autumn frost (null: none in a typical
 year), later_frost the same '' / 'g' / 'f' for days 4-7 and later_night the date of its
 first such night (null: none), warm [first day, base64]: the place's daily mean air, one byte a day
@@ -48,8 +51,10 @@ first such night (null: none), warm [first day, base64]: the place's daily mean 
 planted crop's growth counts in the app (lib/growth; null where none is known), blight the place's blight
 weather (blight_bits: bit k when the day before the file's day, plus k days, is a Hutton day; k = 0..7; only
 where the run worked it out), lows as warm for each day's coldest hour from LOW_DAYS back, what the app's frost
-check on planted crops reads (null where none is known; a field the run did not work out is null when a later
-one is there, so the fields keep their places). For the garden map,
+check on planted crops reads (null where none is known), and gusts and rains each day's strongest gust (km/h)
+and its rain (mm) the same way, one byte rounded (255 unknown), for the app's storm warnings and the check after
+one (STORMS). A field the run did not work out is null when a later one is there, so the fields keep their
+places. For the garden map,
 huerta/map/<REGION>/:
 index.json {day, n, layers}, places.bin (int16 lat x100, lon x100 per place) and layers.bin,
 one byte per place per layer, layer after layer (MAP_LAYERS, then one per crop: its letter;
@@ -88,6 +93,9 @@ WINDOW = {"n": "now", "s": "wait_soil", "f": "wait_frost", "w": "wait_warm", "h"
 UPLOAD_WORKERS = 16
 WARM_DAYS = 400   # days of daily mean air a place's advice carries back, for its planted crops' growth
 LOW_DAYS = 7      # days of coldest hours it carries back, for the frost check on planted crops
+# Each day's strongest gust (km/h) and rain (mm) from LOW_DAYS back through the forecast, for storm warnings
+# and the check after one: (advice field, hourly column, how a day sums it).
+STORMS = (("gusts", "gust_kmh", "max"), ("rains", "precip_mm", "sum"))
 FULL_DAY = 20     # hours a day's mean needs (the forecast's last day is cut short)
 RH_WET = 90       # %: an hour this humid counts toward blight weather (Hutton criteria, AHDB 2017)
 WET_HOURS = 6     # such hours a blight day needs
@@ -99,8 +107,29 @@ BLIGHT_DAYS = 8   # the advice's blight bits: the day before its day through the
 MAP_LAYERS = ("frost", "soil", "water", "cold", "balance")
 
 
-def conditions(forecast):
-    """Per place (lat, lon): frost3, soil3, night7, rain7, et07; and the forecast's first hour."""
+def forecast_lift(place):
+    """What moves the forecast from its model's height to each place's village's (the frost table's forecast_lift
+    and forecast_lift_min, C: data_tools/build_frost_odds.py), as columns mean and min per (lat, lon) to 4
+    decimals; None for a table without them."""
+    if "forecast_lift" not in place:
+        return None
+    at = pd.MultiIndex.from_arrays([place["Latitude"].round(4), place["Longitude"].round(4)], names=["lat", "lon"])
+    lift = pd.DataFrame({"mean": place["forecast_lift"].to_numpy(float),
+                         "min": place["forecast_lift_min"].to_numpy(float)}, index=at)
+    return lift[~lift.index.duplicated()]
+
+
+def at_village(frame, lift, kind):
+    """Daily values per place, (lat, lon) x day as daily_air's, moved by `lift` (forecast_lift's `kind` column)."""
+    if frame is None or lift is None:
+        return frame
+    at = pd.MultiIndex.from_arrays([frame.index.get_level_values(0), frame.index.get_level_values(1)])
+    return frame.add(lift[kind].reindex(at).fillna(0).to_numpy(), axis=0)
+
+
+def conditions(forecast, lift=None):
+    """Per place (lat, lon): frost3, soil3, night7, rain7, et07; and the forecast's first hour. With `lift`
+    (forecast_lift), its days at each place's village's height: means by its mean, minima by its min."""
     start = forecast["time"].min()
     f = forecast.assign(day=((forecast["time"] - start) // pd.Timedelta(hours=24)).astype("int8"))
     keys = ["lat", "lon"]
@@ -108,6 +137,13 @@ def conditions(forecast):
         frost3=("t2m_c", "min"), soil3=("soil_c", "mean"), air3=("t2m_c", "mean"))
     days = f.groupby([*keys, "day"], sort=False).agg(
         tmin=("t2m_c", "min"), tmean=("t2m_c", "mean"), rain=("precip_mm", "sum"), sun=("swdown_wm2", "sum"))
+    if lift is not None:
+        for frame, cols in ((soon, {"frost3": "min", "soil3": "mean", "air3": "mean"}),
+                            (days, {"tmin": "min", "tmean": "mean"})):
+            at = pd.MultiIndex.from_arrays([frame.index.get_level_values(k).round(4) for k in keys])
+            up = lift.reindex(at).fillna(0)
+            for col, kind in cols.items():
+                frame[col] += up[kind].to_numpy()
     # Hargreaves (1985): ET0 = 0.0135 (T + 17.8) Rs, Rs in mm a day (MJ m-2 x 0.408); sun sums W m-2 over hours
     days["et0"] = 0.0135 * (days["tmean"] + 17.8) * days["sun"] * 3600e-6 * 0.408
     week = days.groupby(level=keys, sort=False).agg(night7=("tmin", "mean"), rain7=("rain", "sum"),
@@ -331,13 +367,19 @@ def warm_bytes(t):
     return np.where(np.isnan(t), 255, np.clip(np.round((t + 30) * 2), 0, 254)).astype(np.uint8)
 
 
-def day_means(rows, how="mean"):
-    """Hourly rows (time, lat, lon, t2m_c) as each place's daily mean air (`how` "min": its coldest hour),
-    (key_lat, key_lon) x day: an hour belongs to the UTC day it starts in, as the past days; a day of fewer than
-    FULL_DAY hours is unknown."""
+def level_bytes(v):
+    """Gusts (km/h) or rain (mm) as the advice's bytes: rounded, 0-254, 255 where unknown."""
+    v = np.asarray(v, float)
+    return np.where(np.isnan(v), 255, np.clip(np.round(v), 0, 254)).astype(np.uint8)
+
+
+def day_means(rows, how="mean", column="t2m_c"):
+    """Hourly rows (time, lat, lon, `column`) as each place's daily mean air (`how` "min": its coldest hour;
+    another column, as `how` sums its day), (key_lat, key_lon) x day: an hour belongs to the UTC day it starts
+    in, as the past days; a day of fewer than FULL_DAY hours is unknown."""
     rows = rows.assign(day=(rows["time"] - pd.Timedelta(hours=1)).dt.strftime("%Y-%m-%d"),
                        key_lat=rows["lat"].round(4), key_lon=rows["lon"].round(4))
-    g = rows.groupby(["key_lat", "key_lon", "day"])["t2m_c"]
+    g = rows.groupby(["key_lat", "key_lon", "day"])[column]
     return g.agg(how).where(g.count() >= FULL_DAY).unstack("day")
 
 
@@ -367,56 +409,62 @@ def blight_bits(hours, day):
 
 
 def _past_hours(region, day, s3=None, bucket=None, columns=("time", "lat", "lon", "t2m_c")):
-    """One past day's hours at the region's places: here if kept, else from R2; None if neither has it."""
+    """One past day's hours at the region's places: here if kept, else from R2; None if neither has it, or it has
+    no such column (written before the column was fetched)."""
     import hourly_weather
     path = hourly_weather.OUT_DIR / region / "past" / f"{day}.parquet"
-    columns = list(columns)
-    if path.exists():
-        return pd.read_parquet(path, columns=columns)
-    if s3 is None:
-        return None
+    if not path.exists():
+        if s3 is None:
+            return None
+        try:
+            path = io.BytesIO(s3.get_object(Bucket=bucket, Key=f"hourly_weather/{region}/past/{day}.parquet")["Body"].read())
+        except Exception:  # noqa: BLE001 - a night without weather
+            return None
     try:
-        body = s3.get_object(Bucket=bucket, Key=f"hourly_weather/{region}/past/{day}.parquet")["Body"].read()
-    except Exception:  # noqa: BLE001 - a night without weather
+        return pd.read_parquet(path, columns=list(columns))
+    except (KeyError, ValueError):  # pyarrow: no such column
         return None
-    return pd.read_parquet(io.BytesIO(body), columns=columns)
 
 
-def daily_air(region, forecast, s3=None, bucket=None, how="mean", back=WARM_DAYS):
-    """Each place's daily mean air (C, NaN unknown; `how` "min": its coldest hour), (key_lat, key_lon) x every day
-    from `back` days back to the forecast's last full day: the past days, kept here in
-    HOURLY_WEATHER_DIR/<REGION>/daily_air.npz (daily_min.npz) and topped up each night with those it lacks (here,
-    else on R2); then today, its past hours with the forecast's, and the forecast's days."""
+def daily_air(region, forecast, s3=None, bucket=None, how="mean", back=WARM_DAYS, column="t2m_c"):
+    """Each place's daily mean air (C, NaN unknown; `how` "min": its coldest hour; another `column`, its day as
+    `how` sums it: STORMS), (key_lat, key_lon) x every day from `back` days back to the forecast's last full day:
+    the past days, kept here in HOURLY_WEATHER_DIR/<REGION>/daily_air.npz (daily_min.npz, daily_max_gust_kmh.npz
+    ...) and topped up each night with those it lacks (here, else on R2); then today, its past hours with the
+    forecast's, and the forecast's days."""
     import hourly_weather
-    store = hourly_weather.OUT_DIR / region / ("daily_air.npz" if how == "mean" else f"daily_{how}.npz")
+    air = column == "t2m_c"
+    encode, decode = (warm_bytes, lambda b: b / 2 - 30) if air else (level_bytes, lambda b: b)
+    name = "daily_air" if air and how == "mean" else f"daily_{how}" if air else f"daily_{how}_{column}"
+    store = hourly_weather.OUT_DIR / region / f"{name}.npz"
     today = (forecast["time"].min() - pd.Timedelta(hours=1)).strftime("%Y-%m-%d")
     first = (pd.Timestamp(today) - pd.Timedelta(days=back)).strftime("%Y-%m-%d")
     past = pd.DataFrame(index=pd.MultiIndex.from_arrays([[], []], names=["key_lat", "key_lon"]))
     if store.exists():
         with np.load(store) as z:
             b = z["b"].astype(float)
-            past = pd.DataFrame(np.where(b == 255, np.nan, b / 2 - 30), columns=z["days"].tolist(),
+            past = pd.DataFrame(np.where(b == 255, np.nan, decode(b)), columns=z["days"].tolist(),
                                 index=pd.MultiIndex.from_arrays([z["lat"], z["lon"]], names=["key_lat", "key_lon"]))
     days = {p.stem for p in (hourly_weather.OUT_DIR / region / "past").glob("*.parquet")}
     if s3 is not None:
         pages = s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix=f"hourly_weather/{region}/past/")
         days |= {o["Key"].rsplit("/", 1)[-1].removesuffix(".parquet") for page in pages for o in page.get("Contents", [])}
     for day in sorted(d for d in days if first <= d < today and d not in past.columns):
-        rows = _past_hours(region, day, s3, bucket)
+        rows = _past_hours(region, day, s3, bucket, ("time", "lat", "lon", column))
         if rows is not None:
-            means = day_means(rows, how)
+            means = day_means(rows, how, column)
             if day in means:
                 past = past.join(means[[day]], how="outer")
     past = past[sorted(c for c in past.columns if first <= c < today)]
     store.parent.mkdir(parents=True, exist_ok=True)
     np.savez(store, lat=past.index.get_level_values(0).to_numpy(float),
              lon=past.index.get_level_values(1).to_numpy(float), days=np.array(past.columns, dtype=str),
-             b=warm_bytes(past.to_numpy(float)).reshape(len(past), -1))
-    now = forecast[["time", "lat", "lon", "t2m_c"]]
-    kept = _past_hours(region, today)
+             b=encode(past.to_numpy(float)).reshape(len(past), -1))
+    now = forecast[["time", "lat", "lon", column]]
+    kept = _past_hours(region, today, columns=("time", "lat", "lon", column))
     if kept is not None:
         now = pd.concat([kept, now], ignore_index=True)
-    ahead = day_means(now, how)
+    ahead = day_means(now, how, column)
     ahead = ahead[[c for c in ahead.columns if c >= today and ahead[c].notna().any()]]
     air = past.join(ahead, how="outer")
     if not len(air.columns):
@@ -435,28 +483,33 @@ def blight_hours(region, forecast, s3=None, bucket=None):
     return pd.concat([*past, forecast[cols]], ignore_index=True)
 
 
-def area_files(place, advice, day, air=None, blight=None, lows=None):
+def area_files(place, advice, day, air=None, blight=None, lows=None, storms=None):
     """{R2 key suffix '<lat>_<lon>.json': file bytes}: every place of a 1° square, compact. With `air`
     (daily_air), each place's `warm`; with `blight` (blight_bits), its blight bits after it; with `lows` (daily_air
-    "min"), its lows after them. A field not given is null where a later one is, so the fields keep their places."""
+    "min"), its lows after them; with `storms` ({gusts, rains}: daily_air of STORMS), its gusts and rains last. A
+    field not given is null where a later one is, so the fields keep their places."""
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], ["f", "g"], "")
     later = np.select([place["frostw"] <= 0, place["frostw"] <= 2], ["f", "g"], "")
     water = (place["et07"] - place["rain7"]).clip(lower=0)
     codes = advice.replace(CODES).agg("".join, axis=1)
     keys = pd.MultiIndex.from_arrays([place["Latitude"].round(4), place["Longitude"].round(4)])
 
-    def by_day(frame):
-        # [first day, base64 of warm_bytes] per place, null where no day is known.
+    def by_day(frame, encode=warm_bytes):
+        # [first day, base64 of its bytes] per place, null where no day is known.
         # ponytail: warm_bytes floors at -30 C; a colder night still reads as colder than every crop's limit.
+        if frame is None:
+            return None
         if not len(frame.columns):
             return [None] * len(place)
-        b = warm_bytes(frame.reindex(keys).to_numpy(float))
+        b = encode(frame.reindex(keys).to_numpy(float))
         return [[frame.columns[0], base64.b64encode(r.tobytes()).decode()] if k else None
                 for r, k in zip(b, (b != 255).any(axis=1))]
 
-    fields = [by_day(air) if air is not None else None,
+    storms = storms or {}
+    fields = [by_day(air),
               blight.reindex(keys).fillna(0).astype(int).tolist() if blight is not None else None,
-              by_day(lows) if lows is not None else None]
+              by_day(lows),
+              *(by_day(storms.get(name), level_bytes) for name, _, _ in STORMS)]
     given = [k for k, f in enumerate(fields) if f is not None]
     tails = [[f[i] if f is not None else None for f in fields[:given[-1] + 1]] if given else []
              for i in range(len(place))]
@@ -486,9 +539,10 @@ def publish(region, forecast):
     if not (crops_path.exists() and frost_path.exists()):
         print(f"Huerta: skipped, no {crops_path.name if not crops_path.exists() else frost_path.name}")
         return 0
-    cond, start = conditions(forecast)
-    day = start + pd.Timedelta(hours=12)                             # the morning after the run
     place = pd.read_parquet(frost_path)
+    lift = forecast_lift(place)
+    cond, start = conditions(forecast, lift)
+    day = start + pd.Timedelta(hours=12)                             # the morning after the run
     for frame, (la, lo) in ((place, ("Latitude", "Longitude")), (cond, ("lat", "lon"))):
         frame["key_lat"], frame["key_lon"] = frame[la].round(4), frame[lo].round(4)
     place = place.merge(cond.drop(columns=["lat", "lon"]), on=["key_lat", "key_lon"], how="inner")
@@ -513,7 +567,13 @@ def publish(region, forecast):
     except Exception as e:  # noqa: BLE001 - the advice goes out without it
         lows = None
         print(f"Huerta: no nightly lows: {e!r}")
-    files = area_files(place, advice, f"{day:%Y-%m-%d}", air, blight, lows)
+    try:
+        storms = {name: daily_air(region, forecast, s3, bucket, how, LOW_DAYS, column) for name, column, how in STORMS}
+    except Exception as e:  # noqa: BLE001 - the advice goes out without it
+        storms = None
+        print(f"Huerta: no storm weather: {e!r}")
+    air, lows = at_village(air, lift, "mean"), at_village(lows, lift, "min")
+    files = area_files(place, advice, f"{day:%Y-%m-%d}", air, blight, lows, storms)
     with ThreadPoolExecutor(UPLOAD_WORKERS) as pool:
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
                                                ContentType="application/json"), files.items()))
