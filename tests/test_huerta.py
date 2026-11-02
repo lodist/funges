@@ -385,3 +385,20 @@ def test_daily_air_starts_a_store_when_no_past_file_has_the_column(tmp_path, mon
     forecast = _hours("2026-10-30 19:00", 48, 14.0).assign(gust_kmh=70.0)
     gusts = huerta.daily_air("SE", forecast, how="max", back=huerta.LOW_DAYS, column="gust_kmh")
     assert gusts.loc[(47.16, 8.55)].tolist() == [70.0]                             # the 31st, from the forecast
+
+
+def test_map_files_carry_the_weeks_blight_days_after_the_weather():
+    places = pd.DataFrame({
+        "Latitude": [40.44, 39.86, 38.0], "Longitude": [-3.675, -4.02, -1.13],
+        "frost3": [9.2, -0.5, 12.0], "frostw": [1.0, 5.0, 12.0], "soil3": [13.44, np.nan, 18.0],
+        "rain7": [4.0, 1.0, 20.0], "et07": [14.4, 12.0, 9.0],
+    })
+    advice = pd.DataFrame({"tomato": ["too_late", "not_here", "too_late"]})
+    # Bit 0 is yesterday: Murcia has three blight days from today, Madrid one yesterday only, Toledo none known.
+    bits = pd.Series([0b1, 0b1110], index=pd.MultiIndex.from_tuples([(40.44, -3.675), (38.0, -1.13)],
+                                                                   names=["key_lat", "key_lon"]))
+    files = huerta.map_files(places, advice, "2026-11-02", blight=bits)
+    assert json.loads(files["index.json"])["layers"] == ["frost", "soil", "water", "cold", "balance", "blight", "tomato"]
+    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(7, 3)
+    assert layers[5].tolist() == [0, 255, 3]
+    assert "blight" not in json.loads(huerta.map_files(places, advice, "2026-11-02")["index.json"])["layers"]
