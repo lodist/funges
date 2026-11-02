@@ -10,6 +10,7 @@ import {
   Bitcoin as LucideBitcoin,
   BookOpen as LucideBookOpen,
   Bookmark as LucideBookmark,
+  Bug as LucideBug,
   Calendar as LucideCalendar,
   CalendarRange as LucideCalendarRange,
   Camera as LucideCamera,
@@ -150,6 +151,7 @@ export const Bean = decorativeByDefault(LucideBean);
 export const Bitcoin = decorativeByDefault(LucideBitcoin);
 export const BookOpen = decorativeByDefault(LucideBookOpen);
 export const Bookmark = decorativeByDefault(LucideBookmark);
+export const Bug = decorativeByDefault(LucideBug);
 export const Calendar = decorativeByDefault(LucideCalendar);
 export const CalendarRange = decorativeByDefault(LucideCalendarRange);
 export const Camera = decorativeByDefault(LucideCamera);

@@ -2003,7 +2003,8 @@
       "crop": "Semina o pianta ora",
       "frost": "Gelate e notti fredde",
       "soil": "Temperatura del terreno",
-      "water": "Acqua questa settimana"
+      "water": "Acqua questa settimana",
+      "blight": "Tempo da peronospora"
     },
     "legend": {
       "now": "Semina o pianta ora",
@@ -2022,7 +2023,10 @@
       "coldHigh": "14 °C",
       "balance": "Pioggia contro sole e vento, prossimi 7 giorni",
       "balanceLow": "Da annaffiare",
-      "balanceHigh": "Pioggia in eccesso"
+      "balanceHigh": "Pioggia in eccesso",
+      "blight": "Giorni da peronospora per patate e pomodori, prossimi 7 giorni",
+      "blightFew": "1 o 2 giorni",
+      "blightMany": "3 giorni o più"
     },
     "year": {
       "label": "Mese",

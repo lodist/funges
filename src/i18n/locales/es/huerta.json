@@ -2003,7 +2003,8 @@
       "crop": "Siembra o planta ahora",
       "frost": "Heladas y noches frías",
       "soil": "Temperatura del suelo",
-      "water": "Agua esta semana"
+      "water": "Agua esta semana",
+      "blight": "Tiempo de mildiu"
     },
     "legend": {
       "now": "Siembra o planta ahora",
@@ -2022,7 +2023,10 @@
       "coldHigh": "14 °C",
       "balance": "Lluvia frente a sol y viento, próximos 7 días",
       "balanceLow": "Hay que regar",
-      "balanceHigh": "Llueve de sobra"
+      "balanceHigh": "Llueve de sobra",
+      "blight": "Días de mildiu para patatas y tomates, próximos 7 días",
+      "blightFew": "1 o 2 días",
+      "blightMany": "3 días o más"
     },
     "year": {
       "label": "Mes",

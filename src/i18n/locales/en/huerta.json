@@ -2003,7 +2003,8 @@
       "crop": "Sow or plant now",
       "frost": "Frost and cold nights",
       "soil": "Soil temperature",
-      "water": "Water this week"
+      "water": "Water this week",
+      "blight": "Blight weather"
     },
     "legend": {
       "now": "Sow or plant now",
@@ -2022,7 +2023,10 @@
       "coldHigh": "14 °C",
       "balance": "Rain against sun and wind, next 7 days",
       "balanceLow": "Needs water",
-      "balanceHigh": "Rain to spare"
+      "balanceHigh": "Rain to spare",
+      "blight": "Blight days for potatoes and tomatoes, next 7 days",
+      "blightFew": "1 or 2 days",
+      "blightMany": "3 days or more"
     },
     "year": {
       "label": "Month",

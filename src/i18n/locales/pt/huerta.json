@@ -2003,7 +2003,8 @@
       "crop": "Semeie ou plante agora",
       "frost": "Geadas e noites frias",
       "soil": "Temperatura do solo",
-      "water": "Água esta semana"
+      "water": "Água esta semana",
+      "blight": "Tempo de míldio"
     },
     "legend": {
       "now": "Semeie ou plante agora",
@@ -2022,7 +2023,10 @@
       "coldHigh": "14 °C",
       "balance": "Chuva contra sol e vento, próximos 7 dias",
       "balanceLow": "Precisa de rega",
-      "balanceHigh": "Chuva de sobra"
+      "balanceHigh": "Chuva de sobra",
+      "blight": "Dias de míldio para batatas e tomates, próximos 7 dias",
+      "blightFew": "1 ou 2 dias",
+      "blightMany": "3 dias ou mais"
     },
     "year": {
       "label": "Mês",
