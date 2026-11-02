@@ -1,6 +1,6 @@
 """Last summer's rain against the place's 1991-2020 normal: a wet June-August makes a good
 black-truffle winter, a dry one a poor one (national yields 1970-2017, Büntgen et al. 2019,
-r = 0.63; French markets 2009-2025, x1.35 kg per SD; funges-lab qa/truffle-2026-11-02).
+r = 0.63; French markets 2009-2025, x1.3 kg per SD; funges-lab qa/truffle-2026-11-02).
 A species opts in with `summer_rain_per_sd`, the score's multiplier per SD of that rain.
 Built by tools/build_summer_rain.py once a year after August."""
 from __future__ import annotations
