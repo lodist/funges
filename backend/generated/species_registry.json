@@ -4518,6 +4518,7 @@
             },
             "wind_sensitive": false,
             "season_months": [12, 1, 2, 3],
+            "summer_rain_per_sd": 1.35,
             "water_relevance": false,
             "sea_relevance": false,
             "hosts": ["quercus", "other_broadleaf"]

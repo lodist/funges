@@ -562,6 +562,16 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.scoring.rain_delay_days must be a whole number of days from 0 to 30`
           );
+        if (
+          scoring?.summer_rain_per_sd !== undefined &&
+          (!Number.isFinite(scoring.summer_rain_per_sd) ||
+            scoring.summer_rain_per_sd <= 0)
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.summer_rain_per_sd must be a number above 0`
+          );
         if (typeof scoring?.weather_preference?.rain_first !== 'boolean')
           fail(
             errors,
