@@ -49,6 +49,7 @@ const SOURCE: Record<MapLayer, MapSource> = {
   frost: 'cold',
   soil: 'soil',
   water: 'balance',
+  blight: 'blight',
 };
 
 // Tinted by kind as Terra's datasets: weather linen, the ground tan, the
