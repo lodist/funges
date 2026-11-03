@@ -211,6 +211,11 @@
           "now": "Blight weather now",
           "text": "Warm, humid days and nights spread blight. Check the leaves of {{crops}} every day and take off any with brown patches."
         },
+        "slugs": {
+          "soon": "Slug nights from {{day}}",
+          "now": "Slugs out tonight",
+          "text": "Mild, wet nights bring slugs out to eat {{crops}}. After dark, go round with a torch and pick them off, or sink a jar of beer by the plants and empty it every morning. Water in the morning, not the evening."
+        },
         "carrot_fly": {
           "soon": "Carrot fly: flying here from about {{date}}",
           "now": "Carrot fly is flying around here now",

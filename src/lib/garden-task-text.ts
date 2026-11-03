@@ -171,7 +171,10 @@ export function taskText(
         text: t(`week.todo.pest.${task.pest}.text`, {
           crops: names(task.crops),
         }),
-        from: task.pest === 'blight' ? 'forecast' : 'climate',
+        from:
+          task.pest === 'blight' || task.pest === 'slugs'
+            ? 'forecast'
+            : 'climate',
       };
   }
 }

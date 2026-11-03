@@ -43,6 +43,39 @@ describe('pest warnings', () => {
     ).toEqual([]);
   });
 
+  it('warns of slug nights for young crops and the ones slugs eat at any age', () => {
+    // 1-7 November: lows 3, 6, 6, 8, 2, 7, 7 °C; rain 9, 2, 6, 0, 8 mm.
+    const lows = { start: '2027-11-01', t: [3, 6, 6, 8, 2, 7, 7] };
+    const rains = { start: '2027-11-01', t: [9, 2, 6, 0, 8, 0, 0] };
+    const advice = { ...SAMPLE_ADVICE, day: '2027-11-01', lows, rains };
+    const p = plan(
+      ['lettuce', '2027-09-01'],
+      ['carrot', '2027-08-01'],
+      ['broad_beans', '2027-10-20'],
+      ['kale', undefined, '2027-11-10']
+    );
+    // The 3rd: mild and wet. Not the 1st (cold), the 2nd (2 mm), the 4th (dry)
+    // nor the 5th (cold). Old carrots and kale not yet in: no.
+    expect(pestTasks(p, advice, undefined, '2027-11-01')).toEqual([
+      {
+        kind: 'pest',
+        pest: 'slugs',
+        phase: 'soon',
+        day: '2027-11-03',
+        crops: ['lettuce', 'broad_beans'],
+      },
+    ]);
+    expect(pestTasks(p, advice, undefined, '2027-11-03')[0]).toMatchObject({
+      phase: 'now',
+      day: '2027-11-03',
+    });
+    // After the 3rd no mild night is wet: nothing, as without the weather.
+    expect(pestTasks(p, advice, undefined, '2027-11-05')).toEqual([]);
+    expect(
+      pestTasks(p, { ...advice, rains: undefined }, undefined, '2027-11-01')
+    ).toEqual([]);
+  });
+
   it('warns of a fly two weeks before its first flies, until its warning ends', () => {
     const p = plan(
       ['carrot', '2027-03-01'],

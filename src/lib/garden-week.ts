@@ -708,7 +708,7 @@ export function gardenWeek(
   // A storm coming, or the beds to check after one.
   tasks.push(...stormTasks(plan, advice, today));
 
-  // Pests the weather brings: blight weather, flies on the wing.
+  // Pests the weather brings: blight weather, slug nights, flies on the wing.
   tasks.push(...pestTasks(plan, advice, year?.temps, today));
 
   // What the place's climate kills: a crop that dies before it is ready
@@ -885,8 +885,9 @@ export function jobKey(task: Task, plan: Plan, today: string): string | null {
     case 'sowAgain':
       return `sowAgain:${task.crop}`;
     case 'pest':
-      // Blight comes back with the weather; a fly's warning is its season's.
-      return `pest:${task.pest}:${task.pest === 'blight' ? isoWeek(today) : today.slice(0, 4)}`;
+      // Blight and slugs come back with the weather; a fly's warning is its
+      // season's.
+      return `pest:${task.pest}:${task.pest === 'blight' || task.pest === 'slugs' ? isoWeek(today) : today.slice(0, 4)}`;
     default:
       return null;
   }
