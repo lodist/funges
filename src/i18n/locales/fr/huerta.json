@@ -211,6 +211,11 @@
           "now": "Temps à mildiou en ce moment",
           "text": "Les jours et les nuits chauds et humides propagent le mildiou. Regardez chaque jour les feuilles de {{crops}} et retirez celles qui ont des taches brunes."
         },
+        "downy_mildew": {
+          "soon": "Temps à mildiou de l'oignon et de la laitue dès {{day}}",
+          "now": "Temps à mildiou de l'oignon et de la laitue en ce moment",
+          "text": "Les nuits fraîches et humides et les matins mouillés propagent le mildiou. Regardez sous les feuilles de {{crops}} et retirez celles qui portent un duvet gris-violet. Arrosez au pied le matin et laissez de l'air entre les plantes."
+        },
         "slugs": {
           "soon": "Nuits à limaces dès {{day}}",
           "now": "Les limaces sortent ce soir",
@@ -2010,6 +2015,7 @@
       "soil": "Température du sol",
       "water": "Eau cette semaine",
       "blight": "Temps à mildiou",
+      "downy": "Temps à mildiou de l'oignon et de la laitue",
       "slugs": "Nuits à limaces",
       "pests": "Ravageurs et maladies"
     },
@@ -2034,6 +2040,9 @@
       "blight": "Jours à mildiou pour pommes de terre et tomates, 7 prochains jours",
       "blightFew": "1 ou 2 jours",
       "blightMany": "3 jours ou plus",
+      "downy": "Jours à mildiou pour oignons et laitues, 7 prochains jours",
+      "downyFew": "1 ou 2 jours",
+      "downyMany": "3 jours ou plus",
       "slugs": "Nuits à limaces pour salades, choux et jeunes plants, 7 prochains jours",
       "slugsFew": "1 ou 2 nuits",
       "slugsMany": "3 nuits ou plus"

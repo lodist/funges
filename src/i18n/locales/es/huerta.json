@@ -211,6 +211,11 @@
           "now": "Tiempo de mildiu ahora",
           "text": "Los días y las noches cálidos y húmedos propagan el mildiu. Revisa cada día las hojas de {{crops}} y quita las que tengan manchas marrones."
         },
+        "downy_mildew": {
+          "soon": "Tiempo de mildiu de cebolla y lechuga desde el {{day}}",
+          "now": "Tiempo de mildiu de cebolla y lechuga ahora",
+          "text": "Las noches frescas y húmedas y las mañanas mojadas propagan el mildiu. Mira el envés de las hojas de {{crops}} y quita las que tengan una pelusa gris violácea. Riega al pie por la mañana y deja espacio entre las plantas para que corra el aire."
+        },
         "slugs": {
           "soon": "Noches de babosas desde el {{day}}",
           "now": "Esta noche salen las babosas",
@@ -2010,6 +2015,7 @@
       "soil": "Temperatura del suelo",
       "water": "Agua esta semana",
       "blight": "Tiempo de mildiu",
+      "downy": "Tiempo de mildiu de cebolla y lechuga",
       "slugs": "Noches de babosas",
       "pests": "Plagas y enfermedades"
     },
@@ -2034,6 +2040,9 @@
       "blight": "Días de mildiu para patatas y tomates, próximos 7 días",
       "blightFew": "1 o 2 días",
       "blightMany": "3 días o más",
+      "downy": "Días de mildiu para cebollas y lechugas, próximos 7 días",
+      "downyFew": "1 o 2 días",
+      "downyMany": "3 días o más",
       "slugs": "Noches de babosas para lechugas, coles y plantas jóvenes, próximos 7 días",
       "slugsFew": "1 o 2 noches",
       "slugsMany": "3 noches o más"

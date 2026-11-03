@@ -211,6 +211,11 @@
           "now": "Jetzt Krautfäule-Wetter",
           "text": "Bei warmen, feuchten Tagen und Nächten breitet sich die Krautfäule aus. Schau dir jeden Tag die Blätter von {{crops}} an und entferne alle mit braunen Flecken."
         },
+        "downy_mildew": {
+          "soon": "Falscher-Mehltau-Wetter ab {{day}}",
+          "now": "Jetzt Falscher-Mehltau-Wetter",
+          "text": "Kühle, feuchte Nächte und nasse Morgen verbreiten den Falschen Mehltau. Schau unter die Blätter von {{crops}} und entferne jedes Blatt mit grau-violettem Belag. Giess am Morgen direkt auf die Erde und lass zwischen den Pflanzen Platz für Luft."
+        },
         "slugs": {
           "soon": "Schneckennächte ab {{day}}",
           "now": "Heute Nacht kommen die Schnecken",
@@ -2010,6 +2015,7 @@
       "soil": "Bodentemperatur",
       "water": "Wasser diese Woche",
       "blight": "Krautfäule-Wetter",
+      "downy": "Falscher-Mehltau-Wetter",
       "slugs": "Schneckennächte",
       "pests": "Schädlinge und Krankheiten"
     },
@@ -2034,6 +2040,9 @@
       "blight": "Krautfäule-Tage für Kartoffeln und Tomaten, nächste 7 Tage",
       "blightFew": "1 oder 2 Tage",
       "blightMany": "3 Tage oder mehr",
+      "downy": "Falscher-Mehltau-Tage für Zwiebeln und Salat, nächste 7 Tage",
+      "downyFew": "1 oder 2 Tage",
+      "downyMany": "3 Tage oder mehr",
       "slugs": "Schneckennächte für Salat, Kohl und Jungpflanzen, nächste 7 Tage",
       "slugsFew": "1 oder 2 Nächte",
       "slugsMany": "3 Nächte oder mehr"

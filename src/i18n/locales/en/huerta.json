@@ -211,6 +211,11 @@
           "now": "Blight weather now",
           "text": "Warm, humid days and nights spread blight. Check the leaves of {{crops}} every day and take off any with brown patches."
         },
+        "downy_mildew": {
+          "soon": "Downy mildew weather from {{day}}",
+          "now": "Downy mildew weather now",
+          "text": "Cool, humid nights and wet mornings spread downy mildew. Look under the leaves of {{crops}} for grey-purple fuzz and take off any leaf that has it. Water at the soil in the morning and leave room between plants for air."
+        },
         "slugs": {
           "soon": "Slug nights from {{day}}",
           "now": "Slugs out tonight",
@@ -2010,6 +2015,7 @@
       "soil": "Soil temperature",
       "water": "Water this week",
       "blight": "Blight weather",
+      "downy": "Downy mildew weather",
       "slugs": "Slug nights",
       "pests": "Pests and diseases"
     },
@@ -2034,6 +2040,9 @@
       "blight": "Blight days for potatoes and tomatoes, next 7 days",
       "blightFew": "1 or 2 days",
       "blightMany": "3 days or more",
+      "downy": "Downy mildew days for onions and lettuce, next 7 days",
+      "downyFew": "1 or 2 days",
+      "downyMany": "3 days or more",
       "slugs": "Slug nights for lettuce, cabbage and young plants, next 7 days",
       "slugsFew": "1 or 2 nights",
       "slugsMany": "3 nights or more"

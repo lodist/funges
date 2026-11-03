@@ -17,16 +17,25 @@ const LON_STEP = 0.075;
 const REACH_X = 0.06;
 const REACH_Y = 0.04;
 
-export type MapLayer = 'crop' | 'frost' | 'soil' | 'water' | 'blight' | 'slugs';
+export type MapLayer =
+  'crop' | 'frost' | 'soil' | 'water' | 'blight' | 'downy' | 'slugs';
 /** The bytes a layer is drawn from: a crop's status, soil warmth, the week's
  *  coldest hour (cold), water balance (balance), blight days (blight) and
  *  slug nights (slugs), or, in files from before those, frost codes (frost)
  *  and water still to give (water). */
 export type MapSource =
-  'crop' | 'soil' | 'cold' | 'balance' | 'frost' | 'water' | 'blight' | 'slugs';
+  | 'crop'
+  | 'soil'
+  | 'cold'
+  | 'balance'
+  | 'frost'
+  | 'water'
+  | 'blight'
+  | 'downy'
+  | 'slugs';
 type RGBA = [number, number, number, number];
 /** The pests' layers: on the map behind one Pests button. */
-export const PEST_LAYERS = ['blight', 'slugs'] as const;
+export const PEST_LAYERS = ['blight', 'slugs', 'downy'] as const;
 
 const mercator = (lat: number) =>
   Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
@@ -84,6 +93,8 @@ interface Palette {
   blight: [RGBA, RGBA];
   /** The week's slug nights: one or two, three or more. */
   slugs: [RGBA, RGBA];
+  /** The week's downy mildew days, for onion or lettuce: as blight's. */
+  downy: [RGBA, RGBA];
   /** The forecast's limit and the too-late hatching. */
   line: string;
 }
@@ -142,6 +153,11 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
       [218, 214, 158, 195],
       [146, 140, 58, 220],
     ],
+    // Blue-green, apart from blight's violet and the slugs' olive.
+    downy: [
+      [190, 222, 214, 195],
+      [52, 140, 128, 220],
+    ],
     line: 'rgba(52, 50, 46, 0.75)',
   },
   // The ramps turned round: the "nothing" end dark, the most the brightest.
@@ -190,6 +206,10 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
     slugs: [
       [82, 80, 40, 190],
       [200, 194, 112, 220],
+    ],
+    downy: [
+      [40, 84, 78, 190],
+      [120, 210, 196, 220],
     ],
     line: 'rgba(236, 234, 228, 0.7)',
   },
@@ -312,6 +332,7 @@ export function bands(source: MapSource, dark = false): Bands {
       };
     }
     case 'blight':
+    case 'downy':
     case 'slugs':
       return {
         value: byte => (byte === 255 ? NaN : byte),
