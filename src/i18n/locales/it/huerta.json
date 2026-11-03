@@ -2009,7 +2009,8 @@
       "frost": "Gelate e notti fredde",
       "soil": "Temperatura del terreno",
       "water": "Acqua questa settimana",
-      "blight": "Tempo da peronospora"
+      "blight": "Tempo da peronospora",
+      "slugs": "Notti da lumache"
     },
     "legend": {
       "now": "Semina o pianta ora",
@@ -2031,7 +2032,10 @@
       "balanceHigh": "Pioggia in eccesso",
       "blight": "Giorni da peronospora per patate e pomodori, prossimi 7 giorni",
       "blightFew": "1 o 2 giorni",
-      "blightMany": "3 giorni o più"
+      "blightMany": "3 giorni o più",
+      "slugs": "Notti da lumache per insalate, cavoli e piantine, prossimi 7 giorni",
+      "slugsFew": "1 o 2 notti",
+      "slugsMany": "3 notti o più"
     },
     "year": {
       "label": "Mese",

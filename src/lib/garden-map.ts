@@ -17,13 +17,13 @@ const LON_STEP = 0.075;
 const REACH_X = 0.06;
 const REACH_Y = 0.04;
 
-export type MapLayer = 'crop' | 'frost' | 'soil' | 'water' | 'blight';
+export type MapLayer = 'crop' | 'frost' | 'soil' | 'water' | 'blight' | 'slugs';
 /** The bytes a layer is drawn from: a crop's status, soil warmth, the week's
- *  coldest hour (cold), water balance (balance) and blight days (blight), or,
- *  in files from before those, frost codes (frost) and water still to give
- *  (water). */
+ *  coldest hour (cold), water balance (balance), blight days (blight) and
+ *  slug nights (slugs), or, in files from before those, frost codes (frost)
+ *  and water still to give (water). */
 export type MapSource =
-  'crop' | 'soil' | 'cold' | 'balance' | 'frost' | 'water' | 'blight';
+  'crop' | 'soil' | 'cold' | 'balance' | 'frost' | 'water' | 'blight' | 'slugs';
 type RGBA = [number, number, number, number];
 
 const mercator = (lat: number) =>
@@ -80,6 +80,8 @@ interface Palette {
   water: Stops;
   /** The week's blight days: one or two, three or more. */
   blight: [RGBA, RGBA];
+  /** The week's slug nights: one or two, three or more. */
+  slugs: [RGBA, RGBA];
   /** The forecast's limit and the too-late hatching. */
   line: string;
 }
@@ -133,6 +135,11 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
       [214, 196, 236, 195],
       [150, 112, 200, 220],
     ],
+    // Olive, apart from blight's violet and the water blues: a pest.
+    slugs: [
+      [218, 214, 158, 195],
+      [146, 140, 58, 220],
+    ],
     line: 'rgba(52, 50, 46, 0.75)',
   },
   // The ramps turned round: the "nothing" end dark, the most the brightest.
@@ -177,6 +184,10 @@ export const PALETTES: Record<'light' | 'dark', Palette> = {
     blight: [
       [88, 70, 120, 190],
       [186, 158, 236, 220],
+    ],
+    slugs: [
+      [82, 80, 40, 190],
+      [200, 194, 112, 220],
     ],
     line: 'rgba(236, 234, 228, 0.7)',
   },
@@ -299,10 +310,11 @@ export function bands(source: MapSource, dark = false): Bands {
       };
     }
     case 'blight':
+    case 'slugs':
       return {
         value: byte => (byte === 255 ? NaN : byte),
         edges: [0.5, 2.5],
-        fills: [null, ...palette.blight],
+        fills: [null, ...palette[source]],
         step: 0.5,
         smooth: 1,
       };

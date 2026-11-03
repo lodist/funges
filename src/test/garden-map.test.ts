@@ -111,6 +111,13 @@ describe('the garden map drawing', () => {
     expect(blight.fills.slice(1)).toEqual(PALETTES.light.blight);
   });
 
+  it("slugs: the week's slug nights, as blight's in olive", () => {
+    const slugs = bands('slugs', true);
+    expect([0, 3, 255].map(slugs.value)).toEqual([0, 3, NaN]);
+    expect(slugs.edges).toEqual([0.5, 2.5]);
+    expect(slugs.fills).toEqual([null, ...PALETTES.dark.slugs]);
+  });
+
   it('turns the ramps round on a dark basemap', () => {
     const light = (fill: unknown) =>
       (fill as number[]).slice(0, 3).reduce((a, b) => a + b);
