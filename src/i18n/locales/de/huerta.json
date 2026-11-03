@@ -211,6 +211,11 @@
           "now": "Jetzt Krautfäule-Wetter",
           "text": "Bei warmen, feuchten Tagen und Nächten breitet sich die Krautfäule aus. Schau dir jeden Tag die Blätter von {{crops}} an und entferne alle mit braunen Flecken."
         },
+        "slugs": {
+          "soon": "Schneckennächte ab {{day}}",
+          "now": "Heute Nacht kommen die Schnecken",
+          "text": "In milden, nassen Nächten kommen die Schnecken und fressen an {{crops}}. Geh nach dem Eindunkeln mit der Taschenlampe vorbei und sammle sie ab, oder grab neben den Pflanzen ein Glas mit Bier ein und leere es jeden Morgen. Giess am Morgen, nicht am Abend."
+        },
         "carrot_fly": {
           "soon": "Möhrenfliege: fliegt hier ab etwa {{date}}",
           "now": "Die Möhrenfliege fliegt hier jetzt",

@@ -211,6 +211,11 @@
           "now": "Tiempo de mildiu ahora",
           "text": "Los días y las noches cálidos y húmedos propagan el mildiu. Revisa cada día las hojas de {{crops}} y quita las que tengan manchas marrones."
         },
+        "slugs": {
+          "soon": "Noches de babosas desde el {{day}}",
+          "now": "Esta noche salen las babosas",
+          "text": "Las noches templadas y húmedas sacan a las babosas a comerse {{crops}}. Al anochecer, pasa con una linterna y recógelas, o entierra un tarro con cerveza junto a las plantas y vacíalo cada mañana. Riega por la mañana, no por la tarde."
+        },
         "carrot_fly": {
           "soon": "Mosca de la zanahoria: vuela aquí desde el {{date}}, más o menos",
           "now": "La mosca de la zanahoria ya vuela por aquí",

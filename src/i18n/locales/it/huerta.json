@@ -211,6 +211,11 @@
           "now": "Tempo da peronospora adesso",
           "text": "Giorni e notti caldi e umidi diffondono la peronospora. Controlla ogni giorno le foglie di {{crops}} e togli quelle con macchie marroni."
         },
+        "slugs": {
+          "soon": "Notti da lumache da {{day}}",
+          "now": "Stanotte escono le lumache",
+          "text": "Le notti miti e umide fanno uscire le lumache, che mangiano {{crops}}. Dopo il tramonto passa con una torcia e raccoglile, oppure interra vicino alle piante un barattolo di birra e svuotalo ogni mattina. Annaffia al mattino, non la sera."
+        },
         "carrot_fly": {
           "soon": "Mosca della carota, inizio del volo: {{date}} circa",
           "now": "La mosca della carota vola qui adesso",
