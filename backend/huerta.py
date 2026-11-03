@@ -107,6 +107,18 @@ BLIGHT_DAYS = 8   # the advice's blight bits: the day before its day through the
 # A slug night: a low of at least SLUG_LOW C and SLUG_RAIN mm of rain that day, as the app's slugNight
 # (src/lib/pests.ts) reads them from the advice (funges-lab qa/huerta-slugs-2026-11-03).
 SLUG_LOW, SLUG_RAIN = 5, 5
+# Downy mildew (funges-lab qa/huerta-downy-2026-11-03). Onion, DOWNCAST (UC ANR 2025): spores at night when the
+# day before averaged under 24 C from 08:00 to 20:00, the night 4-24 C, every hour 02:00-06:00 humid and dry;
+# humid at 92 % (MILIONCAST, Gilles et al. 2004; de Visser), DOWNCAST's 95 % misses spore nights. Lettuce, Wu et
+# al. 2002: infection when the leaves stay wet the 3 hours after sunrise (sun over 8 W/m2) at no more than
+# 20 C, and the 4 after average no more than 22 C; and no less than 2 C (INRAE ephytia: infection at 2-20 C;
+# Wu's coastal California never froze). A wet leaf is an hour at RH_WET (Sentelhas et al. 2008: RH
+# >= 90 % the best stand-in at four sites). Hours on the place's solar clock, as blight's.
+ONION_RH = 2      # % above RH_WET: 92 on the airports' scale
+ONION_DAY, ONION_NIGHT = 24, (4, 24)
+LETTUCE_WET, LETTUCE_COOL, LETTUCE_MIN = 20, 22, 2
+DRY_MM = 0.2      # mm: an hour with less is dry (a rain gauge's tip)
+SUNRISE_WM2 = 8
 # The garden map's own layers: frost (0 none; in the next 3 days 1 ground frost, 2 frost; 3 either
 # later in the week), soil
 # at 6 cm (degrees C + 40) and the week's water deficit (mm); 255 where unknown.
@@ -336,11 +348,11 @@ def _byte(values, offset=0):
     return np.where(np.isnan(v), 255, np.clip(v, 0, 254)).astype(np.uint8)
 
 
-def map_files(place, advice, day, windows=None, blight=None, lows=None, rains=None):
+def map_files(place, advice, day, windows=None, blight=None, lows=None, rains=None, pests=None):
     """{name under huerta/map/<REGION>/: bytes} for the garden map, layers in MAP_LAYERS (and, with `blight`
     from blight_bits, the week's blight days: today and the six after, 255 where not worked out; with `lows`
-    and `rains` (daily_air), the same week's slug nights) + crop order, then each crop's months from the
-    windows."""
+    and `rains` (daily_air), the same week's slug nights; with `pests` (downy_bits), its downy mildew days, for
+    onion or lettuce) + crop order, then each crop's months from the windows."""
     n = len(place)
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2, place["frostw"] <= 2], [2, 1, 3], 0).astype(np.uint8)
     water = (place["et07"] - place["rain7"]).clip(lower=0)
@@ -363,6 +375,12 @@ def map_files(place, advice, day, windows=None, blight=None, lows=None, rains=No
         nights = ((low != 255) & (low >= warm_bytes(SLUG_LOW)) & (rain != 255) & (rain >= SLUG_RAIN)).sum(axis=1)
         columns.append(np.where(known, nights, 255).astype(np.uint8))
         names.append("slugs")
+    if pests is not None:
+        p = pests.reindex(keys)
+        either = np.bitwise_or.reduce(np.nan_to_num(p.to_numpy(float)).astype(np.int64), axis=1)
+        days = sum((either >> k) & 1 for k in range(1, BLIGHT_DAYS))                       # bit 0: yesterday
+        columns.append(np.where(p.notna().all(axis=1), days, 255).astype(np.uint8))
+        names.append("downy")
     codes = advice.replace(CODES)
     columns += [np.frombuffer("".join(codes[c]).encode("ascii"), np.uint8) for c in advice.columns]
     names += list(advice.columns)
@@ -435,6 +453,50 @@ def blight_bits(hours, day, rh_wet=90):
     return pd.Series(bits, index=grid.index, name="blight")
 
 
+def downy_bits(hours, day, rh_wet=90):
+    """Downy mildew weather at each place (key_lat, key_lon): columns downy_onion and downy_lettuce, ints with
+    bit k when the solar day `day` - 1 + k (k = 0..7) is a spore night for onion or an infection morning for
+    lettuce (the rules above ONION_RH). `hours`: time (UTC), lat, lon, t2m_c, td2m_c, precip_mm, swdown_wm2. A
+    day missing an hour its rule reads never counts."""
+    # In numpy: a region is some 22 million hours, too many for pandas' datetimes and MultiIndex.
+    lat, lon = (np.round(hours[c].to_numpy(float) * 1e4).astype(np.int64) for c in ("lat", "lon"))
+    place, codes = pd.factorize(lat * 4_000_000 + lon + 2_000_000)
+    del lat, lon
+    places = pd.MultiIndex.from_arrays([codes // 4_000_000 / 1e4, (codes % 4_000_000 - 2_000_000) / 1e4],
+                                       names=["key_lat", "key_lon"])
+    first = (pd.Timestamp(day) - pd.Timedelta(days=2)).to_datetime64().astype("datetime64[ns]").astype(np.int64)
+    since = (hours["time"].dt.tz_convert(None).to_numpy().astype(np.int64) - first
+             + (hours["lon"].to_numpy(float) * 240e9).astype(np.int64)) // 3_600_000_000_000   # solar hours
+    ok = (since >= 0) & (since < (BLIGHT_DAYS + 1) * 24)
+    since = since[ok]
+    at = (place[ok], since // 24, since % 24)
+    del place, since
+
+    def grid(values):
+        # place x day x solar hour; NaN where the hour is missing, so a mean over it is NaN and never passes.
+        g = np.full((len(places), BLIGHT_DAYS + 1, 24), np.nan, np.float32)
+        g[at] = np.asarray(values, np.float32)[ok]
+        return g
+
+    t2m, td = hours["t2m_c"].to_numpy(float), hours["td2m_c"].to_numpy(float)
+    t, rh = grid(t2m), grid(humidity(t2m, td))
+    rain, sun = grid(hours["precip_mm"].fillna(0)), grid(hours["swdown_wm2"])
+    # Onion: the night before day k runs from 20:00 the day before to 06:00.
+    night = np.concatenate([t[:, :-1, 20:], t[:, 1:, :6]], axis=2).mean(axis=2)
+    onion = ((t[:, :-1, 8:20].mean(axis=2) < ONION_DAY) & (night >= ONION_NIGHT[0]) & (night <= ONION_NIGHT[1])
+             & (rh[:, 1:, 2:6] >= rh_wet + ONION_RH).all(axis=2) & (rain[:, 1:, 2:6] < DRY_MM).all(axis=2))
+    # Lettuce: the 3 hours from sunrise wet and cool, the 4 after cool.
+    up = sun[:, 1:] > SUNRISE_WM2
+    rise = np.minimum(up.argmax(axis=2), 24 - 7)[..., None] + np.arange(7)
+    tt, wet = np.take_along_axis(t[:, 1:], rise, 2), np.take_along_axis(rh[:, 1:], rise, 2) >= rh_wet
+    wet_t = tt[..., :3].mean(axis=2)
+    lettuce = (up.any(axis=2) & wet[..., :3].all(axis=2) & (wet_t >= LETTUCE_MIN) & (wet_t <= LETTUCE_WET)
+               & (tt[..., 3:].mean(axis=2) <= LETTUCE_COOL))
+    weights = 1 << np.arange(BLIGHT_DAYS, dtype=np.int64)
+    return pd.DataFrame({"downy_onion": onion.astype(np.int64) @ weights,
+                         "downy_lettuce": lettuce.astype(np.int64) @ weights}, index=places)
+
+
 def _past_hours(region, day, s3=None, bucket=None, columns=("time", "lat", "lon", "t2m_c")):
     """One past day's hours at the region's places: here if kept, else from R2; None if neither has it, or it has
     no such column (written before the column was fetched)."""
@@ -500,9 +562,9 @@ def daily_air(region, forecast, s3=None, bucket=None, how="mean", back=WARM_DAYS
 
 
 def blight_hours(region, forecast, s3=None, bucket=None):
-    """The hours blight_bits reads: the past hours of the run's day and the two before it (a solar day east of
-    Greenwich starts before UTC midnight), then the forecast's."""
-    cols = ["time", "lat", "lon", "t2m_c", "td2m_c"]
+    """The hours blight_bits and downy_bits read: the past hours of the run's day and the two before it (a
+    solar day east of Greenwich starts before UTC midnight), then the forecast's."""
+    cols = ["time", "lat", "lon", "t2m_c", "td2m_c", "precip_mm", "swdown_wm2"]
     start = forecast["time"].min()
     run = (start - pd.Timedelta(hours=1)).normalize()
     past = [_past_hours(region, f"{run - pd.Timedelta(days=k):%Y-%m-%d}", s3, bucket, cols) for k in (2, 1, 0)]
@@ -510,11 +572,12 @@ def blight_hours(region, forecast, s3=None, bucket=None):
     return pd.concat([*past, forecast[cols]], ignore_index=True)
 
 
-def area_files(place, advice, day, air=None, blight=None, lows=None, storms=None):
+def area_files(place, advice, day, air=None, blight=None, lows=None, storms=None, pests=None):
     """{R2 key suffix '<lat>_<lon>.json': file bytes}: every place of a 1° square, compact. With `air`
     (daily_air), each place's `warm`; with `blight` (blight_bits), its blight bits after it; with `lows` (daily_air
-    "min"), its lows after them; with `storms` ({gusts, rains}: daily_air of STORMS), its gusts and rains last. A
-    field not given is null where a later one is, so the fields keep their places."""
+    "min"), its lows after them; with `storms` ({gusts, rains}: daily_air of STORMS), its gusts and rains; with
+    `pests` (a column of bits per pest: downy_bits), {pest: bits} last. A field not given is null where a later
+    one is, so the fields keep their places."""
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2], ["f", "g"], "")
     later = np.select([place["frostw"] <= 0, place["frostw"] <= 2], ["f", "g"], "")
     water = (place["et07"] - place["rain7"]).clip(lower=0)
@@ -536,7 +599,8 @@ def area_files(place, advice, day, air=None, blight=None, lows=None, storms=None
     fields = [by_day(air),
               blight.reindex(keys).fillna(0).astype(int).tolist() if blight is not None else None,
               by_day(lows),
-              *(by_day(storms.get(name), level_bytes) for name, _, _ in STORMS)]
+              *(by_day(storms.get(name), level_bytes) for name, _, _ in STORMS),
+              pests.reindex(keys).fillna(0).astype(int).to_dict("records") if pests is not None else None]
     given = [k for k, f in enumerate(fields) if f is not None]
     tails = [[f[i] if f is not None else None for f in fields[:given[-1] + 1]] if given else []
              for i in range(len(place))]
@@ -585,10 +649,17 @@ def publish(region, forecast):
         air = None
         print(f"Huerta: no daily air: {e!r}")
     try:
-        blight = blight_bits(blight_hours(region, forecast, s3, bucket), f"{day:%Y-%m-%d}", RH_WET[region])
+        hours = blight_hours(region, forecast, s3, bucket)
+        blight = blight_bits(hours, f"{day:%Y-%m-%d}", RH_WET[region])
     except Exception as e:  # noqa: BLE001 - the advice goes out without it
-        blight = None
+        hours = blight = None
         print(f"Huerta: no blight weather: {e!r}")
+    try:
+        downy = downy_bits(hours, f"{day:%Y-%m-%d}", RH_WET[region]) if hours is not None else None
+    except Exception as e:  # noqa: BLE001 - the advice goes out without it
+        downy = None
+        print(f"Huerta: no downy mildew weather: {e!r}")
+    hours = None
     try:
         lows = daily_air(region, forecast, s3, bucket, "min", LOW_DAYS)
     except Exception as e:  # noqa: BLE001 - the advice goes out without it
@@ -600,13 +671,13 @@ def publish(region, forecast):
         storms = None
         print(f"Huerta: no storm weather: {e!r}")
     air, lows = at_village(air, lift, "mean"), at_village(lows, lift, "min")
-    files = area_files(place, advice, f"{day:%Y-%m-%d}", air, blight, lows, storms)
+    files = area_files(place, advice, f"{day:%Y-%m-%d}", air, blight, lows, storms, downy)
     with ThreadPoolExecutor(UPLOAD_WORKERS) as pool:
         list(pool.map(lambda kv: s3.put_object(Bucket=bucket, Key=f"huerta/advice/{region}/{kv[0]}", Body=kv[1],
                                                ContentType="application/json"), files.items()))
     s3.put_object(Bucket=bucket, Key="huerta/crops.json", Body=crop_needs(crops), ContentType="application/json")
     # The index last, so the map never reads an index ahead of its layers.
-    maps = map_files(place, advice, f"{day:%Y-%m-%d}", windows, blight, lows, (storms or {}).get("rains"))
+    maps = map_files(place, advice, f"{day:%Y-%m-%d}", windows, blight, lows, (storms or {}).get("rains"), downy)
     for name in ("places.bin", "layers.bin", "index.json"):
         s3.put_object(Bucket=bucket, Key=f"huerta/map/{region}/{name}", Body=maps[name],
                       ContentType="application/json" if name.endswith(".json") else "application/octet-stream")
