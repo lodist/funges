@@ -529,6 +529,18 @@ export function validateManifests(
             `forecast.regions.${region}.scoring.season_window must be two days as "MM-DD"`
           );
         if (
+          scoring?.pH_gate !== undefined &&
+          (!Array.isArray(scoring.pH_gate) ||
+            scoring.pH_gate.length !== 2 ||
+            !scoring.pH_gate.every(Number.isFinite) ||
+            scoring.pH_gate[0] >= scoring.pH_gate[1])
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.pH_gate must be two rising pH values`
+          );
+        if (
           scoring?.season_tilt !== undefined &&
           (typeof scoring.season_tilt !== 'object' ||
             !Object.keys(scoring.season_tilt).length ||

@@ -76,6 +76,17 @@ def habitat_values(df, params):
 
 
 def range_prior_for_species(df, params):
-    """Range prior times host prior times the learned habitat factor, per row."""
+    """Range prior times host prior times the learned habitat factor times the soil-pH gate, per row."""
     return (grid_values(df, params.get("range_prior")) * grid_values(df, params.get("host_prior"))
-            * habitat_values(df, params))
+            * habitat_values(df, params) * ph_gate_values(df, params))
+
+
+def ph_gate_values(df, params):
+    """Per-row 0-1 from the soil pH for a species that cannot grow on acid ground (the black
+    truffle): 0 at `pH_gate[0]` and below, 1 from `pH_gate[1]`, linear between. 1.0 without
+    a gate or without a pH (no evidence)."""
+    gate = params.get("pH_gate")
+    if gate is None or "ph_level" not in df:
+        return 1.0
+    ph = df["ph_level"].to_numpy(float)
+    return np.where(np.isnan(ph), 1.0, np.clip((ph - gate[0]) / (gate[1] - gate[0]), 0.0, 1.0))

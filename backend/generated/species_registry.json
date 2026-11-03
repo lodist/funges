@@ -4495,7 +4495,7 @@
       "dataColumns": ["truffle_b_score", "Black Truffle"],
       "regions": {
         "SE": {
-          "landCover": [311],
+          "landCover": [311, 313, 323, 324],
           "landCoverScheme": "CORINE",
           "scoring": {
             "optimal_temp": 9,
@@ -4510,6 +4510,7 @@
             "pH_sigma_near": 1.5,
             "pH_sigma_far": 1.5,
             "pH_range_near": [6.6, 9],
+            "pH_gate": [5.5, 6.2],
             "optimal_soil_temp": 11,
             "soil_temp_sigma": 4,
             "min_cumulative_rain": 25,
