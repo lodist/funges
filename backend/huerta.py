@@ -388,10 +388,12 @@ def day_means(rows, how="mean", column="t2m_c"):
     """Hourly rows (time, lat, lon, `column`) as each place's daily mean air (`how` "min": its coldest hour;
     another column, as `how` sums its day), (key_lat, key_lon) x day: an hour belongs to the UTC day it starts
     in, as the past days; a day of fewer than FULL_DAY hours is unknown."""
-    rows = rows.assign(day=(rows["time"] - pd.Timedelta(hours=1)).dt.strftime("%Y-%m-%d"),
+    rows = rows.assign(day=(rows["time"] - pd.Timedelta(hours=1)).dt.floor("D"),
                        key_lat=rows["lat"].round(4), key_lon=rows["lon"].round(4))
     g = rows.groupby(["key_lat", "key_lon", "day"])[column]
-    return g.agg(how).where(g.count() >= FULL_DAY).unstack("day")
+    out = g.agg(how).where(g.count() >= FULL_DAY).unstack("day")
+    out.columns = pd.DatetimeIndex(out.columns).strftime("%Y-%m-%d")  # the days, not 18M hours: ~70 s a pass
+    return out
 
 
 def humidity(t, td):
