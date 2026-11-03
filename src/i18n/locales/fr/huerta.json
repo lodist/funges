@@ -2010,7 +2010,8 @@
       "soil": "Température du sol",
       "water": "Eau cette semaine",
       "blight": "Temps à mildiou",
-      "slugs": "Nuits à limaces"
+      "slugs": "Nuits à limaces",
+      "pests": "Ravageurs et maladies"
     },
     "legend": {
       "now": "Semer ou planter maintenant",

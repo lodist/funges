@@ -2010,7 +2010,8 @@
       "soil": "Soil temperature",
       "water": "Water this week",
       "blight": "Blight weather",
-      "slugs": "Slug nights"
+      "slugs": "Slug nights",
+      "pests": "Pests and diseases"
     },
     "legend": {
       "now": "Sow or plant now",

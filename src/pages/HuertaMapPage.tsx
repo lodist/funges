@@ -20,6 +20,7 @@ import {
   grid,
   monthCodes,
   PALETTES,
+  PEST_LAYERS,
   shapes,
   type MapLayer,
   type MapSource,
@@ -43,6 +44,7 @@ import {
 import {
   Bug,
   Droplets,
+  Leaf,
   MapPinned,
   Snail,
   Snowflake,
@@ -61,22 +63,22 @@ maplibregl.setWorkerUrl(maplibreWorkerUrl);
 maplibregl.addProtocol('pmtiles', protocol.tile);
 
 type Continent = keyof typeof MAP_REGIONS;
-const LAYERS: MapLayer[] = [
-  'crop',
-  'frost',
-  'soil',
-  'water',
-  'blight',
-  'slugs',
-];
-const LAYER_ICON: Record<MapLayer, typeof Sprout> = {
+/** The rail: the weather layers, then every pest behind one button. */
+const LAYERS = ['crop', 'frost', 'soil', 'water', 'pests'] as const;
+type RailItem = (typeof LAYERS)[number];
+const LAYER_ICON: Record<MapLayer | 'pests', typeof Sprout> = {
   crop: Sprout,
   frost: Snowflake,
   soil: Thermometer,
   water: Droplets,
-  blight: Bug,
+  pests: Bug,
+  blight: Leaf,
   slugs: Snail,
 };
+const railOf = (layer: MapLayer): RailItem =>
+  (PEST_LAYERS as readonly MapLayer[]).includes(layer)
+    ? 'pests'
+    : (layer as RailItem);
 /** Roughly where each continent's places are: its layer loads once in view. */
 const BOX: Record<Continent, [number, number, number, number]> = {
   eu: [-25, 34, 45, 72],
@@ -321,6 +323,8 @@ export default function HuertaMapPage() {
   const dark = /dark/.test(mapStyle);
   const hillshadeVisible = useMapStore(state => state.hillshadeVisible);
   const [layer, setLayer] = useState<MapLayer>('crop');
+  // The pest the Pests button shows: the one picked last.
+  const [pest, setPest] = useState<MapLayer>(PEST_LAYERS[0]);
   // What each layer was last drawn from, for its legend.
   const [sources, setSources] = useState<Partial<Record<MapLayer, MapSource>>>(
     {}
@@ -461,7 +465,25 @@ export default function HuertaMapPage() {
     };
   }, [picked]);
 
-  const layerName = (l: MapLayer) => t(`map.layers.${l}`);
+  const layerName = (l: MapLayer | 'pests') => t(`map.layers.${l}`);
+  const railButton = (l: MapLayer | 'pests', on: boolean, pick: () => void) => {
+    const Icon = LAYER_ICON[l];
+    return (
+      <Button
+        key={l}
+        type='button'
+        variant='ghost'
+        size='icon'
+        aria-pressed={on}
+        aria-label={layerName(l)}
+        title={layerName(l)}
+        onClick={pick}
+        className={on ? BAND_ACTIVE_CLASS : BAND_GHOST_CLASS}
+      >
+        <Icon className='h-4 w-4' />
+      </Button>
+    );
+  };
 
   // The crop panel opened: its status filter is for the spot picked, else
   // for the map's centre.
@@ -510,24 +532,34 @@ export default function HuertaMapPage() {
             BAND_SURFACE_CLASS
           )}
         >
-          {LAYERS.map(l => (
-            <Button
-              key={l}
-              type='button'
-              variant='ghost'
-              size='icon'
-              aria-pressed={layer === l}
-              aria-label={layerName(l)}
-              title={layerName(l)}
-              onClick={() => setLayer(l)}
-              className={layer === l ? BAND_ACTIVE_CLASS : BAND_GHOST_CLASS}
-            >
-              {(() => {
-                const Icon = LAYER_ICON[l];
-                return <Icon className='h-4 w-4' />;
-              })()}
-            </Button>
-          ))}
+          {LAYERS.map(l =>
+            l === 'pests' ? (
+              // The pests as a second rail beside their button, open while
+              // one of them is on the map.
+              <div key={l} className='relative'>
+                {railButton(l, railOf(layer) === l, () => setLayer(pest))}
+                {railOf(layer) === l ? (
+                  <div
+                    role='group'
+                    aria-label={layerName(l)}
+                    className={cn(
+                      'absolute -top-1 right-full mr-2 flex flex-col gap-1 rounded-full p-1 elevation-raised',
+                      BAND_SURFACE_CLASS
+                    )}
+                  >
+                    {PEST_LAYERS.map(p =>
+                      railButton(p, layer === p, () => {
+                        setPest(p);
+                        setLayer(p);
+                      })
+                    )}
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              railButton(l, layer === l, () => setLayer(l))
+            )
+          )}
           <MapThemeSelector onBand />
         </div>
         <div
