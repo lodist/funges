@@ -282,12 +282,12 @@ def test_blight_hours_take_the_runs_day_and_two_before_then_the_forecast(tmp_pat
     past = tmp_path / "SE" / "past"
     past.mkdir(parents=True)
     for day, n in (("2026-10-28", 24), ("2026-10-29", 24), ("2026-10-30", 24), ("2026-10-31", 18)):
-        _hours(f"{day} 01:00", n, 8.0).assign(td2m_c=5.0).to_parquet(past / f"{day}.parquet")
-    forecast = _hours("2026-10-31 19:00", 48, 14.0).assign(td2m_c=12.0)
+        _hours(f"{day} 01:00", n, 8.0).assign(td2m_c=5.0, precip_mm=0.0, swdown_wm2=0.0).to_parquet(past / f"{day}.parquet")
+    forecast = _hours("2026-10-31 19:00", 48, 14.0).assign(td2m_c=12.0, precip_mm=0.0, swdown_wm2=0.0)
     hours = huerta.blight_hours("SE", forecast)
     assert hours["time"].min() == pd.Timestamp("2026-10-29 01:00", tz="UTC")   # not the 28th
     assert hours["time"].is_unique and len(hours) == 24 + 24 + 18 + 48
-    assert list(hours.columns) == ["time", "lat", "lon", "t2m_c", "td2m_c"]
+    assert list(hours.columns) == ["time", "lat", "lon", "t2m_c", "td2m_c", "precip_mm", "swdown_wm2"]
 
 
 def test_area_files_carry_blight_bits_after_the_daily_air():
@@ -375,6 +375,27 @@ def test_area_files_carry_gusts_and_rains_last():
     assert rows[1][16:] == [None, None]                                            # nothing known at Baar
 
 
+
+def test_area_files_and_the_map_carry_the_downy_mildew_bits_last():
+    places = pd.DataFrame({
+        "Location_Id": ["Zug_47.160_8.550", "Baar_47.200_8.525"], "Latitude": [47.16, 47.2], "Longitude": [8.55, 8.525],
+        "frost3": [5.0, 5.0], "soil3": [10.0, 10.0], "night7": [6.0, 6.0], "rain7": [4.0, 4.0], "et07": [6.0, 6.0],
+        "last0_median": [116, 116], "first0_median": [319, 319], "frostw": [5.0, 5.0], "frostw_night": [None, None],
+    })
+    at = pd.MultiIndex.from_tuples([(47.16, 8.55)], names=["key_lat", "key_lon"])
+    # Bit 0 is yesterday: onion today and tomorrow, lettuce tomorrow and yesterday.
+    pests = pd.DataFrame({"downy_onion": [0b110], "downy_lettuce": [0b101]}, index=at)
+    advice = pd.DataFrame({"kale": ["now", "now"]})
+    rows = json.loads(huerta.area_files(places, advice, "2026-11-04", pests=pests)["47_8.json"])["places"]
+    assert rows[0][13:18] == [None] * 5 and rows[0][18] == {"downy_onion": 6, "downy_lettuce": 5}
+    assert rows[1][18] == {"downy_onion": 0, "downy_lettuce": 0}                     # nothing worked out at Baar
+    files = huerta.map_files(places, advice, "2026-11-04", pests=pests)
+    layers = json.loads(files["index.json"])["layers"]
+    assert layers[5] == "downy"
+    downy = np.frombuffer(files["layers.bin"], np.uint8).reshape(len(layers), 2)[5]
+    assert downy.tolist() == [2, 255]                                               # today and tomorrow
+
+
 def test_daily_air_starts_a_store_when_no_past_file_has_the_column(tmp_path, monkeypatch):
     # The first night after gusts were fetched: every past file predates them (2 Nov 2026 crashed on this).
     import hourly_weather
@@ -413,3 +434,38 @@ def test_blight_bits_need_more_humid_hours_from_the_us_forecast():
         hours.loc[at, "td2m_c"] = 12.6                                   # about 91 %
     assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 0.0)] == 0b100
     assert huerta.blight_bits(hours, "2026-11-04", rh_wet=huerta.RH_WET["USE"]).loc[(50.0, 0.0)] == 0
+
+
+def test_map_files_count_the_weeks_slug_nights_as_the_app_reads_them():
+    places = pd.DataFrame({
+        "Latitude": [40.44, 39.86, 38.0], "Longitude": [-3.675, -4.02, -1.13],
+        "frost3": [9.2, -0.5, 12.0], "frostw": [1.0, 5.0, 12.0], "soil3": [13.44, np.nan, 18.0],
+        "rain7": [4.0, 1.0, 20.0], "et07": [14.4, 12.0, 9.0],
+    })
+    advice = pd.DataFrame({"tomato": ["too_late", "not_here", "too_late"]})
+    keys = pd.MultiIndex.from_tuples([(40.44, -3.675), (38.0, -1.13)], names=["key_lat", "key_lon"])
+    days = [f"2026-11-{d:02d}" for d in range(2, 10)]                 # yesterday and the week from the 3rd
+    # Madrid: mild, wet the 3rd (4.6 mm reads as 5) and the 9th; the 4th too cold (4.7 C reads as 4.5);
+    # yesterday doesn't count.
+    # Murcia: 4.4 mm reads as 4, no slug night.
+    lows = pd.DataFrame([[9, 6, 4.7, 6, 6, 6, 6, 6], [12] * 8], index=keys, columns=days)
+    rains = pd.DataFrame([[9, 4.6, 8, 0, 0, 0, 0, 7], [4.4] * 8], index=keys, columns=days)
+    files = huerta.map_files(places, advice, "2026-11-03", lows=lows, rains=rains)
+    assert json.loads(files["index.json"])["layers"] == ["frost", "soil", "water", "cold", "balance", "slugs", "tomato"]
+    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(7, 3)
+    assert layers[5].tolist() == [2, 255, 0]                                      # Toledo: no weather known
+
+
+def test_downy_bits_mark_onion_spore_nights_and_lettuce_infection_mornings():
+    # One place on Greenwich (solar time = UTC), 1-9 November: 10 C and 71 % all day, sun 07:00-16:00.
+    time = pd.date_range("2026-11-01", "2026-11-10", freq="h", tz="UTC", inclusive="left")
+    h = pd.DataFrame({"time": time, "lat": 50.0, "lon": 0.0, "t2m_c": 10.0, "td2m_c": 5.0, "precip_mm": 0.0,
+                      "swdown_wm2": np.where((time.hour >= 7) & (time.hour < 17), 300.0, 0.0)})
+    at = lambda day, hours: (h["time"].dt.strftime("%Y-%m-%d") == day) & h["time"].dt.hour.isin(hours)
+    h.loc[at("2026-11-04", range(2, 6)), "td2m_c"] = 10.0               # onion: a humid, dry night
+    h.loc[at("2026-11-05", range(2, 6)), "td2m_c"] = 10.0               # humid but it rains at 03:00: no
+    h.loc[at("2026-11-05", [3]), "precip_mm"] = 0.4
+    h.loc[at("2026-11-06", range(7, 10)), "td2m_c"] = 10.0              # lettuce: wet 3 hours from sunrise
+    h.loc[at("2026-11-07", range(7, 10)), ["t2m_c", "td2m_c"]] = 24.0   # wet but warm: no
+    bits = huerta.downy_bits(h, "2026-11-03").loc[(50.0, 0.0)]
+    assert bits.tolist() == [1 << 2, 1 << 4]                             # bit 0 is the 2nd: the 4th and the 6th
