@@ -25,6 +25,8 @@ export type MapLayer = 'crop' | 'frost' | 'soil' | 'water' | 'blight' | 'slugs';
 export type MapSource =
   'crop' | 'soil' | 'cold' | 'balance' | 'frost' | 'water' | 'blight' | 'slugs';
 type RGBA = [number, number, number, number];
+/** The pests' layers: on the map behind one Pests button. */
+export const PEST_LAYERS = ['blight', 'slugs'] as const;
 
 const mercator = (lat: number) =>
   Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
