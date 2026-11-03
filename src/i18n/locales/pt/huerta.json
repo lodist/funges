@@ -2010,7 +2010,8 @@
       "soil": "Temperatura do solo",
       "water": "Água esta semana",
       "blight": "Tempo de míldio",
-      "slugs": "Noites de lesmas"
+      "slugs": "Noites de lesmas",
+      "pests": "Pragas e doenças"
     },
     "legend": {
       "now": "Semeie ou plante agora",

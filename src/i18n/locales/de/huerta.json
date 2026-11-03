@@ -2010,7 +2010,8 @@
       "soil": "Bodentemperatur",
       "water": "Wasser diese Woche",
       "blight": "Krautfäule-Wetter",
-      "slugs": "Schneckennächte"
+      "slugs": "Schneckennächte",
+      "pests": "Schädlinge und Krankheiten"
     },
     "legend": {
       "now": "Jetzt säen oder pflanzen",

@@ -8,6 +8,7 @@ import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import {
   bands,
   PALETTES,
+  PEST_LAYERS,
   type MapLayer,
   type MapSource,
 } from '@/lib/garden-map';
@@ -25,6 +26,7 @@ import {
   Snowflake,
   Thermometer,
   Droplets,
+  Bug,
   FlaskConical,
   Clock,
   Leaf,
@@ -37,11 +39,12 @@ import {
 // on the band first, then the garden, the functions, the account, About on
 // the band, the mission and where the advice comes from.
 
-const LAYERS: [MapLayer, typeof Sprout][] = [
+const LAYERS: [MapLayer | 'pests', typeof Sprout][] = [
   ['crop', Sprout],
   ['frost', Snowflake],
   ['soil', Thermometer],
   ['water', Droplets],
+  ['pests', Bug],
 ];
 // What each layer is drawn from tonight (lib/garden-map's newer sources).
 const SOURCE: Record<MapLayer, MapSource> = {
@@ -232,9 +235,28 @@ const NUMBER =
 const css = ([r, g, b]: readonly number[]) => `rgb(${r},${g},${b})`;
 
 /** A layer's colours as the map's legend draws them (the light basemap's). */
-function LayerKey({ layer }: { layer: MapLayer }) {
+function LayerKey({ layer }: { layer: MapLayer | 'pests' }) {
   const { t } = useTranslation('huerta');
   const palette = PALETTES.light;
+  if (layer === 'pests') {
+    // Each pest's two bands, a few days and many, by its name.
+    return (
+      <ul className='flex flex-col gap-1.5 text-sm'>
+        {PEST_LAYERS.map(pest => (
+          <li key={pest} className='flex items-center gap-2 text-happy-50'>
+            {palette[pest].map(fill => (
+              <span
+                key={css(fill)}
+                className='size-3.5 shrink-0 rounded-sm border border-happy-50/60'
+                style={{ background: css(fill) }}
+              />
+            ))}
+            {t(`map.layers.${pest}`)}
+          </li>
+        ))}
+      </ul>
+    );
+  }
   if (layer === 'crop') {
     const hatched = `repeating-linear-gradient(135deg, var(--color-muted-foreground) 0 1.5px, transparent 1.5px 4px), ${css(palette.wash)}`;
     return (

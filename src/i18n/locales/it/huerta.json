@@ -2010,7 +2010,8 @@
       "soil": "Temperatura del terreno",
       "water": "Acqua questa settimana",
       "blight": "Tempo da peronospora",
-      "slugs": "Notti da lumache"
+      "slugs": "Notti da lumache",
+      "pests": "Parassiti e malattie"
     },
     "legend": {
       "now": "Semina o pianta ora",

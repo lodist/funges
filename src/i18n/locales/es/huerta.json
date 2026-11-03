@@ -2010,7 +2010,8 @@
       "soil": "Temperatura del suelo",
       "water": "Agua esta semana",
       "blight": "Tiempo de mildiu",
-      "slugs": "Noches de babosas"
+      "slugs": "Noches de babosas",
+      "pests": "Plagas y enfermedades"
     },
     "legend": {
       "now": "Siembra o planta ahora",

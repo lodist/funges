@@ -141,12 +141,13 @@
     "subtitle": "Cómo usar Huerta y de dónde salen sus consejos",
     "map": {
       "intro": "El mapa muestra, lugar por lugar, lo que tu huerto puede hacer esta semana.",
-      "pick": "Elige un cultivo en la casilla de arriba. Los botones de la derecha cambian entre cuatro capas.",
+      "pick": "Elige un cultivo en la casilla de arriba. Los botones de la derecha cambian entre cinco capas.",
       "layers": {
         "crop": "Dónde puede ir este cultivo esta semana, dónde aún no es momento y dónde ya es tarde este año. Desliza los meses bajo el mapa para ver el año que viene.",
         "frost": "La noche más fría de los próximos siete días. Los cultivos delicados, como el tomate o la judía, mueren con una helada.",
         "soil": "Lo caliente que está el suelo ahora. En suelo frío las semillas no nacen, así que esto decide cuándo se puede sembrar cada cultivo.",
-        "water": "La lluvia de los próximos siete días frente a lo que secan el sol y el viento. Donde la lluvia no llega, hay que regar."
+        "water": "La lluvia de los próximos siete días frente a lo que secan el sol y el viento. Donde la lluvia no llega, hay que regar.",
+        "pests": "El tiempo que trae plagas y enfermedades en los próximos siete días: mildiu para patatas y tomates, babosas para lechugas y plantas jóvenes. Elige una con los botones que se abren al lado. Cuanto más oscuro el color, más días."
       },
       "tap": "Toca un lugar para ver su semana: el suelo, las noches, la lluvia y cuándo suele helar. «Usar como mi huerto» lo convierte en el lugar de tu huerto.",
       "coverage": "Huerta cubre Europa y los Estados Unidos continentales."

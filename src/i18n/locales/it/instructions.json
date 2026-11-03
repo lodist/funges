@@ -141,12 +141,13 @@
     "subtitle": "Come usare Huerta e da dove vengono i suoi consigli",
     "map": {
       "intro": "La mappa mostra, luogo per luogo, cosa può fare il tuo orto questa settimana.",
-      "pick": "Scegli una coltura nella casella in alto. I pulsanti a destra passano da uno all'altro dei quattro livelli.",
+      "pick": "Scegli una coltura nella casella in alto. I pulsanti a destra passano da uno all'altro dei cinque livelli.",
       "layers": {
         "crop": "Dove questa coltura può andare in terra questa settimana, dove non è ancora il momento e dove quest'anno è troppo tardi. Scorri i mesi sotto la mappa per vedere l'anno che viene.",
         "frost": "La notte più fredda dei prossimi sette giorni. Le colture delicate come pomodori e fagioli muoiono con una gelata.",
         "soil": "Quanto è caldo il terreno adesso. Nel terreno freddo i semi non nascono, quindi è questo a decidere quando seminare ogni coltura.",
-        "water": "La pioggia dei prossimi sette giorni contro quello che sole e vento asciugano. Dove la pioggia non basta, bisogna annaffiare."
+        "water": "La pioggia dei prossimi sette giorni contro quello che sole e vento asciugano. Dove la pioggia non basta, bisogna annaffiare.",
+        "pests": "Il tempo che porta parassiti e malattie nei prossimi sette giorni: la peronospora per patate e pomodori, le lumache per insalate e piantine. Scegline uno con i pulsanti che si aprono accanto. Più scuro è il colore, più sono i giorni."
       },
       "tap": "Tocca un luogo per vedere la sua settimana: il terreno, le notti, la pioggia e quando di solito arriva il gelo. «Usa come il mio orto» lo rende il luogo del tuo orto.",
       "coverage": "Huerta copre l'Europa e gli Stati Uniti continentali."
