@@ -2009,7 +2009,8 @@
       "frost": "Frost und kalte Nächte",
       "soil": "Bodentemperatur",
       "water": "Wasser diese Woche",
-      "blight": "Krautfäule-Wetter"
+      "blight": "Krautfäule-Wetter",
+      "slugs": "Schneckennächte"
     },
     "legend": {
       "now": "Jetzt säen oder pflanzen",
@@ -2031,7 +2032,10 @@
       "balanceHigh": "Regen reicht",
       "blight": "Krautfäule-Tage für Kartoffeln und Tomaten, nächste 7 Tage",
       "blightFew": "1 oder 2 Tage",
-      "blightMany": "3 Tage oder mehr"
+      "blightMany": "3 Tage oder mehr",
+      "slugs": "Schneckennächte für Salat, Kohl und Jungpflanzen, nächste 7 Tage",
+      "slugsFew": "1 oder 2 Nächte",
+      "slugsMany": "3 Nächte oder mehr"
     },
     "year": {
       "label": "Monat",

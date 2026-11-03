@@ -2009,7 +2009,8 @@
       "frost": "Frost and cold nights",
       "soil": "Soil temperature",
       "water": "Water this week",
-      "blight": "Blight weather"
+      "blight": "Blight weather",
+      "slugs": "Slug nights"
     },
     "legend": {
       "now": "Sow or plant now",
@@ -2031,7 +2032,10 @@
       "balanceHigh": "Rain to spare",
       "blight": "Blight days for potatoes and tomatoes, next 7 days",
       "blightFew": "1 or 2 days",
-      "blightMany": "3 days or more"
+      "blightMany": "3 days or more",
+      "slugs": "Slug nights for lettuce, cabbage and young plants, next 7 days",
+      "slugsFew": "1 or 2 nights",
+      "slugsMany": "3 nights or more"
     },
     "year": {
       "label": "Month",

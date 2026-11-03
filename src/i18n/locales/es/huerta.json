@@ -2009,7 +2009,8 @@
       "frost": "Heladas y noches frías",
       "soil": "Temperatura del suelo",
       "water": "Agua esta semana",
-      "blight": "Tiempo de mildiu"
+      "blight": "Tiempo de mildiu",
+      "slugs": "Noches de babosas"
     },
     "legend": {
       "now": "Siembra o planta ahora",
@@ -2031,7 +2032,10 @@
       "balanceHigh": "Llueve de sobra",
       "blight": "Días de mildiu para patatas y tomates, próximos 7 días",
       "blightFew": "1 o 2 días",
-      "blightMany": "3 días o más"
+      "blightMany": "3 días o más",
+      "slugs": "Noches de babosas para lechugas, coles y plantas jóvenes, próximos 7 días",
+      "slugsFew": "1 o 2 noches",
+      "slugsMany": "3 noches o más"
     },
     "year": {
       "label": "Mes",

@@ -2009,7 +2009,8 @@
       "frost": "Gel et nuits froides",
       "soil": "Température du sol",
       "water": "Eau cette semaine",
-      "blight": "Temps à mildiou"
+      "blight": "Temps à mildiou",
+      "slugs": "Nuits à limaces"
     },
     "legend": {
       "now": "Semer ou planter maintenant",
@@ -2031,7 +2032,10 @@
       "balanceHigh": "Pluie suffisante",
       "blight": "Jours à mildiou pour pommes de terre et tomates, 7 prochains jours",
       "blightFew": "1 ou 2 jours",
-      "blightMany": "3 jours ou plus"
+      "blightMany": "3 jours ou plus",
+      "slugs": "Nuits à limaces pour salades, choux et jeunes plants, 7 prochains jours",
+      "slugsFew": "1 ou 2 nuits",
+      "slugsMany": "3 nuits ou plus"
     },
     "year": {
       "label": "Mois",

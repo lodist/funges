@@ -86,6 +86,7 @@ import {
   ShieldCheck as LucideShieldCheck,
   Skull as LucideSkull,
   Shovel as LucideShovel,
+  Snail as LucideSnail,
   Snowflake as LucideSnowflake,
   Sprout as LucideSprout,
   Star as LucideStar,
@@ -228,6 +229,7 @@ export const Smartphone = decorativeByDefault(LucideSmartphone);
 export const ShieldCheck = decorativeByDefault(LucideShieldCheck);
 export const Skull = decorativeByDefault(LucideSkull);
 export const Shovel = decorativeByDefault(LucideShovel);
+export const Snail = decorativeByDefault(LucideSnail);
 export const Snowflake = decorativeByDefault(LucideSnowflake);
 export const Sprout = decorativeByDefault(LucideSprout);
 export const Star = decorativeByDefault(LucideStar);
