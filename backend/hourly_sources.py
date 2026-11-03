@@ -101,13 +101,15 @@ def ecmwf_url(host, init, step):
 
 def ecmwf_messages(index_text):
     """(param, first byte, last byte) of our surface fields in one step's .index, and the top
-    soil layer's temperature (sot level 1, 0-7 cm)."""
+    soil layer's temperature (sot level 1, 0-7 cm). The 3-hourly steps (to 144 h) carry the
+    strongest gust as 10fg3, the 6-hourly ones as 10fg: both are the gust since the last step."""
     out = []
     for line in index_text.splitlines():
         entry = json.loads(line)
+        param = "10fg" if entry["param"] == "10fg3" else entry["param"]
         top_soil = entry.get("levtype") == "sol" and entry.get("levelist") == "1"
-        if (entry.get("levtype") == "sfc" or top_soil) and entry["param"] in ECMWF_FIELDS:
-            out.append((entry["param"], entry["_offset"], entry["_offset"] + entry["_length"] - 1))
+        if (entry.get("levtype") == "sfc" or top_soil) and param in ECMWF_FIELDS:
+            out.append((param, entry["_offset"], entry["_offset"] + entry["_length"] - 1))
     return out
 
 
