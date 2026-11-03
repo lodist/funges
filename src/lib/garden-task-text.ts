@@ -5,6 +5,7 @@
  */
 import type { Task } from '@/lib/garden-week';
 import { weekday } from '@/lib/huerta';
+import { FORECAST_PESTS } from '@/lib/pests';
 
 /** A translate function on the huerta namespace: i18next's, or the Worker's. */
 export type T = (key: string, options?: Record<string, unknown>) => string;
@@ -171,10 +172,7 @@ export function taskText(
         text: t(`week.todo.pest.${task.pest}.text`, {
           crops: names(task.crops),
         }),
-        from:
-          task.pest === 'blight' || task.pest === 'slugs'
-            ? 'forecast'
-            : 'climate',
+        from: FORECAST_PESTS.includes(task.pest) ? 'forecast' : 'climate',
       };
   }
 }

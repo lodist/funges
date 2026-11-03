@@ -53,6 +53,8 @@ export interface AdviceResponse {
      *  one byte a day, rounded (255 unknown). */
     gusts?: [string, string];
     rains?: [string, string];
+    /** Each weather-timed pest's bits, as `blight`. */
+    pests?: Record<string, number>;
   };
 }
 
@@ -98,6 +100,7 @@ export const decodeAdvice = ({
   ...(place.lows ? { lows: decodeWarm(place.lows) } : {}),
   ...(place.gusts ? { gusts: decodeLevels(place.gusts) } : {}),
   ...(place.rains ? { rains: decodeLevels(place.rains) } : {}),
+  ...(place.pests ? { pests: place.pests } : {}),
   crops: Object.fromEntries(
     crops.map((id, i) => [id, STATUS[place.statuses[i]] ?? 'too_late'])
   ),

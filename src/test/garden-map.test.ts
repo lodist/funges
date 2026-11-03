@@ -118,6 +118,13 @@ describe('the garden map drawing', () => {
     expect(slugs.fills).toEqual([null, ...PALETTES.dark.slugs]);
   });
 
+  it("downy: the week's downy mildew days, as blight's in blue-green", () => {
+    const downy = bands('downy');
+    expect([0, 1, 4, 255].map(downy.value)).toEqual([0, 1, 4, NaN]);
+    expect(downy.edges).toEqual([0.5, 2.5]);
+    expect(downy.fills).toEqual([null, ...PALETTES.light.downy]);
+  });
+
   it('turns the ramps round on a dark basemap', () => {
     const light = (fill: unknown) =>
       (fill as number[]).slice(0, 3).reduce((a, b) => a + b);

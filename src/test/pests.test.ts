@@ -43,6 +43,55 @@ describe('pest warnings', () => {
     ).toEqual([]);
   });
 
+  it("warns of downy mildew weather by each crop's own nights or mornings", () => {
+    // Bit 0 is the day before 1 November: onion nights on the 3rd, lettuce
+    // mornings on the 1st (today).
+    const pests = { downy_onion: 0b1000, downy_lettuce: 0b10 };
+    const advice = { ...SAMPLE_ADVICE, day: '2027-11-01', pests };
+    const p = plan(
+      ['onion', '2027-09-15'],
+      ['lettuce', '2027-10-01'],
+      ['carrot', '2027-08-01']
+    );
+    expect(pestTasks(p, advice, undefined, '2027-11-01')).toEqual([
+      {
+        kind: 'pest',
+        pest: 'downy_mildew',
+        phase: 'now',
+        day: '2027-11-01',
+        crops: ['onion', 'lettuce'],
+      },
+    ]);
+    // Onions only: their own nights, from the 3rd.
+    expect(
+      pestTasks(plan(['onion', '2027-09-15']), advice, undefined, '2027-11-01')
+    ).toEqual([
+      {
+        kind: 'pest',
+        pest: 'downy_mildew',
+        phase: 'soon',
+        day: '2027-11-03',
+        crops: ['onion'],
+      },
+    ]);
+    // Lettuce on a week of onion nights only, or no word from the night: none.
+    const onionWeek = {
+      ...advice,
+      pests: { downy_onion: 0b1000, downy_lettuce: 0 },
+    };
+    expect(
+      pestTasks(
+        plan(['lettuce', '2027-10-01']),
+        onionWeek,
+        undefined,
+        '2027-11-01'
+      )
+    ).toEqual([]);
+    expect(
+      pestTasks(p, { ...advice, pests: undefined }, undefined, '2027-11-01')
+    ).toEqual([]);
+  });
+
   it('warns of slug nights for young crops and the ones slugs eat at any age', () => {
     // 1-7 November: lows 3, 6, 6, 8, 2, 7, 7 °C; rain 9, 2, 6, 0, 8 mm.
     const lows = { start: '2027-11-01', t: [3, 6, 6, 8, 2, 7, 7] };

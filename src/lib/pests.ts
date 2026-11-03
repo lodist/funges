@@ -1,7 +1,8 @@
 /**
  * Pests whose danger the weather tells: late blight from warm, humid days in
- * a row (worked out by the night run: the advice's `blight`), slugs on mild,
- * wet nights, and three flies from the warmth since 1 January. Rules and
+ * a row (worked out by the night run: the advice's `blight`), downy mildew on
+ * onions and lettuce from humid nights and wet mornings (its `pests`), slugs
+ * on mild, wet nights, and three flies from the warmth since 1 January. Rules and
  * sources: funges-lab superpowers/huerta-pests.md.
  */
 import { daily, type Warm } from '@/lib/growth';
@@ -9,7 +10,15 @@ import type { PlaceAdvice } from '@/lib/huerta';
 import type { Plan } from '@/lib/planner';
 
 export type PestId =
-  'blight' | 'slugs' | 'carrot_fly' | 'cabbage_root_fly' | 'onion_fly';
+  | 'blight'
+  | 'downy_mildew'
+  | 'slugs'
+  | 'carrot_fly'
+  | 'cabbage_root_fly'
+  | 'onion_fly';
+/** The pests the forecast times, warned of week by week; the flies come from
+ *  the year's warmth. */
+export const FORECAST_PESTS: PestId[] = ['blight', 'downy_mildew', 'slugs'];
 
 export interface PestTask {
   kind: 'pest';
@@ -36,6 +45,9 @@ export interface Flight {
 export const PESTS: Record<PestId, { crops: string[]; flight?: Flight }> = {
   // Hutton criteria (AHDB, 2017).
   blight: { crops: ['potato', 'tomato'] },
+  // Onion: DOWNCAST spore nights; lettuce: Wu et al. 2002 infection mornings
+  // (night run, funges-lab qa/huerta-downy-2026-11-03).
+  downy_mildew: { crops: ['onion', 'onion_sets', 'lettuce'] },
   // RHS: soft, leafy plants and maincrop potatoes at any age (and every crop
   // while young: YOUNG_DAYS).
   slugs: {
@@ -128,6 +140,12 @@ const FLIES = ['carrot_fly', 'cabbage_root_fly', 'onion_fly'] as const;
  *  days as on other days of the month (funges-lab qa/huerta-slugs-2026-11-03). */
 const SLUG_LOW = 5;
 const SLUG_RAIN = 5;
+/** Each downy mildew crop's bits in the advice's `pests`. */
+const DOWNY: Record<string, string> = {
+  onion: 'downy_onion',
+  onion_sets: 'downy_onion',
+  lettuce: 'downy_lettuce',
+};
 /** Days a crop counts as young after it went in: what slugs eat first. */
 const YOUNG_DAYS = 28;
 
@@ -169,19 +187,28 @@ export function pestTasks(
     ),
   ];
   const tasks: PestTask[] = [];
-  const bits = advice.blight ?? 0;
-  const blighted = crops('blight', null);
-  if (bits && blighted.length) {
-    // The first blight day: bit 0 is the day before the advice's day.
+  // The night run's days as bits: bit 0 is the day before the advice's day.
+  const weather = (pest: PestId, bits: number, at: string[]) => {
+    if (!bits || !at.length) return;
     const day = addDays(advice.day, Math.log2(bits & -bits) - 1);
     tasks.push({
       kind: 'pest',
-      pest: 'blight',
+      pest,
       phase: day <= today ? 'now' : 'soon',
       day,
-      crops: blighted,
+      crops: at,
     });
-  }
+  };
+  weather('blight', advice.blight ?? 0, crops('blight', null));
+  // Downy mildew: onions read the onion nights, lettuce its own mornings.
+  const mildewed = crops('downy_mildew', null).filter(
+    c => advice.pests?.[DOWNY[c]]
+  );
+  weather(
+    'downy_mildew',
+    mildewed.reduce((b, c) => b | advice.pests![DOWNY[c]], 0),
+    mildewed
+  );
   const slugDay = slugNight(advice, today);
   const slugged = [
     ...new Set(

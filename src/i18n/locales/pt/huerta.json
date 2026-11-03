@@ -211,6 +211,11 @@
           "now": "Tempo de míldio agora",
           "text": "Dias e noites quentes e úmidos espalham o míldio. Olhe as folhas de {{crops}} todo dia e tire as que tiverem manchas marrons."
         },
+        "downy_mildew": {
+          "soon": "Tempo de míldio de cebola e alface a partir de {{day}}",
+          "now": "Tempo de míldio de cebola e alface agora",
+          "text": "Noites frescas e úmidas e manhãs molhadas espalham o míldio. Olhe embaixo das folhas de {{crops}} e tire as que tiverem um mofo cinza-arroxeado. Regue o solo de manhã e deixe espaço entre as plantas para o ar circular."
+        },
         "slugs": {
           "soon": "Noites de lesmas a partir de {{day}}",
           "now": "As lesmas saem hoje à noite",
@@ -2010,6 +2015,7 @@
       "soil": "Temperatura do solo",
       "water": "Água esta semana",
       "blight": "Tempo de míldio",
+      "downy": "Tempo de míldio de cebola e alface",
       "slugs": "Noites de lesmas",
       "pests": "Pragas e doenças"
     },
@@ -2034,6 +2040,9 @@
       "blight": "Dias de míldio para batatas e tomates, próximos 7 dias",
       "blightFew": "1 ou 2 dias",
       "blightMany": "3 dias ou mais",
+      "downy": "Dias de míldio para cebolas e alfaces, próximos 7 dias",
+      "downyFew": "1 ou 2 dias",
+      "downyMany": "3 dias ou mais",
       "slugs": "Noites de lesmas para alfaces, couves e mudas novas, próximos 7 dias",
       "slugsFew": "1 ou 2 noites",
       "slugsMany": "3 noites ou mais"

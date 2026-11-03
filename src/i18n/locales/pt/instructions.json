@@ -147,7 +147,7 @@
         "frost": "A noite mais fria dos próximos sete dias. Culturas sensíveis, como tomate e feijão, morrem com a geada.",
         "soil": "O quanto o solo está quente agora. Em solo frio as sementes não germinam, então é isso que decide quando semear cada cultura.",
         "water": "A chuva dos próximos sete dias contra o que o sol e o vento secam. Onde a chuva não basta, é preciso regar.",
-        "pests": "O tempo que traz pragas e doenças nos próximos sete dias: míldio para batatas e tomates, lesmas para alfaces e mudas novas. Escolha uma com os botões que se abrem ao lado. Quanto mais escura a cor, mais dias."
+        "pests": "O tempo que traz pragas e doenças nos próximos sete dias: míldio (batatas e tomates), lesmas (alfaces e mudas novas) e míldio (cebolas e alfaces). Escolha uma com os botões que se abrem ao lado. Quanto mais escura a cor, mais dias."
       },
       "tap": "Toque em um lugar para ver a semana dele: o solo, as noites, a chuva e quando a geada costuma chegar. \"Usar como minha horta\" faz dele o lugar da sua horta.",
       "coverage": "O Huerta cobre a Europa e os Estados Unidos continentais."

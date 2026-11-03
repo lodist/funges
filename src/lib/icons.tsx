@@ -26,6 +26,7 @@ import {
   ChevronUpIcon as LucideChevronUpIcon,
   CircleIcon as LucideCircleIcon,
   Clock as LucideClock,
+  CloudFog as LucideCloudFog,
   CloudRain as LucideCloudRain,
   Coffee as LucideCoffee,
   Coins as LucideCoins,
@@ -167,6 +168,7 @@ export const ChevronRightIcon = decorativeByDefault(LucideChevronRightIcon);
 export const ChevronUpIcon = decorativeByDefault(LucideChevronUpIcon);
 export const CircleIcon = decorativeByDefault(LucideCircleIcon);
 export const Clock = decorativeByDefault(LucideClock);
+export const CloudFog = decorativeByDefault(LucideCloudFog);
 export const CloudRain = decorativeByDefault(LucideCloudRain);
 export const Coffee = decorativeByDefault(LucideCoffee);
 export const Coins = decorativeByDefault(LucideCoins);
