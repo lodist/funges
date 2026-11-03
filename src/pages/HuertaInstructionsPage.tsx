@@ -50,6 +50,7 @@ const SOURCE: Record<MapLayer, MapSource> = {
   soil: 'soil',
   water: 'balance',
   blight: 'blight',
+  slugs: 'slugs',
 };
 
 // Tinted by kind as Terra's datasets: weather linen, the ground tan, the
