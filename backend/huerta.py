@@ -104,6 +104,9 @@ RH_WET = {"SE": 90, "NE": 90, "USE": 92, "USW": 92}
 WET_HOURS = 6     # such hours a blight day needs
 BLIGHT_MIN = 10   # C: the day's minimum a blight day needs
 BLIGHT_DAYS = 8   # the advice's blight bits: the day before its day through the sixth after
+# A slug night: a low of at least SLUG_LOW C and SLUG_RAIN mm of rain that day, as the app's slugNight
+# (src/lib/pests.ts) reads them from the advice (funges-lab qa/huerta-slugs-2026-11-03).
+SLUG_LOW, SLUG_RAIN = 5, 5
 # The garden map's own layers: frost (0 none; in the next 3 days 1 ground frost, 2 frost; 3 either
 # later in the week), soil
 # at 6 cm (degrees C + 40) and the week's water deficit (mm); 255 where unknown.
@@ -333,10 +336,11 @@ def _byte(values, offset=0):
     return np.where(np.isnan(v), 255, np.clip(v, 0, 254)).astype(np.uint8)
 
 
-def map_files(place, advice, day, windows=None, blight=None):
+def map_files(place, advice, day, windows=None, blight=None, lows=None, rains=None):
     """{name under huerta/map/<REGION>/: bytes} for the garden map, layers in MAP_LAYERS (and, with `blight`
-    from blight_bits, the week's blight days: today and the six after, 255 where not worked out) + crop
-    order, then each crop's months from the windows."""
+    from blight_bits, the week's blight days: today and the six after, 255 where not worked out; with `lows`
+    and `rains` (daily_air), the same week's slug nights) + crop order, then each crop's months from the
+    windows."""
     n = len(place)
     frost = np.select([place["frost3"] <= 0, place["frost3"] <= 2, place["frostw"] <= 2], [2, 1, 3], 0).astype(np.uint8)
     water = (place["et07"] - place["rain7"]).clip(lower=0)
@@ -344,12 +348,21 @@ def map_files(place, advice, day, windows=None, blight=None):
     balance = place["rain7"] - place["et07"]                            # rain to spare, or to water
     columns = [frost, _byte(place["soil3"], 40), _byte(water), _byte(cold, 40), _byte(balance, 100)]
     names = [*MAP_LAYERS]
+    keys = pd.MultiIndex.from_arrays([place["Latitude"].round(4), place["Longitude"].round(4)])
     if blight is not None:
-        keys = pd.MultiIndex.from_arrays([place["Latitude"].round(4), place["Longitude"].round(4)])
         bits = blight.reindex(keys).to_numpy(float)
         days = sum((np.nan_to_num(bits).astype(np.int64) >> k) & 1 for k in range(1, BLIGHT_DAYS))  # bit 0: yesterday
         columns.append(np.where(np.isnan(bits), 255, days).astype(np.uint8))
         names.append("blight")
+    if lows is not None and rains is not None:
+        week = [f"{d:%Y-%m-%d}" for d in pd.date_range(day, periods=7)]
+        # As the advice's bytes, so the map counts the nights the app warns of.
+        low = warm_bytes(lows.reindex(index=keys, columns=week).to_numpy(float))
+        rain = level_bytes(rains.reindex(index=keys, columns=week).to_numpy(float))
+        known = ((low != 255) & (rain != 255)).any(axis=1)
+        nights = ((low != 255) & (low >= warm_bytes(SLUG_LOW)) & (rain != 255) & (rain >= SLUG_RAIN)).sum(axis=1)
+        columns.append(np.where(known, nights, 255).astype(np.uint8))
+        names.append("slugs")
     codes = advice.replace(CODES)
     columns += [np.frombuffer("".join(codes[c]).encode("ascii"), np.uint8) for c in advice.columns]
     names += list(advice.columns)
@@ -593,7 +606,7 @@ def publish(region, forecast):
                                                ContentType="application/json"), files.items()))
     s3.put_object(Bucket=bucket, Key="huerta/crops.json", Body=crop_needs(crops), ContentType="application/json")
     # The index last, so the map never reads an index ahead of its layers.
-    maps = map_files(place, advice, f"{day:%Y-%m-%d}", windows, blight)
+    maps = map_files(place, advice, f"{day:%Y-%m-%d}", windows, blight, lows, (storms or {}).get("rains"))
     for name in ("places.bin", "layers.bin", "index.json"):
         s3.put_object(Bucket=bucket, Key=f"huerta/map/{region}/{name}", Body=maps[name],
                       ContentType="application/json" if name.endswith(".json") else "application/octet-stream")

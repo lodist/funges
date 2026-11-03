@@ -413,3 +413,23 @@ def test_blight_bits_need_more_humid_hours_from_the_us_forecast():
         hours.loc[at, "td2m_c"] = 12.6                                   # about 91 %
     assert huerta.blight_bits(hours, "2026-11-04").loc[(50.0, 0.0)] == 0b100
     assert huerta.blight_bits(hours, "2026-11-04", rh_wet=huerta.RH_WET["USE"]).loc[(50.0, 0.0)] == 0
+
+
+def test_map_files_count_the_weeks_slug_nights_as_the_app_reads_them():
+    places = pd.DataFrame({
+        "Latitude": [40.44, 39.86, 38.0], "Longitude": [-3.675, -4.02, -1.13],
+        "frost3": [9.2, -0.5, 12.0], "frostw": [1.0, 5.0, 12.0], "soil3": [13.44, np.nan, 18.0],
+        "rain7": [4.0, 1.0, 20.0], "et07": [14.4, 12.0, 9.0],
+    })
+    advice = pd.DataFrame({"tomato": ["too_late", "not_here", "too_late"]})
+    keys = pd.MultiIndex.from_tuples([(40.44, -3.675), (38.0, -1.13)], names=["key_lat", "key_lon"])
+    days = [f"2026-11-{d:02d}" for d in range(2, 10)]                 # yesterday and the week from the 3rd
+    # Madrid: mild, wet the 3rd (4.6 mm reads as 5) and the 9th; the 4th too cold (4.7 C reads as 4.5);
+    # yesterday doesn't count.
+    # Murcia: 4.4 mm reads as 4, no slug night.
+    lows = pd.DataFrame([[9, 6, 4.7, 6, 6, 6, 6, 6], [12] * 8], index=keys, columns=days)
+    rains = pd.DataFrame([[9, 4.6, 8, 0, 0, 0, 0, 7], [4.4] * 8], index=keys, columns=days)
+    files = huerta.map_files(places, advice, "2026-11-03", lows=lows, rains=rains)
+    assert json.loads(files["index.json"])["layers"] == ["frost", "soil", "water", "cold", "balance", "slugs", "tomato"]
+    layers = np.frombuffer(files["layers.bin"], np.uint8).reshape(7, 3)
+    assert layers[5].tolist() == [2, 255, 0]                                      # Toledo: no weather known
