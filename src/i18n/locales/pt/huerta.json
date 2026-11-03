@@ -211,6 +211,11 @@
           "now": "Tempo de míldio agora",
           "text": "Dias e noites quentes e úmidos espalham o míldio. Olhe as folhas de {{crops}} todo dia e tire as que tiverem manchas marrons."
         },
+        "slugs": {
+          "soon": "Noites de lesmas a partir de {{day}}",
+          "now": "As lesmas saem hoje à noite",
+          "text": "Noites amenas e úmidas trazem as lesmas para comer {{crops}}. Depois que escurecer, passe com uma lanterna e recolha-as, ou enterre um pote com cerveja perto das plantas e esvazie-o toda manhã. Regue de manhã, não à noite."
+        },
         "carrot_fly": {
           "soon": "Mosca-da-cenoura, início do voo: por volta de {{date}}",
           "now": "A mosca-da-cenoura está voando por aqui agora",

@@ -211,6 +211,11 @@
           "now": "Temps à mildiou en ce moment",
           "text": "Les jours et les nuits chauds et humides propagent le mildiou. Regardez chaque jour les feuilles de {{crops}} et retirez celles qui ont des taches brunes."
         },
+        "slugs": {
+          "soon": "Nuits à limaces dès {{day}}",
+          "now": "Les limaces sortent ce soir",
+          "text": "Les nuits douces et humides font sortir les limaces, qui s'attaquent à {{crops}}. À la nuit tombée, faites le tour avec une lampe de poche et ramassez-les, ou enterrez près des plantes un pot de bière à vider chaque matin. Arrosez le matin, pas le soir."
+        },
         "carrot_fly": {
           "soon": "Mouche de la carotte, début du vol : vers le {{date}}",
           "now": "La mouche de la carotte vole ici en ce moment",
