@@ -155,3 +155,10 @@ def test_casual_records_prove_presence_but_never_absence():
     assert finland > 0.95
     assert scotland < 0.01
     assert unrecorded == 0.0 and unobserved == 0.0  # no records is no proof, however little the looking
+
+
+def test_ph_gate_drops_acid_ground_and_keeps_no_evidence():
+    df = pd.DataFrame({"ph_level": [5.0, 5.5, 5.85, 6.2, 7.8, np.nan]})
+    out = range_prior_for_species(df, {"pH_gate": [5.5, 6.2]})
+    np.testing.assert_allclose(out, [0.0, 0.0, 0.5, 1.0, 1.0, 1.0])
+    assert range_prior_for_species(df, {}) == 1.0

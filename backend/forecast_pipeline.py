@@ -45,6 +45,7 @@ from shapely.geometry import shape, Point
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # backend/ for seasonality
 import era5_normals
+import summer_rain
 import era5_rain
 import hourly_weather
 import huerta
@@ -1592,6 +1593,8 @@ def calculate_mushroom_score(df, species_params, zone_curves):
         # allowed to reach zero, which is the only way the model can say "not this month".
         df[f'{specie}_score'] *= season_multiplier_for_species(df, specie, params, zone_curves)
         df[f'{specie}_score'] *= season_gate_for_species(df, specie, params, zone_curves)
+        # How good a whole season is, from the summer before it (summer_rain.py); 1.0 for most.
+        df[f'{specie}_score'] = (df[f'{specie}_score'] * summer_rain.factor(df, params)).clip(0, 10)
 
     return df
 
@@ -1726,6 +1729,7 @@ def _load_species_and_curves(config):
     attach_fruiting_gbm(species_params, config.region, datetime.now())
     attach_habitat(species_params, config.region)
     attach_phenology(species_params, config.region)
+    summer_rain.attach(species_params, config.region)
     _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
