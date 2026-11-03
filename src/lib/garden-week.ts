@@ -19,7 +19,7 @@ import type { Climate, PlaceYear } from '@/lib/huerta-wire';
 import type { Garden, Plan, Section } from '@/lib/planner';
 import { bedLight, leafOf, LIGHT_NEED, sunlight } from '@/lib/sun';
 import { PLANT_LOOK } from '@/lib/planner-data';
-import { pestTasks, type PestTask } from '@/lib/pests';
+import { FORECAST_PESTS, pestTasks, type PestTask } from '@/lib/pests';
 import {
   forSoil,
   gardenSoil,
@@ -887,7 +887,7 @@ export function jobKey(task: Task, plan: Plan, today: string): string | null {
     case 'pest':
       // Blight and slugs come back with the weather; a fly's warning is its
       // season's.
-      return `pest:${task.pest}:${task.pest === 'blight' || task.pest === 'slugs' ? isoWeek(today) : today.slice(0, 4)}`;
+      return `pest:${task.pest}:${FORECAST_PESTS.includes(task.pest) ? isoWeek(today) : today.slice(0, 4)}`;
     default:
       return null;
   }

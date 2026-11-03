@@ -147,7 +147,7 @@
         "frost": "Die kälteste Nacht der nächsten sieben Tage. Empfindliche Pflanzen wie Tomaten und Bohnen überstehen keinen Frost.",
         "soil": "Wie warm der Boden gerade ist. In kaltem Boden keimen die Samen nicht. Darum entscheidet er, wann du was säen kannst.",
         "water": "Der Regen der nächsten sieben Tage, verglichen mit dem, was Sonne und Wind austrocknen. Wo der Regen nicht reicht, musst du giessen.",
-        "pests": "Wetter, das in den nächsten sieben Tagen Schädlinge und Krankheiten bringt: Krautfäule bei Kartoffeln und Tomaten, Schnecken bei Salat und Jungpflanzen. Wähle eines mit den Knöpfen, die daneben aufgehen. Je dunkler die Farbe, desto mehr Tage davon."
+        "pests": "Wetter, das in den nächsten sieben Tagen Schädlinge und Krankheiten bringt: Krautfäule (Kartoffeln und Tomaten), Schnecken (Salat und Jungpflanzen) und Falscher Mehltau (Zwiebeln und Salat). Wähle eines mit den Knöpfen, die daneben aufgehen. Je dunkler die Farbe, desto mehr Tage davon."
       },
       "tap": "Tippe auf einen Ort, um seine Woche zu sehen: Boden, Nächte, Regen und wann dort meist der Frost kommt. Mit „Als meinen Garten nehmen“ wird er zum Ort deines Gartens.",
       "coverage": "Huerta deckt Europa und die kontinentalen USA ab."

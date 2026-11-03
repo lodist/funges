@@ -147,7 +147,7 @@
         "frost": "La nuit la plus froide des sept prochains jours. Les cultures fragiles comme la tomate ou le haricot meurent au gel.",
         "soil": "La chaleur du sol en ce moment. Dans un sol froid, les graines ne lèvent pas : c'est donc lui qui décide quand semer chaque culture.",
         "water": "La pluie des sept prochains jours face à ce que le soleil et le vent dessèchent. Là où la pluie ne suffit pas, il faut arroser.",
-        "pests": "La météo qui amène ravageurs et maladies dans les sept prochains jours : le mildiou pour les pommes de terre et les tomates, les limaces pour les salades et les jeunes plants. Choisissez-en un avec les boutons qui s'ouvrent à côté. Plus la couleur est foncée, plus il y a de jours."
+        "pests": "La météo qui amène ravageurs et maladies dans les sept prochains jours : le mildiou (pommes de terre et tomates), les limaces (salades et jeunes plants) et le mildiou (oignons et laitues). Choisissez-en un avec les boutons qui s'ouvrent à côté. Plus la couleur est foncée, plus il y a de jours."
       },
       "tap": "Touchez un lieu pour voir sa semaine : le sol, les nuits, la pluie et la date habituelle du gel. « En faire mon potager » en fait le lieu de votre potager.",
       "coverage": "Huerta couvre l'Europe et les États-Unis continentaux."

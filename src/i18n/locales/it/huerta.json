@@ -211,6 +211,11 @@
           "now": "Tempo da peronospora adesso",
           "text": "Giorni e notti caldi e umidi diffondono la peronospora. Controlla ogni giorno le foglie di {{crops}} e togli quelle con macchie marroni."
         },
+        "downy_mildew": {
+          "soon": "Tempo da peronospora di cipolla e lattuga da {{day}}",
+          "now": "Tempo da peronospora di cipolla e lattuga adesso",
+          "text": "Notti fresche e umide e mattine bagnate diffondono la peronospora. Guarda sotto le foglie di {{crops}} e togli quelle con una peluria grigio-viola. Annaffia alla base al mattino e lascia spazio tra le piante perché circoli l'aria."
+        },
         "slugs": {
           "soon": "Notti da lumache da {{day}}",
           "now": "Stanotte escono le lumache",
@@ -2010,6 +2015,7 @@
       "soil": "Temperatura del terreno",
       "water": "Acqua questa settimana",
       "blight": "Tempo da peronospora",
+      "downy": "Tempo da peronospora di cipolla e lattuga",
       "slugs": "Notti da lumache",
       "pests": "Parassiti e malattie"
     },
@@ -2034,6 +2040,9 @@
       "blight": "Giorni da peronospora per patate e pomodori, prossimi 7 giorni",
       "blightFew": "1 o 2 giorni",
       "blightMany": "3 giorni o più",
+      "downy": "Giorni da peronospora per cipolle e lattughe, prossimi 7 giorni",
+      "downyFew": "1 o 2 giorni",
+      "downyMany": "3 giorni o più",
       "slugs": "Notti da lumache per insalate, cavoli e piantine, prossimi 7 giorni",
       "slugsFew": "1 o 2 notti",
       "slugsMany": "3 notti o più"

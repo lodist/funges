@@ -43,6 +43,7 @@ import {
 } from '@/lib/huerta-api';
 import {
   Bug,
+  CloudFog,
   Droplets,
   Leaf,
   MapPinned,
@@ -73,6 +74,7 @@ const LAYER_ICON: Record<MapLayer | 'pests', typeof Sprout> = {
   water: Droplets,
   pests: Bug,
   blight: Leaf,
+  downy: CloudFog,
   slugs: Snail,
 };
 const railOf = (layer: MapLayer): RailItem =>
@@ -640,7 +642,7 @@ function Legend({
             [css(palette.frost[1]), t('map.legend.ground')],
             [css(palette.frost[0]), t('map.legend.later')],
           ]
-        : source === 'blight' || source === 'slugs'
+        : source === 'blight' || source === 'downy' || source === 'slugs'
           ? [
               [css(palette[source][1]), t(`map.legend.${source}Many`)],
               [css(palette[source][0]), t(`map.legend.${source}Few`)],
@@ -655,6 +657,7 @@ function Legend({
     source === 'cold' ||
     source === 'balance' ||
     source === 'blight' ||
+    source === 'downy' ||
     source === 'slugs'
       ? t(`map.legend.${source}`)
       : null;

@@ -53,6 +53,7 @@ const SOURCE: Record<MapLayer, MapSource> = {
   soil: 'soil',
   water: 'balance',
   blight: 'blight',
+  downy: 'downy',
   slugs: 'slugs',
 };
 

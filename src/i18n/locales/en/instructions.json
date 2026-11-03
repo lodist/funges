@@ -147,7 +147,7 @@
         "frost": "The coldest night of the next seven days. Tender crops such as tomatoes and beans die in a frost.",
         "soil": "How warm the soil is now. Seeds won't come up in cold soil, so this decides when each crop can be sown.",
         "water": "The next seven days of rain against what sun and wind dry out. Where the rain falls short, the beds need watering.",
-        "pests": "Weather that brings pests and diseases in the next seven days: blight for potatoes and tomatoes, slugs for lettuce and young plants. Pick one with the buttons that open beside it. The darker the colour, the more days of it."
+        "pests": "Weather that brings pests and diseases in the next seven days: blight (potatoes and tomatoes), slugs (lettuce and young plants) and downy mildew (onions and lettuce). Pick one with the buttons that open beside it. The darker the colour, the more days of it."
       },
       "tap": "Tap a place to see its week: the soil, the nights, the rain and when frost usually comes. “Make this my garden” makes it your garden's place.",
       "coverage": "Huerta covers Europe and the contiguous United States."
