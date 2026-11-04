@@ -491,6 +491,7 @@
       "cover": "Fauche et enfouissement"
     },
     "problems": "Ce qui peut mal tourner",
+    "photoBy": "Photo : {{by}}, {{licence}}",
     "facts": {
       "frost": "Gel",
       "warmth": "Chaleur",

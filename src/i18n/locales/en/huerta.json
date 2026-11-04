@@ -491,6 +491,7 @@
       "cover": "Cutting and digging in"
     },
     "problems": "What can go wrong",
+    "photoBy": "Photo: {{by}}, {{licence}}",
     "facts": {
       "frost": "Frost",
       "warmth": "Warmth",

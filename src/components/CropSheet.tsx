@@ -12,11 +12,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   cropReasons,
+  huertaImage,
   weekday,
   type Crop,
   type CropNeeds,
   type PlaceAdvice,
 } from '@/lib/huerta';
+import { PROBLEMS, problemPhoto } from '@/lib/problems';
+import { ZoomableImage } from '@/components/ZoomableImage';
 import { GUIDES, type CropGuide } from '@/lib/crop-guides';
 import { harvestFrom } from '@/lib/garden-week';
 import { huertaPage } from '@/lib/seo-pages';
@@ -610,11 +613,36 @@ function Harvest({ crop }: { crop: Crop }) {
       </Part>
       <Part title={t('grow.problems')}>
         <ul className='flex flex-col gap-2 text-sm text-foreground'>
-          {problems.map(p => (
-            <li key={p.name}>
-              <span className='font-semibold'>{p.name}.</span> {p.fix}
-            </li>
-          ))}
+          {problems.map((p, i) => {
+            const photo = problemPhoto(crop.id, PROBLEMS[crop.id]?.[i]);
+            return (
+              <li key={p.name} className={photo ? 'flex gap-3' : undefined}>
+                {photo ? (
+                  <ZoomableImage
+                    src={huertaImage(`problems/${photo.file}`)}
+                    alt={p.name}
+                    className='size-16 rounded-lg'
+                  />
+                ) : null}
+                <span>
+                  <span className='font-semibold'>{p.name}.</span> {p.fix}
+                  {photo ? (
+                    <a
+                      href={photo.source}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='mt-1 block text-xs text-muted-foreground underline'
+                    >
+                      {t('grow.photoBy', {
+                        by: photo.by,
+                        licence: photo.licence,
+                      })}
+                    </a>
+                  ) : null}
+                </span>
+              </li>
+            );
+          })}
         </ul>
       </Part>
     </>
