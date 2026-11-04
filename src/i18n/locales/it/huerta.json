@@ -491,6 +491,7 @@
       "cover": "Sfalcio e interramento"
     },
     "problems": "Cosa può andare storto",
+    "photoBy": "Foto: {{by}}, {{licence}}",
     "facts": {
       "frost": "Gelo",
       "warmth": "Caldo",

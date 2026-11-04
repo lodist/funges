@@ -491,6 +491,7 @@
       "cover": "Siega e incorporación"
     },
     "problems": "Qué puede salir mal",
+    "photoBy": "Foto: {{by}}, {{licence}}",
     "facts": {
       "frost": "Heladas",
       "warmth": "Calor",
