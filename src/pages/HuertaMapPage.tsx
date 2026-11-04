@@ -468,21 +468,33 @@ export default function HuertaMapPage() {
   }, [picked]);
 
   const layerName = (l: MapLayer | 'pests') => t(`map.layers.${l}`);
-  const railButton = (l: MapLayer | 'pests', on: boolean, pick: () => void) => {
+  // `labelled`: the name beside the icon, for the pests' rail, whose icons
+  // nobody would guess.
+  const railButton = (
+    l: MapLayer | 'pests',
+    on: boolean,
+    pick: () => void,
+    labelled = false
+  ) => {
     const Icon = LAYER_ICON[l];
     return (
       <Button
         key={l}
         type='button'
         variant='ghost'
-        size='icon'
+        size={labelled ? 'default' : 'icon'}
         aria-pressed={on}
-        aria-label={layerName(l)}
-        title={layerName(l)}
+        aria-label={labelled ? undefined : layerName(l)}
+        title={labelled ? undefined : layerName(l)}
         onClick={pick}
-        className={on ? BAND_ACTIVE_CLASS : BAND_GHOST_CLASS}
+        className={cn(
+          on ? BAND_ACTIVE_CLASS : BAND_GHOST_CLASS,
+          labelled &&
+            'h-auto min-h-11 justify-start py-2 text-left leading-tight whitespace-normal'
+        )}
       >
         <Icon className='h-4 w-4' />
+        {labelled ? layerName(l) : null}
       </Button>
     );
   };
@@ -545,15 +557,20 @@ export default function HuertaMapPage() {
                     role='group'
                     aria-label={layerName(l)}
                     className={cn(
-                      'absolute -top-1 right-full mr-2 flex flex-col gap-1 rounded-full p-1 elevation-raised',
+                      'absolute -top-1 right-full mr-2 flex w-max max-w-64 flex-col gap-1 rounded-card p-1 elevation-raised',
                       BAND_SURFACE_CLASS
                     )}
                   >
                     {PEST_LAYERS.map(p =>
-                      railButton(p, layer === p, () => {
-                        setPest(p);
-                        setLayer(p);
-                      })
+                      railButton(
+                        p,
+                        layer === p,
+                        () => {
+                          setPest(p);
+                          setLayer(p);
+                        },
+                        true
+                      )
                     )}
                   </div>
                 ) : null}
