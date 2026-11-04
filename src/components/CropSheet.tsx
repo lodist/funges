@@ -626,7 +626,7 @@ function Harvest({ crop }: { crop: Crop }) {
                 ) : null}
                 <span>
                   <span className='font-semibold'>{p.name}.</span> {p.fix}
-                  {photo ? (
+                  {photo?.by ? (
                     <a
                       href={photo.source}
                       target='_blank'
