@@ -14,6 +14,7 @@ import {
 import type { PlaceYear } from '@/lib/huerta-wire';
 import {
   AlertTriangle,
+  Bug,
   Check,
   ChevronDown,
   Clock,
@@ -25,6 +26,8 @@ import {
   Wind,
 } from '@/lib/icons';
 import { endAs, type Grown, type Plan } from '@/lib/planner';
+import { problemPhoto, type ProblemPhoto } from '@/lib/problems';
+import { ZoomableImage } from '@/components/ZoomableImage';
 import { cn } from '@/lib/utils';
 
 const CROP = Object.fromEntries(CROPS.map(crop => [crop.id, crop]));
@@ -46,6 +49,7 @@ const ICON: Record<string, ComponentType<{ className?: string }>> = {
   tooLate: Clock,
   fate: AlertTriangle,
   over: Sprout,
+  pest: Bug,
 };
 const YEAR_DAYS = 365;
 
@@ -53,6 +57,8 @@ interface Job {
   key: string;
   kind: string;
   crop?: string;
+  /** What the pest looks like. */
+  photo?: ProblemPhoto;
   title: string;
   text: string;
   from: From;
@@ -224,6 +230,10 @@ export function GardenThisWeek({
           key: key ?? task.kind,
           kind: task.kind,
           crop: 'crop' in task ? task.crop : undefined,
+          photo:
+            task.kind === 'pest'
+              ? problemPhoto(task.crops[0], task.pest)
+              : undefined,
           title,
           text,
           from,
@@ -368,7 +378,15 @@ export function GardenThisWeek({
                     {job.text}
                   </span>
                   <span className='mt-1 block text-xs text-muted-foreground'>
-                    {[t(`week.todo.from.${job.from}`), beds(job.at)]
+                    {[
+                      t(`week.todo.from.${job.from}`),
+                      beds(job.at),
+                      job.photo &&
+                        t('grow.photoBy', {
+                          by: job.photo.by,
+                          licence: job.photo.licence,
+                        }),
+                    ]
                       .filter(Boolean)
                       .join(' · ')}
                   </span>
@@ -383,6 +401,14 @@ export function GardenThisWeek({
                 <Shows at={job.at} onShow={onShow}>
                   {body}
                 </Shows>
+                {/* Beside the row, not in it: the row is a button. */}
+                {job.photo ? (
+                  <ZoomableImage
+                    src={huertaImage(`problems/${job.photo.file}`)}
+                    alt={job.title}
+                    className='size-12 rounded-lg'
+                  />
+                ) : null}
                 {job.action && job.also ? (
                   <span className='ml-auto flex flex-wrap gap-2'>
                     <Button variant='outline' onClick={job.action.run}>

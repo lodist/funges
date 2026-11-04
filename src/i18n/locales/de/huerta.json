@@ -491,6 +491,7 @@
       "cover": "Schneiden und Einarbeiten"
     },
     "problems": "Was schiefgehen kann",
+    "photoBy": "Foto: {{by}}, {{licence}}",
     "facts": {
       "frost": "Frost",
       "warmth": "Wärme",

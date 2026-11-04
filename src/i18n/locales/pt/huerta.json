@@ -491,6 +491,7 @@
       "cover": "Corte e incorporação"
     },
     "problems": "O que pode correr mal",
+    "photoBy": "Foto: {{by}}, {{licence}}",
     "facts": {
       "frost": "Geada",
       "warmth": "Calor",
