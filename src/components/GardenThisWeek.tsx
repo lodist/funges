@@ -381,7 +381,7 @@ export function GardenThisWeek({
                     {[
                       t(`week.todo.from.${job.from}`),
                       beds(job.at),
-                      job.photo &&
+                      job.photo?.by &&
                         t('grow.photoBy', {
                           by: job.photo.by,
                           licence: job.photo.licence,

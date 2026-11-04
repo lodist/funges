@@ -17,12 +17,22 @@ describe('PROBLEMS', () => {
         ).toBe(PROBLEMS[crop.id]?.length);
   });
 
-  it('has each photo on disk, credited', () => {
+  it('has each photo on disk, a real one credited in full', () => {
     for (const photo of Object.values(PROBLEM_PHOTOS)) {
       expect(existsSync(`public/huerta/problems/${photo.file}.webp`)).toBe(
         true
       );
-      expect(photo.by && photo.licence && photo.source).toBeTruthy();
+      if (photo.by) expect(photo.licence && photo.source).toBeTruthy();
+      else expect(photo.licence ?? photo.source).toBeUndefined();
+    }
+  });
+
+  it('names only problems some crop has', () => {
+    const ids = new Set(Object.values(PROBLEMS).flat());
+    for (const key of Object.keys(PROBLEM_PHOTOS)) {
+      const [crop, problem] = key.includes('.') ? key.split('.') : [null, key];
+      expect(ids.has(problem), key).toBe(true);
+      if (crop) expect(PROBLEMS[crop], key).toContain(problem);
     }
   });
 
