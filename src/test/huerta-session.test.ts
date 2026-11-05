@@ -73,6 +73,17 @@ describe('signing in to Huerta', () => {
     expect(
       await s.finishSignIn(`#state=${'cd'.repeat(16)}&id_token=x.y.z`)
     ).toEqual({ back: '/huerta/crops', here: false });
+    expect(s.session()?.token).toBe(TOKEN);
+  });
+
+  it('never switches the account by a sign-in it did not begin', async () => {
+    const s = await load();
+    s.setSession({ token: 'e'.repeat(64), email: 'me@b.c' });
+    vi.stubGlobal('fetch', answer({ token: TOKEN, email: 'other@b.c' }));
+    expect(
+      await s.finishSignIn(`#state=${'cd'.repeat(16)}&id_token=x.y.z`)
+    ).toEqual({ back: '/huerta/crops', here: false });
+    expect(s.session()?.email).toBe('me@b.c');
   });
 
   it('says why when Google sent no token', async () => {
