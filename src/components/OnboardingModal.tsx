@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
+import { isPlayApp } from '@/lib/platform';
 import { useTranslation } from 'react-i18next';
 import {
   ChefHat,
@@ -100,15 +101,17 @@ export default function OnboardingModal() {
               {t('onboarding.instructions')}
             </Link>
           </div>
-          <div>
-            <Link
-              to='/support'
-              className='inline-flex items-center gap-1 font-medium text-primary-text hover:underline'
-            >
-              <Heart className='size-4 fill-current' />
-              {t('onboarding.supportLink')}
-            </Link>
-          </div>
+          {!isPlayApp() && (
+            <div>
+              <Link
+                to='/support'
+                className='inline-flex items-center gap-1 font-medium text-primary-text hover:underline'
+              >
+                <Heart className='size-4 fill-current' />
+                {t('onboarding.supportLink')}
+              </Link>
+            </div>
+          )}
         </div>
         <DialogFooter>
           <Button onClick={() => handleOpenChange(false)}>

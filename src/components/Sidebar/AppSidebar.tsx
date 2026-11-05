@@ -17,7 +17,7 @@ import {
   Smartphone,
   ScanSearch,
 } from '@/lib/icons';
-import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { isPlayApp, offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
   Sidebar,
@@ -125,11 +125,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             url: '#help',
             icon: LifeBuoy,
             items: [
-              {
-                title: t('support'),
-                url: `${basePath}support`,
-                icon: Heart,
-              },
+              ...(isPlayApp()
+                ? []
+                : [
+                    {
+                      title: t('support'),
+                      url: `${basePath}support`,
+                      icon: Heart,
+                    },
+                  ]),
               ...(offersPlayStore()
                 ? [
                     {
