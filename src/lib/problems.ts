@@ -193,6 +193,86 @@ export const PROBLEM_PHOTOS: Record<string, ProblemPhoto> = {
     file: 'onion-fly',
     ...inat('Michael Bomford', 702536197, 'CC0'),
   },
+  rosemary_beetle: {
+    file: 'rosemary-beetle',
+    ...inat('Stephen James McWilliam', 43538262, 'CC0'),
+  },
+  leafhoppers: {
+    file: 'leafhoppers',
+    ...inat('Anne Parsons', 687510975, 'CC0'),
+  },
+  asparagus_beetle: {
+    file: 'asparagus-beetle',
+    ...inat('Matthew Vosper', 392493422, 'CC BY'),
+  },
+  allium_leaf_miner: {
+    file: 'allium-leaf-miner',
+    ...inat('Sinéad Tuttle-Lerner', 280172723, 'CC BY'),
+  },
+  leek_moth: {
+    file: 'leek-moth',
+    ...inat('Markus Krieger', 282828906, 'CC BY'),
+  },
+  pea_moth: { file: 'pea-moth', ...inat('Linas', 694623145, 'CC0') },
+  vine_weevil: {
+    file: 'vine-weevil',
+    ...inat('Clive Freedman', 362195926, 'CC BY'),
+  },
+  cuckoo_spit: {
+    file: 'cuckoo-spit',
+    ...inat('Trees for Bermondsey', 655852615, 'CC BY'),
+  },
+  mint_moth: { file: 'mint-moth', ...inat('Joey Bom', 616385196, 'CC BY') },
+  mint_beetle: {
+    file: 'mint-beetle',
+    ...inat('Daniel Ghyselinck', 601051606, 'CC BY'),
+  },
+  // The free photos show only the adult fly, never the grub in the bulb:
+  // generated (Codex).
+  bulb_fly: { file: 'bulb-fly' },
+  white_rot: { file: 'white-rot', ...inat('nebrooks', 624664192, 'CC BY') },
+  grey_mould: {
+    file: 'grey-mould',
+    ...inat('Paweł Zuzelski', 581646102, 'CC BY'),
+  },
+  leaf_spot: {
+    file: 'celery-leaf-spot',
+    by: 'Josef Schlaghecken',
+    licence: 'CC BY 4.0',
+    source:
+      'https://commons.wikimedia.org/wiki/File:Sellerie_Septoria-2-Josef_Schlaghecken.jpg',
+  },
+  scab: { file: 'scab', ...inat('Lisa Bennett', 591428731, 'CC BY') },
+  // A dying lavender: it would read as the wrong plant on thyme or asparagus.
+  'lavender.root_rot': {
+    file: 'lavender-root-rot',
+    ...inat('Nature Park Yorkshire + Humber Team', 477789913, 'CC0'),
+  },
+  mosaic_virus: {
+    file: 'mosaic-virus',
+    by: 'DieterO',
+    licence: 'Public domain',
+    source: 'https://commons.wikimedia.org/wiki/File:Gurkenmosaikvirus.JPG',
+  },
+  fruit_rot: {
+    file: 'fruit-rot',
+    ...inat('Sandy Wolkenberg', 29664762, 'CC BY'),
+  },
+  smut: { file: 'smut', ...inat('Paweł Zuzelski', 553095249, 'CC BY') },
+  tulip_fire: {
+    file: 'tulip-fire',
+    ...inat('Eric Schmidt', 397212640, 'CC BY'),
+  },
+  leaf_spots: {
+    file: 'zinnia-leaf-spots',
+    ...inat('Julie Travaglini', 550584600, 'CC BY'),
+  },
+  // No free photo of these exists: generated (Codex).
+  chocolate_spot: { file: 'chocolate-spot' },
+  canker: { file: 'canker' },
+  crown_rot: { file: 'crown-rot' },
+  rotting_bulbs: { file: 'rotting-bulbs' },
+  rot_under_the_cover: { file: 'rot-under-the-cover' },
 };
 
 export const problemPhoto = (crop: string, problem: string | undefined) =>
