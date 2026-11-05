@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 // local .env, so CI runs these the same way.
 vi.hoisted(() => vi.stubEnv('VITE_HUERTA_API', 'https://w.test'));
 import * as g from '@/lib/gardens';
-import { setSession } from '@/lib/huerta-session';
+import { setSession, signOut } from '@/lib/huerta-session';
 import type { Plan } from '@/lib/planner';
 
 const PLAN: Plan = {
@@ -135,5 +135,46 @@ describe('syncing with the account', () => {
     vi.stubGlobal('fetch', fetch);
     await g.syncGardens();
     expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it('gives the next account none of the last one’s gardens', async () => {
+    g.addGarden('Home');
+    vi.stubGlobal(
+      'fetch',
+      vi.fn<typeof fetch>(async () => new Response(null, { status: 204 }))
+    );
+    await signOut();
+    expect(g.gardens()).toEqual([]);
+    expect(g.currentGarden()).toBeNull();
+    // Someone else signs in without a reload (an iPhone Home Screen app).
+    setSession({ token: 'e'.repeat(64), email: 'd@e.f' });
+    const calls: string[] = [];
+    vi.stubGlobal(
+      'fetch',
+      vi.fn<typeof fetch>(async (url, init) => {
+        calls.push(`${init?.method ?? 'GET'} ${new URL(String(url)).pathname}`);
+        return Response.json([]);
+      })
+    );
+    await g.syncGardens();
+    expect(calls).toEqual(['GET /v1/gardens']);
+  });
+
+  it('keeps nothing of a call that was out when the device signed out', async () => {
+    const mine = g.addGarden('Home')!;
+    vi.stubGlobal(
+      'fetch',
+      vi.fn<typeof fetch>(async (_url, init) => {
+        // Signed out (here or in another tab) while the garden was on its way.
+        localStorage.clear();
+        setSession(null);
+        return put(init)
+          ? Response.json({ ...JSON.parse(String(init!.body)), id: mine.id })
+          : Response.json([{ ...mine, updated: 5 }]);
+      })
+    );
+    await g.syncGardens();
+    expect(localStorage.getItem('huerta-gardens')).toBeNull();
+    expect(g.gardens()).toEqual([]);
   });
 });
