@@ -116,14 +116,14 @@
   "forecast": {
     "enabled": true,
     "routeToDish": false,
-    "dataColumns": ["Burgundy Truffle"],
+    "dataColumns": ["Black Truffle"],
     "regions": {
       "NE": {
         "available": false
       },
       "SE": {
         "available": true,
-        "landCover": [311],
+        "landCover": [311, 313, 323, 324],
         "scoring": {
           "optimal_temp": 9,
           "temp_sigma": 4,
@@ -137,6 +137,7 @@
           "pH_sigma_near": 1.5,
           "pH_sigma_far": 1.5,
           "pH_range_near": [6.6, 9],
+          "pH_gate": [5.5, 6.2],
           "optimal_soil_temp": 11,
           "soil_temp_sigma": 4,
           "min_cumulative_rain": 25,
@@ -144,7 +145,10 @@
             "rain_first": false
           },
           "wind_sensitive": false,
-          "season_months": [12, 1, 2, 3],
+          "season_months": [11, 12, 1, 2, 3],
+          "season_window": ["11-15", "03-15"],
+          "season_tilt": { "11": 0.9, "12": 1.0, "1": 0.9, "2": 0.8, "3": 0.7 },
+          "summer_rain_per_sd": 1.3,
           "water_relevance": false,
           "sea_relevance": false,
           "hosts": ["quercus", "other_broadleaf"]

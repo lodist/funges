@@ -1,5 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { isAppleMobileDevice, offersPlayStore } from '@/lib/platform';
+import {
+  isAppleMobileDevice,
+  isPlayApp,
+  offersPlayStore,
+} from '@/lib/platform';
 
 /**
  * The Liquid Glass mobile nav treatment is gated on this function alone, so
@@ -81,6 +85,7 @@ describe('offersPlayStore', () => {
   afterEach(() => {
     stub({ userAgent: '', platform: '', maxTouchPoints: 0 });
     referrer('');
+    sessionStorage.clear();
     vi.restoreAllMocks();
   });
 
@@ -108,5 +113,55 @@ describe('offersPlayStore', () => {
     stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
     referrer('android-app://es.fung.app/');
     expect(offersPlayStore()).toBe(false);
+  });
+});
+
+/** Play's payments policy: a donation link inside the Play app can get the
+ *  app pulled, so a wrong no here is the costly mistake. */
+describe('isPlayApp', () => {
+  const referrer = (value: string) =>
+    Object.defineProperty(document, 'referrer', { value, configurable: true });
+  const standalone = (matches: boolean) =>
+    vi.spyOn(window, 'matchMedia').mockReturnValue({
+      matches,
+    } as MediaQueryList);
+
+  afterEach(() => {
+    stub({ userAgent: '', platform: '' });
+    referrer('');
+    sessionStorage.clear();
+    vi.restoreAllMocks();
+  });
+
+  it('is false in a browser tab, and in a desktop installed PWA', () => {
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    standalone(false);
+    expect(isPlayApp()).toBe(false);
+    stub({ userAgent: MAC_DESKTOP_UA, platform: 'MacIntel' });
+    standalone(true);
+    expect(isPlayApp()).toBe(false);
+  });
+
+  it('is true in the Play app run by Chrome', () => {
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    standalone(true);
+    expect(isPlayApp()).toBe(true);
+  });
+
+  it('remembers a TWA run by another browser after a reload drops the referrer', () => {
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    referrer('android-app://es.fung.app/');
+    expect(isPlayApp()).toBe(true);
+    referrer('');
+    expect(isPlayApp()).toBe(true);
+  });
+
+  it('is false in a browser tab opened from another app', () => {
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    standalone(false);
+    referrer(
+      'android-app://com.google.android.googlequicksearchbox/https/www.google.com'
+    );
+    expect(isPlayApp()).toBe(false);
   });
 });

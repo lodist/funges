@@ -10,7 +10,7 @@ import { useSpeciesData } from '@/data/species';
 import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
-import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { isPlayApp, offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { timesInTen, useScorecard } from '@/lib/scorecard';
 import {
   fetchStrongestSpeciesToday,
@@ -260,7 +260,9 @@ export default function LandingPage() {
             </div>
           </div>
           <nav className={styles.helpLinks} aria-label={tNav('help')}>
-            {HELP_LINKS.map(({ to, key }) => (
+            {HELP_LINKS.filter(
+              ({ to }) => to !== '/support' || !isPlayApp()
+            ).map(({ to, key }) => (
               <Link key={to} to={to} className='focus-ring'>
                 {tNav(key)}
               </Link>

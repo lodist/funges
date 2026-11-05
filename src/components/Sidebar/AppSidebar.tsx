@@ -21,7 +21,7 @@ import {
 } from '@/lib/icons';
 import { currentSpace } from '@/lib/spaces';
 import { SpaceSwitcher } from '@/components/SpaceSwitcher';
-import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { isPlayApp, offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
   Sidebar,
@@ -172,11 +172,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
                     },
                   ]
                 : []),
-              {
-                title: t('support'),
-                url: `${basePath}support`,
-                icon: Heart,
-              },
+              ...(isPlayApp()
+                ? []
+                : [
+                    {
+                      title: t('support'),
+                      url: `${basePath}support`,
+                      icon: Heart,
+                    },
+                  ]),
               ...(offersPlayStore()
                 ? [
                     {
