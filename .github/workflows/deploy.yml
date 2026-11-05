@@ -21,6 +21,8 @@ jobs:
     env:
       VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
       VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}
+      # The Huerta Worker (sign-in and garden data), e.g. https://huerta-api.fung.es
+      VITE_HUERTA_API: ${{ vars.VITE_HUERTA_API }}
 
     steps:
       - name: Checkout
@@ -46,6 +48,12 @@ jobs:
           if [ -z "$VITE_HOSTNAME" ]; then
             echo "❌ ERROR: VITE_HOSTNAME is not defined"
             echo "   Please set VITE_HOSTNAME in your repository variables"
+            exit 1
+          fi
+
+          if [ -z "$VITE_HUERTA_API" ]; then
+            echo "❌ ERROR: VITE_HUERTA_API is not defined"
+            echo "   Please set VITE_HUERTA_API in your repository variables"
             exit 1
           fi
 
@@ -81,6 +89,7 @@ jobs:
           cat > .env << EOF
           VITE_BASE_URL=$VITE_BASE_URL
           VITE_HOSTNAME=$VITE_HOSTNAME
+          VITE_HUERTA_API=$VITE_HUERTA_API
           EOF
           echo "✅ .env file created successfully"
 
@@ -89,6 +98,7 @@ jobs:
           echo "🔧 Exporting environment variables..."
           export VITE_BASE_URL="$VITE_BASE_URL"
           export VITE_HOSTNAME="$VITE_HOSTNAME"
+          export VITE_HUERTA_API="$VITE_HUERTA_API"
 
       - name: Debug .env file
         run: |
@@ -134,7 +144,7 @@ jobs:
           # Huerta's pages behind sign-in get one too, or a reload, a shared link
           # or a morning alert lands on 404.html, which sends it to the home page;
           # only /huerta itself is in the sitemap.
-          routes=(data delete-account huerta huerta/account huerta/map huerta/garden-planner huerta/signin huerta/crops huerta/planting-calendar de/huerta/pflanzen de/huerta/karte de/huerta/gartenplaner de/huerta/pflanzkalender identify impressum instructions map offline privacy-policy recipes settings species support termsuse worth-foraging-now)
+          routes=(data delete-account huerta huerta/account huerta/instructions huerta/map huerta/garden-planner huerta/signin huerta/crops huerta/planting-calendar de/huerta/pflanzen de/huerta/karte de/huerta/gartenplaner de/huerta/pflanzkalender identify impressum instructions map offline privacy-policy recipes settings species support termsuse worth-foraging-now)
           for route in "${routes[@]}"; do
             mkdir -p dist/$route
             # A page the build wrote for search engines (/huerta) stays.

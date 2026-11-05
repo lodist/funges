@@ -46,6 +46,10 @@ const write = (key: string, value: unknown) => {
 };
 
 let list: StoredGarden[] | null = null;
+// Whose list that is: the session it was read under. Signed out, or another
+// account in without a reload (an iPhone Home Screen app collects a sign-in
+// in place), the device is read again, so no one sees the last one's gardens.
+let owner: string | undefined;
 let version = 0;
 const listeners = new Set<() => void>();
 const changed = () => {
@@ -65,7 +69,9 @@ function save(next: StoredGarden[]) {
 }
 
 export function gardens(): StoredGarden[] {
-  if (list) return list;
+  const token = session()?.token;
+  if (list && owner === token) return list;
+  owner = token;
   list = read<StoredGarden[]>(LIST) ?? [];
   // A plan from before accounts, with its place, becomes the first garden. A
   // place alone is left behind: a device opened before accounts would
@@ -169,7 +175,11 @@ function later() {
 
 /** Send what changed here, then take the account's list. */
 export async function syncGardens() {
-  if (!session()) return;
+  const mine = session()?.token;
+  if (!mine) return;
+  // Signed out (or another account in) while a call was out: stop, and keep
+  // nothing of its answer, or the last account's gardens would come back.
+  const gone = () => session()?.token !== mine;
   for (const garden of gardens().filter(g => g.dirty)) {
     const { id, name, place, plan, updated } = garden;
     const response = await apiFetch(
@@ -181,11 +191,13 @@ export async function syncGardens() {
         body: JSON.stringify({ name, place, plan, updated }),
       }
     );
+    if (gone()) return;
     // ponytail: a garden from before accounts that a full account has no room
     // for is dropped; a "replace which?" dialog if that ever happens for real.
     if (response.status === 409) save(gardens().filter(g => g.id !== id));
     else if (response.ok) {
       const kept = (await response.json()) as StoredGarden;
+      if (gone()) return;
       save(
         gardens().map(g =>
           // Unless it changed again while on its way.
@@ -195,8 +207,9 @@ export async function syncGardens() {
     }
   }
   const response = await apiFetch('/v1/gardens');
-  if (!response.ok) return;
+  if (gone() || !response.ok) return;
   const account = (await response.json()) as StoredGarden[];
+  if (gone()) return;
   const here = gardens();
   const newerHere = (a: StoredGarden) =>
     here.find(g => g.id === a.id && g.dirty && g.updated > a.updated);

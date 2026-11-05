@@ -510,6 +510,53 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.scoring.season_months must contain months 1-12`
           );
+        if (
+          scoring?.season_window !== undefined &&
+          (!Array.isArray(scoring.season_window) ||
+            scoring.season_window.length !== 2 ||
+            scoring.season_window.some(
+              day =>
+                typeof day !== 'string' ||
+                !/^\d\d-\d\d$/.test(day) ||
+                Number.isNaN(Date.parse(`2021-${day}T00:00:00Z`)) ||
+                new Date(`2021-${day}T00:00:00Z`).toISOString().slice(5, 10) !==
+                  day
+            ))
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.season_window must be two days as "MM-DD"`
+          );
+        if (
+          scoring?.pH_gate !== undefined &&
+          (!Array.isArray(scoring.pH_gate) ||
+            scoring.pH_gate.length !== 2 ||
+            !scoring.pH_gate.every(Number.isFinite) ||
+            scoring.pH_gate[0] >= scoring.pH_gate[1])
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.pH_gate must be two rising pH values`
+          );
+        if (
+          scoring?.season_tilt !== undefined &&
+          (typeof scoring.season_tilt !== 'object' ||
+            !Object.keys(scoring.season_tilt).length ||
+            Object.entries(scoring.season_tilt).some(
+              ([month, value]) =>
+                !/^([1-9]|1[0-2])$/.test(month) ||
+                !Number.isFinite(value) ||
+                value <= 0 ||
+                value > 1
+            ))
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.season_tilt must map months 1-12 to values above 0 and at most 1`
+          );
         for (const key of [
           'wind_sensitive',
           'water_relevance',
@@ -561,6 +608,16 @@ export function validateManifests(
             errors,
             where,
             `forecast.regions.${region}.scoring.rain_delay_days must be a whole number of days from 0 to 30`
+          );
+        if (
+          scoring?.summer_rain_per_sd !== undefined &&
+          (!Number.isFinite(scoring.summer_rain_per_sd) ||
+            scoring.summer_rain_per_sd <= 0)
+        )
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring.summer_rain_per_sd must be a number above 0`
           );
         if (typeof scoring?.weather_preference?.rain_first !== 'boolean')
           fail(

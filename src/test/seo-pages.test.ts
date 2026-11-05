@@ -146,4 +146,13 @@ describe('buildPages', () => {
     expect(html).toContain('hreflang="x-default"');
     expect(html).not.toContain('<title>x</title>');
   });
+
+  it("writes a page's text as it is, dollar signs too", () => {
+    const shell =
+      '<html lang="en"><head><title>x</title>\n<meta name="description" content="y" />\n</head><body><div id="root"></div></body></html>';
+    const page = { ...pages[0], body: "<p>$& $' $$ $1</p>" };
+    expect(renderPage(shell, page, 'https://www.fung.es')).toContain(
+      `<div id="root"><p>$& $' $$ $1</p></div>`
+    );
+  });
 });

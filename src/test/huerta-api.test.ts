@@ -1,5 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+// The Worker's address, read as the session module loads: set here, not by a
+// local .env, so CI runs these the same way.
+vi.hoisted(() => vi.stubEnv('VITE_HUERTA_API', 'https://w.test'));
+
 import {
   decodeAdvice,
   fetchAdvice,

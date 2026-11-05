@@ -36,6 +36,13 @@ def test_ecmwf_messages_take_our_surface_fields():
     assert hs.ecmwf_messages(text) == [("tp", 0, 9), ("sot", 15, 19), ("2t", 20, 24)]  # soil: top layer only
 
 
+def test_ecmwf_messages_read_the_3_hourly_gust_as_the_6_hourly_one():
+    # 3 Nov 2026: to 144 h the index names the gust 10fg3, after it 10fg; without both, Europe's
+    # gusts stopped where ICON-EU does (120 h) until ECMWF's 150 h.
+    assert hs.ecmwf_messages('{"levtype": "sfc", "param": "10fg3", "_offset": 0, "_length": 4}') == [("10fg", 0, 3)]
+    assert hs.ecmwf_messages('{"levtype": "sfc", "param": "10fg", "_offset": 0, "_length": 4}') == [("10fg", 0, 3)]
+
+
 def test_icon_eu_url():
     assert hs.icon_eu_url(INIT, "td_2m", 7) == (
         "https://opendata.dwd.de/weather/nwp/icon-eu/grib/12/td_2m/"

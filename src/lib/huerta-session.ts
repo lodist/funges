@@ -126,9 +126,13 @@ export async function finishSignIn(hash: string) {
     body: JSON.stringify({ credential, handoff, ...device() }),
   });
   if (!response.ok) throw new Error(`sign-in ${response.status}`);
-  setSession((await response.json()) as Session);
   const started = pending();
   const here = started?.handoff === handoff;
+  // Only a sign-in this device began replaces the account it is signed in
+  // to: a link carrying someone else's sign-in would otherwise switch it, and
+  // its gardens would sync to their account. (The iPhone view that finishes a
+  // sign-in for the Home Screen app needs no session of its own.)
+  if (here || !session()) setSession((await response.json()) as Session);
   if (here) {
     sessionStorage.removeItem(PENDING);
     // Nobody else will collect it: the Worker deletes it on this read.
