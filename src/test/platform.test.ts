@@ -155,4 +155,13 @@ describe('isPlayApp', () => {
     referrer('');
     expect(isPlayApp()).toBe(true);
   });
+
+  it('is false in a browser tab opened from another app', () => {
+    stub({ userAgent: ANDROID_UA, platform: 'Linux armv8l' });
+    standalone(false);
+    referrer(
+      'android-app://com.google.android.googlequicksearchbox/https/www.google.com'
+    );
+    expect(isPlayApp()).toBe(false);
+  });
 });

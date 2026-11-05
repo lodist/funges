@@ -41,7 +41,8 @@ const PLAY_APP_KEY = 'playApp';
  * so Support is hidden there. The app run by Chrome reports standalone on
  * Android (as does a PWA installed there, which loses Support too); a TWA run
  * by another browser only says so in its launch referrer, which is gone after
- * a reload, so the tab remembers it.
+ * a reload, so the tab remembers it. The referrer must name this app: the
+ * Google app and Gmail send their own android-app:// one into a normal tab.
  */
 export function isPlayApp(): boolean {
   try {
@@ -49,7 +50,7 @@ export function isPlayApp(): boolean {
   } catch {
     // Storage blocked: the referrer check below still holds on first load.
   }
-  if (document.referrer.startsWith('android-app://')) {
+  if (document.referrer.startsWith('android-app://es.fung.app')) {
     try {
       sessionStorage.setItem(PLAY_APP_KEY, '1');
     } catch {
