@@ -16,7 +16,7 @@ import {
   BarChart2,
 } from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
-import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { isPlayApp, offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import MapLastUpdated from '@/components/MapLastUpdated';
 
 export default function SettingsPage() {
@@ -45,11 +45,15 @@ export default function SettingsPage() {
           },
         ]
       : []),
-    {
-      url: '/support',
-      label: t('support'),
-      icon: Heart,
-    },
+    ...(isPlayApp()
+      ? []
+      : [
+          {
+            url: '/support',
+            label: t('support'),
+            icon: Heart,
+          },
+        ]),
     ...(offersPlayStore()
       ? [
           {

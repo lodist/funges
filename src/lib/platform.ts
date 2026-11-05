@@ -23,15 +23,42 @@ export const PLAY_STORE_URL =
 /**
  * Whether to point the visitor at the Play listing: in any browser tab except
  * on an iPhone or iPad, which can't install it, and never inside an installed
- * app. The Play app run by Chrome reports standalone, as does an installed
- * PWA; a TWA run by another browser only says so in its launch referrer.
+ * app (the Play app or an installed PWA, both standalone).
  */
 export function offersPlayStore(): boolean {
-  // ponytail: the referrer lasts for the first page load only; an SPA keeps
-  // it, but a non-Chrome TWA that loads a second document would show the link.
   return !(
     isAppleMobileDevice() ||
     window.matchMedia('(display-mode: standalone)').matches ||
-    document.referrer.startsWith('android-app://')
+    isPlayApp()
+  );
+}
+
+const PLAY_APP_KEY = 'playApp';
+
+/**
+ * Whether this page runs inside the Play app. Play's payments policy forbids
+ * pointing its users at a way to pay outside Play billing, donations included,
+ * so Support is hidden there. The app run by Chrome reports standalone on
+ * Android (as does a PWA installed there, which loses Support too); a TWA run
+ * by another browser only says so in its launch referrer, which is gone after
+ * a reload, so the tab remembers it.
+ */
+export function isPlayApp(): boolean {
+  try {
+    if (sessionStorage.getItem(PLAY_APP_KEY)) return true;
+  } catch {
+    // Storage blocked: the referrer check below still holds on first load.
+  }
+  if (document.referrer.startsWith('android-app://')) {
+    try {
+      sessionStorage.setItem(PLAY_APP_KEY, '1');
+    } catch {
+      // Storage blocked: nothing to remember it in.
+    }
+    return true;
+  }
+  return (
+    /Android/.test(navigator.userAgent) &&
+    window.matchMedia('(display-mode: standalone)').matches
   );
 }

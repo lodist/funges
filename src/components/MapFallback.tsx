@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin, Navigation, Info, Heart, RefreshCw } from '@/lib/icons';
 import { Link } from '@tanstack/react-router';
+import { isPlayApp } from '@/lib/platform';
 import { Trans, useTranslation } from 'react-i18next';
 import { useMapStore } from '@/store/mapStore';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -65,12 +66,14 @@ const MapFallback: React.FC<MapFallbackProps> = ({
               <div className='text-sm text-status-warning-text mb-3 leading-relaxed'>
                 <Trans>{errorMessage || t('fallback.message')}</Trans>
               </div>
-              <Button asChild className='w-full text-sm'>
-                <Link to={`${basePath}support`}>
-                  <Heart className='h-4 w-4 mr-2' />
-                  {t('fallback.support')}
-                </Link>
-              </Button>
+              {!isPlayApp() && (
+                <Button asChild className='w-full text-sm'>
+                  <Link to={`${basePath}support`}>
+                    <Heart className='h-4 w-4 mr-2' />
+                    {t('fallback.support')}
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
 
