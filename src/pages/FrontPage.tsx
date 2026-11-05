@@ -10,6 +10,7 @@ import {
   pathLanguage,
   type IndexedLanguage,
 } from '@/lib/seo-pages';
+import { isPlayApp } from '@/lib/platform';
 import { spaceDoor, visibleSpaces, type Space } from '@/lib/spaces';
 import { LiveLine } from './LandingPage';
 import styles from './FrontPage.module.scss';
@@ -95,7 +96,9 @@ export default function FrontPage() {
         <footer className={styles.footer}>
           <Logo className='h-8' />
           <nav aria-label={tNav('help')}>
-            {HELP_LINKS.map(({ to, key }) => (
+            {HELP_LINKS.filter(
+              ({ to }) => to !== '/support' || !isPlayApp()
+            ).map(({ to, key }) => (
               <Link key={to} to={to} className='focus-ring'>
                 {tNav(key)}
               </Link>

@@ -42,18 +42,12 @@ vi.mock('@/hooks/use-mobile', () => ({
   useIsMobile: () => isMobile.current,
 }));
 
-const { huertaShown } = vi.hoisted(() => ({ huertaShown: { current: false } }));
 const { offlineEnabled } = vi.hoisted(() => ({
   offlineEnabled: { current: false },
 }));
 vi.mock('@/lib/feature-flags', () => ({
   get shouldShowOfflineFeatures() {
     return offlineEnabled.current;
-  },
-  // The space switcher stays out of these link lists; Huerta's own nav is
-  // pinned by the last test.
-  get shouldShowHuerta() {
-    return huertaShown.current;
   },
 }));
 
@@ -81,7 +75,6 @@ beforeEach(() => {
   pathname.current = '/';
   isMobile.current = false;
   offlineEnabled.current = false;
-  huertaShown.current = false;
 });
 
 describe('AppSidebar', () => {
@@ -143,7 +136,6 @@ describe('AppSidebar', () => {
   });
 
   it('puts the Huerta account first in Help, in Huerta only', () => {
-    huertaShown.current = true;
     const flyout = () => {
       openHelp();
       return screen

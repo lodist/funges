@@ -21,7 +21,7 @@ import {
 } from '@/lib/icons';
 import { currentSpace } from '@/lib/spaces';
 import { SpaceSwitcher } from '@/components/SpaceSwitcher';
-import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { isPlayApp, offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
   Sidebar,
@@ -35,10 +35,7 @@ import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
 import { huertaPage } from '@/lib/seo-pages';
 import { useIsMobile } from '@/hooks/use-mobile';
-import {
-  shouldShowHuerta,
-  shouldShowOfflineFeatures,
-} from '@/lib/feature-flags';
+import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import MapLastUpdated from '@/components/MapLastUpdated';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -177,7 +174,7 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             items: [
               // The Huerta account (sign out, delete), in Huerta only: from
               // Terra it would jump spaces. Phones have it in Settings.
-              ...(shouldShowHuerta && currentSpace(pathname) === 'huerta'
+              ...(currentSpace(pathname) === 'huerta'
                 ? [
                     {
                       title: t('account'),
@@ -186,11 +183,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
                     },
                   ]
                 : []),
-              {
-                title: t('support'),
-                url: `${basePath}support`,
-                icon: Heart,
-              },
+              ...(isPlayApp()
+                ? []
+                : [
+                    {
+                      title: t('support'),
+                      url: `${basePath}support`,
+                      icon: Heart,
+                    },
+                  ]),
               ...(offersPlayStore()
                 ? [
                     {

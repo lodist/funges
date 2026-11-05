@@ -11,6 +11,7 @@ import { Logo } from '@/components/Logo';
 import { SpaceTab } from '@/components/SpaceTab';
 import { Button } from '@/components/ui/button';
 import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
+import { isPlayApp } from '@/lib/platform';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -125,12 +126,18 @@ export default function HuertaLandingPage() {
                   <Link to={page('calendar')}>{tNav('huertaYear')}</Link>
                 </Button>
               </div>
-              {/* Huerta is new: say so, and where to say what's off. */}
+              {/* Huerta is new: say so, and where to say what's off (the
+                  Play app has no Support page: Play's payments policy). */}
               <p className={styles.early}>
-                {t('landing.early')}{' '}
-                <Link to='/support' className='focus-ring'>
-                  {t('landing.feedback')}
-                </Link>
+                {t('landing.early')}
+                {isPlayApp() ? null : (
+                  <>
+                    {' '}
+                    <Link to='/support' className='focus-ring'>
+                      {t('landing.feedback')}
+                    </Link>
+                  </>
+                )}
               </p>
             </div>
             <img
@@ -212,7 +219,9 @@ export default function HuertaLandingPage() {
             </Button>
           </div>
           <nav className={styles.helpLinks} aria-label={tNav('help')}>
-            {HELP_LINKS.map(({ to, key }) => (
+            {HELP_LINKS.filter(
+              ({ to }) => to !== '/support' || !isPlayApp()
+            ).map(({ to, key }) => (
               <Link key={to} to={to} className='focus-ring'>
                 {tNav(key)}
               </Link>

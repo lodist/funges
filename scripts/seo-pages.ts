@@ -307,15 +307,23 @@ export function renderPage(shell: string, page: Page, origin: string): string {
     `<meta property="og:description" content="${escape(page.description)}" />`,
     `<meta property="og:url" content="${origin}${page.path}" />`,
   ].join('\n    ');
+  // Replacer functions, not strings: page text may hold `$&` or `$'`, which a
+  // replacement string would expand into pieces of the shell.
   return shell
-    .replace(/<html lang="[^"]*"/, `<html lang="${page.lang}"`)
-    .replace(/<title>[^<]*<\/title>/, `<title>${escape(page.title)}</title>`)
+    .replace(/<html lang="[^"]*"/, () => `<html lang="${page.lang}"`)
+    .replace(
+      /<title>[^<]*<\/title>/,
+      () => `<title>${escape(page.title)}</title>`
+    )
     .replace(
       /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
-      `<meta name="description" content="${escape(page.description)}" />`
+      () => `<meta name="description" content="${escape(page.description)}" />`
     )
-    .replace('</head>', `    ${head}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${page.body}</div>`);
+    .replace('</head>', () => `    ${head}\n  </head>`)
+    .replace(
+      '<div id="root"></div>',
+      () => `<div id="root">${page.body}</div>`
+    );
 }
 
 /** sitemap.xml: the indexed pages with their language versions, then the

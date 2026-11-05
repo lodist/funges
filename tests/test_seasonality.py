@@ -4,6 +4,7 @@ import pandas as pd
 from seasonality import (
     empirical_season_multiplier,
     season_months_ramp,
+    season_gate_for_species,
     season_multiplier_for_species,
 )
 
@@ -75,3 +76,17 @@ def test_multiplier_defaults_to_one_when_nothing_defined():
     })
     out = season_multiplier_for_species(df, "garlic", params={}, zone_curves={})
     assert abs(out[0] - 1.0) < 1e-9
+
+
+def test_season_window_is_day_exact_and_the_tilt_shapes_inside_it():
+    # the black truffle's: 15 Nov - 15 Mar, Dec at the top
+    params = {"season_months": [11, 12, 1, 2, 3], "season_window": ["11-15", "03-15"],
+              "season_tilt": {"11": 0.9, "12": 1.0, "1": 0.9, "2": 0.8, "3": 0.7}}
+    dates = _dates("2026-11-14", "2026-11-15", "2026-12-15", "2027-01-10", "2027-03-15", "2027-03-16", "2027-07-01")
+    out = season_months_ramp(dates, params)
+    assert abs(out[1] - 0.9) < 1e-9 and abs(out[2] - 1.0) < 1e-9 and abs(out[4] - 0.7) < 1e-9
+    assert out[0] < out[1] and out[5] < out[4]            # the fade starts the day outside
+    assert 0.9 < out[3] < 1.0                              # blended between mid-months
+    assert abs(out[6] - 0.5 * 0.7) < 1e-9                  # off-season: the fade's floor x the lowest tilt
+    gate = season_gate_for_species(pd.DataFrame({"Date": dates, "climate_zone": "Csa"}), "truffle_b", params, {})
+    assert gate[1] == gate[4] == 1.0 and gate[0] < 1.0 and gate[5] < 1.0

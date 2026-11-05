@@ -9,9 +9,8 @@ import { Button } from '@/components/ui/button';
 import { useSpeciesData } from '@/data/species';
 import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
 import { seasonalSpectacle } from '@/lib/bloom';
-import { shouldShowHuerta } from '@/lib/feature-flags';
 import { AlertTriangle, ArrowRight, ArrowUpRight } from '@/lib/icons';
-import { offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
+import { isPlayApp, offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { timesInTen, useScorecard } from '@/lib/scorecard';
 import {
   fetchStrongestSpeciesToday,
@@ -105,32 +104,19 @@ export default function LandingPage() {
 
   return (
     <>
-      {/* Terra's own page once the shared front page holds `/`. */}
-      {shouldShowHuerta ? (
-        <SEO
-          title={t('home.headline')}
-          description={t('home.description')}
-          canonicalUrl={localizedPath(
-            '/terra/',
-            pathLanguage(window.location.pathname) ?? 'en'
-          )}
-          alternates={alternates('/terra/', window.location.origin)}
-        />
-      ) : (
-        <SEO
-          title={t('home.metaTitle')}
-          description={t('home.metaDescription')}
-          bare
-          canonicalUrl={localizedPath(
-            '/',
-            pathLanguage(window.location.pathname) ?? 'en'
-          )}
-          alternates={alternates('/', window.location.origin)}
-        />
-      )}
+      {/* Terra's own page; the shared front page holds `/`. */}
+      <SEO
+        title={t('home.headline')}
+        description={t('home.description')}
+        canonicalUrl={localizedPath(
+          '/terra/',
+          pathLanguage(window.location.pathname) ?? 'en'
+        )}
+        alternates={alternates('/terra/', window.location.origin)}
+      />
       <div className={styles.page}>
         <section className={styles.hero} aria-labelledby='landing-title'>
-          {shouldShowHuerta ? <SpaceTab to='huerta' /> : null}
+          <SpaceTab to='huerta' />
           <header className={styles.header}>
             {/* Logo = home, as in the sidebar: the front page the spaces open from. */}
             <Link
@@ -274,7 +260,9 @@ export default function LandingPage() {
             </div>
           </div>
           <nav className={styles.helpLinks} aria-label={tNav('help')}>
-            {HELP_LINKS.map(({ to, key }) => (
+            {HELP_LINKS.filter(
+              ({ to }) => to !== '/support' || !isPlayApp()
+            ).map(({ to, key }) => (
               <Link key={to} to={to} className='focus-ring'>
                 {tNav(key)}
               </Link>
