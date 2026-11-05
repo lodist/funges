@@ -135,5 +135,231 @@
     "onDevice": "La reconnaissance fonctionne entièrement sur ton téléphone. Les photos ne sont jamais téléversées ni conservées par l’application. C’est pourquoi un téléchargement unique du modèle est nécessaire la première fois : sans lui, l’identification devrait envoyer tes photos à un serveur.",
     "howTo": "Ouvre Identifier, autorise le téléchargement unique en Wi-Fi, puis prends une photo ou choisis-en une dans ta galerie. Remplis le cadre avec le spécimen entier quand c’est possible, base du pied comprise, et photographie ce que tu as réellement déterré ou cueilli plutôt qu’un groupe éloigné. Deux photos de la même trouvaille - le dessus et le dessous, base du pied comprise - donnent une correspondance nettement meilleure qu'une seule.",
     "limits": "L’identification prend d’environ cinq à vingt secondes selon l’appareil, parce que le calcul se fait sur ton appareil et non dans un centre de données. Elle couvre les espèces de cette application plus environ deux mille cinq cents autres présentes dans les mêmes régions ; tout le reste est affiché avec le seul nom scientifique, sans information de sécurité. Ne mange rien en te fondant sur cette application - une erreur d’identification peut être mortelle."
+  },
+  "huerta": {
+    "title": "Instructions",
+    "subtitle": "Comment utiliser Huerta et d'où viennent ses conseils",
+    "map": {
+      "intro": "La carte montre, lieu par lieu, ce que votre potager peut faire cette semaine.",
+      "pick": "Choisissez une culture dans la case en haut. Les boutons à droite passent d'une couche à l'autre, parmi cinq.",
+      "layers": {
+        "crop": "Où cette culture peut aller en terre cette semaine, où ce n'est pas encore le moment et où il est trop tard cette année. Faites glisser les mois sous la carte pour voir l'année à venir.",
+        "frost": "La nuit la plus froide des sept prochains jours. Les cultures fragiles comme la tomate ou le haricot meurent au gel.",
+        "soil": "La chaleur du sol en ce moment. Dans un sol froid, les graines ne lèvent pas : c'est donc lui qui décide quand semer chaque culture.",
+        "water": "La pluie des sept prochains jours face à ce que le soleil et le vent dessèchent. Là où la pluie ne suffit pas, il faut arroser.",
+        "pests": "La météo qui amène ravageurs et maladies dans les sept prochains jours : le mildiou (pommes de terre et tomates), les limaces (salades et jeunes plants) et le mildiou (oignons et laitues). Choisissez-en un avec les boutons qui s'ouvrent à côté. Plus la couleur est foncée, plus il y a de jours."
+      },
+      "tap": "Touchez un lieu pour voir sa semaine : le sol, les nuits, la pluie et la date habituelle du gel. « En faire mon potager » en fait le lieu de votre potager.",
+      "coverage": "Huerta couvre l'Europe et les États-Unis continentaux."
+    },
+    "garden": {
+      "title": "Mon potager",
+      "intro": "Dans « Mon potager », vous dessinez votre potager, décidez de ce qui pousse où et suivez tout du semis à la récolte. Une fois installé, il vous dit chaque semaine quoi faire.",
+      "phone": "Sur un téléphone, les réglages tiennent sur une ligne au-dessus du dessin (touchez-la pour les ouvrir) et il y a trois onglets : Potager pour le dessin, Liste pour le plan culture par culture et À faire pour les travaux de la semaine.",
+      "place": {
+        "title": "D'abord, votre lieu",
+        "text": "Touchez « Choisissez votre lieu » en haut de « Mon potager » et cherchez votre commune ou utilisez votre position. Ou ouvrez la carte, touchez votre emplacement et choisissez « En faire mon potager ». Le lieu décide du reste : quand vient le gel, comment est le sol et quand chaque culture peut aller en terre."
+      },
+      "picture": {
+        "alt": "« Mon potager » sur un ordinateur : les réglages en haut, le potager dessiné en 3D au milieu et la planche choisie à droite. Chaque partie numérotée est expliquée plus bas.",
+        "caption": "« Mon potager » sur un ordinateur. Chaque numéro est expliqué plus bas.",
+        "swipe": "Faites-la glisser sur le côté pour tout voir."
+      },
+      "steps": {
+        "size": {
+          "title": "Potager et planches",
+          "text": "Largeur et longueur en mètres, rectangle ou en L, votre façon de cultiver (carrés surélevés, planches en pleine terre ou rangs en plein champ) et le sens des planches. Huerta dispose les planches et les allées entre elles."
+        },
+        "around": {
+          "title": "Autour du jardin",
+          "text": "Ce qu'il y a de chaque côté : rien, une clôture ou une haie, une maison ou un mur ou de grands arbres. Huerta compte les heures de soleil de chaque planche, mois par mois. Six ou plus, c'est le plein soleil."
+        },
+        "soil": {
+          "title": "Sol",
+          "text": "Rempli d'après les cartes des sols de votre lieu : sableux, terre franche ou argileux et son acidité. Changez-le si vous savez que le vôtre est différent. Un sol sableux se réchauffe plus tôt au printemps et demande de l'eau plus souvent. Un sol argileux se réchauffe plus tard et garde l'eau plus longtemps."
+        },
+        "when": {
+          "title": "Planifier pour",
+          "text": "Quand va en terre tout ce qui n'y est pas encore : Aujourd'hui ou l'un des douze prochains mois. La chronologie (12) commence là."
+        },
+        "auto": {
+          "title": "Planifiez pour moi",
+          "text": "Choisissez quoi cultiver (un potager mixte, des légumes seulement, des légumes avec des fleurs au bout de chaque planche, les fruits d'abord ou des aromatiques et des fleurs) et Huerta remplit les planches avec les cultures qui peuvent aller en terre à ce moment chez vous. Chaque planche reçoit une famille. Oignons et ail restent loin des pois et des haricots, les cultures hautes vont au bout nord et chaque culture va là où elle a le soleil qu'il lui faut. Aucune famille ne retourne dans sa planche de l'an dernier. Ce qui est planté reste. Si des planches sont sélectionnées, seules celles-ci sont planifiées."
+        },
+        "undo": {
+          "title": "Annuler",
+          "text": "Reprend vos derniers changements, jusqu'à vingt, tant que la page est ouverte."
+        },
+        "north": {
+          "title": "Nord",
+          "text": "Tournez l'aiguille avec les flèches jusqu'à ce qu'elle pointe vers le nord, comme votre potager est vraiment orienté. Huerta en a besoin pour le soleil sur chaque planche et pour garder les cultures hautes au bout nord."
+        },
+        "view": {
+          "title": "3D ou Plan",
+          "text": "La 3D dessine les plantes comme elles poussent. Le plan montre le potager vu d'en haut, avec les familles et le soleil à chaque endroit. Zoomez avec les boutons en bas à droite ou avec deux doigts."
+        },
+        "shade": {
+          "title": "Ombre",
+          "text": "Quand quelque chose se trouve à côté du potager, ces boutons montrent où tombe son ombre le matin, à midi et l'après-midi."
+        },
+        "bed": {
+          "title": "Touchez une planche",
+          "text": "Touchez une planche ou une partie pour l'ouvrir à droite. Celle que vous avez touchée est entourée et son étiquette dit ce qui y pousse. Vous pouvez aussi faire glisser une culture depuis les cultures sous le dessin jusqu'à une planche."
+        },
+        "select": {
+          "title": "Sélectionner",
+          "text": "Touchez « Sélectionner » et faites glisser sur plusieurs planches pour les modifier ensemble : la même culture partout, les joindre ou couper chacune en deux. La main déplace le dessin. « Tout désélectionner » les relâche."
+        },
+        "timeline": {
+          "title": "Chronologie",
+          "text": "Faites-la glisser pour voir votre potager dans les semaines à venir : ce qui pousse, ce qui est prêt et ce que le froid va tuer. Les plantes pâles sont prévues mais pas encore en terre."
+        },
+        "sun": {
+          "title": "Cet endroit",
+          "text": "La planche et la partie que vous avez touchées, les heures de soleil direct qu'elle reçoit ce mois-ci et à quel moment de la journée. « Toute la planche » sélectionne le reste de la planche."
+        },
+        "status": {
+          "title": "Culture et état",
+          "text": "Ce qui est prévu ici et s'il peut aller en terre : maintenant, au mois prévu ou pas du tout. Une étiquette rouge veut dire qu'il ne peut pas aller en terre au moment prévu."
+        },
+        "facts": {
+          "title": "Comment elle pousse ici",
+          "text": "Combien de plants tiennent, à quel écart, quand ils seront prêts et quelle famille doit suivre l'an prochain."
+        },
+        "ifNow": {
+          "title": "Mis en terre aujourd'hui",
+          "text": "Ce que la météo d'ici lui fera avant qu'elle soit prête : un gel, des nuits froides ou un hiver trop dur pour elle. Une fois en terre, le même endroit vous dit quand la couvrir et si le sol est trop froid ou trop chaud pour ses graines."
+        },
+        "sown": {
+          "title": "Semé aujourd'hui",
+          "text": "Touchez-le le jour où la culture va en terre (« Planté aujourd'hui » pour les plants). Huerta suit alors sa croissance d'après la chaleur qu'elle reçoit et vous dit quand elle est prête. Vous pouvez changer la date ensuite."
+        },
+        "neighbours": {
+          "title": "Voisins",
+          "text": "Les cultures d'à côté qui l'aident ou la freinent et à quel point c'est sûr : une règle de jardinier, une maladie commune ou un résultat d'essais."
+        },
+        "swap": {
+          "title": "Remplacer par",
+          "text": "Met une autre culture à cet endroit. Celles qui peuvent aller en terre maintenant viennent en premier."
+        }
+      },
+      "list": {
+        "title": "Planifiez par culture",
+        "text": "Sans planche sélectionnée, « Ce qui pousse ici » à droite (Liste sur un téléphone) montre le plan culture par culture : ses sections, combien de plants et pour combien de personnes. Ajoutez une culture, donnez-lui une section de plus ou de moins ou ressemez-la en plusieurs fois. « Ranger » met chaque culture d'un seul tenant, les familles ensemble et loin de là où elles ont poussé les trois dernières années."
+      },
+      "week": {
+        "title": "Chaque semaine",
+        "todo": {
+          "title": "Semez et cochez",
+          "text": "« À faire cette semaine » liste chaque tâche et où la faire : quoi semer ou planter, arroser, protéger du gel, éclaircir, tuteurer, nourrir et récolter, plus les alertes au mildiou et aux mouches. Touchez « Semé aujourd'hui » ou « Planté aujourd'hui » quand une culture va en terre et « Fait » pour le reste. Huerta suit ensuite chaque culture d'après la chaleur qu'elle reçoit et vous dit quand elle est prête. « À venir » montre les quatre semaines suivantes."
+        },
+        "finish": {
+          "title": "Quand une culture est finie",
+          "text": "Quand vous avez récolté le dernier ou qu'elle a échoué, dites-le dans sa planche : récoltée, ou perdue et pourquoi. Elle passe dans « Cette saison ». L'an prochain, Huerta garde chaque famille hors des planches où elle vient de pousser."
+        }
+      }
+    },
+    "functions": {
+      "title": "Fonctions",
+      "crops": "Chaque culture : comment la cultiver et à quoi faire attention",
+      "calendar": "Quand chaque culture se sème, se plante et se récolte chez vous",
+      "place": "Cherchez votre commune ou utilisez votre position",
+      "gardens": "Jusqu'à trois potagers, chacun avec son lieu et son plan",
+      "sheet": "Sur la page d'une culture, « Voir sur la carte » et « Voir dans le calendrier » montrent cette culture seule"
+    },
+    "account": {
+      "title": "Votre compte",
+      "intro": "Huerta vous demande de vous connecter avec Google. Vos potagers sont ainsi les mêmes sur votre téléphone et sur votre ordinateur.",
+      "kept": "Huerta garde votre adresse e-mail et vos potagers : leurs noms, leurs plans et leur lieu, arrondi à environ 1 km. Il ne connaît jamais votre adresse.",
+      "delete": "Vous pouvez supprimer votre compte et tout ce qu'il contient à tout moment : dans Aide → Compte sur un ordinateur ou dans Paramètres sur un téléphone."
+    },
+    "about": {
+      "title": "À propos de Huerta",
+      "description": "Huerta est le côté potager de Funges. Il vous dit quoi cultiver, où le mettre, quand le planter et ce dont votre potager a besoin cette semaine, d'après le climat réel de l'endroit où il se trouve.",
+      "packet": "Un sachet de graines donne une seule période de semis pour tout un pays. Huerta la calcule pour votre lieu chaque nuit, à partir de la nouvelle prévision et de dix ans de météo sur place.",
+      "status": "Huerta est en version préliminaire. Ses conseils s'améliorent chaque semaine et d'autres cultures arrivent.",
+      "keyFeatures": {
+        "title": "Fonctionnalités clés",
+        "forecast": "Des conseils pour votre lieu, d'après la prévision de cette nuit",
+        "frost": "Des dates de gel tirées de dix ans de météo chez vous",
+        "soil": "Votre sol : sableux ou argileux, acide ou alcalin",
+        "growth": "Chaque culture suivie d'après la chaleur qu'elle reçoit"
+      }
+    },
+    "mission": {
+      "title": "Notre mission",
+      "learn": "Faire pousser sa nourriture ne devrait pas demander des années d'essais et d'erreurs. Les bons jardiniers connaissent leur coin de terre : quand le sol se réchauffe, quand arrive la dernière gelée et ce qui y pousse bien. Huerta met ce savoir à la portée de tous, où que soit leur potager.",
+      "climate": "Le climat change et les vieilles dates du sachet changent avec lui. Les dates de Huerta viennent de la météo des dernières années chez vous, pas d'un livre.",
+      "waste": "Semées au bon moment, moins de graines pourrissent dans un sol froid et moins de plantes meurent d'une gelée tardive. Cela économise des graines, du travail et de l'eau."
+    },
+    "advice": {
+      "title": "Comment les conseils sont établis",
+      "description": "Chaque nuit, Huerta lit la nouvelle prévision météo de chaque lieu qu'il couvre et la compare à ce dont chaque culture a besoin.",
+      "monitorTitle": "Il tient compte de :",
+      "variables": {
+        "soil": "La température du sol, qui décide quand les graines lèvent",
+        "frost": "Le gel et les nuits les plus froides des sept prochains jours",
+        "water": "La pluie face à ce que le soleil et le vent dessèchent",
+        "dates": "Quand arrivent d'habitude la dernière et la première gelée chez vous",
+        "ground": "Votre sol : sableux ou argileux, acide ou alcalin",
+        "warmth": "La chaleur reçue par chaque culture depuis sa mise en terre"
+      },
+      "goal": "Une culture va en terre quand le sol est assez chaud pour elle et qu'elle a le temps de pousser avant que le gel ou la chaleur ne mettent fin à sa saison. Les mois suivants viennent d'une année type chez vous, calculée de la même façon.",
+      "methodology": {
+        "title": "Sources de données et méthodologie",
+        "description": "Les conseils de la semaine viennent de modèles météo calculés chaque nuit. Le calendrier, les dates de gel et la vitesse de croissance de chaque culture viennent de dix ans de météo passée. La façon de cultiver chaque plante vient de guides de jardinage."
+      },
+      "keyDatasets": {
+        "title": "Jeux de données clés",
+        "icon": {
+          "title": "1. ICON-EU (Prévision pour l'Europe)",
+          "description": "La prévision du service météo allemand pour l'Europe, sur une grille d'environ 7 km. Chaque nuit, Huerta y prend les cinq jours suivants, heure par heure : température de l'air et du sol, pluie, vent et soleil.",
+          "source": "Source : Deutscher Wetterdienst (DWD), Open Data",
+          "citation": "Data basis: Deutscher Wetterdienst (DWD), ICON-EU model forecasts."
+        },
+        "ecmwf": {
+          "title": "2. ECMWF Open Data (Prévision jusqu'au septième jour)",
+          "description": "La prévision mondiale du Centre européen. Elle prolonge la prévision pour l'Europe jusqu'au septième jour et couvre le Grand Nord, là où ICON-EU ne va pas.",
+          "source": "Source : Centre européen pour les prévisions météorologiques à moyen terme (CEPMMT)",
+          "citation": "ECMWF open data, IFS forecasts. CC BY 4.0."
+        },
+        "nbm": {
+          "title": "3. National Blend of Models (Prévision pour les États-Unis)",
+          "description": "Le mélange de modèles météo de la NOAA pour les États-Unis, sur une grille de 2,5 km. Il donne aux potagers américains leurs sept jours.",
+          "source": "Source : NOAA National Weather Service, via le programme NOAA Open Data Dissemination",
+          "citation": "National Blend of Models (NBM), NOAA/NWS. U.S. public domain."
+        },
+        "era5": {
+          "title": "4. Réanalyse ERA5 (Météo passée)",
+          "description": "L'archive du CEPMMT sur la météo passée, faite de modèles et d'observations du monde entier. Dix ans, de 2016 à 2025, donnent à chaque lieu ses dates de gel habituelles, l'année type du calendrier et la chaleur qui fait pousser les cultures.",
+          "source": "Source : Copernicus Climate Change Service (C3S), CEPMMT",
+          "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "soilgrids": {
+          "title": "5. SoilGrids (Sol)",
+          "description": "Les cartes mondiales des sols de l'ISRIC, modélisées à partir de profils de sol du monde entier. Huerta y lit l'argile, le sable et le pH de la couche du dessus chez vous. Ils décident à quelle fréquence arroser, à quelle vitesse le sol se réchauffe au printemps et quelles cultures ont besoin de chaux.",
+          "source": "Source : ISRIC – World Soil Information",
+          "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+        },
+        "guides": {
+          "title": "6. Guides de jardinage",
+          "description": "Comment cultiver chaque plante : profondeur, espacement, arrosage, fumure, pH et nombre de plants. La page de chaque culture cite ses propres sources.",
+          "source": "Source : Royal Horticultural Society (RHS) et services de vulgarisation d'universités américaines",
+          "citation": "Parmi eux, les services de vulgarisation de Kansas State, Missouri, Virginia Tech, Cornell, Minnesota, Maryland, Connecticut, Georgia et Washington State."
+        },
+        "pests": {
+          "title": "7. Alertes ravageurs",
+          "description": "Les alertes au mildiou arrivent avec plusieurs jours et nuits chauds et humides de suite. Les alertes aux mouches additionnent la chaleur depuis janvier et la comparent aux dates de capture en piège de la mouche de la carotte, de la mouche du chou et de la mouche de l'oignon.",
+          "source": "Source : AHDB et James Hutton Institute ; NIBIO ; University of Wisconsin, Michigan State University et Cornell University (NEWA)",
+          "citation": "Hutton Criteria (AHDB and James Hutton Institute, 2017). VIPS carrot fly model (NIBIO; Markkula et al. 1998). Cabbage maggot and onion maggot degree days (University of Wisconsin, Michigan State University, NEWA)."
+        },
+        "towns": {
+          "title": "8. GeoNames et Natural Earth (Communes)",
+          "description": "La recherche trouve chaque localité de 5000 habitants ou plus près d'un lieu couvert par Huerta, dans votre langue quand le nom a une traduction.",
+          "source": "Source : GeoNames ; Natural Earth",
+          "citation": "GeoNames (geonames.org), CC BY 4.0. Made with Natural Earth, public domain."
+        }
+      }
+    }
   }
 }
