@@ -177,6 +177,19 @@
     }
   }
 }
+// Huerta's week sits on the dark band, in white. The card stays white.
+.forecastBand {
+  --ring: var(--happy-100);
+  background: var(--band);
+  color: #fff;
+  .forecastCopy {
+    h2,
+    > p,
+    .coverage {
+      color: #fff;
+    }
+  }
+}
 
 // 3 — Bright green: the walk from forest to table on one line.
 .journey {

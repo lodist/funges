@@ -151,7 +151,10 @@ export default function HuertaLandingPage() {
           </div>
         </section>
 
-        <section className={styles.forecast} aria-labelledby='week-title'>
+        <section
+          className={`${styles.forecast} ${styles.forecastBand}`}
+          aria-labelledby='week-title'
+        >
           <div className={styles.forecastCopy}>
             <h2 id='week-title'>{t('landing.week.heading')}</h2>
             <p>{t('landing.week.body')}</p>
