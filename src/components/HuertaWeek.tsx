@@ -43,7 +43,7 @@ export function HuertaWeek({
   /** A line above the frost line: the place, on the map. */
   title?: ReactNode;
   tone?: Tone;
-  /** On a card, for a phone: the four facts in one row, short labels. */
+  /** On a card, for a phone: the four facts two by two, short labels. */
   compact?: boolean;
   className?: string;
   /** More under the frost dates. */
@@ -99,9 +99,11 @@ export function HuertaWeek({
       <dl
         className={cn(
           'grid',
+          // Two by two, four in a row only where the longer values fit
+          // ("No hace falta", "−12 °C"): a narrower row cut them.
           small
-            ? 'grid-cols-4 gap-2'
-            : 'grid-cols-2 gap-x-4 gap-y-5 sm:gap-6 @lg:grid-cols-4',
+            ? 'grid-cols-2 gap-x-4 gap-y-2'
+            : 'grid-cols-2 gap-x-4 gap-y-5 sm:gap-6 @4xl:grid-cols-4',
           !card && 'mt-6'
         )}
       >
@@ -207,11 +209,12 @@ function Fact({
 }) {
   const card = tone === 'card';
   if (small)
-    // The value first to the eye, its short label under it.
+    // The value first to the eye, its short label under it; both wrap
+    // rather than be cut on the narrowest phones.
     return (
       <div className='flex min-w-0 flex-col-reverse'>
-        <dt className='truncate text-xs text-muted-foreground'>{label}</dt>
-        <dd className='flex items-center gap-1 font-display text-lg font-semibold whitespace-nowrap text-foreground'>
+        <dt className='text-xs text-muted-foreground'>{label}</dt>
+        <dd className='flex items-center gap-1 font-display text-lg font-semibold text-foreground'>
           <Icon className={cn('size-3.5 shrink-0', ICON[fact])} />
           {children}
         </dd>
@@ -236,7 +239,7 @@ function Fact({
         </dt>
         <dd
           className={cn(
-            'mt-1 font-display text-xl font-semibold whitespace-nowrap sm:text-2xl',
+            'mt-1 font-display text-xl font-semibold sm:text-2xl',
             card ? 'text-foreground' : 'text-band-foreground'
           )}
         >
