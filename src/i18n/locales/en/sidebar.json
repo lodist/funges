@@ -15,5 +15,23 @@
   "data": "Data",
   "settings": "Settings",
   "help": "Help",
-  "googlePlay": "Get it on Google Play"
+  "googlePlay": "Get it on Google Play",
+  "huertaWeek": "Crops",
+  "spaces": {
+    "switch": "Space: {{space}}. Switch space",
+    "open": "Open {{space}}",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Wild mushrooms and plants"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Vegetables, fruit and herbs"
+    },
+    "early": "Early release"
+  },
+  "huertaMap": "Map",
+  "huertaPlanner": "My garden",
+  "huertaYear": "Calendar",
+  "account": "Account"
 }

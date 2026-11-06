@@ -48,6 +48,7 @@ import { ForecastScorecard } from '@/components/ForecastScorecard';
 import { Route as DataRoute } from '@/routes/data';
 import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
+import { SegmentedControl } from '@/components/SegmentedControl';
 
 const ZoneMap = lazy(() => import('@/components/ZoneMap'));
 
@@ -101,43 +102,6 @@ function PillLegend({
           {entry.value}
         </span>
       ))}
-    </div>
-  );
-}
-
-function SegmentedControl<T extends string | number>({
-  options,
-  value,
-  onChange,
-}: {
-  options: { value: T; label: string }[];
-  value: T;
-  onChange: (value: T) => void;
-}) {
-  return (
-    // The chosen option a light green halo with dark green text, like the map
-    // dock's day; the others dark green text (the readable green in dark
-    // mode, where dark green would vanish); no track.
-    <div className='inline-flex items-center gap-1 rounded-full p-1'>
-      {options.map(option => {
-        const isActive = option.value === value;
-        return (
-          <button
-            key={option.value}
-            type='button'
-            onClick={() => onChange(option.value)}
-            aria-pressed={isActive}
-            className={cn(
-              'rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors',
-              isActive
-                ? 'bg-happy-100 text-happy-900'
-                : 'text-primary-text hover:text-happy-900 dark:hover:text-happy-100'
-            )}
-          >
-            {option.label}
-          </button>
-        );
-      })}
     </div>
   );
 }

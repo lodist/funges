@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Smooth Chanterelle",
-      "description": "An orange chanterelle whose underside is nearly smooth instead of ridged, with a strong apricot smell",
-      "howTo": "Look in southeastern oak woods through the humid summer, often in troops on bare soil"
+      "description": "An orange chanterelle with an almost smooth underside instead of ridges. It smells strongly of apricots.",
+      "howTo": "Look in southeastern oak woods through the humid summer, often in troops on bare soil",
+      "guide": {
+        "identify": "The smooth chanterelle is bright orange-yellow to egg-yolk yellow and 2.5 to 8 cm across. It starts flat and later becomes a shallow vase with a wavy edge. Its underside sets it apart. It is smooth or only shallowly wrinkled, with no true gills. It is paler than the cap (often pinkish) and runs down the stem. The stem tapers to the base. The flesh is white and does not change when cut. The smell is usually strong and sweet, like apricots. Jack-o'-lanterns (Omphalotus illudens) are common in the same oak woods. They have sharp, crowded true gills and grow in tight clusters from wood or buried roots. They are also orange inside.",
+        "habitat": "It lives with oaks and sometimes hickories. Look in hardwood and oak-pine woods across the eastern US, east of the Rocky Mountains. It is most common in the Southeast. It often comes up in troops on bare or mossy soil along paths, stream banks and road cuts.",
+        "season": "This is a summer chanterelle, from June to September and most often from July. It comes soon after warm, heavy rain in humid weather.",
+        "picking": "Cut it at the base, leave the small ones and take only what you will eat. Rules differ by state, park and national forest. Many state parks forbid picking, so check before you go.",
+        "kitchen": "Be sure of the identification, then brush off the soil. The smooth underside holds little grit. Never eat it raw. Cook it well, slowly in butter or in a cream sauce. It is fruity and mild like other chanterelles. It's good with eggs, grits, pasta, chicken and pork.",
+        "keeps": "A paper bag in the fridge keeps it for a few days. Drying makes it tough. For longer keeping, fry it in butter and freeze it.",
+        "source": "Identification and habitat: MushroomExpert.com and University of Florida IFAS Extension. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Galletto Liscio",
-      "description": "Un gallinaccio arancione con la faccia inferiore quasi liscia invece che costolata, dal forte odore di albicocca",
-      "howTo": "Cercalo nei querceti del sud-est americano durante l'estate umida, spesso in gruppi su terreno nudo"
+      "description": "Un galletto arancione con la parte di sotto quasi liscia al posto delle pieghe. Ha un forte profumo di albicocca.",
+      "howTo": "Cercalo nei querceti del sud-est americano durante l'estate umida, spesso in gruppi su terreno nudo",
+      "guide": {
+        "identify": "Il galletto liscio è giallo arancio vivo o giallo tuorlo, largo da 2,5 a 8 cm. Prima è piatto, poi diventa un vaso poco profondo con il bordo ondulato. Lo riconosci da sotto. La parte inferiore è liscia o appena rugosa, senza vere lamelle. È più chiara del cappello, spesso rosata, e scende lungo il gambo. Il gambo si assottiglia verso la base. La carne è bianca e al taglio non cambia. Di solito ha un odore forte e dolce, di albicocca. Negli stessi querceti è comune il fungo dell'olivo americano (Omphalotus illudens). Ha lamelle vere, fitte e affilate e cresce a cespi stretti dal legno o da radici sepolte. Anche dentro è arancione.",
+        "habitat": "Vive in simbiosi con le querce e a volte con i carya (hickory). Cercalo nei boschi di latifoglie e nei boschi misti di querce e pini dell'est degli Stati Uniti, a est delle Montagne Rocciose. È più comune nel sud-est. Spesso spunta a gruppi su terra nuda o muschiosa, lungo i sentieri, sulle rive dei ruscelli e nelle scarpate delle strade.",
+        "season": "È un galletto estivo, da giugno a settembre, soprattutto da luglio. Esce poco dopo piogge calde e forti, con il tempo afoso.",
+        "picking": "Taglialo alla base, lascia i piccoli e prendi solo quello che mangerai. Le regole cambiano da stato a stato, da parco a parco e tra le foreste nazionali. Molti parchi statali vietano la raccolta, quindi informati prima di andare.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, togli la terra con un pennello. Sotto è liscio e trattiene poca sabbia. Non mangiarlo mai crudo. Cuocilo bene, piano nel burro o in una salsa alla panna. È fruttato e delicato come gli altri galletti. Sta bene con uova, polenta, pasta, pollo e maiale.",
+        "keeps": "In frigo, in un sacchetto di carta, dura qualche giorno. Secco diventa duro. Per tenerlo più a lungo, saltalo nel burro e congelalo.",
+        "source": "Identificazione e habitat: MushroomExpert.com e University of Florida IFAS Extension. Stagione: dati GBIF."
+      }
     },
     "fr": {
       "name": "Girolle Lisse",
-      "description": "Une girolle orangée dont le dessous est presque lisse au lieu d'être plissé, à forte odeur d'abricot",
-      "howTo": "Cherchez-la dans les chênaies du sud-est américain pendant l'été humide, souvent en troupes sur sol nu"
+      "description": "Une girolle orangée dont le dessous est presque lisse au lieu d'être plissé. Elle sent fort l'abricot.",
+      "howTo": "Cherchez-la dans les chênaies du sud-est américain pendant l'été humide, souvent en troupes sur sol nu",
+      "guide": {
+        "identify": "La girolle lisse est jaune orangé vif à jaune d'œuf. Elle mesure de 2,5 à 8 cm. D'abord plate, elle devient ensuite un vase peu profond au bord ondulé. C'est son dessous qui la distingue. Il est lisse ou à peine ridé, sans vraies lames. Il est plus pâle que le chapeau et souvent rosé. Il descend sur le pied. Le pied s'amincit vers la base. La chair est blanche et ne change pas à la coupe. L'odeur est en général forte et douce, comme l'abricot. Omphalotus illudens est commun dans les mêmes chênaies. Il a de vraies lames serrées, à l'arête nette. Il pousse en touffes serrées sur le bois ou sur des racines enterrées. Il est aussi orange à l'intérieur.",
+        "habitat": "Elle vit avec les chênes et parfois avec les caryers. Cherchez-la dans les forêts de feuillus et les forêts mêlées de chênes et de pins, dans tout l'est des États-Unis, à l'est des Rocheuses. Elle est surtout commune dans le Sud-Est. Elle sort souvent en troupes sur sol nu ou moussu, au bord des chemins, des ruisseaux et des talus de route.",
+        "season": "C'est une girolle d'été. On la trouve de juin à septembre, le plus souvent à partir de juillet. Elle sort peu après une pluie chaude et forte, par temps lourd et humide.",
+        "picking": "Coupez-la à la base, laissez les petites et ne prenez que ce que vous mangerez. Les règles varient selon l'État, le parc et la forêt nationale. Beaucoup de parcs d'État interdisent la cueillette. Renseignez-vous donc avant de partir.",
+        "kitchen": "Une fois identifiée avec certitude, brossez la terre. Son dessous lisse retient peu de sable. Ne la mangez jamais crue. Faites-la bien cuire, doucement au beurre ou dans une sauce à la crème. Elle est fruitée et douce comme les autres girolles. Elle va bien avec les œufs, le gruau de maïs (grits), les pâtes, le poulet et le porc.",
+        "keeps": "Elle se garde quelques jours au réfrigérateur dans un sac en papier. Séchée, elle devient coriace. Pour la garder plus longtemps, faites-la revenir au beurre et congelez-la.",
+        "source": "Identification et habitat : MushroomExpert.com et University of Florida IFAS Extension. Saison : données GBIF."
+      }
     },
     "de": {
       "name": "Glatter Pfifferling",
-      "description": "Ein orangefarbener Pfifferling mit fast glatter statt geriefter Unterseite und starkem Aprikosengeruch",
-      "howTo": "Suche in den Eichenwäldern des amerikanischen Südostens im feuchten Sommer, oft truppweise auf offenem Boden"
+      "description": "Ein orangefarbener Pfifferling mit fast glatter Unterseite statt Leisten. Er riecht stark nach Aprikose.",
+      "howTo": "Suche in den Eichenwäldern des amerikanischen Südostens im feuchten Sommer, oft truppweise auf offenem Boden",
+      "guide": {
+        "identify": "Der Glatte Pfifferling ist leuchtend orangegelb bis eigelb und 2,5 bis 8 cm breit. Erst ist er flach, später wird er zu einer flachen Vase mit welligem Rand. An seiner Unterseite erkennst du ihn. Sie ist glatt oder nur leicht runzelig und hat keine echten Lamellen. Sie ist blasser als der Hut, oft rosa, und läuft am Stiel herab. Der Stiel wird nach unten schmaler. Das Fleisch ist weiss und verfärbt sich beim Schneiden nicht. Meist riecht er stark und süss, nach Aprikose. In denselben Eichenwäldern ist der Ölbaumtrichterling Omphalotus illudens häufig. Er hat scharfe, dicht stehende echte Lamellen und wächst in dichten Büscheln aus Holz oder vergrabenen Wurzeln. Ausserdem ist er auch innen orange.",
+        "habitat": "Er lebt mit Eichen und manchmal mit Hickorys zusammen. Such in Laubwäldern und Eichen-Kiefern-Wäldern im Osten der USA, östlich der Rocky Mountains. Am häufigsten ist er im Südosten. Oft erscheint er in Trupps auf nacktem oder moosigem Boden an Wegen, Bachufern und Böschungen.",
+        "season": "Er ist ein Sommerpfifferling, von Juni bis September und meist ab Juli. Er kommt bald nach warmem, starkem Regen bei schwülem Wetter.",
+        "picking": "Schneide ihn am Grund ab, lass die kleinen stehen und nimm nur, was du isst. Die Regeln sind je nach Bundesstaat, Park und National Forest verschieden. Viele State Parks verbieten das Sammeln, also informier dich vorher.",
+        "kitchen": "Bestimme ihn sicher und bürste dann die Erde ab. In der glatten Unterseite sitzt kaum Sand. Iss ihn nie roh. Gare ihn gut durch, langsam in Butter oder in einer Sahnesosse. Er ist fruchtig und mild wie andere Pfifferlinge. Er passt zu Eiern, Grits, Nudeln, Hähnchen und Schweinefleisch.",
+        "keeps": "In einer Papiertüte im Kühlschrank hält er sich ein paar Tage. Getrocknet wird er zäh. Wenn du ihn länger aufheben willst, brate ihn in Butter an und friere ihn ein.",
+        "source": "Bestimmung und Standort: MushroomExpert.com und University of Florida IFAS Extension. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Rebozuelo Liso",
-      "description": "Un rebozuelo anaranjado con el envés casi liso en lugar de plegado y fuerte olor a albaricoque",
-      "howTo": "Búscalo en robledales del sureste americano durante el verano húmedo, a menudo en grupos sobre suelo desnudo"
+      "description": "Un rebozuelo naranja con la parte de abajo casi lisa en vez de con pliegues. Huele mucho a albaricoque.",
+      "howTo": "Búscalo en robledales del sureste americano durante el verano húmedo, a menudo en grupos sobre suelo desnudo",
+      "guide": {
+        "identify": "El rebozuelo liso es de un amarillo anaranjado vivo a amarillo yema, y mide de 2,5 a 8 cm. Al principio es plano y luego se abre en un jarrón poco profundo, con el borde ondulado. Lo que lo distingue es la parte de abajo. Es lisa o tiene arrugas muy suaves, sin láminas verdaderas. Es más pálida que el sombrero y a menudo rosada. Además baja por el pie. El pie se estrecha hacia la base. La carne es blanca y no cambia al cortarla. Suele tener un olor fuerte y dulce, a albaricoque. En los mismos robledales es común la seta de olivo americana (Omphalotus illudens). Tiene láminas verdaderas, de filo fino y muy apretadas. Sale en grupos apretados de la madera o de raíces enterradas. Además es naranja por dentro.",
+        "habitat": "Vive con robles y a veces con nogales americanos (hickory). Búscalo en bosques de frondosas y de roble y pino del este de EE. UU., al este de las Montañas Rocosas. Donde más abunda es en el sureste. A menudo sale en grupos sobre suelo desnudo o con musgo, junto a caminos, orillas de arroyos y taludes de carretera.",
+        "season": "Es un rebozuelo de verano, de junio a septiembre y sobre todo a partir de julio. Sale poco después de lluvias cálidas e intensas, con tiempo húmedo.",
+        "picking": "Córtalo por la base, deja los pequeños y coge solo lo que vayas a comer. Las normas cambian según el estado, el parque y el bosque nacional. Muchos parques estatales prohíben recoger, así que infórmate antes de ir.",
+        "kitchen": "Asegúrate bien de la identificación y luego quítale la tierra con un cepillo. La parte de abajo es lisa y apenas guarda arena. No lo comas nunca crudo. Cocínalo bien, despacio en mantequilla o en una salsa de nata. Es afrutado y suave, como otros rebozuelos. Va bien con huevos, sémola de maíz (grits), pasta, pollo y cerdo.",
+        "keeps": "En la nevera, en una bolsa de papel, aguanta unos días. Seco se queda correoso. Para guardarlo más tiempo, saltéalo en mantequilla y congélalo.",
+        "source": "Identificación y hábitat: MushroomExpert.com y University of Florida IFAS Extension. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Cantarelo Liso",
-      "description": "Um cantarelo alaranjado com a face inferior quase lisa em vez de pregueada e forte cheiro a alperce",
-      "howTo": "Procure em carvalhais do sudeste americano durante o verão húmido, muitas vezes em grupos sobre solo nu"
+      "description": "Um cantarelo alaranjado, com a parte de baixo quase lisa em vez de pregas. Cheira muito a alperce.",
+      "howTo": "Procure em carvalhais do sudeste americano durante o verão húmido, muitas vezes em grupos sobre solo nu",
+      "guide": {
+        "identify": "O cantarelo liso é amarelo-alaranjado vivo a amarelo-gema e mede 2,5 a 8 cm. Começa plano e depois fica em forma de vaso pouco fundo, de margem ondulada. É a face de baixo que o distingue. É lisa ou só levemente enrugada, sem lâminas verdadeiras. Tem uma cor mais pálida do que o chapéu, muitas vezes rosada. Desce pelo pé. O pé afina para a base. A carne é branca e não muda de cor ao corte. O cheiro costuma ser forte e doce, a alperce. O Omphalotus illudens é comum nos mesmos carvalhais. Tem lâminas verdadeiras finas, de aresta viva e apertadas. Cresce em tufos cerrados na madeira ou em raízes enterradas. Também é cor de laranja por dentro.",
+        "habitat": "Vive associado a carvalhos e às vezes a nogueiras-americanas. Procure em bosques de folhosas e em bosques de carvalho com pinheiro, em todo o leste dos EUA, a leste das Montanhas Rochosas. É mais comum no sudeste. Aparece muitas vezes em grupos sobre terra nua ou com musgo, ao longo de caminhos, margens de ribeiros e taludes de estrada.",
+        "season": "É um cantarelo de verão. Aparece de junho a setembro e mais vezes a partir de julho. Aparece pouco depois de chuvas quentes e fortes, com tempo abafado.",
+        "picking": "Corte-o pela base, deixe os pequenos e apanhe só o que vai comer. As regras mudam conforme o estado, o parque e a floresta nacional. Muitos parques estaduais proíbem a apanha, por isso informe-se antes de ir.",
+        "kitchen": "Confirme bem a identificação e depois tire a terra com uma escova. A face de baixo, lisa, quase não guarda areia. Nunca o coma cru. Cozinhe-o bem, devagar em manteiga ou num molho de natas. É frutado e suave, como os outros cantarelos. Fica bem com ovos, papas de milho, massa, frango e porco.",
+        "keeps": "Num saco de papel no frigorífico aguenta uns dias. Seco fica rijo. Para o guardar mais tempo, salteie-o em manteiga e congele-o.",
+        "source": "Identificação e habitat: MushroomExpert.com e University of Florida IFAS Extension. Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -159,6 +213,8 @@
       "taxonKeys": [7241861],
       "references": ["https://www.gbif.org/species/7241861"]
     },
-    "rangePrior": { "taxonKeys": [7241861] }
+    "rangePrior": {
+      "taxonKeys": [7241861]
+    }
   }
 }

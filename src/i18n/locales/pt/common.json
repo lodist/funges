@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Guia de forrageamento",
+    "appDescription": "O que cresce à sua volta e quando",
     "loading": "Carregando...",
     "error": "Ocorreu um erro",
     "success": "Sucesso",
@@ -89,7 +89,9 @@
     "proof": {
       "line": "Testado na temporada de {{year}} em {{spots}} pontos onde as pessoas acharam cogumelos: a previsão avaliou melhor os dias da temporada de cada cogumelo do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
       "link": "Como verificamos"
-    }
+    },
+    "metaTitle": "Funges: mapa de apanha silvestre e planeador de horta",
+    "metaDescription": "Previsões de apanha de cogumelos e plantas silvestres e um planeador para a sua horta. O que cresce à sua volta e quando."
   },
   "worthForagingNow": {
     "title": "O que vale a pena procurar agora?",

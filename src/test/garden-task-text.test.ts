@@ -1,0 +1,137 @@
+import { describe, expect, it } from 'vitest';
+import i18n, { i18nReady } from '@/i18n';
+import { taskText } from '@/lib/garden-task-text';
+
+// The translations load lazily: the crop's name is read once they're in, as
+// the tests then run (read before, it raced the load: crops.tomato).
+await i18nReady;
+const t = i18n.getFixedT('en', 'huerta');
+const tomato = t('crops.tomato');
+
+describe('what a garden task says', () => {
+  it('a frost names the crops to cover', () => {
+    expect(
+      taskText({ kind: 'frost', level: 'frost', crops: ['tomato'] }, t, 'en')
+    ).toEqual({
+      title: 'Frost in the next 3 days',
+      text: `Cover ${tomato} on the cold nights.`,
+      from: 'forecast',
+    });
+  });
+
+  it('a crop that missed its time says so', () => {
+    expect(taskText({ kind: 'tooLate', crops: ['tomato'] }, t, 'en')).toEqual({
+      title: `${tomato}: too late now`,
+      text: 'Pick something else for its beds, or let “Plan it for me” fill them.',
+      from: 'plan',
+    });
+  });
+
+  it('a frost check names the night and what to look for', () => {
+    const check = {
+      kind: 'frostCheck' as const,
+      crop: 'tomato',
+      day: '2026-10-25',
+      low: -2.4,
+      signs: 'tender' as const,
+    };
+    expect(taskText({ ...check, lastNight: true }, t, 'en')).toMatchObject({
+      title: `${tomato}: frost last night`,
+      from: 'weather',
+    });
+    const older = taskText({ ...check, lastNight: false }, t, 'en');
+    expect(older.title).toBe(`${tomato}: frost on Saturday night`);
+    expect(older.text).toMatch(
+      /^About -2 °C here\. Once the plants have thawed/
+    );
+  });
+
+  it('a storm names its day, its gusts and rain, and what to do', () => {
+    const storm = {
+      kind: 'storm' as const,
+      day: '2026-10-29',
+      gust: 82.4,
+      rain: null,
+    };
+    expect(taskText(storm, t, 'en')).toEqual({
+      title: 'Storm on Thursday: gusts to 82 km/h',
+      text: "Tie tall plants to their stakes, weigh down fleece and nets and pick what's ripe.",
+      from: 'forecast',
+    });
+    expect(taskText({ ...storm, gust: 70, rain: 41 }, t, 'en').title).toBe(
+      'Storm on Thursday: gusts to 70 km/h, 41 mm of rain'
+    );
+    expect(
+      taskText({ ...storm, kind: 'stormCheck', gust: null, rain: 41 }, t, 'en')
+    ).toMatchObject({
+      title: 'Heavy rain on Thursday: check your beds',
+      from: 'weather',
+    });
+  });
+
+  it('a later frost names its night', () => {
+    expect(
+      taskText(
+        { kind: 'laterFrost', night: '2026-10-24', crops: ['tomato'] },
+        t,
+        'en'
+      ).title
+    ).toBe('Frost possible Saturday night');
+  });
+
+  it('blight weather names its day; a fly its first flies', () => {
+    const potato = t('crops.potato');
+    expect(
+      taskText(
+        {
+          kind: 'pest',
+          pest: 'blight',
+          phase: 'soon',
+          day: '2026-07-16',
+          crops: ['potato'],
+        },
+        t,
+        'en'
+      )
+    ).toEqual({
+      title: 'Blight weather from Thursday',
+      text: `Warm, humid days and nights spread blight. Check the leaves of ${potato} every day and take off any with brown patches.`,
+      from: 'forecast',
+    });
+    const fly = taskText(
+      {
+        kind: 'pest',
+        pest: 'carrot_fly',
+        phase: 'soon',
+        day: '2027-05-12',
+        crops: ['carrot'],
+      },
+      t,
+      'en'
+    );
+    expect(fly.title).toBe('Carrot fly: flying here from about May 12');
+    expect(fly.from).toBe('climate');
+  });
+
+  it('watering follows the soil', () => {
+    expect(
+      taskText({ kind: 'water', mm: 12, soil: 'clay' }, t, 'en').text
+    ).toMatch(/^Clay holds water/);
+  });
+
+  it('a care step names its crop', () => {
+    expect(
+      taskText({ kind: 'stage', crop: 'tomato', step: 'feed' }, t, 'en').title
+    ).toBe(`${tomato}: feed every week or two`);
+  });
+
+  it('plant now lists the crops as its text', () => {
+    const said = taskText(
+      { kind: 'plantNow', crops: ['garlic', 'tomato'] },
+      t,
+      'en'
+    );
+    expect(said.text).toBe(`${t('crops.garlic')}, ${tomato}`);
+    expect(said.from).toBe('plan');
+  });
+});

@@ -23,7 +23,7 @@
     "title": "Funktionen:",
     "recipes": "Zeigt Rezepte in der Nähe und Routen zu Zutatenstopps",
     "location": "Zentriert die Karte auf den Standort des Nutzers",
-    "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiß, Dark Matter oder Topografisch",
+    "theme": "Wähle ein Kartenthema: Hell, Dunkel, Weiss, Dark Matter oder Topografisch",
     "numbers": "Zeigt numerische Bewertung an"
   },
   "mapInteraction": {
@@ -135,5 +135,230 @@
     "onDevice": "Die Erkennung läuft vollständig auf deinem Handy. Fotos werden niemals hochgeladen und von der App niemals gespeichert. Deshalb ist beim ersten Mal ein einmaliger Modell-Download nötig: ohne ihn müsste die Identifizierung deine Fotos an einen Server senden.",
     "howTo": "Öffne „Bestimmen“, erlaube den einmaligen Download über WLAN, und mache dann ein Foto oder wähle eines aus der Galerie. Fülle das Bild möglichst mit dem ganzen Exemplar, einschliesslich Stielbasis, und fotografiere das, was du tatsächlich ausgegraben oder gesammelt hast, nicht eine entfernte Gruppe. Zwei Fotos desselben Fundes - Oberseite und Unterseite einschliesslich Stielgrund - liefern einen deutlich besseren Treffer als eines.",
     "limits": "Die Identifizierung dauert je nach Gerät etwa fünf bis zwanzig Sekunden, weil die Arbeit auf deinem Gerät statt in einem Rechenzentrum passiert. Sie deckt die Arten dieser App ab, plus etwa zweieinhalbtausend weitere aus denselben Regionen; alles darüber hinaus wird nur mit dem wissenschaftlichen Namen und ohne Sicherheitsangaben gezeigt. Iss nichts auf Grundlage dieser App - eine falsche Identifizierung kann tödlich sein."
+  },
+  "huerta": {
+    "title": "Anleitung",
+    "subtitle": "Wie du Huerta nutzt und woher die Ratschläge kommen",
+    "map": {
+      "intro": "Die Karte zeigt Ort für Ort, was in deinem Garten diese Woche ansteht.",
+      "pick": "Wähle oben eine Pflanze. Mit den Knöpfen rechts wechselst du zwischen fünf Ebenen.",
+      "layers": {
+        "crop": "Wo diese Pflanze diese Woche in die Erde kann, wo es noch zu früh ist und wo es dieses Jahr zu spät ist. Mit dem Regler unter der Karte siehst du die kommenden Monate.",
+        "frost": "Die kälteste Nacht der nächsten sieben Tage. Empfindliche Pflanzen wie Tomaten und Bohnen überstehen keinen Frost.",
+        "soil": "Wie warm der Boden gerade ist. In kaltem Boden keimen die Samen nicht. Darum entscheidet er, wann du was säen kannst.",
+        "water": "Der Regen der nächsten sieben Tage, verglichen mit dem, was Sonne und Wind austrocknen. Wo der Regen nicht reicht, musst du giessen.",
+        "pests": "Wetter, das in den nächsten sieben Tagen Schädlinge und Krankheiten bringt: Krautfäule (Kartoffeln und Tomaten), Schnecken (Salat und Jungpflanzen) und Falscher Mehltau (Zwiebeln und Salat). Wähle eines mit den Knöpfen, die daneben aufgehen. Je dunkler die Farbe, desto mehr Tage davon."
+      },
+      "tap": "Tippe auf einen Ort, um seine Woche zu sehen: Boden, Nächte, Regen und wann dort meist der Frost kommt. Mit „Als meinen Garten nehmen“ wird er zum Ort deines Gartens.",
+      "coverage": "Huerta deckt Europa und die kontinentalen USA ab."
+    },
+    "garden": {
+      "title": "Mein Garten",
+      "intro": "In „Mein Garten“ zeichnest du deinen Garten, legst fest, was wo wächst, und begleitest alles von der Aussaat bis zur Ernte. Einmal eingerichtet, sagt er dir jede Woche, was zu tun ist.",
+      "phone": "Auf dem Handy stecken die Einstellungen in einer Zeile über der Zeichnung (tippe darauf, um sie zu öffnen), und es gibt drei Reiter: Garten für die Zeichnung, Liste für den Plan nach Kulturen und Zu tun für die Arbeiten dieser Woche.",
+      "place": {
+        "title": "Zuerst dein Ort",
+        "text": "Tippe oben in „Mein Garten“ auf „Wähle deinen Ort“ und such deinen Ort oder nimm deinen Standort. Oder öffne die Karte, tippe auf deine Stelle und wähle „Als meinen Garten nehmen“. Der Ort bestimmt alles Weitere: wann Frost kommt, wie der Boden ist und wann jede Pflanze in die Erde kann."
+      },
+      "picture": {
+        "alt": "„Mein Garten“ am Computer: oben die Einstellungen, in der Mitte der Garten in 3D, rechts das gewählte Beet. Jeder nummerierte Teil ist unten erklärt.",
+        "caption": "„Mein Garten“ am Computer. Jede Nummer ist unten erklärt."
+      },
+      "steps": {
+        "size": {
+          "title": "Garten und Beete",
+          "text": "Breite und Länge in Metern, Rechteck oder L-Form, wie du gärtnerst (Hochbeete, Beete im Boden oder Reihen im offenen Feld) und in welche Richtung die Beete laufen. Huerta legt die Beete und die Wege dazwischen an."
+        },
+        "around": {
+          "title": "Rund um den Garten",
+          "text": "Was auf jeder Seite steht: nichts, ein Zaun oder eine Hecke, ein Haus oder eine Mauer oder hohe Bäume. Huerta zählt Monat für Monat die Sonnenstunden auf jedem Beet. Ab sechs ist es volle Sonne."
+        },
+        "soil": {
+          "title": "Boden",
+          "text": "Aus Bodenkarten für deinen Ort eingetragen: Sand, Lehm oder Ton und wie sauer er ist. Ändere es, wenn du weisst, dass deiner anders ist. Sandboden wird im Frühling früher warm und braucht öfter Wasser. Tonboden wird später warm und hält das Wasser länger."
+        },
+        "when": {
+          "title": "Planen für",
+          "text": "Wann alles in die Erde kommt, was noch nicht drin ist: Heute oder einer der nächsten zwölf Monate. Die Zeitleiste (12) beginnt dort."
+        },
+        "auto": {
+          "title": "Für mich planen",
+          "text": "Wähl, was du anbauen willst (einen gemischten Garten, nur Gemüse, Gemüse mit Blumen am Ende jedes Beets, Obst zuerst oder Kräuter und Blumen), und Huerta füllt die Beete mit dem, was dann an deinem Ort in die Erde kann. Jedes Beet bekommt eine Pflanzenfamilie. Zwiebeln und Knoblauch kommen nicht neben Erbsen und Bohnen, hohe Pflanzen kommen ans Nordende und jede Pflanze dorthin, wo sie genug Sonne hat. Keine Familie kommt zurück in ihr Beet vom letzten Jahr. Was schon gepflanzt ist, bleibt. Hast du Beete ausgewählt, plant Huerta nur diese."
+        },
+        "undo": {
+          "title": "Rückgängig",
+          "text": "Nimmt deine letzten Änderungen zurück, bis zu zwanzig, solange die Seite offen ist."
+        },
+        "north": {
+          "title": "Norden",
+          "text": "Dreh die Nadel mit den Pfeilen, bis sie nach Norden zeigt, so wie dein Garten wirklich liegt. Huerta braucht das für die Sonne auf jedem Beet und um hohe Pflanzen ans Nordende zu setzen."
+        },
+        "view": {
+          "title": "3D oder Plan",
+          "text": "3D zeichnet die Pflanzen, wie sie wachsen. Der Plan zeigt den Garten von oben, mit den Familien und der Sonne an jeder Stelle. Zoomen kannst du mit den Knöpfen unten rechts oder mit zwei Fingern."
+        },
+        "shade": {
+          "title": "Schatten",
+          "text": "Steht etwas neben dem Garten, zeigen diese Knöpfe, wohin sein Schatten am Morgen, am Mittag und am Nachmittag fällt."
+        },
+        "bed": {
+          "title": "Auf ein Beet tippen",
+          "text": "Tippe auf ein Beet oder einen Teil davon, um es rechts zu öffnen. Das angetippte ist umrandet und sein Schild sagt, was dort wächst. Du kannst auch eine Pflanze aus den Kulturen unter der Zeichnung auf ein Beet ziehen."
+        },
+        "select": {
+          "title": "Auswählen",
+          "text": "Tippe auf „Auswählen“ und zieh über mehrere Beete, um sie zusammen zu ändern: überall dieselbe Pflanze, verbinden oder jedes in zwei teilen. Auf dem Handy verschiebst du die Zeichnung mit der Hand, am Computer ziehst du sie einfach. „Auswahl aufheben“ lässt sie wieder los."
+        },
+        "timeline": {
+          "title": "Zeitleiste",
+          "text": "Schieb sie, um deinen Garten in den kommenden Wochen zu sehen: was wächst, was reif ist und was die Kälte umbringen wird. Blasse Pflanzen sind geplant, aber noch nicht in der Erde."
+        },
+        "sun": {
+          "title": "Diese Stelle",
+          "text": "Welches Beet und welcher Teil davon angetippt ist, wie viele Stunden direkte Sonne er in diesem Monat bekommt und zu welcher Tageszeit. „Ganzes Beet“ wählt den Rest des Beets dazu."
+        },
+        "status": {
+          "title": "Pflanze und Stand",
+          "text": "Was hier geplant ist und ob es in die Erde kann: jetzt, im geplanten Monat oder gar nicht. Eine rote Markierung heisst, dass es zur geplanten Zeit nicht geht."
+        },
+        "facts": {
+          "title": "So wächst sie hier",
+          "text": "Wie viele Pflanzen Platz haben, in welchem Abstand, wann sie reif sind und welche Familie nächstes Jahr folgen sollte."
+        },
+        "ifNow": {
+          "title": "Wenn es heute in die Erde kommt",
+          "text": "Was das Wetter hier mit ihr macht, bevor sie reif ist: Frost, kalte Nächte oder ein zu harter Winter. Ist sie in der Erde, sagt dir dieselbe Stelle, wann du sie abdecken sollst und ob der Boden für ihre Samen zu kalt oder zu warm ist."
+        },
+        "sown": {
+          "title": "Heute gesät",
+          "text": "Tippe darauf, wenn die Pflanze in die Erde kommt (bei Setzlingen „Heute gepflanzt“). Huerta verfolgt dann, wie sie mit der Wärme wächst, und sagt dir, wann sie reif ist. Das Datum kannst du danach noch ändern."
+        },
+        "neighbours": {
+          "title": "Nachbarn",
+          "text": "Die Pflanzen daneben, die ihr helfen oder sie bremsen, und wie sicher das ist: eine Gärtnerregel, eine gemeinsame Krankheit oder in Versuchen geprüft."
+        },
+        "swap": {
+          "title": "Tauschen gegen",
+          "text": "Setzt eine andere Pflanze an diese Stelle. Was jetzt in die Erde kann, steht zuerst."
+        }
+      },
+      "list": {
+        "title": "Nach Kulturen planen",
+        "text": "Ist kein Beet ausgewählt, zeigt „Was hier wächst“ rechts (auf dem Handy unter Liste) den Plan nach Kulturen: ihre Abschnitte, wie viele Pflanzen und für wie viele Leute sie reichen. Füg eine Kultur hinzu, gib einer einen Abschnitt mehr oder weniger oder säe sie in Etappen nach. „Ordnen“ setzt jede Kultur an ein Stück, Familien zusammen und weg von dort, wo sie die letzten drei Jahre standen."
+      },
+      "week": {
+        "title": "Jede Woche",
+        "todo": {
+          "title": "Säen und abhaken",
+          "text": "„Diese Woche zu tun“ listet jede Arbeit und wo sie anfällt: was du säen oder pflanzen, giessen, vor Frost schützen, ausdünnen, stützen, düngen und ernten sollst, dazu Warnungen vor Krautfäule und Schädlingsfliegen. Tippe auf „Heute gesät“ oder „Heute gepflanzt“, wenn etwas in die Erde kommt, und auf „Erledigt“ für den Rest. Ab dann verfolgt Huerta jede Pflanze nach der Wärme, die sie bekommt, und sagt dir, wann sie reif ist. „Demnächst“ zeigt die vier Wochen danach."
+        },
+        "finish": {
+          "title": "Wenn eine Kultur fertig ist",
+          "text": "Hast du das Letzte geerntet oder ist etwas eingegangen, sag es in seinem Beet: geerntet oder verloren und warum. Es kommt in „Diese Saison“. Nächstes Jahr hält Huerta jede Familie aus den Beeten fern, in denen sie gerade stand."
+        }
+      }
+    },
+    "functions": {
+      "title": "Funktionen",
+      "crops": "Jede Pflanze: wie du sie anbaust und worauf du achten musst",
+      "calendar": "Wann du an deinem Ort was säst, pflanzt und erntest",
+      "place": "Such deinen Ort oder nimm deinen Standort",
+      "gardens": "Bis zu drei Gärten, jeder mit eigenem Ort und Plan",
+      "sheet": "Auf der Seite einer Pflanze zeigen „Auf der Karte anzeigen“ und „Im Kalender anzeigen“ nur diese Pflanze"
+    },
+    "account": {
+      "title": "Dein Konto",
+      "intro": "Für Huerta meldest du dich mit Google an. So hast du auf dem Handy und am Computer dieselben Gärten.",
+      "kept": "Huerta speichert deine E-Mail-Adresse und deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet. Deine Adresse kennt Huerta nie.",
+      "delete": "Du kannst dein Konto mit allem darin jederzeit löschen: am Computer unter Hilfe → Konto, am Handy unter Einstellungen."
+    },
+    "about": {
+      "title": "Über Huerta",
+      "description": "Huerta ist der Gartenteil von Funges. Es sagt dir, was du anbauen sollst, wohin es kommt, wann es in die Erde muss und was dein Garten diese Woche braucht. Und zwar nach dem Klima, das bei deinem Garten wirklich herrscht.",
+      "packet": "Auf der Samentüte steht eine Saatzeit für ein ganzes Land. Huerta bestimmt sie jede Nacht neu für deinen Ort: aus der frischen Vorhersage und dem Wetter der letzten zehn Jahre dort.",
+      "status": "Huerta ist noch in einer frühen Version. Die Ratschläge werden jede Woche besser und weitere Pflanzen kommen dazu.",
+      "keyFeatures": {
+        "title": "Hauptfunktionen",
+        "forecast": "Ratschläge für deinen Ort, aus der Vorhersage von heute Nacht",
+        "frost": "Frosttermine aus zehn Jahren Wetter an deinem Ort",
+        "soil": "Dein Boden: sandig oder tonig, sauer oder alkalisch",
+        "growth": "Jede Pflanze begleitet, nach der Wärme, die sie bekommt"
+      }
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "learn": "Eigenes Gemüse anzubauen sollte nicht jahrelanges Ausprobieren brauchen. Erfahrene Gärtner kennen ihr Stück Land: wann der Boden warm wird, wann der letzte Frost kommt und was dort gut wächst. Huerta macht dieses Wissen allen zugänglich, wo auch immer ihr Garten liegt.",
+      "climate": "Das Klima ändert sich und mit ihm die alten Daten auf der Samentüte. Die Daten von Huerta stammen aus dem Wetter der letzten Jahre an deinem Ort, nicht aus einem Buch.",
+      "waste": "Zur richtigen Zeit gesät, verfaulen weniger Samen im kalten Boden und weniger Pflanzen erfrieren im Spätfrost. Das spart Saatgut, Arbeit und Wasser."
+    },
+    "advice": {
+      "title": "Wie die Ratschläge entstehen",
+      "description": "Jede Nacht liest Huerta die neue Wettervorhersage für jeden Ort, den es abdeckt, und vergleicht sie mit dem, was jede Pflanze braucht.",
+      "monitorTitle": "Dabei zählt:",
+      "variables": {
+        "soil": "Die Bodentemperatur, denn sie entscheidet, wann Samen keimen",
+        "frost": "Frost und die kältesten Nächte der nächsten sieben Tage",
+        "water": "Der Regen, verglichen mit dem, was Sonne und Wind austrocknen",
+        "dates": "Wann an deinem Ort meist der letzte und der erste Frost kommen",
+        "ground": "Dein Boden: sandig oder tonig, sauer oder alkalisch",
+        "warmth": "Die Wärme, die jede Pflanze bekommen hat, seit sie in der Erde ist"
+      },
+      "goal": "Eine Pflanze kommt in die Erde, wenn der Boden warm genug für sie ist und sie genug Zeit zum Wachsen hat, bevor Frost oder Hitze ihre Saison beenden. Die kommenden Monate stammen aus einem typischen Jahr an deinem Ort, nach denselben Regeln.",
+      "methodology": {
+        "title": "Datenquellen und Methodik",
+        "description": "Die Ratschläge für diese Woche kommen aus Wettermodellen, die jede Nacht neu rechnen. Der Kalender, die Frosttermine und wie schnell jede Pflanze wächst, stammen aus zehn Jahren vergangenen Wetters. Wie man jede Pflanze anbaut, stammt aus Gartenratgebern."
+      },
+      "keyDatasets": {
+        "title": "Wichtige Datensätze",
+        "icon": {
+          "title": "1. ICON-EU (Vorhersage für Europa)",
+          "description": "Das Vorhersagemodell des Deutschen Wetterdienstes für Europa, mit einem Raster von etwa 7 km. Jede Nacht holt Huerta daraus die nächsten fünf Tage, Stunde für Stunde: Luft- und Bodentemperatur, Regen, Wind und Sonne.",
+          "source": "Quelle: Deutscher Wetterdienst (DWD), Open Data",
+          "citation": "Data basis: Deutscher Wetterdienst (DWD), ICON-EU model forecasts."
+        },
+        "ecmwf": {
+          "title": "2. ECMWF Open Data (Vorhersage bis Tag sieben)",
+          "description": "Die weltweite Vorhersage des Europäischen Zentrums für mittelfristige Wettervorhersage. Sie führt die Vorhersage für Europa bis zum siebten Tag weiter und deckt den hohen Norden ab, wohin ICON-EU nicht reicht.",
+          "source": "Quelle: Europäisches Zentrum für mittelfristige Wettervorhersage (EZMW)",
+          "citation": "ECMWF open data, IFS forecasts. CC BY 4.0."
+        },
+        "nbm": {
+          "title": "3. National Blend of Models (Vorhersage für die USA)",
+          "description": "Die Mischung der Wettermodelle des US-Wetterdienstes NOAA, mit einem Raster von 2,5 km. Daraus bekommen Gärten in den USA ihre sieben Tage.",
+          "source": "Quelle: NOAA National Weather Service, über das NOAA Open Data Dissemination Program",
+          "citation": "National Blend of Models (NBM), NOAA/NWS. U.S. public domain."
+        },
+        "era5": {
+          "title": "4. ERA5-Reanalyse (Vergangenes Wetter)",
+          "description": "Das Archiv des EZMW für vergangenes Wetter, aus Wettermodellen und Messungen aus aller Welt. Zehn Jahre davon, 2016 bis 2025, geben jedem Ort seine üblichen Frosttermine, das typische Jahr hinter dem Kalender und die Wärme, mit der die Pflanzen wachsen.",
+          "source": "Quelle: Copernicus Climate Change Service (C3S), EZMW",
+          "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "soilgrids": {
+          "title": "5. SoilGrids (Boden)",
+          "description": "Die weltweiten Bodenkarten von ISRIC, modelliert aus Bodenprofilen aus aller Welt. Huerta liest daraus Ton, Sand und pH-Wert der obersten Bodenschicht an deinem Ort. Sie entscheiden, wie oft du giessen musst, wie schnell sich der Boden im Frühling erwärmt und welche Pflanzen Kalk brauchen.",
+          "source": "Quelle: ISRIC – World Soil Information",
+          "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+        },
+        "guides": {
+          "title": "6. Gartenratgeber",
+          "description": "Wie du jede Pflanze anbaust: Saattiefe, Abstand, Giessen, Düngen, pH-Wert und wie viele Pflanzen du brauchst. Jede Pflanzenseite nennt ihre eigenen Quellen.",
+          "source": "Quelle: Royal Horticultural Society (RHS) und die Beratungsdienste amerikanischer Universitäten",
+          "citation": "Darunter die Beratungsdienste von Kansas State, Missouri, Virginia Tech, Cornell, Minnesota, Maryland, Connecticut, Georgia und Washington State."
+        },
+        "pests": {
+          "title": "7. Schädlingswarnungen",
+          "description": "Krautfäule-Warnungen kommen, wenn mehrere warme, feuchte Tage und Nächte aufeinanderfolgen. Fliegen-Warnungen zählen die Wärme seit Januar und vergleichen sie damit, wann Möhrenfliege, Kohlfliege und Zwiebelfliege in Fallen gefangen wurden.",
+          "source": "Quelle: AHDB und James Hutton Institute; NIBIO; University of Wisconsin, Michigan State University und Cornell University (NEWA)",
+          "citation": "Hutton Criteria (AHDB and James Hutton Institute, 2017). VIPS carrot fly model (NIBIO; Markkula et al. 1998). Cabbage maggot and onion maggot degree days (University of Wisconsin, Michigan State University, NEWA)."
+        },
+        "towns": {
+          "title": "8. GeoNames und Natural Earth (Orte)",
+          "description": "Die Ortssuche findet jeden Ort ab 5000 Einwohnern in der Nähe eines Huerta-Orts, in deiner Sprache, wo es den Namen übersetzt gibt.",
+          "source": "Quelle: GeoNames; Natural Earth",
+          "citation": "GeoNames (geonames.org), CC BY 4.0. Made with Natural Earth, public domain."
+        }
+      }
+    }
   }
 }

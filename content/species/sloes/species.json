@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Sloes",
-      "description": "The small blue-black fruits of the thorny blackthorn, with a dusty bloom and a fiercely sour taste",
-      "howTo": "Look on hedgerows and scrubby slopes from September to November; they mellow after the first frosts. Don't crush the stones, and watch for shiny black look-alikes such as buckthorn and deadly nightshade"
+      "description": "The small blue-black fruits of the thorny blackthorn. They have a dusty bloom and taste fiercely sour.",
+      "howTo": "Look on hedgerows and scrubby slopes from September to November; they mellow after the first frosts. Don't crush the stones and watch for shiny black look-alikes such as buckthorn and deadly nightshade",
+      "guide": {
+        "identify": "Sloes grow on blackthorn. It is a dense, woody shrub with dark bark and its side twigs end in sharp thorns. The white blossom opens in March and April, before the leaves. The fruit is round and about 1 cm across. It is blue-black with a dusty bloom that rubs off. Sloes grow singly or in pairs along the twigs. Inside, green and very astringent flesh surrounds one stone. Buckthorn has shiny black berries in clusters, with no bloom. Deadly nightshade is a soft, leafy herb, not a thorny shrub. Its shiny black berries grow singly, each sitting in a green star of sepals.",
+        "habitat": "Blackthorn grows in hedgerows, scrub and woodland edges and on sunny, stony slopes. It often forms thickets that spread by suckers. You find it across most of Europe, north and south, from the lowlands into the hills.",
+        "season": "Sloes ripen from September to November. They are ready when they are dark and soft enough to squash between your fingers. People traditionally pick them after the first frost. Frost splits the skins and softens the fruit, so the juice runs out. You can pick them earlier and freeze them overnight, which does the same.",
+        "picking": "Wear gloves, because the thorns are long and sharp. Pick from several bushes and leave plenty for birds. Avoid roadside hedges and sprayed field edges.",
+        "kitchen": "Make sure they're sloes first. They are too sour and astringent to eat raw. But they make sloe gin and other liqueurs, such as Spanish pacharán in anise spirit. They also make a jelly with apples. For gin, prick or freeze them, then cover them with sugar and gin. Leave them a few months in a dark place and shake them now and then. Then strain. Never crush or crack the stones. The kernels contain amygdalin, which releases cyanide.",
+        "keeps": "Fresh sloes keep a few days in the fridge. Frozen in sealed bags they keep for months. They go straight from the freezer into the jar.",
+        "source": "Identification, habitat and the frost tradition: Woodland Trust. Stones: USDA Phytochemical and Ethnobotanical Databases."
+      }
     },
     "it": {
       "name": "Prugnole",
-      "description": "I piccoli frutti blu-neri del prugnolo spinoso, coperti di pruina e dal sapore asprissimo",
-      "howTo": "Cercale su siepi e pendii cespugliosi da settembre a novembre; si addolciscono dopo le prime gelate. Non schiacciare i noccioli e attenzione ai sosia neri e lucidi come lo spincervino e la belladonna"
+      "description": "I piccoli frutti blu-neri del prugnolo spinoso. Sono coperti di pruina e hanno un sapore asprissimo.",
+      "howTo": "Cercale su siepi e pendii cespugliosi da settembre a novembre; si addolciscono dopo le prime gelate. Non schiacciare i noccioli e attenzione ai sosia neri e lucidi come lo spincervino e la belladonna",
+      "guide": {
+        "identify": "Le prugnole crescono sul prugnolo. È un arbusto fitto e legnoso con la corteccia scura, e i suoi rametti laterali finiscono in spine appuntite. I fiori bianchi si aprono a marzo e aprile, prima delle foglie. Il frutto è tondo, di circa 1 cm. È nero-blu, con una patina polverosa che va via strofinando. Le prugnole crescono da sole o a coppie lungo i rami. Dentro, una polpa verde e molto allappante avvolge un solo nocciolo. Lo spino cervino ha bacche nere lucide a grappoli, senza patina. La belladonna è un'erba morbida e frondosa, non un arbusto spinoso. Le sue bacche nere lucide crescono da sole, ognuna appoggiata su una stella verde di sepali.",
+        "habitat": "Il prugnolo cresce nelle siepi, tra gli arbusti, ai margini dei boschi e sui pendii sassosi e soleggiati. Spesso forma macchie fitte che si allargano con i polloni. Lo trovi in quasi tutta Europa, al nord come al sud, dalla pianura alla collina.",
+        "season": "Le prugnole maturano da settembre a novembre. Sono pronte quando sono scure e abbastanza morbide da schiacciarle tra le dita. Per tradizione si raccolgono dopo la prima gelata. Il gelo spacca la buccia e ammorbidisce il frutto, così il succo esce. Puoi anche raccoglierle prima e metterle in freezer per una notte, che fa lo stesso effetto.",
+        "picking": "Metti i guanti, perché le spine sono lunghe e appuntite. Raccogli da più arbusti e lasciane tante agli uccelli. Evita le siepi lungo le strade e i bordi dei campi trattati.",
+        "kitchen": "Prima assicurati che siano proprio prugnole. Crude sono troppo aspre e allappanti. Però sono ottime per lo sloe gin e altri liquori, come il pacharán spagnolo, fatto con un distillato all'anice. Con le mele ci fai anche una gelatina. Per il gin, bucherellale o congelale, poi coprile di zucchero e gin. Lasciale qualche mese al buio, agitando ogni tanto, e poi filtra. Non schiacciare e non rompere mai i noccioli. Il seme contiene amigdalina, che libera cianuro.",
+        "keeps": "Fresche durano qualche giorno in frigo. Congelate in sacchetti chiusi durano mesi. Dal freezer vanno direttamente nel barattolo.",
+        "source": "Identificazione, habitat e tradizione della gelata: Woodland Trust. Noccioli: banche dati fitochimiche ed etnobotaniche dell'USDA."
+      }
     },
     "fr": {
       "name": "Prunelles",
-      "description": "Les petits fruits bleu-noir du prunellier épineux, couverts de pruine et d'une âpreté redoutable",
-      "howTo": "Cherchez-les dans les haies et les coteaux broussailleux de septembre à novembre ; elles s'adoucissent après les premières gelées. N'écrasez pas les noyaux et méfiez-vous des sosies noirs et brillants comme le nerprun et la belladone"
+      "description": "Les petits fruits bleu-noir du prunellier, un arbuste épineux. Ils sont couverts d'une pruine poudreuse et ont un goût terriblement acide.",
+      "howTo": "Cherchez-les dans les haies et les coteaux broussailleux de septembre à novembre ; elles s'adoucissent après les premières gelées. N'écrasez pas les noyaux et méfiez-vous des sosies noirs et brillants comme le nerprun et la belladone",
+      "guide": {
+        "identify": "Les prunelles poussent sur le prunellier, aussi appelé épine noire. C'est un arbuste dense et ligneux à l'écorce sombre. Ses rameaux latéraux se terminent en épines acérées. Ses fleurs blanches s'ouvrent en mars et avril, avant les feuilles. Le fruit est rond et mesure environ 1 cm. Il est bleu-noir, couvert d'une pruine qui part au frottement. Les prunelles poussent seules ou par deux le long des rameaux. À l'intérieur, une chair verte et très âpre entoure un seul noyau. Le nerprun purgatif porte des baies noires luisantes en grappes, sans pruine. La belladone est une plante herbacée et feuillue, pas un arbuste épineux. Ses baies noires luisantes poussent une à une, chacune posée sur une étoile verte de sépales.",
+        "habitat": "Le prunellier pousse dans les haies, les fourrés, les lisières et sur les coteaux pierreux ensoleillés. Il forme souvent des massifs qui s'étendent par drageons. On le trouve dans presque toute l'Europe, au nord comme au sud, de la plaine aux collines.",
+        "season": "Les prunelles mûrissent de septembre à novembre. Elles sont prêtes quand elles sont sombres et assez molles pour s'écraser entre les doigts. Traditionnellement, on les cueille après les premières gelées. Le gel fend la peau et ramollit le fruit, si bien que le jus s'écoule. Vous pouvez aussi les cueillir plus tôt et les congeler une nuit, ce qui revient au même.",
+        "picking": "Portez des gants, car les épines sont longues et acérées. Cueillez sur plusieurs arbustes et laissez-en beaucoup aux oiseaux. Évitez les haies de bord de route et les bordures de champs traitées.",
+        "kitchen": "Assurez-vous d'abord que ce sont bien des prunelles. Elles sont trop acides et trop âpres pour être mangées crues. Mais elles donnent le sloe gin et d'autres liqueurs, comme le pacharán espagnol à l'eau-de-vie anisée. Avec des pommes, elles font aussi une gelée. Pour le sloe gin, piquez-les ou congelez-les, puis couvrez-les de sucre et de gin. Laissez macérer quelques mois dans un endroit sombre. Secouez de temps en temps, puis filtrez. N'écrasez et ne cassez jamais les noyaux. L'amande contient de l'amygdaline, qui libère du cyanure.",
+        "keeps": "Fraîches, les prunelles se gardent quelques jours au réfrigérateur. Congelées en sacs fermés, elles tiennent des mois. Elles passent directement du congélateur au bocal.",
+        "source": "Identification, habitat et tradition des gelées : Woodland Trust. Noyaux : bases de données phytochimiques et ethnobotaniques de l'USDA."
+      }
     },
     "de": {
       "name": "Schlehen",
-      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns, bereift und herb-sauer",
-      "howTo": "Suche von September bis November an Hecken und buschigen Hängen; nach den ersten Frösten werden sie milder. Zerdrück die Kerne nicht und achte auf glänzend schwarze Doppelgänger wie Kreuzdorn und Tollkirsche"
+      "description": "Die kleinen blauschwarzen Früchte des dornigen Schwarzdorns. Sie haben einen bläulichen Reif und schmecken herb und sauer.",
+      "howTo": "Suche von September bis November an Hecken und buschigen Hängen; nach den ersten Frösten werden sie milder. Zerdrück die Kerne nicht und achte auf glänzend schwarze Doppelgänger wie Kreuzdorn und Tollkirsche",
+      "guide": {
+        "identify": "Schlehen wachsen am Schlehdorn. Das ist ein dichter, holziger Strauch mit dunkler Rinde, und seine Seitentriebe enden in spitzen Dornen. Im März und April blüht er weiss, noch vor dem Laub. Die Frucht ist rund und etwa 1 cm gross. Sie ist blauschwarz mit einem matten Reif, der sich abwischen lässt. Schlehen sitzen einzeln oder zu zweit an den Zweigen. Innen umgibt grünes, sehr herbes Fruchtfleisch einen einzigen Stein. Der Kreuzdorn hat glänzend schwarze Beeren in Büscheln, ohne Reif. Die Tollkirsche ist eine weiche, belaubte Staude, kein Dornstrauch. Ihre glänzend schwarzen Beeren sitzen einzeln, jede in einem grünen Stern aus Kelchblättern.",
+        "habitat": "Der Schlehdorn wächst in Hecken und Gebüschen, an Waldrändern und an sonnigen, steinigen Hängen. Oft bildet er Dickichte, die sich durch Wurzelausläufer ausbreiten. Du findest ihn in fast ganz Europa, im Norden wie im Süden, vom Tiefland bis ins Hügelland.",
+        "season": "Schlehen reifen von September bis November. Sie sind reif, wenn sie dunkel sind und sich zwischen den Fingern zerdrücken lassen. Traditionell pflückt man sie nach dem ersten Frost. Frost lässt die Haut platzen und macht die Früchte weich, sodass der Saft austritt. Du kannst sie auch früher pflücken und über Nacht einfrieren, das hat dieselbe Wirkung.",
+        "picking": "Trag Handschuhe, denn die Dornen sind lang und spitz. Pflück an mehreren Sträuchern und lass den Vögeln genug übrig. Meide Hecken an Strassen und gespritzte Feldränder.",
+        "kitchen": "Vergewissere dich zuerst, dass es Schlehen sind. Roh sind sie zu sauer und zu herb. Man macht aus ihnen aber Schlehengin und andere Liköre, etwa den spanischen Pacharán mit Anisschnaps. Mit Äpfeln ergeben sie auch ein Gelee. Für Gin stichst du sie an oder frierst sie ein. Dann bedeckst du sie mit Zucker und Gin. Lass sie einige Monate an einem dunklen Ort ziehen, schüttle ab und zu und seih sie dann ab. Zerdrück oder knack die Steine nie. Die Kerne enthalten Amygdalin, das Blausäure freisetzt.",
+        "keeps": "Frische Schlehen halten sich ein paar Tage im Kühlschrank. In dichten Beuteln eingefroren halten sie monatelang. Aus dem Gefrierfach kommen sie direkt ins Glas.",
+        "source": "Bestimmung, Standort und die Frostregel: Woodland Trust. Steine: USDA Phytochemical and Ethnobotanical Databases."
+      }
     },
     "es": {
       "name": "Endrinas",
-      "description": "Los pequeños frutos azul negruzco del endrino espinoso, con pruina y un sabor muy áspero",
-      "howTo": "Búscalas en setos y laderas con matorral de septiembre a noviembre; se suavizan tras las primeras heladas. No machaques los huesos y cuidado con los parecidos negros y brillantes, como el espino cerval y la belladona"
+      "description": "Los frutos pequeños, de un negro azulado, del endrino espinoso. Tienen una capa de polvillo y un sabor agrísimo.",
+      "howTo": "Búscalas en setos y laderas con matorral de septiembre a noviembre; se suavizan tras las primeras heladas. No machaques los huesos y cuidado con los parecidos negros y brillantes, como el espino cerval y la belladona",
+      "guide": {
+        "identify": "Las endrinas salen del endrino. Es un arbusto leñoso y denso, de corteza oscura, cuyas ramitas laterales acaban en espinas afiladas. Florece en blanco en marzo y abril, antes de echar las hojas. El fruto es redondo y mide alrededor de 1 cm. Es negro azulado, con una pruina como de polvo que se va al frotarla. Las endrinas crecen sueltas o de dos en dos a lo largo de las ramas. Dentro, una pulpa verde y muy áspera rodea un único hueso. El espino cerval tiene bayas negras y brillantes en racimos, sin pruina. La belladona es una hierba blanda y con muchas hojas, no un arbusto espinoso. Sus bayas negras y brillantes salen sueltas, cada una sobre una estrella verde de sépalos.",
+        "habitat": "El endrino crece en setos, matorrales, bordes de bosque y laderas pedregosas y soleadas. A menudo forma espesuras que se extienden con brotes de raíz. Lo encuentras en casi toda Europa, en el norte y en el sur, desde las zonas bajas hasta las colinas.",
+        "season": "Las endrinas maduran de septiembre a noviembre. Están listas cuando son oscuras y lo bastante blandas para aplastarlas entre los dedos. Tradicionalmente se cogen después de la primera helada. La helada abre la piel y ablanda el fruto, así que el jugo sale. Puedes cogerlas antes y congelarlas una noche, que viene a ser lo mismo.",
+        "picking": "Ponte guantes, porque las espinas son largas y afiladas. Coge de varias matas y deja muchas para los pájaros. Evita los setos junto a carreteras y los bordes de campos fumigados.",
+        "kitchen": "Asegúrate primero de que son endrinas. Son demasiado ácidas y ásperas para comerlas crudas. Pero con ellas se hacen licores como la ginebra de endrinas o el pacharán, que se macera en anís. También sirven para una jalea con manzana. Para la ginebra, pínchalas o congélalas y cúbrelas con azúcar y ginebra. Déjalas unos meses en un sitio oscuro, agitando de vez en cuando, y luego cuélalas. No aplastes ni partas nunca los huesos. La almendra del hueso contiene amigdalina, que libera cianuro.",
+        "keeps": "Frescas aguantan unos días en la nevera. Congeladas en bolsas cerradas duran meses. Pasan directamente del congelador al tarro.",
+        "source": "Identificación, hábitat y la tradición de la helada: Woodland Trust. Huesos: bases de datos fitoquímicas y etnobotánicas del USDA."
+      }
     },
     "pt": {
       "name": "Abrunhos",
-      "description": "Os pequenos frutos azul-escuros do abrunheiro espinhoso, com pruína e um sabor muito adstringente",
-      "howTo": "Procure em sebes e encostas com mato de setembro a novembro; ficam mais suaves depois das primeiras geadas. Não esmague os caroços e cuidado com os sósias negros e brilhantes, como o espinheiro-cerval e a beladona"
+      "description": "Os frutos pequenos, negro-azulados, do abrunheiro-bravo, que tem espinhos. Têm uma camada de pó por fora e são azedíssimos.",
+      "howTo": "Procure em sebes e encostas com mato de setembro a novembro; ficam mais suaves depois das primeiras geadas. Não esmague os caroços e cuidado com os sósias negros e brilhantes, como o espinheiro-cerval e a beladona",
+      "guide": {
+        "identify": "Os abrunhos crescem no abrunheiro-bravo. É um arbusto lenhoso e denso, de casca escura. Os raminhos laterais acabam em espinhos aguçados. A flor branca abre em março e abril, antes das folhas. O fruto é redondo, com cerca de 1 cm. É negro-azulado, com uma película baça, como pó, que sai quando se esfrega. Os abrunhos nascem sozinhos ou aos pares ao longo dos ramos. Por dentro, uma polpa verde e muito adstringente envolve um só caroço. O espinheiro-cerval tem bagas pretas e brilhantes, em cachos e sem essa película. A beladona é uma erva mole e com muitas folhas, não um arbusto com espinhos. As bagas dela são pretas e brilhantes e nascem sozinhas, cada uma pousada numa estrela verde de sépalas.",
+        "habitat": "O abrunheiro-bravo cresce em sebes, matos e orlas de bosques e em encostas soalheiras e pedregosas. Forma muitas vezes moitas densas que se alastram por rebentos de raiz. Encontra-se em quase toda a Europa, a norte e a sul, das terras baixas às colinas.",
+        "season": "Os abrunhos amadurecem de setembro a novembro. Estão prontos quando estão escuros e moles o suficiente para se esmagarem entre os dedos. Tradicionalmente apanham-se depois da primeira geada. A geada racha a casca e amolece o fruto, para o sumo poder sair. Pode apanhá-los antes e congelá-los uma noite, que dá o mesmo resultado.",
+        "picking": "Use luvas, porque os espinhos são compridos e aguçados. Apanhe de vários arbustos e deixe muitos para as aves. Evite sebes à beira da estrada e bordas de campos pulverizados.",
+        "kitchen": "Primeiro confirme que são abrunhos. São demasiado ácidos e adstringentes para comer crus. Mas dão gin de abrunhos e outros licores, como o pacharán espanhol, feito em aguardente de anis. Com maçã também dão uma geleia. Para o gin, pique-os ou congele-os e depois cubra-os com açúcar e gin. Deixe-os alguns meses num sítio escuro e agite de vez em quando. Depois coe. Nunca esmague nem parta os caroços. A amêndoa de dentro contém amigdalina, que liberta cianeto.",
+        "keeps": "Frescos aguentam uns dias no frigorífico. Congelados em sacos fechados duram meses. Passam diretamente do congelador para o frasco.",
+        "source": "Identificação, habitat e a tradição da geada: Woodland Trust. Caroços: bases de dados fitoquímicas e etnobotânicas do USDA."
+      }
     }
   },
   "identification": {

@@ -135,5 +135,230 @@
     "onDevice": "El reconocimiento se ejecuta íntegramente en tu móvil. Las fotos nunca se suben ni las guarda la aplicación. Por eso la primera vez hace falta una descarga única del modelo: sin ella, la identificación tendría que enviar tus fotos a un servidor.",
     "howTo": "Abre Identificar, permite la descarga única con Wi-Fi y luego haz una foto o elige una de la galería. Llena el encuadre con el ejemplar completo cuando puedas, incluida la base del pie, y fotografía lo que realmente has desenterrado o recogido, no un grupo lejano. Dos fotos del mismo hallazgo - la parte superior y la inferior, incluida la base del pie - dan una coincidencia bastante mejor que una sola.",
     "limits": "La identificación tarda entre unos cinco y veinte segundos según el dispositivo, porque el trabajo ocurre en tu dispositivo y no en un centro de datos. Cubre las especies de esta aplicación más unas dos mil quinientas de las mismas regiones; cualquier otra cosa se muestra solo con el nombre científico y sin información de seguridad. No comas nada basándote en esta aplicación: una identificación errónea puede ser mortal."
+  },
+  "huerta": {
+    "title": "Instrucciones",
+    "subtitle": "Cómo usar Huerta y de dónde salen sus consejos",
+    "map": {
+      "intro": "El mapa muestra, lugar por lugar, lo que tu huerto puede hacer esta semana.",
+      "pick": "Elige un cultivo en la casilla de arriba. Los botones de la derecha cambian entre cinco capas.",
+      "layers": {
+        "crop": "Dónde puede ir este cultivo esta semana, dónde aún no es momento y dónde ya es tarde este año. Desliza los meses bajo el mapa para ver el año que viene.",
+        "frost": "La noche más fría de los próximos siete días. Los cultivos delicados, como el tomate o la judía, mueren con una helada.",
+        "soil": "Lo caliente que está el suelo ahora. En suelo frío las semillas no nacen, así que esto decide cuándo se puede sembrar cada cultivo.",
+        "water": "La lluvia de los próximos siete días frente a lo que secan el sol y el viento. Donde la lluvia no llega, hay que regar.",
+        "pests": "El tiempo que trae plagas y enfermedades en los próximos siete días: mildiu (patatas y tomates), babosas (lechugas y plantas jóvenes) y mildiu (cebollas y lechugas). Elige una con los botones que se abren al lado. Cuanto más oscuro el color, más días."
+      },
+      "tap": "Toca un lugar para ver su semana: el suelo, las noches, la lluvia y cuándo suele helar. «Usar como mi huerto» lo convierte en el lugar de tu huerto.",
+      "coverage": "Huerta cubre Europa y los Estados Unidos continentales."
+    },
+    "garden": {
+      "title": "Mi huerto",
+      "intro": "En «Mi huerto» dibujas tu huerto, decides qué va en cada sitio y lo sigues de la siembra a la cosecha. Lo preparas una vez y cada semana te dice qué hacer.",
+      "phone": "En el móvil los ajustes se recogen en una línea encima del dibujo (tócala para abrirlos) y hay tres pestañas: Huerto para el dibujo, Lista para el plan por cultivos y Tareas para los trabajos de la semana.",
+      "place": {
+        "title": "Primero, tu lugar",
+        "text": "Toca «Elige tu lugar» arriba en «Mi huerto» y busca tu pueblo o usa tu ubicación. También puedes abrir el mapa, tocar tu sitio y elegir «Usar como mi huerto». El lugar decide el resto: cuándo hiela, cómo es el suelo y cuándo puede ir cada cultivo."
+      },
+      "picture": {
+        "alt": "«Mi huerto» en un ordenador: arriba los ajustes, en el centro el huerto dibujado en 3D y a la derecha el bancal elegido. Cada parte numerada se explica abajo.",
+        "caption": "«Mi huerto» en un ordenador. Cada número se explica abajo."
+      },
+      "steps": {
+        "size": {
+          "title": "Huerto y bancales",
+          "text": "Ancho y largo en metros, rectángulo o en L, cómo cultivas (bancales elevados, bancales en el suelo o surcos en campo abierto) y hacia dónde van los bancales. Huerta reparte los bancales y los pasillos entre ellos."
+        },
+        "around": {
+          "title": "Alrededor del huerto",
+          "text": "Qué hay en cada lado: nada, una valla o un seto, una casa o un muro o árboles altos. Huerta cuenta las horas de sol de cada bancal, mes a mes. Seis o más es pleno sol."
+        },
+        "soil": {
+          "title": "Suelo",
+          "text": "Rellenado con mapas de suelos de tu zona: arenoso, franco o arcilloso y lo ácido que es. Cámbialo si sabes que el tuyo es distinto. El suelo arenoso se calienta antes en primavera y pide agua más a menudo. El arcilloso se calienta más tarde y guarda el agua más tiempo."
+        },
+        "when": {
+          "title": "Planificar para",
+          "text": "Cuándo va a la tierra todo lo que aún no está: Hoy o uno de los próximos doce meses. La línea de tiempo (12) empieza ahí."
+        },
+        "auto": {
+          "title": "Planifícalo por mí",
+          "text": "Elige qué cultivar (un huerto mixto, solo hortalizas, hortalizas con flores al final de cada bancal, primero fruta o aromáticas y flores) y Huerta llena los bancales con cultivos que pueden ir en ese momento en tu zona. Cada bancal lleva una familia. Cebollas y ajos van lejos de guisantes y judías, los cultivos altos van al lado norte y cada cultivo va donde tiene el sol que necesita. Ninguna familia vuelve a su bancal del año pasado. Lo plantado se queda. Con bancales seleccionados, solo planifica esos."
+        },
+        "undo": {
+          "title": "Deshacer",
+          "text": "Quita tus últimos cambios, hasta veinte, mientras la página está abierta."
+        },
+        "north": {
+          "title": "Norte",
+          "text": "Gira la aguja con las flechas hasta que apunte al norte, como está de verdad tu huerto. Huerta lo necesita para el sol de cada bancal y para dejar los cultivos altos en el lado norte."
+        },
+        "view": {
+          "title": "3D o Plano",
+          "text": "3D dibuja las plantas como crecen. El plano muestra el huerto desde arriba, con las familias y el sol de cada sitio. Haz zoom con los botones de abajo a la derecha o con dos dedos."
+        },
+        "shade": {
+          "title": "Sombra",
+          "text": "Si hay algo junto al huerto, estos botones muestran dónde cae su sombra por la mañana, a mediodía y por la tarde."
+        },
+        "bed": {
+          "title": "Toca un bancal",
+          "text": "Toca un bancal o una parte para abrirlo a la derecha. El que has tocado queda marcado y su etiqueta dice qué crece ahí. También puedes arrastrar un cultivo desde los cultivos bajo el dibujo hasta un bancal."
+        },
+        "select": {
+          "title": "Seleccionar",
+          "text": "Toca «Seleccionar» y arrastra sobre varios bancales para cambiarlos juntos: el mismo cultivo en todos, unirlos o dividir cada uno en dos. En el móvil la mano mueve el dibujo; en el ordenador basta con arrastrarlo. «Quitar la selección» los suelta."
+        },
+        "timeline": {
+          "title": "Línea de tiempo",
+          "text": "Deslízala para ver tu huerto en las próximas semanas: qué crece, qué está listo y qué matará el frío. Las plantas claras están planificadas pero aún no en la tierra."
+        },
+        "sun": {
+          "title": "Este sitio",
+          "text": "Qué bancal y qué parte has tocado, las horas de sol directo que recibe este mes y en qué momento del día. «Todo el bancal» selecciona el resto del bancal."
+        },
+        "status": {
+          "title": "Cultivo y estado",
+          "text": "Lo planificado aquí y si puede ir a la tierra: ahora, en el mes que planificaste o no. Una etiqueta roja significa que no puede ir en la fecha planificada."
+        },
+        "facts": {
+          "title": "Cómo crece aquí",
+          "text": "Cuántas plantas caben, a qué distancia van, cuándo estarán listas y qué familia debería venir el año que viene."
+        },
+        "ifNow": {
+          "title": "Si lo pones hoy",
+          "text": "Lo que le hará el tiempo de aquí antes de estar listo: una helada, noches frías o un invierno demasiado duro. Una vez en la tierra, ahí mismo te dice cuándo taparlo y si el suelo está demasiado frío o caliente para sus semillas."
+        },
+        "sown": {
+          "title": "Sembrado hoy",
+          "text": "Tócalo el día que el cultivo va a la tierra («Plantado hoy» para plantones). Huerta sigue entonces cómo crece con el calor que recibe y te dice cuándo está listo. Puedes cambiar la fecha después."
+        },
+        "neighbours": {
+          "title": "Vecinos",
+          "text": "Los cultivos de al lado que lo ayudan o lo frenan y lo seguro que es: una regla de hortelanos, una enfermedad compartida o probado en ensayos."
+        },
+        "swap": {
+          "title": "Cambiar por",
+          "text": "Pone otro cultivo en este sitio. Los que pueden ir ahora salen primero."
+        }
+      },
+      "list": {
+        "title": "Planifica por cultivo",
+        "text": "Sin ningún bancal seleccionado, «Qué crece aquí» a la derecha (Lista en el móvil) muestra el plan por cultivos: sus secciones, cuántas plantas y para cuántas personas dan. Añade un cultivo, dale una sección más o menos o vuelve a sembrarlo por tandas. «Ordenar» pone cada cultivo en una sola pieza, las familias juntas y lejos de donde estuvieron los últimos tres años."
+      },
+      "week": {
+        "title": "Cada semana",
+        "todo": {
+          "title": "Siembra y marca",
+          "text": "«Para hacer esta semana» enumera cada tarea y dónde hacerla: qué sembrar o plantar, regar, tapar contra la helada, aclarar, entutorar, abonar y cosechar, además de avisos de mildiu y de moscas. Toca «Sembrado hoy» o «Plantado hoy» cuando algo va a la tierra y «Hecho» para lo demás. Desde entonces Huerta sigue cada cultivo según el calor que recibe y te dice cuándo está listo. «Próximamente» muestra las cuatro semanas siguientes."
+        },
+        "finish": {
+          "title": "Cuando un cultivo termina",
+          "text": "Cuando hayas cogido lo último o se haya perdido, dilo en su bancal: cosechado, o perdido y por qué. Pasa a «Esta temporada». El año que viene Huerta mantiene cada familia fuera de los bancales donde acaba de estar."
+        }
+      }
+    },
+    "functions": {
+      "title": "Funciones",
+      "crops": "Cada cultivo: cómo cultivarlo y qué vigilar",
+      "calendar": "Cuándo se siembra, se planta y se cosecha cada cultivo en tu zona",
+      "place": "Busca tu pueblo o usa tu ubicación",
+      "gardens": "Hasta tres huertos, cada uno con su lugar y su plan",
+      "sheet": "En la página de un cultivo, «Ver en el mapa» y «Ver en el calendario» muestran solo ese cultivo"
+    },
+    "account": {
+      "title": "Tu cuenta",
+      "intro": "Huerta te pide entrar con Google. Así tus huertos son los mismos en el móvil y en el ordenador.",
+      "kept": "Huerta guarda tu correo y tus huertos: sus nombres, sus planes y su lugar, redondeado a 1 km más o menos. Nunca sabe tu dirección.",
+      "delete": "Puedes borrar tu cuenta con todo lo que contiene cuando quieras: en Ayuda → Cuenta en un ordenador o en Configuración en un móvil."
+    },
+    "about": {
+      "title": "Sobre Huerta",
+      "description": "Huerta es la parte de Funges dedicada al huerto. Te dice qué cultivar, dónde ponerlo, cuándo plantarlo y qué necesita tu huerto esta semana, según el clima real del lugar donde está.",
+      "packet": "Un sobre de semillas da una sola época de siembra para todo un país. Huerta la calcula para tu lugar cada noche, con la nueva previsión y diez años del tiempo de allí.",
+      "status": "Huerta está en una primera versión. Sus consejos mejoran cada semana y vienen más cultivos.",
+      "keyFeatures": {
+        "title": "Características clave",
+        "forecast": "Consejos para tu lugar, con la previsión de esta noche",
+        "frost": "Fechas de heladas a partir de diez años de tiempo en tu zona",
+        "soil": "Tu suelo: arenoso o arcilloso, ácido o alcalino",
+        "growth": "Cada cultivo seguido según el calor que recibe"
+      }
+    },
+    "mission": {
+      "title": "Nuestra misión",
+      "learn": "Cultivar tu propia comida no debería costar años de prueba y error. Los buenos hortelanos conocen su tierra: cuándo se calienta el suelo, cuándo llega la última helada y qué se da bien allí. Huerta pone ese saber al alcance de cualquiera, esté donde esté su huerto.",
+      "climate": "El clima está cambiando y las fechas de siempre del sobre cambian con él. Las fechas de Huerta salen del tiempo de los últimos años en tu zona, no de un libro.",
+      "waste": "Sembrando a tiempo se pudren menos semillas en suelo frío y se pierden menos plantas por una helada tardía. Eso ahorra semillas, trabajo y agua."
+    },
+    "advice": {
+      "title": "Cómo se calculan los consejos",
+      "description": "Cada noche Huerta lee la nueva previsión del tiempo de cada lugar que cubre y la compara con lo que necesita cada cultivo.",
+      "monitorTitle": "Tiene en cuenta:",
+      "variables": {
+        "soil": "La temperatura del suelo, que decide cuándo nacen las semillas",
+        "frost": "Las heladas y las noches más frías de los próximos siete días",
+        "water": "La lluvia frente a lo que secan el sol y el viento",
+        "dates": "Cuándo suelen llegar la última y la primera helada en tu zona",
+        "ground": "Tu suelo: arenoso o arcilloso, ácido o alcalino",
+        "warmth": "El calor que ha recibido cada cultivo desde que se puso"
+      },
+      "goal": "Un cultivo se pone cuando el suelo está lo bastante caliente para él y tiene tiempo de crecer antes de que la helada o el calor acaben su temporada. Los meses siguientes salen de un año típico en tu zona, calculado igual.",
+      "methodology": {
+        "title": "Fuentes de datos y metodología",
+        "description": "Los consejos de esta semana salen de modelos del tiempo que se calculan cada noche. El calendario, las fechas de heladas y lo rápido que crece cada cultivo salen de diez años de tiempo pasado. Cómo cultivar cada planta sale de guías de horticultura."
+      },
+      "keyDatasets": {
+        "title": "Conjuntos de datos clave",
+        "icon": {
+          "title": "1. ICON-EU (Previsión para Europa)",
+          "description": "La previsión del servicio meteorológico alemán para Europa, en una malla de unos 7 km. Cada noche Huerta toma de ella los cinco días siguientes, hora a hora: temperatura del aire y del suelo, lluvia, viento y sol.",
+          "source": "Fuente: Deutscher Wetterdienst (DWD), Open Data",
+          "citation": "Data basis: Deutscher Wetterdienst (DWD), ICON-EU model forecasts."
+        },
+        "ecmwf": {
+          "title": "2. ECMWF Open Data (Previsión hasta el séptimo día)",
+          "description": "La previsión mundial del Centro Europeo. Alarga la previsión de Europa hasta el séptimo día y cubre el extremo norte, adonde no llega ICON-EU.",
+          "source": "Fuente: Centro Europeo de Previsiones Meteorológicas a Plazo Medio (ECMWF)",
+          "citation": "ECMWF open data, IFS forecasts. CC BY 4.0."
+        },
+        "nbm": {
+          "title": "3. National Blend of Models (Previsión de EE. UU.)",
+          "description": "La mezcla de modelos del tiempo de la NOAA para Estados Unidos, en una malla de 2,5 km. Da a los huertos de EE. UU. sus siete días.",
+          "source": "Fuente: NOAA National Weather Service, a través del programa NOAA Open Data Dissemination",
+          "citation": "National Blend of Models (NBM), NOAA/NWS. U.S. public domain."
+        },
+        "era5": {
+          "title": "4. Reanálisis ERA5 (Tiempo pasado)",
+          "description": "El registro del ECMWF del tiempo pasado, hecho con modelos y observaciones de todo el mundo. Diez años, de 2016 a 2025, dan a cada lugar sus fechas de heladas habituales, el año típico del calendario y el calor con el que crecen los cultivos.",
+          "source": "Fuente: Copernicus Climate Change Service (C3S), ECMWF",
+          "citation": "Citation: Hersbach, H., Bell, B., Berrisford, P., et al. (2023). ERA5 hourly data on single levels from 1940 to present. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). https://doi.org/10.24381/cds.adbb2d47. Copernicus Climate Change Service (C3S) (2019). ERA5 monthly averaged data on single levels from 1940 to present. C3S Climate Data Store (CDS). https://doi.org/10.24381/cds.f17050d7. Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)."
+        },
+        "soilgrids": {
+          "title": "5. SoilGrids (Suelo)",
+          "description": "Los mapas mundiales de suelos de ISRIC, modelados a partir de perfiles de suelo de todo el mundo. Huerta lee la arcilla, la arena y el pH de la capa de arriba en tu zona. Deciden cada cuánto regar, lo rápido que se calienta el suelo en primavera y qué cultivos necesitan cal.",
+          "source": "Fuente: ISRIC – World Soil Information",
+          "citation": "Citation: Poggio, L., de Sousa, L.M., Batjes, N.H., et al. (2021). SoilGrids 2.0: producing soil information for the globe with quantified spatial uncertainty. SOIL, 7, 217–240. CC BY 4.0."
+        },
+        "guides": {
+          "title": "6. Guías de horticultura",
+          "description": "Cómo cultivar cada planta: profundidad, marco de plantación, riego, abonado, pH y cuántas plantas poner. La página de cada cultivo cita sus propias fuentes.",
+          "source": "Fuente: Royal Horticultural Society (RHS) y servicios de extensión de universidades de EE. UU.",
+          "citation": "Entre ellos los servicios de extensión de Kansas State, Missouri, Virginia Tech, Cornell, Minnesota, Maryland, Connecticut, Georgia y Washington State."
+        },
+        "pests": {
+          "title": "7. Avisos de plagas",
+          "description": "Los avisos de mildiu llegan con varios días y noches seguidos de calor y humedad. Los avisos de moscas suman el calor desde enero y lo comparan con cuándo se cazaron en trampas la mosca de la zanahoria, la de la col y la de la cebolla.",
+          "source": "Fuente: AHDB y James Hutton Institute; NIBIO; University of Wisconsin, Michigan State University y Cornell University (NEWA)",
+          "citation": "Hutton Criteria (AHDB and James Hutton Institute, 2017). VIPS carrot fly model (NIBIO; Markkula et al. 1998). Cabbage maggot and onion maggot degree days (University of Wisconsin, Michigan State University, NEWA)."
+        },
+        "towns": {
+          "title": "8. GeoNames y Natural Earth (Pueblos)",
+          "description": "La búsqueda encuentra cada localidad de 5000 habitantes o más cerca de un lugar que cubre Huerta, en tu idioma cuando el nombre tiene traducción.",
+          "source": "Fuente: GeoNames; Natural Earth",
+          "citation": "GeoNames (geonames.org), CC BY 4.0. Made with Natural Earth, public domain."
+        }
+      }
+    }
   }
 }

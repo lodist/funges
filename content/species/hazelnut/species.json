@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Hazelnut",
-      "description": "Sweet, round nuts that grow on hazel trees",
-      "howTo": "Look for hazel trees in hedgerows and woodland edges in autumn"
+      "description": "Sweet, round nuts from hazel bushes.",
+      "howTo": "Look for hazel trees in hedgerows and woodland edges in autumn",
+      "guide": {
+        "identify": "Hazel is a shrub or small tree with many stems. Its leaves are round and doubly toothed, pointed at the tip and soft and downy underneath. In late winter yellow catkins hang from the bare twigs. The nuts grow in bunches of one to four. Each sits in a frilly, green, leafy husk that covers about three quarters of it. They turn brown as they ripen. North America's wild hazels are close relatives. The beaked hazelnut's husk forms a long bristly tube.",
+        "habitat": "It grows in the understorey of woods, in hedgerows and in scrub across Europe. In the south it is mostly found in hills and mountains. It fruits best in sun, at woodland edges. In the US the European hazel grows mainly in orchards in Oregon. The wild species grow in thickets, clearings and at woodland edges.",
+        "season": "The nuts come from late August to October. They are ready when the husk browns and they fall or come loose with a light shake. Squirrels, jays and dormice often get there first.",
+        "picking": "Gather fallen nuts or shake the branches lightly. Leave plenty for wildlife. Skip nuts with a small round hole, because a weevil larva has eaten the kernel. Skip light ones too. Avoid busy roadsides and sprayed field edges.",
+        "kitchen": "Once you're sure of the plant, eat them raw or roast them until the skins crack. Then rub the skins off in a rough cloth. Use them in cakes, pralines, pesto and salads. Hazelnuts are a common cause of nut allergy.",
+        "keeps": "Dry them in the shell in an airy place until the kernel is cream-coloured right through. Then store them somewhere cool and dry. Dried nuts keep up to a year in the fridge.",
+        "source": "Identification and habitat: Woodland Trust and Minnesota Department of Natural Resources. Drying and storage: Oregon State University Extension."
+      }
     },
     "it": {
       "name": "Nocciola",
-      "description": "Noci dolci e rotonde che crescono sui noccioli",
-      "howTo": "Cerca noccioli in siepi e bordi boschivi in autunno"
+      "description": "Frutti tondi e dolci dei cespugli di nocciolo.",
+      "howTo": "Cerca noccioli in siepi e bordi boschivi in autunno",
+      "guide": {
+        "identify": "Il nocciolo è un arbusto con tanti fusti o un alberello. Le foglie sono tonde e a doppia dentatura, appuntite in cima e morbide e pelose sotto. A fine inverno dai rami ancora spogli pendono gli amenti gialli. Le nocciole crescono a gruppi da una a quattro. Ognuna sta in un involucro verde e frastagliato, simile a una foglia, che la copre per circa tre quarti. Maturando diventano marroni. I noccioli selvatici del Nord America sono parenti stretti. Nel nocciolo cornuto l'involucro forma un lungo tubo ispido.",
+        "habitat": "Cresce nel sottobosco, nelle siepi e nelle boscaglie di tutta Europa. Al sud lo trovi soprattutto in collina e in montagna. Fa più frutti al sole, ai margini del bosco. Negli Stati Uniti il nocciolo europeo cresce soprattutto nei noccioleti dell'Oregon. Le specie selvatiche crescono nelle boscaglie, nelle radure e ai margini dei boschi.",
+        "season": "Le nocciole arrivano da fine agosto a ottobre. Sono pronte quando l'involucro diventa marrone. A quel punto cadono da sole o si staccano scuotendo appena il ramo. Scoiattoli, ghiandaie e moscardini spesso ci arrivano prima di te.",
+        "picking": "Raccogli quelle cadute o scuoti appena i rami. Lasciane tante per gli animali. Scarta quelle con un forellino rotondo, perché la larva del balanino ha mangiato il seme. Scarta anche quelle leggere. Evita i bordi delle strade trafficate e dei campi trattati.",
+        "kitchen": "Quando sei sicuro della pianta, mangiale crude o tostale finché la pellicina si spacca. Poi strofinale in un canovaccio ruvido per toglierla. Usale in torte, praline, pesto e insalate. Le nocciole sono una causa frequente di allergia alla frutta a guscio.",
+        "keeps": "Falle asciugare nel guscio in un posto arieggiato, finché il seme è color crema fino al centro. Poi conservale al fresco e all'asciutto. Secche durano fino a un anno in frigo.",
+        "source": "Riconoscimento e habitat: Woodland Trust e Minnesota Department of Natural Resources. Essiccazione e conservazione: Oregon State University Extension."
+      }
     },
     "fr": {
       "name": "Noisette",
-      "description": "Noix rondes et sucrées poussant sur les noisetiers",
-      "howTo": "Cherchez les noisetiers dans les haies et lisières de bois en automne"
+      "description": "Des noisettes rondes et sucrées, sur les noisetiers.",
+      "howTo": "Cherchez les noisetiers dans les haies et lisières de bois en automne",
+      "guide": {
+        "identify": "Le noisetier est un arbuste à plusieurs tiges ou un petit arbre. Ses feuilles sont rondes et doublement dentées, pointues au bout, douces et duveteuses dessous. À la fin de l'hiver, des chatons jaunes pendent des rameaux nus. Les noisettes poussent par grappes de une à quatre. Chacune est dans une enveloppe verte et frangée, comme une petite feuille, qui la couvre aux trois quarts environ. Elles brunissent en mûrissant. Les noisetiers sauvages d'Amérique du Nord sont de proches parents. Chez le noisetier à long bec, l'enveloppe forme un long tube hérissé de poils.",
+        "habitat": "Il pousse dans les sous-bois, les haies et les fourrés, dans toute l'Europe. Dans le sud, on le trouve surtout en colline et en montagne. Il donne le plus de noisettes au soleil, en lisière. Aux États-Unis, le noisetier européen pousse surtout dans des vergers de l'Oregon. Les espèces sauvages poussent dans les fourrés, les clairières et en lisière de bois.",
+        "season": "Les noisettes arrivent de fin août à octobre. Elles sont prêtes quand l'enveloppe brunit et qu'elles tombent ou se détachent si l'on secoue doucement. Les écureuils, les geais et les muscardins passent souvent avant vous.",
+        "picking": "Ramassez les noisettes tombées, ou secouez doucement les branches. Laissez-en beaucoup pour les animaux. Écartez celles qui ont un petit trou rond, car une larve de balanin a mangé l'amande. Écartez aussi celles qui sont légères. Évitez les bords de routes passantes et les bords de champs traités.",
+        "kitchen": "Une fois l'arbuste identifié avec certitude, mangez-les crues ou faites-les griller jusqu'à ce que la peau se fendille. Puis frottez-les dans un torchon rêche pour enlever la peau. Utilisez-les dans les gâteaux, le praliné, le pesto et les salades. La noisette est une cause fréquente d'allergie aux fruits à coque.",
+        "keeps": "Faites-les sécher dans leur coque, dans un endroit aéré, jusqu'à ce que l'amande soit crème jusqu'au cœur. Puis gardez-les au frais et au sec. Sèches, elles se gardent jusqu'à un an au réfrigérateur.",
+        "source": "Identification et habitat : Woodland Trust et Minnesota Department of Natural Resources. Séchage et conservation : université d'État de l'Oregon (OSU Extension)."
+      }
     },
     "de": {
       "name": "Haselnuss",
-      "description": "Süsse, runde Nüsse, die an Haselsträuchern wachsen",
-      "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst"
+      "description": "Süsse, runde Nüsse vom Haselstrauch.",
+      "howTo": "Suche Haselsträucher in Hecken und Waldrändern im Herbst",
+      "guide": {
+        "identify": "Die Hasel ist ein Strauch oder kleiner Baum mit vielen Stämmen. Ihre Blätter sind rund und doppelt gesägt, vorne zugespitzt und unten weich und flaumig. Im Spätwinter hängen gelbe Kätzchen an den kahlen Zweigen. Die Nüsse wachsen in Büscheln zu eins bis vier. Jede sitzt in einer gefransten grünen Blatthülle, die etwa drei Viertel von ihr bedeckt. Beim Reifen werden sie braun. Die wilden Haseln Nordamerikas sind nahe Verwandte. Bei der Schnabel-Hasel bildet die Hülle eine lange, borstige Röhre.",
+        "habitat": "Sie wächst im Unterholz von Wäldern, in Hecken und Gebüschen in ganz Europa. Im Süden findest du sie vor allem im Hügel- und Bergland. Am meisten trägt sie in der Sonne, am Waldrand. In den USA wächst die Europäische Hasel vor allem in Plantagen in Oregon. Die wilden Arten wachsen in Dickichten, auf Lichtungen und an Waldrändern.",
+        "season": "Die Nüsse kommen von Ende August bis Oktober. Sie sind reif, wenn die Hülle braun wird und sie herunterfallen oder sich bei leichtem Schütteln lösen. Eichhörnchen, Eichelhäher und Haselmäuse sind oft schneller als du.",
+        "picking": "Sammle heruntergefallene Nüsse oder schüttle die Zweige leicht. Lass genug für die Tiere übrig. Lass Nüsse mit einem kleinen runden Loch liegen, denn da hat eine Rüsselkäferlarve den Kern gefressen. Leichte Nüsse lässt du auch liegen. Meide stark befahrene Strassenränder und gespritzte Feldränder.",
+        "kitchen": "Wenn du dir bei der Pflanze sicher bist, iss sie roh oder röste sie, bis die Haut aufplatzt. Dann reibst du die Haut in einem rauen Tuch ab. Sie passen in Kuchen, Pralinen, Pesto und Salate. Haselnüsse lösen häufig Nussallergien aus.",
+        "keeps": "Trockne sie in der Schale an einem luftigen Ort, bis der Kern durch und durch cremefarben ist. Dann lagerst du sie kühl und trocken. Getrocknete Nüsse halten sich im Kühlschrank bis zu einem Jahr.",
+        "source": "Bestimmung und Standort: Woodland Trust und Minnesota Department of Natural Resources. Trocknen und Lagern: Oregon State University Extension."
+      }
     },
     "es": {
       "name": "Avellana",
-      "description": "Frutos secos dulces y redondos que crecen en avellanos",
-      "howTo": "Busca avellanos en setos y bordes de bosques en otoño"
+      "description": "Frutos dulces y redondos del avellano.",
+      "howTo": "Busca avellanos en setos y bordes de bosques en otoño",
+      "guide": {
+        "identify": "El avellano es un arbusto de muchos tallos o un arbolito. Sus hojas son redondeadas, con doble dentado y acabadas en punta. Por debajo son suaves y vellosas. A finales de invierno cuelgan de las ramas desnudas unos amentos amarillos. Las avellanas crecen en grupos de una a cuatro. Cada una va metida en una cubierta verde con flecos, como de hojas, que la tapa en unas tres cuartas partes. Al madurar se vuelven pardas. Los avellanos silvestres de Norteamérica son parientes cercanos. En el avellano de pico, la cubierta forma un tubo largo y erizado.",
+        "habitat": "Crece en el sotobosque, en setos y en matorrales de toda Europa. En el sur se encuentra sobre todo en colinas y montañas. Da más fruto al sol, en los bordes del bosque. En EE. UU. el avellano europeo crece sobre todo en plantaciones de Oregón. Las especies silvestres crecen en matorrales, claros y bordes de bosque.",
+        "season": "Las avellanas salen de finales de agosto a octubre. Están listas cuando la cubierta se pone parda y caen o se sueltan al sacudir un poco la rama. Ardillas, arrendajos y lirones suelen llegar antes.",
+        "picking": "Recoge las que han caído o sacude un poco las ramas. Deja bastantes para los animales. Descarta las que tengan un agujerito redondo, porque una larva de gorgojo se ha comido el fruto. Descarta también las que pesen poco. Evita los bordes de carreteras con mucho tráfico y las lindes de campos fumigados.",
+        "kitchen": "Cuando tengas clara la planta, cómelas crudas o tuéstalas hasta que la piel se agriete. Luego quítales la piel frotándolas con un paño áspero. Úsalas en bizcochos, praliné, pesto y ensaladas. Las avellanas son una causa frecuente de alergia a los frutos secos.",
+        "keeps": "Sécalas con cáscara en un sitio aireado hasta que el fruto sea color crema hasta el centro. Luego guárdalas en un sitio fresco y seco. Secas, aguantan hasta un año en la nevera.",
+        "source": "Identificación y hábitat: Woodland Trust y Departamento de Recursos Naturales de Minnesota. Secado y conservación: extensión de la Universidad Estatal de Oregón."
+      }
     },
     "pt": {
       "name": "Avelã",
-      "description": "Nozes doces e arredondadas que crescem em aveleiras",
-      "howTo": "Procure aveleiras em cercas vivas e bordas de bosques no outono"
+      "description": "Frutos secos doces e redondos, das aveleiras.",
+      "howTo": "Procure aveleiras em cercas vivas e bordas de bosques no outono",
+      "guide": {
+        "identify": "A aveleira é um arbusto ou uma pequena árvore com muitos troncos. As folhas são redondas e duplamente dentadas, acabam em bico e são macias e penugentas por baixo. No fim do inverno pendem amentilhos amarelos dos ramos nus. As avelãs crescem em cachos de uma a quatro. Cada uma está metida num invólucro verde, folhoso e franjado, que lhe cobre uns três quartos. Ficam castanhas ao amadurecer. As aveleiras silvestres da América do Norte são parentes próximas. Na aveleira-de-bico, o invólucro forma um tubo comprido e áspero.",
+        "habitat": "Cresce por baixo das árvores maiores nos bosques, em sebes e em matagais por toda a Europa. No sul encontra-se sobretudo nas serras. Dá mais fruto ao sol, nas orlas dos bosques. Nos EUA, a aveleira europeia cresce sobretudo em pomares do Oregon. As espécies silvestres crescem em matagais, clareiras e orlas de bosque.",
+        "season": "As avelãs vêm do fim de agosto a outubro. Estão prontas quando o invólucro fica castanho e elas caem ou se soltam ao abanar levemente o ramo. Os esquilos, os gaios e os arganazes chegam lá muitas vezes primeiro.",
+        "picking": "Apanhe as que caíram ou abane levemente os ramos. Deixe bastantes para os animais. Ponha de parte as que têm um furinho redondo, porque uma larva de gorgulho comeu o miolo. Ponha de parte também as que pesam pouco. Evite bermas de estradas movimentadas e bordas de campos pulverizados.",
+        "kitchen": "Quando tiver a certeza da planta, coma-as cruas ou torre-as até a pele estalar. Depois esfregue-as num pano áspero para lhes tirar a pele. Use-as em bolos, pralinés, pesto e saladas. As avelãs são uma causa frequente de alergia aos frutos de casca rija.",
+        "keeps": "Seque-as com casca num sítio arejado, até o miolo ficar cor de creme até ao centro. Depois guarde-as num sítio fresco e seco. Secas, aguentam até um ano no frigorífico.",
+        "source": "Identificação e habitat: Woodland Trust e Departamento de Recursos Naturais do Minnesota. Secagem e conservação: Oregon State University Extension."
+      }
     }
   },
   "identification": {
@@ -215,6 +269,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2875979, 2876060, 2876032] }
+    "rangePrior": {
+      "taxonKeys": [2875979, 2876060, 2876032]
+    }
   }
 }

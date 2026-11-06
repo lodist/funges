@@ -59,298 +59,829 @@
   "list_of_species": {
     "chant": {
       "name": "Galletti",
-      "description": "Un fungo giallo dorato con una forma a imbuto distintiva e aroma fruttato",
-      "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi"
+      "description": "Un fungo giallo oro a forma di imbuto. Ha un profumo fruttato, un po' di albicocca.",
+      "howTo": "Cercali nelle foreste decidue, specialmente vicino a querce e faggi",
+      "guide": {
+        "identify": "I galletti sono giallo tuorlo o giallo oro e arrivano a 10 cm di larghezza. Il cappello è un imbuto basso, con il bordo ondulato e arrotolato verso il basso. Sotto non trovi vere lamelle, ma pieghe ottuse e biforcate che scendono lungo il gambo. Non puoi staccarle una per una come le lamelle. Il gambo è pieno e la carne è soda, da bianca a giallo pallido. Ha un leggero profumo di albicocca. Ci sono due sosia da conoscere. Il fungo dell'olivo (Omphalotus) ha lamelle vere, sottili e fitte, cresce a cespi su legno o su radici interrate ed è arancione anche dentro. Il falso galletto (Hygrophoropsis aurantiaca) è di un arancione più carico ed è molle. Anche lui ha lamelle sottili e fitte.",
+        "habitat": "I galletti vivono legati alle radici degli alberi. Crescono sotto querce, faggi, betulle, castagni, abeti rossi e pini, soprattutto su terreno acido in mezzo al muschio. Spesso li trovi sulle scarpate e ai bordi dei sentieri. Sono comuni in tutta Europa, dalla pianura alla montagna. In Nord America il galletto è in realtà un gruppo di specie vicine. Ci sono per esempio Cantharellus flavus a est, C. californicus sotto le querce sempreverdi della California e C. cascadensis nel nord-ovest sul Pacifico.",
+        "season": "Nell'Europa centrale e del nord escono da fine giugno a ottobre, dopo piogge calde e abbondanti. Nel sud Europa la stagione comincia più tardi e dura di più, fino all'inverno nei querceti mediterranei. Nell'est degli Stati Uniti escono d'estate dopo piogge calde. A ovest seguono le piogge d'autunno, e in California vanno avanti fino all'inverno.",
+        "picking": "Tagliali alla base o staccali con una torsione, e togli la terra già sul posto. Lascia crescere i piccoli. In Germania sono particolarmente protetti. Lì se ne possono raccogliere solo piccole quantità, per uso personale. I cantoni svizzeri, le regioni italiane, parte della Francia e della Spagna e i terreni pubblici degli Stati Uniti hanno limiti o permessi propri. Informati sulle regole del posto.",
+        "kitchen": "Quando sei sicuro di averli riconosciuti, puliscili con un pennello invece di lavarli. Si inzuppano d'acqua. Non mangiarli mai crudi. Cuocili bene, prima in padella senza grassi finché hanno perso l'acqua, poi nel burro. Hanno un sapore delicato, fruttato e un po' pepato. Sotto i denti restano sodi. Stanno bene con uova, panna, patate, pasta e pollo.",
+        "keeps": "In frigo durano qualche giorno, nella carta e non nella plastica. Secchi diventano duri. Per tenerli più a lungo, saltali nel burro e congelali.",
+        "source": "Identificazione e habitat: First Nature (Regno Unito) e MushroomExpert.com. Specie nordamericane e sosia: University of Florida IFAS Extension. Protezione: ordinanza federale tedesca sulla protezione delle specie. Stagione: dati GBIF."
+      }
     },
     "mushroom": {
       "name": "Porcino",
-      "description": "Il porcino per eccellenza: cappello bruno, gambo tozzo e reticolato, pori bianchi che non virano al blu",
-      "howTo": "Si trova nelle foreste di conifere e latifoglie, spesso vicino ad abeti e faggi, da fine estate all'autunno"
+      "description": "Il porcino: un fungo tozzo con il cappello bruno, il gambo chiaro con il reticolo e i pori bianchi che non virano mai al blu.",
+      "howTo": "Si trova nelle foreste di conifere e latifoglie, spesso vicino ad abeti e faggi, da fine estate all'autunno",
+      "guide": {
+        "identify": "Il porcino è un boleto massiccio, con il cappello dal nocciola chiaro al castano. Il cappello è liscio e untuoso, ma mai vellutato. Spesso ha un sottile orlo biancastro. I pori da giovani sono bianchi, poi diventano gialli e verde oliva. Se li premi non cambiano colore. Il gambo è chiaro e in alto ha un fine reticolo bianco. La carne è bianca e al taglio non cambia colore. Pori rosa e un reticolo marrone scuro sono del porcino amaro (Tylopilus felleus). Pori rossi o arancioni sono di un altro boleto, che può essere tossico. Vale lo stesso se la carne vira al blu.",
+        "habitat": "Cresce con abete rosso, pino, faggio, quercia, castagno e betulla, su terreno acido. Lo trovi dalla pianura fino al limite del bosco, in tutta Europa. In Nord America cresce soprattutto negli stati sul Pacifico. Nelle Montagne Rocciose del sud è più comune il porcino delle Rocciose, più rosso.",
+        "season": "La stagione buona va da agosto a ottobre. In montagna comincia a giugno e al sud dura fino a novembre. Sulla costa pacifica degli Stati Uniti arriva con le piogge d'autunno. Di solito la buttata arriva circa due settimane dopo una bella pioggia che segue un periodo caldo e asciutto.",
+        "picking": "Staccalo ruotandolo oppure taglialo alla base. Lascia i piccoli e quelli vecchi o bacati. In Germania puoi raccoglierne solo poco, per uso personale. In gran parte delle regioni italiane serve il tesserino. Negli Stati Uniti ogni foresta nazionale ha le sue regole.",
+        "kitchen": "Prima assicurati di averlo riconosciuto con certezza. Puliscilo con uno spazzolino e taglialo per il lungo per vedere se è bacato. Fallo in padella, oppure usalo nel risotto, nella pasta e nelle zuppe. Cuocilo bene. Non tutti lo tollerano crudo, e quelli vecchi o conservati male fanno male allo stomaco.",
+        "keeps": "Tienilo al fresco, nella carta e non nella plastica, per un giorno o due. Si secca benissimo a fette sottili e si congela bene.",
+        "source": "Identificazione e habitat: Regione Piemonte, First Nature e MushroomExpert. Stagione: dati GBIF. Regole: BArtSchV (Germania) e US Forest Service. Cucina: Regione Piemonte e VIDAL."
+      }
     },
     "morel": {
       "name": "Morchella",
-      "description": "Un fungo distintivo con cappello a nido d'ape che appare in primavera",
-      "howTo": "Cerca in aree disturbate, foreste bruciate e vicino ad alberi morti in primavera"
+      "description": "Un fungo con il cappello a nido d'ape. Spunta in primavera.",
+      "howTo": "Cerca in aree disturbate, foreste bruciate e vicino ad alberi morti in primavera",
+      "guide": {
+        "identify": "Il cappello delle spugnole è un nido d'ape di alveoli e costolature. Può essere giallastro, grigio-bruno o quasi nero e sta su un gambo chiaro. Taglia ogni spugnola a metà per il lungo. La spugnola vera è un'unica cavità vuota, dalla punta del cappello alla base del gambo. Il cappello è saldato al gambo lungo il bordo inferiore. La falsa spugnola (Gyromitra esculenta) è mortale. Ha una testa bruno-rossiccia, ripiegata come un cervello. Dentro è divisa in camere o piena di un tessuto cotonoso. Nemmeno la cottura la rende sicura. La Verpa bohemica ha il cappello attaccato solo in cima, come un ditale. Il suo gambo è pieno di un midollo cotonoso.",
+        "habitat": "Cercale per terra nei boschi radi di latifoglie e nei boschi lungo i fiumi, nei vecchi frutteti e nei giardini. Spesso crescono vicino a frassini, olmi, pioppi o meli, su terreno calcareo o sulla pacciamatura di corteccia. Nell'est degli Stati Uniti cercale vicino agli olmi che stanno morendo, ai frassini e ai vecchi meli. Nell'ovest spuntano nei boschi di conifere la primavera dopo un incendio.",
+        "season": "Le spugnole escono da marzo a maggio. Nelle pianure del sud Europa arrivano prima. Al nord e in montagna arrivano più tardi, fino a giugno. Escono dopo piogge di primavera abbondanti, quando il terreno si scalda. Sulle montagne dell'ovest degli Stati Uniti arrivano con lo scioglimento della neve.",
+        "picking": "Taglia il gambo a filo del terreno con il coltello. Mettile in un cesto o in una retina. In Germania tutte le spugnole sono protette e puoi raccoglierne solo poche, per uso personale. Altrove molte regioni e le foreste nazionali degli Stati Uniti fissano dei limiti o chiedono un permesso. Informati sulle regole del posto.",
+        "kitchen": "Quando le hai riconosciute con certezza, cuoci bene le spugnole. Crude o poco cotte sono tossiche, anche quelle secche. L'ANSES, l'agenzia francese per la sicurezza alimentare, consiglia da 20 a 30 minuti in padella per i funghi selvatici. Chi ne ha mangiate tante in un pasto ha avuto capogiri e tremori, anche se erano cotte. Quindi non esagerare con le porzioni. Stanno bene con burro, panna, asparagi e pollo.",
+        "keeps": "In frigo durano due giorni, in un sacchetto di carta. Si seccano benissimo. Metti in ammollo quelle secche, poi filtra l'acqua dell'ammollo e versala nel sugo. Cuocile per lo stesso tempo di quelle fresche.",
+        "source": "Identificazione e habitat: Missouri Department of Conservation e First Nature. Tossicità e cottura: ANSES e Lagrange e Vernoux (Toxins, 2020). Regole: ordinanza federale tedesca sulla protezione delle specie (BArtSchV) e US Forest Service. Stagione: segnalazioni GBIF."
+      }
     },
     "blackberry": {
       "name": "More",
-      "description": "Bacche dolci, viola scuro che crescono su cespugli spinosi",
-      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate"
+      "description": "Frutti dolci viola scuro che crescono su cespugli spinosi.",
+      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate",
+      "guide": {
+        "identify": "Il rovo ha lunghi fusti ad arco, armati di spine uncinate. Ogni foglia ha tre o cinque foglioline dentate, aperte come una mano. Sopra sono verde scuro, sotto più chiare. I fiori sono bianchi o rosa, con cinque petali. Le more sono fatte di tanti piccoli granelli rotondi. Passano dal verde al rosso e poi al nero lucido. Una mora matura si stacca portandosi dietro il suo cuore bianco. Il lampone invece lascia il cuore sulla pianta ed è vuoto dentro. Rubus fruticosus è un gruppo di centinaia di rovi molto vicini tra loro. Si usano tutti allo stesso modo.",
+        "habitat": "Cercalo nelle siepi, ai margini e nelle radure dei boschi, tra gli arbusti, negli incolti e sulle scarpate della ferrovia. Cresce su quasi ogni terreno, in tutta Europa tranne l'estremo nord. Negli Stati Uniti i rovi nativi crescono nei campi abbandonati e ai margini dei boschi. Il rovo dell'Himalaya, arrivato da fuori, forma roveti fittissimi nel nord-ovest sul Pacifico e in California.",
+        "season": "Nel sud dell'Europa e negli Stati Uniti le more maturano da luglio. Più a nord si comincia a fine luglio o ad agosto. Continuano fino alle prime gelate, a settembre e ottobre. Sullo stesso rovo trovi spesso insieme fiori, more verdi e more mature.",
+        "picking": "Prendi solo le more ben nere che si staccano tirando appena. Lascia quelle rosse e lasciane un po' per gli animali. Evita i bordi delle strade trafficate e i margini trattati col diserbante. In Europa centrale c'è da pensare all'echinococco della volpe. L'autorità sanitaria bavarese (LGL) dice che mangiare bacche selvatiche non si è dimostrato un fattore di rischio. Consiglia comunque di lavarle bene. Solo il calore sopra i 60 °C ne uccide le uova. Il congelatore di casa no.",
+        "kitchen": "Quando sei certo della pianta, puoi mangiarle crude o cotte. Mettile in crostate e crumble con le mele, oppure fanne marmellata, gelatina, sciroppo e aceto. Sciacquale appena prima di usarle e controlla che non ci siano insetti. Il sapore cambia da un rovo all'altro, dal dolce all'aspro.",
+        "keeps": "Non lavate e stese in una scatola bassa, durano un giorno o due in frigo. Per congelarle stendile su un vassoio e mettile in sacchetti quando sono dure. Congelate vanno bene per cucinare.",
+        "source": "Identificazione, habitat e usi: Woodland Trust. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "elderberry": {
       "name": "Sambuco",
-      "description": "Piccole bacche viola scuro che crescono in grappoli sui sambuchi",
-      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in autunno"
+      "description": "Piccole bacche viola scuro che pendono a grappoli dal sambuco.",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in autunno",
+      "guide": {
+        "identify": "Il sambuco è un arbusto o un alberello con la corteccia grigio-bruna, sugherosa e solcata. Dentro i rametti c'è un midollo bianco e morbido. Le foglie sono opposte, con cinque-sette foglioline dentate. Il sambuco americano può averne fino a undici. A inizio estate porta ombrelle piatte di fiori color crema e profumati. Poi diventano larghi grappoli di piccole bacche nero-viola su gambetti rossastri. Quando sono maturi, i grappoli pendono per il peso. L'ebbio (Sambucus ebulus) è un'erba morbida che secca ogni inverno. I suoi grappoli stanno dritti sopra le foglie. Il sambuco rosso (Sambucus racemosa) ha bacche rosse in grappoli dritti, a cupola. La fitolacca, o uva turca (Phytolacca americana), è un'erba alta con fusti lisci rosso porpora. Le sue bacche sono infilate lungo lunghe spighe, non raccolte in grappoli piatti.",
+        "habitat": "Cercalo nelle siepi, ai margini dei boschi, tra gli arbusti, lungo i fiumi, negli incolti e ai bordi dei paesi. Ama il terreno ricco e umido e cresce in tutta Europa tranne l'estremo nord. Nell'est degli Stati Uniti il sambuco americano nativo cresce lungo i ruscelli, nei fossi umidi e ai bordi dei campi. A ovest trovi il sambuco blu, sui pendii aperti e nelle valli. Le sue bacche mature hanno una patina azzurra, come di polvere.",
+        "season": "Le bacche maturano a inizio autunno. Nelle pianure calde cominciano a fine agosto. Più a nord e in montagna vanno avanti per tutto settembre e fino a ottobre. Le ombrelle di fiori arrivano prima, da fine maggio.",
+        "picking": "Taglia i grappoli interi con le forbici quando tutte le bacche sono nero-viola. Lascia sulla pianta quelli che hanno ancora bacche verdi o rosse. Evita i bordi delle strade trafficate e lascia tante bacche su ogni pianta per gli uccelli.",
+        "kitchen": "Le bacche di sambuco vanno cotte. Bacche crude o acerbe, gambetti, foglie e semi contengono sostanze che durante la digestione liberano cianuro. Possono dare nausea, vomito e crampi allo stomaco. Una cottura completa le distrugge. Quando sei certo di averle riconosciute, sgrana le bacche dai gambetti con una forchetta. Butta le bacche verdi e ogni pezzetto di gambo. Poi falle cuocere piano per farne sciroppo, gelatina, succo, zuppa o ripieno per torte. Il sapore è scuro, terroso e acidulo. Sta bene con mela, pera, cannella e limone. Non usare mai in cucina le bacche del sambuco rosso.",
+        "keeps": "I grappoli freschi durano un giorno o due in frigo. Se li congeli interi, poi le bacche si staccano facilmente dai gambetti. Congelate o secche, le bacche vanno comunque cotte prima di mangiarle.",
+        "source": "Identificazione e habitat: Woodland Trust. Tossicità, cottura e conservazione: servizio di extension della Oregon State University."
+      }
     },
     "nettle": {
       "name": "Ortica",
-      "description": "Una pianta verde nutriente con peli urticanti che deve essere cotta",
-      "howTo": "Trovata in aree disturbate, siepi e bordi boschivi in primavera ed estate"
+      "description": "Una pianta verde nutriente con peli urticanti. Va sempre cotta prima di mangiarla.",
+      "howTo": "Trovata in aree disturbate, siepi e bordi boschivi in primavera ed estate",
+      "guide": {
+        "identify": "Le ortiche crescono dritte, con il fusto quadrato e le foglie a coppie, una di fronte all'altra. Le foglie sono a cuore o ovali, appuntite e con denti grossi. Fusto e foglie sono coperti di peli urticanti. Da inizio estate, dove la foglia si attacca al fusto, pendono sottili grappoli di minuscoli fiori verdastri. Le false ortiche le somigliano, ma non pungono. In più hanno vistosi fiori a labbro, bianchi, gialli o viola.",
+        "habitat": "Le ortiche formano macchie fitte su terreno ricco e umido. Cercale ai margini dei boschi, sulle rive, nei fossi e lungo le siepi. Le trovi anche intorno a cascine e ruderi. Sono comuni in tutta Europa. Al sud stanno soprattutto in posti umidi e ombrosi. Crescono anche in quasi tutti gli Stati Uniti, soprattutto lungo i torrenti e nei boschi radi e umidi.",
+        "season": "I germogli spuntano da febbraio nelle zone miti e da marzo più a nord. Puoi raccoglierle finché la pianta non fiorisce, più o meno da giugno. Le macchie tagliate o falciate rimettono germogli nuovi. Così fai un secondo raccolto a fine estate e in autunno.",
+        "picking": "Metti i guanti. Taglia con le forbici le prime coppie di foglie in cima e lascia le radici. Evita i bordi delle strade, i margini dei campi trattati e i sentieri dove si portano i cani. Le ortiche danno da mangiare anche ai bruchi di molte farfalle.",
+        "kitchen": "Le ortiche vanno sempre cotte o sbollentate prima di mangiarle. Il calore toglie il pizzicore. Anche una buona essiccazione lo toglie. Butta le cime lavate in acqua bollente salata per qualche minuto. Poi usale come gli spinaci, in minestre, risotti, frittate o pesto. Sanno di spinaci, ma un po' più terrosi.",
+        "keeps": "Sbollentale, strizzale e congelale a porzioni: così durano mesi. Per le tisane, secca le foglie all'ombra in un posto arieggiato.",
+        "source": "Riconoscimento, habitat e cucina: NC State Extension e Woodland Trust. Stagione: Woodland Trust e segnalazioni GBIF."
+      }
     },
     "dandelion": {
       "name": "Tarassaco",
-      "description": "Un'erbaccia comune con fiori gialli brillanti e foglie commestibili",
-      "howTo": "Trovato in prati, praterie e aree disturbate durante la stagione di crescita"
+      "description": "Un'erbaccia comune con fiori giallo acceso. Le sue foglie si mangiano.",
+      "howTo": "Trovato in prati, praterie e aree disturbate durante la stagione di crescita",
+      "guide": {
+        "identify": "Il tarassaco, o dente di leone, cresce a rosetta raso terra. Le foglie sono senza peli e profondamente frastagliate. I loro denti puntano indietro, verso il centro. Se spezzi foglie o steli, esce un lattice bianco. Ogni stelo del fiore è senza foglie, senza rami e vuoto dentro. In cima porta un solo fiore giallo, fatto di tanti fiorellini a linguetta. Dopo arriva il soffione, una palla bianca di semi. La costolina ha steli ramificati e pieni e foglie pelose. I Leontodon hanno sulle foglie peli biforcati. I grespini portano più fiori su fusti con le foglie. Raccogli solo le piante che corrispondono in tutti i punti.",
+        "habitat": "Cresce nei prati, nei giardini, nei pascoli, ai bordi delle strade e negli incolti, al sole, dalla pianura alla montagna. In Europa lo trovi quasi ovunque. Negli Stati Uniti è stato portato dall'Europa e oggi cresce in tutto il paese.",
+        "season": "A inizio primavera arriva una grande fioritura, soprattutto ad aprile e maggio. Nel sud più mite arriva prima. Dopo, qualche fiore spunta qua e là fino all'autunno. Le foglie sono meno amare a inizio primavera, prima che compaiano i primi boccioli.",
+        "picking": "Taglia le foglie giovani alla base. I fiori raccoglili in una giornata di sole, quando sono ben aperti. Lasciane tanti per le prime api. Evita i prati trattati col diserbante, i bordi delle strade e i posti dove si portano i cani. Scava le radici solo dove il proprietario te lo permette, per esempio nel tuo giardino.",
+        "kitchen": "Quando sei sicuro della pianta, mangia le foglie giovani crude in insalata. Sono piacevolmente amare, come nell'insalata francese con la pancetta. Le foglie più vecchie lessale per circa 10 minuti, così perdono un po' d'amaro. Poi ripassale in padella con aglio e olio. I fiori usali cotti. Puoi farli in frittelle, oppure cuocerli con zucchero e limone fino a uno sciroppo denso, il cosiddetto miele di tarassaco. Le radici pulite e tostate fanno un surrogato del caffè. Mangiate in quantità, le radici sono lassative. Il lattice può irritare la pelle. Chi è allergico alle composite può avere una reazione, quindi assaggiane prima un po'.",
+        "keeps": "Le foglie durano qualche giorno in frigo in un sacchetto. I fiori usali subito dopo averli colti, perché si chiudono presto. Le radici tostate si conservano in un barattolo ermetico.",
+        "source": "Identificazione: BSBI e NC State Extension. Raccolta e cucina: University of Wisconsin-Madison Extension e Colorado State University Extension. Sicurezza: National Center for Complementary and Integrative Health (Stati Uniti)."
+      }
     },
     "hazelnut": {
       "name": "Nocciola",
-      "description": "Noci dolci e rotonde che crescono sui noccioli",
-      "howTo": "Cerca noccioli in siepi e bordi boschivi in autunno"
+      "description": "Frutti tondi e dolci dei cespugli di nocciolo.",
+      "howTo": "Cerca noccioli in siepi e bordi boschivi in autunno",
+      "guide": {
+        "identify": "Il nocciolo è un arbusto con tanti fusti o un alberello. Le foglie sono tonde e a doppia dentatura, appuntite in cima e morbide e pelose sotto. A fine inverno dai rami ancora spogli pendono gli amenti gialli. Le nocciole crescono a gruppi da una a quattro. Ognuna sta in un involucro verde e frastagliato, simile a una foglia, che la copre per circa tre quarti. Maturando diventano marroni. I noccioli selvatici del Nord America sono parenti stretti. Nel nocciolo cornuto l'involucro forma un lungo tubo ispido.",
+        "habitat": "Cresce nel sottobosco, nelle siepi e nelle boscaglie di tutta Europa. Al sud lo trovi soprattutto in collina e in montagna. Fa più frutti al sole, ai margini del bosco. Negli Stati Uniti il nocciolo europeo cresce soprattutto nei noccioleti dell'Oregon. Le specie selvatiche crescono nelle boscaglie, nelle radure e ai margini dei boschi.",
+        "season": "Le nocciole arrivano da fine agosto a ottobre. Sono pronte quando l'involucro diventa marrone. A quel punto cadono da sole o si staccano scuotendo appena il ramo. Scoiattoli, ghiandaie e moscardini spesso ci arrivano prima di te.",
+        "picking": "Raccogli quelle cadute o scuoti appena i rami. Lasciane tante per gli animali. Scarta quelle con un forellino rotondo, perché la larva del balanino ha mangiato il seme. Scarta anche quelle leggere. Evita i bordi delle strade trafficate e dei campi trattati.",
+        "kitchen": "Quando sei sicuro della pianta, mangiale crude o tostale finché la pellicina si spacca. Poi strofinale in un canovaccio ruvido per toglierla. Usale in torte, praline, pesto e insalate. Le nocciole sono una causa frequente di allergia alla frutta a guscio.",
+        "keeps": "Falle asciugare nel guscio in un posto arieggiato, finché il seme è color crema fino al centro. Poi conservale al fresco e all'asciutto. Secche durano fino a un anno in frigo.",
+        "source": "Riconoscimento e habitat: Woodland Trust e Minnesota Department of Natural Resources. Essiccazione e conservazione: Oregon State University Extension."
+      }
     },
     "garlic": {
       "name": "Aglio Orsino",
-      "description": "Un'erba pungente con foglie larghe e fiori bianchi",
-      "howTo": "Trovato in boschi decidui in primavera, spesso forma grandi macchie"
+      "description": "Un'erba selvatica dall'odore forte, con foglie larghe e fiori bianchi.",
+      "howTo": "Trovato in boschi decidui in primavera, spesso forma grandi macchie",
+      "guide": {
+        "identify": "Ogni foglia di aglio orsino nasce da sola dal terreno, su un picciolo sottile tutto suo. La lamina è morbida, verde vivo, ovale e appuntita, con nervature parallele. Sotto è opaca. Da aprile uno stelo senza foglie porta un'ombrella tonda di fiori bianchi a stella. Se stropicci una foglia di aglio orsino, sa forte di aglio. I suoi sosia mortali no. Però l'odore ti resta sulle dita, e dopo le prime foglie la prova non vale più niente. Quindi controlla ogni foglia anche dal picciolo e dalla forma. Il mughetto ha due o tre foglie avvolte una nell'altra alla base. Il colchico ha foglie coriacee, senza picciolo, a ciuffo. Il gigaro ha foglie a punta di freccia con nervature a rete. Il veratro bianco ha foglie pieghettate lungo un fusto dritto. Il sigillo di Salomone ha foglie alterne lungo un fusto ad arco.",
+        "habitat": "Forma dei tappeti nei boschi di latifoglie umidi e ombrosi. Cresce soprattutto nelle faggete e nei boschi di golena su terreno ricco. Lo trovi anche lungo i ruscelli all'ombra. È comune nell'Europa centrale e del nord, Gran Bretagna compresa. Nel sud Europa lo trovi soprattutto nei boschi di montagna.",
+        "season": "Nelle zone miti le foglie spuntano da febbraio, altrove a marzo e aprile. Sono più buone prima che si aprano i fiori. Fiorisce da aprile a giugno, più tardi in montagna. A inizio estate le foglie sono già sparite.",
+        "picking": "Raccogli foglia per foglia, mai a manciate. Così nel cestino non ti finisce nessun sosia cresciuto nella stessa macchia. Lascia i bulbi nel terreno. In Gran Bretagna è vietato sradicare piante selvatiche senza il permesso del proprietario. In Germania se ne può prendere solo una piccola quantità per uso personale. Molte riserve naturali vietano la raccolta, quindi informati sulle regole del posto.",
+        "kitchen": "Quando sei sicuro che sia lui, usa le foglie crude o aggiungile a fine cottura. Mettile nel pesto, nelle minestre, nel risotto e nel burro. Vanno benissimo anche con le uova. I fiori vanno sull'insalata. Lava ogni foglia sotto l'acqua corrente. Nell'Europa centrale le autorità lo consigliano per via dell'echinococco della volpe. Le sue uova resistono al congelamento ma non alla cottura.",
+        "keeps": "In frigo, avvolte in un panno umido, le foglie durano due o tre giorni. Le foglie tritate e il pesto si congelano bene. Quello che è sott'olio tienilo in frigo e consumalo entro pochi giorni.",
+        "source": "Riconoscimento e sosia: Agenzia austriaca per la salute e la sicurezza alimentare (AGES), Istituto federale tedesco per la valutazione dei rischi (BfR) e Woodland Trust. Stagione: Woodland Trust e segnalazioni GBIF."
+      }
     },
     "chickenOfTheWoods": {
       "name": "Poliporo sulfureo",
-      "description": "Un fungo a mensola arancione-giallo brillante che cresce sugli alberi",
-      "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce"
+      "description": "Un fungo a mensola giallo arancio acceso che cresce sugli alberi.",
+      "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce",
+      "guide": {
+        "identify": "Il poliporo sulfureo forma mensole a ventaglio sovrapposte, larghe da 10 a 40 cm e senza gambo. Da giovane è tenero, succoso e di un giallo vivo fino all'arancione. Con l'età sbiadisce verso il crema e diventa gessoso. Sotto è giallo zolfo, con pori minuscoli e non lamelle. La carne è da bianca a giallo pallido e al taglio non cambia colore. Se trovi un cespo arancione su legno con le lamelle sotto, è il velenoso fungo dell'olivo (Omphalotus). Nell'ovest degli Stati Uniti ci sono due parenti stretti quasi identici, Laetiporus gilbertsonii e Laetiporus conifericola.",
+        "habitat": "È un fungo che fa marcire il legno. Cresce su latifoglie vive e morte, più spesso sulle querce. Lo vedi anche su castagni, ciliegi, salici e faggi. Ogni tanto cresce anche sul tasso. È comune in pianura in Europa e nell'est degli Stati Uniti, nei boschi, nei parchi e lungo i viali. Nell'ovest degli Stati Uniti i suoi parenti crescono su querce, eucalipti e conifere.",
+        "season": "Esce da fine primavera all'autunno, soprattutto d'estate, pochi giorni dopo una pioggia calda. Nell'ovest degli Stati Uniti arriva soprattutto in autunno. Spesso lo stesso albero lo fa per diversi anni di fila.",
+        "picking": "Taglia col coltello i bordi teneri delle mensole giovani. Lascia la base dura e le mensole vecchie e gessose. Non raccoglierlo mai da un tasso, che è molto velenoso. Evita anche gli alberi lungo le strade trafficate. Dove per i funghi serve un permesso o ci sono limiti giornalieri, informati sulle regole del posto.",
+        "kitchen": "Quando sei certo di cosa sia, cuocilo a fondo. Crudo o poco cotto fa male allo stomaco. Anche ben cotto c'è chi non lo tollera e ha nausea, capogiri e vomito. Quindi la prima volta assaggiane poco. Taglialo a fette e fallo in padella o in umido. La carne soda viene spesso paragonata al pollo. Sta bene con limone, aglio ed erbe aromatiche.",
+        "keeps": "In frigo dura qualche giorno in un sacchetto di carta. Si congela bene, crudo o cotto.",
+        "source": "Riconoscimento e alberi ospiti: Woodland Trust, First Nature e MushroomExpert.com. Specie dell'ovest degli Stati Uniti: Bay Area Mycological Society. Reazioni: University of Florida (IFAS Extension)."
+      }
     },
     "oysterMushroom": {
       "name": "Pleurotus ostreatus",
-      "description": "Un fungo bianco-grigio con cappello a ventaglio che cresce in grappoli su legno morto",
-      "howTo": "Cercali che crescono su alberi morti, specialmente faggi e querce, in autunno e inverno"
+      "description": "Un fungo bianco-grigio con il cappello a ventaglio. Cresce a cespi sul legno morto.",
+      "howTo": "Cercali che crescono su alberi morti, specialmente faggi e querce, in autunno e inverno",
+      "guide": {
+        "identify": "I pleurotus, detti anche orecchioni o geloni, hanno il cappello a conchiglia o a ventaglio, largo da 5 a 18 cm. Può essere grigio-azzurro, grigio-bruno o color crema. Crescono sul legno, a mensole sovrapposte. Le lamelle vanno dal bianco al crema e scendono su un gambo corto e laterale, che a volte manca del tutto. La carne è bianca e soda, l'odore leggero. La sporata va dal bianco al lilla pallido. Ci sono tre sosia da conoscere. Il fungo dell'olivo (Omphalotus) è velenoso ed è arancione vivo, lamelle comprese. Cresce a cespi ai piedi degli alberi. Il falso chiodino (Hypholoma fasciculare) ha cappelli giallo zolfo su gambi centrali. Le sue lamelle sono giallo-verdastre e poi diventano bruno-viola. Ha un sapore amaro. La Pleurocybella porrigens è stata collegata ad alcuni morti in Giappone. È bianca pura, sottile e traslucida e cresce solo su legno marcio di conifere.",
+        "habitat": "Cresce su latifoglie morte o deperienti, soprattutto sul faggio. Lo trovi anche su pioppo, salice, quercia e frassino. Di rado cresce sulle conifere. Cercalo su tronchi in piedi, ceppaie e tronchi caduti. È comune in tutta Europa e in Nord America.",
+        "season": "È un fungo di tardo autunno e d'inverno. Lo fa partire un'ondata di freddo o le prime gelate dopo la pioggia. Nel sud Europa continua fino a gennaio o febbraio. Nell'est degli Stati Uniti esce da ottobre a inizio aprile.",
+        "picking": "Taglia il cespo alla base con il coltello. Prendi i cappelli giovani e sodi e lascia quelli vecchi o mangiati dai coleotteri. In alcuni posti per raccogliere funghi serve un permesso o ci sono limiti giornalieri. Informati sulle regole del posto.",
+        "kitchen": "Cucinalo solo quando l'hai riconosciuto con certezza. Cuocilo bene e non mangiarlo crudo. Togli la base dura e strappa i cappelli a striscioline. Saltale a fuoco vivo finché i bordi diventano croccanti. Il sapore è delicato e un po' dolce. Sta bene con aglio, burro, salsa di soia e uova.",
+        "keeps": "Si guasta presto. Tienilo in frigo in un sacchetto di carta per qualche giorno, oppure cuocilo e congelalo.",
+        "source": "Riconoscimento e stagione: First Nature e MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, University of British Columbia."
+      }
     },
     "shiitake": {
       "name": "Shiitake",
-      "description": "Un fungo con cappello marrone e lamelle bianche, molto apprezzato nella cucina asiatica",
-      "howTo": "Trovato che cresce su alberi di legno duro morti, specialmente querce e faggi, in primavera e autunno"
+      "description": "Un fungo con il cappello marrone e le lamelle bianche, molto apprezzato nella cucina asiatica.",
+      "howTo": "Trovato che cresce su alberi di legno duro morti, specialmente querce e faggi, in primavera e autunno",
+      "guide": {
+        "identify": "Lo shiitake ha il cappello da bruno a bruno-rossastro scuro, che con l'età si appiattisce. Spesso ha dei fiocchetti biancastri vicino al bordo e con il secco si screpola. Le lamelle vanno dal bianco al crema e, se le tocchi, si macchiano di bruno. Il gambo è duro, fibroso e spesso spostato di lato. La sporata è bianca. Anche la Galerina marginata, che è mortale, cresce sui tronchi. È più piccola e color miele, con un anello sul gambo e la sporata bruno ruggine.",
+        "habitat": "Lo shiitake viene dall'Asia orientale, dove cresce sul legno morto di latifoglie come la quercia e il Castanopsis. In Europa e in Nord America si coltiva su tronchetti di quercia o su blocchi di segatura. Fuori dalle coltivazioni è stato trovato solo poche volte, per esempio nei Paesi Bassi. Quindi un fungo bruno su un tronco caduto nel bosco è quasi di sicuro qualcos'altro.",
+        "season": "I tronchetti tenuti all'aperto fruttificano in primavera e in autunno. La buttata arriva pochi giorni dopo una pioggia abbondante, con il tempo mite. I coltivatori la provocano anche mettendo il tronchetto a bagno in acqua fredda.",
+        "picking": "Raccogli i cappelli quando il bordo è ancora arrotolato in sotto. Staccali ruotandoli o taglia il gambo rasente al tronco. Raccogli solo dai tronchetti che coltivi tu o dove hai il permesso.",
+        "kitchen": "Assicurati di averlo riconosciuto, poi cuocilo a fondo. Crudo o poco cotto può dare la dermatite da shiitake. È un'eruzione che prude, a strisce come frustate, e compare circa un giorno dopo. I gambi sono troppo duri da mangiare, ma danno sapore al brodo. Fai i cappelli in padella o in umido con salsa di soia, zenzero e aglio. Hanno un sapore pieno e intenso.",
+        "keeps": "In frigo, in un sacchetto di carta, dura qualche giorno. Si secca benissimo. Metti a bagno i cappelli secchi prima di usarli e tieni l'acqua come brodo.",
+        "source": "Origine e diffusione: Naturalis Biodiversity Center. Coltivazione su tronchetti: Cornell Cooperative Extension. Dermatite da shiitake: DermNet."
+      }
     },
     "raspberry": {
       "name": "Lampone Selvatico",
-      "description": "Bacche rosse dolci che crescono su canne spinose con foglie composte distintive",
-      "howTo": "Cerca canne di lampone in siepi, bordi boschivi e aree disturbate in estate"
+      "description": "Frutti rossi e dolci su fusti spinosi.",
+      "howTo": "Cerca canne di lampone in siepi, bordi boschivi e aree disturbate in estate",
+      "guide": {
+        "identify": "Il lampone cresce su fusti dritti, spesso alti quanto una persona. I fusti sono coperti di piccole spine sottili, non delle spine a uncino del rovo. Ogni foglia ha da tre a sette foglioline dentate lungo un picciolo. Sono verdi sopra e bianche e feltrose sotto. I piccoli fiori bianchi pendono verso il basso. Quando cogli un lampone rosso, il cuore bianco resta sulla pianta. Per questo il lampone raccolto è un cappuccio vuoto.",
+        "habitat": "Cercalo nelle radure e ai margini dei boschi, nei tagli del bosco e nelle zone bruciate e sui pendii sassosi. Cresce anche tra gli arbusti, nelle brughiere e lungo le siepi, dalla pianura alla montagna, in tutta Europa. Occupa le radure nuove e sparisce man mano che il bosco ricresce. Negli Stati Uniti il lampone rosso americano cresce al nord e sulle montagne dell'ovest. Nell'est cresce il lampone nero, con frutti cavi nero-violacei.",
+        "season": "I lamponi maturano d'estate. Nel sud Europa e in pianura cominciano a giugno. Al nord e in montagna maturano a luglio e agosto. In alta quota a volte durano fino a settembre.",
+        "picking": "Raccogli i lamponi ben rossi, che si staccano dal cuore senza tirare. Mettili in un contenitore basso, perché si schiacciano facilmente. Per l'Europa centrale, l'autorità sanitaria bavarese (LGL) dice che non è dimostrato che mangiare frutti di bosco selvatici sia un rischio per l'echinococco della volpe. Consiglia comunque di lavarli bene. Solo scaldandoli sopra i 60 °C si uccidono le uova del parassita. Il congelatore di casa non basta.",
+        "kitchen": "Quando li hai riconosciuti con certezza, mangiali crudi o usali per marmellate, sciroppi, torte e dolci. I lamponi selvatici sono più piccoli e più profumati di quelli dell'orto. Sciacquali un attimo appena prima di usarli. Controlla che dentro non ci siano i piccoli vermetti bianchi, le larve del coleottero del lampone.",
+        "keeps": "I lamponi si rovinano molto in fretta. Mangiali in giornata, oppure tienili in frigo senza lavarli per un giorno o due. Per congelarli, prima stendili su un vassoio, poi mettili nei sacchetti. Congelati vanno bene per salse e dolci.",
+        "source": "Identificazione e habitat: Woodland Trust. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "blueberry": {
       "name": "Mirtillo Selvatico",
-      "description": "Piccole bacche blu dolci che crescono su arbusti bassi in terreno acido",
-      "howTo": "Trovato in brughiere, lande e foreste acide in estate e inizio autunno"
+      "description": "Piccole bacche blu e dolci su arbusti bassi, in terreno acido.",
+      "howTo": "Trovato in brughiere, lande e foreste acide in estate e inizio autunno",
+      "guide": {
+        "identify": "Il mirtillo nero, o mirtillo selvatico, è un piccolo arbusto che d'inverno perde le foglie. Di solito resta sotto il ginocchio. I fusti sono verdi e spigolosi. Le foglie sono piccole e ovali, con il margine finemente dentato. In primavera pendono, uno per uno, fiori rosati a forma di lanterna. Ognuno dà una sola bacca blu-nera, coperta da una patina chiara. In cima alla bacca c'è un piccolo anello a forma di corona. La polpa è rosso-viola fino al centro. I mirtilli coltivati hanno la polpa chiara. I suoi sosia velenosi sono erbe morbide, non arbusti nani legnosi. La belladonna (Atropa bella-donna) è alta e le sue bacche nere e lucide stanno in una stella verde di cinque sepali. L'uva di volpe (Paris quadrifolia) ha una sola bacca in cima a un fusto con quattro foglie a croce. Il sigillo di Salomone (Polygonatum) ha bacche blu-nere che pendono sotto un fusto ad arco e senza rami.",
+        "habitat": "Vuole terreno acido e povero. Cercalo nei boschi di conifere, di betulle e di querce e nelle brughiere e nelle lande, dalla pianura fin sopra il limite del bosco. È comune nel nord e nel centro dell'Europa e sulle montagne del sud. Sul calcare non lo trovi. In Nord America cresce spontaneo sulle montagne dell'ovest. Nell'est i mirtilli selvatici che si raccolgono sono il mirtillo nano americano e il mirtillo gigante americano (Vaccinium angustifolium, Vaccinium corymbosum). Sono parenti stretti con la polpa chiara.",
+        "season": "In pianura le bacche maturano da luglio. In montagna e al nord la stagione va avanti per tutto agosto e fino a settembre. Una gelata tardiva durante la fioritura può ridurre il raccolto.",
+        "picking": "Raccogli a mano. I pettini strappano le foglie e rovinano le piante. Alcune zone vietano i pettini o mettono limiti giornalieri, per esempio i Vosgi in Francia e la Toscana. Informati sulle regole del posto. In Europa centrale l'autorità sanitaria bavarese (LGL) dice che mangiare bacche selvatiche non si è dimostrato un fattore di rischio per l'echinococco della volpe. Consiglia comunque di lavarle bene. Solo il calore sopra i 60 °C ne uccide le uova. Il congelatore di casa no.",
+        "kitchen": "Quando sei sicuro della pianta, mangiali crudi o mettili in crostate, frittelle, marmellate e composte. Sono dolci e aciduli. Macchiano anche dita, denti e vestiti. Sciacquali un attimo appena prima di usarli e togli foglie e bacche verdi.",
+        "keeps": "Non lavati e stesi, durano qualche giorno in frigo. Congelali su un vassoio e poi mettili in sacchetti. Si seccano anche bene.",
+        "source": "Identificazione e habitat: Woodland Trust; sosia velenosi: Yle (radiotelevisione pubblica finlandese). Regole di raccolta: Regione Toscana e Prefettura dei Vosgi. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "strawberry": {
       "name": "Fragola Selvatica",
-      "description": "Piccole bacche rosse dal sapore intenso con fiori bianchi e foglie trifogliate",
-      "howTo": "Cercale in praterie, bordi boschivi e aree erbose in primavera ed estate"
+      "description": "Piccoli frutti rossi pieni di sapore, con fiori bianchi e foglie divise in tre.",
+      "howTo": "Cercale in praterie, bordi boschivi e aree erbose in primavera ed estate",
+      "guide": {
+        "identify": "La fragolina di bosco è una pianta bassa. Le foglie hanno un lungo picciolo e tre foglioline dentate, verde brillante e un po' lucide. Si allarga con stoloni che mettono radici a terra. Il dente in punta a ogni fogliolina è lungo quanto quelli accanto, o di più. I fiori sono bianchi, con cinque petali tondi e il centro giallo. Il frutto è un piccolo cono rosso con minuscoli semini in superficie, appeso a un gambo sottile. La fragola sterile (Potentilla sterilis) fiorisce prima. I suoi petali hanno una tacca in punta e tra l'uno e l'altro resta uno spazio. Il dente in punta alla fogliolina è più corto di quelli accanto. Non fa frutti carnosi. La fragola matta (Potentilla indica) ha fiori gialli e frutti tondi, spugnosi e senza sapore.",
+        "habitat": "Cercala ai margini dei boschi e nelle radure, sulle scarpate al sole e a bordo sentiero, ai piedi delle siepi e nei prati vecchi. Cresce spesso su terreno secco, sassoso o calcareo, dalla pianura alla montagna, in tutta Europa. Negli Stati Uniti cresce nei boschi radi e nelle radure del nord e sulle montagne dell'ovest. Lì la fragola selvatica tipica di campi e prati è la fragola della Virginia (Fragaria virginiana), più grande.",
+        "season": "Fiorisce da aprile. Nel sud Europa le fragoline maturano da fine maggio, altrove da giugno. La pianta continua a fare frutti per tutta l'estate. In montagna e al nord va avanti fino ad agosto.",
+        "picking": "Raccogli solo fragoline ben rosse, pizzicando il gambo. Non strappare mai le piante. In Inghilterra la fragola selvatica è classificata come quasi minacciata, quindi lì raccoglile con parsimonia. Per l'Europa centrale, l'autorità sanitaria bavarese (LGL) dice che non è dimostrato che mangiare frutti di bosco selvatici sia un rischio per l'echinococco della volpe. Consiglia comunque di lavarli bene. Solo scaldandoli sopra i 60 °C si uccidono le uova del parassita. Il congelatore di casa non basta.",
+        "kitchen": "Quando hai riconosciuto la pianta con certezza, mangia le fragoline crude e subito. Sciacquale un attimo appena prima di mangiarle. Hanno un sapore più intenso delle fragole dell'orto, ma cambia da pianta a pianta. Ne basta una manciata per profumare panna, yogurt o una crostata.",
+        "keeps": "In un cestino al caldo si rovinano presto. Tienile al fresco e mangiale in giornata. Puoi congelarle, ma scongelate diventano molli.",
+        "source": "Identificazione e habitat: Woodland Trust e Botanical Society of Britain and Ireland (BSBI). Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "wildMint": {
       "name": "Mente selvatiche",
-      "description": "Qualsiasi menta selvatica: menta acquatica, mentastro verde, menta a foglie rotonde, menta campestre e menta puleggio. Fusti quadrati, foglie opposte e profumo di menta quando si strofinano",
-      "howTo": "Cresce su terreni umidi, nei fossi e lungo i ruscelli. La menta puleggio va bene in una tisana leggera, ma è tossica come olio o in grandi quantità: da evitare in gravidanza"
+      "description": "Tutte le specie di menta selvatica: menta acquatica, mentastro verde, menta a foglie rotonde, menta campestre e menta puleggio. Hanno il fusto quadrato, le foglie a coppie e profumano di menta quando le stropicci.",
+      "howTo": "Cresce su terreni umidi, nei fossi e lungo i ruscelli. La menta puleggio va bene in una tisana leggera, ma è tossica come olio o in grandi quantità: da evitare in gravidanza",
+      "guide": {
+        "identify": "Tutte le mente hanno il fusto quadrato e le foglie a coppie, una di fronte all'altra. Se strofini una foglia, senti un odore netto di menta. I piccoli fiori lilla, rosa o bianchi crescono a verticilli, oppure in capolini e spighe in cima ai fusti. La menta acquatica ha foglie pelose e ovali e un capolino tondo di fiori. La menta a foglie lunghe ha foglie lunghe, grigie e pelose. La menta a foglie rotonde ha foglie tonde, rugose e morbide. La menta campestre fa fiori solo a verticilli lungo il fusto. La menta puleggio è piccola e strisciante, con foglie minuscole e un odore pungente. In mezzo a loro crescono piante a fusto quadrato senza odore, come l'erba sega. E l'odore ti resta sulle dita. Quindi annusa ogni fusto da solo e lascia quelli che non sanno di menta.",
+        "habitat": "Quasi tutte le mente selvatiche amano il terreno bagnato. Cercale sulle rive di torrenti e stagni, nei fossi, nelle paludi e nei prati umidi. La menta campestre cresce anche nei campi umidi. La menta puleggio cresce nei prati che d'inverno si allagano, soprattutto nell'Europa meridionale e occidentale. Negli Stati Uniti la menta selvatica americana, autoctona, cresce nei posti umidi di quasi tutto il paese. Lì la menta verde, la menta piperita e la menta puleggio sono scappate dai giardini.",
+        "season": "I germogli spuntano in primavera e sono più teneri prima della fioritura. Quasi tutte le mente fioriscono da piena estate all'autunno. Nel sud Europa cominciano a crescere prima.",
+        "picking": "Pizzica le prime coppie di foglie in cima, appena sopra un nodo, e lascia le radici. Raccogli fusto per fusto, non a manciate. Negli stessi posti umidi crescono l'enante zafferanata e la cicuta acquatica, che sono mortali. Evita l'acqua a valle di cascine o scarichi fognari.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, usa le foglie per le tisane. Vanno bene anche nelle insalate, nelle salse allo yogurt e nei piatti con piselli, patate e agnello. La menta di torrenti, fossi o prati umidi dove pascolano gli animali può portare la fasciola epatica, come il crescione selvatico. Quella menta usala solo in tisane bollenti o cotta. La menta puleggio contiene pulegone, che fa male al fegato. In Spagna e in Portogallo si beve per tradizione una tisana leggera. Ma non usare mai l'olio essenziale e non berla mai forte o spesso. Non darla mai a neonati e bambini, né a chi è incinta, allatta o ha malattie del fegato.",
+        "keeps": "I mazzetti appesi in un posto buio e arieggiato si seccano bene per le tisane. Le foglie tritate si congelano nei cubetti di ghiaccio.",
+        "source": "Riconoscimento e habitat: Botanical Society of Britain and Ireland, The Wildlife Trusts e Native Plant Trust (Go Botany). Menta puleggio: Agenzia europea per i medicinali e National Capital Poison Center. Distoma: Organizzazione panamericana della sanità. Stagione: segnalazioni GBIF."
+      }
     },
     "chickweed": {
       "name": "Centocchio",
-      "description": "Una pianta bassa con piccoli fiori bianchi e foglie ovali, molto nutriente",
-      "howTo": "Comune in giardini, aree disturbate e praterie durante la stagione di crescita"
+      "description": "Una pianta bassa con piccoli fiori bianchi e foglie ovali. È molto nutriente.",
+      "howTo": "Comune in giardini, aree disturbate e praterie durante la stagione di crescita",
+      "guide": {
+        "identify": "Il centocchio, detto anche erba paperina, è una pianta bassa e sdraiata, con fusti deboli, tondi e succosi. Le foglie sono piccoli ovali appuntiti, a coppie opposte. Quelle in basso hanno un picciolo corto. Lungo il fusto corre una sola fila di peletti sottili. A ogni coppia di foglie la fila cambia lato. I fiori sono bianchi, a stella, con cinque petali. Ogni petalo è diviso così a fondo che sembrano dieci. Ci sono due sosia tossici. L'anagallide ha fusti quadrati e senza peli e foglie senza picciolo, con puntini neri sotto. I suoi fiori sono rosso arancio o blu. Le euforbie, se spezzi un fusto, perdono un lattice bianco. Il centocchio non lo fa mai.",
+        "habitat": "Cercalo negli orti, nei giardini, ai bordi dei campi e nelle aie. Ama la terra smossa, ricca e umida, spesso a mezz'ombra. È una delle piante più comuni d'Europa e si trova in tutti gli Stati Uniti.",
+        "season": "Cresce meglio col tempo fresco e umido. Al nord vuol dire primavera e autunno. Nelle zone miti, come il sud Europa e il sud degli Stati Uniti, cresce dall'autunno alla primavera. Col caldo e la siccità d'estate secca, fino alle piogge d'autunno.",
+        "picking": "Taglia o pizzica via i primi centimetri con le foglie. La pianta ricresce. Raccogli solo dove non è stato dato diserbante. Stai lontano dalle strade e dai posti dove vanno cani e gatti.",
+        "kitchen": "Quando sei sicuro che sia lui, puoi mangiare foglie, fusti e fiori, crudi o appena cotti. Hanno un sapore delicato e fresco, un po' di piselli novelli. Mettili in insalate, panini e pesto. Puoi anche aggiungerli alle minestre a fine cottura. Lavali bene.",
+        "keeps": "Il centocchio appassisce in fretta. Tienilo in frigo in un sacchetto e mangialo entro un giorno o due.",
+        "source": "Riconoscimento: UC Statewide IPM Program e Woodland Trust. Anagallide: Ministero dell'Agricoltura dell'Ontario. Stagione: Woodland Trust e segnalazioni GBIF."
+      }
     },
     "plantain": {
       "name": "Piantaggine Comune",
-      "description": "Una pianta bassa con foglie larghe e ovali e alte spighe di fiori",
-      "howTo": "Trovata in prati, praterie e aree disturbate durante la stagione di crescita"
+      "description": "Una pianta bassa dalle foglie larghe e ovali, con alte spighe di fiori.",
+      "howTo": "Trovata in prati, praterie e aree disturbate durante la stagione di crescita",
+      "guide": {
+        "identify": "La piantaggine comune forma una rosetta piatta di foglie larghe e ovali, su piccioli corti e larghi. Ogni foglia ha da tre a sette nervature marcate. Corrono parallele dalla base alla punta. Se spezzi un picciolo, vengono fuori come fili resistenti. Da inizio estate spuntano steli senza foglie con spighe lunghe e strette, a coda di topo, di minuscoli fiori verdastri. Poi si riempiono di piccoli semi bruni. La digitale è mortale. Fai attenzione soprattutto alla sua rosetta del primo anno. Ha foglie morbide, pelose e rugose, con nervature a rete e senza fili. Foglie di digitale sono già state vendute per sbaglio come piantaggine.",
+        "habitat": "Cercala nei tappeti erbosi, sui sentieri, sulle carrarecce, ai bordi dei campi, nei prati e nei giardini. Cresce dovunque il terreno sia calpestato e battuto. È originaria di Europa e Asia ed è comune in tutta Europa. È comune anche in tutti gli Stati Uniti, dove è arrivata con i coloni europei.",
+        "season": "Le foglie nuove spuntano da inizio primavera all'autunno. Sono più tenere in primavera e dopo lo sfalcio. Le spighe di fiori salgono da inizio estate e i semi maturano fino all'autunno.",
+        "picking": "Raccogli le foglie giovani al centro della rosetta, poche per pianta. Lascia la radice nel terreno. Evita i bordi delle strade e i sentieri dove passano i cani. Evita anche i prati e le scarpate che potrebbero essere stati trattati con il diserbante.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, puoi mettere le foglie giovani crude in insalata. Quelle più vecchie sono dure e filacciose. Sbollentale o cuocile come gli spinaci e togli i fili. Il sapore è delicato, erbaceo e un po' amaro. La NC State Extension segnala che quantità molto grandi possono abbassare la pressione. Quindi usala mescolata ad altre verdure.",
+        "keeps": "Le foglie appassiscono in fretta. Tienile in frigo in un sacchetto per un giorno o due, oppure seccale all'ombra per le tisane.",
+        "source": "Identificazione, habitat e stagione: NC State Extension, Michigan State University Extension e UC IPM. Scambio con la digitale: FDA statunitense (1997). Cucina: NC State Extension."
+      }
     },
     "walnut": {
       "name": "Noce",
-      "description": "Noci grandi e rotonde con guscio duro e sapore ricco e oleoso",
-      "howTo": "Cerca alberi di noce in parchi, giardini e bordi boschivi in autunno"
+      "description": "Noci grandi e tonde con il guscio duro e un sapore ricco e oleoso.",
+      "howTo": "Cerca alberi di noce in parchi, giardini e bordi boschivi in autunno",
+      "guide": {
+        "identify": "Il noce è un albero grande. La corteccia è liscia e bruno-oliva, e con l'età diventa grigia e screpolata. Le foglie hanno da cinque a nove foglioline ovali, con il bordo liscio. Se le stropicci sanno di lucido per mobili. La noce sta dentro il mallo, verde, spesso e liscio, che a maturazione scurisce e si apre. Il noce nero dell'est degli Stati Uniti ha più foglioline, più strette e dentate. Il suo mallo tondo non si apre. Dentro c'è un guscio durissimo e pieno di solchi.",
+        "habitat": "Il noce viene da un'area che va dall'Europa sud-orientale alla Cina sud-occidentale. È stato piantato in tutta Europa e si è inselvatichito nelle siepi, ai bordi dei campi, sulle rive dei fiumi e nei boschi giovani. Cresce soprattutto a bassa quota, su terreni profondi e fertili. Negli Stati Uniti i noceti sono soprattutto in California. Nei boschi dell'est la specie selvatica è il noce nero.",
+        "season": "Le noci arrivano a settembre e ottobre, quando il mallo si spacca e le noci cadono. Le noci verdi per i sottaceti o per il nocino si raccolgono tra fine giugno e inizio luglio. In quel momento uno spiedino le trapassa ancora da parte a parte.",
+        "picking": "Raccogli le noci cadute ogni uno o due giorni, prima che muffe e insetti le rovinino. Metti i guanti, perché il mallo macchia la pelle di marrone per giorni. Togli presto il mallo. Quasi tutti i noci hanno un padrone, quindi chiedi prima.",
+        "kitchen": "Quando hai riconosciuto l'albero con certezza, mangia le noci fresche togliendo la pellicina amara. Oppure falle seccare e usale per pane, torte, insalate e sughi. Butta i gherigli ammuffiti, raggrinziti o rancidi. Le noci sono una causa frequente di allergia alla frutta a guscio.",
+        "keeps": "Falle asciugare nel guscio in un posto arieggiato e all'ombra, finché il setto che divide le due metà si spezza netto. Secche durano fino a un anno in frigo.",
+        "source": "Riconoscimento e diffusione: Woodland Trust. Raccolta e conservazione: Oregon State University e Kansas State University Extension."
+      }
     },
     "chestnut": {
       "name": "Castagna",
-      "description": "Noci grandi e dolci racchiuse in bucce verdi spinose che si aprono quando mature",
-      "howTo": "Trovate in castagneti e foreste miste in autunno, spesso vicino ai sentieri"
+      "description": "Frutti grandi e dolci chiusi in ricci verdi e spinosi, che si aprono quando sono maturi.",
+      "howTo": "Trovate in castagneti e foreste miste in autunno, spesso vicino ai sentieri",
+      "guide": {
+        "identify": "Le foglie del castagno sono lunghe, strette e lucide, da 16 a 28 cm. Hanno denti aguzzi come una sega e tante nervature diritte e parallele. Il riccio è coperto dappertutto di aculei lunghi e sottili, pungenti come aghi. Di solito contiene due o tre castagne. Sono appiattite su uno o su tutti e due i lati e finiscono in una piccola punta con un ciuffetto. Non confonderlo con l'ippocastano (Aesculus hippocastanum) dei parchi e dei viali, che è velenoso. L'ippocastano ha foglie a forma di mano, fatte da cinque a sette foglioline. Il suo involucro verde è spesso e ha solo poche spine corte. Dentro ci sono uno o due semi tondi e lucidi, senza punta, le castagne matte. In Nord America sono velenosi anche i buckeye (altri Aesculus). Un albero con le foglie a mano non è mai un castagno.",
+        "habitat": "Il castagno viene dal sud Europa, dall'Asia occidentale e dal Nord Africa e si pianta da molto tempo per le castagne. Cresce su terreni acidi e ben drenati ed evita il calcare. Grandi castagneti coprono le colline dal nord del Portogallo e dalla Galizia fino alle Cevenne, alla Corsica e all'Appennino. Negli Stati Uniti quasi tutti i castagni sono piantati. Il cancro della corteccia ha quasi cancellato la specie nativa.",
+        "season": "Le castagne cadono da fine settembre a inizio novembre, soprattutto in ottobre. In pianura arrivano prima che in montagna.",
+        "picking": "Passa ogni pochi giorni e raccogli le castagne cadute da sole. Metti guanti spessi, oppure apri i ricci rotolandoli sotto lo scarpone. Lascia quelle con dei forellini, fatti dalle larve del balanino o della cidia. Molti castagneti sono privati e le castagne a terra sono del proprietario. Informati sulle regole del posto.",
+        "kitchen": "Quando sei sicuro che siano castagne vere, cuocile. Crude sono astringenti e pesanti da digerire. Butta quelle che galleggiano nell'acqua. Incidi la buccia, così non scoppiano. Poi arrostiscile, oppure lessale per circa 30 minuti. Sbucciale da calde e togli sia la buccia sia la pellicina amara. Sono dolci e farinose e vanno in zuppe, ripieni e purè.",
+        "keeps": "A temperatura ambiente le castagne fresche fanno la muffa in circa due settimane. In frigo durano circa due mesi. Puoi anche congelarle o seccarle.",
+        "source": "Riconoscimento: Woodland Trust, ANSES e Oregon State University Extension. Raccolta, cottura e conservazione: Oregon State University Extension."
+      }
     },
     "elderflower": {
       "name": "Fiori di Sambuco",
-      "description": "Fiori bianco crema che crescono in grandi grappoli piatti sui sambuchi",
-      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in tarda primavera e inizio estate"
+      "description": "Fiori bianco crema raccolti in grandi ombrelle piatte sul sambuco.",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in tarda primavera e inizio estate",
+      "guide": {
+        "identify": "Il sambuco è un arbusto legnoso o un alberello con la corteccia grigio-bruna, sugherosa e solcata. Le foglie sono opposte, con da 5 a 7 foglioline dentate. Se le stropicci hanno un odore sgradevole. A fine primavera porta grandi ombrelle piatte e ramificate di fiorellini bianco crema. Hanno antere giallo chiaro e un profumo dolce e muschiato. L'ebbio, o sambuco nano, è un'erba morbida che secca ogni inverno. Ha ombrelle dritte e antere viola. Il sambuco rosso fiorisce prima, con grappoli a forma di uovo o di cupola. Sono tossici tutti e due. Cicuta maggiore, cicuta acquatica e panace di Mantegazza sono erbe verdi e morbide, non arbusti legnosi. La linfa del panace di Mantegazza brucia la pelle al sole. La cicuta maggiore ha il fusto liscio e cavo, macchiato di viola. Ha un odore di topo. In tutte e tre i gambi dei fiori partono da un unico punto, come le stecche di un ombrello.",
+        "habitat": "Cresce nelle siepi, ai margini dei boschi, tra gli arbusti, lungo i fiumi e negli incolti. Spesso sta vicino alle case, su terreno ricco. È comune in tutta Europa, dalla pianura alla collina. Negli Stati Uniti il sambuco americano, nativo dell'est, e il sambuco blu dell'ovest crescono in posti simili.",
+        "season": "Nell'Europa centrale e del nord il sambuco fiorisce da fine maggio a giugno. Nel sud più caldo comincia prima. Nell'est degli Stati Uniti il sambuco americano fiorisce più tardi e più a lungo, soprattutto a giugno e luglio.",
+        "picking": "Raccogli in una mattina asciutta e di sole. Scegli le ombrelle ben aperte, color crema e profumate. Lascia quelle che stanno diventando marroni. Tagliale o spezzale alla base. Prendine poche da ogni pianta, così può ancora fare le bacche. Scuotile piano per far cadere gli insetti.",
+        "kitchen": "Quando sei certo che sia sambuco, usa solo i fiori. Staccali dai gambi, perché gambi, foglie, corteccia, radici e bacche acerbe sono velenosi. Per lo sciroppo di sambuco lascia i fiori in infusione in uno sciroppo di zucchero caldo con limone. Puoi anche passare le ombrelle intere nella pastella e friggerle come frittelle. Il gambo grosso non mangiarlo. Oppure secca i fiori per le tisane. Il sapore è dolce e floreale e sta bene con uva spina e fragole. Le bacche che arrivano in autunno vanno cotte.",
+        "keeps": "I fiori sfioriscono in fretta, quindi usali il giorno stesso in cui li raccogli. Le ombrelle seccate all'ombra si conservano per le tisane in un barattolo ermetico. Lo sciroppo dura qualche settimana in frigo, oppure puoi congelarlo.",
+        "source": "Identificazione e habitat: Woodland Trust e BSBI. Specie simili: servizio di extension della University of Minnesota. Raccolta e cucina: Penn State Extension e UMass Extension."
+      }
     },
     "daisy": {
       "name": "Margherita Comune",
-      "description": "Piccoli fiori bianchi con centri gialli che crescono vicino al terreno",
-      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate"
+      "description": "Piccoli fiori bianchi con il centro giallo che crescono rasoterra.",
+      "howTo": "Comune in prati, praterie e aree erbose durante primavera ed estate",
+      "guide": {
+        "identify": "La margherita comune, o pratolina, è una pianta bassa. Le sue foglie, a forma di cucchiaio e un po' pelose, fanno una rosetta piatta schiacciata a terra. Ogni stelo è peloso e senza foglie e porta un solo fiore di circa 2 cm. Ha petali bianchi, spesso con la punta rosa, intorno a un centro giallo. I fiori si chiudono di notte e quando il cielo è coperto. Alcune piante le somigliano ma sono diverse. La margherita dei prati e gli altri fiori più grandi simili a margherite crescono su fusti con le foglie. Le camomille, vere e false, hanno foglie finissime, divise come piume.",
+        "habitat": "Cresce nei prati rasati, nell'erba bassa, nei pascoli, ai bordi delle strade e sui sentieri, al sole e su terreno umido. In Europa la trovi quasi ovunque. Negli Stati Uniti è arrivata dall'Europa. Lì oggi cresce nei prati e sui terreni umidi e smossi, soprattutto dove l'estate è fresca.",
+        "season": "Dove l'inverno è mite fiorisce quasi tutto l'anno. La fioritura più ricca va dalla primavera all'inizio dell'estate. Nelle zone fredde e in gran parte degli Stati Uniti fiorisce dalla primavera all'inizio dell'estate. Dopo trovi qualche fiore qua e là fino alle gelate.",
+        "picking": "Stacca con le dita i fiori e qualche foglia giovane. Prendi da tante piante e lascia le rosette al loro posto. Evita i prati trattati con diserbanti o concimi, i posti dove si portano a spasso i cani e i bordi delle strade.",
+        "kitchen": "Quando sei sicuro di averla riconosciuta, puoi mangiare crudi i fiori e le foglie giovani, ma in piccole quantità. Mettili nell'insalata e nei panini o usali per decorare il piatto. Il sapore è delicato o appena amaro. Le foglie vecchie sono dure. Sciacquali piano in acqua fresca. La prima volta mangiane poca. Chi è allergico alle composite, la famiglia della margherita, può avere una reazione. In grandi quantità può dare fastidio allo stomaco. Evitala in gravidanza e mentre allatti.",
+        "keeps": "Raccoglila appena prima di usarla, perché i fiori appassiscono presto. Fino ad allora tienila in frigo tra due fogli di carta da cucina umidi.",
+        "source": "Identificazione e habitat: The Wildlife Trusts e NC State Extension. Cucina e sicurezza: Colorado State University Extension e NC State Extension."
+      }
     },
     "violets": {
       "name": "Viola Mammola",
-      "description": "Piccoli fiori viola con foglie a forma di cuore e un profumo dolce",
-      "howTo": "Trovata in bordi boschivi, siepi e aree ombreggiate all'inizio della primavera"
+      "description": "Piccoli fiori viola con foglie a cuore e un profumo dolce.",
+      "howTo": "Trovata in bordi boschivi, siepi e aree ombreggiate all'inizio della primavera",
+      "guide": {
+        "identify": "La viola mammola è una pianta bassa, con una rosetta di foglie dal lungo picciolo. Sono a forma di cuore, con la base arrotondata, il bordo smerlato e peli corti. Si allarga con lunghi stoloni che mettono radici. Ogni fiore nasce dalla rosetta su un suo gambo. Ha cinque petali diversi tra loro, e quello in basso ha un piccolo sperone dietro. Di solito i fiori sono viola scuro, a volte bianchi, con sepali arrotondati e un profumo dolce. Le viole canine le somigliano, ma non profumano. Il favagello è velenoso e cresce negli stessi posti. Ha foglie lucide, carnose e senza peli e fiori con 8-12 petali gialli e lucidi. Anche il gigaro è velenoso. Ha foglie lucide a forma di freccia, con i lobi rivolti all'indietro.",
+        "habitat": "Cercala ai margini dei boschi, sulle scarpate delle siepi e nell'erba all'ombra, nei cimiteri, nei parchi e nei vecchi giardini. Le piace il terreno fresco e ricco, a mezz'ombra. Cresce in quasi tutta Europa e in molti posti è scappata dai giardini. Negli Stati Uniti cresce spontanea qua e là, nei prati rasati e ai margini dei boschi.",
+        "season": "Fiorisce da febbraio a maggio, prima nel sud più mite. In gran parte degli Stati Uniti fiorisce ad aprile e maggio. A volte rispunta qualche fiore a fine estate. Le foglie sono migliori giovani, in primavera.",
+        "picking": "Da ogni macchia prendi solo qualche fiore e qualche foglia giovane. Lascia rosetta e radici nel terreno e non sradicare mai le piante. Evita i prati trattati, i bordi delle strade e i posti dove si portano i cani.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, puoi mettere i fiori crudi su insalate e dolci. Puoi anche candirli con albume pastorizzato e zucchero fine. Oppure mettili in infusione in acqua bollente e poi zucchera l'infuso, così hai lo sciroppo di viole. Le foglie giovani si mangiano crude in insalata o cotte come gli spinaci. Sono delicate e addensano un po' le minestre. Non mangiare mai radici o semi, perché possono far vomitare. La prima volta assaggiane solo un po'.",
+        "keeps": "I fiori appassiscono in fretta. Tienili in frigo tra due fogli di carta da cucina umida e usali in giornata. I fiori canditi si conservano in un contenitore ermetico, in un posto fresco e buio.",
+        "source": "Identificazione e habitat: NatureSpot e NC State Extension. Cucina: Colorado State University Extension e NC State Extension."
+      }
     },
     "amaranth": {
       "name": "Amaranto",
-      "description": "Una pianta erbacea con foglie e semi commestibili, ricca di nutrienti.",
-      "howTo": "Cresce in terreni disturbati, orti e campi durante l'estate. Raccogli le foglie giovani prima della fioritura."
+      "description": "Una pianta a foglia che spesso si prende per un'erbaccia. Le foglie e i semi si mangiano e sono ricchi di nutrienti.",
+      "howTo": "Cresce in terreni disturbati, orti e campi durante l'estate. Raccogli le foglie giovani prima della fioritura.",
+      "guide": {
+        "identify": "L'amaranto comune, che molti chiamano amaranto selvatico, è una pianta annuale robusta e dritta. Il fusto è coperto di peli bianchi sottili ed è rosso alla base. La radice è un fittone rosa o rosso. Le foglie sono alterne, ovali o a rombo, con il margine liscio e un lungo picciolo. In punta hanno spesso una piccola tacca o una punta minuscola. I fiori sono minuscoli e verdi, stretti in spighe fitte, ispide e pungenti. Più avanti le spighe si riempiono di semini neri e lucidi. Sullo stesso terreno crescono due erbacce tossiche. Lo stramonio (Datura) ha foglie grandi con grossi denti, che puzzano. Ha fiori bianchi a trombetta e capsule spinose. L'erba morella ha foglie dal margine ondulato, piccoli fiori bianchi a stella e bacche nere.",
+        "habitat": "Cercalo negli orti, nei campi, nelle aie e negli incolti. Vuole terra nuda, ricca e smossa, in pieno sole. Viene dal Nord America centrale e orientale. Oggi è un'erbaccia comune in tutti gli Stati Uniti e in gran parte d'Europa, soprattutto nelle pianure calde.",
+        "season": "È una pianta annuale d'estate. Spunta a fine primavera, quando la terra si scalda. Fiorisce più o meno da luglio a settembre. I semi maturano da agosto a ottobre, fino alla prima gelata. Le foglie sono più buone da giovani, prima che la pianta fiorisca.",
+        "picking": "Raccogli a mano le foglie giovani e le cime tenere prima della fioritura. Quando i semi sono neri, sfregali via dalle spighe. Stai lontano dai bordi delle strade e dai campi trattati. Lascia perdere i terreni molto letamati o concimati e le piante stressate dalla siccità. Sono quelle che accumulano più nitrati.",
+        "kitchen": "Prima di tutto assicurati di averlo riconosciuto bene. Poi cuoci le foglie come gli spinaci. Falle bollire poco e butta l'acqua, così perdono parte dei nitrati e degli ossalati. Mangiane con moderazione. Se hai calcoli o malattie ai reni, non mangiarne per niente. Hanno un sapore delicato e terroso e stanno bene con aglio, fagioli e uova. I semi puoi tostarli o cuocerli come un cereale.",
+        "keeps": "Le foglie appassiscono nel giro di un giorno. Tienile in frigo in un sacchetto, oppure sbollentale e congelale. Le spighe falle seccare in un sacchetto di carta. Poi sgrana i semi, soffia via la pula e conservali in un barattolo chiuso.",
+        "source": "Identificazione e stagione: Cornell University e NC State Extension. Nitrati e ossalati: NC State Extension e Michigan State University Extension. Confusione con lo stramonio: centro antiveleni di Marsiglia."
+      }
     },
     "artichoke": {
       "name": "Carciofo Selvatico",
-      "description": "Pianta spinosa simile al carciofo coltivato, con capolini e gambi commestibili.",
-      "howTo": "Si trova in prati e campi; raccogli i capolini giovani e i gambi teneri in primavera e inizio estate."
+      "description": "Una pianta spinosa simile al cardo, parente del carciofo dell'orto. Se ne mangiano i boccioli dei fiori e i gambi.",
+      "howTo": "Si trova in prati e campi; raccogli i capolini giovani e i gambi teneri in primavera e inizio estate.",
+      "guide": {
+        "identify": "Il carciofo selvatico, che chiamano anche cardo selvatico, fa una grande rosetta di foglie molto frastagliate. Sopra sono grigio-verdi argentate, sotto quasi bianche e coperte da un feltro di peli. Ogni lobo finisce con una spina gialla e dura. A fine primavera sale un fusto rigido e ramificato, che arriva all'altezza della testa. Porta dei capolini simili a piccoli carciofi, avvolti da brattee con la punta spinosa. Poi si aprono in fiori di cardo blu-viola. Attento alla masticogna (Atractylis gummifera), un cardo mediterraneo mortale. C'è chi l'ha scambiata per carciofo selvatico, e in Marocco ha ucciso delle persone. La masticogna non ha fusto. Il suo capolino rosa sta schiacciato in mezzo alla rosetta spinosa. Fiorisce a fine estate e in autunno, e dalla sua radice cola una gomma appiccicosa. Non mangiare mai una rosetta di cardo senza fusto né una radice di cardo.",
+        "habitat": "Gli piacciono i terreni aperti, secchi e soleggiati. Lo trovi nei pascoli, ai bordi dei campi e delle strade, negli incolti e nella macchia, spesso su terra argillosa. È originario del Mediterraneo, dal Portogallo alla Grecia e al Nord Africa. Nell'Europa del nord e del centro c'è solo perché è scappato dai giardini. In California è un'infestante invasiva delle praterie e della macchia costiera sotto i 500 m. Nel resto degli Stati Uniti è una pianta da giardino.",
+        "season": "La rosetta cresce dopo le piogge d'autunno e per tutto l'inverno mite. Le coste si raccolgono da fine inverno a primavera. I capolini arrivano tra fine primavera e inizio estate. Fiorisce soprattutto a giugno e luglio. Poi, con la siccità dell'estate, secca.",
+        "picking": "Metti dei guanti spessi e taglia coste o capolini col coltello. La radice lasciala nel terreno. Dove la pianta è di casa, lascia fiorire qualche capolino. In California è diverso, perché lì è invasiva. Prendi i capolini prima che facciano seme e non portare mai in giro le teste con i semi. Sui terreni pubblici informati sulle regole del posto.",
+        "kitchen": "Prima di cominciare devi essere sicuro di averlo riconosciuto. Togli spine e fili dalle coste. Metti subito i pezzi in acqua e limone, perché anneriscono. Lessali finché sono teneri. Sanno di carciofo amaro e si fanno in umido o fritti in pastella. Dai capolini togli le brattee spinose e mangia la base tenera e il cuore. I fiori secchi servono a cagliare il latte per formaggi come il Serra da Estrela e la Torta del Casar.",
+        "keeps": "Le coste durano qualche giorno in frigo, avvolte in un panno umido. Una volta lessate si congelano bene.",
+        "source": "Identificazione, distribuzione e stagione: IUCN Global Invasive Species Database e California Invasive Plant Council. Avvelenamenti da Atractylis: dati del centro antiveleni del Marocco."
+      }
     },
     "asparagus": {
       "name": "Asparago Selvatico",
-      "description": "Pianta perenne con germogli sottili e commestibili che compaiono in primavera.",
-      "howTo": "Cerca i giovani germogli in campi aperti, prati e lungo le siepi in primavera."
+      "description": "Una pianta perenne che in primavera butta dei germogli sottili.",
+      "howTo": "Cerca i giovani germogli in campi aperti, prati e lungo le siepi in primavera.",
+      "guide": {
+        "identify": "L'asparago selvatico è un cespuglio legnoso, intricato e sempreverde, alto fino a circa 1,5 m. Non ha vere foglie. Al loro posto ha ciuffi di rametti verdi corti e rigidi, simili ad aghi. Ognuno finisce con una spina. Le sue bacche nere non si mangiano. In primavera, dalla base della vecchia pianta spinosa, spuntano gli asparagi. Sono sottili, da verde scuro a violacei e spesso più fini di una matita. Lungo il fusto hanno piccole squame appuntite ben aderenti e nessuna foglia. Il tamaro e la brionia sono rampicanti velenosi delle stesse siepi e germogliano anche loro in primavera. Il tamaro apre presto foglie lucide a forma di cuore. La brionia è pelosa, con foglie lobate e viticci. Raccogli solo gli asparagi che escono da una pianta di asparago che vedi bene.",
+        "habitat": "Cresce nella macchia mediterranea, ai margini delle leccete e delle pinete, negli uliveti e nelle siepi, lungo i muretti a secco e ai bordi delle strade. Lo trovi dalla costa alla collina in Portogallo, Spagna, Francia del sud, Italia, Balcani e Grecia. Nell'Europa del nord e del centro non cresce spontaneo. Lì gli asparagi selvatici sono asparagi da orto inselvatichiti, soprattutto su terreni sabbiosi.",
+        "season": "Gli asparagi spuntano da fine inverno a primavera, dopo le piogge d'autunno e d'inverno. Sulle coste calde si comincia a febbraio. In collina si va avanti fino ad aprile e maggio. Una pioggia seguita da giornate miti e di sole porta una nuova buttata.",
+        "picking": "Spezza ogni asparago con le mani, nel punto in cui si rompe facilmente. Lasciane qualcuno su ogni pianta e non tagliare né sradicare mai la pianta. In Italia ogni regione ha le sue regole. In Toscana, per esempio, si possono raccogliere solo fino al 31 maggio. In Spagna decidono il proprietario e la comunità autonoma, e nei parchi spesso la raccolta è vietata. Informati sulle regole del posto.",
+        "kitchen": "Quando sei sicuro di cosa hai raccolto, usa solo la parte tenera sopra il punto in cui l'asparago si spezza. È più amaro di quello coltivato. Cuocilo poco. È ottimo nella frittata e nelle uova strapazzate, nel risotto, nella pasta o saltato in padella con aglio e olio d'oliva.",
+        "keeps": "Il meglio è mangiarlo in giornata. In frigo, in piedi in un dito d'acqua, dura qualche giorno. Puoi anche sbollentarlo e congelarlo.",
+        "source": "Identificazione, habitat e stagione: flore mediterranee ed erbario virtuale dell'Università delle Isole Baleari. Tamaro e brionia: RHS. Regole di raccolta: Regione Toscana."
+      }
     },
     "black_chant": {
       "name": "Trombetta dei Morti",
-      "description": "Un fungo scuro a forma di trombetta, dal sapore intenso e molto apprezzato in cucina.",
-      "howTo": "Si trova nei boschi di latifoglie, specialmente sotto querce e faggi, tra fine estate e autunno."
+      "description": "Un fungo scuro a forma di imbuto, dal sapore intenso e affumicato. In cucina è molto ricercato.",
+      "howTo": "Si trova nei boschi di latifoglie, specialmente sotto querce e faggi, tra fine estate e autunno.",
+      "guide": {
+        "identify": "La trombetta dei morti è un corno sottile e cavo, largo da 4 a 8 cm. È aperto fino alla base e non ha un cappello distinto. Dentro è grigio-bruno o nero e finemente squamoso. Fuori è grigio cenere, liscio o appena rugoso, senza lamelle né pieghe. Quando matura schiarisce e si copre di una patina biancastra. La carne è sottile, fragile e grigio-nera, con un odore leggero e dolciastro. Le trombette dell'est degli Stati Uniti (Craterellus fallax) sono identiche. Però danno una sporata rosa-arancio invece che bianca. Il Craterellus cinereus, un parente grigio cenere, ha invece all'esterno pieghe biforcate ben marcate.",
+        "habitat": "Vive con le latifoglie, soprattutto faggi e querce, ma anche carpini e noccioli. Cercala nella lettiera umida e nel muschio, su terra ricca e di medio impasto, nei fossi e sulle scarpate. Spesso cresce in grandi gruppi. È comune in tutta Europa. Nell'est degli Stati Uniti la sua specie gemella cresce sotto querce e faggi. Sulla costa del Pacifico c'è una trombetta occidentale che cresce sotto tanoak, querce sempreverdi e corbezzoli americani.",
+        "season": "È soprattutto un fungo d'autunno. In Europa va da fine estate a novembre, fino a dicembre negli anni miti e ancora più tardi nel Mediterraneo. Nell'est degli Stati Uniti esce da luglio a ottobre, dopo piogge forti. Sulla costa del Pacifico la trombetta occidentale esce da pieno inverno fino alla primavera.",
+        "picking": "Staccala con le dita o tagliala alla base. Lascia le piccole e prendi solo quello che mangerai. Valgono le regole locali sui funghi. Nella lettiera scura si mimetizza bene, quindi dove ne trovi una guarda bene lì intorno.",
+        "kitchen": "Prima di metterla in padella, assicurati di cosa hai trovato. Apri ogni trombetta per il lungo e sciacqua via foglie, insetti e terra. Poi scolala bene. Non mangiarla mai cruda. Cuocila bene nel burro, nei sughi alla panna, nel risotto o nella pasta. Va bene anche con pesce e uova. Ha un sapore profondo e affumicato, che da secca diventa ancora più forte.",
+        "keeps": "Fresca dura solo pochi giorni in frigo. Si secca in fretta e benissimo. Tienila in un barattolo chiuso, oppure macinala in polvere per sughi e zuppe.",
+        "source": "Identificazione e habitat: First Nature (Regno Unito), MushroomExpert.com e MykoWeb (California Fungi). Stagione: dati GBIF."
+      }
     },
     "lingonb": {
       "name": "Mirtillo Rosso",
-      "description": "Piccole bacche rosse e acidule che crescono su arbusti sempreverdi in suoli acidi.",
-      "howTo": "Cerca nei boschi di conifere, brughiere e lande tra fine estate e autunno."
+      "description": "Piccole bacche rosse e acidule su arbusti bassi sempreverdi, in terreno acido.",
+      "howTo": "Cerca nei boschi di conifere, brughiere e lande tra fine estate e autunno.",
+      "guide": {
+        "identify": "Il mirtillo rosso, o vite idea, è un piccolo arbusto sempreverde e strisciante. Le foglie sono spesse, lucide e verde scuro, con il margine arrotolato verso il basso. Sotto sono chiare e punteggiate di minuscoli puntini scuri. In cima ai rametti crescono piccoli fiori a campanella, da bianchi a rosa, in brevi grappoli. Danno bacche tonde, rosse e lucide, che pendono a mazzetti. L'uva ursina (Arctostaphylos uva-ursi) è un arbusto strisciante degli stessi posti. Ha foglie con nervature a rete e senza puntini. Le sue bacche sono secche e farinose. Le bacche rosse e nere velenose non crescono su un tappeto basso e sempreverde. Il tasso (Taxus) è un albero o un grande arbusto con aghi piatti. La sua coppetta rossa è aperta in punta, intorno a un seme scuro. Il fior di stecco (Daphne mezereum) è un arbusto dritto con le bacche attaccate lungo il ramo. La belladonna (Atropa bella-donna) è un'erba alta con bacche nere. L'actea rossa (Actaea) e il mughetto (Convallaria majalis) sono erbe morbide.",
+        "habitat": "Vuole terreno acido e povero. Cercalo nelle pinete e nelle peccete, nei boschi di betulle, nelle brughiere e nelle lande e sui pendii sopra il limite del bosco. È molto comune in Scandinavia e nei paesi baltici e si trova sulle Alpi e su altre montagne. In Nord America cresce soprattutto in Canada e in Alaska. Negli Stati Uniti arriva solo nell'estremo nord, dal Minnesota al Maine. Lì è raro e nel Wisconsin è in pericolo.",
+        "season": "Le bacche diventano rosse da agosto. Sono al meglio quando sono rosso scuro, da settembre a ottobre. Restano sulla pianta fino all'inverno.",
+        "picking": "Raccogli le bacche rosso scuro a mano, o col pettine dove è permesso. In Svezia, Finlandia e Norvegia il diritto di libero accesso alla natura permette a tutti di raccogliere bacche selvatiche lontano da case e giardini. Le riserve naturali però possono avere regole proprie. In Europa centrale l'autorità sanitaria bavarese (LGL) dice che mangiare bacche selvatiche non si è dimostrato un fattore di rischio per l'echinococco della volpe. Consiglia comunque di lavarle bene. Solo il calore sopra i 60 °C ne uccide le uova. Il congelatore di casa no.",
+        "kitchen": "Crude sono aspre e un po' amare. Così, una volta che le hai riconosciute con certezza, di solito si cuociono con lo zucchero in salsa o marmellata. In Svezia si mescolano anche crude con lo zucchero. Servile con polpette, selvaggina, arrosti, frittelle di patate o porridge.",
+        "keeps": "In frigo durano più della maggior parte delle bacche. Mescolate con lo zucchero si conservano a lungo al fresco, grazie al loro acido benzoico naturale. Si congelano bene così come sono.",
+        "source": "Identificazione e distribuzione: Minnesota Wildflowers e CREA Mont-Blanc. Diritto di raccolta: Agenzia svedese per la protezione dell'ambiente (Naturvårdsverket). Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "masterwort": {
       "name": "Imperatoria",
-      "description": "Erba perenne con foglie aromatiche e ombrelle di fiori bianchi, usata in medicina tradizionale e come spezia.",
-      "howTo": "Si trova in prati montani e radure boschive; raccogli foglie e radici in primavera ed estate."
+      "description": "Un'erba perenne con foglie aromatiche e ombrelle di fiori bianchi. Da tempo si usa come spezia e nella medicina popolare.",
+      "howTo": "Si trova in prati montani e radure boschive; raccogli foglie e radici in primavera ed estate.",
+      "guide": {
+        "identify": "L'imperatoria è un'ombrellifera senza peli, alta da 30 a 100 cm. Il fusto è rotondo, scanalato e cavo. Le foglie si dividono in tre e poi ancora in tre. Finiscono in foglioline larghe e ovali, a doppia dentatura, lunghe da 5 a 10 cm. Le foglie in alto nascono da grandi guaine gonfie. Le ombrelle sono piatte, bianche o rosate, con fino a 50 raggi. I frutti sono tondi, piatti e con larghe ali. Una foglia stropicciata o il grosso rizoma marrone hanno un odore forte e speziato, di sedano e carota. I suoi sosia mortali hanno foglie molto divise, piumose o simili a quelle di una felce. La cicuta maggiore ha il fusto liscio macchiato di viola e un odore di topo. La cicuta aglina ha lunghe brattee che pendono sotto ogni ombrellina. La cicuta acquatica ha un rizoma che, tagliato per il lungo, è diviso in camere vuote. L'enante zafferanata ha tuberi chiari nei terreni bagnati. Il panace di Mantegazza è molto più grande, con il fusto ispido macchiato di viola. La sua linfa brucia la pelle al sole. Anche la linfa dell'imperatoria può rendere la pelle sensibile al sole.",
+        "habitat": "Cresce nei prati umidi di montagna, tra le erbe alte, sulle sponde dei ruscelli, nei ghiaioni e nelle boscaglie di ontano. Per lo più la trovi tra 1.400 e 2.700 m. Cresce sulle Alpi, sui Pirenei, sui Carpazi e su altre montagne dell'Europa centrale e del sud. In Germania è nativa solo nelle Alpi bavaresi. Più in basso è rara e di solito scappata da vecchi orti, come in Gran Bretagna e in Scandinavia.",
+        "season": "Le foglie crescono mentre la neve si scioglie. Sono migliori giovani, a inizio estate. Fiorisce da fine giugno ad agosto, e i frutti maturano a settembre e ottobre.",
+        "picking": "Metti i guanti. Prendi poche foglie da una macchia grande e lascia il rizoma nel terreno. Per scavare la radice spesso serve un permesso. In Tirolo lo rilascia l'autorità distrettuale. Molte riserve e parchi nazionali vietano la raccolta. Cresce in mezzo all'aconito napello e al veratro bianco, mortali tutti e due. Raccogli foglia per foglia, e solo da una pianta che hai riconosciuto per intero.",
+        "kitchen": "Prima di tutto devi essere sicuro di averla riconosciuta. Usala come aroma, non come verdura, perché è molto amara e speziata, come il levistico. Sulle Alpi la radice dà sapore all'acquavite (Meisterwurzbrand) e ai formaggi alle erbe. Trita fini poche foglie giovani e aggiungile con parsimonia a zuppe e formaggi freschi. Dopo averla toccata lavati le mani.",
+        "keeps": "Fai seccare le foglie o le fettine di radice in un posto arieggiato e all'ombra. Poi conservale in un barattolo chiuso.",
+        "source": "Identificazione, habitat e stagione: Botanical Society of Britain and Ireland e flore alpine. Scavo della radice e acquavite: ministero austriaco dell'Agricoltura (registro degli alimenti tradizionali). Reazioni cutanee: Botanical Dermatology Database."
+      }
     },
     "parasol": {
       "name": "Mazza di Tamburo",
-      "description": "Grande fungo con cappello ampio e squamoso simile a un ombrello, commestibile da giovane.",
-      "howTo": "Cerca in prati, pascoli e ai margini dei boschi da fine estate ad autunno."
+      "description": "Un fungo grande e alto, con un cappello largo e squamoso che si apre come un ombrellone. Mangialo giovane.",
+      "howTo": "Cerca in prati, pascoli e ai margini dei boschi da fine estate ad autunno.",
+      "guide": {
+        "identify": "La mazza di tamburo è un fungo alto. Da giovane il cappello è chiuso, a forma d'uovo, proprio come una mazza di tamburo. Poi si apre in un ombrello piatto, largo da 10 a 25 cm. Il cappello è color crema, con squame brune e un umbone liscio e bruno al centro. Le lamelle sono bianche, libere e fitte. Il gambo è slanciato, alto fino a 30 cm, con un bulbo alla base. È tigrato di bruno come la pelle di un serpente. Porta un anello spesso e doppio che scorre su e giù. La sporata è bianca. Ci sono diversi sosia da conoscere. Le lepiote mortali sono piccole, con cappelli di pochi centimetri. Il Chlorophyllum molybdites ha la sporata verdastra. Le mazze di tamburo arrossanti (Chlorophyllum rhacodes e C. brunneum) fanno star male molte persone. Hanno il gambo liscio e la carne che al taglio diventa rosso arancio. L'Amanita pantherina, la tignosa bruna, ha verruche bianche sul cappello e un anello che non scorre. Alla base ha anche un bulbo con un orlo ben marcato.",
+        "habitat": "Cresce nei prati e ai margini dei boschi. Cercala nei pascoli, nei prati, nelle radure, lungo i sentieri nel bosco e sulle dune. Le piace il terreno ben drenato, dalla pianura alla montagna. È comune in tutta Europa.",
+        "season": "Le mazze di tamburo escono d'estate e in autunno, soprattutto da luglio a ottobre. Nel sud Europa continuano fino a novembre. Spuntano dopo un periodo caldo e umido.",
+        "picking": "Raccogli solo cappelli aperti e ben sviluppati, su cui puoi controllare tutti i caratteri. Prendi il fungo intero, così vedi la base. Lascia qualsiasi fungo simile alla mazza di tamburo con il cappello sotto i 10 cm. Lascia anche quelle vecchie e coriacee. Informati sulle regole del posto, perché molte regioni limitano quanto puoi raccogliere.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, mangia solo il cappello, e sempre cotto. Come quasi tutti i funghi selvatici, cruda può dare fastidio allo stomaco. Impanala e friggila come una cotoletta, oppure falla alla griglia con burro e aglio. Ha un sapore delicato, di nocciola. I gambi sono duri, ma puoi seccarli e macinarli per le zuppe.",
+        "keeps": "In frigo dura due giorni. I cappelli a fette si seccano bene.",
+        "source": "Identificazione e habitat: First Nature. Specie simili e intossicazioni: ANSES. Stagione: segnalazioni GBIF."
+      }
     },
     "sorrel": {
       "name": "Acetosa Comune",
-      "description": "Pianta dal sapore acidulo e limonato, usata in insalate e zuppe.",
-      "howTo": "Raccogli le foglie giovani in prati, pascoli e lungo i sentieri in primavera ed estate."
+      "description": "Una pianta a foglia dal sapore acidulo che ricorda il limone. È buona in insalata e nelle zuppe.",
+      "howTo": "Raccogli le foglie giovani in prati, pascoli e lungo i sentieri in primavera ed estate.",
+      "guide": {
+        "identify": "L'acetosa ha foglie tenere a forma di freccia. I due lobi alla base sono appuntiti e rivolti all'indietro, verso il picciolo. Le foglie in alto abbracciano il fusto. Dove ogni foglia si attacca al fusto, una guaina sottile come carta lo avvolge. Da maggio gli steli fioriti portano spighe rade di piccoli fiori rossastri. Il gigaro (Arum maculatum) è tossico e le sue foglie giovani hanno una forma simile. Però hanno spesso macchie scure e lobi arrotondati. E crescono nei boschi e nelle siepi più che nei prati aperti. Non assaggiare mai una foglia per controllare, perché il gigaro brucia la bocca.",
+        "habitat": "Cercala nei prati, nei pascoli, nei tappeti erbosi, sui bordi delle strade e nei boschi radi, dalla pianura alla montagna. È molto comune in tutta Europa. Negli Stati Uniti è stata introdotta e si trova sparsa. Cresce soprattutto nel nord-est, intorno ai Grandi Laghi, in Oregon e in Alaska. Lì è molto più comune l'acetosella, più piccola.",
+        "season": "Le foglie crescono da inizio primavera, e nelle zone miti quasi tutto l'anno. Sono migliori da giovani. Quando la pianta fiorisce, da maggio, diventano più dure e amare. Le piante tagliate però ne rimettono di nuove.",
+        "picking": "Prendi da ogni pianta qualche foglia giovane, una per una, e lascia la radice. Scegli prati non trattati e non concimati, lontani dalle strade e dai sentieri dei cani.",
+        "kitchen": "Prima riconoscila con certezza. Le foglie hanno un'acidità decisa, come la scorza di limone. Taglia a striscioline quelle giovani nell'insalata, oppure cuocile un attimo in minestre, frittate e salse per pesce e uova. L'acidità viene dall'acido ossalico. Mangiane con moderazione ed evitala se soffri di calcoli renali. Cuocila in pentole d'acciaio o smaltate, non di alluminio o di ghisa.",
+        "keeps": "In frigo le foglie appassiscono in due o tre giorni. Cotta e ridotta in purea, l'acetosa si congela bene.",
+        "source": "Riconoscimento e sosia: Woodland Trust e Wild Food UK. Diffusione negli Stati Uniti: Flora of North America. Acido ossalico: Wild Food UK. Stagione: segnalazioni GBIF."
+      }
     },
     "st_george": {
       "name": "Prugnolo (Fungo di San Giorgio)",
-      "description": "Fungo bianco e sodo con odore di farina, compare intorno alla festa di San Giorgio in primavera.",
-      "howTo": "Si trova in prati, pascoli e ai margini dei boschi in primavera."
+      "description": "Un fungo bianco e sodo che profuma di farina fresca. Spunta in primavera, intorno al giorno di San Giorgio.",
+      "howTo": "Si trova in prati, pascoli e ai margini dei boschi in primavera.",
+      "guide": {
+        "identify": "Il prugnolo, o fungo di San Giorgio, è tozzo e carnoso, da bianco a crema. Il cappello è largo da 5 a 15 cm, spesso bitorzoluto, con il margine arrotolato verso l'interno. Le lamelle sono bianche, strette e fittissime. Il gambo è grosso e pieno, senza anello e senza volva alla base. La carne è soda e bianca e non cambia colore. Ha un forte odore di farina fresca. La sporata è bianca. L'Inosperma erubescens, l'inocibe di Patouillard, è mortale e ha il cappello conico e fibroso. Dove lo tocchi diventa rosso e dà una sporata bruna. Anche l'entoloma livido (Entoloma sinuatum) può sapere di farina. Però le sue lamelle diventano rosa e anche la sporata è rosa. In primavera escono anche amanite bianche come la mortale Amanita verna. Hanno l'anello e la volva alla base.",
+        "habitat": "Cresce nell'erba, nei pascoli, sui bordi delle strade falciati, nei parchi e ai margini dei boschi. Lo trovi spesso vicino a biancospini, pruni selvatici e altri arbusti delle siepi, soprattutto su terreno calcareo. Torna negli stessi posti per anni, spesso in cerchi. Cresce in tutta Europa ed è molto ricercato nel nord della Spagna e nell'Italia centrale.",
+        "season": "Esce in primavera, soprattutto ad aprile e maggio. Al nord e in montagna dura fino a giugno. Prende il nome dal giorno di San Giorgio, il 23 aprile. Una primavera mite e piovosa lo fa uscire.",
+        "picking": "Taglia il gambo alla base e lascia i piccoli. Prendi cappelli giovani e sodi, perché quelli vecchi sono spesso bacati. Evita i bordi delle strade trafficate. Informati anche sulle regole del posto, perché alcune regioni chiedono il tesserino o fissano un limite giornaliero.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, mangialo cotto. La cottura toglie quasi tutto l'odore di farina. La carne soda e delicata è ottima nelle frittate, nelle uova strapazzate, nel risotto e nei sughi alla panna. Prima taglia ogni fungo per il lungo, per vedere se è bacato.",
+        "keeps": "In frigo dura fino a due giorni, avvolto nella carta. Dopo una passata veloce in padella si congela bene.",
+        "source": "Identificazione e habitat: First Nature. Specie simili: First Nature e ANSES. Stagione: segnalazioni GBIF."
+      }
     },
     "truffle_b": {
       "name": "Tartufo Nero Pregiato",
-      "description": "Fungo ipogeo molto pregiato dal profumo intenso, usato in cucina gourmet.",
-      "howTo": "Si trova sottoterra vicino alle radici di querce e noccioli, raccolto con animali addestrati in inverno."
+      "description": "Un fungo molto pregiato che cresce sotto terra e ha un profumo intenso. In cucina se ne usa poco alla volta.",
+      "howTo": "Si trova sottoterra vicino alle radici di querce e noccioli, raccolto con animali addestrati in inverno.",
+      "guide": {
+        "identify": "Il tartufo nero pregiato è un tubero tondo e bitorzoluto che cresce sottoterra. Va dalla grandezza di una noce a quella di un pugno. La scorza è nera, rossiccia da giovane, e coperta di piccole verruche dure a più facce. Taglialo a metà. Quando è maturo, la polpa è nero-violacea, marmorizzata da sottili venature bianche che all'aria diventano bruno-rossicce. Ha un odore forte, di terra. Gli Scleroderma sono velenosi. Hanno una scorza spessa e squamosa, da giallastra a bruna, e odorano di gas. Dentro sono sodi e scuri. Il tartufo nero invernale o brumale (Tuber brumale) e il tartufo cinese d'importazione (Tuber indicum) gli somigliano. Però valgono molto meno.",
+        "habitat": "Cresce sottoterra tra le radici del nocciolo e delle querce, soprattutto leccio e roverella. Vuole un terreno calcareo e ben drenato, in collina, al sole. Spesso intorno all'albero c'è una chiazza di terra nuda, come bruciata. Si chiama bruciata e indica dove cresce. È originario della Francia del sud, della Spagna orientale e dell'Italia centrale. Oggi gran parte del raccolto viene da tartufaie coltivate.",
+        "season": "Matura d'inverno, da dicembre a marzo. Sui mercati il picco è a gennaio. I temporali di fine luglio e di agosto, quando si ingrossa, decidono quanto sarà abbondante il raccolto.",
+        "picking": "Si cerca con un cane addestrato. Scava solo dove segna il cane, con il vanghetto. Prendi solo tartufi maturi e richiudi la buca. La cerca dei tartufi è regolamentata. In Italia serve un tesserino che si prende dopo un esame, e le regioni fissano il calendario. In Spagna le regioni fissano stagioni e permessi. In Francia i tartufi appartengono al proprietario del terreno. In Germania i tartufi selvatici sono protetti. Informati sulle regole del posto prima di cercare.",
+        "kitchen": "Se l'hai riconosciuto con certezza, spazzolalo sotto l'acqua fredda appena prima di usarlo. Affettalo o grattugialo crudo sui piatti caldi. Oppure scaldalo appena in un grasso, con uova, burro, pasta, risotto o patate. Una cottura lunga ne uccide il profumo.",
+        "keeps": "Avvolgilo in carta da cucina e tienilo in frigo in un barattolo chiuso. Cambia la carta ogni giorno e usalo entro pochi giorni, perché il profumo svanisce. Le uova tenute nel barattolo prendono il suo profumo. Congelarlo conserva l'aroma meglio che seccarlo.",
+        "source": "Identificazione e habitat: CRPF Languedoc-Roussillon e Trufamania. Regole: legge italiana sui tartufi 752/1985, norme regionali spagnole e ordinanza federale tedesca sulla protezione delle specie (BArtSchV). Stagione: segnalazioni GBIF."
+      }
     },
     "bronze_bolete": {
       "name": "Porcino Nero",
-      "description": "Un porcino dal cappello bronzeo scuro, quasi nero, con gambo reticolato chiaro e polpa bianca e soda",
-      "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo"
+      "description": "Un porcino con il cappello bronzo scuro, a volte quasi nero. Ha il gambo chiaro con il reticolo e la carne bianca e soda.",
+      "howTo": "Cercalo sui versanti caldi di pianura sotto querce e castagni, più tardi del porcino estivo",
+      "guide": {
+        "identify": "È il più scuro dei porcini, quello che molti chiamano bronzino. Il cappello va dal castano scuro al quasi nero, spesso con chiazze color bronzo. Resta asciutto e finemente vellutato anche col bagnato. I pori sono bianchi, poi gialli fino all'oliva. Non virano al blu. Il gambo è nocciola chiaro, con un fine reticolo marrone più fitto in alto. La carne è bianca e sodissima e al taglio non cambia colore. Il porcino estivo è più chiaro e ha il reticolo che scende più in basso sul gambo. Negli stessi querceti crescono altri due boleti. Sono il porcino malefico (Rubroboletus satanas) e il boleto di Le Gal (Rubroboletus legaliae). Tutti e due hanno pori rossi e carne che vira al blu.",
+        "habitat": "Ama i pendii caldi e soleggiati con querce, castagni e faggi, per lo più tra 200 e 1.000 m. È comune intorno al Mediterraneo. In Italia lo trovi lungo l'Appennino e nelle isole. In Gran Bretagna e in Germania è raro.",
+        "season": "Può uscire già da luglio, dopo i temporali estivi. La stagione vera è settembre e ottobre, più tardi del porcino estivo. Al sud va avanti fino a novembre. Esce quando, dopo un periodo caldo, arriva una pioggia abbondante e il terreno si rinfresca.",
+        "picking": "Taglialo o staccalo con una torsione. Lascia crescere quelli giovani. In Germania è raro e particolarmente protetto, quindi lì non raccoglierlo. In Italia e in Spagna ci sono permessi regionali e limiti giornalieri.",
+        "kitchen": "È il più sodo dei porcini. Ha un sapore di nocciola che da secco diventa più forte. Una volta riconosciuto con certezza, trattalo come un porcino. Spazzolalo, controlla che non sia bacato e cuocilo bene.",
+        "keeps": "A fette si secca e si congela benissimo.",
+        "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Tutela: BArtSchV (Germania). Cucina: Regione Piemonte."
+      }
     },
     "pine_bolete": {
       "name": "Porcino Rosso",
-      "description": "Un porcino dal cappello bruno-rossiccio dei boschi di pino, con gambo tozzo reticolato e polpa soda",
-      "howTo": "Cercalo nelle pinete e peccete muscose su suolo acido e sabbioso, a fine primavera e di nuovo in autunno"
+      "description": "Un porcino delle pinete. Ha il cappello bruno rossastro, il gambo tozzo rossiccio con il reticolo e la carne soda.",
+      "howTo": "Cercalo nelle pinete e peccete muscose su suolo acido e sabbioso, a fine primavera e di nuovo in autunno",
+      "guide": {
+        "identify": "È il porcino rosso, detto anche porcino dei pini. Il cappello va dal rosso vino al mogano ed è spesso bitorzoluto. Da giovane è vellutato, con l'umido diventa untuoso o viscido. Al margine ha una pruina biancastra. Il gambo è corto e tozzo, sfumato di bruno-rossastro, con un fine reticolo da biancastro a rossastro. La carne è bianca, ma subito sotto la pellicina del cappello è rosso vino. I pori passano dal bianco al giallo e al verde oliva. Se li premi cambiano appena colore. Il porcino nero è color seppia fino a nero, senza rosso. Pori rossi o arancioni (Rubroboletus satanas) lo escludono. Lo stesso vale per pori rosa con un reticolo scuro (Tylopilus felleus).",
+        "habitat": "Cresce soprattutto con il pino silvestre e l'abete rosso, su terreno acido, spesso nel muschio. In montagna cresce anche con castagno, faggio e abete bianco, di solito tra 400 e 1.400 m. È comune in Scandinavia, nelle pinete della Scozia e sulle montagne dell'Europa centrale e meridionale.",
+        "season": "Spesso è il primo porcino dell'anno e anche l'ultimo. Una prima buttata arriva a maggio e giugno, dove resta fresco e umido. Il grosso arriva a settembre e ottobre. Continua fino a novembre, anche dopo le prime gelate.",
+        "picking": "Taglialo o staccalo ruotandolo, e non rastrellare il muschio, che protegge il micelio. In molte regioni italiane e spagnole serve il tesserino. Alcuni cantoni svizzeri limitano le quantità. Informati sulle regole del posto.",
+        "kitchen": "Se l'hai riconosciuto con certezza, cuocilo bene come il porcino. È più delicato e un po' resinoso. I giovani molto sodi hanno bisogno di cuocere più a lungo. Colora di verde l'acqua di cottura. È buono nei sughi, sott'aceto ed essiccato.",
+        "keeps": "A fette si secca bene. Fresco, usalo entro un giorno o due.",
+        "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Cucina: Regione Piemonte."
+      }
     },
     "summer_bolete": {
       "name": "Porcino Estivo",
-      "description": "Il primo porcino della stagione, con cappello bruno chiaro finemente screpolato e gambo reticolato per intero",
-      "howTo": "Cercalo sotto querce e faggi da fine primavera, molto prima degli altri porcini"
+      "description": "Il primo porcino della stagione. Il cappello è marrone chiaro e finemente screpolato. Il gambo è reticolato da cima a fondo.",
+      "howTo": "Cercalo sotto querce e faggi da fine primavera, molto prima degli altri porcini",
+      "guide": {
+        "identify": "Il porcino estivo, detto anche reticolato, ha il cappello opaco, asciutto e vellutato, da nocciola chiaro a marrone medio. Con il tempo secco il cappello si screpola in un fine reticolo. Non è mai untuoso e il bordo non è più chiaro del centro. Il segno più sicuro è il reticolo in rilievo che scende lungo il gambo quasi fino alla base. I pori sono bianchi, poi giallo oliva, e non cambiano colore. La carne è bianca e più tenera di quella del porcino. Il porcino malefico (Rubroboletus satanas) e il Rubroboletus legaliae crescono negli stessi querceti. Però hanno pori rossi e carne che vira al blu. Il porcino amaro (Tylopilus felleus) ha pori rosa e un reticolo scuro.",
+        "habitat": "Cresce con querce e castagni. Lo trovi anche con faggi, tigli e betulle. Cercalo ai margini del bosco, nei parchi e sui versanti al sole, dalla pianura fino a circa 1.000 m. È comune nell'Europa centrale e meridionale, soprattutto nel sud-ovest della Francia e in Portogallo. In Gran Bretagna è raro.",
+        "season": "È il primo porcino dell'anno. Comincia a maggio in basso e a giugno in montagna. La stagione buona va da luglio a inizio settembre, dopo le piogge calde. Dura fino ai primi freddi d'autunno.",
+        "picking": "Taglialo o staccalo ruotandolo e lascia i piccoli. Con il caldo molti sono bacati. Tagliali a metà sul posto e lascia nel bosco quelli con i vermi. In molte regioni italiane e spagnole serve il tesserino.",
+        "kitchen": "Per molti cuochi è il porcino più buono. È dolce, sa di nocciola ed è profumato. È ottimo da seccare, nei sughi e con le uova. Quando l'hai riconosciuto con certezza, togli le parti bacate e cuocilo bene.",
+        "keeps": "Di tutti i porcini è quello che si conserva peggio. Cuocilo o seccalo il giorno stesso.",
+        "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Cucina: Regione Piemonte."
+      }
     },
     "pacific_chant": {
       "name": "Galletto del Pacifico",
-      "description": "Un grande gallinaccio dorato del Nord-Ovest pacifico, più pallido e rosato del cugino europeo",
-      "howTo": "Cercalo nelle foreste muscose di abete di Douglas e tsuga, dopo l'arrivo delle piogge autunnali"
+      "description": "Un grande galletto dorato del nord-ovest del Pacifico. È più chiaro e più rosato di quello europeo.",
+      "howTo": "Cercalo nelle foreste muscose di abete di Douglas e tsuga, dopo l'arrivo delle piogge autunnali",
+      "guide": {
+        "identify": "È un galletto grande, più pallido e più rosato di quello europeo. Il cappello va dal giallo arancio al color albicocca. Da giovane ha spesso fini squamette brunastre e un riflesso rosato, che con il tempo umido possono sparire. Sotto ha pieghe ottuse e biforcate che scendono lungo il gambo. Sono giallo arancio pallido, di solito sfumate di rosa. Il gambo si assottiglia verso il basso. La carne è biancastra e soda. Dove lo tocchi, il cappello si macchia di giallo. I funghi dell'olivo (Omphalotus) e il falso gallinaccio hanno lamelle vere, sottili e fitte. Il Turbinellus floccosus è una trombetta profonda e cava, rosso arancio, con grosse squame. A molte persone dà disturbi di stomaco.",
+        "habitat": "Vive in simbiosi con le conifere, soprattutto con l'abete di Douglas e la tsuga occidentale. Vive anche con l'abete di Sitka. Cercalo nel muschio e tra gli aghi, nei boschi ricresciuti e in quelli vecchi. Cresce soprattutto in pianura e sulle prime colline. Va dalla Columbia Britannica, passando per Washington e Oregon, fino alla California del nord. In Oregon è il fungo simbolo dello stato.",
+        "season": "Lo trovi da settembre a dicembre, a volte fino a gennaio. Prima le piogge d'autunno devono inzuppare il terreno, quindi un autunno secco lo fa ritardare. Ogni fungo cresce piano. Con il tempo fresco e umido può continuare a crescere per settimane.",
+        "picking": "Taglialo alla base e lascia crescere i piccoli. Prendi solo quello che mangerai. Le regole cambiano da una foresta nazionale all'altra, da stato a stato e da parco a parco. Alcuni chiedono un permesso gratuito e fissano limiti giornalieri. Molti parchi statali vietano la raccolta. Per vendere serve un permesso commerciale. Chiedi all'ente che gestisce la zona.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, togli aghi e terra con un pennello. Sciacqualo solo se ha sabbia e poi asciugalo, perché dopo la pioggia è già pieno d'acqua. Non mangiarlo mai crudo. Prima fallo andare in padella senza grassi, finché butta fuori l'acqua. Poi finisci la cottura nel burro. È delicato, fruttato e sodo. Sta bene con uova, panna, pasta, salmone e selvaggina.",
+        "keeps": "In frigo, in un sacchetto di carta, dura diversi giorni. Secco diventa duro. Per tenerlo più a lungo, saltalo nel burro e congelalo.",
+        "source": "Identificazione: MushroomExpert.com e UBC Beaty Biodiversity Museum. Regole di raccolta: Servizio forestale degli Stati Uniti. Stagione: dati GBIF."
+      }
     },
     "smooth_chant": {
       "name": "Galletto Liscio",
-      "description": "Un gallinaccio arancione con la faccia inferiore quasi liscia invece che costolata, dal forte odore di albicocca",
-      "howTo": "Cercalo nei querceti del sud-est americano durante l'estate umida, spesso in gruppi su terreno nudo"
+      "description": "Un galletto arancione con la parte di sotto quasi liscia al posto delle pieghe. Ha un forte profumo di albicocca.",
+      "howTo": "Cercalo nei querceti del sud-est americano durante l'estate umida, spesso in gruppi su terreno nudo",
+      "guide": {
+        "identify": "Il galletto liscio è giallo arancio vivo o giallo tuorlo, largo da 2,5 a 8 cm. Prima è piatto, poi diventa un vaso poco profondo con il bordo ondulato. Lo riconosci da sotto. La parte inferiore è liscia o appena rugosa, senza vere lamelle. È più chiara del cappello, spesso rosata, e scende lungo il gambo. Il gambo si assottiglia verso la base. La carne è bianca e al taglio non cambia. Di solito ha un odore forte e dolce, di albicocca. Negli stessi querceti è comune il fungo dell'olivo americano (Omphalotus illudens). Ha lamelle vere, fitte e affilate e cresce a cespi stretti dal legno o da radici sepolte. Anche dentro è arancione.",
+        "habitat": "Vive in simbiosi con le querce e a volte con i carya (hickory). Cercalo nei boschi di latifoglie e nei boschi misti di querce e pini dell'est degli Stati Uniti, a est delle Montagne Rocciose. È più comune nel sud-est. Spesso spunta a gruppi su terra nuda o muschiosa, lungo i sentieri, sulle rive dei ruscelli e nelle scarpate delle strade.",
+        "season": "È un galletto estivo, da giugno a settembre, soprattutto da luglio. Esce poco dopo piogge calde e forti, con il tempo afoso.",
+        "picking": "Taglialo alla base, lascia i piccoli e prendi solo quello che mangerai. Le regole cambiano da stato a stato, da parco a parco e tra le foreste nazionali. Molti parchi statali vietano la raccolta, quindi informati prima di andare.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, togli la terra con un pennello. Sotto è liscio e trattiene poca sabbia. Non mangiarlo mai crudo. Cuocilo bene, piano nel burro o in una salsa alla panna. È fruttato e delicato come gli altri galletti. Sta bene con uova, polenta, pasta, pollo e maiale.",
+        "keeps": "In frigo, in un sacchetto di carta, dura qualche giorno. Secco diventa duro. Per tenerlo più a lungo, saltalo nel burro e congelalo.",
+        "source": "Identificazione e habitat: MushroomExpert.com e University of Florida IFAS Extension. Stagione: dati GBIF."
+      }
     },
     "winter_chant": {
       "name": "Finferla",
-      "description": "Un piccolo gallinaccio dal cappello bruno su gambo giallo e cavo, che fruttifica fino alle prime gelate",
-      "howTo": "Cercala nella lettiera muscosa delle conifere a fine stagione, spesso in fitti gruppi su legno marcescente"
+      "description": "Un piccolo galletto con il cappello bruno su un gambo giallo e cavo. Continua a spuntare anche durante le prime gelate.",
+      "howTo": "Cercala nella lettiera muscosa delle conifere a fine stagione, spesso in fitti gruppi su legno marcescente",
+      "guide": {
+        "identify": "La finferla è piccola e slanciata. Il cappello misura da 1 a 4 cm ed è bruno o bruno-giallastro. È un imbuto sottile, con il centro che si apre nel gambo cavo. Sotto ha pieghe ottuse e biforcate, grigie o grigio-giallastre, che scendono lungo il gambo. Il gambo è giallo o giallo arancio, cavo e spesso schiacciato o solcato. Negli stessi boschi di conifere pieni di muschio cresce il Cortinarius rubellus, che è mortale. Ha il cappello bruno-rossiccio e appuntito e lamelle vere color ruggine. Il gambo è pieno, con deboli fasce gialle. Distrugge i reni. Controlla ogni fungo quando lo raccogli e di nuovo quando lo pulisci. Il centro antiveleni norvegese consiglia di buttare tutto il cestino se ci trovi anche un solo cortinario.",
+        "habitat": "Cresce su terreno bagnato e acido nei boschi di conifere, soprattutto sotto abeti rossi e pini. Cercala nel muschio, ai bordi delle torbiere e sui tronchi marci coperti di muschio. È comune nell'Europa del nord e del centro e sulle montagne del sud. In Nord America cresce nel Nord-Ovest sul Pacifico e nella California del nord. La trovi anche nei boschi di conifere del nord e dell'est.",
+        "season": "È un fungo di fine stagione. In Europa esce da settembre finché non arrivano le gelate vere. Spesso la trovi ancora a novembre e a dicembre. Sulla costa pacifica degli Stati Uniti va dall'autunno a tutto l'inverno. Ha bisogno di un autunno piovoso. Le gelate leggere non la fermano.",
+        "picking": "Taglia i gambi sopra il muschio, così il cestino resta pulito. Lascia le più piccole. Rispetta i limiti del posto, come in Germania, dove puoi raccoglierne solo poche per uso personale. Nella Baviera del sud e nella Foresta Bavarese contiene ancora cesio di Chernobyl. Lì mangiala solo ogni tanto.",
+        "kitchen": "Prima assicurati di averla riconosciuta con certezza. Poi apri i gambi cavi e sciacqua via aghi e terra. Non mangiarla mai cruda. Cuocila bene, nel burro, nei sughi, nelle zuppe o con la selvaggina. Ha un sapore di sottobosco, più forte di quanto faccia pensare la sua taglia.",
+        "keeps": "In frigo, nella carta, dura qualche giorno. Si secca benissimo e in un barattolo chiuso tiene il sapore per mesi. Puoi anche cuocerla e congelarla.",
+        "source": "Identificazione: MykoWeb (California Fungi) e First Nature (Regno Unito). Cortinarius rubellus: Istituto norvegese di sanità pubblica. Cesio: Ufficio federale tedesco per la radioprotezione (BfS). Stagione: dati GBIF."
+      }
     },
     "eastern_king": {
       "name": "Porcino dell'Est Americano",
-      "description": "I porcini dei querceti dell'est americano: cappello da nocciola a bruno-lilla, pori bianchi che ingialliscono con l'età e gambo reticolato, mai viranti al blu",
-      "howTo": "Cercalo sotto querce e faggi nei boschi di latifoglie dell'est, da giugno, pochi giorni dopo una pioggia estiva calda"
+      "description": "Il porcino dei boschi di querce dell'est degli Stati Uniti. Il cappello va dal nocciola al bruno lilla. I pori sono bianchi e poi ingialliscono. Non vira mai al blu.",
+      "howTo": "Cercalo sotto querce e faggi nei boschi di latifoglie dell'est, da giugno, pochi giorni dopo una pioggia estiva calda",
+      "guide": {
+        "identify": "È un piccolo gruppo di porcini dell'est americano. Boletus variipes ha il cappello asciutto e vellutato, da nocciola a grigio-bruno, che spesso si screpola. Boletus separans ha il cappello da marrone-lilla a rosso fegato, che sbiadisce verso il giallo-bruno. Ha toni lilla anche sul gambo. Tutti e due hanno pori bianchi da giovani, che poi diventano giallastri. Tutti e due hanno sul gambo un reticolo ben visibile, da bianco a brunastro. La loro carne bianca non cambia colore. I Tylopilus amari hanno pori che diventano rosa. Un esempio è il Tylopilus plumbeoviolaceus, grigio-violetto. Pori rossi o arancioni (Neoboletus subvelutipes) vogliono dire un boleto tossico. Lo stesso vale per pori e carne che virano al blu (Boletus sensibilis, Boletus huronensis).",
+        "habitat": "Cresce con le querce, ma anche con faggi e altre latifoglie, a est delle Montagne Rocciose. È più comune da New York e dai Grandi Laghi, attraverso la Pennsylvania e gli Appalachi, fino alla Georgia e agli Ozark. Anche Boletus nobilis e Boletus atkinsonii fanno parte di questo gruppo.",
+        "season": "Esce da giugno a settembre, soprattutto a luglio e agosto. Cercalo dopo piogge estive calde e abbondanti.",
+        "picking": "Taglialo o staccalo con una torsione e taglialo a metà già sul posto. D'estate questi porcini sono spesso bacati. Alcune foreste nazionali chiedono un permesso gratuito e mettono limiti giornalieri. I parchi hanno regole proprie, spesso più severe.",
+        "kitchen": "Assicurati di averlo riconosciuto bene, poi cuocilo bene come un porcino. Fallo trifolato, oppure mettilo nella pasta, nelle zuppe e negli stufati. Puoi anche seccarlo, per un sapore più intenso. Usa solo quelli sodi e freschi.",
+        "keeps": "A fette sottili si secca benissimo. Fresco, usalo entro un giorno o due.",
+        "source": "Identificazione e habitat: MushroomExpert (Michael Kuo). Stagione: dati GBIF e iNaturalist. Regole: US Forest Service."
+      }
     },
     "rocky_king": {
       "name": "Porcino delle Rocciose",
-      "description": "Un porcino tozzo d'alta montagna, con cappello rosso mattone o bruno-rossastro, pori bianchi e gambo chiaro e grosso reticolato in alto",
-      "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre"
+      "description": "Un porcino tozzo d'alta montagna. Ha il cappello da rosso mattone a bruno rossastro, i pori bianchi e un gambo grosso e chiaro, con il reticolo in alto.",
+      "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre",
+      "guide": {
+        "identify": "È un porcino grande e tozzo delle alte Montagne Rocciose. Il cappello va dal rosso mattone al bruno-rossastro e da fresco è appiccicoso. Da giovane ha spesso una pruina biancastra. È più rosso dei porcini (Boletus edulis) che crescono anche lì. I pori da giovani sono bianchi e chiusi, poi diventano gialli e verde oliva. Al tocco non cambiano colore. Il gambo è grosso e chiaro, con un fine reticolo bianco almeno nella parte alta. La carne è bianca e non vira al blu. I porcinelli dei pioppi tremuli (Leccinum) hanno squamette scure sul gambo. In Colorado quelli con il cappello arancione hanno causato gravi intossicazioni gastrointestinali. Pori rossi o arancioni indicano un boleto tossico.",
+        "habitat": "Cresce soprattutto con l'abete rosso di Engelmann. Lo trovi anche con abeti e abeti di Douglas. Lo trovi da circa 2.400 m fino al limite degli alberi. Cresce in Colorado, nel New Mexico e sulle montagne dell'Arizona.",
+        "season": "Esce da luglio a settembre, a volte fino a ottobre. Comincia con i temporali del monsone e con il passare della stagione sale di quota. Nelle estati secche esce pochissimo.",
+        "picking": "Staccalo ruotandolo con delicatezza, perché buona parte del gambo è sottoterra. Lascia quelli molto bacati. Ogni foresta nazionale ha le sue regole. Alcune chiedono un permesso gratuito e fissano limiti giornalieri.",
+        "kitchen": "Prima riconoscilo con certezza. Sui cappelli maturi togli i pori gialli e molli. Possono essere amari e diventare viscidi. Poi cuocilo bene come il porcino, oppure seccalo.",
+        "keeps": "Seccalo a fette sottili, oppure saltalo in padella e congelalo.",
+        "source": "Identificazione e habitat: Arora e Frank (2014), MushroomExpert e Forage Colorado. Stagione: dati GBIF. Regole: US Forest Service."
+      }
     },
     "lions_mane": {
       "name": "Criniera di leone",
-      "description": "Un cespo bianco e arruffato di lunghi aculei pendenti che cresce sulle latifoglie e, cotto, ricorda la polpa di granchio",
-      "howTo": "Cercala su querce, faggi e aceri feriti o morti da fine estate all'autunno, spesso in alto sul tronco. In Europa è rara e in alcuni paesi protetta: lasciala dov'è"
+      "description": "Un cespo bianco e arruffato di lunghi aculei pendenti, sugli alberi di latifoglie. Cotto, sa un po' di granchio.",
+      "howTo": "Cercala su querce, faggi e aceri feriti o morti da fine estate all'autunno, spesso in alto sul tronco. In Europa è rara e in alcuni paesi protetta: lasciala dov'è",
+      "guide": {
+        "identify": "La criniera di leone è un'unica massa bianca e tondeggiante, larga da 8 a 24 cm. Non ha né cappello né lamelle. Ha aculei morbidi, lunghi da 1 a 5 cm, che pendono come ghiaccioli. Con l'età ingiallisce. La carne è bianca e morbida e al taglio non cambia colore. La sporata è bianca. I suoi parenti Hericium coralloides e Hericium americanum sono ramificati e hanno aculei più corti.",
+        "habitat": "Cresce dalle ferite di latifoglie vive e sui tronchi morti. Di solito sono querce, ma anche faggi e aceri. Spesso cresce in alto. Negli Stati Uniti la trovi in tutto il paese, di più nell'est. In Europa è rara, su faggi e querce vecchi nei boschi antichi.",
+        "season": "Cercala da fine estate a fine autunno, dopo la pioggia. Nelle zone calde come la California va avanti per tutto l'inverno. Spesso torna sullo stesso albero.",
+        "picking": "In Europa lasciala dov'è. È rara e protetta per legge in diversi paesi, tra cui Regno Unito, Polonia, Ungheria, Croazia, Slovenia e Svezia. Fotografala e segnala il ritrovamento. Negli Stati Uniti taglia alla base col coltello gli esemplari bianchi e freschi. Nelle foreste nazionali e nei parchi può servire un permesso, oppure la raccolta è vietata. Informati sulle regole del posto.",
+        "kitchen": "Quando sei certo che sia lei, cuocila. Tagliala a fette e passala in padella senza grassi, così perde l'acqua. Poi falla dorare nel burro. Il sapore delicato e dolce e la consistenza filacciosa ricordano spesso il granchio. Gli esemplari ingialliti sanno di acido.",
+        "keeps": "In frigo dura qualche giorno in un sacchetto di carta. Congelala dopo averla cotta.",
+        "source": "Riconoscimento e stagione: MushroomExpert.com e Wild Food UK. Protezione: Lista rossa IUCN e Wildlife and Countryside Act 1981 del Regno Unito."
+      }
     },
     "hen_of_the_woods": {
       "name": "Grifola (maitake)",
-      "description": "Una grossa rosetta di fronde grigio-brune sovrapposte ai piedi delle vecchie querce, con i pori bianchi sotto",
-      "howTo": "Cercala alla base di querce vecchie o deperienti da fine agosto a ottobre; spesso ricompare sullo stesso albero anno dopo anno. È protetta in parte dell'Europa centrale e settentrionale"
+      "description": "Una grossa rosetta di fronde grigio-brune sovrapposte, ai piedi delle vecchie querce. Sotto ha i pori bianchi.",
+      "howTo": "Cercala alla base di querce vecchie o deperienti da fine agosto a ottobre; spesso ricompare sullo stesso albero anno dopo anno. È protetta in parte dell'Europa centrale e settentrionale",
+      "guide": {
+        "identify": "La grifola, o maitake, forma una rosetta larga da 15 a 40 cm. È fatta di tanti cappellini grigio-bruni sovrapposti, a forma di cucchiaio o di ventaglio, larghi da 3 a 14 cm. Partono tutti da una base bianca comune. Sotto è bianca, con pori minuscoli e non lamelle. La carne è bianca e soda e non si macchia né al taglio né se la premi. Il poliporo gigante (Meripilus) ha cappelli più grandi e spessi che, se toccati, diventano neri. Il poliporo ombrellato (Polyporus umbellatus) ha cappellini rotondi su piccoli gambi centrali.",
+        "habitat": "Cercala alla base delle vecchie querce. A volte cresce su ceppaie o su altre latifoglie. Fa marcire le radici e torna sullo stesso albero per anni. È comune nell'est degli Stati Uniti e rara nell'ovest. In Europa è poco comune e in calo, sotto vecchie querce e castagni.",
+        "season": "Esce da fine estate a fine autunno, soprattutto a settembre e ottobre. Spesso compare dopo le prime notti fresche che seguono una pioggia.",
+        "picking": "Taglia la rosetta alla base col coltello. Prendi solo quelle fresche e sode e lascia che l'albero la rifaccia. In Europa è protetta per legge in Polonia, Estonia, Lettonia e Lituania. In Germania, in Austria e altrove è nelle liste rosse. Informati sulle regole del posto.",
+        "kitchen": "Quando l'hai riconosciuta con certezza, cuocila bene. Scuotila e sciacqua via la terra e gli insetti rimasti tra i cappellini. Togli la parte centrale dura. Falla in padella o al forno. I cappellini diventano croccanti ai bordi e hanno un sapore ricco, terroso e un po' pepato.",
+        "keeps": "In frigo dura diversi giorni in un sacchetto di carta. Dopo la cottura si congela bene. Si secca anche bene.",
+        "source": "Riconoscimento e habitat: MushroomExpert.com. Stato in Europa: Lista rossa IUCN."
+      }
     },
     "saffron_milk_cap": {
       "name": "Sanguinello",
-      "description": "Un cappello arancione ad anelli più scuri che stilla latte arancio carota e macchia di verde; amatissimo in Spagna e in Italia",
-      "howTo": "Cercalo sotto pini e abeti rossi da fine estate a novembre, fino all'inverno sulle coste del Mediterraneo e sulla costa pacifica degli Stati Uniti. Spezza una lamella: il latte deve essere arancio o rosso, mai bianco"
+      "description": "Un cappello arancione con cerchi più scuri. Dà un latte arancio carota e si macchia di verde. In Spagna e in Italia è tra i funghi più amati.",
+      "howTo": "Cercalo sotto pini e abeti rossi da fine estate a novembre, fino all'inverno sulle coste del Mediterraneo e sulla costa pacifica degli Stati Uniti. Spezza una lamella: il latte deve essere arancio o rosso, mai bianco",
+      "guide": {
+        "identify": "Il sanguinello ha il cappello arancione, con cerchi concentrici più scuri. Da giovane ha il margine arrotolato in sotto. Poi si apre a imbuto e spesso si macchia di verde. Le lamelle sono fitte e arancioni e scendono un poco sul gambo. Il gambo è corto, cavo e arancione, spesso con fossette di un arancione più scuro. Spezza una lamella e guarda il latte. È color carota e piano piano può diventare rosso vino. Dove le tocchi, lamelle e carne si macchiano di verde. Un latte bianco o che diventa giallo indica un altro lattario. Uno di questi è il Lactarius torminosus. È più rosato, ha il margine del cappello lanoso e barbuto e cresce con le betulle.",
+        "habitat": "Cresce sotto i pini, su terreno sabbioso o calcareo. Cercalo nei rimboschimenti giovani e nelle radure erbose, dove spunta spesso. Specie molto vicine crescono sotto l'abete rosso (Lactarius deterrimus) e l'abete bianco (Lactarius salmonicolor). È comune in tutta Europa, soprattutto nelle pinete di Spagna, Portogallo e Italia. In Nord America sotto le conifere crescono diverse specie parenti, anche loro con il latte arancione.",
+        "season": "È un fungo d'autunno. Nell'Europa centrale e del nord esce da fine estate a novembre. Nelle pinete mediterranee arriva dopo le piogge d'autunno, da ottobre fino a gennaio. Sulla costa pacifica degli Stati Uniti esce per tutto l'inverno piovoso.",
+        "picking": "Taglia il gambo alla base e controlla che non sia bacato. Lascia i piccoli. In molte regioni della Spagna e dell'Italia serve il tesserino o c'è un limite giornaliero. Informati sulle regole del posto.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, cuocilo bene. Fallo alla griglia con aglio, olio d'oliva e prezzemolo, oppure in umido con patate o riso. È buono anche con la carne. Ha una polpa soda e un po' granulosa, con un sapore delicato e resinoso. Una cottura lenta toglie l'eventuale amaro. Le macchie verdi sono innocue. Il suo pigmento può colorare di rosso l'urina, ed è innocuo anche questo.",
+        "keeps": "In frigo dura due giorni. Non si secca bene. Meglio cuocerlo e congelarlo, oppure metterlo sott'olio o sott'aceto.",
+        "source": "Identificazione e habitat: First Nature. Conservazione: ANSES. Stagione: segnalazioni GBIF."
+      }
     },
     "hedgehog_mushroom": {
       "name": "Steccherino dorato",
-      "description": "Un cappello color camoscio o arancio con morbidi aculei al posto delle lamelle: uno dei funghi selvatici più sicuri da imparare",
-      "howTo": "Cercalo nei boschi muschiosi di conifere e latifoglie da fine estate a fine autunno, spesso in cerchi o file; sulla costa pacifica degli Stati Uniti per tutto l'inverno. Giralo: sotto ha aculei, non lamelle"
+      "description": "Un cappello da camoscio ad arancio, con aculei morbidi sotto al posto delle lamelle. È uno dei funghi selvatici più sicuri da imparare a riconoscere.",
+      "howTo": "Cercalo nei boschi muschiosi di conifere e latifoglie da fine estate a fine autunno, spesso in cerchi o file; sulla costa pacifica degli Stati Uniti per tutto l'inverno. Giralo: sotto ha aculei, non lamelle",
+      "guide": {
+        "identify": "Gira il fungo. Sotto il cappello ci sono aculei morbidi e fragili, lunghi da 2 a 6 mm, che pendono come piccoli ghiaccioli. Non ci sono lamelle né pieghe. Gli aculei si staccano facilmente. Il cappello misura da 4 a 15 cm ed è crema, camoscio o arancio pallido. È asciutto, vellutato e spesso bitorzoluto. Il gambo è bianco, pieno e spesso non sta al centro. La carne è bianca e soda. Se la tocchi diventa piano piano giallina fino all'arancio-bruno. Lo steccherino rossiccio (Hydnum rufescens) è più piccolo e più arancione. Ha gli stessi aculei morbidi, come le specie americane di Hydnum. Altri funghi con aculei, come Hydnellum e Sarcodon, sono duri e sugherosi oppure bruni e squamosi. Molti sono amari.",
+        "habitat": "Vive legato sia alle conifere sia alle latifoglie, come abete rosso, pino, faggio, quercia e betulla. Cercalo nel muschio e nella lettiera. Spesso cresce in cerchi o in file. È comune in tutta Europa, dalla pianura alla montagna. Lo trovi anche in tutto il Nord America. Sulla costa del Pacifico degli Stati Uniti ci sono diverse specie di Hydnum, sotto l'abete di Douglas, il tanoak e altri alberi.",
+        "season": "Nell'Europa centrale e del nord esce da fine estate a fine autunno, spesso fino alle gelate forti. Nel sud Europa la stagione è più tarda e più lunga e arriva fino all'inverno. Sulla costa del Pacifico degli Stati Uniti arriva con le piogge d'autunno e va avanti per tutto l'inverno.",
+        "picking": "Taglialo alla base. Pulisci già sul posto terra e detriti, così non ti restano incastrati tra gli aculei. Lascia i piccoli. Nella Baviera meridionale e nella Foresta Bavarese contiene ancora cesio di Chernobyl. Lì mangialo solo ogni tanto.",
+        "kitchen": "Prima assicurati di averlo riconosciuto con certezza. Spazzola il cappello. Negli esemplari grandi togli gli aculei sfregandoli. In padella si staccano e possono essere amari. Non mangiarlo mai crudo. Cuocilo bene, saltato nel burro o in umido. Ha un sapore delicato e dolce di nocciola. La consistenza è soda e carnosa. Sta bene con uova, patate, selvaggina e nei sughi.",
+        "keeps": "Essendo sodo, si conserva meglio della maggior parte dei funghi selvatici. In frigo, nella carta, dura diversi giorni. Per tenerlo più a lungo, cuocilo e congelalo.",
+        "source": "Identificazione: First Nature (Regno Unito) e MykoWeb (California Fungi). Cesio: Ufficio federale tedesco per la radioprotezione (BfS). Stagione: dati GBIF."
+      }
     },
     "shaggy_mane": {
       "name": "Coprino chiomato",
-      "description": "Un alto cilindro bianco di squame arruffate su prati e bordi delle strade, che entro un giorno dalla raccolta si scioglie in inchiostro nero",
-      "howTo": "Cercalo su prati, cigli e terreni smossi qualche giorno dopo le piogge autunnali, e anche dopo quelle primaverili. Raccogli solo esemplari giovani e tutti bianchi e cucinali in giornata; evita le strade trafficate, dove assorbe metalli pesanti"
+      "description": "Un alto cilindro bianco coperto di squame arruffate, su prati e bordi delle strade. Entro un giorno dalla raccolta si scioglie in un inchiostro nero.",
+      "howTo": "Cercalo su prati, cigli e terreni smossi qualche giorno dopo le piogge autunnali, e anche dopo quelle primaverili. Raccogli solo esemplari giovani e tutti bianchi e cucinali in giornata; evita le strade trafficate, dove assorbe metalli pesanti",
+      "guide": {
+        "identify": "Il coprino chiomato è un alto cilindro bianco, di 5-15 cm. È coperto di squame sfrangiate e rialzate, con la cima bruno chiaro. Invecchiando si apre a campana. Le lamelle sono fitte e passano dal bianco al rosa e poi al nero. Alla fine si sciolgono in un inchiostro nero, a partire dal bordo del cappello. Il gambo è bianco, liscio e cavo. Ha un anello sottile che scorre e spesso cade alla base. La sporata è nera. Il coprino atramentario (Coprinopsis atramentaria) ha il cappello liscio, grigio-bruno e finemente striato, senza squame. Cresce a ciuffi da legno sepolto. Nei prati degli Stati Uniti i giovani Chlorophyllum molybdites, che hanno la sporata verde, possono sembrare simili. Le loro lamelle però non diventano mai nere.",
+        "habitat": "Cercalo nei prati rasati, sui bordi delle strade, nei parchi, lungo i sentieri, nei cantieri e su altri terreni erbosi smossi. Spesso cresce in file o a gruppi. È comune in tutta Europa e in Nord America.",
+        "season": "Esce soprattutto a fine estate e in autunno, pochi giorni dopo la pioggia. Torna anche in primavera. Sulla costa pacifica degli Stati Uniti continua per tutto l'inverno mite e piovoso.",
+        "picking": "Prendi solo esemplari giovani e chiusi, tutti bianchi e con le lamelle bianche. Prendi solo quelli che cucinerai in giornata. Evita le strade trafficate, le discariche e i terreni inquinati, perché assorbe i metalli pesanti.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, cucinalo entro poche ore. Togli ogni parte rosa o nera, perché diventa amara. Saltalo nel burro, oppure mettilo nelle zuppe e nelle frittate. È delicato e fine. Non risulta che dia problemi con l'alcol. Il coprino atramentario invece sì, anche con alcol bevuto giorni prima o dopo il pasto. Se non sei sicuro di quale coprino hai, non mangiarlo.",
+        "keeps": "Non si conserva. In meno di un giorno diventa inchiostro, anche in frigo. Cucinalo subito. Cotto dura uno o due giorni in frigo, oppure puoi congelarlo.",
+        "source": "Identificazione e habitat: First Nature e Missouri Department of Conservation. Reazione con l'alcol: First Nature. Stagione: segnalazioni GBIF."
+      }
     },
     "giant_puffball": {
       "name": "Vescia gigante",
-      "description": "Una palla bianca e liscia, grande come un pallone o più, in prati e pascoli, dalla polpa soda e bianca come mozzarella fresca",
-      "howTo": "Cercala in prati, pascoli, parchi e margini dei boschi da fine estate all'autunno, spesso dove crescono le ortiche. Tagliala sempre a metà dall'alto in basso: dentro deve essere bianca pura, senza traccia di cappello o gambo"
+      "description": "Una palla bianca e liscia, grande come un pallone da calcio o di più, in prati e pascoli. La carne è soda e bianca, come la mozzarella fresca.",
+      "howTo": "Cercala in prati, pascoli, parchi e margini dei boschi da fine estate all'autunno, spesso dove crescono le ortiche. Tagliala sempre a metà dall'alto in basso: dentro deve essere bianca pura, senza traccia di cappello o gambo",
+      "guide": {
+        "identify": "La vescia gigante è una palla bianca e liscia, spesso larga da 20 a 50 cm. Ha una pelle sottile come cuoio e non ha gambo. È attaccata al terreno da un cordoncino simile a una radice. Tagliale tutte a metà, dall'alto in basso. Dentro deve essere soda e di un bianco puro dappertutto, come una mozzarella fresca. Se vedi anche solo la sagoma di un cappello, di lamelle o di un gambo, può essere una giovane amanita ancora chiusa nell'ovolo. Può essere mortale. Una pelle spessa, squamosa e giallastra con l'interno scuro, nero-viola, indica uno sclerodermo (Scleroderma), che è velenoso. Se la carne è gialla, oliva o marrone, le spore stanno maturando. A quel punto non è più commestibile.",
+        "habitat": "Cercala nei prati, nei pascoli, nei parchi, nei giardini, lungo le siepi e ai margini dei boschi, su terreno ricco. Spesso cresce tra le ortiche, e spesso ogni anno nello stesso posto. È diffusa in Europa e nell'est degli Stati Uniti. Nell'interno arido dell'ovest cresce una specie simile, la vescia gigante occidentale (Calvatia booniana), tra l'artemisia e nelle praterie aperte.",
+        "season": "Esce dall'estate all'autunno. In Europa la trovi soprattutto da luglio a ottobre. Nell'est degli Stati Uniti esce tra fine estate e inizio autunno. Dopo una pioggia calda e abbondante si gonfia in fretta.",
+        "picking": "Tagliala alla base e prendi solo quelle sode e bianche dentro. Di solito una basta per più persone. Lascia quelle vecchie e ingiallite a spargere le spore. Evita i bordi delle strade e i prati trattati con prodotti chimici.",
+        "kitchen": "Quando sei sicuro di cosa sia, togli la pelle, che può essere pesante da digerire. Poi cuocila. Friggi fette spesse nel burro, oppure impanale prima. Ha un sapore delicato e prende il gusto degli altri ingredienti. La prima volta assaggiane poca.",
+        "keeps": "Tienila in frigo e mangiala entro due giorni. Buttala appena la carne ingiallisce. Le fette fritte si congelano bene.",
+        "source": "Identificazione e habitat: Missouri Department of Conservation e First Nature. Conservazione: ANSES. Stagione: segnalazioni GBIF."
+      }
     },
     "matsutake": {
       "name": "Matsutake",
-      "description": "Un fungo sodo, bianco e bruno, dal profumo speziato di cannella, il più pregiato di tutti in Giappone",
-      "howTo": "Cercalo nelle pinete secche e sabbiose da agosto nei paesi nordici, e sotto conifere e tanoak da settembre a novembre nell'ovest degli Stati Uniti. Non rastrellare mai il terreno. In Svezia e Norvegia è nella lista rossa per i tagli forestali, non per la raccolta; nelle foreste nazionali statunitensi serve un permesso"
+      "description": "Un fungo sodo, bianco e bruno, con un profumo speziato che ricorda un po' la cannella. In Giappone è il fungo più pregiato di tutti.",
+      "howTo": "Cercalo nelle pinete secche e sabbiose da agosto nei paesi nordici, e sotto conifere e tanoak da settembre a novembre nell'ovest degli Stati Uniti. Non rastrellare mai il terreno. In Svezia e Norvegia è nella lista rossa per i tagli forestali, non per la raccolta; nelle foreste nazionali statunitensi serve un permesso",
+      "guide": {
+        "identify": "Il matsutake è un fungo sodo e pesante. Il cappello è largo da 6 a 20 cm, bianco con fibre e squame brune. In Europa e in Asia è più bruno. Da giovane ha il margine arrotolato verso l'interno. Le lamelle sono fitte, da bianche a crema e attaccate al gambo. Uno spesso velo bianco lascia un anello svasato. Sotto l'anello il gambo è rivestito di squame brune. Il gambo è pieno e si assottiglia verso la base, senza bulbo né volva. L'odore è forte e speziato, di cannella con una punta di calzino sporco. Se non ha quell'odore, non è un matsutake. Ma l'odore da solo non basta. Anche l'Amanita smithiana e gli angeli distruttori sono bianchi. Sono l'Amanita virosa in Europa, l'A. bisporigera nell'est del Nord America e l'A. ocreata nell'ovest. Proprio alla base hanno un bulbo, una volva o degli anelli di verruche. Il loro anello è sfilacciato o a gonnellino e non hanno l'odore speziato. Distruggono i reni o il fegato.",
+        "habitat": "Vive in simbiosi con gli alberi, su terreni poveri e ben drenati. In Europa lo trovi soprattutto in Finlandia, Svezia e Norvegia. Lì cresce nelle pinete secche e piene di licheni, su sabbia o ghiaia. Nell'ovest del Nord America cresce sotto pini, abeti di Douglas, tsughe, abeti e tanoak, spesso su terreno sabbioso o di pomice. Nell'est cercalo sotto il pino di Banks, il pino rosso e la tsuga del Canada, al nord e sugli Appalachi.",
+        "season": "Nei paesi nordici esce da agosto a ottobre. Arriva dopo le piogge di fine estate, quando le notti si fanno fresche. In Nord America la stagione va da settembre a novembre. Sulla costa del Pacifico continua fino a dicembre.",
+        "picking": "Staccalo dal terreno con delicatezza, dondolandolo. Poi richiudi la buca e rimetti a posto muschio e aghi. Non rastrellare e non scavare mai, perché rovini il micelio e i raccolti futuri. L'IUCN lo classifica come vulnerabile in tutto il mondo. In Svezia e Norvegia è nella lista rossa, ma lì il pericolo è la scomparsa delle vecchie pinete, non la raccolta. Negli Stati Uniti ogni foresta nazionale ha i suoi permessi e i suoi limiti per il matsutake. Chiedi al distretto forestale.",
+        "kitchen": "Prima devi averlo riconosciuto con certezza. Poi puliscilo con un panno e taglia via la base del gambo, ma non lavarlo. Non mangiarlo mai crudo. Cuocilo a fuoco dolce e per poco, così non perde il profumo. Puoi farlo a fette alla griglia, cuocerlo con il riso o metterlo in un brodo limpido. È sodo e consistente sotto i denti, con un profumo speziato che ricorda il pino.",
+        "keeps": "Avvolgilo nella carta e tienilo in frigo. Usalo entro pochi giorni, prima che perda il profumo.",
+        "source": "Identificazione: UBC Beaty Biodiversity Museum e MushroomExpert.com. Sosia: rapporti sulle intossicazioni della North American Mycological Association. Stato di conservazione: Lista rossa IUCN. Regole di raccolta: Servizio forestale degli Stati Uniti. Stagione: dati GBIF."
+      }
     },
     "ramps": {
       "name": "Aglio selvatico americano",
-      "description": "L'aglio orsino d'America: foglie larghe, lisce e verdi su steli violacei, dal forte odore di cipolla e aglio",
-      "howTo": "Cercalo nei boschi di latifoglie ricchi e umidi dell'est degli Stati Uniti da marzo a maggio, prima che gli alberi mettano le foglie. Prendi una foglia per pianta e lascia il bulbo; alcuni parchi ne vietano la raccolta e il Québec ne vieta la vendita"
+      "description": "L'aglio orsino d'America: foglie larghe, lisce e verdi su steli violacei, con un forte odore di cipolla e aglio.",
+      "howTo": "Cercalo nei boschi di latifoglie ricchi e umidi dell'est degli Stati Uniti da marzo a maggio, prima che gli alberi mettano le foglie. Prendi una foglia per pianta e lascia il bulbo; alcuni parchi ne vietano la raccolta e il Québec ne vieta la vendita",
+      "guide": {
+        "identify": "L'aglio selvatico americano mette due o tre foglie larghe, lisce e piatte, che escono direttamente da un piccolo bulbo sottoterra. Ogni foglia ha il suo picciolo, spesso rosso porpora verso la base. Le foglie seccano entro l'inizio dell'estate. Dopo, uno stelo senza foglie porta un'ombrella tonda di piccoli fiori bianchi. Strofina una foglia. L'aglio selvatico americano ha un forte odore di cipolla e aglio, i suoi sosia mortali no. Però l'odore ti resta sulle dita, quindi dopo le prime foglie la prova non vale più. Controlla ogni pianta anche dalle foglie e dai piccioli. Il veratro verde ha foglie pieghettate, disposte lungo un fusto dritto, e cresce su terreno bagnato. Il mughetto ha due o tre foglie avvolte una dentro l'altra alla base. Il colchico, scappato dai giardini, ha foglie senza picciolo riunite a ciuffo. Il Melanthium parviflorum ha foglie basali simili, ma non sa di cipolla.",
+        "habitat": "Cresce nei boschi di latifoglie ricchi e umidi, con uno spesso strato di foglie morte. Cercalo sui pendii ombrosi e nei fondovalle lungo i torrenti. Va dal Québec e dal New England giù lungo gli Appalachi fino alla Georgia. A ovest arriva fino al Minnesota.",
+        "season": "Le foglie spuntano da marzo negli Appalachi del sud. Più a nord escono ad aprile e maggio. Le trovi nelle poche settimane prima che gli alberi mettano le foglie. A fine maggio o a giugno ingialliscono e spariscono.",
+        "picking": "Prendi una sola foglia per pianta, tagliandola con il coltello, e lascia il bulbo. Se tiri su il bulbo, la pianta muore. Dal seme le servono almeno cinque anni per arrivare alla misura da raccolta. In alcune zone del suo areale è diminuito. Il Parco nazionale delle Great Smoky Mountains ne vieta la raccolta. Alcune foreste nazionali la limitano e ne vietano la vendita. Il Québec lo classifica come vulnerabile e ne vieta la vendita. Informati sulle regole del posto.",
+        "kitchen": "Prima riconoscilo con certezza. Le foglie sanno di aglio e cipolla, e hanno un sapore forte. Usane poche crude, oppure falle appassire un attimo insieme a uova, patate, pasta e burro.",
+        "keeps": "Le foglie durano qualche giorno in frigo, avvolte in un panno umido. Le foglie tritate, il burro aromatizzato con le foglie e il pesto si congelano bene.",
+        "source": "Riconoscimento, habitat e raccolta: NC State Extension e United Plant Savers. Sosia: Dipartimento della Salute del Vermont. Regole: National Park Service, Servizio forestale degli Stati Uniti (USDA) e Ministero dell'Ambiente del Québec. Stagione: segnalazioni GBIF."
+      }
     },
     "fiddleheads": {
       "name": "Felce penna di struzzo",
-      "description": "Le giovani fronde arrotolate della felce penna di struzzo: lisce, verde brillante, con squame brune cartacee",
-      "howTo": "Cercali nelle piane alluvionali dei fiumi e nei boschi umidi da fine aprile a maggio, finché le fronde sono ancora arrotolate. Bollili sempre prima di mangiarli e prendi al massimo metà dei germogli di un cespo"
+      "description": "Le giovani fronde della felce penna di struzzo, ancora arrotolate strette. Sono lisce e verde brillante, con squame brune sottili come carta.",
+      "howTo": "Cercali nelle piane alluvionali dei fiumi e nei boschi umidi da fine aprile a maggio, finché le fronde sono ancora arrotolate. Bollili sempre prima di mangiarli e prendi al massimo metà dei germogli di un cespo",
+      "guide": {
+        "identify": "Si raccoglie solo la felce penna di struzzo. Cresce a cespi, detti corone, da tre a dodici germogli circa. Sono spirali verdi e strette, larghe circa 2,5 cm. Il fusto è liscio, con un solco profondo a U sul lato interno. I germogli sono coperti da sottili scaglie marroni, come di carta, che vanno via strofinando. Nel cespo restano spesso in piedi le fronde fertili dell'anno prima. Sono marrone scuro, rigide e a forma di piuma. La felce aquilina è cancerogena. Spunta da sola, da fusti che strisciano sotto terra. Il suo fusto è peloso e rotondo, non ha scaglie di carta e in cima si divide in tre. Altre felci, come l'osmunda cannella, hanno germogli lanosi e non sono consigliate.",
+        "habitat": "Cresce nelle piane alluvionali ombreggiate dei fiumi, sui banchi di sabbia e nei boschi ricchi e umidi, spesso sotto aceri e frassini. Negli Stati Uniti è comune nel nord-est e intorno ai Grandi Laghi. Arriva a sud fino alla Pennsylvania e a ovest fino alle Dakota. A ovest, fuori dall'Alaska, è rara. In Europa cresce lungo i torrenti del nord e del centro.",
+        "season": "I germogli spuntano in primavera, quando il terreno si scalda dopo il disgelo e le piene. Nel sud del Maine vuol dire a fine aprile. Nell'estremo nord è da metà a fine maggio, e in alcuni posti fino a inizio giugno. Raccoglili quando sono alti da 5 a 15 cm e ancora ben arrotolati. In pochi giorni si srotolano e non sono più buoni da mangiare.",
+        "picking": "Raccogli solo da cespi sani con almeno quattro germogli. Prendine al massimo la metà e in quella stagione non tornare. Se li prendi tutti, la felce si indebolisce o muore. Prima chiedi il permesso al proprietario. In Germania la felce penna di struzzo selvatica è protetta per legge, quindi lì lasciala stare.",
+        "kitchen": "Non mangiare mai i germogli crudi o poco cotti. Hanno causato intossicazioni alimentari di gruppo, con nausea, vomito, diarrea e crampi, studiate dai CDC degli Stati Uniti. Prima assicurati di averli riconosciuti bene. Strofina via le scaglie marroni e lavali in più acque fredde. Poi falli bollire a piccole dosi in tanta acqua salata per 15 minuti. Oppure cuocili a vapore per 10-12 minuti. Butta l'acqua. Solo dopo puoi saltarli in padella o aggiungerli ad altri piatti. Sanno di asparagi e fagiolini.",
+        "keeps": "Tienili in frigo e usali entro una settimana. Per congelarli, sbollentali a piccole dosi per 2 minuti. Raffreddali in acqua e ghiaccio, scolali e congelali. Prima di mangiarli devono comunque bollire per 15 minuti pieni.",
+        "source": "Identificazione, stagione, raccolta e cucina: University of Maine Cooperative Extension. Intossicazioni: CDC statunitensi. Distribuzione negli Stati Uniti: Penn State Extension. Protezione in Germania: Bundesartenschutzverordnung."
+      }
     },
     "cloudberry": {
       "name": "Camemoro",
-      "description": "Una bacca color ambra delle torbiere del nord, simile a un lampone morbido, amatissima nei paesi nordici",
-      "howTo": "Cercalo nelle torbiere aperte e nelle brughiere umide della Fennoscandia a luglio e agosto, quando le bacche passano da rosse e dure a morbide e giallo ambra. Una gelata durante la fioritura può rovinare il raccolto di un anno"
+      "description": "Una bacca arancio ambra delle torbiere del nord. Sembra un lampone morbido e nei paesi nordici è amatissima.",
+      "howTo": "Cercalo nelle torbiere aperte e nelle brughiere umide della Fennoscandia a luglio e agosto, quando le bacche passano da rosse e dure a morbide e giallo ambra. Una gelata durante la fioritura può rovinare il raccolto di un anno",
+      "guide": {
+        "identify": "Il camemoro è un'erba bassa, non un arbusto, alta più o meno un palmo. Spunta da fusti che strisciano sotto terra. Ogni getto dritto porta da una a tre foglie tonde e grinzose, con cinque-sette lobi poco profondi. Ha un solo fiore bianco. I fiori maschili e quelli femminili stanno su piante diverse, per cui solo alcuni getti fanno frutti. La bacca sembra un lampone fatto di pochi granelli grossi. All'inizio è dura e rossa. Quando è matura diventa morbida e arancio ambrato.",
+        "habitat": "Cresce nelle torbiere aperte, nelle brughiere umide, nelle paludi e nella tundra, spesso tra gli sfagni e le betulle nane. È comune in Norvegia, Svezia, Finlandia, nei paesi baltici e in Russia. Lo trovi anche sulle brughiere d'altura della Scozia e del nord dell'Inghilterra. In Germania, Polonia e Repubblica Ceca resiste solo in poche torbiere, come relitto dell'era glaciale. Lì è protetto o in lista come minacciato.",
+        "season": "Fiorisce a giugno. Nel sud della Scandinavia e nei paesi baltici le bacche maturano da metà luglio. Nell'estremo nord e in montagna maturano ad agosto. Una gelata durante la fioritura può rovinare il raccolto di un anno intero.",
+        "picking": "Raccogli solo le bacche morbide e ambrate che si staccano facilmente. Quelle rosse e dure non sono mature. In Svezia, Finlandia e Norvegia il diritto di libero accesso alla natura permette a tutti di raccoglierle. Nel Nordland, nel Troms e nel Finnmark però il proprietario può vietare la raccolta nelle torbiere di camemoro produttive. Il divieto viene annunciato con dei cartelli o sul giornale. Anche in quel caso puoi mangiare le bacche sul posto. Sui terreni pubblici del Finnmark solo i residenti possono raccoglierle per venderle. Le riserve naturali possono avere regole proprie. In Europa centrale la pianta va lasciata stare. Prima di partire informati sulle regole del posto.",
+        "kitchen": "Prima assicurati di cosa hai raccolto. Poi mangiale fresche con la panna o sui waffle, oppure falle in marmellata. In Finlandia la marmellata si mangia con un formaggio caldo che scricchiola sotto i denti (leipäjuusto). In Svezia va sul gelato. Il sapore è aspro e aromatico.",
+        "keeps": "Le bacche mature durano solo un giorno o due in frigo. Si congelano bene. Il loro acido benzoico naturale aiuta la marmellata a conservarsi.",
+        "source": "Identificazione e habitat: University of Alberta e Minnesota Wildflowers. Regole di raccolta: Agenzia norvegese per l'ambiente (Miljødirektoratet) e Agenzia svedese per la protezione dell'ambiente (Naturvårdsverket). Stato in Europa centrale: liste rosse ceca e tedesca."
+      }
     },
     "huckleberry": {
       "name": "Huckleberry",
-      "description": "Una bacca di montagna nero-violacea del nord-ovest degli Stati Uniti, più dolce e più aspra di un mirtillo",
-      "howTo": "Cercala sui pendii subalpini e nelle vecchie aree bruciate tra 1.000 e 2.000 m in Montana, Idaho e nelle Cascate da luglio a settembre. È territorio degli orsi: fai rumore e porta lo spray antiorso"
+      "description": "Una bacca di montagna nero-violacea del nord-ovest degli Stati Uniti. È più dolce e più aspra di un mirtillo.",
+      "howTo": "Cercala sui pendii subalpini e nelle vecchie aree bruciate tra 1.000 e 2.000 m in Montana, Idaho e nelle Cascate da luglio a settembre. È territorio degli orsi: fai rumore e porta lo spray antiorso",
+      "guide": {
+        "identify": "L'huckleberry è un arbusto che d'inverno perde le foglie, di solito alto tra la vita e la spalla. I rametti giovani sono un po' spigolosi e verde-giallastri. Le foglie sono sottili e ovali, con la punta aguzza e il margine finemente dentato. A inizio estate, all'ascella delle foglie, pendono uno per uno fiori a orciolo color crema rosato. Ognuno dà una sola bacca da viola a nero-rossastra, di solito senza patina chiara. In cima c'è un piccolo anello a forma di corona. Negli stessi boschi crescono bacche che non devi mangiare, ma crescono in modo diverso. Il caprifoglio involucrato (Lonicera involucrata) ha bacche nere a coppie, dentro brattee rosse. L'actea rossa (Actaea rubra) è un'erba morbida con bacche rosse o bianche a grappolo.",
+        "habitat": "Cercalo nei boschi di conifere di montagna, sui pendii subalpini aperti e nelle vecchie zone bruciate. Gli arbusti fanno più frutti al sole. L'areale va dalla Columbia Britannica verso sud, lungo le Cascate e le Montagne Rocciose del nord, fino alla California. Comprende Washington, Oregon, Idaho, Montana e Wyoming. Popolazioni isolate arrivano a est fino alle Black Hills e alla parte nord dei Grandi Laghi. Nell'est degli Stati Uniti il nome huckleberry di solito indica Gaylussacia. È un altro arbusto, con bacche che contengono dieci semini duri.",
+        "season": "Le bacche maturano da luglio alle quote basse fino a settembre più in alto. Su ogni arbusto maturano poche alla volta. Una gelata tardiva durante la fioritura può ridurre il raccolto.",
+        "picking": "Raccogli a mano, bacca per bacca, senza rompere i rami. Nelle foreste nazionali degli Stati Uniti la raccolta per uso personale spesso è permessa. A volte serve un permesso gratuito e ci sono limiti giornalieri e stagionali. La raccolta per la vendita richiede un permesso o è chiusa. Alcuni campi sono riservati alle tribù native, per esempio una parte dei Sawtooth Berry Fields nello stato di Washington. Informati sulle regole di ogni foresta. Le zone di huckleberry sono territorio degli orsi, quindi fai rumore e porta lo spray anti-orso.",
+        "kitchen": "Quando sei sicuro di averle riconosciute, mangiale crude o cotte. Vanno in torte, marmellate, sciroppi e pancake. Sono buone anche nelle salse per la selvaggina. Hanno un sapore più intenso dei mirtilli coltivati, dolce con una punta acidula. Sciacquale appena prima di usarle.",
+        "keeps": "Non lavate e stese, durano qualche giorno in frigo. Congelale su un vassoio e poi mettile in sacchetti.",
+        "source": "Identificazione e distribuzione: Servizio forestale degli Stati Uniti (Fire Effects Information System) e University of British Columbia. Regole di raccolta: Gifford Pinchot National Forest. Bacche simili: Servizio dei parchi nazionali degli Stati Uniti."
+      }
     },
     "pawpaw": {
       "name": "Asimina",
-      "description": "Il più grande frutto nativo del Nord America: verde, a forma di mango, con una polpa cremosa che sa di banana e mango",
-      "howTo": "Cercala nel sottobosco delle foreste di fondovalle fluviale dell'est degli Stati Uniti da fine agosto a ottobre, quando il frutto si ammorbidisce e cade. Mangia solo la polpa: buccia e semi sono velenosi"
+      "description": "Il frutto nativo più grande del Nord America. È verde, a forma di mango, con una polpa morbida come una crema che sa di banana e mango.",
+      "howTo": "Cercala nel sottobosco delle foreste di fondovalle fluviale dell'est degli Stati Uniti da fine agosto a ottobre, quando il frutto si ammorbidisce e cade. Mangia solo la polpa: buccia e semi sono velenosi",
+      "guide": {
+        "identify": "L'asimina è un piccolo albero del sottobosco. Spesso forma boschetti con i polloni che nascono dalle radici. Le foglie sono grandi e pendenti, più larghe oltre la metà. Se le stropicci sanno di peperone verde. In primavera, prima delle foglie, si aprono fiori rosso porpora scuro con sei petali. Il frutto è allungato, da verde a verde-giallo. Cresce da solo o in grappoli da due a nove. Dentro c'è una polpa gialla e morbida come una crema pasticcera, intorno a due file di grossi semi piatti e marroni.",
+        "habitat": "L'asimina cresce nei boschi umidi e ricchi delle piane alluvionali, sulle rive dei ruscelli e ai piedi dei pendii ombrosi. È originaria di tutto l'est degli Stati Uniti, dal nord della Florida ai Grandi Laghi e all'Ontario del sud. A ovest arriva fino al Nebraska orientale, al Kansas, all'Oklahoma e al Texas. Nell'ovest degli Stati Uniti non cresce spontanea.",
+        "season": "Il frutto matura da fine agosto al sud, a settembre e ottobre al nord. Su un albero il raccolto matura nell'arco di una o due settimane. I frutti maturi cadono a terra.",
+        "picking": "Un frutto maturo cede un po' quando lo stringi piano, come una pesca. Ha anche un forte profumo di frutta. Il colore della buccia non è un segnale affidabile. Raccogli i frutti appena caduti o scuoti piano il tronco. In stagione passa a controllare ogni uno o due giorni. Maneggiali con cura, perché si ammaccano facilmente.",
+        "kitchen": "Quando hai riconosciuto l'albero con certezza, mangia solo la polpa. Taglia il frutto a metà per il lungo e prendi la polpa con il cucchiaio, lasciando buccia e semi. Non mangiare e non masticare mai la buccia o i semi. La polpa sa di banana e mango. Puoi usarla al posto della banana in plumcake, gelati e budini. I frutti selvatici possono lasciare un retrogusto amaro. Ad alcune persone fa vomitare o dà una reazione allergica, quindi la prima volta assaggiane solo un pezzetto. Le fonti mediche sconsigliano anche di mangiarne tanta per lunghi periodi. La polpa contiene annonacina, una sostanza che negli studi di laboratorio è risultata tossica per le cellule nervose.",
+        "keeps": "A temperatura ambiente il frutto maturo dura solo pochi giorni, in frigo circa una settimana. Se lo raccogli poco prima che sia del tutto maturo, in frigo dura fino a tre settimane. Poi finisce di maturare a temperatura ambiente. La polpa tolta dal frutto si congela fino a un anno.",
+        "source": "Identificazione e distribuzione: University of Kentucky, Center for Crop Diversification. Maturazione, preparazione e conservazione: servizio di extension di Purdue. Reazioni: Memorial Sloan Kettering Cancer Center."
+      }
     },
     "rose_hips": {
       "name": "Bacche di rosa canina",
-      "description": "I frutti rossi autunnali delle rose selvatiche, ricchi di vitamina C e pieni di semi avvolti da peli urticanti",
-      "howTo": "Cercale su siepi, arbusteti e margini dei boschi da fine agosto a novembre; sono più morbide dopo le prime gelate. Togli semi e peli, che irritano bocca e intestino"
+      "description": "I frutti rossi d'autunno delle rose selvatiche. Sono ricchi di vitamina C e i semi dentro sono avvolti da peli che fanno prudere.",
+      "howTo": "Cercale su siepi, arbusteti e margini dei boschi da fine agosto a novembre; sono più morbide dopo le prime gelate. Togli semi e peli, che irritano bocca e intestino",
+      "guide": {
+        "identify": "La rosa canina è un arbusto con lunghi rami ad arco e spine robuste e uncinate. Le foglie hanno da 5 a 7 foglioline dentate. Le bacche sono ovali, lisce, rosso scarlatto lucido e lunghe da 1 a 2 cm. Da mature non hanno più i sepali. Dentro ci sono semi duri immersi in peli fini e irritanti. Nelle stesse siepi crescono il tamaro, la brionia e la dulcamara. Hanno bacche rosse, lucide e velenose a grappoli, su fusti rampicanti senza spine. La bacca di rosa canina cresce su un ramo spinoso di rosa ed è piena di semi pelosi.",
+        "habitat": "La rosa canina cresce nelle siepi, tra gli arbusti, ai margini dei boschi e negli incolti erbosi in tutta Europa. La trovi dalla pianura alla montagna. Negli Stati Uniti in alcune zone cresce spontanea. Lì puoi usare allo stesso modo le bacche delle rose selvatiche native e della rosa rugosa.",
+        "season": "Le bacche maturano da settembre a novembre. Molte restano sulla pianta fino all'inverno. Il gelo le rende più morbide e dolci. Ma più restano sul ramo, meno vitamina C hanno.",
+        "picking": "Raccogli bacche sode e ben colorate, che cedono un poco quando le premi. Prendine poche da ogni pianta e lasciane tante agli uccelli. Metti i guanti ed evita i bordi delle strade e le siepi trattate.",
+        "kitchen": "Quando le hai riconosciute con certezza, mangiane solo la polpa. I semi e i loro peli irritano bocca, intestino e pelle. Togli il picciolo e la punta, taglia le bacche a metà e raschia via tutti i semi e i peli. Oppure falle sobbollire intere e passale al setaccio fine. Poi filtra di nuovo il succo attraverso una garza. Con la polpa fai sciroppo, gelatina, marmellata e tisane. Sta bene con la mela.",
+        "keeps": "Fresche durano circa una settimana in frigo. Si congelano bene. Le metà senza semi, seccate a non più di 50 °C, durano molti mesi in un barattolo ermetico.",
+        "source": "Identificazione e habitat: Woodland Trust e The Wildlife Trusts. Stagione, raccolta e cucina: servizio di extension della University of Alaska Fairbanks e Bundeszentrum für Ernährung (BZfE, Germania)."
+      }
     },
     "sloes": {
       "name": "Prugnole",
-      "description": "I piccoli frutti blu-neri del prugnolo spinoso, coperti di pruina e dal sapore asprissimo",
-      "howTo": "Cercale su siepi e pendii cespugliosi da settembre a novembre; si addolciscono dopo le prime gelate. Non schiacciare i noccioli e attenzione ai sosia neri e lucidi come lo spincervino e la belladonna"
+      "description": "I piccoli frutti blu-neri del prugnolo spinoso. Sono coperti di pruina e hanno un sapore asprissimo.",
+      "howTo": "Cercale su siepi e pendii cespugliosi da settembre a novembre; si addolciscono dopo le prime gelate. Non schiacciare i noccioli e attenzione ai sosia neri e lucidi come lo spincervino e la belladonna",
+      "guide": {
+        "identify": "Le prugnole crescono sul prugnolo. È un arbusto fitto e legnoso con la corteccia scura, e i suoi rametti laterali finiscono in spine appuntite. I fiori bianchi si aprono a marzo e aprile, prima delle foglie. Il frutto è tondo, di circa 1 cm. È nero-blu, con una patina polverosa che va via strofinando. Le prugnole crescono da sole o a coppie lungo i rami. Dentro, una polpa verde e molto allappante avvolge un solo nocciolo. Lo spino cervino ha bacche nere lucide a grappoli, senza patina. La belladonna è un'erba morbida e frondosa, non un arbusto spinoso. Le sue bacche nere lucide crescono da sole, ognuna appoggiata su una stella verde di sepali.",
+        "habitat": "Il prugnolo cresce nelle siepi, tra gli arbusti, ai margini dei boschi e sui pendii sassosi e soleggiati. Spesso forma macchie fitte che si allargano con i polloni. Lo trovi in quasi tutta Europa, al nord come al sud, dalla pianura alla collina.",
+        "season": "Le prugnole maturano da settembre a novembre. Sono pronte quando sono scure e abbastanza morbide da schiacciarle tra le dita. Per tradizione si raccolgono dopo la prima gelata. Il gelo spacca la buccia e ammorbidisce il frutto, così il succo esce. Puoi anche raccoglierle prima e metterle in freezer per una notte, che fa lo stesso effetto.",
+        "picking": "Metti i guanti, perché le spine sono lunghe e appuntite. Raccogli da più arbusti e lasciane tante agli uccelli. Evita le siepi lungo le strade e i bordi dei campi trattati.",
+        "kitchen": "Prima assicurati che siano proprio prugnole. Crude sono troppo aspre e allappanti. Però sono ottime per lo sloe gin e altri liquori, come il pacharán spagnolo, fatto con un distillato all'anice. Con le mele ci fai anche una gelatina. Per il gin, bucherellale o congelale, poi coprile di zucchero e gin. Lasciale qualche mese al buio, agitando ogni tanto, e poi filtra. Non schiacciare e non rompere mai i noccioli. Il seme contiene amigdalina, che libera cianuro.",
+        "keeps": "Fresche durano qualche giorno in frigo. Congelate in sacchetti chiusi durano mesi. Dal freezer vanno direttamente nel barattolo.",
+        "source": "Identificazione, habitat e tradizione della gelata: Woodland Trust. Noccioli: banche dati fitochimiche ed etnobotaniche dell'USDA."
+      }
     },
     "sea_buckthorn": {
       "name": "Olivello spinoso",
-      "description": "Bacche arancione vivo fitte lungo rami spinosi dalle foglie argentate: aspre e ricche di vitamina C",
-      "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata"
+      "description": "Bacche arancione acceso fitte lungo rami spinosi dalle foglie argentate. Sono aspre e ricche di vitamina C.",
+      "howTo": "Cercalo sulle dune costiere e sulle rive ghiaiose dei fiumi da agosto a ottobre. Usa i guanti per le spine e informati sulle regole: nelle riserve dunali la raccolta è spesso vietata",
+      "guide": {
+        "identify": "L'olivello spinoso è un arbusto spinoso e molto ramificato che forma macchie fitte. Le foglie sono strette, come quelle del salice, e coperte di squamette argentate, soprattutto sotto. Fiori maschili e femminili stanno su piante diverse, quindi fanno frutti solo le piante femmine. Le bacche sono tonde e arancione vivo, di 6-8 mm. Stanno strette una all'altra lungo i rami, con un picciolo cortissimo. Sono succose e molto aspre, e scoppiano appena le tocchi. Anche il sorbo degli uccellatori e la piracanta hanno bacche arancioni. Però le portano a grappoli con il picciolo, in mezzo a foglie verdi.",
+        "habitat": "Vuole pieno sole e sabbia o ghiaia scoperta. Cercalo sulle dune costiere del Mare del Nord, del Baltico e dell'Inghilterra orientale. Cresce anche sui greti asciutti e sui terrazzi dei fiumi delle Alpi e delle Prealpi. Nel sud Europa è soprattutto una pianta dei greti dei torrenti di montagna, sulle Alpi e sui Pirenei. Lo piantano anche sulle scarpate e lungo le strade.",
+        "season": "Le bacche maturano da agosto a ottobre. Sono più profumate all'inizio della maturazione. Restano sulla pianta fino all'inverno, ma quando sono troppo mature sanno di rancido.",
+        "picking": "Spesso l'olivello selvatico cresce in riserve naturali sulle dune o lungo i fiumi, dove la raccolta è vietata. Prima informati sulle regole del posto. Non tagliare mai i rami delle piante selvatiche. Metti i guanti. Mentre raccogli tieni una ciotola sotto il ramo, perché le bacche scoppiano. Lasciane tante per i tordi che passano qui l'inverno.",
+        "kitchen": "Se le hai riconosciute con certezza, puoi mangiare le bacche crude. Però sono molto aspre, un po' amare e macchiano. Di solito si cuociono un momento con poca acqua e miele o zucchero. Poi si filtrano per farne succo, sciroppo, gelatina o purea. La mela o l'albicocca ne smorzano l'acidità. La purea sta bene con yogurt, muesli, gelato e zuppe.",
+        "keeps": "Fresche si rovinano presto. Congelale, oppure congela il succo a porzioni. La polpa che resta dopo la spremitura puoi seccarla per le tisane.",
+        "source": "Identificazione e habitat: The Wildlife Trusts e Agenzia europea dell'ambiente (EUNIS). Stagione, cucina e conservazione: Bundeszentrum für Ernährung (BZfE, Germania)."
+      }
     },
     "boletus": {
       "name": "Boletus (porcini e boleto baio)",
-      "description": "Porcini e boleto baio in un solo punteggio: porcino, porcino dei pini, porcino nero e porcino estivo, il boleto baio in Europa e i re boleti nordamericani",
-      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante"
+      "description": "Porcini e boleto baio insieme: porcino, porcino rosso, porcino nero e porcino estivo, più il boleto baio in Europa e i porcini del Nord America.",
+      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; cerca in faggete, querceti, castagneti, pinete e abetaie due-quattro settimane dopo una pioggia abbondante",
+      "guide": {
+        "identify": "Qui sono riuniti diversi boleti. In Europa ci sono il porcino (Boletus edulis), il porcino rosso dei pini, il porcino nero e il porcino estivo. Il Nord America aggiunge il porcino dell'Est americano e il porcino delle Rocciose. Ne fa parte anche il boleto baio (Imleria badia). I porcini, europei e americani, hanno pori bianchi da giovani, il reticolo sul gambo e carne bianca che non vira al blu. Il boleto baio ha pori gialli che se li premi virano al blu-verde e un gambo striato senza reticolo. Per distinguerli guarda il cappello. Nel porcino è marrone e untuoso, nel porcino rosso è rosso vino e nel porcino nero è quasi nero e vellutato. Il porcino estivo ha il cappello chiaro e screpolato, quello dell'Est americano da nocciola a marrone-lilla. Il porcino delle Rocciose ha il cappello rosso mattone, il boleto baio castano e appiccicoso. Pori rossi o arancioni vogliono dire un boleto tossico, come il porcino malefico (Rubroboletus satanas). Pori rosa e un reticolo scuro sul gambo vogliono dire il porcino amaro (Tylopilus felleus).",
+        "habitat": "Vivono tutti legati agli alberi. Il porcino cresce con conifere, faggi e querce. Il porcino rosso cresce con pini e abeti rossi. Il porcino nero e quello estivo amano querce e castagni nei boschi caldi. Il boleto baio cresce con le conifere sulle sabbie acide. Il porcino dell'Est americano sta nei querceti dell'est degli Stati Uniti, quello delle Rocciose sotto gli abeti rossi d'alta quota.",
+        "season": "Tutti insieme vanno da maggio alle prime gelate. Il porcino estivo comincia a maggio. All'altro capo c'è il boleto baio, che ha il picco a ottobre e novembre. Il porcino esce soprattutto da agosto a ottobre. Le buttate arrivano due o tre settimane dopo una pioggia che bagna bene il terreno.",
+        "picking": "Raccogli solo quello che sai riconoscere con certezza e tieni separate le specie nel cestino. In Germania il porcino si può raccogliere solo in piccole quantità per uso personale, e il porcino nero è protetto. In Italia spesso serve il tesserino, in Spagna un permesso.",
+        "kitchen": "Prima riconosci ognuno con certezza. Poi spazzolali tutti, tagliali per vedere se sono bacati e cuocili bene. Il boleto baio accumula cesio radioattivo. In alcune zone della Baviera e dell'Austria mangialo solo ogni tanto.",
+        "keeps": "A fette sottili si seccano tutti bene.",
+        "source": "Identificazione e habitat: Regione Piemonte, First Nature e MushroomExpert. Stagione: dati GBIF. Regole: BArtSchV (Germania). Cesio: Ufficio federale tedesco per la radioprotezione (BfS)."
+      }
     },
     "cantharellus": {
       "name": "Finferli (tutti)",
-      "description": "Tutti i finferli in un solo punteggio: i gallinacci dorati, la trombetta dei morti e la finferla e, in Nord America, il galletto liscio e il galletto del Pacifico",
-      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; i gallinacci sui pendii muschiosi sotto querce, faggi e conifere dopo una pioggia calda, le trombette dei morti nella lettiera umida sotto le latifoglie, le finferle sul muschio bagnato sotto le conifere a fine stagione"
+      "description": "Tutti i finferli insieme: il galletto, la trombetta dei morti, la finferla e, in Nord America, il galletto liscio e il galletto del Pacifico.",
+      "howTo": "Ogni luogo mostra il punteggio migliore tra loro; i gallinacci sui pendii muschiosi sotto querce, faggi e conifere dopo una pioggia calda, le trombette dei morti nella lettiera umida sotto le latifoglie, le finferle sul muschio bagnato sotto le conifere a fine stagione",
+      "guide": {
+        "identify": "In questo gruppo ci sono cinque specie. Sono il galletto, il galletto liscio e il galletto del Pacifico del Nord America, la trombetta dei morti e la finferla. Le ultime due appartengono a un genere vicino, Craterellus. Tutti hanno sotto delle pieghe ottuse e biforcate, o una superficie quasi liscia, che scendono lungo il gambo. Non hanno mai lamelle sottili come lame. Il galletto, il galletto liscio e quello del Pacifico sono gialli o arancioni e carnosi, con il gambo pieno. La finferla è piccola, con il cappello marrone e il gambo giallo e cavo. La trombetta dei morti è un corno sottile e cavo, grigio-nero. Ognuno ha il suo sosia pericoloso. Per quelli gialli è il fungo dell'olivo (Omphalotus), che ha lamelle vere e cresce a cespi sul legno. Tra le finferle è il cortinario mortale (Cortinarius rubellus), con lamelle bruno ruggine.",
+        "habitat": "Vivono tutti legati alle radici degli alberi. Il galletto cresce sotto latifoglie e conifere in tutta Europa e in Nord America. La trombetta dei morti ama la lettiera umida, soprattutto sotto faggi e querce. La finferla cresce sul muschio bagnato e sul legno marcio sotto le conifere. Il galletto liscio è di casa nei querceti dell'est degli Stati Uniti. Il galletto del Pacifico vive nelle foreste di abete di Douglas e tsuga del nord-ovest sul Pacifico.",
+        "season": "Tutti insieme vanno da inizio estate all'inverno. Il galletto e il galletto liscio escono da inizio estate, dopo piogge calde. Le trombette seguono da fine estate e per tutto l'autunno. Il galletto del Pacifico e la finferla vanno dall'autunno all'inverno, fino alle gelate forti. Nell'ovest degli Stati Uniti seguono le piogge d'autunno e d'inverno.",
+        "picking": "Tagliali alla base o staccali con una torsione. Lascia i piccoli e prendi solo quello che mangerai. In Germania il galletto è particolarmente protetto. Lì se ne possono raccogliere solo piccole quantità, per uso personale. Gli altri paesi, le regioni e i terreni pubblici degli Stati Uniti hanno limiti o permessi propri. Informati sulle regole del posto.",
+        "kitchen": "Prima riconosci ogni fungo con certezza. Cuocili tutti bene e non mangiarli mai crudi. Il galletto, il galletto liscio e quello del Pacifico sono fruttati e sodi. Danno il meglio saltati piano nel burro. La trombetta sa di affumicato, la finferla di terra. Tutte e due sono buone nei sughi, nel risotto e con le uova. Apri trombette e finferle per il lungo per sciacquare via la terra.",
+        "keeps": "Freschi durano qualche giorno in frigo, nella carta e non nella plastica. Trombette e finferle si seccano benissimo. I galletti invece da secchi diventano duri. Meglio saltarli in padella e congelarli.",
+        "source": "Identificazione e habitat: First Nature (Regno Unito), MushroomExpert.com e MykoWeb (California Fungi). Cortinarius rubellus: Istituto norvegese di sanità pubblica. Protezione: ordinanza federale tedesca sulla protezione delle specie. Stagione: dati GBIF."
+      }
     },
     "bay_bolete": {
       "name": "Boleto Baio",
-      "description": "Un boleto dal cappello bruno castagna, vischioso col bagnato, con pori da crema a giallo oliva che virano al blu-verde e gambo striato senza reticolo",
-      "howTo": "Cercalo nel muschio sotto pini e abeti rossi, ma anche faggi e querce, su terreni acidi e sabbiosi da agosto alle prime gelate; il picco è a ottobre, quando i porcini calano. Accumula più cesio di Chernobyl della maggior parte dei funghi: in Baviera e in Austria mangialo solo ogni tanto"
+      "description": "Un boleto con il cappello marrone castagna, che diventa vischioso quando è bagnato. I pori, se li tocchi, virano al blu-verde. Il gambo è striato e non ha reticolo.",
+      "howTo": "Cercalo nel muschio sotto pini e abeti rossi, ma anche faggi e querce, su terreni acidi e sabbiosi da agosto alle prime gelate; il picco è a ottobre, quando i porcini calano. Accumula più cesio di Chernobyl della maggior parte dei funghi: in Baviera e in Austria mangialo solo ogni tanto",
+      "guide": {
+        "identify": "È un boleto senza il reticolo sul gambo che hanno i porcini. Il cappello è marrone castagna. Da asciutto sembra camoscio, col bagnato diventa appiccicoso. I pori sono da crema a giallo pallido, poi oliva. Se li premi virano al blu-verde. La carne è da bianca a giallo pallido e al taglio può diventare appena blu. Il gambo è più snello, striato di marrone su un fondo più chiaro. Se i pori sono rossi o arancioni non è lui (Rubroboletus satanas, Neoboletus subvelutipes). Lo stesso vale per pori rosa con il gambo reticolato (Tylopilus felleus). Nel Nord America orientale ce ne sono altri due da conoscere. Boletus sensibilis diventa subito blu scuro dappertutto e ha il gambo giallo. Boletus huronensis è compatto, ha la forma di un porcino e il gambo giallastro.",
+        "habitat": "Cresce con pini e abeti rossi, ma anche con faggi, querce e castagni. Ama i terreni acidi e sabbiosi e spesso sta nel muschio vicino alle vecchie ceppaie. È comune nelle pianure dell'Europa del nord e del centro. In Nord America cresce nel nord-est, intorno ai Grandi Laghi e sugli Appalachi, sotto pini e tsughe.",
+        "season": "In Europa esce da agosto finché non arrivano le prime gelate forti. Il picco è a ottobre, dopo i porcini. Al sud va avanti fino a dicembre. Nel nord-est del Nord America arriva prima, soprattutto da luglio a settembre.",
+        "picking": "Staccalo con una torsione o taglialo. Lascia stare quelli giovani e quelli vecchi. Informati sulle regole del posto, perché nelle riserve naturali la raccolta è spesso vietata.",
+        "kitchen": "Prima assicurati di averlo riconosciuto bene. Pulisci il cappello con un panno e, se è viscido, togli la pellicina. Se i tubuli sono vecchi e molli, toglili. Poi cuocilo bene. Il blu sparisce in cottura e il sapore è delicato. Accumula più cesio radioattivo della maggior parte dei funghi. In alcune zone della Baviera e dell'Austria mangialo solo ogni tanto.",
+        "keeps": "A fette sottili si secca bene. Anche cotto si congela bene.",
+        "source": "Identificazione e habitat: First Nature e MushroomExpert. Stagione: dati GBIF. Cesio: Ufficio federale tedesco per la radioprotezione (BfS) e LGL della Baviera."
+      }
     }
   },
   "search_placeholder": "Cerca una specie",
@@ -386,5 +917,19 @@
     "testedLabel": "Verificato · stagione {{year}}",
     "tested": "Nello stesso punto, la previsione ha valutato i giorni della sua stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>.",
     "howWeCheck": "Come verifichiamo"
+  },
+  "guide": {
+    "identify": "Come riconoscerlo",
+    "habitat": "Dove cresce",
+    "season": "Quando",
+    "picking": "Raccolta",
+    "kitchen": "Preparazione",
+    "keeps": "Conservazione",
+    "source": "Fonti"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}): stagione, habitat e sosia",
+    "description": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, specie simili e consigli in cucina.",
+    "allSpecies": "Tutte le specie"
   }
 }

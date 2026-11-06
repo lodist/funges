@@ -28,12 +28,15 @@ const classStrings = (src: string): string[] =>
 describe('the light-tuned scale never paints a theme-blind fill', () => {
   it('pairs every bg-happy-50 with a dark-mode background', () => {
     const offenders = sourceFiles('src')
-      .filter(
-        f =>
-          !f.includes('.stories.') &&
-          !f.includes('/test/') &&
-          !f.includes('/components/ui/')
-      )
+      // Windows paths carry backslashes: the folders below match either way.
+      .filter(f => {
+        const path = f.replace(/\\/g, '/');
+        return (
+          !path.includes('.stories.') &&
+          !path.includes('/test/') &&
+          !path.includes('/components/ui/')
+        );
+      })
       .flatMap(f =>
         classStrings(readFileSync(f, 'utf8'))
           .filter(s => /bg-happy-50(?!\d)/.test(s))

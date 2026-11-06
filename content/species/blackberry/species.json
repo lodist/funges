@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Blackberry",
-      "description": "Sweet, dark purple berries that grow on thorny bushes",
-      "howTo": "Found in hedgerows, woodland edges, and disturbed areas in late summer"
+      "description": "Sweet, dark purple berries on thorny bushes.",
+      "howTo": "Found in hedgerows, woodland edges and disturbed areas in late summer",
+      "guide": {
+        "identify": "Brambles have long, arching stems armed with hooked prickles. Each leaf has three or five toothed leaflets spread like a hand. They are dark green on top and paler underneath. The flowers are white or pink, with five petals. The berries are made of many small round drupelets. They go from green to red to glossy black. A ripe blackberry comes off with its white core inside. A raspberry leaves its core on the plant and is hollow. Rubus fruticosus is a group of hundreds of closely related brambles. You use them all the same way.",
+        "habitat": "Look in hedgerows, at woodland edges and in clearings, scrub, wasteland and railway banks. It grows on almost any soil, across Europe except the far north. In the US, native blackberries grow in old fields and at woodland edges. The introduced Himalayan blackberry forms dense thickets in the Pacific Northwest and California.",
+        "season": "In the south of Europe and in the US the berries ripen from July. Further north they start in late July or August. They keep coming until the first frosts in September and October. Flowers, green fruit and ripe fruit often hang on the same bush.",
+        "picking": "Pick only fully black berries that come away with a gentle pull. Leave the red ones and leave some for wildlife. Avoid busy roadsides and edges sprayed with weedkiller. In central Europe there is fox tapeworm to think about. Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for it. It still advises washing them well. Only heating above 60 °C kills its eggs and home freezing does not.",
+        "kitchen": "Once you're certain of the plant, you can eat the berries raw or cooked. Bake them in crumbles and pies with apple, or make jam, jelly, syrup and vinegar. Rinse them just before you use them and check for insects. The flavour ranges from sweet to sharp, from one bush to the next.",
+        "keeps": "Unwashed and spread out in a shallow box, they keep a day or two in the fridge. To freeze them, spread them on a tray and bag them once they are hard. Frozen berries suit cooking.",
+        "source": "Identification, habitat and uses: Woodland Trust. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "it": {
       "name": "More",
-      "description": "Bacche dolci, viola scuro che crescono su cespugli spinosi",
-      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate"
+      "description": "Frutti dolci viola scuro che crescono su cespugli spinosi.",
+      "howTo": "Trovate in siepi, bordi boschivi e aree disturbate in tarda estate",
+      "guide": {
+        "identify": "Il rovo ha lunghi fusti ad arco, armati di spine uncinate. Ogni foglia ha tre o cinque foglioline dentate, aperte come una mano. Sopra sono verde scuro, sotto più chiare. I fiori sono bianchi o rosa, con cinque petali. Le more sono fatte di tanti piccoli granelli rotondi. Passano dal verde al rosso e poi al nero lucido. Una mora matura si stacca portandosi dietro il suo cuore bianco. Il lampone invece lascia il cuore sulla pianta ed è vuoto dentro. Rubus fruticosus è un gruppo di centinaia di rovi molto vicini tra loro. Si usano tutti allo stesso modo.",
+        "habitat": "Cercalo nelle siepi, ai margini e nelle radure dei boschi, tra gli arbusti, negli incolti e sulle scarpate della ferrovia. Cresce su quasi ogni terreno, in tutta Europa tranne l'estremo nord. Negli Stati Uniti i rovi nativi crescono nei campi abbandonati e ai margini dei boschi. Il rovo dell'Himalaya, arrivato da fuori, forma roveti fittissimi nel nord-ovest sul Pacifico e in California.",
+        "season": "Nel sud dell'Europa e negli Stati Uniti le more maturano da luglio. Più a nord si comincia a fine luglio o ad agosto. Continuano fino alle prime gelate, a settembre e ottobre. Sullo stesso rovo trovi spesso insieme fiori, more verdi e more mature.",
+        "picking": "Prendi solo le more ben nere che si staccano tirando appena. Lascia quelle rosse e lasciane un po' per gli animali. Evita i bordi delle strade trafficate e i margini trattati col diserbante. In Europa centrale c'è da pensare all'echinococco della volpe. L'autorità sanitaria bavarese (LGL) dice che mangiare bacche selvatiche non si è dimostrato un fattore di rischio. Consiglia comunque di lavarle bene. Solo il calore sopra i 60 °C ne uccide le uova. Il congelatore di casa no.",
+        "kitchen": "Quando sei certo della pianta, puoi mangiarle crude o cotte. Mettile in crostate e crumble con le mele, oppure fanne marmellata, gelatina, sciroppo e aceto. Sciacquale appena prima di usarle e controlla che non ci siano insetti. Il sapore cambia da un rovo all'altro, dal dolce all'aspro.",
+        "keeps": "Non lavate e stese in una scatola bassa, durano un giorno o due in frigo. Per congelarle stendile su un vassoio e mettile in sacchetti quando sono dure. Congelate vanno bene per cucinare.",
+        "source": "Identificazione, habitat e usi: Woodland Trust. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "fr": {
       "name": "Mûre",
-      "description": "Baies sucrées, pourpre foncé, poussant sur des buissons épineux",
-      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été"
+      "description": "Des baies sucrées d'un violet très foncé, qui poussent sur les ronces.",
+      "howTo": "Se trouve dans les haies, lisières de bois et zones perturbées à la fin de l'été",
+      "guide": {
+        "identify": "La ronce a de longues tiges arquées, armées d'aiguillons crochus. Chaque feuille compte trois ou cinq folioles dentées, étalées comme une main. Elles sont vert foncé dessus et plus pâles dessous. Les fleurs sont blanches ou roses, à cinq pétales. La mûre est faite de nombreux petits grains ronds. Elle passe du vert au rouge, puis au noir brillant. Une mûre à point se détache avec son cœur blanc à l'intérieur. La framboise, elle, laisse son cœur sur la plante et elle est creuse. Rubus fruticosus regroupe des centaines de ronces très proches. Elles s'utilisent toutes de la même façon.",
+        "habitat": "Cherchez-la dans les haies, en lisière et dans les clairières, les fourrés, les friches et sur les talus de voie ferrée. Elle pousse sur presque tous les sols, dans toute l'Europe sauf l'extrême nord. Aux États-Unis, des ronces indigènes poussent dans les vieux champs et en lisière de bois. La ronce de l'Himalaya, introduite, forme des fourrés denses dans le nord-ouest Pacifique et en Californie.",
+        "season": "Dans le sud de l'Europe et aux États-Unis, les mûres arrivent dès juillet. Plus au nord, elles commencent fin juillet ou en août. Elles continuent jusqu'aux premières gelées, en septembre et octobre. Fleurs, fruits verts et fruits mûrs pendent souvent sur le même roncier.",
+        "picking": "Ne cueillez que les mûres bien noires qui se détachent d'une légère traction. Laissez les rouges, et laissez-en pour les animaux. Évitez les bords de routes passantes et les lisières traitées au désherbant. En Europe centrale, il faut penser au ténia du renard. L'office bavarois de la santé (LGL) indique que manger des baies sauvages n'est pas un facteur de risque démontré. Il conseille tout de même de bien les laver. Seule une cuisson au-dessus de 60 °C tue ses œufs. Le congélateur de la maison ne les tue pas.",
+        "kitchen": "Une fois sûr de la plante, vous pouvez manger les mûres crues ou cuites. Faites-en des crumbles et des tartes avec des pommes, ou de la confiture, de la gelée, du sirop et du vinaigre. Rincez-les juste avant de les utiliser et vérifiez qu'il n'y a pas d'insectes. Le goût va du sucré à l'acidulé, d'un roncier à l'autre.",
+        "keeps": "Non lavées et étalées dans une boîte plate, elles se gardent un ou deux jours au réfrigérateur. Pour les congeler, étalez-les sur un plateau et mettez-les en sachet une fois dures. Congelées, elles conviennent bien à la cuisson.",
+        "source": "Identification, habitat et usages : Woodland Trust. Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "de": {
       "name": "Brombeere",
-      "description": "Süsse, dunkelviolette Beeren, die an dornigen Sträuchern wachsen",
-      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer"
+      "description": "Süsse, dunkelviolette Beeren an dornigen Sträuchern.",
+      "howTo": "Zu finden in Hecken, Waldrändern und gestörten Gebieten im Spätsommer",
+      "guide": {
+        "identify": "Brombeeren haben lange, bogig überhängende Triebe voller hakiger Stacheln. Jedes Blatt besteht aus drei oder fünf gesägten Blättchen, die wie eine Hand gespreizt sind. Oben sind sie dunkelgrün, unten heller. Die Blüten sind weiss oder rosa und haben fünf Blütenblätter. Die Beeren bestehen aus vielen kleinen runden Kügelchen. Sie werden erst grün, dann rot und schliesslich glänzend schwarz. Eine reife Brombeere löst sich mitsamt ihrem weissen Zapfen. Eine Himbeere lässt den Zapfen an der Pflanze und ist innen hohl. Rubus fruticosus ist eine Gruppe aus Hunderten eng verwandter Brombeeren. Du verwendest sie alle gleich.",
+        "habitat": "Such in Hecken, an Waldrändern und auf Lichtungen, in Gebüschen, auf Brachen und an Bahndämmen. Sie wächst auf fast jedem Boden, in ganz Europa ausser dem hohen Norden. In den USA wachsen heimische Brombeeren auf alten Feldern und an Waldrändern. Die eingeschleppte Armenische Brombeere bildet im pazifischen Nordwesten und in Kalifornien dichte Gestrüppe.",
+        "season": "Im Süden Europas und in den USA reifen die Beeren ab Juli. Weiter nördlich geht es Ende Juli oder im August los. Sie reifen weiter bis zu den ersten Frösten im September und Oktober. Blüten, grüne und reife Früchte hängen oft am selben Strauch.",
+        "picking": "Pflück nur ganz schwarze Beeren, die sich mit leichtem Zug lösen. Lass die roten hängen und einige für die Tiere. Meide stark befahrene Strassenränder und Ränder, die mit Unkrautvernichter gespritzt werden. In Mitteleuropa solltest du an den Fuchsbandwurm denken. Das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL) sagt, dass das Essen von Waldbeeren bisher nicht als Risikofaktor dafür nachgewiesen ist. Es rät trotzdem, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Bist du dir bei der Pflanze sicher, kannst du die Beeren roh oder gekocht essen. Back sie mit Äpfeln in Crumble und Kuchen, oder mach Marmelade, Gelee, Sirup und Essig daraus. Wasch sie erst kurz vor dem Verwenden und schau nach Insekten. Der Geschmack reicht von süss bis herb, je nach Strauch.",
+        "keeps": "Ungewaschen und flach in einer Schale ausgebreitet halten sie sich ein bis zwei Tage im Kühlschrank. Zum Einfrieren breitest du sie auf einem Blech aus und füllst sie in Beutel, sobald sie hart sind. Gefrorene Beeren eignen sich zum Kochen.",
+        "source": "Bestimmung, Standort und Verwendung: Woodland Trust. Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "es": {
       "name": "Mora",
-      "description": "Bayas dulces de color púrpura oscuro que crecen en arbustos espinosos",
-      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano"
+      "description": "Bayas dulces de color morado oscuro en zarzas con pinchos.",
+      "howTo": "Se encuentran en setos, bordes de bosques y áreas alteradas a finales del verano",
+      "guide": {
+        "identify": "Las zarzas tienen tallos largos y arqueados, armados de pinchos ganchudos. Cada hoja tiene tres o cinco hojuelas dentadas, abiertas como una mano. Son verde oscuro por arriba y más claras por debajo. Las flores son blancas o rosadas, de cinco pétalos. Cada mora está hecha de muchas bolitas pequeñas. Pasan de verdes a rojas y luego a negras y brillantes. Una mora madura se suelta con su centro blanco dentro. La frambuesa deja el centro en la planta y queda hueca. Rubus fruticosus es un grupo de cientos de zarzas muy emparentadas. Todas se aprovechan igual.",
+        "habitat": "Búscalas en setos, bordes y claros de bosque, matorrales, solares y taludes de las vías del tren. Crecen en casi cualquier suelo, en toda Europa salvo el extremo norte. En EE. UU. hay zarzas autóctonas en campos abandonados y bordes de bosque. La zarza del Himalaya, que es introducida, forma matorrales cerrados en el noroeste del Pacífico y en California.",
+        "season": "En el sur de Europa y en EE. UU. las moras maduran desde julio. Más al norte empiezan a finales de julio o en agosto. Siguen saliendo hasta las primeras heladas, en septiembre y octubre. En la misma zarza suele haber a la vez flores, moras verdes y moras maduras.",
+        "picking": "Coge solo moras bien negras que se suelten con un tirón suave. Deja las rojas y deja algunas para los animales. Evita las cunetas con mucho tráfico y los bordes tratados con herbicida. En Europa central hay que pensar en la tenia del zorro. La autoridad sanitaria de Baviera (LGL) dice que no se ha demostrado que comer bayas silvestres sea un factor de riesgo. Aun así, aconseja lavarlas bien. Solo calentarlas por encima de 60 °C mata sus huevos. Congelarlas en casa no los mata.",
+        "kitchen": "Cuando tengas clara la planta, puedes comer las moras crudas o cocinadas. Puedes hornearlas en crumble y tartas con manzana. También sirven para mermelada, jalea, sirope y vinagre. Lávalas justo antes de usarlas y mira que no tengan bichos. El sabor va de dulce a ácido, según la zarza.",
+        "keeps": "Sin lavar y extendidas en una caja plana, aguantan uno o dos días en la nevera. Para congelarlas, extiéndelas en una bandeja y pásalas a una bolsa cuando estén duras. Congeladas, son para cocinar.",
+        "source": "Identificación, hábitat y usos: Woodland Trust. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "pt": {
       "name": "Amora",
-      "description": "Frutas doces e roxas-escuras que crescem em arbustos espinhosos",
-      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão"
+      "description": "Bagas doces, de um roxo-escuro, que crescem nas silvas, cheias de espinhos.",
+      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão",
+      "guide": {
+        "identify": "As silvas têm caules compridos e arqueados, armados de picos curvos como ganchos. Cada folha tem três ou cinco folíolos dentados, abertos como uma mão. São verde-escuros por cima e mais claros por baixo. As flores são brancas ou cor-de-rosa, com cinco pétalas. As amoras são feitas de muitas bolinhas pequenas e redondas. Passam de verdes a vermelhas e depois a negras e brilhantes. A amora madura solta-se com o miolo branco lá dentro. A framboesa deixa o miolo na planta e fica oca. Rubus fruticosus é um grupo de centenas de silvas muito aparentadas. Aproveitam-se todas da mesma maneira.",
+        "habitat": "Procure em sebes, orlas e clareiras de bosque, matos, baldios e taludes da linha do comboio. Cresce em quase todo o tipo de solo, em toda a Europa menos no extremo norte. Nos EUA há silvas nativas em campos abandonados e orlas de bosque. A silva-dos-himalaias, que foi introduzida, forma matagais cerrados no noroeste do Pacífico e na Califórnia.",
+        "season": "No sul da Europa e nos EUA as amoras amadurecem a partir de julho. Mais a norte começam no fim de julho ou em agosto. Continuam a aparecer até às primeiras geadas de setembro e outubro. Na mesma silva há muitas vezes flores, amoras verdes e amoras maduras ao mesmo tempo.",
+        "picking": "Apanhe só amoras bem negras, que se soltem com um puxão leve. Deixe as vermelhas e deixe algumas para os animais. Evite bermas de estradas movimentadas e orlas tratadas com herbicida. Na Europa Central há que pensar na ténia-da-raposa. A autoridade de saúde da Baviera (LGL) diz que não está demonstrado que comer bagas silvestres seja um fator de risco para esta ténia. Mesmo assim, aconselha a lavá-las bem. Só aquecê-las acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Quando tiver a certeza da planta, pode comer as amoras cruas ou cozinhadas. Leve-as ao forno em crumbles e tartes com maçã. Também dão doce, geleia, xarope e vinagre. Passe-as por água só na hora de usar e veja se não têm bichos. O sabor vai do doce ao ácido, de silva para silva.",
+        "keeps": "Sem lavar e espalhadas numa caixa baixa, aguentam um ou dois dias no frigorífico. Para as congelar, espalhe-as num tabuleiro e passe-as para sacos quando estiverem duras. Congeladas, servem para cozinhar.",
+        "source": "Identificação, habitat e usos: Woodland Trust. Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     }
   },
   "identification": {

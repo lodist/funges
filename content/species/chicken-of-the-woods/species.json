@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Chicken of the Woods",
-      "description": "A bright orange-yellow bracket fungus that grows on trees",
-      "howTo": "Look for it growing on dead or dying trees, especially oaks"
+      "description": "A bright orange-yellow bracket fungus that grows on trees.",
+      "howTo": "Look for it growing on dead or dying trees, especially oaks",
+      "guide": {
+        "identify": "Chicken of the woods grows as overlapping, fan-shaped brackets 10 to 40 cm wide, with no stem. Young ones are soft, moist and bright yellow to orange. With age they fade to cream and turn chalky. The underside is sulphur-yellow with tiny pores, not gills. The flesh is white to pale yellow and does not change colour when cut. An orange cluster on wood with gills underneath is the poisonous jack-o'-lantern (Omphalotus). In the western US, the closely related Laetiporus gilbertsonii and Laetiporus conifericola look much the same.",
+        "habitat": "This fungus rots wood. It grows on living and dead broadleaf trees, most often oak. You also see it on sweet chestnut, cherry, willow and beech (now and then on yew). It is common in lowland Europe and the eastern US, in woods, parks and streets. In the western US its relatives grow on oaks, eucalyptus and conifers.",
+        "season": "It appears from late spring to autumn, mostly in summer, a few days after warm rain. In the western US it comes mainly in autumn. The same tree often fruits for several years.",
+        "picking": "Cut the soft edges of young brackets with a knife. Leave the tough base and the old, chalky brackets. Never pick it from yew, which is highly poisonous. Don't pick it from trees along busy roads either. Where mushroom picking needs a permit or has daily limits, check the local rules.",
+        "kitchen": "When you're certain what it is, cook it thoroughly. Raw or undercooked, it upsets the stomach. Even well cooked, it disagrees with some people, causing nausea, dizziness and vomiting. So try a small amount first. Slice it and fry or braise it. The firm flesh is often compared to chicken. It goes well with lemon, garlic and herbs.",
+        "keeps": "It keeps a few days in the fridge in a paper bag. It freezes well, raw or cooked.",
+        "source": "Identification and hosts: Woodland Trust, First Nature and MushroomExpert.com. Western species: Bay Area Mycological Society. Reactions: University of Florida IFAS Extension."
+      }
     },
     "it": {
       "name": "Poliporo sulfureo",
-      "description": "Un fungo a mensola arancione-giallo brillante che cresce sugli alberi",
-      "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce"
+      "description": "Un fungo a mensola giallo arancio acceso che cresce sugli alberi.",
+      "howTo": "Cercalo che cresce su alberi morti o morenti, specialmente querce",
+      "guide": {
+        "identify": "Il poliporo sulfureo forma mensole a ventaglio sovrapposte, larghe da 10 a 40 cm e senza gambo. Da giovane è tenero, succoso e di un giallo vivo fino all'arancione. Con l'età sbiadisce verso il crema e diventa gessoso. Sotto è giallo zolfo, con pori minuscoli e non lamelle. La carne è da bianca a giallo pallido e al taglio non cambia colore. Se trovi un cespo arancione su legno con le lamelle sotto, è il velenoso fungo dell'olivo (Omphalotus). Nell'ovest degli Stati Uniti ci sono due parenti stretti quasi identici, Laetiporus gilbertsonii e Laetiporus conifericola.",
+        "habitat": "È un fungo che fa marcire il legno. Cresce su latifoglie vive e morte, più spesso sulle querce. Lo vedi anche su castagni, ciliegi, salici e faggi. Ogni tanto cresce anche sul tasso. È comune in pianura in Europa e nell'est degli Stati Uniti, nei boschi, nei parchi e lungo i viali. Nell'ovest degli Stati Uniti i suoi parenti crescono su querce, eucalipti e conifere.",
+        "season": "Esce da fine primavera all'autunno, soprattutto d'estate, pochi giorni dopo una pioggia calda. Nell'ovest degli Stati Uniti arriva soprattutto in autunno. Spesso lo stesso albero lo fa per diversi anni di fila.",
+        "picking": "Taglia col coltello i bordi teneri delle mensole giovani. Lascia la base dura e le mensole vecchie e gessose. Non raccoglierlo mai da un tasso, che è molto velenoso. Evita anche gli alberi lungo le strade trafficate. Dove per i funghi serve un permesso o ci sono limiti giornalieri, informati sulle regole del posto.",
+        "kitchen": "Quando sei certo di cosa sia, cuocilo a fondo. Crudo o poco cotto fa male allo stomaco. Anche ben cotto c'è chi non lo tollera e ha nausea, capogiri e vomito. Quindi la prima volta assaggiane poco. Taglialo a fette e fallo in padella o in umido. La carne soda viene spesso paragonata al pollo. Sta bene con limone, aglio ed erbe aromatiche.",
+        "keeps": "In frigo dura qualche giorno in un sacchetto di carta. Si congela bene, crudo o cotto.",
+        "source": "Riconoscimento e alberi ospiti: Woodland Trust, First Nature e MushroomExpert.com. Specie dell'ovest degli Stati Uniti: Bay Area Mycological Society. Reazioni: University of Florida (IFAS Extension)."
+      }
     },
     "fr": {
       "name": "Polypore soufré",
-      "description": "Champignon en console jaune orangé vif poussant sur les arbres",
-      "howTo": "Cherchez-le sur les arbres morts ou mourants, surtout les chênes"
+      "description": "Un champignon en console, d'un jaune orangé vif, qui pousse sur les arbres.",
+      "howTo": "Cherchez-le sur les arbres morts ou mourants, surtout les chênes",
+      "guide": {
+        "identify": "Le polypore soufré forme des consoles en éventail, superposées, de 10 à 40 cm de large et sans pied. Jeunes, elles sont tendres, juteuses et jaune vif à orange. Avec l'âge, elles pâlissent jusqu'au crème et deviennent crayeuses. Le dessous est jaune soufre, avec de minuscules pores et pas de lames. La chair est blanche à jaune pâle et ne change pas de couleur à la coupe. Une touffe orange sur du bois, avec des lames dessous, c'est le clitocybe de l'olivier (Omphalotus), qui est toxique. Dans l'ouest des États-Unis, ses proches parents Laetiporus gilbertsonii et Laetiporus conifericola lui ressemblent beaucoup.",
+        "habitat": "C'est un champignon qui fait pourrir le bois. Il pousse sur des feuillus vivants ou morts, le plus souvent le chêne. On le voit aussi sur le châtaignier, le cerisier, le saule et le hêtre, et de temps en temps sur l'if. Il est commun en plaine en Europe et dans l'est des États-Unis, dans les bois, les parcs et les rues. Dans l'ouest des États-Unis, ses cousins poussent sur les chênes, les eucalyptus et les conifères.",
+        "season": "Il sort de la fin du printemps à l'automne, surtout en été, quelques jours après une pluie chaude. Dans l'ouest des États-Unis, il vient surtout en automne. Le même arbre en donne souvent plusieurs années de suite.",
+        "picking": "Coupez au couteau les bords tendres des jeunes consoles. Laissez la base dure et les vieilles consoles crayeuses. Ne le cueillez jamais sur un if, qui est très toxique. Ne le cueillez pas non plus sur des arbres au bord des routes passantes. Là où la cueillette des champignons demande un permis ou a des limites par jour, renseignez-vous sur les règles locales.",
+        "kitchen": "Quand vous êtes certain de ce que c'est, faites-le bien cuire. Cru ou pas assez cuit, il dérange l'estomac. Même bien cuit, il ne convient pas à tout le monde et peut donner des nausées, des vertiges et des vomissements. Goûtez-en donc d'abord une petite quantité. Coupez-le en tranches et faites-le poêler ou braiser. On compare souvent sa chair ferme à du poulet. Il va bien avec le citron, l'ail et les herbes.",
+        "keeps": "Il se garde quelques jours au réfrigérateur, dans un sac en papier. Il se congèle bien, cru ou cuit.",
+        "source": "Identification et arbres hôtes : Woodland Trust, First Nature et MushroomExpert.com. Espèces de l'ouest des États-Unis : Bay Area Mycological Society. Réactions : université de Floride (IFAS Extension)."
+      }
     },
     "de": {
       "name": "Schwefelporling",
-      "description": "Leuchtend orange-gelber Baumpilz, der an Bäumen wächst",
-      "howTo": "Suche an toten oder sterbenden Bäumen, besonders Eichen"
+      "description": "Ein leuchtend orangegelber Porling, der an Bäumen wächst.",
+      "howTo": "Suche an toten oder sterbenden Bäumen, besonders Eichen",
+      "guide": {
+        "identify": "Der Schwefelporling wächst als fächerförmige Konsolen ohne Stiel, 10 bis 40 cm breit und dachziegelartig übereinander. Junge Konsolen sind weich, saftig und leuchtend gelb bis orange. Mit dem Alter verblassen sie zu Cremeweiss und werden kreidig. Die Unterseite ist schwefelgelb und hat winzige Poren, keine Lamellen. Das Fleisch ist weiss bis blassgelb und verfärbt sich beim Anschneiden nicht. Ein oranges Büschel auf Holz mit Lamellen auf der Unterseite ist der giftige Ölbaumtrichterling (Omphalotus). Im Westen der USA sehen die nah verwandten Laetiporus gilbertsonii und Laetiporus conifericola fast gleich aus.",
+        "habitat": "Dieser Pilz zersetzt Holz. Er wächst an lebenden und toten Laubbäumen, am häufigsten an Eiche. Du siehst ihn auch an Edelkastanie, Kirsche, Weide und Buche und hin und wieder an Eibe. Im Flachland Europas und im Osten der USA ist er häufig, in Wäldern, Parks und an Strassen. Im Westen der USA wachsen seine Verwandten an Eichen, Eukalyptus und Nadelbäumen.",
+        "season": "Er erscheint vom späten Frühjahr bis in den Herbst, meist im Sommer, ein paar Tage nach warmem Regen. Im Westen der USA kommt er vor allem im Herbst. Derselbe Baum trägt ihn oft mehrere Jahre lang.",
+        "picking": "Schneide die weichen Ränder junger Konsolen mit dem Messer ab. Lass den zähen Ansatz und die alten, kreidigen Konsolen stehen. Sammle ihn nie von Eiben, denn die sind stark giftig. Auch von Bäumen an stark befahrenen Strassen nimmst du ihn nicht. Wo Pilzesammeln eine Genehmigung braucht oder Tageshöchstmengen gelten, prüf die Regeln vor Ort.",
+        "kitchen": "Wenn du dir sicher bist, was es ist, gare ihn gründlich durch. Roh oder halb gar schlägt er auf den Magen. Selbst gut gegart verträgt ihn nicht jeder. Manchen wird davon übel und schwindlig, und sie müssen erbrechen. Probier also zuerst eine kleine Menge. Schneide ihn in Scheiben und brate oder schmore ihn. Das feste Fleisch erinnert viele an Hähnchen. Er passt gut zu Zitrone, Knoblauch und Kräutern.",
+        "keeps": "In einer Papiertüte hält er sich ein paar Tage im Kühlschrank. Er lässt sich gut einfrieren, roh oder gegart.",
+        "source": "Bestimmung und Wirtsbäume: Woodland Trust, First Nature und MushroomExpert.com. Arten im Westen der USA: Bay Area Mycological Society. Unverträglichkeit: University of Florida IFAS Extension."
+      }
     },
     "es": {
       "name": "Pollo de los bosques",
-      "description": "Un hongo de color naranja-amarillo brillante que crece en los árboles",
-      "howTo": "Búscalo creciendo en árboles muertos o moribundos, especialmente robles"
+      "description": "Un hongo en forma de repisa, de un amarillo anaranjado muy vivo, que crece en los árboles.",
+      "howTo": "Búscalo creciendo en árboles muertos o moribundos, especialmente robles",
+      "guide": {
+        "identify": "El pollo de los bosques sale en repisas en forma de abanico, unas encima de otras, de 10 a 40 cm de ancho y sin pie. De jóvenes son blandas, jugosas y de amarillo vivo a naranja. Con la edad pierden color hasta quedar color crema y se vuelven como de yeso. Por debajo son amarillo azufre, con poros diminutos y no láminas. La carne es de blanca a amarillo pálido y no cambia de color al cortarla. Un grupo naranja sobre madera con láminas debajo es la seta del olivo (Omphalotus), que es venenosa. En el oeste de EE. UU., sus parientes cercanos Laetiporus gilbertsonii y Laetiporus conifericola son casi iguales.",
+        "habitat": "Este hongo pudre la madera. Crece en árboles de hoja ancha vivos y muertos, sobre todo en robles. También sale en castaños, cerezos, sauces y hayas, y alguna vez en tejos. Es común en las tierras bajas de Europa y en el este de EE. UU., en bosques, parques y calles. En el oeste de EE. UU. sus parientes crecen en robles, eucaliptos y coníferas.",
+        "season": "Sale de finales de primavera al otoño, sobre todo en verano, pocos días después de una lluvia cálida. En el oeste de EE. UU. sale sobre todo en otoño. El mismo árbol suele dar setas varios años seguidos.",
+        "picking": "Corta con navaja los bordes blandos de las repisas jóvenes. Deja la base dura y las repisas viejas como de yeso. No lo cojas nunca de un tejo, que es muy venenoso. Tampoco de árboles junto a carreteras con mucho tráfico. Donde haga falta permiso para coger setas o haya límites diarios, consulta las normas locales.",
+        "kitchen": "Cuando lo tengas bien identificado, cocínalo a fondo. Crudo o poco hecho, sienta mal al estómago. Incluso bien cocinado, a algunas personas les sienta mal y les da náuseas, mareo y vómitos. Por eso, prueba primero una cantidad pequeña. Córtalo en láminas y fríelo o guísalo. Su carne firme se suele comparar con el pollo. Va bien con limón, ajo y hierbas.",
+        "keeps": "Aguanta unos días en la nevera, en una bolsa de papel. Se congela bien, crudo o cocinado.",
+        "source": "Identificación y árboles huésped: Woodland Trust, First Nature y MushroomExpert.com. Especies del oeste de EE. UU.: Bay Area Mycological Society. Reacciones: extensión de la Universidad de Florida (IFAS)."
+      }
     },
     "pt": {
       "name": "Frango-da-mata",
-      "description": "Fungo de prateleira amarelo-alaranjado brilhante que cresce em árvores",
-      "howTo": "Procure crescendo em árvores mortas ou moribundas, especialmente carvalhos"
+      "description": "Um fungo de prateleira, de um amarelo-alaranjado vivo, que cresce nas árvores.",
+      "howTo": "Procure crescendo em árvores mortas ou moribundas, especialmente carvalhos",
+      "guide": {
+        "identify": "O frango-da-mata cresce em prateleiras sobrepostas, em forma de leque, com 10 a 40 cm de largura e sem pé. Quando novas, as prateleiras são tenras, húmidas e de amarelo-vivo a cor de laranja. Com a idade desbotam até ao creme e ficam secas como giz. A face de baixo é amarelo-enxofre, com poros minúsculos e não lâminas. A carne é branca a amarelo-pálida e não muda de cor ao corte. Um tufo cor de laranja na madeira, com lâminas por baixo, é o venenoso cogumelo-da-oliveira (Omphalotus). No oeste dos EUA, os parentes próximos Laetiporus gilbertsonii e Laetiporus conifericola são muito parecidos.",
+        "habitat": "É um fungo que apodrece a madeira. Cresce em árvores de folha larga vivas ou mortas, sobretudo carvalhos. Também aparece em castanheiros, cerejeiras, salgueiros e faias e, uma vez por outra, em teixos. É comum nas terras baixas da Europa e no leste dos EUA, em matas, parques e ruas. No oeste dos EUA, os seus parentes crescem em carvalhos, eucaliptos e coníferas.",
+        "season": "Aparece do fim da primavera ao outono, sobretudo no verão, poucos dias depois de chuva quente. No oeste dos EUA sai sobretudo no outono. A mesma árvore dá-o muitas vezes vários anos seguidos.",
+        "picking": "Corte à faca as margens tenras das prateleiras novas. Deixe a base dura e as prateleiras velhas, que já parecem giz. Nunca o apanhe de um teixo, que é muito venenoso. Também não o apanhe de árvores à beira de estradas movimentadas. Onde a apanha de cogumelos precisa de licença ou tem limites diários, consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza do que é, cozinhe-o muito bem. Cru ou mal cozinhado, faz mal ao estômago. Mesmo bem cozinhado, cai mal a algumas pessoas e dá náuseas, tonturas e vómitos. Por isso, prove primeiro um bocadinho. Corte-o às fatias e frite-o ou estufe-o. A carne firme faz muitas vezes lembrar frango. Vai bem com limão, alho e ervas aromáticas.",
+        "keeps": "Aguenta uns dias no frigorífico, num saco de papel. Congela bem, cru ou cozinhado.",
+        "source": "Identificação e árvores hospedeiras: Woodland Trust, First Nature e MushroomExpert.com. Espécies do oeste dos EUA: Bay Area Mycological Society. Reações: University of Florida (IFAS Extension)."
+      }
     }
   },
   "identification": {
@@ -249,6 +303,8 @@
       "taxonKeys": [2542160],
       "references": ["https://www.gbif.org/species/2542160"]
     },
-    "rangePrior": { "taxonKeys": [2542160] }
+    "rangePrior": {
+      "taxonKeys": [2542160]
+    }
   }
 }

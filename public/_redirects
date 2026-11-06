@@ -1,1 +1,3 @@
- 
+# Netlify (staging): every route is the app; real files are served first.
+# GitHub Pages, which serves www.fung.es, ignores this file.
+/*    /index.html    200

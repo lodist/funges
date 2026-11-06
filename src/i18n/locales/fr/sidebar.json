@@ -15,5 +15,23 @@
   "data": "Données",
   "settings": "Paramètres",
   "help": "Aide",
-  "googlePlay": "Disponible sur Google Play"
+  "googlePlay": "Disponible sur Google Play",
+  "huertaWeek": "Cultures",
+  "spaces": {
+    "switch": "Espace : {{space}}. Changer d'espace",
+    "open": "Ouvrir {{space}}",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Champignons et plantes sauvages"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Légumes, fruits et aromates"
+    },
+    "early": "Accès anticipé"
+  },
+  "huertaMap": "Carte",
+  "huertaPlanner": "Mon potager",
+  "huertaYear": "Calendrier",
+  "account": "Compte"
 }

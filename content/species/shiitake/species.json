@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Shiitake",
-      "description": "A mushroom with brown cap and white gills, highly prized in Asian cuisine",
-      "howTo": "Found growing on dead hardwood trees, especially oak and beech, in spring and autumn"
+      "description": "A mushroom with a brown cap and white gills, highly prized in Asian cooking.",
+      "howTo": "Found growing on dead hardwood trees, especially oak and beech, in spring and autumn",
+      "guide": {
+        "identify": "The cap is brown to dark reddish-brown and flattens with age. It often has whitish flecks near the edge and it cracks in dry weather. The gills are white to cream and bruise brown. The stem is tough, fibrous and often off-centre. The spore print is white. The deadly funeral bell (Galerina marginata) also grows on logs. It is smaller and honey-brown, with a ring on the stem and a rusty-brown spore print.",
+        "habitat": "Shiitake is native to East Asia, where it grows on dead broadleaf wood such as oak and Castanopsis. In Europe and North America it is grown on oak logs or sawdust blocks. It has been found outside cultivation only a few times, for example in the Netherlands. So a brown mushroom on a fallen log in the woods is almost certainly something else.",
+        "season": "Logs kept outdoors fruit in spring and autumn. A flush comes a few days after soaking rain in mild weather. Growers also force a flush by soaking a log in cold water.",
+        "picking": "Pick the caps while the edge is still curled under. Twist them off or cut the stem at the log. Pick only from logs you grow or have permission to pick from.",
+        "kitchen": "Make sure of the identification, then cook it thoroughly. Raw or lightly cooked shiitake can cause shiitake dermatitis. That is an itchy rash of whip-like streaks, about a day later. The stems are too tough to eat, but they flavour stock. Fry or simmer the caps with soy sauce, ginger and garlic. They have a deep, savoury taste.",
+        "keeps": "It keeps a few days in the fridge in a paper bag. It dries very well. Soak dried caps before use and keep the water as stock.",
+        "source": "Origin and distribution: Naturalis Biodiversity Center. Log growing: Cornell Cooperative Extension. Shiitake dermatitis: DermNet."
+      }
     },
     "it": {
       "name": "Shiitake",
-      "description": "Un fungo con cappello marrone e lamelle bianche, molto apprezzato nella cucina asiatica",
-      "howTo": "Trovato che cresce su alberi di legno duro morti, specialmente querce e faggi, in primavera e autunno"
+      "description": "Un fungo con il cappello marrone e le lamelle bianche, molto apprezzato nella cucina asiatica.",
+      "howTo": "Trovato che cresce su alberi di legno duro morti, specialmente querce e faggi, in primavera e autunno",
+      "guide": {
+        "identify": "Lo shiitake ha il cappello da bruno a bruno-rossastro scuro, che con l'età si appiattisce. Spesso ha dei fiocchetti biancastri vicino al bordo e con il secco si screpola. Le lamelle vanno dal bianco al crema e, se le tocchi, si macchiano di bruno. Il gambo è duro, fibroso e spesso spostato di lato. La sporata è bianca. Anche la Galerina marginata, che è mortale, cresce sui tronchi. È più piccola e color miele, con un anello sul gambo e la sporata bruno ruggine.",
+        "habitat": "Lo shiitake viene dall'Asia orientale, dove cresce sul legno morto di latifoglie come la quercia e il Castanopsis. In Europa e in Nord America si coltiva su tronchetti di quercia o su blocchi di segatura. Fuori dalle coltivazioni è stato trovato solo poche volte, per esempio nei Paesi Bassi. Quindi un fungo bruno su un tronco caduto nel bosco è quasi di sicuro qualcos'altro.",
+        "season": "I tronchetti tenuti all'aperto fruttificano in primavera e in autunno. La buttata arriva pochi giorni dopo una pioggia abbondante, con il tempo mite. I coltivatori la provocano anche mettendo il tronchetto a bagno in acqua fredda.",
+        "picking": "Raccogli i cappelli quando il bordo è ancora arrotolato in sotto. Staccali ruotandoli o taglia il gambo rasente al tronco. Raccogli solo dai tronchetti che coltivi tu o dove hai il permesso.",
+        "kitchen": "Assicurati di averlo riconosciuto, poi cuocilo a fondo. Crudo o poco cotto può dare la dermatite da shiitake. È un'eruzione che prude, a strisce come frustate, e compare circa un giorno dopo. I gambi sono troppo duri da mangiare, ma danno sapore al brodo. Fai i cappelli in padella o in umido con salsa di soia, zenzero e aglio. Hanno un sapore pieno e intenso.",
+        "keeps": "In frigo, in un sacchetto di carta, dura qualche giorno. Si secca benissimo. Metti a bagno i cappelli secchi prima di usarli e tieni l'acqua come brodo.",
+        "source": "Origine e diffusione: Naturalis Biodiversity Center. Coltivazione su tronchetti: Cornell Cooperative Extension. Dermatite da shiitake: DermNet."
+      }
     },
     "fr": {
       "name": "Shiitaké",
-      "description": "Champignon à chapeau brun et lames blanches, très prisé en cuisine asiatique",
-      "howTo": "Se trouve sur le bois mort de feuillus, surtout chêne et hêtre, au printemps et en automne"
+      "description": "Un champignon au chapeau brun et aux lames blanches, très prisé dans la cuisine asiatique.",
+      "howTo": "Se trouve sur le bois mort de feuillus, surtout chêne et hêtre, au printemps et en automne",
+      "guide": {
+        "identify": "Le chapeau est brun à brun rouge foncé et s'aplatit avec l'âge. Il porte souvent des flocons blanchâtres près de la marge. Par temps sec, il se craquelle. Les lames sont blanches à crème et brunissent au toucher. Le pied est dur, fibreux et souvent décentré. La sporée est blanche. La galère marginée (Galerina marginata) est mortelle et pousse aussi sur les bûches. Elle est plus petite et brun miel, avec un anneau sur le pied et une sporée brun rouille.",
+        "habitat": "Le shiitaké est originaire d'Asie de l'Est. Il y pousse sur le bois mort de feuillus, comme le chêne et le Castanopsis. En Europe et en Amérique du Nord, on le cultive sur des bûches de chêne ou des blocs de sciure. Hors culture, on ne l'a trouvé que quelques fois, par exemple aux Pays-Bas. Un champignon brun sur un tronc tombé en forêt est donc presque sûrement autre chose.",
+        "season": "Les bûches en plein air produisent au printemps et en automne. Une poussée arrive quelques jours après une bonne pluie par temps doux. Les cultivateurs déclenchent aussi une poussée en faisant tremper une bûche dans l'eau froide.",
+        "picking": "Récoltez les chapeaux tant que la marge est encore enroulée. Tournez-les ou coupez le pied au ras de la bûche. Ne récoltez que sur vos propres bûches ou là où on vous l'a permis.",
+        "kitchen": "Assurez-vous de l'identification, puis faites-le bien cuire. Cru ou peu cuit, le shiitaké peut provoquer la dermatite au shiitaké. C'est une éruption qui démange, en traînées comme des coups de fouet, environ un jour après. Les pieds sont trop durs pour être mangés, mais ils parfument un bouillon. Faites sauter ou mijoter les chapeaux avec de la sauce soja, du gingembre et de l'ail. Ils ont un goût profond et savoureux.",
+        "keeps": "Il se garde quelques jours au réfrigérateur dans un sac en papier. Il sèche très bien. Faites tremper les chapeaux secs avant de les utiliser et gardez l'eau comme bouillon.",
+        "source": "Origine et répartition : Naturalis Biodiversity Center. Culture sur bûches : Cornell Cooperative Extension. Dermatite au shiitaké : DermNet."
+      }
     },
     "de": {
       "name": "Shiitake",
-      "description": "Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt",
-      "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst"
+      "description": "Ein Pilz mit braunem Hut und weissen Lamellen, in der asiatischen Küche sehr geschätzt.",
+      "howTo": "Wächst an totem Laubholz, besonders Eiche und Buche, im Frühling und Herbst",
+      "guide": {
+        "identify": "Der Hut ist braun bis dunkel rotbraun und wird im Alter flach. Am Rand hat er oft weissliche Flocken, und bei Trockenheit reisst er auf. Die Lamellen sind weiss bis cremefarben und werden bei Druck braun. Der Stiel ist zäh, faserig und sitzt oft aussermittig. Das Sporenpulver ist weiss. Der tödlich giftige Gift-Häubling (Galerina marginata) wächst ebenfalls auf Holzstämmen. Er ist kleiner und honigbraun, hat einen Ring am Stiel und rostbraunes Sporenpulver.",
+        "habitat": "Der Shiitake stammt aus Ostasien. Dort wächst er auf totem Laubholz wie Eiche und Castanopsis. In Europa und Nordamerika wird er auf Eichenstämmen oder Sägemehlblöcken gezüchtet. Ausserhalb der Zucht wurde er nur ein paar Mal gefunden, zum Beispiel in den Niederlanden. Ein brauner Pilz an einem umgestürzten Stamm im Wald ist also so gut wie sicher etwas anderes.",
+        "season": "Stämme im Freien fruchten im Frühjahr und Herbst. Ein Schub kommt ein paar Tage nach ausgiebigem Regen bei mildem Wetter. Züchter lösen einen Schub auch aus, indem sie einen Stamm in kaltem Wasser einweichen.",
+        "picking": "Ernte die Hüte, solange der Rand noch eingerollt ist. Dreh sie ab oder schneide den Stiel am Stamm ab. Ernte nur von Stämmen, die du selbst ziehst oder an denen du ernten darfst.",
+        "kitchen": "Stell sicher, dass die Bestimmung stimmt, und gare ihn dann gründlich. Roh oder nur kurz gegart kann Shiitake die Shiitake-Dermatitis auslösen. Das ist ein juckender Ausschlag aus Streifen wie von Peitschenhieben, der etwa einen Tag später auftritt. Die Stiele sind zum Essen zu zäh, geben aber Brühe Geschmack. Brate die Hüte oder schmor sie mit Sojasosse, Ingwer und Knoblauch. Sie schmecken tief und würzig.",
+        "keeps": "In einer Papiertüte hält er sich ein paar Tage im Kühlschrank. Er lässt sich sehr gut trocknen. Weich getrocknete Hüte vor dem Gebrauch ein und heb das Wasser als Brühe auf.",
+        "source": "Herkunft und Verbreitung: Naturalis Biodiversity Center. Anbau auf Stämmen: Cornell Cooperative Extension. Shiitake-Dermatitis: DermNet."
+      }
     },
     "es": {
       "name": "Shiitake",
-      "description": "Hongo con sombrero marrón y láminas blancas, muy apreciado en la cocina asiática",
-      "howTo": "Se encuentra creciendo en maderas duras muertas, especialmente roble y haya, en primavera y otoño"
+      "description": "Una seta de sombrero marrón y láminas blancas, muy apreciada en la cocina asiática.",
+      "howTo": "Se encuentra creciendo en maderas duras muertas, especialmente roble y haya, en primavera y otoño",
+      "guide": {
+        "identify": "El sombrero es de pardo a pardo rojizo oscuro y se aplana con la edad. A menudo tiene motas blanquecinas cerca del borde, y con tiempo seco se agrieta. Las láminas son de blancas a crema y se manchan de pardo al tocarlas. El pie es duro, fibroso y a menudo descentrado. La esporada es blanca. La mortal Galerina marginata también crece sobre troncos. Es más pequeña y de color pardo miel, con anillo en el pie y esporada pardo óxido.",
+        "habitat": "El shiitake es originario de Asia oriental, donde crece sobre madera muerta de frondosas como robles y Castanopsis. En Europa y Norteamérica se cultiva en troncos de roble o en bloques de serrín. Fuera del cultivo solo se ha encontrado unas pocas veces, por ejemplo en los Países Bajos. Así que una seta parda en un tronco caído del bosque es casi seguro otra cosa.",
+        "season": "Los troncos al aire libre dan setas en primavera y en otoño. Salen unos días después de una lluvia abundante con tiempo suave. Los cultivadores también provocan una salida metiendo el tronco en agua fría.",
+        "picking": "Coge los sombreros cuando el borde todavía está enrollado hacia abajo. Gíralos o corta el pie junto al tronco. Coge solo de troncos que cultives tú o en los que tengas permiso para coger.",
+        "kitchen": "Asegúrate bien de la identificación y luego cocínalo a fondo. Crudo o poco hecho puede provocar la dermatitis por shiitake. Es un sarpullido que pica, con rayas como latigazos, y aparece más o menos un día después. Los pies son demasiado duros para comerlos, pero dan sabor al caldo. Saltea o cuece los sombreros con salsa de soja, jengibre y ajo. Tienen un sabor profundo y sabroso.",
+        "keeps": "Aguanta unos días en la nevera en una bolsa de papel. Se seca muy bien. Pon los sombreros secos en remojo antes de usarlos y guarda el agua como caldo.",
+        "source": "Origen y distribución: Naturalis Biodiversity Center. Cultivo en troncos: extensión de la Universidad de Cornell. Dermatitis por shiitake: DermNet."
+      }
     },
     "pt": {
       "name": "Shiitake",
-      "description": "Cogumelo com chapéu marrom e lâminas brancas, muito valorizado na culinária asiática",
-      "howTo": "Encontrado crescendo em madeira dura morta, especialmente carvalho e faia, na primavera e outono"
+      "description": "Um cogumelo de chapéu castanho e lâminas brancas, muito apreciado na cozinha asiática.",
+      "howTo": "Encontrado crescendo em madeira dura morta, especialmente carvalho e faia, na primavera e outono",
+      "guide": {
+        "identify": "O chapéu é castanho a castanho-avermelhado escuro e aplana com a idade. Tem muitas vezes flocos esbranquiçados junto à margem e greta com tempo seco. As lâminas são brancas a creme e ganham manchas castanhas ao toque. O pé é rijo, fibroso e muitas vezes descentrado. A esporada é branca. A galerina (Galerina marginata) é mortal e também cresce em troncos. É mais pequena e cor de mel, com um anel no pé e esporada castanho-ferrugem.",
+        "habitat": "O shiitake é nativo da Ásia Oriental, onde cresce em madeira morta de folhosas, como carvalhos e Castanopsis. Na Europa e na América do Norte cultiva-se em troncos de carvalho ou em blocos de serradura. Fora do cultivo só foi encontrado poucas vezes, por exemplo nos Países Baixos. Por isso, um cogumelo castanho num tronco caído no bosque é quase de certeza outra coisa.",
+        "season": "Os troncos que ficam ao ar livre frutificam na primavera e no outono. Uma vaga aparece poucos dias depois de uma chuva forte com tempo ameno. Os produtores também provocam uma vaga pondo o tronco de molho em água fria.",
+        "picking": "Apanhe os chapéus enquanto a margem ainda está enrolada para baixo. Rode-os ou corte o pé rente ao tronco. Apanhe só de troncos que cultiva ou onde tem autorização para apanhar.",
+        "kitchen": "Confirme a identificação e depois cozinhe-o bem. Cru ou mal cozinhado, o shiitake pode causar a dermatite do shiitake. É uma erupção com comichão, em riscas como chicotadas, que aparece cerca de um dia depois. Os pés são rijos demais para comer, mas dão sabor ao caldo. Salteie os chapéus ou coza-os em lume brando com molho de soja, gengibre e alho. Têm um gosto profundo e muito saboroso.",
+        "keeps": "Aguenta uns dias no frigorífico, num saco de papel. Seca muito bem. Ponha os chapéus secos de molho antes de usar e guarde a água para caldo.",
+        "source": "Origem e distribuição: Naturalis Biodiversity Center. Cultivo em troncos: Cornell Cooperative Extension. Dermatite do shiitake: DermNet."
+      }
     }
   },
   "identification": {

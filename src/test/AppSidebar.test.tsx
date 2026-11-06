@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
 import '@/i18n';
 import { AppSidebar } from '@/components/Sidebar/AppSidebar';
@@ -19,6 +19,7 @@ import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 const { pathname } = vi.hoisted(() => ({ pathname: { current: '/' } }));
 vi.mock('@tanstack/react-router', () => ({
   useLocation: () => ({ pathname: pathname.current }),
+  useNavigate: () => () => {},
   Link: ({
     to,
     children,
@@ -134,6 +135,23 @@ describe('AppSidebar', () => {
     ]);
   });
 
+  it('puts the Huerta account first in Help, in Huerta only', () => {
+    const flyout = () => {
+      openHelp();
+      return screen
+        .getAllByRole('menuitem')
+        .map(item => item.getAttribute('href'));
+    };
+    pathname.current = '/huerta/garden-planner';
+    renderSidebar();
+    expect(flyout().slice(0, 2)).toEqual(['/huerta/account', '/support']);
+    cleanup();
+    // In Terra it would jump spaces: not there.
+    pathname.current = '/map';
+    renderSidebar();
+    expect(flyout()).not.toContain('/huerta/account');
+  });
+
   it('adds Offline Maps on desktop once the flag is enabled', () => {
     offlineEnabled.current = true;
     renderSidebar();
@@ -220,5 +238,16 @@ describe('AppSidebar', () => {
     for (const className of NAV_SURFACE_CLASS.split(' ')) {
       expect(surface).toHaveClass(className);
     }
+  });
+
+  // Last: a shared page keeps the space a visitor came from (lib/spaces), so a
+  // Huerta route here would carry into a later test's /privacy-policy.
+  it('lists only its own pages in the Huerta space', () => {
+    pathname.current = '/huerta/crops';
+    renderSidebar();
+
+    expect(navLinks()).toContain('/huerta/crops');
+    expect(navLinks()).not.toContain('/map');
+    expect(navLinks()).not.toContain('/species');
   });
 });

@@ -46,7 +46,7 @@ export function SpeciesSheet({
   return (
     <Dialog open={species !== null} onOpenChange={open => !open && onClose()}>
       {species ? (
-        <SheetBody
+        <SpeciesBody
           species={species}
           score={score}
           scopeLabel={scopeLabel}
@@ -57,15 +57,28 @@ export function SpeciesSheet({
   );
 }
 
-function SheetBody({
+/** The sheet's content: inside the dialog, or as the page /species/$id. */
+export function SpeciesBody({
   species,
   score,
   scopeLabel,
   recipes,
+  asPage = false,
 }: Omit<SpeciesSheetProps, 'species' | 'onClose'> & {
   species: SpeciesWithTranslations;
+  /** A page of its own instead of the dialog (Radix's title parts need one). */
+  asPage?: boolean;
 }) {
   const { t, i18n } = useTranslation(['species', 'common', 'identify']);
+  const Shell = asPage ? 'article' : DialogContent;
+  const Title = asPage ? 'h1' : DialogTitle;
+  const Latin = asPage ? 'p' : DialogDescription;
+  // The full sheet under list_of_species.<key>.guide, where it is written.
+  const key = species.translationKey;
+  const guide = (part: string) =>
+    i18n.exists(`species:list_of_species.${key}.guide.${part}`)
+      ? t(`list_of_species.${key}.guide.${part}`)
+      : null;
   const seasons = speciesSeasons(species.season);
   const inSeason = seasonMonthSet(seasons);
   const thisMonth = new Date().getMonth();
@@ -73,24 +86,35 @@ function SheetBody({
     month: 'narrow',
   });
 
+  // A composite (Chanterelles, Boletus) warns of its members' look-alikes.
+  const ids = useMemo(
+    () => [species.id, ...(species.compositeOf ?? [])],
+    [species.id, species.compositeOf]
+  );
   const lookalikes = useMemo(
     () =>
       TOXIC_SPECIES.filter(toxic =>
-        toxic.confusedWithSpeciesIds.includes(species.id)
+        toxic.confusedWithSpeciesIds.some(id => ids.includes(id))
       ).sort(
         (a, b) =>
           SEVERITY_ORDER.indexOf(a.severity) -
           SEVERITY_ORDER.indexOf(b.severity)
       ),
-    [species.id]
+    [ids]
   );
   // Several look-alikes share a check; say each one once.
-  const checks = [...new Set(lookalikes.flatMap(toxic => toxic.checkKeys))];
+  const checks = [
+    ...new Set(
+      lookalikes.flatMap(
+        toxic => toxic.checksFor?.[species.id] ?? toxic.checkKeys
+      )
+    ),
+  ];
   const criticalNotes = [
     ...new Set(
       lookalikes.flatMap(toxic =>
         (toxic.criticalConfusions ?? [])
-          .filter(confusion => confusion.catalogId === species.id)
+          .filter(confusion => ids.includes(confusion.catalogId))
           .map(confusion => confusion.noteKey)
       )
     ),
@@ -102,7 +126,7 @@ function SheetBody({
   const image = getSpeciesImage(species.id);
 
   return (
-    <DialogContent className='sm:max-w-3xl'>
+    <Shell className={asPage ? 'flex flex-col gap-6' : 'sm:max-w-3xl'}>
       <div className='grid gap-6 sm:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]'>
         {image ? (
           <img
@@ -114,13 +138,15 @@ function SheetBody({
         <div className='flex min-w-0 flex-col gap-5'>
           {/* The close button floats over the top right; the header keeps
               clear of it. */}
-          <DialogHeader className='gap-1 pr-12 text-left sm:text-left'>
-            <DialogTitle className='text-3xl leading-tight font-semibold hyphens-auto break-words'>
+          <DialogHeader
+            className={cn('gap-1 text-left sm:text-left', !asPage && 'pr-12')}
+          >
+            <Title className='text-3xl leading-tight font-semibold hyphens-auto break-words'>
               {species.name}
-            </DialogTitle>
-            <DialogDescription className='text-base italic'>
+            </Title>
+            <Latin className='text-base text-muted-foreground italic'>
               {species.scientificName}
-            </DialogDescription>
+            </Latin>
           </DialogHeader>
 
           {scopeLabel ? (
@@ -202,19 +228,20 @@ function SheetBody({
 
       <p className='leading-relaxed text-foreground'>{species.description}</p>
 
-      <section className='flex flex-col gap-2'>
-        <h3 className='text-base font-semibold text-foreground'>
-          {t('howTo')}
-        </h3>
-        <p className='leading-relaxed text-foreground'>{species.howTo}</p>
-      </section>
+      <GuidePart title={t('guide.identify')} text={guide('identify')} />
+      {guide('habitat') ? (
+        <GuidePart title={t('guide.habitat')} text={guide('habitat')} />
+      ) : (
+        <GuidePart title={t('howTo')} text={species.howTo} />
+      )}
+      <GuidePart title={t('guide.season')} text={guide('season')} />
 
       {lookalikes.length > 0 ? (
         <section className='flex flex-col gap-3 rounded-lg bg-status-warning-background p-4 text-status-warning-text ring-2 ring-status-warning-border/60'>
-          <h3 className='flex items-center gap-2 text-base font-semibold'>
+          <h2 className='flex items-center gap-2 text-base font-semibold'>
             <AlertTriangle className='size-4 shrink-0' />
             {t('sheet.lookalikes')}
-          </h3>
+          </h2>
           {criticalNotes.map(noteKey => (
             <p key={noteKey} className='text-sm font-medium leading-relaxed'>
               {t(`identify:${noteKey}`)}
@@ -233,7 +260,7 @@ function SheetBody({
           </ul>
           {checks.length > 0 ? (
             <div className='flex flex-col gap-1'>
-              <h4 className='text-sm font-semibold'>{t('sheet.tellApart')}</h4>
+              <h3 className='text-sm font-semibold'>{t('sheet.tellApart')}</h3>
               <ul className='list-disc space-y-1 pl-5 text-sm leading-relaxed'>
                 {checks.map(checkKey => (
                   <li key={checkKey}>{t(`identify:${checkKey}`)}</li>
@@ -244,12 +271,16 @@ function SheetBody({
         </section>
       ) : null}
 
+      <GuidePart title={t('guide.picking')} text={guide('picking')} />
+      <GuidePart title={t('guide.kitchen')} text={guide('kitchen')} />
+      <GuidePart title={t('guide.keeps')} text={guide('keeps')} />
+
       {dishes.length > 0 ? (
         <section className='flex flex-col gap-3'>
-          <h3 className='flex items-center gap-2 text-base font-semibold text-foreground'>
+          <h2 className='flex items-center gap-2 text-base font-semibold text-foreground'>
             <ChefHat className='size-4 shrink-0 text-primary-text' />
             {t('common:worthForagingNow.kitchenPayoff')}
-          </h3>
+          </h2>
           <ul className='flex flex-wrap gap-2'>
             {dishes.map(dish => (
               <li key={dish.id} className='min-w-0 max-w-full'>
@@ -277,6 +308,12 @@ function SheetBody({
         </section>
       ) : null}
 
+      {guide('source') ? (
+        <p className='text-xs leading-relaxed text-muted-foreground'>
+          {t('guide.source')}: {guide('source')}
+        </p>
+      ) : null}
+
       <div className='flex flex-wrap gap-3'>
         <Button asChild>
           <Link to='/map' search={{ species: species.id }}>
@@ -285,6 +322,16 @@ function SheetBody({
           </Link>
         </Button>
       </div>
-    </DialogContent>
+    </Shell>
+  );
+}
+
+function GuidePart({ title, text }: { title: string; text: string | null }) {
+  if (!text) return null;
+  return (
+    <section className='flex flex-col gap-2'>
+      <h2 className='text-base font-semibold text-foreground'>{title}</h2>
+      <p className='leading-relaxed text-foreground'>{text}</p>
+    </section>
   );
 }

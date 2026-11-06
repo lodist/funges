@@ -15,5 +15,23 @@
   "data": "Daten",
   "settings": "Einstellungen",
   "help": "Hilfe",
-  "googlePlay": "Jetzt bei Google Play"
+  "googlePlay": "Jetzt bei Google Play",
+  "huertaWeek": "Pflanzen",
+  "spaces": {
+    "switch": "Bereich: {{space}}. Bereich wechseln",
+    "open": "{{space}} öffnen",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Wilde Pilze und Pflanzen"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Gemüse, Obst und Kräuter"
+    },
+    "early": "Frühe Version"
+  },
+  "huertaMap": "Karte",
+  "huertaPlanner": "Mein Garten",
+  "huertaYear": "Kalender",
+  "account": "Konto"
 }

@@ -15,5 +15,23 @@
   "data": "Dati",
   "settings": "Impostazioni",
   "help": "Aiuto",
-  "googlePlay": "Disponibile su Google Play"
+  "googlePlay": "Disponibile su Google Play",
+  "huertaWeek": "Colture",
+  "spaces": {
+    "switch": "Spazio: {{space}}. Cambia spazio",
+    "open": "Apri {{space}}",
+    "terra": {
+      "name": "Terra",
+      "tagline": "Funghi e piante selvatiche"
+    },
+    "huerta": {
+      "name": "Huerta",
+      "tagline": "Ortaggi, frutta ed erbe"
+    },
+    "early": "Accesso anticipato"
+  },
+  "huertaMap": "Mappa",
+  "huertaPlanner": "Il mio orto",
+  "huertaYear": "Calendario",
+  "account": "Account"
 }

@@ -19,33 +19,87 @@
   "locales": {
     "en": {
       "name": "Elderberry",
-      "description": "Small dark purple berries that grow in clusters on elder trees",
-      "howTo": "Look for elder trees in hedgerows and woodland edges in autumn"
+      "description": "Small, dark purple berries that hang in clusters on elder trees.",
+      "howTo": "Look for elder trees in hedgerows and woodland edges in autumn",
+      "guide": {
+        "identify": "Elder is a shrub or small tree with grey-brown, corky, furrowed bark. The twigs have soft white pith inside. The leaves are opposite, with five to seven toothed leaflets. American elderberry can have up to eleven. In early summer it carries flat heads of creamy, scented flowers. These become broad clusters of small purple-black berries on reddish stalks. When ripe, the clusters droop under their weight. Dwarf elder (Sambucus ebulus) is a soft herb that dies back each winter. Its berry clusters stand upright above the leaves. Red elder (Sambucus racemosa) has red berries in upright, dome-shaped clusters. Pokeweed (Phytolacca americana) is a tall herb with smooth purple-red stems. Its berries are strung along long spikes, not held in flat clusters.",
+        "habitat": "Look in hedgerows, at woodland edges, in scrub, on riverbanks, on wasteland and at the edges of villages. It likes rich, moist soil and grows across Europe except the far north. In the eastern US the native American elderberry grows along streams, wet ditches and field edges. In the west you find blue elderberry on open slopes and in valleys. Its ripe berries carry a dusty blue bloom.",
+        "season": "The berries ripen in early autumn. In warm lowlands they start in late August. Further north and in the mountains they run through September into October. The creamy flower heads come earlier, from late May.",
+        "picking": "Cut whole clusters with scissors when every berry is purple-black. Leave clusters that still have green or red berries. Avoid busy roadsides and leave plenty on each bush for the birds.",
+        "kitchen": "Elderberries must be cooked. Raw or unripe berries, stems, leaves and seeds contain compounds that release cyanide during digestion. They can cause nausea, vomiting and stomach cramps. Thorough cooking breaks them down. Once you've identified them with certainty, strip the berries from the stalks with a fork. Throw away green berries and every bit of stem. Simmer them into syrup, jelly, juice, soup or pie filling. The taste is dark, earthy and tart. It goes well with apple, pear, cinnamon and lemon. Never use red elderberries for food.",
+        "keeps": "Fresh clusters keep a day or two in the fridge. If you freeze them whole, the berries shake off the stalks easily. Frozen or dried berries must still be cooked before you eat them.",
+        "source": "Identification and habitat: Woodland Trust. Toxicity, cooking and keeping: Oregon State University Extension."
+      }
     },
     "it": {
       "name": "Sambuco",
-      "description": "Piccole bacche viola scuro che crescono in grappoli sui sambuchi",
-      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in autunno"
+      "description": "Piccole bacche viola scuro che pendono a grappoli dal sambuco.",
+      "howTo": "Cerca alberi di sambuco in siepi e bordi boschivi in autunno",
+      "guide": {
+        "identify": "Il sambuco è un arbusto o un alberello con la corteccia grigio-bruna, sugherosa e solcata. Dentro i rametti c'è un midollo bianco e morbido. Le foglie sono opposte, con cinque-sette foglioline dentate. Il sambuco americano può averne fino a undici. A inizio estate porta ombrelle piatte di fiori color crema e profumati. Poi diventano larghi grappoli di piccole bacche nero-viola su gambetti rossastri. Quando sono maturi, i grappoli pendono per il peso. L'ebbio (Sambucus ebulus) è un'erba morbida che secca ogni inverno. I suoi grappoli stanno dritti sopra le foglie. Il sambuco rosso (Sambucus racemosa) ha bacche rosse in grappoli dritti, a cupola. La fitolacca, o uva turca (Phytolacca americana), è un'erba alta con fusti lisci rosso porpora. Le sue bacche sono infilate lungo lunghe spighe, non raccolte in grappoli piatti.",
+        "habitat": "Cercalo nelle siepi, ai margini dei boschi, tra gli arbusti, lungo i fiumi, negli incolti e ai bordi dei paesi. Ama il terreno ricco e umido e cresce in tutta Europa tranne l'estremo nord. Nell'est degli Stati Uniti il sambuco americano nativo cresce lungo i ruscelli, nei fossi umidi e ai bordi dei campi. A ovest trovi il sambuco blu, sui pendii aperti e nelle valli. Le sue bacche mature hanno una patina azzurra, come di polvere.",
+        "season": "Le bacche maturano a inizio autunno. Nelle pianure calde cominciano a fine agosto. Più a nord e in montagna vanno avanti per tutto settembre e fino a ottobre. Le ombrelle di fiori arrivano prima, da fine maggio.",
+        "picking": "Taglia i grappoli interi con le forbici quando tutte le bacche sono nero-viola. Lascia sulla pianta quelli che hanno ancora bacche verdi o rosse. Evita i bordi delle strade trafficate e lascia tante bacche su ogni pianta per gli uccelli.",
+        "kitchen": "Le bacche di sambuco vanno cotte. Bacche crude o acerbe, gambetti, foglie e semi contengono sostanze che durante la digestione liberano cianuro. Possono dare nausea, vomito e crampi allo stomaco. Una cottura completa le distrugge. Quando sei certo di averle riconosciute, sgrana le bacche dai gambetti con una forchetta. Butta le bacche verdi e ogni pezzetto di gambo. Poi falle cuocere piano per farne sciroppo, gelatina, succo, zuppa o ripieno per torte. Il sapore è scuro, terroso e acidulo. Sta bene con mela, pera, cannella e limone. Non usare mai in cucina le bacche del sambuco rosso.",
+        "keeps": "I grappoli freschi durano un giorno o due in frigo. Se li congeli interi, poi le bacche si staccano facilmente dai gambetti. Congelate o secche, le bacche vanno comunque cotte prima di mangiarle.",
+        "source": "Identificazione e habitat: Woodland Trust. Tossicità, cottura e conservazione: servizio di extension della Oregon State University."
+      }
     },
     "fr": {
       "name": "Sureau noir",
-      "description": "Petites baies pourpre foncé poussant en grappes sur les sureaux",
-      "howTo": "Cherchez les sureaux dans les haies et lisières de bois en automne"
+      "description": "De petites baies d'un violet foncé qui pendent en grappes sur les sureaux.",
+      "howTo": "Cherchez les sureaux dans les haies et lisières de bois en automne",
+      "guide": {
+        "identify": "Le sureau noir est un arbuste ou un petit arbre à l'écorce gris-brun, liégeuse et crevassée. Ses rameaux ont une moelle blanche et tendre à l'intérieur. Les feuilles sont opposées, avec cinq à sept folioles dentées. Le sureau du Canada peut en avoir jusqu'à onze. Au début de l'été, il porte des ombelles plates de fleurs blanc crème et parfumées. Elles deviennent de larges grappes de petites baies noir violacé, sur des queues rougeâtres. À maturité, les grappes pendent sous leur poids. Le sureau yèble (Sambucus ebulus) est une plante herbacée qui disparaît chaque hiver. Ses grappes de baies se tiennent dressées au-dessus des feuilles. Le sureau rouge (Sambucus racemosa) a des baies rouges en grappes dressées, en forme de dôme. Le raisin d'Amérique (Phytolacca americana) est une grande plante herbacée aux tiges lisses, rouge pourpre. Ses baies sont alignées le long de longs épis, pas en grappes plates.",
+        "habitat": "Cherchez-le dans les haies, en lisière, dans les fourrés, sur les berges, dans les friches et aux abords des villages. Il aime les sols riches et frais et pousse dans toute l'Europe sauf l'extrême nord. Dans l'est des États-Unis, le sureau du Canada, indigène, pousse le long des ruisseaux, des fossés humides et des bords de champs. Dans l'ouest, on trouve le sureau bleu sur les pentes dégagées et dans les vallées. Ses baies mûres sont couvertes d'une pruine bleu poudré.",
+        "season": "Les baies mûrissent au début de l'automne. Dans les plaines chaudes, elles commencent fin août. Plus au nord et en montagne, elles vont de septembre jusqu'en octobre. Les ombelles de fleurs blanc crème arrivent plus tôt, dès fin mai.",
+        "picking": "Coupez des grappes entières aux ciseaux quand toutes les baies sont noir violacé. Laissez les grappes qui ont encore des baies vertes ou rouges. Évitez les routes passantes, et laissez-en beaucoup sur chaque arbuste pour les oiseaux.",
+        "kitchen": "Les baies de sureau doivent être cuites. Les baies crues ou pas mûres, les queues, les feuilles et les graines contiennent des composés qui libèrent du cyanure pendant la digestion. Ils peuvent provoquer nausées, vomissements et crampes d'estomac. Une bonne cuisson les détruit. Une fois les baies identifiées avec certitude, détachez-les des grappes avec une fourchette. Jetez les baies vertes et le moindre bout de queue. Faites-les cuire doucement en sirop, gelée, jus, soupe ou garniture de tarte. Le goût est sombre, terreux et acidulé. Il va bien avec la pomme, la poire, la cannelle et le citron. N'utilisez jamais les baies du sureau rouge en cuisine.",
+        "keeps": "Les grappes fraîches se gardent un ou deux jours au réfrigérateur. Si vous les congelez entières, les baies se détachent ensuite facilement des queues. Congelées ou séchées, les baies doivent quand même être cuites avant d'être mangées.",
+        "source": "Identification et habitat : Woodland Trust. Toxicité, cuisson et conservation : service d'extension de l'Oregon State University."
+      }
     },
     "de": {
       "name": "Holunderbeere",
-      "description": "Kleine, dunkelviolette Beeren, die in Dolden an Holunderbäumen wachsen",
-      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im Herbst"
+      "description": "Kleine, dunkelviolette Beeren, die in Dolden am Holunder hängen.",
+      "howTo": "Suche Holunderbäume in Hecken und Waldrändern im Herbst",
+      "guide": {
+        "identify": "Der Holunder ist ein Strauch oder kleiner Baum mit graubrauner, korkiger, gefurchter Rinde. In den Zweigen steckt weiches weisses Mark. Die Blätter stehen gegenständig und haben fünf bis sieben gesägte Fiederblättchen. Beim Amerikanischen Holunder können es bis zu elf sein. Im Frühsommer trägt er flache Dolden aus cremeweissen, duftenden Blüten. Daraus werden breite Dolden kleiner schwarzvioletter Beeren an rötlichen Stielen. Reif hängen die Dolden unter ihrem Gewicht nach unten. Der Attich oder Zwerg-Holunder (Sambucus ebulus) ist eine krautige Pflanze, die jeden Winter abstirbt. Seine Fruchtstände stehen aufrecht über den Blättern. Der Trauben-Holunder (Sambucus racemosa) hat rote Beeren in aufrechten, kuppelförmigen Ständen. Die Amerikanische Kermesbeere (Phytolacca americana) ist eine hohe Staude mit glatten, purpurroten Stängeln. Ihre Beeren sitzen an langen Ähren aufgereiht, nicht in flachen Dolden.",
+        "habitat": "Such in Hecken, an Waldrändern, in Gebüschen, an Flussufern, auf Brachen und am Dorfrand. Er mag nährstoffreichen, feuchten Boden und wächst in ganz Europa ausser dem hohen Norden. Im Osten der USA wächst der heimische Amerikanische Holunder an Bächen, nassen Gräben und Feldrändern. Im Westen findest du den Blauen Holunder an offenen Hängen und in Tälern. Seine reifen Beeren tragen einen staubig blauen Reif.",
+        "season": "Die Beeren reifen im Frühherbst. In warmen Tieflagen geht es Ende August los. Weiter nördlich und in den Bergen reifen sie durch den September bis in den Oktober. Die cremeweissen Blütendolden kommen früher, ab Ende Mai.",
+        "picking": "Schneide ganze Dolden mit der Schere ab, wenn jede Beere schwarzviolett ist. Lass Dolden hängen, an denen noch grüne oder rote Beeren sind. Meide stark befahrene Strassenränder und lass an jedem Strauch reichlich für die Vögel.",
+        "kitchen": "Holunderbeeren musst du kochen. Rohe oder unreife Beeren, Stiele, Blätter und Kerne enthalten Stoffe, die bei der Verdauung Blausäure freisetzen. Sie können Übelkeit, Erbrechen und Bauchkrämpfe auslösen. Gründliches Kochen baut sie ab. Wenn du sie sicher bestimmt hast, streif die Beeren mit einer Gabel von den Stielen. Wirf grüne Beeren und alle Stielreste weg. Koch sie zu Sirup, Gelee, Saft, Suppe oder Kuchenfüllung. Sie schmecken dunkel, erdig und säuerlich. Gut dazu passen Apfel, Birne, Zimt und Zitrone. Rote Holunderbeeren verwendest du nie zum Essen.",
+        "keeps": "Frische Dolden halten sich ein bis zwei Tage im Kühlschrank. Wenn du sie ganz einfrierst, lassen sich die Beeren danach leicht von den Stielen schütteln. Auch gefrorene oder getrocknete Beeren musst du vor dem Essen kochen.",
+        "source": "Bestimmung und Standort: Woodland Trust. Giftigkeit, Kochen und Lagern: Oregon State University Extension."
+      }
     },
     "es": {
       "name": "Saúco",
-      "description": "Pequeñas bayas oscuras que crecen en racimos en árboles de saúco",
-      "howTo": "Busca árboles de saúco en setos y bordes de bosques en otoño"
+      "description": "Bayas pequeñas de color morado oscuro que cuelgan en racimos del saúco.",
+      "howTo": "Busca árboles de saúco en setos y bordes de bosques en otoño",
+      "guide": {
+        "identify": "El saúco es un arbusto o arbolito de corteza pardo grisácea, como de corcho y con surcos. Las ramitas tienen por dentro una médula blanca y blanda. Las hojas salen enfrentadas, con cinco a siete hojuelas dentadas. El saúco americano puede tener hasta once. A principios de verano da ramilletes planos de flores blanco crema y perfumadas. Después se convierten en racimos anchos de bayitas negro moradas sobre rabillos rojizos. Cuando maduran, los racimos cuelgan por su peso. El yezgo (Sambucus ebulus) es una hierba blanda que se seca cada invierno. Sus racimos de bayas están derechos, por encima de las hojas. El saúco rojo (Sambucus racemosa) tiene bayas rojas en racimos derechos en forma de cúpula. La hierba carmín (Phytolacca americana) es una hierba alta de tallos lisos rojo púrpura. Sus bayas van ensartadas a lo largo de espigas largas, no en racimos planos.",
+        "habitat": "Búscalo en setos, bordes de bosque, matorrales, riberas, solares y a las afueras de los pueblos. Le gusta la tierra rica y húmeda. Crece en toda Europa salvo el extremo norte. En el este de EE. UU. crece el saúco americano autóctono, junto a arroyos, zanjas húmedas y lindes de campos. En el oeste encuentras el saúco azul en laderas abiertas y valles. Sus bayas maduras llevan un polvillo azul.",
+        "season": "Las bayas maduran a principios de otoño. En las tierras bajas cálidas empiezan a finales de agosto. Más al norte y en la montaña siguen en septiembre y llegan a octubre. Los ramilletes de flores salen antes, desde finales de mayo.",
+        "picking": "Corta racimos enteros con tijeras cuando todas las bayas estén negro moradas. Deja los racimos que aún tengan bayas verdes o rojas. Evita las carreteras con mucho tráfico. Deja bastantes en cada arbusto para los pájaros.",
+        "kitchen": "Las bayas de saúco hay que cocinarlas. Las bayas crudas o verdes, los rabillos, las hojas y las semillas tienen compuestos que liberan cianuro durante la digestión. Pueden dar náuseas, vómitos y retortijones. Una buena cocción los destruye. Cuando las tengas identificadas con certeza, desgrana las bayas de los rabillos con un tenedor. Tira las bayas verdes y cualquier resto de rabillo. Cuécelas a fuego lento para hacer sirope, jalea, zumo, sopa o relleno de tarta. Tienen un sabor oscuro, terroso y ácido. Van bien con manzana, pera, canela y limón. No uses nunca bayas de saúco rojo para comer.",
+        "keeps": "Los racimos frescos aguantan uno o dos días en la nevera. Si los congelas enteros, luego las bayas se sueltan fácilmente de los rabillos. Las bayas congeladas o secas también hay que cocinarlas antes de comerlas.",
+        "source": "Identificación y hábitat: Woodland Trust. Toxicidad, cocción y conservación: extensión de la Oregon State University."
+      }
     },
     "pt": {
       "name": "Sabugueiro",
-      "description": "Pequenas bagas roxas-escuras que crescem em cachos em árvores de sabugueiro",
-      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no outono"
+      "description": "Bagas pequenas, roxo-escuras, que pendem em cachos do sabugueiro.",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no outono",
+      "guide": {
+        "identify": "O sabugueiro é um arbusto ou uma pequena árvore de casca castanho-acinzentada, cortiçosa e com sulcos. Os ramos têm por dentro uma medula branca e mole. As folhas são opostas, com cinco a sete folíolos dentados. O sabugueiro-americano pode ter até onze. No início do verão dá umbelas planas de flores cor de creme e perfumadas. Estas dão cachos largos de pequenas bagas negro-arroxeadas, em pés avermelhados. Quando estão maduros, os cachos pendem com o peso. Os engos (Sambucus ebulus) são uma erva mole que seca todos os invernos. Os cachos ficam direitos, acima das folhas. O sabugueiro-vermelho (Sambucus racemosa) tem bagas vermelhas em cachos direitos, em forma de cúpula. A tintureira (Phytolacca americana) é uma erva alta de caules lisos, vermelho-púrpura. As bagas estão enfiadas ao longo de espigas compridas, e não em cachos planos.",
+        "habitat": "Procure-o em sebes, orlas de bosque, matos, margens de rios, baldios e nos arredores das aldeias. Gosta de terra rica e fresca e cresce em toda a Europa, menos no extremo norte. No leste dos EUA, o sabugueiro-americano, nativo, cresce junto a ribeiros, valas húmidas e bordas de campos. No oeste encontra-se o sabugueiro-azul, em encostas abertas e vales. As bagas maduras têm uma camada azulada, como pó.",
+        "season": "As bagas amadurecem no início do outono. Nas terras baixas quentes começam no fim de agosto. Mais a norte e na montanha vão por setembro fora e entram em outubro. As umbelas de flor, cor de creme, vêm mais cedo, a partir do fim de maio.",
+        "picking": "Corte cachos inteiros com uma tesoura quando todas as bagas estiverem negro-arroxeadas. Deixe os cachos que ainda tenham bagas verdes ou vermelhas. Evite estradas movimentadas e deixe muitos em cada arbusto para os pássaros.",
+        "kitchen": "As bagas de sabugueiro têm de ser cozinhadas. As bagas cruas ou verdes, os pés, as folhas e as sementes têm compostos que libertam cianeto durante a digestão. Podem causar náuseas, vómitos e cólicas. Uma cozedura completa destrói esses compostos. Depois de as identificar com certeza, solte as bagas dos pés com um garfo. Deite fora as bagas verdes e todos os bocadinhos de pé. Coza-as em lume brando para fazer xarope, geleia, sumo, sopa ou recheio de tarte. O sabor é escuro, terroso e ácido. Combina com maçã, pera, canela e limão. Nunca use bagas de sabugueiro-vermelho na cozinha.",
+        "keeps": "Os cachos frescos aguentam um ou dois dias no frigorífico. Se os congelar inteiros, as bagas soltam-se facilmente dos pés. Congeladas ou secas, as bagas têm na mesma de ser cozinhadas antes de as comer.",
+        "source": "Identificação e habitat: Woodland Trust. Toxicidade, cozedura e conservação: serviço de extensão da Oregon State University."
+      }
     }
   },
   "identification": {
@@ -220,6 +274,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2888728, 6369819, 2888726] }
+    "rangePrior": {
+      "taxonKeys": [2888728, 6369819, 2888726]
+    }
   }
 }

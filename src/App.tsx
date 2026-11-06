@@ -10,6 +10,7 @@ import './i18n';
 import { useDailySpeciesRefresh } from '@/hooks/use-daily-species-refresh';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { reloadIntoUpdate } from '@/lib/pwa';
+import { pathLanguage } from '@/lib/seo-pages';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -46,7 +47,9 @@ function App() {
   useDailySpeciesRefresh();
 
   useEffect(() => {
-    // Set default language
+    // Set default language; a /de/… page is German, and stays the choice.
+    const fromPath = pathLanguage(window.location.pathname);
+    if (fromPath) localStorage.setItem('language', fromPath);
     const savedLanguage = localStorage.getItem('language') || 'en';
     i18n.changeLanguage(savedLanguage);
   }, [i18n]);

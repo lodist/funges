@@ -60,298 +60,829 @@
   "list_of_species": {
     "chant": {
       "name": "Cantarelo",
-      "description": "Um cogumelo amarelo-dourado com formato de funil distinto e aroma frutado",
-      "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias"
+      "description": "Um cogumelo amarelo-dourado em forma de funil. Tem um cheiro frutado, um pouco a alperce.",
+      "howTo": "Procure em florestas decíduas, especialmente perto de carvalhos e faias",
+      "guide": {
+        "identify": "Os cantarelos são amarelo-gema a dourados e chegam aos 10 cm de largura. O chapéu é um funil pouco fundo, com a margem ondulada e enrolada para baixo. Por baixo não tem lâminas verdadeiras, mas sim pregas rombas e bifurcadas que descem pelo pé. Ao contrário das lâminas, não se soltam uma a uma. O pé é cheio e a carne é firme, branca a amarelo-pálida. Cheira levemente a alperce. Há dois sósias que tem de conhecer. Os cogumelos-da-oliveira (Omphalotus) têm lâminas verdadeiras, finas e apertadas. Nascem em tufos na madeira ou em raízes enterradas e são cor de laranja também por dentro. O falso-cantarelo (Hygrophoropsis aurantiaca) é de um laranja mais forte e mole. Também tem lâminas finas e apertadas.",
+        "habitat": "Os cantarelos vivem ligados às raízes das árvores. Crescem debaixo de carvalhos, faias, bétulas, castanheiros, píceas e pinheiros, sobretudo em solo ácido com musgo. Muitas vezes encontram-se em taludes e à beira dos caminhos. São comuns em toda a Europa, da planície à montanha. Na América do Norte, o cantarelo é na verdade um conjunto de espécies próximas. Há, por exemplo, o Cantharellus flavus no leste, o C. californicus debaixo de carvalhos de folha persistente na Califórnia e o C. cascadensis no noroeste do Pacífico.",
+        "season": "Na Europa central e do norte saem do fim de junho a outubro, depois de chuva quente e abundante. No sul da Europa a época começa mais tarde e dura mais. Nos montados e carvalhais mediterrânicos vai até ao inverno. No leste dos EUA saem no verão, depois de chuva quente. No oeste seguem as chuvas de outono. Na Califórnia continuam até ao inverno.",
+        "picking": "Corte-os ou torça-os pela base e escove-lhes a terra logo ali. Deixe crescer os pequenos. Na Alemanha são uma espécie especialmente protegida. Lá só pode apanhar pequenas quantidades, para consumo próprio. Os cantões suíços, as regiões italianas, zonas de França e de Espanha e os terrenos públicos dos EUA têm limites ou licenças próprios. Consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza, limpe os cantarelos com uma escova em vez de os lavar. Absorvem água. Nunca os coma crus. Cozinhe-os bem, primeiro numa frigideira sem gordura até largarem a água e depois com manteiga. Têm um sabor suave, frutado e um pouco apimentado. São firmes ao dente. Ficam bem com ovos, natas, batatas, massa e frango.",
+        "keeps": "Aguentam uns dias no frigorífico, em papel e não em plástico. Secos, ficam rijos. Para os guardar mais tempo, salteie-os em manteiga e congele-os.",
+        "source": "Identificação e habitat: First Nature (Reino Unido) e MushroomExpert.com. Espécies norte-americanas e sósias: University of Florida IFAS Extension. Proteção: regulamento federal alemão de proteção das espécies. Época: registos do GBIF."
+      }
     },
     "mushroom": {
       "name": "Boleto Comestível",
-      "description": "O rei dos boletos: chapéu castanho, pé robusto e reticulado, e poros brancos que nunca azulam",
-      "howTo": "Encontrado em florestas de coníferas e decíduas, muitas vezes perto de abetos e faias, do fim do verão ao outono"
+      "description": "O porcini: um cogumelo robusto, de chapéu castanho, pé claro com rede e poros brancos que nunca azulam.",
+      "howTo": "Encontrado em florestas de coníferas e decíduas, muitas vezes perto de abetos e faias, do fim do verão ao outono",
+      "guide": {
+        "identify": "É um boleto robusto, de chapéu castanho-claro a cor de castanha. O chapéu é liso e gorduroso, mas nunca aveludado. Tem muitas vezes uma orla fina esbranquiçada. Os poros são brancos no cogumelo novo e depois passam a amarelos e verde-azeitona. Não mudam de cor quando se carrega neles. O pé é claro e tem em cima uma rede branca e fina. A carne é branca e não muda de cor ao corte. Poros cor-de-rosa e uma rede castanho-escura indicam o boleto-amargo (Tylopilus felleus). Poros vermelhos ou cor de laranja indicam outro boleto, que pode ser tóxico. O mesmo vale para carne que fica azul.",
+        "habitat": "Cresce com espruces, pinheiros, faias, carvalhos, castanheiros e vidoeiros, em solo ácido. Encontra-se em toda a Europa, da planície ao limite das árvores. Na América do Norte cresce sobretudo nos estados do Pacífico. No sul das Montanhas Rochosas é mais comum o boleto rei das Rochosas, que é mais vermelho.",
+        "season": "A época principal vai de agosto a outubro. Na montanha começa em junho e no sul dura até novembro. Na costa do Pacífico dos EUA aparece com as chuvas de outono. Uma vaga costuma surgir umas duas semanas depois de uma chuvada forte que se segue a um período quente e seco.",
+        "picking": "Rode-o para o soltar ou corte-o pela base. Deixe os pequenos e os chapéus velhos ou com bicho. Na Alemanha só se podem apanhar pequenas quantidades para consumo próprio. Na maior parte das regiões de Itália é preciso licença. Cada floresta nacional dos EUA tem as suas regras.",
+        "kitchen": "Primeiro confirme que o identificou com toda a certeza. Limpe-o com uma escova e corte-o ao comprido para ver se tem bicho. Salteie-o ou use-o em risotos, massas e sopas. Cozinhe-o bem. Nem toda a gente o tolera cru. Os velhos ou mal guardados fazem mal ao estômago.",
+        "keeps": "Guarde-o num sítio fresco, em papel e não em plástico, durante um ou dois dias. Seca muito bem em fatias finas. Também congela bem.",
+        "source": "Identificação e habitat: Regione Piemonte, First Nature e MushroomExpert. Época: registos do GBIF. Regras: BArtSchV (Alemanha) e Serviço Florestal dos EUA. Cozinha: Regione Piemonte e VIDAL."
+      }
     },
     "morel": {
       "name": "Morchella",
-      "description": "Cogumelo distinto com chapéu em formato de colmeia que aparece na primavera",
-      "howTo": "Procure em áreas perturbadas, florestas queimadas e perto de árvores mortas na primavera"
+      "description": "Um cogumelo com o chapéu em forma de favo de mel. Aparece na primavera.",
+      "howTo": "Procure em áreas perturbadas, florestas queimadas e perto de árvores mortas na primavera",
+      "guide": {
+        "identify": "O chapéu é um favo de alvéolos e nervuras. Pode ser amarelado, cinzento-acastanhado ou quase negro. Assenta num pé claro. Corte todas as morchelas ao meio, ao comprido. Uma morchela verdadeira é uma só cavidade oca, da ponta do chapéu à base do pé. O chapéu liga-se ao pé pela orla de baixo. A falsa-morchela (Gyromitra esculenta) é mortal. Tem uma cabeça castanho-avermelhada, enrugada como um cérebro. Por dentro é dividida em câmaras ou parece algodão. Cozinhá-la não a torna segura. A Verpa bohemica tem o chapéu preso só no topo, como um dedal. O pé está cheio de uma medula que parece algodão.",
+        "habitat": "Procure no chão de bosques claros de folhosas e de matas ribeirinhas, em pomares velhos e em jardins. As morchelas aparecem muitas vezes junto a freixos, ulmeiros, choupos ou macieiras, em solo calcário ou sobre casca triturada. No leste dos EUA, procure junto a ulmeiros a morrer, freixos e macieiras velhas. No oeste dos EUA nascem em florestas de coníferas, na primavera a seguir a um incêndio.",
+        "season": "As morchelas aparecem de março a maio. Nas terras baixas do sul da Europa saem mais cedo. No norte e na montanha saem mais tarde, até junho. Vêm depois de chuvas fortes de primavera, quando a terra aquece. Nas montanhas do oeste dos EUA acompanham o degelo.",
+        "picking": "Corte o pé rente ao chão com uma faca. Leve as morchelas num cesto ou num saco de rede. Na Alemanha todas as morchelas são protegidas e só se podem apanhar pequenas quantidades para consumo próprio. Noutros sítios, muitas regiões e as florestas nacionais dos EUA fixam limites ou pedem licença. Informe-se sobre as regras locais.",
+        "kitchen": "Depois de as identificar com certeza, cozinhe as morchelas muito bem. Cruas ou mal cozinhadas são tóxicas. Isto vale também para as secas. A ANSES, a agência francesa de segurança alimentar, aconselha 20 a 30 minutos na frigideira para os cogumelos silvestres. Refeições grandes já causaram tonturas e tremores, mesmo com as morchelas cozinhadas. Por isso coma porções moderadas. Ficam bem com manteiga, natas, espargos e frango.",
+        "keeps": "Num saco de papel, no frigorífico, aguentam dois dias. As morchelas secam muito bem. Demolhe as secas e junte ao molho a água da demolha, coada. Cozinhe-as tanto tempo como as frescas.",
+        "source": "Identificação e habitat: Missouri Department of Conservation e First Nature. Toxicidade e confeção: ANSES e Lagrange e Vernoux (Toxins, 2020). Regras: regulamento federal alemão de proteção de espécies (BArtSchV) e US Forest Service. Época: registos do GBIF."
+      }
     },
     "blackberry": {
       "name": "Amora",
-      "description": "Frutas doces e roxas-escuras que crescem em arbustos espinhosos",
-      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão"
+      "description": "Bagas doces, de um roxo-escuro, que crescem nas silvas, cheias de espinhos.",
+      "howTo": "Encontrada em cercas vivas, bordas de bosques e áreas perturbadas no final do verão",
+      "guide": {
+        "identify": "As silvas têm caules compridos e arqueados, armados de picos curvos como ganchos. Cada folha tem três ou cinco folíolos dentados, abertos como uma mão. São verde-escuros por cima e mais claros por baixo. As flores são brancas ou cor-de-rosa, com cinco pétalas. As amoras são feitas de muitas bolinhas pequenas e redondas. Passam de verdes a vermelhas e depois a negras e brilhantes. A amora madura solta-se com o miolo branco lá dentro. A framboesa deixa o miolo na planta e fica oca. Rubus fruticosus é um grupo de centenas de silvas muito aparentadas. Aproveitam-se todas da mesma maneira.",
+        "habitat": "Procure em sebes, orlas e clareiras de bosque, matos, baldios e taludes da linha do comboio. Cresce em quase todo o tipo de solo, em toda a Europa menos no extremo norte. Nos EUA há silvas nativas em campos abandonados e orlas de bosque. A silva-dos-himalaias, que foi introduzida, forma matagais cerrados no noroeste do Pacífico e na Califórnia.",
+        "season": "No sul da Europa e nos EUA as amoras amadurecem a partir de julho. Mais a norte começam no fim de julho ou em agosto. Continuam a aparecer até às primeiras geadas de setembro e outubro. Na mesma silva há muitas vezes flores, amoras verdes e amoras maduras ao mesmo tempo.",
+        "picking": "Apanhe só amoras bem negras, que se soltem com um puxão leve. Deixe as vermelhas e deixe algumas para os animais. Evite bermas de estradas movimentadas e orlas tratadas com herbicida. Na Europa Central há que pensar na ténia-da-raposa. A autoridade de saúde da Baviera (LGL) diz que não está demonstrado que comer bagas silvestres seja um fator de risco para esta ténia. Mesmo assim, aconselha a lavá-las bem. Só aquecê-las acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Quando tiver a certeza da planta, pode comer as amoras cruas ou cozinhadas. Leve-as ao forno em crumbles e tartes com maçã. Também dão doce, geleia, xarope e vinagre. Passe-as por água só na hora de usar e veja se não têm bichos. O sabor vai do doce ao ácido, de silva para silva.",
+        "keeps": "Sem lavar e espalhadas numa caixa baixa, aguentam um ou dois dias no frigorífico. Para as congelar, espalhe-as num tabuleiro e passe-as para sacos quando estiverem duras. Congeladas, servem para cozinhar.",
+        "source": "Identificação, habitat e usos: Woodland Trust. Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     },
     "elderberry": {
       "name": "Sabugueiro",
-      "description": "Pequenas bagas roxas-escuras que crescem em cachos em árvores de sabugueiro",
-      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no outono"
+      "description": "Bagas pequenas, roxo-escuras, que pendem em cachos do sabugueiro.",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no outono",
+      "guide": {
+        "identify": "O sabugueiro é um arbusto ou uma pequena árvore de casca castanho-acinzentada, cortiçosa e com sulcos. Os ramos têm por dentro uma medula branca e mole. As folhas são opostas, com cinco a sete folíolos dentados. O sabugueiro-americano pode ter até onze. No início do verão dá umbelas planas de flores cor de creme e perfumadas. Estas dão cachos largos de pequenas bagas negro-arroxeadas, em pés avermelhados. Quando estão maduros, os cachos pendem com o peso. Os engos (Sambucus ebulus) são uma erva mole que seca todos os invernos. Os cachos ficam direitos, acima das folhas. O sabugueiro-vermelho (Sambucus racemosa) tem bagas vermelhas em cachos direitos, em forma de cúpula. A tintureira (Phytolacca americana) é uma erva alta de caules lisos, vermelho-púrpura. As bagas estão enfiadas ao longo de espigas compridas, e não em cachos planos.",
+        "habitat": "Procure-o em sebes, orlas de bosque, matos, margens de rios, baldios e nos arredores das aldeias. Gosta de terra rica e fresca e cresce em toda a Europa, menos no extremo norte. No leste dos EUA, o sabugueiro-americano, nativo, cresce junto a ribeiros, valas húmidas e bordas de campos. No oeste encontra-se o sabugueiro-azul, em encostas abertas e vales. As bagas maduras têm uma camada azulada, como pó.",
+        "season": "As bagas amadurecem no início do outono. Nas terras baixas quentes começam no fim de agosto. Mais a norte e na montanha vão por setembro fora e entram em outubro. As umbelas de flor, cor de creme, vêm mais cedo, a partir do fim de maio.",
+        "picking": "Corte cachos inteiros com uma tesoura quando todas as bagas estiverem negro-arroxeadas. Deixe os cachos que ainda tenham bagas verdes ou vermelhas. Evite estradas movimentadas e deixe muitos em cada arbusto para os pássaros.",
+        "kitchen": "As bagas de sabugueiro têm de ser cozinhadas. As bagas cruas ou verdes, os pés, as folhas e as sementes têm compostos que libertam cianeto durante a digestão. Podem causar náuseas, vómitos e cólicas. Uma cozedura completa destrói esses compostos. Depois de as identificar com certeza, solte as bagas dos pés com um garfo. Deite fora as bagas verdes e todos os bocadinhos de pé. Coza-as em lume brando para fazer xarope, geleia, sumo, sopa ou recheio de tarte. O sabor é escuro, terroso e ácido. Combina com maçã, pera, canela e limão. Nunca use bagas de sabugueiro-vermelho na cozinha.",
+        "keeps": "Os cachos frescos aguentam um ou dois dias no frigorífico. Se os congelar inteiros, as bagas soltam-se facilmente dos pés. Congeladas ou secas, as bagas têm na mesma de ser cozinhadas antes de as comer.",
+        "source": "Identificação e habitat: Woodland Trust. Toxicidade, cozedura e conservação: serviço de extensão da Oregon State University."
+      }
     },
     "nettle": {
       "name": "Urtiga",
-      "description": "Planta verde nutritiva com pelos urticantes que deve ser cozida",
-      "howTo": "Encontrada em áreas perturbadas, cercas vivas e bordas de bosques na primavera e verão"
+      "description": "Uma planta verde e nutritiva, com pelos que picam. Cozinhe-a sempre antes de a comer.",
+      "howTo": "Encontrada em áreas perturbadas, cercas vivas e bordas de bosques na primavera e verão",
+      "guide": {
+        "identify": "A urtiga cresce direita, com caules quadrados e folhas opostas, aos pares. As folhas são em forma de coração ou ovais, com dentes grossos e ponta aguçada. Caules e folhas estão cobertos de pelos que picam. A partir do início do verão, pendem cachos finos de florzinhas esverdeadas no sítio onde as folhas se ligam ao caule. As urtigas-mortas são parecidas, mas não picam. Além disso têm flores vistosas em forma de lábio, brancas, amarelas ou roxas.",
+        "habitat": "As urtigas formam manchas densas em solo rico e húmido. Procure nas orlas dos bosques, nas margens dos rios, nas valas e nas sebes. Também crescem à volta de quintas e de casas velhas. São comuns em toda a Europa. No sul ficam-se sobretudo pelos sítios húmidos e à sombra. Nos EUA existem na maior parte do país, sobretudo junto a ribeiros e em bosques abertos e húmidos.",
+        "season": "Os rebentos novos aparecem a partir de fevereiro nas zonas amenas e a partir de março mais a norte. Pode apanhá-los até a planta florir, mais ou menos a partir de junho. As manchas cortadas ou ceifadas voltam a rebentar. Assim tem uma segunda apanha no fim do verão e no outono.",
+        "picking": "Use luvas. Corte com uma tesoura os primeiros pares de folhas do topo e deixe as raízes. Evite as bermas das estradas, as orlas de campos pulverizados e os caminhos onde se passeiam cães. As urtigas também alimentam as lagartas de muitas borboletas.",
+        "kitchen": "Coza ou escalde sempre as urtigas antes de as comer. O calor tira-lhes a picada. Secá-las bem também. Mergulhe as pontas lavadas uns minutos em água a ferver com sal. Depois use-as como espinafres, em sopa, risoto, omelete ou pesto. Sabem a espinafres, mas um pouco mais a terra.",
+        "keeps": "Escalde-as, esprema-as e congele-as em porções. Assim duram meses. Para chá, seque as folhas num sítio arejado e à sombra.",
+        "source": "Identificação, habitat e cozinha: NC State Extension e Woodland Trust. Época: Woodland Trust e registos do GBIF."
+      }
     },
     "dandelion": {
       "name": "Dente-de-leão",
-      "description": "Erva comum com flores amarelas brilhantes e folhas comestíveis",
-      "howTo": "Encontrado em prados, campos e áreas perturbadas durante a estação de crescimento"
+      "description": "Uma erva daninha comum, de flores amarelo-vivo. As folhas são comestíveis.",
+      "howTo": "Encontrado em prados, campos e áreas perturbadas durante a estação de crescimento",
+      "guide": {
+        "identify": "O dente-de-leão cresce numa roseta rente ao chão. As folhas não têm pelos e são muito recortadas, de forma irregular. Os dentes viram-se para trás, para o centro. Folhas e pés deitam um leite branco quando se partem. Cada pé de flor é oco, sem folhas e sem ramos. Leva uma só flor, feita de muitas florzinhas amarelas em forma de lingueta. Depois vem a bola branca de sementes. A Hypochaeris radicata tem pés ramificados e cheios e folhas peludas. Os Leontodon têm pelos bifurcados nas folhas. As serralhas têm várias flores em caules com folhas. Apanhe só plantas que batam certo em todos os pontos.",
+        "habitat": "Cresce em relvados, prados, pastagens, bermas e baldios, ao sol, das terras baixas à montanha. Encontra-se quase em toda a Europa. Foi levado da Europa para os EUA e hoje cresce em todo o país.",
+        "season": "No início da primavera há uma grande floração, sobretudo em abril e maio. No sul ameno vem mais cedo. Depois vai dando flores aqui e ali até ao outono. As folhas amargam menos no início da primavera, antes dos primeiros botões.",
+        "picking": "Corte as folhas novas pela base. Apanhe as flores num dia de sol, quando estão bem abertas. Deixe muitas para as primeiras abelhas. Evite relvados tratados com herbicida, bermas de estrada e sítios onde se passeiam cães. Só arranque raízes onde o dono do terreno deixe, como no seu próprio quintal.",
+        "kitchen": "Quando tiver a certeza da planta, coma as folhas novas cruas, em salada. Têm um amargo agradável, como na salada francesa com toucinho. Coza as folhas mais velhas cerca de 10 minutos para lhes tirar algum amargor. Depois salteie-as com alho e azeite. As flores usam-se cozinhadas. Pode fritá-las em polme ou cozê-las em lume brando com açúcar e limão até fazer um xarope espesso. Limpas e torradas, as raízes servem de sucedâneo do café. Em grande quantidade, as raízes são laxantes. O leite branco pode irritar a pele. Quem é alérgico à família das margaridas pode reagir, por isso prove primeiro um pouco.",
+        "keeps": "As folhas aguentam uns dias num saco no frigorífico. Use as flores logo depois de as apanhar, porque fecham depressa. As raízes torradas guardam-se num frasco hermético.",
+        "source": "Identificação: BSBI e extensão da NC State. Apanha e cozinha: extensão da University of Wisconsin-Madison e da Colorado State University. Segurança: National Center for Complementary and Integrative Health (EUA)."
+      }
     },
     "hazelnut": {
       "name": "Avelã",
-      "description": "Nozes doces e arredondadas que crescem em aveleiras",
-      "howTo": "Procure aveleiras em cercas vivas e bordas de bosques no outono"
+      "description": "Frutos secos doces e redondos, das aveleiras.",
+      "howTo": "Procure aveleiras em cercas vivas e bordas de bosques no outono",
+      "guide": {
+        "identify": "A aveleira é um arbusto ou uma pequena árvore com muitos troncos. As folhas são redondas e duplamente dentadas, acabam em bico e são macias e penugentas por baixo. No fim do inverno pendem amentilhos amarelos dos ramos nus. As avelãs crescem em cachos de uma a quatro. Cada uma está metida num invólucro verde, folhoso e franjado, que lhe cobre uns três quartos. Ficam castanhas ao amadurecer. As aveleiras silvestres da América do Norte são parentes próximas. Na aveleira-de-bico, o invólucro forma um tubo comprido e áspero.",
+        "habitat": "Cresce por baixo das árvores maiores nos bosques, em sebes e em matagais por toda a Europa. No sul encontra-se sobretudo nas serras. Dá mais fruto ao sol, nas orlas dos bosques. Nos EUA, a aveleira europeia cresce sobretudo em pomares do Oregon. As espécies silvestres crescem em matagais, clareiras e orlas de bosque.",
+        "season": "As avelãs vêm do fim de agosto a outubro. Estão prontas quando o invólucro fica castanho e elas caem ou se soltam ao abanar levemente o ramo. Os esquilos, os gaios e os arganazes chegam lá muitas vezes primeiro.",
+        "picking": "Apanhe as que caíram ou abane levemente os ramos. Deixe bastantes para os animais. Ponha de parte as que têm um furinho redondo, porque uma larva de gorgulho comeu o miolo. Ponha de parte também as que pesam pouco. Evite bermas de estradas movimentadas e bordas de campos pulverizados.",
+        "kitchen": "Quando tiver a certeza da planta, coma-as cruas ou torre-as até a pele estalar. Depois esfregue-as num pano áspero para lhes tirar a pele. Use-as em bolos, pralinés, pesto e saladas. As avelãs são uma causa frequente de alergia aos frutos de casca rija.",
+        "keeps": "Seque-as com casca num sítio arejado, até o miolo ficar cor de creme até ao centro. Depois guarde-as num sítio fresco e seco. Secas, aguentam até um ano no frigorífico.",
+        "source": "Identificação e habitat: Woodland Trust e Departamento de Recursos Naturais do Minnesota. Secagem e conservação: Oregon State University Extension."
+      }
     },
     "garlic": {
       "name": "Alho-selvagem",
-      "description": "Erva de aroma forte com folhas largas e flores brancas",
-      "howTo": "Encontrado em bosques decíduos na primavera, frequentemente formando grandes tapetes"
+      "description": "Uma erva silvestre de cheiro forte, com folhas largas e flores brancas.",
+      "howTo": "Encontrado em bosques decíduos na primavera, frequentemente formando grandes tapetes",
+      "guide": {
+        "identify": "Cada folha do alho-selvagem nasce sozinha do chão, num pé fino só seu. A folha é macia, verde-viva, oval e pontiaguda, com nervuras paralelas. Por baixo é baça. A partir de abril, um pé sem folhas leva uma umbela redonda de flores brancas em estrela. Se esmagar uma folha, o alho-selvagem cheira fortemente a alho. Os seus sósias mortais não. Mas o cheiro fica-lhe nos dedos, por isso, depois das primeiras folhas, o teste já não prova nada. Verifique também o pé e a forma de cada folha. O lírio-do-vale tem duas ou três folhas enroladas umas nas outras na base. O cólquico tem folhas rijas, sem pé, em tufo. O jarro tem folhas em ponta de seta com nervuras em rede. O veratro-branco tem folhas pregueadas ao longo de um caule direito. O selo-de-salomão tem folhas alternas ao longo de um caule arqueado.",
+        "habitat": "Forma tapetes em bosques de folha caduca, húmidos e sombrios. Cresce sobretudo em faiais e matas ribeirinhas de solo rico e junto a ribeiros à sombra. É comum na Europa central e do norte, incluindo a Grã-Bretanha. No sul da Europa encontra-se sobretudo em bosques de montanha.",
+        "season": "Nas zonas amenas, as folhas saem a partir de fevereiro. No resto, saem em março e abril. São melhores antes de as flores abrirem. Floresce de abril a junho, mais tarde na montanha. No início do verão as folhas já desapareceram.",
+        "picking": "Apanhe folha a folha, nunca aos punhados. Assim nenhum sósia que cresça na mesma mancha vai parar ao cesto. Deixe os bolbos na terra. A Grã-Bretanha proíbe arrancar plantas silvestres sem autorização do dono do terreno. A Alemanha só permite uma pequena quantidade para consumo próprio. Muitas reservas naturais proíbem a apanha, por isso consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza, use as folhas cruas ou junte-as no fim da cozedura. Ponha-as em pesto, sopas, risotos e manteiga. Também ficam bem com ovos. As flores vão bem em saladas. Lave cada folha em água corrente. Na Europa central as autoridades aconselham-no por causa da ténia-da-raposa. Os ovos dela resistem à congelação, mas não à cozedura.",
+        "keeps": "As folhas aguentam dois ou três dias no frigorífico, num pano húmido. As folhas picadas e o pesto congelam bem. Guarde no frigorífico tudo o que estiver em azeite ou óleo e gaste-o em poucos dias.",
+        "source": "Identificação e sósias: Agência Austríaca para a Saúde e Segurança Alimentar (AGES), Instituto Federal Alemão de Avaliação de Riscos (BfR) e Woodland Trust. Época: Woodland Trust e registos do GBIF."
+      }
     },
     "chickenOfTheWoods": {
       "name": "Frango-da-mata",
-      "description": "Fungo de prateleira amarelo-alaranjado brilhante que cresce em árvores",
-      "howTo": "Procure crescendo em árvores mortas ou moribundas, especialmente carvalhos"
+      "description": "Um fungo de prateleira, de um amarelo-alaranjado vivo, que cresce nas árvores.",
+      "howTo": "Procure crescendo em árvores mortas ou moribundas, especialmente carvalhos",
+      "guide": {
+        "identify": "O frango-da-mata cresce em prateleiras sobrepostas, em forma de leque, com 10 a 40 cm de largura e sem pé. Quando novas, as prateleiras são tenras, húmidas e de amarelo-vivo a cor de laranja. Com a idade desbotam até ao creme e ficam secas como giz. A face de baixo é amarelo-enxofre, com poros minúsculos e não lâminas. A carne é branca a amarelo-pálida e não muda de cor ao corte. Um tufo cor de laranja na madeira, com lâminas por baixo, é o venenoso cogumelo-da-oliveira (Omphalotus). No oeste dos EUA, os parentes próximos Laetiporus gilbertsonii e Laetiporus conifericola são muito parecidos.",
+        "habitat": "É um fungo que apodrece a madeira. Cresce em árvores de folha larga vivas ou mortas, sobretudo carvalhos. Também aparece em castanheiros, cerejeiras, salgueiros e faias e, uma vez por outra, em teixos. É comum nas terras baixas da Europa e no leste dos EUA, em matas, parques e ruas. No oeste dos EUA, os seus parentes crescem em carvalhos, eucaliptos e coníferas.",
+        "season": "Aparece do fim da primavera ao outono, sobretudo no verão, poucos dias depois de chuva quente. No oeste dos EUA sai sobretudo no outono. A mesma árvore dá-o muitas vezes vários anos seguidos.",
+        "picking": "Corte à faca as margens tenras das prateleiras novas. Deixe a base dura e as prateleiras velhas, que já parecem giz. Nunca o apanhe de um teixo, que é muito venenoso. Também não o apanhe de árvores à beira de estradas movimentadas. Onde a apanha de cogumelos precisa de licença ou tem limites diários, consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza do que é, cozinhe-o muito bem. Cru ou mal cozinhado, faz mal ao estômago. Mesmo bem cozinhado, cai mal a algumas pessoas e dá náuseas, tonturas e vómitos. Por isso, prove primeiro um bocadinho. Corte-o às fatias e frite-o ou estufe-o. A carne firme faz muitas vezes lembrar frango. Vai bem com limão, alho e ervas aromáticas.",
+        "keeps": "Aguenta uns dias no frigorífico, num saco de papel. Congela bem, cru ou cozinhado.",
+        "source": "Identificação e árvores hospedeiras: Woodland Trust, First Nature e MushroomExpert.com. Espécies do oeste dos EUA: Bay Area Mycological Society. Reações: University of Florida (IFAS Extension)."
+      }
     },
     "oysterMushroom": {
       "name": "Cogumelo-ostra",
-      "description": "Cogumelo branco-acinzentado com chapéu em forma de leque que cresce em grupos sobre madeira morta",
-      "howTo": "Procure crescendo em árvores mortas, especialmente faia e carvalho, no outono e inverno"
+      "description": "Um cogumelo branco-acinzentado, de chapéus em forma de leque. Cresce em grupos sobre madeira morta.",
+      "howTo": "Procure crescendo em árvores mortas, especialmente faia e carvalho, no outono e inverno",
+      "guide": {
+        "identify": "O cogumelo-ostra tem o chapéu em forma de concha ou de leque, com 5 a 18 cm. Pode ser cinzento-azulado, cinzento-acastanhado ou creme. Cresce na madeira, em andares sobrepostos. As lâminas, brancas a creme, descem por um pé curto e descentrado. Às vezes nem tem pé. A carne é branca e firme. O cheiro é suave. A esporada é branca a lilás-pálido. Há três sósias que tem de conhecer. O Omphalotus é venenoso e cor de laranja viva, lâminas incluídas. Cresce em tufos na base das árvores. O Hypholoma fasciculare tem chapéus amarelo-enxofre, com o pé ao centro. As lâminas são amarelo-esverdeadas e passam a castanho-arroxeado. Tem sabor amargo. A Pleurocybella porrigens está ligada a mortes no Japão. É branca pura, fina e translúcida e só cresce em madeira podre de coníferas.",
+        "habitat": "Cresce em árvores de folha larga mortas ou a morrer, sobretudo faias. Também aparece em choupos, salgueiros, carvalhos e freixos. Em coníferas é raro. Procure em troncos de pé, cepos e troncos caídos. É comum em toda a Europa e na América do Norte.",
+        "season": "É um cogumelo do fim do outono e do inverno. Uma vaga de frio ou as primeiras geadas depois da chuva fazem-no sair. No sul da Europa continua até janeiro ou fevereiro. No leste dos EUA frutifica de outubro ao início de abril.",
+        "picking": "Corte o tufo pela base com uma faca. Apanhe os chapéus novos e firmes e deixe os velhos ou roídos pelos escaravelhos. Nalguns sítios a apanha de cogumelos precisa de licença ou tem limites diários, por isso informe-se sobre as regras locais.",
+        "kitchen": "Antes de o cozinhar, tenha a certeza da identificação. Cozinhe-o bem e não o coma cru. Corte a base rija e rasgue os chapéus em tiras. Salteie-as em lume forte até as bordas ficarem estaladiças. O sabor é suave e um pouco doce. Vai bem com alho, manteiga, molho de soja e ovos.",
+        "keeps": "Estraga-se depressa. Guarde-o uns dias no frigorífico, num saco de papel. Também o pode cozinhar e congelar.",
+        "source": "Identificação e época: First Nature e MushroomExpert.com. Pleurocybella porrigens: Beaty Biodiversity Museum, Universidade da Colúmbia Britânica."
+      }
     },
     "shiitake": {
       "name": "Shiitake",
-      "description": "Cogumelo com chapéu marrom e lâminas brancas, muito valorizado na culinária asiática",
-      "howTo": "Encontrado crescendo em madeira dura morta, especialmente carvalho e faia, na primavera e outono"
+      "description": "Um cogumelo de chapéu castanho e lâminas brancas, muito apreciado na cozinha asiática.",
+      "howTo": "Encontrado crescendo em madeira dura morta, especialmente carvalho e faia, na primavera e outono",
+      "guide": {
+        "identify": "O chapéu é castanho a castanho-avermelhado escuro e aplana com a idade. Tem muitas vezes flocos esbranquiçados junto à margem e greta com tempo seco. As lâminas são brancas a creme e ganham manchas castanhas ao toque. O pé é rijo, fibroso e muitas vezes descentrado. A esporada é branca. A galerina (Galerina marginata) é mortal e também cresce em troncos. É mais pequena e cor de mel, com um anel no pé e esporada castanho-ferrugem.",
+        "habitat": "O shiitake é nativo da Ásia Oriental, onde cresce em madeira morta de folhosas, como carvalhos e Castanopsis. Na Europa e na América do Norte cultiva-se em troncos de carvalho ou em blocos de serradura. Fora do cultivo só foi encontrado poucas vezes, por exemplo nos Países Baixos. Por isso, um cogumelo castanho num tronco caído no bosque é quase de certeza outra coisa.",
+        "season": "Os troncos que ficam ao ar livre frutificam na primavera e no outono. Uma vaga aparece poucos dias depois de uma chuva forte com tempo ameno. Os produtores também provocam uma vaga pondo o tronco de molho em água fria.",
+        "picking": "Apanhe os chapéus enquanto a margem ainda está enrolada para baixo. Rode-os ou corte o pé rente ao tronco. Apanhe só de troncos que cultiva ou onde tem autorização para apanhar.",
+        "kitchen": "Confirme a identificação e depois cozinhe-o bem. Cru ou mal cozinhado, o shiitake pode causar a dermatite do shiitake. É uma erupção com comichão, em riscas como chicotadas, que aparece cerca de um dia depois. Os pés são rijos demais para comer, mas dão sabor ao caldo. Salteie os chapéus ou coza-os em lume brando com molho de soja, gengibre e alho. Têm um gosto profundo e muito saboroso.",
+        "keeps": "Aguenta uns dias no frigorífico, num saco de papel. Seca muito bem. Ponha os chapéus secos de molho antes de usar e guarde a água para caldo.",
+        "source": "Origem e distribuição: Naturalis Biodiversity Center. Cultivo em troncos: Cornell Cooperative Extension. Dermatite do shiitake: DermNet."
+      }
     },
     "raspberry": {
       "name": "Framboesa-selvagem",
-      "description": "Frutas vermelhas doces que crescem em caules espinhosos com folhas compostas",
-      "howTo": "Procure caules de framboesa em cercas vivas, bordas de bosques e áreas perturbadas no verão"
+      "description": "Bagas vermelhas e doces em caules com espinhos.",
+      "howTo": "Procure caules de framboesa em cercas vivas, bordas de bosques e áreas perturbadas no verão",
+      "guide": {
+        "identify": "A framboeseira cresce em varas direitas, muitas vezes à altura da cabeça. As varas estão cobertas de picos pequenos e finos. Não têm os espinhos em gancho da silva. Cada folha tem três a sete folíolos dentados ao longo de um pé. São verdes por cima e têm um feltro branco por baixo. As pequenas flores brancas pendem para baixo. Quando se apanha uma framboesa vermelha, o miolo branco fica na planta. Por isso uma framboesa apanhada é um capuz oco.",
+        "habitat": "Procure em clareiras e orlas de bosques, em cortes de mata, em zonas ardidas e em encostas pedregosas. Também cresce em matos, charnecas e sebes, das terras baixas à montanha, em toda a Europa. Instala-se nas clareiras novas e desaparece quando as árvores voltam a crescer. Nos EUA, a framboeseira-americana cresce em todo o norte e nas montanhas do oeste. A framboeseira-negra, de frutos ocos negro-arroxeados, cresce no leste.",
+        "season": "As framboesas amadurecem no verão. No sul da Europa e nas terras baixas começam em junho. No norte e na montanha amadurecem em julho e agosto. Lá em cima às vezes duram até setembro.",
+        "picking": "Apanhe as framboesas bem vermelhas, que se soltam do miolo sem puxar. Ponha-as num recipiente baixo, porque se esmagam com facilidade. Na Europa Central, a autoridade de saúde da Baviera (LGL) diz que não está provado que comer bagas silvestres seja um fator de risco para a ténia-da-raposa. Mesmo assim, aconselha a lavá-las bem. Só o aquecimento acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Com a identificação certa, coma-as cruas ou use-as em doce, xarope, bolos e sobremesas. As framboesas silvestres são mais pequenas e mais aromáticas do que as da horta. Passe-as rapidamente por água, só antes de as usar. Veja se não têm as pequenas larvas brancas do escaravelho-da-framboesa.",
+        "keeps": "As framboesas estragam-se muito depressa. Coma-as no próprio dia ou guarde-as sem lavar no frigorífico, um ou dois dias. Para as congelar, espalhe-as primeiro num tabuleiro e só depois as ponha em sacos. As congeladas servem para molhos e bolos.",
+        "source": "Identificação e habitat: Woodland Trust. Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     },
     "blueberry": {
       "name": "Mirtilo-selvagem",
-      "description": "Pequenas frutas azuis doces que crescem em arbustos baixos em solo ácido",
-      "howTo": "Encontrado em charnecas, turfeiras e florestas ácidas no verão e início do outono"
+      "description": "Bagas azuis, pequenas e doces, em arbustos baixos de solo ácido.",
+      "howTo": "Encontrado em charnecas, turfeiras e florestas ácidas no verão e início do outono",
+      "guide": {
+        "identify": "O mirtilo-selvagem, também chamado uva-do-monte, é um arbusto baixo de folha caduca, em geral abaixo do joelho. Os caules são verdes e angulosos. As folhas são pequenas e ovais, com a margem finamente dentada. Na primavera pendem, uma a uma, flores rosadas em forma de lanterna. Cada flor dá uma só baga negro-azulada, coberta de um pó claro. Na ponta da baga há um pequeno anel em forma de coroa. A polpa é vermelho-arroxeada até ao centro. Os mirtilos de cultura têm a polpa clara. Os sósias venenosos são ervas moles, não arbustos lenhosos anões. A beladona (Atropa bella-donna) é alta. As bagas, negras e brilhantes, assentam numa estrela verde de cinco sépalas. A erva-de-paris (Paris quadrifolia) tem uma só baga no alto de um caule com quatro folhas dispostas em roda. O selo-de-salomão (Polygonatum) tem bagas negro-azuladas penduradas por baixo de um caule arqueado e sem ramos.",
+        "habitat": "Precisa de solo ácido e pobre. Procure-o em bosques de coníferas, bétulas e carvalhos e em charnecas e urzais, das terras baixas até acima do limite das árvores. É comum em todo o norte e centro da Europa e nas montanhas do sul. Em terrenos calcários não o vai encontrar. Na América do Norte cresce espontâneo nas montanhas do oeste. No leste, os mirtilos silvestres que se apanham são o mirtilo-anão e o mirtilo-gigante (Vaccinium angustifolium, Vaccinium corymbosum). São parentes próximos, de polpa clara.",
+        "season": "Nas terras baixas os mirtilos amadurecem a partir de julho. Na montanha e no norte a época continua por agosto fora e entra em setembro. Uma geada tardia na floração pode reduzir a colheita.",
+        "picking": "Apanhe à mão. Os pentes arrancam folhas e estragam as plantas. Há sítios que os proíbem ou que fixam um limite diário de apanha, como os Vosges em França e a Toscana em Itália. Consulte as regras locais. Na Europa Central, a autoridade de saúde da Baviera (LGL) diz que não está demonstrado que comer bagas silvestres seja um fator de risco para a ténia-da-raposa. Mesmo assim, aconselha a lavá-las bem. Só aquecê-las acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Quando tiver a certeza da planta, coma-os crus ou use-os em tartes, panquecas, doce e compota. São doces e ácidos. Também mancham os dedos, os dentes e a roupa. Passe-os por água rapidamente, só na hora de usar. Tire as folhas e as bagas verdes.",
+        "keeps": "Sem lavar e espalhados, aguentam uns dias no frigorífico. Congele-os num tabuleiro e depois passe-os para sacos. Também secam bem.",
+        "source": "Identificação e habitat: Woodland Trust; sósias venenosos: Yle (rádio e televisão pública finlandesa). Regras de apanha: Prefeitura de Vosges e Região da Toscana. Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     },
     "strawberry": {
       "name": "Morangos-silvestres",
-      "description": "Pequenos morangos vermelhos de sabor intenso, com flores brancas e folhas trifoliadas",
-      "howTo": "Procure em prados, bordas de bosques e áreas gramadas na primavera e verão"
+      "description": "Pequenos frutos vermelhos cheios de sabor, com flores brancas e folhas divididas em três.",
+      "howTo": "Procure em prados, bordas de bosques e áreas gramadas na primavera e verão",
+      "guide": {
+        "identify": "O morangueiro-silvestre é uma planta baixa. As folhas têm pé comprido e três folíolos dentados, verde-vivo e um pouco brilhantes. Alastra por estolhos que enraízam no chão. O dente da ponta de cada folíolo é do mesmo comprimento dos vizinhos ou mais comprido. As flores são brancas, com cinco pétalas redondas e o centro amarelo. O fruto é um pequeno cone vermelho com sementinhas à superfície, pendurado num pé fino. A Potentilla sterilis floresce mais cedo. Tem as pétalas chanfradas e separadas umas das outras. O dente da ponta é mais curto do que os vizinhos. Não dá fruto carnudo. O falso-morangueiro (Potentilla indica) tem flores amarelas e frutos redondos, esponjosos e sem sabor.",
+        "habitat": "Procure nas orlas e clareiras dos bosques, em taludes soalheiros, à beira dos caminhos, no pé das sebes e em prados antigos. Cresce muitas vezes em solo seco, pedregoso ou calcário, das terras baixas à montanha, em toda a Europa. Nos EUA cresce em bosques abertos e clareiras do norte e nas montanhas do oeste. Lá, o morango silvestre habitual dos campos e prados é o morangueiro-da-virgínia (Fragaria virginiana), que é maior.",
+        "season": "Floresce a partir de abril. No sul da Europa os morangos amadurecem a partir do fim de maio e no resto a partir de junho. As plantas continuam a dar fruto durante todo o verão. Na montanha e no norte vão até agosto.",
+        "picking": "Apanhe só morangos bem vermelhos, apertando o pé entre os dedos. Nunca arranque as plantas. Em Inglaterra o morangueiro-silvestre está classificado como quase ameaçado, por isso lá apanhe com moderação. Na Europa Central, a autoridade de saúde da Baviera (LGL) diz que não está provado que comer bagas silvestres seja um fator de risco para a ténia-da-raposa. Mesmo assim, aconselha a lavá-las bem. Só o aquecimento acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Com a planta identificada com certeza, coma os morangos crus e depressa. Passe-os rapidamente por água, só antes de os comer. O sabor é mais intenso do que o dos morangos da horta, mas varia de planta para planta. Uma mão-cheia chega para perfumar natas, iogurte ou uma tarte.",
+        "keeps": "Num cesto ao calor estragam-se depressa. Mantenha-os frescos e coma-os no próprio dia. Pode congelá-los, mas ao descongelar ficam moles.",
+        "source": "Identificação e habitat: Woodland Trust e Botanical Society of Britain and Ireland (BSBI). Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     },
     "wildMint": {
       "name": "Hortelãs-selvagens",
-      "description": "Qualquer hortelã silvestre: hortelã-da-água, hortelã-brava, mentrasto, hortelã-do-campo e poejo. Caules quadrados, folhas opostas e cheiro a menta quando esmagadas",
-      "howTo": "Encontra-se em terrenos húmidos, valas e ao longo de ribeiros. O poejo pode ser usado num chá leve, mas é tóxico como óleo ou em quantidade: evitar na gravidez"
+      "description": "Todas as hortelãs silvestres: hortelã-da-água, hortelã-brava, mentrasto, hortelã-do-campo e poejo. Têm caules quadrados e folhas aos pares. Esmagadas, cheiram a hortelã.",
+      "howTo": "Encontra-se em terrenos húmidos, valas e ao longo de ribeiros. O poejo pode ser usado num chá leve, mas é tóxico como óleo ou em quantidade: evitar na gravidez",
+      "guide": {
+        "identify": "Todas as hortelãs têm caules quadrados e folhas opostas, aos pares. Uma folha esmagada tem um cheiro claro a menta. As florzinhas são lilases, cor-de-rosa ou brancas. Crescem em anéis à volta do caule ou em cabeças e espigas na ponta dos rebentos. A hortelã-da-água tem folhas peludas e ovais e uma cabeça de flores redonda. A hortelã-brava tem folhas compridas, cinzentas e peludas. O mentrasto tem folhas redondas, rugosas e macias. A hortelã-do-campo só floresce em anéis ao longo do caule. O poejo é pequeno e rasteiro, com folhas minúsculas e um cheiro penetrante. Entre elas crescem plantas de caule quadrado sem cheiro, como o marroio-de-água. Além disso, o cheiro fica-lhe nos dedos. Por isso cheire cada caule à parte e deixe os que não cheiram a menta.",
+        "habitat": "A maioria das hortelãs silvestres gosta de terreno encharcado. Procure nas margens de ribeiros e charcos, em valas, pauis e prados húmidos. A hortelã-do-campo também cresce em campos de cultivo húmidos. O poejo cresce em prados que alagam no inverno, sobretudo no sul e no oeste da Europa. Nos EUA, a hortelã-selvagem-americana, que é nativa, cresce em sítios húmidos de quase todo o país. Lá, a hortelã-comum, a hortelã-pimenta e o poejo fugiram dos jardins.",
+        "season": "Os rebentos saem na primavera e são mais tenros antes da floração. A maioria das hortelãs floresce do pino do verão até ao outono. No sul da Europa começam a crescer mais cedo.",
+        "picking": "Corte com os dedos os primeiros pares de folhas do topo, logo acima de um nó. Deixe as raízes. Apanhe caule a caule, não aos punhados. O embude e a cicuta-aquática, que são mortais, crescem nos mesmos sítios húmidos. Evite a água a jusante de quintas ou de saídas de esgoto.",
+        "kitchen": "Quando tiver a certeza da identificação, use as folhas para chá. Também vão bem em saladas, molhos de iogurte e pratos com ervilhas, batatas e borrego. A hortelã de ribeiros, valas ou pastagens húmidas com gado pode trazer fascíola hepática, tal como o agrião bravo. Use essa hortelã só em chá quente ou cozinhada. O poejo contém pulegona, que faz mal ao fígado. Em Portugal e em Espanha é tradicional um chá leve de poejo. Mas nunca use o óleo e nunca o beba forte nem muitas vezes. Nunca o dê a bebés, crianças, grávidas, a quem amamenta ou a quem tem doenças do fígado.",
+        "keeps": "Pendurada em molhos num sítio escuro e arejado, seca bem para chá. As folhas picadas congelam-se em cubos de gelo.",
+        "source": "Identificação e habitat: Botanical Society of Britain and Ireland, The Wildlife Trusts e Native Plant Trust (Go Botany). Poejo: Agência Europeia de Medicamentos e National Capital Poison Center. Fascíola: Organização Pan-Americana da Saúde. Época: registos do GBIF."
+      }
     },
     "chickweed": {
-      "name": "Mourão",
-      "description": "Planta rasteira com pequenas flores brancas e folhas ovais, muito nutritiva",
-      "howTo": "Comum em jardins, áreas perturbadas e prados durante a estação de crescimento"
+      "name": "Morugem",
+      "description": "Uma planta baixa com florinhas brancas e folhas ovais. É muito nutritiva.",
+      "howTo": "Comum em jardins, áreas perturbadas e prados durante a estação de crescimento",
+      "guide": {
+        "identify": "A morugem é uma planta baixa e rasteira, de caules fracos, redondos e suculentos. As folhas são pequenas, ovais e pontiagudas, aos pares, uma em frente da outra. As de baixo têm um pé curto. Ao longo do caule corre uma única fila de pelos finos. Essa fila muda de lado a cada par de folhas. As flores são brancas, em estrela, com cinco pétalas. As pétalas são tão fendidas que parecem dez. Há dois sósias tóxicos. O morrião tem caules quadrados e sem pelos e folhas sem pé, com pontinhos pretos por baixo. As flores são vermelho-alaranjadas ou azuis. As eufórbias deitam um leite branco quando se parte o caule. A morugem nunca faz isso.",
+        "habitat": "Procure em jardins, canteiros da horta, bordas de campos e quintais. Gosta de terra mexida, rica e húmida, muitas vezes à meia-sombra. É uma das plantas mais comuns da Europa e encontra-se em todos os EUA.",
+        "season": "Cresce melhor com tempo fresco e húmido. No norte, isso quer dizer primavera e outono. Em zonas amenas, como o sul da Europa e o sul dos EUA, cresce do outono à primavera. Com o calor e a seca do verão, seca até voltarem as chuvas de outono.",
+        "picking": "Corte ou arranque com os dedos as pontas com folhas, só os primeiros centímetros. A planta volta a rebentar. Apanhe só onde não se tenha aplicado herbicida. Afaste-se das estradas e dos sítios por onde andam cães e gatos.",
+        "kitchen": "Quando tiver a certeza, pode comer as folhas, os caules e as flores, crus ou cozinhados por pouco tempo. Sabem a fresco e suave, um pouco a ervilhas novas. Junte-os a saladas, sandes e pesto. Também os pode deitar na sopa, já no fim. Lave-os bem.",
+        "keeps": "A morugem murcha depressa. Guarde-a num saco no frigorífico e coma-a em um ou dois dias.",
+        "source": "Identificação: UC Statewide IPM Program e Woodland Trust. Morrião: Ministério da Agricultura do Ontário. Época: Woodland Trust e registos do GBIF."
+      }
     },
     "plantain": {
       "name": "Tanchagem",
-      "description": "Planta rasteira com folhas ovais largas e longas hastes florais",
-      "howTo": "Encontrada em gramados, prados e áreas perturbadas durante a estação de crescimento"
+      "description": "Uma planta baixa com folhas largas e ovais e espigas altas de flores.",
+      "howTo": "Encontrada em gramados, prados e áreas perturbadas durante a estação de crescimento",
+      "guide": {
+        "identify": "A tanchagem forma uma roseta rente ao chão, de folhas largas e ovais com pés curtos e largos. Cada folha tem três a sete nervuras fortes. Correm lado a lado, da base à ponta. Se partir o pé de uma folha, as nervuras saem como fios rijos. A partir do início do verão, hastes sem folhas levam espigas compridas e estreitas, como caudas de rato, de florzinhas esverdeadas. Mais tarde enchem-se de pequenas sementes castanhas. A dedaleira é mortal. Atenção sobretudo à roseta do primeiro ano. Tem folhas moles, peludas e enrugadas, com nervuras em rede e sem fios. Já se venderam folhas de dedaleira por engano como tanchagem.",
+        "habitat": "Procure em relvados, caminhos, carreiros agrícolas, bordas de campos, prados e jardins. Cresce onde quer que o chão seja pisado e calcado. É nativa da Europa e da Ásia e comum em toda a Europa. Também é comum em todos os EUA, onde chegou com os colonos europeus.",
+        "season": "As folhas novas nascem do início da primavera ao outono. São mais tenras na primavera e depois de a relva ser cortada. As espigas sobem a partir do início do verão e as sementes amadurecem até ao outono.",
+        "picking": "Apanhe as folhas novas do centro da roseta, poucas de cada planta. Deixe a raiz na terra. Evite as bermas das estradas e os caminhos por onde passam cães. Evite também relvados ou bermas que possam ter sido tratados com herbicida.",
+        "kitchen": "Quando tiver a certeza de que é tanchagem, pode pôr as folhas novas cruas em saladas. As folhas mais velhas são rijas e fibrosas. Escalde-as ou cozinhe-as como espinafres e tire-lhes os fios. O sabor é suave e herbáceo, um pouco amargo. A NC State Extension avisa que quantidades muito grandes podem baixar a tensão arterial. Por isso coma-a como uma verdura entre outras.",
+        "keeps": "As folhas murcham depressa. Guarde-as um ou dois dias no frigorífico, num saco. Para chá, seque-as à sombra.",
+        "source": "Identificação, habitat e época: NC State Extension, Michigan State University Extension e UC IPM. Confusão com a dedaleira: FDA dos EUA (1997). Cozinha: NC State Extension."
+      }
     },
     "walnut": {
       "name": "Noz",
-      "description": "Nozes grandes e redondas com casca dura e sabor rico e oleoso",
-      "howTo": "Procure nogueiras em parques, jardins e bordas de bosques no outono"
+      "description": "Frutos grandes e redondos, de casca dura e sabor rico e oleoso.",
+      "howTo": "Procure nogueiras em parques, jardins e bordas de bosques no outono",
+      "guide": {
+        "identify": "A nogueira é uma árvore grande. A casca do tronco é lisa, castanho-azeitona. Com a idade fica cinzenta e gretada. As folhas têm cinco a nove folíolos ovais de margem lisa. Esmagadas, cheiram a cera de móveis. A noz está dentro de uma casca verde, grossa e lisa, que escurece e abre quando madura. A nogueira-preta do leste dos EUA tem mais folíolos, mais estreitos e dentados. A casca verde é redonda e não abre. Lá dentro há uma casca muito dura, com sulcos.",
+        "habitat": "A nogueira é nativa de uma faixa que vai do sudeste da Europa ao sudoeste da China. Foi plantada em toda a Europa e tornou-se espontânea em sebes, bordas de campos, margens de rios e matas jovens. Cresce sobretudo a baixa altitude, em solos fundos e férteis. Nos EUA os pomares ficam sobretudo na Califórnia. Nas matas do leste, a espécie silvestre é a nogueira-preta.",
+        "season": "As nozes vêm em setembro e outubro, quando a casca verde estala e elas caem. As nozes verdes para conserva ou licor apanham-se no fim de junho ou no início de julho. Nessa altura um espeto ainda as atravessa de lado a lado.",
+        "picking": "Apanhe as nozes caídas todos os dias ou de dois em dois dias, antes que o bolor e os insetos as estraguem. Use luvas, porque a casca verde tinge a pele de castanho durante dias. Tire a casca verde pouco depois. A maior parte das nogueiras tem dono, por isso peça primeiro.",
+        "kitchen": "Quando tiver a certeza da árvore, coma as nozes frescas sem a pele amarga do miolo. Também as pode secar para pão, bolos, saladas e molhos. Deite fora os miolos com bolor, engelhados ou rançosos. As nozes são uma causa frequente de alergia a frutos de casca rija.",
+        "keeps": "Seque-as com casca num sítio arejado e à sombra, até a divisória entre as metades partir com um estalo. Secas, aguentam até um ano no frigorífico.",
+        "source": "Identificação e distribuição: Woodland Trust. Colheita e conservação: Oregon State University e Kansas State University Extension."
+      }
     },
     "chestnut": {
       "name": "Castanha",
-      "description": "Grandes castanhas doces envoltas em ouriços verdes espinhosos que se abrem quando maduras",
-      "howTo": "Encontrada em castanheiras e florestas mistas no outono, frequentemente perto de trilhas"
+      "description": "Castanhas grandes e doces, dentro de ouriços verdes cheios de picos que se abrem quando as castanhas estão maduras.",
+      "howTo": "Encontrada em castanheiras e florestas mistas no outono, frequentemente perto de trilhas",
+      "guide": {
+        "identify": "As folhas do castanheiro são compridas, estreitas e lustrosas, com 16 a 28 cm. Têm dentes aguçados como os de uma serra e muitas nervuras direitas e paralelas. O ouriço está todo coberto de picos compridos e finos, aguçados como agulhas. Em geral traz duas ou três castanhas. São achatadas de um lado ou dos dois e acabam numa pontinha com um tufo. Não confunda o castanheiro com o castanheiro-da-índia (Aesculus hippocastanum) dos parques e das ruas, que é tóxico. Essa árvore tem folhas em forma de mão, com cinco a sete folíolos. O invólucro é verde e grosso e tem só alguns picos curtos. Lá dentro há uma ou duas castanhas-da-índia, redondas e lustrosas, sem ponta. Na América do Norte, os buckeyes (outros Aesculus) também são tóxicos. Uma árvore de folhas em forma de mão nunca é um castanheiro.",
+        "habitat": "O castanheiro é nativo do sul da Europa, da Ásia Ocidental e do norte de África. Há muito tempo que se planta pelas castanhas. Cresce em solos ácidos e bem drenados e foge do calcário. Há grandes soutos nos montes, do norte de Portugal e da Galiza às Cevenas, à Córsega e aos Apeninos. Nos EUA a maioria dos castanheiros é plantada. O cancro do castanheiro quase acabou com a espécie nativa.",
+        "season": "As castanhas caem do fim de setembro ao início de novembro, sobretudo em outubro. Nas terras baixas caem mais cedo do que na serra.",
+        "picking": "Passe por lá de poucos em poucos dias e apanhe as castanhas que caíram sozinhas. Calce luvas grossas ou abra os ouriços rolando-os debaixo da bota. Deixe as que têm furinhos, que são de larvas de gorgulho ou de traça. Muitos soutos são privados e as castanhas no chão são do dono. Consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza de que são castanhas, cozinhe-as. Cruas são adstringentes e custam a digerir. Deite fora as que boiarem na água. Dê-lhes um golpe na casca para não rebentarem. Depois asse-as ou coza-as em lume brando cerca de 30 minutos. Descasque-as ainda quentes, tirando a casca e a pele de dentro, que é amarga. São doces e farinhentas e vão bem em sopas, recheios e purés.",
+        "keeps": "À temperatura ambiente, as castanhas frescas ganham bolor em cerca de duas semanas. No frigorífico aguentam uns dois meses. Também as pode congelar ou secar.",
+        "source": "Identificação: Woodland Trust, ANSES e Oregon State University Extension. Colheita, confeção e conservação: Oregon State University Extension."
+      }
     },
     "elderflower": {
       "name": "Flor de sabugueiro",
-      "description": "Flores brancas cremosas que crescem em grandes cachos planos em árvores de sabugueiro",
-      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no final da primavera e início do verão"
+      "description": "Flores de um branco-creme, em grandes cachos planos no sabugueiro.",
+      "howTo": "Procure árvores de sabugueiro em cercas vivas e bordas de bosques no final da primavera e início do verão",
+      "guide": {
+        "identify": "O sabugueiro é um arbusto lenhoso ou uma pequena árvore, de casca castanho-acinzentada, cortiçosa e com sulcos. As folhas são opostas, com 5 a 7 folíolos dentados. Cheiram mal quando as esmaga. No fim da primavera dá umbelas planas e ramificadas de florzinhas branco-creme. Têm anteras amarelo-pálidas e um perfume doce e almiscarado. Os engos, ou sabugueiro-anão, são uma erva mole que seca todos os invernos. Têm as umbelas direitas e anteras roxas. O sabugueiro-vermelho floresce mais cedo, em cachos em forma de ovo ou de cúpula. Os dois são tóxicos. A cicuta, a cicuta-aquática e o canabrás-gigante são ervas verdes e moles, não arbustos lenhosos. A seiva do canabrás-gigante queima a pele ao sol. A cicuta tem o caule liso, oco e com manchas roxas. Cheira a rato. Nas três, os pés das flores saem todos do mesmo ponto, como as varetas de um guarda-chuva.",
+        "habitat": "Cresce em sebes, orlas de bosque, matos, margens de rios e baldios. Aparece muitas vezes perto das casas, em terra rica. É comum em toda a Europa, das terras baixas às colinas. Nos EUA há o sabugueiro-americano, nativo do leste. No oeste há o sabugueiro-azul. Ambos crescem em sítios parecidos.",
+        "season": "No norte e no centro da Europa, o sabugueiro floresce do fim de maio a junho. No sul quente começa mais cedo. No leste dos EUA, o sabugueiro-americano floresce mais tarde e durante mais tempo, sobretudo em junho e julho.",
+        "picking": "Apanhe numa manhã seca e de sol. Escolha as umbelas bem abertas, cor de creme e com perfume doce. Deixe as que começam a acastanhar. Corte-as ou parta-as pela base. Tire só algumas de cada arbusto, para que ainda dê bagas. Sacuda os insetos com cuidado.",
+        "kitchen": "Quando tiver a certeza de que é sabugueiro, use só as flores. Separe-as dos pés, porque os pés, as folhas, a casca, as raízes e as bagas verdes são venenosos. Deixe as flores de infusão numa calda de açúcar quente com limão para fazer xarope. Também pode passar as umbelas inteiras por polme e fritá-las. Não coma o pé grosso. Ou então seque as flores para chá. O sabor é doce e floral e combina com groselha-espinhosa e morangos. As bagas que vêm no outono têm de ser cozinhadas.",
+        "keeps": "As flores murcham depressa, por isso use-as no dia em que as apanha. As umbelas secas à sombra guardam-se para chá num frasco hermético. O xarope aguenta umas semanas no frigorífico. Também o pode congelar.",
+        "source": "Identificação e habitat: Woodland Trust e BSBI. Espécies parecidas: extensão da University of Minnesota. Apanha e cozinha: extensão da Penn State e da UMass."
+      }
     },
     "daisy": {
       "name": "Margarida-comum",
-      "description": "Pequenas flores brancas com centros amarelos que crescem rente ao solo",
-      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão"
+      "description": "Florinhas brancas com o centro amarelo, rentes ao chão.",
+      "howTo": "Comum em gramados, prados e áreas gramadas durante a primavera e verão",
+      "guide": {
+        "identify": "A margarida-comum, ou bonina, é uma planta baixa. As folhas, em forma de colher e um pouco peludas, formam uma roseta achatada, encostada ao chão. Cada pé, peludo e sem folhas, leva uma só flor com cerca de 2 cm. Tem pétalas brancas, muitas vezes com a ponta rosada, à volta de um centro amarelo. As flores fecham-se à noite e quando o tempo está encoberto. Há plantas parecidas que são outras. A margarida-maior e outras flores maiores do mesmo feitio crescem em caules com folhas. As camomilas e as margaças têm folhas finamente recortadas, como penas.",
+        "habitat": "Cresce em relvados, prados de erva rasa, pastagens com gado, bermas e caminhos, ao sol e em terra fresca. Encontra-se quase em toda a Europa. Nos EUA chegou da Europa. Lá cresce hoje em relvados e em terrenos húmidos e mexidos, sobretudo onde os verões são frescos.",
+        "season": "Onde os invernos são amenos, floresce quase todo o ano. A grande floração vai da primavera ao início do verão. Nas regiões frias e em grande parte dos EUA floresce da primavera ao início do verão. Depois disso vê-se uma flor aqui e outra ali até às geadas.",
+        "picking": "Apanhe com os dedos as flores e algumas folhas novas. Tire um pouco de muitas plantas e deixe as rosetas no sítio. Evite relvados tratados com herbicida ou adubo, sítios onde se passeiam cães e bermas de estrada.",
+        "kitchen": "Depois de a identificar com certeza, pode comer as flores e as folhas novas cruas, em pouca quantidade. Use-as em saladas e sandes ou para enfeitar os pratos. O sabor vai do suave ao ligeiramente amargo. As folhas velhas são duras. Passe-as por água fria com cuidado. Da primeira vez, prove só um pouco. Quem é alérgico à família das margaridas pode reagir. Em grande quantidade, pode fazer mal ao estômago. Evite-a na gravidez e durante a amamentação.",
+        "keeps": "Apanhe-as mesmo antes de usar, porque as flores murcham depressa. Até lá, guarde-as no frigorífico entre folhas de papel de cozinha húmido.",
+        "source": "Identificação e habitat: The Wildlife Trusts e extensão da NC State. Cozinha e segurança: extensão da Colorado State University e da NC State."
+      }
     },
     "violets": {
       "name": "Violeta-doce",
-      "description": "Pequenas flores roxas com folhas em formato de coração e fragrância adocicada",
-      "howTo": "Encontrada em bordas de bosques, cercas vivas e áreas sombreadas no início da primavera"
+      "description": "Florinhas roxas com folhas em forma de coração e um perfume doce.",
+      "howTo": "Encontrada em bordas de bosques, cercas vivas e áreas sombreadas no início da primavera",
+      "guide": {
+        "identify": "A violeta-doce é uma planta baixa com uma roseta de folhas de pé comprido. As folhas são em forma de coração, com a base arredondada, a margem recortada em ondas e pelos curtos. Alastra por estolhos compridos que enraízam. Cada flor sobe da roseta no seu próprio pé. Tem cinco pétalas desiguais e a de baixo tem um esporão curto atrás. As flores costumam ser violeta-escuro, às vezes brancas, com sépalas rombas e um perfume doce. As violetas-bravas são parecidas, mas não têm perfume. A ficária é venenosa e cresce nos mesmos sítios. Tem folhas brilhantes, carnudas e sem pelos e flores com 8 a 12 pétalas amarelas brilhantes. O jarro também é venenoso. Tem folhas brilhantes em forma de seta, com os lóbulos virados para trás.",
+        "habitat": "Procure nas orlas dos bosques, em taludes de sebes, na erva à sombra, em cemitérios, parques e jardins antigos. Gosta de solo húmido e rico, à meia-sombra. Cresce em quase toda a Europa e em muitos sítios fugiu dos jardins. Nos EUA cresce espontânea aqui e ali, em relvados e orlas de bosques.",
+        "season": "Floresce de fevereiro a maio, mais cedo no sul ameno. Em grande parte dos EUA floresce em abril e maio. Às vezes voltam a aparecer algumas flores no fim do verão. As folhas são melhores novas, na primavera.",
+        "picking": "Apanhe algumas flores e folhas novas de cada mancha. Deixe a roseta e as raízes na terra e nunca arranque plantas. Evite relvados tratados, bermas e sítios onde se passeiam cães.",
+        "kitchen": "Quando tiver a certeza da identificação, pode pôr as flores cruas em saladas e sobremesas. Também as pode cristalizar com clara de ovo pasteurizada e açúcar fino. Para xarope de violetas, ponha-as em infusão em água a ferver e adoce. As folhas novas comem-se cruas em salada ou cozinhadas como espinafres. São suaves e engrossam um pouco as sopas. Nunca coma as raízes nem as sementes, que podem provocar vómitos. Prove primeiro uma pequena quantidade.",
+        "keeps": "As flores murcham depressa. Guarde-as no frigorífico entre folhas de papel de cozinha húmido e use-as no próprio dia. As flores cristalizadas conservam-se num recipiente hermético, num sítio fresco e escuro.",
+        "source": "Identificação e habitat: NatureSpot e extensão da NC State. Cozinha: extensão da Colorado State University e da NC State."
+      }
     },
     "amaranth": {
       "name": "Amaranto",
-      "description": "Planta herbácea com folhas e sementes comestíveis, rica em nutrientes.",
-      "howTo": "Cresce em solos perturbados, hortas e campos durante o verão. Colha as folhas jovens antes da floração."
+      "description": "Uma planta de folha que muitos tomam por erva daninha. As folhas e as sementes são comestíveis e ricas em nutrientes.",
+      "howTo": "Cresce em solos perturbados, hortas e campos durante o verão. Colha as folhas jovens antes da floração.",
+      "guide": {
+        "identify": "O amaranto, ou bredo, é uma planta anual robusta e direita. O caule tem pelos brancos finos e é vermelho na base. A raiz é aprumada e vai do rosado ao vermelho. As folhas nascem alternadas ao longo do caule. São ovais ou em losango, de margem lisa e com um pé comprido. Muitas vezes têm na extremidade um pequeno entalhe ou um biquinho. As flores, verdes e minúsculas, formam espigas densas e ásperas que picam. Mais tarde, as espigas enchem-se de sementes pretas, minúsculas e brilhantes. No mesmo terreno crescem duas ervas daninhas tóxicas. O estramónio (Datura) tem folhas grandes de dentes irregulares e mau cheiro, flores brancas em trombeta e cápsulas com espinhos. A erva-moira tem folhas de margem ondulada, pequenas flores brancas em estrela e bagas pretas.",
+        "habitat": "Procure-o em hortas, campos e quintais e em terrenos baldios. Gosta de terra nua, rica e mexida, em pleno sol. É nativo do centro e do leste da América do Norte. Hoje é uma erva daninha comum em todos os EUA e em grande parte da Europa, sobretudo nas terras baixas quentes.",
+        "season": "É uma planta anual de verão. Nasce no fim da primavera, quando a terra aquece. Floresce mais ou menos de julho a setembro. As sementes amadurecem de agosto a outubro, até à primeira geada. As folhas são melhores novas, antes de a planta florir.",
+        "picking": "Apanhe à mão as folhas novas e as pontas tenras antes da floração. Quando as sementes estiverem pretas, esfregue as espigas para as soltar. Fuja das bermas de estrada e dos campos pulverizados. Ponha de parte os terrenos muito estrumados ou adubados e as plantas castigadas pela seca. São essas que acumulam mais nitratos.",
+        "kitchen": "Primeiro, confirme bem a identificação. Depois cozinhe as folhas como espinafres. Coza-as pouco tempo e deite fora a água, o que baixa os nitratos e o oxalato. Coma-as com moderação. Se tiver pedras nos rins ou doença renal, não as coma de todo. Têm um sabor suave e terroso e vão bem com alho, feijão e ovos. As sementes podem ser torradas ou cozidas como um cereal.",
+        "keeps": "As folhas murcham num dia. Guarde-as num saco no frigorífico ou escalde-as e congele-as. Seque as espigas num saco de papel. Depois debulhe as sementes, limpe-as ao vento e guarde-as num frasco fechado.",
+        "source": "Identificação e época: Cornell University e NC State Extension. Nitratos e oxalatos: NC State Extension e Michigan State University Extension. Confusão com estramónio: centro antivenenos de Marselha."
+      }
     },
     "artichoke": {
       "name": "Alcachofra-silvestre",
-      "description": "Planta espinhosa semelhante à alcachofra cultivada, com capítulos e caules comestíveis.",
-      "howTo": "Encontrada em prados e campos; colha os capítulos jovens e os caules tenros na primavera e no início do verão."
+      "description": "Uma planta parecida com um cardo, parente da alcachofra da horta. Comem-se os botões das flores e os caules.",
+      "howTo": "Encontrada em prados e campos; colha os capítulos jovens e os caules tenros na primavera e no início do verão.",
+      "guide": {
+        "identify": "A alcachofra-silvestre, a que também se chama cardo ou cardo-do-coalho, forma uma grande roseta de folhas muito recortadas. São de um verde-acinzentado prateado por cima e quase brancas por baixo, com uma penugem como feltro. Cada lóbulo acaba num espinho amarelo e rijo. No fim da primavera sobe um caule rijo e ramificado, que pode chegar à altura de uma pessoa. Leva cabeças como pequenas alcachofras, envolvidas em brácteas com espinho na ponta. Estas abrem em flores de cardo azul-violeta. Cuidado com a Atractylis gummifera, um cardo mediterrânico mortal. Já foi confundida com a alcachofra-silvestre e matou pessoas em Marrocos. Não tem caule. A cabeça de flor, cor-de-rosa, assenta rente ao centro da roseta espinhosa. Floresce no fim do verão e no outono. A raiz deita uma goma pegajosa. Nunca coma uma roseta de cardo sem caule nem uma raiz de cardo.",
+        "habitat": "Gosta de terreno aberto, seco e soalheiro. Encontra-se em pastagens, bordas de campos, bermas, pousios e matos, muitas vezes em terra argilosa. É nativa do Mediterrâneo, de Portugal à Grécia e ao norte de África. No norte e no centro da Europa só aparece fugida de jardins. Na Califórnia é uma infestante invasora de prados e matos costeiros abaixo dos 500 m. No resto dos EUA é uma planta de jardim.",
+        "season": "A roseta cresce depois das chuvas de outono e durante todo o inverno ameno. Os talos das folhas apanham-se do fim do inverno à primavera. As cabeças vêm no fim da primavera e no início do verão. Floresce sobretudo em junho e julho. Depois seca com a estiagem do verão.",
+        "picking": "Calce luvas grossas e corte os talos ou as cabeças com uma faca. Deixe a raiz na terra. Na sua área de origem, deixe algumas cabeças florir. Na Califórnia é diferente, porque lá é invasora. Apanhe as cabeças antes de darem semente e nunca leve cabeças com semente de um lado para o outro. Em terrenos públicos, consulte as regras locais.",
+        "kitchen": "Antes de começar, tenha a certeza da identificação. Tire os espinhos e os fios aos talos das folhas. Ponha logo os pedaços em água com limão, porque escurecem. Coza-os até ficarem tenros. Sabem a alcachofra amarga e costumam fazer-se guisados ou fritos em polme. Nas cabeças, tire as brácteas espinhosas e coma a base tenra e o coração. As flores secas coalham o leite de queijos como o Serra da Estrela e a Torta del Casar.",
+        "keeps": "Os talos aguentam uns dias no frigorífico, embrulhados num pano húmido. Depois de cozidos, congelam bem.",
+        "source": "Identificação, distribuição e época: IUCN Global Invasive Species Database e California Invasive Plant Council. Intoxicações por Atractylis: dados do centro antivenenos de Marrocos."
+      }
     },
     "asparagus": {
       "name": "Espargo-silvestre",
-      "description": "Planta perene com rebentos finos e comestíveis que aparecem na primavera.",
-      "howTo": "Procure os rebentos jovens em campos abertos, prados e ao longo das sebes na primavera."
+      "description": "Uma planta perene que na primavera lança rebentos finos.",
+      "howTo": "Procure os rebentos jovens em campos abertos, prados e ao longo das sebes na primavera.",
+      "guide": {
+        "identify": "O espargo-silvestre, ou espargo-bravo, é um arbusto emaranhado, lenhoso e sempre verde, com até cerca de 1,5 m de altura. Não tem folhas verdadeiras. Em vez delas tem tufos de raminhos verdes, curtos e rijos, como agulhas, cada um a acabar num espinho aguçado. As bagas pretas não se comem. Na primavera, da base da mata velha e espinhosa saem rebentos finos. São verde-escuros a arroxeados e muitas vezes mais finos do que um lápis. Têm pequenas escamas pontiagudas encostadas ao caule e nenhuma folha. A norça-preta e a norça-branca são trepadeiras venenosas das mesmas sebes e também rebentam na primavera. A norça-preta abre cedo folhas lustrosas em forma de coração. A norça-branca é peluda, com folhas lobadas e gavinhas. Apanhe só rebentos que nasçam de uma mata de espargo bem à vista.",
+        "habitat": "Cresce no mato mediterrânico, nas orlas de azinhais e pinhais, em olivais e sebes e ao longo de muros de pedra e bermas. Encontra-se do litoral até às serras de Portugal, Espanha, sul de França, Itália, Balcãs e Grécia. No norte e no centro da Europa não cresce espontâneo. Os espargos que lá se veem são espargos de horta asselvajados, sobretudo em solos arenosos.",
+        "season": "Os rebentos saem do fim do inverno à primavera, depois das chuvas de outono e inverno. Nas costas quentes começam em fevereiro. Na serra vão até abril e maio. Chuva seguida de dias amenos e de sol traz uma nova leva.",
+        "picking": "Parta cada rebento à mão, no ponto onde quebra sem esforço. Deixe alguns em cada mata e nunca corte nem arranque a mata. Em Itália cada região tem as suas regras. A Toscana, por exemplo, só permite a apanha até 31 de maio. Em Espanha decidem o dono do terreno e o governo da comunidade autónoma. Nos parques, a apanha é muitas vezes proibida. Consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza do que apanhou, use só a parte tenra acima do ponto onde o rebento parte. É mais amargo do que o espargo de horta. Cozinhe-o pouco tempo. Fica bem em omeletes, ovos mexidos, risoto e massa. Também se faz salteado com alho e azeite.",
+        "keeps": "O melhor é comê-lo no próprio dia. De pé num pouco de água, aguenta uns dias no frigorífico. Também o pode escaldar e congelar.",
+        "source": "Identificação, habitat e época: floras mediterrânicas e herbário virtual da Universidade das Ilhas Baleares. Norças: RHS. Regras de apanha: Regione Toscana."
+      }
     },
     "black_chant": {
       "name": "Trombeta-da-morte",
-      "description": "Cogumelo escuro em forma de trombeta, de sabor intenso, muito apreciado na culinária.",
-      "howTo": "Encontra-se em florestas de folhas largas, especialmente sob carvalhos e faias, do fim do verão ao outono."
+      "description": "Um cogumelo escuro em forma de funil, com um sabor intenso e fumado. Os cozinheiros dão-lhe muito valor.",
+      "howTo": "Encontra-se em florestas de folhas largas, especialmente sob carvalhos e faias, do fim do verão ao outono.",
+      "guide": {
+        "identify": "O que procura é um corno fino e oco, com 4 a 8 cm de largura. É aberto até à base e não tem um chapéu à parte. Por dentro é castanho-acinzentado a negro, com escamas finas. Por fora é cor de cinza, liso ou só levemente enrugado, sem lâminas nem pregas. Ao amadurecer fica mais claro e como que polvilhado de branco. A carne é fina, quebradiça e cinzento-negra, com um cheiro fraco e adocicado. As trombetas do leste dos EUA (Craterellus fallax) são iguais. Mas dão uma esporada rosa-alaranjada, e não branca. O cantarelo-cinzento (Craterellus cinereus) tem por fora pregas bifurcadas bem marcadas.",
+        "habitat": "Vive com árvores de folha larga, sobretudo faias e carvalhos. Também aparece com carpas e aveleiras. Procure-a na folhada húmida e no musgo, em terra rica e argilosa, em barrancos e taludes. Cresce muitas vezes em grandes grupos. É comum em toda a Europa. No leste dos EUA, a sua parente cresce debaixo de carvalhos e faias. Na costa do Pacífico, uma trombeta ocidental cresce debaixo de tanoaks, carvalhos de folha persistente e medronheiros-americanos.",
+        "season": "É sobretudo um cogumelo de outono. Na Europa sai do fim do verão a novembro. Em anos amenos vai até dezembro. À volta do Mediterrâneo dura ainda mais. No leste dos EUA aparece de julho a outubro, depois de chuva forte. Na costa do Pacífico, a trombeta ocidental sai do pino do inverno até à primavera.",
+        "picking": "Arranque-a com os dedos ou corte-a pela base. Deixe as pequenas e apanhe só o que vai comer. Valem os limites locais para cogumelos silvestres. Disfarça-se bem na folhada escura. Onde encontrar uma, procure com atenção à volta.",
+        "kitchen": "Antes de a pôr na frigideira, tenha a certeza do que encontrou. Abra cada trombeta ao comprido e passe-a por água para tirar folhas, insetos e terra. Depois escorra-a bem. Nunca a coma crua. Cozinhe-a bem. Fica ótima em manteiga, molhos de natas, risotos e massas. Também vai bem com peixe e ovos. O sabor é profundo e fumado e fica mais forte depois de seca.",
+        "keeps": "Fresca, dura só uns dias no frigorífico. Seca depressa e muito bem. Guarde-a num frasco fechado ou moa-a em pó para molhos e sopas.",
+        "source": "Identificação e habitat: First Nature (Reino Unido), MushroomExpert.com e MykoWeb (California Fungi). Época: registos do GBIF."
+      }
     },
     "lingonb": {
       "name": "Mirtilo-vermelho",
-      "description": "Pequenas bagas vermelhas e ácidas que crescem em arbustos perenes em solos ácidos.",
-      "howTo": "Procure em florestas de coníferas, charnecas e turfeiras do fim do verão ao outono."
+      "description": "Bagas pequenas, vermelhas e azedas, em arbustos baixos e sempre verdes que crescem em solo ácido.",
+      "howTo": "Procure em florestas de coníferas, charnecas e turfeiras do fim do verão ao outono.",
+      "guide": {
+        "identify": "O mirtilo-vermelho é um arbusto anão, rasteiro e sempre verde. As folhas são grossas, brilhantes e verde-escuras, com as margens enroladas para baixo. Por baixo são claras e salpicadas de pontinhos escuros minúsculos. As flores são pequenas campainhas, brancas a rosadas, em cachos curtos na ponta dos ramos. Dão bagas redondas, vermelhas e brilhantes, que pendem em pequenos cachos. A uva-de-urso (Arctostaphylos uva-ursi) é um arbusto rasteiro dos mesmos sítios. As folhas têm nervuras em rede e não têm pontos. As bagas são secas e farinhentas. As bagas venenosas, vermelhas e negras, não crescem num tapete baixo e sempre verde. O teixo (Taxus) é uma árvore ou um arbusto alto, de agulhas achatadas. A sua taça vermelha está aberta na ponta, à volta de uma semente escura. O mezéreo (Daphne mezereum) é um arbusto direito, com as bagas encostadas ao longo do ramo. A beladona (Atropa bella-donna) é uma erva alta de bagas negras. A erva-de-são-cristóvão de bagas vermelhas (Actaea) e o lírio-do-vale (Convallaria majalis) são ervas moles.",
+        "habitat": "Precisa de solo ácido e pobre. Procure-o em florestas de pinheiros e píceas, bosques de bétulas, charnecas e urzais e em encostas de montanha acima do limite das árvores. É muito comum na Escandinávia e nos países bálticos e também aparece nos Alpes e noutras montanhas. Na América do Norte cresce sobretudo no Canadá e no Alasca. Só chega aos EUA no extremo norte, do Minnesota ao Maine. Aí é raro. No Wisconsin está ameaçado.",
+        "season": "As bagas começam a avermelhar em agosto. Estão no ponto quando ficam bem vermelho-escuras, de setembro até outubro. Ficam na planta até ao inverno.",
+        "picking": "Apanhe as bagas vermelho-escuras à mão. Onde for permitido, também pode usar um pente de bagas. Na Suécia, na Finlândia e na Noruega, o direito de livre acesso à natureza deixa qualquer pessoa apanhar bagas silvestres longe de casas e jardins. As reservas naturais, porém, podem ter regras próprias. Na Europa Central, a autoridade de saúde da Baviera (LGL) diz que não está demonstrado que comer bagas silvestres seja um fator de risco para a ténia-da-raposa. Mesmo assim, aconselha a lavá-las bem. Só aquecê-las acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Cruas, as bagas são ácidas e um pouco amargas. Por isso, depois de as identificar com certeza, o costume é cozê-las com açúcar, em molho ou doce. Na Suécia também se misturam cruas com açúcar. Sirva-as com almôndegas, caça, assados, panquecas de batata ou papas de aveia.",
+        "keeps": "No frigorífico aguentam mais do que a maioria das bagas. Misturadas com açúcar, conservam-se muito tempo no frio, graças ao seu ácido benzoico natural. Congelam bem tal como estão.",
+        "source": "Identificação e distribuição: Minnesota Wildflowers e CREA Mont-Blanc. Direito de apanha: Agência Sueca de Proteção do Ambiente (Naturvårdsverket). Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     },
     "masterwort": {
       "name": "Imperatória",
-      "description": "Erva perene com folhas aromáticas e umbelas de flores brancas, usada na medicina tradicional e como especiaria.",
-      "howTo": "Encontrada em prados de montanha e clareiras florestais; colha folhas e raízes na primavera e no verão."
+      "description": "Uma erva perene de folhas aromáticas e flores brancas em umbela. Há muito tempo que se usa como especiaria e na medicina popular.",
+      "howTo": "Encontrada em prados de montanha e clareiras florestais; colha folhas e raízes na primavera e no verão.",
+      "guide": {
+        "identify": "A imperatória é uma umbelífera sem pelos, com 30 a 100 cm de altura. O caule é redondo, estriado e oco. As folhas dividem-se em três e cada parte outra vez em três. Acabam em folíolos largos, ovais e duplamente dentados, de 5 a 10 cm. As folhas de cima nascem de grandes bainhas inchadas. As umbelas são planas, brancas ou rosadas, com até 50 raios. Os frutos são redondos, achatados e com uma asa larga. Uma folha esmagada ou o rizoma grosso e castanho têm um cheiro forte e especiado, a aipo e cenoura. Os seus sósias mortais têm folhas muito divididas, como penas ou como as de um feto. A cicuta tem o caule liso e com manchas roxas. Cheira a rato. A cicuta-menor tem brácteas compridas penduradas debaixo de cada umbela pequena. A cicuta-aquática tem um rizoma dividido em câmaras ocas quando o corta ao comprido. O embude (Oenanthe crocata) tem tubérculos claros, em terra molhada. O canabrás-gigante é muito maior, com o caule eriçado e manchado de roxo. A seiva dele queima a pele ao sol. A seiva da própria imperatória também pode tornar a pele sensível ao sol.",
+        "habitat": "Cresce em prados húmidos de montanha, em ervaçais altos, nas margens de ribeiros, em cascalheiras e em matos de amieiro. Encontra-se sobretudo entre os 1400 e os 2700 m. Cresce nos Alpes, nos Pirenéus, nos Cárpatos e noutras montanhas do centro e do sul da Europa. Na Alemanha só é nativa nos Alpes da Baviera. Mais abaixo é rara e em geral fugida de hortas antigas, como na Grã-Bretanha e na Escandinávia.",
+        "season": "As folhas rebentam com o degelo. São melhores novas, no início do verão. Floresce do fim de junho a agosto. Os frutos amadurecem em setembro e outubro.",
+        "picking": "Calce luvas. Tire poucas folhas de uma mancha grande e deixe o rizoma na terra. Arrancar a raiz exige muitas vezes autorização. No Tirol, é a autoridade distrital que a dá. Muitas reservas e parques nacionais proíbem a apanha. Cresce no meio do acónito e do veratro-branco. Os dois são mortais. Apanhe folha a folha e só de uma planta que tenha identificado por inteiro.",
+        "kitchen": "Primeiro, tenha a certeza da identificação. Use-a como tempero e não como verdura, porque tem um sabor muito amargo e forte a especiarias, como o levístico. Nos Alpes, a raiz dá sabor a aguardente (Meisterwurzbrand) e a queijos de ervas. Pique bem algumas folhas novas e junte-as com moderação a sopas e queijo fresco. Lave as mãos depois de lhe mexer.",
+        "keeps": "Seque as folhas ou rodelas de raiz num sítio arejado e à sombra. Depois guarde-as num frasco fechado.",
+        "source": "Identificação, habitat e época: Botanical Society of Britain and Ireland e floras alpinas. Arranque da raiz e aguardente: Ministério da Agricultura da Áustria (registo de alimentos tradicionais). Reações na pele: Botanical Dermatology Database."
+      }
     },
     "parasol": {
       "name": "Guarda-sol",
-      "description": "Grande cogumelo com chapéu largo e escamoso, semelhante a um guarda-sol, comestível quando jovem.",
-      "howTo": "Procure em prados, pastagens e nas bordas das florestas do fim do verão ao outono."
+      "description": "Um cogumelo grande e alto, com um chapéu largo e escamoso que se abre como um guarda-sol. Coma-o enquanto é novo.",
+      "howTo": "Procure em prados, pastagens e nas bordas das florestas do fim do verão ao outono.",
+      "guide": {
+        "identify": "O guarda-sol, a que muitos chamam frade, é um cogumelo alto. Em novo, o chapéu é fechado e tem forma de ovo, como uma baqueta de tambor. Depois abre num guarda-chuva plano de 10 a 25 cm. O chapéu é creme, com escamas castanhas e um mamilo liso e castanho no centro. As lâminas são brancas, livres e apertadas. O pé é esguio, chega aos 30 cm de altura e tem um bolbo na base. Tem um desenho castanho como pele de cobra. O anel é grosso e duplo e desliza para cima e para baixo. A esporada é branca. Há vários sósias que tem de conhecer. As espécies mortais de Lepiota são pequenas, com chapéus de poucos centímetros. O Chlorophyllum molybdites dá esporada esverdeada. O Chlorophyllum rhacodes e o C. brunneum fazem mal a muita gente. Têm o pé liso e a carne fica vermelho-alaranjada quando se corta. A amanita-pantera (Amanita pantherina) tem verrugas brancas no chapéu e um anel que não desliza. Além disso tem na base um bolbo com rebordo.",
+        "habitat": "Cresce em terrenos de erva e nas orlas dos bosques. Procure em pastagens, prados, clareiras, caminhos florestais e dunas. Gosta de solo bem drenado, da planície à montanha. É comum em toda a Europa.",
+        "season": "Aparece no verão e no outono, sobretudo de julho a outubro. No sul da Europa continua até novembro. Sai depois de um período de tempo quente e húmido.",
+        "picking": "Apanhe só chapéus abertos e já crescidos, em que possa verificar todas as características. Tire o cogumelo inteiro para poder ver a base. Deixe qualquer cogumelo parecido com o guarda-sol que tenha o chapéu com menos de 10 cm. Deixe também os velhos e rijos. Informe-se sobre as regras locais, porque muitas regiões limitam a quantidade que se pode apanhar.",
+        "kitchen": "Quando tiver a certeza de que é um guarda-sol, coma só o chapéu, sempre cozinhado. Como a maioria dos cogumelos silvestres, cru pode fazer mal ao estômago. Pane-o e frite-o como um bife panado. Também o pode grelhar com manteiga e alho. O sabor é suave e lembra avelã. Os pés são rijos, mas pode secá-los e moê-los para sopas.",
+        "keeps": "Aguenta dois dias no frigorífico. Os chapéus às fatias secam bem.",
+        "source": "Identificação e habitat: First Nature. Espécies parecidas e intoxicações: ANSES. Época: registos do GBIF."
+      }
     },
     "sorrel": {
       "name": "Azedinha-comum",
-      "description": "Planta de sabor ácido e cítrico, utilizada em saladas e sopas.",
-      "howTo": "Colha as folhas jovens em prados, pastagens e ao longo dos caminhos na primavera e no verão."
+      "description": "Uma planta de folhas com um sabor ácido, a limão, boa em saladas e sopas.",
+      "howTo": "Colha as folhas jovens em prados, pastagens e ao longo dos caminhos na primavera e no verão.",
+      "guide": {
+        "identify": "A azedinha tem folhas tenras em forma de seta. Na base têm dois lóbulos pontiagudos, virados para trás, ao longo do pé. As folhas de cima abraçam o caule. No sítio onde cada folha se liga ao caule, uma bainha fina, como papel, envolve-o. A partir de maio, os caules floridos levam espigas soltas de pequenas flores avermelhadas. O jarro (Arum maculatum) é tóxico e as folhas novas têm uma forma parecida. Mas têm muitas vezes manchas escuras e lóbulos arredondados. Crescem em bosques e sebes, não em prados abertos. Nunca prove uma folha para confirmar, porque o jarro queima a boca.",
+        "habitat": "Procure em prados, pastagens, relvados, bermas e bosques abertos, da planície à montanha. É muito comum em toda a Europa. Nos EUA foi introduzida e aparece dispersa. Encontra-se sobretudo no nordeste, à volta dos Grandes Lagos, no Oregon e no Alasca. Lá, a azeda-ovelha, mais pequena, é muito mais comum.",
+        "season": "As folhas nascem a partir do início da primavera e, nas zonas amenas, quase todo o ano. São melhores novas. Quando a planta floresce, a partir de maio, ficam mais rijas e mais amargas. Mas as plantas cortadas voltam a dar folhas novas.",
+        "picking": "Apanhe as folhas novas uma a uma em cada planta e deixe a raiz. Escolha prados que não sejam pulverizados nem adubados, longe de estradas e de caminhos de cães.",
+        "kitchen": "Primeiro tenha a certeza da identificação. As folhas são muito ácidas, como casca de limão. Corte as novas em tiras para saladas. Também as pode cozinhar pouco tempo em sopas, omeletes e molhos para peixe e ovos. A acidez vem do ácido oxálico. Coma azedinha com moderação e evite-a se tiver pedras nos rins. Cozinhe-a em inox ou esmalte, não em alumínio nem em ferro fundido.",
+        "keeps": "No frigorífico, as folhas murcham em dois ou três dias. Cozinhada em puré, a azedinha congela bem.",
+        "source": "Identificação e sósias: Woodland Trust e Wild Food UK. Área nos EUA: Flora of North America. Ácido oxálico: Wild Food UK. Época: registos do GBIF."
+      }
     },
     "st_george": {
       "name": "Cogumelo-de-São-Jorge",
-      "description": "Cogumelo branco e firme com cheiro de farinha, que surge por volta da festa de São Jorge na primavera.",
-      "howTo": "Encontra-se em prados, pastagens e nas bordas das florestas na primavera."
+      "description": "Um cogumelo branco e firme que cheira a farinha fresca. Aparece na primavera, por volta do dia de São Jorge.",
+      "howTo": "Encontra-se em prados, pastagens e nas bordas das florestas na primavera.",
+      "guide": {
+        "identify": "O cogumelo-de-São-Jorge é robusto e carnudo, branco a creme. O chapéu mede 5 a 15 cm, é muitas vezes irregular e tem a margem enrolada para dentro. As lâminas são brancas, estreitas e muito apertadas. O pé é grosso e maciço, sem anel e sem volva na base. A carne é firme e branca e não muda de cor. Tem um cheiro forte a farinha fresca. A esporada é branca. A Inosperma erubescens é mortal. Tem o chapéu em bico e com riscas, fica vermelha onde se mexe e dá esporada castanha. O Entoloma sinuatum também pode cheirar a farinha. Mas as lâminas ficam cor-de-rosa e a esporada é cor-de-rosa. Na primavera também aparecem amanitas brancas, como a mortal Amanita verna. Essas têm anel e volva na base.",
+        "habitat": "Cresce na erva, em pastagens, bermas ceifadas, parques e orlas de bosques. Aparece muitas vezes junto a pilriteiros, abrunheiros-bravos e outros arbustos de sebe, sobretudo em solo calcário. Volta aos mesmos sítios durante anos, muitas vezes em círculos. Existe em toda a Europa e é muito procurado no norte de Espanha e no centro de Itália.",
+        "season": "Aparece na primavera, sobretudo em abril e maio. No norte e na montanha dura até junho. Deve o nome ao dia de São Jorge, 23 de abril. Uma primavera amena e chuvosa fá-lo sair.",
+        "picking": "Corte o pé pela base e deixe os pequenos. Apanhe chapéus novos e firmes, porque os velhos têm muitas vezes larvas. Evite bermas de estradas movimentadas. Informe-se também sobre as regras locais, porque algumas regiões exigem licença ou fixam um limite diário.",
+        "kitchen": "Quando tiver a certeza, coma-o cozinhado. Ao cozinhar perde quase todo o cheiro a farinha. A carne, firme e suave, fica bem em omeletes, ovos mexidos, risotos e molhos de natas. Antes, corte cada um ao comprido para ver se tem larvas.",
+        "keeps": "Aguenta até dois dias no frigorífico, embrulhado em papel. Depois de salteado uns minutos, congela bem.",
+        "source": "Identificação e habitat: First Nature. Espécies parecidas: First Nature e ANSES. Época: registos do GBIF."
+      }
     },
     "truffle_b": {
       "name": "Trufa-preta",
-      "description": "Cogumelo subterrâneo muito apreciado, de aroma intenso, usado na culinária gourmet.",
-      "howTo": "Encontra-se debaixo da terra, próximo às raízes de carvalhos e aveleiras, colhido com animais treinados no inverno."
+      "description": "Um fungo muito apreciado que cresce debaixo da terra e tem um cheiro forte. Na cozinha usa-se em pequenas quantidades.",
+      "howTo": "Encontra-se debaixo da terra, próximo às raízes de carvalhos e aveleiras, colhido com animais treinados no inverno.",
+      "guide": {
+        "identify": "Esta trufa é um tubérculo redondo e irregular que cresce debaixo da terra. Vai do tamanho de uma noz ao de um punho. A casca é negra e coberta de pequenas verrugas duras com várias faces. Em nova é avermelhada. Corte-a ao meio. A carne madura é negro-arroxeada, marmoreada de finas veias brancas que ficam castanho-avermelhadas ao ar. Tem um cheiro forte a terra. Os Scleroderma são venenosos. Têm uma casca grossa e escamosa, amarelada a castanha. Cheiram a gás. Por dentro são firmes e escuros. A trufa-de-inverno (Tuber brumale) e a trufa-chinesa importada (Tuber indicum) são parecidas. Mas valem muito menos.",
+        "habitat": "Cresce debaixo da terra, entre as raízes de aveleiras e de carvalhos, sobretudo azinheiras e carvalhos-pubescentes. Precisa de solo calcário e bem drenado, em colinas soalheiras. Uma mancha de terra nua, com ar de queimada, à volta de uma árvore mostra muitas vezes onde está. É nativa do sul de França, do leste de Espanha e do centro de Itália. Hoje grande parte da colheita vem de trufeiras plantadas.",
+        "season": "Amadurece no inverno, de dezembro a março. Os mercados atingem o auge em janeiro. As trovoadas do fim de julho e de agosto, quando a trufa está a crescer, decidem o tamanho da colheita.",
+        "picking": "Encontra-se com um cão treinado. Cave só onde o cão marcar, com uma pequena pá de trufas. Apanhe só trufas maduras e volte a tapar o buraco. A procura de trufas é regulada. Em Itália é preciso uma licença, que se obtém com um exame. As regiões italianas fixam as épocas. As regiões espanholas fixam as épocas e as licenças. Em França as trufas pertencem ao dono do terreno. Na Alemanha as trufas silvestres são protegidas. Informe-se sobre as regras locais antes de procurar.",
+        "kitchen": "Se tiver a certeza da identificação, escove-a debaixo de água fria pouco antes de a usar. Lamine-a ou rale-a crua sobre pratos quentes. Também a pode aquecer devagar numa gordura, com ovos, manteiga, massa, risoto ou batatas. Uma cozedura longa mata o aroma.",
+        "keeps": "Embrulhe-a em papel de cozinha e guarde-a num frasco fechado no frigorífico. Troque o papel todos os dias e use-a em poucos dias, porque o aroma se vai perdendo. Os ovos guardados no frasco ganham o seu perfume. Congelar guarda o aroma melhor do que secar.",
+        "source": "Identificação e habitat: CRPF Languedoc-Roussillon e Trufamania. Regras: lei italiana das trufas 752/1985, normas regionais espanholas e regulamento federal alemão de proteção de espécies (BArtSchV). Época: registos do GBIF."
+      }
     },
     "bronze_bolete": {
       "name": "Boleto Bronzeado",
-      "description": "Um cogumelo boleto de chapéu bronzeado escuro quase preto, com pé claro reticulado e carne branca e firme",
-      "howTo": "Procure em encostas quentes de baixa altitude sob carvalhos e castanheiros, mais tarde que o boleto de verão"
+      "description": "Um porcini com o chapéu de bronze-escuro a quase preto, o pé claro com uma rede e a carne branca e firme.",
+      "howTo": "Procure em encostas quentes de baixa altitude sob carvalhos e castanheiros, mais tarde que o boleto de verão",
+      "guide": {
+        "identify": "É o mais escuro dos boletos do tipo porcini. O chapéu vai de castanho-escuro a quase preto, muitas vezes com manchas cor de bronze. Mantém-se seco e finamente aveludado, mesmo com chuva. Os poros são brancos e depois amarelos a verde-oliva. Não azulam. O pé, castanho-claro, tem uma rede fina castanha, mais cerrada em cima. A carne, branca e muito firme, não muda de cor quando a corta. O boleto de verão é mais claro e a rede desce mais pelo pé. Nos mesmos carvalhais crescem outros dois boletos. São o boleto-de-satanás (Rubroboletus satanas) e o boleto de Le Gal (Rubroboletus legaliae). Os dois têm poros vermelhos e carne que azula.",
+        "habitat": "Gosta de encostas quentes e soalheiras com carvalhos, castanheiros e faias, sobretudo entre os 200 e os 1000 m. É comum à volta do Mediterrâneo. Em Itália encontra-se ao longo dos Apeninos e nas ilhas. É raro na Grã-Bretanha e na Alemanha.",
+        "season": "Pode aparecer a partir de julho, depois das trovoadas de verão. A época principal é setembro e outubro, mais tarde do que o boleto de verão. No sul vai até novembro. Sai quando, depois de uma vaga de calor, vêm uma chuva forte e o arrefecimento da terra.",
+        "picking": "Corte-o ou torça-o para o tirar e deixe crescer os novos. Na Alemanha é raro e especialmente protegido, por isso lá não o apanhe. Em Itália e em Espanha há licenças regionais e limites diários.",
+        "kitchen": "É o mais firme dos boletos do tipo porcini. Tem um sabor a frutos secos que fica mais forte depois de seco. Depois de o identificar com certeza, trate-o como o boleto comestível. Escove-o, veja se tem bicho e cozinhe-o bem.",
+        "keeps": "Seca e congela muito bem em fatias.",
+        "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Proteção: BArtSchV (Alemanha). Cozinha: Regione Piemonte."
+      }
     },
     "pine_bolete": {
       "name": "Boleto do Pinheiro",
-      "description": "Um cogumelo boleto de chapéu castanho-avermelhado dos pinhais, com pé robusto reticulado e carne firme",
-      "howTo": "Procure em pinhais e abetais com musgo sobre solo ácido e arenoso, no fim da primavera e de novo no outono"
+      "description": "Um porcini dos pinhais, com o chapéu castanho-avermelhado e a carne firme. O pé é robusto e avermelhado, com uma rede.",
+      "howTo": "Procure em pinhais e abetais com musgo sobre solo ácido e arenoso, no fim da primavera e de novo no outono",
+      "guide": {
+        "identify": "O boleto do pinheiro é o porcini vermelho. O chapéu vai do vermelho-vinho à cor de mogno e é muitas vezes irregular. Em novo é aveludado. Com humidade fica gorduroso a viscoso. Na margem tem uma pruína esbranquiçada. O pé é curto e robusto, tingido de castanho-avermelhado, com uma rede fina esbranquiçada a avermelhada. A carne é branca, mas logo debaixo da pele do chapéu é vermelho-vinho. Os poros passam de brancos a amarelos e verde-azeitona. Quase não mudam de cor quando se carrega neles. O boleto bronzeado vai do sépia ao negro, sem vermelho. Se tiver poros vermelhos ou cor de laranja (Rubroboletus satanas), não é este boleto. O mesmo se tiver poros cor-de-rosa com uma rede escura (Tylopilus felleus).",
+        "habitat": "Cresce sobretudo com pinheiro-silvestre e espruce, em solo ácido, muitas vezes no musgo. Na montanha também cresce com castanheiros, faias e abetos, sobretudo entre os 400 e os 1400 m. É comum na Escandinávia, nos pinhais da Escócia e nas montanhas da Europa central e do sul.",
+        "season": "Muitas vezes é o primeiro boleto do ano e também o último. Uma primeira vaga aparece em maio e junho, onde o tempo se mantém fresco e húmido. A colheita principal vem em setembro e outubro. Continua em novembro, mesmo depois das primeiras geadas.",
+        "picking": "Corte-o ou rode-o para o tirar. Não raspe o musgo, que abriga o fungo. Em muitas regiões de Itália e de Espanha é preciso licença. Alguns cantões suíços limitam as quantidades. Informe-se sobre as regras locais.",
+        "kitchen": "Se o identificou com certeza, cozinhe-o bem, como o boleto comestível. É mais suave e um pouco resinoso. Os novos muito firmes precisam de cozinhar mais tempo. Tinge de verde a água da cozedura. É bom para molhos, para conservar em vinagre e para secar.",
+        "keeps": "Seca bem às fatias. Fresco, use-o em um ou dois dias.",
+        "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Cozinha: Regione Piemonte."
+      }
     },
     "summer_bolete": {
       "name": "Boleto de Verão",
-      "description": "O primeiro cogumelo boleto da época, de chapéu castanho claro finamente gretado e pé reticulado de alto a baixo",
-      "howTo": "Procure sob carvalhos e faias a partir do fim da primavera, bem antes dos outros boletos"
+      "description": "O porcini que aparece mais cedo. O chapéu castanho-claro tem gretas finas e o pé tem rede de cima a baixo.",
+      "howTo": "Procure sob carvalhos e faias a partir do fim da primavera, bem antes dos outros boletos",
+      "guide": {
+        "identify": "O boleto de verão tem o chapéu mate, seco e aveludado, cor de avelã clara a castanho médio. Com tempo seco, o chapéu greta numa rede fina. Nunca é gorduroso e a margem não é mais clara do que o centro. O sinal mais claro é uma rede em relevo que desce pelo pé quase até à base. Os poros são brancos e depois amarelo-azeitona. Não mudam de cor. A carne branca é mais mole do que a do boleto comestível. O boleto-de-satanás (Rubroboletus satanas) e o Rubroboletus legaliae partilham os mesmos carvalhais. Mas têm poros vermelhos e carne que azula. O boleto-amargo (Tylopilus felleus) tem poros cor-de-rosa e uma rede escura.",
+        "habitat": "Cresce com carvalhos e castanheiros. Também cresce com faias, tílias e vidoeiros. Procure nas orlas dos bosques, em parques e em encostas soalheiras, da planície até cerca de 1000 m. É comum na Europa central e do sul, sobretudo no sudoeste de França e em Portugal. Na Grã-Bretanha é raro.",
+        "season": "É o primeiro boleto do ano. Começa em maio nas terras baixas e em junho na montanha. A época principal vai de julho ao início de setembro, depois de chuvas quentes. Dura até aos primeiros frios do outono.",
+        "picking": "Corte-o ou rode-o para o tirar e deixe os pequenos. Com calor, muitos têm bicho. Corte-os ao meio logo ali e deixe na mata os que tiverem bicho. Em muitas regiões de Itália e de Espanha é preciso licença.",
+        "kitchen": "Muitos cozinheiros consideram-no o melhor de todos os boletos. É doce, perfumado e sabe a avelã. É bom para secar, para molhos e para pratos com ovos. Depois de o identificar com certeza, tire as partes com bicho e cozinhe-o bem.",
+        "keeps": "De todos os boletos, é o que pior se conserva. Cozinhe-o ou seque-o no dia em que o apanha.",
+        "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Cozinha: Regione Piemonte."
+      }
     },
     "pacific_chant": {
       "name": "Cantarelo do Pacífico",
-      "description": "Um cantarelo dourado e grande do noroeste do Pacífico, mais pálido e rosado que o primo europeu",
-      "howTo": "Procure em florestas com musgo de abeto de Douglas e tsuga, depois de chegarem as chuvas de outono"
+      "description": "Um cantarelo dourado e grande, do noroeste do Pacífico. É mais pálido e mais rosado do que o europeu.",
+      "howTo": "Procure em florestas com musgo de abeto de Douglas e tsuga, depois de chegarem as chuvas de outono",
+      "guide": {
+        "identify": "É um cantarelo grande, mais pálido e mais rosado do que o europeu. O chapéu é amarelo-alaranjado a cor de alperce. Os chapéus novos têm muitas vezes escamas finas acastanhadas e um tom rosado, que podem desaparecer com tempo húmido. Por baixo tem pregas rombas e bifurcadas que descem pelo pé. São de um amarelo-alaranjado pálido, quase sempre com um tom rosado. O pé afina para baixo e a carne é esbranquiçada e firme. Onde se toca, o chapéu fica amarelado. Os Omphalotus e o falso-cantarelo têm lâminas verdadeiras, finas e apertadas. O Turbinellus floccosus é uma trombeta funda e oca, vermelho-alaranjada, com escamas grossas. Faz mal ao estômago a muita gente.",
+        "habitat": "Vive associado a coníferas, sobretudo ao abeto-de-douglas e à tsuga-ocidental. Também aparece com o espruce-de-sitka. Procure no musgo e na camada de agulhas, em florestas jovens e em florestas antigas. Cresce sobretudo nas terras baixas e no sopé das montanhas. Vai da Colúmbia Britânica até ao norte da Califórnia, passando por Washington e pelo Oregon. No Oregon é o cogumelo oficial do estado.",
+        "season": "Encontra-se de setembro a dezembro, às vezes até janeiro. Primeiro precisa que as chuvas de outono encharquem o chão, por isso um outono seco atrasa-o. Cada cogumelo cresce devagar. Com tempo fresco e húmido pode continuar a crescer durante semanas.",
+        "picking": "Corte-o pela base e deixe os pequenos a crescer. Apanhe só o que vai comer. As regras variam conforme a floresta nacional, o estado e o parque. Algumas exigem uma licença gratuita e fixam limites diários. Muitos parques estaduais proíbem a apanha. Para vender é preciso uma licença comercial. Informe-se junto de quem gere o terreno.",
+        "kitchen": "Quando tiver a certeza do que é, tire as agulhas e a terra com uma escova. Só o passe por água se tiver areia. Depois seque-o, porque os que apanharam chuva ficam cheios de água. Nunca o coma cru. Primeiro salteie-o numa frigideira sem gordura para lhe tirar a água. Depois junte manteiga e acabe de o cozinhar. É suave, frutado e firme. Fica bem com ovos, natas, massa, salmão e caça.",
+        "keeps": "Num saco de papel, no frigorífico, aguenta vários dias. Seco fica rijo. Para o guardar mais tempo, salteie-o em manteiga e congele-o.",
+        "source": "Identificação: MushroomExpert.com e UBC Beaty Biodiversity Museum. Regras de apanha: Serviço Florestal dos EUA. Época: registos do GBIF."
+      }
     },
     "smooth_chant": {
       "name": "Cantarelo Liso",
-      "description": "Um cantarelo alaranjado com a face inferior quase lisa em vez de pregueada e forte cheiro a alperce",
-      "howTo": "Procure em carvalhais do sudeste americano durante o verão húmido, muitas vezes em grupos sobre solo nu"
+      "description": "Um cantarelo alaranjado, com a parte de baixo quase lisa em vez de pregas. Cheira muito a alperce.",
+      "howTo": "Procure em carvalhais do sudeste americano durante o verão húmido, muitas vezes em grupos sobre solo nu",
+      "guide": {
+        "identify": "O cantarelo liso é amarelo-alaranjado vivo a amarelo-gema e mede 2,5 a 8 cm. Começa plano e depois fica em forma de vaso pouco fundo, de margem ondulada. É a face de baixo que o distingue. É lisa ou só levemente enrugada, sem lâminas verdadeiras. Tem uma cor mais pálida do que o chapéu, muitas vezes rosada. Desce pelo pé. O pé afina para a base. A carne é branca e não muda de cor ao corte. O cheiro costuma ser forte e doce, a alperce. O Omphalotus illudens é comum nos mesmos carvalhais. Tem lâminas verdadeiras finas, de aresta viva e apertadas. Cresce em tufos cerrados na madeira ou em raízes enterradas. Também é cor de laranja por dentro.",
+        "habitat": "Vive associado a carvalhos e às vezes a nogueiras-americanas. Procure em bosques de folhosas e em bosques de carvalho com pinheiro, em todo o leste dos EUA, a leste das Montanhas Rochosas. É mais comum no sudeste. Aparece muitas vezes em grupos sobre terra nua ou com musgo, ao longo de caminhos, margens de ribeiros e taludes de estrada.",
+        "season": "É um cantarelo de verão. Aparece de junho a setembro e mais vezes a partir de julho. Aparece pouco depois de chuvas quentes e fortes, com tempo abafado.",
+        "picking": "Corte-o pela base, deixe os pequenos e apanhe só o que vai comer. As regras mudam conforme o estado, o parque e a floresta nacional. Muitos parques estaduais proíbem a apanha, por isso informe-se antes de ir.",
+        "kitchen": "Confirme bem a identificação e depois tire a terra com uma escova. A face de baixo, lisa, quase não guarda areia. Nunca o coma cru. Cozinhe-o bem, devagar em manteiga ou num molho de natas. É frutado e suave, como os outros cantarelos. Fica bem com ovos, papas de milho, massa, frango e porco.",
+        "keeps": "Num saco de papel no frigorífico aguenta uns dias. Seco fica rijo. Para o guardar mais tempo, salteie-o em manteiga e congele-o.",
+        "source": "Identificação e habitat: MushroomExpert.com e University of Florida IFAS Extension. Época: registos do GBIF."
+      }
     },
     "winter_chant": {
       "name": "Cantarelo de Inverno",
-      "description": "Um cantarelo pequeno de chapéu castanho sobre pé amarelo e oco, que frutifica até às primeiras geadas",
-      "howTo": "Procure na manta morta com musgo das coníferas no fim da época, muitas vezes em grupos densos sobre madeira podre"
+      "description": "Um cantarelo pequeno, de chapéu castanho sobre um pé amarelo e oco. Continua a aparecer mesmo com as primeiras geadas.",
+      "howTo": "Procure na manta morta com musgo das coníferas no fim da época, muitas vezes em grupos densos sobre madeira podre",
+      "guide": {
+        "identify": "O cantarelo de inverno é pequeno e esguio. O chapéu mede 1 a 4 cm e é castanho a castanho-amarelado. É um funil fino, com o centro aberto para o pé oco. Por baixo tem pregas rombas e bifurcadas, cinzentas a cinzento-amareladas, que descem pelo pé. O pé é amarelo a amarelo-alaranjado, oco e muitas vezes achatado ou com sulcos. O cortinário mortal (Cortinarius rubellus) cresce nos mesmos bosques de coníferas com musgo. Tem o chapéu castanho-avermelhado, em bico. As lâminas são verdadeiras e castanho-ferrugem. O pé é cheio, com faixas amarelas ténues. Destrói os rins. Verifique cada cogumelo ao apanhá-lo e outra vez ao limpá-lo. O centro antivenenos da Noruega aconselha a deitar fora o cesto inteiro se lá encontrar nem que seja um só cortinário.",
+        "habitat": "Cresce em solo húmido e ácido, em bosques de coníferas, sobretudo debaixo de espruces e pinheiros. Procure no musgo, na orla das turfeiras e em troncos podres cobertos de musgo. É comum no norte e no centro da Europa e nas montanhas do sul. Na América do Norte cresce no noroeste do Pacífico e no norte da Califórnia. Também cresce nas florestas de coníferas do norte e do leste.",
+        "season": "Aparece tarde no ano. Na Europa frutifica de setembro até às geadas fortes, muitas vezes ainda em novembro e dezembro. Na costa do Pacífico dos EUA vai do outono até ao fim do inverno. Precisa de um outono húmido. As geadas ligeiras não o travam.",
+        "picking": "Corte os pés acima do musgo para manter o cesto limpo. Deixe os mais pequenos. Respeite os limites locais, como as pequenas quantidades para consumo próprio na Alemanha. No sul da Baviera e na Floresta da Baviera ainda tem césio de Chernobil. Lá, coma-o só de vez em quando.",
+        "kitchen": "Primeiro confirme a identificação. Depois abra os pés ocos ao meio e passe-os por água para tirar agulhas e areia. Nunca o coma cru. Cozinhe-o bem, em manteiga, em molhos e sopas ou com caça. Sabe a terra e é mais intenso do que o tamanho faz pensar.",
+        "keeps": "Aguenta uns dias no frigorífico, em papel. Seca muito bem e, num frasco fechado, guarda o sabor durante meses. Também o pode cozinhar e congelar.",
+        "source": "Identificação: MykoWeb (California Fungi) e First Nature (Reino Unido). Cortinarius rubellus: Instituto Norueguês de Saúde Pública. Césio: Serviço Federal alemão de Proteção contra Radiações (BfS). Época: registos do GBIF."
+      }
     },
     "eastern_king": {
       "name": "Boleto Rei do Leste",
-      "description": "Os cogumelos boleto dos carvalhais do leste americano: chapéu castanho claro a castanho-lilás, poros brancos que amarelecem com a idade e pé reticulado, sem nunca azular",
-      "howTo": "Procure sob carvalhos, faias e nogueiras-americanas nas florestas caducifólias do leste, a partir de junho, poucos dias depois de uma chuva quente de verão"
+      "description": "Os porcini dos carvalhais do leste dos EUA. O chapéu vai de castanho-claro a castanho-lilás e os poros são brancos e ficam amarelos. Nunca azula ao toque.",
+      "howTo": "Procure sob carvalhos, faias e nogueiras-americanas nas florestas caducifólias do leste, a partir de junho, poucos dias depois de uma chuva quente de verão",
+      "guide": {
+        "identify": "É um pequeno grupo de boletos reis do leste da América do Norte. O Boletus variipes tem o chapéu seco e aveludado, castanho-claro a castanho-acinzentado, que greta muitas vezes. O Boletus separans tem o chapéu castanho-lilás a vermelho-fígado, que desbota para castanho-amarelado. Também tem lilás no pé. Os dois têm poros brancos quando novos, que depois amarelecem. Os dois têm no pé uma rede bem marcada, branca a acastanhada. A carne é branca e não muda de cor. Os Tylopilus amargos têm poros que ficam cor-de-rosa. Um exemplo é o Tylopilus plumbeoviolaceus, cinzento-violeta. Poros vermelhos ou cor de laranja (Neoboletus subvelutipes) indicam um boleto tóxico. Poros e carne que azulam (Boletus sensibilis, Boletus huronensis) também.",
+        "habitat": "Cresce a leste das Rochosas, com carvalhos e também com faias e outras folhosas. É mais comum desde Nova Iorque e os Grandes Lagos, passando pela Pensilvânia e pelos Apalaches, até à Geórgia e aos montes Ozark. O Boletus nobilis e o Boletus atkinsonii pertencem ao mesmo grupo.",
+        "season": "Sai de junho a setembro, sobretudo em julho e agosto. Procure-o depois de chuvas de verão quentes e abundantes.",
+        "picking": "Corte-o ou torça-o para o tirar e abra-o logo ali. Os reis de verão têm muitas vezes bicho. Algumas florestas nacionais pedem uma licença gratuita e fixam limites diários. Os parques têm regras próprias, muitas vezes mais apertadas.",
+        "kitchen": "Confirme bem a identificação e depois cozinhe-o bem, como o boleto comestível. Salteie-o ou junte-o a massas, sopas e estufados. Também o pode secar, para um sabor mais intenso. Use só exemplares firmes e frescos.",
+        "keeps": "Seca muito bem em fatias finas. Fresco, use-o em um ou dois dias.",
+        "source": "Identificação e habitat: MushroomExpert (Michael Kuo). Época: registos do GBIF e do iNaturalist. Regras: Serviço Florestal dos EUA."
+      }
     },
     "rocky_king": {
       "name": "Boleto Rei das Rochosas",
-      "description": "Um cogumelo boleto robusto de alta montanha, de chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e pé grosso e claro reticulado no alto",
-      "howTo": "Procure sob píceas e abetos nas altitudes das Montanhas Rochosas do sul, quando chegam as chuvas de monção de verão, de julho a setembro"
+      "description": "Um porcini robusto da alta montanha. Tem o chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e um pé grosso e claro, com rede na parte de cima.",
+      "howTo": "Procure sob píceas e abetos nas altitudes das Montanhas Rochosas do sul, quando chegam as chuvas de monção de verão, de julho a setembro",
+      "guide": {
+        "identify": "É um boleto grande e robusto das altas Montanhas Rochosas. O chapéu é vermelho-tijolo a castanho-avermelhado e pegajoso quando fresco. Os novos têm muitas vezes uma pruína esbranquiçada. É mais vermelho do que o boleto comestível (Boletus edulis), que também cresce lá. Os poros são brancos e fechados em novo e depois passam a amarelos e verde-azeitona. Não mudam de cor ao toque. O pé, grosso e claro, tem uma rede branca e fina, pelo menos em cima. A carne branca não azula. Os boletos dos choupos-tremedores (Leccinum) têm escamas escuras no pé. Os de chapéu cor de laranja já causaram intoxicações graves de estômago no Colorado. Poros vermelhos ou cor de laranja indicam um boleto tóxico.",
+        "habitat": "Cresce sobretudo com o espruce-de-engelmann e também com abetos e abetos-de-douglas. Encontra-se desde cerca de 2400 m até ao limite das árvores. Cresce no Colorado, no Novo México e nas montanhas do Arizona.",
+        "season": "Frutifica de julho a setembro, às vezes até outubro. Começa com as trovoadas da monção e vai subindo a encosta ao longo da época. Nos verões secos quase não aparece.",
+        "picking": "Rode-o com cuidado para o tirar, porque boa parte do pé está enterrada. Deixe os que tiverem muito bicho. Cada floresta nacional tem as suas regras. Algumas pedem uma licença gratuita e fixam limites diários.",
+        "kitchen": "Primeiro tenha a certeza da identificação. Nos chapéus maduros, tire os poros amarelos e moles. Podem saber a amargo e ficar viscosos. Depois cozinhe-o bem como o boleto comestível. Também o pode secar.",
+        "keeps": "Seque-o em fatias finas. Também o pode saltear e congelar.",
+        "source": "Identificação e habitat: Arora e Frank (2014), MushroomExpert e Forage Colorado. Época: registos do GBIF. Regras: Serviço Florestal dos EUA."
+      }
     },
     "lions_mane": {
       "name": "Juba-de-leão",
-      "description": "Um tufo branco e desgrenhado de longos espinhos pendentes que cresce em árvores de folha larga e, cozinhado, lembra caranguejo",
-      "howTo": "Procure em carvalhos, faias e bordos feridos ou mortos, do fim do verão ao outono, muitas vezes no alto do tronco. Na Europa é rara e protegida em alguns sítios: deixe-a onde está"
+      "description": "Um tufo branco e desgrenhado de espinhos compridos e pendentes, em árvores de folha larga. Cozinhado, sabe um pouco a caranguejo.",
+      "howTo": "Procure em carvalhos, faias e bordos feridos ou mortos, do fim do verão ao outono, muitas vezes no alto do tronco. Na Europa é rara e protegida em alguns sítios: deixe-a onde está",
+      "guide": {
+        "identify": "A juba-de-leão é uma única massa branca e arredondada, com 8 a 24 cm. Não tem chapéu nem lâminas. Dela pendem espinhos moles de 1 a 5 cm, como pingentes de gelo. Com a idade amarelece. A carne é branca e mole e não muda de cor ao corte. A esporada é branca. Os seus parentes Hericium coralloides e Hericium americanum são ramificados e têm espinhos mais curtos.",
+        "habitat": "Nasce de feridas em árvores de folha larga vivas e em troncos mortos. O mais comum é em carvalhos, mas também aparece em faias e áceres, muitas vezes lá no alto. Nos EUA encontra-se em todo o país, mais no leste. Na Europa é rara, em faias e carvalhos velhos de matas antigas.",
+        "season": "Procure-a do fim do verão ao fim do outono, depois da chuva. Em zonas quentes como a Califórnia, continua pelo inverno. Muitas vezes volta à mesma árvore.",
+        "picking": "Na Europa, deixe-a estar. É rara e protegida por lei em vários países, entre eles o Reino Unido, a Polónia, a Hungria, a Croácia, a Eslovénia e a Suécia. Fotografe-a e comunique o achado. Nos EUA, corte pela base, com uma faca, os exemplares frescos e brancos. Nas florestas nacionais e nos parques pode ser preciso licença ou a apanha pode ser proibida, por isso consulte as regras locais.",
+        "kitchen": "Quando tiver a certeza, cozinhe-a. Corte-a às fatias e passe-a pela frigideira sem gordura, para largar a água. Depois aloure-a em manteiga. O sabor suave e doce e a textura fibrosa fazem muitas vezes lembrar caranguejo. Os exemplares amarelados sabem a azedo.",
+        "keeps": "Aguenta uns dias no frigorífico, num saco de papel. Congele-a depois de cozinhada.",
+        "source": "Identificação e época: MushroomExpert.com e Wild Food UK. Proteção: Lista Vermelha da UICN e Wildlife and Countryside Act 1981 do Reino Unido."
+      }
     },
     "hen_of_the_woods": {
       "name": "Maitake",
-      "description": "Uma grande roseta de lóbulos castanho-acinzentados sobrepostos ao pé de carvalhos velhos, com poros brancos por baixo",
-      "howTo": "Procure na base de carvalhos velhos ou debilitados do fim de agosto a outubro; costuma voltar à mesma árvore ano após ano. É protegido em parte da Europa central e do norte"
+      "description": "Uma grande roseta de lóbulos castanho-acinzentados, uns sobre os outros, na base de carvalhos velhos. Por baixo tem poros brancos.",
+      "howTo": "Procure na base de carvalhos velhos ou debilitados do fim de agosto a outubro; costuma voltar à mesma árvore ano após ano. É protegido em parte da Europa central e do norte",
+      "guide": {
+        "identify": "O maitake forma uma roseta de 15 a 40 cm. É feita de muitos chapéus cinzento-acastanhados, sobrepostos, em forma de colher ou de leque, cada um com 3 a 14 cm de largura. Saem todos de uma base branca comum. A face de baixo é branca, com poros minúsculos e não lâminas. A carne é branca e firme e não mancha quando se corta ou se carrega. O Meripilus tem chapéus maiores e mais grossos, que ficam negros ao toque. O Polyporus umbellatus tem chapéus redondos em pequenos pés centrais.",
+        "habitat": "Procure-o na base de carvalhos velhos. Às vezes cresce em cepos ou noutras árvores de folha larga. Apodrece as raízes e volta à mesma árvore durante anos. É comum no leste dos EUA e raro no oeste. Na Europa é pouco comum e está a diminuir. Encontra-se debaixo de carvalhos e castanheiros velhos.",
+        "season": "Sai do fim do verão ao fim do outono, sobretudo em setembro e outubro. Aparece muitas vezes depois das primeiras noites frescas a seguir à chuva.",
+        "picking": "Corte a roseta pela base com uma faca. Leve só exemplares frescos e firmes e deixe a árvore voltar a dar. Na Europa está protegido por lei na Polónia, na Estónia, na Letónia e na Lituânia. Está nas listas vermelhas da Alemanha, da Áustria e de outros países. Consulte as regras locais.",
+        "kitchen": "Depois de o identificar com certeza, cozinhe-o bem. Sacuda-o e passe-o por água para tirar a terra e os insetos que ficam entre os chapéus. Corte o centro rijo. Frite-o ou asse-o. Os chapéus ficam estaladiços nas pontas e têm um sabor rico, terroso e um pouco apimentado.",
+        "keeps": "Aguenta vários dias no frigorífico, num saco de papel. Congela bem depois de cozinhado e também seca bem.",
+        "source": "Identificação e habitat: MushroomExpert.com. Estatuto na Europa: Lista Vermelha da UICN."
+      }
     },
     "saffron_milk_cap": {
       "name": "Sancha",
-      "description": "Um chapéu cor de laranja com anéis mais escuros que verte um leite cor de cenoura e mancha de verde; muito apreciado em Espanha e Itália",
-      "howTo": "Procure debaixo de pinheiros e espruces do fim do verão a novembro, e até ao inverno no Mediterrâneo e na costa do Pacífico dos EUA. Parta uma lâmina: o leite tem de ser laranja a vermelho, nunca branco"
+      "description": "Um chapéu cor de laranja com anéis mais escuros. Deita um leite cor de cenoura e fica com manchas verdes onde se lhe toca. É dos preferidos em Espanha e em Itália.",
+      "howTo": "Procure debaixo de pinheiros e espruces do fim do verão a novembro, e até ao inverno no Mediterrâneo e na costa do Pacífico dos EUA. Parta uma lâmina: o leite tem de ser laranja a vermelho, nunca branco",
+      "guide": {
+        "identify": "A sancha tem o chapéu cor de laranja, com anéis concêntricos mais escuros. Em nova, a margem está enrolada para baixo. Mais tarde o chapéu fica em funil e muitas vezes com manchas verdes. As lâminas, apertadas e cor de laranja, descem um pouco pelo pé. O pé é curto, oco e cor de laranja, muitas vezes com covinhas de um laranja mais escuro. Parta uma lâmina e veja o leite. É cor de cenoura e pode passar devagar a vermelho-vinho. As lâminas e a carne ganham manchas verdes ao toque. Leite branco ou que fica amarelo indica outro lactário. Um deles é o Lactarius torminosus, que é mais rosado. A margem do chapéu é lanosa, como uma barba. Cresce com vidoeiros.",
+        "habitat": "Cresce debaixo de pinheiros, em solo arenoso ou calcário. Procure em pinhais jovens e em clareiras com erva, onde aparece muitas vezes. Há parentes próximos debaixo de espruces (Lactarius deterrimus) e de abetos (Lactarius salmonicolor). É comum em toda a Europa, sobretudo nos pinhais de Espanha, Portugal e Itália. Na América do Norte crescem debaixo de coníferas várias espécies aparentadas, de leite cor de laranja.",
+        "season": "É um cogumelo de outono. Na Europa central e do norte aparece do fim do verão a novembro. Nos pinhais do Mediterrâneo segue as chuvas de outono, de outubro até janeiro. Na costa do Pacífico dos EUA frutifica durante todo o inverno chuvoso.",
+        "picking": "Corte o pé pela base e veja se tem larvas. Deixe as pequenas. Em muitas regiões de Espanha e Itália é preciso licença ou há um limite diário. Informe-se sobre as regras locais.",
+        "kitchen": "Depois de a identificar com certeza, cozinhe-a bem. Grelhe-a com alho, azeite e salsa. Também a pode guisar com batatas ou arroz. Vai bem com carne. A carne da sancha é firme e um pouco granulosa, de sabor suave e resinoso. Uma cozedura lenta tira-lhe o amargor que possa ter. As manchas verdes são inofensivas. O pigmento pode pôr a urina vermelha, o que também é inofensivo.",
+        "keeps": "Aguenta dois dias no frigorífico. Não seca bem. Em vez disso, cozinhe-a e congele-a. Também se conserva em azeite ou vinagre.",
+        "source": "Identificação e habitat: First Nature. Conservação: ANSES. Época: registos do GBIF."
+      }
     },
     "hedgehog_mushroom": {
       "name": "Pé-de-carneiro",
-      "description": "Um chapéu cor de camurça a alaranjado com espinhos macios em vez de lâminas: um dos cogumelos silvestres mais seguros para aprender",
-      "howTo": "Procure em bosques musgosos de coníferas e folhosas do fim do verão ao fim do outono, muitas vezes em círculos ou filas; na costa do Pacífico dos EUA durante todo o inverno. Vire-o: espinhos, não lâminas"
+      "description": "Um chapéu cor de camurça a alaranjado, com espinhos macios por baixo em vez de lâminas. É um dos cogumelos silvestres mais seguros para quem está a aprender.",
+      "howTo": "Procure em bosques musgosos de coníferas e folhosas do fim do verão ao fim do outono, muitas vezes em círculos ou filas; na costa do Pacífico dos EUA durante todo o inverno. Vire-o: espinhos, não lâminas",
+      "guide": {
+        "identify": "Vire-o ao contrário. Debaixo do chapéu vai encontrar espinhos moles e quebradiços, de 2 a 6 mm, pendurados como pequenos pingentes de gelo. Não tem lâminas nem pregas. Os espinhos soltam-se com facilidade. O chapéu tem 4 a 15 cm de largura e vai do creme à cor de camurça ou ao laranja-pálido. É seco, aveludado e muitas vezes irregular, com altos. O pé é branco, cheio e muitas vezes fora do centro. A carne é branca e firme e, quando se toca, mancha devagar de amarelado a castanho-alaranjado. O Hydnum rufescens é mais pequeno e mais alaranjado. Tem os mesmos espinhos moles, tal como as espécies americanas de Hydnum. Outros cogumelos com espinhos, como os Hydnellum e os Sarcodon, são duros como cortiça ou então castanhos e escamosos. Muitos são amargos.",
+        "habitat": "Vive tanto com coníferas como com folhosas, como píceas, pinheiros, faias, carvalhos e bétulas. Procure-o no musgo e na folhada. Cresce muitas vezes em círculos ou em filas. É comum em toda a Europa, da planície à montanha. Também é comum em toda a América do Norte. Na costa do Pacífico dos EUA crescem várias espécies de Hydnum debaixo de abetos-de-douglas, tanoaks e outras árvores.",
+        "season": "Na Europa central e do norte sai do fim do verão ao fim do outono, muitas vezes até às geadas fortes. No sul da Europa a época vem mais tarde e dura mais, até ao inverno. Na costa do Pacífico dos EUA chega com as chuvas de outono e continua durante todo o inverno.",
+        "picking": "Corte-o pela base. Limpe logo ali a terra e os detritos, para não ficarem presos nos espinhos. Deixe os pequenos. No sul da Baviera e na Floresta da Baviera ainda tem césio de Chernobil. Aí, coma-o só de vez em quando.",
+        "kitchen": "Primeiro, tenha a certeza absoluta da identificação. Escove o chapéu. Nos grandes, tire os espinhos esfregando-os. Soltam-se na frigideira e podem amargar. Nunca o coma cru. Cozinhe-o bem, salteado em manteiga ou estufado. Tem um sabor suave e adocicado, a frutos secos. A textura é firme e carnuda. Fica bem com ovos, batatas, caça e em molhos.",
+        "keeps": "Como é firme, aguenta melhor do que a maioria dos cogumelos silvestres. Dura vários dias no frigorífico, em papel. Para o guardar mais tempo, cozinhe-o e congele-o.",
+        "source": "Identificação: First Nature (Reino Unido) e MykoWeb (California Fungi). Césio: Serviço Federal alemão de Proteção contra Radiações (BfS). Época: registos do GBIF."
+      }
     },
     "shaggy_mane": {
       "name": "Coprino-cabeludo",
-      "description": "Um cilindro alto e branco de escamas desgrenhadas em relvados e bermas que se desfaz em tinta negra um dia depois de apanhado",
-      "howTo": "Procure em relvados, bermas e terrenos revolvidos alguns dias depois das chuvas de outono, e também depois das de primavera. Apanhe apenas exemplares jovens e totalmente brancos e cozinhe-os no mesmo dia; evite estradas movimentadas, onde absorve metais pesados"
+      "description": "Um cilindro alto e branco, coberto de escamas desgrenhadas, em relvados e bermas. No espaço de um dia depois de apanhado, desfaz-se em tinta preta.",
+      "howTo": "Procure em relvados, bermas e terrenos revolvidos alguns dias depois das chuvas de outono, e também depois das de primavera. Apanhe apenas exemplares jovens e totalmente brancos e cozinhe-os no mesmo dia; evite estradas movimentadas, onde absorve metais pesados",
+      "guide": {
+        "identify": "O coprino-cabeludo é um cilindro branco e alto, com 5 a 15 cm. Está coberto de escamas desgrenhadas e levantadas e tem o topo castanho-claro. Com a idade abre em sino. As lâminas são apertadas e passam de brancas a cor-de-rosa e depois a negras. Por fim desfazem-se em tinta negra, da margem do chapéu para cima. O pé é branco, liso e oco. O anel é fino, desliza e muitas vezes cai para a base. A esporada é negra. O Coprinopsis atramentaria tem o chapéu liso, cinzento-acastanhado e com estrias finas, sem escamas desgrenhadas. Cresce em tufos sobre madeira enterrada. Nos relvados dos EUA, os Chlorophyllum molybdites jovens, de esporada verde, podem parecer-se com ele. As lâminas deles nunca ficam negras.",
+        "habitat": "Procure em relvados, bermas, parques, caminhos, obras e outros terrenos com erva e solo mexido. Cresce muitas vezes em filas ou em grupos. É comum em toda a Europa e na América do Norte.",
+        "season": "Aparece sobretudo no fim do verão e no outono, poucos dias depois da chuva. Volta a aparecer na primavera. Na costa do Pacífico dos EUA continua durante o inverno ameno e chuvoso.",
+        "picking": "Apanhe só chapéus jovens e fechados, todos brancos e com as lâminas brancas. Apanhe só os que vai cozinhar no mesmo dia. Evite estradas movimentadas, lixeiras e solos poluídos, porque acumula metais pesados.",
+        "kitchen": "Quando tiver a certeza da identificação, cozinhe-o em poucas horas. Corte qualquer parte cor-de-rosa ou negra, que fica amarga. Salteie-o em manteiga ou junte-o a sopas e omeletes. É suave e delicado. Não se lhe conhece reação ao álcool. Mas o Coprinopsis atramentaria reage, mesmo com bebidas tomadas dias antes ou depois da refeição. Se não souber ao certo que coprino tem, não o coma.",
+        "keeps": "Não se conserva. Num dia desfaz-se em tinta, mesmo no frigorífico. Cozinhe-o logo. Cozinhado, aguenta um ou dois dias no frigorífico. Também o pode congelar.",
+        "source": "Identificação e habitat: First Nature e Missouri Department of Conservation. Reação ao álcool: First Nature. Época: registos do GBIF."
+      }
     },
     "giant_puffball": {
       "name": "Bufa-do-diabo",
-      "description": "Uma bola branca e lisa, do tamanho de uma bola de futebol ou maior, em prados e pastagens, de carne firme e branca como mozzarella fresca",
-      "howTo": "Procure em prados, pastagens, parques e orlas de bosque do fim do verão ao outono, muitas vezes junto às urtigas. Corte sempre cada exemplar ao meio de cima para baixo: por dentro tem de ser branco puro, sem vestígios de chapéu ou pé"
+      "description": "Uma bola branca e lisa, do tamanho de uma bola de futebol ou maior, em prados e pastagens. A carne é firme e branca, como mozzarella fresca.",
+      "howTo": "Procure em prados, pastagens, parques e orlas de bosque do fim do verão ao outono, muitas vezes junto às urtigas. Corte sempre cada exemplar ao meio de cima para baixo: por dentro tem de ser branco puro, sem vestígios de chapéu ou pé",
+      "guide": {
+        "identify": "A bufa-do-diabo é uma bola branca e lisa, muitas vezes com 20 a 50 cm de diâmetro. Tem uma pele fina que parece couro. Não tem pé. Está presa ao chão por um cordão que parece uma raiz. Corte cada uma ao meio, de cima a baixo. Por dentro tem de ser firme e de um branco puro por igual, como mozzarella fresca. Qualquer contorno de chapéu, lâminas ou pé pode ser uma amanita nova ainda dentro do ovo. E isso pode ser mortal. Uma pele grossa, escamosa e amarelada e um interior escuro, negro-arroxeado, indicam um Scleroderma, que é venenoso. Carne amarela, verde-oliva ou castanha quer dizer que os esporos estão a amadurecer. Nessa altura já não se come.",
+        "habitat": "Procure em prados, pastagens, parques, jardins, sebes e orlas de bosque, em terra rica. Aparece muitas vezes no meio das urtigas. Muitas vezes volta ao mesmo sítio todos os anos. Está espalhada pela Europa e pelo leste dos EUA. No interior seco do oeste dos EUA cresce uma espécie parecida, a Calvatia booniana, entre artemísias e pastagens abertas.",
+        "season": "Aparece do verão ao outono. Na Europa sai sobretudo de julho a outubro. No leste dos EUA, do fim do verão ao início do outono. Incha depressa depois de chuva forte e quente.",
+        "picking": "Corte-a pela base e leve só as firmes e brancas por dentro. Uma chega muitas vezes para várias pessoas. Deixe as velhas e amareladas espalhar os esporos. Evite bermas de estrada e relvados tratados com químicos.",
+        "kitchen": "Quando tiver a certeza, tire-lhe a pele, que pode ser indigesta. Depois cozinhe-a. Frite fatias grossas em manteiga, simples ou panadas. Tem um sabor suave e absorve outros sabores. Da primeira vez, prove só um pouco.",
+        "keeps": "Guarde-a no frigorífico e coma-a em dois dias. Deite-a fora assim que a carne amarelecer. As fatias fritas congelam bem.",
+        "source": "Identificação e habitat: Missouri Department of Conservation e First Nature. Conservação: ANSES. Época: registos do GBIF."
+      }
     },
     "matsutake": {
       "name": "Matsutake",
-      "description": "Um cogumelo firme, branco e castanho, com um cheiro picante a canela, o mais apreciado de todos no Japão",
-      "howTo": "Procure em pinhais secos e arenosos a partir de agosto nos países nórdicos, e debaixo de coníferas e tanoaks de setembro a novembro no oeste dos EUA. Nunca revolva o solo com ancinho. Na Suécia e na Noruega está na lista vermelha por causa dos cortes rasos, não da apanha; nas florestas nacionais dos EUA é preciso uma licença"
+      "description": "Um cogumelo firme, branco e castanho, com um cheiro picante, um pouco a canela. No Japão é o mais apreciado de todos.",
+      "howTo": "Procure em pinhais secos e arenosos a partir de agosto nos países nórdicos, e debaixo de coníferas e tanoaks de setembro a novembro no oeste dos EUA. Nunca revolva o solo com ancinho. Na Suécia e na Noruega está na lista vermelha por causa dos cortes rasos, não da apanha; nas florestas nacionais dos EUA é preciso uma licença",
+      "guide": {
+        "identify": "O matsutake é um cogumelo firme e pesado. O chapéu mede 6 a 20 cm e é branco, com fibras e escamas castanhas. Na Europa e na Ásia é mais castanho. Em novo, tem a margem do chapéu enrolada para dentro. As lâminas são brancas a creme, apertadas e presas ao pé. Um véu branco e grosso deixa no pé um anel largo, aberto para fora. Abaixo do anel, o pé está envolto em escamas castanhas. O pé é cheio e estreita para a base. Não tem bolbo nem volva em saco ou em taça. O cheiro é forte e picante, a canela com um toque de meias sujas. Sem esse cheiro não é um matsutake. Mas o cheiro sozinho não prova nada. A Amanita smithiana e os anjos-destruidores também são brancos. Os anjos-destruidores são a Amanita virosa na Europa, a A. bisporigera no leste e a A. ocreata no oeste da América do Norte. Têm mesmo na base um bolbo, uma volva em saco ou anéis de verrugas. O anel deles é rasgado ou pende como uma saia. Não têm cheiro picante. Destroem os rins ou o fígado.",
+        "habitat": "Vive associado a árvores, em solos pobres e bem drenados. Na Europa encontra-se sobretudo na Finlândia, na Suécia e na Noruega. Aí cresce em pinhais secos com muitos líquenes, sobre areia ou cascalho. No oeste da América do Norte cresce debaixo de pinheiros, abetos-de-douglas, tsugas, abetos e tanoaks, muitas vezes em solo arenoso ou de pedra-pomes. No leste, procure-o debaixo do pinheiro-de-banks, do pinheiro-vermelho e da tsuga-do-canadá, no norte e nos Apalaches.",
+        "season": "Nos países nórdicos aparece de agosto a outubro. Vem depois das chuvas do fim do verão, quando as noites começam a arrefecer. Na América do Norte a época vai de setembro a novembro. Na costa do Pacífico continua até dezembro.",
+        "picking": "Abane-o devagar até se soltar da terra. Depois tape o buraco e volte a pôr por cima o musgo e as agulhas. Nunca use ancinho nem cave, porque isso estraga o fungo e as colheitas futuras. O matsutake está classificado como Vulnerável a nível mundial (UICN). Na Suécia e na Noruega está na lista vermelha, mas lá a ameaça é o desaparecimento dos pinhais antigos, não a apanha. Nos EUA, cada floresta nacional fixa as suas próprias licenças e limites para o matsutake. Informe-se no distrito florestal.",
+        "kitchen": "Espere até o ter identificado com toda a certeza. Depois limpe-o com um pano e corte a base do pé, mas não o lave. Nunca o coma cru. Cozinhe-o pouco tempo e em lume brando, para guardar o aroma. Corte-o às fatias e grelhe-o, cozinhe-o com arroz ou junte-o a um caldo claro. É firme e um pouco elástico, com um aroma picante a pinho.",
+        "keeps": "Embrulhe-o em papel e guarde-o no frigorífico. Use-o em poucos dias, antes que o cheiro se perca.",
+        "source": "Identificação: UBC Beaty Biodiversity Museum e MushroomExpert.com. Sósias: relatórios de intoxicações da North American Mycological Association. Estado de conservação: Lista Vermelha da UICN. Regras de apanha: Serviço Florestal dos EUA. Época: registos do GBIF."
+      }
     },
     "ramps": {
       "name": "Alho-porro-selvagem",
-      "description": "O alho-selvagem da América: folhas largas, lisas e verdes em caules arroxeados, com um forte cheiro a cebola e alho",
-      "howTo": "Procure em florestas de folhosas ricas e húmidas do leste dos EUA de março a maio, antes de as árvores ganharem folhas. Apanhe uma folha por planta e deixe o bolbo; alguns parques proíbem a apanha e o Quebeque proíbe a venda"
+      "description": "O alho-selvagem da América: folhas largas, lisas e verdes, em pés arroxeados, com um cheiro forte a cebola e alho.",
+      "howTo": "Procure em florestas de folhosas ricas e húmidas do leste dos EUA de março a maio, antes de as árvores ganharem folhas. Apanhe uma folha por planta e deixe o bolbo; alguns parques proíbem a apanha e o Quebeque proíbe a venda",
+      "guide": {
+        "identify": "O alho-porro-selvagem tem duas ou três folhas largas, lisas e planas, que saem direitas de um pequeno bolbo enterrado. Cada folha tem o seu próprio pé, muitas vezes vermelho-arroxeado junto à base. As folhas murcham no início do verão. Depois disso, um caule sem folhas leva uma umbela redonda de pequenas flores brancas. Esmague uma folha. O alho-porro-selvagem cheira fortemente a cebola e alho. Os sósias mortais não. Mas o cheiro fica-lhe nos dedos, por isso depois das primeiras folhas o teste já não prova nada. Verifique também as folhas e os pés de cada planta. O veratro-verde tem folhas pregueadas ao longo de um caule direito e cresce em terreno encharcado. O lírio-convale tem duas ou três folhas enroladas umas nas outras na base. O cólquico, fugido dos jardins, tem folhas sem pé, em tufo. O Melanthium parviflorum tem folhas basais parecidas, mas não cheira a cebola.",
+        "habitat": "O alho-porro-selvagem cresce em florestas de folhosas ricas e húmidas, com uma camada funda de folhas caídas. Procure em encostas sombrias e no fundo dos vales, junto aos ribeiros. Vai do Quebeque e da Nova Inglaterra até à Geórgia, ao longo dos Apalaches. Para oeste chega ao Minnesota.",
+        "season": "As folhas saem a partir de março no sul dos Apalaches. Mais a norte aparecem em abril e maio. Encontram-se nas poucas semanas antes de as árvores ganharem folha. No fim de maio ou em junho amarelecem e desaparecem.",
+        "picking": "Corte com uma faca uma folha por planta e deixe o bolbo. Arrancá-lo mata a planta. Desde a semente, precisa de pelo menos cinco anos até ter tamanho para apanhar. O alho-porro-selvagem diminuiu em partes da sua área. O Parque Nacional das Great Smoky Mountains proíbe a apanha. Algumas florestas nacionais limitam-na e proíbem a venda. O Quebeque classifica-o como vulnerável e proíbe a venda. Informe-se sobre as regras locais.",
+        "kitchen": "Depois de o identificar com certeza, vai ver que as folhas sabem intensamente a alho e cebola. Use algumas cruas. Também as pode juntar por instantes a ovos, batatas, massa e manteiga, só até murcharem.",
+        "keeps": "As folhas aguentam uns dias no frigorífico, embrulhadas num pano húmido. As folhas picadas, a manteiga de alho-porro-selvagem e o pesto congelam bem.",
+        "source": "Identificação, habitat e apanha: NC State Extension e United Plant Savers. Sósias: Departamento de Saúde do Vermont. Regras: National Park Service, Serviço Florestal dos EUA (USDA) e Ministério do Ambiente do Quebeque. Época: registos do GBIF."
+      }
     },
     "fiddleheads": {
       "name": "Feto-de-avestruz",
-      "description": "As frondes jovens e enroladas do feto-avestruz: lisas, verde-vivo, com escamas castanhas como papel",
-      "howTo": "Procure em várzeas de rios e bosques húmidos do fim de abril a maio, enquanto as frondes ainda estão enroladas. Coza-os sempre antes de os comer e não apanhe mais de metade dos rebentos de uma touceira"
+      "description": "Os rebentos novos, bem enrolados, do feto-de-avestruz. São lisos e de um verde vivo, com escamas castanhas finas como papel.",
+      "howTo": "Procure em várzeas de rios e bosques húmidos do fim de abril a maio, enquanto as frondes ainda estão enroladas. Coza-os sempre antes de os comer e não apanhe mais de metade dos rebentos de uma touceira",
+      "guide": {
+        "identify": "Só se apanha o feto-de-avestruz. Cresce em tufos, a que se chama coroas, de uns três a doze rebentos enrolados. São espirais verdes e apertadas, com cerca de 2,5 cm de diâmetro. O pé é liso, com um sulco fundo em forma de U na face de dentro. Estão cobertos de escamas castanhas, finas como papel, que saem ao esfregar. As frondes férteis do ano anterior ficam muitas vezes de pé no tufo. São castanho-escuras, rijas e em forma de pena. O feto-ordinário é cancerígeno. Nasce isolado, a partir de caules que rastejam debaixo da terra. O pé é penugento e redondo, não tem escamas de papel e a ponta divide-se em três. Outros fetos, como o feto-canela, têm rebentos lanosos e não são recomendados.",
+        "habitat": "Cresce em várzeas sombrias, em bancos de areia dos rios e em bosques ricos e húmidos, muitas vezes debaixo de áceres e freixos. Nos EUA é comum no nordeste e à volta dos Grandes Lagos. Chega a sul até à Pensilvânia e a oeste até às Dakotas. No oeste é raro, fora do Alasca. Na Europa cresce junto a ribeiros no norte e no centro.",
+        "season": "Os rebentos saem na primavera, quando a terra aquece depois do degelo e das cheias. No sul do Maine, isso é no fim de abril. No extremo norte é de meados ao fim de maio e, nalguns sítios, até ao início de junho. Apanhe-os quando têm 5 a 15 cm de altura e estão bem enrolados. Em poucos dias desenrolam-se e já não se comem.",
+        "picking": "Apanhe só de tufos saudáveis, com pelo menos quatro rebentos. Não tire mais de metade e não volte lá nessa época. Apanhá-los todos enfraquece ou mata o feto. Peça primeiro autorização ao dono do terreno. Na Alemanha, o feto-de-avestruz silvestre é protegido por lei. Aí, não lhe toque.",
+        "kitchen": "Nunca coma os rebentos crus ou mal cozinhados. Já causaram surtos de intoxicação alimentar, que os CDC dos EUA investigaram. Davam náuseas, vómitos, diarreia e cólicas. Primeiro, confirme bem a identificação. Esfregue as escamas castanhas e lave-os em várias águas frias. Depois coza-os em pequenas quantidades de cada vez, em bastante água com sal, durante 15 minutos. Ou então coza-os ao vapor durante 10 a 12 minutos. Deite fora a água. Só depois os salteie ou junte a outros pratos. Sabem a espargos e a feijão-verde.",
+        "keeps": "Guarde-os no frigorífico e use-os no prazo de uma semana. Para os congelar, escalde-os em pequenas quantidades durante 2 minutos. Arrefeça-os em água com gelo, escorra-os e congele-os. Antes de os comer, continuam a precisar dos 15 minutos completos de fervura.",
+        "source": "Identificação, época, apanha e cozinha: University of Maine Cooperative Extension. Intoxicações: CDC dos EUA. Distribuição nos EUA: Penn State Extension. Proteção na Alemanha: Bundesartenschutzverordnung."
+      }
     },
     "cloudberry": {
       "name": "Amora-ártica",
-      "description": "Uma baga cor de âmbar das turfeiras do norte, parecida com uma framboesa macia, muito apreciada nos países nórdicos",
-      "howTo": "Procure em turfeiras abertas e charnecas húmidas da Fenoscândia em julho e agosto, quando as bagas passam de vermelhas e duras a macias e amarelo-âmbar. Uma geada durante a floração pode estragar a colheita de um ano"
+      "description": "Uma baga cor de laranja-âmbar das turfeiras do norte. Parece uma framboesa mole. Nos países nórdicos adoram-na.",
+      "howTo": "Procure em turfeiras abertas e charnecas húmidas da Fenoscândia em julho e agosto, quando as bagas passam de vermelhas e duras a macias e amarelo-âmbar. Uma geada durante a floração pode estragar a colheita de um ano",
+      "guide": {
+        "identify": "A amora-ártica é uma erva baixa, não um arbusto, com cerca de um palmo de altura. Nasce de caules que rastejam debaixo da terra. Cada rebento direito tem uma a três folhas redondas e enrugadas, com cinco a sete lóbulos pouco marcados. Tem uma só flor branca. As flores masculinas e as femininas crescem em plantas diferentes, por isso só alguns rebentos dão fruto. O fruto parece uma framboesa feita de poucos bagos grandes. Ao princípio é duro e vermelho. Quando amadurece, fica mole e cor de laranja-âmbar.",
+        "habitat": "Cresce em turfeiras abertas, charnecas húmidas, pântanos e tundra, muitas vezes no meio do musgo esfagno e das bétulas-anãs. É comum na Noruega, na Suécia, na Finlândia, nos países bálticos e na Rússia. Também aparece nas charnecas altas da Escócia e do norte de Inglaterra. Na Alemanha, na Polónia e na República Checa só sobrevive em algumas turfeiras, como relíquia da era glaciar. Aí está protegida ou classificada como ameaçada.",
+        "season": "Floresce em junho. No sul da Escandinávia e nos países bálticos, as bagas amadurecem a partir de meados de julho. No extremo norte e na montanha amadurecem em agosto. Uma geada durante a floração pode estragar a colheita de um ano inteiro.",
+        "picking": "Apanhe só as bagas moles, cor de âmbar, que se soltem com facilidade. As vermelhas e duras não estão maduras. Na Suécia, na Finlândia e na Noruega, o direito de livre acesso à natureza deixa qualquer pessoa apanhá-las. Mas em Nordland, Troms e Finnmark o dono do terreno pode proibir a apanha nas turfeiras produtivas de amora-ártica. A proibição é anunciada com placas ou no jornal. Mesmo assim, pode comer as bagas ali mesmo. Nas terras públicas de Finnmark, só os residentes as podem apanhar para vender. As reservas naturais podem ter regras próprias. Na Europa Central a planta tem de ser deixada em paz. Consulte as regras locais antes de ir.",
+        "kitchen": "Primeiro, tenha a certeza do que apanhou. Depois coma as bagas frescas com natas ou em waffles. Também pode fazer doce. Na Finlândia o doce acompanha um queijo morno que range nos dentes (leipäjuusto). Na Suécia vai por cima do gelado. O sabor é ácido e aromático.",
+        "keeps": "As bagas maduras aguentam só um ou dois dias no frigorífico. Congelam bem. O seu ácido benzoico natural ajuda o doce a conservar-se.",
+        "source": "Identificação e habitat: University of Alberta e Minnesota Wildflowers. Regras de apanha: Agência Norueguesa do Ambiente (Miljødirektoratet) e Agência Sueca de Proteção do Ambiente (Naturvårdsverket). Estatuto na Europa Central: listas vermelhas checa e alemã."
+      }
     },
     "huckleberry": {
       "name": "Huckleberry",
-      "description": "Uma baga de montanha negro-arroxeada do noroeste dos EUA, mais doce e mais ácida do que um mirtilo",
-      "howTo": "Procure em encostas subalpinas e antigas áreas ardidas entre 1000 e 2000 m no Montana, Idaho e Cascades de julho a setembro. É território de ursos: faça barulho e leve spray anti-urso"
+      "description": "Uma baga de montanha negro-arroxeada do noroeste dos EUA. É mais doce e mais ácida do que o mirtilo.",
+      "howTo": "Procure em encostas subalpinas e antigas áreas ardidas entre 1000 e 2000 m no Montana, Idaho e Cascades de julho a setembro. É território de ursos: faça barulho e leve spray anti-urso",
+      "guide": {
+        "identify": "O huckleberry é um arbusto de folha caduca, em geral da altura da cintura à do ombro. Os raminhos novos são um pouco angulosos e verde-amarelados. As folhas são finas e ovais, acabam em bico e têm a margem finamente dentada. No início do verão pendem flores em forma de jarro, cor de creme rosado, uma a uma, na axila das folhas. Cada flor dá uma só baga, roxa a negro-avermelhada, em geral sem aquele pó claro por cima. Na ponta tem um pequeno anel em forma de coroa. Nos mesmos bosques há bagas que não se comem, mas crescem de outra forma. A madressilva Lonicera involucrata tem bagas negras aos pares, dentro de brácteas vermelhas. A Actaea rubra é uma erva mole com bagas vermelhas ou brancas em cachos.",
+        "habitat": "Procure-o em florestas de coníferas de montanha, em encostas subalpinas abertas e em zonas ardidas há muitos anos. Os arbustos dão mais fruto ao sol. Vai da Colúmbia Britânica para sul, pela Cordilheira das Cascatas e pelas Montanhas Rochosas do norte, até à Califórnia. Isso inclui Washington, Oregon, Idaho, Montana e Wyoming. Há manchas isoladas que chegam a leste até às Black Hills e à região norte dos Grandes Lagos. No leste dos EUA, o nome huckleberry quer dizer em geral Gaylussacia. É outro arbusto, cujas bagas têm dez sementes pequenas e duras.",
+        "season": "As bagas amadurecem desde julho nas cotas mais baixas até setembro nas mais altas. Em cada arbusto amadurecem aos poucos. Uma geada tardia na floração pode reduzir a colheita.",
+        "picking": "Apanhe à mão, baga a baga, sem partir ramos. Nas florestas nacionais dos EUA, a apanha para consumo próprio é muitas vezes permitida. Às vezes precisa de uma licença gratuita. Há limites por dia e por época. A apanha para venda precisa de licença ou está fechada. Alguns campos estão reservados às tribos, como parte dos Sawtooth Berry Fields, em Washington. Consulte as regras da floresta. As manchas de huckleberry são terra de ursos, por isso faça barulho e leve spray anti-urso.",
+        "kitchen": "Depois de as identificar com certeza, coma-as cruas ou cozinhadas. Vão em tartes, doce, xarope e panquecas e em molhos para caça. Têm um sabor mais intenso do que os mirtilos de cultura, doce com um toque ácido. Passe-as por água só na hora de usar.",
+        "keeps": "Sem lavar e espalhadas, aguentam uns dias no frigorífico. Congele-as num tabuleiro e depois passe-as para sacos.",
+        "source": "Identificação e distribuição: Serviço Florestal dos EUA (Fire Effects Information System) e University of British Columbia. Regras de apanha: Gifford Pinchot National Forest. Bagas parecidas: Serviço de Parques Nacionais dos EUA."
+      }
     },
     "pawpaw": {
       "name": "Asimina",
-      "description": "O maior fruto nativo da América do Norte: verde, em forma de manga, com uma polpa cremosa que sabe a banana e manga",
-      "howTo": "Procure no sub-bosque das florestas ribeirinhas do leste dos EUA do fim de agosto a outubro, quando o fruto amolece e cai. Coma só a polpa: a casca e as sementes são venenosas"
+      "description": "O maior fruto nativo da América do Norte. É verde e tem forma de manga. A polpa é macia como leite-creme e sabe a banana e a manga.",
+      "howTo": "Procure no sub-bosque das florestas ribeirinhas do leste dos EUA do fim de agosto a outubro, quando o fruto amolece e cai. Coma só a polpa: a casca e as sementes são venenosas",
+      "guide": {
+        "identify": "A asimina é uma árvore pequena do sub-bosque. Forma muitas vezes maciços a partir de rebentos da raiz. As folhas são grandes, pendentes e mais largas para lá do meio. Esmagadas, cheiram a pimento verde. Na primavera, antes das folhas, abrem flores grená-escuras de seis pétalas. O fruto é alongado e verde a verde-amarelado. Nasce sozinho ou em cachos de dois a nove. Por dentro, uma polpa amarela, mole e cremosa como leite-creme envolve duas filas de sementes grandes, achatadas e castanhas.",
+        "habitat": "A asimina cresce em bosques húmidos e ricos, nas várzeas dos rios, nas margens dos ribeiros e no fundo de encostas sombrias. É nativa de todo o leste dos EUA, do norte da Florida aos Grandes Lagos e ao sul do Ontário. Para oeste chega ao leste do Nebrasca, ao Kansas, ao Oklahoma e ao Texas. No oeste dos EUA não cresce espontânea.",
+        "season": "O fruto amadurece a partir do fim de agosto no sul e em setembro e outubro no norte. Numa árvore, a fruta vai amadurecendo ao longo de uma a duas semanas. A fruta madura cai ao chão.",
+        "picking": "Um fruto maduro cede um pouco quando se aperta com cuidado, como um pêssego. Também tem um cheiro forte a fruta. A cor da casca não é um sinal fiável. Apanhe a fruta acabada de cair ou abane o tronco devagar. Na época, passe por lá todos os dias ou de dois em dois dias. Trate a fruta com jeito, porque se pisa com facilidade.",
+        "kitchen": "Quando tiver a certeza da árvore, coma só a polpa. Corte o fruto ao meio no sentido do comprimento e tire a polpa com uma colher, separando-a da casca e das sementes. Nunca coma nem mastigue a casca ou as sementes. A polpa sabe a banana e manga. Pode substituir a banana em bolos, gelados e sobremesas. A fruta silvestre pode deixar um travo amargo. Algumas pessoas reagem com vómitos ou com uma reação alérgica, por isso prove primeiro uma pequena quantidade. As fontes médicas também desaconselham comê-la em grandes quantidades durante longos períodos. A polpa contém anonacina, um composto que foi tóxico para as células nervosas em estudos de laboratório.",
+        "keeps": "A fruta madura só dura uns dias à temperatura ambiente e cerca de uma semana no frigorífico. A que se apanha pouco antes de estar bem madura aguenta até três semanas no frigorífico. Depois acaba de amadurecer à temperatura ambiente. A polpa, tirada à colher, congela-se até um ano.",
+        "source": "Identificação e distribuição: University of Kentucky, Center for Crop Diversification. Maturação, preparação e conservação: serviço de extensão de Purdue. Reações: Memorial Sloan Kettering Cancer Center."
+      }
     },
     "rose_hips": {
       "name": "Cinórrodos",
-      "description": "Os frutos vermelhos de outono das roseiras silvestres, ricos em vitamina C e cheios de sementes envoltas em pelos irritantes",
-      "howTo": "Procure em sebes, matagais e orlas de bosque do fim de agosto a novembro; ficam mais macios depois das primeiras geadas. Retire as sementes e os pelos, que irritam a boca e o intestino"
+      "description": "Os frutos vermelhos de outono das roseiras-bravas. São ricos em vitamina C. As sementes lá dentro estão envoltas em pelos que dão comichão.",
+      "howTo": "Procure em sebes, matagais e orlas de bosque do fim de agosto a novembro; ficam mais macios depois das primeiras geadas. Retire as sementes e os pelos, que irritam a boca e o intestino",
+      "guide": {
+        "identify": "A roseira-brava é um arbusto de caules compridos e arqueados, com picos fortes e curvos em gancho. As folhas têm 5 a 7 folíolos dentados. Os frutos, os cinórrodos, são ovais, lisos e de um escarlate brilhante, com 1 a 2 cm. Quando estão maduros já não têm sépalas. Por dentro, sementes duras estão envoltas em pelos finos e irritantes. A norça-preta, a norça-branca e a doce-amarga crescem nas mesmas sebes. Têm bagas vermelhas, brilhantes e venenosas, em cachos, penduradas em caules trepadores sem picos. Um cinórrodo cresce num ramo de roseira com picos e está cheio de sementes peludas.",
+        "habitat": "A roseira-brava cresce em sebes, matos, orlas de bosques e terrenos incultos com erva, em toda a Europa. Encontra-se das terras baixas à montanha. Nos EUA cresce espontânea nalguns sítios. Aí pode usar da mesma maneira os frutos das roseiras silvestres nativas e da roseira-rugosa.",
+        "season": "Os cinórrodos amadurecem de setembro a novembro. Muitos ficam no arbusto até ao inverno. A geada torna-os mais macios e mais doces. Mas quanto mais tempo ficam no ramo, menos vitamina C têm.",
+        "picking": "Apanhe frutos firmes e bem corados, que cedam um pouco quando os aperta. Apanhe poucos de cada arbusto e deixe muitos para as aves. Use luvas e evite as bermas das estradas e as sebes pulverizadas.",
+        "kitchen": "Quando tiver a certeza, coma só a polpa. As sementes e os pelos irritam a boca, o intestino e a pele. Corte o pé e a ponta, abra os frutos ao meio e raspe todas as sementes e pelos. Também os pode cozer inteiros em lume brando e passá-los por um passador fino. Depois volte a coar o sumo por um pano fino. Use a polpa para xarope, geleia, doce e chá. Combina bem com maçã.",
+        "keeps": "Frescos aguentam cerca de uma semana no frigorífico. Congelam bem. As metades sem sementes, secas a 50 °C no máximo, conservam-se muitos meses num frasco hermético.",
+        "source": "Identificação e habitat: Woodland Trust e The Wildlife Trusts. Época, apanha e cozinha: extensão da University of Alaska Fairbanks e Bundeszentrum für Ernährung (BZfE, Alemanha)."
+      }
     },
     "sloes": {
       "name": "Abrunhos",
-      "description": "Os pequenos frutos azul-escuros do abrunheiro espinhoso, com pruína e um sabor muito adstringente",
-      "howTo": "Procure em sebes e encostas com mato de setembro a novembro; ficam mais suaves depois das primeiras geadas. Não esmague os caroços e cuidado com os sósias negros e brilhantes, como o espinheiro-cerval e a beladona"
+      "description": "Os frutos pequenos, negro-azulados, do abrunheiro-bravo, que tem espinhos. Têm uma camada de pó por fora e são azedíssimos.",
+      "howTo": "Procure em sebes e encostas com mato de setembro a novembro; ficam mais suaves depois das primeiras geadas. Não esmague os caroços e cuidado com os sósias negros e brilhantes, como o espinheiro-cerval e a beladona",
+      "guide": {
+        "identify": "Os abrunhos crescem no abrunheiro-bravo. É um arbusto lenhoso e denso, de casca escura. Os raminhos laterais acabam em espinhos aguçados. A flor branca abre em março e abril, antes das folhas. O fruto é redondo, com cerca de 1 cm. É negro-azulado, com uma película baça, como pó, que sai quando se esfrega. Os abrunhos nascem sozinhos ou aos pares ao longo dos ramos. Por dentro, uma polpa verde e muito adstringente envolve um só caroço. O espinheiro-cerval tem bagas pretas e brilhantes, em cachos e sem essa película. A beladona é uma erva mole e com muitas folhas, não um arbusto com espinhos. As bagas dela são pretas e brilhantes e nascem sozinhas, cada uma pousada numa estrela verde de sépalas.",
+        "habitat": "O abrunheiro-bravo cresce em sebes, matos e orlas de bosques e em encostas soalheiras e pedregosas. Forma muitas vezes moitas densas que se alastram por rebentos de raiz. Encontra-se em quase toda a Europa, a norte e a sul, das terras baixas às colinas.",
+        "season": "Os abrunhos amadurecem de setembro a novembro. Estão prontos quando estão escuros e moles o suficiente para se esmagarem entre os dedos. Tradicionalmente apanham-se depois da primeira geada. A geada racha a casca e amolece o fruto, para o sumo poder sair. Pode apanhá-los antes e congelá-los uma noite, que dá o mesmo resultado.",
+        "picking": "Use luvas, porque os espinhos são compridos e aguçados. Apanhe de vários arbustos e deixe muitos para as aves. Evite sebes à beira da estrada e bordas de campos pulverizados.",
+        "kitchen": "Primeiro confirme que são abrunhos. São demasiado ácidos e adstringentes para comer crus. Mas dão gin de abrunhos e outros licores, como o pacharán espanhol, feito em aguardente de anis. Com maçã também dão uma geleia. Para o gin, pique-os ou congele-os e depois cubra-os com açúcar e gin. Deixe-os alguns meses num sítio escuro e agite de vez em quando. Depois coe. Nunca esmague nem parta os caroços. A amêndoa de dentro contém amigdalina, que liberta cianeto.",
+        "keeps": "Frescos aguentam uns dias no frigorífico. Congelados em sacos fechados duram meses. Passam diretamente do congelador para o frasco.",
+        "source": "Identificação, habitat e a tradição da geada: Woodland Trust. Caroços: bases de dados fitoquímicas e etnobotânicas do USDA."
+      }
     },
     "sea_buckthorn": {
       "name": "Espinheiro-marítimo",
-      "description": "Bagas cor de laranja viva apertadas ao longo de ramos espinhosos de folhas prateadas: ácidas e ricas em vitamina C",
-      "howTo": "Procure em dunas costeiras e margens de rio com cascalho de agosto a outubro. Use luvas por causa dos espinhos e informe-se: nas reservas de dunas a apanha é muitas vezes proibida"
+      "description": "Bagas cor de laranja viva, apertadas ao longo de ramos espinhosos de folhas prateadas. São ácidas e ricas em vitamina C.",
+      "howTo": "Procure em dunas costeiras e margens de rio com cascalho de agosto a outubro. Use luvas por causa dos espinhos e informe-se: nas reservas de dunas a apanha é muitas vezes proibida",
+      "guide": {
+        "identify": "O espinheiro-marítimo é um arbusto espinhoso e muito ramificado que forma matagais. As folhas são estreitas como as do salgueiro. Estão cobertas de escamas prateadas, sobretudo por baixo. As flores masculinas e femininas nascem em arbustos diferentes, por isso só os femininos dão fruto. As bagas são redondas e cor de laranja viva, com 6 a 8 mm. Estão muito apertadas ao longo dos raminhos, com pés muito curtos. São sumarentas e muito ácidas e rebentam mal se tocam. A tramazeira e a piracanta também têm bagas cor de laranja. Mas têm-nas em cachos com pé, entre folhas verdes.",
+        "habitat": "Precisa de sol pleno e de areia ou cascalho a descoberto. Procure nas dunas do mar do Norte, do Báltico e do leste de Inglaterra. Também cresce nas cascalheiras e nos terraços secos dos rios dos Alpes e do seu sopé. No sul da Europa é sobretudo uma planta dos cascalhos dos rios de montanha, nos Alpes e nos Pirenéus. Também se planta em taludes e bermas de estrada.",
+        "season": "As bagas amadurecem de agosto a outubro. São mais aromáticas no início da maturação. Ficam no arbusto até ao inverno, mas as que passam do ponto sabem a ranço.",
+        "picking": "Muitas manchas silvestres crescem em reservas naturais de dunas e de margens de rio, onde a apanha é proibida. Primeiro informe-se sobre as regras locais. Nunca corte ramos de arbustos silvestres. Use luvas. Ao apanhar, segure uma taça debaixo do raminho, porque as bagas rebentam. Deixe muitas para os tordos que cá passam o inverno.",
+        "kitchen": "Se tiver a certeza da identificação, pode comer as bagas cruas. Mas são muito ácidas, um pouco amargas e mancham. A maioria das pessoas coze-as pouco tempo com um pouco de água e mel ou açúcar. Depois coa-as para fazer sumo, xarope, geleia ou puré. A maçã ou o alperce suavizam a acidez. O puré fica bem com iogurte, muesli, gelado e sopas.",
+        "keeps": "Frescas estragam-se depressa. Congele as bagas ou congele o sumo em porções. A polpa que sobra depois de espremer pode secar-se para chá.",
+        "source": "Identificação e habitat: The Wildlife Trusts e Agência Europeia do Ambiente (EUNIS). Época, cozinha e conservação: Bundeszentrum für Ernährung (BZfE, Alemanha)."
+      }
     },
     "boletus": {
       "name": "Boletus (porcini e boleto baio)",
-      "description": "Os boletos do tipo porcini e o boleto baio numa só pontuação: porcini, de pinheiro, bronzeado e de verão, o boleto baio na Europa e os reis norte-americanos",
-      "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte"
+      "description": "Os porcini e o boleto baio juntos: o boleto comestível, o boleto do pinheiro, o bronzeado e o de verão, o boleto baio na Europa e os boletos-reis da América do Norte.",
+      "howTo": "Cada lugar mostra a melhor das suas pontuações; procure em faiais, carvalhais, soutos, pinhais e abetais duas a quatro semanas após uma chuva forte",
+      "guide": {
+        "identify": "Este grupo junta vários boletos. Na Europa estão o boleto comestível (Boletus edulis) e os boletos do pinheiro, bronzeado e de verão. A América do Norte junta-lhes o boleto rei do leste e o boleto rei das Rochosas. O boleto baio (Imleria badia) também entra aqui. Os do tipo porcini e os reis têm poros brancos quando novos, rede no pé e carne branca que não azula. O baio tem poros amarelos que mancham de azul-esverdeado e um pé estriado, sem rede. É o chapéu que os distingue. No boleto comestível é castanho e gorduroso, no do pinheiro vermelho-vinho e no bronzeado quase preto e aveludado. O de verão tem o chapéu claro e gretado. No rei do leste é castanho-claro a castanho-lilás. O rei das Rochosas tem o chapéu vermelho-tijolo e o baio tem-no castanho e pegajoso. Poros vermelhos ou cor de laranja indicam um boleto tóxico, como o boleto-de-satanás (Rubroboletus satanas). Poros rosados e uma rede escura no pé indicam o boleto-amargo (Tylopilus felleus).",
+        "habitat": "Todos vivem ligados a árvores. O boleto comestível cresce com coníferas, faias e carvalhos. O do pinheiro cresce com pinheiros e píceas. O bronzeado e o de verão gostam de carvalhos e castanheiros em matas quentes. O baio cresce com coníferas em solo ácido e arenoso. O rei do leste cresce nos carvalhais do leste dos EUA. O rei das Rochosas cresce debaixo de píceas de altitude.",
+        "season": "Juntos, vão de maio às primeiras geadas. O de verão começa em maio. No outro extremo, o baio está no auge em outubro e novembro. O boleto comestível sai sobretudo de agosto a outubro. Cada leva aparece duas a três semanas depois de uma chuva forte.",
+        "picking": "Apanhe só o que consegue identificar com certeza e mantenha cada espécie à parte no cesto. A Alemanha só deixa apanhar pequenas quantidades de boleto comestível para consumo próprio e protege o bronzeado. Em Itália e em Espanha é muitas vezes preciso licença.",
+        "kitchen": "Primeiro, identifique cada um com certeza. Depois escove-os todos, corte-os para ver se têm bicho e cozinhe-os bem. O baio acumula césio radioativo. Em partes da Baviera e da Áustria, coma-o só de vez em quando.",
+        "keeps": "Todos secam bem em fatias finas.",
+        "source": "Identificação e habitat: Regione Piemonte, First Nature e MushroomExpert. Época: registos do GBIF. Regras: BArtSchV (Alemanha). Césio: Serviço Federal alemão de Proteção contra Radiações (BfS)."
+      }
     },
     "cantharellus": {
       "name": "Cantarelos (todos)",
-      "description": "Todos os cantarelos numa só pontuação: os cantarelos dourados, a trombeta-da-morte e o cantarelo de inverno e, na América do Norte, o cantarelo liso e o cantarelo do Pacífico",
-      "howTo": "Cada lugar mostra a melhor das suas pontuações; os cantarelos dourados em encostas com musgo sob carvalhos, faias e coníferas após chuva morna, as trombetas-da-morte na folhada húmida sob folhosas, os cantarelos de inverno sobre musgo molhado sob coníferas no fim da época"
+      "description": "Todos os cantarelos juntos: o cantarelo dourado, a trombeta-da-morte, o cantarelo de inverno e, na América do Norte, o cantarelo liso e o cantarelo do Pacífico.",
+      "howTo": "Cada lugar mostra a melhor das suas pontuações; os cantarelos dourados em encostas com musgo sob carvalhos, faias e coníferas após chuva morna, as trombetas-da-morte na folhada húmida sob folhosas, os cantarelos de inverno sobre musgo molhado sob coníferas no fim da época",
+      "guide": {
+        "identify": "Este grupo reúne cinco espécies. São o cantarelo, o cantarelo liso e o cantarelo do Pacífico da América do Norte, a trombeta-da-morte e o cantarelo de inverno. Estes dois últimos pertencem a um género próximo, Craterellus. Por baixo, todos têm pregas rombas e bifurcadas ou uma face quase lisa que desce pelo pé. Nunca têm lâminas finas. O cantarelo, o liso e o do Pacífico são amarelos a alaranjados e carnudos, com o pé cheio. O de inverno é pequeno, com o chapéu castanho e o pé amarelo e oco. A trombeta-da-morte é um corno fino, oco e cinzento-negro. Cada um tem o seu sósia perigoso. Para os amarelos é o cogumelo-da-oliveira (Omphalotus), com lâminas verdadeiras e em tufos sobre madeira. Entre os cantarelos de inverno é o cortinário mortal Cortinarius rubellus, com lâminas castanho-ferrugem.",
+        "habitat": "Todos vivem ligados às raízes das árvores. O cantarelo cresce debaixo de folhosas e coníferas em toda a Europa e na América do Norte. A trombeta-da-morte gosta da folhada húmida, sobretudo debaixo de faias e carvalhos. O de inverno cresce em musgo molhado e madeira podre, debaixo de coníferas. O liso é dos carvalhais do leste dos EUA. O do Pacífico é das florestas de abeto-de-douglas e tsuga do noroeste do Pacífico.",
+        "season": "Juntos, vão do início do verão ao inverno. O cantarelo e o liso aparecem desde o início do verão, depois de chuva quente. As trombetas vêm a seguir, do fim do verão e por todo o outono. O do Pacífico e o de inverno vão do outono ao inverno, até às geadas fortes. No oeste dos EUA seguem as chuvas de outono e de inverno.",
+        "picking": "Corte-os ou torça-os pela base. Deixe os pequenos e apanhe só o que vai comer. Na Alemanha o cantarelo é uma espécie especialmente protegida. Lá só pode apanhar pequenas quantidades, para consumo próprio. Outros países, regiões e terrenos públicos dos EUA têm limites ou licenças próprios, por isso consulte as regras locais.",
+        "kitchen": "Primeiro, identifique cada cogumelo com certeza. Cozinhe-os todos bem e nunca os coma crus. O cantarelo, o liso e o do Pacífico são frutados e firmes. Ficam melhor salteados devagar em manteiga. As trombetas sabem a fumado e o cantarelo de inverno sabe a terra. Ambos ficam bem em molhos, em risoto e com ovos. Abra as trombetas e os cantarelos de inverno ao comprido para lhes tirar a terra com água.",
+        "keeps": "Frescos, aguentam uns dias no frigorífico, em papel e não em plástico. As trombetas e os cantarelos de inverno secam muito bem. O cantarelo fica rijo depois de seco. É melhor salteá-lo e congelá-lo.",
+        "source": "Identificação e habitat: First Nature (Reino Unido), MushroomExpert.com e MykoWeb (California Fungi). Cortinarius rubellus: Instituto Norueguês de Saúde Pública. Proteção: regulamento federal alemão de proteção das espécies. Época: registos do GBIF."
+      }
     },
     "bay_bolete": {
       "name": "Boleto Baio",
-      "description": "Um boleto de chapéu castanho, viscoso com a humidade, com poros de creme a amarelo-oliva que azulam ao toque e pé estriado sem retículo",
-      "howTo": "Procure no musgo sob pinheiros e espruces, e também faias e carvalhos, em solos ácidos e arenosos de agosto até às primeiras geadas; é mais abundante em outubro, quando os porcini diminuem. Acumula mais césio de Chernobil do que a maioria dos cogumelos: na Baviera e na Áustria coma-o só de vez em quando"
+      "description": "Um boleto de chapéu cor de castanha, que fica pegajoso quando está molhado. Os poros mancham de azul-esverdeado ao toque e o pé, com estrias, não tem rede.",
+      "howTo": "Procure no musgo sob pinheiros e espruces, e também faias e carvalhos, em solos ácidos e arenosos de agosto até às primeiras geadas; é mais abundante em outubro, quando os porcini diminuem. Acumula mais césio de Chernobil do que a maioria dos cogumelos: na Baviera e na Áustria coma-o só de vez em quando",
+      "guide": {
+        "identify": "É um boleto sem a rede no pé que têm os boletos do tipo porcini. O chapéu é castanho, cor de castanha. Seco, parece camurça ao toque. Com a chuva fica viscoso. Os poros são cor de creme a amarelo-pálido e depois verde-oliva. Mancham de azul-esverdeado ao toque. A carne é branca a amarelo-pálida e pode azular um pouco quando a corta. O pé é mais fino, com estrias castanhas sobre um fundo mais claro. Poros vermelhos ou cor de laranja excluem-no (Rubroboletus satanas, Neoboletus subvelutipes). Poros rosados com rede no pé também o excluem (Tylopilus felleus). No leste da América do Norte há mais dois que deve conhecer. O Boletus sensibilis fica logo todo azul-escuro e tem o pé amarelo. O Boletus huronensis é compacto e tem a forma de um porcini, com o pé amarelado.",
+        "habitat": "Cresce com pinheiros e píceas e também com faias, carvalhos e castanheiros. Gosta de solo ácido e arenoso e aparece muitas vezes no musgo, junto a cepos velhos. É comum nas terras baixas do norte e do centro da Europa. Na América do Norte cresce no nordeste, à volta dos Grandes Lagos e nos Apalaches, debaixo de pinheiros e tsugas.",
+        "season": "Na Europa sai de agosto até às primeiras geadas fortes. O ponto alto é em outubro, depois dos porcini. No sul vai até dezembro. No nordeste da América do Norte aparece mais cedo, sobretudo de julho a setembro.",
+        "picking": "Torça-o ou corte-o para o tirar. Deixe os novos e os velhos. Consulte as regras locais, porque nas reservas naturais a apanha é muitas vezes proibida.",
+        "kitchen": "Primeiro, confirme bem a identificação. Limpe o chapéu com um pano e tire-lhe a pele se estiver viscoso. Retire os tubos moles dos exemplares velhos e cozinhe-o bem. O azul desaparece ao cozinhar e o sabor é suave. Acumula mais césio radioativo do que a maioria dos cogumelos. Em partes da Baviera e da Áustria, coma-o só de vez em quando.",
+        "keeps": "Seca bem em fatias finas. Depois de cozinhado, também congela bem.",
+        "source": "Identificação e habitat: First Nature e MushroomExpert. Época: registos do GBIF. Césio: Serviço Federal alemão de Proteção contra Radiações (BfS) e LGL da Baviera."
+      }
     }
   },
   "place": {
@@ -386,5 +917,19 @@
     "testedLabel": "Testado · temporada {{year}}",
     "tested": "No mesmo ponto, a previsão avaliou melhor os dias da sua temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
     "howWeCheck": "Como verificamos"
+  },
+  "guide": {
+    "identify": "Como reconhecer",
+    "habitat": "Onde cresce",
+    "season": "Quando",
+    "picking": "Apanha",
+    "kitchen": "Preparação",
+    "keeps": "Conservação",
+    "source": "Fontes"
+  },
+  "page": {
+    "title": "{{name}} ({{latin}}): época, habitat e espécies parecidas",
+    "description": "Como reconhecer {{name}} ({{latin}}): habitat, época, espécies parecidas e dicas de cozinha.",
+    "allSpecies": "Todas as espécies"
   }
 }

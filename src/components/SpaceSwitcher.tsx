@@ -1,0 +1,126 @@
+import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { LogoMark, SpaceMark } from '@/components/Logo';
+import { Check, ChevronDown } from '@/lib/icons';
+import {
+  currentSpace,
+  pathForSpace,
+  visibleSpaces,
+  type Space,
+} from '@/lib/spaces';
+import { cn } from '@/lib/utils';
+
+/**
+ * Moves between the spaces of Funges: the current space's name on a pill of
+ * its own colour, and a menu of every space as a tile of its colour, with the
+ * Funges mark in that colour and what it holds. Switching opens the page last
+ * seen in that space. Draws nothing while only one space is shown (the live
+ * site, until Huerta launches).
+ */
+/** Spaces still in early release: a pill beside their name. */
+const EARLY = new Set<Space>(['huerta']);
+/** The pill. A long word pair ("Acceso anticipado") wraps inside it rather
+ *  than pushing the chevron out of the sidebar's button or the tile. */
+const PILL =
+  'min-w-0 whitespace-normal rounded-full bg-band-foreground/15 px-1.5 py-0.5 text-center font-sans text-xs leading-tight font-medium';
+
+export const SpaceSwitcher = ({ className }: { className?: string }) =>
+  visibleSpaces().length > 1 ? <SpaceMenu className={className} /> : null;
+
+/** The same menu on phones: the bottom bar's first slot, a grey squirrel like
+ *  the bar's other icons; the colour is in the tiles it opens. */
+export const SpaceNavButton = ({ className }: { className?: string }) =>
+  visibleSpaces().length > 1 ? <SpaceMenu nav className={className} /> : null;
+
+function SpaceMenu({
+  nav = false,
+  className,
+}: {
+  nav?: boolean;
+  className?: string;
+}) {
+  const { t } = useTranslation('sidebar');
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const current = currentSpace(pathname);
+  const name = (space: Space) => t(`spaces.${space}.name`);
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        {nav ? (
+          <button
+            type='button'
+            className={className}
+            aria-label={t('spaces.switch', { space: name(current) })}
+          >
+            <LogoMark className='size-6 bg-current' />
+          </button>
+        ) : (
+          <Button
+            variant='ghost'
+            data-space={current}
+            className={cn(
+              // Padding through has-[>svg]: the size's has-[>svg]:px-4 beats plain pl/pr.
+              'justify-start gap-1.5 rounded-full bg-band has-[>svg]:pl-3.5 has-[>svg]:pr-3 font-display text-lg font-semibold text-band-foreground hover:bg-band hover:text-band-foreground hover:brightness-110 dark:bg-band dark:hover:bg-band dark:hover:text-band-foreground',
+              className
+            )}
+            aria-label={t('spaces.switch', { space: name(current) })}
+          >
+            <span className='flex-1 text-left'>{name(current)}</span>
+            {EARLY.has(current) ? (
+              <span className={PILL}>{t('spaces.early')}</span>
+            ) : null}
+            <ChevronDown className='size-4' />
+          </Button>
+        )}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align='start'
+        side={nav ? 'top' : 'bottom'}
+        className='flex w-72 flex-col gap-1.5 p-1.5'
+      >
+        <DropdownMenuRadioGroup
+          value={current}
+          onValueChange={space =>
+            navigate({ to: pathForSpace(space as Space) })
+          }
+          className='flex flex-col gap-1.5'
+        >
+          {visibleSpaces().map(space => (
+            <DropdownMenuPrimitive.RadioItem
+              key={space}
+              value={space}
+              data-space={space}
+              className='flex min-h-16 cursor-default select-none items-center gap-3 rounded-xl bg-band p-3 text-band-foreground outline-hidden transition-[filter] duration-base data-[highlighted]:brightness-115 data-[highlighted]:ring-2 data-[highlighted]:ring-band-foreground/60 data-[highlighted]:ring-inset'
+            >
+              <SpaceMark space={space} />
+              <span className='flex min-w-0 flex-1 flex-col'>
+                <span className='flex items-center gap-2 font-display text-base font-semibold'>
+                  {name(space)}
+                  {EARLY.has(space) ? (
+                    <span className={PILL}>{t('spaces.early')}</span>
+                  ) : null}
+                </span>
+                <span className='text-xs text-band-foreground/80'>
+                  {t(`spaces.${space}.tagline`)}
+                </span>
+              </span>
+              <DropdownMenuPrimitive.ItemIndicator className='flex size-6 shrink-0 items-center justify-center rounded-full bg-band-foreground text-band'>
+                <Check className='size-4' />
+              </DropdownMenuPrimitive.ItemIndicator>
+            </DropdownMenuPrimitive.RadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

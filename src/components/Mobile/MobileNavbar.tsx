@@ -1,5 +1,7 @@
 import { Link, useLocation } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import {
+  LayoutGrid,
   Map,
   CalendarRange,
   ChefHat,
@@ -7,10 +9,13 @@ import {
   Settings as SettingsIcon,
   ScanSearch,
 } from '@/lib/icons';
+import { currentSpace, visibleSpaces } from '@/lib/spaces';
+import { SpaceNavButton } from '@/components/SpaceSwitcher';
 import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
 import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
+import { huertaPage } from '@/lib/seo-pages';
 import { cn } from '@/lib/utils';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 
@@ -41,6 +46,21 @@ const items = [
   { url: `${basePath}species`, icon: Database },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
+// Huerta's own pages; the hub (Settings) is shared and holds the switcher.
+// In the app language's words (German pages under /de).
+const huertaItems = (language: string): typeof items => [
+  { url: basePath + huertaPage('map', language).slice(1), icon: Map },
+  {
+    url: basePath + huertaPage('planner', language).slice(1),
+    icon: LayoutGrid,
+  },
+  { url: basePath + huertaPage('crops', language).slice(1), icon: Database },
+  {
+    url: basePath + huertaPage('calendar', language).slice(1),
+    icon: CalendarRange,
+  },
+  { url: `${basePath}settings`, icon: SettingsIcon },
+];
 interface MobileNavbarProps {
   hidden: boolean;
 }
@@ -49,6 +69,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
   const isMobile = useIsMobile();
   const isAppleMobile = useIsAppleMobile();
   const location = useLocation();
+  const { i18n } = useTranslation();
 
   if (!isMobile) return null;
 
@@ -74,7 +95,22 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
       )}
     >
       <ul className='flex justify-around items-center py-3 px-3'>
-        {items.map(item => {
+        {/* First slot: the space switch, a grey squirrel that opens the colour
+            tiles (only while there is more than one space). */}
+        {visibleSpaces().length > 1 && (
+          <li className='flex-1'>
+            <SpaceNavButton
+              className={cn(
+                'flex w-full items-center justify-center rounded-xl px-1 py-2 transition-all duration-base',
+                INACTIVE_ACCENT_CLASS
+              )}
+            />
+          </li>
+        )}
+        {(currentSpace(location.pathname) === 'huerta'
+          ? huertaItems(i18n.language)
+          : items
+        ).map(item => {
           const isActive =
             item.url === `${basePath}settings`
               ? location.pathname.startsWith(`${basePath}settings`) ||
@@ -82,6 +118,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
                   location.pathname === `${basePath}offline`) ||
                 location.pathname === `${basePath}data` ||
                 location.pathname === `${basePath}instructions` ||
+                location.pathname === `${basePath}huerta/instructions` ||
                 location.pathname === `${basePath}support` ||
                 location.pathname === `${basePath}impressum` ||
                 location.pathname === `${basePath}privacy-policy` ||

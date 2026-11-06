@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Rocky Mountain King",
-      "description": "A stout high-mountain porcino with a brick-red to red-brown cap, white pores and a thick pale stem netted at the top",
-      "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September"
+      "description": "A stout porcino of the high mountains. It has a brick-red to red-brown cap, white pores and a thick pale stem with a net at the top.",
+      "howTo": "Look under spruce and fir high in the southern Rockies once the summer monsoon rains arrive, from July to September",
+      "guide": {
+        "identify": "This is a big, stout porcino of the high Rockies. The cap is brick-red to reddish-brown and tacky when fresh. Young caps often have a whitish bloom. It is redder than the porcini (Boletus edulis) that also grow there. The pores are white and stuffed when young, then turn yellow and olive. They do not bruise. The thick, pale stem has a fine white net, at least near the top. The white flesh does not turn blue. Aspen boletes (Leccinum) have dark scales on the stem. Orange-capped ones have caused severe stomach poisonings in Colorado. Red or orange pores mean a toxic bolete.",
+        "habitat": "It grows mainly with Engelmann spruce and also with fir and Douglas fir. You find it from about 2,400 m up to the tree line. It grows in Colorado, New Mexico and the mountains of Arizona.",
+        "season": "It fruits from July to September, sometimes into October. It starts with the monsoon storms and moves upslope through the season. In dry summers it barely fruits.",
+        "picking": "Twist it out gently, since much of the stem is underground. Leave very maggoty ones. Each national forest sets its own rules. Some ask for a free permit and set daily limits.",
+        "kitchen": "Be certain of the identification first. On mature caps, remove the yellow, soft pores. They can taste bitter and turn slimy. Then cook it through like porcini, or dry it.",
+        "keeps": "Dry it in thin slices, or sauté it and freeze it.",
+        "source": "Identification and habitat: Arora and Frank (2014), MushroomExpert and Forage Colorado. Season: GBIF records. Rules: US Forest Service."
+      }
     },
     "it": {
       "name": "Porcino delle Rocciose",
-      "description": "Un porcino tozzo d'alta montagna, con cappello rosso mattone o bruno-rossastro, pori bianchi e gambo chiaro e grosso reticolato in alto",
-      "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre"
+      "description": "Un porcino tozzo d'alta montagna. Ha il cappello da rosso mattone a bruno rossastro, i pori bianchi e un gambo grosso e chiaro, con il reticolo in alto.",
+      "howTo": "Cercalo sotto abeti rossi e abeti bianchi in alta quota nelle Montagne Rocciose meridionali, quando arrivano le piogge monsoniche estive, da luglio a settembre",
+      "guide": {
+        "identify": "È un porcino grande e tozzo delle alte Montagne Rocciose. Il cappello va dal rosso mattone al bruno-rossastro e da fresco è appiccicoso. Da giovane ha spesso una pruina biancastra. È più rosso dei porcini (Boletus edulis) che crescono anche lì. I pori da giovani sono bianchi e chiusi, poi diventano gialli e verde oliva. Al tocco non cambiano colore. Il gambo è grosso e chiaro, con un fine reticolo bianco almeno nella parte alta. La carne è bianca e non vira al blu. I porcinelli dei pioppi tremuli (Leccinum) hanno squamette scure sul gambo. In Colorado quelli con il cappello arancione hanno causato gravi intossicazioni gastrointestinali. Pori rossi o arancioni indicano un boleto tossico.",
+        "habitat": "Cresce soprattutto con l'abete rosso di Engelmann. Lo trovi anche con abeti e abeti di Douglas. Lo trovi da circa 2.400 m fino al limite degli alberi. Cresce in Colorado, nel New Mexico e sulle montagne dell'Arizona.",
+        "season": "Esce da luglio a settembre, a volte fino a ottobre. Comincia con i temporali del monsone e con il passare della stagione sale di quota. Nelle estati secche esce pochissimo.",
+        "picking": "Staccalo ruotandolo con delicatezza, perché buona parte del gambo è sottoterra. Lascia quelli molto bacati. Ogni foresta nazionale ha le sue regole. Alcune chiedono un permesso gratuito e fissano limiti giornalieri.",
+        "kitchen": "Prima riconoscilo con certezza. Sui cappelli maturi togli i pori gialli e molli. Possono essere amari e diventare viscidi. Poi cuocilo bene come il porcino, oppure seccalo.",
+        "keeps": "Seccalo a fette sottili, oppure saltalo in padella e congelalo.",
+        "source": "Identificazione e habitat: Arora e Frank (2014), MushroomExpert e Forage Colorado. Stagione: dati GBIF. Regole: US Forest Service."
+      }
     },
     "fr": {
       "name": "Cèpe des Rocheuses",
-      "description": "Un cèpe trapu de haute montagne, au chapeau rouge brique à brun-rouge, aux pores blancs et au gros pied clair réticulé au sommet",
-      "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre"
+      "description": "Un cèpe trapu de haute montagne. Il a un chapeau rouge brique à brun-rouge, des pores blancs et un gros pied clair avec un réseau dans le haut.",
+      "howTo": "Cherchez-le sous les épicéas et les sapins en altitude dans les Rocheuses du Sud, dès l'arrivée des pluies de mousson estivales, de juillet à septembre",
+      "guide": {
+        "identify": "C'est un grand cèpe trapu des hautes Rocheuses. Le chapeau est rouge brique à brun rouge. Il est collant quand il est frais. Les jeunes chapeaux portent souvent une pruine blanchâtre. Il est plus rouge que le cèpe de Bordeaux (Boletus edulis), qui pousse aussi dans la région. Les pores sont blancs et comme bouchés chez le jeune, puis deviennent jaunes et olive. Ils ne changent pas de couleur au toucher. Le pied, épais et clair, porte un fin réseau blanc, au moins dans le haut. La chair blanche ne bleuit pas. Les bolets rudes (Leccinum) ont des mèches sombres sur le pied. Ceux à chapeau orange ont causé de graves intoxications digestives au Colorado. Des pores rouges ou orange signalent un bolet toxique.",
+        "habitat": "Il pousse surtout avec l'épicéa d'Engelmann. On le trouve aussi sous le sapin et le douglas. Il vit d'environ 2400 m jusqu'à la limite des arbres. Il pousse au Colorado, au Nouveau-Mexique et dans les montagnes de l'Arizona.",
+        "season": "Il sort de juillet à septembre, parfois jusqu'en octobre. Il démarre avec les orages de la mousson et monte en altitude au fil de la saison. Les étés secs, il ne pousse presque pas.",
+        "picking": "Dégagez-le doucement en le tournant, car une bonne partie du pied est sous terre. Laissez les très véreux. Chaque forêt nationale fixe ses propres règles. Certaines demandent un permis gratuit et fixent des limites par jour.",
+        "kitchen": "Assurez-vous d'abord de l'identification. Sur les chapeaux âgés, retirez les pores jaunes et mous. Ils peuvent être amers et devenir visqueux. Ensuite, faites-le bien cuire comme les autres cèpes ou faites-le sécher.",
+        "keeps": "Faites-le sécher en tranches fines. Vous pouvez aussi le faire sauter et le congeler.",
+        "source": "Identification et habitat : Arora et Frank (2014), MushroomExpert et Forage Colorado. Saison : données GBIF. Règles : US Forest Service."
+      }
     },
     "de": {
       "name": "Rocky-Mountains-Steinpilz",
-      "description": "Ein gedrungener Hochgebirgs-Steinpilz mit ziegelrotem bis rotbraunem Hut, weissen Poren und dickem hellem Stiel, oben genetzt",
-      "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September"
+      "description": "Ein kräftiger Steinpilz aus dem Hochgebirge. Er hat einen ziegelroten bis rotbraunen Hut, weisse Poren und einen dicken, hellen Stiel, der oben genetzt ist.",
+      "howTo": "Suche unter Fichten und Tannen in den Hochlagen der südlichen Rocky Mountains, sobald der Sommermonsun Regen bringt, von Juli bis September",
+      "guide": {
+        "identify": "Das ist ein grosser, gedrungener Steinpilz der hohen Rocky Mountains. Sein Hut ist ziegelrot bis rotbraun und frisch etwas klebrig. Junge Hüte sind oft weisslich bereift. Er ist röter als der Steinpilz (Boletus edulis), der dort ebenfalls wächst. Die Poren sind jung weiss und wie ausgestopft, dann werden sie gelb und oliv. Auf Druck verfärben sie sich nicht. Der dicke, helle Stiel trägt ein feines weisses Netz, zumindest im oberen Teil. Das weisse Fleisch läuft nicht blau an. Espen-Rotkappen (Leccinum) haben dunkle Schüppchen am Stiel. Rotkappen mit orangem Hut haben in Colorado schwere Magen-Darm-Vergiftungen ausgelöst. Rote oder orange Poren zeigen einen giftigen Röhrling.",
+        "habitat": "Er wächst vor allem bei Engelmann-Fichte, auch bei Tanne und Douglasie. Du findest ihn ab etwa 2400 m bis zur Waldgrenze. Er wächst in Colorado, New Mexico und in den Bergen Arizonas.",
+        "season": "Er fruchtet von Juli bis September, manchmal bis in den Oktober. Los geht es mit den Monsungewittern, und im Lauf der Saison steigt er höher hinauf. In trockenen Sommern fruchtet er kaum.",
+        "picking": "Dreh ihn vorsichtig heraus, denn ein grosser Teil des Stiels steckt im Boden. Lass stark madige stehen. Jeder National Forest hat eigene Regeln. Manche verlangen eine kostenlose Genehmigung und setzen Tagesgrenzen.",
+        "kitchen": "Bestimme ihn zuerst sicher. Entferne bei älteren Hüten die gelben, weichen Poren. Sie können bitter schmecken und schleimig werden. Dann gare ihn gut durch wie einen Steinpilz, oder trockne ihn.",
+        "keeps": "Trockne ihn in dünnen Scheiben, oder brate ihn an und friere ihn ein.",
+        "source": "Bestimmung und Standort: Arora und Frank (2014), MushroomExpert und Forage Colorado. Saison: GBIF-Funddaten. Regeln: US Forest Service."
+      }
     },
     "es": {
       "name": "Boleto Rey de las Rocosas",
-      "description": "Un boleto robusto de alta montaña, de sombrero rojo ladrillo a pardo rojizo, poros blancos y pie grueso y claro reticulado en lo alto",
-      "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre"
+      "description": "Un boleto robusto de alta montaña. Tiene el sombrero de rojo ladrillo a pardo rojizo, los poros blancos y un pie grueso y claro con red en la parte de arriba.",
+      "howTo": "Búscalo bajo píceas y abetos en lo alto de las Montañas Rocosas del sur, cuando llegan las lluvias del monzón de verano, de julio a septiembre",
+      "guide": {
+        "identify": "Es un boleto grande y robusto de lo alto de las Montañas Rocosas. El sombrero va de rojo ladrillo a pardo rojizo y está pegajoso cuando es fresco. Los jóvenes suelen tener una pruina blanquecina. Es más rojo que el boleto comestible (Boletus edulis), que también crece allí. Los poros son blancos y como taponados de joven, y luego se vuelven amarillos y verde oliva. No cambian de color al tocarlos. El pie es grueso y claro, con un fino retículo blanco, al menos en la parte de arriba. La carne es blanca y no azulea. Los boletos de los álamos temblones (Leccinum) tienen escamas oscuras en el pie. Los de sombrero naranja han causado intoxicaciones digestivas graves en Colorado. Los poros rojos o naranjas indican un boleto tóxico.",
+        "habitat": "Crece sobre todo con la pícea de Engelmann. También sale con abetos y abetos de Douglas. Lo encuentras desde unos 2400 m hasta el límite del bosque. Crece en Colorado, Nuevo México y las montañas de Arizona.",
+        "season": "Sale de julio a septiembre, a veces hasta octubre. Empieza con las tormentas del monzón y va subiendo de altitud a lo largo de la temporada. En los veranos secos apenas sale.",
+        "picking": "Sácalo girándolo con cuidado, porque buena parte del pie está bajo tierra. Deja los que tengan muchos gusanos. Cada bosque nacional fija sus propias normas. Algunos piden un permiso gratuito y fijan límites diarios.",
+        "kitchen": "Asegúrate primero de que lo has identificado sin ninguna duda. En los sombreros maduros, quita los poros amarillos y blandos. Pueden amargar y volverse babosos. Luego cocínalo bien, como el boleto comestible, o sécalo.",
+        "keeps": "Sécalo en láminas finas, o saltéalo y congélalo.",
+        "source": "Identificación y hábitat: Arora y Frank (2014), MushroomExpert y Forage Colorado. Temporada: registros de GBIF. Normas: Servicio Forestal de EE. UU."
+      }
     },
     "pt": {
       "name": "Boleto Rei das Rochosas",
-      "description": "Um cogumelo boleto robusto de alta montanha, de chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e pé grosso e claro reticulado no alto",
-      "howTo": "Procure sob píceas e abetos nas altitudes das Montanhas Rochosas do sul, quando chegam as chuvas de monção de verão, de julho a setembro"
+      "description": "Um porcini robusto da alta montanha. Tem o chapéu vermelho-tijolo a castanho-avermelhado, poros brancos e um pé grosso e claro, com rede na parte de cima.",
+      "howTo": "Procure sob píceas e abetos nas altitudes das Montanhas Rochosas do sul, quando chegam as chuvas de monção de verão, de julho a setembro",
+      "guide": {
+        "identify": "É um boleto grande e robusto das altas Montanhas Rochosas. O chapéu é vermelho-tijolo a castanho-avermelhado e pegajoso quando fresco. Os novos têm muitas vezes uma pruína esbranquiçada. É mais vermelho do que o boleto comestível (Boletus edulis), que também cresce lá. Os poros são brancos e fechados em novo e depois passam a amarelos e verde-azeitona. Não mudam de cor ao toque. O pé, grosso e claro, tem uma rede branca e fina, pelo menos em cima. A carne branca não azula. Os boletos dos choupos-tremedores (Leccinum) têm escamas escuras no pé. Os de chapéu cor de laranja já causaram intoxicações graves de estômago no Colorado. Poros vermelhos ou cor de laranja indicam um boleto tóxico.",
+        "habitat": "Cresce sobretudo com o espruce-de-engelmann e também com abetos e abetos-de-douglas. Encontra-se desde cerca de 2400 m até ao limite das árvores. Cresce no Colorado, no Novo México e nas montanhas do Arizona.",
+        "season": "Frutifica de julho a setembro, às vezes até outubro. Começa com as trovoadas da monção e vai subindo a encosta ao longo da época. Nos verões secos quase não aparece.",
+        "picking": "Rode-o com cuidado para o tirar, porque boa parte do pé está enterrada. Deixe os que tiverem muito bicho. Cada floresta nacional tem as suas regras. Algumas pedem uma licença gratuita e fixam limites diários.",
+        "kitchen": "Primeiro tenha a certeza da identificação. Nos chapéus maduros, tire os poros amarelos e moles. Podem saber a amargo e ficar viscosos. Depois cozinhe-o bem como o boleto comestível. Também o pode secar.",
+        "keeps": "Seque-o em fatias finas. Também o pode saltear e congelar.",
+        "source": "Identificação e habitat: Arora e Frank (2014), MushroomExpert e Forage Colorado. Época: registos do GBIF. Regras: Serviço Florestal dos EUA."
+      }
     }
   },
   "identification": {
@@ -161,6 +215,8 @@
       "taxonKeys": [7769448],
       "references": ["https://www.gbif.org/species/7769448"]
     },
-    "rangePrior": { "taxonKeys": [7769448] }
+    "rangePrior": {
+      "taxonKeys": [7769448]
+    }
   }
 }

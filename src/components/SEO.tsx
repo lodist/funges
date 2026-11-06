@@ -1,5 +1,6 @@
 import i18n from '@/i18n';
 import { canonicalHref } from '@/lib/canonical';
+import { pageTitle } from '@/lib/seo-pages';
 import { useMemo } from 'react';
 
 interface OpenGraphMeta {
@@ -27,6 +28,10 @@ interface SEOProps {
   canonicalUrl?: string;
   openGraph?: Partial<OpenGraphMeta>;
   twitter?: Partial<TwitterMeta>;
+  /** The title already names Funges: no " · Funges" after it. */
+  bare?: boolean;
+  /** The page in each indexed language (hreflang), for pages Google indexes. */
+  alternates?: { hreflang: string; href: string }[];
 }
 
 export default function SEO({
@@ -36,8 +41,10 @@ export default function SEO({
   canonicalUrl,
   openGraph,
   twitter,
+  bare = false,
+  alternates,
 }: SEOProps) {
-  const fullTitle = `${title} - Fung.es`;
+  const fullTitle = pageTitle(title, { bare });
 
   const keywordsContent = Array.isArray(keywords)
     ? keywords.join(', ')
@@ -54,7 +61,7 @@ export default function SEO({
 
   const og: OpenGraphMeta = {
     type: 'website',
-    siteName: 'Fung.es',
+    siteName: 'Funges',
     locale: defaultLocale,
     image: '/icons/logo_1.png',
     url: canonical,
@@ -77,6 +84,14 @@ export default function SEO({
       {description && <meta name='description' content={description} />}
       {keywordsContent && <meta name='keywords' content={keywordsContent} />}
       {canonical && <link rel='canonical' href={canonical} />}
+      {alternates?.map(a => (
+        <link
+          key={a.hreflang}
+          rel='alternate'
+          hrefLang={a.hreflang}
+          href={a.href}
+        />
+      ))}
 
       {og.type && <meta property='og:type' content={og.type} />}
       {og.title && <meta property='og:title' content={og.title} />}

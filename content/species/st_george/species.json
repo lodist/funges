@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "St. George's Mushroom",
-      "description": "A white, firm mushroom with a mealy scent, appearing around St. George's Day in spring.",
-      "howTo": "Found in grassy areas, meadows, and along woodland edges in spring."
+      "description": "A firm white mushroom that smells of fresh flour. It appears in spring, around St George's Day.",
+      "howTo": "Found in grassy areas, meadows and along woodland edges in spring.",
+      "guide": {
+        "identify": "St George's mushroom is stout and fleshy, white to cream. The cap is 5 to 15 cm across, often lumpy, with an inrolled edge. The gills are white, narrow and very crowded. The thick, solid stem has no ring and no sac at the base. The firm white flesh does not change colour. It smells strongly of fresh meal. The spore print is white. The deadly Inosperma erubescens has a pointed, streaky cap. It reddens where handled and gives a brown spore print. Entoloma sinuatum can smell mealy too. But its gills turn pink and its spore print is pink. White Amanitas such as the deadly Amanita verna are also out in spring. They have a ring and a sac at the base.",
+        "habitat": "It grows in grass, in pastures, mown verges, parks and woodland edges. You often find it by hawthorn, blackthorn and other hedgerow shrubs, mostly on lime-rich ground. It comes back to the same spots for years, often in rings. It grows across Europe and is much sought after in northern Spain and central Italy.",
+        "season": "It comes in spring, mainly in April and May. In the north and in the mountains it lasts into June. It is named after St George's Day, 23 April. A mild, wet spring brings it on.",
+        "picking": "Cut the stem at the base and leave the small ones. Take young, firm caps, as older ones are often full of maggots. Avoid busy verges. Check the local rules too, because some regions require a permit or set a daily limit.",
+        "kitchen": "Once you're sure of it, eat it cooked. Cooking takes away most of the mealy smell. The firm, mild flesh suits omelettes, scrambled eggs, risotto and cream sauces. Cut each one lengthways first to check for maggots.",
+        "keeps": "It keeps up to two days in the fridge, wrapped in paper. It freezes well after a quick sauté.",
+        "source": "Identification and habitat: First Nature. Look-alikes: First Nature and ANSES. Season: GBIF records."
+      }
     },
     "it": {
       "name": "Prugnolo (Fungo di San Giorgio)",
-      "description": "Fungo bianco e sodo con odore di farina, compare intorno alla festa di San Giorgio in primavera.",
-      "howTo": "Si trova in prati, pascoli e ai margini dei boschi in primavera."
+      "description": "Un fungo bianco e sodo che profuma di farina fresca. Spunta in primavera, intorno al giorno di San Giorgio.",
+      "howTo": "Si trova in prati, pascoli e ai margini dei boschi in primavera.",
+      "guide": {
+        "identify": "Il prugnolo, o fungo di San Giorgio, è tozzo e carnoso, da bianco a crema. Il cappello è largo da 5 a 15 cm, spesso bitorzoluto, con il margine arrotolato verso l'interno. Le lamelle sono bianche, strette e fittissime. Il gambo è grosso e pieno, senza anello e senza volva alla base. La carne è soda e bianca e non cambia colore. Ha un forte odore di farina fresca. La sporata è bianca. L'Inosperma erubescens, l'inocibe di Patouillard, è mortale e ha il cappello conico e fibroso. Dove lo tocchi diventa rosso e dà una sporata bruna. Anche l'entoloma livido (Entoloma sinuatum) può sapere di farina. Però le sue lamelle diventano rosa e anche la sporata è rosa. In primavera escono anche amanite bianche come la mortale Amanita verna. Hanno l'anello e la volva alla base.",
+        "habitat": "Cresce nell'erba, nei pascoli, sui bordi delle strade falciati, nei parchi e ai margini dei boschi. Lo trovi spesso vicino a biancospini, pruni selvatici e altri arbusti delle siepi, soprattutto su terreno calcareo. Torna negli stessi posti per anni, spesso in cerchi. Cresce in tutta Europa ed è molto ricercato nel nord della Spagna e nell'Italia centrale.",
+        "season": "Esce in primavera, soprattutto ad aprile e maggio. Al nord e in montagna dura fino a giugno. Prende il nome dal giorno di San Giorgio, il 23 aprile. Una primavera mite e piovosa lo fa uscire.",
+        "picking": "Taglia il gambo alla base e lascia i piccoli. Prendi cappelli giovani e sodi, perché quelli vecchi sono spesso bacati. Evita i bordi delle strade trafficate. Informati anche sulle regole del posto, perché alcune regioni chiedono il tesserino o fissano un limite giornaliero.",
+        "kitchen": "Quando l'hai riconosciuto con certezza, mangialo cotto. La cottura toglie quasi tutto l'odore di farina. La carne soda e delicata è ottima nelle frittate, nelle uova strapazzate, nel risotto e nei sughi alla panna. Prima taglia ogni fungo per il lungo, per vedere se è bacato.",
+        "keeps": "In frigo dura fino a due giorni, avvolto nella carta. Dopo una passata veloce in padella si congela bene.",
+        "source": "Identificazione e habitat: First Nature. Specie simili: First Nature e ANSES. Stagione: segnalazioni GBIF."
+      }
     },
     "fr": {
       "name": "Tricholome de la Saint-Georges",
-      "description": "Champignon blanc et ferme à odeur de farine, apparaissant autour de la Saint-Georges au printemps.",
-      "howTo": "Se trouve dans les prairies, pâturages et lisières de forêt au printemps."
+      "description": "Un champignon blanc et ferme qui sent la farine fraîche. Il sort au printemps, vers la Saint-Georges.",
+      "howTo": "Se trouve dans les prairies, pâturages et lisières de forêt au printemps.",
+      "guide": {
+        "identify": "Le tricholome de la Saint-Georges, qu'on appelle aussi mousseron, est trapu et charnu, blanc à crème. Son chapeau mesure de 5 à 15 cm. Il est souvent bosselé, avec une marge enroulée. Les lames sont blanches, étroites et très serrées. Le pied est épais et plein, sans anneau ni volve à la base. La chair ferme et blanche ne change pas de couleur. Elle sent fortement la farine fraîche. La sporée est blanche. L'inocybe de Patouillard (Inosperma erubescens) est mortel. Il a un chapeau pointu et fibrilleux. Il rougit là où on le touche et donne une sporée brune. L'entolome livide (Entoloma sinuatum) peut aussi sentir la farine. Mais ses lames deviennent roses et sa sporée est rose. Les amanites blanches sortent elles aussi au printemps, comme l'amanite printanière (Amanita verna), mortelle. Elles ont un anneau et une volve à la base.",
+        "habitat": "Il pousse dans l'herbe, dans les pâtures, sur les bords de chemin fauchés, dans les parcs et en lisière de bois. On le trouve souvent près des aubépines, des prunelliers et d'autres arbustes de haie, surtout sur sol calcaire. Il revient aux mêmes endroits pendant des années, souvent en ronds de sorcières. Il pousse dans toute l'Europe. Il est très recherché dans le nord de l'Espagne et dans le centre de l'Italie.",
+        "season": "Il sort au printemps, surtout en avril et mai. Au nord et en montagne, il dure jusqu'en juin. Il doit son nom à la Saint-Georges, le 23 avril. Un printemps doux et humide le fait sortir.",
+        "picking": "Coupez le pied à la base et laissez les petits. Prenez des chapeaux jeunes et fermes, car les vieux sont souvent véreux. Évitez les bords de routes fréquentées. Renseignez-vous aussi sur les règles locales, car certaines régions exigent un permis ou fixent une quantité par jour.",
+        "kitchen": "Une fois identifié avec certitude, mangez-le cuit. La cuisson lui enlève presque toute son odeur de farine. Sa chair ferme et douce convient aux omelettes, aux œufs brouillés, aux risottos et aux sauces à la crème. Coupez d'abord chaque champignon en deux dans la longueur pour vérifier qu'il n'est pas véreux.",
+        "keeps": "Il se garde jusqu'à deux jours au réfrigérateur, enveloppé de papier. Rapidement poêlé, il se congèle bien.",
+        "source": "Identification et habitat : First Nature. Espèces proches : First Nature et ANSES. Saison : observations GBIF."
+      }
     },
     "de": {
       "name": "Georgsritterling",
-      "description": "Fester, weisser Pilz mit mehlartigem Geruch, erscheint um den Georgstag im Frühling.",
-      "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling."
+      "description": "Ein fester weisser Pilz, der nach frischem Mehl riecht. Er erscheint im Frühling, um den Georgstag.",
+      "howTo": "Findet man auf Wiesen, Weiden und an Waldrändern im Frühling.",
+      "guide": {
+        "identify": "Der Mairitterling ist kräftig und fleischig, weiss bis cremefarben. Der Hut wird 5 bis 15 cm breit, ist oft buckelig und hat einen eingerollten Rand. Die Lamellen sind weiss, schmal und stehen sehr dicht. Der dicke, volle Stiel hat keinen Ring und unten keine Scheide. Das feste weisse Fleisch verfärbt sich nicht. Es riecht stark nach frischem Mehl. Das Sporenpulver ist weiss. Der tödlich giftige Ziegelrote Risspilz (Inosperma erubescens) hat einen spitzen, faserig gestreiften Hut. Wo man ihn anfasst, rötet er sich, und sein Sporenpulver ist braun. Der Riesen-Rötling (Entoloma sinuatum) kann ebenfalls nach Mehl riechen. Seine Lamellen werden aber rosa, und sein Sporenpulver ist rosa. Auch weisse Knollenblätterpilze wie der tödliche Frühlings-Knollenblätterpilz (Amanita verna) erscheinen im Frühjahr. Sie haben einen Ring und unten eine Scheide.",
+        "habitat": "Er wächst im Gras, auf Weiden, an gemähten Wegrändern, in Parks und an Waldrändern. Oft findest du ihn bei Weissdorn, Schlehe und anderen Heckensträuchern, meist auf kalkreichem Boden. Jahrelang kommt er an dieselben Stellen zurück, oft in Hexenringen. Er wächst in ganz Europa und ist in Nordspanien und Mittelitalien sehr begehrt.",
+        "season": "Er kommt im Frühjahr, vor allem im April und Mai. Im Norden und im Gebirge gibt es ihn bis in den Juni. Er heisst auch Georgsritterling, nach dem Georgstag am 23. April. Ein milder, feuchter Frühling lässt ihn erscheinen.",
+        "picking": "Schneide den Stiel am Grund ab und lass die kleinen stehen. Nimm junge, feste Hüte, denn ältere sind oft voller Maden. Meide stark befahrene Wegränder. Prüf auch die Regeln vor Ort, denn manche Regionen verlangen eine Genehmigung oder begrenzen die Tagesmenge.",
+        "kitchen": "Wenn du dir sicher bist, iss ihn gegart. Beim Garen verliert sich der Mehlgeruch grösstenteils. Das feste, milde Fleisch passt zu Omeletts, Rührei, Risotto und Sahnesossen. Schneide vorher jeden Pilz der Länge nach durch, um nach Maden zu sehen.",
+        "keeps": "In Papier eingeschlagen hält er sich bis zu zwei Tage im Kühlschrank. Kurz angebraten lässt er sich gut einfrieren.",
+        "source": "Bestimmung und Standort: First Nature. Doppelgänger: First Nature und ANSES. Saison: GBIF-Funddaten."
+      }
     },
     "es": {
       "name": "Seta de San Jorge",
-      "description": "Hongo blanco y firme con olor a harina, que aparece alrededor de la festividad de San Jorge en primavera.",
-      "howTo": "Se encuentra en praderas, pastizales y bordes de bosques en primavera."
+      "description": "Una seta blanca y firme que huele a harina fresca. Sale en primavera, hacia el día de San Jorge.",
+      "howTo": "Se encuentra en praderas, pastizales y bordes de bosques en primavera.",
+      "guide": {
+        "identify": "La seta de San Jorge es robusta y carnosa, de blanca a crema. El sombrero mide de 5 a 15 cm, a menudo es abollado y tiene el borde enrollado hacia dentro. Las láminas son blancas, estrechas y muy apretadas. El pie es grueso y macizo, sin anillo y sin volva en la base. La carne es blanca y firme, y no cambia de color. Huele mucho a harina fresca. La esporada es blanca. La mortal Inosperma erubescens tiene el sombrero puntiagudo y con vetas. Enrojece donde la tocas y da una esporada parda. Entoloma sinuatum también puede oler a harina. Pero sus láminas se vuelven rosas y su esporada es rosa. Las amanitas blancas, como la mortal Amanita verna, también salen en primavera. Tienen anillo y volva en la base.",
+        "habitat": "Crece en la hierba, en pastos, cunetas segadas, parques y lindes de bosque. A menudo sale junto a espinos albares, endrinos y otros arbustos de seto, sobre todo en terreno calizo. Vuelve a los mismos sitios durante años, a menudo en corros. Crece en toda Europa y es muy buscada en el norte de España, donde la llaman perretxiko, y en el centro de Italia.",
+        "season": "Sale en primavera, sobre todo en abril y mayo. En el norte y en la montaña dura hasta junio. Debe su nombre al día de San Jorge, el 23 de abril. Una primavera suave y lluviosa la hace salir.",
+        "picking": "Corta el pie por la base y deja las pequeñas. Coge sombreros jóvenes y firmes, porque los viejos suelen estar llenos de gusanos. Evita las cunetas con mucho tráfico. Infórmate también de las normas del lugar, porque algunas regiones exigen permiso o fijan un cupo diario.",
+        "kitchen": "Cuando no tengas ninguna duda de que es ella, cómela cocinada. Al cocinarla pierde casi todo el olor a harina. Su carne, firme y suave, va bien en tortillas, revueltos, risotto y salsas con nata. Antes, córtala a lo largo para ver si tiene gusanos.",
+        "keeps": "Aguanta hasta dos días en la nevera, envuelta en papel. Si la salteas un momento, se congela bien.",
+        "source": "Identificación y hábitat: First Nature. Especies parecidas: First Nature y ANSES. Temporada: registros de GBIF."
+      }
     },
     "pt": {
       "name": "Cogumelo-de-São-Jorge",
-      "description": "Cogumelo branco e firme com cheiro de farinha, que surge por volta da festa de São Jorge na primavera.",
-      "howTo": "Encontra-se em prados, pastagens e nas bordas das florestas na primavera."
+      "description": "Um cogumelo branco e firme que cheira a farinha fresca. Aparece na primavera, por volta do dia de São Jorge.",
+      "howTo": "Encontra-se em prados, pastagens e nas bordas das florestas na primavera.",
+      "guide": {
+        "identify": "O cogumelo-de-São-Jorge é robusto e carnudo, branco a creme. O chapéu mede 5 a 15 cm, é muitas vezes irregular e tem a margem enrolada para dentro. As lâminas são brancas, estreitas e muito apertadas. O pé é grosso e maciço, sem anel e sem volva na base. A carne é firme e branca e não muda de cor. Tem um cheiro forte a farinha fresca. A esporada é branca. A Inosperma erubescens é mortal. Tem o chapéu em bico e com riscas, fica vermelha onde se mexe e dá esporada castanha. O Entoloma sinuatum também pode cheirar a farinha. Mas as lâminas ficam cor-de-rosa e a esporada é cor-de-rosa. Na primavera também aparecem amanitas brancas, como a mortal Amanita verna. Essas têm anel e volva na base.",
+        "habitat": "Cresce na erva, em pastagens, bermas ceifadas, parques e orlas de bosques. Aparece muitas vezes junto a pilriteiros, abrunheiros-bravos e outros arbustos de sebe, sobretudo em solo calcário. Volta aos mesmos sítios durante anos, muitas vezes em círculos. Existe em toda a Europa e é muito procurado no norte de Espanha e no centro de Itália.",
+        "season": "Aparece na primavera, sobretudo em abril e maio. No norte e na montanha dura até junho. Deve o nome ao dia de São Jorge, 23 de abril. Uma primavera amena e chuvosa fá-lo sair.",
+        "picking": "Corte o pé pela base e deixe os pequenos. Apanhe chapéus novos e firmes, porque os velhos têm muitas vezes larvas. Evite bermas de estradas movimentadas. Informe-se também sobre as regras locais, porque algumas regiões exigem licença ou fixam um limite diário.",
+        "kitchen": "Quando tiver a certeza, coma-o cozinhado. Ao cozinhar perde quase todo o cheiro a farinha. A carne, firme e suave, fica bem em omeletes, ovos mexidos, risotos e molhos de natas. Antes, corte cada um ao comprido para ver se tem larvas.",
+        "keeps": "Aguenta até dois dias no frigorífico, embrulhado em papel. Depois de salteado uns minutos, congela bem.",
+        "source": "Identificação e habitat: First Nature. Espécies parecidas: First Nature e ANSES. Época: registos do GBIF."
+      }
     }
   },
   "identification": {
@@ -144,6 +198,8 @@
       "taxonKeys": [8936224],
       "references": ["https://www.gbif.org/species/8936224"]
     },
-    "rangePrior": { "taxonKeys": [8936224] }
+    "rangePrior": {
+      "taxonKeys": [8936224]
+    }
   }
 }

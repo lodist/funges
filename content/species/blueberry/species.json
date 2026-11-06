@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Wild Blueberry",
-      "description": "Small sweet blue berries that grow on low shrubs in acidic soil",
-      "howTo": "Found in heaths, moors, and acidic forests in summer and early autumn"
+      "description": "Small, sweet blue berries on low shrubs in acid soil.",
+      "howTo": "Found in heaths, moors and acidic forests in summer and early autumn",
+      "guide": {
+        "identify": "Bilberry, also called whortleberry, is a low deciduous shrub, usually below knee height. Its stems are green and angled. The leaves are small and oval, with finely toothed edges. In spring, pinkish flowers shaped like lanterns hang one by one. Each gives one blue-black berry with a pale bloom. At the tip of the berry sits a small ring shaped like a crown. The flesh is purple-red right through. Cultivated blueberries have pale flesh. Its poisonous look-alikes are soft herbs, not woody dwarf shrubs. Deadly nightshade (Atropa bella-donna) is tall and its shiny black berries sit in a green star of five sepals. Herb Paris (Paris quadrifolia) carries one berry on top of a stem with a whorl of four leaves. Solomon's seal (Polygonatum) hangs blue-black berries beneath an arching, unbranched stem.",
+        "habitat": "It needs acid, nutrient-poor soil. Look in conifer, birch and oak woods and on heaths and moorland, from the lowlands to above the treeline. It is common across northern and central Europe and in the mountains of the south. You won't find it on lime. In North America it grows wild in the western mountains. In the east, the wild blueberries people pick are lowbush and highbush blueberries (Vaccinium angustifolium, Vaccinium corymbosum). These are close relatives with pale flesh.",
+        "season": "In the lowlands the berries ripen from July. In the mountains and the north the season runs through August into September. A late frost at flowering can cut the crop.",
+        "picking": "Pick by hand. Berry combs strip leaves and damage the plants. Some places ban them or set daily limits, such as the Vosges in France and Tuscany in Italy, so check the local rules. In central Europe, Bavaria's health authority (LGL) says eating wild berries has not been shown to be a risk factor for fox tapeworm. It still advises washing them well. Only heating above 60 °C kills its eggs and home freezing does not.",
+        "kitchen": "When you're sure of the plant, eat them raw or put them in tarts, pancakes, jam and compote. They are sweet and sharp. They also stain fingers, teeth and clothes. Rinse them briefly just before use and pick out leaves and green berries.",
+        "keeps": "Unwashed and spread out, they keep a few days in the fridge. Freeze them on a tray, then bag them. They also dry well.",
+        "source": "Identification and habitat: Woodland Trust; look-alikes: Yle (Finnish public broadcaster). Picking rules: Vosges prefecture and Region of Tuscany. Fox tapeworm: Bavarian State Office for Health and Food Safety (LGL)."
+      }
     },
     "it": {
       "name": "Mirtillo Selvatico",
-      "description": "Piccole bacche blu dolci che crescono su arbusti bassi in terreno acido",
-      "howTo": "Trovato in brughiere, lande e foreste acide in estate e inizio autunno"
+      "description": "Piccole bacche blu e dolci su arbusti bassi, in terreno acido.",
+      "howTo": "Trovato in brughiere, lande e foreste acide in estate e inizio autunno",
+      "guide": {
+        "identify": "Il mirtillo nero, o mirtillo selvatico, è un piccolo arbusto che d'inverno perde le foglie. Di solito resta sotto il ginocchio. I fusti sono verdi e spigolosi. Le foglie sono piccole e ovali, con il margine finemente dentato. In primavera pendono, uno per uno, fiori rosati a forma di lanterna. Ognuno dà una sola bacca blu-nera, coperta da una patina chiara. In cima alla bacca c'è un piccolo anello a forma di corona. La polpa è rosso-viola fino al centro. I mirtilli coltivati hanno la polpa chiara. I suoi sosia velenosi sono erbe morbide, non arbusti nani legnosi. La belladonna (Atropa bella-donna) è alta e le sue bacche nere e lucide stanno in una stella verde di cinque sepali. L'uva di volpe (Paris quadrifolia) ha una sola bacca in cima a un fusto con quattro foglie a croce. Il sigillo di Salomone (Polygonatum) ha bacche blu-nere che pendono sotto un fusto ad arco e senza rami.",
+        "habitat": "Vuole terreno acido e povero. Cercalo nei boschi di conifere, di betulle e di querce e nelle brughiere e nelle lande, dalla pianura fin sopra il limite del bosco. È comune nel nord e nel centro dell'Europa e sulle montagne del sud. Sul calcare non lo trovi. In Nord America cresce spontaneo sulle montagne dell'ovest. Nell'est i mirtilli selvatici che si raccolgono sono il mirtillo nano americano e il mirtillo gigante americano (Vaccinium angustifolium, Vaccinium corymbosum). Sono parenti stretti con la polpa chiara.",
+        "season": "In pianura le bacche maturano da luglio. In montagna e al nord la stagione va avanti per tutto agosto e fino a settembre. Una gelata tardiva durante la fioritura può ridurre il raccolto.",
+        "picking": "Raccogli a mano. I pettini strappano le foglie e rovinano le piante. Alcune zone vietano i pettini o mettono limiti giornalieri, per esempio i Vosgi in Francia e la Toscana. Informati sulle regole del posto. In Europa centrale l'autorità sanitaria bavarese (LGL) dice che mangiare bacche selvatiche non si è dimostrato un fattore di rischio per l'echinococco della volpe. Consiglia comunque di lavarle bene. Solo il calore sopra i 60 °C ne uccide le uova. Il congelatore di casa no.",
+        "kitchen": "Quando sei sicuro della pianta, mangiali crudi o mettili in crostate, frittelle, marmellate e composte. Sono dolci e aciduli. Macchiano anche dita, denti e vestiti. Sciacquali un attimo appena prima di usarli e togli foglie e bacche verdi.",
+        "keeps": "Non lavati e stesi, durano qualche giorno in frigo. Congelali su un vassoio e poi mettili in sacchetti. Si seccano anche bene.",
+        "source": "Identificazione e habitat: Woodland Trust; sosia velenosi: Yle (radiotelevisione pubblica finlandese). Regole di raccolta: Regione Toscana e Prefettura dei Vosgi. Echinococco: Ufficio statale bavarese per la salute e la sicurezza alimentare (LGL)."
+      }
     },
     "fr": {
       "name": "Myrtille sauvage",
-      "description": "Petites baies bleues sucrées poussant sur des arbustes bas en sol acide",
-      "howTo": "Se trouve dans les landes, tourbières et forêts acides en été et début d'automne"
+      "description": "De petites baies bleues et sucrées, sur des arbrisseaux bas en sol acide.",
+      "howTo": "Se trouve dans les landes, tourbières et forêts acides en été et début d'automne",
+      "guide": {
+        "identify": "Le myrtillier est un petit arbrisseau qui perd ses feuilles en hiver. Il dépasse rarement le genou. Ses tiges sont vertes et anguleuses. Les feuilles sont petites et ovales, au bord finement denté. Au printemps, des fleurs rosées en forme de grelot pendent une à une. Chacune donne une seule baie bleu-noir, couverte d'une pruine claire. Au bout de la baie, il y a une petite couronne. La chair est rouge violacé jusqu'au cœur. Les myrtilles cultivées ont la chair claire. Ses sosies toxiques sont des plantes herbacées, pas des arbrisseaux ligneux. La belladone (Atropa bella-donna) est haute, et ses baies noires et brillantes sont posées sur une étoile verte de cinq sépales. La parisette (Paris quadrifolia) porte une seule baie au sommet d'une tige à quatre feuilles en verticille. Le sceau-de-Salomon (Polygonatum) suspend des baies bleu-noir sous une tige arquée et non ramifiée.",
+        "habitat": "Il lui faut un sol acide et pauvre. Cherchez-le dans les forêts de conifères, de bouleaux et de chênes, dans les landes et les tourbières, de la plaine jusqu'au-dessus de la limite des arbres. Il est commun dans le nord et le centre de l'Europe et dans les montagnes du sud. Vous ne le trouverez pas sur le calcaire. En Amérique du Nord, il pousse à l'état sauvage dans les montagnes de l'Ouest. Dans l'Est, les myrtilles sauvages qu'on cueille viennent du myrtillier à feuilles étroites et du myrtillier en corymbe (Vaccinium angustifolium, Vaccinium corymbosum). Ce sont de proches parents à la chair claire.",
+        "season": "En plaine, les baies mûrissent dès juillet. En montagne et dans le nord, la saison continue en août et jusqu'en septembre. Une gelée tardive pendant la floraison peut réduire la récolte.",
+        "picking": "Cueillez à la main. Les peignes à myrtilles arrachent les feuilles et abîment les plants. Certains endroits les interdisent ou fixent des quantités par jour, comme les Vosges en France et la Toscane en Italie. Renseignez-vous donc sur les règles locales. En Europe centrale, l'office bavarois de la santé (LGL) indique que manger des baies sauvages n'est pas un facteur de risque démontré pour le ténia du renard. Il conseille tout de même de bien les laver. Seule une cuisson au-dessus de 60 °C tue ses œufs. Le congélateur de la maison ne les tue pas.",
+        "kitchen": "Quand vous êtes sûr de la plante, mangez-les crues ou en tarte, en crêpes, en confiture et en compote. Elles sont sucrées et acidulées. Elles tachent aussi les doigts, les dents et les vêtements. Rincez-les rapidement juste avant de les utiliser, et retirez les feuilles et les baies vertes.",
+        "keeps": "Non lavées et étalées, elles se gardent quelques jours au réfrigérateur. Congelez-les sur un plateau, puis mettez-les en sachet. Elles sèchent bien aussi.",
+        "source": "Identification et habitat : Woodland Trust ; sosies toxiques : Yle (radiotélévision publique finlandaise). Règles de cueillette : préfecture des Vosges et Région Toscane. Ténia du renard : Office bavarois de la santé et de la sécurité alimentaire (LGL)."
+      }
     },
     "de": {
       "name": "Waldheidelbeere",
-      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden",
-      "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst"
+      "description": "Kleine, süsse blaue Beeren an niedrigen Sträuchern auf saurem Boden.",
+      "howTo": "Zu finden in Heiden, Mooren und sauren Wäldern im Sommer und Frühherbst",
+      "guide": {
+        "identify": "Die Heidelbeere, auch Blaubeere genannt, ist ein niedriger Zwergstrauch, der im Winter die Blätter verliert. Meist bleibt sie unter Kniehöhe. Ihre Zweige sind grün und kantig. Die Blätter sind klein und oval, mit fein gesägtem Rand. Im Frühling hängen einzeln rötliche Blüten, die wie kleine Laternen aussehen. Aus jeder wird eine blauschwarze Beere mit hellem Reif. An der Spitze der Beere sitzt ein kleines Krönchen. Das Fruchtfleisch ist durch und durch violettrot. Kulturheidelbeeren haben helles Fruchtfleisch. Ihre giftigen Doppelgänger sind krautige Pflanzen, keine verholzten Zwergsträucher. Die Tollkirsche (Atropa bella-donna) ist hoch, und ihre glänzend schwarzen Beeren sitzen in einem grünen Stern aus fünf Kelchblättern. Die Einbeere (Paris quadrifolia) trägt eine einzige Beere oben auf einem Stängel mit einem Quirl aus vier Blättern. Bei der Weisswurz (Polygonatum) hängen blauschwarze Beeren unter einem bogigen, unverzweigten Stängel.",
+        "habitat": "Sie braucht sauren, nährstoffarmen Boden. Such in Nadel-, Birken- und Eichenwäldern, auf Heiden und in Mooren, vom Tiefland bis über die Baumgrenze. In Nord- und Mitteleuropa ist sie häufig, im Süden in den Bergen. Auf Kalk findest du sie nicht. In Nordamerika wächst sie wild in den Bergen des Westens. Im Osten pflückt man dort andere wilde Heidelbeeren (Vaccinium angustifolium, Vaccinium corymbosum). Das sind nahe Verwandte mit hellem Fruchtfleisch.",
+        "season": "Im Tiefland reifen die Beeren ab Juli. In den Bergen und im Norden geht die Saison durch den August bis in den September. Ein Spätfrost zur Blütezeit kann die Ernte schmälern.",
+        "picking": "Pflück mit der Hand. Beerenkämme reissen Blätter ab und schädigen die Pflanzen. Manche Gegenden verbieten sie oder legen Tageshöchstmengen fest, etwa die Vogesen in Frankreich und die Toskana in Italien. Prüf also die Regeln vor Ort. In Mitteleuropa sagt das Bayerische Landesamt für Gesundheit und Lebensmittelsicherheit (LGL), dass das Essen von Waldbeeren bisher nicht als Risikofaktor für den Fuchsbandwurm nachgewiesen ist. Es rät trotzdem, sie gründlich zu waschen. Nur Erhitzen über 60 °C tötet die Eier ab, Einfrieren im Haushalt nicht.",
+        "kitchen": "Bist du dir bei der Pflanze sicher, iss sie roh oder mach Kuchen, Pfannkuchen, Marmelade und Kompott daraus. Sie schmecken süss und säuerlich. Sie färben aber Finger, Zähne und Kleidung. Spül sie erst kurz vor dem Verwenden ab und lies Blätter und grüne Beeren aus.",
+        "keeps": "Ungewaschen und ausgebreitet halten sie sich ein paar Tage im Kühlschrank. Frier sie auf einem Blech ein und füll sie dann in Beutel. Sie lassen sich auch gut trocknen.",
+        "source": "Bestimmung und Standort: Woodland Trust; Doppelgänger: Yle (finnischer öffentlicher Rundfunk). Sammelregeln: Präfektur Vosges und Region Toskana. Fuchsbandwurm: Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
+      }
     },
     "es": {
       "name": "Arándano silvestre",
-      "description": "Pequeñas bayas azules dulces que crecen en arbustos bajos en suelos ácidos",
-      "howTo": "Se encuentra en brezales, turberas y bosques ácidos en verano y principios de otoño"
+      "description": "Bayas azules, pequeñas y dulces, en matas bajas de suelo ácido.",
+      "howTo": "Se encuentra en brezales, turberas y bosques ácidos en verano y principios de otoño",
+      "guide": {
+        "identify": "El arándano silvestre, o mirtilo, es una mata baja que pierde la hoja en invierno. Normalmente no pasa de la rodilla. Sus tallos son verdes y angulosos. Las hojas son pequeñas y ovaladas, con el borde finamente dentado. En primavera cuelgan flores sueltas, rosadas y en forma de farolillo. Cada una da una sola baya negro azulada, cubierta de un polvillo claro. En la punta de la baya hay una pequeña corona. La pulpa es rojo violeta de parte a parte. Los arándanos de cultivo tienen la pulpa clara. Sus parecidos venenosos son hierbas blandas, no matas leñosas enanas. La belladona (Atropa bella-donna) es alta. Sus bayas negras y brillantes se asientan en una estrella verde de cinco sépalos. La uva de raposa (Paris quadrifolia) lleva una sola baya en lo alto de un tallo con cuatro hojas que salen del mismo punto. El sello de Salomón (Polygonatum) cuelga bayas negro azuladas bajo un tallo arqueado y sin ramas.",
+        "habitat": "Necesita suelo ácido y pobre. Búscalo en bosques de coníferas, abedules y robles y en brezales y páramos, desde las tierras bajas hasta por encima del límite del bosque. Es común en el norte y el centro de Europa y en las montañas del sur. En suelo calizo no lo encontrarás. En Norteamérica crece silvestre en las montañas del oeste. En el este, los arándanos silvestres que coge la gente son el arándano bajo y el arándano alto (Vaccinium angustifolium, Vaccinium corymbosum). Son parientes cercanos de pulpa clara.",
+        "season": "En las tierras bajas los arándanos maduran desde julio. En la montaña y en el norte la temporada sigue en agosto y llega a septiembre. Una helada tardía durante la floración puede reducir la cosecha.",
+        "picking": "Cógelos a mano. Los peines arrancan hojas y dañan las plantas. En algunos sitios los peines están prohibidos o hay un límite diario, como en los Vosgos franceses y en la Toscana italiana. Consulta las normas locales. En Europa central, la autoridad sanitaria de Baviera (LGL) dice que no se ha demostrado que comer bayas silvestres sea un factor de riesgo para la tenia del zorro. Aun así, aconseja lavarlas bien. Solo calentarlas por encima de 60 °C mata sus huevos. Congelarlas en casa no los mata.",
+        "kitchen": "Cuando tengas clara la planta, cómelos crudos o ponlos en tartas, tortitas, mermelada y compota. Son dulces y ácidos. También manchan los dedos, los dientes y la ropa. Lávalos un momento justo antes de usarlos. Quita las hojas y las bayas verdes.",
+        "keeps": "Sin lavar y extendidos, aguantan unos días en la nevera. Congélalos en una bandeja y luego pásalos a una bolsa. También se secan bien.",
+        "source": "Identificación y hábitat: Woodland Trust; dobles venenosos: Yle (radiotelevisión pública finlandesa). Normas de recogida: Prefectura de los Vosgos y Región de Toscana. Tenia del zorro: Oficina Estatal de Salud y Seguridad Alimentaria de Baviera (LGL)."
+      }
     },
     "pt": {
       "name": "Mirtilo-selvagem",
-      "description": "Pequenas frutas azuis doces que crescem em arbustos baixos em solo ácido",
-      "howTo": "Encontrado em charnecas, turfeiras e florestas ácidas no verão e início do outono"
+      "description": "Bagas azuis, pequenas e doces, em arbustos baixos de solo ácido.",
+      "howTo": "Encontrado em charnecas, turfeiras e florestas ácidas no verão e início do outono",
+      "guide": {
+        "identify": "O mirtilo-selvagem, também chamado uva-do-monte, é um arbusto baixo de folha caduca, em geral abaixo do joelho. Os caules são verdes e angulosos. As folhas são pequenas e ovais, com a margem finamente dentada. Na primavera pendem, uma a uma, flores rosadas em forma de lanterna. Cada flor dá uma só baga negro-azulada, coberta de um pó claro. Na ponta da baga há um pequeno anel em forma de coroa. A polpa é vermelho-arroxeada até ao centro. Os mirtilos de cultura têm a polpa clara. Os sósias venenosos são ervas moles, não arbustos lenhosos anões. A beladona (Atropa bella-donna) é alta. As bagas, negras e brilhantes, assentam numa estrela verde de cinco sépalas. A erva-de-paris (Paris quadrifolia) tem uma só baga no alto de um caule com quatro folhas dispostas em roda. O selo-de-salomão (Polygonatum) tem bagas negro-azuladas penduradas por baixo de um caule arqueado e sem ramos.",
+        "habitat": "Precisa de solo ácido e pobre. Procure-o em bosques de coníferas, bétulas e carvalhos e em charnecas e urzais, das terras baixas até acima do limite das árvores. É comum em todo o norte e centro da Europa e nas montanhas do sul. Em terrenos calcários não o vai encontrar. Na América do Norte cresce espontâneo nas montanhas do oeste. No leste, os mirtilos silvestres que se apanham são o mirtilo-anão e o mirtilo-gigante (Vaccinium angustifolium, Vaccinium corymbosum). São parentes próximos, de polpa clara.",
+        "season": "Nas terras baixas os mirtilos amadurecem a partir de julho. Na montanha e no norte a época continua por agosto fora e entra em setembro. Uma geada tardia na floração pode reduzir a colheita.",
+        "picking": "Apanhe à mão. Os pentes arrancam folhas e estragam as plantas. Há sítios que os proíbem ou que fixam um limite diário de apanha, como os Vosges em França e a Toscana em Itália. Consulte as regras locais. Na Europa Central, a autoridade de saúde da Baviera (LGL) diz que não está demonstrado que comer bagas silvestres seja um fator de risco para a ténia-da-raposa. Mesmo assim, aconselha a lavá-las bem. Só aquecê-las acima de 60 °C mata os ovos da ténia. A congelação em casa não os mata.",
+        "kitchen": "Quando tiver a certeza da planta, coma-os crus ou use-os em tartes, panquecas, doce e compota. São doces e ácidos. Também mancham os dedos, os dentes e a roupa. Passe-os por água rapidamente, só na hora de usar. Tire as folhas e as bagas verdes.",
+        "keeps": "Sem lavar e espalhados, aguentam uns dias no frigorífico. Congele-os num tabuleiro e depois passe-os para sacos. Também secam bem.",
+        "source": "Identificação e habitat: Woodland Trust; sósias venenosos: Yle (rádio e televisão pública finlandesa). Regras de apanha: Prefeitura de Vosges e Região da Toscana. Ténia-da-raposa: Serviço Estatal de Saúde e Segurança Alimentar da Baviera (LGL)."
+      }
     }
   },
   "identification": {
@@ -213,6 +267,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [2882833, 2882868, 2882849, 2882895, 2882880] }
+    "rangePrior": {
+      "taxonKeys": [2882833, 2882868, 2882849, 2882895, 2882880]
+    }
   }
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import {
+  LayoutGrid,
   Map,
   Database,
   ChefHat,
@@ -16,7 +17,10 @@ import {
   LifeBuoy,
   Smartphone,
   ScanSearch,
+  User,
 } from '@/lib/icons';
+import { currentSpace } from '@/lib/spaces';
+import { SpaceSwitcher } from '@/components/SpaceSwitcher';
 import { isPlayApp, offersPlayStore, PLAY_STORE_URL } from '@/lib/platform';
 import { IDENTIFY_PATH } from '@/lib/isolation';
 import {
@@ -29,6 +33,7 @@ import {
 } from '@/components/ui/sidebar';
 import { NavMain } from './nav-main';
 import { useTranslation } from 'react-i18next';
+import { huertaPage } from '@/lib/seo-pages';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
@@ -39,10 +44,52 @@ import { Logo, LogoMark } from '@/components/Logo';
 const basePath = import.meta.env.BASE_URL || '/';
 
 export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
-  const { t } = useTranslation('sidebar');
+  const { t, i18n } = useTranslation('sidebar');
   const { t: tCommon } = useTranslation('common');
+  // Huerta's pages in the app language's words (German under /de).
+  const huerta = (page: Parameters<typeof huertaPage>[0]) =>
+    basePath + huertaPage(page, i18n.language).slice(1);
   const { state, toggleSidebar } = useSidebar();
   const isMobile = useIsMobile();
+  const { pathname } = useLocation();
+  // Each space lists its own pages; Help is shared.
+  const huertaNav = [
+    {
+      title: t('huertaMap'),
+      url: huerta('map'),
+      icon: Map,
+      isActive: true,
+    },
+    {
+      title: t('huertaPlanner'),
+      url: huerta('planner'),
+      icon: LayoutGrid,
+      isActive: false,
+    },
+    {
+      title: t('huertaWeek'),
+      url: huerta('crops'),
+      icon: Database,
+      isActive: false,
+    },
+    {
+      title: t('huertaYear'),
+      url: huerta('calendar'),
+      icon: CalendarRange,
+      isActive: false,
+    },
+    // As in Terra: on phones it sits in the Settings hub.
+    ...(!isMobile
+      ? [
+          {
+            title: t('instructions'),
+            url: `${basePath}huerta/instructions`,
+            icon: BookOpen,
+            isActive: false,
+          },
+        ]
+      : []),
+  ];
   const data = {
     navMain: [
       {
@@ -125,6 +172,17 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             url: '#help',
             icon: LifeBuoy,
             items: [
+              // The Huerta account (sign out, delete), in Huerta only: from
+              // Terra it would jump spaces. Phones have it in Settings.
+              ...(currentSpace(pathname) === 'huerta'
+                ? [
+                    {
+                      title: t('account'),
+                      url: `${basePath}huerta/account`,
+                      icon: User,
+                    },
+                  ]
+                : []),
               ...(isPlayApp()
                 ? []
                 : [
@@ -211,10 +269,15 @@ export const AppSidebar = (props: React.ComponentProps<typeof Sidebar>) => {
             {!isMobile && <SidebarTrigger className='shrink-0' />}
           </div>
         )}
+        {(state !== 'collapsed' || isMobile) && (
+          <SpaceSwitcher className='mt-2 w-full' />
+        )}
       </SidebarHeader>
       <SidebarSeparator className='mx-2 group-data-[collapsible=icon]:mx-2' />
       <SidebarContent className='px-2 pt-4 pb-0 group-data-[collapsible=icon]:px-0'>
-        <NavMain items={data.navMain} />
+        <NavMain
+          items={currentSpace(pathname) === 'huerta' ? huertaNav : data.navMain}
+        />
         <NavMain items={data.navHelp} className='mt-auto' />
       </SidebarContent>
     </Sidebar>

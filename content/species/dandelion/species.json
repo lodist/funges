@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Dandelion",
-      "description": "A common weed with bright yellow flowers and edible leaves",
-      "howTo": "Found in meadows, grasslands, and disturbed areas during growing season"
+      "description": "A common weed with bright yellow flowers. Its leaves are edible.",
+      "howTo": "Found in meadows, grasslands and disturbed areas during growing season",
+      "guide": {
+        "identify": "Dandelion grows as a rosette at ground level. The leaves are hairless and deeply, raggedly lobed. Their teeth point back towards the centre. Leaves and stalks bleed white milky sap when you break them. Each flower stalk is leafless, unbranched and hollow. It carries one head of yellow, strap-shaped florets. Later comes a round white seed clock. Cat's-ear has branched, solid stalks and hairy leaves. Hawkbits have forked hairs on the leaves. Sow-thistles carry several flowers on leafy stems. Only pick plants that match every point.",
+        "habitat": "It grows in lawns, meadows, pastures, verges and waste ground, in sun, from the lowlands into the mountains. You find it almost everywhere in Europe. It was brought from Europe to the US and now grows throughout the country.",
+        "season": "A big flush of flowers comes in early spring, mainly in April and May. In the mild south it comes earlier. After that, flowers appear on and off until autumn. The leaves are least bitter in early spring, before the first buds appear.",
+        "picking": "Cut young leaves at the base. Pick the flowers on a sunny day when they are fully open and leave plenty for early bees. Avoid lawns treated with weedkiller, roadsides and places where dogs are walked. Only dig roots where you have the landowner's permission, such as in your own garden.",
+        "kitchen": "Once you're certain of the plant, eat young leaves raw in salads. They are pleasantly bitter, as in the French salad with bacon. Boil older leaves for about 10 minutes to take off some bitterness. Then fry them with garlic and oil. Use the flowers cooked. Make fritters, or simmer them with sugar and lemon into a thick syrup. Cleaned roots can be roasted as a coffee substitute. Eaten in quantity, the roots are a laxative. The milky sap can irritate skin. People allergic to the daisy family can react, so try a small amount first.",
+        "keeps": "The leaves keep a few days in a bag in the fridge. Use the flowers straight after picking, as they close quickly. Roasted roots keep in an airtight jar.",
+        "source": "Identification: BSBI and NC State Extension. Picking and cooking: University of Wisconsin-Madison Extension and Colorado State University Extension. Safety: US National Center for Complementary and Integrative Health."
+      }
     },
     "it": {
       "name": "Tarassaco",
-      "description": "Un'erbaccia comune con fiori gialli brillanti e foglie commestibili",
-      "howTo": "Trovato in prati, praterie e aree disturbate durante la stagione di crescita"
+      "description": "Un'erbaccia comune con fiori giallo acceso. Le sue foglie si mangiano.",
+      "howTo": "Trovato in prati, praterie e aree disturbate durante la stagione di crescita",
+      "guide": {
+        "identify": "Il tarassaco, o dente di leone, cresce a rosetta raso terra. Le foglie sono senza peli e profondamente frastagliate. I loro denti puntano indietro, verso il centro. Se spezzi foglie o steli, esce un lattice bianco. Ogni stelo del fiore è senza foglie, senza rami e vuoto dentro. In cima porta un solo fiore giallo, fatto di tanti fiorellini a linguetta. Dopo arriva il soffione, una palla bianca di semi. La costolina ha steli ramificati e pieni e foglie pelose. I Leontodon hanno sulle foglie peli biforcati. I grespini portano più fiori su fusti con le foglie. Raccogli solo le piante che corrispondono in tutti i punti.",
+        "habitat": "Cresce nei prati, nei giardini, nei pascoli, ai bordi delle strade e negli incolti, al sole, dalla pianura alla montagna. In Europa lo trovi quasi ovunque. Negli Stati Uniti è stato portato dall'Europa e oggi cresce in tutto il paese.",
+        "season": "A inizio primavera arriva una grande fioritura, soprattutto ad aprile e maggio. Nel sud più mite arriva prima. Dopo, qualche fiore spunta qua e là fino all'autunno. Le foglie sono meno amare a inizio primavera, prima che compaiano i primi boccioli.",
+        "picking": "Taglia le foglie giovani alla base. I fiori raccoglili in una giornata di sole, quando sono ben aperti. Lasciane tanti per le prime api. Evita i prati trattati col diserbante, i bordi delle strade e i posti dove si portano i cani. Scava le radici solo dove il proprietario te lo permette, per esempio nel tuo giardino.",
+        "kitchen": "Quando sei sicuro della pianta, mangia le foglie giovani crude in insalata. Sono piacevolmente amare, come nell'insalata francese con la pancetta. Le foglie più vecchie lessale per circa 10 minuti, così perdono un po' d'amaro. Poi ripassale in padella con aglio e olio. I fiori usali cotti. Puoi farli in frittelle, oppure cuocerli con zucchero e limone fino a uno sciroppo denso, il cosiddetto miele di tarassaco. Le radici pulite e tostate fanno un surrogato del caffè. Mangiate in quantità, le radici sono lassative. Il lattice può irritare la pelle. Chi è allergico alle composite può avere una reazione, quindi assaggiane prima un po'.",
+        "keeps": "Le foglie durano qualche giorno in frigo in un sacchetto. I fiori usali subito dopo averli colti, perché si chiudono presto. Le radici tostate si conservano in un barattolo ermetico.",
+        "source": "Identificazione: BSBI e NC State Extension. Raccolta e cucina: University of Wisconsin-Madison Extension e Colorado State University Extension. Sicurezza: National Center for Complementary and Integrative Health (Stati Uniti)."
+      }
     },
     "fr": {
       "name": "Pissenlit",
-      "description": "Mauvaise herbe commune à fleurs jaunes vives et feuilles comestibles",
-      "howTo": "Se trouve dans les prairies, pelouses et zones perturbées pendant la saison de croissance"
+      "description": "Une mauvaise herbe très commune aux fleurs jaune vif. Ses feuilles se mangent.",
+      "howTo": "Se trouve dans les prairies, pelouses et zones perturbées pendant la saison de croissance",
+      "guide": {
+        "identify": "Le pissenlit pousse en rosette au ras du sol. Ses feuilles sont sans poils et profondément découpées en lobes irréguliers. Leurs dents pointent vers le centre. Quand on les casse, les feuilles et les tiges laissent couler un lait blanc. Chaque tige florale est sans feuilles, non ramifiée et creuse. Elle porte une seule fleur faite de petites languettes jaunes. Plus tard vient la boule blanche des graines. La porcelle enracinée a des tiges ramifiées et pleines. Ses feuilles sont velues. Les liondents ont des poils fourchus sur les feuilles. Les laiterons portent plusieurs fleurs sur des tiges feuillues. Ne cueillez que les plantes qui correspondent en tout point.",
+        "habitat": "Il pousse dans les pelouses, les prés, les pâtures, les bords de route et les friches, au soleil, de la plaine à la montagne. On le trouve presque partout en Europe. Il a été apporté d'Europe aux États-Unis et pousse maintenant dans tout le pays.",
+        "season": "Une grande floraison arrive au début du printemps, surtout en avril et mai. Dans le sud, plus doux, elle arrive plus tôt. Ensuite, des fleurs apparaissent çà et là jusqu'à l'automne. Les feuilles sont les moins amères au début du printemps, avant les premiers boutons.",
+        "picking": "Coupez les jeunes feuilles à la base. Cueillez les fleurs par une journée ensoleillée, quand elles sont bien ouvertes, et laissez-en beaucoup pour les premières abeilles. Évitez les pelouses traitées au désherbant, les bords de route et les endroits où l'on promène les chiens. Ne déterrez les racines qu'avec l'accord du propriétaire, par exemple dans votre propre jardin.",
+        "kitchen": "Quand le pissenlit est identifié avec certitude, mangez les jeunes feuilles crues en salade. Elles sont agréablement amères, comme dans la salade de pissenlit aux lardons. Faites bouillir les feuilles plus âgées environ 10 minutes pour leur enlever un peu d'amertume. Puis faites-les revenir à l'ail et à l'huile. Les fleurs s'utilisent cuites. Faites-en des beignets, ou faites-les cuire doucement avec du sucre et du citron pour obtenir un sirop épais, la cramaillotte. Les racines nettoyées peuvent être torréfiées pour remplacer le café. En grande quantité, les racines sont laxatives. Le lait de la plante peut irriter la peau. Les personnes allergiques aux astéracées peuvent réagir, alors goûtez-en d'abord un peu.",
+        "keeps": "Les feuilles se gardent quelques jours au réfrigérateur, dans un sac. Utilisez les fleurs dès la cueillette, car elles se referment vite. Les racines torréfiées se gardent dans un bocal hermétique.",
+        "source": "Identification : BSBI et service d'extension de NC State. Cueillette et cuisine : services d'extension des universités du Wisconsin-Madison et de Colorado State. Sécurité : National Center for Complementary and Integrative Health (États-Unis)."
+      }
     },
     "de": {
       "name": "Löwenzahn",
-      "description": "Häufiges Wildkraut mit leuchtend gelben Blüten und essbaren Blättern",
-      "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit"
+      "description": "Ein häufiges Wildkraut mit leuchtend gelben Blüten. Die Blätter sind essbar.",
+      "howTo": "Zu finden auf Wiesen, Grasflächen und gestörten Gebieten während der Wachstumszeit",
+      "guide": {
+        "identify": "Der Löwenzahn wächst als Rosette dicht am Boden. Die Blätter sind kahl und tief und unregelmässig eingeschnitten. Ihre Zähne zeigen zurück zur Mitte. Blätter und Stiele geben weissen Milchsaft ab, wenn du sie abbrichst. Jeder Blütenstiel ist blattlos, unverzweigt und hohl. Er trägt ein einzelnes Köpfchen aus gelben Zungenblüten. Später wird daraus die runde weisse Pusteblume. Das Ferkelkraut hat verzweigte, markige Stiele und behaarte Blätter. Leontodon-Arten wie der Herbst-Löwenzahn haben gegabelte Haare auf den Blättern. Gänsedisteln tragen mehrere Blüten an beblätterten Stängeln. Pflück nur Pflanzen, die in jedem Punkt passen.",
+        "habitat": "Er wächst in Rasen, Wiesen und Weiden, an Wegrändern und auf Brachland, in der Sonne, vom Tiefland bis ins Gebirge. Du findest ihn fast überall in Europa. Aus Europa kam er in die USA und wächst dort heute im ganzen Land.",
+        "season": "Im zeitigen Frühjahr kommt eine grosse Blühwelle, vor allem im April und Mai. Im milden Süden kommt sie früher. Danach blüht er immer wieder vereinzelt bis in den Herbst. Die Blätter sind im zeitigen Frühjahr am wenigsten bitter, bevor die ersten Knospen erscheinen.",
+        "picking": "Schneide junge Blätter am Grund ab. Pflück die Blüten an einem sonnigen Tag, wenn sie ganz offen sind, und lass genug für die frühen Bienen. Meide Rasen, die mit Unkrautvernichter behandelt wurden. Meide auch Strassenränder und Stellen, an denen Hunde Gassi gehen. Grab Wurzeln nur aus, wo der Grundbesitzer es erlaubt, zum Beispiel im eigenen Garten.",
+        "kitchen": "Wenn du dir bei der Pflanze sicher bist, iss junge Blätter roh im Salat. Sie sind angenehm bitter, wie im französischen Salat mit Speck. Ältere Blätter kochst du etwa 10 Minuten, damit sie weniger bitter sind. Dann brätst du sie mit Knoblauch und Öl an. Die Blüten verwendest du gekocht. Back sie im Teig aus oder koch sie mit Zucker und Zitrone zu einem dicken Sirup ein, dem Löwenzahnhonig. Gesäuberte Wurzeln kannst du als Kaffee-Ersatz rösten. In grösseren Mengen wirken die Wurzeln abführend. Der Milchsaft kann die Haut reizen. Wer gegen Korbblütler allergisch ist, kann darauf reagieren, also probier zuerst eine kleine Menge.",
+        "keeps": "Die Blätter halten sich im Beutel ein paar Tage im Kühlschrank. Die Blüten verwendest du gleich nach dem Pflücken, weil sie sich schnell schliessen. Geröstete Wurzeln halten sich in einem luftdichten Glas.",
+        "source": "Bestimmung: BSBI und NC State Extension. Ernte und Küche: University of Wisconsin-Madison Extension und Colorado State University Extension. Sicherheit: National Center for Complementary and Integrative Health (USA)."
+      }
     },
     "es": {
       "name": "Diente de león",
-      "description": "Maleza común con flores amarillas brillantes y hojas comestibles",
-      "howTo": "Se encuentra en praderas, pastizales y áreas alteradas durante la temporada de crecimiento"
+      "description": "Una mala hierba muy común de flores amarillas y vivas. Sus hojas se comen.",
+      "howTo": "Se encuentra en praderas, pastizales y áreas alteradas durante la temporada de crecimiento",
+      "guide": {
+        "identify": "El diente de león crece en una roseta a ras de suelo. Las hojas no tienen pelos y están muy recortadas, de forma irregular. Sus dientes apuntan hacia el centro. Al romper las hojas o los tallos sueltan un líquido blanco como leche. Cada tallo de flor es hueco, sin hojas y sin ramas. Lleva una sola cabezuela de florecillas amarillas en forma de lengüeta. Después se convierte en una bola blanca de vilanos. Hypochaeris radicata tiene tallos ramificados y macizos y hojas peludas. Los Leontodon tienen pelos ahorquillados en las hojas. Las cerrajas llevan varias flores en tallos con hojas. Coge solo plantas que cumplan todos los puntos.",
+        "habitat": "Crece en céspedes, prados, pastos, cunetas y descampados, al sol, desde las tierras bajas hasta la montaña. Lo encuentras en casi toda Europa. Lo llevaron de Europa a EE. UU. y hoy crece en todo el país.",
+        "season": "A principios de primavera llega una gran floración, sobre todo en abril y mayo. En el sur templado llega antes. Después salen flores a ratos hasta el otoño. Las hojas amargan menos a principios de primavera, antes de que salgan los primeros capullos.",
+        "picking": "Corta las hojas tiernas por la base. Coge las flores un día de sol, cuando estén bien abiertas, y deja muchas para las primeras abejas. Evita los céspedes tratados con herbicida, las cunetas y los sitios donde se pasea a perros. Saca raíces solo donde el dueño te dé permiso, como en tu propio jardín.",
+        "kitchen": "Cuando tengas clara la planta, come las hojas tiernas crudas en ensalada. Tienen un amargor agradable, como en la ensalada francesa con panceta. Las hojas más viejas, hiérvelas unos 10 minutos para quitarles algo de amargor. Luego saltéalas con ajo y aceite. Las flores, úsalas cocinadas. Haz buñuelos o cuécelas con azúcar y limón hasta tener un jarabe espeso. Las raíces limpias se pueden tostar para hacer un sucedáneo de café. En cantidad, las raíces son laxantes. El líquido blanco puede irritar la piel. Quien tiene alergia a las compuestas puede reaccionar, así que prueba primero una cantidad pequeña.",
+        "keeps": "Las hojas aguantan unos días en la nevera, en una bolsa. Usa las flores nada más cogerlas, porque se cierran pronto. Las raíces tostadas se guardan en un tarro hermético.",
+        "source": "Identificación: BSBI y extensión de NC State. Recolección y cocina: extensión de la Universidad de Wisconsin-Madison y de la Universidad Estatal de Colorado. Seguridad: National Center for Complementary and Integrative Health (EE. UU.)."
+      }
     },
     "pt": {
       "name": "Dente-de-leão",
-      "description": "Erva comum com flores amarelas brilhantes e folhas comestíveis",
-      "howTo": "Encontrado em prados, campos e áreas perturbadas durante a estação de crescimento"
+      "description": "Uma erva daninha comum, de flores amarelo-vivo. As folhas são comestíveis.",
+      "howTo": "Encontrado em prados, campos e áreas perturbadas durante a estação de crescimento",
+      "guide": {
+        "identify": "O dente-de-leão cresce numa roseta rente ao chão. As folhas não têm pelos e são muito recortadas, de forma irregular. Os dentes viram-se para trás, para o centro. Folhas e pés deitam um leite branco quando se partem. Cada pé de flor é oco, sem folhas e sem ramos. Leva uma só flor, feita de muitas florzinhas amarelas em forma de lingueta. Depois vem a bola branca de sementes. A Hypochaeris radicata tem pés ramificados e cheios e folhas peludas. Os Leontodon têm pelos bifurcados nas folhas. As serralhas têm várias flores em caules com folhas. Apanhe só plantas que batam certo em todos os pontos.",
+        "habitat": "Cresce em relvados, prados, pastagens, bermas e baldios, ao sol, das terras baixas à montanha. Encontra-se quase em toda a Europa. Foi levado da Europa para os EUA e hoje cresce em todo o país.",
+        "season": "No início da primavera há uma grande floração, sobretudo em abril e maio. No sul ameno vem mais cedo. Depois vai dando flores aqui e ali até ao outono. As folhas amargam menos no início da primavera, antes dos primeiros botões.",
+        "picking": "Corte as folhas novas pela base. Apanhe as flores num dia de sol, quando estão bem abertas. Deixe muitas para as primeiras abelhas. Evite relvados tratados com herbicida, bermas de estrada e sítios onde se passeiam cães. Só arranque raízes onde o dono do terreno deixe, como no seu próprio quintal.",
+        "kitchen": "Quando tiver a certeza da planta, coma as folhas novas cruas, em salada. Têm um amargo agradável, como na salada francesa com toucinho. Coza as folhas mais velhas cerca de 10 minutos para lhes tirar algum amargor. Depois salteie-as com alho e azeite. As flores usam-se cozinhadas. Pode fritá-las em polme ou cozê-las em lume brando com açúcar e limão até fazer um xarope espesso. Limpas e torradas, as raízes servem de sucedâneo do café. Em grande quantidade, as raízes são laxantes. O leite branco pode irritar a pele. Quem é alérgico à família das margaridas pode reagir, por isso prove primeiro um pouco.",
+        "keeps": "As folhas aguentam uns dias num saco no frigorífico. Use as flores logo depois de as apanhar, porque fecham depressa. As raízes torradas guardam-se num frasco hermético.",
+        "source": "Identificação: BSBI e extensão da NC State. Apanha e cozinha: extensão da University of Wisconsin-Madison e da Colorado State University. Segurança: National Center for Complementary and Integrative Health (EUA)."
+      }
     }
   },
   "identification": {
@@ -218,6 +272,8 @@
       "taxonKeys": [],
       "references": []
     },
-    "rangePrior": { "taxonKeys": [] }
+    "rangePrior": {
+      "taxonKeys": []
+    }
   }
 }

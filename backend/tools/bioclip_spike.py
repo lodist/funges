@@ -134,6 +134,23 @@ TOXIC = [
     ("Pteridium aquilinum", "species"),      # -> fiddleheads; carcinogenic bracken
     ("Rhamnus cathartica", "species"),       # -> sloes; purgative berries
     ("Melanthium parviflorum", "species"),   # -> ramps; eaten for ramps in Georgia and North Carolina
+    # --- look-alikes found writing the species sheets (2026-10) ---
+    ("Turbinellus floccosus", "species"),       # -> Pacific and golden chanterelle; upsets many people
+    ("Amanita verna", "species"),               # -> St George's mushroom; white, fruits in spring
+    ("Chlorophyllum brunneum", "species"),      # -> parasol; smooth stem, flesh reddens
+    ("Rubroboletus legaliae", "species"),       # -> summer and bronze bolete in warm oak woods
+    ("Leccinum insigne", "species"),            # -> Rocky Mountain king; severe stomach poisonings in Colorado
+    ("Aesculus hippocastanum", "species"),      # -> sweet chestnut
+    ("Polygonatum multiflorum", "species"),     # -> wild garlic leaves, bilberries
+    ("Actaea rubra", "species"),                # -> lingonberry, huckleberry; red baneberry
+    ("Dioscorea communis", "species"),          # -> rose hips, wild asparagus shoots; black bryony
+    ("Bryonia cretica", "species"),             # -> rose hips, wild asparagus shoots; white bryony
+    ("Solanum dulcamara", "species"),           # -> rose hips; bittersweet
+    ("Heracleum mantegazzianum", "species"),    # -> elderflower, masterwort; sap burns skin in sun
+    ("Lysimachia arvensis", "species"),         # -> chickweed; scarlet pimpernel
+    ("Euphorbia peplus", "species"),            # -> chickweed; milky sap
+    ("Solanum nigrum", "species"),              # -> amaranth leaves
+    ("Chamaeleon gummifer", "species"),         # -> wild artichoke; Atractylis gummifera, deadly
 ]
 
 

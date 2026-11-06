@@ -1,0 +1,425 @@
+/**
+ * The sun a garden's sections get, from what stands along the plot's sides
+ * (Garden.sides): each kind is taken as a wall along the plot's edge, as
+ * high as the kind (a fence or hedge 2 m, a house or wall 6 m, tall trees
+ * 10 m); in an L a side runs along its outline, the cut corner's edge that
+ * faces the same way too. For each section's middle and each month (its
+ * 15th, a clear day), the hours the sun stands at least 10° up, a minute
+ * behind a fence or a house counting nothing and one behind trees the share
+ * of the sun their crowns let through (THROUGH).
+ *
+ * Crops' needs are hours at midsummer (RHS: full sun is more than 6), so a
+ * month's hours are compared as at midsummer: the spot's share of an open
+ * spot's hours that month, times an open spot's hours in June. A winter
+ * month, short of sun everywhere, so shows only the garden's own shade.
+ * Months where an open spot gets under an hour (far north in winter) are
+ * left out.
+ */
+import { L_CUT, type Garden, type Section, type Side } from '@/lib/planner';
+
+type Box = Pick<Section, 'x0' | 'x1' | 'y0' | 'y1'>;
+type Edge = keyof NonNullable<Garden['sides']>;
+
+/** How high each kind stands, metres. */
+export const HEIGHT: Record<Side, number> = { fence: 2, house: 6, trees: 10 };
+
+/** The share of the direct sun a row of deciduous trees lets through, in
+ *  full leaf and bare. Measured crowns pass 3-30 % in leaf and over 40 %
+ *  bare: horse chestnut in Szeged 3 % and 47 % (Geographica Pannonica 2016),
+ *  oak over 40 % before leaf-out, open urban crowns 9-30 %. */
+export const THROUGH = { leaf: 0.15, bare: 0.45 };
+
+/** How far a month's trees are in leaf, 0-1: by the place's monthly mean
+ *  air, bare at 5 °C or less and in full leaf from 12 °C; without it, May
+ *  to September in leaf, April and October half. */
+export function leafOf(temps?: number[] | null) {
+  return (month: number) =>
+    temps
+      ? Math.min(1, Math.max(0, (temps[month] - 5) / 7))
+      : month >= 4 && month <= 8
+        ? 1
+        : month === 3 || month === 9
+          ? 0.5
+          : 0;
+}
+
+/** The share of the sun a side lets through in a month. */
+const through = (kind: Side, leaf: number) =>
+  kind === 'trees' ? THROUGH.bare + (THROUGH.leaf - THROUGH.bare) * leaf : 0;
+
+/** A wall's face on the plot, metres in the plot's own frame (x across, y
+ *  down, the top facing `north`). */
+export interface Wall {
+  side: Edge;
+  kind: Side;
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+}
+
+/** A month's sun at a spot: its hours, the morning's of them (before solar
+ *  noon), and whether it is in the sun at noon. */
+export interface SunMonth {
+  hours: number;
+  am: number;
+  noon: boolean;
+  /** The share of an open spot's direct sunlight (by energy, the sun's
+   *  height and the air it shines through weighing each look) that reaches
+   *  it past the sides. */
+  direct: number;
+  /** The share of the sky's light (an even sky's, on flat ground) that
+   *  reaches it past the sides. */
+  sky: number;
+}
+
+export interface Light {
+  /** A spot's sun each month, January first (by its middle; kept). */
+  months: (s: Box) => SunMonth[];
+  /** An open spot's hours each month. */
+  open: number[];
+}
+
+export type SunLevel = 'full' | 'part' | 'little';
+export type SunWhen =
+  'allDay' | 'morning' | 'afternoon' | 'midday' | 'morningEvening' | 'none';
+
+const DEG = Math.PI / 180;
+/** The sun counts from this high above the horizon, degrees: lower, it
+ *  gives little light (RHS: midday sun counts for much more). */
+const LOW = 10;
+/** Hours between two looks at the sun. */
+const STEP = 1 / 6;
+/** The 15th of each month, the day of the year (0 = 1 January). */
+const MID = [14, 45, 73, 104, 134, 165, 195, 226, 257, 287, 318, 348];
+const JUNE = 5;
+
+/** The walls a garden's sides make: each side's edge; in an L the right
+ *  and bottom sides go on round the cut corner, along its edge that faces
+ *  the same way. */
+export function wallsOf(g: Garden): Wall[] {
+  const { width: W, length: L } = g;
+  const L_ = g.shape === 'L';
+  const cx = W * L_CUT.width,
+    cy = L * L_CUT.length;
+  const edges: [Edge, number, number, number, number][] = [
+    ['top', 0, 0, W, 0],
+    ['left', 0, 0, 0, L],
+    ...(L_
+      ? ([
+          ['right', W, 0, W, cy],
+          ['right', cx, cy, cx, L],
+          ['bottom', 0, L, cx, L],
+          ['bottom', cx, cy, W, cy],
+        ] as [Edge, number, number, number, number][])
+      : ([
+          ['right', W, 0, W, L],
+          ['bottom', 0, L, W, L],
+        ] as [Edge, number, number, number, number][])),
+  ];
+  return edges.flatMap(([side, x0, y0, x1, y1]) => {
+    const kind = g.sides?.[side];
+    return kind ? [{ side, kind, x0, y0, x1, y1 }] : [];
+  });
+}
+
+/** The sun's height and compass bearing (radians, clockwise from north) at
+ *  latitude `lat`, on day `day` of the year, `hour` hours of solar time. */
+export function sunPosition(lat: number, day: number, hour: number) {
+  const decl = 23.44 * DEG * Math.sin((2 * Math.PI * (284 + day + 1)) / 365);
+  const ha = (hour - 12) * 15 * DEG,
+    phi = lat * DEG;
+  const height = Math.asin(
+    Math.sin(phi) * Math.sin(decl) +
+      Math.cos(phi) * Math.cos(decl) * Math.cos(ha)
+  );
+  const bearing = Math.atan2(
+    -Math.sin(ha) * Math.cos(decl),
+    Math.cos(phi) * Math.sin(decl) -
+      Math.sin(phi) * Math.cos(decl) * Math.cos(ha)
+  );
+  return { height, bearing };
+}
+
+interface Look {
+  hour: number;
+  /** The way to the sun on the plot, and how steeply it stands. */
+  dx: number;
+  dy: number;
+  tan: number;
+  /** Its direct light on flat ground: the sine of its height times what a
+   *  clear sky lets through at that height (Meinel and Meinel's air mass). */
+  energy: number;
+}
+
+/** How far from the spot (px, py) the way (dx, dy) meets `w`'s face, or
+ *  Infinity when it passes it. */
+function meets(w: Wall, px: number, py: number, dx: number, dy: number) {
+  const ex = w.x1 - w.x0,
+    ey = w.y1 - w.y0;
+  const den = dx * ey - dy * ex;
+  if (Math.abs(den) < 1e-12) return Infinity;
+  const qx = w.x0 - px,
+    qy = w.y0 - py;
+  const t = (qx * ey - qy * ex) / den;
+  const u = (qx * dy - qy * dx) / den;
+  return t > 1e-9 && u >= 0 && u <= 1 ? t : Infinity;
+}
+
+/** Whether `w` stands between the spot (px, py) and the sun: the ray to it
+ *  crosses the wall's face lower than the wall's top. */
+function blocks(w: Wall, px: number, py: number, k: Look) {
+  return meets(w, px, py, k.dx, k.dy) * k.tan < HEIGHT[w.kind];
+}
+
+/** The ways round a spot its sky is looked at in. */
+const WAYS = 72;
+
+/** The share of an even sky's light on flat ground that reaches the spot
+ *  (px, py) past `walls`: each way round, the sky above the highest side's
+ *  top (cos² of how high it stands) and what the side lets through below. */
+function skyView(walls: Wall[], px: number, py: number, leaf: number) {
+  let sum = 0;
+  for (let j = 0; j < WAYS; j++) {
+    const a = (2 * Math.PI * (j + 0.5)) / WAYS;
+    let view = 1;
+    for (const w of walls) {
+      const t = meets(w, px, py, Math.cos(a), Math.sin(a));
+      const h2 = HEIGHT[w.kind] ** 2;
+      view = Math.min(
+        view,
+        1 - (h2 / (h2 + t * t)) * (1 - through(w.kind, leaf))
+      );
+    }
+    sum += view;
+  }
+  return sum / WAYS;
+}
+
+/** The garden's sun, or null when nothing stands along its sides; `leaf`,
+ *  how far its trees are in leaf each month (leafOf). */
+export function sunlight(
+  g: Garden,
+  lat: number,
+  leaf: (month: number) => number = leafOf()
+): Light | null {
+  const walls = wallsOf(g);
+  if (!walls.length) return null;
+  const north = (g.north ?? 0) * DEG;
+  const looks = MID.map(day => {
+    const out: Look[] = [];
+    for (let hour = STEP / 2; hour < 24; hour += STEP) {
+      const { height, bearing } = sunPosition(lat, day, hour);
+      if (height < LOW * DEG) continue;
+      out.push({
+        hour,
+        dx: Math.sin(bearing - north),
+        dy: -Math.cos(bearing - north),
+        tan: Math.tan(height),
+        energy: Math.sin(height) * 0.7 ** ((1 / Math.sin(height)) ** 0.678),
+      });
+    }
+    return out;
+  });
+  const kept = new Map<string, SunMonth[]>();
+  return {
+    open: looks.map(l => l.length * STEP),
+    months: s => {
+      const key = `${s.x0}|${s.y0}|${s.x1}|${s.y1}`;
+      let got = kept.get(key);
+      if (!got) {
+        const px = (s.x0 + s.x1) / 2,
+          py = (s.y0 + s.y1) / 2;
+        got = looks.map((month, m) => {
+          let hours = 0,
+            am = 0,
+            noon = false,
+            got = 0,
+            all = 0;
+          for (const k of month) {
+            // The share of the sun past every wall in its way.
+            const sun = walls.reduce(
+              (share, w) =>
+                share && blocks(w, px, py, k)
+                  ? share * through(w.kind, leaf(m))
+                  : share,
+              1
+            );
+            all += k.energy;
+            if (!sun) continue;
+            got += k.energy * sun;
+            hours += STEP * sun;
+            if (k.hour < 12) am += STEP * sun;
+            if (sun >= 0.5 && Math.abs(k.hour - 12) < STEP) noon = true;
+          }
+          return {
+            hours,
+            am,
+            noon,
+            direct: all ? got / all : 1,
+            sky: skyView(walls, px, py, leaf(m)),
+          };
+        });
+        kept.set(key, got);
+      }
+      return got;
+    },
+  };
+}
+
+/** A month's hours as at midsummer (see above); null in a month an open
+ *  spot gets under an hour. */
+export function asMidsummer(light: Light, hours: number, month: number) {
+  const open = light.open[month];
+  return open < 1 ? null : (hours / open) * light.open[JUNE];
+}
+
+/** How much sun a spot gets in `month`, for the drawing: full (6 hours or
+ *  more as at midsummer), part (3 or more) or little; undefined in a month
+ *  left out. */
+export function level(light: Light, s: Box, month: number) {
+  const h = asMidsummer(light, light.months(s)[month].hours, month);
+  if (h === null) return undefined;
+  return (h >= 6 ? 'full' : h >= 3 ? 'part' : 'little') as SunLevel;
+}
+
+/** A spot's hours as at midsummer over the first three months from `day`'s
+ *  that a crop going in then grows through (`grows`: warm enough; every
+ *  month without it), their mean; null when every one is left out. A crop
+ *  that goes in in autumn so counts the spring it grows on in, not the
+ *  winter it stands still through. */
+export function season(
+  light: Light,
+  s: Box,
+  day: string,
+  grows: (month: number) => boolean = () => true
+) {
+  const first = Number(day.slice(5, 7)) - 1;
+  const months = Array.from({ length: 12 }, (_, k) => (first + k) % 12)
+    .filter(grows)
+    .slice(0, 3);
+  const each = months.flatMap(m => {
+    const h = asMidsummer(light, light.months(s)[m].hours, m);
+    return h === null ? [] : [h];
+  });
+  return each.length ? each.reduce((a, b) => a + b, 0) / each.length : null;
+}
+
+/** When in the day a spot has its sun, in words a gardener uses. */
+export function when(light: Light, m: SunMonth, month: number): SunWhen {
+  if (m.hours < 0.5) return 'none';
+  if (m.hours >= 0.75 * light.open[month]) return 'allDay';
+  const pm = m.hours - m.am;
+  if (m.am >= 2 * pm) return 'morning';
+  if (pm >= 2 * m.am) return 'afternoon';
+  return m.noon ? 'midday' : 'morningEvening';
+}
+
+/** The times of day (solar) the model shows the sides' shade at. */
+export const SHADE_HOURS = { morning: 9, midday: 12, afternoon: 15 } as const;
+export type ShadeTime = keyof typeof SHADE_HOURS;
+
+type Point = [number, number];
+
+/** The convex hull of some points (Andrew's monotone chain). */
+function hull(ps: Point[]) {
+  const pts = [...ps].sort((a, z) => a[0] - z[0] || a[1] - z[1]);
+  const cross = (o: Point, a: Point, b: Point) =>
+    (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const half = (list: Point[]) => {
+    const out: Point[] = [];
+    for (const p of list) {
+      while (
+        out.length >= 2 &&
+        cross(out[out.length - 2], out[out.length - 1], p) <= 0
+      )
+        out.pop();
+      out.push(p);
+    }
+    return out.slice(0, -1);
+  };
+  return [...half(pts), ...half([...pts].reverse())];
+}
+
+/** The shadows the sides cast on the ground on `date` (YYYY-MM-DD), `hour`
+ *  hours of solar time: a polygon a wall in the plot's frame, its edge swept
+ *  away from the sun as far as its height over the tangent of the sun's
+ *  height (the same sun and heights the hours are counted with), with the
+ *  share of the sun it lets through. None while the sun is under 3°. */
+export function shadows(
+  g: Garden,
+  lat: number,
+  date: string,
+  hour: number,
+  leaf: (month: number) => number = leafOf()
+): { points: Point[]; through: number }[] {
+  const [y, m, d] = date.split('-').map(Number);
+  const day = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(y, 0, 1)) / 864e5);
+  const month = m - 1;
+  const { height, bearing } = sunPosition(lat, day, hour);
+  if (height < 3 * DEG) return [];
+  const turn = bearing - (g.north ?? 0) * DEG;
+  const dx = Math.sin(turn),
+    dy = -Math.cos(turn);
+  return wallsOf(g).map(w => {
+    const reach = HEIGHT[w.kind] / Math.tan(height);
+    const edge: Point[] = [
+      [w.x0, w.y0],
+      [w.x1, w.y1],
+    ];
+    return {
+      points: hull([
+        ...edge,
+        ...edge.map(([x, y]): Point => [x - dx * reach, y - dy * reach]),
+      ]),
+      through: through(w.kind, leaf(month)),
+    };
+  });
+}
+
+/** The share of an open spot's light a crop needs to grow at its full pace,
+ *  by the hours of sun it needs (Crop.sun); with less it grows in proportion
+ *  to the light it gets. Fitted to the shade trials Laub et al. gathered
+ *  (Agron. Sustain. Dev. 42:51, 2022), each class to its own crops', each
+ *  study counted once: lettuce and spinach (3 h), sugar beet and strawberry
+ *  (4 h), maize, beans, potato, peppers, squash and basil (6 h). How sunny
+ *  a place is did not change how its crops took shade (their analysis), so
+ *  it is left out. */
+export const LIGHT_NEED: Record<number, number> = { 3: 0.54, 4: 0.66, 6: 0.89 };
+
+/** The share of a month's daily sunshine `sun` (MJ m-2) that comes as
+ *  diffuse light from the sky, from how clear the month is at the place (its
+ *  sunshine over the sunshine above the air): Erbs, Klein and Duffie's
+ *  monthly correlation (Duffie and Beckman, Solar Engineering of Thermal
+ *  Processes, eq. 2.12.1), for clearness 0.3-0.8. */
+export function diffuseShare(lat: number, month: number, sun: number) {
+  const n = MID[month] + 1;
+  const decl = 23.45 * DEG * Math.sin((2 * Math.PI * (284 + n)) / 365);
+  const phi = lat * DEG;
+  const ws = Math.acos(
+    Math.min(1, Math.max(-1, -Math.tan(phi) * Math.tan(decl)))
+  );
+  const above =
+    ((24 * 3600 * 1367) / Math.PI / 1e6) *
+    (1 + 0.033 * Math.cos((2 * Math.PI * n) / 365)) *
+    (Math.cos(phi) * Math.cos(decl) * Math.sin(ws) +
+      ws * Math.sin(phi) * Math.sin(decl));
+  if (above <= 0) return 1;
+  const k = Math.min(0.8, Math.max(0.3, sun / above));
+  const share =
+    ws <= 81.4 * DEG
+      ? 1.391 - 3.56 * k + 4.189 * k ** 2 - 2.137 * k ** 3
+      : 1.311 - 3.022 * k + 3.427 * k ** 2 - 1.821 * k ** 3;
+  return Math.min(1, Math.max(0, share));
+}
+
+/** A bed's light each month, a share of an open spot's: the sky's diffuse
+ *  light from the sky the sides leave it, the sun's direct light as far as
+ *  the sides let it through. `sun`: the place's monthly sunshine, MJ m-2 a
+ *  day. */
+export function bedLight(light: Light, s: Box, lat: number, sun: number[]) {
+  return light.months(s).map((m, k) => {
+    const diffuse = diffuseShare(lat, k, sun[k]);
+    return diffuse * m.sky + (1 - diffuse) * m.direct;
+  });
+}

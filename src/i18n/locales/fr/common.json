@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "Funges",
-    "appDescription": "Guide de cueillette",
+    "appDescription": "Ce qui pousse autour de vous et quand",
     "loading": "Chargement...",
     "error": "Une erreur est survenue",
     "success": "Succès",
@@ -89,7 +89,9 @@
     "proof": {
       "line": "Vérifiée sur la saison {{year}} en {{spots}} endroits où des gens ont trouvé des champignons : la prévision a mieux noté les jours de saison de chaque champignon que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
       "link": "Comment nous vérifions"
-    }
+    },
+    "metaTitle": "Funges : carte de cueillette et planificateur de potager",
+    "metaDescription": "Prévisions de cueillette pour les champignons et plantes sauvages et un planificateur pour votre potager. Ce qui pousse autour de vous et quand."
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",

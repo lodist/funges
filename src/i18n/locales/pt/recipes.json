@@ -44,7 +44,7 @@
     "amaranth": "Amaranto",
     "black_chant": "Trombeta dos Mortos",
     "chant": "Cantarelo",
-    "chickweed": "Mourão",
+    "chickweed": "Morugem",
     "sorrel": "Azedinha",
     "dandelion": "Dente-de-leão",
     "chestnut": "Castanha",
@@ -117,7 +117,7 @@
       "ingredients": [
         "½ xícara de sementes de amaranto",
         "1 xícara de água",
-        "1 xícara de ervas selvagens mistas (mourão, azedinha, dente-de-leão), bem picadas",
+        "1 xícara de ervas selvagens mistas (morugem, azedinha, dente-de-leão), bem picadas",
         "1 ovo pequeno",
         "2 colheres de sopa de farinha ou farinha de rosca",
         "Sal, pimenta, azeite de oliva"
@@ -223,7 +223,7 @@
       "title": "Torta de Cantharellus e Ervas",
       "ingredients": [
         "200 g de cantharellus frescos",
-        "1 alho-poró pequeno, fatiado fino",
+        "1 alho-francês pequeno, fatiado fino",
         "2 ovos",
         "100 ml de creme de leite",
         "1 colher de sopa de azeite de oliva",
@@ -233,9 +233,9 @@
       ],
       "instructions": [
         "Limpe os cogumelos: Limpe os cantharellus com um pincel ou pano úmido.",
-        "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-poró até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal.",
+        "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-francês até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal.",
         "Prepare o recheio: Bata os ovos com o creme de leite, as ervas, sal e pimenta.",
-        "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-poró, despeje a mistura de ovos por cima.",
+        "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-francês, despeje a mistura de ovos por cima.",
         "Asse: Leve ao forno a 180°C por 25–30 minutos até dourar.",
         "Sirva: Quente ou fria, ideal para um brunch na floresta."
       ],
@@ -247,7 +247,7 @@
         },
         {
           "step": 2,
-          "instruction": "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-poró até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal."
+          "instruction": "Base refogada: Aqueça o azeite na frigideira, cozinhe o alho-francês até ficar macio. Adicione os cantharellus e refogue por 5 minutos. Ajuste o sal."
         },
         {
           "step": 3,
@@ -255,7 +255,7 @@
         },
         {
           "step": 4,
-          "instruction": "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-poró, despeje a mistura de ovos por cima."
+          "instruction": "Monte: Disponha a massa folhada em uma forma, adicione cogumelos e alho-francês, despeje a mistura de ovos por cima."
         },
         {
           "step": 5,
@@ -279,9 +279,9 @@
       ]
     },
     "chickweed-sorrel-salad-with-walnut-vinaigrette": {
-      "title": "Salada de Mourão e Azedinha com Vinagrete de Nozes",
+      "title": "Salada de Morugem e Azedinha com Vinagrete de Nozes",
       "ingredients": [
-        "2 punhados de folhas frescas de mourão",
+        "2 punhados de folhas frescas de morugem",
         "1 punhado de folhas de azedinha, picadas",
         "1 punhado pequeno de nozes, torradas e picadas",
         "2 colheres de chá de óleo de noz (ou azeite de oliva)",
@@ -291,9 +291,9 @@
       ],
       "instructions": [
         "Torrar as nozes: Em uma frigideira sem óleo, torre as nozes por 3–4 minutos até ficarem aromáticas. Deixe esfriar.",
-        "Lavar as ervas: Lave o mourão e a azedinha, depois seque delicadamente com um pano limpo.",
+        "Lavar as ervas: Lave a morugem e a azedinha, depois seque delicadamente com um pano limpo.",
         "Preparar o vinagrete: Em uma tigela pequena, bata o óleo, vinagre, mel, sal e pimenta.",
-        "Misturar a salada: Em uma tigela grande, junte mourão, azedinha e nozes. Tempere com o vinagrete e misture levemente.",
+        "Misturar a salada: Em uma tigela grande, junte morugem, azedinha e nozes. Tempere com o vinagrete e misture levemente.",
         "Servir: Consuma imediatamente como uma salada fresca e levemente ácida."
       ],
       "species": ["chickweed", "sorrel", "walnut"],
@@ -304,7 +304,7 @@
         },
         {
           "step": 2,
-          "instruction": "Lavar as ervas: Lave o mourão e a azedinha, depois seque delicadamente com um pano limpo."
+          "instruction": "Lavar as ervas: Lave a morugem e a azedinha, depois seque delicadamente com um pano limpo."
         },
         {
           "step": 3,
@@ -312,7 +312,7 @@
         },
         {
           "step": 4,
-          "instruction": "Misturar a salada: Em uma tigela grande, junte mourão, azedinha e nozes. Tempere com o vinagrete e misture levemente."
+          "instruction": "Misturar a salada: Em uma tigela grande, junte morugem, azedinha e nozes. Tempere com o vinagrete e misture levemente."
         },
         {
           "step": 5,

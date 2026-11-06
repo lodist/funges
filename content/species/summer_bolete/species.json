@@ -18,33 +18,87 @@
   "locales": {
     "en": {
       "name": "Summer Bolete",
-      "description": "The earliest porcino, with a finely cracked pale brown cap and a stem netted from top to bottom",
-      "howTo": "Look under oak and beech from late spring, well before the other porcini appear"
+      "description": "The earliest porcino. Its pale brown cap is finely cracked and its stem is netted from top to bottom.",
+      "howTo": "Look under oak and beech from late spring, well before the other porcini appear",
+      "guide": {
+        "identify": "The summer porcino has a matt, dry, velvety cap, pale hazel to mid-brown. In dry weather the cap cracks into a fine network. It is never greasy and its edge is no paler than the centre. Its clearest mark is a raised net that runs down the stem almost to the base. The pores are white, then yellow-olive. They do not change colour. The white flesh is softer than in porcini. The devil's bolete (Rubroboletus satanas) and Le Gal's bolete (Rubroboletus legaliae) share its oak woods. But they have red pores and flesh that turns blue. The bitter bolete (Tylopilus felleus) has pink pores and a dark net.",
+        "habitat": "It grows with oak and sweet chestnut and also with beech, lime and birch. Look at wood edges, in parks and on sunny slopes, from the lowlands to about 1,000 m. It is common in central and southern Europe, especially in south-west France and Portugal. In Britain it is rare.",
+        "season": "This is the first porcino of the year. It starts in May on low ground and in June in the mountains. The main season is July to early September, after warm rain. It lasts until the first autumn cold.",
+        "picking": "Cut or twist it out and leave the small ones. In hot weather many are maggoty. Halve them on the spot and leave infested ones in the wood. Many Italian and Spanish regions require a permit.",
+        "kitchen": "Many cooks rate it the finest porcino. It is sweet, nutty and fragrant. It is good for drying, sauces and egg dishes. Once you've identified it with certainty, cut away maggoty parts and cook it through.",
+        "keeps": "Of all the porcini, it keeps worst. Cook or dry it the day you pick it.",
+        "source": "Identification, habitat and season: Regione Piemonte and First Nature; GBIF records. Cooking: Regione Piemonte."
+      }
     },
     "it": {
       "name": "Porcino Estivo",
-      "description": "Il primo porcino della stagione, con cappello bruno chiaro finemente screpolato e gambo reticolato per intero",
-      "howTo": "Cercalo sotto querce e faggi da fine primavera, molto prima degli altri porcini"
+      "description": "Il primo porcino della stagione. Il cappello è marrone chiaro e finemente screpolato. Il gambo è reticolato da cima a fondo.",
+      "howTo": "Cercalo sotto querce e faggi da fine primavera, molto prima degli altri porcini",
+      "guide": {
+        "identify": "Il porcino estivo, detto anche reticolato, ha il cappello opaco, asciutto e vellutato, da nocciola chiaro a marrone medio. Con il tempo secco il cappello si screpola in un fine reticolo. Non è mai untuoso e il bordo non è più chiaro del centro. Il segno più sicuro è il reticolo in rilievo che scende lungo il gambo quasi fino alla base. I pori sono bianchi, poi giallo oliva, e non cambiano colore. La carne è bianca e più tenera di quella del porcino. Il porcino malefico (Rubroboletus satanas) e il Rubroboletus legaliae crescono negli stessi querceti. Però hanno pori rossi e carne che vira al blu. Il porcino amaro (Tylopilus felleus) ha pori rosa e un reticolo scuro.",
+        "habitat": "Cresce con querce e castagni. Lo trovi anche con faggi, tigli e betulle. Cercalo ai margini del bosco, nei parchi e sui versanti al sole, dalla pianura fino a circa 1.000 m. È comune nell'Europa centrale e meridionale, soprattutto nel sud-ovest della Francia e in Portogallo. In Gran Bretagna è raro.",
+        "season": "È il primo porcino dell'anno. Comincia a maggio in basso e a giugno in montagna. La stagione buona va da luglio a inizio settembre, dopo le piogge calde. Dura fino ai primi freddi d'autunno.",
+        "picking": "Taglialo o staccalo ruotandolo e lascia i piccoli. Con il caldo molti sono bacati. Tagliali a metà sul posto e lascia nel bosco quelli con i vermi. In molte regioni italiane e spagnole serve il tesserino.",
+        "kitchen": "Per molti cuochi è il porcino più buono. È dolce, sa di nocciola ed è profumato. È ottimo da seccare, nei sughi e con le uova. Quando l'hai riconosciuto con certezza, togli le parti bacate e cuocilo bene.",
+        "keeps": "Di tutti i porcini è quello che si conserva peggio. Cuocilo o seccalo il giorno stesso.",
+        "source": "Identificazione, habitat e stagione: Regione Piemonte e First Nature; dati GBIF. Cucina: Regione Piemonte."
+      }
     },
     "fr": {
       "name": "Cèpe d'Été",
-      "description": "Le premier cèpe de la saison, au chapeau brun clair finement craquelé et au pied réticulé sur toute sa hauteur",
-      "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes"
+      "description": "Le plus précoce des cèpes. Son chapeau brun clair est finement craquelé. Son pied porte un réseau de haut en bas.",
+      "howTo": "Cherchez-le sous les chênes et les hêtres dès la fin du printemps, bien avant les autres cèpes",
+      "guide": {
+        "identify": "Le cèpe d'été, qu'on appelle aussi cèpe réticulé, a un chapeau mat, sec et velouté, noisette pâle à brun moyen. Par temps sec, le chapeau se craquelle en un fin réseau. Il n'est jamais gras. Sa marge n'est pas plus claire que le centre. Son signe le plus net est un réseau en relief qui descend sur le pied presque jusqu'à la base. Les pores sont blancs, puis jaune olive. Ils ne changent pas de couleur. La chair blanche est plus tendre que celle du cèpe de Bordeaux. Le bolet Satan (Rubroboletus satanas) et le bolet de Le Gal (Rubroboletus legaliae) poussent dans les mêmes chênaies. Mais ils ont des pores rouges et une chair qui bleuit. Le bolet amer (Tylopilus felleus) a des pores roses et un réseau sombre.",
+        "habitat": "Il pousse avec le chêne et le châtaignier. On le trouve aussi sous le hêtre, le tilleul et le bouleau. Cherchez-le en lisière de bois, dans les parcs et sur les pentes ensoleillées, de la plaine jusqu'à 1000 m environ. Il est commun en Europe centrale et du Sud, surtout dans le sud-ouest de la France et au Portugal. En Grande-Bretagne, il est rare.",
+        "season": "C'est le premier cèpe de l'année. Il commence en mai en plaine et en juin en montagne. La pleine saison va de juillet à début septembre, après des pluies chaudes. Il dure jusqu'aux premiers froids de l'automne.",
+        "picking": "Coupez-le ou dégagez-le en le tournant. Laissez les petits. Par temps chaud, beaucoup sont véreux. Coupez-les en deux sur place et laissez les véreux en forêt. Beaucoup de régions d'Italie et d'Espagne exigent un permis.",
+        "kitchen": "Beaucoup de cuisiniers le tiennent pour le meilleur des cèpes. Il est doux et parfumé, avec un goût de noisette. Il est parfait pour le séchage, les sauces et les plats aux œufs. Une fois identifié avec certitude, retirez les parties véreuses et faites-le bien cuire.",
+        "keeps": "C'est le cèpe qui se garde le moins bien. Faites-le cuire ou sécher le jour de la cueillette.",
+        "source": "Identification, habitat et saison : Regione Piemonte et First Nature ; données GBIF. Cuisine : Regione Piemonte."
+      }
     },
     "de": {
       "name": "Sommersteinpilz",
-      "description": "Der früheste Steinpilz, mit fein rissigem hellbraunem Hut und einem von oben bis unten genetzten Stiel",
-      "howTo": "Suche unter Eichen und Buchen ab dem späten Frühjahr, lange vor den anderen Steinpilzen"
+      "description": "Der früheste Steinpilz. Sein hellbrauner Hut ist fein rissig, und der Stiel ist von oben bis unten genetzt.",
+      "howTo": "Suche unter Eichen und Buchen ab dem späten Frühjahr, lange vor den anderen Steinpilzen",
+      "guide": {
+        "identify": "Der Sommer-Steinpilz hat einen matten, trockenen, samtigen Hut, hell haselnussbraun bis mittelbraun. Bei Trockenheit reisst der Hut fein netzartig auf. Er ist nie fettig, und sein Rand ist nicht heller als die Mitte. Sein deutlichstes Merkmal ist ein erhabenes Netz, das fast bis zum Stielgrund reicht. Die Poren sind weiss, dann gelboliv, und verfärben sich nicht. Das weisse Fleisch ist weicher als beim Steinpilz. Der Satansröhrling (Rubroboletus satanas) und Rubroboletus legaliae wachsen in denselben Eichenwäldern. Sie haben aber rote Poren und Fleisch, das blau anläuft. Der Gallenröhrling (Tylopilus felleus) hat rosa Poren und ein dunkles Netz.",
+        "habitat": "Er wächst bei Eiche und Edelkastanie, auch bei Buche, Linde und Birke. Such an Waldrändern, in Parks und an sonnigen Hängen, vom Tiefland bis etwa 1000 m. In Mittel- und Südeuropa ist er häufig, besonders in Südwestfrankreich und Portugal. In Grossbritannien ist er selten.",
+        "season": "Er ist der erste Steinpilz des Jahres. Im Tiefland geht es im Mai los, im Gebirge im Juni. Die Hauptsaison ist von Juli bis Anfang September, nach warmem Regen. Er hält sich bis zur ersten Herbstkälte.",
+        "picking": "Schneide oder dreh ihn heraus und lass die kleinen stehen. Bei Hitze sind viele madig. Halbiere sie gleich vor Ort und lass befallene im Wald. In vielen Regionen Italiens und Spaniens brauchst du eine Genehmigung.",
+        "kitchen": "Viele Köche halten ihn für den besten Steinpilz. Er schmeckt süsslich und nussig und duftet. Er eignet sich zum Trocknen, für Sossen und für Eiergerichte. Wenn du ihn sicher bestimmt hast, schneide madige Stellen weg und gare ihn gut durch.",
+        "keeps": "Von allen Steinpilzen hält er sich am schlechtesten. Gare oder trockne ihn noch am Tag, an dem du ihn sammelst.",
+        "source": "Bestimmung, Standort und Saison: Regione Piemonte und First Nature; GBIF-Funddaten. Küche: Regione Piemonte."
+      }
     },
     "es": {
       "name": "Boleto de Verano",
-      "description": "El primer boleto de la temporada, de sombrero pardo claro finamente agrietado y pie reticulado por completo",
-      "howTo": "Búscalo bajo robles y hayas desde finales de primavera, mucho antes que los demás boletos"
+      "description": "El boleto más temprano. Su sombrero es pardo claro y está finamente agrietado. Su pie tiene red de arriba abajo.",
+      "howTo": "Búscalo bajo robles y hayas desde finales de primavera, mucho antes que los demás boletos",
+      "guide": {
+        "identify": "El boleto de verano tiene el sombrero mate, seco y aterciopelado, de color avellana claro a pardo medio. Con tiempo seco se agrieta en una red fina. Nunca es grasiento, y el borde no es más claro que el centro. Lo que mejor lo distingue es un retículo en relieve que baja por el pie casi hasta la base. Los poros son blancos y luego amarillo oliva, y no cambian de color. La carne es blanca y más blanda que en el boleto comestible. El boleto de Satanás (Rubroboletus satanas) y el boleto de Le Gal (Rubroboletus legaliae) comparten sus robledales. Pero tienen los poros rojos y la carne les azulea. El boleto amargo (Tylopilus felleus) tiene poros rosados y un retículo oscuro.",
+        "habitat": "Crece con robles y castaños. También sale con hayas, tilos y abedules. Búscalo en bordes de bosque, en parques y en laderas soleadas, desde el llano hasta unos 1000 m. Es común en el centro y el sur de Europa, sobre todo en el suroeste de Francia y en Portugal. En Gran Bretaña es raro.",
+        "season": "Es el primer boleto del año. Empieza en mayo en las zonas bajas y en junio en la montaña. La temporada fuerte va de julio a principios de septiembre, después de lluvias cálidas. Dura hasta el primer frío del otoño.",
+        "picking": "Córtalo o sácalo girándolo, y deja los pequeños. Con calor muchos tienen gusanos. Pártelos allí mismo y deja en el bosque los que estén agusanados. En muchas comunidades autónomas y regiones de Italia hace falta un permiso.",
+        "kitchen": "Muchos cocineros lo tienen por el mejor de los boletos. Es dulce, aromático y sabe a frutos secos. Va bien seco, en salsas y con huevos. Cuando lo tengas identificado sin ninguna duda, quita las partes con gusanos y cocínalo bien.",
+        "keeps": "De todos los boletos, es el que peor se conserva. Cocínalo o sécalo el mismo día que lo cojas.",
+        "source": "Identificación, hábitat y temporada: Regione Piemonte y First Nature; registros de GBIF. Cocina: Regione Piemonte."
+      }
     },
     "pt": {
       "name": "Boleto de Verão",
-      "description": "O primeiro cogumelo boleto da época, de chapéu castanho claro finamente gretado e pé reticulado de alto a baixo",
-      "howTo": "Procure sob carvalhos e faias a partir do fim da primavera, bem antes dos outros boletos"
+      "description": "O porcini que aparece mais cedo. O chapéu castanho-claro tem gretas finas e o pé tem rede de cima a baixo.",
+      "howTo": "Procure sob carvalhos e faias a partir do fim da primavera, bem antes dos outros boletos",
+      "guide": {
+        "identify": "O boleto de verão tem o chapéu mate, seco e aveludado, cor de avelã clara a castanho médio. Com tempo seco, o chapéu greta numa rede fina. Nunca é gorduroso e a margem não é mais clara do que o centro. O sinal mais claro é uma rede em relevo que desce pelo pé quase até à base. Os poros são brancos e depois amarelo-azeitona. Não mudam de cor. A carne branca é mais mole do que a do boleto comestível. O boleto-de-satanás (Rubroboletus satanas) e o Rubroboletus legaliae partilham os mesmos carvalhais. Mas têm poros vermelhos e carne que azula. O boleto-amargo (Tylopilus felleus) tem poros cor-de-rosa e uma rede escura.",
+        "habitat": "Cresce com carvalhos e castanheiros. Também cresce com faias, tílias e vidoeiros. Procure nas orlas dos bosques, em parques e em encostas soalheiras, da planície até cerca de 1000 m. É comum na Europa central e do sul, sobretudo no sudoeste de França e em Portugal. Na Grã-Bretanha é raro.",
+        "season": "É o primeiro boleto do ano. Começa em maio nas terras baixas e em junho na montanha. A época principal vai de julho ao início de setembro, depois de chuvas quentes. Dura até aos primeiros frios do outono.",
+        "picking": "Corte-o ou rode-o para o tirar e deixe os pequenos. Com calor, muitos têm bicho. Corte-os ao meio logo ali e deixe na mata os que tiverem bicho. Em muitas regiões de Itália e de Espanha é preciso licença.",
+        "kitchen": "Muitos cozinheiros consideram-no o melhor de todos os boletos. É doce, perfumado e sabe a avelã. É bom para secar, para molhos e para pratos com ovos. Depois de o identificar com certeza, tire as partes com bicho e cozinhe-o bem.",
+        "keeps": "De todos os boletos, é o que pior se conserva. Cozinhe-o ou seque-o no dia em que o apanha.",
+        "source": "Identificação, habitat e época: Regione Piemonte e First Nature; registos do GBIF. Cozinha: Regione Piemonte."
+      }
     }
   },
   "identification": {
@@ -147,6 +201,8 @@
       "taxonKeys": [5954691],
       "references": ["https://www.gbif.org/species/5954691"]
     },
-    "rangePrior": { "taxonKeys": [5954691] }
+    "rangePrior": {
+      "taxonKeys": [5954691]
+    }
   }
 }
