@@ -327,6 +327,10 @@ export default function HuertaMapPage() {
   const [layer, setLayer] = useState<MapLayer>('crop');
   // The pest the Pests button shows: the one picked last.
   const [pest, setPest] = useState<MapLayer>(PEST_LAYERS[0]);
+  // Their second rail: opened from that button, put away once the map is
+  // moved or tapped, so the map keeps its room (as on Terra's).
+  const [pestsOpen, setPestsOpen] = useState(false);
+  const pestsShown = pestsOpen && railOf(layer) === 'pests';
   // What each layer was last drawn from, for its legend.
   const [sources, setSources] = useState<Partial<Record<MapLayer, MapSource>>>(
     {}
@@ -385,7 +389,11 @@ export default function HuertaMapPage() {
           look();
         });
         m.on('moveend', look);
+        // Any move: a drag, a pinch or a wheel zoom (whose first tick carries
+        // no originalEvent, so the move is not filtered by it).
+        m.on('movestart', () => setPestsOpen(false));
         m.on('click', event => {
+          setPestsOpen(false);
           // With a card open, a click elsewhere only closes it.
           if (open.current) return setPicked(null);
           setPicked({
@@ -474,7 +482,8 @@ export default function HuertaMapPage() {
     l: MapLayer | 'pests',
     on: boolean,
     pick: () => void,
-    labelled = false
+    labelled = false,
+    expanded?: boolean
   ) => {
     const Icon = LAYER_ICON[l];
     return (
@@ -484,6 +493,7 @@ export default function HuertaMapPage() {
         variant='ghost'
         size={labelled ? 'default' : 'icon'}
         aria-pressed={on}
+        aria-expanded={expanded}
         aria-label={labelled ? undefined : layerName(l)}
         title={labelled ? undefined : layerName(l)}
         onClick={pick}
@@ -548,11 +558,20 @@ export default function HuertaMapPage() {
         >
           {LAYERS.map(l =>
             l === 'pests' ? (
-              // The pests as a second rail beside their button, open while
-              // one of them is on the map.
+              // The pests as a second rail beside their button, which opens
+              // and closes it.
               <div key={l} className='relative'>
-                {railButton(l, railOf(layer) === l, () => setLayer(pest))}
-                {railOf(layer) === l ? (
+                {railButton(
+                  l,
+                  railOf(layer) === l,
+                  () => {
+                    setLayer(pest);
+                    setPestsOpen(!pestsShown);
+                  },
+                  false,
+                  pestsShown
+                )}
+                {pestsShown ? (
                   <div
                     role='group'
                     aria-label={layerName(l)}
@@ -581,10 +600,13 @@ export default function HuertaMapPage() {
           )}
           <MapThemeSelector onBand />
         </div>
+        {/* On a phone, where Terra's map dock sits: just above the nav bar. */}
         <div
           className={cn(
-            'pointer-events-none absolute inset-x-0 flex flex-col items-start gap-2 p-3 sm:p-4',
-            isMobile ? 'bottom-28' : 'bottom-0'
+            'pointer-events-none flex flex-col items-start gap-2',
+            isMobile
+              ? 'fixed right-4 bottom-24 left-4 z-10'
+              : 'absolute inset-x-0 bottom-0 p-3 sm:p-4'
           )}
         >
           {picked ? (
