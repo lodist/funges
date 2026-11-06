@@ -414,47 +414,37 @@ export default function HuertaInstructionsPage() {
                 </p>
               </div>
               <figure>
-                {/* On a phone the picture keeps a readable width and slides
-                    sideways: shrunk to the screen, its numbers would overlap. */}
-                <div
-                  role='region'
-                  aria-label={t('huerta.garden.picture.caption')}
-                  tabIndex={0}
-                  className='focus-ring overflow-x-auto rounded-lg border border-border'
-                >
-                  <div className='relative min-w-[40rem]'>
-                    <img
-                      src={`${import.meta.env.BASE_URL}huerta/guide/planner-${shot}.webp`}
-                      alt={t('huerta.garden.picture.alt')}
-                      width={SHOT.width}
-                      height={SHOT.height}
-                      loading='lazy'
-                      className='block h-auto w-full'
-                    />
-                    {SPOTS[shot].map(([x, y], i) => (
-                      <span
-                        key={GARDEN_PARTS[i]}
-                        aria-hidden
-                        className={cn(
-                          NUMBER,
-                          'absolute -translate-x-1/2 -translate-y-1/2 ring-2 ring-card'
-                        )}
-                        style={{
-                          left: `${(x / SHOT.width) * 100}%`,
-                          top: `${(y / SHOT.height) * 100}%`,
-                        }}
-                      >
-                        {i + 1}
-                      </span>
-                    ))}
-                  </div>
+                {/* The whole picture at any width. Its numbers shrink with
+                    it (a container query): full size, they would pile up on
+                    a phone. */}
+                <div className='relative @container'>
+                  <img
+                    src={`${import.meta.env.BASE_URL}huerta/guide/planner-${shot}.webp`}
+                    alt={t('huerta.garden.picture.alt')}
+                    width={SHOT.width}
+                    height={SHOT.height}
+                    loading='lazy'
+                    className='block h-auto w-full rounded-lg border border-border'
+                  />
+                  {SPOTS[shot].map(([x, y], i) => (
+                    <span
+                      key={GARDEN_PARTS[i]}
+                      aria-hidden
+                      className={cn(
+                        NUMBER,
+                        'absolute size-4 -translate-x-1/2 -translate-y-1/2 ring-2 ring-card @2xl:size-6'
+                      )}
+                      style={{
+                        left: `${(x / SHOT.width) * 100}%`,
+                        top: `${(y / SHOT.height) * 100}%`,
+                      }}
+                    >
+                      {i + 1}
+                    </span>
+                  ))}
                 </div>
                 <figcaption className='mt-2 text-sm text-muted-foreground'>
                   {t('huerta.garden.picture.caption')}
-                  <span className='sm:hidden'>
-                    {' '}
-                    {t('huerta.garden.picture.swipe')}
-                  </span>
                 </figcaption>
               </figure>
               <ol className='flex flex-col gap-5'>
