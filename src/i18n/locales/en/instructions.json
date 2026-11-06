@@ -207,7 +207,7 @@
         },
         "select": {
           "title": "Select",
-          "text": "Tap Select and drag over several beds to change them together: put one crop in all of them, join them or split each in two. The hand moves the drawing. “Clear selection” lets them go."
+          "text": "Tap Select and drag over several beds to change them together: put one crop in all of them, join them or split each in two. On a phone the hand moves the drawing; on a computer you just drag it. “Clear selection” lets them go."
         },
         "timeline": {
           "title": "Timeline",

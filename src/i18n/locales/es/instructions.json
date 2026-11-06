@@ -207,7 +207,7 @@
         },
         "select": {
           "title": "Seleccionar",
-          "text": "Toca «Seleccionar» y arrastra sobre varios bancales para cambiarlos juntos: el mismo cultivo en todos, unirlos o dividir cada uno en dos. La mano mueve el dibujo. «Quitar la selección» los suelta."
+          "text": "Toca «Seleccionar» y arrastra sobre varios bancales para cambiarlos juntos: el mismo cultivo en todos, unirlos o dividir cada uno en dos. En el móvil la mano mueve el dibujo; en el ordenador basta con arrastrarlo. «Quitar la selección» los suelta."
         },
         "timeline": {
           "title": "Línea de tiempo",

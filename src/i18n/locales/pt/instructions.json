@@ -207,7 +207,7 @@
         },
         "select": {
           "title": "Selecionar",
-          "text": "Toque em \"Selecionar\" e arraste por cima de vários canteiros para mudá-los juntos: a mesma cultura em todos, juntá-los ou dividir cada um em dois. A mão move o desenho. \"Limpar a seleção\" solta os canteiros."
+          "text": "Toque em \"Selecionar\" e arraste por cima de vários canteiros para mudá-los juntos: a mesma cultura em todos, juntá-los ou dividir cada um em dois. No celular a mão move o desenho; no computador basta arrastá-lo. \"Limpar a seleção\" solta os canteiros."
         },
         "timeline": {
           "title": "Linha do tempo",
