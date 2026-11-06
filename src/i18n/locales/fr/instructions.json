@@ -207,7 +207,7 @@
         },
         "select": {
           "title": "Sélectionner",
-          "text": "Touchez « Sélectionner » et faites glisser sur plusieurs planches pour les modifier ensemble : la même culture partout, les joindre ou couper chacune en deux. La main déplace le dessin. « Tout désélectionner » les relâche."
+          "text": "Touchez « Sélectionner » et faites glisser sur plusieurs planches pour les modifier ensemble : la même culture partout, les joindre ou couper chacune en deux. Sur un téléphone, la main déplace le dessin ; sur un ordinateur, il suffit de le faire glisser. « Tout désélectionner » les relâche."
         },
         "timeline": {
           "title": "Chronologie",

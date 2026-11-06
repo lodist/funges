@@ -1775,7 +1775,8 @@ export function GardenModel({
         ) : null}
         {/* The tools together: the hand moves the drawing, Select draws a box
           over sections (on a phone both are modes, a finger otherwise
-          scrolling the page), and what is selected is cleared beside them. */}
+          scrolling the page), and what is selected is cleared beside them.
+          No hand where a mouse leads: a mouse always moves the drawing. */}
         <div className='absolute bottom-2 left-2 flex max-w-[calc(100%-4rem)] flex-col items-start gap-1.5'>
           {area && onSelectArea ? (
             <p className='rounded-md bg-card/90 px-2 py-1 text-xs text-foreground elevation-raised'>
@@ -1794,6 +1795,7 @@ export function GardenModel({
               pressed={moving}
               label={t('planner.move')}
               onClick={() => setTool(moving ? null : 'move')}
+              className='pointer-fine:hidden'
             >
               <Hand className='size-4' />
             </ToolButton>
@@ -1939,11 +1941,13 @@ function ToolButton({
   label,
   pressed,
   onClick,
+  className,
   children,
 }: {
   label: string;
   pressed?: boolean;
   onClick: () => void;
+  className?: string;
   children: ReactNode;
 }) {
   return (
@@ -1957,7 +1961,8 @@ function ToolButton({
         'focus-ring flex h-8 min-w-8 items-center justify-center gap-1.5 rounded-lg px-2 text-xs font-medium elevation-raised sm:h-10 sm:min-w-10 sm:px-2.5 sm:text-sm',
         pressed
           ? 'bg-primary text-primary-foreground'
-          : 'bg-card/90 text-foreground hover:bg-card'
+          : 'bg-card/90 text-foreground hover:bg-card',
+        className
       )}
     >
       {children}
