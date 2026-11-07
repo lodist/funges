@@ -9,23 +9,6 @@ import { seoPages } from './scripts/seo-pages';
 const baseUrl = process.env.VITE_BASE_URL || '/';
 const hostname = process.env.VITE_HOSTNAME || 'https://www.fung.es';
 
-const routeFullPaths = [
-  '/data',
-  '/huerta',
-  '/identify',
-  '/impressum',
-  '/instructions',
-  '/map',
-  '/offline',
-  '/privacy-policy',
-  '/recipes',
-  '/settings',
-  '/species',
-  '/support',
-  '/termsuse',
-  '/worth-foraging-now',
-];
-
 // Cloudflare's Rocket Loader rewrites <script type="module"> into its own
 // deferred loader, adding a round trip before any app code runs. data-cfasync
 // opts out — and it has to be added here because Vite regenerates the entry
@@ -125,7 +108,7 @@ export default defineConfig({
               if (answer) return answer;
               // ignoreSearch: precache keys end in ?__WB_REVISION__=…
               const shell: Response | undefined = await caches.match(
-                'index.html',
+                'app.html',
                 { ignoreSearch: true }
               );
               if (!shell) return network;
@@ -323,12 +306,13 @@ export default defineConfig({
             },
           },
         ],
-        // Offline fallback
-        navigateFallback: 'index.html',
+        // Every page the worker opens: the app's shell. Not index.html, which
+        // is the front page with its own text and photo (scripts/seo-pages.ts).
+        navigateFallback: 'app.html',
         navigateFallbackAllowlist: [/^(?!\/__).*/],
         // /identify is the one page served cross-origin isolated (photo ID's
         // threads need it), and the headers live on the network response.
-        // The precached index.html carries none, so serving it here would
+        // The precached app.html carries none, so serving it here would
         // quietly drop the page back to one thread — see the identify route
         // above, which adds them to the shell when it serves it offline.
         navigateFallbackDenylist: [
@@ -410,7 +394,7 @@ export default defineConfig({
     }),
     // The indexed pages' own HTML and sitemap.xml (every URL with its slash:
     // GitHub Pages serves folders, so /species 301s to /species/).
-    seoPages({ origin: hostname, others: routeFullPaths }),
+    seoPages({ origin: hostname }),
     removeConsole({
       includes: [
         'log',

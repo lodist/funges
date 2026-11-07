@@ -95,7 +95,8 @@
   },
   "worthForagingNow": {
     "title": "Qué merece la pena recolectar ahora",
-    "description": "Una primera selección que clasifica los mejores objetivos cercanos usando tus datos actuales de especies y recetas.",
+    "seoTitle": "Qué merece la pena recolectar ahora cerca de ti",
+    "description": "Las setas, plantas silvestres y bayas que merece la pena buscar cerca de ti ahora mismo, según el tiempo y la temporada.",
     "scopeRadius": "A menos de {{radius}} km de ti",
     "currentAsOf": "A fecha de {{date}}",
     "loading": "Cargando opciones…",
@@ -161,20 +162,6 @@
     "notFound": "Página no encontrada.",
     "unauthorized": "No estás autorizado para acceder a este recurso.",
     "copy": "No se pudo copiar. Selecciona el texto y cópialo a mano."
-  },
-  "html": {
-    "title": "Fung.es - Encuentra hongos y plantas silvestres comestibles cerca de ti",
-    "description": "Encuentra hongos y plantas comestibles cerca de ti con nuestro mapa de recolección en tiempo real. Descubre puntos calientes de alimentos silvestres usando datos meteorológicos y geoespaciales para una recolección exitosa.",
-    "keywords": "hongos, recolección, plantas silvestres comestibles, mapa de recolección, alimentos silvestres, plantas comestibles, búsqueda de hongos, lugares de recolección, hongos silvestres",
-    "author": "Fung.es",
-    "ogTitle": "Fung.es - Encuentra hongos y plantas silvestres comestibles cerca de ti",
-    "ogDescription": "Encuentra hongos y plantas comestibles cerca de ti con nuestro mapa de recolección en tiempo real. Descubre puntos calientes de alimentos silvestres usando datos meteorológicos y geoespaciales para una recolección exitosa.",
-    "ogType": "website",
-    "ogImage": "/icons/logo_funges.png",
-    "twitterCard": "summary_large_image",
-    "twitterTitle": "Fung.es - Encuentra hongos y plantas silvestres comestibles cerca de ti",
-    "twitterDescription": "Encuentra hongos y plantas comestibles cerca de ti con nuestro mapa de recolección en tiempo real. Descubre puntos calientes de alimentos silvestres usando datos meteorológicos y geoespaciales para una recolección exitosa.",
-    "twitterImage": "/icons/logo_funges.png"
   },
   "splash": {
     "title": "Fung.es",
@@ -377,7 +364,9 @@
       "openEurope": "Abrir Europa",
       "fewRecords": "Pocos registros locales ({{formatted}} desde 2010), así que la temporada se apoya en lugares de clima parecido.",
       "rareRecords": "Casi nunca se ha registrado aquí, así que la temporada que se ve es la de lugares de clima parecido."
-    }
+    },
+    "seoTitle": "Datos de las previsiones y temporadas de setas",
+    "seoDescription": "El tiempo detrás de las previsiones de esta semana, cuánto acertaron con hallazgos reales y la temporada de cada seta, lugar por lugar."
   },
   "sidebar": {
     "title": "Barra lateral",

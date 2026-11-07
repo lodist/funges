@@ -1,6 +1,7 @@
 {
   "title": "Cultivos",
   "description": "Cada cultivo: si va a la tierra esta semana en tu localidad, cómo cultivarlo y qué vigilar.",
+  "seoTitle": "Qué cultivar y cuándo plantarlo donde vives",
   "sample": "Ejemplo: {{place}}, {{day}}. Pronto, tu propia localidad.",
   "around": "Alrededores de {{place}}, {{day}}",
   "offline": "Sin conexión: consejos del {{day}}",
@@ -2005,7 +2006,7 @@
     }
   },
   "map": {
-    "title": "Mapa",
+    "title": "Mapa de siembra: qué sembrar y plantar cerca de ti esta semana",
     "description": "Dónde va cada cultivo esta semana, heladas en los próximos tres días, temperatura del suelo y riego, lugar a lugar.",
     "crop": "Cultivo",
     "layer": "Capa del mapa",
@@ -2150,6 +2151,7 @@
       "addRounds": "Añadir las tandas"
     },
     "title": "Mi huerto",
+    "seoTitle": "Planificador de huerto: tus bancales, semana a semana",
     "description": "Tu huerto bancal a bancal, y lo que necesita de ti cada semana: qué sembrar y dónde, cuidados, riego y cosecha, calculado para tu lugar.",
     "sample": "Planificado para un lugar de ejemplo, {{place}}.",
     "choosePlace": "Elige tu lugar",
@@ -2438,7 +2440,7 @@
     }
   },
   "year": {
-    "title": "Calendario",
+    "title": "Calendario de siembra",
     "seoTitle": "Calendario de siembra para tu zona",
     "failed": "El calendario no ha cargado. Prueba de nuevo en un momento.",
     "none": "Aquí no hay calendario de Huerta. Prueba con un pueblo cercano.",
@@ -2590,6 +2592,7 @@
   },
   "page": {
     "title": "{{name}}: {{start}}, cuidados y {{end}}",
+    "description": "{{name}} donde vives: fechas de {{start}}, cuidados, {{end}} y qué vigilar.",
     "start": {
       "sow": "siembra",
       "plant": "plantación"

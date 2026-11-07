@@ -339,7 +339,7 @@ export default function HuertaInstructionsPage() {
   return (
     <>
       <SEO
-        title={t('huerta.title')}
+        title={t('huerta.seoTitle')}
         description={t('huerta.subtitle')}
         canonicalUrl={`${import.meta.env.BASE_URL}huerta/instructions`}
       />

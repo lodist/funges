@@ -3,26 +3,29 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 /**
  * TanStack's Link needs a RouterProvider, which mounts asynchronously and would
  * make every synchronous query in this file fail. Mocked to an anchor that
- * renders its target into href, so the link's route and search param are still
- * asserted below.
+ * renders its target into href, path params filled in, so the link's page is
+ * still asserted below.
  *
- * Little is lost by not using a real router: `to` and `search` are type-checked
+ * Little is lost by not using a real router: `to` and `params` are type-checked
  * against the generated route tree, so a wrong route or renamed param is a
  * compile error, not something a test would need to catch.
  */
 vi.mock('@tanstack/react-router', () => ({
   Link: ({
     to,
-    search,
+    params,
     children,
     ...rest
   }: {
     to: string;
-    search?: { q?: string };
+    params?: Record<string, string>;
     children?: unknown;
     [key: string]: unknown;
   }) => (
-    <a href={`${to}?q=${encodeURIComponent(search?.q ?? '')}`} {...rest}>
+    <a
+      href={to.replace(/\$(\w+)/g, (_, name: string) => params?.[name] ?? '')}
+      {...rest}
+    >
       {children as never}
     </a>
   ),
@@ -276,43 +279,34 @@ describe('species guide link', () => {
     );
 
     const link = screen.getByRole('link', { name: /chanterelle/i });
-    expect(link).toHaveAttribute(
-      'href',
-      `/species?q=${encodeURIComponent('Cantharellus cibarius')}`
-    );
+    expect(link).toHaveAttribute('href', '/species/chant');
   });
 
   // Genus-level entries are the ones this is easiest to get wrong: the catalog
   // stores "Morchella spp." while the model predicts "Morchella esculenta", so
-  // filtering by the prediction would land on an empty list for exactly the
-  // entries a forager most needs to read about.
-  it('links a genus-level match by the CATALOG name, not the prediction', () => {
+  // the link must be the catalog entry's page, not one for the prediction.
+  it('links a genus-level match to its CATALOG entry, not the prediction', () => {
     render(
       <IdentifyResults
         candidates={resolvePredictions([p('Morchella esculenta')])}
       />
     );
 
-    const link = screen.getByRole('link');
-    expect(link.getAttribute('href')).toContain(
-      encodeURIComponent('Morchella spp.')
-    );
-    expect(link.getAttribute('href')).not.toContain('esculenta');
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/species/morel');
   });
 
   // The other half of the same rule. Boletus used to be a genus entry and is
-  // now four species, so the porcini link must carry the predicted binomial
-  // rather than a genus name the catalog no longer holds.
-  it('links a species-level bolete by its own binomial', () => {
+  // now four species, so the bronze bolete opens its own page rather than the
+  // porcini group's.
+  it('links a species-level bolete to its own page', () => {
     render(
       <IdentifyResults candidates={resolvePredictions([p('Boletus aereus')])} />
     );
 
-    const link = screen.getByRole('link');
-    expect(link.getAttribute('href')).toContain(
-      encodeURIComponent('Boletus aereus')
+    expect(screen.getByRole('link')).toHaveAttribute(
+      'href',
+      '/species/bronze_bolete'
     );
-    expect(link.getAttribute('href')).not.toContain('spp.');
   });
 
   // A link to a page that would show nothing is worse than no link.

@@ -1,5 +1,6 @@
 {
   "title": "Recetas",
+  "seoTitle": "Recetas silvestres: setas, bayas y verduras silvestres",
   "subtitle": "Deliciosas recetas usando alimentos silvestres",
   "filterByIngredient": "Filtrar por ingrediente",
   "allIngredients": "Todos los ingredientes",
@@ -11,7 +12,7 @@
   "instructions": "Instrucciones",
   "tips": "Consejos",
   "warnings": "Advertencias",
-  "description": "Descubre deliciosas recetas usando ingredientes recolectados",
+  "description": "Recetas para lo que recolectas, de la tarta de rebozuelos al sirope de diente de león, con las setas y plantas que necesita cada una.",
   "search": {
     "placeholder": "Buscar recetas, ingredientes o etiquetas",
     "no_results": "No se encontraron recetas",

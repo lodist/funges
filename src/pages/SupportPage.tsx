@@ -55,8 +55,8 @@ export default function SupportPage() {
   return (
     <>
       <SEO
-        title={t('title')}
-        description={t('description')}
+        title={t('seoTitle')}
+        description={t('seoDescription')}
         canonicalUrl={`${import.meta.env.BASE_URL}support`}
       />
       <div className='container mx-auto max-w-6xl px-4 py-8'>

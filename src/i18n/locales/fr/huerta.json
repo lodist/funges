@@ -1,6 +1,7 @@
 {
   "title": "Cultures",
   "description": "Chaque culture : si elle se met en terre cette semaine dans votre commune, comment la cultiver et ce qu'il faut surveiller.",
+  "seoTitle": "Quoi cultiver et quand le planter chez vous",
   "sample": "Exemple : {{place}}, {{day}}. Bientôt votre propre commune.",
   "around": "Environs de {{place}}, {{day}}",
   "offline": "Hors ligne : conseils du {{day}}",
@@ -2005,7 +2006,7 @@
     }
   },
   "map": {
-    "title": "Carte",
+    "title": "Carte des semis : quoi semer et planter près de chez vous cette semaine",
     "description": "Où chaque culture se met en terre cette semaine, les gelées des trois prochains jours, la température du sol et l'arrosage, lieu par lieu.",
     "crop": "Culture",
     "layer": "Couche de la carte",
@@ -2150,6 +2151,7 @@
       "addRounds": "Ajouter les semis"
     },
     "title": "Mon potager",
+    "seoTitle": "Planificateur de potager : vos planches, semaine après semaine",
     "description": "Votre potager planche par planche, et ce qu'il vous demande chaque semaine : quoi semer où, soins, arrosage et récolte, calculés pour votre lieu.",
     "sample": "Planifié pour un lieu d'exemple, {{place}}.",
     "choosePlace": "Choisissez votre lieu",
@@ -2438,7 +2440,7 @@
     }
   },
   "year": {
-    "title": "Calendrier",
+    "title": "Calendrier des semis",
     "seoTitle": "Calendrier des semis pour chez vous",
     "failed": "Le calendrier n'a pas pu se charger. Réessayez dans un instant.",
     "none": "Pas de calendrier Huerta ici. Essayez une localité proche.",
@@ -2590,6 +2592,7 @@
   },
   "page": {
     "title": "{{name}} : {{start}}, entretien et {{end}}",
+    "description": "{{name}} chez vous : dates de {{start}}, entretien, {{end}} et points à surveiller.",
     "start": {
       "sow": "semis",
       "plant": "plantation"

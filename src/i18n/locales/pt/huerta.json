@@ -1,6 +1,7 @@
 {
   "title": "Culturas",
   "description": "Cada cultura: se vai para a terra esta semana na sua cidade, como cultivá-la e o que vigiar.",
+  "seoTitle": "O que cultivar e quando plantar onde você mora",
   "sample": "Exemplo: {{place}}, {{day}}. Em breve, a sua cidade.",
   "around": "Arredores de {{place}}, {{day}}",
   "offline": "Sem ligação: conselhos de {{day}}",
@@ -2005,7 +2006,7 @@
     }
   },
   "map": {
-    "title": "Mapa",
+    "title": "Mapa de plantio: o que semear e plantar perto de você esta semana",
     "description": "Onde cada cultura vai para a terra esta semana, geadas nos próximos três dias, temperatura do solo e rega, lugar a lugar.",
     "crop": "Cultura",
     "layer": "Camada do mapa",
@@ -2150,6 +2151,7 @@
       "addRounds": "Adicionar as etapas"
     },
     "title": "Minha horta",
+    "seoTitle": "Planejador da horta: seus canteiros, semana a semana",
     "description": "Sua horta canteiro por canteiro, e o que ela precisa de você a cada semana: o que semear e onde, cuidados, rega e colheita, calculados para o seu lugar.",
     "sample": "Planejado para um lugar de exemplo, {{place}}.",
     "choosePlace": "Escolha seu lugar",
@@ -2438,7 +2440,7 @@
     }
   },
   "year": {
-    "title": "Calendário",
+    "title": "Calendário de plantio",
     "seoTitle": "Calendário de plantio para a tua zona",
     "failed": "O calendário não carregou. Tente de novo daqui a pouco.",
     "none": "Não há calendário do Huerta aqui. Tente uma localidade próxima.",
@@ -2590,6 +2592,7 @@
   },
   "page": {
     "title": "{{name}}: {{start}}, cuidados e {{end}}",
+    "description": "{{name}} onde você mora: datas de {{start}}, cuidados, {{end}} e o que observar.",
     "start": {
       "sow": "sementeira",
       "plant": "plantação"

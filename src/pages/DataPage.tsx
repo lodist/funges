@@ -858,7 +858,10 @@ export default function DataPage() {
 
   return (
     <div className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
-      <SEO title={t('sidebar:data', { defaultValue: 'Data' })} />
+      <SEO
+        title={t('common:data.seoTitle')}
+        description={t('common:data.seoDescription')}
+      />
 
       {/* Header */}
       <div>

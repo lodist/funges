@@ -1,5 +1,6 @@
 {
   "title": "Recettes",
+  "seoTitle": "Recettes sauvages : champignons, baies et herbes sauvages",
   "subtitle": "Délicieuses recettes utilisant des aliments sauvages",
   "filterByIngredient": "Filtrer par ingrédient",
   "allIngredients": "Tous les ingrédients",
@@ -11,7 +12,7 @@
   "instructions": "Instructions",
   "tips": "Astuces",
   "warnings": "Avertissements",
-  "description": "Découvrez de délicieuses recettes utilisant des ingrédients cueillis",
+  "description": "Des recettes pour vos cueillettes, de la tarte aux girolles au sirop de pissenlit, avec les champignons et plantes qu'il faut pour chacune.",
   "search": {
     "placeholder": "Rechercher des recettes, ingrédients ou tags",
     "no_results": "Aucune recette trouvée",

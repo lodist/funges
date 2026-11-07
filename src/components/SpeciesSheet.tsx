@@ -129,9 +129,10 @@ export function SpeciesBody({
     <Shell className={asPage ? 'flex flex-col gap-6' : 'sm:max-w-3xl'}>
       <div className='grid gap-6 sm:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]'>
         {image ? (
+          // The species itself, on its own page too: named for image search.
           <img
             src={image}
-            alt=''
+            alt={`${species.name} (${species.scientificName})`}
             className='aspect-square w-full rounded-card bg-muted object-cover'
           />
         ) : null}

@@ -95,7 +95,8 @@
   },
   "worthForagingNow": {
     "title": "O que vale a pena procurar agora?",
-    "description": "Uma primeira seleção que classifica os melhores alvos próximos usando seus dados atuais de espécies e receitas.",
+    "seoTitle": "O que vale a pena coletar agora perto de você",
+    "description": "Os cogumelos, plantas silvestres e frutos que vale a pena procurar perto de você agora, conforme o tempo e a época.",
     "scopeRadius": "A menos de {{radius}} km de você",
     "currentAsOf": "Em {{date}}",
     "loading": "Carregando escolhas…",
@@ -161,20 +162,6 @@
     "notFound": "Página não encontrada.",
     "unauthorized": "Você não está autorizado a acessar este recurso.",
     "copy": "Não foi possível copiar. Selecione o texto e copie manualmente."
-  },
-  "html": {
-    "title": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",
-    "description": "Encontre cogumelos e plantas comestíveis perto de você com nosso mapa de coleta em tempo real. Descubra pontos de alimentos selvagens usando dados meteorológicos e geoespaciais para uma coleta bem-sucedida.",
-    "keywords": "cogumelos, coleta, plantas comestíveis selvagens, mapa de coleta, alimentos selvagens, plantas comestíveis, caça aos cogumelos, pontos de coleta, cogumelos selvagens",
-    "author": "Fung.es",
-    "ogTitle": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",
-    "ogDescription": "Encontre cogumelos e plantas comestíveis perto de você com nosso mapa de coleta em tempo real. Descubra pontos de alimentos selvagens usando dados meteorológicos e geoespaciais para uma coleta bem-sucedida.",
-    "ogType": "website",
-    "ogImage": "/icons/logo_funges.png",
-    "twitterCard": "summary_large_image",
-    "twitterTitle": "Fung.es - Encontre Cogumelos e Plantas Comestíveis Perto de Você",
-    "twitterDescription": "Encontre cogumelos e plantas comestíveis perto de você com nosso mapa de coleta em tempo real. Descubra pontos de alimentos selvagens usando dados meteorológicos e geoespaciais para uma coleta bem-sucedida.",
-    "twitterImage": "/icons/logo_funges.png"
   },
   "splash": {
     "title": "Fung.es",
@@ -377,7 +364,9 @@
       "openEurope": "Abrir a Europa",
       "fewRecords": "Poucos registros locais ({{formatted}} desde 2010), então a temporada se apoia em lugares de clima parecido.",
       "rareRecords": "Quase nunca registrado aqui, então a temporada mostrada é a de lugares de clima parecido."
-    }
+    },
+    "seoTitle": "Dados das previsões e épocas dos cogumelos",
+    "seoDescription": "O tempo por trás das previsões desta semana, o quanto acertaram em achados reais e a época de cada cogumelo, lugar por lugar."
   },
   "sidebar": {
     "title": "Barra lateral",

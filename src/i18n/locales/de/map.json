@@ -1,6 +1,6 @@
 {
-  "title": "Interaktive Sammelkarte",
-  "description": "Erkunde Sammelorte und Echtzeitdaten",
+  "title": "Sammelkarte: wo Pilze und Wildpflanzen jetzt wachsen",
+  "description": "Wo die Bedingungen für Pilze, Wildpflanzen und Beeren heute und in den nächsten Tagen passen, jede Nacht neu aus dem Wetter berechnet, in Europa und den USA.",
   "loading": "Karte wird geladen...",
   "error": {
     "title": "Kartenfehler",

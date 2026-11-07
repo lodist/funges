@@ -1,6 +1,6 @@
 {
-  "title": "Mappa di Raccolta",
-  "description": "Esplora luoghi di raccolta e dati in tempo reale",
+  "title": "Mappa di raccolta: dove crescono ora funghi e piante selvatiche",
+  "description": "Dove le condizioni sono buone per funghi, piante selvatiche e bacche oggi e nei prossimi giorni, ricalcolato ogni notte dal meteo in Europa e negli USA.",
   "loading": "Caricamento mappa...",
   "error": {
     "title": "Errore Mappa",

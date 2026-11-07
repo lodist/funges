@@ -84,8 +84,8 @@ export default function InstructionsPage() {
   return (
     <>
       <SEO
-        title={t('title')}
-        description={t('subtitle')}
+        title={t('seoTitle')}
+        description={t('seoDescription')}
         canonicalUrl={`${import.meta.env.BASE_URL}instructions`}
       />
       <div className='instructions-page max-w-6xl mx-auto px-4 py-8'>

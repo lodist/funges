@@ -1,6 +1,8 @@
 {
   "title": "Anleitung",
   "subtitle": "Lerne, wie du Fung.es sicher und effektiv nutzt",
+  "seoTitle": "So nutzt du Funges",
+  "seoDescription": "Wie du die Karte und die Prognosen liest, Funges offline nutzt, einen Fund per Foto bestimmst und woher die Vorhersagen kommen.",
   "downloadDataset": "Täglichen Datensatz herunterladen",
   "mapDescription": {
     "intro": "Die Karte hebt geografische Gebiete mit günstigen Bedingungen zum Sammeln von Wildpilzen und essbaren Pflanzen hervor.",
@@ -138,6 +140,7 @@
   },
   "huerta": {
     "title": "Anleitung",
+    "seoTitle": "So nutzt du Huerta",
     "subtitle": "Wie du Huerta nutzt und woher die Ratschläge kommen",
     "map": {
       "intro": "Die Karte zeigt Ort für Ort, was in deinem Garten diese Woche ansteht.",

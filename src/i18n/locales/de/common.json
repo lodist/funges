@@ -95,7 +95,8 @@
   },
   "worthForagingNow": {
     "title": "Was lohnt sich jetzt zu sammeln?",
-    "description": "Eine erste Auswahl, die die besten nahegelegenen Ziele anhand deiner aktuellen Arten- und Rezeptdaten bewertet.",
+    "seoTitle": "Was sich jetzt in deiner Nähe zu sammeln lohnt",
+    "description": "Die Pilze, Wildpflanzen und Beeren, nach denen sich die Suche in deiner Nähe gerade lohnt, nach Wetter und Saison.",
     "scopeRadius": "Im Umkreis von {{radius}} km",
     "currentAsOf": "Stand {{date}}",
     "loading": "Tipps werden geladen…",
@@ -161,20 +162,6 @@
     "notFound": "Seite nicht gefunden.",
     "unauthorized": "Du bist nicht berechtigt, auf diese Ressource zuzugreifen.",
     "copy": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn von Hand."
-  },
-  "html": {
-    "title": "Fung.es - Finde Pilze und essbare Wildpflanzen in deiner Nähe",
-    "description": "Finde Pilze & essbare Pflanzen in deiner Nähe mit unserer Echtzeit-Sammelkarte. Entdecke Hotspots für Wildnahrung mithilfe von Wetter- und Geodaten für erfolgreiches Sammeln.",
-    "keywords": "Pilze, Sammeln, essbare Wildpflanzen, Sammelkarte, Wildnahrung, essbare Pflanzen, Pilzsuche, Sammelstellen, Wildpilze",
-    "author": "Fung.es",
-    "ogTitle": "Fung.es - Finde Pilze und essbare Wildpflanzen in deiner Nähe",
-    "ogDescription": "Finde Pilze & essbare Pflanzen in deiner Nähe mit unserer Echtzeit-Sammelkarte. Entdecke Hotspots für Wildnahrung mithilfe von Wetter- und Geodaten für erfolgreiches Sammeln.",
-    "ogType": "website",
-    "ogImage": "/icons/logo_funges.png",
-    "twitterCard": "summary_large_image",
-    "twitterTitle": "Fung.es - Finde Pilze und essbare Wildpflanzen in deiner Nähe",
-    "twitterDescription": "Finde Pilze & essbare Pflanzen in deiner Nähe mit unserer Echtzeit-Sammelkarte. Entdecke Hotspots für Wildnahrung mithilfe von Wetter- und Geodaten für erfolgreiches Sammeln.",
-    "twitterImage": "/icons/logo_funges.png"
   },
   "splash": {
     "title": "Fung.es",
@@ -377,7 +364,9 @@
       "openEurope": "Europa öffnen",
       "fewRecords": "Hier gibt es wenige erfasste Funde ({{formatted}} seit 2010), daher stützt sich die Saison auf Orte mit ähnlichem Klima.",
       "rareRecords": "Hier kaum je erfasst, daher zeigt die Karte die Saison von Orten mit ähnlichem Klima."
-    }
+    },
+    "seoTitle": "Prognosedaten und Pilzsaisons",
+    "seoDescription": "Das Wetter hinter den Prognosen dieser Woche, wie gut sie zu echten Funden passten, und die Saison jedes Pilzes Ort für Ort."
   },
   "sidebar": {
     "title": "Seitenleiste",

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Logo } from '@/components/Logo';
 import { Button } from '@/components/ui/button';
+import { heroPhoto } from '@/lib/hero-photos';
 import { ArrowRight } from '@/lib/icons';
 import {
   alternates,
@@ -16,20 +17,6 @@ import { LiveLine } from './LandingPage';
 import styles from './FrontPage.module.scss';
 
 const base = import.meta.env.BASE_URL;
-
-// Each door's photograph follows the season (meteorological), as on the
-// space's own front page.
-const PHOTOS: Record<Space, string[]> = {
-  terra: ['hero-winter', 'hero-spring', 'hero-summer', 'astra-porcini'],
-  huerta: [
-    'huerta-hero-winter',
-    'huerta-hero-spring',
-    'huerta-hero-summer',
-    'huerta-hero-autumn',
-  ],
-};
-const photo = (space: Space) =>
-  `${base}landing/${PHOTOS[space][Math.floor(((new Date().getMonth() + 1) % 12) / 3)]}.webp`;
 
 // The sidebar's Help group: the front page has no sidebar.
 const HELP_LINKS = [
@@ -47,7 +34,12 @@ function Door({ space, lang }: { space: Space; lang: IndexedLanguage }) {
   const name = t(`spaces.${space}.name`);
   return (
     <section data-space={space} className={styles.door}>
-      <img src={photo(space)} alt='' width='960' height='1200' />
+      <img
+        src={`${base}${heroPhoto(space)}`}
+        alt=''
+        width='960'
+        height='1200'
+      />
       <div className={styles.doorBody}>
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.tagline}>{t(`spaces.${space}.tagline`)}</p>

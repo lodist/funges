@@ -92,7 +92,7 @@ export default function HuertaPage() {
   return (
     <>
       <SEO
-        title={t('title')}
+        title={t('seoTitle')}
         description={t('description')}
         canonicalUrl={localizedPath(
           '/huerta/crops/',

@@ -290,8 +290,8 @@ function CandidateRow({
           className='shrink-0 self-center'
         >
           <Link
-            to='/species'
-            search={{ q: candidate.catalogSpecies[0].scientificName }}
+            to='/species/$id'
+            params={{ id: candidate.catalogSpecies[0].id }}
             aria-label={t('results.openSpecies', {
               species: catalogName(candidate, tSpecies),
             })}

@@ -1,5 +1,6 @@
 {
   "title": "Ricette",
+  "seoTitle": "Ricette selvatiche: funghi, bacche ed erbe spontanee",
   "subtitle": "Deliziose ricette usando cibi selvatici",
   "filterByIngredient": "Filtra per ingrediente",
   "allIngredients": "Tutti gli Ingredienti",
@@ -11,7 +12,7 @@
   "instructions": "Istruzioni",
   "tips": "Consigli",
   "warnings": "Avvertimenti",
-  "description": "Scopri deliziose ricette usando ingredienti raccolti",
+  "description": "Ricette per quello che raccogli, dalla torta ai finferli allo sciroppo di tarassaco, con i funghi e le piante che servono per ognuna.",
   "search": {
     "placeholder": "Cerca ricette, ingredienti o tag",
     "no_results": "Nessuna ricetta trovata",
