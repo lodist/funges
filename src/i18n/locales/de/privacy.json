@@ -21,14 +21,14 @@
   },
   "rights": {
     "title": "Deine Rechte",
-    "intro": "Nach dem Schweizer Bundesgesetz über den Datenschutz (DSG) und der Datenschutz-Grundverordnung der EU (DSGVO) hast du diese Rechte an den personenbezogenen Daten, die Funges über dich speichert (nur Huerta-Konten), und an Daten, die Drittanbieterdienste haben:",
+    "intro": "Nach der Datenschutz-Grundverordnung der EU (DSGVO), dem spanischen Datenschutzgesetz (LOPDGDD) und, für Nutzer in der Schweiz, dem Schweizer Bundesgesetz über den Datenschutz (DSG) hast du diese Rechte an den personenbezogenen Daten, die Funges über dich speichert (nur Huerta-Konten), und an Daten, die Drittanbieterdienste haben:",
     "access": "Auskunft: erfahren, was wir über dich speichern, und eine Kopie erhalten.",
     "rectification": "Berichtigung: falsche Daten korrigieren lassen.",
     "erasure": "Löschung: deine Daten löschen lassen. Ein Huerta-Konto kannst du jederzeit selbst löschen.",
     "restriction": "Einschränkung: unter bestimmten Umständen verlangen, dass wir deine Daten nur eingeschränkt nutzen.",
     "objection": "Widerspruch: der Nutzung deiner Daten widersprechen.",
     "portability": "Datenübertragbarkeit: deine Daten in einem strukturierten, maschinenlesbaren Format erhalten.",
-    "exercise": "Um dein Huerta-Konto zu löschen, öffne deine Kontoseite (Hilfe → Konto am Computer, Einstellungen am Handy) und wähle Konto löschen; fung.es/delete-account erklärt die Schritte. Für alles andere zu den Daten, die wir speichern, schreib an die Kontaktadresse unten; für Daten eines Drittanbieterdienstes wende dich an diesen Dienst. Du kannst dich auch bei einer Datenschutzbehörde beschweren: in der Schweiz beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB), in der EU bei der Behörde deines Landes."
+    "exercise": "Um dein Huerta-Konto zu löschen, öffne deine Kontoseite (Hilfe → Konto am Computer, Einstellungen am Handy) und wähle Konto löschen; fung.es/delete-account erklärt die Schritte. Für alles andere zu den Daten, die wir speichern, schreib an die Kontaktadresse unten; für Daten eines Drittanbieterdienstes wende dich an diesen Dienst. Du kannst dich auch bei einer Datenschutzbehörde beschweren: in Spanien bei der Agencia Española de Protección de Datos (AEPD), in der Schweiz beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB), sonst in der EU bei der Behörde deines Landes."
   },
   "protection": {
     "title": "Datenschutz",
@@ -48,7 +48,7 @@
     "intro": "Bei Fragen oder Anliegen zu dieser Datenschutzerklärung wende dich bitte an:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Letzte Aktualisierung am: 28.10.2026",
+  "lastUpdated": "Letzte Aktualisierung am: 07.11.2026",
   "accounts": {
     "title": "Huerta-Konten",
     "content": "Du meldest dich bei Huerta mit deinem Google-Konto an. Google teilt uns deine E-Mail-Adresse und eine Nummer mit, die dein Google-Konto kennzeichnet; wir speichern beides zusammen mit deiner Sprache und Zeitzone, damit du dich auf jedem Gerät anmelden kannst und die Hinweise zur richtigen Zeit bekommst. Wir speichern deine Gärten: ihre Namen, ihre Pläne und ihren Ort, auf etwa 1 km gerundet, nie deine Adresse.",

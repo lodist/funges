@@ -21,14 +21,14 @@
   },
   "rights": {
     "title": "Tus derechos",
-    "intro": "En virtud de la Ley Federal suiza de Protección de Datos (LPD) y del Reglamento General de Protección de Datos de la UE (RGPD), tienes estos derechos sobre los datos personales que Funges guarda de ti (solo cuentas de Huerta) y sobre los datos que tienen los servicios de terceros:",
+    "intro": "En virtud del Reglamento General de Protección de Datos de la UE (RGPD), de la Ley Orgánica española de Protección de Datos (LOPDGDD) y, para los usuarios en Suiza, de la Ley Federal suiza de Protección de Datos (LPD), tienes estos derechos sobre los datos personales que Funges guarda de ti (solo cuentas de Huerta) y sobre los datos que tienen los servicios de terceros:",
     "access": "Acceso: saber qué guardamos de ti y obtener una copia.",
     "rectification": "Rectificación: que se corrijan los datos inexactos.",
     "erasure": "Supresión: que se borren tus datos. Con una cuenta de Huerta puedes hacerlo tú mismo en cualquier momento.",
     "restriction": "Limitación: pedir que limitemos el uso de tus datos en determinadas circunstancias.",
     "objection": "Oposición: oponerte al uso que hacemos de tus datos.",
     "portability": "Portabilidad: recibir tus datos en un formato estructurado y legible por máquina.",
-    "exercise": "Para eliminar tu cuenta de Huerta, abre la página de tu cuenta (Ayuda → Cuenta en un ordenador, Configuración en un teléfono) y elige Eliminar cuenta; fung.es/delete-account explica los pasos. Para cualquier otra cuestión sobre los datos que guardamos, escribe a la dirección de contacto de abajo; para los datos de un servicio de terceros, contacta con ese servicio. También puedes reclamar ante una autoridad de protección de datos: en Suiza, el Comisionado Federal de Protección de Datos y Transparencia (PFPDT); en la UE, la autoridad de tu país."
+    "exercise": "Para eliminar tu cuenta de Huerta, abre la página de tu cuenta (Ayuda → Cuenta en un ordenador, Configuración en un teléfono) y elige Eliminar cuenta; fung.es/delete-account explica los pasos. Para cualquier otra cuestión sobre los datos que guardamos, escribe a la dirección de contacto de abajo; para los datos de un servicio de terceros, contacta con ese servicio. También puedes reclamar ante una autoridad de protección de datos: en España, la Agencia Española de Protección de Datos (AEPD); en Suiza, el Comisionado Federal de Protección de Datos y Transparencia (PFPDT); en el resto de la UE, la autoridad de tu país."
   },
   "protection": {
     "title": "Protección de datos",
@@ -48,7 +48,7 @@
     "intro": "Para cualquier pregunta o inquietud sobre esta Política de Privacidad, por favor contacta a:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última actualización: 28.10.2026",
+  "lastUpdated": "Última actualización: 07.11.2026",
   "accounts": {
     "title": "Cuentas de Huerta",
     "content": "Inicias sesión en Huerta con tu cuenta de Google. Google nos facilita tu dirección de correo y un número que identifica tu cuenta de Google; guardamos ambos, junto con tu idioma y tu zona horaria, para que puedas iniciar sesión en cualquier dispositivo y recibir los avisos a la hora adecuada. Guardamos tus huertos: sus nombres, sus planes y su ubicación redondeada a aproximadamente 1 km, nunca tu dirección.",

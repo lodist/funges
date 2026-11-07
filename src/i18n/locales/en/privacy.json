@@ -21,14 +21,14 @@
   },
   "rights": {
     "title": "Your Rights",
-    "intro": "Under the Swiss Federal Act on Data Protection (FADP) and the EU General Data Protection Regulation (GDPR), you have these rights over the personal data Funges keeps about you (Huerta accounts only) and over data held by third-party services:",
+    "intro": "Under the EU General Data Protection Regulation (GDPR), Spain’s data protection law (LOPDGDD) and, for users in Switzerland, the Swiss Federal Act on Data Protection (FADP), you have these rights over the personal data Funges keeps about you (Huerta accounts only) and over data held by third-party services:",
     "access": "Access: ask what we keep about you and get a copy.",
     "rectification": "Rectification: have inaccurate data corrected.",
     "erasure": "Erasure: have your data deleted. For a Huerta account you can do this yourself at any time.",
     "restriction": "Restriction: ask us to limit how your data is used in certain circumstances.",
     "objection": "Objection: object to how your data is used.",
     "portability": "Data Portability: get your data in a structured, machine-readable format.",
-    "exercise": "To delete your Huerta account, open your account page (Help → Account on a computer, Settings on a phone) and choose Delete account; fung.es/delete-account explains the steps. For anything else about the data we keep, write to the contact address below; for data held by a third-party service, contact that service. You can also complain to a data protection authority: in Switzerland the Federal Data Protection and Information Commissioner (FDPIC), in the EU the authority of your country."
+    "exercise": "To delete your Huerta account, open your account page (Help → Account on a computer, Settings on a phone) and choose Delete account; fung.es/delete-account explains the steps. For anything else about the data we keep, write to the contact address below; for data held by a third-party service, contact that service. You can also complain to a data protection authority: in Spain the Agencia Española de Protección de Datos (AEPD), in Switzerland the Federal Data Protection and Information Commissioner (FDPIC), elsewhere in the EU the authority of your country."
   },
   "protection": {
     "title": "Data Protection",
@@ -48,7 +48,7 @@
     "intro": "For any questions or concerns regarding this Privacy Policy, please contact:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Last updated on: 28.10.2026",
+  "lastUpdated": "Last updated on: 07.11.2026",
   "accounts": {
     "title": "Huerta accounts",
     "content": "You sign in to Huerta with your Google account. Google tells us your email address and a number that identifies your Google account; we keep both, with your language and time zone, so you can sign in on any device and get alerts at the right time. We keep your gardens: their names, their plans and their place rounded to about 1 km, never your address.",
