@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
     <>
       <SEO
         title={t('title')}
-        description={t('subtitle')}
+        description={t('seoDescription')}
         canonicalUrl={`${import.meta.env.BASE_URL}privacy-policy`}
       />
       <div className='privacy-policy-page max-w-4xl mx-auto px-4 py-8'>

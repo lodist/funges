@@ -1,8 +1,9 @@
 {
   "title": "Base de datos de especies",
+  "seoTitle": "Guía de especies: setas y plantas silvestres para recolectar",
   "subtitle": "Aprende sobre alimentos silvestres",
   "search_placeholder": "Buscar una especie",
-  "description": "Explora nuestra base de datos completa de especies comestibles",
+  "description": "Cada seta, planta y baya de Funges: cómo reconocerla, dónde y cuándo crece, sus especies parecidas y qué cocinar con ella.",
   "search": {
     "placeholder": "Buscar una especie",
     "found": "Encontrado",

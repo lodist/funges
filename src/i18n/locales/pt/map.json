@@ -1,6 +1,6 @@
 {
-  "title": "Mapa Interativo de Coleta",
-  "description": "Explore locais de coleta e dados em tempo real",
+  "title": "Mapa de coleta: onde crescem agora cogumelos e plantas silvestres",
+  "description": "Onde as condições favorecem cogumelos, plantas silvestres e frutos hoje e nos próximos dias, recalculado toda noite com o tempo da Europa e dos EUA.",
   "loading": "Carregando mapa...",
   "error": {
     "title": "Erro no Mapa",

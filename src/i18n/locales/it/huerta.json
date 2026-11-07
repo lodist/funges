@@ -1,6 +1,7 @@
 {
   "title": "Colture",
   "description": "Ogni coltura: se va in terra questa settimana nel tuo comune, come coltivarla e a cosa fare attenzione.",
+  "seoTitle": "Cosa coltivare e quando metterlo a dimora dove vivi",
   "sample": "Esempio: {{place}}, {{day}}. Presto il tuo comune.",
   "around": "Dintorni di {{place}}, {{day}}",
   "offline": "Offline: consigli di {{day}}",
@@ -2005,7 +2006,7 @@
     }
   },
   "map": {
-    "title": "Mappa",
+    "title": "Mappa delle semine: cosa seminare e piantare vicino a te questa settimana",
     "description": "Dove va ogni coltura questa settimana, gelate nei prossimi tre giorni, temperatura del terreno e irrigazione, luogo per luogo.",
     "crop": "Coltura",
     "layer": "Livello della mappa",
@@ -2150,6 +2151,7 @@
       "addRounds": "Aggiungi gli scaglioni"
     },
     "title": "Il mio orto",
+    "seoTitle": "Pianificatore dell'orto: le tue aiuole, settimana per settimana",
     "description": "Il tuo orto aiuola per aiuola, e ciò che ti chiede ogni settimana: cosa seminare e dove, cure, irrigazione e raccolto, calcolati per il tuo luogo.",
     "sample": "Pianificato per un luogo di esempio, {{place}}.",
     "choosePlace": "Scegli il tuo luogo",
@@ -2438,7 +2440,7 @@
     }
   },
   "year": {
-    "title": "Calendario",
+    "title": "Calendario delle semine",
     "seoTitle": "Calendario delle semine per la tua zona",
     "failed": "Il calendario non si è caricato. Riprova tra un momento.",
     "none": "Qui non c'è un calendario di Huerta. Prova un paese vicino.",
@@ -2590,6 +2592,7 @@
   },
   "page": {
     "title": "{{name}}: {{start}}, cura e {{end}}",
+    "description": "{{name}} dove vivi: date di {{start}}, cura, {{end}} e cosa tenere d'occhio.",
     "start": {
       "sow": "semina",
       "plant": "messa a dimora"

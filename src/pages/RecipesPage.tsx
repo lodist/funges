@@ -96,7 +96,7 @@ export default function RecipesPage() {
   return (
     <>
       <SEO
-        title={t('title')}
+        title={t('seoTitle')}
         description={t('description')}
         canonicalUrl={`${import.meta.env.BASE_URL}recipes`}
       />
@@ -229,9 +229,10 @@ function RecipeHero({
     >
       <div className='relative aspect-square min-w-0 md:aspect-auto md:min-h-[28rem]'>
         {recipe.image ? (
+          // The dish itself, outside any button: named for image search.
           <img
             src={recipe.image}
-            alt=''
+            alt={recipe.title}
             className='absolute inset-0 size-full bg-muted object-cover'
           />
         ) : null}

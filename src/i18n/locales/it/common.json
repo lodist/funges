@@ -55,7 +55,8 @@
   },
   "worthForagingNow": {
     "title": "Cosa vale la pena raccogliere adesso?",
-    "description": "Una prima selezione che classifica i migliori obiettivi vicini usando gli attuali dati su specie e ricette.",
+    "seoTitle": "Cosa vale la pena raccogliere ora vicino a te",
+    "description": "I funghi, le piante selvatiche e le bacche che vale la pena cercare vicino a te in questo momento, secondo il meteo e la stagione.",
     "scopeRadius": "Entro {{radius}} km da te",
     "currentAsOf": "Aggiornato al {{date}}",
     "loading": "Caricamento delle scelte…",
@@ -161,20 +162,6 @@
     "copied": "Copiato!",
     "enlargeImage": "Ingrandisci l'immagine",
     "shrinkImage": "Riduci l'immagine"
-  },
-  "html": {
-    "title": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",
-    "description": "Trova funghi e piante commestibili vicino a te con la nostra mappa di raccolta in tempo reale. Scopri punti caldi di cibo selvatico utilizzando dati meteorologici e geospaziali per una raccolta di successo.",
-    "keywords": "funghi, raccolta, piante commestibili selvatiche, mappa raccolta, cibo selvatico, piante commestibili, caccia ai funghi, punti di raccolta, funghi selvatici",
-    "author": "Fung.es",
-    "ogTitle": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",
-    "ogDescription": "Trova funghi e piante commestibili vicino a te con la nostra mappa di raccolta in tempo reale. Scopri punti caldi di cibo selvatico utilizzando dati meteorologici e geospaziali per una raccolta di successo.",
-    "ogType": "website",
-    "ogImage": "/icons/logo_funges.png",
-    "twitterCard": "summary_large_image",
-    "twitterTitle": "Fung.es - Trova Funghi e Piante Commestibili Vicino a Te",
-    "twitterDescription": "Trova funghi e piante commestibili vicino a te con la nostra mappa di raccolta in tempo reale. Scopri punti caldi di cibo selvatico utilizzando dati meteorologici e geospaziali per una raccolta di successo.",
-    "twitterImage": "/icons/logo_funges.png"
   },
   "splash": {
     "title": "Fung.es",
@@ -382,7 +369,9 @@
       "openEurope": "Apri Europa",
       "fewRecords": "Pochi ritrovamenti registrati qui ({{formatted}} dal 2010), quindi la stagione si basa su luoghi dal clima simile.",
       "rareRecords": "Quasi mai registrato qui, quindi la stagione mostrata è quella di luoghi dal clima simile."
-    }
+    },
+    "seoTitle": "Dati delle previsioni e stagioni dei funghi",
+    "seoDescription": "Il meteo dietro le previsioni di questa settimana, quanto hanno azzeccato i ritrovamenti reali e la stagione di ogni fungo, luogo per luogo."
   },
   "theme": {
     "label": "Tema",

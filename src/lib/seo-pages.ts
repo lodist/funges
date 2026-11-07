@@ -92,6 +92,139 @@ export function alternates(path: string, origin: string) {
   ];
 }
 
+/** The app's own pages, beside the ones written from the catalog. The build
+ *  gives each its own head, so a shared link or a search engine reading the
+ *  HTML sees the page, not the front page: `title` and `description` are the
+ *  `namespace:key` its <SEO> shows. Huerta's pages in HUERTA_PAGES are written
+ *  in every indexed language. `noindex` keeps a page out of search engines and
+ *  the sitemap. */
+export interface AppPage {
+  path: string;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+export const APP_PAGES: AppPage[] = [
+  { path: '/map/', title: 'map:title', description: 'map:description' },
+  {
+    path: '/worth-foraging-now/',
+    title: 'common:worthForagingNow.seoTitle',
+    description: 'common:worthForagingNow.description',
+  },
+  {
+    path: '/identify/',
+    title: 'identify:page.seoTitle',
+    description: 'identify:page.seoDescription',
+  },
+  {
+    path: '/recipes/',
+    title: 'recipes:seoTitle',
+    description: 'recipes:description',
+  },
+  {
+    path: '/species/',
+    title: 'species:seoTitle',
+    description: 'species:description',
+  },
+  {
+    path: '/data/',
+    title: 'common:data.seoTitle',
+    description: 'common:data.seoDescription',
+  },
+  {
+    path: '/instructions/',
+    title: 'instructions:seoTitle',
+    description: 'instructions:seoDescription',
+  },
+  {
+    path: '/support/',
+    title: 'support:seoTitle',
+    description: 'support:seoDescription',
+  },
+  {
+    path: '/impressum/',
+    title: 'impressum:title',
+    description: 'impressum:seoDescription',
+  },
+  {
+    path: '/privacy-policy/',
+    title: 'privacy:title',
+    description: 'privacy:seoDescription',
+  },
+  {
+    path: '/termsuse/',
+    title: 'terms:title',
+    description: 'terms:seoDescription',
+  },
+  // Behind sign-in (HuertaGate): a search engine would see the sign-in
+  // screen. The public crop pages and the calendar are the ones to find.
+  {
+    path: '/huerta/crops/',
+    title: 'huerta:seoTitle',
+    description: 'huerta:description',
+    noindex: true,
+  },
+  {
+    path: '/huerta/map/',
+    title: 'huerta:map.title',
+    description: 'huerta:map.description',
+    noindex: true,
+  },
+  {
+    path: '/huerta/garden-planner/',
+    title: 'huerta:planner.seoTitle',
+    description: 'huerta:planner.description',
+    noindex: true,
+  },
+  {
+    path: '/huerta/instructions/',
+    title: 'instructions:huerta.seoTitle',
+    description: 'instructions:huerta.subtitle',
+  },
+  // Opens the atlas's first place and species, whose page is the one to find.
+  {
+    path: '/data/seasons/',
+    title: 'common:data.tabs.seasons',
+    description: 'common:data.atlas.subtitle',
+    noindex: true,
+  },
+  {
+    path: '/settings/',
+    title: 'settings:title',
+    description: 'common:common.appDescription',
+    noindex: true,
+  },
+  {
+    path: '/offline/',
+    title: 'offline:title',
+    description: 'offline:description',
+    noindex: true,
+  },
+  {
+    path: '/delete-account/',
+    title: 'privacy:deleteAccount.title',
+    description: 'privacy:deleteAccount.intro',
+    noindex: true,
+  },
+  {
+    path: '/huerta/signin/',
+    title: 'huerta:page.signIn',
+    description: 'common:common.appDescription',
+    noindex: true,
+  },
+  {
+    path: '/huerta/account/',
+    title: 'sidebar:account',
+    description: 'common:common.appDescription',
+    noindex: true,
+  },
+];
+
+/** The languages a page is written in: Huerta's pages in each, the rest in
+ *  English (the app shows them in the visitor's language at the same URL). */
+export const pageLanguages = (path: string): readonly IndexedLanguage[] =>
+  HUERTA_PAGE.has(stripLanguage(path)) ? INDEXED_LANGUAGES : ['en'];
+
 /** "<title> · Funges"; `bare` for a title that already names Funges. */
 export const pageTitle = (title: string, { bare = false } = {}) =>
   bare ? title : `${title} · Funges`;

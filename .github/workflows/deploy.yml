@@ -138,24 +138,10 @@ jobs:
 
           echo "✅ Build completed successfully"
 
-      - name: Create SPA route directories for GitHub Pages
-        run: |
-          echo "Creating route subdirectories so GitHub Pages serves them with HTTP 200..."
-          # Huerta's pages behind sign-in get one too, or a reload, a shared link
-          # or a morning alert lands on 404.html, which sends it to the home page;
-          # only /huerta itself is in the sitemap.
-          routes=(data delete-account huerta huerta/account huerta/instructions huerta/map huerta/garden-planner huerta/signin huerta/crops huerta/planting-calendar de/huerta/pflanzen de/huerta/karte de/huerta/gartenplaner de/huerta/pflanzkalender identify impressum instructions map offline privacy-policy recipes settings species support termsuse worth-foraging-now)
-          for route in "${routes[@]}"; do
-            mkdir -p dist/$route
-            # A page the build wrote for search engines (/huerta) stays.
-            [ -f dist/$route/index.html ] || cp dist/index.html dist/$route/index.html
-            echo "  created dist/$route/index.html"
-          done
-          echo "Route directories created"
-
-          # The season atlas's /data/seasons/<place>/<species>/ URLs, from the
-          # atlas index; without them 404.html sends links and reloads to /data/.
-          python scripts/build_season_atlas_site.py --pages dist || echo "::warning::season atlas pages not written"
+      # Every page's folder (GitHub Pages serves a folder's index.html with a
+      # 200, anything else gets 404.html, which sends it to the front page),
+      # the season atlas's included, is written by the build itself, each with
+      # its own head: scripts/seo-pages.ts.
 
       - name: Verify static files in dist
         run: |

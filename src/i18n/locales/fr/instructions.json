@@ -1,6 +1,8 @@
 {
   "title": "Instructions",
   "subtitle": "Apprenez à utiliser Fung.es en toute sécurité et efficacité",
+  "seoTitle": "Comment utiliser Funges",
+  "seoDescription": "Comment lire la carte et les prévisions, utiliser Funges hors ligne, identifier une trouvaille en photo et d'où viennent les prédictions.",
   "downloadDataset": "Télécharger l'ensemble de données quotidien",
   "mapDescription": {
     "intro": "La carte met en évidence les zones géographiques présentant des conditions favorables à la cueillette de champignons sauvages et de plantes comestibles.",
@@ -138,6 +140,7 @@
   },
   "huerta": {
     "title": "Instructions",
+    "seoTitle": "Comment utiliser Huerta",
     "subtitle": "Comment utiliser Huerta et d'où viennent ses conseils",
     "map": {
       "intro": "La carte montre, lieu par lieu, ce que votre potager peut faire cette semaine.",

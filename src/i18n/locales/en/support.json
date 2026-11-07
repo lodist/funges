@@ -2,6 +2,8 @@
   "title": "Support the Project",
   "subtitle": "Help us keep Fung.es free and improve its availability",
   "description": "If you'd like to help keep the project running and improve availability, please consider supporting the project. Your contributions help us maintain the service and add new features.",
+  "seoTitle": "Support Funges",
+  "seoDescription": "Help keep Funges running: the weather data, the servers and the work on new species and places.",
   "bitcoin": {
     "name": "Bitcoin (BTC)",
     "description": "Support with Bitcoin cryptocurrency"

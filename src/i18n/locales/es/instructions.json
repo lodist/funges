@@ -1,6 +1,8 @@
 {
   "title": "Instrucciones",
   "subtitle": "Aprende a usar Fung.es de forma segura y efectiva",
+  "seoTitle": "Cómo usar Funges",
+  "seoDescription": "Cómo leer el mapa y las previsiones, usar Funges sin conexión, identificar un hallazgo con una foto y de dónde salen las predicciones.",
   "downloadDataset": "Descargar conjunto de datos diario",
   "mapDescription": {
     "intro": "El mapa resalta áreas geográficas con condiciones favorables para recolectar hongos silvestres y plantas comestibles.",
@@ -138,6 +140,7 @@
   },
   "huerta": {
     "title": "Instrucciones",
+    "seoTitle": "Cómo usar Huerta",
     "subtitle": "Cómo usar Huerta y de dónde salen sus consejos",
     "map": {
       "intro": "El mapa muestra, lugar por lugar, lo que tu huerto puede hacer esta semana.",

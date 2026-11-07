@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
- * Opens every indexed page of a build the way a first-time visitor (or a
+ * Opens every page of a build's sitemap the way a first-time visitor (or a
  * search engine) does, and fails unless the app shows what the page's static
- * HTML promises: the same title and heading, in the URL's language, at the
- * URL that was asked for. Run after `npm run build`:
+ * HTML promises: the same title, description and heading, in the URL's
+ * language, at the URL that was asked for, and each of title, description and
+ * canonical once. Run after `npm run build`:
  *
  *   node scripts/seo-check.mjs
  *
@@ -54,11 +55,10 @@ const server = http.createServer((req, res) => {
 });
 await new Promise(resolve => server.listen(PORT, resolve));
 
-// The indexed pages are the sitemap entries with language versions.
 const sitemap = fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8');
-const paths = [
-  ...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<xhtml:link/g),
-].map(m => new URL(m[1]).pathname);
+const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+  m => new URL(m[1]).pathname
+);
 
 const decode = text =>
   text
@@ -70,6 +70,9 @@ const staticOf = pathname => {
   const html = fs.readFileSync(path.join(DIST, pathname, 'index.html'), 'utf8');
   return {
     title: decode(html.match(/<title>([^<]*)<\/title>/)?.[1] ?? ''),
+    description: decode(
+      html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? ''
+    ),
     h1: decode(html.match(/<h1>([^<]*)<\/h1>/)?.[1] ?? ''),
   };
 };
@@ -87,18 +90,25 @@ async function check(pathname) {
     if (response?.status() !== 200)
       throw new Error(`status ${response?.status()}`);
     // The static text is the page until the app replaces it: wait for that.
+    // (An app page has no static heading to wait for.)
     await page
       .waitForFunction(
-        t =>
+        ({ title, h1 }) =>
           !document.querySelector('#root > main[data-static]') &&
-          document.querySelector('#root h1') &&
-          document.title === t,
-        expected.title,
+          (!h1 || document.querySelector('#root h1')) &&
+          document.title === title,
+        { title: expected.title, h1: !!expected.h1 },
         { timeout: 20000 }
       )
       .catch(() => {});
     const seen = await page.evaluate(() => ({
       title: document.title,
+      titles: document.head.querySelectorAll('title').length,
+      descriptions: [
+        ...document.head.querySelectorAll('meta[name="description"]'),
+      ].map(m => m.getAttribute('content')),
+      canonicals: document.head.querySelectorAll('link[rel="canonical"]')
+        .length,
       lang: document.documentElement.lang,
       path: location.pathname,
       h1: document.querySelector('#root h1')?.textContent?.trim() ?? '',
@@ -107,8 +117,18 @@ async function check(pathname) {
     const problems = [];
     if (seen.title !== expected.title)
       problems.push(`title "${seen.title}" != "${expected.title}"`);
+    if (seen.titles !== 1) problems.push(`${seen.titles} titles`);
+    if (seen.canonicals !== 1) problems.push(`${seen.canonicals} canonicals`);
+    if (seen.descriptions.length !== 1)
+      problems.push(`${seen.descriptions.length} descriptions`);
+    else if (seen.descriptions[0] !== expected.description)
+      problems.push(
+        `description "${seen.descriptions[0]}" != "${expected.description}"`
+      );
     if (!seen.lang.startsWith(lang)) problems.push(`lang ${seen.lang}`);
-    if (seen.path !== pathname) problems.push(`moved to ${seen.path}`);
+    // (The map adds its species to the address, dropping the slash.)
+    if (seen.path.replace(/\/$/, '') !== pathname.replace(/\/$/, ''))
+      problems.push(`moved to ${seen.path}`);
     if (expected.h1 && seen.h1 !== expected.h1)
       problems.push(`h1 "${seen.h1}" != "${expected.h1}"`);
     if (problems.length) throw new Error(problems.join('; '));

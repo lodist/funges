@@ -9,7 +9,7 @@ export default function TermsUsePage() {
     <>
       <SEO
         title={t('title')}
-        description={t('welcome.title')}
+        description={t('seoDescription')}
         canonicalUrl={`${import.meta.env.BASE_URL}termsuse`}
       />
       <div className='terms-use-page max-w-4xl mx-auto px-4 py-8'>

@@ -35,12 +35,13 @@ test('production app shell reloads and switches every map style offline', async 
   await context.setOffline(true);
   await expect(page.getByText(/you're offline/i)).toBeVisible();
 
+  // Each theme's name and description, as map.json words them.
   const themes = [
-    'Dark Low-light palette, easy on the eyes at night.',
-    'White Clean, minimal palette with low distraction.',
-    'Dark Matter Deep monochrome basemap for maximum contrast.',
-    'Topographic Warm hiking-map style with visible trails and tracks.',
-    'Light The classic bright Funges map.',
+    'Dark Easy on the eyes at night.',
+    'White Clean and minimal.',
+    'Dark Matter Black, high-contrast map.',
+    'Topographic Hiking map with trails.',
+    'Light The classic bright map.',
   ];
   for (const theme of themes) {
     await page.getByRole('button', { name: 'Map theme' }).click();
@@ -72,7 +73,7 @@ test('production app shell reloads and switches every map style offline', async 
     page.getByRole('heading', { name: 'Species Database' })
   ).toBeVisible();
   await expect(
-    page.getByText('Chanterelle', { exact: true }).first()
+    page.getByText('Golden Chanterelle', { exact: true }).first()
   ).toBeVisible();
 });
 

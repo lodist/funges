@@ -1,8 +1,9 @@
 {
   "title": "Banco de Dados de Espécies",
+  "seoTitle": "Guia de espécies: cogumelos e plantas silvestres para coletar",
   "subtitle": "Aprenda sobre alimentos silvestres",
   "search_placeholder": "Buscar por uma espécie",
-  "description": "Explore nosso banco de dados completo de espécies comestíveis",
+  "description": "Cada cogumelo, planta e fruto do Funges: como reconhecer, onde e quando cresce, as espécies parecidas e o que cozinhar.",
   "search": {
     "placeholder": "Buscar por uma espécie",
     "found": "Encontrado",

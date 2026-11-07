@@ -1,5 +1,6 @@
 {
   "title": "Recipes",
+  "seoTitle": "Wild food recipes: mushrooms, berries and wild greens",
   "subtitle": "Delicious recipes using wild foods",
   "filterByIngredient": "Filter by ingredient",
   "allIngredients": "All Ingredients",
@@ -11,7 +12,7 @@
   "instructions": "Instructions",
   "tips": "Tips",
   "warnings": "Warnings",
-  "description": "Discover delicious recipes using foraged ingredients",
+  "description": "Recipes for what you forage, from chanterelle tart to dandelion syrup, with the wild mushrooms and plants each one needs.",
   "search": {
     "placeholder": "Search recipes, ingredients or tags",
     "no_results": "No recipes found",

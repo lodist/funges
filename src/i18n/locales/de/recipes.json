@@ -1,5 +1,6 @@
 {
   "title": "Rezepte",
+  "seoTitle": "Rezepte mit Pilzen, Beeren und Wildkräutern",
   "subtitle": "Köstliche Rezepte mit Wildpflanzen",
   "filterByIngredient": "Nach Zutat filtern",
   "allIngredients": "Alle Zutaten",
@@ -11,7 +12,7 @@
   "instructions": "Anleitung",
   "tips": "Tipps",
   "warnings": "Warnhinweise",
-  "description": "Entdecke köstliche Rezepte mit gesammelten Zutaten",
+  "description": "Rezepte für das, was du sammelst, von der Pfifferling-Tarte bis zum Löwenzahnsirup, mit den Pilzen und Pflanzen, die du dafür brauchst.",
   "search": {
     "placeholder": "Suche nach Rezepten, Zutaten oder Tags",
     "no_results": "Kein Rezept gefunden",

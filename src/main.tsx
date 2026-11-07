@@ -37,6 +37,13 @@ async function bootstrap(): Promise<void> {
 
   await translations;
   void useOfflineStore.getState().initialize();
+  // The page's head as the build wrote it is what its <SEO> renders: drop it,
+  // or every tag would be there twice (and stay behind on the next page).
+  document.head
+    .querySelectorAll(
+      'title, meta[name="description"], link[rel="canonical"], link[rel="alternate"][hreflang], meta[property^="og:"], meta[name^="twitter:"]'
+    )
+    .forEach(tag => tag.remove());
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <App />

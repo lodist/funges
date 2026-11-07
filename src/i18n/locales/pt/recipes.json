@@ -1,5 +1,6 @@
 {
   "title": "Receitas",
+  "seoTitle": "Receitas silvestres: cogumelos, frutos e verduras silvestres",
   "subtitle": "Deliciosas receitas usando alimentos selvagens",
   "filterByIngredient": "Filtrar por ingrediente",
   "allIngredients": "Todos os Ingredientes",
@@ -11,7 +12,7 @@
   "instructions": "Instruções",
   "tips": "Dicas",
   "warnings": "Avisos",
-  "description": "Descubra deliciosas receitas usando ingredientes colhidos",
+  "description": "Receitas para o que você coleta, da torta de cantarelos ao xarope de dente-de-leão, com os cogumelos e plantas que cada uma pede.",
   "search": {
     "placeholder": "Buscar receitas, ingredientes ou tags",
     "no_results": "Nenhuma receita encontrada",
