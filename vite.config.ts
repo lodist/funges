@@ -387,57 +387,23 @@ export default defineConfig({
             label: 'Funges App Screenshot',
           },
         ],
+        // Long-press on the app icon: one door into each space, the mark in
+        // that space's fill colour (--happy-600). The Play app takes the same
+        // two from twa-manifest.json, baked in at build time.
         shortcuts: [
           {
-            // Long-press on the installed icon: the field action, one tap
-            // from the home screen.
-            name: 'Identify a find',
-            short_name: 'Identify',
-            description: 'Identify a mushroom or plant from a photo',
-            url: `identify/`,
-            icons: [
-              {
-                src: `icons/logo_app.png`,
-                sizes: '512x512',
-              },
-            ],
-          },
-          {
-            name: 'View Map',
-            short_name: 'Map',
-            description: 'Open the foraging map',
-            url: ``,
-            icons: [
-              {
-                src: `icons/logo_app.png`,
-                sizes: '512x512',
-              },
-            ],
-          },
-          {
-            name: 'Browse Species',
-            short_name: 'Species',
-            description: 'Browse mushroom and plant species',
-            url: `species`,
-            icons: [
-              {
-                src: `icons/logo_app.png`,
-                sizes: '512x512',
-              },
-            ],
-          },
-          {
             name: 'Worth Foraging Now',
-            short_name: 'Now',
-            description:
-              'See the best nearby foraging targets based on current signals',
+            short_name: 'Foraging now',
+            description: 'The best nearby foraging targets right now',
             url: `worth-foraging-now`,
-            icons: [
-              {
-                src: `icons/logo_app.png`,
-                sizes: '512x512',
-              },
-            ],
+            icons: [{ src: `icons/shortcut_terra.png`, sizes: '192x192' }],
+          },
+          {
+            name: 'My garden',
+            short_name: 'My garden',
+            description: 'Your garden plan and this week in it',
+            url: `huerta/garden-planner`,
+            icons: [{ src: `icons/shortcut_huerta.png`, sizes: '192x192' }],
           },
         ],
       },

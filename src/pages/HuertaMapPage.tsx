@@ -299,6 +299,25 @@ async function drawContinent(
 const monthAhead = (ahead: number) =>
   ((new Date().getMonth() + ahead) % 12) + 1;
 
+/** Tomato, the crop nearly every gardener grows: what the map opens on until
+ *  a crop has been picked, as Terra's opens on boletus. */
+const DEFAULT_MAP_CROP = 'tomato';
+const CROP_KEY = 'huerta-map-crop';
+
+/** The crop to open on: the one a sheet asked for, else the one picked last
+ *  time, else the default. */
+const initialCrop = (asked?: string) => {
+  let saved: string | null = null;
+  try {
+    saved = localStorage.getItem(CROP_KEY);
+  } catch {
+    // Private mode or blocked storage: the default.
+  }
+  return (
+    [asked, saved].find(id => CROPS.some(c => c.id === id)) ?? DEFAULT_MAP_CROP
+  );
+};
+
 export default function HuertaMapPage() {
   const { t, i18n } = useTranslation('huerta');
   const isMobile = useIsMobile();
@@ -315,11 +334,15 @@ export default function HuertaMapPage() {
   const wanted = useRef(new Map<Continent, string>());
   // The advice at the map's centre, for the crop panel's status filter.
   const [centre, setCentre] = useState<PlaceAdvice | null | undefined>();
-  // The crop a sheet's "View on map" asked for, else garlic.
   const { crop: asked } = useSearch({ strict: false }) as { crop?: string };
-  const [crop, setCrop] = useState(
-    asked && CROPS.some(c => c.id === asked) ? asked : 'garlic'
-  );
+  const [crop, setCrop] = useState(() => initialCrop(asked));
+  useEffect(() => {
+    try {
+      localStorage.setItem(CROP_KEY, crop);
+    } catch {
+      // As above: not remembered.
+    }
+  }, [crop]);
   const mapStyle = useMapStore(state => state.mapStyle);
   // The dark basemaps take the palette turned round.
   const dark = /dark/.test(mapStyle);
