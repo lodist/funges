@@ -21,14 +21,14 @@
   },
   "rights": {
     "title": "Seus Direitos",
-    "intro": "Pela Lei Federal suíça de Proteção de Dados (LPD) e pelo Regulamento Geral de Proteção de Dados da UE (RGPD), você tem estes direitos sobre os dados pessoais que o Funges guarda sobre você (apenas contas Huerta) e sobre os dados mantidos por serviços de terceiros:",
+    "intro": "Pelo Regulamento Geral de Proteção de Dados da UE (RGPD), pela lei espanhola de proteção de dados (LOPDGDD) e, para usuários na Suíça, pela Lei Federal suíça de Proteção de Dados (LPD), você tem estes direitos sobre os dados pessoais que o Funges guarda sobre você (apenas contas Huerta) e sobre os dados mantidos por serviços de terceiros:",
     "access": "Acesso: saber o que guardamos sobre você e receber uma cópia.",
     "rectification": "Retificação: corrigir dados incorretos.",
     "erasure": "Exclusão: pedir que seus dados sejam apagados. Com uma conta Huerta, você mesmo pode fazer isso a qualquer momento.",
     "restriction": "Limitação: pedir que limitemos o uso dos seus dados em certas circunstâncias.",
     "objection": "Oposição: opor-se ao uso dos seus dados.",
     "portability": "Portabilidade: receber seus dados em um formato estruturado e legível por máquina.",
-    "exercise": "Para excluir sua conta Huerta, abra a página da sua conta (Ajuda → Conta no computador, Configurações no celular) e escolha Excluir conta; fung.es/delete-account explica os passos. Para qualquer outra questão sobre os dados que guardamos, escreva para o endereço de contato abaixo; para dados de um serviço de terceiros, fale com esse serviço. Você também pode reclamar a uma autoridade de proteção de dados: na Suíça, o Encarregado Federal de Proteção de Dados e Transparência (PFPDT); na UE, a autoridade do seu país."
+    "exercise": "Para excluir sua conta Huerta, abra a página da sua conta (Ajuda → Conta no computador, Configurações no celular) e escolha Excluir conta; fung.es/delete-account explica os passos. Para qualquer outra questão sobre os dados que guardamos, escreva para o endereço de contato abaixo; para dados de um serviço de terceiros, fale com esse serviço. Você também pode reclamar a uma autoridade de proteção de dados: na Espanha, a Agencia Española de Protección de Datos (AEPD); na Suíça, o Encarregado Federal de Proteção de Dados e Transparência (PFPDT); no resto da UE, a autoridade do seu país."
   },
   "protection": {
     "title": "Proteção de Dados",
@@ -48,7 +48,7 @@
     "intro": "Para quaisquer dúvidas ou preocupações sobre esta Política de Privacidade, entre em contato:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última atualização em: 28.10.2026",
+  "lastUpdated": "Última atualização em: 07.11.2026",
   "accounts": {
     "title": "Contas Huerta",
     "content": "Você entra no Huerta com sua conta do Google. O Google nos informa seu endereço de e-mail e um número que identifica sua conta do Google; guardamos os dois, junto com seu idioma e fuso horário, para que você possa entrar em qualquer dispositivo e receber os alertas na hora certa. Guardamos suas hortas: os nomes, os planos e o local arredondado para cerca de 1 km, nunca seu endereço.",

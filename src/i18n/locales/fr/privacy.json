@@ -21,14 +21,14 @@
   },
   "rights": {
     "title": "Vos droits",
-    "intro": "En vertu de la loi fédérale suisse sur la protection des données (LPD) et du règlement général sur la protection des données de l’UE (RGPD), vous disposez de ces droits sur les données personnelles que Funges conserve à votre sujet (comptes Huerta uniquement) et sur les données détenues par des services tiers :",
+    "intro": "En vertu du règlement général sur la protection des données de l’UE (RGPD), de la loi espagnole sur la protection des données (LOPDGDD) et, pour les utilisateurs en Suisse, de la loi fédérale suisse sur la protection des données (LPD), vous disposez de ces droits sur les données personnelles que Funges conserve à votre sujet (comptes Huerta uniquement) et sur les données détenues par des services tiers :",
     "access": "Accès : savoir ce que nous conservons à votre sujet et en obtenir une copie.",
     "rectification": "Rectification : faire corriger les données inexactes.",
     "erasure": "Effacement : faire supprimer vos données. Pour un compte Huerta, vous pouvez le faire vous-même à tout moment.",
     "restriction": "Limitation : demander que l’utilisation de vos données soit limitée dans certaines circonstances.",
     "objection": "Opposition : vous opposer à l’utilisation de vos données.",
     "portability": "Portabilité : recevoir vos données dans un format structuré et lisible par machine.",
-    "exercise": "Pour supprimer votre compte Huerta, ouvrez la page de votre compte (Aide → Compte sur un ordinateur, Paramètres sur un téléphone) et choisissez Supprimer le compte ; fung.es/delete-account explique les étapes. Pour toute autre question sur les données que nous conservons, écrivez à l’adresse de contact ci-dessous ; pour les données d’un service tiers, contactez ce service. Vous pouvez aussi déposer une plainte auprès d’une autorité de protection des données : en Suisse, le Préposé fédéral à la protection des données et à la transparence (PFPDT) ; dans l’UE, l’autorité de votre pays."
+    "exercise": "Pour supprimer votre compte Huerta, ouvrez la page de votre compte (Aide → Compte sur un ordinateur, Paramètres sur un téléphone) et choisissez Supprimer le compte ; fung.es/delete-account explique les étapes. Pour toute autre question sur les données que nous conservons, écrivez à l’adresse de contact ci-dessous ; pour les données d’un service tiers, contactez ce service. Vous pouvez aussi déposer une plainte auprès d’une autorité de protection des données : en Espagne, l’Agencia Española de Protección de Datos (AEPD) ; en Suisse, le Préposé fédéral à la protection des données et à la transparence (PFPDT) ; ailleurs dans l’UE, l’autorité de votre pays."
   },
   "protection": {
     "title": "Protection des données",
@@ -48,7 +48,7 @@
     "intro": "Pour toute question ou préoccupation concernant cette politique de confidentialité, veuillez contacter :",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Dernière mise à jour : 28.10.2026",
+  "lastUpdated": "Dernière mise à jour : 07.11.2026",
   "accounts": {
     "title": "Comptes Huerta",
     "content": "Vous vous connectez à Huerta avec votre compte Google. Google nous transmet votre adresse e-mail et un numéro qui identifie votre compte Google ; nous les conservons, avec votre langue et votre fuseau horaire, pour que vous puissiez vous connecter sur n’importe quel appareil et recevoir les alertes au bon moment. Nous conservons vos potagers : leurs noms, leurs plans et leur emplacement arrondi à environ 1 km, jamais votre adresse.",
