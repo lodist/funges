@@ -1,6 +1,7 @@
 {
   "title": "Crops",
   "description": "Every crop: whether it goes in this week around your town, how to grow it and what to watch for.",
+  "seoTitle": "Crops to grow and when to plant them where you live",
   "sample": "Sample: {{place}}, {{day}}. Your own town comes next.",
   "around": "Around {{place}}, {{day}}",
   "offline": "Offline: advice from {{day}}",
@@ -2005,7 +2006,7 @@
     }
   },
   "map": {
-    "title": "Map",
+    "title": "Planting map: what to sow and plant near you this week",
     "description": "Where each crop goes in this week, frost in the next three days, soil temperature and watering, place by place.",
     "crop": "Crop",
     "layer": "Map layer",
@@ -2150,6 +2151,7 @@
       "addRounds": "Add the rounds"
     },
     "title": "My garden",
+    "seoTitle": "Garden planner: your beds, week by week",
     "description": "Your garden bed by bed and what it needs from you each week: what to sow where, care, watering and harvest, worked out for your place.",
     "sample": "Planned for a sample place, {{place}}.",
     "choosePlace": "Choose your place",
@@ -2438,7 +2440,7 @@
     }
   },
   "year": {
-    "title": "Calendar",
+    "title": "Planting calendar",
     "seoTitle": "Planting calendar for where you live",
     "failed": "The calendar could not load. Try again in a moment.",
     "none": "No Huerta calendar here. Try a town nearby.",
@@ -2590,6 +2592,7 @@
   },
   "page": {
     "title": "{{name}}: {{start}}, care and {{end}}",
+    "description": "{{name}} where you live: {{start}} dates, care, {{end}} and what to watch for.",
     "start": {
       "sow": "sowing",
       "plant": "planting"

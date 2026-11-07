@@ -108,7 +108,7 @@ export default function IdentifyPage() {
   return (
     <>
       <SEO
-        title={t('page.title')}
+        title={t('page.seoTitle')}
         description={t('page.seoDescription')}
         canonicalUrl={`${BASE}identify`}
       />

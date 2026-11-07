@@ -675,7 +675,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
   return (
     <>
       <SEO
-        title={t('planner.title')}
+        title={t('planner.seoTitle')}
         description={t('planner.description')}
         canonicalUrl={localizedPath(
           '/huerta/garden-planner/',

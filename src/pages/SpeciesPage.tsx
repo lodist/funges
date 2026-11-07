@@ -203,7 +203,7 @@ export default function SpeciesPage() {
   return (
     <>
       <SEO
-        title={t('title')}
+        title={t('seoTitle')}
         description={t('description')}
         canonicalUrl={`${import.meta.env.BASE_URL}species`}
       />

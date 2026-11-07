@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   alternates,
@@ -11,7 +14,14 @@ import {
 } from '@/lib/seo-pages';
 import { SPECIES_DATA } from '@/data/species';
 import { CROPS } from '@/lib/huerta';
-import { buildPages, renderPage } from '../../scripts/seo-pages';
+import {
+  appPages,
+  appShell,
+  atlasPages,
+  buildPages,
+  renderPage,
+  sitemap,
+} from '../../scripts/seo-pages';
 
 describe('seo-pages', () => {
   it('puts English at the root and German under /de, always with a slash', () => {
@@ -154,5 +164,145 @@ describe('buildPages', () => {
     expect(renderPage(shell, page, 'https://www.fung.es')).toContain(
       `<div id="root"><p>$& $' $$ $1</p></div>`
     );
+  });
+});
+
+describe('every page the site serves', () => {
+  const ORIGIN = 'https://www.fung.es';
+  const shell =
+    '<html lang="en"><head><title>x</title>\n<meta name="description" content="y" />\n</head><body><div id="root"></div></body></html>';
+  const indexed = buildPages();
+  const apps = appPages();
+  const pages = [...indexed, ...apps];
+  const page = (p: string) => pages.find(x => x.path === p)!;
+
+  // Each of these once got a copy of the front page in the deploy, or a
+  // reload, a shared link or a morning alert landed on 404.html.
+  it('writes every route the app has, in its own folder', () => {
+    const paths = new Set(pages.map(p => p.path));
+    for (const route of [
+      'data',
+      'data/seasons',
+      'delete-account',
+      'huerta',
+      'huerta/account',
+      'huerta/instructions',
+      'huerta/map',
+      'huerta/garden-planner',
+      'huerta/signin',
+      'huerta/crops',
+      'huerta/planting-calendar',
+      'de/huerta/pflanzen',
+      'de/huerta/karte',
+      'de/huerta/gartenplaner',
+      'de/huerta/pflanzkalender',
+      'identify',
+      'impressum',
+      'instructions',
+      'map',
+      'offline',
+      'privacy-policy',
+      'recipes',
+      'settings',
+      'species',
+      'support',
+      'termsuse',
+      'worth-foraging-now',
+    ])
+      expect(paths.has(`/${route}/`), route).toBe(true);
+  });
+
+  it('gives each app page its own title and a description that fits', () => {
+    const titles = pages.map(p => p.title);
+    expect(titles.filter((t, i) => titles.indexOf(t) !== i)).toEqual([]);
+    for (const p of apps) {
+      expect(p.title, p.path).not.toBe(page('/').title);
+      expect(p.description.length, p.path).toBeGreaterThan(20);
+      expect(p.description.length, p.path).toBeLessThanOrEqual(160);
+    }
+    expect(page('/de/huerta/karte/').lang).toBe('de');
+    expect(page('/map/').hreflang).toBe(false);
+    expect(page('/huerta/crops/').hreflang).toBe(true);
+  });
+
+  it('lists what search engines may index, and nothing else', () => {
+    const xml = sitemap(pages, ORIGIN);
+    for (const p of ['/settings/', '/offline/', '/huerta/crops/'])
+      expect(xml, p).not.toContain(`<loc>${ORIGIN}${p}</loc>`);
+    expect(xml).toContain(`<loc>${ORIGIN}/map/</loc>`);
+    expect(xml).toContain(`<loc>${ORIGIN}/huerta/instructions/</loc>`);
+    expect(xml).toContain(
+      `<loc>${ORIGIN}/huerta/planting-calendar/</loc>\n    <xhtml:link rel="alternate" hreflang="en"`
+    );
+    expect(xml).toContain(
+      `hreflang="de" href="${ORIGIN}/de/huerta/pflanzkalender/"`
+    );
+  });
+
+  it('writes share tags with full URLs, and noindex where asked', () => {
+    const map = renderPage(shell, page('/map/'), ORIGIN);
+    expect(map).toContain(`property="og:image" content="${ORIGIN}/share.jpg"`);
+    expect(map).toContain('name="twitter:card" content="summary_large_image"');
+    expect(map).not.toContain('hreflang');
+    expect(map).not.toContain('noindex');
+    expect(renderPage(shell, page('/settings/'), ORIGIN)).toContain(
+      '<meta name="robots" content="noindex" />'
+    );
+    expect(appShell(shell)).toContain(
+      '<meta name="robots" content="noindex" />'
+    );
+  });
+
+  it("tells search engines the site's name, and each guide's place in it", () => {
+    const front = renderPage(shell, page('/'), ORIGIN);
+    const data = JSON.parse(
+      /<script type="application\/ld\+json"[^>]*>(.*?)<\/script>/.exec(
+        front
+      )![1]
+    );
+    expect(data['@graph'][0]).toMatchObject({
+      '@type': 'WebSite',
+      name: 'Funges',
+    });
+    expect(front).toContain('rel="canonical" href="https://www.fung.es/"');
+    expect(front).toContain('rel="preload" as="image" href="/landing/');
+    const porcini = renderPage(shell, page('/de/species/mushroom/'), ORIGIN);
+    expect(porcini).toContain('"item":"https://www.fung.es/de/terra/"');
+    expect(porcini).toContain('"name":"Steinpilz"');
+  });
+
+  it("names a species' photo and shares it, when the build knows it", () => {
+    const [chant] = buildPages(
+      new Map([['chant', '/assets/chant-x.webp']])
+    ).filter(p => p.path === '/species/chant/');
+    const html = renderPage(shell, chant, ORIGIN);
+    expect(html).toContain(
+      '<img src="/assets/chant-x.webp" alt="Golden Chanterelle (Cantharellus cibarius)"'
+    );
+    expect(html).toContain(
+      `property="og:image" content="${ORIGIN}/assets/chant-x.webp"`
+    );
+    expect(html).toContain('name="twitter:card" content="summary"');
+  });
+
+  it("writes the season atlas's pages from its index, none without it", () => {
+    const dist = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-'));
+    expect(atlasPages(dist)).toEqual([]);
+    fs.mkdirSync(path.join(dist, 'season-atlas'));
+    fs.writeFileSync(
+      path.join(dist, 'season-atlas', 'index.json'),
+      JSON.stringify({
+        places: [
+          { id: 'europe', name: 'Europe', species: ['mushroom', 'chant'] },
+        ],
+        slugs: { mushroom: 'porcini' },
+      })
+    );
+    const atlas = atlasPages(dist);
+    expect(atlas.map(p => p.path)).toEqual([
+      '/data/seasons/europe/porcini/',
+      '/data/seasons/europe/chant/',
+    ]);
+    expect(atlas[0].title).toBe('Porcini season in Europe · Funges');
   });
 });

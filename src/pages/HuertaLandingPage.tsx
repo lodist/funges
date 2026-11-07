@@ -11,6 +11,7 @@ import { Logo } from '@/components/Logo';
 import { SpaceTab } from '@/components/SpaceTab';
 import { Button } from '@/components/ui/button';
 import { BAND_OUTLINE_CLASS } from '@/lib/band-surface';
+import { heroPhoto } from '@/lib/hero-photos';
 import { isPlayApp } from '@/lib/platform';
 import {
   ArrowRight,
@@ -31,17 +32,6 @@ const HELP_LINKS = [
   { to: '/privacy-policy', key: 'privacyPolicy' },
   { to: '/termsuse', key: 'termsOfUse' },
 ] as const;
-
-// The garden's season, as Terra's hero follows the forager's: frosted kale in
-// winter, peas going in in spring, tomatoes in summer, garlic in autumn.
-const HERO_PHOTOS = [
-  'huerta-hero-winter.webp',
-  'huerta-hero-spring.webp',
-  'huerta-hero-summer.webp',
-  'huerta-hero-autumn.webp',
-] as const;
-const heroPhoto = (date: Date) =>
-  HERO_PHOTOS[Math.floor(((date.getMonth() + 1) % 12) / 3)];
 
 // The year from seed to plate, each step opening the page that does it.
 const STEPS = [
@@ -142,7 +132,7 @@ export default function HuertaLandingPage() {
             </div>
             <img
               className={styles.heroPhoto}
-              src={`${base}landing/${heroPhoto(new Date())}`}
+              src={`${base}${heroPhoto('huerta')}`}
               alt=''
               width='960'
               height='1200'

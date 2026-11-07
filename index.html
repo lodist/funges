@@ -17,8 +17,8 @@
       name="description"
       content="Foraging forecasts for wild mushrooms and plants, plus a planner for your vegetable garden. What grows around you and when."
     />
-    <meta property="og:image" content="/icons/logo_1.png" />
-    <meta name="twitter:image" content="/icons/logo_1.png" />
+    <!-- Canonical, share tags and schema.org data are each page's own,
+         written by the build (scripts/seo-pages.ts). -->
 
     <!-- The manifest link is injected by vite-plugin-pwa (root-relative). -->
     <meta name="theme-color" content="#f8f5f0" />
@@ -200,11 +200,13 @@
       }
       // Once React has drawn something, drop the squirrel and end the view
       // transition in the same frame. A page React drew before the first frame
-      // (or restored from the back/forward cache) ends it at reveal.
+      // (or restored from the back/forward cache) ends it at reveal. A page's
+      // text as the build wrote it (main[data-static]) is not the app yet.
       var transition = null;
       function drawn() {
         var root = document.getElementById('root');
-        return !!(root && root.firstChild);
+        var first = root && root.firstElementChild;
+        return !!first && !first.hasAttribute('data-static');
       }
       function done() {
         var pageWait = document.getElementById('page-wait');

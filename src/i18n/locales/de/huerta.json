@@ -1,6 +1,7 @@
 {
   "title": "Pflanzen",
   "description": "Jede Kultur: ob sie diese Woche an deinem Ort in die Erde kann, wie man sie anbaut und worauf du achten musst.",
+  "seoTitle": "Gartenpflanzen und wann sie bei dir in die Erde kommen",
   "sample": "Beispiel: {{place}}, {{day}}. Bald dein eigener Ort.",
   "around": "Rund um {{place}}, {{day}}",
   "offline": "Offline: Ratschläge vom {{day}}",
@@ -2005,7 +2006,7 @@
     }
   },
   "map": {
-    "title": "Karte",
+    "title": "Pflanzkarte: was diese Woche in deiner Nähe in die Erde kommt",
     "description": "Wo jede Kultur diese Woche in die Erde kommt, Frost in den nächsten drei Tagen, Bodentemperatur und Giessen, Ort für Ort.",
     "crop": "Kultur",
     "layer": "Kartenebene",
@@ -2150,6 +2151,7 @@
       "addRounds": "Etappen hinzufügen"
     },
     "title": "Mein Garten",
+    "seoTitle": "Gartenplaner: deine Beete, Woche für Woche",
     "description": "Dein Garten Beet für Beet, und was er jede Woche von dir braucht: was wohin gesät wird, Pflege, Giessen und Ernte, berechnet für deinen Ort.",
     "sample": "Geplant für einen Beispielort, {{place}}.",
     "choosePlace": "Wähle deinen Ort",
@@ -2438,7 +2440,7 @@
     }
   },
   "year": {
-    "title": "Kalender",
+    "title": "Pflanzkalender",
     "seoTitle": "Pflanzkalender für deinen Ort",
     "failed": "Der Kalender konnte nicht laden. Versuch es gleich noch einmal.",
     "none": "Hier gibt es keinen Huerta-Kalender. Versuch einen Ort in der Nähe.",
@@ -2590,6 +2592,7 @@
   },
   "page": {
     "title": "{{name}}: {{start}}, Pflege und {{end}}",
+    "description": "{{name}} an deinem Ort: Termine für die {{start}}, Pflege, {{end}} und worauf du achten musst.",
     "start": {
       "sow": "Aussaat",
       "plant": "Pflanzung"

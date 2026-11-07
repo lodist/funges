@@ -1,8 +1,9 @@
 {
   "title": "Base de données des espèces",
+  "seoTitle": "Guide des espèces : champignons et plantes sauvages à cueillir",
   "subtitle": "Apprenez sur les aliments sauvages",
   "search_placeholder": "Rechercher une espèce",
-  "description": "Explorez notre base de données complète des espèces comestibles",
+  "description": "Chaque champignon, plante et baie de Funges : comment le reconnaître, où et quand il pousse, ses sosies et quoi en cuisiner.",
   "search": {
     "placeholder": "Rechercher une espèce",
     "found": "Trouvé",

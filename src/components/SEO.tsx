@@ -59,11 +59,15 @@ export default function SEO({
     ? i18n.language.replace('-', '_')
     : 'en_US';
 
+  // A full URL: link previews do not resolve a path. The card the build
+  // writes for pages without a picture of their own (scripts/seo-pages.ts).
+  const shareCard = `${window.location.origin}${import.meta.env.BASE_URL}share.jpg`;
+
   const og: OpenGraphMeta = {
     type: 'website',
     siteName: 'Funges',
     locale: defaultLocale,
-    image: '/icons/logo_1.png',
+    image: shareCard,
     url: canonical,
     title,
     description,
@@ -72,7 +76,7 @@ export default function SEO({
 
   const tw: TwitterMeta = {
     card: 'summary_large_image',
-    image: '/icons/logo_1.png',
+    image: shareCard,
     title,
     description,
     ...twitter,

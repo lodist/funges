@@ -1,6 +1,6 @@
 {
-  "title": "Carte interactive de cueillette",
-  "description": "Explorez les lieux de cueillette et les données en temps réel",
+  "title": "Carte de cueillette : où poussent les champignons et plantes sauvages",
+  "description": "Où champignons, plantes sauvages et baies trouvent de bonnes conditions aujourd'hui et les jours suivants, d'après la météo, en Europe et aux États-Unis.",
   "loading": "Chargement de la carte...",
   "error": {
     "title": "Erreur de carte",

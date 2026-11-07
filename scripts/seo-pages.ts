@@ -1,9 +1,11 @@
 /**
- * The static HTML of every page search engines index, written at build time:
- * each species and crop page and the space front pages, in English and German
- * (src/lib/seo-pages.ts). A page is the built index.html with its own title,
- * description, canonical and hreflang links and its text as plain HTML inside
- * #root, which the app replaces when it starts. Also writes sitemap.xml.
+ * The HTML of every page the site serves, written at build time: each species
+ * and crop page and the space front pages in English and German, the app's
+ * own pages (src/lib/seo-pages.ts) and the season atlas. A page is the built
+ * index.html with its own title, description, canonical, share tags and
+ * structured data, and for the indexed pages their text as plain HTML inside
+ * #root, which the app replaces when it starts. GitHub Pages serves a folder's
+ * index.html with a 200 (anything else gets 404.html). Also writes sitemap.xml.
  *
  * Reads the same files the app reads (translations, the species catalog, the
  * crop table), so imports are relative: vite.config.ts loads this file.
@@ -15,11 +17,14 @@ import { GENERATED_SPECIES_DATA } from '../src/generated/species-catalog';
 import { TOXIC_SPECIES } from '../src/data/toxic-species';
 import { CROPS } from '../src/lib/huerta';
 import { GUIDES } from '../src/lib/crop-guides';
+import { heroPhoto } from '../src/lib/hero-photos';
 import {
+  APP_PAGES,
   INDEXED_LANGUAGES,
   alternates,
   cropPageDescription,
   localizedPath,
+  pageLanguages,
   pageTitle,
   type IndexedLanguage,
 } from '../src/lib/seo-pages';
@@ -33,7 +38,29 @@ export interface Page {
   /** The text, as escaped plain HTML, in a <main data-static> the app
    *  replaces when it starts. */
   body: string;
+  /** Written in each indexed language: hreflang links, in the sitemap too. */
+  hreflang?: boolean;
+  /** Kept out of search engines and the sitemap. */
+  noindex?: boolean;
+  /** The picture a shared link shows, a path on the site; the share card
+   *  when the page has none of its own. */
+  image?: string;
+  /** The picture the page opens with, fetched before the app asks for it. */
+  preload?: string;
+  /** schema.org data for search engines, given the site's origin. */
+  jsonLd?: (origin: string) => object;
 }
+
+/** A species' photo by its id: the built file's path (scripts/seo-pages.ts
+ *  learns them from the bundle). */
+export type Photos = ReadonlyMap<string, string>;
+
+/** What a shared link shows for a page without a picture: the logo on the
+ *  app's sand, 1200×630. */
+const SHARE_CARD = '/share.jpg';
+const OG_LOCALE = { en: 'en_US', de: 'de_DE' } as const;
+const PLAY_URL = 'https://play.google.com/store/apps/details?id=es.fung.app';
+const GITHUB_URL = 'https://github.com/lodist/funges';
 
 // npm run build and vitest both run from the repo root (in jsdom,
 // import.meta.url is no file: URL).
@@ -72,8 +99,26 @@ function translator(lang: IndexedLanguage) {
       name: string;
       fix: string;
     }[];
-  return { t, list };
+  /** A `namespace:key`, as the app writes one. */
+  const text = (ref: string) => {
+    const [ns, key] = ref.split(/:(.*)/s);
+    return t(ns, key);
+  };
+  return { t, list, text };
 }
+
+/** schema.org breadcrumbs: each step a name and a path, the page itself last
+ *  and without one. */
+const breadcrumbs = (origin: string, steps: [string, string?][]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: steps.map(([name, href], i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name,
+    ...(href ? { item: origin + href } : {}),
+  })),
+});
 
 const escape = (text: string) =>
   text
@@ -134,7 +179,8 @@ const GUIDE_PARTS = [
 
 function speciesPage(
   species: (typeof GENERATED_SPECIES_DATA)[number],
-  lang: IndexedLanguage
+  lang: IndexedLanguage,
+  photo?: string
 ): Page {
   const { t } = translator(lang);
   const key = species.nameKey.replace(/\.name$/, '');
@@ -154,6 +200,9 @@ function speciesPage(
   const body = [
     `<h1>${escape(name)}</h1>`,
     `<p><i>${escape(species.scientificName)}</i></p>`,
+    photo
+      ? `<img src="${photo}" alt="${escape(`${name} (${species.scientificName})`)}" />`
+      : '',
     `<p>${escape(t('species', `list_of_species.${key}.description`))}</p>`,
     ...GUIDE_PARTS.map(p => part(t('species', `guide.${p}`), guide(p))),
     lookalikes.length
@@ -178,6 +227,11 @@ function speciesPage(
     title: pageTitle(t('species', 'page.title', vars)),
     description: t('species', 'page.description', vars),
     body: `<main data-static>${body.join('')}</main>`,
+    hreflang: true,
+    image: photo,
+    preload: photo,
+    jsonLd: origin =>
+      breadcrumbs(origin, [['Terra', localizedPath('/terra/', lang)], [name]]),
   };
 }
 
@@ -215,18 +269,26 @@ function cropPage(crop: (typeof CROPS)[number], lang: IndexedLanguage): Page {
     `<p>${escape(t('huerta', 'page.signIn'))}</p>`,
     cropLinks(lang),
   ];
+  const vars = {
+    name,
+    start: t('huerta', `page.start.${crop.how}`),
+    end: t('huerta', `page.end.${crop.kind}`),
+  };
   return {
     path: localizedPath(`/huerta/crops/${crop.id}/`, lang),
     lang,
-    title: pageTitle(
-      t('huerta', 'page.title', {
-        name,
-        start: t('huerta', `page.start.${crop.how}`),
-        end: t('huerta', `page.end.${crop.kind}`),
-      })
+    title: pageTitle(t('huerta', 'page.title', vars)),
+    // What the page covers, then the crop in its own words (as CropPage).
+    description: cropPageDescription(
+      `${t('huerta', 'page.description', vars)} ${about}`.trim()
     ),
-    description: cropPageDescription(about),
     body: `<main data-static>${body.join('')}</main>`,
+    hreflang: true,
+    jsonLd: origin =>
+      breadcrumbs(origin, [
+        ['Huerta', localizedPath('/huerta/', lang)],
+        [name],
+      ]),
   };
 }
 
@@ -234,16 +296,42 @@ function cropPage(crop: (typeof CROPS)[number], lang: IndexedLanguage): Page {
  *  search, what it is and the crops it covers. */
 function calendarPage(lang: IndexedLanguage): Page {
   const { t } = translator(lang);
-  const title = t('huerta', 'year.seoTitle');
   const description = t('huerta', 'year.description');
   return {
     path: localizedPath('/huerta/planting-calendar/', lang),
     lang,
-    title: pageTitle(title),
+    title: pageTitle(t('huerta', 'year.seoTitle')),
     description,
-    body: `<main data-static><h1>${escape(title)}</h1><p>${escape(description)}</p><p>${escape(t('huerta', 'year.note'))}</p>${cropLinks(lang)}</main>`,
+    // The page's own heading, as the app shows it.
+    body: `<main data-static><h1>${escape(t('huerta', 'year.title'))}</h1><p>${escape(description)}</p><p>${escape(t('huerta', 'year.note'))}</p>${cropLinks(lang)}</main>`,
+    hreflang: true,
   };
 }
+
+/** The front page's schema.org data: the site's name (what search results
+ *  show for it), its logo and the app. */
+const site = (origin: string, lang: IndexedLanguage) => ({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${origin}/#website`,
+      name: 'Funges',
+      alternateName: 'fung.es',
+      url: `${origin}/`,
+      inLanguage: lang,
+      publisher: { '@id': `${origin}/#organization` },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${origin}/#organization`,
+      name: 'Funges',
+      url: `${origin}/`,
+      logo: `${origin}/icons/logo_1.png`,
+      sameAs: [PLAY_URL, GITHUB_URL],
+    },
+  ],
+});
 
 /** The front pages: the shared one every space opens from, then each
  *  space's own. Each says what it is and links the pages it leads to. */
@@ -281,31 +369,117 @@ function frontPage(
     title,
     description,
     body: `<main data-static><h1>${escape(heading)}</h1><p>${escape(intro)}</p>${links}</main>`,
+    hreflang: true,
+    // The photo the page opens on: the shared front page's first door is
+    // Terra's. ponytail: picked on the day of the build; the site builds
+    // several times a day, so a new season's photo is at most hours late.
+    // Pick it in an inline script if builds ever get rarer.
+    preload: `/${heroPhoto(path_ === '/huerta/' ? 'huerta' : 'terra')}`,
+    jsonLd: path_ === '/' ? origin => site(origin, lang) : undefined,
   };
 }
 
 /** Every indexed page, in every indexed language. */
-export function buildPages(): Page[] {
+export function buildPages(photos: Photos = new Map()): Page[] {
   return INDEXED_LANGUAGES.flatMap(lang => [
     frontPage('/', lang),
     frontPage('/terra/', lang),
     frontPage('/huerta/', lang),
     calendarPage(lang),
-    ...GENERATED_SPECIES_DATA.map(species => speciesPage(species, lang)),
+    ...GENERATED_SPECIES_DATA.map(species =>
+      speciesPage(species, lang, photos.get(species.id))
+    ),
     ...CROPS.map(crop => cropPage(crop, lang)),
   ]);
 }
 
-/** The built index.html, made into one page's own HTML. */
+/** The app's own pages (APP_PAGES): a head and no text, the app draws them. */
+export function appPages(): Page[] {
+  return APP_PAGES.flatMap(page => {
+    const languages = pageLanguages(page.path);
+    return languages.map(lang => {
+      const { text } = translator(lang);
+      return {
+        path: localizedPath(page.path, lang),
+        lang,
+        title: pageTitle(text(page.title)),
+        description: text(page.description),
+        body: '',
+        hreflang: languages.length > 1,
+        noindex: page.noindex,
+      };
+    });
+  });
+}
+
+/** The season atlas's pages, each place's species, from the index the deploy
+ *  builds into the site before the build (none without it). English only and
+ *  not in the sitemap. */
+export function atlasPages(outDir: string): Page[] {
+  const file = path.join(outDir, 'season-atlas', 'index.json');
+  if (!fs.existsSync(file)) return [];
+  const index = JSON.parse(fs.readFileSync(file, 'utf8')) as {
+    places: { id: string; name: string; species: string[] }[];
+    slugs: Record<string, string>;
+  };
+  const { t } = translator('en');
+  const names = new Map(
+    GENERATED_SPECIES_DATA.map(s => [
+      s.id,
+      t('species', `list_of_species.${s.nameKey}`),
+    ])
+  );
+  return index.places.flatMap(place =>
+    place.species.map(id => ({
+      path: `/data/seasons/${place.id}/${index.slugs[id] ?? id}/`,
+      lang: 'en' as const,
+      title: pageTitle(
+        t('common', 'data.atlas.title', {
+          species: names.get(id) ?? id,
+          place: place.name,
+        })
+      ),
+      description: t('common', 'data.atlas.subtitle'),
+      body: '',
+    }))
+  );
+}
+
+/** The built index.html, made into one page's own HTML. The app drops the
+ *  tags its <SEO> writes again when it starts (main.tsx), so they are there
+ *  once; the robots tag, the preload and the schema.org data stay. */
 export function renderPage(shell: string, page: Page, origin: string): string {
   const head = [
     `<link rel="canonical" href="${origin}${page.path}" />`,
-    ...alternates(page.path, origin).map(
-      a => `<link rel="alternate" hreflang="${a.hreflang}" href="${a.href}" />`
-    ),
+    ...(page.hreflang
+      ? alternates(page.path, origin).map(
+          a =>
+            `<link rel="alternate" hreflang="${a.hreflang}" href="${a.href}" />`
+        )
+      : []),
+    ...(page.noindex ? ['<meta name="robots" content="noindex" />'] : []),
+    '<meta property="og:type" content="website" />',
+    '<meta property="og:site_name" content="Funges" />',
+    `<meta property="og:locale" content="${OG_LOCALE[page.lang]}" />`,
     `<meta property="og:title" content="${escape(page.title)}" />`,
     `<meta property="og:description" content="${escape(page.description)}" />`,
     `<meta property="og:url" content="${origin}${page.path}" />`,
+    `<meta property="og:image" content="${origin}${page.image ?? SHARE_CARD}" />`,
+    // A species photo is square: the small card. The share card is wide.
+    `<meta name="twitter:card" content="${page.image ? 'summary' : 'summary_large_image'}" />`,
+    ...(page.preload
+      ? [
+          `<link rel="preload" as="image" href="${page.preload}" fetchpriority="high" />`,
+        ]
+      : []),
+    // Not JavaScript, but Rocket Loader is told to leave it alone anyway.
+    ...(page.jsonLd
+      ? [
+          `<script type="application/ld+json" data-cfasync="false">${JSON.stringify(
+            page.jsonLd(origin)
+          ).replace(/</g, '\\u003c')}</script>`,
+        ]
+      : []),
   ].join('\n    ');
   // Replacer functions, not strings: page text may hold `$&` or `$'`, which a
   // replacement string would expand into pieces of the shell.
@@ -326,60 +500,76 @@ export function renderPage(shell: string, page: Page, origin: string): string {
     );
 }
 
-/** sitemap.xml: the indexed pages with their language versions, then the
- *  app's other pages (English only). */
-export function sitemap(
-  pages: Page[],
-  others: string[],
-  origin: string
-): string {
-  const url = (loc: string, links = '') =>
-    `  <url>\n    <loc>${origin}${loc}</loc>${links}\n  </url>`;
-  const indexed = pages.map(page =>
-    url(
-      page.path,
-      alternates(page.path, origin)
-        .map(
-          a =>
-            `\n    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${a.href}" />`
-        )
-        .join('')
-    )
-  );
-  const paths = new Set(pages.map(p => p.path));
-  const rest = others
-    .map(p => localizedPath(p, 'en'))
-    .filter(p => !paths.has(p))
-    .map(p => url(p));
+/** sitemap.xml: every page search engines may index, with its language
+ *  versions where it has them. */
+export function sitemap(pages: Page[], origin: string): string {
+  const urls = pages
+    .filter(page => !page.noindex)
+    .map(
+      page =>
+        `  <url>\n    <loc>${origin}${page.path}</loc>${
+          page.hreflang
+            ? alternates(page.path, origin)
+                .map(
+                  a =>
+                    `\n    <xhtml:link rel="alternate" hreflang="${a.hreflang}" href="${a.href}" />`
+                )
+                .join('')
+            : ''
+        }\n  </url>`
+    );
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${[...indexed, ...rest].join('\n')}
+${urls.join('\n')}
 </urlset>
 `;
 }
 
-/** Writes every indexed page and sitemap.xml once the build is done. The
- *  front page '/' keeps the built index.html itself, whose head is the home
- *  page's: the app shell every other route is copied from must not carry the
- *  home page's text. */
-export function seoPages({
-  origin,
-  others,
-}: {
-  origin: string;
-  others: string[];
-}): Plugin {
+/** The app's shell for the service worker, which answers every page it opens
+ *  with it (vite.config.ts): the built index.html without a page of its own. */
+export const appShell = (shell: string) =>
+  shell.replace(
+    '</head>',
+    () => '    <meta name="robots" content="noindex" />\n  </head>'
+  );
+
+/** Writes every page and sitemap.xml. The built index.html becomes the front
+ *  page, and app.html keeps the shell, both while the bundle is still open,
+ *  so the service worker's precache has them; the rest when it is written. */
+export function seoPages({ origin }: { origin: string }): Plugin {
   let outDir = path.join(ROOT, 'dist');
+  let shell = '';
+  const photos = new Map<string, string>();
   return {
     name: 'seo-pages',
     apply: 'build',
+    // After vite:build-html, which emits index.html.
+    enforce: 'post',
     configResolved(config) {
       outDir = path.resolve(config.root, config.build.outDir);
     },
+    generateBundle(_, bundle) {
+      for (const file of Object.values(bundle)) {
+        if (file.type !== 'asset') continue;
+        for (const name of file.originalFileNames) {
+          const id = /assets\/species\/([^/]+)\.webp$/.exec(name)?.[1];
+          if (id) photos.set(id, `/${file.fileName}`);
+        }
+      }
+      const html = bundle['index.html'];
+      if (html?.type !== 'asset') return;
+      shell = String(html.source);
+      html.source = renderPage(shell, frontPage('/', 'en'), origin);
+      this.emitFile({
+        type: 'asset',
+        fileName: 'app.html',
+        source: appShell(shell),
+      });
+    },
     closeBundle() {
-      const shell = fs.readFileSync(path.join(outDir, 'index.html'), 'utf8');
-      const pages = buildPages();
-      for (const page of pages) {
+      if (!shell) return;
+      const pages = [...buildPages(photos), ...appPages()];
+      for (const page of [...pages, ...atlasPages(outDir)]) {
         if (page.path === '/') continue;
         const dir = path.join(outDir, page.path);
         fs.mkdirSync(dir, { recursive: true });
@@ -390,7 +580,7 @@ export function seoPages({
       }
       fs.writeFileSync(
         path.join(outDir, 'sitemap.xml'),
-        sitemap(pages, others, origin)
+        sitemap(pages, origin)
       );
     },
   };

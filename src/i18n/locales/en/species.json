@@ -1,8 +1,9 @@
 {
   "title": "Species Database",
+  "seoTitle": "Species guide: wild mushrooms and plants to forage",
   "subtitle": "Learn about wild foods",
   "search_placeholder": "Search for a species",
-  "description": "Explore our complete database of edible species",
+  "description": "Every mushroom, plant and berry on Funges: how to recognise it, where and when it grows, its look-alikes and what to cook with it.",
   "search": {
     "placeholder": "Search for a species",
     "found": "Found",

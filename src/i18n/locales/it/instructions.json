@@ -1,6 +1,8 @@
 {
   "title": "Istruzioni",
   "subtitle": "Impara come usare Fung.es in modo sicuro ed efficace",
+  "seoTitle": "Come usare Funges",
+  "seoDescription": "Come leggere la mappa e le previsioni, usare Funges offline, riconoscere un ritrovamento da una foto e da dove vengono le stime.",
   "downloadDataset": "Scarica il dataset giornaliero",
   "mapDescription": {
     "intro": "La mappa evidenzia le aree geografiche con condizioni favorevoli per la raccolta di funghi selvatici e piante commestibili.",
@@ -138,6 +140,7 @@
   },
   "huerta": {
     "title": "Istruzioni",
+    "seoTitle": "Come usare Huerta",
     "subtitle": "Come usare Huerta e da dove vengono i suoi consigli",
     "map": {
       "intro": "La mappa mostra, luogo per luogo, cosa può fare il tuo orto questa settimana.",

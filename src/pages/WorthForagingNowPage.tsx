@@ -160,7 +160,7 @@ export default function WorthForagingNowPage() {
   return (
     <>
       <SEO
-        title={t('worthForagingNow.title')}
+        title={t('worthForagingNow.seoTitle')}
         description={t('worthForagingNow.description')}
         canonicalUrl={`${import.meta.env.BASE_URL}worth-foraging-now`}
       />
@@ -610,7 +610,7 @@ function PickActions({
         variant='outline'
         className={tone === 'band' ? BAND_OUTLINE : undefined}
       >
-        <Link to='/species' search={{ q: pick.speciesName }}>
+        <Link to='/species/$id' params={{ id: pick.speciesId }}>
           {t('worthForagingNow.reviewSpecies')}
         </Link>
       </Button>

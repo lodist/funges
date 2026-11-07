@@ -95,7 +95,8 @@
   },
   "worthForagingNow": {
     "title": "Qu'est-ce qui vaut le coup d'aller cueillir maintenant ?",
-    "description": "Une première sélection qui classe les meilleures cibles proches à partir de vos données actuelles sur les espèces et les recettes.",
+    "seoTitle": "Que cueillir maintenant près de chez vous",
+    "description": "Les champignons, plantes sauvages et baies qui valent la peine d'être cherchés près de chez vous en ce moment, selon la météo et la saison.",
     "scopeRadius": "À moins de {{radius}} km de vous",
     "currentAsOf": "Au {{date}}",
     "loading": "Chargement des choix…",
@@ -161,20 +162,6 @@
     "notFound": "Page non trouvée.",
     "unauthorized": "Vous n'êtes pas autorisé à accéder à cette ressource.",
     "copy": "Échec de la copie. Sélectionnez le texte et copiez-le à la main."
-  },
-  "html": {
-    "title": "Fung.es - Trouvez des champignons et plantes sauvages comestibles près de chez vous",
-    "description": "Trouvez des champignons et plantes comestibles près de chez vous avec notre carte de cueillette en temps réel. Découvrez les meilleurs coins grâce aux données météo et géospatiales pour une cueillette réussie.",
-    "keywords": "champignons, cueillette, plantes sauvages comestibles, carte de cueillette, nourriture sauvage, plantes comestibles, chasse aux champignons, coins à champignons, champignons sauvages",
-    "author": "Fung.es",
-    "ogTitle": "Fung.es - Trouvez des champignons et plantes sauvages comestibles près de chez vous",
-    "ogDescription": "Trouvez des champignons et plantes comestibles près de chez vous avec notre carte de cueillette en temps réel. Découvrez les meilleurs coins grâce aux données météo et géospatiales pour une cueillette réussie.",
-    "ogType": "website",
-    "ogImage": "/icons/logo_funges.png",
-    "twitterCard": "summary_large_image",
-    "twitterTitle": "Fung.es - Trouvez des champignons et plantes sauvages comestibles près de chez vous",
-    "twitterDescription": "Trouvez des champignons et plantes comestibles près de chez vous avec notre carte de cueillette en temps réel. Découvrez les meilleurs coins grâce aux données météo et géospatiales pour une cueillette réussie.",
-    "twitterImage": "/icons/logo_funges.png"
   },
   "splash": {
     "title": "Fung.es",
@@ -377,7 +364,9 @@
       "openEurope": "Ouvrir l'Europe",
       "fewRecords": "Peu d'observations locales ({{formatted}} depuis 2010) : la saison s'appuie sur des lieux au climat semblable.",
       "rareRecords": "Presque jamais observé ici : la saison affichée est celle de lieux au climat semblable."
-    }
+    },
+    "seoTitle": "Données des prévisions et saisons des champignons",
+    "seoDescription": "La météo derrière les prévisions de la semaine, leur justesse face à de vraies trouvailles et la saison de chaque champignon, lieu par lieu."
   },
   "sidebar": {
     "title": "Barre latérale",

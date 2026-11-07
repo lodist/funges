@@ -95,7 +95,8 @@
   },
   "worthForagingNow": {
     "title": "Worth Foraging Now",
-    "description": "A first-pass picker that ranks the best nearby targets from your current species and recipe data.",
+    "seoTitle": "Worth foraging now: what to look for near you",
+    "description": "The wild mushrooms, plants and berries worth looking for near you right now, given the weather and the season.",
     "scopeRadius": "Within {{radius}} km of you",
     "currentAsOf": "As of {{date}}",
     "loading": "Loading picks…",
@@ -161,20 +162,6 @@
     "notFound": "Page not found.",
     "unauthorized": "You are not authorized to access this resource.",
     "copy": "Couldn't copy. Select the text and copy it by hand."
-  },
-  "html": {
-    "title": "Fung.es - Find Mushrooms and Wild Edible Plants Near You",
-    "description": "Find mushrooms & edible plants near you with our real-time foraging map. Discover wild food hotspots using weather and geospatial data for successful foraging.",
-    "keywords": "mushrooms, foraging, wild edible plants, foraging map, wild food, edible plants, mushroom hunting, foraging spots, wild mushrooms",
-    "author": "Fung.es",
-    "ogTitle": "Fung.es - Find Mushrooms and Wild Edible Plants Near You",
-    "ogDescription": "Find mushrooms & edible plants near you with our real-time foraging map. Discover wild food hotspots using weather and geospatial data for successful foraging.",
-    "ogType": "website",
-    "ogImage": "/icons/logo_funges.png",
-    "twitterCard": "summary_large_image",
-    "twitterTitle": "Fung.es - Find Mushrooms and Wild Edible Plants Near You",
-    "twitterDescription": "Find mushrooms & edible plants near you with our real-time foraging map. Discover wild food hotspots using weather and geospatial data for successful foraging.",
-    "twitterImage": "/icons/logo_funges.png"
   },
   "splash": {
     "title": "Fung.es",
@@ -382,7 +369,9 @@
       "openEurope": "Open Europe",
       "fewRecords": "Few local records here ({{formatted}} since 2010), so the season leans on places with a similar climate.",
       "rareRecords": "Hardly ever recorded here, so the season shown is that of places with a similar climate."
-    }
+    },
+    "seoTitle": "Forecast data and mushroom seasons",
+    "seoDescription": "The weather behind this week's forecasts, how well they matched real finds and each mushroom's season place by place."
   },
   "theme": {
     "label": "Theme",

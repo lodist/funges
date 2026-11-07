@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { GoogleMark } from '@/components/HuertaSignIn';
+import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { finishSignIn, startSignIn } from '@/lib/huerta-session';
 import { huertaPage } from '@/lib/seo-pages';
@@ -30,6 +31,7 @@ export default function HuertaSignInPage() {
 
   return (
     <div className='container mx-auto max-w-7xl px-4 py-16' aria-live='polite'>
+      <SEO title={t('page.signIn')} />
       {state === 'working' ? (
         <p className='text-lg text-muted-foreground'>{t('signin.working')}</p>
       ) : state === 'elsewhere' ? (

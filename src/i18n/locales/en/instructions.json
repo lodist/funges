@@ -1,6 +1,8 @@
 {
   "title": "Instructions",
   "subtitle": "Learn how to use Fung.es safely and effectively",
+  "seoTitle": "How to use Funges",
+  "seoDescription": "How to read the map and the forecasts, use Funges offline, identify a find from a photo and where the predictions come from.",
   "downloadDataset": "Download daily dataset",
   "mapDescription": {
     "intro": "The map highlights geographic areas with favorable conditions for foraging wild mushrooms and edible plants.",
@@ -138,6 +140,7 @@
   },
   "huerta": {
     "title": "Instructions",
+    "seoTitle": "How to use Huerta",
     "subtitle": "How to use Huerta and where its advice comes from",
     "map": {
       "intro": "The map shows what your garden can do this week, place by place.",

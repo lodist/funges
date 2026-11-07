@@ -1,6 +1,6 @@
 {
-  "title": "Mapa interactivo de recolección",
-  "description": "Explora ubicaciones de recolección y datos en tiempo real",
+  "title": "Mapa de recolección: dónde crecen ahora setas y plantas silvestres",
+  "description": "Dónde las condiciones favorecen setas, plantas silvestres y bayas hoy y en los próximos días, recalculado cada noche con el tiempo de Europa y EE. UU.",
   "loading": "Cargando mapa...",
   "error": {
     "title": "Error del mapa",

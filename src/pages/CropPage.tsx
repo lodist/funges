@@ -25,17 +25,20 @@ export default function CropPage() {
 
   const path = `/huerta/crops/${crop.id}/`;
   const lang = pathLanguage(window.location.pathname) ?? 'en';
-  const name = t(`crops.${crop.id}`);
+  const vars = {
+    name: t(`crops.${crop.id}`),
+    start: t(`page.start.${crop.how}`),
+    end: t(`page.end.${crop.kind}`),
+  };
 
   return (
     <>
       <SEO
-        title={t('page.title', {
-          name,
-          start: t(`page.start.${crop.how}`),
-          end: t(`page.end.${crop.kind}`),
-        })}
-        description={cropPageDescription(t(`grow.${crop.id}.about`))}
+        title={t('page.title', vars)}
+        // What the page covers, then the crop in its own words.
+        description={cropPageDescription(
+          `${t('page.description', vars)} ${t(`grow.${crop.id}.about`)}`.trim()
+        )}
         canonicalUrl={localizedPath(path, lang)}
         alternates={alternates(path, window.location.origin)}
       />

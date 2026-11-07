@@ -1,6 +1,6 @@
 {
-  "title": "Interactive Foraging Map",
-  "description": "Explore foraging locations and real-time data",
+  "title": "Foraging map: where wild mushrooms and plants grow now",
+  "description": "Where conditions suit wild mushrooms, plants and berries today and in the days ahead, rebuilt every night from the weather across Europe and the US.",
   "loading": "Loading map...",
   "error": {
     "title": "Map Error",
