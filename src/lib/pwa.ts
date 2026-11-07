@@ -116,6 +116,23 @@ if (sw && import.meta.env.PROD) {
   void sw.getRegistrations().then(rs => rs.forEach(r => void r.unregister()));
 }
 
+/** The browser looks for a new version only when a page loads, and an app
+ *  kept open never loads one (the Play app comes back from the background as
+ *  it was). So look again when it comes back on screen and on a page change,
+ *  at most every few minutes: a deploy then installs in the background and
+ *  the next page change hands over to it. One ~5 KB sw.js per look. */
+const CHECK_EVERY_MS = 5 * 60 * 1000;
+let checkedAt = Date.now();
+export const checkForUpdate = () => {
+  if (!registration || Date.now() - checkedAt < CHECK_EVERY_MS) return;
+  checkedAt = Date.now();
+  registration.update().catch(() => {}); // offline: the next look
+};
+if (sw && import.meta.env.PROD)
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') checkForUpdate();
+  });
+
 /** True when a newer version than the one on screen is installed: waiting,
  *  or already activated by another tab (whose takeover left this page on
  *  code the new worker no longer caches). */
