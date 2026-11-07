@@ -15,7 +15,7 @@ import FloatingLanguageSwitcher from '@/components/FloatingLanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { recordPath } from '@/lib/nav-history';
 import { crossesIsolationBoundary } from '@/lib/isolation';
-import { activateUpdate, isOutdated } from '@/lib/pwa';
+import { activateUpdate, checkForUpdate, isOutdated } from '@/lib/pwa';
 import { currentSpace, rememberPath, renamedPath } from '@/lib/spaces';
 import { localizedPath, pathLanguage, stripLanguage } from '@/lib/seo-pages';
 import i18n from '@/i18n';
@@ -42,6 +42,7 @@ export const Route = createRootRoute({
       throw redirect({ href: renamed + location.searchStr, replace: true });
     const pageChanged = location.pathname !== shownPath;
     shownPath = location.pathname;
+    if (pageChanged) checkForUpdate();
     if (
       !(pageChanged && isOutdated()) &&
       !crossesIsolationBoundary(DOCUMENT_PATH, location.pathname)
