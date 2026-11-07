@@ -73,7 +73,7 @@ test('production app shell reloads and switches every map style offline', async 
     page.getByRole('heading', { name: 'Species Database' })
   ).toBeVisible();
   await expect(
-    page.getByText('Chanterelle', { exact: true }).first()
+    page.getByText('Golden Chanterelle', { exact: true }).first()
   ).toBeVisible();
 });
 
