@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import source from '@/game/sim.ts?raw';
 import { LAP, STAGES, stageAt } from '@/game/stages';
 import {
+  LIVES,
   PLAYER,
   PLAYER_X,
   POINTS,
@@ -110,24 +111,41 @@ describe('the squirrel', () => {
 });
 
 describe('things on the way', () => {
-  it('a trap ends the run', () => {
+  it('a trap costs a life, then the squirrel passes through things for a moment', () => {
     const g = empty();
+    place(g, {});
+    run(g, 40);
+    expect(g.over).toBe(false);
+    expect(g.lives).toBe(LIVES - 1);
+    expect(g.mercyUntil).toBeGreaterThan(g.tick);
+    place(g, {}, 10);
+    run(g, 30);
+    expect(g.lives).toBe(LIVES - 1);
+  });
+
+  it('the last life ends the run', () => {
+    const g = empty();
+    g.lives = 1;
     place(g, {});
     run(g, 60);
     expect(g.over).toBe(true);
   });
 
-  it('a gap ends the run unless the squirrel jumps it', () => {
+  it('a gap costs a life and the squirrel hops back out, unless it jumps it', () => {
     const fall = empty();
     place(fall, { kind: 'gap', w: 40, h: 0 }, 0);
-    run(fall, 120);
-    expect(fall.over).toBe(true);
+    run(fall, 60);
+    expect(fall.lives).toBe(LIVES - 1);
+    expect(fall.over).toBe(false);
+    run(fall, 90);
+    expect(fall.y).toBeGreaterThanOrEqual(0);
+    expect(fall.lives).toBe(LIVES - 1);
 
     const hop = empty();
     place(hop, { kind: 'gap', w: 40, h: 0 }, 6);
     step(hop, press);
     run(hop, 120);
-    expect(hop.over).toBe(false);
+    expect(hop.lives).toBe(LIVES);
   });
 
   it('the fly agaric makes the squirrel sick, and the run goes on', () => {

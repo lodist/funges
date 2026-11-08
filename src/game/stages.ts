@@ -47,7 +47,7 @@ export const STAGES: Stage[] = [
     length: 5000,
     traps: [
       { id: 'chairs', w: 20, h: 16 },
-      { id: 'pigeon', w: 11, h: 9, fly: true, animal: true },
+      { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
       { id: 'bike', w: 30, h: 22, speed: 0.8 },
     ],
     pickups: ['parasol', 'truffle'],
@@ -82,7 +82,7 @@ export const STAGES: Stage[] = [
     length: 2400,
     traps: [
       { id: 'crate', w: 18, h: 18 },
-      { id: 'rope', w: 12, h: 10 },
+      { id: 'rope', w: 16, h: 10 },
     ],
   },
   {
@@ -91,7 +91,7 @@ export const STAGES: Stage[] = [
     traps: [
       { id: 'steam', w: 12, h: 22 },
       { id: 'hotdog', w: 22, h: 22 },
-      { id: 'pigeon', w: 11, h: 9, fly: true, animal: true },
+      { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
     ],
     pickups: ['ramps', 'hen-of-the-woods'],
     ride: 'cab',
