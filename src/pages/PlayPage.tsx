@@ -8,7 +8,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
-import { draw, loadArt, SCALE, type Art, type View } from '@/game/draw';
+import { draw, loadArt, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
 import {
   newGame,
@@ -91,13 +91,43 @@ export default function PlayPage() {
     setPhase(next);
   }, []);
 
+  // Canvas pixels per game pixel: the canvas has as many pixels as it is
+  // shown at, so the smooth landscape stays sharp at any size.
+  const scale = useRef(3);
   const paint = useCallback(
     (view?: View) => {
       const ctx = canvasRef.current?.getContext('2d');
-      if (ctx) draw(ctx, game.current, art.current, options, view);
+      if (ctx)
+        draw(
+          ctx,
+          game.current,
+          art.current,
+          { ...options, scale: scale.current },
+          view
+        );
     },
     [options]
   );
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const fit = () => {
+      const width = Math.min(
+        2560,
+        Math.round(canvas.clientWidth * (window.devicePixelRatio || 1))
+      );
+      if (width < 64 || width === canvas.width) return;
+      canvas.width = width;
+      canvas.height = Math.round((width * VIEW_H) / VIEW_W);
+      scale.current = width / VIEW_W;
+      paint();
+    };
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, [paint]);
 
   useEffect(() => {
     let live = true;
@@ -285,8 +315,8 @@ export default function PlayPage() {
           <div className={styles.frame}>
             <canvas
               ref={canvasRef}
-              width={VIEW_W * SCALE}
-              height={VIEW_H * SCALE}
+              width={VIEW_W * 3}
+              height={VIEW_H * 3}
               className={styles.screen}
               role='img'
               aria-label={t('game.canvas')}

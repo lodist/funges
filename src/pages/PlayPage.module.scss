@@ -43,7 +43,8 @@
   width: 100%;
   max-height: calc(100dvh - 14rem);
   object-fit: contain;
-  image-rendering: pixelated;
+  // The canvas has as many pixels as it is shown at: no scaling to hide.
+  image-rendering: auto;
 }
 
 .banner {
