@@ -8,7 +8,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
-import { draw, loadArt, type Art } from '@/game/draw';
+import { draw, loadArt, SCALE, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
 import {
   newGame,
@@ -91,10 +91,13 @@ export default function PlayPage() {
     setPhase(next);
   }, []);
 
-  const paint = useCallback(() => {
-    const ctx = canvasRef.current?.getContext('2d');
-    if (ctx) draw(ctx, game.current, art.current, options);
-  }, [options]);
+  const paint = useCallback(
+    (view?: View) => {
+      const ctx = canvasRef.current?.getContext('2d');
+      if (ctx) draw(ctx, game.current, art.current, options, view);
+    },
+    [options]
+  );
 
   useEffect(() => {
     let live = true;
@@ -146,6 +149,7 @@ export default function PlayPage() {
     let then = performance.now();
     let spare = 0;
     let shown = game.current.furthest;
+    let before: View = { dist: game.current.dist, y: game.current.y };
     const loop = (now: number) => {
       // A stalled tab is paused, not fast-forwarded.
       spare += Math.min(now - then, 100);
@@ -156,9 +160,16 @@ export default function PlayPage() {
         const input = inputs.current.shift();
         if (input === 'press') run.current.presses.push(g.tick + 1);
         if (input === 'release') run.current.releases.push(g.tick + 1);
+        before = { dist: g.dist, y: g.y };
         step(g, { press: input === 'press', release: input === 'release' });
       }
-      paint();
+      // Drawn between the last two ticks, by how far time has run into the
+      // next one: smooth on 90 and 120 Hz screens too.
+      const blend = g.over ? 1 : spare / TICK_MS;
+      paint({
+        dist: before.dist + (g.dist - before.dist) * blend,
+        y: before.y + (g.y - before.y) * blend,
+      });
       if (g.furthest !== shown) {
         shown = g.furthest;
         setBanner(stageName(shown));
@@ -274,8 +285,8 @@ export default function PlayPage() {
           <div className={styles.frame}>
             <canvas
               ref={canvasRef}
-              width={VIEW_W}
-              height={VIEW_H}
+              width={VIEW_W * SCALE}
+              height={VIEW_H * SCALE}
               className={styles.screen}
               role='img'
               aria-label={t('game.canvas')}
