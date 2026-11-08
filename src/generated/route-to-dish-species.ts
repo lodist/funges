@@ -18,7 +18,7 @@ export const GENERATED_ROUTE_TO_DISH_SPECIES_CONFIG = {
     ],
   },
   morel: {
-    scorePropertyAliases: ['morel', 'morel_score', 'Morel', 'Morchella'],
+    scorePropertyAliases: ['morel', 'morel_score', 'Morel'],
   },
   blackberry: {
     scorePropertyAliases: ['blackberry', 'blackberry_score', 'Blackberry'],
