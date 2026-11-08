@@ -10,7 +10,8 @@ export async function shareRun(
   card.height = 860;
   const ctx = card.getContext('2d');
   if (!ctx) return;
-  ctx.imageSmoothingEnabled = false;
+  // The screen is at full resolution now: scale it down smoothly.
+  ctx.imageSmoothingQuality = 'high';
   ctx.drawImage(screen, 0, 0, 1280, 720);
   ctx.fillStyle = '#1f3d2b';
   ctx.fillRect(0, 720, 1280, 140);

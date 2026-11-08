@@ -9,12 +9,13 @@ import { LAP, STAGES, stageAt } from './stages';
  */
 
 export const TICKS_PER_SECOND = 60;
-export const VIEW_W = 320;
-export const VIEW_H = 180;
+// The view, zoomed out like Alto's: a small squirrel in a big world.
+export const VIEW_W = 480;
+export const VIEW_H = 270;
 /** The ground line, in game pixels from the top. */
-export const GROUND_Y = 150;
+export const GROUND_Y = 225;
 /** The squirrel's left edge on the screen. */
-export const PLAYER_X = 48;
+export const PLAYER_X = 72;
 export const PLAYER = { w: 18, h: 16 };
 export const RIDER = { w: 40, h: 28 };
 export const RIDE_TICKS = 7 * TICKS_PER_SECOND;
@@ -37,7 +38,7 @@ const MAX_SPEED = 3.6;
 /** Ticks in the air on a full jump: the room left between two things. */
 const AIRTIME = 36;
 /** The first thing shows up about three seconds in. */
-const FIRST_AT = 480;
+const FIRST_AT = 600;
 
 export type Kind = 'trap' | 'gap' | 'pickup' | 'acorn' | 'agaric' | 'egg';
 
