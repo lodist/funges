@@ -122,30 +122,6 @@
       "NE": {
         "available": true,
         "landCover": [311, 313, 321, 324],
-        "scoring": {
-          "optimal_temp": 13,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 30,
-          "optimal_alt": 60,
-          "alt_sigma": 800,
-          "optimal_humidity": 79,
-          "humidity_sigma": 17,
-          "optimal_pH": 5.8,
-          "pH_sigma_near": 2.5,
-          "pH_sigma_far": 2.5,
-          "pH_range_near": [4.3, 7.3],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 35,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [8, 9, 10],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/7987658",
           "https://www.mushroomexpert.com/coprinus_comatus.html",
@@ -157,30 +133,6 @@
       "SE": {
         "available": true,
         "landCover": [311, 313, 321, 324],
-        "scoring": {
-          "optimal_temp": 15,
-          "temp_sigma": 5,
-          "min_temp": 5,
-          "max_temp": 30,
-          "optimal_alt": 240,
-          "alt_sigma": 1100,
-          "optimal_humidity": 70,
-          "humidity_sigma": 17,
-          "optimal_pH": 6.1,
-          "pH_sigma_near": 2.5,
-          "pH_sigma_far": 2.5,
-          "pH_range_near": [4.6, 7.6],
-          "optimal_soil_temp": 14,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 25,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [3, 4, 5, 8, 9, 10],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/7987658",
           "https://www.mushroomexpert.com/coprinus_comatus.html",
@@ -192,30 +144,6 @@
       "USE": {
         "available": true,
         "landCover": [41, 43, 52, 71],
-        "scoring": {
-          "optimal_temp": 17,
-          "temp_sigma": 5,
-          "min_temp": 5,
-          "max_temp": 30,
-          "optimal_alt": 240,
-          "alt_sigma": 800,
-          "optimal_humidity": 76,
-          "humidity_sigma": 17,
-          "optimal_pH": 6.2,
-          "pH_sigma_near": 2.5,
-          "pH_sigma_far": 2.5,
-          "pH_range_near": [4.7, 7.7],
-          "optimal_soil_temp": 16,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 30,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [4, 5, 9, 10, 11],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/7987658",
           "https://www.mushroomexpert.com/coprinus_comatus.html",
@@ -226,30 +154,6 @@
       "USW": {
         "available": true,
         "landCover": [41, 43, 52, 71],
-        "scoring": {
-          "optimal_temp": 13,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 30,
-          "optimal_alt": 720,
-          "alt_sigma": 2300,
-          "optimal_humidity": 65,
-          "humidity_sigma": 17,
-          "optimal_pH": 6.2,
-          "pH_sigma_near": 2.5,
-          "pH_sigma_far": 2.5,
-          "pH_range_near": [4.7, 7.7],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 20,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [4, 5, 6, 9, 10, 11, 12, 1],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/7987658",
           "https://www.mushroomexpert.com/coprinus_comatus.html",

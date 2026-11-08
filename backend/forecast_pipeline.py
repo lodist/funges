@@ -1374,7 +1374,11 @@ def attach_phenology(species_params, region, path=None, fetch=None):
     """The learned plant seasons (tools/fit_phenology.py) for the region's species that ship
     one: a weekly grid per continent, on R2 and checked against the sha256 recorded here. A
     file that cannot be fetched or fails its checksum leaves those species on their months."""
-    path = Path(path or PHENOLOGY_PATH)
+    try:
+        path = r2.generated(path or PHENOLOGY_PATH)
+    except Exception as error:
+        print(f"[warn] learned plant seasons not loaded ({error}); their months stay")
+        return
     if not path.exists():
         return
     entry = json.loads(path.read_text(encoding="utf-8"))["continents"].get(era5_normals.CONTINENT[region])
@@ -1401,7 +1405,11 @@ def attach_local_season(species_params, region, path=None, fetch=None):
     """The mushrooms' local season curves (tools/build_local_season.py) for the region's species
     that ship one: a monthly grid per continent, on R2 and checked against the sha256 recorded
     here. A file that cannot be fetched or fails its checksum leaves the region and zone curves."""
-    path = Path(path or LOCAL_SEASON_PATH)
+    try:
+        path = r2.generated(path or LOCAL_SEASON_PATH)
+    except Exception as error:
+        print(f"[warn] local season curves not loaded ({error}); the region and zone curves stay")
+        return
     if not path.exists():
         return
     entry = json.loads(path.read_text(encoding="utf-8"))["continents"].get(era5_normals.CONTINENT[region])
@@ -1429,7 +1437,11 @@ def attach_habitat(species_params, region, path=None, fetch=None):
     """The learned habitat factor (tools/fit_habitat.py) for the region's species that ship
     one: per location, on R2 and checked against the sha256 recorded here. A file that cannot
     be fetched or fails its checksum leaves the scores without it."""
-    path = Path(path or HABITAT_PATH)
+    try:
+        path = r2.generated(path or HABITAT_PATH)
+    except Exception as error:
+        print(f"[warn] habitat factor not loaded ({error}); scores go without it")
+        return
     if not path.exists():
         return
     entry = json.loads(path.read_text(encoding="utf-8")).get("regions", {}).get(region)

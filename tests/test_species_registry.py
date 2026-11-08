@@ -44,23 +44,17 @@ def test_regional_registry_excludes_unavailable_species_and_keeps_overrides():
         assert species_id in ne
 
 
-def test_generated_scoring_is_returned_as_an_independent_copy(monkeypatch):
+def _one_species(monkeypatch, scoring):
     monkeypatch.setattr(
         species_registry,
         "_registry",
-        lambda: {
-            "species": {
-                "example": {
-                    "regions": {
-                        "NE": {
-                            "landCover": [10],
-                            "scoring": {"temperature": {"optimum": 18}},
-                        }
-                    }
-                },
-            }
-        },
+        lambda: {"species": {"example": {"regions": {"NE": {"landCover": [10]}}}}},
     )
+    monkeypatch.setattr(species_registry, "_scoring", lambda: scoring)
+
+
+def test_scoring_is_returned_as_an_independent_copy(monkeypatch):
+    _one_species(monkeypatch, {"example": {"NE": {"temperature": {"optimum": 18}}}})
 
     first = species_registry.get_species_params("NE")
     first["example"]["temperature"]["optimum"] = 99
@@ -69,18 +63,16 @@ def test_generated_scoring_is_returned_as_an_independent_copy(monkeypatch):
     assert second["example"] == {"temperature": {"optimum": 18}}
 
 
+def test_a_species_without_scoring_parameters_fails_loudly(monkeypatch):
+    # Left out quietly, it would drop off the map instead.
+    _one_species(monkeypatch, {})
+
+    with pytest.raises(KeyError, match="no NE parameters for example"):
+        species_registry.get_species_params("NE")
+
+
 def test_generated_land_cover_is_returned_as_an_independent_copy(monkeypatch):
-    monkeypatch.setattr(
-        species_registry,
-        "_registry",
-        lambda: {
-            "species": {
-                "example": {
-                    "regions": {"NE": {"landCover": [10], "scoring": {}}}
-                }
-            }
-        },
-    )
+    _one_species(monkeypatch, {})
 
     first = species_registry.get_land_cover_mapping("NE")
     first["example"].append(20)
@@ -99,17 +91,7 @@ def test_unknown_region_is_rejected():
 
 
 def test_a_region_with_no_available_species_is_rejected(monkeypatch):
-    monkeypatch.setattr(
-        species_registry,
-        "_registry",
-        lambda: {
-            "species": {
-                "example": {
-                    "regions": {"NE": {"landCover": [10], "scoring": {}}}
-                }
-            }
-        },
-    )
+    _one_species(monkeypatch, {"example": {"NE": {}}})
 
     assert species_registry.get_species_params("NE")
     with pytest.raises(ValueError, match="unknown region"):

@@ -46,7 +46,9 @@ recipes ≤ 768px, icons at the size the manifest declares, WebP quality ~75.
 The repo is public, so it holds code and nothing the code was fitted or built into.
 
 - **Built and fitted files** in `backend/generated/` (normals, ground layers,
-  model fits) live on R2. `backend/generated/on_r2.json` records each one's
+  model fits and the species' scoring parameters in `species_scoring.json`)
+  live on R2. Edit scoring parameters in that file, not in the manifests.
+  `backend/generated/on_r2.json` records each one's
   sha256, and whatever reads one goes through `r2.generated(path)`, which
   downloads a missing or outdated copy first. The build and fit tools upload
   what they write and update `on_r2.json`: commit that file where you used to

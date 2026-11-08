@@ -121,30 +121,6 @@
       "NE": {
         "available": true,
         "landCover": [321, 324],
-        "scoring": {
-          "optimal_temp": 11,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 21,
-          "optimal_alt": 40,
-          "alt_sigma": 750,
-          "optimal_humidity": 80,
-          "humidity_sigma": 12,
-          "optimal_pH": 6.0,
-          "pH_sigma_near": 1.0,
-          "pH_sigma_far": 1.0,
-          "pH_range_near": [4.75, 7.25],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 3.5,
-          "min_cumulative_rain": 35,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": false,
-          "season_months": [3, 4, 5],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://data.fung.es/EU/NE/NE_species_params.txt",
           "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"
@@ -155,30 +131,6 @@
       "SE": {
         "available": true,
         "landCover": [321, 324],
-        "scoring": {
-          "optimal_temp": 11,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 21,
-          "optimal_alt": 180,
-          "alt_sigma": 750,
-          "optimal_humidity": 80,
-          "humidity_sigma": 12,
-          "optimal_pH": 6.1,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.85, 7.35],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 3.5,
-          "min_cumulative_rain": 35,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": false,
-          "season_months": [4, 5],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://data.fung.es/EU/SE/SE_species_params.txt",
           "https://github.com/lodist/funges-lab/blob/main/species/2026-10-05-soil-ph.md"

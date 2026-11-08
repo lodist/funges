@@ -10,6 +10,7 @@ import {
   LOCALES,
   REGIONS,
   scaffold,
+  SCORING_FILE,
   validateManifests,
 } from './species-manifest.mjs';
 
@@ -108,7 +109,6 @@ function forecast(availableIn = REGIONS) {
               landCoverScheme: ['NE', 'SE'].includes(region)
                 ? 'CORINE'
                 : 'NLCD',
-              scoring: scoring(),
               scoringReferences: ['https://example.test/research'],
             }
           : { available: false },
@@ -240,18 +240,18 @@ test('rejects ambiguous names, an unapproved safety gate, and incomplete forecas
     catalog: { ...manifest().catalog, order: 1, translationKey: 'other' },
     forecast: {
       enabled: true,
-      regions: { NE: { available: true, landCover: [], scoring: {} } },
+      regions: { NE: { available: true, landCover: [] } },
     },
   });
   const errors = validateManifests(
     [entry(first), entry(second)],
     process.cwd(),
-    { checkImages: false }
+    { checkImages: false, scoring: {} }
   ).join('\n');
   assert.match(errors, /ambiguous scientific\/BioCLIP name/);
   assert.match(errors, /approved toxic-lookalike safety review/);
   assert.match(errors, /landCover is required/);
-  assert.match(errors, /scoring is required/);
+  assert.match(errors, /species_scoring\.json: other\.NE is missing/);
   assert.match(errors, /forecast\.regions\.USW is required/);
 });
 
@@ -324,10 +324,8 @@ test('forecast generation emits only available regional parameters and map layer
       'utf8'
     )
   );
-  assert.deepEqual(
-    registry.species['new-species'].regions.NE.scoring,
-    scoring()
-  );
+  // The scoring parameters stay in the private scoring file.
+  assert.equal('scoring' in registry.species['new-species'].regions.NE, false);
   assert.equal('USW' in registry.species['new-species'].regions, false);
   const routeConfig = fs.readFileSync(
     path.join(root, 'src/generated/route-to-dish-species.ts'),
@@ -515,23 +513,10 @@ test('route-to-dish requires explicit manifest opt-in', async () => {
   assert.doesNotMatch(routeConfig, /new-species_score/);
 });
 
-test('rejects scoring data for unavailable regions and temperature sentinels', () => {
-  const regions = Object.fromEntries(
-    REGIONS.map(region => [
-      region,
-      {
-        available: true,
-        landCover: [10],
-        landCoverScheme: ['NE', 'SE'].includes(region) ? 'CORINE' : 'NLCD',
-        scoring: scoring(),
-        scoringReferences: ['https://example.test/research'],
-      },
-    ])
-  );
-  regions.NE = { available: false, scoring: scoring() };
-  regions.USE.scoring.optimal_temp = 1000;
-  regions.USW.scoring.hosts = ['oak_hickory', 'picea'];
-  regions.SE.scoring.rain_delay_days = 40;
+test('checks the private scoring file and keeps scoring out of the manifests', () => {
+  const regions = forecast().regions;
+  regions.NE = { available: false };
+  regions.SE.scoring = scoring();
   const errors = validateManifests(
     [
       entry(
@@ -545,17 +530,43 @@ test('rejects scoring data for unavailable regions and temperature sentinels', (
       ),
     ],
     process.cwd(),
-    { checkImages: false }
+    {
+      checkImages: false,
+      scoring: {
+        chant: {
+          NE: scoring(),
+          SE: scoring({ rain_delay_days: 40 }),
+          USE: scoring({ optimal_temp: 1000 }),
+          USW: scoring({ hosts: ['oak_hickory', 'picea'] }),
+        },
+      },
+    }
   ).join('\n');
 
-  assert.match(errors, /NE\.scoring is not allowed when available is false/);
-  assert.match(errors, /USE\.scoring\.optimal_temp must be between/);
-  assert.match(errors, /forecast\.rangePrior\.taxonKeys must contain/);
-  assert.match(errors, /USW\.scoring\.hosts must list distinct classes/);
   assert.match(
     errors,
-    /SE\.scoring\.rain_delay_days must be a whole number of days from 0 to 30/
+    /SE\.scoring belongs in backend\/generated\/species_scoring\.json/
   );
+  assert.match(errors, /chant\.NE is not an available region/);
+  assert.match(errors, /chant\.USE\.optimal_temp must be between/);
+  assert.match(errors, /forecast\.rangePrior\.taxonKeys must contain/);
+  assert.match(errors, /chant\.USW\.hosts must list distinct classes/);
+  assert.match(
+    errors,
+    /chant\.SE\.rain_delay_days must be a whole number of days from 0 to 30/
+  );
+});
+
+test('repository check reads the scoring file where it is present', async () => {
+  const root = fixtureRoot();
+  await generate(root);
+  fs.writeFileSync(
+    path.join(root, SCORING_FILE),
+    JSON.stringify({ chant: { NE: scoring(), SE: scoring(), USE: scoring() } })
+  );
+  assert.deepEqual(await checkRepository(root), [
+    `${SCORING_FILE}: chant.USW is missing`,
+  ]);
 });
 
 test('repository check is read-only', async () => {

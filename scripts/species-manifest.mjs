@@ -43,10 +43,14 @@ const TODO_RE = /\bTODO\b/;
 const OWN_REGION_KEYS = [
   'landCover',
   'landCoverScheme',
-  'scoring',
   'scoringReferences',
   'scoringSnapshotSha256',
 ];
+// Each forecast species' scoring parameters, per region (id -> region -> parameters).
+// Not in the manifests: the file is private, on R2 with the other fitted files
+// (backend/r2.py), so check and generate validate it only where it is present.
+// `python backend/r2.py sync species_scoring.json` fetches it; PR checks do too.
+export const SCORING_FILE = 'backend/generated/species_scoring.json';
 const REQUIRED_SCORING_NUMBERS = [
   'optimal_temp',
   'temp_sigma',
@@ -73,6 +77,141 @@ function fail(errors, location, message) {
 
 function nonEmpty(value) {
   return typeof value === 'string' && value.trim() && !TODO_RE.test(value);
+}
+
+export function loadScoring(root = process.cwd()) {
+  const filename = rel(root, SCORING_FILE);
+  return fs.existsSync(filename)
+    ? JSON.parse(fs.readFileSync(filename, 'utf8'))
+    : null;
+}
+
+// One species' parameters in one region (`at` = "<id>.<region>").
+function validateScoring(errors, at, scoring, region) {
+  const bad = message => fail(errors, SCORING_FILE, `${at}${message}`);
+  if (!scoring || typeof scoring !== 'object' || !Object.keys(scoring).length)
+    return bad(' is missing');
+  for (const key of REQUIRED_SCORING_NUMBERS)
+    if (!Number.isFinite(scoring[key])) bad(`.${key} must be a number`);
+  if (
+    Number.isFinite(scoring.min_temp) &&
+    Number.isFinite(scoring.max_temp) &&
+    scoring.min_temp > scoring.max_temp
+  )
+    bad('.min_temp must not exceed max_temp');
+  if (
+    Number.isFinite(scoring.optimal_temp) &&
+    Number.isFinite(scoring.min_temp) &&
+    Number.isFinite(scoring.max_temp) &&
+    (scoring.optimal_temp < scoring.min_temp ||
+      scoring.optimal_temp > scoring.max_temp)
+  )
+    bad('.optimal_temp must be between min_temp and max_temp');
+  for (const key of [
+    'temp_sigma',
+    'alt_sigma',
+    'humidity_sigma',
+    'pH_sigma_near',
+    'pH_sigma_far',
+    'soil_temp_sigma',
+  ])
+    if (Number.isFinite(scoring[key]) && scoring[key] <= 0)
+      bad(`.${key} must be greater than zero`);
+  if (
+    !Array.isArray(scoring.pH_range_near) ||
+    scoring.pH_range_near.length !== 2 ||
+    scoring.pH_range_near.some(value => !Number.isFinite(value)) ||
+    scoring.pH_range_near[0] > scoring.pH_range_near[1]
+  )
+    bad('.pH_range_near must contain two ordered numbers');
+  if (
+    Number.isFinite(scoring.min_cumulative_rain) &&
+    scoring.min_cumulative_rain < 0
+  )
+    bad('.min_cumulative_rain must not be negative');
+  if (
+    !Array.isArray(scoring.season_months) ||
+    !scoring.season_months.length ||
+    scoring.season_months.some(
+      month => !Number.isInteger(month) || month < 1 || month > 12
+    )
+  )
+    bad('.season_months must contain months 1-12');
+  if (
+    scoring.season_window !== undefined &&
+    (!Array.isArray(scoring.season_window) ||
+      scoring.season_window.length !== 2 ||
+      scoring.season_window.some(
+        day =>
+          typeof day !== 'string' ||
+          !/^\d\d-\d\d$/.test(day) ||
+          Number.isNaN(Date.parse(`2021-${day}T00:00:00Z`)) ||
+          new Date(`2021-${day}T00:00:00Z`).toISOString().slice(5, 10) !== day
+      ))
+  )
+    bad('.season_window must be two days as "MM-DD"');
+  if (
+    scoring.pH_gate !== undefined &&
+    (!Array.isArray(scoring.pH_gate) ||
+      scoring.pH_gate.length !== 2 ||
+      !scoring.pH_gate.every(Number.isFinite) ||
+      scoring.pH_gate[0] >= scoring.pH_gate[1])
+  )
+    bad('.pH_gate must be two rising pH values');
+  if (
+    scoring.season_tilt !== undefined &&
+    (typeof scoring.season_tilt !== 'object' ||
+      !Object.keys(scoring.season_tilt).length ||
+      Object.entries(scoring.season_tilt).some(
+        ([month, value]) =>
+          !/^([1-9]|1[0-2])$/.test(month) ||
+          !Number.isFinite(value) ||
+          value <= 0 ||
+          value > 1
+      ))
+  )
+    bad('.season_tilt must map months 1-12 to values above 0 and at most 1');
+  for (const key of ['wind_sensitive', 'water_relevance', 'sea_relevance'])
+    if (typeof scoring[key] !== 'boolean') bad(`.${key} must be boolean`);
+  const hostClasses =
+    HOST_CLASSES[['NE', 'SE'].includes(region) ? 'EU' : 'US'].classes;
+  if (
+    scoring.hosts !== undefined &&
+    (!Array.isArray(scoring.hosts) ||
+      !scoring.hosts.length ||
+      new Set(scoring.hosts).size !== scoring.hosts.length ||
+      scoring.hosts.some(host => !Object.hasOwn(hostClasses, host)))
+  )
+    bad(
+      '.hosts must list distinct classes from content/species/_host_classes.json'
+    );
+  for (const key of [
+    'rain_weight',
+    'temp_weight',
+    'humidity_weight',
+    'alt_weight',
+    'ph_weight',
+  ])
+    if (
+      scoring[key] !== undefined &&
+      (!Number.isFinite(scoring[key]) || scoring[key] < 0)
+    )
+      bad(`.${key} must be a number of at least 0`);
+  if (
+    scoring.rain_delay_days !== undefined &&
+    (!Number.isInteger(scoring.rain_delay_days) ||
+      scoring.rain_delay_days < 0 ||
+      scoring.rain_delay_days > 30)
+  )
+    bad('.rain_delay_days must be a whole number of days from 0 to 30');
+  if (
+    scoring.summer_rain_per_sd !== undefined &&
+    (!Number.isFinite(scoring.summer_rain_per_sd) ||
+      scoring.summer_rain_per_sd <= 0)
+  )
+    bad('.summer_rain_per_sd must be a number above 0');
+  if (typeof scoring.weather_preference?.rain_first !== 'boolean')
+    bad('.weather_preference.rain_first must be boolean');
 }
 
 export function webpDimensions(buffer) {
@@ -132,10 +271,11 @@ export function loadManifests(root = process.cwd()) {
     );
 }
 
+// `scoring` is the scoring file's content (loadScoring), or null to skip those checks.
 export function validateManifests(
   entries,
   root = process.cwd(),
-  { checkImages = true } = {}
+  { checkImages = true, scoring = null } = {}
 ) {
   const errors = [];
   const ids = new Map();
@@ -357,6 +497,12 @@ export function validateManifests(
           fail(errors, where, `forecast.regions.${region} must be an object`);
           continue;
         }
+        if ('scoring' in config)
+          fail(
+            errors,
+            where,
+            `forecast.regions.${region}.scoring belongs in ${SCORING_FILE}, which is not in git`
+          );
         if (typeof config.available !== 'boolean') {
           fail(
             errors,
@@ -369,7 +515,6 @@ export function validateManifests(
           for (const key of [
             'landCover',
             'landCoverScheme',
-            'scoring',
             'scoringReferences',
             'scoringSnapshotSha256',
             'without',
@@ -428,202 +573,12 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.landCoverScheme must be ${expectedScheme}`
           );
-        const scoring = config.scoring;
-        if (
-          !scoring ||
-          typeof scoring !== 'object' ||
-          !Object.keys(scoring).length
-        )
-          fail(errors, where, `forecast.regions.${region}.scoring is required`);
-        for (const key of REQUIRED_SCORING_NUMBERS)
-          if (!Number.isFinite(scoring?.[key]))
-            fail(
-              errors,
-              where,
-              `forecast.regions.${region}.scoring.${key} must be a number`
-            );
-        if (
-          Number.isFinite(scoring?.min_temp) &&
-          Number.isFinite(scoring?.max_temp) &&
-          scoring.min_temp > scoring.max_temp
-        )
-          fail(
+        if (scoring)
+          validateScoring(
             errors,
-            where,
-            `forecast.regions.${region}.scoring.min_temp must not exceed max_temp`
-          );
-        if (
-          Number.isFinite(scoring?.optimal_temp) &&
-          Number.isFinite(scoring?.min_temp) &&
-          Number.isFinite(scoring?.max_temp) &&
-          (scoring.optimal_temp < scoring.min_temp ||
-            scoring.optimal_temp > scoring.max_temp)
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.optimal_temp must be between min_temp and max_temp`
-          );
-        for (const key of [
-          'temp_sigma',
-          'alt_sigma',
-          'humidity_sigma',
-          'pH_sigma_near',
-          'pH_sigma_far',
-          'soil_temp_sigma',
-        ])
-          if (Number.isFinite(scoring?.[key]) && scoring[key] <= 0)
-            fail(
-              errors,
-              where,
-              `forecast.regions.${region}.scoring.${key} must be greater than zero`
-            );
-        if (
-          !Array.isArray(scoring?.pH_range_near) ||
-          scoring.pH_range_near.length !== 2 ||
-          scoring.pH_range_near.some(value => !Number.isFinite(value)) ||
-          scoring.pH_range_near[0] > scoring.pH_range_near[1]
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.pH_range_near must contain two ordered numbers`
-          );
-        if (
-          Number.isFinite(scoring?.min_cumulative_rain) &&
-          scoring.min_cumulative_rain < 0
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.min_cumulative_rain must not be negative`
-          );
-        if (
-          !Array.isArray(scoring?.season_months) ||
-          !scoring.season_months.length ||
-          scoring.season_months.some(
-            month => !Number.isInteger(month) || month < 1 || month > 12
-          )
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.season_months must contain months 1-12`
-          );
-        if (
-          scoring?.season_window !== undefined &&
-          (!Array.isArray(scoring.season_window) ||
-            scoring.season_window.length !== 2 ||
-            scoring.season_window.some(
-              day =>
-                typeof day !== 'string' ||
-                !/^\d\d-\d\d$/.test(day) ||
-                Number.isNaN(Date.parse(`2021-${day}T00:00:00Z`)) ||
-                new Date(`2021-${day}T00:00:00Z`).toISOString().slice(5, 10) !==
-                  day
-            ))
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.season_window must be two days as "MM-DD"`
-          );
-        if (
-          scoring?.pH_gate !== undefined &&
-          (!Array.isArray(scoring.pH_gate) ||
-            scoring.pH_gate.length !== 2 ||
-            !scoring.pH_gate.every(Number.isFinite) ||
-            scoring.pH_gate[0] >= scoring.pH_gate[1])
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.pH_gate must be two rising pH values`
-          );
-        if (
-          scoring?.season_tilt !== undefined &&
-          (typeof scoring.season_tilt !== 'object' ||
-            !Object.keys(scoring.season_tilt).length ||
-            Object.entries(scoring.season_tilt).some(
-              ([month, value]) =>
-                !/^([1-9]|1[0-2])$/.test(month) ||
-                !Number.isFinite(value) ||
-                value <= 0 ||
-                value > 1
-            ))
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.season_tilt must map months 1-12 to values above 0 and at most 1`
-          );
-        for (const key of [
-          'wind_sensitive',
-          'water_relevance',
-          'sea_relevance',
-        ])
-          if (typeof scoring?.[key] !== 'boolean')
-            fail(
-              errors,
-              where,
-              `forecast.regions.${region}.scoring.${key} must be boolean`
-            );
-        const hostClasses =
-          HOST_CLASSES[['NE', 'SE'].includes(region) ? 'EU' : 'US'].classes;
-        if (
-          scoring?.hosts !== undefined &&
-          (!Array.isArray(scoring.hosts) ||
-            !scoring.hosts.length ||
-            new Set(scoring.hosts).size !== scoring.hosts.length ||
-            scoring.hosts.some(host => !Object.hasOwn(hostClasses, host)))
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.hosts must list distinct classes from content/species/_host_classes.json`
-          );
-        for (const key of [
-          'rain_weight',
-          'temp_weight',
-          'humidity_weight',
-          'alt_weight',
-          'ph_weight',
-        ])
-          if (
-            scoring?.[key] !== undefined &&
-            (!Number.isFinite(scoring[key]) || scoring[key] < 0)
-          )
-            fail(
-              errors,
-              where,
-              `forecast.regions.${region}.scoring.${key} must be a number of at least 0`
-            );
-        if (
-          scoring?.rain_delay_days !== undefined &&
-          (!Number.isInteger(scoring.rain_delay_days) ||
-            scoring.rain_delay_days < 0 ||
-            scoring.rain_delay_days > 30)
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.rain_delay_days must be a whole number of days from 0 to 30`
-          );
-        if (
-          scoring?.summer_rain_per_sd !== undefined &&
-          (!Number.isFinite(scoring.summer_rain_per_sd) ||
-            scoring.summer_rain_per_sd <= 0)
-        )
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.summer_rain_per_sd must be a number above 0`
-          );
-        if (typeof scoring?.weather_preference?.rain_first !== 'boolean')
-          fail(
-            errors,
-            where,
-            `forecast.regions.${region}.scoring.weather_preference.rain_first must be boolean`
+            `${m.id}.${region}`,
+            scoring[m.id]?.[region],
+            region
           );
         if (
           !Array.isArray(config.scoringReferences) ||
@@ -699,6 +654,27 @@ export function validateManifests(
         'content/species',
         `${STYLE_TEMPLATE_SPECIES} is the declared style template: it must be a forecast species available in every region`
       );
+  }
+  // No leftovers: each block belongs to an available region of a forecast species
+  // that is not a composite (a composite takes its members').
+  if (scoring) {
+    const scored = new Set(
+      entries.flatMap(({ data: m }) =>
+        m.forecast?.enabled && m.forecast.compositeOf === undefined
+          ? REGIONS.filter(r => m.forecast.regions?.[r]?.available).map(
+              r => `${m.id}.${r}`
+            )
+          : []
+      )
+    );
+    for (const [id, regions] of Object.entries(scoring))
+      for (const region of Object.keys(regions ?? {}))
+        if (!scored.has(`${id}.${region}`))
+          fail(
+            errors,
+            SCORING_FILE,
+            `${id}.${region} is not an available region of a forecast species`
+          );
   }
   return errors;
 }
@@ -810,7 +786,6 @@ function backendRegistry(manifests) {
               : {
                   landCover: cfg.landCover,
                   landCoverScheme: cfg.landCoverScheme,
-                  scoring: cfg.scoring,
                   scoringReferences: cfg.scoringReferences,
                   ...(cfg.scoringSnapshotSha256
                     ? { scoringSnapshotSha256: cfg.scoringSnapshotSha256 }
@@ -1034,7 +1009,9 @@ function parseBioclipLabels(root) {
 
 export async function checkRepository(root = process.cwd()) {
   const entries = loadManifests(root);
-  const errors = validateManifests(entries, root);
+  const errors = validateManifests(entries, root, {
+    scoring: loadScoring(root),
+  });
   if (!entries.length) errors.push('content/species: no manifests found');
   let artifacts;
   try {
@@ -1077,7 +1054,9 @@ export async function checkRepository(root = process.cwd()) {
 
 export async function generate(root = process.cwd()) {
   const entries = loadManifests(root);
-  const errors = validateManifests(entries, root);
+  const errors = validateManifests(entries, root, {
+    scoring: loadScoring(root),
+  });
   if (errors.length) throw new Error(errors.join('\n'));
   for (const [filename, contents] of await buildArtifacts(entries, root)) {
     const absolute = rel(root, filename);
@@ -1195,6 +1174,10 @@ if (invoked) {
       if (process.argv.includes('--id'))
         throw new Error('--id is only supported by scaffold');
       const errors = await checkRepository();
+      if (!fs.existsSync(SCORING_FILE))
+        console.warn(
+          `${SCORING_FILE} is not here, so the scoring values were not checked (python backend/r2.py sync species_scoring.json fetches it).`
+        );
       if (errors.length) {
         console.error(errors.map(x => `- ${x}`).join('\n'));
         process.exitCode = 1;

@@ -31,18 +31,22 @@ well-established naturalized populations qualify; isolated observations,
 cultivated plants, and occasional garden escapes do not. GBIF can support the
 review, but it is not sufficient by itself: use regional flora or mycological
 authorities and record the decision's sources. A region with `available: false`
-must contain no land-cover or scoring parameters and produces no score or map
-layer.
+takes no land cover, scoring references or scoring parameters. It produces no
+score or map layer.
 
 Set `forecast.routeToDish` explicitly. Enable it only when the species should
 be considered by route-to-dish; forecast availability alone does not authorize
 that product behavior.
 
-Available forecast regions need explicit scoring and land-cover values. The
-scoring object contains the actual temperature,
-humidity, rainfall, altitude, pH, and fallback season parameters
-consumed by the backend. Add the reviewed research sources to
-`scoringReferences`; the command never invents or approves scientific values.
+Available forecast regions need land-cover values in the manifest and scoring
+parameters in `backend/generated/species_scoring.json` (species id → region →
+the temperature, humidity, rainfall, altitude, pH and fallback season
+parameters the backend uses). That file is not in git: like the fitted files it
+lives on R2. `python backend/r2.py sync species_scoring.json` fetches it; after
+editing it, `python backend/r2.py push species_scoring.json` ships it, then
+commit `backend/generated/on_r2.json`. Add the reviewed research sources to the
+manifest's `scoringReferences`; the command never invents or approves
+scientific values.
 
 Where a species grows at all is not a scoring parameter. `forecast.rangePrior`
 lists the GBIF taxon keys whose human observations define its range; every name
@@ -61,14 +65,14 @@ prior; they never lower it. An empty list means no prior. The priors replaced
 hand-listed climate zones, whose lat/lon-rectangle labels cut the map along
 straight lines.
 
-`scoring.rain_weight` sets how much recent rain counts in the score, against
+A scoring block's `rain_weight` sets how much recent rain counts in the score, against
 temperature 1.75, humidity 1.0, altitude 0.75 and soil pH 1.0. Omit it for the
 default 1.5, which suits fungi: rain is what makes them fruit. Set 0 for plants
 whose flowers, fruit or nuts do not wait for rain. Against 2026 sightings in the
 forageable stage, 0 scored those plants higher and told their places from random
 ones better, most of all in dry summers, where a rain term capped them near 4/10.
 
-Mycorrhizal fungi also list their host trees in `scoring.hosts`, per region,
+Mycorrhizal fungi also list their host trees in the scoring block's `hosts`, per region,
 using the classes in `_host_classes.json`: the European Tree Genus Map for NE
 and SE, the USFS Forest Type Groups for USE and USW. Omit it for species that
 do not need hosts (plants, saprotrophs). The score is scaled by how much of the
@@ -103,7 +107,9 @@ in the generated regional registry, and the recommendation generator applies
 the same registry gate immediately so stale scores cannot be recommended.
 
 `species:check` is read-only. It validates manifests and images, rejects drift,
-and reports manual gates. Photo identification remains blocked until the toxic
+and reports manual gates. Where the scoring file is present (PR checks fetch it
+with a read-only key) it checks that file too; otherwise it says it skipped it.
+Photo identification remains blocked until the toxic
 look-alike review is approved. A vocabulary change additionally requires:
 
 ```bash
@@ -115,10 +121,11 @@ The first command regenerates the index-aligned label and embedding artifacts;
 the second runs the shipped safety gate. It is intentionally not part of the
 ordinary generator because it downloads/loads the model and is expensive.
 
-The manifests are the repository source of truth for scoring parameters and
-land-cover mappings. `species:generate` writes the complete regional registry,
-and production scoring loads it directly; the legacy `*_SPECIES_PARAMS` files
-are no longer runtime inputs.
+The manifests are the source of truth for land-cover mappings;
+`backend/generated/species_scoring.json` is the source of truth for scoring
+parameters. `species:generate` writes the regional registry. Production scoring
+reads it with the scoring file (`species_registry.get_species_params`); the
+legacy `*_SPECIES_PARAMS` files are no longer runtime inputs.
 
 For fungi with observation-derived season curves, `forecast.empiricalSeason`
 also owns the GBIF taxon keys and their references. Set `enabled` to `false`
@@ -127,7 +134,7 @@ for plants whose useful growth stage differs from the reported sighting date).
 
 Empirical regional and climate-zone season curves are derived datasets built by
 `backend/tools/build_season_curves.py` from GBIF observations. They override the
-manifest's reviewed `season_months` fallback when available and remain an
+scoring file's reviewed `season_months` fallback when available and remain an
 explicit refresh operation, as do paid weather runs. After backend scoring has
 produced a parquet containing the new score column, run
 `scripts/generate_worth_foraging_now.py` to refresh recommendations; its species

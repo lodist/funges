@@ -19,6 +19,8 @@ jobs:
     env:
       VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
       VITE_HOSTNAME: ${{ vars.VITE_HOSTNAME }}
+      # A PR from a fork gets no secrets: species:check then skips the scoring file.
+      HAS_R2: ${{ secrets.R2_ACCESS_KEY_ID != '' }}
 
     steps:
       - name: Checkout
@@ -49,6 +51,26 @@ jobs:
       - name: Install dependencies
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: npm ci
+
+      # The species' scoring parameters are private (on R2, not in git), so
+      # species:check can only validate them once this step fetches them with
+      # the read-only key. The key stays in this step.
+      - name: Setup Python
+        if: env.HAS_R2 == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch the scoring parameters
+        if: env.HAS_R2 == 'true'
+        env:
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT_URL: ${{ secrets.R2_ENDPOINT_URL }}
+          R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
+        run: |
+          python -m pip install boto3
+          python backend/r2.py sync species_scoring.json
 
       # Runs the same checks as the deploy workflow's build job:
       # format check, lint, type check, unit tests, build.

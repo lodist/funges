@@ -129,14 +129,16 @@ def push(name):
 if __name__ == "__main__":
     # python backend/r2.py <key-or-url> <dest>: CI pulls the private scores this way.
     # python backend/r2.py push <name>...: ship backend/generated files after a build.
-    # python backend/r2.py sync: download every shipped backend/generated file.
+    # python backend/r2.py sync [<name>...]: download every (or each named) shipped backend/generated file.
     import sys
 
     if sys.argv[1] == "push":
         for name in sys.argv[2:]:
             push(name)
     elif sys.argv[1] == "sync":
-        for name in _shipped():
+        for name in sys.argv[2:] or _shipped():
+            if name not in _shipped():
+                raise SystemExit(f"{name} is not in backend/generated/on_r2.json")
             generated(GENERATED / name)
     else:
         download(sys.argv[1], sys.argv[2])
