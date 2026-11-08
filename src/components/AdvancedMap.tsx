@@ -60,6 +60,7 @@ import FeatureInfoModal from './FeatureInfoModal';
 import MapFallback from './MapFallback';
 import LoadingSquirrel from '@/assets/images/loading_squirrel.gif';
 import MapDock from '@/components/MapDock';
+import { SquirrelRunButton } from '@/components/SquirrelRunButton';
 import {
   bloomFillColor,
   bloomFillOpacity,
@@ -1694,6 +1695,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
           >
             <Info className='h-4 w-4' />
           </Button>
+
+          <SquirrelRunButton />
         </div>
 
         {isMobile ? (

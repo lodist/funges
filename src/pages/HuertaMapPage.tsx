@@ -59,6 +59,7 @@ import { cn } from '@/lib/utils';
 import { HILLSHADE_LAYER_ID, useMapStore } from '@/store/mapStore';
 import { huertaPage, localizedPath, pathLanguage } from '@/lib/seo-pages';
 import MapThemeSelector from '@/components/MapThemeSelector';
+import { SquirrelRunButton } from '@/components/SquirrelRunButton';
 
 maplibregl.setWorkerUrl(maplibreWorkerUrl);
 maplibregl.addProtocol('pmtiles', protocol.tile);
@@ -622,6 +623,7 @@ export default function HuertaMapPage() {
             )
           )}
           <MapThemeSelector onBand />
+          <SquirrelRunButton />
         </div>
         {/* On a phone, where Terra's map dock sits: just above the nav bar. */}
         <div

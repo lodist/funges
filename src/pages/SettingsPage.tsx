@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   Gavel,
   Smartphone,
+  Squirrel,
   BarChart2,
 } from '@/lib/icons';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
@@ -47,6 +48,11 @@ export default function SettingsPage() {
       url: huerta ? '/huerta/instructions' : '/instructions',
       label: t('instructions'),
       icon: BookOpen,
+    },
+    {
+      url: '/play',
+      label: tCommon('game.title'),
+      icon: Squirrel,
     },
     ...(shouldShowOfflineFeatures && !huerta
       ? [

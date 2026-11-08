@@ -1,0 +1,66 @@
+// The squirrel crossing the front page: the top lane first, the bottom lane
+// half a cycle later. It moves with transform only; the 48px link is the
+// target, the lane itself lets every click through.
+.track {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 48px;
+  overflow: hidden;
+  pointer-events: none;
+  &[data-lane='bottom'] {
+    top: -48px;
+    bottom: auto;
+  }
+}
+
+// 6 frames of 38×30 game pixels, drawn at 1.5×.
+.runner {
+  // The squirrel's stride (6 frames) and its pace across the page: the
+  // character's own timing, like a GIF's, so off the UI motion scale.
+  --stride: 0.5s;
+  --crossing: 16s;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 57px;
+  height: 45px;
+  pointer-events: auto;
+  image-rendering: pixelated;
+  background-size: 342px 45px;
+  background-repeat: no-repeat;
+  transform: translateX(-60px);
+  animation:
+    legs var(--stride) steps(6) infinite,
+    across var(--crossing) linear infinite;
+  [data-lane='bottom'] > & {
+    animation-delay: 0s, calc(var(--crossing) / 2);
+  }
+}
+
+@keyframes legs {
+  to {
+    background-position: -342px 0;
+  }
+}
+
+@keyframes across {
+  0% {
+    transform: translateX(-60px);
+  }
+  40%,
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+// Still, it sits in the top lane, by the page's left edge.
+@media (prefers-reduced-motion: reduce) {
+  .runner {
+    animation: none;
+    transform: translateX(var(--page-gutter, 1.25rem));
+  }
+  .track[data-lane='bottom'] {
+    display: none;
+  }
+}
