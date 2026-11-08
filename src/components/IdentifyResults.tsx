@@ -4,6 +4,7 @@ import {
   AlertTriangle,
   ChevronDown,
   ChevronRight,
+  ExternalLink,
   HelpCircle,
   Skull,
 } from '@/lib/icons';
@@ -273,6 +274,20 @@ function CandidateRow({
                 percent: Math.round(candidate.score * 100),
               })}
         </p>
+
+        {/* A web search with the name already typed, on every match: most
+            are outside the catalog and have nothing else to open. The name
+            after the label tells the links apart to a screen reader. */}
+        <a
+          href={`https://www.google.com/search?q=${encodeURIComponent(candidate.scientificName)}`}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='flex min-h-11 w-fit items-center gap-1 text-sm font-medium text-primary-text hover:underline'
+        >
+          {t('results.searchWeb')}
+          <span className='sr-only'>{` ${candidate.scientificName}`}</span>
+          <ExternalLink className='size-4' />
+        </a>
       </div>
 
       {/* Only catalog matches get this. A tier-2 or toxic row has no page to

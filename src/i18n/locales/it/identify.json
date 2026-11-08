@@ -100,7 +100,8 @@
     "confusedWith": "Spesso confuso con {{species}}",
     "checkThese": "Controlla questi caratteri",
     "criticalHeading": "Questi due si confondono facilmente",
-    "openSpecies": "Apri {{species}} nella guida alle specie"
+    "openSpecies": "Apri {{species}} nella guida alle specie",
+    "searchWeb": "Cerca su Google"
   },
   "toxicity": {
     "mechanisms": {

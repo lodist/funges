@@ -195,6 +195,12 @@ export const APP_PAGES: AppPage[] = [
     noindex: true,
   },
   {
+    path: '/huerta/settings/',
+    title: 'settings:huertaTitle',
+    description: 'common:common.appDescription',
+    noindex: true,
+  },
+  {
     path: '/offline/',
     title: 'offline:title',
     description: 'offline:description',

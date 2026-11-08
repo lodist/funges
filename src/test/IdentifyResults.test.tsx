@@ -238,6 +238,32 @@ describe('tier 2 and unknown rows', () => {
   });
 });
 
+describe('web search', () => {
+  it('opens a search for each match, its name already typed', () => {
+    registerTier2Vocabulary(['Hydnellum peckii']);
+
+    render(
+      <IdentifyResults
+        candidates={resolvePredictions([
+          p('Hydnellum peckii'),
+          p('Amanita phalloides'),
+          p('Cantharellus cibarius'),
+        ])}
+      />
+    );
+
+    const links = candidateRows().map(row =>
+      within(row).getByRole('link', { name: /search on google/i })
+    );
+    expect(links.map(link => link.getAttribute('href'))).toEqual([
+      'https://www.google.com/search?q=Hydnellum%20peckii',
+      'https://www.google.com/search?q=Amanita%20phalloides',
+      'https://www.google.com/search?q=Cantharellus%20cibarius',
+    ]);
+    expect(links[0]).toHaveAttribute('target', '_blank');
+  });
+});
+
 describe('framing', () => {
   // The feature narrows candidates; it never confirms edibility. If this copy
   // drifts toward "identified as", the whole safety position changes.
@@ -292,7 +318,9 @@ describe('species guide link', () => {
       />
     );
 
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/species/morel');
+    expect(
+      screen.getByRole('link', { name: /species guide/i })
+    ).toHaveAttribute('href', '/species/morel');
   });
 
   // The other half of the same rule. Boletus used to be a genus entry and is
@@ -303,14 +331,13 @@ describe('species guide link', () => {
       <IdentifyResults candidates={resolvePredictions([p('Boletus aereus')])} />
     );
 
-    expect(screen.getByRole('link')).toHaveAttribute(
-      'href',
-      '/species/bronze_bolete'
-    );
+    expect(
+      screen.getByRole('link', { name: /species guide/i })
+    ).toHaveAttribute('href', '/species/bronze_bolete');
   });
 
   // A link to a page that would show nothing is worse than no link.
-  it('gives no link to a toxic or tier-2 candidate', () => {
+  it('gives no guide link to a toxic or tier-2 candidate', () => {
     registerTier2Vocabulary(['Amanita muscaria']);
     render(
       <IdentifyResults
@@ -321,6 +348,8 @@ describe('species guide link', () => {
       />
     );
 
-    expect(screen.queryAllByRole('link')).toHaveLength(0);
+    expect(
+      screen.queryAllByRole('link', { name: /species guide/i })
+    ).toHaveLength(0);
   });
 });

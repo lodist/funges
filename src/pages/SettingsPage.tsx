@@ -27,24 +27,28 @@ export default function SettingsPage() {
   const { t: tCommon } = useTranslation('common');
   const { t: tNav } = useTranslation('sidebar');
   const { pathname } = useLocation();
+  // Each space has its own Settings (/settings, /huerta/settings): Data and
+  // the offline maps are Terra's alone, the Huerta account Huerta's.
+  const huerta = currentSpace(pathname) === 'huerta';
   const links = [
     // On phones the bottom bar gave Data's slot to Identify, so the hub
     // carries it; the desktop sidebar still lists it directly.
+    ...(huerta
+      ? []
+      : [
+          {
+            url: '/data',
+            label: tNav('data'),
+            icon: BarChart2,
+          },
+        ]),
     {
-      url: '/data',
-      label: tNav('data'),
-      icon: BarChart2,
-    },
-    {
-      // Each space explains itself: the hub opened from Huerta, Huerta's.
-      url:
-        currentSpace(pathname) === 'huerta'
-          ? '/huerta/instructions'
-          : '/instructions',
+      // Each space explains itself.
+      url: huerta ? '/huerta/instructions' : '/instructions',
       label: t('instructions'),
       icon: BookOpen,
     },
-    ...(shouldShowOfflineFeatures
+    ...(shouldShowOfflineFeatures && !huerta
       ? [
           {
             url: '/offline',
@@ -91,9 +95,9 @@ export default function SettingsPage() {
   return (
     <>
       <SEO
-        title={t('title')}
+        title={huerta ? t('huertaTitle') : t('title')}
         description={tCommon('common.appDescription')}
-        canonicalUrl={`${import.meta.env.BASE_URL}settings`}
+        canonicalUrl={`${import.meta.env.BASE_URL}${huerta ? 'huerta/' : ''}settings`}
       />
       <div className='settings-page max-w-4xl mx-auto px-4 py-8 space-y-6'>
         <h1 className='text-3xl font-bold text-foreground dark:text-white'>
@@ -101,8 +105,9 @@ export default function SettingsPage() {
         </h1>
         {/* Phones have no sidebar: the hub is where the spaces meet. */}
         <SpaceSwitcher className='w-fit' />
-        {/* Signed in to Huerta: the account and its morning alerts. */}
-        <HuertaAccount />
+        {/* Signed in to Huerta: the account and its morning alerts, in
+            Huerta's Settings only. */}
+        {huerta ? <HuertaAccount /> : null}
 
         <div className='space-y-4'>
           {links.map(link => (
@@ -121,10 +126,12 @@ export default function SettingsPage() {
           ))}
         </div>
 
-        {/* Data Freshness Info */}
-        <div className='flex justify-center'>
-          <MapLastUpdated variant='mobile' />
-        </div>
+        {/* How fresh Terra's map data is: Terra's alone, like Data. */}
+        {huerta ? null : (
+          <div className='flex justify-center'>
+            <MapLastUpdated variant='mobile' />
+          </div>
+        )}
         <div className='flex flex-col items-center justify-center py-6 space-y-6'>
           <ThemeToggle className='w-40' />
           <LanguageSwitcher />
