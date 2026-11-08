@@ -28,7 +28,7 @@ export default function SettingsPage() {
   const { t: tNav } = useTranslation('sidebar');
   const { pathname } = useLocation();
   // Each space has its own Settings (/settings, /huerta/settings): Data and
-  // the offline maps are Terra's alone.
+  // the offline maps are Terra's alone, the Huerta account Huerta's.
   const huerta = currentSpace(pathname) === 'huerta';
   const links = [
     // On phones the bottom bar gave Data's slot to Identify, so the hub
@@ -105,8 +105,9 @@ export default function SettingsPage() {
         </h1>
         {/* Phones have no sidebar: the hub is where the spaces meet. */}
         <SpaceSwitcher className='w-fit' />
-        {/* Signed in to Huerta: the account and its morning alerts. */}
-        <HuertaAccount />
+        {/* Signed in to Huerta: the account and its morning alerts, in
+            Huerta's Settings only. */}
+        {huerta ? <HuertaAccount /> : null}
 
         <div className='space-y-4'>
           {links.map(link => (
