@@ -19,32 +19,32 @@ import { Slider } from '@/components/ui/slider';
 import { useSpeciesData } from '@/data/species';
 import { ArrowRight, Pause, Play } from '@/lib/icons';
 import {
-  ATLAS_BASE,
   ATLAS_RAMP,
   type AtlasIndex,
   type AtlasPlace,
   type AtlasPlaceSummary,
+  IN_SEASON,
+  type Say,
+  atlasDescription,
   blendMonths,
   curveAt,
   dayOfYear,
+  mapView,
+  placeLabel,
   projection,
+  recordsSentence,
+  seasonSentences,
   seasonWindows,
 } from '@/lib/season-atlas';
-import { monthRange } from '@/lib/seasons';
 import { cn } from '@/lib/utils';
 import { Route } from '@/routes/data_.seasons.$place.$species';
 
 /** The species a place opens on when the one in the URL has no curve there. */
 const PREFERRED = ['mushroom', 'morel', 'chant'];
-/** A month counts as in season from half its place's peak. */
-const IN_SEASON = 0.5;
 /** Between this and IN_SEASON a season is starting or winding down, not over:
  *  a country's curve averages places that are still going. */
 const SHOULDER = 0.2;
-/** Local records from which a place's curve is its own (the season grid's shipping bar);
- *  below it the curve leans on similar climates, and under RARE the species is hardly seen. */
-const SOLID_RECORDS = 150;
-const RARE_RECORDS = 10;
+const ATLAS_BASE = `${import.meta.env.BASE_URL}season-atlas/`;
 
 async function fetchJson<T>(path: string): Promise<T> {
   const response = await fetch(`${ATLAS_BASE}${path}`);
@@ -78,27 +78,9 @@ function useImage(src: string) {
 
 function usePlaceName() {
   const { t, i18n } = useTranslation('common');
-  const regions = useMemo(() => {
-    try {
-      return new Intl.DisplayNames([i18n.language], { type: 'region' });
-    } catch {
-      return null;
-    }
-  }, [i18n.language]);
   return (
     place: Pick<AtlasPlaceSummary, 'kind' | 'iso' | 'name' | 'continent'>
-  ) => {
-    if (place.kind === 'continent')
-      return t(place.continent === 'EU' ? 'data.europe' : 'data.unitedStates');
-    if (place.kind === 'country' && place.iso) {
-      try {
-        return regions?.of(place.iso) ?? place.name;
-      } catch {
-        return place.name;
-      }
-    }
-    return place.name;
-  };
+  ) => placeLabel(place, i18n.language, (key, vars) => t(`data.${key}`, vars));
 }
 
 function AtlasMap({
@@ -277,28 +259,16 @@ export default function SeasonAtlasPage() {
       ? t('data.atlas.title', { species: sName, place: pName })
       : t('data.tabs.seasons');
 
+  const say: Say = (key, vars) => t(`data.${key}`, vars);
+  const description = curve
+    ? atlasDescription(title, curve, language, say)
+    : t('data.atlas.subtitle');
+
   const sentences = useMemo(() => {
     if (!curve) return [];
     const values = curve.curve;
-    const span = ([a, b]: [number, number]) =>
-      a === b ? monthName(a) : monthRange([a, b], language);
     const windows = seasonWindows(values, IN_SEASON);
-    const lines = [
-      t('data.atlas.peak', {
-        month: monthName(values.indexOf(Math.max(...values))),
-      }),
-    ];
-    if (windows.length === 1 && windows[0][0] === 0 && windows[0][1] === 11)
-      lines.push(t('data.atlas.allYear'));
-    else if (windows.length === 1)
-      lines.push(t('data.atlas.window', { months: span(windows[0]) }));
-    else if (windows.length > 1)
-      lines.push(
-        t('data.atlas.windows', {
-          first: windows.slice(0, -1).map(span).join(', '),
-          last: span(windows[windows.length - 1]),
-        })
-      );
+    const lines = seasonSentences(values, language, say);
     const now = curveAt(values, today);
     if (now >= IN_SEASON) lines.push(t('data.atlas.now'));
     else if (now >= SHOULDER)
@@ -344,12 +314,13 @@ export default function SeasonAtlasPage() {
 
   return (
     <div className='container mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8'>
-      <SEO title={title} description={t('data.atlas.subtitle')} />
+      <SEO title={title} description={description} />
 
       <div>
-        <h1 className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
+        {/* The page's heading is the place's season below; this names the section. */}
+        <p className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
           {t('sidebar:data', { defaultValue: 'Data' })}
-        </h1>
+        </p>
         <p className='mt-3 text-lg text-muted-foreground'>
           {t('data.atlas.subtitle')}
         </p>
@@ -441,9 +412,9 @@ export default function SeasonAtlasPage() {
             </div>
           </div>
 
-          <h2 className='text-xl font-semibold text-balance text-foreground'>
+          <h1 className='text-xl font-semibold text-balance text-foreground'>
             {title}
-          </h2>
+          </h1>
 
           <section className='grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]'>
             <div className='flex min-w-0 flex-col gap-4'>
@@ -563,19 +534,22 @@ export default function SeasonAtlasPage() {
                   </p>
                   <p className='text-sm leading-relaxed text-muted-foreground'>
                     {t('data.atlas.note', { species: sName })}{' '}
-                    {curve.records >= SOLID_RECORDS
-                      ? t('data.atlas.records', {
-                          formatted: curve.records.toLocaleString(language),
-                        })
-                      : curve.records >= RARE_RECORDS
-                        ? t('data.atlas.fewRecords', {
-                            formatted: curve.records.toLocaleString(language),
-                          })
-                        : t('data.atlas.rareRecords')}
+                    {recordsSentence(curve.records, language, say)}
                   </p>
-                  {speciesKey ? (
+                  {speciesKey && place.data ? (
                     <Button asChild variant='outline' className='self-start'>
-                      <Link to='/map' search={{ species: speciesKey }}>
+                      {/* Opens the map on this place, not where it was left. */}
+                      <Link
+                        to='/map'
+                        search={{
+                          species: speciesKey,
+                          ...mapView(
+                            place.data.extent,
+                            window.innerWidth,
+                            window.innerHeight
+                          ),
+                        }}
+                      >
                         {t('data.atlas.forecast')}
                         <ArrowRight />
                       </Link>

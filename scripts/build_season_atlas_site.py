@@ -35,8 +35,8 @@ OUT = ROOT / "public" / "season-atlas"
 # ramp, and no hue of its own.
 RAMP = ["#00280b", "#005e25", "#00ac4e", "#47c86e", "#93e4a4", "#ccf4d3", "#e8fbeb"]
 CONTINENTS = {"EU": ("europe", "Europe"), "US": ("united-states", "United States")}
-# URL slugs where the display name is not what people search ("Morchella", "Black Trumpet (Horn
-# of Plenty)"); a slug is a URL, so changing one later breaks links.
+# URL slugs where the display name is not what people search ("Black Trumpet (Horn of Plenty)") or
+# once was ("Morchella"); a slug is a URL, so changing one later breaks links.
 SLUG_OVERRIDES = {"morel": "morel", "black_chant": "black-trumpet"}
 # Grid cells per map pixel and colour steps. The grid is smooth by construction (a ~50 km
 # kernel), so 2x2 cells in 24 steps look the same once the browser smooths them (10 steps
