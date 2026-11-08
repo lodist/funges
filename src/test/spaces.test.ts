@@ -19,14 +19,16 @@ describe('spaces', () => {
     expect(spaceForPath('/huertas')).toBe('terra');
     expect(spaceForPath('/map')).toBe('terra');
     expect(spaceForPath('/terra')).toBe('terra');
-    expect(spaceForPath('/settings')).toBeNull(); // shared
+    expect(spaceForPath('/support')).toBeNull(); // shared
+    expect(spaceForPath('/settings')).toBe('terra'); // each space has its own
+    expect(spaceForPath('/huerta/settings/')).toBe('huerta');
     expect(spaceForPath('/')).toBeNull(); // the front page, shared
     expect(spaceForPath('/de/')).toBeNull();
   });
 
   it('keeps the space a visitor came from on a shared page', () => {
     expect(currentSpace('/huerta')).toBe('huerta');
-    expect(currentSpace('/settings')).toBe('huerta');
+    expect(currentSpace('/privacy-policy')).toBe('huerta');
     expect(currentSpace('/map')).toBe('terra');
     expect(currentSpace('/support')).toBe('terra');
   });
@@ -35,9 +37,17 @@ describe('spaces', () => {
     expect(pathForSpace('terra')).toBe('/map');
     rememberPath('/species');
     rememberPath('/huerta');
-    rememberPath('/settings'); // shared: remembered for neither
+    rememberPath('/support'); // shared: remembered for neither
+    rememberPath('/huerta/settings'); // Settings: no page to switch back to
     expect(pathForSpace('terra')).toBe('/species');
     expect(pathForSpace('huerta')).toBe('/huerta');
+  });
+
+  it("switches from one space's Settings to the other's", () => {
+    rememberPath('/species');
+    expect(pathForSpace('huerta', '/settings')).toBe('/huerta/settings');
+    expect(pathForSpace('terra', '/huerta/settings/')).toBe('/settings');
+    expect(pathForSpace('terra', '/huerta/map')).toBe('/species');
   });
 
   it('opens Huerta on the garden once one is planned, else on the map', () => {

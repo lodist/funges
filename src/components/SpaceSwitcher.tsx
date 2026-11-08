@@ -22,8 +22,8 @@ import { cn } from '@/lib/utils';
  * Moves between the spaces of Funges: the current space's name on a pill of
  * its own colour, and a menu of every space as a tile of its colour, with the
  * Funges mark in that colour and what it holds. Switching opens the page last
- * seen in that space. Draws nothing while only one space is shown (the live
- * site, until Huerta launches).
+ * seen in that space; on Settings, that space's Settings. Draws nothing while
+ * only one space is shown.
  */
 /** Spaces still in early release: a pill beside their name. */
 const EARLY = new Set<Space>(['huerta']);
@@ -91,7 +91,7 @@ function SpaceMenu({
         <DropdownMenuRadioGroup
           value={current}
           onValueChange={space =>
-            navigate({ to: pathForSpace(space as Space) })
+            navigate({ to: pathForSpace(space as Space, pathname) })
           }
           className='flex flex-col gap-1.5'
         >

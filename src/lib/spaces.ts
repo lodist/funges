@@ -43,9 +43,17 @@ export const SPACE_HOME: Record<Space, string> = {
 /** The spaces a visitor can switch between. */
 export const visibleSpaces = (): Space[] => ['terra', 'huerta'];
 
-/** Pages every space shares (the phone hub, help, legal): no space of their own. */
+/** Pages every space shares (help, legal): no space of their own. */
 const SHARED =
-  /(^|\/)(settings|support|impressum|privacy-policy|termsuse|delete-account)(\/|$)/;
+  /(^|\/)(support|impressum|privacy-policy|termsuse|delete-account)(\/|$)/;
+
+/** Each space's Settings, the phone hub. Switching spaces there opens the
+ *  other space's Settings, not the page last seen in it. */
+const SETTINGS: Record<Space, string> = {
+  terra: '/settings',
+  huerta: '/huerta/settings',
+};
+const isSettings = (pathname: string) => /(^|\/)settings\/?$/.test(pathname);
 
 /** The space a path belongs to (a `huerta` segment, wherever the base path
  *  puts it; no Terra route has one), or null for a shared page: the front
@@ -60,7 +68,7 @@ export const spaceForPath = (pathname: string): Space | null =>
 let lastSpace: Space = 'terra';
 
 /** The space a page shows: its own, or on a shared page the one the visitor
- *  came from, so the hub opened from Huerta stays in Huerta's colours. */
+ *  came from, so help opened from Huerta stays in Huerta's colours. */
 export const currentSpace = (pathname: string): Space => {
   lastSpace = spaceForPath(pathname) ?? lastSpace;
   return lastSpace;
@@ -75,7 +83,9 @@ export const rememberPath = (pathname: string) => {
   const space = spaceForPath(pathname);
   if (!space) return;
   try {
-    localStorage.setItem(lastPathKey(space), pathname);
+    // Not Settings: switching from another page still opens a page of the space.
+    if (!isSettings(pathname))
+      localStorage.setItem(lastPathKey(space), pathname);
     localStorage.setItem(LAST_SPACE, space);
   } catch {
     // Private mode or blocked storage: switching opens the space's home.
@@ -97,9 +107,11 @@ const hasGarden = () => {
   }
 };
 
-/** Where switching to `space` should go: the page last seen there, else home
+/** Where switching to `space` from the page at `from` should go: from
+ *  Settings, that space's Settings; else the page last seen there, else home
  *  (for Huerta with a garden planned, the garden). */
-export const pathForSpace = (space: Space): string => {
+export const pathForSpace = (space: Space, from = ''): string => {
+  if (isSettings(from)) return SETTINGS[space];
   try {
     const last = localStorage.getItem(lastPathKey(space));
     if (last && spaceForPath(last) === space) return last;

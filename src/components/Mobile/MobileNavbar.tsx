@@ -46,8 +46,8 @@ const items = [
   { url: `${basePath}species`, icon: Database },
   { url: `${basePath}settings`, icon: SettingsIcon },
 ];
-// Huerta's own pages; the hub (Settings) is shared and holds the switcher.
-// In the app language's words (German pages under /de).
+// Huerta's own pages, its own Settings last. In the app language's words
+// (German pages under /de).
 const huertaItems = (language: string): typeof items => [
   { url: basePath + huertaPage('map', language).slice(1), icon: Map },
   {
@@ -59,7 +59,7 @@ const huertaItems = (language: string): typeof items => [
     url: basePath + huertaPage('calendar', language).slice(1),
     icon: CalendarRange,
   },
-  { url: `${basePath}settings`, icon: SettingsIcon },
+  { url: `${basePath}huerta/settings`, icon: SettingsIcon },
 ];
 interface MobileNavbarProps {
   hidden: boolean;
@@ -112,8 +112,8 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
           : items
         ).map(item => {
           const isActive =
-            item.url === `${basePath}settings`
-              ? location.pathname.startsWith(`${basePath}settings`) ||
+            item.icon === SettingsIcon
+              ? location.pathname.startsWith(item.url) ||
                 (shouldShowOfflineFeatures &&
                   location.pathname === `${basePath}offline`) ||
                 location.pathname === `${basePath}data` ||

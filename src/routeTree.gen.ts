@@ -35,6 +35,7 @@ import { Route as HuertaGardenPlannerRouteImport } from './routes/huerta_.garden
 import { Route as HuertaInstructionsRouteImport } from './routes/huerta_.instructions'
 import { Route as HuertaMapRouteImport } from './routes/huerta_.map'
 import { Route as HuertaPlantingCalendarRouteImport } from './routes/huerta_.planting-calendar'
+import { Route as HuertaSettingsRouteImport } from './routes/huerta_.settings'
 import { Route as HuertaSigninRouteImport } from './routes/huerta_.signin'
 import { Route as SpeciesIdRouteImport } from './routes/species_.$id'
 import { Route as DataSeasonsIndexRouteImport } from './routes/data_.seasons.index'
@@ -177,6 +178,11 @@ const HuertaPlantingCalendarRoute = HuertaPlantingCalendarRouteImport.update({
   path: '/huerta/planting-calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HuertaSettingsRoute = HuertaSettingsRouteImport.update({
+  id: '/huerta_/settings',
+  path: '/huerta/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HuertaSigninRoute = HuertaSigninRouteImport.update({
   id: '/huerta_/signin',
   path: '/huerta/signin',
@@ -260,6 +266,7 @@ export interface FileRoutesByFullPath {
   '/huerta/instructions': typeof HuertaInstructionsRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planting-calendar': typeof HuertaPlantingCalendarRoute
+  '/huerta/settings': typeof HuertaSettingsRoute
   '/huerta/signin': typeof HuertaSigninRoute
   '/species/$id': typeof SpeciesIdRoute
   '/de/huerta/gartenplaner': typeof DeHuertaGartenplanerRoute
@@ -299,6 +306,7 @@ export interface FileRoutesByTo {
   '/huerta/instructions': typeof HuertaInstructionsRoute
   '/huerta/map': typeof HuertaMapRoute
   '/huerta/planting-calendar': typeof HuertaPlantingCalendarRoute
+  '/huerta/settings': typeof HuertaSettingsRoute
   '/huerta/signin': typeof HuertaSigninRoute
   '/species/$id': typeof SpeciesIdRoute
   '/de/huerta/gartenplaner': typeof DeHuertaGartenplanerRoute
@@ -339,6 +347,7 @@ export interface FileRoutesById {
   '/huerta_/instructions': typeof HuertaInstructionsRoute
   '/huerta_/map': typeof HuertaMapRoute
   '/huerta_/planting-calendar': typeof HuertaPlantingCalendarRoute
+  '/huerta_/settings': typeof HuertaSettingsRoute
   '/huerta_/signin': typeof HuertaSigninRoute
   '/species_/$id': typeof SpeciesIdRoute
   '/de_/huerta_/gartenplaner': typeof DeHuertaGartenplanerRoute
@@ -380,6 +389,7 @@ export interface FileRouteTypes {
     | '/huerta/instructions'
     | '/huerta/map'
     | '/huerta/planting-calendar'
+    | '/huerta/settings'
     | '/huerta/signin'
     | '/species/$id'
     | '/de/huerta/gartenplaner'
@@ -419,6 +429,7 @@ export interface FileRouteTypes {
     | '/huerta/instructions'
     | '/huerta/map'
     | '/huerta/planting-calendar'
+    | '/huerta/settings'
     | '/huerta/signin'
     | '/species/$id'
     | '/de/huerta/gartenplaner'
@@ -458,6 +469,7 @@ export interface FileRouteTypes {
     | '/huerta_/instructions'
     | '/huerta_/map'
     | '/huerta_/planting-calendar'
+    | '/huerta_/settings'
     | '/huerta_/signin'
     | '/species_/$id'
     | '/de_/huerta_/gartenplaner'
@@ -498,6 +510,7 @@ export interface RootRouteChildren {
   HuertaInstructionsRoute: typeof HuertaInstructionsRoute
   HuertaMapRoute: typeof HuertaMapRoute
   HuertaPlantingCalendarRoute: typeof HuertaPlantingCalendarRoute
+  HuertaSettingsRoute: typeof HuertaSettingsRoute
   HuertaSigninRoute: typeof HuertaSigninRoute
   SpeciesIdRoute: typeof SpeciesIdRoute
   DeHuertaGartenplanerRoute: typeof DeHuertaGartenplanerRoute
@@ -695,6 +708,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HuertaPlantingCalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/huerta_/settings': {
+      id: '/huerta_/settings'
+      path: '/huerta/settings'
+      fullPath: '/huerta/settings'
+      preLoaderRoute: typeof HuertaSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/huerta_/signin': {
       id: '/huerta_/signin'
       path: '/huerta/signin'
@@ -802,6 +822,7 @@ const rootRouteChildren: RootRouteChildren = {
   HuertaInstructionsRoute: HuertaInstructionsRoute,
   HuertaMapRoute: HuertaMapRoute,
   HuertaPlantingCalendarRoute: HuertaPlantingCalendarRoute,
+  HuertaSettingsRoute: HuertaSettingsRoute,
   HuertaSigninRoute: HuertaSigninRoute,
   SpeciesIdRoute: SpeciesIdRoute,
   DeHuertaGartenplanerRoute: DeHuertaGartenplanerRoute,

@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+// Huerta's bar words its paths in the app language.
+import '@/i18n';
 import MobileNavbar, {
   ACTIVE_ACCENT_CLASS,
 } from '@/components/Mobile/MobileNavbar';
@@ -153,6 +155,21 @@ describe('MobileNavbar', () => {
       const { unmount } = render(<MobileNavbar hidden={false} />);
 
       expect(activeLink(), route).toHaveAttribute('href', '/settings');
+      unmount();
+    }
+  });
+
+  it("gives each space's bar its own Settings", () => {
+    // Terra last: the space a shared page shows is the one seen before it.
+    for (const [route, settings] of [
+      ['/huerta/settings', '/huerta/settings'],
+      ['/huerta/instructions', '/huerta/settings'],
+      ['/settings', '/settings'],
+    ]) {
+      pathname.current = route;
+      const { unmount } = render(<MobileNavbar hidden={false} />);
+
+      expect(activeLink(), route).toHaveAttribute('href', settings);
       unmount();
     }
   });

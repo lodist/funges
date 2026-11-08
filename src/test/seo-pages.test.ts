@@ -187,6 +187,7 @@ describe('every page the site serves', () => {
       'huerta',
       'huerta/account',
       'huerta/instructions',
+      'huerta/settings',
       'huerta/map',
       'huerta/garden-planner',
       'huerta/signin',
