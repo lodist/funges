@@ -2545,6 +2545,10 @@
   "landing": {
     "headline": "Votre potager, semaine après semaine",
     "intro": "Quoi semer, planter, arroser et récolter chez vous, d'après la prévision de cette nuit",
+    "live": {
+      "sow": "C'est le moment de semer : {{crop}}, dans {{areas}} zones en {{area}}",
+      "plant": "C'est le moment de planter : {{crop}}, dans {{areas}} zones en {{area}}"
+    },
     "headerLink": "Quoi semer maintenant",
     "cta": "Planifier mon potager",
     "week": {

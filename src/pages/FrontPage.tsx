@@ -13,6 +13,7 @@ import {
 } from '@/lib/seo-pages';
 import { isPlayApp } from '@/lib/platform';
 import { spaceDoor, visibleSpaces, type Space } from '@/lib/spaces';
+import { HuertaLiveLine } from './HuertaLandingPage';
 import { LiveLine } from './LandingPage';
 import styles from './FrontPage.module.scss';
 
@@ -30,7 +31,6 @@ const HELP_LINKS = [
  *  what it is, one line about it and the way in. */
 function Door({ space, lang }: { space: Space; lang: IndexedLanguage }) {
   const { t } = useTranslation('sidebar');
-  const { t: tHuerta } = useTranslation('huerta');
   const name = t(`spaces.${space}.name`);
   return (
     <section data-space={space} className={styles.door}>
@@ -43,11 +43,7 @@ function Door({ space, lang }: { space: Space; lang: IndexedLanguage }) {
       <div className={styles.doorBody}>
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.tagline}>{t(`spaces.${space}.tagline`)}</p>
-        {space === 'terra' ? (
-          <LiveLine />
-        ) : (
-          <p className={styles.line}>{tHuerta('landing.intro')}</p>
-        )}
+        {space === 'terra' ? <LiveLine /> : <HuertaLiveLine />}
         <Button asChild size='lg' className={styles.cta}>
           <Link to={spaceDoor(space, lang)}>
             {t('spaces.open', { space: name })}

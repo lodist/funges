@@ -2545,6 +2545,10 @@
   "landing": {
     "headline": "Il tuo orto, settimana per settimana",
     "intro": "Cosa seminare, piantare, annaffiare e raccogliere nella tua zona, dalle previsioni di stanotte",
+    "live": {
+      "sow": "È il momento di seminare: {{crop}}, in {{areas}} zone in {{area}}",
+      "plant": "È il momento di piantare: {{crop}}, in {{areas}} zone in {{area}}"
+    },
     "headerLink": "Cosa seminare ora",
     "cta": "Pianifica il mio orto",
     "week": {

@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
+import { CROPS, type Crop } from '@/lib/huerta';
 import {
   alternates,
   huertaPage,
@@ -91,7 +93,7 @@ export default function HuertaLandingPage() {
           <div className={styles.heroBody}>
             <div className={styles.heroCopy}>
               <h1 id='landing-title'>{t('landing.headline')}</h1>
-              <p className={styles.intro}>{t('landing.intro')}</p>
+              <HuertaLiveLine />
               <div className={styles.choices}>
                 <Button asChild size='lg'>
                   <Link to={page('planner')}>
@@ -220,5 +222,61 @@ export default function HuertaLandingPage() {
         </footer>
       </div>
     </>
+  );
+}
+
+// ponytail: the continent comes from the time zone, as on Terra's live line.
+const AREA = Intl.DateTimeFormat()
+  .resolvedOptions()
+  .timeZone.startsWith('America/')
+  ? 'northAmerica'
+  : 'europe';
+
+/** What goes in now, from tonight's forecast (public/data/huerta_now.json,
+ *  the areas counted as Terra's live line counts them): the vegetable going in
+ *  at the most areas, or, when none is (mid-winter), whatever crop is. Until
+ *  the data arrives, or when nothing goes in at all, the plain description. */
+export function HuertaLiveLine() {
+  const { t, i18n } = useTranslation('huerta');
+  const [top, setTop] = useState<{ crop: Crop; areas: number } | null>(null);
+
+  useEffect(() => {
+    let live = true;
+    fetch(`${base}data/huerta_now.json`)
+      .then(response => response.json())
+      .then((data: Partial<Record<typeof AREA, Record<string, number>>>) => {
+        const ranked = Object.entries(data[AREA] ?? {})
+          .flatMap(([id, areas]) => {
+            const crop = CROPS.find(c => c.id === id);
+            return crop ? [{ crop, areas }] : [];
+          })
+          .sort((a, b) => b.areas - a.areas);
+        // Vegetables first, as Terra's line puts mushrooms first, but not the
+        // ones planted once for years (rhubarb, asparagus, artichoke).
+        const vegetable = ranked.find(
+          r => r.areas >= 10 && r.crop.kind === 'vegetable' && !r.crop.note
+        );
+        if (live) setTop(vegetable ?? ranked[0] ?? null);
+      })
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, []);
+
+  if (!top) {
+    return <p className={styles.intro}>{t('landing.intro')}</p>;
+  }
+  return (
+    <p className={styles.live}>
+      <span aria-hidden='true' className={styles.liveDot} />
+      <span>
+        {t(`landing.live.${top.crop.how}`, {
+          crop: t(`crops.${top.crop.id}`),
+          areas: top.areas.toLocaleString(i18n.language),
+          area: t(`common:home.live.${AREA}`),
+        })}
+      </span>
+    </p>
   );
 }
