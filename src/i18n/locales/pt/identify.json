@@ -100,7 +100,8 @@
     "confusedWith": "Frequentemente confundido com {{species}}",
     "checkThese": "Confirma estes caracteres",
     "criticalHeading": "Estes dois confundem-se com facilidade",
-    "openSpecies": "Abrir {{species}} no guia de espécies"
+    "openSpecies": "Abrir {{species}} no guia de espécies",
+    "searchWeb": "Pesquisar no Google"
   },
   "toxicity": {
     "mechanisms": {

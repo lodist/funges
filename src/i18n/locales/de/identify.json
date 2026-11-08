@@ -100,7 +100,8 @@
     "confusedWith": "Wird häufig verwechselt mit {{species}}",
     "checkThese": "Diese Merkmale prüfen",
     "criticalHeading": "Diese beiden werden leicht verwechselt",
-    "openSpecies": "{{species}} im Artenführer öffnen"
+    "openSpecies": "{{species}} im Artenführer öffnen",
+    "searchWeb": "Bei Google suchen"
   },
   "toxicity": {
     "mechanisms": {
