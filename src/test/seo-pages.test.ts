@@ -285,24 +285,50 @@ describe('every page the site serves', () => {
     expect(html).toContain('name="twitter:card" content="summary"');
   });
 
-  it("writes the season atlas's pages from its index, none without it", () => {
+  it("writes the season atlas's pages from its files, none without them", () => {
     const dist = fs.mkdtempSync(path.join(os.tmpdir(), 'atlas-'));
     expect(atlasPages(dist)).toEqual([]);
-    fs.mkdirSync(path.join(dist, 'season-atlas'));
+    const atlas = path.join(dist, 'season-atlas');
+    fs.mkdirSync(atlas);
     fs.writeFileSync(
-      path.join(dist, 'season-atlas', 'index.json'),
+      path.join(atlas, 'index.json'),
       JSON.stringify({
         places: [
-          { id: 'europe', name: 'Europe', species: ['mushroom', 'chant'] },
+          {
+            id: 'czechia',
+            kind: 'country',
+            iso: 'CZ',
+            name: 'Czech Republic',
+            continent: 'EU',
+            species: ['mushroom', 'chant'],
+          },
         ],
         slugs: { mushroom: 'porcini' },
       })
     );
-    const atlas = atlasPages(dist);
-    expect(atlas.map(p => p.path)).toEqual([
-      '/data/seasons/europe/porcini/',
-      '/data/seasons/europe/chant/',
-    ]);
-    expect(atlas[0].title).toBe('Porcini season in Europe · Funges');
+    const autumn = [0, 0, 0, 0, 0, 0.1, 0.6, 1, 0.8, 0.5, 0, 0];
+    fs.writeFileSync(
+      path.join(atlas, 'czechia.json'),
+      JSON.stringify({
+        species: {
+          mushroom: { records: 1996, curve: autumn },
+          chant: { records: 3, curve: autumn },
+        },
+      })
+    );
+    const [porcini, chant] = atlasPages(dist);
+    expect(porcini.path).toBe('/data/seasons/czechia/porcini/');
+    // The country's name as the app shows it, so the built title is the app's.
+    expect(porcini.title).toBe('Porcini season in Czechia · Funges');
+    expect(porcini.description).toBe(
+      'Porcini season in Czechia. It peaks in August. The main season is Jul–Oct. Based on 1,996 recorded finds since 2010.'
+    );
+    expect(porcini.noindex).toBe(false);
+    // Hardly ever recorded there: kept out of search engines and the sitemap.
+    expect(chant.path).toBe('/data/seasons/czechia/chant/');
+    expect(chant.noindex).toBe(true);
+    const xml = sitemap([porcini, chant], 'https://www.fung.es');
+    expect(xml).toContain('/data/seasons/czechia/porcini/');
+    expect(xml).not.toContain('/data/seasons/czechia/chant/');
   });
 });
