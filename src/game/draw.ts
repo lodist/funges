@@ -322,8 +322,11 @@ function squirrel(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
   const feet = bottom + (DROP[pose] ?? 0);
   if (g.tick < g.sickUntil) sprite(ctx, tinted(s, frame), 0, cx, feet);
   else sprite(ctx, s, frame, cx, feet);
+  // The beret sits between the ears: 7 px ahead of the sprite's middle and
+  // just under the ear tips in every pose. Not while curled up or crashed.
   const hat = g.wearing && art.get(`paris/${g.wearing}`);
-  if (hat) sprite(ctx, hat, 0, cx + 3, feet - s.h + 5);
+  if (hat && pose !== 'spin' && pose !== 'crash')
+    sprite(ctx, hat, 0, cx + 8, feet - s.h + (pose === 'jump' ? 9 : 12));
 }
 
 function digits(ctx: CanvasRenderingContext2D, art: Art, value: number) {
