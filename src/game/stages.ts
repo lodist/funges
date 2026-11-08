@@ -26,7 +26,7 @@ export interface Stage {
   gaps?: true;
   /** What the golden acorn lets the squirrel ride. */
   ride?: string;
-  /** Once per stage: the Trevi coin (points) or the beret (worn). */
+  /** Once per stage: the coin (points) or the beret (worn). */
   egg?: { id: string; points: number };
 }
 
