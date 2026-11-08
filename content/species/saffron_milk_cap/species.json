@@ -122,31 +122,6 @@
       "NE": {
         "available": true,
         "landCover": [312, 313, 324],
-        "scoring": {
-          "optimal_temp": 13,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 30,
-          "optimal_alt": 80,
-          "alt_sigma": 800,
-          "optimal_humidity": 79,
-          "humidity_sigma": 17,
-          "optimal_pH": 5.1,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [3.6, 6.6],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 40,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [7, 8, 9, 10, 11],
-          "water_relevance": false,
-          "sea_relevance": false,
-          "hosts": ["pinus", "picea", "other_needleleaf"]
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/5248629",
           "https://www.gbif.org/species/7925734",
@@ -161,31 +136,6 @@
       "SE": {
         "available": true,
         "landCover": [312, 313, 324],
-        "scoring": {
-          "optimal_temp": 13,
-          "temp_sigma": 5,
-          "min_temp": 3,
-          "max_temp": 30,
-          "optimal_alt": 740,
-          "alt_sigma": 1600,
-          "optimal_humidity": 73,
-          "humidity_sigma": 17,
-          "optimal_pH": 6.0,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.5, 7.5],
-          "optimal_soil_temp": 12,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 30,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [8, 9, 10, 11, 12, 1],
-          "water_relevance": false,
-          "sea_relevance": false,
-          "hosts": ["pinus", "picea", "other_needleleaf"]
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/5248629",
           "https://www.gbif.org/species/7925734",
@@ -200,50 +150,6 @@
       "USE": {
         "available": true,
         "landCover": [41, 42, 43],
-        "scoring": {
-          "optimal_temp": 17,
-          "temp_sigma": 5,
-          "min_temp": 5,
-          "max_temp": 30,
-          "optimal_alt": 350,
-          "alt_sigma": 800,
-          "optimal_humidity": 72,
-          "humidity_sigma": 17,
-          "optimal_pH": 5.0,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [3.5, 6.5],
-          "optimal_soil_temp": 16,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 55,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [8, 9, 10],
-          "water_relevance": false,
-          "sea_relevance": false,
-          "hosts": [
-            "white_red_jack_pine",
-            "spruce_fir",
-            "longleaf_slash_pine",
-            "loblolly_shortleaf_pine",
-            "douglas_fir",
-            "ponderosa_pine",
-            "western_white_pine",
-            "fir_spruce_mountain_hemlock",
-            "lodgepole_pine",
-            "hemlock_sitka_spruce",
-            "western_larch",
-            "redwood",
-            "other_western_softwood",
-            "california_mixed_conifer",
-            "exotic_softwoods",
-            "oak_pine",
-            "aspen_birch",
-            "maple_beech_birch"
-          ]
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/5248629",
           "https://www.gbif.org/species/7925734",
@@ -257,47 +163,6 @@
       "USW": {
         "available": true,
         "landCover": [41, 42, 43],
-        "scoring": {
-          "optimal_temp": 12,
-          "temp_sigma": 5,
-          "min_temp": 2,
-          "max_temp": 30,
-          "optimal_alt": 1500,
-          "alt_sigma": 2000,
-          "optimal_humidity": 48,
-          "humidity_sigma": 17,
-          "optimal_pH": 5.9,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.4, 7.4],
-          "optimal_soil_temp": 11,
-          "soil_temp_sigma": 5,
-          "min_cumulative_rain": 30,
-          "weather_preference": {
-            "rain_first": true
-          },
-          "wind_sensitive": true,
-          "season_months": [8, 9, 10, 11, 12, 1, 2],
-          "water_relevance": false,
-          "sea_relevance": false,
-          "hosts": [
-            "white_red_jack_pine",
-            "spruce_fir",
-            "longleaf_slash_pine",
-            "loblolly_shortleaf_pine",
-            "douglas_fir",
-            "ponderosa_pine",
-            "western_white_pine",
-            "fir_spruce_mountain_hemlock",
-            "lodgepole_pine",
-            "hemlock_sitka_spruce",
-            "western_larch",
-            "redwood",
-            "other_western_softwood",
-            "california_mixed_conifer",
-            "exotic_softwoods"
-          ]
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/5248629",
           "https://www.gbif.org/species/7925734",

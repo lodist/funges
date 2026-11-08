@@ -31,6 +31,7 @@ import pandas as pd
 
 sys.path[:0] = [str(Path(__file__).resolve().parent), str(Path(__file__).resolve().parents[1])]
 import fit_fruiting_gbm as gbm  # noqa: E402
+import r2  # noqa: E402
 from fit_fruiting import PLACEBO, find_day_rank  # noqa: E402
 
 K, WINDOW_DAYS, MAX_CASES, MIN_CASES = 10, 3, 30000, 300
@@ -257,6 +258,7 @@ def add_to_shipped(species, factors, ids_by_region) -> None:
         columns[species] = np.rint(factors[(species, region)] * 255).astype(np.uint8)
         spec["regions"][region] = upload(fp, folder, region, ids, columns)
     SHIPPED.write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
+    r2.ship(SHIPPED)
 
 
 def export(table, factors, ids_by_region, out) -> None:
@@ -274,6 +276,7 @@ def export(table, factors, ids_by_region, out) -> None:
         spec["regions"][region] = upload(fp, folder, region, ids_by_region[region],
                                          {s: np.rint(factors[(s, region)] * 255).astype(np.uint8) for s in rows["species"]})
     SHIPPED.write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
+    r2.ship(SHIPPED)
 
 
 def main() -> None:

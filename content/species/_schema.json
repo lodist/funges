@@ -3,80 +3,6 @@
   "$id": "https://fung.es/schemas/species-manifest-v1.json",
   "title": "Fung.es species manifest",
   "type": "object",
-  "$defs": {
-    "scoring": {
-      "type": "object",
-      "required": [
-        "optimal_temp",
-        "temp_sigma",
-        "min_temp",
-        "max_temp",
-        "optimal_alt",
-        "alt_sigma",
-        "optimal_humidity",
-        "humidity_sigma",
-        "optimal_pH",
-        "pH_sigma_near",
-        "pH_sigma_far",
-        "pH_range_near",
-        "optimal_soil_temp",
-        "soil_temp_sigma",
-        "min_cumulative_rain",
-        "weather_preference",
-        "wind_sensitive",
-        "season_months",
-        "water_relevance",
-        "sea_relevance"
-      ],
-      "properties": {
-        "optimal_temp": { "type": "number" },
-        "temp_sigma": { "type": "number", "exclusiveMinimum": 0 },
-        "min_temp": { "type": "number" },
-        "max_temp": { "type": "number" },
-        "optimal_alt": { "type": "number" },
-        "alt_sigma": { "type": "number", "exclusiveMinimum": 0 },
-        "optimal_humidity": { "type": "number" },
-        "humidity_sigma": { "type": "number", "exclusiveMinimum": 0 },
-        "optimal_pH": { "type": "number" },
-        "pH_sigma_near": { "type": "number", "exclusiveMinimum": 0 },
-        "pH_sigma_far": { "type": "number", "exclusiveMinimum": 0 },
-        "pH_range_near": {
-          "type": "array",
-          "prefixItems": [{ "type": "number" }, { "type": "number" }],
-          "minItems": 2,
-          "maxItems": 2
-        },
-        "optimal_soil_temp": { "type": "number" },
-        "soil_temp_sigma": { "type": "number", "exclusiveMinimum": 0 },
-        "min_cumulative_rain": { "type": "number", "minimum": 0 },
-        "rain_weight": {
-          "description": "How much recent rain counts in the score, against temperature 1.75, humidity 1.0, altitude 0.75 and soil pH 1.0. Omit for the default 1.5, right for fungi, which rain makes fruit; 0 for plants whose flowers, fruit or nuts do not wait for rain.",
-          "type": "number",
-          "minimum": 0
-        },
-        "weather_preference": {
-          "type": "object",
-          "required": ["rain_first"],
-          "properties": { "rain_first": { "type": "boolean" } }
-        },
-        "hosts": {
-          "description": "Mycorrhizal host-tree classes from _host_classes.json (EU classes for NE/SE, US for USE/USW); omit for species without hosts",
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "items": { "type": "string", "minLength": 1 }
-        },
-        "wind_sensitive": { "type": "boolean" },
-        "season_months": {
-          "type": "array",
-          "minItems": 1,
-          "items": { "type": "integer", "minimum": 1, "maximum": 12 }
-        },
-        "water_relevance": { "type": "boolean" },
-        "sea_relevance": { "type": "boolean" }
-      }
-    }
-  },
   "additionalProperties": false,
   "required": [
     "schemaVersion",
@@ -257,7 +183,6 @@
                 "items": { "type": ["integer", "string"] }
               },
               "landCoverScheme": { "enum": ["CORINE", "NLCD"] },
-              "scoring": { "$ref": "#/$defs/scoring" },
               "scoringReferences": {
                 "type": "array",
                 "minItems": 1,
@@ -284,7 +209,6 @@
                   "required": [
                     "landCover",
                     "landCoverScheme",
-                    "scoring",
                     "scoringReferences"
                   ]
                 },
@@ -292,7 +216,6 @@
                   "properties": {
                     "landCover": false,
                     "landCoverScheme": false,
-                    "scoring": false,
                     "scoringReferences": false,
                     "scoringSnapshotSha256": false
                   }

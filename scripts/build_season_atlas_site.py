@@ -139,7 +139,7 @@ def write_site(atlas, grids, out, slugs):
 
 def load_grids(atlas, grid_dir):
     """The grids the atlas was built from, checked against the sha256 it recorded."""
-    current = json.loads((ROOT / "backend" / "generated" / "local_season.json").read_text(encoding="utf-8"))
+    current = json.loads(r2.generated(r2.GENERATED / "local_season.json").read_text(encoding="utf-8"))
     grids = {}
     for code, entry in atlas["grids"].items():
         if current["continents"].get(code, {}).get("sha256") != entry["sha256"]:

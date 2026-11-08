@@ -43,6 +43,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "backend"), str(ROOT / "backend" / "tools"), str(ROOT / "scripts")]
 import forecast_pipeline as fp  # noqa: E402
+import r2  # noqa: E402
 from fit_fruiting import find_day_rank  # noqa: E402
 from fit_phenology import DEAD_MONTH, STAGE, TAXA  # noqa: E402
 from qa_season_branch_replay import BRANCH_LAG_COLUMNS  # noqa: E402
@@ -381,14 +382,15 @@ def select(out: Path) -> dict:
 
 
 def apply(out: Path) -> None:
-    """Write parts_final.json into the manifests: each listed part's weight 0 in that region."""
+    """Write parts_final.json into the scoring file: each listed part's weight 0 in that region."""
     final = json.loads((out / "parts_final.json").read_text(encoding="utf-8"))
+    path = r2.generated(ROOT / "backend" / "generated" / "species_scoring.json")
+    scoring = json.loads(path.read_text(encoding="utf-8"))
     for key, off in sorted(final.items()):
         species, region = key.split("|")
-        path = ROOT / "content" / "species" / species / "species.json"
-        manifest = json.loads(path.read_text(encoding="utf-8"))
-        manifest["forecast"]["regions"][region]["scoring"].update({k: 0 for k in off})
-        path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+        scoring[species][region].update({k: 0 for k in off})
+    path.write_text(json.dumps(scoring, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    r2.ship(path)
 
 
 def main() -> None:

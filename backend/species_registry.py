@@ -1,4 +1,5 @@
-"""Read the generated forecast registry derived from species manifests."""
+"""Read the generated forecast registry derived from species manifests, and the species'
+scoring parameters, which are not in git: backend/generated/species_scoring.json, on R2."""
 
 import copy
 import json
@@ -6,11 +7,20 @@ from functools import lru_cache
 from pathlib import Path
 
 _REGISTRY_PATH = Path(__file__).resolve().parent / "generated" / "species_registry.json"
+_SCORING_PATH = _REGISTRY_PATH.with_name("species_scoring.json")
 
 
 @lru_cache(maxsize=1)
 def _registry():
     return json.loads(_REGISTRY_PATH.read_text(encoding="utf-8"))
+
+
+@lru_cache(maxsize=1)
+def _scoring():
+    """species id -> region -> scoring parameters, fetched from R2 when missing or outdated."""
+    import r2  # here, not at the top: only the scoring parameters need R2 (and boto3)
+
+    return json.loads(r2.generated(_SCORING_PATH).read_text(encoding="utf-8"))
 
 
 @lru_cache(maxsize=1)
@@ -66,11 +76,16 @@ def get_species_params(region):
     """Return a mutable copy of the canonical scoring parameters for one region. A
     composite has none of its own (get_composites) and is left out."""
     _require_region(region)
-    return {
-        species_id: copy.deepcopy(config["regions"][region]["scoring"])
-        for species_id, config in _registry()["species"].items()
-        if "scoring" in config["regions"].get(region, {})
-    }
+    scoring = _scoring()
+    params = {}
+    for species_id, config in _registry()["species"].items():
+        here = config["regions"].get(region)
+        if here is None or "compositeOf" in here:
+            continue
+        if region not in scoring.get(species_id, {}):
+            raise KeyError(f"{_SCORING_PATH.name} has no {region} parameters for {species_id}")
+        params[species_id] = copy.deepcopy(scoring[species_id][region])
+    return params
 
 
 def get_composites(region):

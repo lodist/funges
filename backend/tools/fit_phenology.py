@@ -45,6 +45,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "backend")]
 import era5_normals  # noqa: E402
 import forecast_pipeline as fp  # noqa: E402
+import r2  # noqa: E402
 import seasonality as sn  # noqa: E402
 from species_registry import get_species_params, infer_region  # noqa: E402
 from tag_ripeness import RIPE  # noqa: E402
@@ -425,6 +426,7 @@ def export(s: pd.DataFrame, result: pd.DataFrame) -> None:
         spec["continents"][continent] = {"file": key, "sha256": hashlib.sha256(data).hexdigest(), "species": here}
         print(f"uploaded {key}: {len(here)} species, {len(data) / 1e6:.1f} MB", flush=True)
     (ROOT / "backend" / "generated" / "phenology.json").write_text(json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
+    r2.ship(ROOT / "backend" / "generated" / "phenology.json")
 
 
 def main() -> None:

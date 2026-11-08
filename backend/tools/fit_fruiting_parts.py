@@ -429,7 +429,7 @@ def main() -> None:
     statics, specs = {c: static_info(c) for c in ("EU", "US")}, {}
     if args.habitat:
         from fit_habitat import held_out_years
-        shipped = json.loads((ROOT / "backend" / "generated" / "habitat_factor.json").read_text(encoding="utf-8"))["regions"]
+        shipped = json.loads(r2.generated(ROOT / "backend" / "generated" / "habitat_factor.json").read_text(encoding="utf-8"))["regions"]
         finds = pd.read_parquet(out / "finds_2016_2026.parquet")
         added = out / f"finds_{args.species}_supplement.parquet"   # a species added after the table was built
         if args.species and added.exists():
