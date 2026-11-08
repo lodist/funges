@@ -57,7 +57,9 @@ export async function loadArt(): Promise<Art> {
   return art;
 }
 
-const SKY = '#7ec4f2';
+// Behind everything: shows only at the edge while the sick squirrel's screen
+// sways, so it is the evening dark of every stage.
+const SKY = '#1a1030';
 const HOLE = '#14121a';
 /** A thin veil of each stage's evening haze over its scenery (never the
  *  ground or what stands on it), so the things to jump and catch read
@@ -67,6 +69,10 @@ const HAZE: Record<string, string> = {
   paris: 'rgba(176, 90, 140, 0.1)',
   rome: 'rgba(40, 60, 130, 0.1)',
   alps: 'rgba(200, 110, 140, 0.1)',
+  atlantic: 'rgba(40, 60, 130, 0.1)',
+  newyork: 'rgba(90, 60, 150, 0.1)',
+  redwoods: 'rgba(110, 140, 190, 0.1)',
+  canyon: 'rgba(60, 40, 120, 0.1)',
 };
 const LAYERS = [
   ['far', 0.15],
@@ -97,7 +103,8 @@ const SCENERY: Record<string, Scenery[]> = {
   alps: [
     { art: 'stbernard', at: 0.4, factor: 1, bottom: GROUND_Y, span: 1200 },
   ],
-  atlantic: [{ art: 'whale', at: 0.5, factor: 0.35, bottom: GROUND_Y - 24 }],
+  // Out on the moonlit horizon, not on the deck.
+  atlantic: [{ art: 'whale', at: 0.5, factor: 0.35, bottom: 106 }],
   newyork: [{ art: 'liberty', at: 0.5, factor: 0.35, bottom: GROUND_Y }],
   redwoods: [
     { art: 'tunnel', at: 0.5, factor: 1, bottom: GROUND_Y, front: true },

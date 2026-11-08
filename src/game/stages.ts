@@ -47,7 +47,7 @@ export const STAGES: Stage[] = [
     length: 5000,
     traps: [
       { id: 'chairs', w: 20, h: 16 },
-      { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
+      { id: 'pigeon', w: 11, h: 9, fly: true, animal: true },
       { id: 'bike', w: 30, h: 22, speed: 0.8 },
     ],
     pickups: ['parasol', 'truffle'],
@@ -81,17 +81,17 @@ export const STAGES: Stage[] = [
     id: 'atlantic',
     length: 2400,
     traps: [
-      { id: 'crate', w: 20, h: 20 },
-      { id: 'rope', w: 24, h: 8 },
+      { id: 'crate', w: 18, h: 18 },
+      { id: 'rope', w: 12, h: 10 },
     ],
   },
   {
     id: 'newyork',
     length: 5000,
     traps: [
-      { id: 'steam', w: 18, h: 24 },
-      { id: 'hotdog', w: 30, h: 22 },
-      { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
+      { id: 'steam', w: 12, h: 22 },
+      { id: 'hotdog', w: 22, h: 22 },
+      { id: 'pigeon', w: 11, h: 9, fly: true, animal: true },
     ],
     pickups: ['ramps', 'hen-of-the-woods'],
     ride: 'cab',
@@ -100,7 +100,7 @@ export const STAGES: Stage[] = [
     id: 'redwoods',
     length: 5000,
     traps: [
-      { id: 'log', w: 36, h: 14 },
+      { id: 'log', w: 30, h: 12 },
       { id: 'stump', w: 18, h: 18 },
       { id: 'bear', w: 28, h: 24, animal: true },
       { id: 'slug', w: 14, h: 6, animal: true },
@@ -114,7 +114,7 @@ export const STAGES: Stage[] = [
     traps: [
       { id: 'cactus', w: 14, h: 24 },
       { id: 'tumbleweed', w: 16, h: 16, speed: 1.2 },
-      { id: 'rattlesnake', w: 22, h: 8, animal: true },
+      { id: 'rattlesnake', w: 12, h: 8, animal: true },
     ],
     pickups: ['elderberry', 'king-bolete'],
     gaps: true,
