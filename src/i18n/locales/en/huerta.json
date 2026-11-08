@@ -2545,6 +2545,10 @@
   "landing": {
     "headline": "Your garden, week by week",
     "intro": "What to sow, plant, water and pick at your place, from tonight's forecast",
+    "live": {
+      "sow": "Time to sow: {{crop}}, in {{areas}} areas across {{area}}",
+      "plant": "Time to plant: {{crop}}, in {{areas}} areas across {{area}}"
+    },
     "headerLink": "What to sow now",
     "cta": "Plan my garden",
     "week": {

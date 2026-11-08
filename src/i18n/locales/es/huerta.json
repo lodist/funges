@@ -2545,6 +2545,10 @@
   "landing": {
     "headline": "Tu huerto, semana a semana",
     "intro": "Qué sembrar, plantar, regar y cosechar en tu zona, según la previsión de esta noche",
+    "live": {
+      "sow": "Ahora toca sembrar: {{crop}}, en {{areas}} zonas de {{area}}",
+      "plant": "Ahora toca plantar: {{crop}}, en {{areas}} zonas de {{area}}"
+    },
     "headerLink": "Qué sembrar ahora",
     "cta": "Planificar mi huerto",
     "week": {

@@ -106,6 +106,7 @@ public/data/visitors.json
 public/data/scores_metadata.json
 public/data/data_nerd.json
 public/data/worth_foraging_now.json
+public/data/huerta_now.json
 
 # Generated offline map artifacts (emitted by scripts/build_offline_packages.py
 # and the sprite build — not meant to be hand-formatted)
