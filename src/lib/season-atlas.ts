@@ -5,6 +5,8 @@
  * way the forecast blends them.
  */
 
+import { monthRange } from './seasons';
+
 /** [lon min, lat min, lon max, lat max] of a place's map image. */
 export type Extent = [number, number, number, number];
 
@@ -37,7 +39,125 @@ export interface AtlasPlace extends Omit<AtlasPlaceSummary, 'species'> {
   species: Record<string, AtlasCurve>;
 }
 
-export const ATLAS_BASE = `${import.meta.env.BASE_URL}season-atlas/`;
+/** A month counts as in season from half its place's peak. */
+export const IN_SEASON = 0.5;
+/** Local records from which a place's curve is its own (the season grid's shipping bar);
+ *  below it the curve leans on similar climates, and under RARE the species is hardly seen. */
+export const SOLID_RECORDS = 150;
+export const RARE_RECORDS = 10;
+
+/** The common namespace's `data.*` strings: t('data.' + key) in the app, the build's own
+ *  lookup in scripts/seo-pages.ts. This file stays free of the app's runtime (no
+ *  import.meta.env) because the build imports it. */
+export type Say = (key: string, vars?: Record<string, string>) => string;
+
+const regionNames = new Map<string, Intl.DisplayNames | null>();
+
+/** A place's name in `language`: countries by their ISO code. */
+export function placeLabel(
+  place: Pick<AtlasPlaceSummary, 'kind' | 'iso' | 'name' | 'continent'>,
+  language: string,
+  say: Say
+): string {
+  if (place.kind === 'continent')
+    return say(place.continent === 'EU' ? 'europe' : 'unitedStates');
+  if (place.kind !== 'country' || !place.iso) return place.name;
+  if (!regionNames.has(language)) {
+    try {
+      regionNames.set(
+        language,
+        new Intl.DisplayNames([language], { type: 'region' })
+      );
+    } catch {
+      regionNames.set(language, null);
+    }
+  }
+  try {
+    return regionNames.get(language)?.of(place.iso) ?? place.name;
+  } catch {
+    return place.name;
+  }
+}
+
+/** What a curve says on any day: its peak month and its main season(s). */
+export function seasonSentences(
+  curve: number[],
+  language: string,
+  say: Say
+): string[] {
+  const long = new Intl.DateTimeFormat(language, { month: 'long' });
+  const monthName = (m: number) => long.format(new Date(2026, m, 15));
+  const span = ([a, b]: [number, number]) =>
+    a === b ? monthName(a) : monthRange([a, b], language);
+  const windows = seasonWindows(curve, IN_SEASON);
+  const lines = [
+    say('atlas.peak', { month: monthName(curve.indexOf(Math.max(...curve))) }),
+  ];
+  if (windows.length === 1 && windows[0][0] === 0 && windows[0][1] === 11)
+    lines.push(say('atlas.allYear'));
+  else if (windows.length === 1)
+    lines.push(say('atlas.window', { months: span(windows[0]) }));
+  else if (windows.length > 1)
+    lines.push(
+      say('atlas.windows', {
+        first: windows.slice(0, -1).map(span).join(', '),
+        last: span(windows[windows.length - 1]),
+      })
+    );
+  return lines;
+}
+
+/** How many local finds a curve rests on, in words. */
+export function recordsSentence(
+  records: number,
+  language: string,
+  say: Say
+): string {
+  const formatted = records.toLocaleString(language);
+  if (records >= SOLID_RECORDS) return say('atlas.records', { formatted });
+  if (records >= RARE_RECORDS) return say('atlas.fewRecords', { formatted });
+  return say('atlas.rareRecords');
+}
+
+/** An atlas page's search description, the same in the built page and the app: its
+ *  title, then what the curve says on any day (nothing about today, the page is built
+ *  once). */
+export function atlasDescription(
+  title: string,
+  entry: AtlasCurve,
+  language: string,
+  say: Say
+): string {
+  return [
+    `${title}.`,
+    ...seasonSentences(entry.curve, language, say),
+    recordsSentence(entry.records, language, say),
+  ].join(' ');
+}
+
+/**
+ * The map camera that shows `extent` on a `width` × `height` screen: its middle and the
+ * zoom that fits it, with a margin. MapLibre's world is 512 px wide at zoom 0, Web Mercator.
+ */
+export function mapView(
+  [w, s, e, n]: Extent,
+  width: number,
+  height: number
+): { lat: number; lng: number; zoom: number } {
+  const y = (lat: number) =>
+    Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
+  const fit = Math.min(
+    width / ((512 * (e - w)) / 360),
+    height / ((512 * (y(n) - y(s))) / (2 * Math.PI))
+  );
+  const round = (v: number, places: number) =>
+    Math.round(v * 10 ** places) / 10 ** places;
+  return {
+    lat: round((Math.atan(Math.sinh((y(s) + y(n)) / 2)) * 180) / Math.PI, 4),
+    lng: round((w + e) / 2, 4),
+    zoom: round(Math.log2(fit * 0.85), 2),
+  };
+}
 
 /**
  * Nothing to the local peak: the brand green's steps, --happy-900 (the band) up to --happy-50,

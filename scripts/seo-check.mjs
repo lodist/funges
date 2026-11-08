@@ -79,7 +79,7 @@ const staticOf = pathname => {
 
 const browser = await chromium.launch();
 const failures = [];
-async function check(pathname) {
+async function check(pathname, wait = 20000) {
   const context = await browser.newContext({ serviceWorkers: 'block' });
   const page = await context.newPage();
   try {
@@ -90,15 +90,23 @@ async function check(pathname) {
     if (response?.status() !== 200)
       throw new Error(`status ${response?.status()}`);
     // The static text is the page until the app replaces it: wait for that.
-    // (An app page has no static heading to wait for.)
+    // (An app page has no static heading to wait for. A season atlas page
+    // writes its description once its place's file is in.)
     await page
       .waitForFunction(
-        ({ title, h1 }) =>
+        ({ title, description, h1 }) =>
           !document.querySelector('#root > main[data-static]') &&
           (!h1 || document.querySelector('#root h1')) &&
-          document.title === title,
-        { title: expected.title, h1: !!expected.h1 },
-        { timeout: 20000 }
+          document.title === title &&
+          document
+            .querySelector('meta[name="description"]')
+            ?.getAttribute('content') === description,
+        {
+          title: expected.title,
+          description: expected.description,
+          h1: !!expected.h1,
+        },
+        { timeout: wait }
       )
       .catch(() => {});
     const seen = await page.evaluate(() => ({
@@ -145,6 +153,10 @@ await Promise.all(
     while (queue.length) await check(queue.shift());
   })
 );
+// Four at a time can starve a page past its wait: a failed page is checked
+// again on its own, with a longer wait, before it counts.
+for (const failure of failures.splice(0))
+  await check(failure.slice(0, failure.indexOf(': ')), 60000);
 await browser.close();
 server.close();
 

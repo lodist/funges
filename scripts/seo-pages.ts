@@ -19,6 +19,14 @@ import { CROPS } from '../src/lib/huerta';
 import { GUIDES } from '../src/lib/crop-guides';
 import { heroPhoto } from '../src/lib/hero-photos';
 import {
+  type AtlasIndex,
+  type AtlasPlace,
+  RARE_RECORDS,
+  type Say,
+  atlasDescription,
+  placeLabel,
+} from '../src/lib/season-atlas';
+import {
   APP_PAGES,
   INDEXED_LANGUAGES,
   alternates,
@@ -412,37 +420,48 @@ export function appPages(): Page[] {
   });
 }
 
-/** The season atlas's pages, each place's species, from the index the deploy
- *  builds into the site before the build (none without it). English only and
- *  not in the sitemap. */
+/** The season atlas's pages, each place's species, from the files the deploy
+ *  builds into the site before the build (none without them). English only.
+ *  A species hardly ever recorded in a place shows another climate's season,
+ *  so that page stays out of search engines. */
 export function atlasPages(outDir: string): Page[] {
-  const file = path.join(outDir, 'season-atlas', 'index.json');
-  if (!fs.existsSync(file)) return [];
-  const index = JSON.parse(fs.readFileSync(file, 'utf8')) as {
-    places: { id: string; name: string; species: string[] }[];
-    slugs: Record<string, string>;
+  const dir = path.join(outDir, 'season-atlas');
+  const read = <T>(name: string): T | undefined => {
+    const file = path.join(dir, name);
+    return fs.existsSync(file)
+      ? (JSON.parse(fs.readFileSync(file, 'utf8')) as T)
+      : undefined;
   };
+  const index = read<AtlasIndex>('index.json');
+  if (!index) return [];
   const { t } = translator('en');
+  const say: Say = (key, vars) => t('common', `data.${key}`, vars);
   const names = new Map(
     GENERATED_SPECIES_DATA.map(s => [
       s.id,
       t('species', `list_of_species.${s.nameKey}`),
     ])
   );
-  return index.places.flatMap(place =>
-    place.species.map(id => ({
-      path: `/data/seasons/${place.id}/${index.slugs[id] ?? id}/`,
-      lang: 'en' as const,
-      title: pageTitle(
-        t('common', 'data.atlas.title', {
-          species: names.get(id) ?? id,
-          place: place.name,
-        })
-      ),
-      description: t('common', 'data.atlas.subtitle'),
-      body: '',
-    }))
-  );
+  return index.places.flatMap(place => {
+    const curves = read<AtlasPlace>(`${place.id}.json`)?.species ?? {};
+    return place.species.map(id => {
+      const title = t('common', 'data.atlas.title', {
+        species: names.get(id) ?? id,
+        place: placeLabel(place, 'en', say),
+      });
+      const entry = curves[id];
+      return {
+        path: `/data/seasons/${place.id}/${index.slugs[id] ?? id}/`,
+        lang: 'en' as const,
+        title: pageTitle(title),
+        description: entry
+          ? atlasDescription(title, entry, 'en', say)
+          : t('common', 'data.atlas.subtitle'),
+        body: '',
+        noindex: !entry || entry.records < RARE_RECORDS,
+      };
+    });
+  });
 }
 
 /** The built index.html, made into one page's own HTML. The app drops the
@@ -568,8 +587,12 @@ export function seoPages({ origin }: { origin: string }): Plugin {
     },
     closeBundle() {
       if (!shell) return;
-      const pages = [...buildPages(photos), ...appPages()];
-      for (const page of [...pages, ...atlasPages(outDir)]) {
+      const pages = [
+        ...buildPages(photos),
+        ...appPages(),
+        ...atlasPages(outDir),
+      ];
+      for (const page of pages) {
         if (page.path === '/') continue;
         const dir = path.join(outDir, page.path);
         fs.mkdirSync(dir, { recursive: true });
