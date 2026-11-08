@@ -2545,6 +2545,10 @@
   "landing": {
     "headline": "Sua horta, semana a semana",
     "intro": "O que semear, plantar, regar e colher no seu local, pela previsão desta noite",
+    "live": {
+      "sow": "Hora de semear: {{crop}}, em {{areas}} áreas na {{area}}",
+      "plant": "Hora de plantar: {{crop}}, em {{areas}} áreas na {{area}}"
+    },
     "headerLink": "O que semear agora",
     "cta": "Planejar minha horta",
     "week": {

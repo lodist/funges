@@ -99,7 +99,8 @@
   height: 0.625rem;
   border-radius: 9999px;
   background: var(--happy-300);
-  box-shadow: 0 0 0 0.3rem rgb(134 239 172 / 0.18);
+  box-shadow: 0 0 0 0.3rem
+    color-mix(in oklab, var(--happy-300) 18%, transparent);
   transform: translateY(-0.1em);
 }
 .choices {

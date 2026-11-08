@@ -70,6 +70,11 @@ jobs:
       - name: Generate worth foraging now JSON
         run: python scripts/generate_worth_foraging_now.py
 
+      - name: Generate Huerta's live line JSON
+        # A failed read keeps the last line; it must not hold back Terra's data.
+        continue-on-error: true
+        run: python scripts/generate_huerta_now.py
+
       - name: Refresh offline forecast package metadata
         run: python scripts/refresh_offline_manifest.py
 
@@ -84,7 +89,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: update site data'
-          file_pattern: public/data/visitors.json public/data/scores_metadata.json public/data/data_nerd.json public/data/worth_foraging_now.json public/offline-packages.json
+          file_pattern: public/data/visitors.json public/data/scores_metadata.json public/data/data_nerd.json public/data/worth_foraging_now.json public/data/huerta_now.json public/offline-packages.json
           # Without commit_author the action credits github.actor, which on a
           # scheduled run is whoever last touched the cron.
           commit_user_name: funges-bot[bot]

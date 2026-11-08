@@ -2545,6 +2545,10 @@
   "landing": {
     "headline": "Dein Garten, Woche für Woche",
     "intro": "Was du an deinem Ort säen, pflanzen, giessen und ernten kannst, nach der Vorhersage von heute Nacht",
+    "live": {
+      "sow": "Jetzt ist Aussaatzeit: {{crop}}, in {{areas}} Gebieten in {{area}}",
+      "plant": "Jetzt ist Pflanzzeit: {{crop}}, in {{areas}} Gebieten in {{area}}"
+    },
     "headerLink": "Was jetzt gesät wird",
     "cta": "Meinen Garten planen",
     "week": {
