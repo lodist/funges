@@ -7,6 +7,7 @@ import {
   curveAt,
   dayOfYear,
   inWindow,
+  mapView,
   projection,
   seasonWindows,
 } from '@/lib/season-atlas';
@@ -72,5 +73,20 @@ describe('the season atlas helpers', () => {
     expect(tall.height).toBeCloseTo(500);
     expect(tall.x(10)).toBeCloseTo(tall.width);
     expect(tall.y(40)).toBeCloseTo(500);
+  });
+
+  it('opens the forecast map on a place, whatever the map showed last', () => {
+    // Switzerland on a 1280 × 800 screen.
+    const view = mapView([5.96, 45.82, 10.49, 47.81], 1280, 800);
+    expect(view.lng).toBeCloseTo(8.225, 3);
+    // The Mercator middle sits a little north of the plain average (46.815).
+    expect(view.lat).toBeGreaterThan(46.815);
+    expect(view.lat).toBeLessThan(46.85);
+    // The height binds: 2° of latitude fill ~85% of 800 px.
+    expect(view.zoom).toBeCloseTo(7.36, 1);
+    expect(mapView([5.96, 45.82, 10.49, 47.81], 640, 400).zoom).toBeCloseTo(
+      view.zoom - 1,
+      1
+    );
   });
 });
