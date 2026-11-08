@@ -59,7 +59,7 @@ export const STAGES: Stage[] = [
     length: 5000,
     traps: [
       { id: 'column', w: 16, h: 22 },
-      { id: 'parked-scooter', w: 30, h: 18 },
+      { id: 'parked-scooter', w: 22, h: 18 },
     ],
     pickups: ['chestnut', 'bronze-bolete'],
     gaps: true,
@@ -71,7 +71,7 @@ export const STAGES: Stage[] = [
     length: 5000,
     traps: [
       { id: 'cow', w: 30, h: 22, animal: true },
-      { id: 'snowball', w: 18, h: 18, speed: 1 },
+      { id: 'snowball', w: 16, h: 16, speed: 1 },
     ],
     pickups: ['bilberry', 'pine-bolete'],
     gaps: true,

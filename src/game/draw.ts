@@ -64,6 +64,9 @@ const HOLE = '#14121a';
  *  first. 10%: at 20% the sunset washed out. */
 const HAZE: Record<string, string> = {
   scandinavia: 'rgba(168, 82, 122, 0.1)',
+  paris: 'rgba(176, 90, 140, 0.1)',
+  rome: 'rgba(40, 60, 130, 0.1)',
+  alps: 'rgba(200, 110, 140, 0.1)',
 };
 const LAYERS = [
   ['far', 0.15],

@@ -69,11 +69,17 @@ export default function PlayPage() {
   const [banner, setBanner] = useState<string | null>(null);
   const [best, setBest] = useState(readBest);
   const [last, setLast] = useState<{ score: number; furthest: number }>();
-  const [options] = useState(() => ({
-    debug: new URLSearchParams(window.location.search).has('debug'),
-    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)')
-      .matches,
-  }));
+  const [options] = useState(() => {
+    const query = new URLSearchParams(window.location.search);
+    return {
+      debug: query.has('debug'),
+      // /play?at=rome starts at a stage, for reviewing its art. Such a run
+      // cannot be replayed, so it is never kept as the best.
+      at: STAGES.findIndex(s => s.id === query.get('at')),
+      reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)')
+        .matches,
+    };
+  });
   const number = (n: number) => n.toLocaleString(i18n.language);
   const stageName = useCallback(
     (furthest: number) => t(`game.stages.${stageId(furthest)}`),
@@ -106,12 +112,18 @@ export default function PlayPage() {
   const start = useCallback(() => {
     const seed = (Math.random() * 0x100000000) >>> 0;
     game.current = newGame(seed);
+    if (options.at > 0) {
+      const g = game.current;
+      g.dist = STAGES.slice(0, options.at).reduce((n, s) => n + s.length, 0);
+      g.nextAt = g.dist + VIEW_W + 160;
+      g.furthest = options.at;
+    }
     run.current = { seed, presses: [], releases: [] };
     inputs.current = [];
     setLast(undefined);
-    setBanner(stageName(0));
+    setBanner(stageName(Math.max(options.at, 0)));
     goTo('playing');
-  }, [goTo, stageName]);
+  }, [goTo, stageName, options]);
 
   const press = useCallback(() => {
     const now = phaseNow.current;
@@ -157,7 +169,7 @@ export default function PlayPage() {
       }
       const result = { score: score(g), furthest: g.furthest };
       const previous = readBest();
-      if (!previous || result.score > previous.score) {
+      if (options.at < 1 && (!previous || result.score > previous.score)) {
         const kept = { ...result, run: run.current };
         keepBest(kept);
         setBest(kept);
@@ -168,7 +180,7 @@ export default function PlayPage() {
     };
     frame = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frame);
-  }, [phase, paint, goTo, stageName]);
+  }, [phase, paint, goTo, stageName, options]);
 
   useEffect(() => {
     if (!banner) return;
