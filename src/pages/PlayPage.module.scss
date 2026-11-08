@@ -1,0 +1,86 @@
+// The game page: the pixel screen as large as the page allows, the words
+// under it. The whole box is the tap area; in full screen it fills the screen.
+.page {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.area {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  &:fullscreen {
+    align-content: center;
+    padding: 0.75rem;
+    background: var(--background);
+    .screen {
+      max-height: calc(100dvh - 7rem);
+    }
+  }
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+}
+
+// Scaled with hard pixels; letterboxed when the page is wider than 16:9.
+.screen {
+  display: block;
+  width: 100%;
+  max-height: calc(100dvh - 14rem);
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.banner {
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  translate: -50% 0;
+  padding: 0.125rem 0.75rem;
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--foreground);
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.panel {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  min-height: 6rem;
+  text-align: center;
+}
+
+.lead {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.hint {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}

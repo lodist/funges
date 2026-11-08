@@ -202,6 +202,7 @@ describe('every page the site serves', () => {
       'instructions',
       'map',
       'offline',
+      'play',
       'privacy-policy',
       'recipes',
       'settings',

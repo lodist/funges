@@ -378,5 +378,33 @@
     "system": "Système",
     "light": "Clair",
     "dark": "Sombre"
+  },
+  "game": {
+    "title": "La course de l'écureuil",
+    "play": "Jouer à La course de l'écureuil",
+    "seoTitle": "La course de l'écureuil : un jeu en pixel art dans la forêt",
+    "seoDescription": "Cours avec un écureuil roux de la Scandinavie au Grand Canyon. Ramasse girolles et cèpes, saute les pièges et attrape le gland doré.",
+    "canvas": "La course de l'écureuil : l'écureuil court à travers le paysage",
+    "start": "Touche l'écran ou appuie sur Espace pour commencer",
+    "hint": "Maintiens pour sauter plus haut. Touche encore en l'air pour un second saut.",
+    "paused": "Pause. Touche pour continuer.",
+    "over": "Partie terminée : {{score}} points",
+    "reached": "Le plus loin : {{stage}}",
+    "best": "Record : {{score}} points",
+    "again": "Rejouer",
+    "share": "Partager",
+    "fullscreen": "Plein écran",
+    "card": "{{score}} points · {{stage}}",
+    "shareText": "J'ai fait {{score}} points à La course de l'écureuil ({{stage}}) : {{url}}",
+    "stages": {
+      "scandinavia": "La Scandinavie",
+      "paris": "Paris",
+      "rome": "Rome",
+      "alps": "Les Alpes",
+      "atlantic": "L'Atlantique",
+      "newyork": "New York",
+      "redwoods": "Les arbres géants",
+      "canyon": "Le Grand Canyon"
+    }
   }
 }
