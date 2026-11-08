@@ -59,6 +59,12 @@ export async function loadArt(): Promise<Art> {
 
 const SKY = '#7ec4f2';
 const HOLE = '#14121a';
+/** A thin veil of each stage's evening haze over its scenery (never the
+ *  ground or what stands on it), so the things to jump and catch read
+ *  first. 10%: at 20% the sunset washed out. */
+const HAZE: Record<string, string> = {
+  scandinavia: 'rgba(168, 82, 122, 0.1)',
+};
 const LAYERS = [
   ['far', 0.15],
   ['mid', 0.35],
@@ -146,6 +152,10 @@ function scene(
   for (const [name, factor] of LAYERS) {
     const s = art.get(`${id}/${name}`);
     if (s) tile(ctx, s, dist * factor, GROUND_Y - s.h);
+  }
+  if (HAZE[id]) {
+    ctx.fillStyle = HAZE[id];
+    ctx.fillRect(from, 0, to - from, GROUND_Y);
   }
   const ground = art.get(`${id}/ground`);
   if (ground) tile(ctx, ground, dist, GROUND_Y);
