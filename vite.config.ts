@@ -80,6 +80,8 @@ export default defineConfig({
           '**/assets/recipes/**',
           // Huerta's crop photos and type icons: fetched by the garden page alone.
           '**/huerta/*/*.webp',
+          // The game's pixel art: kept once played (game-art below).
+          '**/assets/game/**',
         ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
@@ -211,6 +213,20 @@ export default defineConfig({
             options: {
               cacheName: 'map-styles',
               cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // The game's pixel art, kept once played, in a cache of its own so
+          // its ~70 small files do not push the recipe photos out of
+          // images-cache.
+          {
+            urlPattern: /\/assets\/game\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'game-art',
+              expiration: {
+                maxEntries: 200,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
             },
           },
           // Static assets caching
@@ -469,14 +485,18 @@ export default defineConfig({
     target: 'es2020',
     rollupOptions: {
       output: {
-        // Recipe photos in a folder of their own, so the precache can leave
-        // them out (globIgnores above).
+        // Recipe photos and the game's art in folders of their own, so the
+        // precache can leave them out (globIgnores above).
         assetFileNames: asset =>
           asset.originalFileNames.some(name =>
             name.includes('src/assets/recipes/')
           )
             ? 'assets/recipes/[name]-[hash][extname]'
-            : 'assets/[name]-[hash][extname]',
+            : asset.originalFileNames.some(name =>
+                  name.includes('src/assets/game/')
+                )
+              ? 'assets/game/[name]-[hash][extname]'
+              : 'assets/[name]-[hash][extname]',
         // Translations in a folder of their own (assets/locales/de-species-…),
         // so the precache can leave them out.
         chunkFileNames: chunk => {

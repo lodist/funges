@@ -378,5 +378,33 @@
     "system": "System",
     "light": "Light",
     "dark": "Dark"
+  },
+  "game": {
+    "title": "Squirrel Run",
+    "play": "Play Squirrel Run",
+    "seoTitle": "Squirrel Run: a pixel-art forest runner",
+    "seoDescription": "Run a red squirrel from Scandinavia to the Grand Canyon. Pick up chanterelles and porcini, jump the traps and catch the golden acorn.",
+    "canvas": "Squirrel Run: the squirrel running through the landscape",
+    "start": "Tap or press Space to start",
+    "hint": "Hold to jump higher. Tap again in the air for a second jump.",
+    "paused": "Paused. Tap to go on.",
+    "over": "Game over: {{score}} points",
+    "reached": "Furthest: {{stage}}",
+    "best": "Best: {{score}} points",
+    "again": "Run again",
+    "share": "Share",
+    "fullscreen": "Full screen",
+    "card": "{{score}} points · {{stage}}",
+    "shareText": "I scored {{score}} points in Squirrel Run ({{stage}}): {{url}}",
+    "stages": {
+      "scandinavia": "Scandinavia",
+      "paris": "Paris",
+      "rome": "Rome",
+      "alps": "The Alps",
+      "atlantic": "The Atlantic",
+      "newyork": "New York",
+      "redwoods": "The giant trees",
+      "canyon": "The Grand Canyon"
+    }
   }
 }

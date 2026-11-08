@@ -90,6 +90,7 @@ import {
   Snail as LucideSnail,
   Snowflake as LucideSnowflake,
   Sprout as LucideSprout,
+  Squirrel as LucideSquirrel,
   Star as LucideStar,
   Sun as LucideSun,
   Sunrise as LucideSunrise,
@@ -234,6 +235,7 @@ export const Shovel = decorativeByDefault(LucideShovel);
 export const Snail = decorativeByDefault(LucideSnail);
 export const Snowflake = decorativeByDefault(LucideSnowflake);
 export const Sprout = decorativeByDefault(LucideSprout);
+export const Squirrel = decorativeByDefault(LucideSquirrel);
 export const Star = decorativeByDefault(LucideStar);
 export const Sun = decorativeByDefault(LucideSun);
 export const Sunrise = decorativeByDefault(LucideSunrise);

@@ -122,6 +122,11 @@ export const APP_PAGES: AppPage[] = [
     description: 'recipes:description',
   },
   {
+    path: '/play/',
+    title: 'common:game.seoTitle',
+    description: 'common:game.seoDescription',
+  },
+  {
     path: '/species/',
     title: 'species:seoTitle',
     description: 'species:description',
