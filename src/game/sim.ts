@@ -20,6 +20,9 @@ export const RIDER = { w: 40, h: 28 };
 export const RIDE_TICKS = 7 * TICKS_PER_SECOND;
 export const SICK_TICKS = 3 * TICKS_PER_SECOND;
 export const POINTS = { common: 10, rare: 50, smash: 25, acorn: 100 };
+export const LIVES = 3;
+/** After a knock, 1.5 s of blinking and passing through things. */
+export const MERCY_TICKS = 90;
 
 const GRAVITY = 0.32;
 const JUMP = 5.6;
@@ -85,6 +88,9 @@ export interface Game {
   wearing: string | null;
   /** The furthest absolute stage reached. */
   furthest: number;
+  lives: number;
+  /** Until this tick the squirrel blinks and passes through things. */
+  mercyUntil: number;
   over: boolean;
 }
 
@@ -124,8 +130,17 @@ export function newGame(seed: number): Game {
     noGapUntil: 0,
     wearing: null,
     furthest: 0,
+    lives: LIVES,
+    mercyUntil: 0,
     over: false,
   };
+}
+
+/** A knock: one life less, then a moment of mercy; none left ends the run. */
+function hurt(g: Game) {
+  g.lives--;
+  if (g.lives <= 0) g.over = true;
+  else g.mercyUntil = g.tick + MERCY_TICKS;
 }
 
 /** mulberry32: integer maths, the same on every engine. */
@@ -173,9 +188,12 @@ export function step(g: Game, input: Input) {
   g.vy -= GRAVITY;
   g.y += g.vy;
   if (g.y <= 0) {
-    const overGap = g.things.some(
-      t => t.kind === 'gap' && t.x <= left && left + box.w <= t.x + t.w
-    );
+    // During mercy the ground holds everywhere: no second fall.
+    const overGap =
+      g.tick >= g.mercyUntil &&
+      g.things.some(
+        t => t.kind === 'gap' && t.x <= left && left + box.w <= t.x + t.w
+      );
     if (!overGap && g.y > -12) {
       const landed = !g.grounded;
       g.y = 0;
@@ -190,14 +208,19 @@ export function step(g: Game, input: Input) {
     } else {
       g.grounded = false;
       if (g.y < -40) {
-        g.over = true;
-        return;
+        hurt(g);
+        if (g.over) return;
+        // Out of the hole with a hop.
+        g.y = 0;
+        g.vy = JUMP;
       }
     }
   }
 
   for (const t of g.things) {
     if (t.hit !== null || t.kind === 'gap') continue;
+    const harmful = t.kind === 'trap' || t.kind === 'agaric';
+    if (harmful && g.tick < g.mercyUntil) continue;
     if (t.x >= left + box.w || left >= t.x + t.w) continue;
     if (t.y >= g.y + box.h || g.y >= t.y + t.h) continue;
     touch(g, t);
@@ -223,7 +246,7 @@ function touch(g: Game, t: Thing) {
     } else if (t.kind === 'agaric') {
       t.hit = g.tick;
       g.sickUntil = g.tick + SICK_TICKS;
-    } else g.over = true;
+    } else hurt(g);
     return;
   }
   t.hit = g.tick;

@@ -1,5 +1,6 @@
 import {
   GROUND_Y,
+  LIVES,
   PLAYER,
   PLAYER_X,
   RIDER,
@@ -214,7 +215,12 @@ function things(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
     const cx = x + t.w / 2;
     const bottom = GROUND_Y - t.y;
     if (t.hit === null) {
-      if (s) sprite(ctx, s, Math.floor(g.tick / 8), cx, bottom);
+      // What can be caught bobs a little, so the eye finds it.
+      const bob =
+        t.kind === 'pickup' || t.kind === 'acorn' || t.kind === 'egg'
+          ? Math.round(Math.sin((g.tick + t.x) / 9) * 1.5)
+          : 0;
+      if (s) sprite(ctx, s, Math.floor(g.tick / 8), cx, bottom + bob);
       else {
         ctx.fillStyle = '#5b4636';
         ctx.fillRect(x, bottom - t.h, t.w, t.h);
@@ -276,6 +282,8 @@ function tinted(s: Sprite, frame: number): Sprite {
 }
 
 function squirrel(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
+  // Knocked: it blinks while it passes through things.
+  if (!g.over && g.tick < g.mercyUntil && Math.floor(g.tick / 4) % 2) return;
   const bottom = GROUND_Y - Math.round(g.y);
   const vehicle = g.ride && art.get(`${g.ride.stage}/${g.ride.art}`);
   if (g.ride && vehicle) {
@@ -383,5 +391,36 @@ export function draw(
     ctx.fillRect(0, 0, VIEW_W, VIEW_H);
   }
   digits(ctx, art, score(g));
+  hearts(ctx, g);
   if (options.debug) hitboxes(ctx, g);
+}
+
+// A heart, 7×6: the lives, top left. UI like the digits, not scenery.
+const HEART = [
+  '.XX.XX.',
+  'XXXXXXX',
+  'XXXXXXX',
+  '.XXXXX.',
+  '..XXX..',
+  '...X...',
+];
+
+function hearts(ctx: CanvasRenderingContext2D, g: Game) {
+  for (let i = 0; i < LIVES; i++) {
+    const left = 6 + i * 10;
+    // A dark outline (the heart drawn 1 px off each way), then the fill.
+    for (const [dx, dy, colour] of [
+      [-1, 0, '#2a1020'],
+      [1, 0, '#2a1020'],
+      [0, -1, '#2a1020'],
+      [0, 1, '#2a1020'],
+      [0, 0, i < g.lives ? '#ff4d6d' : '#5a3048'],
+    ] as const) {
+      ctx.fillStyle = colour;
+      HEART.forEach((row, y) => {
+        for (let x = 0; x < row.length; x++)
+          if (row[x] === 'X') ctx.fillRect(left + x + dx, 6 + y + dy, 1, 1);
+      });
+    }
+  }
 }
