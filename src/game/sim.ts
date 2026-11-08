@@ -91,6 +91,8 @@ export interface Game {
   lives: number;
   /** Until this tick the squirrel blinks and passes through things. */
   mercyUntil: number;
+  /** The tick it last touched down (for the dust; no rule reads it). */
+  landedAt: number;
   over: boolean;
 }
 
@@ -132,6 +134,7 @@ export function newGame(seed: number): Game {
     furthest: 0,
     lives: LIVES,
     mercyUntil: 0,
+    landedAt: -1000,
     over: false,
   };
 }
@@ -196,6 +199,7 @@ export function step(g: Game, input: Input) {
       );
     if (!overGap && g.y > -12) {
       const landed = !g.grounded;
+      if (landed) g.landedAt = g.tick;
       g.y = 0;
       g.vy = 0;
       g.grounded = true;

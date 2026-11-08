@@ -1,6 +1,7 @@
 import {
   GROUND_Y,
   LIVES,
+  MERCY_TICKS,
   PLAYER,
   PLAYER_X,
   RIDER,
@@ -11,6 +12,17 @@ import {
   type Game,
 } from './sim';
 import { STAGES, stageAt } from './stages';
+
+/*
+ * One picture of the game. Everything here is looks only: the sim never sees
+ * it, so this file may use Math.sin and friends.
+ *
+ * The canvas is SCALE times the game's 320×180. The art stays on its 16-bit
+ * grid (each game pixel is SCALE×SCALE canvas pixels), but everything moves
+ * in 1/SCALE steps, so scrolling glides instead of stepping a pixel at a time.
+ */
+export const SCALE = 4;
+const snap = (v: number) => Math.round(v * SCALE) / SCALE;
 
 /** An image with its frames side by side ("run.6.webp": 6 frames). */
 export interface Sprite {
@@ -27,6 +39,13 @@ export interface DrawOptions {
   reducedMotion: boolean;
   /** /play?debug: the hitboxes, for tuning. */
   debug: boolean;
+}
+
+/** Where to draw from: the game blended between its last two ticks, so a 90
+ *  or 120 Hz screen shows the motion between them too. */
+export interface View {
+  dist: number;
+  y: number;
 }
 
 const URLS = import.meta.glob<string>('../assets/game/**/*.webp', {
@@ -58,8 +77,8 @@ export async function loadArt(): Promise<Art> {
   return art;
 }
 
-// Behind everything: shows only at the edge while the sick squirrel's screen
-// sways, so it is the evening dark of every stage.
+// Behind everything: shows only at the edge while the screen sways or
+// shakes, so it is the evening dark of every stage.
 const SKY = '#1a1030';
 const HOLE = '#14121a';
 /** A thin veil of each stage's evening haze over its scenery (never the
@@ -75,11 +94,13 @@ const HAZE: Record<string, string> = {
   redwoods: 'rgba(110, 140, 190, 0.1)',
   canyon: 'rgba(60, 40, 120, 0.1)',
 };
+/** The scrolling layers: their speed against the ground's, and how much of
+ *  the camera's lift they follow (the far sky none, the near trees most). */
 const LAYERS = [
-  ['far', 0.15],
-  ['mid', 0.35],
-  ['near', 0.6],
+  ['mid', 0.35, 0.4],
+  ['near', 0.6, 0.7],
 ] as const;
+const FAR_SPEED = 0.15;
 
 /** How far a pose hangs below the squirrel's box (the jump's tail). */
 const DROP: Record<string, number> = { jump: 16, fall: 4 };
@@ -113,7 +134,28 @@ const SCENERY: Record<string, Scenery[]> = {
   canyon: [{ art: 'condor', at: 0.5, factor: 0.6, bottom: 56 }],
 };
 
+/** What moves in each stage's air: in the sky behind everything, or in the
+ *  air in front of the scenery (still behind what the squirrel meets). */
+const AMBIENT: Record<string, { sky?: Ambient; air?: Ambient }> = {
+  scandinavia: { air: 'motes' },
+  paris: { air: 'leaves' },
+  rome: { sky: 'stars' },
+  alps: { air: 'snow' },
+  atlantic: { sky: 'stars' },
+  newyork: { sky: 'plane' },
+  redwoods: { air: 'fireflies' },
+  canyon: { sky: 'stars' },
+};
+type Ambient = 'motes' | 'leaves' | 'stars' | 'snow' | 'plane' | 'fireflies';
+
 type Place = ReturnType<typeof stageAt>;
+
+/** A fixed pseudo-random number in [0, 1) for n: the same every frame. */
+const hash = (n: number) => {
+  const x = Math.sin(n * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
+};
+const wrap = (v: number, size: number) => ((v % size) + size) % size;
 
 /** Frame `frame` of a sprite, its bottom centre at (cx, bottom). */
 function sprite(
@@ -130,8 +172,8 @@ function sprite(
     0,
     s.w,
     s.h,
-    Math.round(cx - s.w / 2),
-    Math.round(bottom - s.h),
+    snap(cx - s.w / 2),
+    snap(bottom - s.h),
     s.w,
     s.h
   );
@@ -143,38 +185,125 @@ function tile(
   offset: number,
   y: number
 ) {
-  for (let x = -Math.floor(offset % s.w); x < VIEW_W; x += s.w)
+  for (let x = -snap(wrap(offset, s.w)); x < VIEW_W; x += s.w)
     ctx.drawImage(s.img, x, y);
 }
 
-/** One stage's backdrop, between two screen columns. */
-function scene(
+/** The far sky. Where one stage meets the next it blends into the next one
+ *  as the new stage scrolls in, instead of a hard cut. */
+function sky(
+  ctx: CanvasRenderingContext2D,
+  art: Art,
+  a: string,
+  b: string,
+  dist: number,
+  blend: number
+) {
+  for (const [id, alpha] of [
+    [a, 1],
+    [b, blend],
+  ] as const) {
+    const s = art.get(`${id}/far`);
+    if (!s || alpha <= 0) continue;
+    ctx.globalAlpha = alpha;
+    tile(ctx, s, dist * FAR_SPEED, GROUND_Y - s.h);
+  }
+  ctx.globalAlpha = 1;
+}
+
+/** One stage's middle and near layers, haze and ground, between two screen
+ *  columns: these scroll in with the world. */
+function land(
   ctx: CanvasRenderingContext2D,
   art: Art,
   id: string,
   dist: number,
   from: number,
-  to: number
+  to: number,
+  lift: number
 ) {
   ctx.save();
   ctx.beginPath();
-  ctx.rect(from, 0, to - from, VIEW_H);
+  ctx.rect(from, -VIEW_H, to - from, 3 * VIEW_H);
   ctx.clip();
-  for (const [name, factor] of LAYERS) {
+  for (const [name, speed, follow] of LAYERS) {
     const s = art.get(`${id}/${name}`);
-    if (s) tile(ctx, s, dist * factor, GROUND_Y - s.h);
+    if (s) tile(ctx, s, dist * speed, snap(GROUND_Y - s.h + lift * follow));
   }
   if (HAZE[id]) {
     ctx.fillStyle = HAZE[id];
-    ctx.fillRect(from, 0, to - from, GROUND_Y);
+    ctx.fillRect(from, 0, to - from, snap(GROUND_Y + lift));
   }
   const ground = art.get(`${id}/ground`);
-  if (ground) tile(ctx, ground, dist, GROUND_Y);
+  const top = snap(GROUND_Y + lift);
+  if (ground) tile(ctx, ground, dist, top);
   else {
     ctx.fillStyle = '#4a3b2a';
-    ctx.fillRect(from, GROUND_Y, to - from, VIEW_H - GROUND_Y);
+    ctx.fillRect(from, top, to - from, VIEW_H);
   }
   ctx.restore();
+}
+
+function ambient(
+  ctx: CanvasRenderingContext2D,
+  kind: Ambient | undefined,
+  tick: number,
+  dist: number
+) {
+  if (!kind) return;
+  const dot = (x: number, y: number, w: number, h: number, colour: string) => {
+    ctx.fillStyle = colour;
+    ctx.fillRect(snap(x), snap(y), w, h);
+  };
+  if (kind === 'stars') {
+    // A shooting star every few seconds, somewhere high up.
+    const period = 190;
+    const n = Math.floor(tick / period);
+    const age = tick - n * period;
+    if (age > 26) return;
+    const x0 = 60 + hash(n) * 240;
+    const y0 = 8 + hash(n + 0.5) * 36;
+    for (let k = 0; k < 10; k++) {
+      ctx.globalAlpha = (1 - k / 10) * (1 - age / 26);
+      dot(x0 - age * 4 + k * 2, y0 + age * 1.6 - k * 0.8, 1, 1, '#fff6e0');
+    }
+    ctx.globalAlpha = 1;
+    return;
+  }
+  if (kind === 'plane') {
+    // A plane's lights crossing the night far off, blinking.
+    const x = wrap(tick * 0.18, VIEW_W + 60) - 30;
+    dot(x, 34, 1, 1, '#f4f0ff');
+    if (Math.floor(tick / 30) % 2) dot(x - 2, 34, 1, 1, '#ff5a5a');
+    return;
+  }
+  const count = { motes: 14, leaves: 10, snow: 40, fireflies: 18 }[kind];
+  for (let i = 0; i < count; i++) {
+    const r = hash(i + 1);
+    const drift = Math.sin(tick / 40 + i) * 4;
+    if (kind === 'snow') {
+      const x = wrap(r * 400 - dist * 0.5 + drift, VIEW_W + 20) - 10;
+      const y =
+        wrap(hash(i + 7) * 180 + tick * (0.25 + hash(i + 3) * 0.35), 190) - 10;
+      dot(x, y, 1, 1, 'rgba(255, 255, 255, 0.85)');
+    } else if (kind === 'leaves') {
+      const x =
+        wrap(r * 400 - dist * 0.7 - tick * 0.4 + drift * 2, VIEW_W + 20) - 10;
+      const y =
+        wrap(hash(i + 5) * 180 + tick * (0.3 + hash(i + 2) * 0.3), 170) - 10;
+      dot(x, y, 2, 1, i % 2 ? '#e8954a' : '#c9663a');
+    } else {
+      // Fireflies blink; the golden motes of a northern summer just glow.
+      const x = wrap(r * 400 - dist * 0.45 + drift * 1.5, VIEW_W + 20) - 10;
+      const y = 50 + hash(i + 9) * 90 + Math.sin(tick / 37 + i * 2) * 5;
+      ctx.globalAlpha =
+        kind === 'fireflies'
+          ? 0.5 + 0.5 * Math.sin(tick / 12 + i * 3)
+          : 0.45 + 0.25 * Math.sin(tick / 30 + i);
+      dot(x, y, 1, 1, kind === 'fireflies' ? '#ffe27a' : '#ffd9a0');
+      ctx.globalAlpha = 1;
+    }
+  }
 }
 
 function scenery(
@@ -182,9 +311,10 @@ function scenery(
   g: Game,
   art: Art,
   places: Place[],
-  front: boolean
+  front: boolean,
+  dist: number
 ) {
-  const left = g.dist + PLAYER_X;
+  const left = dist + PLAYER_X;
   for (const place of places) {
     const stage = STAGES[place.index];
     for (const item of SCENERY[stage.id] ?? []) {
@@ -193,7 +323,7 @@ function scenery(
       const x = place.start + stage.length * item.at;
       if (item.span !== undefined) {
         if (left >= x && left <= x + item.span)
-          sprite(ctx, s, Math.floor(g.dist / 7), PLAYER_X - 18, item.bottom);
+          sprite(ctx, s, Math.floor(dist / 7), PLAYER_X - 18, item.bottom);
         continue;
       }
       const cx = PLAYER_X + (x - left) * item.factor;
@@ -202,38 +332,103 @@ function scenery(
   }
 }
 
-function things(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
+function things(
+  ctx: CanvasRenderingContext2D,
+  g: Game,
+  art: Art,
+  dist: number
+) {
+  const numbers = art.get('common/digits');
   for (const t of g.things) {
-    const x = Math.floor(t.x - g.dist);
+    const x = t.x - dist;
     if (x > VIEW_W || x + t.w + 32 < 0) continue;
     if (t.kind === 'gap') {
       ctx.fillStyle = HOLE;
-      ctx.fillRect(x, GROUND_Y, t.w, VIEW_H - GROUND_Y);
+      ctx.fillRect(snap(x), GROUND_Y, t.w, VIEW_H);
       continue;
     }
     const s = art.get(`${t.stage}/${t.art}`);
     const cx = x + t.w / 2;
     const bottom = GROUND_Y - t.y;
+    const catchable =
+      t.kind === 'pickup' || t.kind === 'acorn' || t.kind === 'egg';
     if (t.hit === null) {
       // What can be caught bobs a little, so the eye finds it.
-      const bob =
-        t.kind === 'pickup' || t.kind === 'acorn' || t.kind === 'egg'
-          ? Math.round(Math.sin((g.tick + t.x) / 9) * 1.5)
-          : 0;
+      const bob = catchable ? Math.sin((g.tick + t.x) / 9) * 1.5 : 0;
       if (s) sprite(ctx, s, Math.floor(g.tick / 8), cx, bottom + bob);
       else {
         ctx.fillStyle = '#5b4636';
-        ctx.fillRect(x, bottom - t.h, t.w, t.h);
+        ctx.fillRect(snap(x), bottom - t.h, t.w, t.h);
       }
       continue;
     }
-    // Taken pickups are gone; smashed things fly off for a moment.
     const age = g.tick - t.hit;
-    if (!s || age > 40 || (t.kind !== 'trap' && t.kind !== 'agaric')) continue;
+    if (catchable) {
+      sparkle(ctx, cx, bottom - t.h / 2, age);
+      if (numbers && t.points)
+        points(ctx, numbers, t.points, cx, bottom - t.h - age * 0.5, age);
+      continue;
+    }
+    // Smashed things fly off for a moment; animals leap aside.
+    if (!s || age > 40) continue;
     if (t.animal)
       sprite(ctx, s, 0, cx + age * 2, bottom - age * 3 + age * age * 0.12);
     else burst(ctx, s, cx, bottom, age);
   }
+}
+
+/** A caught thing's flash: a four-pointed star that opens and fades. */
+function sparkle(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  age: number
+) {
+  if (age > 14) return;
+  const r = 2 + age * 0.6;
+  ctx.globalAlpha = 1 - age / 14;
+  ctx.fillStyle = '#fff3c4';
+  ctx.fillRect(snap(cx - r), snap(cy), 2 * r, 1);
+  ctx.fillRect(snap(cx), snap(cy - r), 1, 2 * r);
+  ctx.fillRect(snap(cx - 1), snap(cy - 1), 3, 3);
+  ctx.globalAlpha = 1;
+}
+
+/** "+10" rising from a caught thing, in the score's digits at half size. */
+function points(
+  ctx: CanvasRenderingContext2D,
+  s: Sprite,
+  value: number,
+  cx: number,
+  y: number,
+  age: number
+) {
+  if (age > 30) return;
+  const text = String(value);
+  const w = s.w / 2;
+  ctx.globalAlpha = age < 20 ? 1 : 1 - (age - 20) / 10;
+  let x = cx - ((text.length + 1) * (w + 0.5)) / 2;
+  // The plus sign, from the 1's stroke turned on its side would be fussy:
+  // two small bars read as + at this size.
+  ctx.fillStyle = '#fff6e0';
+  ctx.fillRect(snap(x), snap(y - s.h / 4 - 0.5), w - 1, 1);
+  ctx.fillRect(snap(x + w / 2 - 1), snap(y - s.h / 2 + 0.5), 1, s.h / 2 - 1);
+  x += w + 0.5;
+  for (const ch of text) {
+    ctx.drawImage(
+      s.img,
+      Number(ch) * s.w,
+      0,
+      s.w,
+      s.h,
+      snap(x),
+      snap(y - s.h / 2),
+      w,
+      s.h / 2
+    );
+    x += w + 0.5;
+  }
+  ctx.globalAlpha = 1;
 }
 
 /** A smashed thing: its four quarters fly apart. */
@@ -257,8 +452,8 @@ function burst(
       sy,
       hw,
       hh,
-      Math.round(cx - hw + sx + dx),
-      Math.round(bottom - s.h + sy + dy),
+      snap(cx - hw + sx + dx),
+      snap(bottom - s.h + sy + dy),
       hw,
       hh
     );
@@ -281,10 +476,31 @@ function tinted(s: Sprite, frame: number): Sprite {
   return { img: tintCanvas, frames: 1, w: s.w, h: s.h };
 }
 
-function squirrel(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
+function squirrel(
+  ctx: CanvasRenderingContext2D,
+  g: Game,
+  art: Art,
+  view: View
+) {
+  const bottom = GROUND_Y - view.y;
+  // Dust where it touched down, whatever it is riding.
+  const since = g.tick - g.landedAt;
+  if (g.grounded && since < 12) {
+    ctx.fillStyle = '#efe4d0';
+    for (const k of [-1, 0, 1]) {
+      ctx.globalAlpha = 0.7 * (1 - since / 12);
+      const r = 1 + since * 0.15;
+      ctx.fillRect(
+        snap(PLAYER_X + 9 + k * (4 + since * 0.8) - r),
+        snap(GROUND_Y - 1 - since * 0.25 - r),
+        2 * r,
+        2 * r
+      );
+    }
+    ctx.globalAlpha = 1;
+  }
   // Knocked: it blinks while it passes through things.
   if (!g.over && g.tick < g.mercyUntil && Math.floor(g.tick / 4) % 2) return;
-  const bottom = GROUND_Y - Math.round(g.y);
   const vehicle = g.ride && art.get(`${g.ride.stage}/${g.ride.art}`);
   if (g.ride && vehicle) {
     // The last two seconds blink, as the ride wears off.
@@ -314,19 +530,31 @@ function squirrel(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
   const cx = PLAYER_X + PLAYER.w / 2 - 5;
   if (!s) {
     ctx.fillStyle = '#c4622d';
-    ctx.fillRect(PLAYER_X, bottom - PLAYER.h, PLAYER.w, PLAYER.h);
+    ctx.fillRect(PLAYER_X, snap(bottom - PLAYER.h), PLAYER.w, PLAYER.h);
     return;
   }
   const frame =
-    pose === 'run' ? Math.floor(g.dist / 7) : Math.floor(g.tick / 5);
+    pose === 'run' ? Math.floor(view.dist / 7) : Math.floor(g.tick / 5);
   const feet = bottom + (DROP[pose] ?? 0);
   if (g.tick < g.sickUntil) sprite(ctx, tinted(s, frame), 0, cx, feet);
   else sprite(ctx, s, frame, cx, feet);
-  // The beret sits between the ears: 7 px ahead of the sprite's middle and
+  // The beret sits between the ears: 8 px ahead of the sprite's middle and
   // just under the ear tips in every pose. Not while curled up or crashed.
   const hat = g.wearing && art.get(`paris/${g.wearing}`);
   if (hat && pose !== 'spin' && pose !== 'crash')
     sprite(ctx, hat, 0, cx + 8, feet - s.h + (pose === 'jump' ? 9 : 12));
+}
+
+/** Streaks rushing past when the run is fast. */
+function speedLines(ctx: CanvasRenderingContext2D, g: Game) {
+  const count = Math.min(10, Math.floor((g.speed - 3.1) * 20));
+  ctx.fillStyle = 'rgba(255, 250, 240, 0.22)';
+  for (let i = 0; i < count; i++) {
+    const lane = Math.floor(g.tick / 7) + i * 13;
+    const y = 18 + hash(lane) * 110;
+    const x = VIEW_W - wrap(g.tick * 9 + hash(i + 50) * VIEW_W, VIEW_W + 40);
+    ctx.fillRect(snap(x), snap(y), 14, 1);
+  }
 }
 
 function digits(ctx: CanvasRenderingContext2D, art: Art, value: number) {
@@ -344,58 +572,6 @@ function digits(ctx: CanvasRenderingContext2D, art: Art, value: number) {
     ctx.drawImage(s.img, Number(ch) * s.w, 0, s.w, s.h, x, 6, s.w, s.h);
     x += s.w + 1;
   }
-}
-
-function hitboxes(ctx: CanvasRenderingContext2D, g: Game) {
-  const box = g.ride ? RIDER : PLAYER;
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = '#ff0';
-  ctx.strokeRect(PLAYER_X + 0.5, GROUND_Y - g.y - box.h + 0.5, box.w, box.h);
-  ctx.strokeStyle = '#f0f';
-  for (const t of g.things)
-    if (t.hit === null)
-      ctx.strokeRect(
-        Math.floor(t.x - g.dist) + 0.5,
-        GROUND_Y - t.y - t.h + 0.5,
-        t.w,
-        Math.max(t.h, 1)
-      );
-}
-
-/** One picture of the game. Everything here is looks only: the sim never
- *  sees it, so the sway may use Math.sin. */
-export function draw(
-  ctx: CanvasRenderingContext2D,
-  g: Game,
-  art: Art,
-  options: DrawOptions
-) {
-  ctx.imageSmoothingEnabled = false;
-  ctx.fillStyle = SKY;
-  ctx.fillRect(0, 0, VIEW_W, VIEW_H);
-  const sick = g.tick < g.sickUntil;
-  ctx.save();
-  if (sick && !options.reducedMotion)
-    ctx.translate(Math.round(Math.sin(g.tick / 5) * 3), 0);
-  // Where one stage meets the next, the new one wipes in with the ground.
-  const a = stageAt(g.dist);
-  const b = stageAt(g.dist + VIEW_W);
-  const seam = b.start > a.start ? Math.round(b.start - g.dist) : VIEW_W;
-  scene(ctx, art, STAGES[a.index].id, g.dist, 0, seam);
-  if (seam < VIEW_W) scene(ctx, art, STAGES[b.index].id, g.dist, seam, VIEW_W);
-  const places = seam < VIEW_W ? [a, b] : [a];
-  scenery(ctx, g, art, places, false);
-  things(ctx, g, art);
-  squirrel(ctx, g, art);
-  scenery(ctx, g, art, places, true);
-  ctx.restore();
-  if (sick && options.reducedMotion) {
-    ctx.fillStyle = 'rgba(90, 190, 60, 0.18)';
-    ctx.fillRect(0, 0, VIEW_W, VIEW_H);
-  }
-  digits(ctx, art, score(g));
-  hearts(ctx, g);
-  if (options.debug) hitboxes(ctx, g);
 }
 
 // A heart, 7×6: the lives, top left. UI like the digits, not scenery.
@@ -426,4 +602,92 @@ function hearts(ctx: CanvasRenderingContext2D, g: Game) {
       });
     }
   }
+}
+
+function hitboxes(ctx: CanvasRenderingContext2D, g: Game, view: View) {
+  const box = g.ride ? RIDER : PLAYER;
+  ctx.lineWidth = 1 / SCALE;
+  ctx.strokeStyle = '#ff0';
+  ctx.strokeRect(PLAYER_X, GROUND_Y - view.y - box.h, box.w, box.h);
+  ctx.strokeStyle = '#f0f';
+  for (const t of g.things)
+    if (t.hit === null)
+      ctx.strokeRect(
+        t.x - view.dist,
+        GROUND_Y - t.y - t.h,
+        t.w,
+        Math.max(t.h, 1)
+      );
+}
+
+export function draw(
+  ctx: CanvasRenderingContext2D,
+  g: Game,
+  art: Art,
+  options: DrawOptions,
+  view: View = { dist: g.dist, y: g.y }
+) {
+  const { dist } = view;
+  const calm = options.reducedMotion;
+  ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
+  ctx.imageSmoothingEnabled = false;
+  ctx.fillStyle = SKY;
+  ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+
+  // A smash or a knock shakes the screen for a moment.
+  let smashed = -1000;
+  for (const t of g.things)
+    if (t.hit !== null && (t.kind === 'trap' || t.kind === 'agaric'))
+      smashed = Math.max(smashed, t.hit);
+  const knocked = g.mercyUntil > 0 ? g.mercyUntil - MERCY_TICKS : -1000;
+  const shaking = Math.min(g.tick - smashed, g.tick - knocked) < 8;
+  const sick = g.tick < g.sickUntil;
+  ctx.save();
+  if (!calm && shaking)
+    ctx.translate(((g.tick % 3) - 1) * 1.5, (((g.tick + 1) % 3) - 1) * 1);
+  if (sick && !calm) ctx.translate(Math.sin(g.tick / 5) * 3, 0);
+
+  // The camera rises a little with a high jump and settles back.
+  const lift = calm ? 0 : Math.max(0, (view.y - 18) * 0.35);
+
+  const a = stageAt(dist);
+  const b = stageAt(dist + VIEW_W);
+  const seam = b.start > a.start ? b.start - dist : VIEW_W;
+  const idA = STAGES[a.index].id;
+  const idB = STAGES[b.index].id;
+  sky(ctx, art, idA, idB, dist, seam < VIEW_W ? 1 - seam / VIEW_W : 0);
+  if (!calm) ambient(ctx, AMBIENT[idA]?.sky, g.tick, dist);
+  land(ctx, art, idA, dist, 0, snap(seam), lift);
+  if (seam < VIEW_W) land(ctx, art, idB, dist, snap(seam), VIEW_W, lift);
+
+  ctx.save();
+  ctx.translate(0, snap(lift));
+  const places = seam < VIEW_W ? [a, b] : [a];
+  scenery(ctx, g, art, places, false, dist);
+  if (!calm) {
+    ctx.save();
+    ctx.translate(0, snap(-lift * 0.3));
+    ambient(ctx, AMBIENT[idA]?.air, g.tick, dist);
+    ctx.restore();
+  }
+  things(ctx, g, art, dist);
+  squirrel(ctx, g, art, view);
+  scenery(ctx, g, art, places, true, dist);
+  if (options.debug) hitboxes(ctx, g, view);
+  ctx.restore();
+  ctx.restore();
+
+  if (sick && calm) {
+    ctx.fillStyle = 'rgba(90, 190, 60, 0.18)';
+    ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+  }
+  // A knock flashes red.
+  const sinceKnock = g.tick - knocked;
+  if (sinceKnock < 12) {
+    ctx.fillStyle = `rgba(255, 40, 70, ${0.3 * (1 - sinceKnock / 12)})`;
+    ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+  }
+  if (!calm && g.speed > 3.1) speedLines(ctx, g);
+  digits(ctx, art, score(g));
+  hearts(ctx, g);
 }
