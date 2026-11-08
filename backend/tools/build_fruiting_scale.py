@@ -50,7 +50,7 @@ def main():
     fp.load_dotenv(root / ".env.secret")
     fit = json.loads(Path(r2.generated(fp.FRUITING_FIT_PATH)).read_text(encoding="utf-8"))["models"]
     gbm = json.loads(Path(r2.generated(fp.FRUITING_GBM_PATH)).read_text(encoding="utf-8"))["models"]
-    seasons = json.loads(fp.LOCAL_SEASON_PATH.read_text(encoding="utf-8"))["continents"]
+    seasons = json.loads(Path(r2.generated(fp.LOCAL_SEASON_PATH)).read_text(encoding="utf-8"))["continents"]
     local = {region: set(species) for entry in seasons.values() for region, species in entry.get("regions", {}).items()}
     texts = {}
     for region in fp.FRUITING_GBM_REGIONS:

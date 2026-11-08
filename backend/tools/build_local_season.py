@@ -725,6 +725,7 @@ def run_export(cache, verdict_csv):
     import time
     import pandas as pd
     import forecast_pipeline as fp
+    import r2
     v = pd.read_csv(verdict_csv)
     variant = parse_variant(v.variant.iloc[0])
     shipped = v[v.ships]
@@ -757,6 +758,7 @@ def run_export(cache, verdict_csv):
         print(f"uploaded {key}: {len(species)} species, {len(data) / 1e6:.1f} MB", flush=True)
     (ROOT / "backend" / "generated" / "local_season.json").write_text(
         json.dumps(spec, indent=1) + "\n", encoding="utf-8", newline="\n")
+    r2.ship(ROOT / "backend" / "generated" / "local_season.json")
 
 
 def main():

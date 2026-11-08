@@ -142,7 +142,7 @@ def build(grids, counts, regions, bounds=None):
 
 def load_grids(grid_dir):
     """The shipped local season grids, named by local_season.json, from R2 or `grid_dir`."""
-    spec = json.loads((GENERATED / "local_season.json").read_text(encoding="utf-8"))
+    spec = json.loads(r2.generated(GENERATED / "local_season.json").read_text(encoding="utf-8"))
     grids = {}
     for code, entry in spec["continents"].items():
         data = (Path(grid_dir) / Path(entry["file"]).name).read_bytes() if grid_dir else r2.fetch(entry["file"])

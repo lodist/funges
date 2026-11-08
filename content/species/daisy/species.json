@@ -121,31 +121,6 @@
       "NE": {
         "available": true,
         "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
-        "scoring": {
-          "optimal_temp": 10,
-          "temp_sigma": 6,
-          "min_temp": 0,
-          "max_temp": 30,
-          "optimal_alt": 50,
-          "alt_sigma": 800,
-          "optimal_humidity": 80,
-          "humidity_sigma": 17,
-          "optimal_pH": 6.0,
-          "pH_sigma_near": 1.0,
-          "pH_sigma_far": 1.0,
-          "pH_range_near": [4.5, 7.5],
-          "optimal_soil_temp": 9,
-          "soil_temp_sigma": 6,
-          "min_cumulative_rain": 12,
-          "rain_weight": 0,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "wind_sensitive": false,
-          "season_months": [3, 4, 5, 6],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/3117424",
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
@@ -156,32 +131,6 @@
       "SE": {
         "available": true,
         "landCover": [311, 312, 313, 321, 322, 323, 324, 333],
-        "scoring": {
-          "optimal_temp": 11,
-          "temp_sigma": 6,
-          "min_temp": 0,
-          "max_temp": 30,
-          "optimal_alt": 200,
-          "alt_sigma": 800,
-          "optimal_humidity": 60,
-          "humidity_sigma": 17,
-          "optimal_pH": 6.3,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.8, 7.8],
-          "optimal_soil_temp": 10,
-          "soil_temp_sigma": 6,
-          "min_cumulative_rain": 9,
-          "rain_weight": 0,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "wind_sensitive": false,
-          "season_months": [2, 3, 4, 5],
-          "water_relevance": false,
-          "sea_relevance": false,
-          "ph_weight": 0
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/3117424",
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
@@ -192,30 +141,6 @@
       "USE": {
         "available": true,
         "landCover": [31, 41, 42, 43, 52, 71],
-        "scoring": {
-          "optimal_temp": 7,
-          "temp_sigma": 9,
-          "min_temp": 0,
-          "max_temp": 30,
-          "optimal_alt": 200,
-          "alt_sigma": 800,
-          "optimal_humidity": 70,
-          "humidity_sigma": 17,
-          "optimal_pH": 5.8,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.3, 7.3],
-          "optimal_soil_temp": 10,
-          "soil_temp_sigma": 6,
-          "min_cumulative_rain": 44,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "wind_sensitive": false,
-          "season_months": [4, 5, 6],
-          "water_relevance": false,
-          "sea_relevance": false
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/3117424",
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
@@ -226,32 +151,6 @@
       "USW": {
         "available": true,
         "landCover": [31, 41, 42, 43, 52, 71],
-        "scoring": {
-          "optimal_temp": 14,
-          "temp_sigma": 6,
-          "min_temp": 0,
-          "max_temp": 30,
-          "optimal_alt": 150,
-          "alt_sigma": 800,
-          "optimal_humidity": 80,
-          "humidity_sigma": 17,
-          "optimal_pH": 5.7,
-          "pH_sigma_near": 1.5,
-          "pH_sigma_far": 1.5,
-          "pH_range_near": [4.2, 7.2],
-          "optimal_soil_temp": 13,
-          "soil_temp_sigma": 6,
-          "min_cumulative_rain": 2,
-          "rain_weight": 0,
-          "weather_preference": {
-            "rain_first": false
-          },
-          "wind_sensitive": false,
-          "season_months": [2, 3, 4, 5, 6],
-          "water_relevance": false,
-          "sea_relevance": false,
-          "temp_weight": 0
-        },
         "scoringReferences": [
           "https://www.gbif.org/species/3117424",
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"

@@ -59,14 +59,12 @@ dist-offline/
 # ONNX export artifacts (the shipped model lives on R2, not in git)
 backend/tools/model_artifacts/
 
-# Built and fitted files live on R2 (backend/r2.py downloads them on use); only
-# what the site reads and the pointer files stay in git.
+# Built and fitted files, and the species' scoring parameters, live on R2
+# (backend/r2.py downloads them on use); only the hash list and the species
+# registry stay in git.
 backend/generated/*
 !backend/generated/on_r2.json
 !backend/generated/species_registry.json
-!backend/generated/habitat_factor.json
-!backend/generated/local_season.json
-!backend/generated/phenology.json
 
 
 # Playwright failure artifacts
