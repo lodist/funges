@@ -518,22 +518,9 @@ interface Scenery {
   factor: number;
   /** Its bottom edge on the screen. */
   bottom: number;
-  /** Runs beside the squirrel for this many world px instead. */
-  span?: number;
-  /** Drawn over the squirrel (the drive-through tree). */
-  front?: true;
 }
 
 const SCENERY: Record<string, Scenery[]> = {
-  rome: [{ art: 'trevi', at: 0.6, factor: 1, bottom: GROUND_Y }],
-  alps: [
-    { art: 'stbernard', at: 0.4, factor: 1, bottom: GROUND_Y, span: 1200 },
-  ],
-  // Out on the moonlit sea, far off.
-  atlantic: [{ art: 'whale', at: 0.5, factor: 0.12, bottom: 190 }],
-  redwoods: [
-    { art: 'tunnel', at: 0.5, factor: 1, bottom: GROUND_Y, front: true },
-  ],
   canyon: [{ art: 'condor', at: 0.5, factor: 0.6, bottom: 84 }],
 };
 
@@ -756,7 +743,6 @@ function scenery(
   g: Game,
   art: Art,
   places: Place[],
-  front: boolean,
   dist: number
 ) {
   const left = dist + PLAYER_X;
@@ -764,13 +750,8 @@ function scenery(
     const stage = STAGES[place.index];
     for (const item of SCENERY[stage.id] ?? []) {
       const s = art.get(`${stage.id}/${item.art}`);
-      if (!s || !!item.front !== front) continue;
+      if (!s) continue;
       const x = place.start + stage.length * item.at;
-      if (item.span !== undefined) {
-        if (left >= x && left <= x + item.span)
-          sprite(ctx, s, Math.floor(dist / 7), PLAYER_X - 18, item.bottom);
-        continue;
-      }
       const cx = PLAYER_X + (x - left) * item.factor;
       sprite(ctx, s, Math.floor(g.tick / 10), cx, item.bottom);
     }
@@ -1138,7 +1119,7 @@ export function draw(
   ctx.save();
   ctx.translate(0, snap(lift));
   const places = b.start > a.start ? [a, b] : [a];
-  scenery(ctx, g, art, places, false, dist);
+  scenery(ctx, g, art, places, dist);
   if (!calm) {
     ctx.save();
     ctx.translate(0, snap(-lift * 0.3));
@@ -1147,7 +1128,6 @@ export function draw(
   }
   things(ctx, g, art, dist);
   squirrel(ctx, g, art, view);
-  scenery(ctx, g, art, places, true, dist);
   if (options.debug) hitboxes(ctx, g, view);
   ctx.restore();
   ctx.restore();
