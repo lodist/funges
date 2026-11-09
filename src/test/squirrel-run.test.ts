@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import source from '@/game/sim.ts?raw';
 import { LAP, STAGES, stageAt } from '@/game/stages';
 import {
+  EGG_Y,
   LIVES,
   PLAYER,
   PLAYER_X,
@@ -21,6 +22,7 @@ import {
 const idle = { press: false, release: false };
 const press = { press: true, release: false };
 const release = { press: false, release: true };
+const slide = { press: false, release: false, slide: true };
 
 /** A game where nothing comes on its own: one thing at a time. */
 function empty(seed = 1): Game {
@@ -183,6 +185,47 @@ describe('things on the way', () => {
     run(whole, 60);
     expect(whole.lives).toBe(LIVES);
     expect(whole.bonus).toBe(POINTS.egg);
+  });
+
+  it('an easter egg hangs where only a second jump near the top reaches', () => {
+    // The highest the top of the squirrel gets: one held jump, and a second
+    // one on step `second` if given.
+    const top = (second?: number) => {
+      const g = empty();
+      step(g, press);
+      let best = 0;
+      for (let i = 0; i < 80; i++) {
+        step(g, i === second ? press : idle);
+        best = Math.max(best, g.y + PLAYER.h);
+      }
+      return best;
+    };
+    expect(top()).toBeLessThan(EGG_Y);
+    expect(top(16)).toBeGreaterThan(EGG_Y + 12);
+  });
+
+  it('a slide passes under a low flyer that stops a squirrel standing up', () => {
+    const pigeon = { art: 'pigeon', y: 8, w: 14, h: 10, animal: true };
+    const standing = empty();
+    place(standing, pigeon);
+    run(standing, 40);
+    expect(standing.lives).toBe(LIVES - 1);
+
+    const sliding = empty();
+    place(sliding, pigeon);
+    step(sliding, slide);
+    run(sliding, 30);
+    expect(sliding.lives).toBe(LIVES);
+  });
+
+  it('a slide asked for in the air dives to the ground, then slides', () => {
+    const g = empty();
+    step(g, press);
+    run(g, 10);
+    step(g, slide);
+    run(g, 12);
+    expect(g.grounded).toBe(true);
+    expect(g.tick).toBeLessThan(g.slideUntil);
   });
 
   it('every stage hides one easter egg', () => {

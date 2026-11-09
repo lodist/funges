@@ -10,6 +10,7 @@ import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { draw, loadArt, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
+import { Pause, Play } from '@/lib/icons';
 import {
   newGame,
   RIDE_TICKS,
@@ -26,6 +27,13 @@ import styles from './PlayPage.module.scss';
 
 const TICK_MS = 1000 / TICKS_PER_SECOND;
 const JUMP_KEYS = new Set(['Space', 'ArrowUp', 'KeyW']);
+const SLIDE_KEYS = new Set(['ArrowDown', 'KeyS']);
+const PAUSE_KEYS = new Set(['KeyP', 'Escape']);
+/** A finger moving this far down (px), this soon after touching (ms), slides. */
+const SWIPE = 28;
+const SWIPE_MS = 300;
+/** The run's end (the slide to a stop) plays this long before the result, ms. */
+const ENDING = 1100;
 const BEST = 'squirrel-best';
 
 /** The best run on this device: its score, how far it got and the run
@@ -60,8 +68,9 @@ export default function PlayPage() {
   const areaRef = useRef<HTMLDivElement>(null);
   const art = useRef<Art>(new Map());
   const game = useRef<Game>(newGame(0));
-  const run = useRef<Run>({ seed: 0, presses: [], releases: [] });
-  const inputs = useRef<('press' | 'release')[]>([]);
+  const run = useRef<Run>({ seed: 0, presses: [], releases: [], slides: [] });
+  const inputs = useRef<('press' | 'release' | 'slide')[]>([]);
+  const swipe = useRef<{ y: number; at: number } | null>(null);
   const phaseNow = useRef<Phase>('loading');
   const overAt = useRef(0);
   const [phase, setPhase] = useState<Phase>('loading');
@@ -71,9 +80,9 @@ export default function PlayPage() {
     const query = new URLSearchParams(window.location.search);
     return {
       debug: query.has('debug'),
-      // /play?at=rome starts at a stage, and ?ride on the stage's ride, for
-      // reviewing their art. Such a run cannot be replayed, so it is never
-      // kept as the best.
+      // /play?at=rome starts two screens before a stage, so the change into
+      // it plays first, and ?ride on the stage's ride: for reviewing their
+      // art. Such a run cannot be replayed, so it is never kept as the best.
       at: STAGES.findIndex(s => s.id === query.get('at')),
       ride: query.has('ride'),
       reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -143,7 +152,9 @@ export default function PlayPage() {
     game.current = newGame(seed);
     if (options.at > 0) {
       const g = game.current;
-      g.dist = STAGES.slice(0, options.at).reduce((n, s) => n + s.length, 0);
+      g.dist =
+        STAGES.slice(0, options.at).reduce((n, s) => n + s.length, 0) -
+        2 * VIEW_W;
       g.nextAt = g.dist + VIEW_W + 160;
       g.furthest = options.at;
     }
@@ -154,7 +165,7 @@ export default function PlayPage() {
         art: stage.ride,
         until: RIDE_TICKS,
       };
-    run.current = { seed, presses: [], releases: [] };
+    run.current = { seed, presses: [], releases: [], slides: [] };
     inputs.current = [];
     setLast(undefined);
     goTo('playing');
@@ -174,6 +185,15 @@ export default function PlayPage() {
     if (phaseNow.current === 'playing') inputs.current.push('release');
   }, []);
 
+  const slide = useCallback(() => {
+    if (phaseNow.current === 'playing') inputs.current.push('slide');
+  }, []);
+
+  const togglePause = useCallback(() => {
+    if (phaseNow.current === 'playing') goTo('paused');
+    else if (phaseNow.current === 'paused') goTo('playing');
+  }, [goTo]);
+
   // The loop: as many fixed ticks as time has passed, then one picture.
   useEffect(() => {
     if (phase !== 'playing') return;
@@ -181,6 +201,7 @@ export default function PlayPage() {
     let then = performance.now();
     let spare = 0;
     let before: View = { dist: game.current.dist, y: game.current.y };
+    let endedAt = -1;
     const loop = (now: number) => {
       // A stalled tab is paused, not fast-forwarded.
       spare += Math.min(now - then, 100);
@@ -189,19 +210,29 @@ export default function PlayPage() {
       while (spare >= TICK_MS && !g.over) {
         spare -= TICK_MS;
         const input = inputs.current.shift();
-        if (input === 'press') run.current.presses.push(g.tick + 1);
-        if (input === 'release') run.current.releases.push(g.tick + 1);
+        const tick = g.tick + 1;
+        if (input === 'press') run.current.presses.push(tick);
+        if (input === 'release') run.current.releases.push(tick);
+        if (input === 'slide') run.current.slides?.push(tick);
         before = { dist: g.dist, y: g.y };
-        step(g, { press: input === 'press', release: input === 'release' });
+        step(g, {
+          press: input === 'press',
+          release: input === 'release',
+          slide: input === 'slide',
+        });
       }
+      if (g.over && endedAt < 0) endedAt = now;
+      const ended = g.over ? now - endedAt : undefined;
       // Drawn between the last two ticks, by how far time has run into the
       // next one: smooth on 90 and 120 Hz screens too.
       const blend = g.over ? 1 : spare / TICK_MS;
       paint({
         dist: before.dist + (g.dist - before.dist) * blend,
         y: before.y + (g.y - before.y) * blend,
+        ended,
       });
-      if (!g.over) {
+      // The run's end plays out before the result shows.
+      if (ended === undefined || ended < (options.reducedMotion ? 0 : ENDING)) {
         frame = requestAnimationFrame(loop);
         return;
       }
@@ -232,7 +263,13 @@ export default function PlayPage() {
 
   useEffect(() => {
     const down = (event: KeyboardEvent) => {
-      if (!JUMP_KEYS.has(event.code) || event.repeat) return;
+      if (event.repeat) return;
+      if (PAUSE_KEYS.has(event.code)) {
+        togglePause();
+        return;
+      }
+      const jump = JUMP_KEYS.has(event.code);
+      if (!jump && !SLIDE_KEYS.has(event.code)) return;
       // Space on a focused button presses the button.
       if (
         event.target instanceof HTMLElement &&
@@ -240,7 +277,8 @@ export default function PlayPage() {
       )
         return;
       event.preventDefault();
-      press();
+      if (jump) press();
+      else slide();
     };
     const up = (event: KeyboardEvent) => {
       if (JUMP_KEYS.has(event.code)) release();
@@ -251,7 +289,7 @@ export default function PlayPage() {
       window.removeEventListener('keydown', down);
       window.removeEventListener('keyup', up);
     };
-  }, [press, release]);
+  }, [press, release, slide, togglePause]);
 
   const share = () => {
     const canvas = canvasRef.current;
@@ -296,9 +334,23 @@ export default function PlayPage() {
           ref={areaRef}
           className={styles.area}
           onPointerDown={event => {
-            if (event.button === 0) press();
+            if (event.button !== 0) return;
+            swipe.current = { y: event.clientY, at: event.timeStamp };
+            press();
           }}
-          onPointerUp={release}
+          // A swipe down slides (in the air: dives, then slides).
+          onPointerMove={event => {
+            const from = swipe.current;
+            if (!from || event.timeStamp - from.at > SWIPE_MS) return;
+            if (event.clientY - from.y > SWIPE) {
+              swipe.current = null;
+              slide();
+            }
+          }}
+          onPointerUp={() => {
+            swipe.current = null;
+            release();
+          }}
           onPointerCancel={release}
           onContextMenu={event => event.preventDefault()}
         >
@@ -311,6 +363,19 @@ export default function PlayPage() {
               role='img'
               aria-label={t('game.canvas')}
             />
+            {(phase === 'playing' || phase === 'paused') && (
+              <button
+                type='button'
+                className={styles.pause}
+                onPointerDown={own}
+                onClick={togglePause}
+                aria-label={t(
+                  phase === 'paused' ? 'game.resume' : 'game.pause'
+                )}
+              >
+                {phase === 'paused' ? <Play /> : <Pause />}
+              </button>
+            )}
           </div>
           <div className={styles.panel} aria-live='polite'>
             {phase === 'ready' && (

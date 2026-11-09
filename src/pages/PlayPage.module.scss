@@ -37,6 +37,31 @@
   width: 100%;
 }
 
+// Top right of the picture, the score just left of it. Sized with the
+// picture so the two never meet.
+.pause {
+  position: absolute;
+  top: 1.4%;
+  right: 1%;
+  display: grid;
+  place-items: center;
+  width: clamp(28px, 4.5%, 44px);
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(16 10 32 / 0.35);
+  color: #fff;
+  cursor: pointer;
+  & svg {
+    width: 55%;
+    height: 55%;
+  }
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+}
+
 // Scaled with hard pixels; letterboxed when the page is wider than 16:9.
 .screen {
   display: block;
