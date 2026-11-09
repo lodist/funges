@@ -215,16 +215,18 @@ export default defineConfig({
               cacheableResponse: { statuses: [0, 200] },
             },
           },
-          // The game's pixel art, kept once played, in a cache of its own so
-          // its ~70 small files do not push the recipe photos out of
-          // images-cache.
+          // The game's art and sound, kept once played, in a cache of their
+          // own so they do not push the recipe photos out of images-cache.
+          // About 280 files for 21 places: room for them and one update's
+          // worth of replaced ones, or a full run pushes the oldest out and
+          // offline runs lose them.
           {
             urlPattern: /\/assets\/game\//,
             handler: 'CacheFirst',
             options: {
               cacheName: 'game-art',
               expiration: {
-                maxEntries: 200,
+                maxEntries: 400,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
               },
             },
