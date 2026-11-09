@@ -8,6 +8,7 @@ import {
 import { Link, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
+import { SegmentedControl } from '@/components/SegmentedControl';
 import { Button } from '@/components/ui/button';
 import { draw, loadArt, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
@@ -41,6 +42,9 @@ const SWIPE_MS = 300;
 /** The run's end (the slide to a stop) plays this long before the result, ms. */
 const ENDING = 1100;
 const BEST = 'squirrel-best';
+/** The route the next run takes: the classic journey or the stages shuffled. */
+const ROUTE = 'squirrel-route';
+type Route = 'classic' | 'random';
 /** The tallest view, game px: 4:3. A screen narrower than 16:9 sees more
  *  sky, down to this; narrower still gets bars. */
 const VIEW_MAX_H = 360;
@@ -61,6 +65,14 @@ function readBest(): Best | null {
     return JSON.parse(localStorage.getItem(BEST) ?? 'null');
   } catch {
     return null;
+  }
+}
+
+function readRoute(): Route {
+  try {
+    return localStorage.getItem(ROUTE) === 'random' ? 'random' : 'classic';
+  } catch {
+    return 'classic';
   }
 }
 
@@ -111,6 +123,7 @@ export default function PlayPage() {
   const [phase, setPhase] = useState<Phase>('loading');
   const [best, setBest] = useState(readBest);
   const [last, setLast] = useState<{ score: number; furthest: number }>();
+  const [route, setRoute] = useState(readRoute);
   const [options] = useState(() => {
     const query = new URLSearchParams(window.location.search);
     return {
@@ -203,7 +216,9 @@ export default function PlayPage() {
 
   const start = useCallback(() => {
     const seed = (Math.random() * 0x100000000) >>> 0;
-    game.current = newGame(seed);
+    // A review run (?at, ?ride) keeps the classic route its stage is on.
+    const shuffled = route === 'random' && options.at < 0 && !options.ride;
+    game.current = newGame(seed, shuffled);
     if (options.at > 0) {
       const g = game.current;
       g.dist =
@@ -219,11 +234,26 @@ export default function PlayPage() {
         art: stage.ride,
         until: RIDE_TICKS,
       };
-    run.current = { seed, presses: [], releases: [], slides: [] };
+    run.current = {
+      seed,
+      presses: [],
+      releases: [],
+      slides: [],
+      ...(shuffled && { shuffled }),
+    };
     inputs.current = [];
     setLast(undefined);
     goTo('playing');
-  }, [goTo, options]);
+  }, [goTo, options, route]);
+
+  const chooseRoute = (next: Route) => {
+    setRoute(next);
+    try {
+      localStorage.setItem(ROUTE, next);
+    } catch {
+      // Blocked storage: the choice lasts this visit.
+    }
+  };
 
   const press = useCallback(() => {
     const now = phaseNow.current;
@@ -465,9 +495,24 @@ export default function PlayPage() {
                   {t('game.best', { score: number(best.score) })}
                 </p>
               )}
+              {/* The next run's route: the classic journey or the stages
+                  shuffled. Run again starts it, from a pause too. */}
+              {phase !== 'loading' && (
+                <div onPointerDown={own}>
+                  <SegmentedControl
+                    label={t('game.route')}
+                    options={[
+                      { value: 'classic', label: t('game.classic') },
+                      { value: 'random', label: t('game.random') },
+                    ]}
+                    value={route}
+                    onChange={chooseRoute}
+                  />
+                </div>
+              )}
               {(phase === 'paused' || phase === 'over') && (
                 <div className={styles.actions}>
-                  {phase === 'paused' ? (
+                  {phase === 'paused' && (
                     <Button
                       onPointerDown={own}
                       onClick={() => {
@@ -477,25 +522,25 @@ export default function PlayPage() {
                     >
                       {t('game.resume')}
                     </Button>
-                  ) : (
-                    <>
-                      <Button
-                        onPointerDown={own}
-                        onClick={() => {
-                          start();
-                          landscape(areaRef.current);
-                        }}
-                      >
-                        {t('game.again')}
-                      </Button>
-                      <Button
-                        variant='secondary'
-                        onPointerDown={own}
-                        onClick={share}
-                      >
-                        {t('game.share')}
-                      </Button>
-                    </>
+                  )}
+                  <Button
+                    variant={phase === 'paused' ? 'secondary' : 'default'}
+                    onPointerDown={own}
+                    onClick={() => {
+                      start();
+                      landscape(areaRef.current);
+                    }}
+                  >
+                    {t('game.again')}
+                  </Button>
+                  {phase === 'over' && (
+                    <Button
+                      variant='secondary'
+                      onPointerDown={own}
+                      onClick={share}
+                    >
+                      {t('game.share')}
+                    </Button>
                   )}
                 </div>
               )}

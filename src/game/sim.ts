@@ -1,4 +1,4 @@
-import { LAP, STAGES, stageAt } from './stages';
+import { CLASSIC, LAP, STAGES, stageAt } from './stages';
 
 /*
  * The game as numbers: no DOM, no clock. One step() is one tick (1/60 s).
@@ -107,6 +107,8 @@ export interface Land {
 
 export interface Game {
   rng: number;
+  /** The stages' order: the classic route, or shuffled by the seed. */
+  route: readonly number[];
   tick: number;
   /** World pixels run. */
   dist: number;
@@ -128,12 +130,12 @@ export interface Game {
   things: Thing[];
   /** World x where the next thing may go. */
   nextAt: number;
-  /** The absolute stage (lap × stages + index) whose acorn and egg are set. */
+  /** The absolute leg (lap × stages + leg) whose acorn and egg are set. */
   setFor: number;
   acornAt: number;
   eggAt: number;
   noGapUntil: number;
-  /** The furthest absolute stage reached. */
+  /** The furthest absolute leg reached. */
   furthest: number;
   lives: number;
   /** Until this tick the squirrel blinks and passes through things. */
@@ -165,11 +167,26 @@ export interface Run {
   releases: number[];
   /** And of each slide (none in runs kept before there were slides). */
   slides?: number[];
+  /** On a random route (the stages shuffled by the seed). */
+  shuffled?: boolean;
 }
 
-export function newGame(seed: number): Game {
+/** The stages in an order of the seed's own, from dice apart from the
+ *  run's: a shuffled route leaves the run's own throws as they were. */
+function shuffle(seed: number) {
+  const dice = { rng: seed ^ 0x2545f491 };
+  const order = [...CLASSIC];
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(random(dice) * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
+
+export function newGame(seed: number, shuffled = false): Game {
   const g: Game = {
     rng: seed | 0,
+    route: shuffled ? shuffle(seed) : CLASSIC,
     tick: 0,
     dist: 0,
     speed: CRUISE,
@@ -214,7 +231,7 @@ function hurt(g: Game) {
 }
 
 /** mulberry32: integer maths, the same on every engine. */
-function random(g: Game) {
+function random(g: { rng: number }) {
   g.rng = (g.rng + 0x6d2b79f5) | 0;
   let t = g.rng;
   t = Math.imul(t ^ (t >>> 15), t | 1);
@@ -253,7 +270,7 @@ function grow(g: Game, until: number) {
   while (xs[xs.length - 1] < until) {
     const x = xs[xs.length - 1];
     const h = hs[hs.length - 1];
-    const hills = STAGES[stageAt(x).index].hills;
+    const hills = STAGES[stageAt(x, g.route).index].hills;
     const roll = random(g);
     if (roll < 0.15) {
       xs.push(x + 120 + 160 * random(g));
@@ -390,8 +407,8 @@ export function step(g: Game, input: Input) {
   if (g.ride && g.tick >= g.ride.until) g.ride = null;
   g.things = g.things.filter(t => t.x + t.w > g.dist - 64);
 
-  const here = stageAt(left);
-  const reached = here.lap * STAGES.length + here.index;
+  const here = stageAt(left, g.route);
+  const reached = here.lap * STAGES.length + here.leg;
   if (reached > g.furthest) g.furthest = reached;
   fill(g);
 }
@@ -437,7 +454,7 @@ function touch(g: Game, t: Thing) {
   g.combo = g.tick < g.comboUntil ? g.combo + 1 : 1;
   g.comboUntil = g.tick + COMBO_TICKS;
   if (t.kind === 'acorn') {
-    const stage = STAGES[stageAt(t.x).index];
+    const stage = STAGES[stageAt(t.x, g.route).index];
     if (stage.ride)
       g.ride = {
         stage: stage.id,
@@ -460,9 +477,9 @@ function crest(g: Game, x: number) {
 export function fill(g: Game) {
   while (g.nextAt < g.dist + VIEW_MAX_W + 64) {
     let x = g.nextAt;
-    const at = stageAt(x);
+    const at = stageAt(x, g.route);
     const stage = STAGES[at.index];
-    const absolute = at.lap * STAGES.length + at.index;
+    const absolute = at.lap * STAGES.length + at.leg;
     if (g.setFor < absolute) {
       g.setFor = absolute;
       g.acornAt = stage.ride
@@ -602,7 +619,7 @@ function put(
 
 /** Plays a kept run again, tick by tick, until it ends (an hour at most). */
 export function replay(run: Run, limit = 3600 * TICKS_PER_SECOND) {
-  const g = newGame(run.seed);
+  const g = newGame(run.seed, run.shuffled);
   const slides = run.slides ?? [];
   let p = 0;
   let r = 0;
