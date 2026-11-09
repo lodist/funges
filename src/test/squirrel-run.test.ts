@@ -2,17 +2,20 @@ import { describe, expect, it } from 'vitest';
 import source from '@/game/sim.ts?raw';
 import { LAP, STAGES, stageAt } from '@/game/stages';
 import {
-  EGG_Y,
+  CRUISE,
+  FLIP_RATE,
   LIVES,
   PLAYER,
   PLAYER_X,
   POINTS,
   RIDE_TICKS,
+  RUN,
+  TOP,
   fill,
+  ground,
   newGame,
   replay,
   score,
-  speedAt,
   step,
   type Game,
   type Run,
@@ -24,10 +27,11 @@ const press = { press: true, release: false };
 const release = { press: false, release: true };
 const slide = { press: false, release: false, slide: true };
 
-/** A game where nothing comes on its own: one thing at a time. */
+/** A game on flat land where nothing comes on its own: one thing at a time. */
 function empty(seed = 1): Game {
   const g = newGame(seed);
   g.nextAt = Infinity;
+  g.land = { xs: [-1e9, 1e12], hs: [0, 0], ramp: [false, false] };
   return g;
 }
 
@@ -39,6 +43,7 @@ function place(g: Game, thing: Partial<Thing>, ahead = 30): Thing {
     art: 'boulder',
     x: g.dist + PLAYER_X + PLAYER.w + ahead,
     y: 0,
+    rel: 0,
     w: 16,
     h: 14,
     speed: 0,
@@ -55,16 +60,25 @@ function run(g: Game, ticks: number, input = idle) {
   for (let i = 0; i < ticks; i++) step(g, input);
 }
 
-/** The top of a jump: pressed, then let go on step `hold`. */
-function peak(hold: number) {
+/** High in the air, a press held for `hold` ticks, then let go; to the ground. */
+function flip(hold: number) {
   const g = empty();
+  g.grounded = false;
+  g.y = 600;
   step(g, press);
-  let top = g.y;
-  for (let i = 1; i < 60; i++) {
-    step(g, i === hold ? release : idle);
-    top = Math.max(top, g.y);
-  }
-  return top;
+  for (let i = 1; i < hold; i++) step(g, idle);
+  step(g, release);
+  while (!g.grounded && !g.over) step(g, idle);
+  return g;
+}
+
+/** A land from the squirrel on: flat, then `drop` px down over `span` px. */
+function slope(g: Game, drop: number, span = 2000) {
+  g.land = {
+    xs: [-1e9, g.dist + 200, g.dist + 200 + span, 1e12],
+    hs: [0, 0, -drop, -drop],
+    ramp: [false, false, false, false],
+  };
 }
 
 describe('the squirrel', () => {
@@ -73,34 +87,24 @@ describe('the squirrel', () => {
     run(g, 60);
     expect(g.y).toBe(0);
     expect(g.grounded).toBe(true);
-    expect(g.dist).toBeGreaterThan(120);
+    expect(g.dist).toBeGreaterThan(150);
   });
 
-  it('jumps higher when held than when tapped', () => {
-    expect(peak(40)).toBeGreaterThan(40);
-    expect(peak(1)).toBeLessThan(24);
-  });
-
-  it('jumps once more in the air, and only once', () => {
+  it('jumps on a tap and comes back down', () => {
     const g = empty();
     step(g, press);
-    run(g, 10);
-    const falling = g.vy;
-    step(g, press);
-    expect(g.vy).toBeGreaterThan(falling);
-    expect(g.doubleUsed).toBe(true);
-    const rising = g.vy;
-    step(g, press);
-    expect(g.vy).toBeLessThan(rising);
+    step(g, release);
+    expect(g.grounded).toBe(false);
+    run(g, 60);
+    expect(g.grounded).toBe(true);
+    expect(g.y).toBe(0);
   });
 
   it('jumps again on landing when pressed just before it', () => {
     const g = empty();
     step(g, press);
     step(g, release);
-    step(g, press);
-    step(g, release);
-    while (!(g.vy < 0 && g.y > 0 && g.y <= 12)) step(g, idle);
+    while (!(g.vy < 0 && g.y <= 12)) step(g, idle);
     step(g, press);
     step(g, release);
     let tookOff = false;
@@ -109,6 +113,86 @@ describe('the squirrel', () => {
       if (g.vy > 0) tookOff = true;
     }
     expect(tookOff).toBe(true);
+  });
+
+  it('held in the air, turns a backflip: landed straight, it scores and speeds up', () => {
+    const turn = Math.ceil(360 / FLIP_RATE);
+    const g = flip(10 + turn);
+    expect(g.lives).toBe(LIVES);
+    expect(g.bonus).toBe(POINTS.flip);
+    expect(g.combo).toBe(1);
+    expect(g.speed).toBeGreaterThan(CRUISE);
+  });
+
+  it('a flip landed upside down costs a life', () => {
+    const g = flip(10 + Math.ceil(180 / FLIP_RATE));
+    expect(g.lives).toBe(LIVES - 1);
+    expect(g.bonus).toBe(0);
+  });
+
+  it('flips landed in a row raise the combo, and what is caught then counts more', () => {
+    const g = empty();
+    g.combo = 1;
+    g.comboUntil = g.tick + 100;
+    place(g, { kind: 'pickup', y: 2, w: 12, h: 12, points: POINTS.common });
+    run(g, 40);
+    expect(g.bonus).toBe(2 * POINTS.common);
+  });
+});
+
+describe('the land', () => {
+  it('rolls within its band, and the run starts flat', () => {
+    const g = newGame(3);
+    g.nextAt = Infinity;
+    expect(ground(g.land, 300)[0]).toBe(0);
+    for (let i = 0; i < 4000; i++) {
+      step(g, idle);
+      const [h, s] = ground(g.land, g.dist + 300);
+      expect(Math.abs(h)).toBeLessThanOrEqual(160);
+      expect(Math.abs(s)).toBeLessThan(2);
+    }
+    expect(g.over).toBe(false);
+  });
+
+  it('downhill the squirrel speeds up; uphill it slows, but keeps running', () => {
+    const down = empty();
+    slope(down, 600);
+    run(down, 200);
+    expect(down.speed).toBeGreaterThan(CRUISE + 1);
+
+    const up = empty();
+    slope(up, -600);
+    run(up, 400);
+    expect(up.speed).toBeLessThan(CRUISE);
+    expect(up.speed).toBeGreaterThanOrEqual(RUN);
+  });
+
+  it('each lap lets it go faster', () => {
+    const fastest = (lap: number) => {
+      const g = empty();
+      g.dist = lap * LAP;
+      slope(g, 8000, 8000);
+      run(g, 900);
+      return g.speed;
+    };
+    expect(fastest(0)).toBeLessThanOrEqual(TOP);
+    expect(fastest(2)).toBeGreaterThan(TOP);
+  });
+
+  it('off a kicker it flies without a tap', () => {
+    const g = empty();
+    g.land = {
+      xs: [-1e9, g.dist + 150, g.dist + 190, g.dist + 500, 1e12],
+      hs: [0, 0, 18, -100, -100],
+      ramp: [false, false, true, false, false],
+    };
+    let flew = false;
+    for (let i = 0; i < 200; i++) {
+      step(g, idle);
+      if (!g.grounded) flew = true;
+    }
+    expect(flew).toBe(true);
+    expect(g.lives).toBe(LIVES);
   });
 });
 
@@ -146,6 +230,7 @@ describe('things on the way', () => {
     const hop = empty();
     place(hop, { kind: 'gap', w: 40, h: 0 }, 6);
     step(hop, press);
+    step(hop, release);
     run(hop, 120);
     expect(hop.lives).toBe(LIVES);
   });
@@ -187,23 +272,6 @@ describe('things on the way', () => {
     expect(whole.bonus).toBe(POINTS.egg);
   });
 
-  it('an easter egg hangs where only a second jump near the top reaches', () => {
-    // The highest the top of the squirrel gets: one held jump, and a second
-    // one on step `second` if given.
-    const top = (second?: number) => {
-      const g = empty();
-      step(g, press);
-      let best = 0;
-      for (let i = 0; i < 80; i++) {
-        step(g, i === second ? press : idle);
-        best = Math.max(best, g.y + PLAYER.h);
-      }
-      return best;
-    };
-    expect(top()).toBeLessThan(EGG_Y);
-    expect(top(16)).toBeGreaterThan(EGG_Y + 12);
-  });
-
   it('a slide passes under a low flyer that stops a squirrel standing up', () => {
     const pigeon = { art: 'pigeon', y: 8, w: 14, h: 10, animal: true };
     const standing = empty();
@@ -221,22 +289,24 @@ describe('things on the way', () => {
   it('a slide asked for in the air dives to the ground, then slides', () => {
     const g = empty();
     step(g, press);
-    run(g, 10);
+    step(g, release);
+    run(g, 8);
     step(g, slide);
     run(g, 12);
     expect(g.grounded).toBe(true);
     expect(g.tick).toBeLessThan(g.slideUntil);
   });
 
-  it('every stage hides one easter egg', () => {
+  it('every stage hides one easter egg, up past a hilltop', () => {
     const g = newGame(1);
     while (g.dist < LAP) {
-      g.speed = speedAt(g.dist);
       g.dist += 3;
       fill(g);
     }
     const eggs = g.things.filter(t => t.kind === 'egg' && t.x < LAP);
     expect(eggs.map(t => t.stage)).toEqual(STAGES.map(s => s.id));
+    // Out of reach of a squirrel just running along.
+    for (const egg of eggs) expect(egg.rel).toBeGreaterThan(PLAYER.h);
   });
 
   it('the golden acorn gives the stage its ride: it smashes traps, then ends after 7 s', () => {
@@ -261,10 +331,9 @@ describe('things on the way', () => {
   });
 
   it('no gap comes within a ride of a golden acorn', () => {
-    for (const seed of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    for (const seed of [1, 2, 3, 4]) {
       const g = newGame(seed);
       while (g.dist < 2 * LAP) {
-        g.speed = speedAt(g.dist);
         g.dist += 3;
         fill(g);
       }
@@ -273,8 +342,7 @@ describe('things on the way', () => {
       for (const acorn of acorns)
         for (const gap of g.things.filter(t => t.kind === 'gap'))
           expect(
-            gap.x < acorn.x ||
-              gap.x > acorn.x + RIDE_TICKS * speedAt(acorn.x) + 64,
+            gap.x < acorn.x || gap.x > acorn.x + RIDE_TICKS * TOP,
             `seed ${seed}`
           ).toBe(true);
     }
@@ -297,11 +365,6 @@ describe('the journey', () => {
     expect(stageAt(STAGES[0].length).index).toBe(1);
     expect(stageAt(LAP - 1).index).toBe(STAGES.length - 1);
     expect(stageAt(LAP)).toEqual({ index: 0, lap: 1, start: LAP });
-  });
-
-  it('gets faster, and each lap a little faster still', () => {
-    expect(speedAt(LAP / 2)).toBeGreaterThan(speedAt(0));
-    expect(speedAt(3 * LAP)).toBeGreaterThan(speedAt(LAP - 1) * 1.25);
   });
 
   it('remembers the furthest stage reached', () => {

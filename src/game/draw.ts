@@ -1,5 +1,4 @@
 import {
-  DOUBLE_JUMP,
   GROUND_Y,
   JUMP,
   LIVES,
@@ -11,6 +10,8 @@ import {
   TICKS_PER_SECOND,
   VIEW_H,
   VIEW_W,
+  ground,
+  multiplier,
   score,
   type Game,
 } from './sim';
@@ -33,6 +34,10 @@ import { STAGES, stageAt } from './stages';
  */
 let S = 3;
 const snap = (v: number) => Math.round(v * S) / S;
+/** The world height shown at GROUND_Y this frame (see camera()). */
+let CAM = 0;
+/** A world height's place on the screen. */
+const sy = (height: number) => GROUND_Y - (height - CAM);
 
 /** An image with its frames side by side ("pigeon.2.webp": 2 frames). */
 export interface Sprite {
@@ -601,9 +606,7 @@ function sky(
   for (let i = 0; i < bands.length; i++) {
     const top = Math.round(BANDS[i] * HORIZON);
     const bottom =
-      i === bands.length - 1
-        ? GROUND_Y + 2
-        : Math.round(BANDS[i + 1] * HORIZON);
+      i === bands.length - 1 ? VIEW_H : Math.round(BANDS[i + 1] * HORIZON);
     ctx.fillStyle = bands[i];
     ctx.fillRect(0, top, VIEW_W, bottom - top);
   }
@@ -626,13 +629,12 @@ function land(
   ctx: CanvasRenderingContext2D,
   id: string,
   [name, , speed, follow]: (typeof LAYERS)[number],
-  dist: number,
-  lift: number
+  dist: number
 ) {
   const l = layer(id, name);
   if (!l) return;
   ctx.imageSmoothingEnabled = true;
-  const bottom = snap(GROUND_Y + lift * follow);
+  const bottom = snap(GROUND_Y + CAM * follow * 0.45);
   for (let x = -snap(wrap(dist * speed, l.w)); x < VIEW_W; x += l.w)
     ctx.drawImage(l.canvas, x, bottom - l.h, l.w, l.h);
   ctx.fillStyle = l.foot;
@@ -640,18 +642,37 @@ function land(
   ctx.imageSmoothingEnabled = false;
 }
 
-/** The ground: the lightest thing in the scene, banded like the sky. */
-function ground(ctx: CanvasRenderingContext2D, id: string, lift: number) {
+/** The land's top across the screen: its screen y every 4 game px. */
+function surface(g: Game, dist: number) {
+  const top: number[] = [];
+  for (let x = 0; x <= VIEW_W + 4; x += 4)
+    top.push(sy(ground(g.land, dist + x)[0]));
+  return top;
+}
+
+/** The ground: the lightest thing in the scene, banded like the sky, the
+ *  bands following the slopes. */
+function soil(ctx: CanvasRenderingContext2D, id: string, top: number[]) {
   const look = LOOKS[id];
   if (!look) return;
-  const top = snap(GROUND_Y + lift);
   for (let i = 0; i < look.ground.length; i++) {
-    const y = top + GROUND_BANDS[i];
-    const next =
-      i + 1 < look.ground.length ? top + GROUND_BANDS[i + 1] : VIEW_H + 4;
     ctx.fillStyle = look.ground[i];
-    ctx.fillRect(0, y, VIEW_W, next - y);
+    ctx.beginPath();
+    ctx.moveTo(0, VIEW_H + 4);
+    top.forEach((y, k) => ctx.lineTo(k * 4, y + GROUND_BANDS[i]));
+    ctx.lineTo(VIEW_W + 4, VIEW_H + 4);
+    ctx.closePath();
+    ctx.fill();
   }
+}
+
+/** The camera keeps the land under and ahead of the squirrel at GROUND_Y,
+ *  and rises with a high jump: going downhill it shows the slope below. */
+function camera(g: Game, dist: number, y: number) {
+  const x = dist + PLAYER_X + PLAYER.w / 2;
+  const here = ground(g.land, x)[0];
+  const ahead = (ground(g.land, x + 120)[0] + ground(g.land, x + 260)[0]) / 2;
+  return here * 0.55 + ahead * 0.45 + Math.max(0, y - here - 30) * 0.6;
 }
 
 /** World px over which one stage turns into the next. */
@@ -666,7 +687,7 @@ function backdrop(
   b: string,
   p: number,
   dist: number,
-  lift: number,
+  top: number[],
   tick: number,
   calm: boolean
 ) {
@@ -679,17 +700,17 @@ function backdrop(
     const q = clamp01((p - 0.2 * i) / 0.5);
     if (q < 0.5) {
       ctx.globalAlpha = ease(1 - 2 * q);
-      land(ctx, a, l, dist, lift);
+      land(ctx, a, l, dist);
     } else {
       ctx.globalAlpha = ease(2 * q - 1);
-      land(ctx, b, l, dist, lift);
+      land(ctx, b, l, dist);
     }
   });
   ctx.globalAlpha = 1;
-  ground(ctx, a, lift);
+  soil(ctx, a, top);
   if (p > 0.5) {
     ctx.globalAlpha = ease((p - 0.5) / 0.5);
-    ground(ctx, b, lift);
+    soil(ctx, b, top);
     ctx.globalAlpha = 1;
   }
 }
@@ -840,12 +861,18 @@ function things(
     if (x > VIEW_W || x + t.w + 32 < 0) continue;
     if (t.kind === 'gap') {
       ctx.fillStyle = LOOKS[t.stage]?.hole ?? '#14121a';
-      ctx.fillRect(snap(x), GROUND_Y, t.w, VIEW_H);
+      ctx.beginPath();
+      ctx.moveTo(x, sy(ground(g.land, t.x)[0]));
+      ctx.lineTo(x + t.w, sy(ground(g.land, t.x + t.w)[0]));
+      ctx.lineTo(x + t.w, VIEW_H + 4);
+      ctx.lineTo(x, VIEW_H + 4);
+      ctx.closePath();
+      ctx.fill();
       continue;
     }
     const s = art.get(`${t.stage}/${t.art}`);
     const cx = x + t.w / 2;
-    const bottom = GROUND_Y - t.y;
+    const bottom = sy(t.y);
     const catchable =
       t.kind === 'pickup' || t.kind === 'acorn' || t.kind === 'egg';
     if (t.hit === null) {
@@ -1041,22 +1068,32 @@ function figure(
   ctx.restore();
 }
 
-/** Puffs of dust kicked up behind something sliding at x. */
-function dust(ctx: CanvasRenderingContext2D, x: number, tick: number) {
+/** Puffs of dust kicked up behind something sliding at x, on the land
+ *  at screen height floor. */
+function dust(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  floor: number,
+  tick: number
+) {
   ctx.fillStyle = '#fff8ee';
   for (let i = 0; i < 4; i++) {
     const age = (tick + i * 5) % 20;
     const r = 0.8 + age * 0.12;
     ctx.globalAlpha = 0.7 * (1 - age / 20);
-    ctx.fillRect(x - age * 1.4 - r, GROUND_Y - 1 - age * 0.3 - r, 2 * r, 2 * r);
+    ctx.fillRect(x - age * 1.4 - r, floor - 1 - age * 0.3 - r, 2 * r, 2 * r);
   }
   ctx.globalAlpha = 1;
 }
 
+/** The run ended in a hole. */
+const fell = (g: Game) =>
+  g.y < ground(g.land, g.dist + PLAYER_X + PLAYER.w / 2)[0] - 20;
+
 /** After the last knock the world glides on and stops under the sliding
  *  squirrel; after a fall into a hole it stops at once. */
 function glide(g: Game, view: View) {
-  if (!g.over || g.y < 0) return 0;
+  if (!g.over || fell(g)) return 0;
   const t = view.ended ?? Infinity;
   return (
     ((g.speed * TICKS_PER_SECOND) / 1000) * GLIDE * (1 - Math.exp(-t / GLIDE))
@@ -1073,7 +1110,7 @@ function ending(
   bottom: number
 ) {
   const t = view.ended ?? Infinity;
-  if (g.y < 0) {
+  if (fell(g)) {
     const fall = art.get('squirrel/fall');
     const drop = Math.min(t, 600) ** 2 * 0.0004;
     if (fall) figure(ctx, fall, 0, PLAYER_X + NOSE, bottom + drop, 20);
@@ -1082,16 +1119,22 @@ function ending(
   const slide = art.get('squirrel/slide');
   if (!slide) return;
   const x = PLAYER_X + NOSE + 6;
+  // The land under it as the world glides on.
+  const under = view.dist + glide(g, view) + PLAYER_X + PLAYER.w / 2;
+  const [height, slope] = ground(g.land, under);
+  const floor = sy(height);
+  const tilt = (-Math.atan(slope) * 180) / Math.PI;
   const trip = 260;
   if (t < trip) {
     // Over it, nose first.
     const k = t / trip;
-    figure(ctx, slide, 0, x, bottom - 16 * Math.sin(Math.PI * k), 40 * k - 15);
+    const air = Math.min(bottom, floor) - 16 * Math.sin(Math.PI * k);
+    figure(ctx, slide, 0, x, air, 40 * k - 15 + tilt);
     return;
   }
   const sliding = Math.exp(-(t - trip) / GLIDE);
-  if (sliding > 0.15) dust(ctx, x - 12, Math.floor(t / 16));
-  figure(ctx, slide, 0, x, bottom, 25 * clamp01(1 - (t - trip) / 90));
+  if (sliding > 0.15) dust(ctx, x - 12, floor, Math.floor(t / 16));
+  figure(ctx, slide, 0, x, floor, tilt + 25 * clamp01(1 - (t - trip) / 90));
 }
 
 /** Where the squirrel sits on each ride: across from the ride's left edge,
@@ -1115,15 +1158,22 @@ function ride(
   view: View,
   bottom: number
 ) {
-  // A little bounce on the road (a slow roll on the water).
+  // A little bounce on the road (a slow roll on the water), tilted with
+  // the slope.
   const bob = Math.sin(g.tick / 4) * 0.5;
   const left = PLAYER_X + RIDER.w / 2 - vehicle.w / 2;
-  sprite(
+  const tilt = g.grounded
+    ? (-Math.atan(ground(g.land, view.dist + PLAYER_X + RIDER.w / 2)[1]) *
+        180) /
+      Math.PI
+    : g.angle;
+  figure(
     ctx,
     vehicle,
     Math.floor(view.dist / 14),
-    left + vehicle.w / 2,
-    bottom + bob
+    left + vehicle.w,
+    bottom + bob,
+    tilt
   );
   const sit = art.get('squirrel/sit');
   if (!sit) return;
@@ -1134,7 +1184,7 @@ function ride(
     0,
     left + x + sit.w / 2,
     bottom + bob - height,
-    Math.sin(g.tick / 7) * 3
+    tilt + Math.sin(g.tick / 7) * 3
   );
 }
 
@@ -1144,7 +1194,10 @@ function squirrel(
   art: Art,
   view: View
 ) {
-  const bottom = GROUND_Y - view.y;
+  const bottom = sy(view.y);
+  const [, slope] = ground(g.land, view.dist + PLAYER_X + PLAYER.w / 2);
+  const tilt = (-Math.atan(slope) * 180) / Math.PI;
+  const floor = sy(ground(g.land, view.dist + PLAYER_X + 7)[0]);
   if (g.over) {
     ending(ctx, g, art, view, bottom);
     return;
@@ -1158,7 +1211,7 @@ function squirrel(
       const r = 1 + since * 0.15;
       ctx.fillRect(
         snap(PLAYER_X + 7 + k * (4 + since * 0.8) - r),
-        snap(GROUND_Y - 1 - since * 0.25 - r),
+        snap(floor - 1 - since * 0.25 - r),
         2 * r,
         2 * r
       );
@@ -1181,36 +1234,45 @@ function squirrel(
   let frame = 0;
   let turn = 0;
   let sx = 1;
-  let sy = 1;
+  let squash = 1;
   let nose = x;
+  const downhill = slope < -0.12;
   if (g.grounded && g.tick < g.slideUntil) {
-    name = 'slide';
+    // Flat on its belly, on its leaf going downhill.
+    name = downhill ? 'leaflat' : 'slide';
     nose = x + 6;
-    dust(ctx, nose - 12, g.tick);
+    turn = tilt;
+    dust(ctx, nose - 12, floor, g.tick);
+  } else if (g.grounded && downhill) {
+    // Downhill it sits on a leaf and sleds.
+    name = 'leaf';
+    nose = x + 4;
+    turn = tilt + Math.sin(g.tick / 5) * 1.5;
   } else if (g.grounded) {
     frame = Math.floor(view.dist / STEP);
+    turn = tilt;
     // Landing squashes it for a moment.
     if (since < 8) {
       const k = 1 - since / 8;
       sx = 1 + 0.1 * k;
-      sy = 1 - 0.14 * k;
+      squash = 1 - 0.14 * k;
     }
   } else if (g.diving) {
     // Head first towards the ground, to slide.
     name = 'slide';
     nose = x + 6;
     turn = 22;
-  } else if (g.vy > 0 && g.doubleUsed) {
-    // The second jump: a forward roll, curled up.
+  } else if (g.holding && g.turned > 0) {
+    // A backflip, curled up and turning.
     name = 'ball';
-    turn = 360 * clamp01(1 - g.vy / DOUBLE_JUMP);
+    turn = g.angle;
     nose = x - 2;
   } else if (g.vy > 0) {
     name = 'jump';
-    turn = -12 * clamp01(g.vy / JUMP);
+    turn = g.angle - 12 * clamp01(g.vy / JUMP);
   } else {
     name = 'fall';
-    turn = 14 * clamp01(-g.vy / JUMP);
+    turn = g.angle + 14 * clamp01(-g.vy / JUMP);
   }
   const s = art.get(`squirrel/${name}`);
   if (!s) {
@@ -1227,13 +1289,47 @@ function squirrel(
     bottom,
     turn,
     sx,
-    sy
+    squash
   );
+}
+
+/** A landed flip: its points rise from the squirrel. */
+function trick(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
+  const numbers = art.get('common/digits');
+  const age = g.trick ? g.tick - g.trick.at : Infinity;
+  if (!g.trick || !numbers || age > 30) return;
+  points(
+    ctx,
+    numbers,
+    g.trick.points,
+    PLAYER_X + 7,
+    sy(g.y) - 26 - age * 0.5,
+    age
+  );
+}
+
+/** The combo's multiplier, ×2 and up, under the score while it holds. */
+function combo(ctx: CanvasRenderingContext2D, art: Art, g: Game) {
+  const s = art.get('common/digits');
+  const times = multiplier(g);
+  if (!s || times < 2) return;
+  const text = String(times);
+  let x = HUD_W - 26 - text.length * (s.w + 1);
+  // An x of two crossing strokes, then the digits.
+  ctx.fillStyle = '#fff6e0';
+  for (let i = 0; i < 5; i++) {
+    ctx.fillRect(x - 7 + i, 19 + i, 1, 1);
+    ctx.fillRect(x - 3 - i, 19 + i, 1, 1);
+  }
+  for (const ch of text) {
+    ctx.drawImage(s.img, Number(ch) * s.w, 0, s.w, s.h, x, 17, s.w, s.h);
+    x += s.w + 1;
+  }
 }
 
 /** Streaks rushing past when the run is fast. */
 function speedLines(ctx: CanvasRenderingContext2D, g: Game) {
-  const count = Math.min(12, Math.floor((g.speed - 3.1) * 24));
+  const count = Math.min(12, Math.floor((g.speed - 5.2) * 10));
   ctx.fillStyle = 'rgba(255, 250, 240, 0.22)';
   for (let i = 0; i < count; i++) {
     const lane = Math.floor(g.tick / 7) + i * 13;
@@ -1308,16 +1404,11 @@ function hitboxes(ctx: CanvasRenderingContext2D, g: Game, view: View) {
   const box = g.ride ? RIDER : g.tick < g.slideUntil ? SLIDER : PLAYER;
   ctx.lineWidth = 1 / S;
   ctx.strokeStyle = '#ff0';
-  ctx.strokeRect(PLAYER_X, GROUND_Y - view.y - box.h, box.w, box.h);
+  ctx.strokeRect(PLAYER_X, sy(view.y) - box.h, box.w, box.h);
   ctx.strokeStyle = '#f0f';
   for (const t of g.things)
     if (t.hit === null)
-      ctx.strokeRect(
-        t.x - view.dist,
-        GROUND_Y - t.y - t.h,
-        t.w,
-        Math.max(t.h, 1)
-      );
+      ctx.strokeRect(t.x - view.dist, sy(t.y) - t.h, t.w, Math.max(t.h, 1));
 }
 
 /* ---------------------------------------------------------------- frame */
@@ -1355,8 +1446,8 @@ export function draw(
     ctx.translate(((g.tick % 3) - 1) * 1.5, (((g.tick + 1) % 3) - 1) * 1);
   if (sick && !calm) ctx.translate(Math.sin(g.tick / 5) * 3, 0);
 
-  // The camera rises a little with a high jump and settles back.
-  const lift = calm ? 0 : Math.max(0, (view.y - 18) * 0.35);
+  CAM = camera(g, dist, view.y);
+  const top = surface(g, dist);
 
   // The next stage comes in over two screens.
   const a = stageAt(dist);
@@ -1366,24 +1457,17 @@ export function draw(
   const next = STAGES[(a.index + 1) % STAGES.length].id;
   keep([idA, next]);
   const p = b.start > a.start ? 1 - (b.start - dist) / CHANGE : 0;
-  backdrop(ctx, idA, idB, p, dist, lift, g.tick, calm);
+  backdrop(ctx, idA, idB, p, dist, top, g.tick, calm);
   // Ask for the next stage's layers early: built one a frame, unseen.
   if (!p) for (const [name] of LAYERS) layer(next, name);
 
-  ctx.save();
-  ctx.translate(0, snap(lift));
   const places = b.start > a.start ? [a, b] : [a];
   scenery(ctx, g, art, places, dist);
-  if (!calm) {
-    ctx.save();
-    ctx.translate(0, snap(-lift * 0.3));
-    ambient(ctx, AMBIENT[p < 0.5 ? idA : idB], g.tick, dist);
-    ctx.restore();
-  }
+  if (!calm) ambient(ctx, AMBIENT[p < 0.5 ? idA : idB], g.tick, dist);
   things(ctx, g, art, dist);
   squirrel(ctx, g, art, view);
+  trick(ctx, g, art);
   if (options.debug) hitboxes(ctx, g, view);
-  ctx.restore();
   ctx.restore();
 
   if (sick && calm) {
@@ -1396,10 +1480,11 @@ export function draw(
     ctx.fillStyle = `rgba(255, 40, 70, ${0.3 * (1 - sinceKnock / 12)})`;
     ctx.fillRect(0, 0, VIEW_W, VIEW_H);
   }
-  if (!calm && g.speed > 3.1) speedLines(ctx, g);
+  if (!calm && g.speed > 5.2) speedLines(ctx, g);
   ctx.save();
   ctx.scale(VIEW_W / HUD_W, VIEW_W / HUD_W);
   digits(ctx, art, score(g));
+  combo(ctx, art, g);
   hearts(ctx, g);
   ctx.restore();
 }

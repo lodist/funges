@@ -1,7 +1,7 @@
 /*
  * The run, stage by stage: Scandinavia to the Grand Canyon, then again,
  * faster. A stage's art lives in src/assets/game/<id>/ under the names used
- * here. Sizes are hitboxes in game pixels (the screen is 320×180, 10 px =
+ * here. Sizes are hitboxes in game pixels (the screen is 480×270, 10 px =
  * 1 m); a sprite may be drawn a little larger than its box.
  */
 
@@ -20,6 +20,9 @@ export interface Trap {
 export interface Stage {
   id: string;
   length: number;
+  /** How much the land rolls: 1 is the norm, the Alps steep, a ship's deck
+   *  a gentle swell. */
+  hills: number;
   traps: Trap[];
   /** A common and a rare pickup; none at sea. */
   pickups?: [common: string, rare: string];
@@ -33,7 +36,8 @@ export interface Stage {
 export const STAGES: Stage[] = [
   {
     id: 'scandinavia',
-    length: 5000,
+    length: 15000,
+    hills: 1.0,
     traps: [
       { id: 'moose', w: 26, h: 28, animal: true },
       { id: 'boulder', w: 22, h: 16 },
@@ -45,7 +49,8 @@ export const STAGES: Stage[] = [
   },
   {
     id: 'paris',
-    length: 5000,
+    length: 15000,
+    hills: 0.5,
     traps: [
       { id: 'cafe', w: 30, h: 16 },
       { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
@@ -57,7 +62,8 @@ export const STAGES: Stage[] = [
   },
   {
     id: 'rome',
-    length: 5000,
+    length: 15000,
+    hills: 0.8,
     traps: [
       { id: 'column', w: 16, h: 22 },
       { id: 'parked-scooter', w: 22, h: 18 },
@@ -69,7 +75,8 @@ export const STAGES: Stage[] = [
   },
   {
     id: 'alps',
-    length: 5000,
+    length: 15000,
+    hills: 1.4,
     traps: [
       { id: 'cow', w: 30, h: 22, animal: true },
       { id: 'snowball', w: 16, h: 16, speed: 1 },
@@ -81,7 +88,8 @@ export const STAGES: Stage[] = [
   },
   {
     id: 'atlantic',
-    length: 2400,
+    length: 7200,
+    hills: 0.25,
     traps: [
       { id: 'crate', w: 18, h: 18 },
       { id: 'rope', w: 16, h: 10 },
@@ -90,7 +98,8 @@ export const STAGES: Stage[] = [
   },
   {
     id: 'newyork',
-    length: 5000,
+    length: 15000,
+    hills: 0.5,
     traps: [
       { id: 'steam', w: 12, h: 22 },
       { id: 'hotdog', w: 22, h: 22 },
@@ -102,7 +111,8 @@ export const STAGES: Stage[] = [
   },
   {
     id: 'sequoia',
-    length: 5000,
+    length: 15000,
+    hills: 1.0,
     traps: [
       { id: 'log', w: 30, h: 12 },
       { id: 'stump', w: 18, h: 18 },
@@ -115,7 +125,8 @@ export const STAGES: Stage[] = [
   },
   {
     id: 'canyon',
-    length: 5000,
+    length: 15000,
+    hills: 1.2,
     traps: [
       { id: 'cactus', w: 14, h: 24 },
       { id: 'tumbleweed', w: 16, h: 16, speed: 1.2 },
