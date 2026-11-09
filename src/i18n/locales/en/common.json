@@ -419,6 +419,21 @@
     "howTreat": "A treat hidden up high gives you a life back.",
     "howAgaric": "The fly agaric makes you dizzy.",
     "howWatch": "Animals, obstacles and holes cost a life.",
+    "places": {
+      "scandinavia": "Scandinavia",
+      "fjords": "Norwegian fjords",
+      "copenhagen": "Copenhagen",
+      "highlands": "Scottish Highlands",
+      "paris": "Paris",
+      "barcelona": "Barcelona",
+      "rome": "Rome",
+      "alps": "Swiss Alps",
+      "newyork": "New York",
+      "neworleans": "New Orleans",
+      "yosemite": "Yosemite",
+      "sequoia": "Sequoia National Park",
+      "canyon": "Grand Canyon"
+    },
     "items": {
       "chanterelle": "Chanterelle",
       "cloudberry": "Cloudberry",

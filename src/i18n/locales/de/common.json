@@ -419,6 +419,21 @@
     "howTreat": "Eine Leckerei weit oben schenkt dir ein Leben zurück.",
     "howAgaric": "Der Fliegenpilz macht dich schwindlig.",
     "howWatch": "Tiere, Hindernisse und Löcher kosten ein Leben.",
+    "places": {
+      "scandinavia": "Skandinavien",
+      "fjords": "Norwegische Fjorde",
+      "copenhagen": "Kopenhagen",
+      "highlands": "Schottische Highlands",
+      "paris": "Paris",
+      "barcelona": "Barcelona",
+      "rome": "Rom",
+      "alps": "Schweizer Alpen",
+      "newyork": "New York",
+      "neworleans": "New Orleans",
+      "yosemite": "Yosemite",
+      "sequoia": "Sequoia-Nationalpark",
+      "canyon": "Grand Canyon"
+    },
     "items": {
       "chanterelle": "Pfifferling",
       "cloudberry": "Moltebeere",

@@ -419,6 +419,21 @@
     "howTreat": "Uma guloseima escondida lá no alto devolve-te uma vida.",
     "howAgaric": "O mata-moscas deixa-te tonto.",
     "howWatch": "Animais, obstáculos e buracos custam uma vida.",
+    "places": {
+      "scandinavia": "Escandinávia",
+      "fjords": "Fiordes da Noruega",
+      "copenhagen": "Copenhaga",
+      "highlands": "Terras Altas da Escócia",
+      "paris": "Paris",
+      "barcelona": "Barcelona",
+      "rome": "Roma",
+      "alps": "Alpes suíços",
+      "newyork": "Nova Iorque",
+      "neworleans": "Nova Orleães",
+      "yosemite": "Yosemite",
+      "sequoia": "Parque Nacional da Sequoia",
+      "canyon": "Grand Canyon"
+    },
     "items": {
       "chanterelle": "Cantarelo",
       "cloudberry": "Amora-ártica",

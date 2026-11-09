@@ -419,6 +419,21 @@
     "howTreat": "Une friandise cachée en hauteur te rend une vie.",
     "howAgaric": "L’amanite tue-mouches te donne le tournis.",
     "howWatch": "Les animaux, les obstacles et les trous coûtent une vie.",
+    "places": {
+      "scandinavia": "Scandinavie",
+      "fjords": "Fjords de Norvège",
+      "copenhagen": "Copenhague",
+      "highlands": "Highlands d’Écosse",
+      "paris": "Paris",
+      "barcelona": "Barcelone",
+      "rome": "Rome",
+      "alps": "Alpes suisses",
+      "newyork": "New York",
+      "neworleans": "La Nouvelle-Orléans",
+      "yosemite": "Yosemite",
+      "sequoia": "Parc national de Sequoia",
+      "canyon": "Grand Canyon"
+    },
     "items": {
       "chanterelle": "Girolle",
       "cloudberry": "Plaquebière",

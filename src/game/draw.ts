@@ -92,8 +92,9 @@ const URLS = import.meta.glob<string>('../assets/game/**/*.webp', {
   import: 'default',
 });
 const NAME = /game\/(.+?)(?:@(\d)x)?(?:\.(\d+))?\.webp$/;
-/** Landscape masks load per stage, as the run nears it; sprites at once. */
-const isMask = (name: string) => /\.(mask|lights)$/.test(name);
+/** Landscape masks load per stage, as the run nears it, and the collection's
+ *  postcards only there; sprites at once. */
+const isMask = (name: string) => /\.(mask|lights)$|\/postcard$/.test(name);
 
 /** A sprite's file and its frame count, for pictures outside the canvas
  *  (the collection): "fjords/reindeer" → its URL, 2. */
@@ -426,18 +427,6 @@ const LOOKS: Record<string, Look> = {
 
 /** The layers: height on screen (game px), scroll speed against the
  *  ground's, and how much of the camera's lift they follow. */
-/** A stage's hour as a CSS gradient, for the collection: its sky over its
- *  hills and its ground. */
-export function postcard(id: string) {
-  const look = LOOKS[id];
-  if (!look) return undefined;
-  const sky = look.sky.map(
-    ([at, colour]) => `${colour} ${Math.round(at * 62)}%`
-  );
-  const land = [`${look.mid} 62%`, `${look.mid} 80%`, `${look.ground[0]} 80%`];
-  return `linear-gradient(${[...sky, ...land].join(', ')})`;
-}
-
 const LAYERS: [LayerName, number, number, number][] = [
   ['far', 195, 0.12, 0.25],
   ['mid', 112, 0.3, 0.45],
@@ -1040,7 +1029,6 @@ function things(
   art: Art,
   dist: number
 ) {
-  const numbers = art.get('common/digits');
   for (const t of g.things) {
     const x = t.x - dist;
     if (x > W || x + t.w + 32 < 0) continue;
@@ -1098,8 +1086,8 @@ function things(
           heart(ctx, cx - 3.5, bottom - t.h - 8 - age * 0.5, '#ff4d6d');
           ctx.globalAlpha = 1;
         }
-      } else if (numbers && t.points)
-        points(ctx, numbers, t.points, cx, bottom - t.h - age * 0.5, age);
+      } else if (t.points)
+        points(ctx, t.points, cx, bottom - t.h - age * 0.5, age);
       continue;
     }
     // Smashed things fly off for a moment; animals leap aside.
@@ -1137,36 +1125,14 @@ function sparkle(
 /** "+10" rising from a caught thing, in the score's digits at half size. */
 function points(
   ctx: CanvasRenderingContext2D,
-  s: Sprite,
   value: number,
   cx: number,
   y: number,
   age: number
 ) {
   if (age > 30) return;
-  const text = String(value);
-  const w = s.w / 2;
   ctx.globalAlpha = age < 20 ? 1 : 1 - (age - 20) / 10;
-  let x = cx - ((text.length + 1) * (w + 0.5)) / 2;
-  // Two small bars read as + at this size.
-  ctx.fillStyle = '#fff6e0';
-  ctx.fillRect(snap(x), snap(y - s.h / 4 - 0.5), w - 1, 1);
-  ctx.fillRect(snap(x + w / 2 - 1), snap(y - s.h / 2 + 0.5), 1, s.h / 2 - 1);
-  x += w + 0.5;
-  for (const ch of text) {
-    ctx.drawImage(
-      s.img,
-      Number(ch) * s.w,
-      0,
-      s.w,
-      s.h,
-      snap(x),
-      snap(y - s.h / 2),
-      w,
-      s.h / 2
-    );
-    x += w + 0.5;
-  }
+  label(ctx, `+${value}`, cx, y - 8, 7, 'center');
   ctx.globalAlpha = 1;
 }
 
@@ -1501,22 +1467,9 @@ function squirrel(
 }
 
 /** The combo's multiplier, ×2 and up, under the score while it holds. */
-function combo(ctx: CanvasRenderingContext2D, art: Art, g: Game) {
-  const s = art.get('common/digits');
+function combo(ctx: CanvasRenderingContext2D, g: Game) {
   const times = multiplier(g);
-  if (!s || times < 2) return;
-  const text = String(times);
-  let x = HUD_R - 26 - text.length * (s.w + 1);
-  // An x of two crossing strokes, then the digits.
-  ctx.fillStyle = '#fff6e0';
-  for (let i = 0; i < 5; i++) {
-    ctx.fillRect(x - 7 + i, 19 + i, 1, 1);
-    ctx.fillRect(x - 3 - i, 19 + i, 1, 1);
-  }
-  for (const ch of text) {
-    ctx.drawImage(s.img, Number(ch) * s.w, 0, s.w, s.h, x, 17, s.w, s.h);
-    x += s.w + 1;
-  }
+  if (times >= 2) label(ctx, `×${times}`, HUD_R - 26, 17, 9);
 }
 
 /** Sick from the fly agaric: in bursts, the picture breaks up like a
@@ -1573,23 +1526,32 @@ const HUD_W = 320;
 /** The view's right edge in that space: wider views put the score further. */
 let HUD_R = HUD_W;
 
-function digits(ctx: CanvasRenderingContext2D, art: Art, value: number) {
-  const text = String(value);
-  const s = art.get('common/digits');
-  if (!s) {
-    ctx.fillStyle = '#fff';
-    ctx.font = '8px monospace';
-    ctx.textAlign = 'right';
-    ctx.fillText(text, HUD_R - 26, 14);
-    return;
-  }
-  // Left of the pause button in the corner.
-  let x = HUD_R - 26 - text.length * (s.w + 1);
-  for (const ch of text) {
-    ctx.drawImage(s.img, Number(ch) * s.w, 0, s.w, s.h, x, 6, s.w, s.h);
-    x += s.w + 1;
-  }
+/** The game's words and numbers in Funges' display face (Space Grotesk,
+ *  loaded with the app), light, with a soft shadow to read on any sky. */
+function label(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  y: number,
+  size: number,
+  align: CanvasTextAlign = 'right'
+) {
+  ctx.save();
+  ctx.font = `700 ${size}px 'Space Grotesk', sans-serif`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'top';
+  // The blur is in canvas pixels, which the transform does not scale.
+  ctx.shadowColor = 'rgba(20, 10, 36, 0.55)';
+  ctx.shadowBlur = size * S * 0.35;
+  ctx.shadowOffsetY = size * S * 0.06;
+  ctx.fillStyle = '#fff8ec';
+  ctx.fillText(text, x, y);
+  ctx.restore();
 }
+
+/** The score, left of the pause button in the corner. */
+const digits = (ctx: CanvasRenderingContext2D, value: number) =>
+  label(ctx, String(value), HUD_R - 26, 5, 11);
 
 // A heart, 7×6: the lives, top left. UI like the digits, not scenery.
 const HEART = [
@@ -1721,8 +1683,8 @@ export function draw(
   ctx.setTransform(S, 0, 0, S, 0, 0);
   ctx.save();
   ctx.scale(VIEW_W / HUD_W, VIEW_W / HUD_W);
-  digits(ctx, art, score(g));
-  combo(ctx, art, g);
+  digits(ctx, score(g));
+  combo(ctx, g);
   hearts(ctx, g);
   ctx.restore();
 }
