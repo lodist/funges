@@ -12,6 +12,7 @@ import { draw, loadArt, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
 import {
   newGame,
+  RIDE_TICKS,
   score,
   step,
   TICKS_PER_SECOND,
@@ -51,8 +52,6 @@ function keepBest(best: Best) {
   }
 }
 
-const stageId = (furthest: number) => STAGES[furthest % STAGES.length].id;
-
 type Phase = 'loading' | 'ready' | 'playing' | 'paused' | 'over';
 
 export default function PlayPage() {
@@ -66,25 +65,22 @@ export default function PlayPage() {
   const phaseNow = useRef<Phase>('loading');
   const overAt = useRef(0);
   const [phase, setPhase] = useState<Phase>('loading');
-  const [banner, setBanner] = useState<string | null>(null);
   const [best, setBest] = useState(readBest);
   const [last, setLast] = useState<{ score: number; furthest: number }>();
   const [options] = useState(() => {
     const query = new URLSearchParams(window.location.search);
     return {
       debug: query.has('debug'),
-      // /play?at=rome starts at a stage, for reviewing its art. Such a run
-      // cannot be replayed, so it is never kept as the best.
+      // /play?at=rome starts at a stage, and ?ride on the stage's ride, for
+      // reviewing their art. Such a run cannot be replayed, so it is never
+      // kept as the best.
       at: STAGES.findIndex(s => s.id === query.get('at')),
+      ride: query.has('ride'),
       reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)')
         .matches,
     };
   });
   const number = (n: number) => n.toLocaleString(i18n.language);
-  const stageName = useCallback(
-    (furthest: number) => t(`game.stages.${stageId(furthest)}`),
-    [t]
-  );
 
   const goTo = useCallback((next: Phase) => {
     phaseNow.current = next;
@@ -151,12 +147,18 @@ export default function PlayPage() {
       g.nextAt = g.dist + VIEW_W + 160;
       g.furthest = options.at;
     }
+    const stage = STAGES[Math.max(options.at, 0)];
+    if (options.ride && stage.ride)
+      game.current.ride = {
+        stage: stage.id,
+        art: stage.ride,
+        until: RIDE_TICKS,
+      };
     run.current = { seed, presses: [], releases: [] };
     inputs.current = [];
     setLast(undefined);
-    setBanner(stageName(Math.max(options.at, 0)));
     goTo('playing');
-  }, [goTo, stageName, options]);
+  }, [goTo, options]);
 
   const press = useCallback(() => {
     const now = phaseNow.current;
@@ -178,7 +180,6 @@ export default function PlayPage() {
     let frame = 0;
     let then = performance.now();
     let spare = 0;
-    let shown = game.current.furthest;
     let before: View = { dist: game.current.dist, y: game.current.y };
     const loop = (now: number) => {
       // A stalled tab is paused, not fast-forwarded.
@@ -200,17 +201,14 @@ export default function PlayPage() {
         dist: before.dist + (g.dist - before.dist) * blend,
         y: before.y + (g.y - before.y) * blend,
       });
-      if (g.furthest !== shown) {
-        shown = g.furthest;
-        setBanner(stageName(shown));
-      }
       if (!g.over) {
         frame = requestAnimationFrame(loop);
         return;
       }
       const result = { score: score(g), furthest: g.furthest };
       const previous = readBest();
-      if (options.at < 1 && (!previous || result.score > previous.score)) {
+      const review = options.at > 0 || options.ride;
+      if (!review && (!previous || result.score > previous.score)) {
         const kept = { ...result, run: run.current };
         keepBest(kept);
         setBest(kept);
@@ -221,13 +219,7 @@ export default function PlayPage() {
     };
     frame = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frame);
-  }, [phase, paint, goTo, stageName, options]);
-
-  useEffect(() => {
-    if (!banner) return;
-    const timer = setTimeout(() => setBanner(null), 2000);
-    return () => clearTimeout(timer);
-  }, [banner]);
+  }, [phase, paint, goTo, options]);
 
   // Away from the tab or the app: paused, never lost.
   useEffect(() => {
@@ -264,14 +256,12 @@ export default function PlayPage() {
   const share = () => {
     const canvas = canvasRef.current;
     if (!canvas || !last) return;
-    const stage = stageName(last.furthest);
     const points = number(last.score);
     void shareRun(canvas, {
       title: t('game.title'),
-      line: t('game.card', { score: points, stage }),
+      line: t('game.card', { score: points }),
       text: t('game.shareText', {
         score: points,
-        stage,
         url: `${window.location.origin}/play/`,
       }),
     });
@@ -321,9 +311,6 @@ export default function PlayPage() {
               role='img'
               aria-label={t('game.canvas')}
             />
-            {phase === 'playing' && banner && (
-              <p className={styles.banner}>{banner}</p>
-            )}
           </div>
           <div className={styles.panel} aria-live='polite'>
             {phase === 'ready' && (
@@ -336,12 +323,9 @@ export default function PlayPage() {
               <p className={styles.hint}>{t('game.hint')}</p>
             )}
             {phase === 'over' && last && (
-              <>
-                <p className={styles.lead}>
-                  {t('game.over', { score: number(last.score) })}
-                </p>
-                <p>{t('game.reached', { stage: stageName(last.furthest) })}</p>
-              </>
+              <p className={styles.lead}>
+                {t('game.over', { score: number(last.score) })}
+              </p>
             )}
             {best && phase !== 'playing' && (
               <p className={styles.hint}>
