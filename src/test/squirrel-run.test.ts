@@ -163,6 +163,39 @@ describe('things on the way', () => {
     expect(g.bonus).toBe(POINTS.common);
   });
 
+  it('an easter egg is a life back, or its points when all the lives are left', () => {
+    const egg = {
+      kind: 'egg' as const,
+      y: 2,
+      w: 12,
+      h: 12,
+      points: POINTS.egg,
+    };
+    const knocked = empty();
+    knocked.lives = LIVES - 1;
+    place(knocked, egg);
+    run(knocked, 60);
+    expect(knocked.lives).toBe(LIVES);
+    expect(knocked.bonus).toBe(0);
+
+    const whole = empty();
+    place(whole, egg);
+    run(whole, 60);
+    expect(whole.lives).toBe(LIVES);
+    expect(whole.bonus).toBe(POINTS.egg);
+  });
+
+  it('every stage hides one easter egg', () => {
+    const g = newGame(1);
+    while (g.dist < LAP) {
+      g.speed = speedAt(g.dist);
+      g.dist += 3;
+      fill(g);
+    }
+    const eggs = g.things.filter(t => t.kind === 'egg' && t.x < LAP);
+    expect(eggs.map(t => t.stage)).toEqual(STAGES.map(s => s.id));
+  });
+
   it('the golden acorn gives the stage its ride: it smashes traps, then ends after 7 s', () => {
     const g = empty();
     place(g, {
@@ -214,7 +247,7 @@ describe('the journey', () => {
       'alps',
       'atlantic',
       'newyork',
-      'redwoods',
+      'sequoia',
       'canyon',
     ]);
     expect(stageAt(0).index).toBe(0);
