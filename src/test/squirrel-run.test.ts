@@ -254,6 +254,18 @@ describe('things on the way', () => {
     expect(g.bonus).toBe(POINTS.common);
   });
 
+  it('catches a find the eye sees it touch, but a trap only on contact', () => {
+    // Just over its head: the squirrel's picture reaches it, its box does not.
+    const g = empty();
+    place(g, { kind: 'pickup', y: PLAYER.h + 3, w: 8, h: 8, points: 10 });
+    run(g, 60);
+    expect(g.bonus).toBe(10);
+    const h = empty();
+    place(h, { kind: 'trap', y: PLAYER.h + 3, w: 8, h: 8 });
+    run(h, 60);
+    expect(h.lives).toBe(LIVES);
+  });
+
   it('an easter egg is a life back, or its points when all the lives are left', () => {
     const egg = {
       kind: 'egg' as const,

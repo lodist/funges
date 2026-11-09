@@ -44,6 +44,10 @@ const COMBO_STEP = 3;
 /** Things to catch: their box, and how high they hang (the rare ones and
  *  the golden acorn up in the air). */
 const ITEM = 8;
+/** Good things are caught this close to the squirrel's box (px): its picture,
+ *  tail and nose, is bigger than the box, and what it seems to touch counts.
+ *  Traps only on contact. */
+const REACH = 5;
 const RARE_Y = 28;
 const ACORN_Y = 22;
 /** An egg floats this high over its hilltop: past a jump, not a second. */
@@ -399,8 +403,9 @@ export function step(g: Game, input: Input) {
     const harmful = t.kind === 'trap' || t.kind === 'agaric';
     if (harmful && g.tick < g.mercyUntil) continue;
     const b = box();
-    if (t.x >= left + b.w || left >= t.x + t.w) continue;
-    if (t.y >= g.y + b.h || g.y >= t.y + t.h) continue;
+    const m = harmful ? 0 : REACH;
+    if (t.x - m >= left + b.w || left >= t.x + t.w + m) continue;
+    if (t.y - m >= g.y + b.h || g.y >= t.y + t.h + m) continue;
     touch(g, t);
     if (g.over) return;
   }
