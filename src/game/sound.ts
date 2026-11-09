@@ -21,18 +21,7 @@ const MUSIC = 0.35;
  * sampled by Simon Dalzell of Ivy Audio for Versilian Studios' VSCO 2
  * Community Edition (CC0; credit encouraged): a sample every four semitones,
  * A1 to C#6, 4 s each, mono. The run's pace sets its tempo.
- *
- * Three recorded tracks to compare (/play?music=1|2|3), CC0 from
- * OpenGameArt: "Forget Me Not" by Kistol, "Another August" by cynicmusic
- * (The Cynic Project, pixelsphere.org) and "JRPG Piano" by Joth.
- * ponytail: until Loris picks; the others go then.
  */
-const TRACKS = import.meta.glob<string>('../assets/game/music/*.mp3', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-});
-const CHOICES = ['forget-me-not', 'another-august', 'jrpg-piano'];
 const PIANO = import.meta.glob<string>('../assets/game/music/piano/*.mp3', {
   eager: true,
   query: '?url',
@@ -42,7 +31,6 @@ const PIANO = import.meta.glob<string>('../assets/game/music/piano/*.mp3', {
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
 let noiseBuffer: AudioBuffer | null = null;
-let music: AudioBufferSourceNode | null = null;
 let musicGain: GainNode | null = null;
 let musicLoading = false;
 /** The piano: its samples by MIDI note, where it plays, its clock. */
@@ -91,15 +79,12 @@ export function wake() {
   if (on) void startMusic();
 }
 
-/** The music, faded in: fetched the first time sound is on. The piano
- *  piece, or a recorded track to compare (/play?music=1|2|3). */
+/** The music, faded in: fetched the first time sound is on. */
 async function startMusic() {
   if (!ctx || !master || musicGain || musicLoading) return;
-  const pick = Number(new URLSearchParams(window.location.search).get('music'));
   musicLoading = true;
   try {
-    if (CHOICES[pick - 1]) await startTrack(CHOICES[pick - 1]);
-    else await startPiano();
+    await startPiano();
   } catch {
     // No music (offline, say): the effects play on.
   } finally {
@@ -115,25 +100,6 @@ function fadeIn() {
   musicGain.gain.exponentialRampToValueAtTime(MUSIC, ctx.currentTime + 2);
   musicGain.connect(master);
   return musicGain;
-}
-
-async function startTrack(name: string) {
-  const url = Object.entries(TRACKS).find(([path]) =>
-    path.endsWith(`/${name}.mp3`)
-  )?.[1];
-  if (!url || !ctx) return;
-  const buffer = await ctx.decodeAudioData(
-    await (await fetch(url)).arrayBuffer()
-  );
-  if (!ctx) return; // left the page meanwhile
-  const out = fadeIn();
-  if (!out) return;
-  const source = ctx.createBufferSource();
-  source.buffer = buffer;
-  source.loop = true;
-  source.connect(out);
-  source.start();
-  music = source;
 }
 
 async function startPiano() {
@@ -160,7 +126,7 @@ async function startPiano() {
   const wet = ctx.createGain();
   wet.gain.value = 0.22;
   piano = ctx.createGain();
-  // Level with the recorded tracks (they were evened out at -20 LUFS).
+  // Set against recorded music evened out at -20 LUFS.
   piano.gain.value = 1.5;
   piano.connect(out);
   piano.connect(room).connect(wet).connect(out);
@@ -271,10 +237,9 @@ export const sleep = () => void ctx?.suspend();
 
 /** Leaving the game: all sound ends. */
 export function stopAudio() {
-  music?.stop();
   window.clearInterval(clock);
   void ctx?.close();
-  ctx = master = musicGain = music = piano = null;
+  ctx = master = musicGain = piano = null;
   noiseBuffer = null;
   keys.clear();
 }
