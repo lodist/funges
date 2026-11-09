@@ -101,6 +101,8 @@ import {
   Undo2 as LucideUndo2,
   User as LucideUser,
   Users as LucideUsers,
+  Volume2 as LucideVolume2,
+  VolumeX as LucideVolumeX,
   WifiOff as LucideWifiOff,
   Wind as LucideWind,
   X as LucideX,
@@ -246,6 +248,8 @@ export const Trash2 = decorativeByDefault(LucideTrash2);
 export const Undo2 = decorativeByDefault(LucideUndo2);
 export const User = decorativeByDefault(LucideUser);
 export const Users = decorativeByDefault(LucideUsers);
+export const Volume2 = decorativeByDefault(LucideVolume2);
+export const VolumeX = decorativeByDefault(LucideVolumeX);
 export const WifiOff = decorativeByDefault(LucideWifiOff);
 export const Wind = decorativeByDefault(LucideWind);
 export const X = decorativeByDefault(LucideX);

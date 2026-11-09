@@ -95,6 +95,16 @@ const NAME = /game\/(.+?)(?:@(\d)x)?(?:\.(\d+))?\.webp$/;
 /** Landscape masks load per stage, as the run nears it; sprites at once. */
 const isMask = (name: string) => /\.(mask|lights)$/.test(name);
 
+/** A sprite's file and its frame count, for pictures outside the canvas
+ *  (the collection): "fjords/reindeer" → its URL, 2. */
+export function artUrl(name: string) {
+  for (const [path, url] of Object.entries(URLS)) {
+    const match = path.match(NAME);
+    if (match?.[1] === name) return { url, frames: Number(match[3] ?? 1) };
+  }
+  return undefined;
+}
+
 /** Loads the sprites. One that fails is left out and drawn as its box. */
 export async function loadArt(): Promise<Art> {
   const art: Art = new Map();
@@ -416,6 +426,18 @@ const LOOKS: Record<string, Look> = {
 
 /** The layers: height on screen (game px), scroll speed against the
  *  ground's, and how much of the camera's lift they follow. */
+/** A stage's hour as a CSS gradient, for the collection: its sky over its
+ *  hills and its ground. */
+export function postcard(id: string) {
+  const look = LOOKS[id];
+  if (!look) return undefined;
+  const sky = look.sky.map(
+    ([at, colour]) => `${colour} ${Math.round(at * 62)}%`
+  );
+  const land = [`${look.mid} 62%`, `${look.mid} 80%`, `${look.ground[0]} 80%`];
+  return `linear-gradient(${[...sky, ...land].join(', ')})`;
+}
+
 const LAYERS: [LayerName, number, number, number][] = [
   ['far', 195, 0.12, 0.25],
   ['mid', 112, 0.3, 0.45],
