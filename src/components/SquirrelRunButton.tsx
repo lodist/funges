@@ -13,7 +13,7 @@ export function SquirrelRunButton() {
       variant='ghost'
       size='icon'
       className={BAND_GHOST_CLASS}
-      title={t('game.play')}
+      title={t('game.playShort')}
     >
       <Link to='/play' aria-label={t('game.play')}>
         <Squirrel className='h-4 w-4' />
