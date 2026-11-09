@@ -16,7 +16,7 @@ export function RunningSquirrel({ lane }: { lane: 'top' | 'bottom' }) {
         to='/play'
         className={styles.runner}
         aria-label={t('game.play')}
-        title={t('game.play')}
+        title={t('game.playShort')}
       >
         <span className={styles.legs} style={{ maskImage: `url(${run})` }} />
         <span className={styles.pose} style={{ maskImage: `url(${pause})` }} />

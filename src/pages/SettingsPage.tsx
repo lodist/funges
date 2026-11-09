@@ -51,7 +51,7 @@ export default function SettingsPage() {
     },
     {
       url: '/play',
-      label: tCommon('game.title'),
+      label: tCommon('game.play'),
       icon: Squirrel,
     },
     ...(shouldShowOfflineFeatures && !huerta

@@ -380,11 +380,12 @@
     "dark": "Escuro"
   },
   "game": {
-    "title": "A corrida do esquilo",
-    "play": "Jogar A corrida do esquilo",
-    "seoTitle": "A corrida do esquilo: um jogo na floresta",
+    "title": "Senda",
+    "play": "Jogar Senda",
+    "playShort": "Jogar",
+    "seoTitle": "Senda: a viagem de um esquilo",
     "seoDescription": "Corre com um esquilo-vermelho da Escandinávia ao Grand Canyon. Apanha cantarelos e boletos, salta as armadilhas e agarra a bolota dourada.",
-    "canvas": "A corrida do esquilo: o esquilo corre pela paisagem",
+    "canvas": "Senda: o esquilo corre pela paisagem",
     "start": "Toca ou carrega na barra de espaço para começar",
     "hint": "Toca para saltar, e toca outra vez no ar para saltar mais alto. Arrasta para baixo ou carrega em ↓ para deslizar.",
     "paused": "Em pausa. Toca para continuar.",
@@ -533,6 +534,6 @@
     "again": "Correr outra vez",
     "share": "Partilhar",
     "card": "{{score}} pontos",
-    "shareText": "Fiz {{score}} pontos em A corrida do esquilo: {{url}}"
+    "shareText": "Fiz {{score}} pontos em Senda: {{url}}"
   }
 }
