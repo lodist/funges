@@ -394,7 +394,6 @@
     "best": "Récord: {{score}} puntos",
     "again": "Correr otra vez",
     "share": "Compartir",
-    "fullscreen": "Pantalla completa",
     "card": "{{score}} puntos",
     "shareText": "He hecho {{score}} puntos en La carrera de la ardilla: {{url}}"
   }

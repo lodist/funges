@@ -394,7 +394,6 @@
     "best": "Rekord: {{score}} Punkte",
     "again": "Nochmals rennen",
     "share": "Teilen",
-    "fullscreen": "Vollbild",
     "card": "{{score}} Punkte",
     "shareText": "Ich habe im Eichhörnchen-Rennen {{score}} Punkte geholt: {{url}}"
   }

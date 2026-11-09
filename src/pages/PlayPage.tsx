@@ -5,12 +5,17 @@ import {
   useState,
   type PointerEvent,
 } from 'react';
+import { Link, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { draw, loadArt, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
 import { Pause, Play } from '@/lib/icons';
+import { navItems } from '@/lib/nav-items';
+import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
+import { currentSpace } from '@/lib/spaces';
+import { cn } from '@/lib/utils';
 import {
   newGame,
   RIDE_TICKS,
@@ -18,6 +23,7 @@ import {
   step,
   TICKS_PER_SECOND,
   VIEW_H,
+  VIEW_MAX_W,
   VIEW_W,
   type Game,
   type Run,
@@ -35,6 +41,12 @@ const SWIPE_MS = 300;
 /** The run's end (the slide to a stop) plays this long before the result, ms. */
 const ENDING = 1100;
 const BEST = 'squirrel-best';
+/** The tallest view, game px: 4:3. A screen narrower than 16:9 sees more
+ *  sky, down to this; narrower still gets bars. */
+const VIEW_MAX_H = 360;
+/** A phone or tablet held upright: the game is drawn turned sideways, to be
+ *  played with the device turned (the same query as in the SCSS). */
+const UPRIGHT = '(orientation: portrait) and (pointer: coarse)';
 
 /** The best run on this device: its score, how far it got and the run
  *  itself, to post once there is a board. */
@@ -60,17 +72,40 @@ function keepBest(best: Best) {
   }
 }
 
+/** On a phone or tablet the game takes the whole screen, locked sideways
+ *  where the browser can (Android). Where it cannot (an iPhone has no full
+ *  screen for a page), an upright screen turns the game by CSS instead.
+ *  Only from a tap's release or a click: a touch's press does not count. */
+function landscape(area: HTMLElement | null) {
+  if (
+    !area ||
+    !document.fullscreenEnabled ||
+    document.fullscreenElement ||
+    !window.matchMedia('(pointer: coarse)').matches
+  )
+    return;
+  const orientation = screen.orientation as ScreenOrientation & {
+    lock?: (to: string) => Promise<void>;
+  };
+  void area
+    .requestFullscreen({ navigationUI: 'hide' })
+    .then(() => orientation.lock?.('landscape'))
+    .catch(() => {});
+}
+
 type Phase = 'loading' | 'ready' | 'playing' | 'paused' | 'over';
 
 export default function PlayPage() {
   const { t, i18n } = useTranslation('common');
+  const { t: tNav } = useTranslation('sidebar');
+  const { pathname } = useLocation();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const areaRef = useRef<HTMLDivElement>(null);
   const art = useRef<Art>(new Map());
   const game = useRef<Game>(newGame(0));
   const run = useRef<Run>({ seed: 0, presses: [], releases: [], slides: [] });
   const inputs = useRef<('press' | 'release' | 'slide')[]>([]);
-  const swipe = useRef<{ y: number; at: number } | null>(null);
+  const swipe = useRef<{ x: number; y: number; at: number } | null>(null);
   const phaseNow = useRef<Phase>('loading');
   const overAt = useRef(0);
   const [phase, setPhase] = useState<Phase>('loading');
@@ -96,9 +131,12 @@ export default function PlayPage() {
     setPhase(next);
   }, []);
 
-  // Canvas pixels per game pixel: the canvas has as many pixels as it is
-  // shown at, so the smooth landscape stays sharp at any size.
+  // Canvas pixels per game pixel, and the view's size in game pixels: the
+  // canvas has as many pixels as it is shown at, so the smooth landscape
+  // stays sharp at any size, and the view takes the screen's shape.
   const scale = useRef(3);
+  const width = useRef(VIEW_W);
+  const height = useRef(VIEW_H);
   const paint = useCallback(
     (view?: View) => {
       const ctx = canvasRef.current?.getContext('2d');
@@ -107,7 +145,12 @@ export default function PlayPage() {
           ctx,
           game.current,
           art.current,
-          { ...options, scale: scale.current },
+          {
+            ...options,
+            scale: scale.current,
+            width: width.current,
+            height: height.current,
+          },
           view
         );
     },
@@ -118,14 +161,25 @@ export default function PlayPage() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const fit = () => {
-      const width = Math.min(
-        2560,
-        Math.round(canvas.clientWidth * (window.devicePixelRatio || 1))
-      );
-      if (width < 64 || width === canvas.width) return;
-      canvas.width = width;
-      canvas.height = Math.round((width * VIEW_H) / VIEW_W);
-      scale.current = width / VIEW_W;
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (w < 64 || h < 64) return;
+      // From 4:3 to 21:9 the picture fills the screen: wider, it sees
+      // further ahead; narrower, more sky. Past those, bars.
+      const view = Math.min(VIEW_MAX_W, Math.max(VIEW_W, (w / h) * VIEW_H));
+      const tall = Math.min(VIEW_MAX_H, Math.max(VIEW_H, (view * h) / w));
+      // At most 2 canvas pixels per CSS pixel and 2560 across: a phone's 3x
+      // would triple the pixels drawn each frame for little to see.
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const s = Math.min(Math.min(w / view, h / tall) * dpr, 2560 / view);
+      const cw = Math.round(view * s);
+      const ch = Math.round(tall * s);
+      if (cw === canvas.width && ch === canvas.height) return;
+      canvas.width = cw;
+      canvas.height = ch;
+      scale.current = s;
+      width.current = view;
+      height.current = tall;
       paint();
     };
     fit();
@@ -252,13 +306,26 @@ export default function PlayPage() {
     return () => cancelAnimationFrame(frame);
   }, [phase, paint, goTo, options]);
 
-  // Away from the tab or the app: paused, never lost.
+  // Away from the tab or the app, or out of full screen (Android's back):
+  // paused, never lost. Leaving the page leaves full screen.
   useEffect(() => {
+    const pause = () => {
+      if (phaseNow.current === 'playing') goTo('paused');
+    };
     const away = () => {
-      if (document.hidden && phaseNow.current === 'playing') goTo('paused');
+      if (document.hidden) pause();
+    };
+    const out = () => {
+      if (!document.fullscreenElement) pause();
     };
     document.addEventListener('visibilitychange', away);
-    return () => document.removeEventListener('visibilitychange', away);
+    document.addEventListener('fullscreenchange', out);
+    return () => {
+      document.removeEventListener('visibilitychange', away);
+      document.removeEventListener('fullscreenchange', out);
+      if (document.fullscreenElement)
+        void document.exitFullscreen().catch(() => {});
+    };
   }, [goTo]);
 
   useEffect(() => {
@@ -305,20 +372,7 @@ export default function PlayPage() {
     });
   };
 
-  const fullscreen = () => {
-    void areaRef.current?.requestFullscreen().then(
-      () => {
-        // Android turns to landscape in full screen; elsewhere this is a no-op.
-        const orientation = screen.orientation as ScreenOrientation & {
-          lock?: (to: string) => Promise<void>;
-        };
-        void orientation.lock?.('landscape').catch(() => {});
-      },
-      () => {}
-    );
-  };
-
-  /** Buttons inside the tap area must not also jump. */
+  /** Buttons and links on the tap area must not also jump. */
   const own = (event: PointerEvent) => event.stopPropagation();
 
   return (
@@ -328,103 +382,142 @@ export default function PlayPage() {
         description={t('game.seoDescription')}
         canonicalUrl={`${import.meta.env.BASE_URL}play`}
       />
-      <div className={styles.page}>
-        <h1 className={styles.title}>{t('game.title')}</h1>
-        <div
-          ref={areaRef}
-          className={styles.area}
-          onPointerDown={event => {
-            if (event.button !== 0) return;
-            swipe.current = { y: event.clientY, at: event.timeStamp };
-            press();
-          }}
-          // A swipe down slides (in the air: dives, then slides).
-          onPointerMove={event => {
-            const from = swipe.current;
-            if (!from || event.timeStamp - from.at > SWIPE_MS) return;
-            if (event.clientY - from.y > SWIPE) {
-              swipe.current = null;
-              slide();
-            }
-          }}
-          onPointerUp={() => {
+      <div
+        ref={areaRef}
+        className={styles.area}
+        onPointerDown={event => {
+          if (event.button !== 0) return;
+          swipe.current = {
+            x: event.clientX,
+            y: event.clientY,
+            at: event.timeStamp,
+          };
+          press();
+        }}
+        // A swipe down slides (in the air: dives, then slides). On a turned
+        // screen, down is towards the screen's left edge.
+        onPointerMove={event => {
+          const from = swipe.current;
+          if (!from || event.timeStamp - from.at > SWIPE_MS) return;
+          const down = window.matchMedia(UPRIGHT).matches
+            ? from.x - event.clientX
+            : event.clientY - from.y;
+          if (down > SWIPE) {
             swipe.current = null;
-            release();
-          }}
-          onPointerCancel={release}
-          onContextMenu={event => event.preventDefault()}
-        >
-          <div className={styles.frame}>
-            <canvas
-              ref={canvasRef}
-              width={VIEW_W * 3}
-              height={VIEW_H * 3}
-              className={styles.screen}
-              role='img'
-              aria-label={t('game.canvas')}
-            />
-            {(phase === 'playing' || phase === 'paused') && (
-              <button
-                type='button'
-                className={styles.pause}
-                onPointerDown={own}
-                onClick={togglePause}
-                aria-label={t(
-                  phase === 'paused' ? 'game.resume' : 'game.pause'
-                )}
-              >
-                {phase === 'paused' ? <Play /> : <Pause />}
-              </button>
-            )}
-          </div>
-          <div className={styles.panel} aria-live='polite'>
-            {phase === 'ready' && (
-              <p className={styles.lead}>{t('game.start')}</p>
-            )}
-            {phase === 'paused' && (
-              <p className={styles.lead}>{t('game.paused')}</p>
-            )}
-            {phase === 'playing' && (
-              <p className={styles.hint}>{t('game.hint')}</p>
-            )}
-            {phase === 'over' && last && (
-              <p className={styles.lead}>
-                {t('game.over', { score: number(last.score) })}
-              </p>
-            )}
-            {best && phase !== 'playing' && (
-              <p className={styles.hint}>
-                {t('game.best', { score: number(best.score) })}
-              </p>
-            )}
-            {(phase === 'ready' || phase === 'over') && (
-              <div className={styles.actions}>
-                {phase === 'over' && (
-                  <>
-                    <Button onPointerDown={own} onClick={start}>
-                      {t('game.again')}
-                    </Button>
+            slide();
+          }
+        }}
+        onPointerUp={() => {
+          swipe.current = null;
+          release();
+          if (phaseNow.current === 'playing') landscape(areaRef.current);
+        }}
+        onPointerCancel={release}
+        onContextMenu={event => event.preventDefault()}
+      >
+        <div className={styles.turn}>
+          <canvas
+            ref={canvasRef}
+            width={VIEW_W * 3}
+            height={VIEW_H * 3}
+            className={styles.screen}
+            role='img'
+            aria-label={t('game.canvas')}
+          />
+          {(phase === 'playing' || phase === 'paused') && (
+            <button
+              type='button'
+              className={styles.pause}
+              onPointerDown={own}
+              onClick={() => {
+                togglePause();
+                landscape(areaRef.current);
+              }}
+              aria-label={t(phase === 'paused' ? 'game.resume' : 'game.pause')}
+            >
+              {phase === 'paused' ? <Play /> : <Pause />}
+            </button>
+          )}
+          {/* While the run is not going: the game's words, and the pages the
+              sidebar or the nav bar would offer. */}
+          {phase !== 'playing' && (
+            <div
+              className={cn(styles.menu, NAV_SURFACE_CLASS)}
+              aria-live='polite'
+            >
+              <h1 className={styles.title}>{t('game.title')}</h1>
+              {phase === 'ready' && (
+                <>
+                  <p className={styles.lead}>{t('game.start')}</p>
+                  <p className={styles.hint}>{t('game.hint')}</p>
+                </>
+              )}
+              {phase === 'paused' && (
+                <p className={styles.lead}>{t('game.paused')}</p>
+              )}
+              {phase === 'over' && last && (
+                <p className={styles.lead}>
+                  {t('game.over', { score: number(last.score) })}
+                </p>
+              )}
+              {best && (phase === 'ready' || phase === 'over') && (
+                <p className={styles.hint}>
+                  {t('game.best', { score: number(best.score) })}
+                </p>
+              )}
+              {(phase === 'paused' || phase === 'over') && (
+                <div className={styles.actions}>
+                  {phase === 'paused' ? (
                     <Button
-                      variant='secondary'
                       onPointerDown={own}
-                      onClick={share}
+                      onClick={() => {
+                        goTo('playing');
+                        landscape(areaRef.current);
+                      }}
                     >
-                      {t('game.share')}
+                      {t('game.resume')}
                     </Button>
-                  </>
-                )}
-                {document.fullscreenEnabled && (
-                  <Button
-                    variant='ghost'
-                    onPointerDown={own}
-                    onClick={fullscreen}
-                  >
-                    {t('game.fullscreen')}
-                  </Button>
-                )}
-              </div>
-            )}
-          </div>
+                  ) : (
+                    <>
+                      <Button
+                        onPointerDown={own}
+                        onClick={() => {
+                          start();
+                          landscape(areaRef.current);
+                        }}
+                      >
+                        {t('game.again')}
+                      </Button>
+                      <Button
+                        variant='secondary'
+                        onPointerDown={own}
+                        onClick={share}
+                      >
+                        {t('game.share')}
+                      </Button>
+                    </>
+                  )}
+                </div>
+              )}
+              <nav className={styles.pages}>
+                {navItems(currentSpace(pathname), i18n.language).map(item => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.url}
+                      to={item.url}
+                      reloadDocument={item.reloadDocument}
+                      className={styles.link}
+                      onPointerDown={own}
+                    >
+                      <Icon aria-hidden />
+                      <span>{tNav(item.label)}</span>
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
+          )}
         </div>
       </div>
     </>

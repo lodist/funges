@@ -1,51 +1,61 @@
-// The game page: the pixel screen as large as the page allows, the words
-// under it. The whole box is the tap area; in full screen it fills the screen.
-.page {
-  display: grid;
-  gap: 0.75rem;
-  max-width: 72rem;
-  margin-inline: auto;
-}
-
-.title {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
+// The game fills the screen: the picture as large as it fits, the menu on it
+// whenever the run is not going. The whole screen is the tap area.
 .area {
-  display: grid;
-  gap: 0.75rem;
-  justify-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  // The game's night, around a picture wider or narrower than it can show.
+  background: #100a20;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
-  &:fullscreen {
-    align-content: center;
-    padding: 0.75rem;
-    background: var(--background);
-    .screen {
-      max-height: calc(100dvh - 7rem);
-    }
+}
+
+// What is turned on an upright phone. Inside the full-screen element, which
+// a browser never lets turn.
+.turn {
+  position: absolute;
+  inset: 0;
+}
+
+// A phone or tablet held upright: the game turned sideways, to be played
+// with the device turned (UPRIGHT in PlayPage.tsx). Top to the right edge,
+// as a phone turned anticlockwise shows it.
+@media (orientation: portrait) and (pointer: coarse) {
+  .turn {
+    inset: auto;
+    top: 0;
+    left: 0;
+    width: 100dvh;
+    height: 100dvw;
+    transform-origin: top left;
+    transform: rotate(90deg) translateY(-100%);
   }
 }
 
-.frame {
-  position: relative;
+.screen {
+  position: absolute;
+  inset: 0;
+  display: block;
   width: 100%;
+  height: 100%;
+  object-fit: contain;
+  // The canvas has as many pixels as it is shown at: no scaling to hide.
+  image-rendering: auto;
 }
 
-// Top right of the picture, the score just left of it. Sized with the
-// picture so the two never meet.
+// Top right of the screen, the score just left of it.
 .pause {
   position: absolute;
   top: 1.4%;
   right: 1%;
   display: grid;
   place-items: center;
-  width: clamp(28px, 4.5%, 44px);
+  width: clamp(32px, 4.5%, 44px);
   aspect-ratio: 1;
   border: 0;
   border-radius: 50%;
@@ -62,22 +72,28 @@
   }
 }
 
-// Scaled with hard pixels; letterboxed when the page is wider than 16:9.
-.screen {
-  display: block;
-  width: 100%;
-  max-height: calc(100dvh - 14rem);
-  object-fit: contain;
-  // The canvas has as many pixels as it is shown at: no scaling to hide.
-  image-rendering: auto;
+// In the middle of the picture, on the nav's own glass.
+.menu {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  height: fit-content;
+  max-width: calc(100% - 2rem);
+  max-height: calc(100% - 1rem);
+  margin: auto;
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
+  border-radius: var(--radius-card);
+  text-align: center;
+  cursor: auto;
 }
 
-.panel {
-  display: grid;
-  gap: 0.5rem;
-  justify-items: center;
-  min-height: 6rem;
-  text-align: center;
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .lead {
@@ -86,6 +102,7 @@
 }
 
 .hint {
+  max-width: 30rem;
   color: var(--muted-foreground);
   font-size: 0.875rem;
 }
@@ -95,4 +112,35 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
+}
+
+// The pages, as the nav bar lists them, with their names.
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.link {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.25rem;
+  width: 4.75rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  transition: color var(--transition-duration-base) var(--ease-standard);
+  & svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  &:hover,
+  &:focus-visible {
+    color: var(--primary-text);
+  }
 }

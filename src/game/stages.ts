@@ -81,7 +81,7 @@ export const STAGES: Stage[] = [
     hills: 1.1,
     traps: [
       { id: 'highland-cow', w: 22, h: 17, animal: true },
-      { id: 'thistle', w: 8, h: 15 },
+      { id: 'standing-stone', w: 7, h: 15 },
       { id: 'grouse', w: 11, h: 7, fly: true, animal: true },
     ],
     pickups: ['bramble', 'hedgehog'],
@@ -199,7 +199,7 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 1.2,
     traps: [
-      { id: 'cactus', w: 10, h: 18 },
+      { id: 'bighorn', w: 17, h: 16, animal: true },
       { id: 'tumbleweed', w: 12, h: 12, speed: 1.2 },
       { id: 'rattlesnake', w: 9, h: 6, animal: true },
     ],

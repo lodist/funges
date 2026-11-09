@@ -10,9 +10,11 @@ export async function shareRun(
   card.height = 860;
   const ctx = card.getContext('2d');
   if (!ctx) return;
-  // The screen is at full resolution now: scale it down smoothly.
+  // The screen is at full resolution now: scale it down smoothly. A screen
+  // wider than 16:9 gives its first 16:9, where the squirrel is.
   ctx.imageSmoothingQuality = 'high';
-  ctx.drawImage(screen, 0, 0, 1280, 720);
+  const h = screen.height;
+  ctx.drawImage(screen, 0, 0, (h * 16) / 9, h, 0, 0, 1280, 720);
   ctx.fillStyle = '#1f3d2b';
   ctx.fillRect(0, 720, 1280, 140);
   const font = getComputedStyle(document.body).fontFamily;
