@@ -2060,6 +2060,7 @@
     "loadingPlace": "Looking up this place…",
     "noPlace": "No Huerta advice here.",
     "failed": "The map could not load. Try again in a moment.",
+    "locateFailed": "Your location could not be found. Tap the map where your garden is.",
     "search": "Search crops",
     "noResults": "No crop matches",
     "clearFilters": "Clear filters",
@@ -2519,8 +2520,9 @@
     "hide": "Hide",
     "place": {
       "title": "Where is your garden?",
-      "text": "Find it on the map, so everything here is worked out for your own place.",
-      "action": "Find it on the map"
+      "text": "Use your location or find it on the map, so everything here is worked out for your own place.",
+      "action": "Find it on the map",
+      "failed": "Your location could not be found. Find it on the map instead."
     },
     "plan": {
       "title": "Plan your beds",

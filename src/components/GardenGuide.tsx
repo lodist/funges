@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Check, MapPinned } from '@/lib/icons';
+import { useLocate } from '@/hooks/use-locate';
+import type { Place } from '@/lib/huerta-api';
+import { Check, MapPinned, Navigation } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 
 const HIDDEN = 'huerta-guide-hidden';
@@ -11,16 +13,19 @@ const STEPS = ['place', 'plan', 'sow'] as const;
 /** My garden's first steps, until something is sown: where the garden is,
  *  its beds (filled for now at the place, or `empty` when nothing goes in
  *  now), then sowing and ticking off. `done` says whether the first two are:
- *  the beds once the gardener kept or changed them (`onKeep`). "Hide" keeps
+ *  the beds once the gardener kept or changed them (`onKeep`). The place is
+ *  the device's position (`onPlace`) or a spot found on the map. "Hide" keeps
  *  it away on this device, for gardeners who know their way. */
 export function GardenGuide({
   done,
   empty,
   onKeep,
+  onPlace,
 }: {
   done: [boolean, boolean];
   empty: boolean;
   onKeep: () => void;
+  onPlace: (place: Place) => void;
 }) {
   const { t } = useTranslation('huerta');
   const [hidden, setHidden] = useState(() => {
@@ -30,6 +35,7 @@ export function GardenGuide({
       return false;
     }
   });
+  const { locate, locating, failed } = useLocate(onPlace);
   if (hidden) return null;
   const current = done[0] ? (done[1] ? 2 : 1) : 0;
   const hide = () => {
@@ -106,12 +112,26 @@ export function GardenGuide({
                   </Button>
                 ) : null}
                 {now && step === 'place' ? (
-                  <Button asChild className='mt-2'>
-                    <Link to='/huerta/map'>
-                      <MapPinned className='size-4' />
-                      {t('guide.place.action')}
-                    </Link>
-                  </Button>
+                  <span className='mt-2 flex flex-wrap gap-2'>
+                    <Button onClick={locate} disabled={locating}>
+                      <Navigation className='size-4' />
+                      {locating ? t('picker.locating') : t('picker.locate')}
+                    </Button>
+                    <Button asChild variant='outline'>
+                      <Link to='/huerta/map'>
+                        <MapPinned className='size-4' />
+                        {t('guide.place.action')}
+                      </Link>
+                    </Button>
+                  </span>
+                ) : null}
+                {now && step === 'place' && failed ? (
+                  <span
+                    role='alert'
+                    className='mt-1 block text-sm text-destructive-text'
+                  >
+                    {t('guide.place.failed')}
+                  </span>
                 ) : null}
               </span>
             </li>

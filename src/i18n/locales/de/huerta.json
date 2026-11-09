@@ -2060,6 +2060,7 @@
     "loadingPlace": "Ort wird gesucht…",
     "noPlace": "Hier gibt es keine Huerta-Ratschläge.",
     "failed": "Die Karte konnte nicht laden. Versuch es gleich noch einmal.",
+    "locateFailed": "Dein Standort wurde nicht gefunden. Tippe auf der Karte dorthin, wo dein Garten ist.",
     "search": "Kulturen suchen",
     "noResults": "Keine Kultur passt",
     "clearFilters": "Filter zurücksetzen",
@@ -2519,8 +2520,9 @@
     "hide": "Ausblenden",
     "place": {
       "title": "Wo ist dein Garten?",
-      "text": "Such ihn auf der Karte, damit hier alles für deinen eigenen Ort berechnet wird.",
-      "action": "Auf der Karte suchen"
+      "text": "Nutze deinen Standort oder such deinen Garten auf der Karte, damit hier alles für deinen eigenen Ort berechnet wird.",
+      "action": "Auf der Karte suchen",
+      "failed": "Dein Standort wurde nicht gefunden. Such deinen Garten stattdessen auf der Karte."
     },
     "plan": {
       "title": "Plane deine Beete",
