@@ -164,8 +164,65 @@ const LOOKS: Record<string, Look> = {
     mist: '#f3b3a4',
     fog: [0.75, 0.6, 0.7],
     lights: '#ffd28a',
-    ground: ['#fbe8da', '#f4dccd', '#efd3c4', '#e9cabb', '#e2c0b2'],
+    ground: ['#cdd6a8', '#bdc898', '#aebb8b', '#a0ae7f', '#93a174'],
     hole: '#3a2048',
+  },
+  fjords: {
+    wide: true,
+    sky: [
+      [0, '#0f1d3a'],
+      [0.4, '#1f3b66'],
+      [0.75, '#3f6a9a'],
+      [1, '#8fb4d4'],
+    ],
+    orb: { x: 120, y: 60, r: 8, colour: '#eef4fa', glow: '#b8d0e8' },
+    stars: 40,
+    far: '#5f86ae',
+    mid: '#3a5d84',
+    near: '#1a2f4a',
+    mist: '#9fbfdc',
+    fog: [0.75, 0.6, 0.65],
+    lights: '#ffd27a',
+    ground: ['#c9d2da', '#b9c3cd', '#aab5c1', '#9ca8b5', '#8f9caa'],
+    hole: '#081428',
+  },
+  copenhagen: {
+    wide: true,
+    sky: [
+      [0, '#3a2a5a'],
+      [0.35, '#8a4a6a'],
+      [0.65, '#e08a5a'],
+      [0.88, '#f6c27a'],
+      [1, '#ffe0a0'],
+    ],
+    orb: { x: 380, y: 130, r: 12, colour: '#fff0c8', glow: '#ffd890' },
+    far: '#c9907e',
+    mid: '#9a5e5e',
+    near: '#5a3040',
+    mist: '#f6c8a0',
+    fog: [0.7, 0.55, 0.6],
+    lights: '#ffe08a',
+    ground: ['#e2d6c8', '#d5c8b8', '#c8baa9', '#bbac9b', '#ae9f8e'],
+    hole: '#2a1420',
+  },
+  highlands: {
+    wide: true,
+    sky: [
+      [0, '#3d4a63'],
+      [0.4, '#6f7f96'],
+      [0.7, '#b8a9b4'],
+      [0.9, '#e8c4b4'],
+      [1, '#f6dcc4'],
+    ],
+    orb: { x: 300, y: 135, r: 10, colour: '#fff4e0', glow: '#f6dcc4' },
+    far: '#8d9aa8',
+    mid: '#5f7068',
+    near: '#2f3e36',
+    mist: '#d8d4d0',
+    fog: [0.85, 0.75, 0.7],
+    lights: '#ffd98a',
+    ground: ['#b8c0a0', '#aab292', '#9ca485', '#8f9779', '#838a6e'],
+    hole: '#141c18',
   },
   paris: {
     heights: { near: 112 },
@@ -185,8 +242,27 @@ const LOOKS: Record<string, Look> = {
     mist: '#f2b8b8',
     fog: [0.7, 0.55, 0.65],
     lights: '#ffd28a',
-    ground: ['#fbe9e4', '#f4dcd8', '#eed2cf', '#e7c8c6', '#e0bebd'],
+    ground: ['#ecd9b8', '#e2cca7', '#d8bf98', '#cdb28a', '#c2a67e'],
     hole: '#341a40',
+  },
+  barcelona: {
+    wide: true,
+    sky: [
+      [0, '#2a1440'],
+      [0.3, '#7a2a5a'],
+      [0.6, '#e0524a'],
+      [0.82, '#f89a4a'],
+      [1, '#ffd27a'],
+    ],
+    orb: { x: 140, y: 132, r: 13, colour: '#fff0c0', glow: '#ffc070' },
+    far: '#c86a6a',
+    mid: '#8a3a5a',
+    near: '#4a1a3a',
+    mist: '#f8a88a',
+    fog: [0.7, 0.55, 0.6],
+    lights: '#ffe08a',
+    ground: ['#efcfae', '#e6c09c', '#dcb28c', '#d1a47e', '#c69771'],
+    hole: '#2a0e1c',
   },
   rome: {
     wide: true,
@@ -205,7 +281,7 @@ const LOOKS: Record<string, Look> = {
     mist: '#6d84c2',
     fog: [0.6, 0.5, 0.6],
     lights: '#ffd27a',
-    ground: ['#e6ecfa', '#d8e0f4', '#cdd6ee', '#c2cce8', '#b7c2e0'],
+    ground: ['#d8cbbb', '#cbbcab', '#bdad9c', '#b0a08f', '#a39383'],
     hole: '#0c1230',
   },
   alps: {
@@ -228,25 +304,6 @@ const LOOKS: Record<string, Look> = {
     ground: ['#fbe8da', '#f4dccd', '#efd3c4', '#e9cabb', '#e2c0b2'],
     hole: '#3a2048',
   },
-  atlantic: {
-    wide: true,
-    sky: [
-      [0, '#081236'],
-      [0.4, '#10205a'],
-      [0.75, '#1b3480'],
-      [1, '#2b4c9e'],
-    ],
-    orb: { x: 120, y: 60, r: 14, colour: '#f4f0e0', glow: '#9fb6ee' },
-    stars: 70,
-    far: '#2c4688',
-    mid: '#1f3266',
-    near: '#101c40',
-    mist: '#5a76b8',
-    fog: [0.5, 0.45, 0.55],
-    lights: '#ffe08a',
-    ground: ['#dfe6f6', '#cfd8ee', '#c3cee6', '#b7c3de', '#abb8d6'],
-    hole: '#070d24',
-  },
   newyork: {
     wide: true,
     sky: [
@@ -263,8 +320,48 @@ const LOOKS: Record<string, Look> = {
     mist: '#8a6aa8',
     fog: [0.55, 0.5, 0.6],
     lights: '#ffd27a',
-    ground: ['#ece4f4', '#ddd3ea', '#d2c7e2', '#c7bbda', '#bcafd1'],
+    ground: ['#bccab2', '#adbca3', '#9fae95', '#92a188', '#86947c'],
     hole: '#0e0a22',
+  },
+  neworleans: {
+    wide: true,
+    sky: [
+      [0, '#1a1236'],
+      [0.4, '#3a2a5e'],
+      [0.7, '#6a4a7e'],
+      [0.9, '#a86a7a'],
+      [1, '#d89a7a'],
+    ],
+    orb: { x: 400, y: 50, r: 9, colour: '#fbf4dc', glow: '#e8d8b0' },
+    stars: 30,
+    far: '#6a5a8a',
+    mid: '#40345e',
+    near: '#1c2a22',
+    mist: '#9a8aaa',
+    fog: [0.7, 0.6, 0.55],
+    lights: '#ffc870',
+    ground: ['#b4c9a0', '#a5bb92', '#97ad85', '#8a9f79', '#7e926e'],
+    hole: '#0c0a14',
+  },
+  yosemite: {
+    wide: true,
+    sky: [
+      [0, '#2a2a5a'],
+      [0.4, '#5a4a8a'],
+      [0.7, '#b07aa0'],
+      [0.88, '#f0a890'],
+      [1, '#ffd0a8'],
+    ],
+    orb: { x: 90, y: 50, r: 6, colour: '#fff6ea', glow: '#f0d8e0' },
+    stars: 20,
+    far: '#d8a0a8',
+    mid: '#7a5a7a',
+    near: '#2e2a3e',
+    mist: '#e8b8b0',
+    fog: [0.6, 0.55, 0.6],
+    lights: '#ffd27a',
+    ground: ['#e2d8cc', '#d6cbbe', '#cabeb1', '#beb2a5', '#b2a699'],
+    hole: '#140e1c',
   },
   sequoia: {
     heights: { near: 140 },
@@ -282,7 +379,7 @@ const LOOKS: Record<string, Look> = {
     mist: '#b8cde6',
     fog: [0.8, 0.7, 0.75],
     lights: '#f0c070',
-    ground: ['#eef2f4', '#e2e9ec', '#d7e0e5', '#ccd7de', '#c1ced7'],
+    ground: ['#d6c1b0', '#c9b1a0', '#bba291', '#ae9484', '#a18777'],
     hole: '#101826',
   },
   canyon: {
@@ -303,7 +400,7 @@ const LOOKS: Record<string, Look> = {
     mist: '#8a4a6a',
     fog: [0.55, 0.45, 0.5],
     lights: '#ffc070',
-    ground: ['#f4dccb', '#ebcdb9', '#e2c0ab', '#d9b39e', '#d0a792'],
+    ground: ['#e6b9a0', '#dcaa8f', '#d09b80', '#c48d73', '#b88067'],
     hole: '#100818',
   },
 };
@@ -556,10 +653,15 @@ const SCENERY: Record<string, Scenery[]> = {
 /** What moves in each stage's air, in front of the scenery. */
 const AMBIENT: Record<string, Ambient | undefined> = {
   scandinavia: 'motes',
+  fjords: 'stars',
+  copenhagen: 'leaves',
+  highlands: 'motes',
+  barcelona: 'motes',
+  neworleans: 'fireflies',
+  yosemite: 'stars',
   paris: 'leaves',
   rome: 'stars',
   alps: 'snow',
-  atlantic: 'stars',
   newyork: 'plane',
   sequoia: 'fireflies',
   canyon: 'stars',
@@ -608,13 +710,20 @@ function stand(
   cx: number,
   bottom: number,
   turn: number,
-  k: number
+  k: number,
+  spin = 0
 ) {
   ctx.save();
   ctx.imageSmoothingEnabled = s.res > 1;
   ctx.translate(cx, bottom);
   ctx.rotate((turn * Math.PI) / 180);
   ctx.scale(k, k);
+  if (spin) {
+    // Rolling: turned about its own middle.
+    ctx.translate(0, -s.h / 2);
+    ctx.rotate((spin * Math.PI) / 180);
+    ctx.translate(0, s.h / 2);
+  }
   ctx.drawImage(
     s.img,
     (frame % s.frames) * s.w * s.res,
@@ -628,6 +737,9 @@ function stand(
   );
   ctx.restore();
 }
+
+/** What rolls at the squirrel turns as it comes. */
+const ROLLING = new Set(['snowball', 'tumbleweed', 'football']);
 
 /** A slope's angle in degrees, clockwise (uphill is negative). */
 const angleOf = (slope: number) => (-Math.atan(slope) * 180) / Math.PI;
@@ -931,7 +1043,11 @@ function things(
           k * glow.height
         );
       }
-      if (s) stand(ctx, s, Math.floor(g.tick / 8), cx, bottom + bob, turn, k);
+      // Rolling left, turning anticlockwise: its turn follows the ground.
+      const spin =
+        s && ROLLING.has(t.art) ? (t.x * 360) / (Math.PI * k * s.h) : 0;
+      if (s)
+        stand(ctx, s, Math.floor(g.tick / 8), cx, bottom + bob, turn, k, spin);
       else {
         ctx.fillStyle = '#5b4636';
         ctx.fillRect(snap(x), bottom - t.h, t.w, t.h);
@@ -1139,8 +1255,7 @@ function dust(
 }
 
 /** The run ended in a hole. */
-const fell = (g: Game) =>
-  g.y < ground(g.land, g.dist + PLAYER_X + PLAYER.w / 2)[0] - 20;
+const fell = (g: Game) => g.falling;
 
 /** After the last knock the world glides on and stops under the sliding
  *  squirrel; after a fall into a hole it stops at once. */
@@ -1199,6 +1314,12 @@ const SEAT: Record<string, [number, number]> = {
   cab: [23, 21],
   bigfoot: [17, 31],
   chopper: [27, 17],
+  reindeer: [20, 27],
+  cargobike: [44, 19],
+  steamtrain: [32, 24],
+  skateboard: [17, 8],
+  streetcar: [35, 34],
+  mule: [22, 25],
 };
 
 function ride(
@@ -1364,6 +1485,40 @@ function combo(ctx: CanvasRenderingContext2D, art: Art, g: Game) {
   }
 }
 
+/** Sick from the fly agaric: in bursts, the picture breaks up like a
+ *  stream that stalls. Small, but in the way. */
+function glitch(ctx: CanvasRenderingContext2D, tick: number) {
+  if (hash(Math.floor(tick / 6) + 0.5) > 0.45) return;
+  const c = ctx.canvas;
+  const W = c.width;
+  const H = c.height;
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.imageSmoothingEnabled = false;
+  // Torn bands, slid sideways.
+  const bands = 2 + Math.floor(hash(tick * 3.1) * 3);
+  for (let i = 0; i < bands; i++) {
+    const y = Math.floor(hash(tick * 7.3 + i) * H);
+    const h = Math.max(
+      2,
+      Math.floor(H * (0.01 + hash(tick * 1.7 + i * 5) * 0.05))
+    );
+    const dx = Math.round((hash(tick * 2.9 + i * 11) - 0.5) * W * 0.08);
+    ctx.drawImage(c, 0, y, W, h, dx, y, W, h);
+  }
+  // A blocky smear, like a lost frame's blocks.
+  const bw = Math.floor(W * (0.06 + hash(tick * 4.1) * 0.1));
+  const bh = Math.floor(H * (0.06 + hash(tick * 5.7) * 0.1));
+  const bx = Math.floor(hash(tick * 6.3) * (W - bw));
+  const by = Math.floor(hash(tick * 8.9) * (H - bh));
+  ctx.drawImage(c, bx, by, bw, bh, bx, by, 6, 6);
+  ctx.drawImage(c, bx, by, 6, 6, bx, by, bw, bh);
+  // The picture doubled, a little off.
+  ctx.globalAlpha = 0.22;
+  ctx.drawImage(c, Math.round(W * 0.006), 0);
+  ctx.restore();
+}
+
 /** Streaks rushing past when the run is fast. */
 function speedLines(ctx: CanvasRenderingContext2D, g: Game) {
   const count = Math.min(12, Math.floor((g.speed - 5.2) * 10));
@@ -1458,6 +1613,9 @@ export function draw(
   view: View = { dist: g.dist, y: g.y }
 ) {
   const calm = options.reducedMotion;
+  // Sick, the picture stalls now and then: the last one stays up.
+  if (!calm && g.tick < g.sickUntil && hash(Math.floor(g.tick / 4)) < 0.1)
+    return;
   const dist = view.dist + glide(g, view);
   S = options.scale;
   builtThisFrame = false;
@@ -1481,7 +1639,8 @@ export function draw(
   ctx.save();
   if (!calm && shaking)
     ctx.translate(((g.tick % 3) - 1) * 1.5, (((g.tick + 1) % 3) - 1) * 1);
-  if (sick && !calm) ctx.translate(Math.sin(g.tick / 5) * 3, 0);
+  if (sick && !calm)
+    ctx.translate(Math.sin(g.tick / 5) * 3, (hash(g.tick * 1.3) - 0.5) * 2.5);
 
   CAM = camera(g, dist, view.y);
   const top = surface(g, dist);
@@ -1517,6 +1676,7 @@ export function draw(
     ctx.fillRect(0, 0, VIEW_W, VIEW_H);
   }
   if (!calm && g.speed > 5.2) speedLines(ctx, g);
+  if (sick && !calm) glitch(ctx, g.tick);
   ctx.save();
   ctx.scale(VIEW_W / HUD_W, VIEW_W / HUD_W);
   digits(ctx, art, score(g));
