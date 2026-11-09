@@ -53,7 +53,7 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 0.9,
     traps: [
-      { id: 'crab', w: 10, h: 7, animal: true },
+      { id: 'seal', w: 17, h: 7, animal: true },
       { id: 'rock', w: 13, h: 10 },
       { id: 'gull', w: 11, h: 7, fly: true, animal: true },
     ],
@@ -213,14 +213,18 @@ export const STAGES: Stage[] = [
 /** One lap, Scandinavia to the canyon, in world pixels. */
 export const LAP = STAGES.reduce((sum, stage) => sum + stage.length, 0);
 
-/** Where a world distance falls: the stage, the lap and the stage's start. */
-export function stageAt(dist: number) {
+/** The classic route: the stages in the order above. */
+export const CLASSIC: readonly number[] = STAGES.map((_, i) => i);
+
+/** Where a world distance falls on a route (the stages' indices in the order
+ *  run): the stage, its leg of the route, the lap and the stage's start. */
+export function stageAt(dist: number, route = CLASSIC) {
   const lap = Math.floor(dist / LAP);
   let start = lap * LAP;
-  let index = 0;
-  while (index < STAGES.length - 1 && dist >= start + STAGES[index].length) {
-    start += STAGES[index].length;
-    index++;
+  let leg = 0;
+  while (leg < route.length - 1 && dist >= start + STAGES[route[leg]].length) {
+    start += STAGES[route[leg]].length;
+    leg++;
   }
-  return { index, lap, start };
+  return { index: route[leg], leg, lap, start };
 }
