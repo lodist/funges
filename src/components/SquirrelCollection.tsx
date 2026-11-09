@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { artUrl, postcard } from '@/game/draw';
+import { artUrl } from '@/game/draw';
 import { ALL, readFound } from '@/game/found';
 import { cn } from '@/lib/utils';
 import styles from '@/pages/PlayPage.module.scss';
 
 /**
- * The game's collection: a column per landscape (its hour as a postcard once
- * reached, nameless like the stages themselves), then its two finds, its
- * treat and its ride, in colour once caught and a silhouette until then.
+ * The game's collection: a card per landscape, its picture and its name once
+ * reached, then its two finds, its treat and its ride, in colour once caught
+ * and a silhouette until then. The tally above.
  */
 export function SquirrelCollection() {
   const { t } = useTranslation('common');
@@ -32,31 +32,47 @@ export function SquirrelCollection() {
   return (
     <div className={styles.collection}>
       <p className={styles.hint}>{t('game.goal')}</p>
-      <ul className={styles.tally}>
+      <dl className={styles.tally}>
         {tally.map(([label, n, of]) => (
-          <li key={label}>
-            {t(label)} <b>{`${n}/${of}`}</b>
-          </li>
+          <div key={label}>
+            <dd>
+              {n}
+              <span>{`/${of}`}</span>
+            </dd>
+            <dt>{t(label)}</dt>
+          </div>
         ))}
-      </ul>
-      <ul className={styles.album}>
+      </dl>
+      <ul className={styles.cards}>
         {ALL.map(place => {
           const seen = found.stages.has(place.stage);
           return (
-            <li key={place.stage} className={styles.place}>
-              <span
-                className={cn(styles.postcard, !seen && styles.unseen)}
-                style={seen ? { background: postcard(place.stage) } : undefined}
-                role='img'
-                aria-label={t(seen ? 'game.landscapeSeen' : 'game.notYet')}
+            <li key={place.stage} className={styles.card}>
+              <img
+                className={cn(styles.view, !seen && styles.unseen)}
+                src={artUrl(`${place.stage}/postcard`)?.url}
+                alt=''
+                loading='lazy'
               />
-              {[
-                ...place.finds,
-                place.treat,
-                ...(place.ride ? [place.ride] : []),
-              ].map(item => (
-                <Item key={item} item={item} caught={found.items.has(item)} />
-              ))}
+              {seen ? (
+                <p className={styles.place}>
+                  {t(`game.places.${place.stage}`)}
+                </p>
+              ) : (
+                <p className={cn(styles.place, styles.unknown)}>
+                  <span aria-hidden>{'?'}</span>
+                  <span className='sr-only'>{t('game.notYet')}</span>
+                </p>
+              )}
+              <div className={styles.items}>
+                {[
+                  ...place.finds,
+                  place.treat,
+                  ...(place.ride ? [place.ride] : []),
+                ].map(item => (
+                  <Item key={item} item={item} caught={found.items.has(item)} />
+                ))}
+              </div>
             </li>
           );
         })}

@@ -419,6 +419,21 @@
     "howTreat": "Una golosina escondida en lo alto te devuelve una vida.",
     "howAgaric": "La amanita muscaria te marea.",
     "howWatch": "Los animales, los obstáculos y los agujeros cuestan una vida.",
+    "places": {
+      "scandinavia": "Escandinavia",
+      "fjords": "Fiordos noruegos",
+      "copenhagen": "Copenhague",
+      "highlands": "Tierras Altas de Escocia",
+      "paris": "París",
+      "barcelona": "Barcelona",
+      "rome": "Roma",
+      "alps": "Alpes suizos",
+      "newyork": "Nueva York",
+      "neworleans": "Nueva Orleans",
+      "yosemite": "Yosemite",
+      "sequoia": "Parque nacional de las Secuoyas",
+      "canyon": "Gran Cañón"
+    },
     "items": {
       "chanterelle": "Rebozuelo",
       "cloudberry": "Mora de los pantanos",

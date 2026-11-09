@@ -419,6 +419,21 @@
     "howTreat": "Una golosità nascosta in alto ti ridà una vita.",
     "howAgaric": "L’ovolaccio ti fa girare la testa.",
     "howWatch": "Animali, ostacoli e buche costano una vita.",
+    "places": {
+      "scandinavia": "Scandinavia",
+      "fjords": "Fiordi norvegesi",
+      "copenhagen": "Copenaghen",
+      "highlands": "Highlands scozzesi",
+      "paris": "Parigi",
+      "barcelona": "Barcellona",
+      "rome": "Roma",
+      "alps": "Alpi svizzere",
+      "newyork": "New York",
+      "neworleans": "New Orleans",
+      "yosemite": "Yosemite",
+      "sequoia": "Parco nazionale di Sequoia",
+      "canyon": "Grand Canyon"
+    },
     "items": {
       "chanterelle": "Gallinaccio",
       "cloudberry": "Camemoro",
