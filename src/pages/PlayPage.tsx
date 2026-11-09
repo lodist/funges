@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import { SquirrelBoard } from '@/components/SquirrelBoard';
+import { SquirrelCollection } from '@/components/SquirrelCollection';
 import { Button } from '@/components/ui/button';
 import {
   bestOf,
@@ -20,7 +21,8 @@ import {
   sendBests,
   type Route,
 } from '@/game/board';
-import { draw, loadArt, type Art, type View } from '@/game/draw';
+import { artUrl, draw, loadArt, type Art, type View } from '@/game/draw';
+import { discoverer } from '@/game/found';
 import { shareRun } from '@/game/share';
 import {
   before as soundBefore,
@@ -100,6 +102,17 @@ function landscape(area: HTMLElement | null) {
 }
 
 type Phase = 'loading' | 'ready' | 'playing' | 'paused' | 'over';
+type Tab = 'game' | 'board' | 'collection' | 'help';
+
+/** How to play, a line each, with the thing it is about. */
+const HOW: [key: string, art?: string][] = [
+  ['game.hint'],
+  ['game.howCombo', 'scandinavia/chanterelle'],
+  ['game.howAcorn', 'common/acorn'],
+  ['game.howTreat', 'paris/croissant'],
+  ['game.howAgaric', 'common/agaric'],
+  ['game.howWatch', 'fjords/seal'],
+];
 
 export default function PlayPage() {
   const { t, i18n } = useTranslation('common');
@@ -121,7 +134,7 @@ export default function PlayPage() {
   }));
   const [last, setLast] = useState<{ score: number; furthest: number }>();
   const [route, setRoute] = useState(readRoute);
-  const [tab, setTab] = useState<'game' | 'board'>('game');
+  const [tab, setTab] = useState<Tab>('game');
   // The run just ended: a best of this device's, and its place on the board.
   const [newBest, setNewBest] = useState(false);
   const [rank, setRank] = useState<number | null>(null);
@@ -288,6 +301,8 @@ export default function PlayPage() {
     let then = performance.now();
     let spare = 0;
     let before: View = { dist: game.current.dist, y: game.current.y };
+    // What this run finds goes into the collection; a review run's does not.
+    const discover = options.at > 0 || options.ride ? null : discoverer();
     let endedAt = -1;
     const loop = (now: number) => {
       // A stalled tab is paused, not fast-forwarded.
@@ -309,6 +324,7 @@ export default function PlayPage() {
           slide: input === 'slide',
         });
         sounds(was, g);
+        discover?.(g);
       }
       if (g.over && endedAt < 0) endedAt = now;
       const ended = g.over ? now - endedAt : undefined;
@@ -516,13 +532,22 @@ export default function PlayPage() {
                   {sound ? <Volume2 /> : <VolumeX />}
                 </button>
               </div>
-              {boardsOn && phase !== 'loading' && (
+              {phase !== 'loading' && (
                 <div onPointerDown={own}>
                   <SegmentedControl
                     label={t('game.menu')}
                     options={[
                       { value: 'game', label: t('game.tabGame') },
-                      { value: 'board', label: t('game.tabBoard') },
+                      ...(boardsOn
+                        ? [
+                            {
+                              value: 'board' as const,
+                              label: t('game.tabBoard'),
+                            },
+                          ]
+                        : []),
+                      { value: 'collection', label: t('game.tabCollection') },
+                      { value: 'help', label: t('game.tabHelp') },
                     ]}
                     value={tab}
                     onChange={setTab}
@@ -533,12 +558,46 @@ export default function PlayPage() {
                 <div onPointerDown={own}>
                   <SquirrelBoard route={route} onRoute={chooseRoute} />
                 </div>
+              ) : tab === 'collection' ? (
+                <div onPointerDown={own}>
+                  <SquirrelCollection />
+                </div>
+              ) : tab === 'help' ? (
+                <ul className={styles.how} onPointerDown={own}>
+                  {HOW.map(([key, art]) => {
+                    const picture = art && artUrl(art);
+                    return (
+                      <li key={key}>
+                        <span
+                          className={styles.item}
+                          style={
+                            picture
+                              ? { backgroundImage: `url(${picture.url})` }
+                              : undefined
+                          }
+                        />
+                        {t(key)}
+                      </li>
+                    );
+                  })}
+                  <li>
+                    <span className={styles.item} />
+                    <b>{t('game.goal')}</b>
+                  </li>
+                </ul>
               ) : (
                 <>
                   {phase === 'ready' && (
                     <>
                       <p className={styles.lead}>{t('game.start')}</p>
-                      <p className={styles.hint}>{t('game.hint')}</p>
+                      {/* A first run gets the controls; later ones, the goal. */}
+                      <p className={styles.hint}>
+                        {t(
+                          bests.classic || bests.random
+                            ? 'game.goal'
+                            : 'game.hint'
+                        )}
+                      </p>
                     </>
                   )}
                   {phase === 'paused' && (
