@@ -2060,6 +2060,7 @@
     "loadingPlace": "Procurando este lugar…",
     "noPlace": "Não há conselhos do Huerta aqui.",
     "failed": "O mapa não carregou. Tente de novo daqui a pouco.",
+    "locateFailed": "Não foi possível encontrar a sua localização. Toque no mapa onde fica a sua horta.",
     "search": "Pesquisar culturas",
     "noResults": "Nenhuma cultura corresponde",
     "clearFilters": "Limpar os filtros",
@@ -2519,8 +2520,9 @@
     "hide": "Ocultar",
     "place": {
       "title": "Onde fica sua horta?",
-      "text": "Encontre-a no mapa, para que tudo aqui seja calculado para o seu lugar.",
-      "action": "Encontrar no mapa"
+      "text": "Use a sua localização ou encontre a sua horta no mapa, para que tudo aqui seja calculado para o seu lugar.",
+      "action": "Encontrar no mapa",
+      "failed": "Não foi possível encontrar a sua localização. Procure a sua horta no mapa."
     },
     "plan": {
       "title": "Planeje seus canteiros",

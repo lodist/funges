@@ -2060,6 +2060,7 @@
     "loadingPlace": "Recherche de ce lieu…",
     "noPlace": "Pas de conseils Huerta ici.",
     "failed": "La carte n'a pas pu se charger. Réessayez dans un instant.",
+    "locateFailed": "Votre position est introuvable. Touchez la carte là où se trouve votre potager.",
     "search": "Rechercher une culture",
     "noResults": "Aucune culture ne correspond",
     "clearFilters": "Effacer les filtres",
@@ -2519,8 +2520,9 @@
     "hide": "Masquer",
     "place": {
       "title": "Où est votre potager ?",
-      "text": "Trouvez-le sur la carte, pour que tout ici soit calculé pour votre propre lieu.",
-      "action": "Le trouver sur la carte"
+      "text": "Utilisez votre position ou trouvez-le sur la carte, pour que tout ici soit calculé pour votre propre lieu.",
+      "action": "Le trouver sur la carte",
+      "failed": "Votre position est introuvable. Cherchez plutôt votre potager sur la carte."
     },
     "plan": {
       "title": "Planifiez vos planches",

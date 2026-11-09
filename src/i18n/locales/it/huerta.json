@@ -2060,6 +2060,7 @@
     "loadingPlace": "Cerco questo luogo…",
     "noPlace": "Qui non ci sono consigli di Huerta.",
     "failed": "La mappa non si è caricata. Riprova tra un momento.",
+    "locateFailed": "Non è stato possibile trovare la tua posizione. Tocca la mappa dove si trova il tuo orto.",
     "search": "Cerca colture",
     "noResults": "Nessuna coltura corrisponde",
     "clearFilters": "Togli i filtri",
@@ -2519,8 +2520,9 @@
     "hide": "Nascondi",
     "place": {
       "title": "Dov'è il tuo orto?",
-      "text": "Trovalo sulla mappa, così tutto qui è calcolato per il tuo luogo.",
-      "action": "Trovalo sulla mappa"
+      "text": "Usa la tua posizione o trovalo sulla mappa, così tutto qui è calcolato per il tuo luogo.",
+      "action": "Trovalo sulla mappa",
+      "failed": "Non è stato possibile trovare la tua posizione. Cerca il tuo orto sulla mappa."
     },
     "plan": {
       "title": "Pianifica le aiuole",

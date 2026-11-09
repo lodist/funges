@@ -9,6 +9,7 @@ import { HuertaWeek } from '@/components/HuertaWeek';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
+import { useLocate } from '@/hooks/use-locate';
 import { useIsMobile } from '@/hooks/use-mobile';
 import {
   BAND_ACTIVE_CLASS,
@@ -46,7 +47,9 @@ import {
   CloudFog,
   Droplets,
   Leaf,
+  Loader2,
   MapPinned,
+  Navigation,
   Snail,
   Snowflake,
   Sprout,
@@ -533,6 +536,25 @@ export default function HuertaMapPage() {
     );
   };
 
+  // Locate me: the spot's card where the device is, as a tap there would
+  // open it, with the spot moved clear of the card.
+  const {
+    locate,
+    locating,
+    failed: lost,
+  } = useLocate(place => {
+    const m = map.current;
+    if (!m) return;
+    setPicked({ place });
+    m.flyTo({
+      center: [place.lon, place.lat],
+      zoom: Math.max(m.getZoom(), 10),
+      offset: phone.current
+        ? [0, -m.getContainer().clientHeight / 4]
+        : [CARD_PX / 2, 0],
+    });
+  });
+
   // The crop panel opened: its status filter is for the spot picked, else
   // for the map's centre.
   const lookAround = () => {
@@ -568,6 +590,18 @@ export default function HuertaMapPage() {
               onOpen={lookAround}
             />
           </div>
+          {lost && !picked ? (
+            <p
+              role='alert'
+              className={cn(
+                // Clear of the rail (right-4, one button wide).
+                'pointer-events-auto mr-16 max-w-xs self-start rounded-card p-3 text-sm text-happy-50 elevation-raised',
+                BAND_SURFACE_CLASS
+              )}
+            >
+              {t('map.locateFailed')}
+            </p>
+          ) : null}
         </div>
         {/* The layers as Terra's tool rail: one band-coloured column, top right.
             On a phone it steps aside while a spot's card is open. */}
@@ -580,6 +614,23 @@ export default function HuertaMapPage() {
             BAND_SURFACE_CLASS
           )}
         >
+          {/* First, as on Terra's rail. */}
+          <Button
+            type='button'
+            variant='ghost'
+            size='icon'
+            onClick={locate}
+            disabled={locating}
+            aria-label={t('picker.locate')}
+            title={t('picker.locate')}
+            className={BAND_GHOST_CLASS}
+          >
+            {locating ? (
+              <Loader2 className='h-4 w-4 animate-spin' />
+            ) : (
+              <Navigation className='h-4 w-4' />
+            )}
+          </Button>
           {LAYERS.map(l =>
             l === 'pests' ? (
               // The pests as a second rail beside their button, which opens

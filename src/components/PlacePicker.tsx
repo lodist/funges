@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useLocate } from '@/hooks/use-locate';
 import { searchTowns, type Place, type Town } from '@/lib/huerta-api';
 import { Navigation } from '@/lib/icons';
 
 /** Where the garden is: the device's position, or a town searched by name. */
 export function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
   const { t } = useTranslation('huerta');
-  const [locating, setLocating] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const { locate, locating, failed } = useLocate(onPick);
   const [query, setQuery] = useState('');
   const [towns, setTowns] = useState<Town[]>([]);
   // The query the shown results answer: "no town" only once its search is done.
@@ -36,25 +36,6 @@ export function PlacePicker({ onPick }: { onPick: (place: Place) => void }) {
       current = false;
     };
   }, [query]);
-
-  const locate = () => {
-    setLocating(true);
-    setFailed(false);
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        setLocating(false);
-        onPick({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude,
-        });
-      },
-      () => {
-        setLocating(false);
-        setFailed(true);
-      },
-      { maximumAge: 3_600_000, timeout: 15_000 }
-    );
-  };
 
   return (
     <section className='flex max-w-xl flex-col gap-5 rounded-card bg-card p-6 elevation-raised sm:p-8'>
