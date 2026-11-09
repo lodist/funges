@@ -1,9 +1,10 @@
 /*
- * The run, stage by stage: from Scandinavia over the fjords, through
- * Europe's cities and highlands, then across America to the Grand Canyon,
- * and round again, faster. A stage's art lives in src/assets/game/<id>/
- * under the names used here. Sizes are hitboxes in game pixels (the screen
- * is 480×270); a sprite may be drawn a little larger than its box.
+ * The run, stage by stage: from Scandinavia over the fjords and Iceland,
+ * through Europe's cities, forests and islands, then across America, from
+ * New York to the Grand Canyon, and round again, faster. A stage's art lives
+ * in src/assets/game/<id>/ under the names used here. Sizes are hitboxes in
+ * game pixels (the screen is 480×270); a sprite may be drawn a little larger
+ * than its box.
  */
 
 export interface Trap {
@@ -63,17 +64,18 @@ export const STAGES: Stage[] = [
     egg: 'waffle',
   },
   {
-    id: 'copenhagen',
+    id: 'iceland',
     length: 15000,
-    hills: 0.4,
+    hills: 1.2,
     traps: [
-      { id: 'bollard', w: 8, h: 12 },
-      { id: 'duck', w: 11, h: 9, animal: true },
-      { id: 'swan', w: 14, h: 8, fly: true, animal: true },
+      { id: 'arctic-fox', w: 14, h: 8, animal: true },
+      { id: 'puffin', w: 8, h: 10, animal: true },
+      { id: 'tern', w: 11, h: 7, fly: true, animal: true },
     ],
-    pickups: ['wood-sorrel', 'sea-buckthorn'],
-    ride: 'cargobike',
-    egg: 'danish',
+    pickups: ['crowberries', 'iceland-moss'],
+    gaps: true,
+    ride: 'icelandic-horse',
+    egg: 'kleina',
   },
   {
     id: 'highlands',
@@ -89,6 +91,45 @@ export const STAGES: Stage[] = [
     egg: 'shortbread',
   },
   {
+    id: 'copenhagen',
+    length: 15000,
+    hills: 0.4,
+    traps: [
+      { id: 'bollard', w: 8, h: 12 },
+      { id: 'duck', w: 11, h: 9, animal: true },
+      { id: 'swan', w: 14, h: 8, fly: true, animal: true },
+    ],
+    pickups: ['wood-sorrel', 'sea-buckthorn'],
+    ride: 'cargobike',
+    egg: 'danish',
+  },
+  {
+    id: 'tallinn',
+    length: 15000,
+    hills: 0.6,
+    traps: [
+      { id: 'hedgehog-animal', w: 10, h: 7, animal: true },
+      { id: 'cart', w: 18, h: 12 },
+      { id: 'jackdaw', w: 10, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['lingonberries', 'orange-bolete'],
+    ride: 'carriage',
+    egg: 'marzipan',
+  },
+  {
+    id: 'bialowieza',
+    length: 15000,
+    hills: 0.8,
+    traps: [
+      { id: 'lynx', w: 17, h: 11, animal: true },
+      { id: 'anthill', w: 15, h: 9 },
+      { id: 'woodpecker', w: 10, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['honey-fungus', 'lions-mane'],
+    ride: 'bison',
+    egg: 'paczek',
+  },
+  {
     id: 'paris',
     length: 15000,
     hills: 0.5,
@@ -100,6 +141,20 @@ export const STAGES: Stage[] = [
     pickups: ['parasol', 'truffle'],
     ride: 'littlecar',
     egg: 'croissant',
+  },
+  {
+    id: 'camargue',
+    length: 15000,
+    hills: 0.25,
+    traps: [
+      { id: 'bull', w: 22, h: 18, animal: true },
+      { id: 'salt', w: 12, h: 5 },
+      { id: 'flamingo', w: 15, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['samphire', 'sea-purslane'],
+    gaps: true,
+    ride: 'white-horse',
+    egg: 'calisson',
   },
   {
     id: 'barcelona',
@@ -115,6 +170,19 @@ export const STAGES: Stage[] = [
     egg: 'churro',
   },
   {
+    id: 'alps',
+    length: 15000,
+    hills: 1.4,
+    traps: [
+      { id: 'cow', w: 22, h: 16, animal: true },
+      { id: 'snowball', w: 12, h: 12, speed: 1 },
+    ],
+    pickups: ['bilberry', 'pine-bolete'],
+    gaps: true,
+    ride: 'postbus',
+    egg: 'cheese',
+  },
+  {
     id: 'rome',
     length: 15000,
     hills: 0.8,
@@ -128,17 +196,18 @@ export const STAGES: Stage[] = [
     egg: 'gelato',
   },
   {
-    id: 'alps',
+    id: 'santorini',
     length: 15000,
-    hills: 1.4,
+    hills: 1.3,
     traps: [
-      { id: 'cow', w: 22, h: 16, animal: true },
-      { id: 'snowball', w: 12, h: 12, speed: 1 },
+      { id: 'tortoise', w: 12, h: 7, animal: true },
+      { id: 'pot', w: 11, h: 12 },
+      { id: 'swallow', w: 9, h: 6, fly: true, animal: true },
     ],
-    pickups: ['bilberry', 'pine-bolete'],
+    pickups: ['capers', 'figs'],
     gaps: true,
-    ride: 'postbus',
-    egg: 'cheese',
+    ride: 'donkey',
+    egg: 'baklava',
   },
   {
     id: 'newyork',
@@ -154,6 +223,32 @@ export const STAGES: Stage[] = [
     egg: 'apple',
   },
   {
+    id: 'newengland',
+    length: 15000,
+    hills: 0.9,
+    traps: [
+      { id: 'porcupine', w: 13, h: 10, animal: true },
+      { id: 'sap-bucket', w: 7, h: 12 },
+      { id: 'goose', w: 13, h: 8, fly: true, animal: true },
+    ],
+    pickups: ['fiddleheads', 'black-trumpets'],
+    ride: 'canoe',
+    egg: 'maple-candy',
+  },
+  {
+    id: 'miami',
+    length: 15000,
+    hills: 0.3,
+    traps: [
+      { id: 'iguana', w: 17, h: 6, animal: true },
+      { id: 'cooler', w: 11, h: 10 },
+      { id: 'ibis', w: 12, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['sea-grapes', 'key-limes'],
+    ride: 'convertible',
+    egg: 'key-lime-pie',
+  },
+  {
     id: 'neworleans',
     length: 15000,
     hills: 0.35,
@@ -165,6 +260,19 @@ export const STAGES: Stage[] = [
     pickups: ['muscadine', 'chicken-of-the-woods'],
     ride: 'streetcar',
     egg: 'beignet',
+  },
+  {
+    id: 'sanfrancisco',
+    length: 15000,
+    hills: 1.5,
+    traps: [
+      { id: 'sea-lion', w: 18, h: 12, animal: true },
+      { id: 'hydrant', w: 8, h: 11 },
+      { id: 'hummingbird', w: 7, h: 5, fly: true, animal: true },
+    ],
+    pickups: ['fennel', 'candy-cap'],
+    ride: 'cablecar',
+    egg: 'sourdough',
   },
   {
     id: 'yosemite',
