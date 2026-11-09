@@ -404,6 +404,7 @@
     "boardEmpty": "Ainda não há corridas: começa tu!",
     "boardDown": "A classificação não está disponível agora.",
     "signIn": "Inicia sessão para manteres o teu nome em todos os dispositivos",
+    "sound": "Som",
     "over": "Fim do jogo: {{score}} pontos",
     "best": "Recorde: {{score}} pontos",
     "again": "Correr outra vez",
