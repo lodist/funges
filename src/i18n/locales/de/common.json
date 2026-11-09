@@ -404,6 +404,7 @@
     "boardEmpty": "Noch keine Läufe: Mach den Anfang.",
     "boardDown": "Die Rangliste ist gerade nicht erreichbar.",
     "signIn": "Melde dich an, um deinen Namen auf allen Geräten zu behalten",
+    "sound": "Ton",
     "over": "Vorbei: {{score}} Punkte",
     "best": "Rekord: {{score}} Punkte",
     "again": "Nochmals rennen",

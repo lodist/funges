@@ -22,7 +22,17 @@ import {
 } from '@/game/board';
 import { draw, loadArt, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
-import { Pause, Play } from '@/lib/icons';
+import {
+  before as soundBefore,
+  musicLevel,
+  setSoundOn,
+  sleep,
+  soundOn,
+  sounds,
+  stopAudio,
+  wake,
+} from '@/game/sound';
+import { Pause, Play, Volume2, VolumeX } from '@/lib/icons';
 import { navItems } from '@/lib/nav-items';
 import { NAV_SURFACE_CLASS } from '@/lib/nav-surface';
 import { currentSpace } from '@/lib/spaces';
@@ -115,6 +125,7 @@ export default function PlayPage() {
   // The run just ended: a best of this device's, and its place on the board.
   const [newBest, setNewBest] = useState(false);
   const [rank, setRank] = useState<number | null>(null);
+  const [sound, setSound] = useState(soundOn);
   const [options] = useState(() => {
     const query = new URLSearchParams(window.location.search);
     return {
@@ -291,11 +302,13 @@ export default function PlayPage() {
         if (input === 'release') run.current.releases.push(tick);
         if (input === 'slide') run.current.slides?.push(tick);
         before = { dist: g.dist, y: g.y };
+        const was = soundBefore(g);
         step(g, {
           press: input === 'press',
           release: input === 'release',
           slide: input === 'slide',
         });
+        sounds(was, g);
       }
       if (g.over && endedAt < 0) endedAt = now;
       const ended = g.over ? now - endedAt : undefined;
@@ -341,7 +354,9 @@ export default function PlayPage() {
       if (phaseNow.current === 'playing') goTo('paused');
     };
     const away = () => {
-      if (document.hidden) pause();
+      if (!document.hidden) return;
+      pause();
+      sleep();
     };
     const out = () => {
       if (!document.fullscreenElement) pause();
@@ -353,8 +368,11 @@ export default function PlayPage() {
       document.removeEventListener('fullscreenchange', out);
       if (document.fullscreenElement)
         void document.exitFullscreen().catch(() => {});
+      stopAudio();
     };
   }, [goTo]);
+
+  useEffect(() => musicLevel(phase === 'playing'), [phase]);
 
   useEffect(() => {
     const down = (event: KeyboardEvent) => {
@@ -371,6 +389,7 @@ export default function PlayPage() {
       }
       const jump = JUMP_KEYS.has(event.code);
       if (!jump && !SLIDE_KEYS.has(event.code)) return;
+      wake();
       // Space on a focused button presses the button.
       if (
         event.target instanceof HTMLElement &&
@@ -443,6 +462,7 @@ export default function PlayPage() {
         }}
         onPointerUp={() => {
           swipe.current = null;
+          wake();
           release();
           if (phaseNow.current === 'playing') landscape(areaRef.current);
         }}
@@ -479,7 +499,23 @@ export default function PlayPage() {
               className={cn(styles.menu, NAV_SURFACE_CLASS)}
               aria-live='polite'
             >
-              <h1 className={styles.title}>{t('game.title')}</h1>
+              <div className={styles.head}>
+                <h1 className={styles.title}>{t('game.title')}</h1>
+                <button
+                  type='button'
+                  className={styles.sound}
+                  onPointerDown={own}
+                  onClick={() => {
+                    wake();
+                    setSoundOn(!sound);
+                    setSound(!sound);
+                  }}
+                  aria-pressed={sound}
+                  aria-label={t('game.sound')}
+                >
+                  {sound ? <Volume2 /> : <VolumeX />}
+                </button>
+              </div>
               {boardsOn && phase !== 'loading' && (
                 <div onPointerDown={own}>
                   <SegmentedControl

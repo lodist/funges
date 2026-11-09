@@ -404,6 +404,7 @@
     "boardEmpty": "No runs yet: be the first.",
     "boardDown": "The ranking can't be reached right now.",
     "signIn": "Sign in to keep your name on every device",
+    "sound": "Sound",
     "over": "Game over: {{score}} points",
     "best": "Best: {{score}} points",
     "again": "Run again",

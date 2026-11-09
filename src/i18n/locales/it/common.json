@@ -404,6 +404,7 @@
     "boardEmpty": "Ancora nessuna corsa: inizia tu!",
     "boardDown": "La classifica non è raggiungibile al momento.",
     "signIn": "Accedi per tenere il tuo nome su tutti i dispositivi",
+    "sound": "Suono",
     "over": "Partita finita: {{score}} punti",
     "best": "Record: {{score}} punti",
     "again": "Corri di nuovo",

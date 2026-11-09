@@ -404,6 +404,7 @@
     "boardEmpty": "Aucune course pour l’instant : lance-toi !",
     "boardDown": "Le classement est injoignable pour l’instant.",
     "signIn": "Connecte-toi pour garder ton nom sur tous tes appareils",
+    "sound": "Son",
     "over": "Partie terminée : {{score}} points",
     "best": "Record : {{score}} points",
     "again": "Rejouer",
