@@ -1,8 +1,8 @@
 /*
  * The run, stage by stage: Scandinavia to the Grand Canyon, then again,
  * faster. A stage's art lives in src/assets/game/<id>/ under the names used
- * here. Sizes are hitboxes in game pixels (the screen is 480×270, 10 px =
- * 1 m); a sprite may be drawn a little larger than its box.
+ * here. Sizes are hitboxes in game pixels (the screen is 480×270); a
+ * sprite may be drawn a little larger than its box.
  */
 
 export interface Trap {
@@ -39,9 +39,9 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 1.0,
     traps: [
-      { id: 'moose', w: 26, h: 28, animal: true },
-      { id: 'boulder', w: 22, h: 16 },
-      { id: 'birch', w: 40, h: 12 },
+      { id: 'moose', w: 20, h: 21, animal: true },
+      { id: 'boulder', w: 16, h: 12 },
+      { id: 'birch', w: 30, h: 9 },
     ],
     pickups: ['chanterelle', 'cloudberry'],
     ride: 'longship',
@@ -52,9 +52,9 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 0.5,
     traps: [
-      { id: 'cafe', w: 30, h: 16 },
-      { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
-      { id: 'bike', w: 30, h: 22, speed: 0.8 },
+      { id: 'cafe', w: 22, h: 12 },
+      { id: 'pigeon', w: 10, h: 8, fly: true, animal: true },
+      { id: 'bike', w: 22, h: 16, speed: 0.8 },
     ],
     pickups: ['parasol', 'truffle'],
     ride: 'littlecar',
@@ -65,8 +65,8 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 0.8,
     traps: [
-      { id: 'column', w: 16, h: 22 },
-      { id: 'parked-scooter', w: 22, h: 18 },
+      { id: 'column', w: 12, h: 16 },
+      { id: 'parked-scooter', w: 16, h: 14 },
     ],
     pickups: ['chestnut', 'bronze-bolete'],
     gaps: true,
@@ -78,8 +78,8 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 1.4,
     traps: [
-      { id: 'cow', w: 30, h: 22, animal: true },
-      { id: 'snowball', w: 16, h: 16, speed: 1 },
+      { id: 'cow', w: 22, h: 16, animal: true },
+      { id: 'snowball', w: 12, h: 12, speed: 1 },
     ],
     pickups: ['bilberry', 'pine-bolete'],
     gaps: true,
@@ -91,8 +91,8 @@ export const STAGES: Stage[] = [
     length: 7200,
     hills: 0.25,
     traps: [
-      { id: 'crate', w: 18, h: 18 },
-      { id: 'rope', w: 16, h: 10 },
+      { id: 'crate', w: 14, h: 14 },
+      { id: 'rope', w: 12, h: 8 },
     ],
     egg: 'lifebuoy',
   },
@@ -101,9 +101,9 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 0.5,
     traps: [
-      { id: 'steam', w: 12, h: 22 },
-      { id: 'hotdog', w: 22, h: 22 },
-      { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
+      { id: 'steam', w: 9, h: 16 },
+      { id: 'hotdog', w: 16, h: 16 },
+      { id: 'pigeon', w: 10, h: 8, fly: true, animal: true },
     ],
     pickups: ['ramps', 'hen-of-the-woods'],
     ride: 'cab',
@@ -114,10 +114,10 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 1.0,
     traps: [
-      { id: 'log', w: 30, h: 12 },
-      { id: 'stump', w: 18, h: 18 },
-      { id: 'bear', w: 28, h: 24, animal: true },
-      { id: 'slug', w: 14, h: 6, animal: true },
+      { id: 'log', w: 22, h: 9 },
+      { id: 'stump', w: 14, h: 14 },
+      { id: 'bear', w: 21, h: 18, animal: true },
+      { id: 'slug', w: 10, h: 4, animal: true },
     ],
     pickups: ['huckleberry', 'pacific-chanterelle'],
     ride: 'bigfoot',
@@ -128,9 +128,9 @@ export const STAGES: Stage[] = [
     length: 15000,
     hills: 1.2,
     traps: [
-      { id: 'cactus', w: 14, h: 24 },
-      { id: 'tumbleweed', w: 16, h: 16, speed: 1.2 },
-      { id: 'rattlesnake', w: 12, h: 8, animal: true },
+      { id: 'cactus', w: 10, h: 18 },
+      { id: 'tumbleweed', w: 12, h: 12, speed: 1.2 },
+      { id: 'rattlesnake', w: 9, h: 6, animal: true },
     ],
     pickups: ['elderberry', 'king-bolete'],
     gaps: true,
