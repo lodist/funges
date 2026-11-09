@@ -8,8 +8,8 @@ import { LAP, STAGES, stageAt } from './stages';
  * never Math.random, Math.sin or Math.pow (sim.test.ts checks).
  *
  * Like Alto's: the land rolls. Downhill the squirrel sleds on a leaf and
- * gathers speed, uphill it runs and loses some. Tap to jump; hold in the
- * air to turn a backflip, and land it straight or lose a life.
+ * gathers speed, uphill it runs and loses some. Tap to jump, tap again in
+ * the air to jump higher (a roll); catches in a row build a combo.
  */
 
 export const TICKS_PER_SECOND = 60;
@@ -21,41 +21,39 @@ export const VIEW_H = 270;
 export const GROUND_Y = 200;
 /** The squirrel's left edge on the screen. */
 export const PLAYER_X = 72;
-export const PLAYER = { w: 14, h: 13 };
+export const PLAYER = { w: 10, h: 10 };
 /** Flat on its belly: under a low flyer. */
-export const SLIDER = { w: 20, h: 6 };
+export const SLIDER = { w: 15, h: 5 };
 export const SLIDE_TICKS = 40;
-export const RIDER = { w: 40, h: 28 };
+export const RIDER = { w: 30, h: 21 };
 export const RIDE_TICKS = 7 * TICKS_PER_SECOND;
 export const SICK_TICKS = 3 * TICKS_PER_SECOND;
 /** An egg's points count only when all the lives are left; else it is one
- *  back. A flip's count for each turn, times the combo. */
-export const POINTS = {
-  common: 10,
-  rare: 50,
-  smash: 25,
-  acorn: 100,
-  egg: 100,
-  flip: 100,
-};
+ *  back. */
+export const POINTS = { common: 10, rare: 50, smash: 25, acorn: 100, egg: 100 };
 export const LIVES = 3;
 /** After a knock, 1.5 s of blinking and passing through things. */
 export const MERCY_TICKS = 90;
-/** The combo holds this long without a new flip. */
+/** The combo holds this long without a new catch; every three in a row
+ *  raise the multiplier by one. */
 export const COMBO_TICKS = 150;
+const COMBO_STEP = 3;
+/** Things to catch: their box, and how high they hang (the rare ones and
+ *  the golden acorn up in the air). */
+const ITEM = 8;
+const RARE_Y = 28;
+const ACORN_Y = 22;
+/** An egg floats this high over its hilltop: past a jump, not a second. */
+const EGG_RISE = 60;
 
 const GRAVITY = 0.32;
 export const JUMP = 5.4;
+/** The second jump, a tap in the air: higher, with a roll. */
+export const DOUBLE_JUMP = 4.6;
 /** A slide asked for in the air: straight down at this speed first. */
 const DIVE = 8;
 /** A press this many ticks before landing still jumps. */
 const BUFFER = 6;
-/** Held this many ticks in the air, a press turns a backflip. */
-const FLIP_DELAY = 10;
-/** Degrees turned per tick in a flip: one in about 0.75 s. */
-export const FLIP_RATE = 8;
-/** Landing further than this off the slope's angle, in degrees, is a crash. */
-const LANDING = 50;
 /** Speeds, world px per tick. Running, it never goes below RUN. */
 export const RUN = 2.6;
 export const CRUISE = 3.4;
@@ -63,8 +61,6 @@ export const TOP = 7;
 /** Speed gained downhill and lost uphill per tick, per unit of slope. */
 const SLOPE_GAIN = 0.07;
 const SLOPE_LOSS = 0.045;
-/** A landed flip's burst of speed, per turn. */
-const BOOST = 0.8;
 /** The land keeps within this of its starting height. */
 const LAND_MAX = 160;
 /** Ticks in the air on a jump: the room left between two things. */
@@ -115,20 +111,12 @@ export interface Game {
   y: number;
   vy: number;
   grounded: boolean;
-  holding: boolean;
-  /** Tick of the last press. */
-  pressedAt: number;
-  /** Tick of a press made in the air: it jumps on landing if soon after. */
+  doubleUsed: boolean;
+  /** Tick of a press made in the air with both jumps spent. */
   buffered: number;
-  /** Its turn in degrees, clockwise (nose down); on the land, the slope's. */
-  angle: number;
-  /** Degrees turned in this flight. */
-  turned: number;
-  /** Flips landed in a row, and until when the row holds. */
+  /** Things caught in a row, and until when the row holds. */
   combo: number;
   comboUntil: number;
-  /** The last flip landed: when, how many turns and what it scored. */
-  trick: { at: number; flips: number; points: number } | null;
   ride: { stage: string; art: string; until: number } | null;
   sickUntil: number;
   bonus: number;
@@ -183,14 +171,10 @@ export function newGame(seed: number): Game {
     y: 0,
     vy: 0,
     grounded: true,
-    holding: false,
-    pressedAt: -1000,
+    doubleUsed: false,
     buffered: -BUFFER - 1,
-    angle: 0,
-    turned: 0,
     combo: 0,
     comboUntil: 0,
-    trick: null,
     ride: null,
     sickUntil: 0,
     bonus: 0,
@@ -232,9 +216,9 @@ function random(g: Game) {
 
 export const score = (g: Game) => Math.floor(g.dist / 10) + g.bonus;
 
-/** The combo's multiplier for what is caught and landed now. */
+/** The combo's multiplier for what is caught now. */
 export const multiplier = (g: Game) =>
-  g.tick < g.comboUntil ? 1 + g.combo : 1;
+  g.tick < g.comboUntil ? 1 + Math.floor(g.combo / COMBO_STEP) : 1;
 
 /** The land's height at world x, and its slope (up positive). */
 export function ground(land: Land, x: number): [number, number] {
@@ -254,13 +238,6 @@ export function ground(land: Land, x: number): [number, number] {
   if (land.ramp[hi]) return [hs[lo] + dh * t, dh / span];
   return [hs[lo] + dh * t * t * (3 - 2 * t), (dh * 6 * t * (1 - t)) / span];
 }
-
-/** A slope's angle in degrees, clockwise (uphill is negative): atan without
- *  Math.atan, close enough for a landing. */
-export const slopeAngle = (s: number) => (-s * 57.3) / (1 + 0.28 * s * s);
-
-/** Degrees folded into -180..180. */
-const fold = (d: number) => d - 360 * Math.floor((d + 180) / 360);
 
 /** Lays the land out to world x, hill after valley. */
 function grow(g: Game, until: number) {
@@ -306,7 +283,6 @@ function trim(g: Game) {
 function jump(g: Game, slope: number) {
   g.vy = JUMP + g.speed * slope;
   g.grounded = false;
-  g.turned = 0;
 }
 
 export function step(g: Game, input: Input) {
@@ -330,12 +306,12 @@ export function step(g: Game, input: Input) {
     // A jump ends a slide or a dive.
     g.slideUntil = 0;
     g.diving = false;
-    g.holding = true;
-    g.pressedAt = g.tick;
     if (g.grounded) jump(g, slope);
-    else g.buffered = g.tick;
+    else if (!g.doubleUsed) {
+      g.vy = DOUBLE_JUMP;
+      g.doubleUsed = true;
+    } else g.buffered = g.tick;
   }
-  if (input.release) g.holding = false;
 
   // On the land: faster downhill, slower uphill, settling to a cruise.
   const lap = Math.floor(g.dist / LAP);
@@ -363,25 +339,20 @@ export function step(g: Game, input: Input) {
     );
   if (g.grounded) {
     // It follows the land, unless the land falls away faster than gravity
-    // pulls: then, off a crest or a kicker, it flies.
+    // pulls: then, off a crest or a kicker's lip, it flies.
+    const follow = g.speed * s;
     const free = g.y + g.vy - GRAVITY;
-    if (overGap || free > h + 0.3) {
+    if (overGap || (follow < g.vy - GRAVITY && free > h)) {
       g.grounded = false;
       g.y = free;
       g.vy -= GRAVITY;
-      g.turned = 0;
     } else {
       g.y = h;
-      g.vy = g.speed * s;
-      g.angle = slopeAngle(s);
+      g.vy = follow;
     }
   } else {
     g.vy -= GRAVITY;
     g.y += g.vy;
-    if (g.holding && !g.ride && g.tick - g.pressedAt >= FLIP_DELAY) {
-      g.angle -= FLIP_RATE;
-      g.turned += FLIP_RATE;
-    } else if (!g.turned) g.angle -= g.angle * 0.08;
     if (overGap && g.y < h - 2) g.falling = true;
     if (!g.falling) {
       if (g.y <= h) land(g, s);
@@ -392,8 +363,6 @@ export function step(g: Game, input: Input) {
       g.falling = false;
       g.y = h;
       g.vy = JUMP;
-      g.angle = 0;
-      g.turned = 0;
     }
   }
 
@@ -416,30 +385,12 @@ export function step(g: Game, input: Input) {
   fill(g);
 }
 
-/** Touching down: after a flip, straight enough on the slope or a crash. */
+/** Touching down. */
 function land(g: Game, slope: number) {
-  const flat = slopeAngle(slope);
-  const off = Math.abs(fold(g.angle - flat));
-  const flips = Math.floor((g.turned + LANDING) / 360);
-  const flipped = g.turned > 0;
   g.grounded = true;
+  g.doubleUsed = false;
   g.landedAt = g.tick;
   g.vy = g.speed * slope;
-  g.angle = flat;
-  g.turned = 0;
-  if (flipped && off > LANDING && !g.ride) {
-    if (g.tick >= g.mercyUntil) {
-      hurt(g);
-      g.speed = RUN;
-    }
-  } else if (flips > 0 && !g.ride) {
-    const points = POINTS.flip * flips * multiplier(g);
-    g.combo = g.tick < g.comboUntil ? g.combo + flips : flips;
-    g.comboUntil = g.tick + COMBO_TICKS;
-    g.bonus += points;
-    g.trick = { at: g.tick, flips, points };
-    g.speed += BOOST * flips;
-  }
   if (g.diving) {
     g.diving = false;
     g.slideUntil = g.tick + SLIDE_TICKS;
@@ -471,6 +422,8 @@ function touch(g: Game, t: Thing) {
   // What is caught in a combo counts times its multiplier.
   t.points *= multiplier(g);
   g.bonus += t.points;
+  g.combo = g.tick < g.comboUntil ? g.combo + 1 : 1;
+  g.comboUntil = g.tick + COMBO_TICKS;
   if (t.kind === 'acorn') {
     const stage = STAGES[stageAt(t.x).index];
     if (stage.ride)
@@ -510,26 +463,44 @@ export function fill(g: Game) {
     let width: number;
     if (x >= g.acornAt) {
       g.acornAt = Infinity;
-      width = put(g, 'acorn', 'common', 'acorn', x, 26, 12, 12, POINTS.acorn);
+      width = put(
+        g,
+        'acorn',
+        'common',
+        'acorn',
+        x,
+        ACORN_Y,
+        ITEM,
+        ITEM,
+        POINTS.acorn
+      );
       g.noGapUntil = x + TOP * RIDE_TICKS;
     } else if (x >= g.eggAt) {
       g.eggAt = Infinity;
-      // Up past a hilltop: only a jump at the top of the hill reaches it.
+      // Up past a hilltop: only both jumps from the top of the hill reach it.
       const top = crest(g, x);
       const [hill] = ground(g.land, top);
       const ex = top + 90;
-      const rel = hill + 34 - ground(g.land, ex + 6)[0];
-      put(g, 'egg', stage.id, stage.egg, ex, rel, 12, 12, POINTS.egg);
-      width = ex + 12 - x;
+      const rel = hill + EGG_RISE - ground(g.land, ex + ITEM / 2)[0];
+      put(g, 'egg', stage.id, stage.egg, ex, rel, ITEM, ITEM, POINTS.egg);
+      width = ex + ITEM - x;
     } else {
       const roll = random(g);
       const steep = (from: number, to: number) =>
         Math.abs(ground(g.land, from)[1]) > 0.35 ||
         Math.abs(ground(g.land, to)[1]) > 0.35;
       const w = 28 + Math.floor(random(g) * 28);
-      if (stage.gaps && x > g.noGapUntil && roll < 0.12 && !steep(x, x + w)) {
+      if (roll >= 0.82) {
+        // Nothing: room to run.
+        width = 0;
+      } else if (
+        stage.gaps &&
+        x > g.noGapUntil &&
+        roll < 0.12 &&
+        !steep(x, x + w)
+      ) {
         width = put(g, 'gap', stage.id, 'gap', x, 0, w, 0, 0);
-      } else if (stage.pickups && roll >= 0.7) {
+      } else if (stage.pickups && roll >= 0.46) {
         if (random(g) < 0.15)
           width = put(
             g,
@@ -537,9 +508,9 @@ export function fill(g: Game) {
             stage.id,
             stage.pickups[1],
             x,
-            34,
-            12,
-            12,
+            RARE_Y,
+            ITEM,
+            ITEM,
             POINTS.rare
           );
         else {
@@ -549,16 +520,16 @@ export function fill(g: Game) {
               'pickup',
               stage.id,
               stage.pickups[0],
-              x + i * 18,
+              x + i * 12,
               2,
-              12,
-              12,
+              ITEM,
+              ITEM,
               POINTS.common
             );
-          width = 48;
+          width = 32;
         }
-      } else if (stage.pickups && roll >= 0.62) {
-        width = put(g, 'agaric', 'common', 'agaric', x, 0, 12, 14, 0);
+      } else if (stage.pickups && roll >= 0.4) {
+        width = put(g, 'agaric', 'common', 'agaric', x, 0, ITEM, ITEM, 0);
       } else {
         const trap = stage.traps[Math.floor(random(g) * stage.traps.length)];
         const speed = trap.speed ?? 0;
@@ -566,7 +537,7 @@ export function fill(g: Game) {
         // only once the squirrel is past both.
         x += ((VIEW_W + 64 + room) * speed) / g.speed;
         // Low flyers: jump them or slide under them. High ones: run under.
-        const rel = trap.fly ? (random(g) < 0.5 ? 8 : 22) : 0;
+        const rel = trap.fly ? (random(g) < 0.5 ? 7 : 16) : 0;
         width = put(
           g,
           'trap',

@@ -3,7 +3,6 @@ import source from '@/game/sim.ts?raw';
 import { LAP, STAGES, stageAt } from '@/game/stages';
 import {
   CRUISE,
-  FLIP_RATE,
   LIVES,
   PLAYER,
   PLAYER_X,
@@ -60,18 +59,6 @@ function run(g: Game, ticks: number, input = idle) {
   for (let i = 0; i < ticks; i++) step(g, input);
 }
 
-/** High in the air, a press held for `hold` ticks, then let go; to the ground. */
-function flip(hold: number) {
-  const g = empty();
-  g.grounded = false;
-  g.y = 600;
-  step(g, press);
-  for (let i = 1; i < hold; i++) step(g, idle);
-  step(g, release);
-  while (!g.grounded && !g.over) step(g, idle);
-  return g;
-}
-
 /** A land from the squirrel on: flat, then `drop` px down over `span` px. */
 function slope(g: Game, drop: number, span = 2000) {
   g.land = {
@@ -115,28 +102,30 @@ describe('the squirrel', () => {
     expect(tookOff).toBe(true);
   });
 
-  it('held in the air, turns a backflip: landed straight, it scores and speeds up', () => {
-    const turn = Math.ceil(360 / FLIP_RATE);
-    const g = flip(10 + turn);
-    expect(g.lives).toBe(LIVES);
-    expect(g.bonus).toBe(POINTS.flip);
-    expect(g.combo).toBe(1);
-    expect(g.speed).toBeGreaterThan(CRUISE);
-  });
-
-  it('a flip landed upside down costs a life', () => {
-    const g = flip(10 + Math.ceil(180 / FLIP_RATE));
-    expect(g.lives).toBe(LIVES - 1);
-    expect(g.bonus).toBe(0);
-  });
-
-  it('flips landed in a row raise the combo, and what is caught then counts more', () => {
+  it('jumps once more in the air, with a roll, and only once', () => {
     const g = empty();
-    g.combo = 1;
-    g.comboUntil = g.tick + 100;
-    place(g, { kind: 'pickup', y: 2, w: 12, h: 12, points: POINTS.common });
-    run(g, 40);
-    expect(g.bonus).toBe(2 * POINTS.common);
+    step(g, press);
+    step(g, release);
+    run(g, 10);
+    const falling = g.vy;
+    step(g, press);
+    expect(g.vy).toBeGreaterThan(falling);
+    expect(g.doubleUsed).toBe(true);
+    const rising = g.vy;
+    step(g, press);
+    expect(g.vy).toBeLessThan(rising);
+  });
+
+  it('catches in a row build a combo: every three raise the multiplier', () => {
+    const g = empty();
+    for (let i = 0; i < 4; i++)
+      place(
+        g,
+        { kind: 'pickup', y: 2, w: 8, h: 8, points: POINTS.common },
+        20 + i * 12
+      );
+    run(g, 60);
+    expect(g.bonus).toBe(3 * POINTS.common + 2 * POINTS.common);
   });
 });
 

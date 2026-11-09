@@ -1,4 +1,5 @@
 import {
+  DOUBLE_JUMP,
   GROUND_Y,
   JUMP,
   LIVES,
@@ -38,6 +39,11 @@ const snap = (v: number) => Math.round(v * S) / S;
 let CAM = 0;
 /** A world height's place on the screen. */
 const sy = (height: number) => GROUND_Y - (height - CAM);
+
+/** How big things are drawn against their pictures, matched to Alto's
+ *  proportions (the squirrel about 5% of the screen's height): the
+ *  squirrel, traps and rides at three quarters, what is caught at half. */
+const SIZE = { squirrel: 0.75, trap: 0.75, item: 0.5 };
 
 /** An image with its frames side by side ("pigeon.2.webp": 2 frames). */
 export interface Sprite {
@@ -593,6 +599,39 @@ function sprite(
   ctx.imageSmoothingEnabled = false;
 }
 
+/** Frame `frame` of a sprite standing on the land at (cx, bottom): turned
+ *  with the slope about its foot, drawn at k of its size. */
+function stand(
+  ctx: CanvasRenderingContext2D,
+  s: Sprite,
+  frame: number,
+  cx: number,
+  bottom: number,
+  turn: number,
+  k: number
+) {
+  ctx.save();
+  ctx.imageSmoothingEnabled = s.res > 1;
+  ctx.translate(cx, bottom);
+  ctx.rotate((turn * Math.PI) / 180);
+  ctx.scale(k, k);
+  ctx.drawImage(
+    s.img,
+    (frame % s.frames) * s.w * s.res,
+    0,
+    s.w * s.res,
+    s.h * s.res,
+    -s.w / 2,
+    -s.h,
+    s.w,
+    s.h
+  );
+  ctx.restore();
+}
+
+/** A slope's angle in degrees, clockwise (uphill is negative). */
+const angleOf = (slope: number) => (-Math.atan(slope) * 180) / Math.PI;
+
 /** A stage's sky: its bands, the sky's own life, the sun or moon. */
 function sky(
   ctx: CanvasRenderingContext2D,
@@ -875,19 +914,24 @@ function things(
     const bottom = sy(t.y);
     const catchable =
       t.kind === 'pickup' || t.kind === 'acorn' || t.kind === 'egg';
+    const k = catchable || t.kind === 'agaric' ? SIZE.item : SIZE.trap;
+    // What stands on the land leans with it.
+    const turn = t.rel < 4 ? angleOf(ground(g.land, t.x + t.w / 2)[1]) : 0;
     if (t.hit === null) {
       // What can be caught glows and bobs a little, so the eye finds it.
       const bob = catchable ? Math.sin((g.tick + t.x) / 9) * 1.5 : 0;
       if (catchable) {
         const glow = glowSprite();
-        const middle = bottom + bob - (s ? s.h / 2 : t.h / 2);
+        const middle = bottom + bob - (s ? (k * s.h) / 2 : t.h / 2);
         ctx.drawImage(
           glow,
-          snap(cx - glow.width / 2),
-          snap(middle - glow.height / 2)
+          snap(cx - (k * glow.width) / 2),
+          snap(middle - (k * glow.height) / 2),
+          k * glow.width,
+          k * glow.height
         );
       }
-      if (s) sprite(ctx, s, Math.floor(g.tick / 8), cx, bottom + bob);
+      if (s) stand(ctx, s, Math.floor(g.tick / 8), cx, bottom + bob, turn, k);
       else {
         ctx.fillStyle = '#5b4636';
         ctx.fillRect(snap(x), bottom - t.h, t.w, t.h);
@@ -911,8 +955,15 @@ function things(
     // Smashed things fly off for a moment; animals leap aside.
     if (!s || age > 40) continue;
     if (t.animal)
-      sprite(ctx, s, 0, cx + age * 2, bottom - age * 3 + age * age * 0.12);
-    else burst(ctx, s, cx, bottom, age);
+      stand(ctx, s, 0, cx + age * 2, bottom - age * 3 + age * age * 0.12, 0, k);
+    else {
+      ctx.save();
+      ctx.translate(cx, bottom);
+      ctx.scale(k, k);
+      ctx.translate(-cx, -bottom);
+      burst(ctx, s, cx, bottom, age);
+      ctx.restore();
+    }
   }
 }
 
@@ -1009,9 +1060,9 @@ function burst(
  * tilting, squashing and spinning the whole picture, never by cutting it up.
  */
 /** The nose, game px from the hitbox's left edge. */
-const NOSE = PLAYER.w + 5;
+const NOSE = PLAYER.w + 4;
 /** World px per run frame: the feet keep pace with the ground. */
-const STEP = 6;
+const STEP = 12;
 /** The world gliding to a stop after the last knock, ms. */
 const GLIDE = 320;
 
@@ -1048,10 +1099,11 @@ function figure(
   sx = 1,
   sy = 1
 ) {
+  const k = SIZE.squirrel;
   ctx.save();
   ctx.imageSmoothingEnabled = true;
-  ctx.translate(x - s.w / 2, bottom);
-  ctx.scale(sx, sy);
+  ctx.translate(x - (k * s.w) / 2, bottom);
+  ctx.scale(sx * k, sy * k);
   ctx.translate(0, -s.h / 2);
   ctx.rotate((turn * Math.PI) / 180);
   ctx.drawImage(
@@ -1160,18 +1212,17 @@ function ride(
 ) {
   // A little bounce on the road (a slow roll on the water), tilted with
   // the slope.
+  const k = SIZE.squirrel;
   const bob = Math.sin(g.tick / 4) * 0.5;
-  const left = PLAYER_X + RIDER.w / 2 - vehicle.w / 2;
+  const left = PLAYER_X + RIDER.w / 2 - (k * vehicle.w) / 2;
   const tilt = g.grounded
-    ? (-Math.atan(ground(g.land, view.dist + PLAYER_X + RIDER.w / 2)[1]) *
-        180) /
-      Math.PI
-    : g.angle;
+    ? angleOf(ground(g.land, view.dist + PLAYER_X + RIDER.w / 2)[1])
+    : -8 * clamp01(g.vy / JUMP);
   figure(
     ctx,
     vehicle,
     Math.floor(view.dist / 14),
-    left + vehicle.w,
+    left + k * vehicle.w,
     bottom + bob,
     tilt
   );
@@ -1182,8 +1233,8 @@ function ride(
     ctx,
     sit,
     0,
-    left + x + sit.w / 2,
-    bottom + bob - height,
+    left + k * (x + sit.w / 2),
+    bottom + bob - k * height,
     tilt + Math.sin(g.tick / 7) * 3
   );
 }
@@ -1196,7 +1247,7 @@ function squirrel(
 ) {
   const bottom = sy(view.y);
   const [, slope] = ground(g.land, view.dist + PLAYER_X + PLAYER.w / 2);
-  const tilt = (-Math.atan(slope) * 180) / Math.PI;
+  const tilt = angleOf(slope);
   const floor = sy(ground(g.land, view.dist + PLAYER_X + 7)[0]);
   if (g.over) {
     ending(ctx, g, art, view, bottom);
@@ -1250,7 +1301,8 @@ function squirrel(
     turn = tilt + Math.sin(g.tick / 5) * 1.5;
   } else if (g.grounded) {
     frame = Math.floor(view.dist / STEP);
-    turn = tilt;
+    // It runs fairly level, leaning only half into the slope.
+    turn = tilt / 2;
     // Landing squashes it for a moment.
     if (since < 8) {
       const k = 1 - since / 8;
@@ -1262,17 +1314,17 @@ function squirrel(
     name = 'slide';
     nose = x + 6;
     turn = 22;
-  } else if (g.holding && g.turned > 0) {
-    // A backflip, curled up and turning.
+  } else if (g.vy > 0 && g.doubleUsed) {
+    // The second jump: a forward roll, curled up.
     name = 'ball';
-    turn = g.angle;
+    turn = 360 * clamp01(1 - g.vy / DOUBLE_JUMP);
     nose = x - 2;
   } else if (g.vy > 0) {
     name = 'jump';
-    turn = g.angle - 12 * clamp01(g.vy / JUMP);
+    turn = -12 * clamp01(g.vy / JUMP);
   } else {
     name = 'fall';
-    turn = g.angle + 14 * clamp01(-g.vy / JUMP);
+    turn = 14 * clamp01(-g.vy / JUMP);
   }
   const s = art.get(`squirrel/${name}`);
   if (!s) {
@@ -1290,21 +1342,6 @@ function squirrel(
     turn,
     sx,
     squash
-  );
-}
-
-/** A landed flip: its points rise from the squirrel. */
-function trick(ctx: CanvasRenderingContext2D, g: Game, art: Art) {
-  const numbers = art.get('common/digits');
-  const age = g.trick ? g.tick - g.trick.at : Infinity;
-  if (!g.trick || !numbers || age > 30) return;
-  points(
-    ctx,
-    numbers,
-    g.trick.points,
-    PLAYER_X + 7,
-    sy(g.y) - 26 - age * 0.5,
-    age
   );
 }
 
@@ -1466,7 +1503,6 @@ export function draw(
   if (!calm) ambient(ctx, AMBIENT[p < 0.5 ? idA : idB], g.tick, dist);
   things(ctx, g, art, dist);
   squirrel(ctx, g, art, view);
-  trick(ctx, g, art);
   if (options.debug) hitboxes(ctx, g, view);
   ctx.restore();
 

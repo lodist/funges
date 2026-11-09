@@ -386,7 +386,7 @@
     "seoDescription": "Corri con uno scoiattolo rosso dalla Scandinavia al Grand Canyon. Raccogli finferli e porcini, salta le trappole e prendi la ghianda d'oro.",
     "canvas": "La corsa dello scoiattolo: lo scoiattolo corre nel paesaggio",
     "start": "Tocca o premi la barra spaziatrice per iniziare",
-    "hint": "Tocca per saltare. Tieni premuto in aria per un salto mortale all'indietro, e atterra dritto. Scorri verso il basso o premi ↓ per scivolare.",
+    "hint": "Tocca per saltare, e tocca di nuovo in aria per saltare più in alto. Scorri verso il basso o premi ↓ per scivolare.",
     "paused": "In pausa. Tocca per continuare.",
     "pause": "Pausa",
     "resume": "Riprendi",
