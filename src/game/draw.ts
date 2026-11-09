@@ -1306,33 +1306,15 @@ function ending(
 
 /** Where the squirrel sits on each ride: across from the ride's left edge,
  *  and the seat's height above its bottom, game px. */
-const SEAT: Record<string, [number, number]> = {
-  longship: [14, 17],
-  littlecar: [27, 26],
-  scooter: [13, 19],
-  postbus: [32, 27],
-  cab: [23, 21],
-  bigfoot: [17, 31],
-  chopper: [27, 17],
-  reindeer: [20, 27],
-  cargobike: [44, 19],
-  steamtrain: [32, 24],
-  skateboard: [17, 8],
-  streetcar: [35, 34],
-  mule: [22, 25],
-};
-
+/** A ride, with the squirrel painted into it: a little bounce on the road
+ *  (a slow roll on the water), tilted with the slope. */
 function ride(
   ctx: CanvasRenderingContext2D,
   g: Game,
-  art: Art,
   vehicle: Sprite,
-  id: string,
   view: View,
   bottom: number
 ) {
-  // A little bounce on the road (a slow roll on the water), tilted with
-  // the slope.
   const k = SIZE.squirrel;
   const bob = Math.sin(g.tick / 4) * 0.5;
   const left = PLAYER_X + RIDER.w / 2 - (k * vehicle.w) / 2;
@@ -1346,17 +1328,6 @@ function ride(
     left + k * vehicle.w,
     bottom + bob,
     tilt
-  );
-  const sit = art.get('squirrel/sit');
-  if (!sit) return;
-  const [x, height] = SEAT[id] ?? [vehicle.w / 2, vehicle.h];
-  figure(
-    ctx,
-    sit,
-    0,
-    left + k * (x + sit.w / 2),
-    bottom + bob - k * height,
-    tilt + Math.sin(g.tick / 7) * 3
   );
 }
 
@@ -1397,7 +1368,7 @@ function squirrel(
     // The last two seconds blink, as the ride wears off.
     const fading = g.ride.until - g.tick < 2 * TICKS_PER_SECOND;
     if (!fading || Math.floor(g.tick / 4) % 2) {
-      ride(ctx, g, art, vehicle, g.ride.art, view, bottom);
+      ride(ctx, g, vehicle, view, bottom);
       return;
     }
   }
