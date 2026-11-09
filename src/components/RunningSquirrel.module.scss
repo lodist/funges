@@ -14,23 +14,23 @@
   }
 }
 
-// 8 frames of the game's puppet (45×28 game pixels), drawn at 1.5×.
+// The game's 6 drawn run frames (36.5×20 game pixels), shown at 1.8×.
 .runner {
-  // The squirrel's stride (8 frames) and its pace across the page: the
+  // The squirrel's stride (6 frames) and its pace across the page: the
   // character's own timing, like a GIF's, so off the UI motion scale.
-  --stride: 0.45s;
+  --stride: 0.4s;
   --crossing: 16s;
   position: absolute;
   bottom: 2px;
   left: 0;
-  width: 67px;
-  height: 42px;
+  width: 66px;
+  height: 36px;
   pointer-events: auto;
-  background-size: 536px 42px;
+  background-size: 396px 36px;
   background-repeat: no-repeat;
   transform: translateX(-70px);
   animation:
-    legs var(--stride) steps(8) infinite,
+    legs var(--stride) steps(6) infinite,
     across var(--crossing) linear infinite;
   [data-lane='bottom'] > & {
     animation-delay: 0s, calc(var(--crossing) / 2);
@@ -39,7 +39,7 @@
 
 @keyframes legs {
   to {
-    background-position: -536px 0;
+    background-position: -396px 0;
   }
 }
 

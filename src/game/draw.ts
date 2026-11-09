@@ -7,6 +7,7 @@ import {
   PLAYER,
   PLAYER_X,
   RIDER,
+  SLIDER,
   TICKS_PER_SECOND,
   VIEW_H,
   VIEW_W,
@@ -61,6 +62,8 @@ export interface DrawOptions {
 export interface View {
   dist: number;
   y: number;
+  /** Once the run is over: ms since, while its end plays. */
+  ended?: number;
 }
 
 const URLS = import.meta.glob<string>('../assets/game/**/*.webp', {
@@ -585,13 +588,10 @@ function sprite(
   ctx.imageSmoothingEnabled = false;
 }
 
-/** One stage's whole backdrop: sky, sun or moon, the sky's own life, the
- *  three layers and the ground. */
-function backdrop(
+/** A stage's sky: its bands, the sky's own life, the sun or moon. */
+function sky(
   ctx: CanvasRenderingContext2D,
   id: string,
-  dist: number,
-  lift: number,
   tick: number,
   calm: boolean
 ) {
@@ -619,18 +619,31 @@ function backdrop(
       look.orb.y - (o.height - 1) / 2
     );
   }
+}
+
+/** One of a stage's landscape layers, with its misty foot below it. */
+function land(
+  ctx: CanvasRenderingContext2D,
+  id: string,
+  [name, , speed, follow]: (typeof LAYERS)[number],
+  dist: number,
+  lift: number
+) {
+  const l = layer(id, name);
+  if (!l) return;
   ctx.imageSmoothingEnabled = true;
-  for (const [name, , speed, follow] of LAYERS) {
-    const l = layer(id, name);
-    if (!l) continue;
-    const bottom = snap(GROUND_Y + lift * follow);
-    for (let x = -snap(wrap(dist * speed, l.w)); x < VIEW_W; x += l.w)
-      ctx.drawImage(l.canvas, x, bottom - l.h, l.w, l.h);
-    ctx.fillStyle = l.foot;
-    ctx.fillRect(0, bottom - 0.5, VIEW_W, VIEW_H - bottom + 4);
-  }
+  const bottom = snap(GROUND_Y + lift * follow);
+  for (let x = -snap(wrap(dist * speed, l.w)); x < VIEW_W; x += l.w)
+    ctx.drawImage(l.canvas, x, bottom - l.h, l.w, l.h);
+  ctx.fillStyle = l.foot;
+  ctx.fillRect(0, bottom - 0.5, VIEW_W, VIEW_H - bottom + 4);
   ctx.imageSmoothingEnabled = false;
-  // The ground: the lightest thing in the scene, banded like the sky.
+}
+
+/** The ground: the lightest thing in the scene, banded like the sky. */
+function ground(ctx: CanvasRenderingContext2D, id: string, lift: number) {
+  const look = LOOKS[id];
+  if (!look) return;
   const top = snap(GROUND_Y + lift);
   for (let i = 0; i < look.ground.length; i++) {
     const y = top + GROUND_BANDS[i];
@@ -638,6 +651,46 @@ function backdrop(
       i + 1 < look.ground.length ? top + GROUND_BANDS[i + 1] : VIEW_H + 4;
     ctx.fillStyle = look.ground[i];
     ctx.fillRect(0, y, VIEW_W, next - y);
+  }
+}
+
+/** World px over which one stage turns into the next. */
+const CHANGE = 2 * VIEW_W;
+
+/** One stage's world turning into the next: the sky blends across, and each
+ *  layer, the far one first, melts away before the next stage's melts in,
+ *  so two landscapes never show through each other. */
+function backdrop(
+  ctx: CanvasRenderingContext2D,
+  a: string,
+  b: string,
+  p: number,
+  dist: number,
+  lift: number,
+  tick: number,
+  calm: boolean
+) {
+  sky(ctx, a, tick, calm);
+  if (p > 0) {
+    ctx.globalAlpha = ease(p);
+    sky(ctx, b, tick, calm);
+  }
+  LAYERS.forEach((l, i) => {
+    const q = clamp01((p - 0.2 * i) / 0.5);
+    if (q < 0.5) {
+      ctx.globalAlpha = ease(1 - 2 * q);
+      land(ctx, a, l, dist, lift);
+    } else {
+      ctx.globalAlpha = ease(2 * q - 1);
+      land(ctx, b, l, dist, lift);
+    }
+  });
+  ctx.globalAlpha = 1;
+  ground(ctx, a, lift);
+  if (p > 0.5) {
+    ctx.globalAlpha = ease((p - 0.5) / 0.5);
+    ground(ctx, b, lift);
+    ctx.globalAlpha = 1;
   }
 }
 
@@ -923,230 +976,134 @@ function burst(
 /* ---------------------------------------------------------------- squirrel */
 
 /*
- * The squirrel is a puppet: its painted body, tail and legs turned at their
- * joints every frame, so it runs as smoothly as the screen can show. Points
- * are game px in each part's own picture, its top-left at 0, 0.
+ * The squirrel is drawn frames: a six-frame gallop (squirrel/run) and its
+ * poses (jump, fall, ball, sit, slide), each with its nose at the right edge
+ * of its picture and its feet at the bottom. Between them it moves by
+ * tilting, squashing and spinning the whole picture, never by cutting it up.
  */
-type Point = [number, number];
-const RIG = {
-  /** On the body: where the hind leg, the front leg and the tail join it. */
-  hip: [5, 12.5] as Point,
-  shoulder: [15, 12] as Point,
-  tailBase: [1.5, 8.5] as Point,
-  /** Each part's own joint. */
-  hindJoint: [4.5, 3] as Point,
-  frontJoint: [3.5, 2.5] as Point,
-  tailJoint: [20, 13.5] as Point,
-  /** The far legs: a little back and up, in shade. */
-  far: [1.2, -0.6] as Point,
-  /** The middle of the body, which it turns around. */
-  centre: [11.5, 10] as Point,
-  /** Where the belly is, for sitting. */
-  belly: 15,
-  /** The body's top above the ground while it stands. */
-  stand: 21,
-  /** Its left edge from the hitbox's. */
-  left: -3,
-};
-/** World px per stride: the legs keep pace with the ground. */
-const STRIDE = 26;
+/** The nose, game px from the hitbox's left edge. */
+const NOSE = PLAYER.w + 5;
+/** World px per run frame: the feet keep pace with the ground. */
+const STEP = 6;
+/** The world gliding to a stop after the last knock, ms. */
+const GLIDE = 320;
 
-/** Each part's turn in degrees (0: as painted; more: clockwise, so a leg
- *  swings back) and how the whole squirrel is held. */
-interface Pose {
-  /** Below 0: nose up. */
-  pitch: number;
-  /** Raised above standing, game px. */
-  lift: number;
-  /** A somersault, 0 to 1 of a turn. */
-  spin: number;
-  front: number;
-  hind: number;
-  farFront: number;
-  farHind: number;
-  tail: number;
+const ease = (x: number) => x * x * (3 - 2 * x);
+const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
+
+let tintCanvas: HTMLCanvasElement | null = null;
+
+/** A frame turned green: sick from the fly agaric. */
+function tinted(s: Sprite, frame: number): Sprite {
+  const w = s.w * s.res;
+  const h = s.h * s.res;
+  tintCanvas ??= document.createElement('canvas');
+  tintCanvas.width = w;
+  tintCanvas.height = h;
+  const c = tintCanvas.getContext('2d');
+  if (!c) return s;
+  c.drawImage(s.img, (frame % s.frames) * w, 0, w, h, 0, 0, w, h);
+  c.globalCompositeOperation = 'source-atop';
+  c.fillStyle = 'rgba(90, 190, 60, 0.6)';
+  c.fillRect(0, 0, w, h);
+  return { ...s, img: tintCanvas, frames: 1 };
 }
 
-function pose(g: Game, view: View): Pose {
-  // Flat on its belly, legs splayed.
-  if (g.over)
-    return {
-      pitch: 6,
-      lift: -4,
-      spin: 0,
-      front: -75,
-      hind: 70,
-      farFront: -60,
-      farHind: 60,
-      tail: 20,
-    };
-  // A bounding gallop: the front legs reach as the hind legs push off, then
-  // the hind legs swing through; the far pair a beat behind, the tail late.
-  if (g.grounded) {
-    const a = (2 * Math.PI * view.dist) / STRIDE;
-    const c = Math.cos(a);
-    const late = Math.cos(a - 0.6);
-    return {
-      pitch: 3 * Math.sin(a),
-      lift: 1.5 * c,
-      spin: 0,
-      front: -35 * c,
-      hind: 40 * c,
-      farFront: -35 * late,
-      farHind: 40 * late,
-      tail: 10 * Math.sin(a - 1.2),
-    };
-  }
-  // The second jump is a forward somersault, legs tucked.
-  if (g.doubleUsed && g.vy > 0)
-    return {
-      pitch: 0,
-      lift: 4,
-      spin: 1 - g.vy / DOUBLE_JUMP,
-      front: -85,
-      hind: -55,
-      farFront: -85,
-      farHind: -55,
-      tail: 35,
-    };
-  // In the air: stretched out going up, reaching for the ground coming down.
-  const s = Math.min(1, Math.max(0, (1 - g.vy / JUMP) / 2));
-  const mix = (up: number, down: number) => up + (down - up) * s;
-  return {
-    pitch: mix(-14, 10),
-    lift: 0,
-    spin: 0,
-    front: mix(-55, -25),
-    hind: mix(50, -15),
-    farFront: mix(-45, -20),
-    farHind: mix(40, -10),
-    tail: mix(18, -14),
-  };
-}
-
-function part(
+/** A frame with its nose at x and its feet at bottom, turned (degrees,
+ *  clockwise) about its middle and squashed (sx, sy) onto its feet. */
+function figure(
   ctx: CanvasRenderingContext2D,
   s: Sprite,
-  at: Point,
-  joint: Point,
-  degrees: number
+  frame: number,
+  x: number,
+  bottom: number,
+  turn = 0,
+  sx = 1,
+  sy = 1
 ) {
   ctx.save();
-  ctx.translate(at[0], at[1]);
-  ctx.rotate((degrees * Math.PI) / 180);
+  ctx.imageSmoothingEnabled = true;
+  ctx.translate(x - s.w / 2, bottom);
+  ctx.scale(sx, sy);
+  ctx.translate(0, -s.h / 2);
+  ctx.rotate((turn * Math.PI) / 180);
   ctx.drawImage(
     s.img,
-    0,
+    (frame % s.frames) * s.w * s.res,
     0,
     s.w * s.res,
     s.h * s.res,
-    -joint[0],
-    -joint[1],
+    -s.w / 2,
+    -s.h / 2,
     s.w,
     s.h
   );
   ctx.restore();
 }
 
-/** The far legs: the near ones in shade, made once. */
-const shade = new WeakMap<Sprite, Sprite>();
-function shaded(s: Sprite): Sprite {
-  const done = shade.get(s);
-  if (done) return done;
-  const canvas = document.createElement('canvas');
-  canvas.width = s.w * s.res;
-  canvas.height = s.h * s.res;
-  const c = canvas.getContext('2d');
-  if (!c) return s;
-  c.drawImage(s.img, 0, 0);
-  c.globalCompositeOperation = 'source-atop';
-  c.fillStyle = 'rgba(40, 14, 6, 0.45)';
-  c.fillRect(0, 0, canvas.width, canvas.height);
-  const out = { ...s, img: canvas };
-  shade.set(s, out);
-  return out;
+/** Puffs of dust kicked up behind something sliding at x. */
+function dust(ctx: CanvasRenderingContext2D, x: number, tick: number) {
+  ctx.fillStyle = '#fff8ee';
+  for (let i = 0; i < 4; i++) {
+    const age = (tick + i * 5) % 20;
+    const r = 0.8 + age * 0.12;
+    ctx.globalAlpha = 0.7 * (1 - age / 20);
+    ctx.fillRect(x - age * 1.4 - r, GROUND_Y - 1 - age * 0.3 - r, 2 * r, 2 * r);
+  }
+  ctx.globalAlpha = 1;
 }
 
-/** The puppet, the top-left of its body at (x, y); false without its art. */
-function puppet(
-  ctx: CanvasRenderingContext2D,
-  art: Art,
-  p: Pose,
-  x: number,
-  y: number,
-  legs = true
-) {
-  const body = art.get('squirrel/body');
-  const tail = art.get('squirrel/tail');
-  const front = art.get('squirrel/front');
-  const hind = art.get('squirrel/hind');
-  if (!body || !tail || !front || !hind) return false;
-  const [cx, cy] = RIG.centre;
-  const [fx, fy] = RIG.far;
-  ctx.save();
-  ctx.imageSmoothingEnabled = true;
-  ctx.translate(x + cx, y + cy);
-  ctx.rotate(((p.pitch + 360 * p.spin) * Math.PI) / 180);
-  ctx.translate(-cx, -cy);
-  if (legs) {
-    const hip: Point = [RIG.hip[0] + fx, RIG.hip[1] + fy];
-    const shoulder: Point = [RIG.shoulder[0] + fx, RIG.shoulder[1] + fy];
-    part(ctx, shaded(hind), hip, RIG.hindJoint, p.farHind);
-    part(ctx, shaded(front), shoulder, RIG.frontJoint, p.farFront);
-  }
-  part(ctx, tail, RIG.tailBase, RIG.tailJoint, p.tail);
-  part(ctx, body, [0, 0], [0, 0], 0);
-  if (legs) {
-    part(ctx, hind, RIG.hip, RIG.hindJoint, p.hind);
-    part(ctx, front, RIG.shoulder, RIG.frontJoint, p.front);
-  }
-  ctx.restore();
-  return true;
+/** After the last knock the world glides on and stops under the sliding
+ *  squirrel; after a fall into a hole it stops at once. */
+function glide(g: Game, view: View) {
+  if (!g.over || g.y < 0) return 0;
+  const t = view.ended ?? Infinity;
+  return (
+    ((g.speed * TICKS_PER_SECOND) / 1000) * GLIDE * (1 - Math.exp(-t / GLIDE))
+  );
 }
 
-/** Room around the body for the tail and legs, game px. */
-const PAD = 28;
-let sickCanvas: HTMLCanvasElement | null = null;
-
-/** The squirrel turned green (sick from the fly agaric): drawn apart,
- *  tinted, then put in its place. */
-function sickPuppet(
+/** The run's end: tripped over what hit it, a dive onto its belly and a
+ *  slide to a stop. Fallen into a hole, it drops out of sight. */
+function ending(
   ctx: CanvasRenderingContext2D,
+  g: Game,
   art: Art,
-  p: Pose,
-  x: number,
-  y: number
+  view: View,
+  bottom: number
 ) {
-  const w = 24 + 2 * PAD;
-  const h = 16 + 2 * PAD;
-  sickCanvas ??= document.createElement('canvas');
-  sickCanvas.width = Math.ceil(w * S);
-  sickCanvas.height = Math.ceil(h * S);
-  const c = sickCanvas.getContext('2d');
-  if (!c) return;
-  c.setTransform(S, 0, 0, S, 0, 0);
-  c.imageSmoothingQuality = 'high';
-  if (!puppet(c, art, p, PAD, PAD)) return;
-  c.setTransform(1, 0, 0, 1, 0, 0);
-  c.globalCompositeOperation = 'source-atop';
-  c.fillStyle = 'rgba(90, 190, 60, 0.55)';
-  c.fillRect(0, 0, sickCanvas.width, sickCanvas.height);
-  ctx.save();
-  ctx.imageSmoothingEnabled = true;
-  ctx.drawImage(sickCanvas, x - PAD, y - PAD, w, h);
-  ctx.restore();
+  const t = view.ended ?? Infinity;
+  if (g.y < 0) {
+    const fall = art.get('squirrel/fall');
+    const drop = Math.min(t, 600) ** 2 * 0.0004;
+    if (fall) figure(ctx, fall, 0, PLAYER_X + NOSE, bottom + drop, 20);
+    return;
+  }
+  const slide = art.get('squirrel/slide');
+  if (!slide) return;
+  const x = PLAYER_X + NOSE + 6;
+  const trip = 260;
+  if (t < trip) {
+    // Over it, nose first.
+    const k = t / trip;
+    figure(ctx, slide, 0, x, bottom - 16 * Math.sin(Math.PI * k), 40 * k - 15);
+    return;
+  }
+  const sliding = Math.exp(-(t - trip) / GLIDE);
+  if (sliding > 0.15) dust(ctx, x - 12, Math.floor(t / 16));
+  figure(ctx, slide, 0, x, bottom, 25 * clamp01(1 - (t - trip) / 90));
 }
 
 /** Where the squirrel sits on each ride: across from the ride's left edge,
  *  and the seat's height above its bottom, game px. */
-const SEAT: Record<string, Point> = {
-  longship: [12, 17],
-  littlecar: [26, 26],
-  scooter: [12, 19.5],
-  postbus: [30, 27],
-  cab: [22, 21],
-  bigfoot: [14, 31],
-  chopper: [26, 18],
+const SEAT: Record<string, [number, number]> = {
+  longship: [14, 17],
+  littlecar: [27, 26],
+  scooter: [13, 19],
+  postbus: [32, 27],
+  cab: [23, 21],
+  bigfoot: [17, 31],
+  chopper: [27, 17],
 };
 
 function ride(
@@ -1168,24 +1125,16 @@ function ride(
     left + vehicle.w / 2,
     bottom + bob
   );
+  const sit = art.get('squirrel/sit');
+  if (!sit) return;
   const [x, height] = SEAT[id] ?? [vehicle.w / 2, vehicle.h];
-  const sitting: Pose = {
-    pitch: -4,
-    lift: 0,
-    spin: 0,
-    front: 0,
-    hind: 0,
-    farFront: 0,
-    farHind: 0,
-    tail: -6 + 4 * Math.sin(g.tick / 6),
-  };
-  puppet(
+  figure(
     ctx,
-    art,
-    sitting,
-    left + x - RIG.centre[0],
-    bottom + bob - height - RIG.belly,
-    false
+    sit,
+    0,
+    left + x + sit.w / 2,
+    bottom + bob - height,
+    Math.sin(g.tick / 7) * 3
   );
 }
 
@@ -1196,6 +1145,10 @@ function squirrel(
   view: View
 ) {
   const bottom = GROUND_Y - view.y;
+  if (g.over) {
+    ending(ctx, g, art, view, bottom);
+    return;
+  }
   // Dust where it touched down, whatever it is riding.
   const since = g.tick - g.landedAt;
   if (g.grounded && since < 12) {
@@ -1204,7 +1157,7 @@ function squirrel(
       ctx.globalAlpha = 0.8 * (1 - since / 12);
       const r = 1 + since * 0.15;
       ctx.fillRect(
-        snap(PLAYER_X + 9 + k * (4 + since * 0.8) - r),
+        snap(PLAYER_X + 7 + k * (4 + since * 0.8) - r),
         snap(GROUND_Y - 1 - since * 0.25 - r),
         2 * r,
         2 * r
@@ -1213,7 +1166,7 @@ function squirrel(
     ctx.globalAlpha = 1;
   }
   // Knocked: it blinks while it passes through things.
-  if (!g.over && g.tick < g.mercyUntil && Math.floor(g.tick / 4) % 2) return;
+  if (g.tick < g.mercyUntil && Math.floor(g.tick / 4) % 2) return;
   const vehicle = g.ride && art.get(`${g.ride.stage}/${g.ride.art}`);
   if (g.ride && vehicle) {
     // The last two seconds blink, as the ride wears off.
@@ -1223,14 +1176,59 @@ function squirrel(
       return;
     }
   }
-  const p = pose(g, view);
-  const x = PLAYER_X + RIG.left;
-  const y = bottom - RIG.stand - p.lift;
-  if (g.tick < g.sickUntil) sickPuppet(ctx, art, p, x, y);
-  else if (!puppet(ctx, art, p, x, y)) {
+  const x = PLAYER_X + NOSE;
+  let name = 'run';
+  let frame = 0;
+  let turn = 0;
+  let sx = 1;
+  let sy = 1;
+  let nose = x;
+  if (g.grounded && g.tick < g.slideUntil) {
+    name = 'slide';
+    nose = x + 6;
+    dust(ctx, nose - 12, g.tick);
+  } else if (g.grounded) {
+    frame = Math.floor(view.dist / STEP);
+    // Landing squashes it for a moment.
+    if (since < 8) {
+      const k = 1 - since / 8;
+      sx = 1 + 0.1 * k;
+      sy = 1 - 0.14 * k;
+    }
+  } else if (g.diving) {
+    // Head first towards the ground, to slide.
+    name = 'slide';
+    nose = x + 6;
+    turn = 22;
+  } else if (g.vy > 0 && g.doubleUsed) {
+    // The second jump: a forward roll, curled up.
+    name = 'ball';
+    turn = 360 * clamp01(1 - g.vy / DOUBLE_JUMP);
+    nose = x - 2;
+  } else if (g.vy > 0) {
+    name = 'jump';
+    turn = -12 * clamp01(g.vy / JUMP);
+  } else {
+    name = 'fall';
+    turn = 14 * clamp01(-g.vy / JUMP);
+  }
+  const s = art.get(`squirrel/${name}`);
+  if (!s) {
     ctx.fillStyle = '#c4622d';
     ctx.fillRect(PLAYER_X, snap(bottom - PLAYER.h), PLAYER.w, PLAYER.h);
+    return;
   }
+  const sick = g.tick < g.sickUntil;
+  figure(
+    ctx,
+    sick ? tinted(s, frame) : s,
+    sick ? 0 : frame,
+    nose,
+    bottom,
+    turn,
+    sx,
+    sy
+  );
 }
 
 /** Streaks rushing past when the run is fast. */
@@ -1258,10 +1256,11 @@ function digits(ctx: CanvasRenderingContext2D, art: Art, value: number) {
     ctx.fillStyle = '#fff';
     ctx.font = '8px monospace';
     ctx.textAlign = 'right';
-    ctx.fillText(text, HUD_W - 6, 14);
+    ctx.fillText(text, HUD_W - 26, 14);
     return;
   }
-  let x = HUD_W - 6 - text.length * (s.w + 1);
+  // Left of the pause button in the corner.
+  let x = HUD_W - 26 - text.length * (s.w + 1);
   for (const ch of text) {
     ctx.drawImage(s.img, Number(ch) * s.w, 0, s.w, s.h, x, 6, s.w, s.h);
     x += s.w + 1;
@@ -1306,7 +1305,7 @@ function hearts(ctx: CanvasRenderingContext2D, g: Game) {
 }
 
 function hitboxes(ctx: CanvasRenderingContext2D, g: Game, view: View) {
-  const box = g.ride ? RIDER : PLAYER;
+  const box = g.ride ? RIDER : g.tick < g.slideUntil ? SLIDER : PLAYER;
   ctx.lineWidth = 1 / S;
   ctx.strokeStyle = '#ff0';
   ctx.strokeRect(PLAYER_X, GROUND_Y - view.y - box.h, box.w, box.h);
@@ -1330,8 +1329,8 @@ export function draw(
   options: DrawOptions,
   view: View = { dist: g.dist, y: g.y }
 ) {
-  const { dist } = view;
   const calm = options.reducedMotion;
+  const dist = view.dist + glide(g, view);
   S = options.scale;
   builtThisFrame = false;
   ctx.setTransform(S, 0, 0, S, 0, 0);
@@ -1359,22 +1358,17 @@ export function draw(
   // The camera rises a little with a high jump and settles back.
   const lift = calm ? 0 : Math.max(0, (view.y - 18) * 0.35);
 
-  // One stage's world dissolves into the next as the new stage comes in.
+  // The next stage comes in over two screens.
   const a = stageAt(dist);
-  const b = stageAt(dist + VIEW_W);
+  const b = stageAt(dist + CHANGE);
   const idA = STAGES[a.index].id;
   const idB = STAGES[b.index].id;
   const next = STAGES[(a.index + 1) % STAGES.length].id;
   keep([idA, next]);
-  backdrop(ctx, idA, dist, lift, g.tick, calm);
-  if (b.start > a.start) {
-    ctx.globalAlpha = 1 - (b.start - dist) / VIEW_W;
-    backdrop(ctx, idB, dist, lift, g.tick, calm);
-    ctx.globalAlpha = 1;
-  } else {
-    // Ask for the next stage's layers early: built one a frame, unseen.
-    for (const [name] of LAYERS) layer(next, name);
-  }
+  const p = b.start > a.start ? 1 - (b.start - dist) / CHANGE : 0;
+  backdrop(ctx, idA, idB, p, dist, lift, g.tick, calm);
+  // Ask for the next stage's layers early: built one a frame, unseen.
+  if (!p) for (const [name] of LAYERS) layer(next, name);
 
   ctx.save();
   ctx.translate(0, snap(lift));
@@ -1383,7 +1377,7 @@ export function draw(
   if (!calm) {
     ctx.save();
     ctx.translate(0, snap(-lift * 0.3));
-    ambient(ctx, AMBIENT[idA], g.tick, dist);
+    ambient(ctx, AMBIENT[p < 0.5 ? idA : idB], g.tick, dist);
     ctx.restore();
   }
   things(ctx, g, art, dist);

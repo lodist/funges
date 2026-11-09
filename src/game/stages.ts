@@ -47,7 +47,7 @@ export const STAGES: Stage[] = [
     id: 'paris',
     length: 5000,
     traps: [
-      { id: 'chairs', w: 20, h: 16 },
+      { id: 'cafe', w: 30, h: 16 },
       { id: 'pigeon', w: 14, h: 10, fly: true, animal: true },
       { id: 'bike', w: 30, h: 22, speed: 0.8 },
     ],

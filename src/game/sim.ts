@@ -16,13 +16,19 @@ export const VIEW_H = 270;
 export const GROUND_Y = 225;
 /** The squirrel's left edge on the screen. */
 export const PLAYER_X = 72;
-export const PLAYER = { w: 18, h: 16 };
+export const PLAYER = { w: 14, h: 13 };
+/** Flat on its belly: under a low flyer. */
+export const SLIDER = { w: 20, h: 6 };
+export const SLIDE_TICKS = 40;
 export const RIDER = { w: 40, h: 28 };
 export const RIDE_TICKS = 7 * TICKS_PER_SECOND;
 export const SICK_TICKS = 3 * TICKS_PER_SECOND;
 /** An egg's points count only when all the lives are left; else it is one back. */
 export const POINTS = { common: 10, rare: 50, smash: 25, acorn: 100, egg: 100 };
 export const LIVES = 3;
+/** An egg's height: above a full jump's reach (49 + the squirrel's 13), so
+ *  only a second jump near the top of the first gets it. */
+export const EGG_Y = 70;
 /** After a knock, 1.5 s of blinking and passing through things. */
 export const MERCY_TICKS = 90;
 
@@ -31,6 +37,8 @@ export const JUMP = 5.6;
 export const DOUBLE_JUMP = 4.6;
 /** Letting go while rising cuts the rise to this: a tap is a hop. */
 const JUMP_CUT = 3.2;
+/** A slide asked for in the air: straight down at this speed first. */
+const DIVE = 8;
 /** A press this many ticks before landing still jumps. */
 const BUFFER = 6;
 const BASE_SPEED = 2.2;
@@ -93,12 +101,17 @@ export interface Game {
   mercyUntil: number;
   /** The tick it last touched down (for the dust; no rule reads it). */
   landedAt: number;
+  /** Until this tick it slides on its belly. */
+  slideUntil: number;
+  /** Diving to the ground, to slide when it lands. */
+  diving: boolean;
   over: boolean;
 }
 
 export interface Input {
   press: boolean;
   release: boolean;
+  slide?: boolean;
 }
 
 /** A run as it is kept (and later posted): replaying it gives its score. */
@@ -107,6 +120,8 @@ export interface Run {
   /** The ticks of each press and each release, in order. */
   presses: number[];
   releases: number[];
+  /** And of each slide (none in runs kept before there were slides). */
+  slides?: number[];
 }
 
 export function newGame(seed: number): Game {
@@ -134,6 +149,8 @@ export function newGame(seed: number): Game {
     lives: LIVES,
     mercyUntil: 0,
     landedAt: -1000,
+    slideUntil: 0,
+    diving: false,
     over: false,
   };
 }
@@ -166,7 +183,17 @@ export function step(g: Game, input: Input) {
   if (g.over) return;
   g.tick++;
 
+  if (input.slide && !g.ride) {
+    if (g.grounded) g.slideUntil = g.tick + SLIDE_TICKS;
+    else {
+      g.vy = Math.min(g.vy, -DIVE);
+      g.diving = true;
+    }
+  }
   if (input.press) {
+    // A jump ends a slide or a dive.
+    g.slideUntil = 0;
+    g.diving = false;
     g.holding = true;
     if (g.grounded) {
       g.vy = JUMP;
@@ -185,7 +212,7 @@ export function step(g: Game, input: Input) {
   g.dist += g.speed;
   for (const t of g.things) t.x -= t.speed;
 
-  const box = g.ride ? RIDER : PLAYER;
+  const box = g.ride ? RIDER : g.tick < g.slideUntil ? SLIDER : PLAYER;
   const left = g.dist + PLAYER_X;
   g.vy -= GRAVITY;
   g.y += g.vy;
@@ -203,6 +230,10 @@ export function step(g: Game, input: Input) {
       g.vy = 0;
       g.grounded = true;
       g.doubleUsed = false;
+      if (landed && g.diving) {
+        g.diving = false;
+        g.slideUntil = g.tick + SLIDE_TICKS;
+      }
       if (landed && g.tick - g.buffered <= BUFFER) {
         g.buffered = -BUFFER - 1;
         g.vy = g.holding ? JUMP : JUMP_CUT;
@@ -291,7 +322,35 @@ export function fill(g: Game) {
       g.noGapUntil = x + g.speed * RIDE_TICKS + VIEW_W;
     } else if (x >= g.eggAt) {
       g.eggAt = Infinity;
-      width = put(g, 'egg', stage.id, stage.egg, x, 24, 12, 12, POINTS.egg);
+      // High over one of the stage's standing traps: jump early, then
+      // again at the top.
+      const still = stage.traps.filter(t => !t.fly && !t.speed);
+      const trap = still[Math.floor(random(g) * still.length)];
+      put(
+        g,
+        'trap',
+        stage.id,
+        trap.id,
+        x,
+        0,
+        trap.w,
+        trap.h,
+        0,
+        0,
+        !!trap.animal
+      );
+      put(
+        g,
+        'egg',
+        stage.id,
+        stage.egg,
+        x + (trap.w - 12) / 2,
+        EGG_Y,
+        12,
+        12,
+        POINTS.egg
+      );
+      width = trap.w;
     } else {
       const roll = random(g);
       if (stage.gaps && x > g.noGapUntil && roll < 0.12) {
@@ -333,7 +392,8 @@ export function fill(g: Game) {
         // A mover starts further out, so it closes on the thing before it
         // only once the squirrel is past both.
         x += ((VIEW_W + 64 + room) * speed) / g.speed;
-        const y = trap.fly ? (random(g) < 0.5 ? 4 : 22) : 0;
+        // Low flyers: jump them or slide under them. High ones: run under.
+        const y = trap.fly ? (random(g) < 0.5 ? 8 : 22) : 0;
         width = put(
           g,
           'trap',
@@ -385,15 +445,19 @@ function put(
 /** Plays a kept run again, tick by tick, until it ends (an hour at most). */
 export function replay(run: Run, limit = 3600 * TICKS_PER_SECOND) {
   const g = newGame(run.seed);
+  const slides = run.slides ?? [];
   let p = 0;
   let r = 0;
+  let s = 0;
   while (!g.over && g.tick < limit) {
     const next = g.tick + 1;
     const press = run.presses[p] === next;
     const release = run.releases[r] === next;
+    const slide = slides[s] === next;
     if (press) p++;
     if (release) r++;
-    step(g, { press, release });
+    if (slide) s++;
+    step(g, { press, release, slide });
   }
   return g;
 }
