@@ -9,7 +9,17 @@ import { Link, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import { SegmentedControl } from '@/components/SegmentedControl';
+import { SquirrelBoard } from '@/components/SquirrelBoard';
 import { Button } from '@/components/ui/button';
+import {
+  bestOf,
+  boardsOn,
+  keepIfBest,
+  playerName,
+  readBest,
+  sendBests,
+  type Route,
+} from '@/game/board';
 import { draw, loadArt, type Art, type View } from '@/game/draw';
 import { shareRun } from '@/game/share';
 import { Pause, Play } from '@/lib/icons';
@@ -41,10 +51,8 @@ const SWIPE = 28;
 const SWIPE_MS = 300;
 /** The run's end (the slide to a stop) plays this long before the result, ms. */
 const ENDING = 1100;
-const BEST = 'squirrel-best';
 /** The route the next run takes: the classic journey or the stages shuffled. */
 const ROUTE = 'squirrel-route';
-type Route = 'classic' | 'random';
 /** The tallest view, game px: 4:3. A screen narrower than 16:9 sees more
  *  sky, down to this; narrower still gets bars. */
 const VIEW_MAX_H = 360;
@@ -52,35 +60,11 @@ const VIEW_MAX_H = 360;
  *  played with the device turned (the same query as in the SCSS). */
 const UPRIGHT = '(orientation: portrait) and (pointer: coarse)';
 
-/** The best run on this device: its score, how far it got and the run
- *  itself, to post once there is a board. */
-interface Best {
-  score: number;
-  furthest: number;
-  run: Run;
-}
-
-function readBest(): Best | null {
-  try {
-    return JSON.parse(localStorage.getItem(BEST) ?? 'null');
-  } catch {
-    return null;
-  }
-}
-
 function readRoute(): Route {
   try {
     return localStorage.getItem(ROUTE) === 'random' ? 'random' : 'classic';
   } catch {
     return 'classic';
-  }
-}
-
-function keepBest(best: Best) {
-  try {
-    localStorage.setItem(BEST, JSON.stringify(best));
-  } catch {
-    // Blocked storage: the best run lasts this visit.
   }
 }
 
@@ -121,9 +105,16 @@ export default function PlayPage() {
   const phaseNow = useRef<Phase>('loading');
   const overAt = useRef(0);
   const [phase, setPhase] = useState<Phase>('loading');
-  const [best, setBest] = useState(readBest);
+  const [bests, setBests] = useState(() => ({
+    classic: readBest('classic'),
+    random: readBest('random'),
+  }));
   const [last, setLast] = useState<{ score: number; furthest: number }>();
   const [route, setRoute] = useState(readRoute);
+  const [tab, setTab] = useState<'game' | 'board'>('game');
+  // The run just ended: a best of this device's, and its place on the board.
+  const [newBest, setNewBest] = useState(false);
+  const [rank, setRank] = useState<number | null>(null);
   const [options] = useState(() => {
     const query = new URLSearchParams(window.location.search);
     return {
@@ -243,6 +234,7 @@ export default function PlayPage() {
     };
     inputs.current = [];
     setLast(undefined);
+    setTab('game');
     goTo('playing');
   }, [goTo, options, route]);
 
@@ -321,12 +313,18 @@ export default function PlayPage() {
         return;
       }
       const result = { score: score(g), furthest: g.furthest };
-      const previous = readBest();
       const review = options.at > 0 || options.ride;
-      if (!review && (!previous || result.score > previous.score)) {
-        const kept = { ...result, run: run.current };
-        keepBest(kept);
-        setBest(kept);
+      const ran: Route = run.current.shuffled ? 'random' : 'classic';
+      const fresh = !review && keepIfBest(ran, bestOf(g, run.current));
+      setNewBest(fresh);
+      setRank(null);
+      if (fresh) {
+        setBests(kept => ({ ...kept, [ran]: readBest(ran) }));
+        // Straight onto the board when this device has a name.
+        void sendBests().then(
+          ranks => setRank(ranks[ran] ?? null),
+          () => {}
+        );
       }
       overAt.current = performance.now();
       setLast(result);
@@ -361,6 +359,12 @@ export default function PlayPage() {
   useEffect(() => {
     const down = (event: KeyboardEvent) => {
       if (event.repeat) return;
+      // Typing a name: the keys are letters, not the game's.
+      if (
+        event.target instanceof HTMLElement &&
+        event.target.closest('input, textarea, select')
+      )
+        return;
       if (PAUSE_KEYS.has(event.code)) {
         togglePause();
         return;
@@ -476,91 +480,127 @@ export default function PlayPage() {
               aria-live='polite'
             >
               <h1 className={styles.title}>{t('game.title')}</h1>
-              {phase === 'ready' && (
-                <>
-                  <p className={styles.lead}>{t('game.start')}</p>
-                  <p className={styles.hint}>{t('game.hint')}</p>
-                </>
-              )}
-              {phase === 'paused' && (
-                <p className={styles.lead}>{t('game.paused')}</p>
-              )}
-              {phase === 'over' && last && (
-                <p className={styles.lead}>
-                  {t('game.over', { score: number(last.score) })}
-                </p>
-              )}
-              {best && (phase === 'ready' || phase === 'over') && (
-                <p className={styles.hint}>
-                  {t('game.best', { score: number(best.score) })}
-                </p>
-              )}
-              {/* The next run's route: the classic journey or the stages
-                  shuffled. Run again starts it, from a pause too. */}
-              {phase !== 'loading' && (
+              {boardsOn && phase !== 'loading' && (
                 <div onPointerDown={own}>
                   <SegmentedControl
-                    label={t('game.route')}
+                    label={t('game.menu')}
                     options={[
-                      { value: 'classic', label: t('game.classic') },
-                      { value: 'random', label: t('game.random') },
+                      { value: 'game', label: t('game.tabGame') },
+                      { value: 'board', label: t('game.tabBoard') },
                     ]}
-                    value={route}
-                    onChange={chooseRoute}
+                    value={tab}
+                    onChange={setTab}
                   />
                 </div>
               )}
-              {(phase === 'paused' || phase === 'over') && (
-                <div className={styles.actions}>
-                  {phase === 'paused' && (
-                    <Button
-                      onPointerDown={own}
-                      onClick={() => {
-                        goTo('playing');
-                        landscape(areaRef.current);
-                      }}
-                    >
-                      {t('game.resume')}
-                    </Button>
-                  )}
-                  <Button
-                    variant={phase === 'paused' ? 'secondary' : 'default'}
-                    onPointerDown={own}
-                    onClick={() => {
-                      start();
-                      landscape(areaRef.current);
-                    }}
-                  >
-                    {t('game.again')}
-                  </Button>
-                  {phase === 'over' && (
-                    <Button
-                      variant='secondary'
-                      onPointerDown={own}
-                      onClick={share}
-                    >
-                      {t('game.share')}
-                    </Button>
-                  )}
+              {tab === 'board' ? (
+                <div onPointerDown={own}>
+                  <SquirrelBoard route={route} onRoute={chooseRoute} />
                 </div>
-              )}
-              <nav className={styles.pages}>
-                {navItems(currentSpace(pathname), i18n.language).map(item => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.url}
-                      to={item.url}
-                      reloadDocument={item.reloadDocument}
-                      className={styles.link}
+              ) : (
+                <>
+                  {phase === 'ready' && (
+                    <>
+                      <p className={styles.lead}>{t('game.start')}</p>
+                      <p className={styles.hint}>{t('game.hint')}</p>
+                    </>
+                  )}
+                  {phase === 'paused' && (
+                    <p className={styles.lead}>{t('game.paused')}</p>
+                  )}
+                  {phase === 'over' && last && (
+                    <p className={styles.lead}>
+                      {t('game.over', { score: number(last.score) })}
+                    </p>
+                  )}
+                  {bests[route] && (phase === 'ready' || phase === 'over') && (
+                    <p className={styles.hint}>
+                      {t('game.best', { score: number(bests[route].score) })}
+                    </p>
+                  )}
+                  {phase === 'over' && rank && (
+                    <p className={styles.hint}>{t('game.rank', { rank })}</p>
+                  )}
+                  {phase === 'over' && newBest && boardsOn && !playerName() && (
+                    <button
+                      type='button'
+                      className={styles.signIn}
                       onPointerDown={own}
+                      onClick={() => setTab('board')}
                     >
-                      <Icon aria-hidden />
-                      <span>{tNav(item.label)}</span>
-                    </Link>
-                  );
-                })}
-              </nav>
+                      {t('game.addName')}
+                    </button>
+                  )}
+                  {/* The next run's route: the classic journey or the stages
+                  shuffled. Run again starts it, from a pause too. */}
+                  {phase !== 'loading' && (
+                    <div onPointerDown={own}>
+                      <SegmentedControl
+                        label={t('game.route')}
+                        options={[
+                          { value: 'classic', label: t('game.classic') },
+                          { value: 'random', label: t('game.random') },
+                        ]}
+                        value={route}
+                        onChange={chooseRoute}
+                      />
+                    </div>
+                  )}
+                  {(phase === 'paused' || phase === 'over') && (
+                    <div className={styles.actions}>
+                      {phase === 'paused' && (
+                        <Button
+                          onPointerDown={own}
+                          onClick={() => {
+                            goTo('playing');
+                            landscape(areaRef.current);
+                          }}
+                        >
+                          {t('game.resume')}
+                        </Button>
+                      )}
+                      <Button
+                        variant={phase === 'paused' ? 'secondary' : 'default'}
+                        onPointerDown={own}
+                        onClick={() => {
+                          start();
+                          landscape(areaRef.current);
+                        }}
+                      >
+                        {t('game.again')}
+                      </Button>
+                      {phase === 'over' && (
+                        <Button
+                          variant='secondary'
+                          onPointerDown={own}
+                          onClick={share}
+                        >
+                          {t('game.share')}
+                        </Button>
+                      )}
+                    </div>
+                  )}
+                  <nav className={styles.pages}>
+                    {navItems(currentSpace(pathname), i18n.language).map(
+                      item => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.url}
+                            to={item.url}
+                            reloadDocument={item.reloadDocument}
+                            className={styles.link}
+                            onPointerDown={own}
+                          >
+                            <Icon aria-hidden />
+                            <span>{tNav(item.label)}</span>
+                          </Link>
+                        );
+                      }
+                    )}
+                  </nav>
+                </>
+              )}
             </div>
           )}
         </div>

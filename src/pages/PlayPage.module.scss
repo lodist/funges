@@ -144,3 +144,59 @@
     color: var(--primary-text);
   }
 }
+
+// The ranking: the route, the top runs (this device's name lit) and the name.
+.board {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  width: min(26rem, 100%);
+}
+
+.ranks {
+  width: 100%;
+  max-height: 7.5rem;
+  overflow-y: auto;
+  font-size: 0.875rem;
+  & li {
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    gap: 0.5rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.5rem;
+    text-align: left;
+  }
+  & span:first-child {
+    color: var(--muted-foreground);
+    text-align: right;
+  }
+  & span:last-child {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.me {
+  background: var(--happy-100);
+  color: var(--happy-900);
+  font-weight: 600;
+}
+
+.nameForm {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  // The tap area turns selection off; a name field needs it.
+  & input {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
+.signIn {
+  border: 0;
+  background: none;
+  color: var(--primary-text);
+  font-size: 0.875rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
