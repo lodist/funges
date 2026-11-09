@@ -43,9 +43,9 @@ export const SPACE_HOME: Record<Space, string> = {
 /** The spaces a visitor can switch between. */
 export const visibleSpaces = (): Space[] => ['terra', 'huerta'];
 
-/** Pages every space shares (help, legal): no space of their own. */
+/** Pages every space shares (help, legal, the game): no space of their own. */
 const SHARED =
-  /(^|\/)(support|impressum|privacy-policy|termsuse|delete-account)(\/|$)/;
+  /(^|\/)(support|impressum|privacy-policy|termsuse|delete-account|play)(\/|$)/;
 
 /** Each space's Settings, the phone hub. Switching spaces there opens the
  *  other space's Settings, not the page last seen in it. */

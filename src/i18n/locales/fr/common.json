@@ -394,7 +394,6 @@
     "best": "Record : {{score}} points",
     "again": "Rejouer",
     "share": "Partager",
-    "fullscreen": "Plein écran",
     "card": "{{score}} points",
     "shareText": "J'ai fait {{score}} points à La course de l'écureuil : {{url}}"
   }

@@ -37,6 +37,12 @@ let S = 3;
 const snap = (v: number) => Math.round(v * S) / S;
 /** The world height shown at GROUND_Y this frame (see camera()). */
 let CAM = 0;
+/** The view's width this frame in game px: 480 at 16:9, wider on a wider
+ *  screen (up to VIEW_MAX_W). */
+let W = VIEW_W;
+/** Game px of extra sky over the 270 high view, on a screen narrower than
+ *  16:9 (up to 90 at 4:3). */
+let TOP = 0;
 /** A world height's place on the screen. */
 const sy = (height: number) => GROUND_Y - (height - CAM);
 
@@ -66,6 +72,9 @@ export interface DrawOptions {
   debug: boolean;
   /** Canvas pixels per game pixel. */
   scale: number;
+  /** The view's width and height in game px (see W and TOP). */
+  width: number;
+  height: number;
 }
 
 /** Where to draw from: the game blended between its last two ticks, so a 90
@@ -755,11 +764,11 @@ function sky(
   if (!look) return;
   const bands = bandsOf(id, look);
   for (let i = 0; i < bands.length; i++) {
-    const top = Math.round(BANDS[i] * HORIZON);
+    const top = i ? Math.round(BANDS[i] * HORIZON) : -TOP;
     const bottom =
       i === bands.length - 1 ? VIEW_H : Math.round(BANDS[i + 1] * HORIZON);
     ctx.fillStyle = bands[i];
-    ctx.fillRect(0, top, VIEW_W, bottom - top);
+    ctx.fillRect(0, top, W, bottom - top);
   }
   if (look.stars) stars(ctx, look.stars, tick, calm);
   if (look.milkyway) milkyway(ctx);
@@ -786,18 +795,17 @@ function land(
   if (!l) return;
   ctx.imageSmoothingEnabled = true;
   const bottom = snap(GROUND_Y + CAM * follow * 0.45);
-  for (let x = -snap(wrap(dist * speed, l.w)); x < VIEW_W; x += l.w)
+  for (let x = -snap(wrap(dist * speed, l.w)); x < W; x += l.w)
     ctx.drawImage(l.canvas, x, bottom - l.h, l.w, l.h);
   ctx.fillStyle = l.foot;
-  ctx.fillRect(0, bottom - 0.5, VIEW_W, VIEW_H - bottom + 4);
+  ctx.fillRect(0, bottom - 0.5, W, VIEW_H - bottom + 4);
   ctx.imageSmoothingEnabled = false;
 }
 
 /** The land's top across the screen: its screen y every 4 game px. */
 function surface(g: Game, dist: number) {
   const top: number[] = [];
-  for (let x = 0; x <= VIEW_W + 4; x += 4)
-    top.push(sy(ground(g.land, dist + x)[0]));
+  for (let x = 0; x <= W + 4; x += 4) top.push(sy(ground(g.land, dist + x)[0]));
   return top;
 }
 
@@ -811,7 +819,7 @@ function soil(ctx: CanvasRenderingContext2D, id: string, top: number[]) {
     ctx.beginPath();
     ctx.moveTo(0, VIEW_H + 4);
     top.forEach((y, k) => ctx.lineTo(k * 4, y + GROUND_BANDS[i]));
-    ctx.lineTo(VIEW_W + 4, VIEW_H + 4);
+    ctx.lineTo(W + 4, VIEW_H + 4);
     ctx.closePath();
     ctx.fill();
   }
@@ -874,8 +882,8 @@ function stars(
 ) {
   ctx.fillStyle = '#fff6e6';
   for (let i = 0; i < count; i++) {
-    const x = Math.floor(hash(i + 0.31) * VIEW_W);
-    const y = Math.floor(hash(i + 0.77) * HORIZON * 0.7);
+    const x = Math.floor(hash(i + 0.31) * W);
+    const y = Math.floor(hash(i + 0.77) * (HORIZON * 0.7 + TOP)) - TOP;
     ctx.globalAlpha = calm ? 0.7 : 0.45 + 0.4 * Math.sin(tick / 25 + i * 1.7);
     ctx.fillRect(x, y, 1, 1);
   }
@@ -887,7 +895,7 @@ function milkyway(ctx: CanvasRenderingContext2D) {
   ctx.fillStyle = '#d8d0ff';
   for (let i = 0; i < 260; i++) {
     const t = hash(i + 2.1);
-    const x = Math.floor(t * VIEW_W);
+    const x = Math.floor(t * W);
     const spread = (hash(i + 5.3) - 0.5) * (18 + 14 * hash(i + 9.1));
     const y = Math.floor(78 - t * 64 + spread);
     ctx.globalAlpha = 0.15 + 0.35 * hash(i + 4.4) * (1 - Math.abs(spread) / 32);
@@ -903,7 +911,7 @@ function aurora(ctx: CanvasRenderingContext2D, tick: number) {
     [46, '#c49bff', 2],
   ] as const) {
     ctx.fillStyle = colour;
-    for (let x = 0; x < VIEW_W; x += 2) {
+    for (let x = 0; x < W; x += 2) {
       const y = base + Math.sin(x / 41 + tick / 140 + phase) * 7;
       ctx.globalAlpha = 0.16 + 0.1 * Math.sin(x / 23 + tick / 60 + phase);
       ctx.fillRect(x, Math.round(y), 2, 9);
@@ -940,7 +948,7 @@ function ambient(
   }
   if (kind === 'plane') {
     // A plane's lights crossing the night far off, blinking.
-    const x = wrap(tick * 0.18, VIEW_W + 60) - 30;
+    const x = wrap(tick * 0.18, W + 60) - 30;
     dot(x, 50, 1, 1, '#f4f0ff');
     if (Math.floor(tick / 30) % 2) dot(x - 2, 50, 1, 1, '#ff5a5a');
     return;
@@ -950,25 +958,29 @@ function ambient(
     const r = hash(i + 1);
     const drift = Math.sin(tick / 40 + i) * 4;
     if (kind === 'snow') {
-      const x = wrap(r * 600 - dist * 0.5 + drift, VIEW_W + 20) - 10;
+      const x = wrap(r * 600 - dist * 0.5 + drift, W + 20) - 10;
       const y =
         wrap(
           hash(i + 7) * VIEW_H + tick * (0.25 + hash(i + 3) * 0.35),
-          VIEW_H + 10
-        ) - 10;
+          VIEW_H + TOP + 10
+        ) -
+        10 -
+        TOP;
       dot(x, y, 1, 1, 'rgba(255, 255, 255, 0.85)');
     } else if (kind === 'leaves') {
       const x =
-        wrap(r * 600 - dist * 0.7 - tick * 0.4 + drift * 2, VIEW_W + 20) - 10;
+        wrap(r * 600 - dist * 0.7 - tick * 0.4 + drift * 2, W + 20) - 10;
       const y =
         wrap(
           hash(i + 5) * VIEW_H + tick * (0.3 + hash(i + 2) * 0.3),
-          GROUND_Y + 10
-        ) - 10;
+          GROUND_Y + TOP + 10
+        ) -
+        10 -
+        TOP;
       dot(x, y, 2, 1, i % 2 ? '#e8954a' : '#c9663a');
     } else {
       // Fireflies blink; the golden motes of a northern summer just glow.
-      const x = wrap(r * 600 - dist * 0.45 + drift * 1.5, VIEW_W + 20) - 10;
+      const x = wrap(r * 600 - dist * 0.45 + drift * 1.5, W + 20) - 10;
       const y = 80 + hash(i + 9) * 130 + Math.sin(tick / 37 + i * 2) * 5;
       ctx.globalAlpha =
         kind === 'fireflies'
@@ -1009,7 +1021,7 @@ function things(
   const numbers = art.get('common/digits');
   for (const t of g.things) {
     const x = t.x - dist;
-    if (x > VIEW_W || x + t.w + 32 < 0) continue;
+    if (x > W || x + t.w + 32 < 0) continue;
     if (t.kind === 'gap') {
       ctx.fillStyle = LOOKS[t.stage]?.hole ?? '#14121a';
       ctx.beginPath();
@@ -1472,7 +1484,7 @@ function combo(ctx: CanvasRenderingContext2D, art: Art, g: Game) {
   const times = multiplier(g);
   if (!s || times < 2) return;
   const text = String(times);
-  let x = HUD_W - 26 - text.length * (s.w + 1);
+  let x = HUD_R - 26 - text.length * (s.w + 1);
   // An x of two crossing strokes, then the digits.
   ctx.fillStyle = '#fff6e0';
   for (let i = 0; i < 5; i++) {
@@ -1526,7 +1538,7 @@ function speedLines(ctx: CanvasRenderingContext2D, g: Game) {
   for (let i = 0; i < count; i++) {
     const lane = Math.floor(g.tick / 7) + i * 13;
     const y = 27 + hash(lane) * 165;
-    const x = VIEW_W - wrap(g.tick * 9 + hash(i + 50) * VIEW_W, VIEW_W + 40);
+    const x = W - wrap(g.tick * 9 + hash(i + 50) * W, W + 40);
     ctx.fillRect(snap(x), snap(y), 20, 1);
   }
 }
@@ -1536,6 +1548,8 @@ function speedLines(ctx: CanvasRenderingContext2D, g: Game) {
 /** The score and the hearts keep their old size on screen: drawn in a
  *  320-wide space, scaled up to the 480-wide view. */
 const HUD_W = 320;
+/** The view's right edge in that space: wider views put the score further. */
+let HUD_R = HUD_W;
 
 function digits(ctx: CanvasRenderingContext2D, art: Art, value: number) {
   const text = String(value);
@@ -1544,11 +1558,11 @@ function digits(ctx: CanvasRenderingContext2D, art: Art, value: number) {
     ctx.fillStyle = '#fff';
     ctx.font = '8px monospace';
     ctx.textAlign = 'right';
-    ctx.fillText(text, HUD_W - 26, 14);
+    ctx.fillText(text, HUD_R - 26, 14);
     return;
   }
   // Left of the pause button in the corner.
-  let x = HUD_W - 26 - text.length * (s.w + 1);
+  let x = HUD_R - 26 - text.length * (s.w + 1);
   for (const ch of text) {
     ctx.drawImage(s.img, Number(ch) * s.w, 0, s.w, s.h, x, 6, s.w, s.h);
     x += s.w + 1;
@@ -1618,15 +1632,19 @@ export function draw(
     return;
   const dist = view.dist + glide(g, view);
   S = options.scale;
+  W = options.width;
+  TOP = options.height - VIEW_H;
+  HUD_R = (W * HUD_W) / VIEW_W;
   builtThisFrame = false;
-  ctx.setTransform(S, 0, 0, S, 0, 0);
+  // The game's 270 high view at the bottom, any extra sky over it.
+  ctx.setTransform(S, 0, 0, S, 0, TOP * S);
   ctx.imageSmoothingEnabled = false;
   // For the painted figures, shrunk from 4x: smoothing is turned on per draw.
   ctx.imageSmoothingQuality = 'high';
   ctx.globalAlpha = 1;
   ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = '#100a20';
-  ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+  ctx.fillRect(0, -TOP, W, VIEW_H + TOP);
 
   // A smash or a knock shakes the screen for a moment.
   let smashed = -1000;
@@ -1667,16 +1685,18 @@ export function draw(
 
   if (sick && calm) {
     ctx.fillStyle = 'rgba(90, 190, 60, 0.18)';
-    ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+    ctx.fillRect(0, -TOP, W, VIEW_H + TOP);
   }
   // A knock flashes red.
   const sinceKnock = g.tick - knocked;
   if (sinceKnock < 12) {
     ctx.fillStyle = `rgba(255, 40, 70, ${0.3 * (1 - sinceKnock / 12)})`;
-    ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+    ctx.fillRect(0, -TOP, W, VIEW_H + TOP);
   }
   if (!calm && g.speed > 5.2) speedLines(ctx, g);
   if (sick && !calm) glitch(ctx, g.tick);
+  // The score and the hearts at the top of the screen.
+  ctx.setTransform(S, 0, 0, S, 0, 0);
   ctx.save();
   ctx.scale(VIEW_W / HUD_W, VIEW_W / HUD_W);
   digits(ctx, art, score(g));

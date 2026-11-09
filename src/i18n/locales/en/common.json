@@ -394,7 +394,6 @@
     "best": "Best: {{score}} points",
     "again": "Run again",
     "share": "Share",
-    "fullscreen": "Full screen",
     "card": "{{score}} points",
     "shareText": "I scored {{score}} points in Squirrel Run: {{url}}"
   }

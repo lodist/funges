@@ -16,6 +16,9 @@ export const TICKS_PER_SECOND = 60;
 // The view, zoomed out like Alto's: a small squirrel in a big world.
 export const VIEW_W = 480;
 export const VIEW_H = 270;
+/** A screen wider than 16:9 sees further ahead, up to this wide (21:9);
+ *  things are laid out past it. */
+export const VIEW_MAX_W = 640;
 /** Where the land under the squirrel sits on the screen, game px from the
  *  top, when the camera is level. */
 export const GROUND_Y = 200;
@@ -455,7 +458,7 @@ function crest(g: Game, x: number) {
 
 /** Lays out the next things, just past the right edge of the screen. */
 export function fill(g: Game) {
-  while (g.nextAt < g.dist + VIEW_W + 64) {
+  while (g.nextAt < g.dist + VIEW_MAX_W + 64) {
     let x = g.nextAt;
     const at = stageAt(x);
     const stage = STAGES[at.index];
@@ -544,7 +547,7 @@ export function fill(g: Game) {
         const speed = trap.speed ?? 0;
         // A mover starts further out, so it closes on the thing before it
         // only once the squirrel is past both.
-        x += ((VIEW_W + 64 + room) * speed) / g.speed;
+        x += ((VIEW_MAX_W + 64 + room) * speed) / g.speed;
         // Low flyers: jump them or slide under them. High ones: run under.
         const rel = trap.fly ? (random(g) < 0.5 ? 7 : 16) : 0;
         width = put(
