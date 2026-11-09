@@ -80,6 +80,8 @@ export default defineConfig({
           '**/assets/recipes/**',
           // Huerta's crop photos and type icons: fetched by the garden page alone.
           '**/huerta/*/*.webp',
+          // The game's pixel art: kept once played (game-art below).
+          '**/assets/game/**',
         ],
         runtimeCaching: [
           // PMTiles use Range requests; SW can't cache 206 — NetworkOnly avoids ERR_CACHE_OPERATION_NOT_SUPPORTED. Keep first.
@@ -211,6 +213,22 @@ export default defineConfig({
             options: {
               cacheName: 'map-styles',
               cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          // The game's art and sound, kept once played, in a cache of their
+          // own so they do not push the recipe photos out of images-cache.
+          // About 280 files for 21 places: room for them and one update's
+          // worth of replaced ones, or a full run pushes the oldest out and
+          // offline runs lose them.
+          {
+            urlPattern: /\/assets\/game\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'game-art',
+              expiration: {
+                maxEntries: 400,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
             },
           },
           // Static assets caching
@@ -467,16 +485,24 @@ export default defineConfig({
     // + helper code: 22 KB raw / 6 KB gzip of the entry chunk, for browsers
     // that could not run this app's WASM or service worker anyway.
     target: 'es2020',
+    // The game's art stays files, never inlined: inlined, it would ride in
+    // the play chunk, which every visitor precaches.
+    assetsInlineLimit: (file: string) =>
+      /[\\/]assets[\\/]game[\\/]/.test(file) ? false : undefined,
     rollupOptions: {
       output: {
-        // Recipe photos in a folder of their own, so the precache can leave
-        // them out (globIgnores above).
+        // Recipe photos and the game's art in folders of their own, so the
+        // precache can leave them out (globIgnores above).
         assetFileNames: asset =>
           asset.originalFileNames.some(name =>
             name.includes('src/assets/recipes/')
           )
             ? 'assets/recipes/[name]-[hash][extname]'
-            : 'assets/[name]-[hash][extname]',
+            : asset.originalFileNames.some(name =>
+                  name.includes('src/assets/game/')
+                )
+              ? 'assets/game/[name]-[hash][extname]'
+              : 'assets/[name]-[hash][extname]',
         // Translations in a folder of their own (assets/locales/de-species-…),
         // so the precache can leave them out.
         chunkFileNames: chunk => {

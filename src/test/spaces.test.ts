@@ -20,6 +20,7 @@ describe('spaces', () => {
     expect(spaceForPath('/map')).toBe('terra');
     expect(spaceForPath('/terra')).toBe('terra');
     expect(spaceForPath('/support')).toBeNull(); // shared
+    expect(spaceForPath('/play')).toBeNull(); // the game, from either space
     expect(spaceForPath('/settings')).toBe('terra'); // each space has its own
     expect(spaceForPath('/huerta/settings/')).toBe('huerta');
     expect(spaceForPath('/')).toBeNull(); // the front page, shared

@@ -13,6 +13,7 @@ import {
 } from '@/lib/seo-pages';
 import { isPlayApp } from '@/lib/platform';
 import { spaceDoor, visibleSpaces, type Space } from '@/lib/spaces';
+import { RunningSquirrel } from '@/components/RunningSquirrel';
 import { HuertaLiveLine } from './HuertaLandingPage';
 import { LiveLine } from './LandingPage';
 import styles from './FrontPage.module.scss';
@@ -75,6 +76,7 @@ export default function FrontPage() {
         <section className={styles.hero}>
           <Logo className='h-10 md:h-12' />
           <h1 className={styles.shout}>{t('common.appDescription')}</h1>
+          <RunningSquirrel lane='top' />
         </section>
         <div className={styles.doors}>
           {visibleSpaces().map(space => (
@@ -82,6 +84,7 @@ export default function FrontPage() {
           ))}
         </div>
         <footer className={styles.footer}>
+          <RunningSquirrel lane='bottom' />
           <Logo className='h-8' />
           <nav aria-label={tNav('help')}>
             {HELP_LINKS.filter(

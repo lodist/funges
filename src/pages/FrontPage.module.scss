@@ -21,6 +21,9 @@
 
 .hero {
   --logo: var(--ink-green);
+  // The running squirrel's lane sits on its foot; it is the logo's colour.
+  --squirrel: var(--ink-green);
+  position: relative;
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
   padding: 1.75rem var(--page-gutter) clamp(2rem, 4vw, 3.5rem);
@@ -85,6 +88,10 @@
 // links clears the desktop language switcher, which floats 16px off the
 // bottom-right corner (as LandingPage's close).
 .footer {
+  // The squirrel's second lane runs along its top edge, over the doors'
+  // dark colour blocks, in the hero's sand.
+  --squirrel: var(--sand);
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
