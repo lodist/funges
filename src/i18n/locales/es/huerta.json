@@ -2060,6 +2060,7 @@
     "loadingPlace": "Buscando este lugar…",
     "noPlace": "Aquí no hay consejos de Huerta.",
     "failed": "El mapa no ha cargado. Prueba de nuevo en un momento.",
+    "locateFailed": "No se ha podido encontrar tu ubicación. Toca el mapa donde está tu huerto.",
     "search": "Buscar cultivos",
     "noResults": "Ningún cultivo coincide",
     "clearFilters": "Quitar los filtros",
@@ -2519,8 +2520,9 @@
     "hide": "Ocultar",
     "place": {
       "title": "¿Dónde está tu huerto?",
-      "text": "Búscalo en el mapa, para que todo aquí se calcule para tu propio lugar.",
-      "action": "Buscarlo en el mapa"
+      "text": "Usa tu ubicación o búscalo en el mapa, para que todo aquí se calcule para tu propio lugar.",
+      "action": "Buscarlo en el mapa",
+      "failed": "No se ha podido encontrar tu ubicación. Busca tu huerto en el mapa."
     },
     "plan": {
       "title": "Planifica tus bancales",

@@ -727,6 +727,10 @@ function Planner({ onMoved }: { onMoved: () => void }) {
               done={[Boolean(savedPlace()), Boolean(plan.done?.[KEPT])]}
               empty={!plan.sections.some(x => x.crop)}
               onKeep={() => tick(KEPT)}
+              onPlace={chosen => {
+                savePlace(chosen);
+                onMoved();
+              }}
             />
           )}
           {tabs ? (
