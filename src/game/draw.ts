@@ -145,7 +145,8 @@ interface Look {
   /** A low sun or a moon: centre and radius in game px. */
   orb?: { x: number; y: number; r: number; colour: string; glow: string };
   stars?: number;
-  aurora?: true;
+  /** The northern lights, and how bright (1 is Scandinavia's faint glow). */
+  aurora?: number;
   milkyway?: true;
   far: string;
   mid: string;
@@ -177,7 +178,7 @@ const LOOKS: Record<string, Look> = {
       [1, '#ffd890'],
     ],
     orb: { x: 360, y: 128, r: 12, colour: '#fff1cf', glow: '#ffe2a8' },
-    aurora: true,
+    aurora: 1,
     far: '#b585ad',
     mid: '#8a5689',
     near: '#56305f',
@@ -422,6 +423,167 @@ const LOOKS: Record<string, Look> = {
     lights: '#ffc070',
     ground: ['#e6b9a0', '#dcaa8f', '#d09b80', '#c48d73', '#b88067'],
     hole: '#100818',
+  },
+  // Miami Beach at a neon dusk: hot pink over teal-dark, windows in neon.
+  miami: {
+    sky: [
+      [0, '#14143c'],
+      [0.35, '#3a1f6e'],
+      [0.6, '#b4357f'],
+      [0.8, '#ff6f8f'],
+      [0.92, '#ffa577'],
+      [1, '#ffd19a'],
+    ],
+    orb: { x: 330, y: 132, r: 13, colour: '#fff1c8', glow: '#ffb38a' },
+    stars: 20,
+    far: '#7a3f8f',
+    mid: '#3c1f63',
+    near: '#1a0f33',
+    mist: '#ff9fb4',
+    fog: [0.7, 0.55, 0.6],
+    lights: '#7af0ff',
+    ground: ['#f6d6c8', '#efc8bb', '#e6baae', '#dcaca2', '#d29f97'],
+    hole: '#1a0a24',
+  },
+  // Santorini: the sun going down over the caldera.
+  santorini: {
+    wide: true,
+    sky: [
+      [0, '#2b2a5e'],
+      [0.35, '#5a4a8a'],
+      [0.6, '#c06a8a'],
+      [0.8, '#f09a78'],
+      [0.93, '#ffc98a'],
+      [1, '#ffe2a8'],
+    ],
+    orb: { x: 140, y: 138, r: 12, colour: '#fff0c4', glow: '#ffc98a' },
+    far: '#a8749a',
+    mid: '#6c4a7c',
+    near: '#38264a',
+    mist: '#f4b8a8',
+    fog: [0.7, 0.55, 0.6],
+    lights: '#ffd98a',
+    ground: ['#f2e6d6', '#e8d9c6', '#ddcbb6', '#d2bea8', '#c7b19a'],
+    hole: '#1c1028',
+  },
+  // Tallinn on a white midsummer night: a pale sky that never darkens.
+  tallinn: {
+    wide: true,
+    sky: [
+      [0, '#2f3d6e'],
+      [0.4, '#5e72a8'],
+      [0.75, '#a7b4d4'],
+      [0.92, '#e6dccb'],
+      [1, '#f6e8c8'],
+    ],
+    orb: { x: 360, y: 60, r: 7, colour: '#f6f2e6', glow: '#c8d0e8' },
+    far: '#7c88b4',
+    mid: '#4e5888',
+    near: '#262c4e',
+    mist: '#d8dcea',
+    fog: [0.75, 0.6, 0.65],
+    lights: '#ffd890',
+    ground: ['#cfd2dc', '#c1c5d1', '#b4b8c6', '#a7acbb', '#9aa0b0'],
+    hole: '#10142a',
+  },
+  // The Bialowieza Forest on a misty morning, the sun pale through it.
+  bialowieza: {
+    sky: [
+      [0, '#5a6e66'],
+      [0.45, '#8ea296'],
+      [0.8, '#c6cfb8'],
+      [1, '#e2e2c8'],
+    ],
+    orb: { x: 300, y: 110, r: 9, colour: '#f8f4dc', glow: '#e2e2c8' },
+    far: '#7f958a',
+    mid: '#4d6458',
+    near: '#22352a',
+    mist: '#d6dccb',
+    fog: [0.9, 0.8, 0.7],
+    lights: '#ffe0a0',
+    ground: ['#a9b88a', '#9bab7d', '#8e9e71', '#829166', '#76845b'],
+    hole: '#121c14',
+  },
+  // The Camargue at a pastel pink sunset over the lagoons.
+  camargue: {
+    wide: true,
+    sky: [
+      [0, '#4a4f8a'],
+      [0.4, '#8a78ac'],
+      [0.68, '#d496b0'],
+      [0.86, '#f6c0a2'],
+      [1, '#ffe2b8'],
+    ],
+    orb: { x: 320, y: 140, r: 14, colour: '#fff4d6', glow: '#ffd2b0' },
+    far: '#a991ad',
+    mid: '#71608a',
+    near: '#3c3456',
+    mist: '#f2c6c0',
+    fog: [0.7, 0.55, 0.6],
+    lights: '#ffd890',
+    ground: ['#f0e6d6', '#e6dac8', '#dbceba', '#d0c2ac', '#c5b69f'],
+    hole: '#1a1428',
+  },
+  // Iceland at night under the northern lights.
+  iceland: {
+    wide: true,
+    sky: [
+      [0, '#06101e'],
+      [0.45, '#0f2a3c'],
+      [0.8, '#1e4a52'],
+      [1, '#2f6a66'],
+    ],
+    orb: { x: 110, y: 50, r: 7, colour: '#eef4fa', glow: '#b8d0e8' },
+    stars: 70,
+    aurora: 2.2,
+    far: '#46707c',
+    mid: '#284a5a',
+    near: '#10222e',
+    mist: '#5f8a88',
+    fog: [0.7, 0.6, 0.6],
+    lights: '#ffd27a',
+    ground: ['#8fa59a', '#82988d', '#768b81', '#6a7f75', '#5f7369'],
+    hole: '#040a10',
+  },
+  // New England on a golden autumn afternoon: the maples ablaze.
+  newengland: {
+    wide: true,
+    sky: [
+      [0, '#4a6aa8'],
+      [0.45, '#8aa4cc'],
+      [0.78, '#e0c8b0'],
+      [0.92, '#ffd59a'],
+      [1, '#ffe6b0'],
+    ],
+    orb: { x: 380, y: 120, r: 12, colour: '#fff4d0', glow: '#ffd8a0' },
+    far: '#c88a5a',
+    mid: '#8f4a32',
+    near: '#4a2418',
+    mist: '#f2c896',
+    fog: [0.65, 0.5, 0.55],
+    lights: '#ffe4a0',
+    ground: ['#ecc27a', '#e2b46c', '#d7a75f', '#cc9a53', '#c08e48'],
+    hole: '#1e0e08',
+  },
+  // San Francisco in a golden evening fog.
+  sanfrancisco: {
+    wide: true,
+    sky: [
+      [0, '#3c4470'],
+      [0.4, '#7a6c90'],
+      [0.7, '#d0989a'],
+      [0.88, '#f2c094'],
+      [1, '#ffdcaa'],
+    ],
+    orb: { x: 150, y: 128, r: 12, colour: '#fff0cc', glow: '#ffcf9a' },
+    far: '#b08488',
+    mid: '#6c4c64',
+    near: '#38283c',
+    mist: '#f0cdb4',
+    fog: [0.9, 0.75, 0.65],
+    lights: '#ffd890',
+    ground: ['#e9d6c2', '#dfcab4', '#d4bea7', '#c9b29a', '#bea68e'],
+    hole: '#1a1020',
   },
 };
 
@@ -685,6 +847,14 @@ const AMBIENT: Record<string, Ambient | undefined> = {
   newyork: 'plane',
   sequoia: 'fireflies',
   canyon: 'stars',
+  miami: 'plane',
+  santorini: 'motes',
+  tallinn: 'motes',
+  bialowieza: 'leaves',
+  camargue: 'motes',
+  iceland: 'stars',
+  newengland: 'leaves',
+  sanfrancisco: 'motes',
 };
 type Ambient = 'motes' | 'leaves' | 'stars' | 'snow' | 'plane' | 'fireflies';
 
@@ -783,7 +953,7 @@ function sky(
   }
   if (look.stars) stars(ctx, look.stars, tick, calm);
   if (look.milkyway) milkyway(ctx);
-  if (look.aurora && !calm) aurora(ctx, tick);
+  if (look.aurora && !calm) aurora(ctx, tick, look.aurora);
   if (look.orb) {
     const o = orbSprite(id, look.orb);
     ctx.imageSmoothingEnabled = false;
@@ -916,7 +1086,7 @@ function milkyway(ctx: CanvasRenderingContext2D) {
 }
 
 /** The northern lights: two slow ribbons, green and violet. */
-function aurora(ctx: CanvasRenderingContext2D, tick: number) {
+function aurora(ctx: CanvasRenderingContext2D, tick: number, bright: number) {
   for (const [base, colour, phase] of [
     [34, '#7dffc4', 0],
     [46, '#c49bff', 2],
@@ -924,7 +1094,8 @@ function aurora(ctx: CanvasRenderingContext2D, tick: number) {
     ctx.fillStyle = colour;
     for (let x = 0; x < W; x += 2) {
       const y = base + Math.sin(x / 41 + tick / 140 + phase) * 7;
-      ctx.globalAlpha = 0.16 + 0.1 * Math.sin(x / 23 + tick / 60 + phase);
+      ctx.globalAlpha =
+        bright * (0.16 + 0.1 * Math.sin(x / 23 + tick / 60 + phase));
       ctx.fillRect(x, Math.round(y), 2, 9);
     }
   }
