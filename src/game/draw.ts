@@ -45,7 +45,7 @@ export interface Sprite {
   res: number;
 }
 /** Every sprite by its path under assets/game, the frame count left off
- *  ("squirrel/run", "scandinavia/moose"). */
+ *  ("squirrel/body", "scandinavia/moose"). */
 export type Art = Map<string, Sprite>;
 
 export interface DrawOptions {
