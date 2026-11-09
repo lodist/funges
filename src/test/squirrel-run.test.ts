@@ -224,6 +224,20 @@ describe('things on the way', () => {
     expect(hop.lives).toBe(LIVES);
   });
 
+  it('a hole on a downhill costs one life, and the squirrel is soon back on the land', () => {
+    const g = empty();
+    slope(g, 600);
+    run(g, 60);
+    place(g, { kind: 'gap', w: 40, h: 0 }, 0);
+    run(g, 60);
+    expect(g.lives).toBe(LIVES - 1);
+    expect(g.falling).toBe(false);
+    run(g, 60);
+    const [h] = ground(g.land, g.dist + PLAYER_X + PLAYER.w / 2);
+    expect(g.y).toBeGreaterThanOrEqual(h - 0.5);
+    expect(g.lives).toBe(LIVES - 1);
+  });
+
   it('the fly agaric makes the squirrel sick, and the run goes on', () => {
     const g = empty();
     place(g, { kind: 'agaric', stage: 'common', art: 'agaric', w: 12, h: 14 });
@@ -339,14 +353,19 @@ describe('things on the way', () => {
 });
 
 describe('the journey', () => {
-  it('goes from Scandinavia to the Grand Canyon, then round again', () => {
+  it('goes from Scandinavia over the fjords to the Grand Canyon, then round again', () => {
     expect(STAGES.map(s => s.id)).toEqual([
       'scandinavia',
+      'fjords',
+      'copenhagen',
+      'highlands',
       'paris',
+      'barcelona',
       'rome',
       'alps',
-      'atlantic',
       'newyork',
+      'neworleans',
+      'yosemite',
       'sequoia',
       'canyon',
     ]);

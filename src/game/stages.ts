@@ -1,15 +1,16 @@
 /*
- * The run, stage by stage: Scandinavia to the Grand Canyon, then again,
- * faster. A stage's art lives in src/assets/game/<id>/ under the names used
- * here. Sizes are hitboxes in game pixels (the screen is 480×270); a
- * sprite may be drawn a little larger than its box.
+ * The run, stage by stage: from Scandinavia over the fjords, through
+ * Europe's cities and highlands, then across America to the Grand Canyon,
+ * and round again, faster. A stage's art lives in src/assets/game/<id>/
+ * under the names used here. Sizes are hitboxes in game pixels (the screen
+ * is 480×270); a sprite may be drawn a little larger than its box.
  */
 
 export interface Trap {
   id: string;
   w: number;
   h: number;
-  /** Flies, low (jump it) or high (run under it). */
+  /** Flies, low (jump it or slide under it) or high (run under it). */
   fly?: true;
   /** Leaps aside from a ride instead of bursting. */
   animal?: true;
@@ -20,11 +21,11 @@ export interface Trap {
 export interface Stage {
   id: string;
   length: number;
-  /** How much the land rolls: 1 is the norm, the Alps steep, a ship's deck
-   *  a gentle swell. */
+  /** How much the land rolls: 1 is the norm, the Alps steep, a city's
+   *  streets gentle. */
   hills: number;
   traps: Trap[];
-  /** A common and a rare pickup; none at sea. */
+  /** A common and a rare pickup. */
   pickups?: [common: string, rare: string];
   gaps?: true;
   /** What the golden acorn lets the squirrel ride. */
@@ -48,6 +49,46 @@ export const STAGES: Stage[] = [
     egg: 'bun',
   },
   {
+    id: 'fjords',
+    length: 15000,
+    hills: 0.9,
+    traps: [
+      { id: 'crab', w: 10, h: 7, animal: true },
+      { id: 'rock', w: 13, h: 10 },
+      { id: 'gull', w: 11, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['dulse', 'sea-kale'],
+    gaps: true,
+    ride: 'reindeer',
+    egg: 'waffle',
+  },
+  {
+    id: 'copenhagen',
+    length: 15000,
+    hills: 0.4,
+    traps: [
+      { id: 'bollard', w: 8, h: 12 },
+      { id: 'duck', w: 11, h: 9, animal: true },
+      { id: 'swan', w: 14, h: 8, fly: true, animal: true },
+    ],
+    pickups: ['wood-sorrel', 'sea-buckthorn'],
+    ride: 'cargobike',
+    egg: 'danish',
+  },
+  {
+    id: 'highlands',
+    length: 15000,
+    hills: 1.1,
+    traps: [
+      { id: 'highland-cow', w: 22, h: 17, animal: true },
+      { id: 'thistle', w: 8, h: 15 },
+      { id: 'grouse', w: 11, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['bramble', 'hedgehog'],
+    ride: 'steamtrain',
+    egg: 'shortbread',
+  },
+  {
     id: 'paris',
     length: 15000,
     hills: 0.5,
@@ -59,6 +100,19 @@ export const STAGES: Stage[] = [
     pickups: ['parasol', 'truffle'],
     ride: 'littlecar',
     egg: 'croissant',
+  },
+  {
+    id: 'barcelona',
+    length: 15000,
+    hills: 0.6,
+    traps: [
+      { id: 'drac', w: 22, h: 10 },
+      { id: 'football', w: 8, h: 8, speed: 1.2 },
+      { id: 'parakeet', w: 10, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['asparagus', 'milkcap'],
+    ride: 'skateboard',
+    egg: 'churro',
   },
   {
     id: 'rome',
@@ -87,16 +141,6 @@ export const STAGES: Stage[] = [
     egg: 'cheese',
   },
   {
-    id: 'atlantic',
-    length: 7200,
-    hills: 0.25,
-    traps: [
-      { id: 'crate', w: 14, h: 14 },
-      { id: 'rope', w: 12, h: 8 },
-    ],
-    egg: 'lifebuoy',
-  },
-  {
     id: 'newyork',
     length: 15000,
     hills: 0.5,
@@ -110,6 +154,33 @@ export const STAGES: Stage[] = [
     egg: 'apple',
   },
   {
+    id: 'neworleans',
+    length: 15000,
+    hills: 0.35,
+    traps: [
+      { id: 'alligator', w: 26, h: 7, animal: true },
+      { id: 'crawfish', w: 10, h: 6, animal: true },
+      { id: 'pelican', w: 14, h: 8, fly: true, animal: true },
+    ],
+    pickups: ['muscadine', 'chicken-of-the-woods'],
+    ride: 'streetcar',
+    egg: 'beignet',
+  },
+  {
+    id: 'yosemite',
+    length: 15000,
+    hills: 1.2,
+    traps: [
+      { id: 'granite', w: 15, h: 11 },
+      { id: 'coyote', w: 18, h: 13, animal: true },
+      { id: 'jay', w: 10, h: 7, fly: true, animal: true },
+    ],
+    pickups: ['miners-lettuce', 'morel'],
+    gaps: true,
+    ride: 'mule',
+    egg: 'cocoa',
+  },
+  {
     id: 'sequoia',
     length: 15000,
     hills: 1.0,
@@ -117,7 +188,7 @@ export const STAGES: Stage[] = [
       { id: 'log', w: 22, h: 9 },
       { id: 'stump', w: 14, h: 14 },
       { id: 'bear', w: 21, h: 18, animal: true },
-      { id: 'slug', w: 10, h: 4, animal: true },
+      { id: 'marmot', w: 10, h: 14, animal: true },
     ],
     pickups: ['huckleberry', 'pacific-chanterelle'],
     ride: 'bigfoot',
