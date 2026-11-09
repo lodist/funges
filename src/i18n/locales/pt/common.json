@@ -382,29 +382,18 @@
   "game": {
     "title": "A corrida do esquilo",
     "play": "Jogar A corrida do esquilo",
-    "seoTitle": "A corrida do esquilo: um jogo em pixel art na floresta",
+    "seoTitle": "A corrida do esquilo: um jogo na floresta",
     "seoDescription": "Corre com um esquilo-vermelho da Escandinávia ao Grand Canyon. Apanha cantarelos e boletos, salta as armadilhas e agarra a bolota dourada.",
     "canvas": "A corrida do esquilo: o esquilo corre pela paisagem",
     "start": "Toca ou carrega na barra de espaço para começar",
     "hint": "Mantém premido para saltar mais alto. Toca outra vez no ar para um segundo salto.",
     "paused": "Em pausa. Toca para continuar.",
     "over": "Fim do jogo: {{score}} pontos",
-    "reached": "O mais longe: {{stage}}",
     "best": "Recorde: {{score}} pontos",
     "again": "Correr outra vez",
     "share": "Partilhar",
     "fullscreen": "Ecrã inteiro",
-    "card": "{{score}} pontos · {{stage}}",
-    "shareText": "Fiz {{score}} pontos em A corrida do esquilo ({{stage}}): {{url}}",
-    "stages": {
-      "scandinavia": "A Escandinávia",
-      "paris": "Paris",
-      "rome": "Roma",
-      "alps": "Os Alpes",
-      "atlantic": "O Atlântico",
-      "newyork": "Nova Iorque",
-      "redwoods": "As árvores gigantes",
-      "canyon": "O Grand Canyon"
-    }
+    "card": "{{score}} pontos",
+    "shareText": "Fiz {{score}} pontos em A corrida do esquilo: {{url}}"
   }
 }

@@ -26,8 +26,8 @@ export interface Stage {
   gaps?: true;
   /** What the golden acorn lets the squirrel ride. */
   ride?: string;
-  /** Once per stage: the Trevi coin (points) or the beret (worn). */
-  egg?: { id: string; points: number };
+  /** Once per stage, up in the air: something local that is a life back. */
+  egg: string;
 }
 
 export const STAGES: Stage[] = [
@@ -41,6 +41,7 @@ export const STAGES: Stage[] = [
     ],
     pickups: ['chanterelle', 'cloudberry'],
     ride: 'longship',
+    egg: 'bun',
   },
   {
     id: 'paris',
@@ -52,7 +53,7 @@ export const STAGES: Stage[] = [
     ],
     pickups: ['parasol', 'truffle'],
     ride: 'littlecar',
-    egg: { id: 'beret', points: 0 },
+    egg: 'croissant',
   },
   {
     id: 'rome',
@@ -64,7 +65,7 @@ export const STAGES: Stage[] = [
     pickups: ['chestnut', 'bronze-bolete'],
     gaps: true,
     ride: 'scooter',
-    egg: { id: 'coin', points: 100 },
+    egg: 'gelato',
   },
   {
     id: 'alps',
@@ -76,6 +77,7 @@ export const STAGES: Stage[] = [
     pickups: ['bilberry', 'pine-bolete'],
     gaps: true,
     ride: 'postbus',
+    egg: 'cheese',
   },
   {
     id: 'atlantic',
@@ -84,6 +86,7 @@ export const STAGES: Stage[] = [
       { id: 'crate', w: 18, h: 18 },
       { id: 'rope', w: 16, h: 10 },
     ],
+    egg: 'lifebuoy',
   },
   {
     id: 'newyork',
@@ -95,9 +98,10 @@ export const STAGES: Stage[] = [
     ],
     pickups: ['ramps', 'hen-of-the-woods'],
     ride: 'cab',
+    egg: 'apple',
   },
   {
-    id: 'redwoods',
+    id: 'sequoia',
     length: 5000,
     traps: [
       { id: 'log', w: 30, h: 12 },
@@ -107,6 +111,7 @@ export const STAGES: Stage[] = [
     ],
     pickups: ['huckleberry', 'pacific-chanterelle'],
     ride: 'bigfoot',
+    egg: 'marshmallow',
   },
   {
     id: 'canyon',
@@ -119,6 +124,7 @@ export const STAGES: Stage[] = [
     pickups: ['elderberry', 'king-bolete'],
     gaps: true,
     ride: 'chopper',
+    egg: 'canteen',
   },
 ];
 

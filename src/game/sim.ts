@@ -20,14 +20,15 @@ export const PLAYER = { w: 18, h: 16 };
 export const RIDER = { w: 40, h: 28 };
 export const RIDE_TICKS = 7 * TICKS_PER_SECOND;
 export const SICK_TICKS = 3 * TICKS_PER_SECOND;
-export const POINTS = { common: 10, rare: 50, smash: 25, acorn: 100 };
+/** An egg's points count only when all the lives are left; else it is one back. */
+export const POINTS = { common: 10, rare: 50, smash: 25, acorn: 100, egg: 100 };
 export const LIVES = 3;
 /** After a knock, 1.5 s of blinking and passing through things. */
 export const MERCY_TICKS = 90;
 
 const GRAVITY = 0.32;
-const JUMP = 5.6;
-const DOUBLE_JUMP = 4.6;
+export const JUMP = 5.6;
+export const DOUBLE_JUMP = 4.6;
 /** Letting go while rising cuts the rise to this: a tap is a hop. */
 const JUMP_CUT = 3.2;
 /** A press this many ticks before landing still jumps. */
@@ -85,8 +86,6 @@ export interface Game {
   acornAt: number;
   eggAt: number;
   noGapUntil: number;
-  /** The beret, worn for the rest of Paris. */
-  wearing: string | null;
   /** The furthest absolute stage reached. */
   furthest: number;
   lives: number;
@@ -131,7 +130,6 @@ export function newGame(seed: number): Game {
     acornAt: Infinity,
     eggAt: Infinity,
     noGapUntil: 0,
-    wearing: null,
     furthest: 0,
     lives: LIVES,
     mercyUntil: 0,
@@ -236,10 +234,7 @@ export function step(g: Game, input: Input) {
 
   const here = stageAt(left);
   const reached = here.lap * STAGES.length + here.index;
-  if (reached > g.furthest) {
-    g.furthest = reached;
-    g.wearing = null;
-  }
+  if (reached > g.furthest) g.furthest = reached;
   fill(g);
 }
 
@@ -255,8 +250,13 @@ function touch(g: Game, t: Thing) {
     return;
   }
   t.hit = g.tick;
+  if (t.kind === 'egg' && g.lives < LIVES) {
+    g.lives++;
+    // No points: the picture shows a heart rising instead.
+    t.points = 0;
+    return;
+  }
   g.bonus += t.points;
-  if (t.kind === 'egg' && !t.points) g.wearing = t.art;
   if (t.kind === 'acorn') {
     const stage = STAGES[stageAt(t.x).index];
     if (stage.ride)
@@ -280,7 +280,7 @@ export function fill(g: Game) {
       g.acornAt = stage.ride
         ? at.start + stage.length * (0.25 + 0.5 * random(g))
         : Infinity;
-      g.eggAt = stage.egg ? at.start + stage.length * 0.6 : Infinity;
+      g.eggAt = at.start + stage.length * 0.6;
     }
     // Room to land and jump again before the next thing.
     const room = g.speed * AIRTIME + 24;
@@ -289,19 +289,9 @@ export function fill(g: Game) {
       g.acornAt = Infinity;
       width = put(g, 'acorn', 'common', 'acorn', x, 26, 12, 12, POINTS.acorn);
       g.noGapUntil = x + g.speed * RIDE_TICKS + VIEW_W;
-    } else if (stage.egg && x >= g.eggAt) {
+    } else if (x >= g.eggAt) {
       g.eggAt = Infinity;
-      width = put(
-        g,
-        'egg',
-        stage.id,
-        stage.egg.id,
-        x,
-        24,
-        12,
-        12,
-        stage.egg.points
-      );
+      width = put(g, 'egg', stage.id, stage.egg, x, 24, 12, 12, POINTS.egg);
     } else {
       const roll = random(g);
       if (stage.gaps && x > g.noGapUntil && roll < 0.12) {

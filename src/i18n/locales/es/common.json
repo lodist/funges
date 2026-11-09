@@ -382,29 +382,18 @@
   "game": {
     "title": "La carrera de la ardilla",
     "play": "Jugar a La carrera de la ardilla",
-    "seoTitle": "La carrera de la ardilla: un juego de pixel art en el bosque",
+    "seoTitle": "La carrera de la ardilla: un juego en el bosque",
     "seoDescription": "Corre con una ardilla roja de Escandinavia al Gran Cañón. Recoge rebozuelos y boletos, salta las trampas y consigue la bellota dorada.",
     "canvas": "La carrera de la ardilla: la ardilla corre por el paisaje",
     "start": "Toca o pulsa la barra espaciadora para empezar",
     "hint": "Mantén pulsado para saltar más alto. Toca otra vez en el aire para un segundo salto.",
     "paused": "En pausa. Toca para seguir.",
     "over": "Fin de la partida: {{score}} puntos",
-    "reached": "Lo más lejos: {{stage}}",
     "best": "Récord: {{score}} puntos",
     "again": "Correr otra vez",
     "share": "Compartir",
     "fullscreen": "Pantalla completa",
-    "card": "{{score}} puntos · {{stage}}",
-    "shareText": "He hecho {{score}} puntos en La carrera de la ardilla ({{stage}}): {{url}}",
-    "stages": {
-      "scandinavia": "Escandinavia",
-      "paris": "París",
-      "rome": "Roma",
-      "alps": "Los Alpes",
-      "atlantic": "El Atlántico",
-      "newyork": "Nueva York",
-      "redwoods": "Los árboles gigantes",
-      "canyon": "El Gran Cañón"
-    }
+    "card": "{{score}} puntos",
+    "shareText": "He hecho {{score}} puntos en La carrera de la ardilla: {{url}}"
   }
 }

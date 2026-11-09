@@ -1,5 +1,7 @@
 import {
+  DOUBLE_JUMP,
   GROUND_Y,
+  JUMP,
   LIVES,
   MERCY_TICKS,
   PLAYER,
@@ -15,27 +17,32 @@ import { STAGES, stageAt } from './stages';
 
 /*
  * One picture of the game: a smooth silhouette world under a banded 16-bit
- * sky (soft light, our lines), with the 16-bit figures in it. Nothing has
- * an outline: the ground the action runs on is the lightest band in the
- * scene, mist rises at the foot of every layer so it is light behind the
- * play, and what can be caught glows.
+ * sky (soft light, our lines), with painted figures in it. Nothing has an
+ * outline: the ground the action runs on is the lightest band in the scene,
+ * mist rises at the foot of every layer so it is light behind the play, and
+ * what can be caught glows.
  *
  * The canvas is as many device pixels as it is shown at; `scale` of them
- * make one game pixel (the game is 480×270). Pixel art is drawn nearest
- * neighbour, the smooth layers at full resolution, and everything moves in
- * 1/scale steps.
+ * make one game pixel (the game is 480×270). The painted figures (stored at
+ * 4x, the squirrel at 6x) and the layers are drawn smoothed, the pixel bits
+ * that are left (sun, hearts, digits) nearest neighbour, and everything
+ * moves in 1/scale steps.
  *
  * Looks only: the sim never sees this file, so it may use Math.sin.
  */
 let S = 3;
 const snap = (v: number) => Math.round(v * S) / S;
 
-/** An image with its frames side by side ("run.6.webp": 6 frames). */
+/** An image with its frames side by side ("pigeon.2.webp": 2 frames). */
 export interface Sprite {
   img: CanvasImageSource;
   frames: number;
+  /** One frame's size in game px. */
   w: number;
   h: number;
+  /** Image px per game px: 1 for pixel art, 4 for the painted figures
+   *  ("moose@4x.webp"), which are drawn smoothed. */
+  res: number;
 }
 /** Every sprite by its path under assets/game, the frame count left off
  *  ("squirrel/run", "scandinavia/moose"). */
@@ -61,7 +68,7 @@ const URLS = import.meta.glob<string>('../assets/game/**/*.webp', {
   query: '?url',
   import: 'default',
 });
-const NAME = /game\/(.+?)(?:\.(\d+))?\.webp$/;
+const NAME = /game\/(.+?)(?:@(\d)x)?(?:\.(\d+))?\.webp$/;
 /** Landscape masks load per stage, as the run nears it; sprites at once. */
 const isMask = (name: string) => /\.(mask|lights)$/.test(name);
 
@@ -79,9 +86,15 @@ export async function loadArt(): Promise<Art> {
       } catch {
         return;
       }
-      const frames = Number(match[2] ?? 1);
-      const w = img.naturalWidth / frames;
-      art.set(match[1], { img, frames, w, h: img.naturalHeight });
+      const res = Number(match[2] ?? 1);
+      const frames = Number(match[3] ?? 1);
+      art.set(match[1], {
+        img,
+        frames,
+        w: img.naturalWidth / frames / res,
+        h: img.naturalHeight / res,
+        res,
+      });
     })
   );
   return art;
@@ -239,8 +252,9 @@ const LOOKS: Record<string, Look> = {
     ground: ['#ece4f4', '#ddd3ea', '#d2c7e2', '#c7bbda', '#bcafd1'],
     hole: '#0e0a22',
   },
-  redwoods: {
+  sequoia: {
     heights: { near: 140 },
+    wide: true,
     sky: [
       [0, '#2a3e6e'],
       [0.45, '#4a68a0'],
@@ -291,8 +305,8 @@ const LAYERS: [LayerName, number, number, number][] = [
 const HORIZON = 150;
 /** The sky's band edges, 0–1 of the way to the horizon: thinner lower down. */
 const BANDS = [0, 0.2, 0.36, 0.49, 0.6, 0.69, 0.77, 0.84, 0.9, 0.95, 1];
-/** The mist at a layer's foot: four bands of this many game px. */
-const MIST_BAND = 17;
+/** The mist at a layer's foot fades in over this many game px. */
+const MIST = 85;
 /** The ground's bands, game px from its edge down. */
 const GROUND_BANDS = [0, 1, 7, 15, 26];
 
@@ -409,16 +423,17 @@ function layer(id: string, name: LayerName) {
   ctx.globalCompositeOperation = 'source-in';
   ctx.fillStyle = look[name];
   ctx.fillRect(0, 0, span, h);
-  // Mist rising at the foot, in four bands on the game's pixel grid.
+  // Mist rising at the foot in one smooth fade: the 16-bit lines are only
+  // in the sky and the ground.
   ctx.globalCompositeOperation = 'source-atop';
-  ctx.fillStyle = look.mist;
-  const band = Math.round(MIST_BAND * S);
   const fog = fogOf(look, name);
-  for (let i = 1; i <= 4; i++) {
-    ctx.globalAlpha = (fog * i) / 4;
-    ctx.fillRect(0, h - (5 - i) * band, span, band);
-  }
-  ctx.globalAlpha = 1;
+  const rise = Math.round(MIST * S);
+  const [mr, mg, mb] = rgb(look.mist);
+  const mist = ctx.createLinearGradient(0, h - rise, 0, h);
+  mist.addColorStop(0, `rgba(${mr}, ${mg}, ${mb}, 0)`);
+  mist.addColorStop(1, `rgba(${mr}, ${mg}, ${mb}, ${fog})`);
+  ctx.fillStyle = mist;
+  ctx.fillRect(0, h - rise, span, rise);
   if (l !== 'missing') {
     const lit = document.createElement('canvas');
     lit.width = span;
@@ -518,22 +533,9 @@ interface Scenery {
   factor: number;
   /** Its bottom edge on the screen. */
   bottom: number;
-  /** Runs beside the squirrel for this many world px instead. */
-  span?: number;
-  /** Drawn over the squirrel (the drive-through tree). */
-  front?: true;
 }
 
 const SCENERY: Record<string, Scenery[]> = {
-  rome: [{ art: 'trevi', at: 0.6, factor: 1, bottom: GROUND_Y }],
-  alps: [
-    { art: 'stbernard', at: 0.4, factor: 1, bottom: GROUND_Y, span: 1200 },
-  ],
-  // Out on the moonlit sea, far off.
-  atlantic: [{ art: 'whale', at: 0.5, factor: 0.12, bottom: 190 }],
-  redwoods: [
-    { art: 'tunnel', at: 0.5, factor: 1, bottom: GROUND_Y, front: true },
-  ],
   canyon: [{ art: 'condor', at: 0.5, factor: 0.6, bottom: 84 }],
 };
 
@@ -545,7 +547,7 @@ const AMBIENT: Record<string, Ambient | undefined> = {
   alps: 'snow',
   atlantic: 'stars',
   newyork: 'plane',
-  redwoods: 'fireflies',
+  sequoia: 'fireflies',
   canyon: 'stars',
 };
 type Ambient = 'motes' | 'leaves' | 'stars' | 'snow' | 'plane' | 'fireflies';
@@ -568,17 +570,19 @@ function sprite(
   bottom: number
 ) {
   const f = frame % s.frames;
+  ctx.imageSmoothingEnabled = s.res > 1;
   ctx.drawImage(
     s.img,
-    f * s.w,
+    f * s.w * s.res,
     0,
-    s.w,
-    s.h,
+    s.w * s.res,
+    s.h * s.res,
     snap(cx - s.w / 2),
     snap(bottom - s.h),
     s.w,
     s.h
   );
+  ctx.imageSmoothingEnabled = false;
 }
 
 /** One stage's whole backdrop: sky, sun or moon, the sky's own life, the
@@ -756,7 +760,6 @@ function scenery(
   g: Game,
   art: Art,
   places: Place[],
-  front: boolean,
   dist: number
 ) {
   const left = dist + PLAYER_X;
@@ -764,13 +767,8 @@ function scenery(
     const stage = STAGES[place.index];
     for (const item of SCENERY[stage.id] ?? []) {
       const s = art.get(`${stage.id}/${item.art}`);
-      if (!s || !!item.front !== front) continue;
+      if (!s) continue;
       const x = place.start + stage.length * item.at;
-      if (item.span !== undefined) {
-        if (left >= x && left <= x + item.span)
-          sprite(ctx, s, Math.floor(dist / 7), PLAYER_X - 18, item.bottom);
-        continue;
-      }
       const cx = PLAYER_X + (x - left) * item.factor;
       sprite(ctx, s, Math.floor(g.tick / 10), cx, item.bottom);
     }
@@ -819,7 +817,14 @@ function things(
     const age = g.tick - t.hit;
     if (catchable) {
       sparkle(ctx, cx, bottom - t.h / 2, age);
-      if (numbers && t.points)
+      // An egg that was a life back sends a heart up; the rest, points.
+      if (t.kind === 'egg' && !t.points) {
+        if (age < 30) {
+          ctx.globalAlpha = age < 20 ? 1 : 1 - (age - 20) / 10;
+          heart(ctx, cx - 3.5, bottom - t.h - 8 - age * 0.5, '#ff4d6d');
+          ctx.globalAlpha = 1;
+        }
+      } else if (numbers && t.points)
         points(ctx, numbers, t.points, cx, bottom - t.h - age * 0.5, age);
       continue;
     }
@@ -894,6 +899,7 @@ function burst(
 ) {
   const hw = Math.floor(s.w / 2);
   const hh = Math.floor(s.h / 2);
+  ctx.imageSmoothingEnabled = s.res > 1;
   for (let q = 0; q < 4; q++) {
     const sx = (q % 2) * hw;
     const sy = Math.floor(q / 2) * hh;
@@ -901,36 +907,287 @@ function burst(
     const dy = -age * (q < 2 ? 2.5 : 1.5) + age * age * 0.15;
     ctx.drawImage(
       s.img,
-      sx,
-      sy,
-      hw,
-      hh,
+      sx * s.res,
+      sy * s.res,
+      hw * s.res,
+      hh * s.res,
       snap(cx - hw + sx + dx),
       snap(bottom - s.h + sy + dy),
       hw,
       hh
     );
   }
+  ctx.imageSmoothingEnabled = false;
 }
 
-let tintCanvas: HTMLCanvasElement | null = null;
+/* ---------------------------------------------------------------- squirrel */
 
-/** The squirrel turned green: sick from the fly agaric. */
-function tinted(s: Sprite, frame: number): Sprite {
-  tintCanvas ??= document.createElement('canvas');
-  tintCanvas.width = s.w;
-  tintCanvas.height = s.h;
-  const c = tintCanvas.getContext('2d');
+/*
+ * The squirrel is a puppet: its painted body, tail and legs turned at their
+ * joints every frame, so it runs as smoothly as the screen can show. Points
+ * are game px in each part's own picture, its top-left at 0, 0.
+ */
+type Point = [number, number];
+const RIG = {
+  /** On the body: where the hind leg, the front leg and the tail join it. */
+  hip: [5, 12.5] as Point,
+  shoulder: [15, 12] as Point,
+  tailBase: [1.5, 8.5] as Point,
+  /** Each part's own joint. */
+  hindJoint: [4.5, 3] as Point,
+  frontJoint: [3.5, 2.5] as Point,
+  tailJoint: [20, 13.5] as Point,
+  /** The far legs: a little back and up, in shade. */
+  far: [1.2, -0.6] as Point,
+  /** The middle of the body, which it turns around. */
+  centre: [11.5, 10] as Point,
+  /** Where the belly is, for sitting. */
+  belly: 15,
+  /** The body's top above the ground while it stands. */
+  stand: 21,
+  /** Its left edge from the hitbox's. */
+  left: -3,
+};
+/** World px per stride: the legs keep pace with the ground. */
+const STRIDE = 26;
+
+/** Each part's turn in degrees (0: as painted; more: clockwise, so a leg
+ *  swings back) and how the whole squirrel is held. */
+interface Pose {
+  /** Below 0: nose up. */
+  pitch: number;
+  /** Raised above standing, game px. */
+  lift: number;
+  /** A somersault, 0 to 1 of a turn. */
+  spin: number;
+  front: number;
+  hind: number;
+  farFront: number;
+  farHind: number;
+  tail: number;
+}
+
+function pose(g: Game, view: View): Pose {
+  // Flat on its belly, legs splayed.
+  if (g.over)
+    return {
+      pitch: 6,
+      lift: -4,
+      spin: 0,
+      front: -75,
+      hind: 70,
+      farFront: -60,
+      farHind: 60,
+      tail: 20,
+    };
+  // A bounding gallop: the front legs reach as the hind legs push off, then
+  // the hind legs swing through; the far pair a beat behind, the tail late.
+  if (g.grounded) {
+    const a = (2 * Math.PI * view.dist) / STRIDE;
+    const c = Math.cos(a);
+    const late = Math.cos(a - 0.6);
+    return {
+      pitch: 3 * Math.sin(a),
+      lift: 1.5 * c,
+      spin: 0,
+      front: -35 * c,
+      hind: 40 * c,
+      farFront: -35 * late,
+      farHind: 40 * late,
+      tail: 10 * Math.sin(a - 1.2),
+    };
+  }
+  // The second jump is a forward somersault, legs tucked.
+  if (g.doubleUsed && g.vy > 0)
+    return {
+      pitch: 0,
+      lift: 4,
+      spin: 1 - g.vy / DOUBLE_JUMP,
+      front: -85,
+      hind: -55,
+      farFront: -85,
+      farHind: -55,
+      tail: 35,
+    };
+  // In the air: stretched out going up, reaching for the ground coming down.
+  const s = Math.min(1, Math.max(0, (1 - g.vy / JUMP) / 2));
+  const mix = (up: number, down: number) => up + (down - up) * s;
+  return {
+    pitch: mix(-14, 10),
+    lift: 0,
+    spin: 0,
+    front: mix(-55, -25),
+    hind: mix(50, -15),
+    farFront: mix(-45, -20),
+    farHind: mix(40, -10),
+    tail: mix(18, -14),
+  };
+}
+
+function part(
+  ctx: CanvasRenderingContext2D,
+  s: Sprite,
+  at: Point,
+  joint: Point,
+  degrees: number
+) {
+  ctx.save();
+  ctx.translate(at[0], at[1]);
+  ctx.rotate((degrees * Math.PI) / 180);
+  ctx.drawImage(
+    s.img,
+    0,
+    0,
+    s.w * s.res,
+    s.h * s.res,
+    -joint[0],
+    -joint[1],
+    s.w,
+    s.h
+  );
+  ctx.restore();
+}
+
+/** The far legs: the near ones in shade, made once. */
+const shade = new WeakMap<Sprite, Sprite>();
+function shaded(s: Sprite): Sprite {
+  const done = shade.get(s);
+  if (done) return done;
+  const canvas = document.createElement('canvas');
+  canvas.width = s.w * s.res;
+  canvas.height = s.h * s.res;
+  const c = canvas.getContext('2d');
   if (!c) return s;
-  c.drawImage(s.img, (frame % s.frames) * s.w, 0, s.w, s.h, 0, 0, s.w, s.h);
+  c.drawImage(s.img, 0, 0);
   c.globalCompositeOperation = 'source-atop';
-  c.fillStyle = 'rgba(90, 190, 60, 0.6)';
-  c.fillRect(0, 0, s.w, s.h);
-  return { img: tintCanvas, frames: 1, w: s.w, h: s.h };
+  c.fillStyle = 'rgba(40, 14, 6, 0.45)';
+  c.fillRect(0, 0, canvas.width, canvas.height);
+  const out = { ...s, img: canvas };
+  shade.set(s, out);
+  return out;
 }
 
-/** How far a pose hangs below the squirrel's box (the jump's tail). */
-const DROP: Record<string, number> = { jump: 16, fall: 4 };
+/** The puppet, the top-left of its body at (x, y); false without its art. */
+function puppet(
+  ctx: CanvasRenderingContext2D,
+  art: Art,
+  p: Pose,
+  x: number,
+  y: number,
+  legs = true
+) {
+  const body = art.get('squirrel/body');
+  const tail = art.get('squirrel/tail');
+  const front = art.get('squirrel/front');
+  const hind = art.get('squirrel/hind');
+  if (!body || !tail || !front || !hind) return false;
+  const [cx, cy] = RIG.centre;
+  const [fx, fy] = RIG.far;
+  ctx.save();
+  ctx.imageSmoothingEnabled = true;
+  ctx.translate(x + cx, y + cy);
+  ctx.rotate(((p.pitch + 360 * p.spin) * Math.PI) / 180);
+  ctx.translate(-cx, -cy);
+  if (legs) {
+    const hip: Point = [RIG.hip[0] + fx, RIG.hip[1] + fy];
+    const shoulder: Point = [RIG.shoulder[0] + fx, RIG.shoulder[1] + fy];
+    part(ctx, shaded(hind), hip, RIG.hindJoint, p.farHind);
+    part(ctx, shaded(front), shoulder, RIG.frontJoint, p.farFront);
+  }
+  part(ctx, tail, RIG.tailBase, RIG.tailJoint, p.tail);
+  part(ctx, body, [0, 0], [0, 0], 0);
+  if (legs) {
+    part(ctx, hind, RIG.hip, RIG.hindJoint, p.hind);
+    part(ctx, front, RIG.shoulder, RIG.frontJoint, p.front);
+  }
+  ctx.restore();
+  return true;
+}
+
+/** Room around the body for the tail and legs, game px. */
+const PAD = 28;
+let sickCanvas: HTMLCanvasElement | null = null;
+
+/** The squirrel turned green (sick from the fly agaric): drawn apart,
+ *  tinted, then put in its place. */
+function sickPuppet(
+  ctx: CanvasRenderingContext2D,
+  art: Art,
+  p: Pose,
+  x: number,
+  y: number
+) {
+  const w = 24 + 2 * PAD;
+  const h = 16 + 2 * PAD;
+  sickCanvas ??= document.createElement('canvas');
+  sickCanvas.width = Math.ceil(w * S);
+  sickCanvas.height = Math.ceil(h * S);
+  const c = sickCanvas.getContext('2d');
+  if (!c) return;
+  c.setTransform(S, 0, 0, S, 0, 0);
+  c.imageSmoothingQuality = 'high';
+  if (!puppet(c, art, p, PAD, PAD)) return;
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.globalCompositeOperation = 'source-atop';
+  c.fillStyle = 'rgba(90, 190, 60, 0.55)';
+  c.fillRect(0, 0, sickCanvas.width, sickCanvas.height);
+  ctx.save();
+  ctx.imageSmoothingEnabled = true;
+  ctx.drawImage(sickCanvas, x - PAD, y - PAD, w, h);
+  ctx.restore();
+}
+
+/** Where the squirrel sits on each ride: across from the ride's left edge,
+ *  and the seat's height above its bottom, game px. */
+const SEAT: Record<string, Point> = {
+  longship: [12, 17],
+  littlecar: [26, 26],
+  scooter: [12, 19.5],
+  postbus: [30, 27],
+  cab: [22, 21],
+  bigfoot: [14, 31],
+  chopper: [26, 18],
+};
+
+function ride(
+  ctx: CanvasRenderingContext2D,
+  g: Game,
+  art: Art,
+  vehicle: Sprite,
+  id: string,
+  view: View,
+  bottom: number
+) {
+  // A little bounce on the road (a slow roll on the water).
+  const bob = Math.sin(g.tick / 4) * 0.5;
+  const left = PLAYER_X + RIDER.w / 2 - vehicle.w / 2;
+  sprite(
+    ctx,
+    vehicle,
+    Math.floor(view.dist / 14),
+    left + vehicle.w / 2,
+    bottom + bob
+  );
+  const [x, height] = SEAT[id] ?? [vehicle.w / 2, vehicle.h];
+  const sitting: Pose = {
+    pitch: -4,
+    lift: 0,
+    spin: 0,
+    front: 0,
+    hind: 0,
+    farFront: 0,
+    farHind: 0,
+    tail: -6 + 4 * Math.sin(g.tick / 6),
+  };
+  puppet(
+    ctx,
+    art,
+    sitting,
+    left + x - RIG.centre[0],
+    bottom + bob - height - RIG.belly,
+    false
+  );
+}
 
 function squirrel(
   ctx: CanvasRenderingContext2D,
@@ -962,43 +1219,18 @@ function squirrel(
     // The last two seconds blink, as the ride wears off.
     const fading = g.ride.until - g.tick < 2 * TICKS_PER_SECOND;
     if (!fading || Math.floor(g.tick / 4) % 2) {
-      sprite(
-        ctx,
-        vehicle,
-        Math.floor(g.tick / 6),
-        PLAYER_X + RIDER.w / 2,
-        bottom
-      );
+      ride(ctx, g, art, vehicle, g.ride.art, view, bottom);
       return;
     }
   }
-  const pose = g.over
-    ? 'crash'
-    : g.grounded
-      ? 'run'
-      : g.vy > 0
-        ? g.doubleUsed
-          ? 'spin'
-          : 'jump'
-        : 'fall';
-  const s = art.get(`squirrel/${pose}`);
-  // The tail trails behind: the body, not the whole sprite, sits on the box.
-  const cx = PLAYER_X + PLAYER.w / 2 - 5;
-  if (!s) {
+  const p = pose(g, view);
+  const x = PLAYER_X + RIG.left;
+  const y = bottom - RIG.stand - p.lift;
+  if (g.tick < g.sickUntil) sickPuppet(ctx, art, p, x, y);
+  else if (!puppet(ctx, art, p, x, y)) {
     ctx.fillStyle = '#c4622d';
     ctx.fillRect(PLAYER_X, snap(bottom - PLAYER.h), PLAYER.w, PLAYER.h);
-    return;
   }
-  const frame =
-    pose === 'run' ? Math.floor(view.dist / 7) : Math.floor(g.tick / 5);
-  const feet = bottom + (DROP[pose] ?? 0);
-  if (g.tick < g.sickUntil) sprite(ctx, tinted(s, frame), 0, cx, feet);
-  else sprite(ctx, s, frame, cx, feet);
-  // The beret sits between the ears: 8 px ahead of the sprite's middle and
-  // just under the ear tips in every pose. Not while curled up or crashed.
-  const hat = g.wearing && art.get(`paris/${g.wearing}`);
-  if (hat && pose !== 'spin' && pose !== 'crash')
-    sprite(ctx, hat, 0, cx + 8, feet - s.h + (pose === 'jump' ? 9 : 12));
 }
 
 /** Streaks rushing past when the run is fast. */
@@ -1046,24 +1278,31 @@ const HEART = [
   '...X...',
 ];
 
-function hearts(ctx: CanvasRenderingContext2D, g: Game) {
-  for (let i = 0; i < LIVES; i++) {
-    const left = 6 + i * 10;
-    // A dark outline (the heart drawn 1 px off each way), then the fill.
-    for (const [dx, dy, colour] of [
-      [-1, 0, '#2a1020'],
-      [1, 0, '#2a1020'],
-      [0, -1, '#2a1020'],
-      [0, 1, '#2a1020'],
-      [0, 0, i < g.lives ? '#ff4d6d' : '#5a3048'],
-    ] as const) {
-      ctx.fillStyle = colour;
-      HEART.forEach((row, y) => {
-        for (let x = 0; x < row.length; x++)
-          if (row[x] === 'X') ctx.fillRect(left + x + dx, 6 + y + dy, 1, 1);
-      });
-    }
+/** One heart: a dark outline (the heart drawn 1 px off each way), then the fill. */
+function heart(
+  ctx: CanvasRenderingContext2D,
+  left: number,
+  top: number,
+  fill: string
+) {
+  for (const [dx, dy, colour] of [
+    [-1, 0, '#2a1020'],
+    [1, 0, '#2a1020'],
+    [0, -1, '#2a1020'],
+    [0, 1, '#2a1020'],
+    [0, 0, fill],
+  ] as const) {
+    ctx.fillStyle = colour;
+    HEART.forEach((row, y) => {
+      for (let x = 0; x < row.length; x++)
+        if (row[x] === 'X') ctx.fillRect(left + x + dx, top + y + dy, 1, 1);
+    });
   }
+}
+
+function hearts(ctx: CanvasRenderingContext2D, g: Game) {
+  for (let i = 0; i < LIVES; i++)
+    heart(ctx, 6 + i * 10, 6, i < g.lives ? '#ff4d6d' : '#5a3048');
 }
 
 function hitboxes(ctx: CanvasRenderingContext2D, g: Game, view: View) {
@@ -1097,6 +1336,8 @@ export function draw(
   builtThisFrame = false;
   ctx.setTransform(S, 0, 0, S, 0, 0);
   ctx.imageSmoothingEnabled = false;
+  // For the painted figures, shrunk from 4x: smoothing is turned on per draw.
+  ctx.imageSmoothingQuality = 'high';
   ctx.globalAlpha = 1;
   ctx.globalCompositeOperation = 'source-over';
   ctx.fillStyle = '#100a20';
@@ -1138,7 +1379,7 @@ export function draw(
   ctx.save();
   ctx.translate(0, snap(lift));
   const places = b.start > a.start ? [a, b] : [a];
-  scenery(ctx, g, art, places, false, dist);
+  scenery(ctx, g, art, places, dist);
   if (!calm) {
     ctx.save();
     ctx.translate(0, snap(-lift * 0.3));
@@ -1147,7 +1388,6 @@ export function draw(
   }
   things(ctx, g, art, dist);
   squirrel(ctx, g, art, view);
-  scenery(ctx, g, art, places, true, dist);
   if (options.debug) hitboxes(ctx, g, view);
   ctx.restore();
   ctx.restore();

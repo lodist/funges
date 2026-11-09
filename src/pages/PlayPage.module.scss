@@ -47,20 +47,6 @@
   image-rendering: auto;
 }
 
-.banner {
-  position: absolute;
-  top: 0.5rem;
-  left: 50%;
-  translate: -50% 0;
-  padding: 0.125rem 0.75rem;
-  border-radius: 999px;
-  background: var(--background);
-  color: var(--foreground);
-  font-weight: 700;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
 .panel {
   display: grid;
   gap: 0.5rem;

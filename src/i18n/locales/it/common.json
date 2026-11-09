@@ -382,29 +382,18 @@
   "game": {
     "title": "La corsa dello scoiattolo",
     "play": "Gioca a La corsa dello scoiattolo",
-    "seoTitle": "La corsa dello scoiattolo: un gioco in pixel art nel bosco",
+    "seoTitle": "La corsa dello scoiattolo: un gioco nel bosco",
     "seoDescription": "Corri con uno scoiattolo rosso dalla Scandinavia al Grand Canyon. Raccogli finferli e porcini, salta le trappole e prendi la ghianda d'oro.",
     "canvas": "La corsa dello scoiattolo: lo scoiattolo corre nel paesaggio",
     "start": "Tocca o premi la barra spaziatrice per iniziare",
     "hint": "Tieni premuto per saltare più in alto. Tocca di nuovo in aria per un secondo salto.",
     "paused": "In pausa. Tocca per continuare.",
     "over": "Partita finita: {{score}} punti",
-    "reached": "Il punto più lontano: {{stage}}",
     "best": "Record: {{score}} punti",
     "again": "Corri di nuovo",
     "share": "Condividi",
     "fullscreen": "Schermo intero",
-    "card": "{{score}} punti · {{stage}}",
-    "shareText": "Ho fatto {{score}} punti a La corsa dello scoiattolo ({{stage}}): {{url}}",
-    "stages": {
-      "scandinavia": "La Scandinavia",
-      "paris": "Parigi",
-      "rome": "Roma",
-      "alps": "Le Alpi",
-      "atlantic": "L'Atlantico",
-      "newyork": "New York",
-      "redwoods": "Gli alberi giganti",
-      "canyon": "Il Grand Canyon"
-    }
+    "card": "{{score}} punti",
+    "shareText": "Ho fatto {{score}} punti a La corsa dello scoiattolo: {{url}}"
   }
 }
