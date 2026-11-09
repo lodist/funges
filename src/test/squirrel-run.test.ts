@@ -389,7 +389,28 @@ describe('the journey', () => {
     expect(stageAt(0).index).toBe(0);
     expect(stageAt(STAGES[0].length).index).toBe(1);
     expect(stageAt(LAP - 1).index).toBe(STAGES.length - 1);
-    expect(stageAt(LAP)).toEqual({ index: 0, lap: 1, start: LAP });
+    expect(stageAt(LAP)).toEqual({ index: 0, leg: 0, lap: 1, start: LAP });
+  });
+
+  it('on a random route takes every stage once a lap, in an order of its seed', () => {
+    const classic = STAGES.map((_, i) => i);
+    const g = newGame(7, true);
+    expect([...g.route].sort((a, b) => a - b)).toEqual(classic);
+    expect(g.route).not.toEqual(classic);
+    expect(newGame(7, true).route).toEqual(g.route);
+    expect(newGame(8, true).route).not.toEqual(g.route);
+    expect(newGame(7).route).toEqual(classic);
+    // Its eggs come in its order, and the furthest leg counts along it.
+    while (g.dist < LAP) {
+      g.dist += 3;
+      fill(g);
+    }
+    const eggs = g.things.filter(t => t.kind === 'egg' && t.x < LAP);
+    expect(eggs.map(t => t.stage)).toEqual(g.route.map(i => STAGES[i].id));
+    expect(stageAt(STAGES[0].length, g.route)).toMatchObject({
+      index: g.route[1],
+      leg: 1,
+    });
   });
 
   it('remembers the furthest stage reached', () => {
@@ -402,9 +423,9 @@ describe('the journey', () => {
 
 describe('a kept run', () => {
   /** Plays like a person: a jump every 50 ticks, held for 8. */
-  function play(seed: number) {
-    const g = newGame(seed);
-    const kept: Run = { seed, presses: [], releases: [] };
+  function play(seed: number, shuffled = false) {
+    const g = newGame(seed, shuffled);
+    const kept: Run = { seed, presses: [], releases: [], shuffled };
     while (!g.over && g.tick < 20000) {
       const next = g.tick + 1;
       const input = next % 50 === 0 ? press : next % 50 === 8 ? release : idle;
@@ -416,8 +437,13 @@ describe('a kept run', () => {
   }
 
   it('replays to the same score, tick for tick', () => {
-    for (const seed of [7, 42, 1234567]) {
-      const { g, kept } = play(seed);
+    for (const [seed, shuffled] of [
+      [7, false],
+      [42, false],
+      [1234567, false],
+      [7, true],
+    ] as const) {
+      const { g, kept } = play(seed, shuffled);
       const again = replay(kept);
       expect(again.tick).toBe(g.tick);
       expect(again.dist).toBe(g.dist);

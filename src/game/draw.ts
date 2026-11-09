@@ -1664,11 +1664,11 @@ export function draw(
   const top = surface(g, dist);
 
   // The next stage comes in over two screens.
-  const a = stageAt(dist);
-  const b = stageAt(dist + CHANGE);
+  const a = stageAt(dist, g.route);
+  const b = stageAt(dist + CHANGE, g.route);
   const idA = STAGES[a.index].id;
   const idB = STAGES[b.index].id;
-  const next = STAGES[(a.index + 1) % STAGES.length].id;
+  const next = STAGES[g.route[(a.leg + 1) % g.route.length]].id;
   keep([idA, next]);
   const p = b.start > a.start ? 1 - (b.start - dist) / CHANGE : 0;
   backdrop(ctx, idA, idB, p, dist, top, g.tick, calm);
