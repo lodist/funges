@@ -380,11 +380,12 @@
     "dark": "Dark"
   },
   "game": {
-    "title": "Squirrel Run",
-    "play": "Play Squirrel Run",
-    "seoTitle": "Squirrel Run: a forest runner",
+    "title": "Senda",
+    "play": "Play Senda",
+    "playShort": "Play",
+    "seoTitle": "Senda: a squirrel's journey",
     "seoDescription": "Run a red squirrel from Scandinavia to the Grand Canyon. Pick up chanterelles and porcini, jump the traps and catch the golden acorn.",
-    "canvas": "Squirrel Run: the squirrel running through the landscape",
+    "canvas": "Senda: the squirrel running through the landscape",
     "start": "Tap or press Space to start",
     "hint": "Tap to jump, and tap again in the air to jump higher. Swipe down or press ↓ to slide.",
     "paused": "Paused. Tap to go on.",
@@ -533,6 +534,6 @@
     "again": "Run again",
     "share": "Share",
     "card": "{{score}} points",
-    "shareText": "I scored {{score}} points in Squirrel Run: {{url}}"
+    "shareText": "I scored {{score}} points in Senda: {{url}}"
   }
 }

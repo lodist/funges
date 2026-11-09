@@ -380,11 +380,12 @@
     "dark": "Sombre"
   },
   "game": {
-    "title": "La course de l'écureuil",
-    "play": "Jouer à La course de l'écureuil",
-    "seoTitle": "La course de l'écureuil : un jeu dans la forêt",
+    "title": "Senda",
+    "play": "Jouer à Senda",
+    "playShort": "Jouer",
+    "seoTitle": "Senda : le voyage d'un écureuil",
     "seoDescription": "Cours avec un écureuil roux de la Scandinavie au Grand Canyon. Ramasse girolles et cèpes, saute les pièges et attrape le gland doré.",
-    "canvas": "La course de l'écureuil : l'écureuil court à travers le paysage",
+    "canvas": "Senda : l'écureuil court à travers le paysage",
     "start": "Touche l'écran ou appuie sur Espace pour commencer",
     "hint": "Touche pour sauter, et touche encore en l'air pour sauter plus haut. Glisse vers le bas ou appuie sur ↓ pour faire une glissade.",
     "paused": "Pause. Touche pour continuer.",
@@ -533,6 +534,6 @@
     "again": "Rejouer",
     "share": "Partager",
     "card": "{{score}} points",
-    "shareText": "J'ai fait {{score}} points à La course de l'écureuil : {{url}}"
+    "shareText": "J'ai fait {{score}} points à Senda : {{url}}"
   }
 }

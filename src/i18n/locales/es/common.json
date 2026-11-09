@@ -380,11 +380,12 @@
     "dark": "Oscuro"
   },
   "game": {
-    "title": "La carrera de la ardilla",
-    "play": "Jugar a La carrera de la ardilla",
-    "seoTitle": "La carrera de la ardilla: un juego en el bosque",
+    "title": "Senda",
+    "play": "Jugar a Senda",
+    "playShort": "Jugar",
+    "seoTitle": "Senda: el viaje de una ardilla",
     "seoDescription": "Corre con una ardilla roja de Escandinavia al Gran Cañón. Recoge rebozuelos y boletos, salta las trampas y consigue la bellota dorada.",
-    "canvas": "La carrera de la ardilla: la ardilla corre por el paisaje",
+    "canvas": "Senda: la ardilla corre por el paisaje",
     "start": "Toca o pulsa la barra espaciadora para empezar",
     "hint": "Toca para saltar, y toca otra vez en el aire para saltar más alto. Pasa el dedo hacia abajo o pulsa ↓ para deslizarte.",
     "paused": "En pausa. Toca para seguir.",
@@ -533,6 +534,6 @@
     "again": "Correr otra vez",
     "share": "Compartir",
     "card": "{{score}} puntos",
-    "shareText": "He hecho {{score}} puntos en La carrera de la ardilla: {{url}}"
+    "shareText": "He hecho {{score}} puntos en Senda: {{url}}"
   }
 }

@@ -380,11 +380,12 @@
     "dark": "Scuro"
   },
   "game": {
-    "title": "La corsa dello scoiattolo",
-    "play": "Gioca a La corsa dello scoiattolo",
-    "seoTitle": "La corsa dello scoiattolo: un gioco nel bosco",
+    "title": "Senda",
+    "play": "Gioca a Senda",
+    "playShort": "Gioca",
+    "seoTitle": "Senda: il viaggio di uno scoiattolo",
     "seoDescription": "Corri con uno scoiattolo rosso dalla Scandinavia al Grand Canyon. Raccogli finferli e porcini, salta le trappole e prendi la ghianda d'oro.",
-    "canvas": "La corsa dello scoiattolo: lo scoiattolo corre nel paesaggio",
+    "canvas": "Senda: lo scoiattolo corre nel paesaggio",
     "start": "Tocca o premi la barra spaziatrice per iniziare",
     "hint": "Tocca per saltare, e tocca di nuovo in aria per saltare più in alto. Scorri verso il basso o premi ↓ per scivolare.",
     "paused": "In pausa. Tocca per continuare.",
@@ -533,6 +534,6 @@
     "again": "Corri di nuovo",
     "share": "Condividi",
     "card": "{{score}} punti",
-    "shareText": "Ho fatto {{score}} punti a La corsa dello scoiattolo: {{url}}"
+    "shareText": "Ho fatto {{score}} punti a Senda: {{url}}"
   }
 }
