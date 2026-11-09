@@ -1,7 +1,15 @@
-// The squirrel crossing the front page: the top lane first, the bottom lane
-// half a cycle later. It moves with transform only; the 48px link is the
-// target, the lane itself lets every click through.
+// The squirrel crossing the front page, as a silhouette in its lane's colour
+// (--squirrel, set by the page): it runs in, stops short, flicks its tail,
+// sits up, looks back, sniffs the air and runs on. The top lane first, the
+// bottom lane half a cycle later. It moves with transform only; the link is
+// the target, the lane itself lets every click through.
 .track {
+  // The character's own timing, like a GIF's, so off the UI motion scale:
+  // its stride (6 frames), one cycle of both lanes' crossings and the
+  // bottom lane's wait for its turn.
+  --stride: 0.4s;
+  --cycle: 24s;
+  --delay: 0s;
   position: absolute;
   inset-inline: 0;
   bottom: 0;
@@ -9,55 +17,138 @@
   overflow: hidden;
   pointer-events: none;
   &[data-lane='bottom'] {
+    --delay: calc(var(--cycle) / 2);
     top: -48px;
     bottom: auto;
   }
 }
 
-// The game's 6 drawn run frames (36.5×20 game pixels), shown at 1.8×.
 .runner {
-  // The squirrel's stride (6 frames) and its pace across the page: the
-  // character's own timing, like a GIF's, so off the UI motion scale.
-  --stride: 0.4s;
-  --crossing: 16s;
   position: absolute;
   bottom: 2px;
   left: 0;
   width: 66px;
-  height: 36px;
+  height: 42px;
+  color: var(--squirrel, currentColor);
   pointer-events: auto;
-  background-size: 396px 36px;
-  background-repeat: no-repeat;
   transform: translateX(-70px);
+  animation: across var(--cycle) linear var(--delay) infinite;
+}
+
+// The drawn frames at 1.81 CSS px per game px: the run (6 cells of
+// 36.5×19.75) and the stop (5 cells of 30.25×22.25: stopped, tail flicked,
+// sitting up, looking back, sniffing), the stopped pose's nose on the run's.
+.legs,
+.pose {
+  position: absolute;
+  bottom: 0;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+}
+
+.legs {
+  left: 0;
+  width: 66px;
+  height: 36px;
+  mask-size: 396px 36px;
   animation:
     legs var(--stride) steps(6) infinite,
-    across var(--crossing) linear infinite;
-  [data-lane='bottom'] > & {
-    animation-delay: 0s, calc(var(--crossing) / 2);
-  }
+    gait var(--cycle) step-end var(--delay) infinite;
+}
+
+.pose {
+  left: 11.7px;
+  width: 54.7px;
+  height: 40.2px;
+  mask-size: 273.5px 40.2px;
+  opacity: 0;
+  animation: look var(--cycle) step-end var(--delay) infinite;
 }
 
 @keyframes legs {
   to {
-    background-position: -396px 0;
+    mask-position: -396px 0;
   }
 }
 
+// Of the 24 s cycle: in for 4.2 s, stopped for 4 s, off for 2.9 s.
 @keyframes across {
   0% {
     transform: translateX(-70px);
   }
-  40%,
+  17.5%,
+  34% {
+    transform: translateX(55vw);
+  }
+  46%,
   100% {
     transform: translateX(100vw);
   }
 }
 
-// Still, it sits in the top lane, by the page's left edge.
+// Its legs show only while it moves (not "running": a play-state keyword).
+@keyframes gait {
+  17.5% {
+    opacity: 0;
+  }
+  34% {
+    opacity: 1;
+  }
+}
+
+@keyframes look {
+  17.5% {
+    opacity: 1;
+    mask-position: 0 0;
+  }
+  18.5% {
+    mask-position: -54.7px 0;
+  }
+  19.2% {
+    mask-position: 0 0;
+  }
+  19.9% {
+    mask-position: -54.7px 0;
+  }
+  20.6% {
+    mask-position: 0 0;
+  }
+  22% {
+    mask-position: -109.4px 0;
+  }
+  25% {
+    mask-position: -164.1px 0;
+  }
+  27.5% {
+    mask-position: -109.4px 0;
+  }
+  29% {
+    mask-position: -218.8px 0;
+  }
+  31.5% {
+    mask-position: -109.4px 0;
+  }
+  32.8% {
+    mask-position: 0 0;
+  }
+  34% {
+    opacity: 0;
+  }
+}
+
+// Still, it sits up in the top lane, by the page's left edge.
 @media (prefers-reduced-motion: reduce) {
   .runner {
     animation: none;
     transform: translateX(var(--page-gutter, 1.25rem));
+  }
+  .legs {
+    display: none;
+  }
+  .pose {
+    animation: none;
+    opacity: 1;
+    mask-position: -109.4px 0;
   }
   .track[data-lane='bottom'] {
     display: none;
