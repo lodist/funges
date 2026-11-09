@@ -483,6 +483,10 @@ export default defineConfig({
     // + helper code: 22 KB raw / 6 KB gzip of the entry chunk, for browsers
     // that could not run this app's WASM or service worker anyway.
     target: 'es2020',
+    // The game's art stays files, never inlined: inlined, it would ride in
+    // the play chunk, which every visitor precaches.
+    assetsInlineLimit: (file: string) =>
+      /[\\/]assets[\\/]game[\\/]/.test(file) ? false : undefined,
     rollupOptions: {
       output: {
         // Recipe photos and the game's art in folders of their own, so the

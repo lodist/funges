@@ -54,6 +54,8 @@ export const DOUBLE_JUMP = 4.6;
 const DIVE = 8;
 /** A press this many ticks before landing still jumps. */
 const BUFFER = 6;
+/** Down a hole this long, it costs a life and the squirrel hops out. */
+const FALL_TICKS = 14;
 /** Speeds, world px per tick. Running, it never goes below RUN. */
 export const RUN = 2.6;
 export const CRUISE = 3.4;
@@ -139,8 +141,10 @@ export interface Game {
   slideUntil: number;
   /** Diving to the ground, to slide when it lands. */
   diving: boolean;
-  /** Down in a hole: no landing until it is out. */
+  /** Down in a hole since fallAt: no landing until it is out (and if the
+   *  run ends in one, it ended in a hole). */
   falling: boolean;
+  fallAt: number;
   over: boolean;
 }
 
@@ -191,6 +195,7 @@ export function newGame(seed: number): Game {
     slideUntil: 0,
     diving: false,
     falling: false,
+    fallAt: 0,
     over: false,
   };
   grow(g, 3 * VIEW_W);
@@ -353,10 +358,13 @@ export function step(g: Game, input: Input) {
   } else {
     g.vy -= GRAVITY;
     g.y += g.vy;
-    if (overGap && g.y < h - 2) g.falling = true;
+    if (overGap && g.y < h && !g.falling) {
+      g.falling = true;
+      g.fallAt = g.tick;
+    }
     if (!g.falling) {
-      if (g.y <= h) land(g, s);
-    } else if (g.y < h - 40) {
+      if (g.y <= h) land(g, s, h);
+    } else if (g.tick - g.fallAt >= FALL_TICKS) {
       hurt(g);
       if (g.over) return;
       // Out of the hole with a hop.
@@ -385,8 +393,9 @@ export function step(g: Game, input: Input) {
   fill(g);
 }
 
-/** Touching down. */
-function land(g: Game, slope: number) {
+/** Touching down on the land at height h. */
+function land(g: Game, slope: number, h: number) {
+  g.y = h;
   g.grounded = true;
   g.doubleUsed = false;
   g.landedAt = g.tick;
