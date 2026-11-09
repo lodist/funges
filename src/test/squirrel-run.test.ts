@@ -10,6 +10,7 @@ import {
   RIDE_TICKS,
   RUN,
   TOP,
+  VIEW_MAX_W,
   fill,
   ground,
   newGame,
@@ -348,6 +349,22 @@ describe('things on the way', () => {
             gap.x < acorn.x || gap.x > acorn.x + RIDE_TICKS * TOP,
             `seed ${seed}`
           ).toBe(true);
+    }
+  });
+
+  it('comes in past the right edge of the widest screen, never inside it', () => {
+    for (const seed of [1, 2]) {
+      const g = newGame(seed);
+      fill(g);
+      const first = g.things.length;
+      while (g.dist < LAP / 4) {
+        g.dist += 7;
+        const before = g.things.length;
+        fill(g);
+        for (const t of g.things.slice(before))
+          expect(t.x - g.dist, `seed ${seed}`).toBeGreaterThan(VIEW_MAX_W);
+      }
+      expect(g.things.length - first).toBeGreaterThan(20);
     }
   });
 });

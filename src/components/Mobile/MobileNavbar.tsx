@@ -1,21 +1,13 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-import {
-  LayoutGrid,
-  Map,
-  CalendarRange,
-  ChefHat,
-  Database,
-  Settings as SettingsIcon,
-  ScanSearch,
-} from '@/lib/icons';
+import { Settings as SettingsIcon } from '@/lib/icons';
 import { currentSpace, visibleSpaces } from '@/lib/spaces';
 import { SpaceNavButton } from '@/components/SpaceSwitcher';
 import { IDENTIFY_PATH, isIsolatedPath } from '@/lib/isolation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useIsAppleMobile } from '@/hooks/use-apple-mobile';
 import { NAV_SURFACE_CLASS, NAV_SURFACE_CLASS_LIQUID } from '@/lib/nav-surface';
-import { huertaPage } from '@/lib/seo-pages';
+import { navItems } from '@/lib/nav-items';
 import { cn } from '@/lib/utils';
 import { shouldShowOfflineFeatures } from '@/lib/feature-flags';
 
@@ -33,34 +25,6 @@ const basePath = import.meta.env.BASE_URL || '/';
 export const ACTIVE_ACCENT_CLASS = 'text-happy-700 dark:text-happy-500';
 const INACTIVE_ACCENT_CLASS =
   'text-muted-foreground hover:text-happy-700 dark:hover:text-happy-500';
-// Six items is the ceiling: at the 320px minimum width a seventh falls under
-// the 44px touch floor. Identify holds the thumb's slot because it is the
-// field action; Data, a planning page, lives in the Settings hub on phones.
-const items = [
-  { url: `${basePath}map`, icon: Map },
-  { url: `${basePath}worth-foraging-now`, icon: CalendarRange },
-  // A fresh document, not a route change: /identify is served with its own
-  // headers (lib/isolation).
-  { url: IDENTIFY_PATH, icon: ScanSearch, reloadDocument: true },
-  { url: `${basePath}recipes`, icon: ChefHat },
-  { url: `${basePath}species`, icon: Database },
-  { url: `${basePath}settings`, icon: SettingsIcon },
-];
-// Huerta's own pages, its own Settings last. In the app language's words
-// (German pages under /de).
-const huertaItems = (language: string): typeof items => [
-  { url: basePath + huertaPage('map', language).slice(1), icon: Map },
-  {
-    url: basePath + huertaPage('planner', language).slice(1),
-    icon: LayoutGrid,
-  },
-  { url: basePath + huertaPage('crops', language).slice(1), icon: Database },
-  {
-    url: basePath + huertaPage('calendar', language).slice(1),
-    icon: CalendarRange,
-  },
-  { url: `${basePath}huerta/settings`, icon: SettingsIcon },
-];
 interface MobileNavbarProps {
   hidden: boolean;
 }
@@ -107,10 +71,7 @@ export default function MobileNavbar({ hidden }: MobileNavbarProps) {
             />
           </li>
         )}
-        {(currentSpace(location.pathname) === 'huerta'
-          ? huertaItems(i18n.language)
-          : items
-        ).map(item => {
+        {navItems(currentSpace(location.pathname), i18n.language).map(item => {
           const isActive =
             item.icon === SettingsIcon
               ? location.pathname.startsWith(item.url) ||

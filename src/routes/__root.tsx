@@ -107,6 +107,10 @@ function RootComponent() {
       location.pathname.replace(/\/+$/, '') ===
       `${import.meta.env.BASE_URL}${page}`.replace(/\/+$/, '')
   );
+  // The game fills the screen: its menu stands in for the sidebar and nav bar.
+  const isGamePage =
+    location.pathname.replace(/\/+$/, '') ===
+    `${import.meta.env.BASE_URL}play`.replace(/\/+$/, '');
   const mainRef = useRef<HTMLDivElement>(null);
   const [hideNavbar, setHideNavbar] = useState(false);
   const lastScrollYRef = useRef(0);
@@ -145,7 +149,7 @@ function RootComponent() {
       <TooltipProvider>
         <div className='app-root h-screen flex flex-col'>
           <SidebarProvider defaultOpen={!isMobile}>
-            {!isMobile && !isLandingPage && <AppSidebar />}
+            {!isMobile && !isLandingPage && !isGamePage && <AppSidebar />}
             <SidebarInset>
               <main
                 ref={mainRef}
@@ -155,7 +159,7 @@ function RootComponent() {
                   className={
                     isMobile && isMapPage
                       ? 'h-full bg-background'
-                      : `bg-background ${isLandingPage ? '' : 'p-4'} ${isMobile ? 'mobile-navbar-spacing' : ''}`
+                      : `bg-background ${isLandingPage || isGamePage ? '' : 'p-4'} ${isMobile && !isGamePage ? 'mobile-navbar-spacing' : ''}`
                   }
                 >
                   {/* Mobile pages get extra bottom padding to account for fixed navbar */}
@@ -164,8 +168,10 @@ function RootComponent() {
               </main>
             </SidebarInset>
           </SidebarProvider>
-          {isMobile && <MobileNavbar hidden={hideNavbar} />}
-          {!isMobile && <FloatingLanguageSwitcher onBand={isMapPage} />}
+          {isMobile && !isGamePage && <MobileNavbar hidden={hideNavbar} />}
+          {!isMobile && !isGamePage && (
+            <FloatingLanguageSwitcher onBand={isMapPage} />
+          )}
         </div>
       </TooltipProvider>
     </MotionConfig>
