@@ -887,7 +887,7 @@
     },
     "liberty_cap": {
       "name": "Liberty Cap",
-      "description": "A small brown grassland mushroom with a pointed cap. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
+      "description": "A small brown grassland mushroom with a pointed cap. It is Europe's most common magic mushroom. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
       "howTo": "Look in grazed grassland that nobody fertilises, from September to November, a few days after rain. Picking it is illegal in most countries. Deadly look-alikes grow in the same grass",
       "guide": {
         "identify": "The cap is small, 5 to 20 mm across. It is a pointed cone, usually with a little nipple on top. When wet it is brown and a little sticky. As it dries it pales to cream. The gills are olive-grey and turn purple-black as the spores ripen. The stem is thin, cream and usually wavy, 4 to 10 cm tall. Its base is sometimes blue. The spore print is very dark purple-brown. Other small brown mushrooms grow in the same grass. The deadly Pholiotina rugosa has a ring on its stem and rusty-brown spores. Deadly Galerina species have rusty-brown spores too. Only an expert should tell them apart.",
@@ -900,7 +900,7 @@
     },
     "golden_cap": {
       "name": "Golden Cap",
-      "description": "A golden-brown pasture mushroom with a white stem and a ring. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
+      "description": "A golden-brown pasture mushroom with a white stem and a ring. It is the best-known magic mushroom. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
       "howTo": "Look on cow dung in warm, wet pastures of the US Gulf Coast, from May to October, a few days after heavy rain. Picking it is illegal in most US states. Deadly look-alikes grow in the same pastures",
       "guide": {
         "identify": "The cap is 2 to 8 cm across. It starts as a rounded bell and opens out flat, often with a low bump in the middle. It is golden to caramel brown, paler at the edge. The surface is smooth and a little sticky. The gills are grey at first and turn purple-black, with white edges. The stem is white and hollow, 4 to 15 cm tall. A white ring sits near the top and turns dark from the falling spores. Every part bruises blue when you handle it. The spore print is purple-black. Several mushrooms in the same pastures are dangerous. The deadly Pholiotina rugosa and Galerina species are small and drop rusty-brown spores. Chlorophyllum molybdites is a large white mushroom with green spores. It causes severe vomiting. Panaeolus semiovatus looks similar but never bruises blue. Only an expert should tell them apart.",
@@ -959,7 +959,7 @@
   "page": {
     "title": "{{name}} ({{latin}}): season, habitat and look-alikes",
     "description": "How to recognise {{name}} ({{latin}}): where and when it grows, its look-alikes and tips for the kitchen.",
-    "descriptionPsychoactive": "How to recognise {{name}} ({{latin}}): where and when it grows, its deadly look-alikes and what research says about psilocybin.",
+    "descriptionPsychoactive": "How to recognise {{name}} ({{latin}}), a magic mushroom: where and when it grows, its deadly look-alikes and the research on psilocybin.",
     "allSpecies": "All species"
   }
 }

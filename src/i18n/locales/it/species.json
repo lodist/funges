@@ -886,7 +886,7 @@
     },
     "liberty_cap": {
       "name": "Liberty Cap",
-      "description": "Un piccolo fungo bruno dei prati, con il cappello a punta. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
+      "description": "Un piccolo fungo bruno dei prati, con il cappello a punta. È il fungo magico più comune d'Europa. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
       "howTo": "Cercalo da settembre a novembre nei prati pascolati che nessuno concima, qualche giorno dopo la pioggia. Raccoglierlo è vietato nella maggior parte dei paesi. Nello stesso prato crescono sosia mortali",
       "guide": {
         "identify": "Il cappello è piccolo, largo da 5 a 20 mm. Ha la forma di un cono appuntito, di solito con un piccolo umbone in cima. Da bagnato è bruno e un po' viscido. Asciugandosi schiarisce fino al color crema. Le lamelle sono grigio oliva e diventano nero porpora quando le spore maturano. Il gambo è sottile, color crema e di solito ondulato, alto da 4 a 10 cm. Alla base a volte è bluastro. La sporata è bruno porpora molto scuro. Nello stesso prato crescono altri piccoli funghi bruni. Pholiotina rugosa è mortale: ha un anello sul gambo e spore bruno ruggine. Anche le Galerina mortali hanno spore bruno ruggine. Solo un esperto può distinguerli con sicurezza.",
@@ -899,7 +899,7 @@
     },
     "golden_cap": {
       "name": "Cubensis",
-      "description": "Un fungo bruno dorato dei pascoli, con il gambo bianco e un anello. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
+      "description": "Un fungo bruno dorato dei pascoli, con il gambo bianco e un anello. È il fungo magico più conosciuto. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
       "howTo": "Cercalo da maggio a ottobre sullo sterco di mucca nei pascoli caldi e umidi della costa del Golfo degli Stati Uniti, qualche giorno dopo un acquazzone. Raccoglierlo è vietato nella maggior parte degli stati USA. Negli stessi pascoli crescono sosia mortali",
       "guide": {
         "identify": "Il cappello è largo da 2 a 8 cm. All'inizio è una campana arrotondata, poi si apre piatto, spesso con una bassa gobba al centro. È bruno dorato o color caramello, più chiaro al bordo. La superficie è liscia e un po' appiccicosa. Le lamelle sono prima grigie e poi nero porpora, con il filo bianco. Il gambo è bianco e cavo, alto da 4 a 15 cm. In alto ha un anello bianco che le spore che cadono scuriscono. Ogni parte diventa blu quando la tocchi. La sporata è nero porpora. Negli stessi pascoli crescono funghi pericolosi. Pholiotina rugosa e le Galerina sono piccole, mortali e hanno spore bruno ruggine. Chlorophyllum molybdites è un grande fungo bianco con spore verdi. Provoca vomito violento. Panaeolus semiovatus gli somiglia, ma non diventa mai blu. Solo un esperto può distinguerli con sicurezza.",
@@ -959,7 +959,7 @@
   "page": {
     "title": "{{name}} ({{latin}}): stagione, habitat e sosia",
     "description": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, specie simili e consigli in cucina.",
-    "descriptionPsychoactive": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, sosia mortali e cosa dice la ricerca sulla psilocibina.",
+    "descriptionPsychoactive": "Come riconoscere {{name}} ({{latin}}), un fungo magico: habitat, stagione, sosia mortali e cosa dice la ricerca sulla psilocibina.",
     "allSpecies": "Tutte le specie"
   }
 }
