@@ -805,7 +805,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     emoji: '🍄',
     descriptionKey: 'golden_cap.description',
     howToKey: 'golden_cap.howTo',
-    season: 'spring-fall',
+    season: 'summer-fall',
     habitat: 'grassland',
     psychoactive: true,
     showOnMap: true,
