@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type PointerEvent,
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
@@ -276,7 +270,7 @@ export default function PlayPage() {
     if (now === 'ready') start();
     else if (now === 'paused') goTo('playing');
     else if (now === 'playing') inputs.current.push('press');
-    // A tap meant as a last jump must not start the next run at once.
+    // A key meant as a last jump must not start the next run at once.
     else if (now === 'over' && performance.now() - overAt.current > 600)
       start();
   }, [goTo, start]);
@@ -441,9 +435,6 @@ export default function PlayPage() {
     });
   };
 
-  /** Buttons and links on the tap area must not also jump. */
-  const own = (event: PointerEvent) => event.stopPropagation();
-
   return (
     <>
       <SEO
@@ -455,7 +446,9 @@ export default function PlayPage() {
         ref={areaRef}
         className={styles.area}
         onPointerDown={event => {
-          if (event.button !== 0) return;
+          // Only a run takes taps. Out of one, the menu's buttons start,
+          // resume and restart it: a tap anywhere else does nothing.
+          if (event.button !== 0 || phaseNow.current !== 'playing') return;
           swipe.current = {
             x: event.clientX,
             y: event.clientY,
@@ -498,7 +491,8 @@ export default function PlayPage() {
             <button
               type='button'
               className={styles.pause}
-              onPointerDown={own}
+              // It is on the tap area: pausing must not also jump.
+              onPointerDown={event => event.stopPropagation()}
               onClick={() => {
                 togglePause();
                 landscape(areaRef.current);
@@ -520,7 +514,6 @@ export default function PlayPage() {
                 <button
                   type='button'
                   className={styles.sound}
-                  onPointerDown={own}
                   onClick={() => {
                     wake();
                     setSoundOn(!sound);
@@ -533,37 +526,31 @@ export default function PlayPage() {
                 </button>
               </div>
               {phase !== 'loading' && (
-                <div onPointerDown={own}>
-                  <SegmentedControl
-                    label={t('game.menu')}
-                    options={[
-                      { value: 'game', label: t('game.tabGame') },
-                      ...(boardsOn
-                        ? [
-                            {
-                              value: 'board' as const,
-                              label: t('game.tabBoard'),
-                            },
-                          ]
-                        : []),
-                      { value: 'collection', label: t('game.tabCollection') },
-                      { value: 'help', label: t('game.tabHelp') },
-                    ]}
-                    value={tab}
-                    onChange={setTab}
-                  />
-                </div>
+                <SegmentedControl
+                  label={t('game.menu')}
+                  options={[
+                    { value: 'game', label: t('game.tabGame') },
+                    ...(boardsOn
+                      ? [
+                          {
+                            value: 'board' as const,
+                            label: t('game.tabBoard'),
+                          },
+                        ]
+                      : []),
+                    { value: 'collection', label: t('game.tabCollection') },
+                    { value: 'help', label: t('game.tabHelp') },
+                  ]}
+                  value={tab}
+                  onChange={setTab}
+                />
               )}
               {tab === 'board' ? (
-                <div onPointerDown={own}>
-                  <SquirrelBoard route={route} onRoute={chooseRoute} />
-                </div>
+                <SquirrelBoard route={route} onRoute={chooseRoute} />
               ) : tab === 'collection' ? (
-                <div onPointerDown={own}>
-                  <SquirrelCollection />
-                </div>
+                <SquirrelCollection />
               ) : tab === 'help' ? (
-                <ul className={styles.how} onPointerDown={own}>
+                <ul className={styles.how}>
                   {HOW.map(([key, art]) => {
                     const picture = art && artUrl(art);
                     return (
@@ -587,18 +574,15 @@ export default function PlayPage() {
                 </ul>
               ) : (
                 <>
+                  {/* A first run gets the controls; later ones, the goal. */}
                   {phase === 'ready' && (
-                    <>
-                      <p className={styles.lead}>{t('game.start')}</p>
-                      {/* A first run gets the controls; later ones, the goal. */}
-                      <p className={styles.hint}>
-                        {t(
-                          bests.classic || bests.random
-                            ? 'game.goal'
-                            : 'game.hint'
-                        )}
-                      </p>
-                    </>
+                    <p className={styles.hint}>
+                      {t(
+                        bests.classic || bests.random
+                          ? 'game.goal'
+                          : 'game.hint'
+                      )}
+                    </p>
                   )}
                   {phase === 'paused' && (
                     <p className={styles.lead}>{t('game.paused')}</p>
@@ -620,16 +604,17 @@ export default function PlayPage() {
                     <button
                       type='button'
                       className={styles.signIn}
-                      onPointerDown={own}
                       onClick={() => setTab('board')}
                     >
                       {t('game.addName')}
                     </button>
                   )}
                   {/* The next run's route: the classic journey or the stages
-                  shuffled. Run again starts it, from a pause too. */}
+                  shuffled. Play starts it; Run again, from a pause or the end.
+                  Play sits beside the route: a phone on its side has no room
+                  for one more row. */}
                   {phase !== 'loading' && (
-                    <div onPointerDown={own}>
+                    <div className={styles.actions}>
                       <SegmentedControl
                         label={t('game.route')}
                         options={[
@@ -639,13 +624,22 @@ export default function PlayPage() {
                         value={route}
                         onChange={chooseRoute}
                       />
+                      {phase === 'ready' && (
+                        <Button
+                          onClick={() => {
+                            start();
+                            landscape(areaRef.current);
+                          }}
+                        >
+                          {t('game.playShort')}
+                        </Button>
+                      )}
                     </div>
                   )}
                   {(phase === 'paused' || phase === 'over') && (
                     <div className={styles.actions}>
                       {phase === 'paused' && (
                         <Button
-                          onPointerDown={own}
                           onClick={() => {
                             goTo('playing');
                             landscape(areaRef.current);
@@ -656,7 +650,6 @@ export default function PlayPage() {
                       )}
                       <Button
                         variant={phase === 'paused' ? 'secondary' : 'default'}
-                        onPointerDown={own}
                         onClick={() => {
                           start();
                           landscape(areaRef.current);
@@ -665,11 +658,7 @@ export default function PlayPage() {
                         {t('game.again')}
                       </Button>
                       {phase === 'over' && (
-                        <Button
-                          variant='secondary'
-                          onPointerDown={own}
-                          onClick={share}
-                        >
+                        <Button variant='secondary' onClick={share}>
                           {t('game.share')}
                         </Button>
                       )}
@@ -685,7 +674,6 @@ export default function PlayPage() {
                             to={item.url}
                             reloadDocument={item.reloadDocument}
                             className={styles.link}
-                            onPointerDown={own}
                           >
                             <Icon aria-hidden />
                             <span>{tNav(item.label)}</span>

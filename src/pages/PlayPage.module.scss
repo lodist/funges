@@ -1,5 +1,6 @@
 // The game fills the screen: the picture as large as it fits, the menu on it
-// whenever the run is not going. The whole screen is the tap area.
+// whenever the run is not going. During a run the whole screen is the tap
+// area; with the menu up, only the menu's own buttons do anything.
 .area {
   position: fixed;
   inset: 0;
@@ -13,6 +14,9 @@
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+  &:has(.menu) {
+    cursor: auto;
+  }
 }
 
 // What is turned on an upright phone. Inside the full-screen element, which
