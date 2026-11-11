@@ -897,6 +897,19 @@
         "kitchen": "Não é um alimento. A psilocibina, a substância que contém, está a ser estudada como medicamento contra a depressão e as dependências. Nesses ensaios as pessoas recebem uma dose medida, com terapeutas presentes. Desde 2023, na Austrália, psiquiatras autorizados podem receitá-la para a depressão que não melhorou com outros tratamentos. Comido fora de um ensaio, pode causar vómitos, dores de barriga e ataques de pânico. Algumas pessoas acabam no hospital. Os cogumelos silvestres variam muito de potência. Um sósia pode matar. Nunca tome um cogumelo silvestre como medicamento.",
         "source": "Identificação, habitat e efeitos: First Nature. Medicina: TGA (Austrália) e ClinicalTrials.gov. Época: registos do GBIF."
       }
+    },
+    "golden_cap": {
+      "name": "Cubensis",
+      "description": "Um cogumelo castanho-dourado das pastagens, com o pé branco e um anel. Contém psilocibina, que está a ser testada em ensaios clínicos como medicamento contra a depressão.",
+      "howTo": "Procure de maio a outubro sobre bosta de vaca nas pastagens quentes e húmidas da costa do golfo dos EUA, poucos dias depois de uma chuva forte. Apanhá-lo é proibido na maioria dos estados dos EUA. Nas mesmas pastagens crescem sósias mortais",
+      "guide": {
+        "identify": "O chapéu tem 2 a 8 cm. Começa como um sino arredondado e depois abre-se plano, muitas vezes com uma saliência baixa ao centro. É castanho-dourado a cor de caramelo, mais claro na margem. A superfície é lisa e um pouco pegajosa. As lâminas são primeiro cinzentas e depois negro-púrpura, com a aresta branca. O pé é branco e oco, com 4 a 15 cm. No alto tem um anel branco que os esporos ao cair escurecem. Todas as partes ficam azuis quando lhes toca. A esporada é negro-púrpura. Nas mesmas pastagens crescem cogumelos perigosos. A Pholiotina rugosa e as Galerina são pequenas, mortais e têm esporos castanho-ferrugem. O Chlorophyllum molybdites é um cogumelo grande e branco, de esporos verdes. Provoca vómitos violentos. O Panaeolus semiovatus parece-se com ele, mas nunca fica azul. Só um especialista os consegue distinguir com segurança.",
+        "habitat": "Procure sobre bosta de vaca e na terra rica da pastagem à volta, às vezes sobre estrume de cavalo. Precisa de calor e de humidade. Nos EUA cresce nos estados da costa do golfo, da Florida ao Texas. A Florida tem a maioria dos registos.",
+        "season": "Aparece de maio a outubro, poucos dias depois de uma chuva quente e abundante. Na Florida pode surgir em qualquer mês, quando está ameno e húmido.",
+        "picking": "Na maioria dos estados dos EUA é proibido apanhá-lo, guardá-lo ou vendê-lo, fresco ou seco. Além disso, quase todas as pastagens são terreno privado, por isso peça licença ao dono antes de entrar. Mantenha-se longe do gado. Se o quiser encontrar, fotografe-o onde cresce: o chapéu visto de cima, as lâminas e a base do pé.",
+        "kitchen": "Não é um alimento. A psilocibina, a substância que contém, está a ser estudada como medicamento contra a depressão e as dependências. Nesses ensaios as pessoas recebem uma dose medida, com terapeutas presentes. Desde 2023, na Austrália, psiquiatras autorizados podem receitá-la para a depressão que não melhorou com outros tratamentos. Comido fora de um ensaio, pode causar vómitos, dores de barriga e ataques de pânico. Algumas pessoas acabam no hospital. Os cogumelos silvestres variam muito de potência. Um sósia pode matar. Nunca tome um cogumelo silvestre como medicamento.",
+        "source": "Identificação e sósias: Stamets (1996), Singer e Smith (1958) e Allen e Merlin (1991), citados pela Wikipédia. Efeitos: First Nature. Medicina: TGA (Austrália) e ClinicalTrials.gov. Época: registos do GBIF."
+      }
     }
   },
   "place": {

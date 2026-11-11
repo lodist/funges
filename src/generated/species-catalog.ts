@@ -794,6 +794,22 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     season: 'fall',
     habitat: 'grassland',
     psychoactive: true,
+    showOnMap: true,
+    forecastRegions: ['NE', 'SE'],
+  },
+  {
+    id: 'golden_cap',
+    nameKey: 'golden_cap.name',
+    scientificName: 'Psilocybe cubensis',
+    category: 'mushroom',
+    emoji: '🍄',
+    descriptionKey: 'golden_cap.description',
+    howToKey: 'golden_cap.howTo',
+    season: 'spring-fall',
+    habitat: 'grassland',
+    psychoactive: true,
+    showOnMap: true,
+    forecastRegions: ['USE', 'USW'],
   },
 ];
 

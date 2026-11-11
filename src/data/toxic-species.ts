@@ -132,7 +132,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'toxic',
     reasonKey: 'toxicity.mechanisms.giIrritant',
     checkKeys: ['toxicity.checks.sporePrint', 'toxicity.checks.ringAndStem'],
-    confusedWithSpeciesIds: ['parasol', 'shaggy_mane'],
+    // Golden Caps come up in the same Gulf Coast pastures (Allen and Merlin 1991).
+    confusedWithSpeciesIds: ['parasol', 'shaggy_mane', 'golden_cap'],
+    checksFor: { golden_cap: ['toxicity.checks.purpleSporePrint'] },
   },
   {
     id: 'lepiota-brunneoincarnata',
@@ -263,8 +265,8 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: ['toxicity.checks.sporePrint', 'toxicity.checks.ringAndStem'],
-    confusedWithSpeciesIds: ['shiitake', 'liberty_cap'],
-    checksFor: { liberty_cap: PSILOCYBE_CHECKS },
+    confusedWithSpeciesIds: ['shiitake', 'liberty_cap', 'golden_cap'],
+    checksFor: { liberty_cap: PSILOCYBE_CHECKS, golden_cap: PSILOCYBE_CHECKS },
   },
   {
     id: 'cortinarius-rubellus',
@@ -707,9 +709,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.cortina',
       'toxicity.checks.sporePrint',
     ],
-    // A lawn mushroom: it grows in the Liberty Cap's grass.
-    confusedWithSpeciesIds: ['liberty_cap'],
-    checksFor: { liberty_cap: PSILOCYBE_CHECKS },
+    // A lawn and pasture mushroom: it grows where both Psilocybe do.
+    confusedWithSpeciesIds: ['liberty_cap', 'golden_cap'],
+    checksFor: { liberty_cap: PSILOCYBE_CHECKS, golden_cap: PSILOCYBE_CHECKS },
   },
   {
     id: 'tricholoma-equestre',

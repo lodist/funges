@@ -2320,6 +2320,62 @@
           ]
         }
       }
+    },
+    "liberty_cap": {
+      "name": "Liberty Cap",
+      "scientificName": "Psilocybe semilanceata",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5242507],
+      "rangeTaxonKeys": [5242507],
+      "dataColumns": ["liberty_cap_score", "Liberty Cap"],
+      "regions": {
+        "NE": {
+          "landCover": [311, 312, 313, 321, 322, 324],
+          "landCoverScheme": "CORINE",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5242507",
+            "https://www.first-nature.com/fungi/psilocybe-semilanceata.php",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+          ]
+        },
+        "SE": {
+          "landCover": [311, 312, 313, 321, 322, 324],
+          "landCoverScheme": "CORINE",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5242507",
+            "https://www.first-nature.com/fungi/psilocybe-semilanceata.php",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+          ]
+        }
+      }
+    },
+    "golden_cap": {
+      "name": "Golden Cap",
+      "scientificName": "Psilocybe cubensis",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5242510],
+      "rangeTaxonKeys": [5242510],
+      "dataColumns": ["golden_cap_score", "Golden Cap"],
+      "regions": {
+        "USE": {
+          "landCover": [41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5242510",
+            "https://en.wikipedia.org/wiki/Psilocybe_cubensis",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+          ]
+        },
+        "USW": {
+          "landCover": [41, 42, 43, 52, 71],
+          "landCoverScheme": "NLCD",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5242510",
+            "https://en.wikipedia.org/wiki/Psilocybe_cubensis",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+          ]
+        }
+      }
     }
   }
 }

@@ -897,6 +897,19 @@
         "kitchen": "No es un alimento. La psilocibina, la sustancia que contiene, se está estudiando como medicamento contra la depresión y las adicciones. En esos ensayos las personas reciben una dosis medida, con terapeutas presentes. Desde 2023, en Australia los psiquiatras autorizados pueden recetarla para la depresión que no ha mejorado con otros tratamientos. Comido fuera de un ensayo, puede causar vómitos, dolor de barriga y ataques de pánico. Algunas personas acaban en el hospital. Las setas silvestres varían mucho de potencia. Un parecido puede matar. Nunca tomes una seta silvestre como medicamento.",
         "source": "Identificación, hábitat y efectos: First Nature. Medicina: TGA (Australia) y ClinicalTrials.gov. Temporada: registros de GBIF."
       }
+    },
+    "golden_cap": {
+      "name": "Hongo de San Isidro",
+      "description": "Una seta de color pardo dorado de los pastos, con el pie blanco y un anillo. Contiene psilocibina, que se está probando en ensayos clínicos como medicamento contra la depresión.",
+      "howTo": "Búscalo de mayo a octubre sobre boñigas de vaca en los pastos cálidos y húmedos de la costa del golfo de EE. UU., unos días después de una lluvia fuerte. Recogerlo está prohibido en la mayoría de los estados de EE. UU. En los mismos pastos crecen parecidos mortales",
+      "guide": {
+        "identify": "El sombrero mide de 2 a 8 cm. Al principio es una campana redondeada y luego se abre plano, a menudo con un bulto bajo en el centro. Es pardo dorado o color caramelo, más claro en el borde. La superficie es lisa y algo pegajosa. Las láminas son grises al principio y luego negro púrpura, con el borde blanco. El pie es blanco y hueco, de 4 a 15 cm. Arriba tiene un anillo blanco que las esporas al caer oscurecen. Todas sus partes se vuelven azules al tocarlas. La esporada es negro púrpura. En los mismos pastos crecen setas peligrosas. Pholiotina rugosa y las Galerina son pequeñas, mortales y tienen esporas pardo óxido. Chlorophyllum molybdites es una seta grande y blanca con esporas verdes. Provoca vómitos fuertes. Panaeolus semiovatus se le parece, pero nunca se vuelve azul. Solo un experto puede distinguirlas con seguridad.",
+        "habitat": "Búscalo sobre boñigas de vaca y en la tierra rica del pasto de alrededor, a veces sobre estiércol de caballo. Necesita calor y humedad. En EE. UU. crece en los estados de la costa del golfo, de Florida a Texas. Florida tiene la mayoría de los registros.",
+        "season": "Sale de mayo a octubre, unos días después de una lluvia cálida y abundante. En Florida puede aparecer cualquier mes si hace templado y húmedo.",
+        "picking": "En la mayoría de los estados de EE. UU. está prohibido recogerlo, tenerlo o venderlo, fresco o seco. Además, casi todos los pastos son terreno privado, así que pide permiso al dueño antes de entrar. Mantente lejos del ganado. Si quieres encontrarlo, fotografíalo donde crece: el sombrero desde arriba, las láminas y la base del pie.",
+        "kitchen": "No es un alimento. La psilocibina, la sustancia que contiene, se está estudiando como medicamento contra la depresión y las adicciones. En esos ensayos las personas reciben una dosis medida, con terapeutas presentes. Desde 2023, en Australia los psiquiatras autorizados pueden recetarla para la depresión que no ha mejorado con otros tratamientos. Comido fuera de un ensayo, puede causar vómitos, dolor de barriga y ataques de pánico. Algunas personas acaban en el hospital. Las setas silvestres varían mucho de potencia. Un parecido puede matar. Nunca tomes una seta silvestre como medicamento.",
+        "source": "Identificación y parecidos: Stamets (1996), Singer y Smith (1958) y Allen y Merlin (1991), citados por Wikipedia. Efectos: First Nature. Medicina: TGA (Australia) y ClinicalTrials.gov. Temporada: registros de GBIF."
+      }
     }
   },
   "place": {

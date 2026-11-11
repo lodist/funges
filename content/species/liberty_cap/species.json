@@ -97,9 +97,57 @@
     }
   },
   "identification": {
-    "enabled": false
+    "enabled": true,
+    "label": "Psilocybe semilanceata",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "https://github.com/lodist/funges-lab/blob/main/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+      ]
+    }
   },
   "forecast": {
-    "enabled": false
+    "enabled": true,
+    "routeToDish": false,
+    "dataColumns": ["Liberty Cap"],
+    "regions": {
+      "NE": {
+        "available": true,
+        "landCover": [311, 312, 313, 321, 322, 324],
+        "scoringReferences": [
+          "https://www.gbif.org/species/5242507",
+          "https://www.first-nature.com/fungi/psilocybe-semilanceata.php",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "SE": {
+        "available": true,
+        "landCover": [311, 312, 313, 321, 322, 324],
+        "scoringReferences": [
+          "https://www.gbif.org/species/5242507",
+          "https://www.first-nature.com/fungi/psilocybe-semilanceata.php",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+        ],
+        "landCoverScheme": "CORINE"
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5242507],
+      "references": ["https://www.gbif.org/species/5242507"]
+    },
+    "rangePrior": {
+      "taxonKeys": [5242507]
+    }
   }
 }
