@@ -212,7 +212,17 @@ function speciesPage(
       ? `<img src="${photo}" alt="${escape(`${name} (${species.scientificName})`)}" />`
       : '',
     `<p>${escape(t('species', `list_of_species.${key}.description`))}</p>`,
-    ...GUIDE_PARTS.map(p => part(t('species', `guide.${p}`), guide(p))),
+    ...GUIDE_PARTS.map(p =>
+      part(
+        t(
+          'species',
+          p === 'kitchen' && species.psychoactive
+            ? 'guide.medicine'
+            : `guide.${p}`
+        ),
+        guide(p)
+      )
+    ),
     lookalikes.length
       ? `<section><h2>${escape(t('species', 'sheet.lookalikes'))}</h2><ul>${lookalikes
           .map(
@@ -233,7 +243,13 @@ function speciesPage(
     path: localizedPath(`/species/${species.id}/`, lang),
     lang,
     title: pageTitle(t('species', 'page.title', vars)),
-    description: t('species', 'page.description', vars),
+    description: t(
+      'species',
+      species.psychoactive
+        ? 'page.descriptionPsychoactive'
+        : 'page.description',
+      vars
+    ),
     body: `<main data-static>${body.join('')}</main>`,
     hreflang: true,
     image: photo,

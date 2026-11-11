@@ -884,6 +884,32 @@
         "keeps": "Il sèche bien en tranches fines. Une fois cuit, il se congèle bien aussi.",
         "source": "Identification et habitat : First Nature et MushroomExpert. Saison : données GBIF. Césium : Office fédéral allemand de radioprotection (BfS) et LGL de Bavière."
       }
+    },
+    "liberty_cap": {
+      "name": "Psilocybe lancéolé",
+      "description": "Un petit champignon brun des prairies, au chapeau pointu. C'est le champignon magique le plus répandu en Europe. Il contient de la psilocybine, testée dans des essais cliniques comme médicament contre la dépression.",
+      "howTo": "Cherchez-le de septembre à novembre dans les prairies pâturées que personne n'engraisse, quelques jours après la pluie. Le cueillir est interdit dans la plupart des pays. Des sosies mortels poussent dans la même herbe",
+      "guide": {
+        "identify": "Le chapeau est petit, de 5 à 20 mm. C'est un cône pointu, le plus souvent avec un petit mamelon au sommet. Mouillé, il est brun et un peu visqueux. En séchant, il pâlit jusqu'à la couleur crème. Les lames sont gris olive et deviennent noir pourpre quand les spores mûrissent. Le pied est fin, crème et souvent ondulé, haut de 4 à 10 cm. Sa base est parfois bleue. La sporée est brun pourpre très foncé. D'autres petits champignons bruns poussent dans la même herbe. Pholiotina rugosa est mortelle : elle porte un anneau sur le pied et ses spores sont brun rouille. Les galères (Galerina) mortelles ont aussi des spores brun rouille. Seul un expert peut les distinguer avec certitude.",
+        "habitat": "Cherchez-le dans les prairies pâturées par des moutons ou des vaches, sur un sol pauvre et acide que personne n'engraisse. Pensez aux pâturages de colline et de montagne, aux bords des landes, aux vieilles prairies, aux parcs et aux terrains de sport. Il vit sur les racines mortes des graminées et ne pousse pas sur les bouses. Il est commun en Grande-Bretagne, en Irlande, en Scandinavie et dans les Alpes. Aux États-Unis, il pousse sur la côte Pacifique, du nord de la Californie à l'État de Washington.",
+        "season": "Il sort de fin août à décembre, surtout en octobre. Cherchez-le quelques jours après la pluie, quand les nuits deviennent fraîches. Sur la côte pacifique des États-Unis, il sort un mois plus tard, surtout en novembre.",
+        "picking": "Dans la plupart des pays, il est interdit de le cueillir, de le détenir ou de le vendre, frais ou séché. C'est le cas en France, en Suisse, au Royaume-Uni et aux Pays-Bas. Si vous voulez le trouver, photographiez-le là où il pousse : le chapeau vu du dessus, les lames et la base du pied.",
+        "kitchen": "Ce n'est pas un aliment. La psilocybine, la substance qu'il contient, est étudiée comme médicament contre la dépression et les addictions. Dans ces essais, les participants reçoivent une dose mesurée, en présence de thérapeutes. Depuis 2023, des psychiatres agréés peuvent la prescrire en Australie contre les dépressions que les autres traitements n'ont pas soulagées. Mangé hors d'un essai, il peut provoquer des vomissements, des maux de ventre et des crises de panique. Certaines personnes finissent à l'hôpital. La puissance des champignons sauvages varie beaucoup. Un sosie peut tuer. Ne prenez jamais un champignon sauvage comme médicament.",
+        "source": "Identification, habitat et effets : First Nature. Médecine : TGA (Australie) et ClinicalTrials.gov. Saison : observations GBIF."
+      }
+    },
+    "golden_cap": {
+      "name": "Cubensis",
+      "description": "Un champignon brun doré des pâturages, au pied blanc muni d'un anneau. C'est le champignon magique le plus connu. Il contient de la psilocybine, testée dans des essais cliniques comme médicament contre la dépression.",
+      "howTo": "Cherchez-le de mai à octobre sur les bouses de vache, dans les pâturages chauds et humides de la côte du golfe du Mexique aux États-Unis, quelques jours après une forte pluie. Le cueillir est interdit dans la plupart des États américains. Des sosies mortels poussent dans les mêmes pâturages",
+      "guide": {
+        "identify": "Le chapeau mesure de 2 à 8 cm. D'abord en cloche arrondie, il s'étale ensuite, souvent avec une bosse basse au centre. Il est brun doré à caramel, plus pâle au bord. Sa surface est lisse et un peu collante. Les lames sont d'abord grises, puis noir pourpre, avec l'arête blanche. Le pied est blanc et creux, haut de 4 à 15 cm. Un anneau blanc se trouve en haut et noircit sous les spores qui tombent. Toutes les parties bleuissent quand on les manipule. La sporée est noir pourpre. Plusieurs champignons dangereux poussent dans les mêmes pâturages. Pholiotina rugosa et les galères (Galerina) sont petites, mortelles et ont des spores brun rouille. Chlorophyllum molybdites est un grand champignon blanc à spores vertes. Il provoque de violents vomissements. Panaeolus semiovatus lui ressemble, mais ne bleuit jamais. Seul un expert peut les distinguer avec certitude.",
+        "habitat": "Cherchez-le sur les bouses de vache et sur la terre grasse du pâturage autour, parfois sur le crottin de cheval. Il lui faut de la chaleur et de l'humidité. Aux États-Unis, il pousse dans les États de la côte du golfe, de la Floride au Texas. La Floride compte le plus d'observations.",
+        "season": "Il sort de mai à octobre, quelques jours après une pluie chaude et abondante. En Floride, il peut apparaître n'importe quel mois quand il fait doux et humide.",
+        "picking": "Dans la plupart des États américains, il est interdit de le cueillir, de le détenir ou de le vendre, frais ou séché. La plupart des pâturages sont aussi des terrains privés : demandez au propriétaire avant d'y entrer. Restez à l'écart du bétail. Si vous voulez le trouver, photographiez-le là où il pousse : le chapeau vu du dessus, les lames et la base du pied.",
+        "kitchen": "Ce n'est pas un aliment. La psilocybine, la substance qu'il contient, est étudiée comme médicament contre la dépression et les addictions. Dans ces essais, les participants reçoivent une dose mesurée, en présence de thérapeutes. Depuis 2023, des psychiatres agréés peuvent la prescrire en Australie contre les dépressions que les autres traitements n'ont pas soulagées. Mangé hors d'un essai, il peut provoquer des vomissements, des maux de ventre et des crises de panique. Certaines personnes finissent à l'hôpital. La puissance des champignons sauvages varie beaucoup. Un sosie peut tuer. Ne prenez jamais un champignon sauvage comme médicament.",
+        "source": "Identification et sosies : Stamets (1996), Singer et Smith (1958) et Allen et Merlin (1991), cités par Wikipédia. Effets : First Nature. Médecine : TGA (Australie) et ClinicalTrials.gov. Saison : observations GBIF."
+      }
     }
   },
   "place": {
@@ -914,6 +940,7 @@
     "notToday": "Pas de saison aujourd'hui",
     "whereItGrows": "Où elle pousse",
     "lookalikes": "Sosies toxiques",
+    "psychoactive": "Psychoactif · non comestible",
     "tellApart": "Comment les distinguer",
     "testedLabel": "Vérifié · saison {{year}}",
     "tested": "Au même endroit, la prévision a mieux noté les jours de sa saison que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
@@ -925,12 +952,14 @@
     "season": "Quand",
     "picking": "Cueillette",
     "kitchen": "Préparation",
+    "medicine": "Médecine",
     "keeps": "Conservation",
     "source": "Sources"
   },
   "page": {
     "title": "{{name}} ({{latin}}) : saison, habitat et sosies",
     "description": "Reconnaître {{name}} ({{latin}}) : habitat, saison, sosies toxiques et conseils en cuisine.",
+    "descriptionPsychoactive": "Reconnaître {{name}} ({{latin}}), un champignon magique : habitat, saison, sosies mortels et ce que la recherche dit de la psilocybine.",
     "allSpecies": "Toutes les espèces"
   }
 }
