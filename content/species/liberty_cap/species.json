@@ -1,0 +1,105 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "liberty_cap",
+  "scientificName": "Psilocybe semilanceata",
+  "catalog": {
+    "enabled": true,
+    "order": 59,
+    "translationKey": "liberty_cap",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall",
+    "habitat": "grassland",
+    "psychoactive": true,
+    "image": {
+      "path": "src/assets/species/liberty_cap.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Liberty Cap",
+      "description": "A small brown grassland mushroom with a pointed cap. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
+      "howTo": "Look in grazed grassland that nobody fertilises, from September to November, a few days after rain. Picking it is illegal in most countries. Deadly look-alikes grow in the same grass",
+      "guide": {
+        "identify": "The cap is small, 5 to 20 mm across. It is a pointed cone, usually with a little nipple on top. When wet it is brown and a little sticky. As it dries it pales to cream. The gills are olive-grey and turn purple-black as the spores ripen. The stem is thin, cream and usually wavy, 4 to 10 cm tall. Its base is sometimes blue. The spore print is very dark purple-brown. Other small brown mushrooms grow in the same grass. The deadly Pholiotina rugosa has a ring on its stem and rusty-brown spores. Deadly Galerina species have rusty-brown spores too. Only an expert should tell them apart.",
+        "habitat": "Look in grassland grazed by sheep or cattle, on poor, acid soil that nobody fertilises. Think hill pastures, moorland edges, old meadows, parks and playing fields. It lives on dead grass roots and does not grow on dung. It is common in Britain, Ireland, Scandinavia and the Alps.",
+        "season": "It comes from late August to December, mostly in October. Look a few days after rain, once the nights turn cool.",
+        "picking": "In most countries it is illegal to pick, keep or sell it, fresh or dried. That includes the UK, Ireland, Switzerland, the Netherlands and most US states. If you want to find it, photograph it where it grows. Take the cap from above, the gills and the base of the stem.",
+        "kitchen": "It is not a food. Psilocybin, the substance in it, is being tested as a medicine for depression and addiction. In those trials people get a measured dose with therapists present. Since 2023, approved psychiatrists in Australia can prescribe it for depression that other treatments have not helped. Eaten outside a trial, it can cause vomiting, stomach pain and panic attacks. Some people end up in hospital. Wild mushrooms vary a lot in strength. A look-alike can kill. Never take a wild mushroom as medicine.",
+        "source": "Identification, habitat and effects: First Nature. Medicine: Australia's TGA and ClinicalTrials.gov. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Liberty Cap",
+      "description": "Un piccolo fungo bruno dei prati, con il cappello a punta. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
+      "howTo": "Cercalo da settembre a novembre nei prati pascolati che nessuno concima, qualche giorno dopo la pioggia. Raccoglierlo è vietato nella maggior parte dei paesi. Nello stesso prato crescono sosia mortali",
+      "guide": {
+        "identify": "Il cappello è piccolo, largo da 5 a 20 mm. Ha la forma di un cono appuntito, di solito con un piccolo umbone in cima. Da bagnato è bruno e un po' viscido. Asciugandosi schiarisce fino al color crema. Le lamelle sono grigio oliva e diventano nero porpora quando le spore maturano. Il gambo è sottile, color crema e di solito ondulato, alto da 4 a 10 cm. Alla base a volte è bluastro. La sporata è bruno porpora molto scuro. Nello stesso prato crescono altri piccoli funghi bruni. Pholiotina rugosa è mortale: ha un anello sul gambo e spore bruno ruggine. Anche le Galerina mortali hanno spore bruno ruggine. Solo un esperto può distinguerli con sicurezza.",
+        "habitat": "Cercalo nei prati pascolati da pecore o mucche, su terreno povero e acido che nessuno concima. Pensa ai pascoli di collina e di montagna, ai margini delle brughiere, ai prati vecchi, ai parchi e ai campi sportivi. Vive sulle radici morte dell'erba e non cresce sul letame. È comune in Gran Bretagna, Irlanda, Scandinavia e sulle Alpi.",
+        "season": "Esce da fine agosto a dicembre, soprattutto in ottobre. Cercalo qualche giorno dopo la pioggia, quando le notti si fanno fresche.",
+        "picking": "Nella maggior parte dei paesi è vietato raccoglierlo, tenerlo o venderlo, fresco o secco. Vale anche in Italia, in Svizzera, nel Regno Unito e nei Paesi Bassi. Se vuoi trovarlo, fotografalo dove cresce: il cappello dall'alto, le lamelle e la base del gambo.",
+        "kitchen": "Non è un alimento. La psilocibina, la sostanza che contiene, è in studio come farmaco contro la depressione e le dipendenze. Negli studi le persone ricevono una dose misurata, con dei terapeuti presenti. Dal 2023 in Australia gli psichiatri autorizzati possono prescriverla per la depressione che non risponde ad altre cure. Mangiato fuori da uno studio può causare vomito, mal di pancia e attacchi di panico. Alcune persone finiscono in ospedale. I funghi selvatici variano molto di potenza. Un sosia può uccidere. Non prendere mai un fungo selvatico come medicina.",
+        "source": "Riconoscimento, habitat ed effetti: First Nature. Medicina: TGA (Australia) e ClinicalTrials.gov. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Psilocybe lancéolé",
+      "description": "Un petit champignon brun des prairies, au chapeau pointu. Il contient de la psilocybine, testée dans des essais cliniques comme médicament contre la dépression.",
+      "howTo": "Cherchez-le de septembre à novembre dans les prairies pâturées que personne n'engraisse, quelques jours après la pluie. Le cueillir est interdit dans la plupart des pays. Des sosies mortels poussent dans la même herbe",
+      "guide": {
+        "identify": "Le chapeau est petit, de 5 à 20 mm. C'est un cône pointu, le plus souvent avec un petit mamelon au sommet. Mouillé, il est brun et un peu visqueux. En séchant, il pâlit jusqu'à la couleur crème. Les lames sont gris olive et deviennent noir pourpre quand les spores mûrissent. Le pied est fin, crème et souvent ondulé, haut de 4 à 10 cm. Sa base est parfois bleue. La sporée est brun pourpre très foncé. D'autres petits champignons bruns poussent dans la même herbe. Pholiotina rugosa est mortelle : elle porte un anneau sur le pied et ses spores sont brun rouille. Les galères (Galerina) mortelles ont aussi des spores brun rouille. Seul un expert peut les distinguer avec certitude.",
+        "habitat": "Cherchez-le dans les prairies pâturées par des moutons ou des vaches, sur un sol pauvre et acide que personne n'engraisse. Pensez aux pâturages de colline et de montagne, aux bords des landes, aux vieilles prairies, aux parcs et aux terrains de sport. Il vit sur les racines mortes des graminées et ne pousse pas sur les bouses. Il est commun en Grande-Bretagne, en Irlande, en Scandinavie et dans les Alpes.",
+        "season": "Il sort de fin août à décembre, surtout en octobre. Cherchez-le quelques jours après la pluie, quand les nuits deviennent fraîches.",
+        "picking": "Dans la plupart des pays, il est interdit de le cueillir, de le détenir ou de le vendre, frais ou séché. C'est le cas en France, en Suisse, au Royaume-Uni et aux Pays-Bas. Si vous voulez le trouver, photographiez-le là où il pousse : le chapeau vu du dessus, les lames et la base du pied.",
+        "kitchen": "Ce n'est pas un aliment. La psilocybine, la substance qu'il contient, est étudiée comme médicament contre la dépression et les addictions. Dans ces essais, les participants reçoivent une dose mesurée, en présence de thérapeutes. Depuis 2023, des psychiatres agréés peuvent la prescrire en Australie contre les dépressions que les autres traitements n'ont pas soulagées. Mangé hors d'un essai, il peut provoquer des vomissements, des maux de ventre et des crises de panique. Certaines personnes finissent à l'hôpital. La puissance des champignons sauvages varie beaucoup. Un sosie peut tuer. Ne prenez jamais un champignon sauvage comme médicament.",
+        "source": "Identification, habitat et effets : First Nature. Médecine : TGA (Australie) et ClinicalTrials.gov. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Spitzkegeliger Kahlkopf",
+      "description": "Ein kleiner brauner Pilz von Wiesen und Weiden, mit spitzem Hut. Er enthält Psilocybin, das in klinischen Studien als Medikament gegen Depressionen getestet wird.",
+      "howTo": "Such ihn von September bis November auf beweideten Wiesen, die niemand düngt, ein paar Tage nach Regen. In den meisten Ländern ist es verboten, ihn zu besitzen. Tödlich giftige Doppelgänger wachsen im selben Gras",
+      "guide": {
+        "identify": "Der Hut ist klein, 5 bis 20 mm breit. Er ist spitz kegelförmig und hat oben meist ein kleines Spitzchen. Nass ist er braun und etwas schmierig. Beim Trocknen wird er blass cremefarben. Die Lamellen sind olivgrau und werden purpurschwarz, wenn die Sporen reifen. Der Stiel ist dünn, cremefarben und meist wellig, 4 bis 10 cm lang. Am Grund ist er manchmal blau. Das Sporenpulver ist sehr dunkel purpurbraun. Im selben Gras wachsen andere kleine braune Pilze. Pholiotina rugosa ist tödlich giftig. Dieser Pilz hat einen Ring am Stiel und rostbraune Sporen. Auch die tödlich giftigen Häublinge (Galerina) haben rostbraune Sporen. Sicher auseinanderhalten kann sie nur, wer sich wirklich auskennt.",
+        "habitat": "Such auf Wiesen und Weiden, wo Schafe oder Kühe grasen, auf magerem, saurem Boden, den niemand düngt. Also auf Bergweiden, an Moorrändern, auf alten Wiesen, in Parks und auf Sportplätzen. Er lebt von abgestorbenen Graswurzeln und wächst nicht auf Kuhfladen. Häufig ist er in Grossbritannien, Irland, Skandinavien und in den Alpen.",
+        "season": "Er kommt von Ende August bis Dezember, am meisten im Oktober. Such ein paar Tage nach Regen, sobald die Nächte kühl werden.",
+        "picking": "In den meisten Ländern ist es verboten, ihn zu besitzen oder weiterzugeben, frisch oder getrocknet. Das gilt auch in der Schweiz und in Deutschland. Wenn du ihn finden willst, fotografiere ihn dort, wo er wächst: den Hut von oben, die Lamellen und den Stielgrund.",
+        "kitchen": "Er ist kein Speisepilz. Psilocybin, der Wirkstoff darin, wird als Medikament gegen Depressionen und Sucht erforscht. In diesen Studien bekommen die Leute eine genau abgemessene Dosis. Fachleute begleiten sie dabei. Seit 2023 dürfen zugelassene Psychiater in Australien es bei Depressionen verschreiben, gegen die nichts anderes geholfen hat. Wer ihn ausserhalb einer Studie isst, kann erbrechen und Bauchschmerzen oder Panikattacken bekommen. Manche landen im Krankenhaus. Wilde Pilze sind sehr unterschiedlich stark. Ein Doppelgänger kann tödlich sein. Nimm nie einen wilden Pilz als Medikament.",
+        "source": "Bestimmung, Standort und Wirkung: First Nature. Medizin: australische Arzneimittelbehörde TGA und ClinicalTrials.gov. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Mongui",
+      "description": "Una seta pequeña y parda de los prados, con el sombrero en punta. Contiene psilocibina, que se está probando en ensayos clínicos como medicamento contra la depresión.",
+      "howTo": "Búscalo de septiembre a noviembre en prados de pasto que nadie abona, unos días después de llover. Recogerlo está prohibido en la mayoría de los países. En la misma hierba crecen parecidos mortales",
+      "guide": {
+        "identify": "El sombrero es pequeño, de 5 a 20 mm. Tiene forma de cono puntiagudo, casi siempre con un pequeño pezón en lo alto. Mojado es pardo y algo viscoso. Al secarse se aclara hasta el color crema. Las láminas son gris oliva y se vuelven negro púrpura cuando maduran las esporas. El pie es fino, color crema y casi siempre ondulado, de 4 a 10 cm. Su base a veces es azulada. La esporada es pardo púrpura muy oscura. En la misma hierba crecen otras setas pequeñas y pardas. Pholiotina rugosa es mortal: tiene un anillo en el pie y esporas pardo óxido. Las Galerina mortales también tienen esporas pardo óxido. Solo un experto puede distinguirlas con seguridad.",
+        "habitat": "Búscalo en prados donde pastan ovejas o vacas, en suelo pobre y ácido que nadie abona. Piensa en pastos de montaña, bordes de brezales, prados viejos, parques y campos de deporte. Vive de las raíces muertas de la hierba y no crece sobre el estiércol. Es común en Gran Bretaña, Irlanda, Escandinavia y los Alpes. En España sale sobre todo en los pastos de montaña del norte.",
+        "season": "Sale de finales de agosto a diciembre, sobre todo en octubre. Búscalo unos días después de llover, cuando las noches refrescan.",
+        "picking": "En la mayoría de los países está prohibido recogerlo, tenerlo o venderlo, fresco o seco. Así es en el Reino Unido, Irlanda, Suiza y los Países Bajos. En España, llevarlo en un lugar público se castiga con multa. Si quieres encontrarlo, fotografíalo donde crece: el sombrero desde arriba, las láminas y la base del pie.",
+        "kitchen": "No es un alimento. La psilocibina, la sustancia que contiene, se está estudiando como medicamento contra la depresión y las adicciones. En esos ensayos las personas reciben una dosis medida, con terapeutas presentes. Desde 2023, en Australia los psiquiatras autorizados pueden recetarla para la depresión que no ha mejorado con otros tratamientos. Comido fuera de un ensayo, puede causar vómitos, dolor de barriga y ataques de pánico. Algunas personas acaban en el hospital. Las setas silvestres varían mucho de potencia. Un parecido puede matar. Nunca tomes una seta silvestre como medicamento.",
+        "source": "Identificación, hábitat y efectos: First Nature. Medicina: TGA (Australia) y ClinicalTrials.gov. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Liberty Cap",
+      "description": "Um pequeno cogumelo castanho dos prados, com o chapéu pontiagudo. Contém psilocibina, que está a ser testada em ensaios clínicos como medicamento contra a depressão.",
+      "howTo": "Procure de setembro a novembro em prados de pastoreio que ninguém aduba, poucos dias depois da chuva. Apanhá-lo é proibido na maioria dos países. Na mesma erva crescem sósias mortais",
+      "guide": {
+        "identify": "O chapéu é pequeno, com 5 a 20 mm. Tem forma de cone pontiagudo, quase sempre com um pequeno mamilo no topo. Molhado é castanho e um pouco viscoso. Ao secar fica cor de creme. As lâminas são cinzento-oliva e ficam negro-púrpura quando os esporos amadurecem. O pé é fino, cor de creme e quase sempre ondulado, com 4 a 10 cm. A base às vezes é azulada. A esporada é castanho-púrpura muito escura. Na mesma erva crescem outros pequenos cogumelos castanhos. A Pholiotina rugosa é mortal: tem um anel no pé e esporos castanho-ferrugem. As Galerina mortais também têm esporos castanho-ferrugem. Só um especialista os consegue distinguir com segurança.",
+        "habitat": "Procure em prados onde pastam ovelhas ou vacas, em solo pobre e ácido que ninguém aduba. Pense em pastagens de montanha, orlas de charnecas, prados antigos, parques e campos de jogos. Vive das raízes mortas da erva e não cresce sobre o estrume. É comum na Grã-Bretanha, na Irlanda, na Escandinávia e nos Alpes.",
+        "season": "Aparece do fim de agosto a dezembro, sobretudo em outubro. Procure poucos dias depois da chuva, quando as noites começam a arrefecer.",
+        "picking": "Na maioria dos países é proibido apanhá-lo, guardá-lo ou vendê-lo, fresco ou seco. É assim no Reino Unido, na Irlanda, na Suíça e nos Países Baixos. Se o quiser encontrar, fotografe-o onde cresce: o chapéu visto de cima, as lâminas e a base do pé.",
+        "kitchen": "Não é um alimento. A psilocibina, a substância que contém, está a ser estudada como medicamento contra a depressão e as dependências. Nesses ensaios as pessoas recebem uma dose medida, com terapeutas presentes. Desde 2023, na Austrália, psiquiatras autorizados podem receitá-la para a depressão que não melhorou com outros tratamentos. Comido fora de um ensaio, pode causar vómitos, dores de barriga e ataques de pânico. Algumas pessoas acabam no hospital. Os cogumelos silvestres variam muito de potência. Um sósia pode matar. Nunca tome um cogumelo silvestre como medicamento.",
+        "source": "Identificação, habitat e efeitos: First Nature. Medicina: TGA (Austrália) e ClinicalTrials.gov. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false
+  },
+  "forecast": {
+    "enabled": false
+  }
+}

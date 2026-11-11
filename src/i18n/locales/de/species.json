@@ -884,6 +884,19 @@
         "keeps": "In dünnen Scheiben lässt er sich gut trocknen. Gegart kannst du ihn auch gut einfrieren.",
         "source": "Bestimmung und Standort: First Nature und MushroomExpert. Saison: GBIF-Funddaten. Cäsium: Bundesamt für Strahlenschutz (BfS) und Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
       }
+    },
+    "liberty_cap": {
+      "name": "Spitzkegeliger Kahlkopf",
+      "description": "Ein kleiner brauner Pilz von Wiesen und Weiden, mit spitzem Hut. Er enthält Psilocybin, das in klinischen Studien als Medikament gegen Depressionen getestet wird.",
+      "howTo": "Such ihn von September bis November auf beweideten Wiesen, die niemand düngt, ein paar Tage nach Regen. In den meisten Ländern ist es verboten, ihn zu besitzen. Tödlich giftige Doppelgänger wachsen im selben Gras",
+      "guide": {
+        "identify": "Der Hut ist klein, 5 bis 20 mm breit. Er ist spitz kegelförmig und hat oben meist ein kleines Spitzchen. Nass ist er braun und etwas schmierig. Beim Trocknen wird er blass cremefarben. Die Lamellen sind olivgrau und werden purpurschwarz, wenn die Sporen reifen. Der Stiel ist dünn, cremefarben und meist wellig, 4 bis 10 cm lang. Am Grund ist er manchmal blau. Das Sporenpulver ist sehr dunkel purpurbraun. Im selben Gras wachsen andere kleine braune Pilze. Pholiotina rugosa ist tödlich giftig. Dieser Pilz hat einen Ring am Stiel und rostbraune Sporen. Auch die tödlich giftigen Häublinge (Galerina) haben rostbraune Sporen. Sicher auseinanderhalten kann sie nur, wer sich wirklich auskennt.",
+        "habitat": "Such auf Wiesen und Weiden, wo Schafe oder Kühe grasen, auf magerem, saurem Boden, den niemand düngt. Also auf Bergweiden, an Moorrändern, auf alten Wiesen, in Parks und auf Sportplätzen. Er lebt von abgestorbenen Graswurzeln und wächst nicht auf Kuhfladen. Häufig ist er in Grossbritannien, Irland, Skandinavien und in den Alpen.",
+        "season": "Er kommt von Ende August bis Dezember, am meisten im Oktober. Such ein paar Tage nach Regen, sobald die Nächte kühl werden.",
+        "picking": "In den meisten Ländern ist es verboten, ihn zu besitzen oder weiterzugeben, frisch oder getrocknet. Das gilt auch in der Schweiz und in Deutschland. Wenn du ihn finden willst, fotografiere ihn dort, wo er wächst: den Hut von oben, die Lamellen und den Stielgrund.",
+        "kitchen": "Er ist kein Speisepilz. Psilocybin, der Wirkstoff darin, wird als Medikament gegen Depressionen und Sucht erforscht. In diesen Studien bekommen die Leute eine genau abgemessene Dosis. Fachleute begleiten sie dabei. Seit 2023 dürfen zugelassene Psychiater in Australien es bei Depressionen verschreiben, gegen die nichts anderes geholfen hat. Wer ihn ausserhalb einer Studie isst, kann erbrechen und Bauchschmerzen oder Panikattacken bekommen. Manche landen im Krankenhaus. Wilde Pilze sind sehr unterschiedlich stark. Ein Doppelgänger kann tödlich sein. Nimm nie einen wilden Pilz als Medikament.",
+        "source": "Bestimmung, Standort und Wirkung: First Nature. Medizin: australische Arzneimittelbehörde TGA und ClinicalTrials.gov. Saison: GBIF-Funddaten."
+      }
     }
   },
   "place": {

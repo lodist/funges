@@ -67,6 +67,13 @@ const SCLERODERMA_CHECKS = {
   giant_puffball: ['toxicity.checks.puffballInterior'],
 };
 
+// A Psilocybe drops a purple-brown print; the deadly lawn and pasture
+// look-alikes drop a rusty one, and only some carry a ring.
+const PSILOCYBE_CHECKS = [
+  'toxicity.checks.purpleSporePrint',
+  'toxicity.checks.ringAndStem',
+];
+
 // The catalog's porcini and chanterelle siblings, shared by every look-alike
 // that is mistaken for any of them. Add a new sibling here once, not per entry.
 const BOLETE_IDS = [
@@ -256,7 +263,8 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
     severity: 'lethal',
     reasonKey: 'toxicity.mechanisms.amatoxin',
     checkKeys: ['toxicity.checks.sporePrint', 'toxicity.checks.ringAndStem'],
-    confusedWithSpeciesIds: ['shiitake'],
+    confusedWithSpeciesIds: ['shiitake', 'liberty_cap'],
+    checksFor: { liberty_cap: PSILOCYBE_CHECKS },
   },
   {
     id: 'cortinarius-rubellus',
@@ -699,7 +707,9 @@ export const TOXIC_SPECIES: ToxicSpecies[] = [
       'toxicity.checks.cortina',
       'toxicity.checks.sporePrint',
     ],
-    confusedWithSpeciesIds: [],
+    // A lawn mushroom: it grows in the Liberty Cap's grass.
+    confusedWithSpeciesIds: ['liberty_cap'],
+    checksFor: { liberty_cap: PSILOCYBE_CHECKS },
   },
   {
     id: 'tricholoma-equestre',

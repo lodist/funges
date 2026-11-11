@@ -884,6 +884,19 @@
         "keeps": "Se seca bien en láminas finas. Cocinado, también se congela bien.",
         "source": "Identificación y hábitat: First Nature y MushroomExpert. Temporada: registros de GBIF. Cesio: Oficina Federal alemana de Protección Radiológica (BfS) y LGL de Baviera."
       }
+    },
+    "liberty_cap": {
+      "name": "Mongui",
+      "description": "Una seta pequeña y parda de los prados, con el sombrero en punta. Contiene psilocibina, que se está probando en ensayos clínicos como medicamento contra la depresión.",
+      "howTo": "Búscalo de septiembre a noviembre en prados de pasto que nadie abona, unos días después de llover. Recogerlo está prohibido en la mayoría de los países. En la misma hierba crecen parecidos mortales",
+      "guide": {
+        "identify": "El sombrero es pequeño, de 5 a 20 mm. Tiene forma de cono puntiagudo, casi siempre con un pequeño pezón en lo alto. Mojado es pardo y algo viscoso. Al secarse se aclara hasta el color crema. Las láminas son gris oliva y se vuelven negro púrpura cuando maduran las esporas. El pie es fino, color crema y casi siempre ondulado, de 4 a 10 cm. Su base a veces es azulada. La esporada es pardo púrpura muy oscura. En la misma hierba crecen otras setas pequeñas y pardas. Pholiotina rugosa es mortal: tiene un anillo en el pie y esporas pardo óxido. Las Galerina mortales también tienen esporas pardo óxido. Solo un experto puede distinguirlas con seguridad.",
+        "habitat": "Búscalo en prados donde pastan ovejas o vacas, en suelo pobre y ácido que nadie abona. Piensa en pastos de montaña, bordes de brezales, prados viejos, parques y campos de deporte. Vive de las raíces muertas de la hierba y no crece sobre el estiércol. Es común en Gran Bretaña, Irlanda, Escandinavia y los Alpes. En España sale sobre todo en los pastos de montaña del norte.",
+        "season": "Sale de finales de agosto a diciembre, sobre todo en octubre. Búscalo unos días después de llover, cuando las noches refrescan.",
+        "picking": "En la mayoría de los países está prohibido recogerlo, tenerlo o venderlo, fresco o seco. Así es en el Reino Unido, Irlanda, Suiza y los Países Bajos. En España, llevarlo en un lugar público se castiga con multa. Si quieres encontrarlo, fotografíalo donde crece: el sombrero desde arriba, las láminas y la base del pie.",
+        "kitchen": "No es un alimento. La psilocibina, la sustancia que contiene, se está estudiando como medicamento contra la depresión y las adicciones. En esos ensayos las personas reciben una dosis medida, con terapeutas presentes. Desde 2023, en Australia los psiquiatras autorizados pueden recetarla para la depresión que no ha mejorado con otros tratamientos. Comido fuera de un ensayo, puede causar vómitos, dolor de barriga y ataques de pánico. Algunas personas acaban en el hospital. Las setas silvestres varían mucho de potencia. Un parecido puede matar. Nunca tomes una seta silvestre como medicamento.",
+        "source": "Identificación, hábitat y efectos: First Nature. Medicina: TGA (Australia) y ClinicalTrials.gov. Temporada: registros de GBIF."
+      }
     }
   },
   "place": {

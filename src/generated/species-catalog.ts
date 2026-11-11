@@ -783,6 +783,18 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     showOnMap: true,
     forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
+  {
+    id: 'liberty_cap',
+    nameKey: 'liberty_cap.name',
+    scientificName: 'Psilocybe semilanceata',
+    category: 'mushroom',
+    emoji: '🍄',
+    descriptionKey: 'liberty_cap.description',
+    howToKey: 'liberty_cap.howTo',
+    season: 'fall',
+    habitat: 'grassland',
+    psychoactive: true,
+  },
 ];
 
 export const GENERATED_REGION_BOUNDARIES = {

@@ -884,6 +884,19 @@
         "keeps": "It dries well in thin slices. It also freezes well once cooked.",
         "source": "Identification and habitat: First Nature and MushroomExpert. Season: GBIF records. Caesium: German Federal Office for Radiation Protection (BfS) and Bavarian LGL."
       }
+    },
+    "liberty_cap": {
+      "name": "Liberty Cap",
+      "description": "A small brown grassland mushroom with a pointed cap. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
+      "howTo": "Look in grazed grassland that nobody fertilises, from September to November, a few days after rain. Picking it is illegal in most countries. Deadly look-alikes grow in the same grass",
+      "guide": {
+        "identify": "The cap is small, 5 to 20 mm across. It is a pointed cone, usually with a little nipple on top. When wet it is brown and a little sticky. As it dries it pales to cream. The gills are olive-grey and turn purple-black as the spores ripen. The stem is thin, cream and usually wavy, 4 to 10 cm tall. Its base is sometimes blue. The spore print is very dark purple-brown. Other small brown mushrooms grow in the same grass. The deadly Pholiotina rugosa has a ring on its stem and rusty-brown spores. Deadly Galerina species have rusty-brown spores too. Only an expert should tell them apart.",
+        "habitat": "Look in grassland grazed by sheep or cattle, on poor, acid soil that nobody fertilises. Think hill pastures, moorland edges, old meadows, parks and playing fields. It lives on dead grass roots and does not grow on dung. It is common in Britain, Ireland, Scandinavia and the Alps.",
+        "season": "It comes from late August to December, mostly in October. Look a few days after rain, once the nights turn cool.",
+        "picking": "In most countries it is illegal to pick, keep or sell it, fresh or dried. That includes the UK, Ireland, Switzerland, the Netherlands and most US states. If you want to find it, photograph it where it grows. Take the cap from above, the gills and the base of the stem.",
+        "kitchen": "It is not a food. Psilocybin, the substance in it, is being tested as a medicine for depression and addiction. In those trials people get a measured dose with therapists present. Since 2023, approved psychiatrists in Australia can prescribe it for depression that other treatments have not helped. Eaten outside a trial, it can cause vomiting, stomach pain and panic attacks. Some people end up in hospital. Wild mushrooms vary a lot in strength. A look-alike can kill. Never take a wild mushroom as medicine.",
+        "source": "Identification, habitat and effects: First Nature. Medicine: Australia's TGA and ClinicalTrials.gov. Season: GBIF records."
+      }
     }
   },
   "place": {

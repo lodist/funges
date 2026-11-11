@@ -157,6 +157,20 @@ describe('buildPages', () => {
     expect(html).not.toContain('<title>x</title>');
   });
 
+  it("writes a psychoactive species' page without the kitchen", () => {
+    for (const lang of ['en', 'de'] as const) {
+      const page = pages.find(
+        p => p.path === localizedPath('/species/liberty_cap/', lang)
+      )!;
+      expect(page.description).toMatch(/Psilocybin/i);
+      expect(page.description).not.toMatch(/kitchen|Küche/);
+    }
+    const en = pages.find(p => p.path === '/species/liberty_cap/')!;
+    expect(en.body).toContain('<h2>Medicine</h2>');
+    expect(en.body).not.toContain('<h2>Cooking</h2>');
+    expect(en.body).toContain('Pholiotina rugosa');
+  });
+
   it("writes a page's text as it is, dollar signs too", () => {
     const shell =
       '<html lang="en"><head><title>x</title>\n<meta name="description" content="y" />\n</head><body><div id="root"></div></body></html>';
