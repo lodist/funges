@@ -13,6 +13,8 @@ export interface Species {
   howToKey: string;
   season?: string;
   habitat?: string;
+  /** Not food (Liberty Cap): a badge, a Medicine section, no recipes. */
+  psychoactive?: boolean;
   showOnMap?: boolean;
   forecastRegions?: readonly ForecastRegion[];
   /** A map layer scored as the best of these species, not a taxon of its own. */
