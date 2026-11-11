@@ -12,7 +12,8 @@
     "title": "Avertissement sur la cueillette",
     "content": "Le Service inclut des recettes et des informations sur les plantes, baies, noix et champignons sauvages comestibles. Bien que tous les efforts soient faits pour garantir l'exactitude, la consommation sûre d'aliments sauvages dépend entièrement d'une identification correcte, d'une préparation appropriée et de l'état de santé individuel.",
     "misidentification": "Une mauvaise identification des plantes ou champignons sauvages peut entraîner des réactions allergiques, des intoxications ou d'autres conséquences graves pour la santé. Certaines espèces comestibles ont des sosies toxiques. Consultez toujours un expert local ou utilisez un guide fiable pour identifier les aliments sauvages, et ne consommez rien à moins d'être absolument certain de sa sécurité.",
-    "preparation": "De plus, certains aliments sauvages ne doivent être consommés qu'en petites quantités ou après des méthodes de préparation spécifiques pour neutraliser certains composés naturels. Les recettes fournies par le Service sont à but éducatif et supposent une identification correcte et une manipulation appropriée des ingrédients."
+    "preparation": "De plus, certains aliments sauvages ne doivent être consommés qu'en petites quantités ou après des méthodes de préparation spécifiques pour neutraliser certains composés naturels. Les recettes fournies par le Service sont à but éducatif et supposent une identification correcte et une manipulation appropriée des ingrédients.",
+    "psychoactive": "Certaines espèces décrites par le Service, comme Psilocybe semilanceata, sont psychoactives et ne sont pas des aliments. Les informations qui les concernent servent uniquement à l'identification et à l'éducation. Elles ne sont pas une invitation à les cueillir, les détenir ou les consommer là où la loi l'interdit. Elles ne constituent pas non plus un avis médical."
   },
   "disclaimer": {
     "title": "Exclusion de responsabilité",
@@ -51,7 +52,7 @@
     "intro": "Pour toute question ou préoccupation concernant ces Conditions, veuillez contacter :",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Dernière mise à jour : 07.11.2026",
+  "lastUpdated": "Dernière mise à jour : 11.11.2026",
   "huerta": {
     "title": "Conseils de potager",
     "content": "Les conseils de Huerta, y compris les alertes de gel, les périodes de semis et de plantation, l’arrosage et les soins, sont calculés à partir des prévisions météo et des données climatiques à long terme de la zone de votre potager. Les prévisions peuvent se tromper et les conditions de votre potager peuvent différer de celles de la zone.",

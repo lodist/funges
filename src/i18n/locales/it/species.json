@@ -883,6 +883,32 @@
         "keeps": "A fette sottili si secca bene. Anche cotto si congela bene.",
         "source": "Identificazione e habitat: First Nature e MushroomExpert. Stagione: dati GBIF. Cesio: Ufficio federale tedesco per la radioprotezione (BfS) e LGL della Baviera."
       }
+    },
+    "liberty_cap": {
+      "name": "Liberty Cap",
+      "description": "Un piccolo fungo bruno dei prati, con il cappello a punta. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
+      "howTo": "Cercalo da settembre a novembre nei prati pascolati che nessuno concima, qualche giorno dopo la pioggia. Raccoglierlo è vietato nella maggior parte dei paesi. Nello stesso prato crescono sosia mortali",
+      "guide": {
+        "identify": "Il cappello è piccolo, largo da 5 a 20 mm. Ha la forma di un cono appuntito, di solito con un piccolo umbone in cima. Da bagnato è bruno e un po' viscido. Asciugandosi schiarisce fino al color crema. Le lamelle sono grigio oliva e diventano nero porpora quando le spore maturano. Il gambo è sottile, color crema e di solito ondulato, alto da 4 a 10 cm. Alla base a volte è bluastro. La sporata è bruno porpora molto scuro. Nello stesso prato crescono altri piccoli funghi bruni. Pholiotina rugosa è mortale: ha un anello sul gambo e spore bruno ruggine. Anche le Galerina mortali hanno spore bruno ruggine. Solo un esperto può distinguerli con sicurezza.",
+        "habitat": "Cercalo nei prati pascolati da pecore o mucche, su terreno povero e acido che nessuno concima. Pensa ai pascoli di collina e di montagna, ai margini delle brughiere, ai prati vecchi, ai parchi e ai campi sportivi. Vive sulle radici morte dell'erba e non cresce sul letame. È comune in Gran Bretagna, Irlanda, Scandinavia e sulle Alpi.",
+        "season": "Esce da fine agosto a dicembre, soprattutto in ottobre. Cercalo qualche giorno dopo la pioggia, quando le notti si fanno fresche.",
+        "picking": "Nella maggior parte dei paesi è vietato raccoglierlo, tenerlo o venderlo, fresco o secco. Vale anche in Italia, in Svizzera, nel Regno Unito e nei Paesi Bassi. Se vuoi trovarlo, fotografalo dove cresce: il cappello dall'alto, le lamelle e la base del gambo.",
+        "kitchen": "Non è un alimento. La psilocibina, la sostanza che contiene, è in studio come farmaco contro la depressione e le dipendenze. Negli studi le persone ricevono una dose misurata, con dei terapeuti presenti. Dal 2023 in Australia gli psichiatri autorizzati possono prescriverla per la depressione che non risponde ad altre cure. Mangiato fuori da uno studio può causare vomito, mal di pancia e attacchi di panico. Alcune persone finiscono in ospedale. I funghi selvatici variano molto di potenza. Un sosia può uccidere. Non prendere mai un fungo selvatico come medicina.",
+        "source": "Riconoscimento, habitat ed effetti: First Nature. Medicina: TGA (Australia) e ClinicalTrials.gov. Stagione: segnalazioni GBIF."
+      }
+    },
+    "golden_cap": {
+      "name": "Cubensis",
+      "description": "Un fungo bruno dorato dei pascoli, con il gambo bianco e un anello. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
+      "howTo": "Cercalo da maggio a ottobre sullo sterco di mucca nei pascoli caldi e umidi della costa del Golfo degli Stati Uniti, qualche giorno dopo un acquazzone. Raccoglierlo è vietato nella maggior parte degli stati USA. Negli stessi pascoli crescono sosia mortali",
+      "guide": {
+        "identify": "Il cappello è largo da 2 a 8 cm. All'inizio è una campana arrotondata, poi si apre piatto, spesso con una bassa gobba al centro. È bruno dorato o color caramello, più chiaro al bordo. La superficie è liscia e un po' appiccicosa. Le lamelle sono prima grigie e poi nero porpora, con il filo bianco. Il gambo è bianco e cavo, alto da 4 a 15 cm. In alto ha un anello bianco che le spore che cadono scuriscono. Ogni parte diventa blu quando la tocchi. La sporata è nero porpora. Negli stessi pascoli crescono funghi pericolosi. Pholiotina rugosa e le Galerina sono piccole, mortali e hanno spore bruno ruggine. Chlorophyllum molybdites è un grande fungo bianco con spore verdi. Provoca vomito violento. Panaeolus semiovatus gli somiglia, ma non diventa mai blu. Solo un esperto può distinguerli con sicurezza.",
+        "habitat": "Cercalo sullo sterco di mucca e sulla terra grassa del pascolo intorno, a volte sullo sterco di cavallo. Ha bisogno di caldo e umidità. Negli Stati Uniti cresce negli stati della costa del Golfo, dalla Florida al Texas. La Florida ha più segnalazioni di tutti.",
+        "season": "Esce da maggio a ottobre, qualche giorno dopo una pioggia calda e abbondante. In Florida può spuntare in qualsiasi mese, se fa mite e piove.",
+        "picking": "Nella maggior parte degli stati USA è vietato raccoglierlo, tenerlo o venderlo, fresco o secco. Inoltre quasi tutti i pascoli sono terreni privati, quindi chiedi al proprietario prima di entrare. Stai lontano dal bestiame. Se vuoi trovarlo, fotografalo dove cresce: il cappello dall'alto, le lamelle e la base del gambo.",
+        "kitchen": "Non è un alimento. La psilocibina, la sostanza che contiene, è in studio come farmaco contro la depressione e le dipendenze. Negli studi le persone ricevono una dose misurata, con dei terapeuti presenti. Dal 2023 in Australia gli psichiatri autorizzati possono prescriverla per la depressione che non risponde ad altre cure. Mangiato fuori da uno studio può causare vomito, mal di pancia e attacchi di panico. Alcune persone finiscono in ospedale. I funghi selvatici variano molto di potenza. Un sosia può uccidere. Non prendere mai un fungo selvatico come medicina.",
+        "source": "Riconoscimento e sosia: Stamets (1996), Singer e Smith (1958) e Allen e Merlin (1991), citati da Wikipedia. Effetti: First Nature. Medicina: TGA (Australia) e ClinicalTrials.gov. Stagione: segnalazioni GBIF."
+      }
     }
   },
   "search_placeholder": "Cerca una specie",
@@ -914,6 +940,7 @@
     "notToday": "Oggi non è di stagione",
     "whereItGrows": "Dove cresce",
     "lookalikes": "Sosia tossici",
+    "psychoactive": "Psicoattivo · non commestibile",
     "tellApart": "Come distinguerli",
     "testedLabel": "Verificato · stagione {{year}}",
     "tested": "Nello stesso punto, la previsione ha valutato i giorni della sua stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>.",
@@ -925,12 +952,14 @@
     "season": "Quando",
     "picking": "Raccolta",
     "kitchen": "Preparazione",
+    "medicine": "Medicina",
     "keeps": "Conservazione",
     "source": "Fonti"
   },
   "page": {
     "title": "{{name}} ({{latin}}): stagione, habitat e sosia",
     "description": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, specie simili e consigli in cucina.",
+    "descriptionPsychoactive": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, sosia mortali e cosa dice la ricerca sulla psilocibina.",
     "allSpecies": "Tutte le specie"
   }
 }

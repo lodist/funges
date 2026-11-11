@@ -1,0 +1,153 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "golden_cap",
+  "scientificName": "Psilocybe cubensis",
+  "catalog": {
+    "enabled": true,
+    "order": 60,
+    "translationKey": "golden_cap",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "spring-fall",
+    "habitat": "grassland",
+    "psychoactive": true,
+    "image": {
+      "path": "src/assets/species/golden_cap.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Golden Cap",
+      "description": "A golden-brown pasture mushroom with a white stem and a ring. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
+      "howTo": "Look on cow dung in warm, wet pastures of the US Gulf Coast, from May to October, a few days after heavy rain. Picking it is illegal in most US states. Deadly look-alikes grow in the same pastures",
+      "guide": {
+        "identify": "The cap is 2 to 8 cm across. It starts as a rounded bell and opens out flat, often with a low bump in the middle. It is golden to caramel brown, paler at the edge. The surface is smooth and a little sticky. The gills are grey at first and turn purple-black, with white edges. The stem is white and hollow, 4 to 15 cm tall. A white ring sits near the top and turns dark from the falling spores. Every part bruises blue when you handle it. The spore print is purple-black. Several mushrooms in the same pastures are dangerous. The deadly Pholiotina rugosa and Galerina species are small and drop rusty-brown spores. Chlorophyllum molybdites is a large white mushroom with green spores. It causes severe vomiting. Panaeolus semiovatus looks similar but never bruises blue. Only an expert should tell them apart.",
+        "habitat": "Look on cow dung and the rich pasture soil around it, sometimes on horse dung. It needs warmth and moisture. In the US it grows in the Gulf Coast states, from Florida to Texas. Florida has the most records.",
+        "season": "It comes from May to October, a few days after warm, heavy rain. In Florida it can turn up in any month when it is mild and wet.",
+        "picking": "In most US states it is illegal to pick, keep or sell it, fresh or dried. Most pastures are private land too, so ask the owner before you walk in. Keep away from the cattle. If you want to find it, photograph it where it grows: the cap from above, the gills and the base of the stem.",
+        "kitchen": "It is not a food. Psilocybin, the substance in it, is being tested as a medicine for depression and addiction. In those trials people get a measured dose with therapists present. Since 2023, approved psychiatrists in Australia can prescribe it for depression that other treatments have not helped. Eaten outside a trial, it can cause vomiting, stomach pain and panic attacks. Some people end up in hospital. Wild mushrooms vary a lot in strength. A look-alike can kill. Never take a wild mushroom as medicine.",
+        "source": "Identification and look-alikes: Stamets (1996), Singer and Smith (1958) and Allen and Merlin (1991), as cited by Wikipedia. Effects: First Nature. Medicine: Australia's TGA and ClinicalTrials.gov. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Cubensis",
+      "description": "Un fungo bruno dorato dei pascoli, con il gambo bianco e un anello. Contiene psilocibina, che si sta studiando in sperimentazioni cliniche come farmaco contro la depressione.",
+      "howTo": "Cercalo da maggio a ottobre sullo sterco di mucca nei pascoli caldi e umidi della costa del Golfo degli Stati Uniti, qualche giorno dopo un acquazzone. Raccoglierlo è vietato nella maggior parte degli stati USA. Negli stessi pascoli crescono sosia mortali",
+      "guide": {
+        "identify": "Il cappello è largo da 2 a 8 cm. All'inizio è una campana arrotondata, poi si apre piatto, spesso con una bassa gobba al centro. È bruno dorato o color caramello, più chiaro al bordo. La superficie è liscia e un po' appiccicosa. Le lamelle sono prima grigie e poi nero porpora, con il filo bianco. Il gambo è bianco e cavo, alto da 4 a 15 cm. In alto ha un anello bianco che le spore che cadono scuriscono. Ogni parte diventa blu quando la tocchi. La sporata è nero porpora. Negli stessi pascoli crescono funghi pericolosi. Pholiotina rugosa e le Galerina sono piccole, mortali e hanno spore bruno ruggine. Chlorophyllum molybdites è un grande fungo bianco con spore verdi. Provoca vomito violento. Panaeolus semiovatus gli somiglia, ma non diventa mai blu. Solo un esperto può distinguerli con sicurezza.",
+        "habitat": "Cercalo sullo sterco di mucca e sulla terra grassa del pascolo intorno, a volte sullo sterco di cavallo. Ha bisogno di caldo e umidità. Negli Stati Uniti cresce negli stati della costa del Golfo, dalla Florida al Texas. La Florida ha più segnalazioni di tutti.",
+        "season": "Esce da maggio a ottobre, qualche giorno dopo una pioggia calda e abbondante. In Florida può spuntare in qualsiasi mese, se fa mite e piove.",
+        "picking": "Nella maggior parte degli stati USA è vietato raccoglierlo, tenerlo o venderlo, fresco o secco. Inoltre quasi tutti i pascoli sono terreni privati, quindi chiedi al proprietario prima di entrare. Stai lontano dal bestiame. Se vuoi trovarlo, fotografalo dove cresce: il cappello dall'alto, le lamelle e la base del gambo.",
+        "kitchen": "Non è un alimento. La psilocibina, la sostanza che contiene, è in studio come farmaco contro la depressione e le dipendenze. Negli studi le persone ricevono una dose misurata, con dei terapeuti presenti. Dal 2023 in Australia gli psichiatri autorizzati possono prescriverla per la depressione che non risponde ad altre cure. Mangiato fuori da uno studio può causare vomito, mal di pancia e attacchi di panico. Alcune persone finiscono in ospedale. I funghi selvatici variano molto di potenza. Un sosia può uccidere. Non prendere mai un fungo selvatico come medicina.",
+        "source": "Riconoscimento e sosia: Stamets (1996), Singer e Smith (1958) e Allen e Merlin (1991), citati da Wikipedia. Effetti: First Nature. Medicina: TGA (Australia) e ClinicalTrials.gov. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Cubensis",
+      "description": "Un champignon brun doré des pâturages, au pied blanc muni d'un anneau. Il contient de la psilocybine, testée dans des essais cliniques comme médicament contre la dépression.",
+      "howTo": "Cherchez-le de mai à octobre sur les bouses de vache, dans les pâturages chauds et humides de la côte du golfe du Mexique aux États-Unis, quelques jours après une forte pluie. Le cueillir est interdit dans la plupart des États américains. Des sosies mortels poussent dans les mêmes pâturages",
+      "guide": {
+        "identify": "Le chapeau mesure de 2 à 8 cm. D'abord en cloche arrondie, il s'étale ensuite, souvent avec une bosse basse au centre. Il est brun doré à caramel, plus pâle au bord. Sa surface est lisse et un peu collante. Les lames sont d'abord grises, puis noir pourpre, avec l'arête blanche. Le pied est blanc et creux, haut de 4 à 15 cm. Un anneau blanc se trouve en haut et noircit sous les spores qui tombent. Toutes les parties bleuissent quand on les manipule. La sporée est noir pourpre. Plusieurs champignons dangereux poussent dans les mêmes pâturages. Pholiotina rugosa et les galères (Galerina) sont petites, mortelles et ont des spores brun rouille. Chlorophyllum molybdites est un grand champignon blanc à spores vertes. Il provoque de violents vomissements. Panaeolus semiovatus lui ressemble, mais ne bleuit jamais. Seul un expert peut les distinguer avec certitude.",
+        "habitat": "Cherchez-le sur les bouses de vache et sur la terre grasse du pâturage autour, parfois sur le crottin de cheval. Il lui faut de la chaleur et de l'humidité. Aux États-Unis, il pousse dans les États de la côte du golfe, de la Floride au Texas. La Floride compte le plus d'observations.",
+        "season": "Il sort de mai à octobre, quelques jours après une pluie chaude et abondante. En Floride, il peut apparaître n'importe quel mois quand il fait doux et humide.",
+        "picking": "Dans la plupart des États américains, il est interdit de le cueillir, de le détenir ou de le vendre, frais ou séché. La plupart des pâturages sont aussi des terrains privés : demandez au propriétaire avant d'y entrer. Restez à l'écart du bétail. Si vous voulez le trouver, photographiez-le là où il pousse : le chapeau vu du dessus, les lames et la base du pied.",
+        "kitchen": "Ce n'est pas un aliment. La psilocybine, la substance qu'il contient, est étudiée comme médicament contre la dépression et les addictions. Dans ces essais, les participants reçoivent une dose mesurée, en présence de thérapeutes. Depuis 2023, des psychiatres agréés peuvent la prescrire en Australie contre les dépressions que les autres traitements n'ont pas soulagées. Mangé hors d'un essai, il peut provoquer des vomissements, des maux de ventre et des crises de panique. Certaines personnes finissent à l'hôpital. La puissance des champignons sauvages varie beaucoup. Un sosie peut tuer. Ne prenez jamais un champignon sauvage comme médicament.",
+        "source": "Identification et sosies : Stamets (1996), Singer et Smith (1958) et Allen et Merlin (1991), cités par Wikipédia. Effets : First Nature. Médecine : TGA (Australie) et ClinicalTrials.gov. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Kubanischer Kahlkopf",
+      "description": "Ein goldbrauner Pilz von Kuhweiden, mit weissem Stiel und Ring. Er enthält Psilocybin, das in klinischen Studien als Medikament gegen Depressionen getestet wird.",
+      "howTo": "Such ihn von Mai bis Oktober auf Kuhfladen in warmen, feuchten Weiden an der US-Golfküste, ein paar Tage nach starkem Regen. In den meisten US-Bundesstaaten ist es verboten, ihn zu besitzen. Tödlich giftige Doppelgänger wachsen auf denselben Weiden",
+      "guide": {
+        "identify": "Der Hut ist 2 bis 8 cm breit. Zuerst ist er eine runde Glocke, dann öffnet er sich flach, oft mit einem flachen Buckel in der Mitte. Er ist gold- bis karamellbraun und zum Rand hin heller. Die Oberfläche ist glatt und etwas klebrig. Die Lamellen sind zuerst grau und werden purpurschwarz, mit weissen Schneiden. Der Stiel ist weiss und hohl, 4 bis 15 cm lang. Oben sitzt ein weisser Ring, den die herabfallenden Sporen dunkel färben. Jeder Teil läuft blau an, wenn du ihn anfasst. Das Sporenpulver ist purpurschwarz. Auf denselben Weiden wachsen gefährliche Pilze. Pholiotina rugosa und die Häublinge (Galerina) sind klein, tödlich giftig und haben rostbraunes Sporenpulver. Chlorophyllum molybdites ist ein grosser weisser Pilz mit grünem Sporenpulver. Er verursacht heftiges Erbrechen. Panaeolus semiovatus sieht ähnlich aus, läuft aber nie blau an. Sicher auseinanderhalten kann sie nur, wer sich wirklich auskennt.",
+        "habitat": "Such auf Kuhfladen und auf der fetten Weideerde darum herum, manchmal auch auf Pferdemist. Er braucht Wärme und Feuchtigkeit. In den USA wächst er in den Staaten an der Golfküste, von Florida bis Texas. Aus Florida kommen die meisten Funde.",
+        "season": "Er kommt von Mai bis Oktober, ein paar Tage nach warmem, starkem Regen. In Florida kann er in jedem Monat auftauchen, wenn es mild und nass ist.",
+        "picking": "In den meisten US-Bundesstaaten ist es verboten, ihn zu sammeln, zu besitzen oder zu verkaufen, frisch oder getrocknet. Die meisten Weiden sind ausserdem Privatland. Frag also den Besitzer, bevor du hineingehst. Halte Abstand zu den Rindern. Wenn du ihn finden willst, fotografiere ihn dort, wo er wächst: den Hut von oben, die Lamellen und den Stielgrund.",
+        "kitchen": "Er ist kein Speisepilz. Psilocybin, der Wirkstoff darin, wird als Medikament gegen Depressionen und Sucht erforscht. In diesen Studien bekommen die Leute eine genau abgemessene Dosis. Fachleute begleiten sie dabei. Seit 2023 dürfen zugelassene Psychiater in Australien es bei Depressionen verschreiben, gegen die nichts anderes geholfen hat. Wer ihn ausserhalb einer Studie isst, kann erbrechen und Bauchschmerzen oder Panikattacken bekommen. Manche landen im Krankenhaus. Wilde Pilze sind sehr unterschiedlich stark. Ein Doppelgänger kann tödlich sein. Nimm nie einen wilden Pilz als Medikament.",
+        "source": "Bestimmung und Doppelgänger: Stamets (1996), Singer und Smith (1958) sowie Allen und Merlin (1991), zitiert nach Wikipedia. Wirkung: First Nature. Medizin: australische Arzneimittelbehörde TGA und ClinicalTrials.gov. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Hongo de San Isidro",
+      "description": "Una seta de color pardo dorado de los pastos, con el pie blanco y un anillo. Contiene psilocibina, que se está probando en ensayos clínicos como medicamento contra la depresión.",
+      "howTo": "Búscalo de mayo a octubre sobre boñigas de vaca en los pastos cálidos y húmedos de la costa del golfo de EE. UU., unos días después de una lluvia fuerte. Recogerlo está prohibido en la mayoría de los estados de EE. UU. En los mismos pastos crecen parecidos mortales",
+      "guide": {
+        "identify": "El sombrero mide de 2 a 8 cm. Al principio es una campana redondeada y luego se abre plano, a menudo con un bulto bajo en el centro. Es pardo dorado o color caramelo, más claro en el borde. La superficie es lisa y algo pegajosa. Las láminas son grises al principio y luego negro púrpura, con el borde blanco. El pie es blanco y hueco, de 4 a 15 cm. Arriba tiene un anillo blanco que las esporas al caer oscurecen. Todas sus partes se vuelven azules al tocarlas. La esporada es negro púrpura. En los mismos pastos crecen setas peligrosas. Pholiotina rugosa y las Galerina son pequeñas, mortales y tienen esporas pardo óxido. Chlorophyllum molybdites es una seta grande y blanca con esporas verdes. Provoca vómitos fuertes. Panaeolus semiovatus se le parece, pero nunca se vuelve azul. Solo un experto puede distinguirlas con seguridad.",
+        "habitat": "Búscalo sobre boñigas de vaca y en la tierra rica del pasto de alrededor, a veces sobre estiércol de caballo. Necesita calor y humedad. En EE. UU. crece en los estados de la costa del golfo, de Florida a Texas. Florida tiene la mayoría de los registros.",
+        "season": "Sale de mayo a octubre, unos días después de una lluvia cálida y abundante. En Florida puede aparecer cualquier mes si hace templado y húmedo.",
+        "picking": "En la mayoría de los estados de EE. UU. está prohibido recogerlo, tenerlo o venderlo, fresco o seco. Además, casi todos los pastos son terreno privado, así que pide permiso al dueño antes de entrar. Mantente lejos del ganado. Si quieres encontrarlo, fotografíalo donde crece: el sombrero desde arriba, las láminas y la base del pie.",
+        "kitchen": "No es un alimento. La psilocibina, la sustancia que contiene, se está estudiando como medicamento contra la depresión y las adicciones. En esos ensayos las personas reciben una dosis medida, con terapeutas presentes. Desde 2023, en Australia los psiquiatras autorizados pueden recetarla para la depresión que no ha mejorado con otros tratamientos. Comido fuera de un ensayo, puede causar vómitos, dolor de barriga y ataques de pánico. Algunas personas acaban en el hospital. Las setas silvestres varían mucho de potencia. Un parecido puede matar. Nunca tomes una seta silvestre como medicamento.",
+        "source": "Identificación y parecidos: Stamets (1996), Singer y Smith (1958) y Allen y Merlin (1991), citados por Wikipedia. Efectos: First Nature. Medicina: TGA (Australia) y ClinicalTrials.gov. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Cubensis",
+      "description": "Um cogumelo castanho-dourado das pastagens, com o pé branco e um anel. Contém psilocibina, que está a ser testada em ensaios clínicos como medicamento contra a depressão.",
+      "howTo": "Procure de maio a outubro sobre bosta de vaca nas pastagens quentes e húmidas da costa do golfo dos EUA, poucos dias depois de uma chuva forte. Apanhá-lo é proibido na maioria dos estados dos EUA. Nas mesmas pastagens crescem sósias mortais",
+      "guide": {
+        "identify": "O chapéu tem 2 a 8 cm. Começa como um sino arredondado e depois abre-se plano, muitas vezes com uma saliência baixa ao centro. É castanho-dourado a cor de caramelo, mais claro na margem. A superfície é lisa e um pouco pegajosa. As lâminas são primeiro cinzentas e depois negro-púrpura, com a aresta branca. O pé é branco e oco, com 4 a 15 cm. No alto tem um anel branco que os esporos ao cair escurecem. Todas as partes ficam azuis quando lhes toca. A esporada é negro-púrpura. Nas mesmas pastagens crescem cogumelos perigosos. A Pholiotina rugosa e as Galerina são pequenas, mortais e têm esporos castanho-ferrugem. O Chlorophyllum molybdites é um cogumelo grande e branco, de esporos verdes. Provoca vómitos violentos. O Panaeolus semiovatus parece-se com ele, mas nunca fica azul. Só um especialista os consegue distinguir com segurança.",
+        "habitat": "Procure sobre bosta de vaca e na terra rica da pastagem à volta, às vezes sobre estrume de cavalo. Precisa de calor e de humidade. Nos EUA cresce nos estados da costa do golfo, da Florida ao Texas. A Florida tem a maioria dos registos.",
+        "season": "Aparece de maio a outubro, poucos dias depois de uma chuva quente e abundante. Na Florida pode surgir em qualquer mês, quando está ameno e húmido.",
+        "picking": "Na maioria dos estados dos EUA é proibido apanhá-lo, guardá-lo ou vendê-lo, fresco ou seco. Além disso, quase todas as pastagens são terreno privado, por isso peça licença ao dono antes de entrar. Mantenha-se longe do gado. Se o quiser encontrar, fotografe-o onde cresce: o chapéu visto de cima, as lâminas e a base do pé.",
+        "kitchen": "Não é um alimento. A psilocibina, a substância que contém, está a ser estudada como medicamento contra a depressão e as dependências. Nesses ensaios as pessoas recebem uma dose medida, com terapeutas presentes. Desde 2023, na Austrália, psiquiatras autorizados podem receitá-la para a depressão que não melhorou com outros tratamentos. Comido fora de um ensaio, pode causar vómitos, dores de barriga e ataques de pânico. Algumas pessoas acabam no hospital. Os cogumelos silvestres variam muito de potência. Um sósia pode matar. Nunca tome um cogumelo silvestre como medicamento.",
+        "source": "Identificação e sósias: Stamets (1996), Singer e Smith (1958) e Allen e Merlin (1991), citados pela Wikipédia. Efeitos: First Nature. Medicina: TGA (Austrália) e ClinicalTrials.gov. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": true,
+    "label": "Psilocybe cubensis",
+    "rank": "species",
+    "safetyReview": {
+      "status": "approved",
+      "reviewedBy": "BioCLIP shipped-vocabulary safety suite",
+      "references": [
+        "https://github.com/lodist/funges-lab/blob/main/superpowers/specs/2026-07-25-bioclip2-spike-results.md",
+        "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+      ]
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "routeToDish": false,
+    "dataColumns": ["Golden Cap"],
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": true,
+        "landCover": [41, 42, 43, 52, 71],
+        "scoringReferences": [
+          "https://www.gbif.org/species/5242510",
+          "https://en.wikipedia.org/wiki/Psilocybe_cubensis",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+        ],
+        "landCoverScheme": "NLCD"
+      },
+      "USW": {
+        "available": true,
+        "landCover": [41, 42, 43, 52, 71],
+        "scoringReferences": [
+          "https://www.gbif.org/species/5242510",
+          "https://en.wikipedia.org/wiki/Psilocybe_cubensis",
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+        ],
+        "landCoverScheme": "NLCD"
+      }
+    },
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5242510],
+      "references": ["https://www.gbif.org/species/5242510"]
+    },
+    "rangePrior": {
+      "taxonKeys": [5242510]
+    }
+  }
+}

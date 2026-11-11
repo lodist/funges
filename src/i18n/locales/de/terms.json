@@ -12,7 +12,8 @@
     "title": "Haftungsausschluss zum Sammeln",
     "content": "Der Service enthält Rezepte und Informationen zu essbaren Wildpflanzen, Beeren, Nüssen und Pilzen. Trotz grösster Sorgfalt hängt der sichere Verzehr von Wildnahrung vollständig von der richtigen Bestimmung, angemessenen Zubereitung und individuellen Gesundheitsbedingungen ab.",
     "misidentification": "Eine Fehlbestimmung von Wildpflanzen oder Pilzen kann zu allergischen Reaktionen, Vergiftungen oder anderen schwerwiegenden gesundheitlichen Folgen führen. Einige essbare Arten haben giftige Doppelgänger. Konsultiere immer einen lokalen Experten oder verwende einen anerkannten Bestimmungsführer und verzehre nichts, wenn du dir nicht zu 100 % sicher bist.",
-    "preparation": "Einige Wildnahrungen sollten zudem nur in kleinen Mengen oder nach spezieller Zubereitung verzehrt werden, um natürliche Inhaltsstoffe zu neutralisieren. Die vom Service bereitgestellten Rezepte dienen nur zu Bildungszwecken und setzen die korrekte Bestimmung und sachgemässe Handhabung der Zutaten voraus."
+    "preparation": "Einige Wildnahrungen sollten zudem nur in kleinen Mengen oder nach spezieller Zubereitung verzehrt werden, um natürliche Inhaltsstoffe zu neutralisieren. Die vom Service bereitgestellten Rezepte dienen nur zu Bildungszwecken und setzen die korrekte Bestimmung und sachgemässe Handhabung der Zutaten voraus.",
+    "psychoactive": "Einige vom Service beschriebene Arten, etwa der Spitzkegelige Kahlkopf (Psilocybe semilanceata), sind psychoaktiv und keine Lebensmittel. Die Angaben zu ihnen dienen nur der Bestimmung und der Bildung. Sie sind keine Aufforderung, solche Arten zu sammeln, zu besitzen oder zu konsumieren, wo das Gesetz es verbietet. Sie sind auch keine medizinische Beratung."
   },
   "disclaimer": {
     "title": "Haftungsausschluss",
@@ -51,7 +52,7 @@
     "intro": "Bei Fragen oder Anliegen zu diesen Bedingungen kontaktiere bitte:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Letzte Aktualisierung am: 07.11.2026",
+  "lastUpdated": "Letzte Aktualisierung am: 11.11.2026",
   "huerta": {
     "title": "Gartenratschläge",
     "content": "Die Ratschläge von Huerta, einschliesslich Frostwarnungen, Saat- und Pflanzzeiten, Giessen und Pflegeschritten, werden aus Wettervorhersagen und langjährigen Klimadaten für die Gegend um deinen Garten berechnet. Vorhersagen können falsch sein, und die Bedingungen in deinem Garten können von denen der Gegend abweichen.",

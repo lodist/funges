@@ -334,6 +334,10 @@ export function validateManifests(
     }
     if (!CATEGORIES.has(c?.category))
       fail(errors, where, 'catalog.category is invalid');
+    if (c?.psychoactive !== undefined && c.psychoactive !== true)
+      fail(errors, where, 'catalog.psychoactive must be true or left out');
+    if (c?.psychoactive && m.forecast?.routeToDish)
+      fail(errors, where, 'a psychoactive species is never routed to dishes');
     for (const key of ['emoji', 'season', 'habitat'])
       if (!nonEmpty(c?.[key]))
         fail(errors, where, `catalog.${key} is required`);
@@ -690,6 +694,7 @@ function catalogTs(manifests) {
     howToKey: `${m.catalog.translationKey}.howTo`,
     season: m.catalog.season,
     habitat: m.catalog.habitat,
+    ...(m.catalog.psychoactive ? { psychoactive: true } : {}),
     ...(m.forecast.enabled
       ? {
           showOnMap: true,

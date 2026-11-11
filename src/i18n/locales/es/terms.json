@@ -12,7 +12,8 @@
     "title": "Aviso sobre recolección",
     "content": "El Servicio incluye recetas e información sobre plantas silvestres comestibles, bayas, frutos secos y hongos. Aunque se hace todo lo posible para garantizar la exactitud, el consumo seguro de alimentos silvestres depende totalmente de la correcta identificación, preparación adecuada y condiciones de salud individuales.",
     "misidentification": "La identificación incorrecta de plantas o hongos silvestres puede provocar reacciones alérgicas, intoxicaciones u otras consecuencias graves para la salud. Algunas especies comestibles tienen parecidas tóxicas. Consulta siempre a un experto local o utiliza una guía autorizada al identificar alimentos silvestres, y no consumas nada a menos que estés 100% seguro de su seguridad.",
-    "preparation": "Además, algunos alimentos silvestres solo deben consumirse en pequeñas cantidades o tras métodos de preparación específicos para neutralizar compuestos naturales. Las recetas proporcionadas por el Servicio son solo con fines educativos y asumen la correcta identificación y manipulación de los ingredientes."
+    "preparation": "Además, algunos alimentos silvestres solo deben consumirse en pequeñas cantidades o tras métodos de preparación específicos para neutralizar compuestos naturales. Las recetas proporcionadas por el Servicio son solo con fines educativos y asumen la correcta identificación y manipulación de los ingredientes.",
+    "psychoactive": "Algunas especies descritas por el Servicio, como Psilocybe semilanceata, son psicoactivas y no son alimentos. La información sobre ellas sirve solo para identificarlas y con fines educativos. No es una invitación a recogerlas, poseerlas o consumirlas donde la ley lo prohíbe. Tampoco es consejo médico."
   },
   "disclaimer": {
     "title": "Exención de responsabilidad",
@@ -51,7 +52,7 @@
     "intro": "Para preguntas o inquietudes sobre estos Términos, por favor contacta a:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última actualización: 07.11.2026",
+  "lastUpdated": "Última actualización: 11.11.2026",
   "huerta": {
     "title": "Consejos de huerto",
     "content": "Los consejos de Huerta, incluidos los avisos de heladas, las fechas de siembra y plantación, el riego y los cuidados, se calculan a partir de previsiones meteorológicas y datos climáticos a largo plazo de la zona de tu huerto. Las previsiones pueden fallar y las condiciones de tu huerto pueden ser distintas de las de la zona.",
