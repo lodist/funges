@@ -219,6 +219,16 @@
             "https://www.gbif.org/species/8235931",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/8436459",
+            "https://www.gbif.org/species/2996525",
+            "https://www.gbif.org/species/8235931",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -272,6 +282,16 @@
             "https://www.gbif.org/species/2888726",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2888728",
+            "https://www.gbif.org/species/6369819",
+            "https://www.gbif.org/species/2888726",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -319,6 +339,13 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -365,6 +392,13 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -737,6 +771,14 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-10-15-temperature-fits.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2927173",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -781,6 +823,13 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -828,6 +877,15 @@
             "https://www.gbif.org/species/3189767",
             "https://www.gbif.org/species/3189781",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
+          ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3189767",
+            "https://www.gbif.org/species/3189781",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -954,6 +1012,16 @@
             "https://www.gbif.org/species/2888726",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2888728",
+            "https://www.gbif.org/species/6369819",
+            "https://www.gbif.org/species/2888726",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -999,6 +1067,14 @@
             "https://www.gbif.org/species/3117424",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3117424",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1043,6 +1119,14 @@
           "scoringReferences": [
             "https://www.gbif.org/species/5331181",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
+          ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5331181",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1137,6 +1221,13 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1361,6 +1452,13 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -2181,6 +2279,15 @@
             "https://www.gbif.org/species/8395064",
             "https://www.gbif.org/species/3002461",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-30-step4-plants.md"
+          ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/8395064",
+            "https://www.gbif.org/species/3002461",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
           ]
         }
       }

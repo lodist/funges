@@ -160,7 +160,12 @@
         "landCoverScheme": "NLCD"
       },
       "ANZ": {
-        "available": false
+        "available": true,
+        "landCover": [611, 612, 613, 621, 631, 632],
+        "scoringReferences": [
+          "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
       }
     },
     "empiricalSeason": {
