@@ -795,7 +795,7 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     habitat: 'grassland',
     psychoactive: true,
     showOnMap: true,
-    forecastRegions: ['NE', 'SE'],
+    forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
   {
     id: 'golden_cap',
