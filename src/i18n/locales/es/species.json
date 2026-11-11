@@ -884,6 +884,34 @@
         "keeps": "Se seca bien en láminas finas. Cocinado, también se congela bien.",
         "source": "Identificación y hábitat: First Nature y MushroomExpert. Temporada: registros de GBIF. Cesio: Oficina Federal alemana de Protección Radiológica (BfS) y LGL de Baviera."
       }
+    },
+    "three_cornered_garlic": {
+      "name": "Ajo triquetro",
+      "description": "Una cebolla silvestre de campanillas blancas rayadas de verde y tallo de tres aristas. Huele a ajo y cubre los suelos húmedos y sombríos del sur de Australia y de Nueva Zelanda.",
+      "howTo": "Búscalo de mayo a octubre junto a arroyos sombríos, en cunetas y en los bordes de los parques. Comprueba el tallo de tres aristas y el olor a ajo",
+      "guide": {
+        "identify": "El ajo triquetro crece en matas de hojas largas y verde brillante. Cada hoja es plana con una quilla por debajo, así que se dobla en V. Lo delata el tallo de las flores: tiene tres aristas marcadas y, si lo cortas, es un triángulo. Desde finales del invierno lleva un ramillete colgante de campanillas blancas, todas hacia un lado. Cada pétalo tiene una fina raya verde en el centro. Si aplastas una hoja, huele mucho a ajo o a cebolla. La campanilla de invierno (Leucojum) se le parece y es venenosa. Sus pétalos tienen una mancha verde en la punta en lugar de una raya, su tallo no tiene aristas y no huele a nada. Las hojas de narciso también son venenosas y no huelen a ajo. El olor se te queda en los dedos, así que comprueba el tallo de cada planta que cojas.",
+        "habitat": "Le gustan los suelos húmedos y sombríos. Búscalo junto a arroyos y acequias, en cunetas, en parques y bajo los árboles, a menudo en manchas densas. Llegó del Mediterráneo como planta de jardín y se ha asilvestrado en todo el sur de Australia, de Perth a Tasmania, y en toda Nueva Zelanda. En el estado de Victoria es una mala hierba declarada nociva.",
+        "season": "Las hojas brotan a finales de otoño, desde abril o mayo, y aguantan todo el invierno. Florece de agosto a octubre. A principios del verano las hojas se han secado y la planta descansa bajo tierra hasta el otoño.",
+        "picking": "Coge hojas y flores a puñados, cortándolas en vez de arrancarlas. No lleves bulbos ni tierra a otro sitio: es una mala hierba, y en Victoria propagarla está prohibido. Evita las cunetas y los parques que se fumigan, y los rincones por donde pasan perros. En grandes cantidades es tóxico para perros y gatos.",
+        "kitchen": "Cuando estés seguro de que es él, usa las hojas como cebollino o cebolleta. Son más suaves que el ajo. Pícalas en ensaladas, huevos, mantequilla o pesto, o añádelas a la sopa al final. Las flores quedan preciosas en una ensalada. Los bulbos pequeños saben a ajo suave, crudos o cocinados.",
+        "keeps": "Las hojas se conservan unos días en la nevera envueltas en un paño húmedo. El pesto y las hojas picadas se congelan bien.",
+        "source": "Identificación y distribución: VicFlora, Weeds Australia, Flora of New Zealand y Weedbusters. Campanilla de invierno: Botany Brisbane. Temporada: registros de GBIF."
+      }
+    },
+    "slippery_jack": {
+      "name": "Boleto anillado",
+      "description": "Un boleto de sombrero marrón y viscoso, con poros amarillos y un anillo en el pie. Sale en otoño bajo los pinos plantados del sur de Australia y de Nueva Zelanda.",
+      "howTo": "Búscalo bajo los pinos de marzo a junio, una o dos semanas después de una buena lluvia de otoño. Comprueba los poros amarillos bajo el sombrero y el anillo del pie",
+      "guide": {
+        "identify": "El sombrero es marrón castaño o chocolate y mide de 5 a 12 cm. Mojado es viscoso y, al secarse, queda brillante. Por debajo tiene una esponja de poros amarillos pequeños, no láminas. Con la edad, los poros se vuelven oliváceos. El pie es amarillo pálido y tiene un anillo: una faldita blanquecina o violácea, a menudo pegajosa. Por encima del anillo, el pie tiene puntitos marrones. Siempre crece con pinos. El boleto granulado (Suillus granulatus) sale en los mismos sitios y también es comestible. No tiene anillo, y sus poros jóvenes sueltan gotitas lechosas. Si tiene láminas bajo el sombrero, no es un boleto anillado. En los pinares también sale la amanita matamoscas, roja, y bajo los robles cercanos la oronja verde.",
+        "habitat": "Solo crece con pinos, sobre todo con el pino insigne (Pinus radiata). Búscalo en las plantaciones y bajo los pinos viejos de los parques, donde la pinocha es gruesa. Llegó de Europa con los pinos. Es común en el sureste y el suroeste de Australia y en Nueva Zelanda.",
+        "season": "Es una seta de otoño. En Australia sale de abril a junio, en Nueva Zelanda de marzo a mayo. Aparece una o dos semanas después de una buena lluvia, mientras el suelo sigue templado.",
+        "picking": "Corta el pie por la base y coge sombreros jóvenes y firmes. Deja los viejos y blandos. En los bosques estatales de Nueva Gales del Sur no necesitas permiso para recoger para ti, pero comprueba que el bosque esté abierto. Otros bosques y las plantaciones privadas tienen sus propias normas, así que pregunta antes.",
+        "kitchen": "Cuando estés seguro de que es él, quítale la piel viscosa al sombrero. En los más viejos, raspa también los poros blandos. Después cocínalo bien. Saltéalo con cebolla y ajo, échalo a sopas y guisos, o hazlo en escabeche. Es suave y tierno. A algunas personas les sienta mal al estómago, así que la primera vez come poco.",
+        "keeps": "Aguanta uno o dos días en la nevera, en una bolsa de papel. En láminas se seca bien. Cocinado se congela bien.",
+        "source": "Identificación y hábitat: Diego Bonetto, Milkwood y registros de NatureMapr. Normas de recolección: Forestry Corporation of NSW. Temporada: registros de GBIF."
+      }
     }
   },
   "place": {

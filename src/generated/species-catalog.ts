@@ -783,6 +783,32 @@ export const GENERATED_SPECIES_DATA: Species[] = [
     showOnMap: true,
     forecastRegions: ['NE', 'SE', 'USE', 'USW'],
   },
+  {
+    id: 'three_cornered_garlic',
+    nameKey: 'three_cornered_garlic.name',
+    scientificName: 'Allium triquetrum',
+    category: 'plant',
+    emoji: '🧄',
+    descriptionKey: 'three_cornered_garlic.description',
+    howToKey: 'three_cornered_garlic.howTo',
+    season: 'winter-spring',
+    habitat: 'hedgerow',
+    showOnMap: true,
+    forecastRegions: [],
+  },
+  {
+    id: 'slippery_jack',
+    nameKey: 'slippery_jack.name',
+    scientificName: 'Suillus luteus',
+    category: 'mushroom',
+    emoji: '🍄',
+    descriptionKey: 'slippery_jack.description',
+    howToKey: 'slippery_jack.howTo',
+    season: 'fall',
+    habitat: 'forest',
+    showOnMap: true,
+    forecastRegions: [],
+  },
 ];
 
 export const GENERATED_REGION_BOUNDARIES = {

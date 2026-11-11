@@ -884,6 +884,34 @@
         "keeps": "Seca bem em fatias finas. Depois de cozinhado, também congela bem.",
         "source": "Identificação e habitat: First Nature e MushroomExpert. Época: registos do GBIF. Césio: Serviço Federal alemão de Proteção contra Radiações (BfS) e LGL da Baviera."
       }
+    },
+    "three_cornered_garlic": {
+      "name": "Alho-triquetro",
+      "description": "Uma cebola selvagem de campainhas brancas riscadas de verde e caule com três arestas. Cheira a alho e cobre os solos húmidos e sombrios do sul da Austrália e da Nova Zelândia.",
+      "howTo": "Procura-o de maio a outubro junto a ribeiros sombrios, bermas e orlas de parques. Confirma o caule de três arestas e o cheiro a alho",
+      "guide": {
+        "identify": "O alho-triquetro cresce em tufos de folhas compridas, verde-vivas. Cada folha é achatada, com uma quilha por baixo, por isso dobra-se em V. É o caule das flores que o denuncia: tem três arestas vivas e, em corte, é um triângulo. Desde o fim do inverno traz um cacho pendente de campainhas brancas, todas para o mesmo lado. Cada pétala tem uma fina risca verde ao meio. Esmaga uma folha e cheira fortemente a alho ou a cebola. A campainha-branca (Leucojum) é parecida e é venenosa. As pétalas dela têm uma mancha verde na ponta em vez de uma risca, o caule não tem arestas e não tem cheiro. As folhas de narciso também são venenosas e não cheiram a alho. O cheiro fica-te nos dedos, por isso confirma o caule de cada planta que apanhas.",
+        "habitat": "Gosta de solos húmidos e sombrios. Procura-o junto a ribeiros e valas, nas bermas, em parques e debaixo de árvores, muitas vezes em manchas densas. Veio do Mediterrâneo como planta de jardim e tornou-se selvagem em todo o sul da Austrália, de Perth à Tasmânia, e em toda a Nova Zelândia. No estado de Victoria é uma infestante declarada nociva.",
+        "season": "As folhas rebentam no fim do outono, a partir de abril ou maio, e ficam todo o inverno. Floresce de agosto a outubro. No início do verão as folhas já secaram e a planta descansa debaixo da terra até ao outono.",
+        "picking": "Apanha folhas e flores aos punhados, cortando-as em vez de as arrancar. Não leves bolbos nem terra para outro sítio: é uma infestante, e em Victoria espalhá-la é proibido. Evita bermas e parques pulverizados com herbicida e os sítios por onde passam cães. Em grandes quantidades é tóxico para cães e gatos.",
+        "kitchen": "Quando tiveres a certeza de que é ele, usa as folhas como cebolinho ou cebola nova. São mais suaves do que o alho. Pica-as em saladas, ovos, manteiga ou pesto, ou junta-as à sopa no fim. As flores ficam lindas numa salada. Os bolbos pequenos sabem a alho suave, crus ou cozinhados.",
+        "keeps": "As folhas aguentam uns dias no frigorífico, embrulhadas num pano húmido. O pesto e as folhas picadas congelam bem.",
+        "source": "Identificação e distribuição: VicFlora, Weeds Australia, Flora of New Zealand e Weedbusters. Campainha-branca: Botany Brisbane. Época: registos do GBIF."
+      }
+    },
+    "slippery_jack": {
+      "name": "Slippery Jack",
+      "description": "Um boleto de chapéu castanho e viscoso, com poros amarelos e um anel no pé. Aparece no outono debaixo dos pinheiros plantados no sul da Austrália e na Nova Zelândia.",
+      "howTo": "Procura-o debaixo de pinheiros de março a junho, uma ou duas semanas depois de uma boa chuva de outono. Confirma os poros amarelos debaixo do chapéu e o anel no pé",
+      "guide": {
+        "identify": "O chapéu é castanho-avermelhado a cor de chocolate e mede 5 a 12 cm. Molhado é viscoso e, ao secar, fica brilhante. Por baixo tem uma esponja de pequenos poros amarelos, não lâminas. Com a idade, os poros ficam cor de azeitona. O pé é amarelo-pálido e tem um anel: uma saia esbranquiçada a arroxeada, muitas vezes pegajosa. Acima do anel, o pé tem pontinhos castanhos. Cresce sempre com pinheiros. O boleto-granulado (Suillus granulatus) cresce nos mesmos sítios e também se come. Não tem anel, e os poros jovens largam gotinhas leitosas. Se tiver lâminas debaixo do chapéu, não é um slippery jack. Nos pinhais cresce também o mata-moscas vermelho, e debaixo dos carvalhos ali perto a cicuta-verde.",
+        "habitat": "Só cresce com pinheiros, sobretudo o pinheiro-insigne (Pinus radiata). Procura-o nas plantações e debaixo dos pinheiros velhos dos parques, onde a caruma é espessa. Veio da Europa com os pinheiros. É comum no sudeste e no sudoeste da Austrália e na Nova Zelândia.",
+        "season": "É um cogumelo de outono. Na Austrália aparece de abril a junho, na Nova Zelândia de março a maio. Surge uma ou duas semanas depois de uma boa chuva, enquanto o solo ainda está ameno.",
+        "picking": "Corta o pé junto à base e apanha chapéus jovens e firmes. Deixa os velhos e moles. Nas florestas estatais de Nova Gales do Sul não precisas de licença para apanhar para ti, mas confirma que a floresta está aberta. Outras florestas e as plantações privadas têm regras próprias, por isso pergunta antes.",
+        "kitchen": "Quando tiveres a certeza de que é ele, tira a pele viscosa do chapéu. Nos mais velhos, raspa também os poros moles. Depois cozinha-o bem. Salteia-o com cebola e alho, junta-o a sopas e guisados, ou faz conserva em vinagre. É suave e tenro. Há quem fique com o estômago às voltas, por isso da primeira vez come pouco.",
+        "keeps": "Aguenta um ou dois dias no frigorífico, num saco de papel. Às fatias, seca bem. Cozinhado, congela bem.",
+        "source": "Identificação e habitat: Diego Bonetto, Milkwood e registos do NatureMapr. Regras de apanha: Forestry Corporation of NSW. Época: registos do GBIF."
+      }
     }
   },
   "place": {

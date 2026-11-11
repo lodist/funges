@@ -109,7 +109,7 @@
           "landCoverScheme": "ANZ",
           "scoringReferences": [
             "https://www.gbif.org/species/5954958",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -162,7 +162,7 @@
           "landCoverScheme": "ANZ",
           "scoringReferences": [
             "https://www.gbif.org/species/2594601",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -227,7 +227,7 @@
             "https://www.gbif.org/species/8436459",
             "https://www.gbif.org/species/2996525",
             "https://www.gbif.org/species/8235931",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -290,7 +290,7 @@
             "https://www.gbif.org/species/2888728",
             "https://www.gbif.org/species/6369819",
             "https://www.gbif.org/species/2888726",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -344,7 +344,7 @@
           "landCover": [611, 612, 613, 621, 631, 632],
           "landCoverScheme": "ANZ",
           "scoringReferences": [
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -397,7 +397,7 @@
           "landCover": [611, 612, 613, 621, 631, 632],
           "landCoverScheme": "ANZ",
           "scoringReferences": [
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -777,7 +777,7 @@
           "landCoverScheme": "ANZ",
           "scoringReferences": [
             "https://www.gbif.org/species/2927173",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -828,7 +828,7 @@
           "landCover": [611, 612, 613, 621, 631, 632],
           "landCoverScheme": "ANZ",
           "scoringReferences": [
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -885,7 +885,7 @@
           "scoringReferences": [
             "https://www.gbif.org/species/3189767",
             "https://www.gbif.org/species/3189781",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1020,7 +1020,7 @@
             "https://www.gbif.org/species/2888728",
             "https://www.gbif.org/species/6369819",
             "https://www.gbif.org/species/2888726",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1073,7 +1073,7 @@
           "landCoverScheme": "ANZ",
           "scoringReferences": [
             "https://www.gbif.org/species/3117424",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1126,7 +1126,7 @@
           "landCoverScheme": "ANZ",
           "scoringReferences": [
             "https://www.gbif.org/species/5331181",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1226,7 +1226,7 @@
           "landCover": [621, 631, 632],
           "landCoverScheme": "ANZ",
           "scoringReferences": [
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1457,7 +1457,7 @@
           "landCover": [621, 631, 632],
           "landCoverScheme": "ANZ",
           "scoringReferences": [
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1894,7 +1894,7 @@
             "https://www.gbif.org/species/7925734",
             "https://www.gbif.org/species/5248648",
             "https://www.gbif.org/species/5463706",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1998,7 +1998,7 @@
           "landCoverScheme": "ANZ",
           "scoringReferences": [
             "https://www.gbif.org/species/7987658",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -2059,7 +2059,7 @@
           "scoringReferences": [
             "https://www.gbif.org/species/2536058",
             "https://www.gbif.org/species/3339928",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -2287,7 +2287,7 @@
           "scoringReferences": [
             "https://www.gbif.org/species/8395064",
             "https://www.gbif.org/species/3002461",
-            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -2475,6 +2475,50 @@
           "scoringReferences": [
             "https://www.gbif.org/species/7832732",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-10-23-bay-bolete.md"
+          ]
+        }
+      }
+    },
+    "three_cornered_garlic": {
+      "name": "Three-cornered Garlic",
+      "scientificName": "Allium triquetrum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2856457],
+      "dataColumns": ["three_cornered_garlic_score", "Three-cornered Garlic"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2856457",
+            "https://vicflora.rbg.vic.gov.au/flora/taxon/88b31d41-7bd4-4583-ae99-56a728936720",
+            "https://weeds.org.au/profiles/three-corned-garlic/",
+            "https://nzflora.info/factsheet/Taxon/Allium-triquetrum.html",
+            "https://www.weedbusters.co.nz/what-are-weeds/weed-list/onion-weed",
+            "https://www.botanybrisbane.com/plants/amaryllidaceae-s-l/leucojum/leucojum-aestivum/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "slippery_jack": {
+      "name": "Slippery Jack",
+      "scientificName": "Suillus luteus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [7777157],
+      "rangeTaxonKeys": [7777157],
+      "dataColumns": ["slippery_jack_score", "Slippery Jack"],
+      "regions": {
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/7777157",
+            "https://diego-bonetto-weeds.squarespace.com/blog/slippery-jacks-the-yummy-delicate-mushrooms-in-pine-forests",
+            "https://www.milkwood.net/?p=7561",
+            "https://www.forestrycorporation.com.au/about/releases/2020/forest-safety-reminder-as-mushroom-season-approaches",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }

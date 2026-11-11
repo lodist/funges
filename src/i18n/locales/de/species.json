@@ -884,6 +884,34 @@
         "keeps": "In dünnen Scheiben lässt er sich gut trocknen. Gegart kannst du ihn auch gut einfrieren.",
         "source": "Bestimmung und Standort: First Nature und MushroomExpert. Saison: GBIF-Funddaten. Cäsium: Bundesamt für Strahlenschutz (BfS) und Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
       }
+    },
+    "three_cornered_garlic": {
+      "name": "Glöckchen-Lauch",
+      "description": "Ein wilder Lauch mit weissen, grün gestreiften Glöckchen und einem dreikantigen Stängel. Er riecht nach Knoblauch und wächst in Australien und Neuseeland dicht an feuchten, schattigen Stellen.",
+      "howTo": "Such von Mai bis Oktober an schattigen Bächen, an Wegrändern und am Rand von Parks. Prüf den dreikantigen Blütenstängel und den Knoblauchgeruch",
+      "guide": {
+        "identify": "Glöckchen-Lauch wächst in Büscheln aus langen, hellgrünen Blättern. Jedes Blatt ist flach und hat unten einen Kiel, deshalb ist es zu einem V gefaltet. Am sichersten erkennst du ihn am Blütenstängel: Er hat drei scharfe Kanten und ist im Querschnitt ein Dreieck. Ab dem späten Winter hängt daran ein nickender, einseitiger Büschel weisser Glöckchen. Jedes Blütenblatt hat in der Mitte einen feinen grünen Streifen. Zerreib ein Blatt, dann riecht es stark nach Knoblauch oder Zwiebel. Die Knotenblume (Leucojum) sieht ähnlich aus und ist giftig. Ihre Blütenblätter haben an der Spitze einen grünen Fleck statt eines Streifens, ihr Stängel hat keine Kanten, und sie riecht nach nichts. Auch Narzissenblätter sind giftig und riechen nicht nach Knoblauch. Der Geruch bleibt an den Fingern hängen, also prüf bei jeder Pflanze den Stängel.",
+        "habitat": "Er mag feuchten, schattigen Boden. Such entlang von Bächen und Gräben, an Wegrändern, in Parks und unter Bäumen. Oft bildet er dichte Bestände. Er kam als Gartenpflanze aus dem Mittelmeerraum und ist im ganzen Süden Australiens verwildert, von Perth bis Tasmanien, und in ganz Neuseeland. In Victoria gilt er als schädliches Unkraut.",
+        "season": "Die Blätter kommen im Spätherbst, ab April oder Mai, und bleiben den Winter über. Er blüht von August bis Oktober. Im Frühsommer sind die Blätter verwelkt, und er ruht bis zum Herbst im Boden.",
+        "picking": "Pflück Blätter und Blüten ruhig handvollweise, und schneid sie ab, statt sie auszureissen. Trag keine Zwiebeln und keine Erde an einen neuen Ort: Er ist ein Unkraut, und in Victoria ist es verboten, ihn zu verbreiten. Meide Strassenränder und Parks, die gespritzt werden, und Stellen, an denen Hunde laufen. In grossen Mengen ist er für Hunde und Katzen giftig.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, nimm die Blätter wie Schnittlauch oder Frühlingszwiebeln. Sie sind milder als Knoblauch. Schneid sie in Salate, Rührei, Butter oder Pesto, oder gib sie am Schluss in eine Suppe. Die Blüten machen sich schön auf einem Salat. Die kleinen Zwiebeln schmecken roh oder gekocht nach mildem Knoblauch.",
+        "keeps": "In ein feuchtes Tuch gewickelt halten sich die Blätter ein paar Tage im Kühlschrank. Pesto und gehackte Blätter kannst du gut einfrieren.",
+        "source": "Bestimmung und Verbreitung: VicFlora, Weeds Australia, Flora of New Zealand und Weedbusters. Knotenblume: Botany Brisbane. Saison: GBIF-Funddaten."
+      }
+    },
+    "slippery_jack": {
+      "name": "Butterpilz",
+      "description": "Ein Röhrling mit braunem, schleimigem Hut, gelben Poren und einem Ring am Stiel. Im Herbst wächst er unter gepflanzten Kiefern im Süden Australiens und in Neuseeland.",
+      "howTo": "Such von März bis Juni unter Kiefern, ein bis zwei Wochen nach ergiebigem Herbstregen. Prüf die gelben Poren unter dem Hut und den Ring am Stiel",
+      "guide": {
+        "identify": "Der Hut ist kastanien- bis schokoladenbraun und 5 bis 12 cm breit. Bei Nässe ist er schleimig, trocken glänzt er. Unten hat er einen Schwamm aus kleinen gelben Poren, keine Lamellen. Mit dem Alter werden die Poren olivgrün. Der Stiel ist blassgelb und trägt einen Ring: eine weissliche bis violette Manschette, die oft klebt. Über dem Ring ist der Stiel fein braun gepunktet. Er wächst immer bei Kiefern. Der Körnchen-Röhrling (Suillus granulatus) wächst an denselben Stellen und ist ebenfalls essbar. Er hat keinen Ring, und seine jungen Poren schwitzen milchige Tropfen aus. Was unter dem Hut Lamellen hat, ist kein Butterpilz. In Kiefernwäldern wächst auch der rote Fliegenpilz, und unter Eichen in der Nähe der Grüne Knollenblätterpilz.",
+        "habitat": "Er wächst nur bei Kiefern, meist bei der Monterey-Kiefer (Pinus radiata). Such in Pflanzungen und unter älteren Kiefern in Parks, wo die Nadeln dick liegen. Er kam mit den Kiefern aus Europa. Im Südosten und Südwesten Australiens und in Neuseeland ist er häufig.",
+        "season": "Er ist ein Herbstpilz. In Australien kommt er von April bis Juni, in Neuseeland von März bis Mai. Er erscheint ein bis zwei Wochen nach ergiebigem Regen, solange der Boden noch mild ist.",
+        "picking": "Schneid den Stiel am Grund ab und nimm junge, feste Hüte. Lass die alten, weichen stehen. In den Staatsforsten von New South Wales brauchst du für den Eigenbedarf keine Genehmigung, aber prüf, ob der Wald offen ist. Andere Wälder und private Pflanzungen haben eigene Regeln, also frag vorher.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, zieh die schleimige Haut vom Hut ab. Bei älteren kratz auch die weichen Poren weg. Dann gare ihn gut durch. Brat ihn mit Zwiebeln und Knoblauch an, gib ihn in Suppen und Eintöpfe, oder leg ihn sauer ein. Er ist mild und weich. Manche bekommen von ihm Magenbeschwerden, also iss beim ersten Mal nur wenig.",
+        "keeps": "In einer Papiertüte hält er sich ein bis zwei Tage im Kühlschrank. In Scheiben lässt er sich gut trocknen. Gegart kannst du ihn gut einfrieren.",
+        "source": "Bestimmung und Standort: Diego Bonetto, Milkwood und NatureMapr-Funde. Sammelregeln: Forestry Corporation of NSW. Saison: GBIF-Funddaten."
+      }
     }
   },
   "place": {

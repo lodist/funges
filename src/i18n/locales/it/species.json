@@ -883,6 +883,34 @@
         "keeps": "A fette sottili si secca bene. Anche cotto si congela bene.",
         "source": "Identificazione e habitat: First Nature e MushroomExpert. Stagione: dati GBIF. Cesio: Ufficio federale tedesco per la radioprotezione (BfS) e LGL della Baviera."
       }
+    },
+    "three_cornered_garlic": {
+      "name": "Aglio triquetro",
+      "description": "Una cipolla selvatica con campanelle bianche striate di verde e uno stelo a tre spigoli. Profuma d'aglio e riempie i terreni umidi e ombrosi dell'Australia meridionale e della Nuova Zelanda.",
+      "howTo": "Cercalo da maggio a ottobre lungo ruscelli ombrosi, bordi delle strade e margini dei parchi. Controlla lo stelo a tre spigoli e l'odore d'aglio",
+      "guide": {
+        "identify": "L'aglio triquetro cresce in cespi di foglie lunghe e verde brillante. Ogni foglia è piatta con una carena sotto, così si piega a V. Lo riconosci dallo stelo fiorale: ha tre spigoli vivi e in sezione è un triangolo. Da fine inverno porta un mazzetto pendente di campanelle bianche, tutte da un lato. Ogni petalo ha una sottile striscia verde al centro. Sfrega una foglia: profuma forte d'aglio o di cipolla. Il campanellino (Leucojum) gli somiglia ed è velenoso. I suoi petali hanno una macchia verde in punta invece della striscia, lo stelo non ha spigoli e non ha odore. Anche le foglie di narciso sono velenose e non sanno d'aglio. L'odore ti resta sulle dita, quindi controlla lo stelo di ogni pianta che raccogli.",
+        "habitat": "Ama i terreni umidi e ombrosi. Cercalo lungo ruscelli e fossi, ai bordi delle strade, nei parchi e sotto gli alberi, spesso in macchie fitte. È arrivato dal Mediterraneo come pianta da giardino e si è inselvatichito in tutta l'Australia meridionale, da Perth alla Tasmania, e in tutta la Nuova Zelanda. Nello Stato di Victoria è un'infestante dichiarata.",
+        "season": "Le foglie spuntano a fine autunno, da aprile o maggio, e restano tutto l'inverno. Fiorisce da agosto a ottobre. All'inizio dell'estate le foglie sono secche e la pianta riposa sottoterra fino all'autunno.",
+        "picking": "Raccogli foglie e fiori anche a manciate, tagliandoli invece di strapparli. Non portare bulbi o terra in un posto nuovo: è un'infestante, e in Victoria diffonderla è vietato. Evita i bordi delle strade e i parchi trattati con diserbanti, e i posti dove passano i cani. In grandi quantità è velenoso per cani e gatti.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, usa le foglie come erba cipollina o cipollotto. Sono più delicate dell'aglio. Tritale in insalate, uova, burro o pesto, oppure aggiungile alla zuppa alla fine. I fiori sono bellissimi su un'insalata. I piccoli bulbi sanno di aglio delicato, crudi o cotti.",
+        "keeps": "Le foglie si conservano qualche giorno in frigo, avvolte in un panno umido. Il pesto e le foglie tritate si congelano bene.",
+        "source": "Riconoscimento e diffusione: VicFlora, Weeds Australia, Flora of New Zealand e Weedbusters. Campanellino: Botany Brisbane. Stagione: segnalazioni GBIF."
+      }
+    },
+    "slippery_jack": {
+      "name": "Pinarello",
+      "description": "Un boleto dal cappello marrone e viscido, con pori gialli e un anello sul gambo. In autunno spunta sotto i pini piantati nell'Australia meridionale e in Nuova Zelanda.",
+      "howTo": "Cercalo sotto i pini da marzo a giugno, una o due settimane dopo una bella pioggia d'autunno. Controlla i pori gialli sotto il cappello e l'anello sul gambo",
+      "guide": {
+        "identify": "Il cappello è marrone castano o cioccolato e largo da 5 a 12 cm. Bagnato è viscido, asciutto diventa lucido. Sotto ha una spugna di piccoli pori gialli, non lamelle. Con l'età i pori diventano olivastri. Il gambo è giallo pallido e ha un anello: una gonnellina biancastra o violacea, spesso appiccicosa. Sopra l'anello il gambo ha fini puntini marroni. Cresce sempre con i pini. Il pinarello granulato (Suillus granulatus) cresce negli stessi posti ed è anche lui commestibile. Non ha anello, e i suoi pori giovani trasudano goccioline lattiginose. Se sotto il cappello ci sono lamelle, non è un pinarello. Nelle pinete cresce anche l'ovolo malefico rosso, e sotto le querce vicine la tignosa verdognola.",
+        "habitat": "Cresce solo con i pini, soprattutto il pino di Monterey (Pinus radiata). Cercalo nei rimboschimenti e sotto i pini più vecchi dei parchi, dove gli aghi formano uno strato spesso. È arrivato dall'Europa con i pini. È comune nel sud-est e nel sud-ovest dell'Australia e in Nuova Zelanda.",
+        "season": "È un fungo d'autunno. In Australia esce da aprile a giugno, in Nuova Zelanda da marzo a maggio. Compare una o due settimane dopo una bella pioggia, finché il terreno è ancora mite.",
+        "picking": "Taglia il gambo alla base e prendi cappelli giovani e sodi. Lascia quelli vecchi e molli. Nelle foreste statali del Nuovo Galles del Sud non serve un permesso per raccogliere per te, ma controlla che la foresta sia aperta. Altre foreste e le piantagioni private hanno regole proprie, quindi chiedi prima.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, togli la pellicina viscida dal cappello. Nei più vecchi raschia via anche i pori molli. Poi cuocilo bene. Saltalo con cipolla e aglio, mettilo in zuppe e stufati, oppure sottaceto. È delicato e morbido. Ad alcune persone dà mal di pancia, quindi la prima volta mangiane poco.",
+        "keeps": "In frigo si conserva un giorno o due, in un sacchetto di carta. A fette si essicca bene. Cotto si congela bene.",
+        "source": "Riconoscimento e habitat: Diego Bonetto, Milkwood e segnalazioni NatureMapr. Regole di raccolta: Forestry Corporation of NSW. Stagione: segnalazioni GBIF."
+      }
     }
   },
   "search_placeholder": "Cerca una specie",

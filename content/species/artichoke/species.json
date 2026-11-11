@@ -162,7 +162,7 @@
         "available": true,
         "landCover": [621, 631, 632],
         "scoringReferences": [
-          "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
         ],
         "landCoverScheme": "ANZ"
       }

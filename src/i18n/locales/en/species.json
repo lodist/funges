@@ -884,6 +884,34 @@
         "keeps": "It dries well in thin slices. It also freezes well once cooked.",
         "source": "Identification and habitat: First Nature and MushroomExpert. Season: GBIF records. Caesium: German Federal Office for Radiation Protection (BfS) and Bavarian LGL."
       }
+    },
+    "three_cornered_garlic": {
+      "name": "Three-cornered Garlic",
+      "description": "A wild onion with white, green-striped bells and a three-sided stem. It smells of garlic and fills damp, shady ground in southern Australia and New Zealand.",
+      "howTo": "Look along shady creeks, roadsides and park edges from May to October. Check for the three-sided flower stem and the garlic smell",
+      "guide": {
+        "identify": "Three-cornered garlic grows in clumps of long, bright green leaves. Each leaf is flat with a keel underneath, so it folds into a V. The flower stem gives it away: it has three sharp edges, a triangle when you cut across it. From late winter it carries a drooping, one-sided bunch of white bells. Each petal has a thin green stripe down the middle. Crush a leaf and it smells strongly of garlic or onion. Snowflake (Leucojum) looks similar and is poisonous. Its petals have a green spot at the tip instead of a stripe, its stem has no edges and it has no smell. Daffodil and jonquil leaves are poisonous too and don't smell of garlic. The smell stays on your fingers, so check the stem of every plant you pick.",
+        "habitat": "It likes damp, shady ground. Look along creeks and drains, on roadsides, in parks and under trees, often in dense patches. It came from the Mediterranean as a garden plant and has gone wild across southern Australia, from Perth to Tasmania, and all over New Zealand. In Victoria it is a declared noxious weed.",
+        "season": "The leaves come up in late autumn, from April or May, and stay through winter. It flowers from August to October. By early summer the leaves have died back, and it rests underground until autumn.",
+        "picking": "Pick leaves and flowers by the handful, and cut them rather than pull. Don't take bulbs or soil to a new place: it is a weed, and in Victoria spreading it is against the law. Avoid roadsides and parks that councils spray, and spots where dogs go. Large amounts are poisonous to dogs and cats.",
+        "kitchen": "Once you're certain of it, use the leaves like chives or spring onions. They are milder than garlic. Chop them into salads, eggs, butter or pesto, or stir them into soup at the end. The flowers look lovely on a salad. The small bulbs taste like mild garlic, raw or cooked.",
+        "keeps": "The leaves keep a few days in the fridge, wrapped in a damp cloth. Pesto and chopped leaves freeze well.",
+        "source": "Identification and range: VicFlora, Weeds Australia, Flora of New Zealand and Weedbusters. Snowflake: Botany Brisbane. Season: GBIF records."
+      }
+    },
+    "slippery_jack": {
+      "name": "Slippery Jack",
+      "description": "A brown, slimy-capped bolete with yellow pores and a ring on its stem. It comes up under planted pines in autumn in southern Australia and New Zealand.",
+      "howTo": "Look under pines from March to June, a week or two after good autumn rain. Check for yellow pores under the cap and a ring on the stem",
+      "guide": {
+        "identify": "The cap is chestnut to chocolate brown and 5 to 12 cm across. It is slimy when wet and dries to a glossy shine. Underneath it has a sponge of small yellow pores, not gills. With age the pores turn olive. The stem is pale yellow and has a ring: a whitish to purplish skirt that is often sticky. Above the ring the stem has fine brown dots. It always grows with pines. The weeping bolete (Suillus granulatus) grows in the same places and is edible too. It has no ring, and its young pores weep milky drops. Anything with gills under the cap is not a slippery jack. Pine forests also hold the red fly agaric, and death caps grow under oaks nearby.",
+        "habitat": "It grows only with pines, mostly Monterey pine (Pinus radiata). Look in plantations and under older park pines, where the needles lie thick. It came from Europe with the pines. It is common across south-eastern and south-western Australia and in New Zealand.",
+        "season": "This is an autumn mushroom. In Australia it comes from April to June, in New Zealand from March to May. It turns up a week or two after good rain, while the ground is still mild.",
+        "picking": "Cut the stem at the base and take young, firm caps. Leave the old, soggy ones. In the state forests of New South Wales you need no permit to pick for yourself, but check that the forest is open. Other forests and private plantations have their own rules, so ask first.",
+        "kitchen": "Once you're certain of it, peel the slimy skin off the cap. On older ones scrape away the soft pores too. Then cook it well. Fry it with onion and garlic, add it to soups and stews, or pickle it. It is mild and soft. Some people get an upset stomach from it, so eat only a little the first time.",
+        "keeps": "It keeps a day or two in the fridge, in a paper bag. Sliced, it dries well. Cooked, it freezes well.",
+        "source": "Identification and habitat: Diego Bonetto, Milkwood and NatureMapr records. Picking rules: Forestry Corporation of NSW. Season: GBIF records."
+      }
     }
   },
   "place": {

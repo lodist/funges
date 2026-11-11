@@ -884,6 +884,34 @@
         "keeps": "Il sèche bien en tranches fines. Une fois cuit, il se congèle bien aussi.",
         "source": "Identification et habitat : First Nature et MushroomExpert. Saison : données GBIF. Césium : Office fédéral allemand de radioprotection (BfS) et LGL de Bavière."
       }
+    },
+    "three_cornered_garlic": {
+      "name": "Ail triquètre",
+      "description": "Un oignon sauvage aux clochettes blanches rayées de vert et à la tige à trois angles. Il sent l'ail et couvre les sols humides et ombragés du sud de l'Australie et de la Nouvelle-Zélande.",
+      "howTo": "Cherche-le de mai à octobre le long des ruisseaux ombragés, au bord des routes et en lisière des parcs. Vérifie la tige à trois angles et l'odeur d'ail",
+      "guide": {
+        "identify": "L'ail triquètre pousse en touffes de longues feuilles vert vif. Chaque feuille est plate avec une carène dessous, si bien qu'elle se plie en V. C'est la tige florale qui le trahit : elle a trois arêtes vives et forme un triangle en coupe. Dès la fin de l'hiver, elle porte une grappe pendante de clochettes blanches, toutes du même côté. Chaque pétale a une fine bande verte au milieu. Froisse une feuille : elle sent fort l'ail ou l'oignon. La nivéole (Leucojum) lui ressemble et elle est toxique. Ses pétales ont une tache verte à la pointe au lieu d'une bande, sa tige n'a pas d'arêtes et elle n'a pas d'odeur. Les feuilles de jonquille et de narcisse sont toxiques aussi et ne sentent pas l'ail. L'odeur reste sur les doigts, alors vérifie la tige de chaque plante que tu cueilles.",
+        "habitat": "Il aime les sols humides et ombragés. Cherche-le le long des ruisseaux et des fossés, au bord des routes, dans les parcs et sous les arbres, souvent en tapis serrés. Venu de Méditerranée comme plante de jardin, il s'est naturalisé dans tout le sud de l'Australie, de Perth à la Tasmanie, et dans toute la Nouvelle-Zélande. Dans l'État de Victoria, c'est une mauvaise herbe déclarée nuisible.",
+        "season": "Les feuilles sortent à la fin de l'automne, dès avril ou mai, et restent tout l'hiver. Il fleurit d'août à octobre. Au début de l'été, les feuilles ont fané et il se repose sous terre jusqu'à l'automne.",
+        "picking": "Cueille feuilles et fleurs par poignées, en les coupant plutôt qu'en les arrachant. N'emporte ni bulbes ni terre vers un autre endroit : c'est une mauvaise herbe, et dans le Victoria la propager est interdit. Évite les bords de route et les parcs traités par les communes, et les coins où passent les chiens. En grande quantité, il est toxique pour les chiens et les chats.",
+        "kitchen": "Une fois sûr de toi, utilise les feuilles comme de la ciboulette ou des oignons nouveaux. Elles sont plus douces que l'ail. Hache-les dans les salades, les œufs, le beurre ou le pesto, ou ajoute-les à la soupe à la fin. Les fleurs sont très jolies sur une salade. Les petits bulbes ont un goût d'ail doux, crus ou cuits.",
+        "keeps": "Les feuilles se gardent quelques jours au frigo dans un linge humide. Le pesto et les feuilles hachées se congèlent bien.",
+        "source": "Identification et répartition : VicFlora, Weeds Australia, Flora of New Zealand et Weedbusters. Nivéole : Botany Brisbane. Saison : observations GBIF."
+      }
+    },
+    "slippery_jack": {
+      "name": "Nonnette voilée",
+      "description": "Un bolet au chapeau brun et visqueux, aux pores jaunes, avec un anneau sur le pied. Il sort à l'automne sous les pins plantés du sud de l'Australie et de la Nouvelle-Zélande.",
+      "howTo": "Cherche-le sous les pins de mars à juin, une ou deux semaines après une bonne pluie d'automne. Vérifie les pores jaunes sous le chapeau et l'anneau sur le pied",
+      "guide": {
+        "identify": "Le chapeau est brun châtain à chocolat et mesure 5 à 12 cm. Il est visqueux quand il est mouillé et devient brillant en séchant. Dessous, il a une éponge de petits pores jaunes, pas de lames. Avec l'âge, les pores virent à l'olive. Le pied est jaune pâle et porte un anneau : une jupe blanchâtre à violacée, souvent collante. Au-dessus de l'anneau, le pied a de fines ponctuations brunes. Il pousse toujours avec les pins. Le bolet granulé (Suillus granulatus) pousse aux mêmes endroits et se mange aussi. Il n'a pas d'anneau, et ses jeunes pores perlent de gouttes laiteuses. Tout ce qui a des lames sous le chapeau n'est pas une nonnette voilée. Dans les pinèdes pousse aussi l'amanite tue-mouches rouge, et sous les chênes voisins l'amanite phalloïde.",
+        "habitat": "Il pousse uniquement avec les pins, surtout le pin de Monterey (Pinus radiata). Cherche-le dans les plantations et sous les vieux pins des parcs, là où les aiguilles forment une couche épaisse. Il est arrivé d'Europe avec les pins. Il est courant dans le sud-est et le sud-ouest de l'Australie et en Nouvelle-Zélande.",
+        "season": "C'est un champignon d'automne. En Australie, il sort d'avril à juin, en Nouvelle-Zélande de mars à mai. Il apparaît une ou deux semaines après une bonne pluie, tant que le sol est encore doux.",
+        "picking": "Coupe le pied à la base et prends des chapeaux jeunes et fermes. Laisse les vieux tout mous. Dans les forêts domaniales de Nouvelle-Galles du Sud, tu n'as pas besoin de permis pour cueillir pour toi, mais vérifie que la forêt est ouverte. Les autres forêts et les plantations privées ont leurs propres règles, alors demande avant.",
+        "kitchen": "Une fois sûr de toi, retire la peau visqueuse du chapeau. Sur les plus vieux, gratte aussi les pores mous. Ensuite, fais-le bien cuire. Poêle-le avec de l'oignon et de l'ail, mets-le dans les soupes et les ragoûts, ou fais-le mariner au vinaigre. Il est doux et tendre. Certaines personnes le digèrent mal, alors n'en mange qu'un peu la première fois.",
+        "keeps": "Il se garde un jour ou deux au frigo, dans un sac en papier. En tranches, il sèche bien. Cuit, il se congèle bien.",
+        "source": "Identification et habitat : Diego Bonetto, Milkwood et observations NatureMapr. Règles de cueillette : Forestry Corporation of NSW. Saison : observations GBIF."
+      }
     }
   },
   "place": {

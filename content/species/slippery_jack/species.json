@@ -1,0 +1,152 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "slippery_jack",
+  "scientificName": "Suillus luteus",
+  "catalog": {
+    "enabled": true,
+    "order": 60,
+    "translationKey": "slippery_jack",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/slippery_jack.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Slippery Jack",
+      "description": "A brown, slimy-capped bolete with yellow pores and a ring on its stem. It comes up under planted pines in autumn in southern Australia and New Zealand.",
+      "howTo": "Look under pines from March to June, a week or two after good autumn rain. Check for yellow pores under the cap and a ring on the stem",
+      "guide": {
+        "identify": "The cap is chestnut to chocolate brown and 5 to 12 cm across. It is slimy when wet and dries to a glossy shine. Underneath it has a sponge of small yellow pores, not gills. With age the pores turn olive. The stem is pale yellow and has a ring: a whitish to purplish skirt that is often sticky. Above the ring the stem has fine brown dots. It always grows with pines. The weeping bolete (Suillus granulatus) grows in the same places and is edible too. It has no ring, and its young pores weep milky drops. Anything with gills under the cap is not a slippery jack. Pine forests also hold the red fly agaric, and death caps grow under oaks nearby.",
+        "habitat": "It grows only with pines, mostly Monterey pine (Pinus radiata). Look in plantations and under older park pines, where the needles lie thick. It came from Europe with the pines. It is common across south-eastern and south-western Australia and in New Zealand.",
+        "season": "This is an autumn mushroom. In Australia it comes from April to June, in New Zealand from March to May. It turns up a week or two after good rain, while the ground is still mild.",
+        "picking": "Cut the stem at the base and take young, firm caps. Leave the old, soggy ones. In the state forests of New South Wales you need no permit to pick for yourself, but check that the forest is open. Other forests and private plantations have their own rules, so ask first.",
+        "kitchen": "Once you're certain of it, peel the slimy skin off the cap. On older ones scrape away the soft pores too. Then cook it well. Fry it with onion and garlic, add it to soups and stews, or pickle it. It is mild and soft. Some people get an upset stomach from it, so eat only a little the first time.",
+        "keeps": "It keeps a day or two in the fridge, in a paper bag. Sliced, it dries well. Cooked, it freezes well.",
+        "source": "Identification and habitat: Diego Bonetto, Milkwood and NatureMapr records. Picking rules: Forestry Corporation of NSW. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Pinarello",
+      "description": "Un boleto dal cappello marrone e viscido, con pori gialli e un anello sul gambo. In autunno spunta sotto i pini piantati nell'Australia meridionale e in Nuova Zelanda.",
+      "howTo": "Cercalo sotto i pini da marzo a giugno, una o due settimane dopo una bella pioggia d'autunno. Controlla i pori gialli sotto il cappello e l'anello sul gambo",
+      "guide": {
+        "identify": "Il cappello è marrone castano o cioccolato e largo da 5 a 12 cm. Bagnato è viscido, asciutto diventa lucido. Sotto ha una spugna di piccoli pori gialli, non lamelle. Con l'età i pori diventano olivastri. Il gambo è giallo pallido e ha un anello: una gonnellina biancastra o violacea, spesso appiccicosa. Sopra l'anello il gambo ha fini puntini marroni. Cresce sempre con i pini. Il pinarello granulato (Suillus granulatus) cresce negli stessi posti ed è anche lui commestibile. Non ha anello, e i suoi pori giovani trasudano goccioline lattiginose. Se sotto il cappello ci sono lamelle, non è un pinarello. Nelle pinete cresce anche l'ovolo malefico rosso, e sotto le querce vicine la tignosa verdognola.",
+        "habitat": "Cresce solo con i pini, soprattutto il pino di Monterey (Pinus radiata). Cercalo nei rimboschimenti e sotto i pini più vecchi dei parchi, dove gli aghi formano uno strato spesso. È arrivato dall'Europa con i pini. È comune nel sud-est e nel sud-ovest dell'Australia e in Nuova Zelanda.",
+        "season": "È un fungo d'autunno. In Australia esce da aprile a giugno, in Nuova Zelanda da marzo a maggio. Compare una o due settimane dopo una bella pioggia, finché il terreno è ancora mite.",
+        "picking": "Taglia il gambo alla base e prendi cappelli giovani e sodi. Lascia quelli vecchi e molli. Nelle foreste statali del Nuovo Galles del Sud non serve un permesso per raccogliere per te, ma controlla che la foresta sia aperta. Altre foreste e le piantagioni private hanno regole proprie, quindi chiedi prima.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, togli la pellicina viscida dal cappello. Nei più vecchi raschia via anche i pori molli. Poi cuocilo bene. Saltalo con cipolla e aglio, mettilo in zuppe e stufati, oppure sottaceto. È delicato e morbido. Ad alcune persone dà mal di pancia, quindi la prima volta mangiane poco.",
+        "keeps": "In frigo si conserva un giorno o due, in un sacchetto di carta. A fette si essicca bene. Cotto si congela bene.",
+        "source": "Riconoscimento e habitat: Diego Bonetto, Milkwood e segnalazioni NatureMapr. Regole di raccolta: Forestry Corporation of NSW. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Nonnette voilée",
+      "description": "Un bolet au chapeau brun et visqueux, aux pores jaunes, avec un anneau sur le pied. Il sort à l'automne sous les pins plantés du sud de l'Australie et de la Nouvelle-Zélande.",
+      "howTo": "Cherche-le sous les pins de mars à juin, une ou deux semaines après une bonne pluie d'automne. Vérifie les pores jaunes sous le chapeau et l'anneau sur le pied",
+      "guide": {
+        "identify": "Le chapeau est brun châtain à chocolat et mesure 5 à 12 cm. Il est visqueux quand il est mouillé et devient brillant en séchant. Dessous, il a une éponge de petits pores jaunes, pas de lames. Avec l'âge, les pores virent à l'olive. Le pied est jaune pâle et porte un anneau : une jupe blanchâtre à violacée, souvent collante. Au-dessus de l'anneau, le pied a de fines ponctuations brunes. Il pousse toujours avec les pins. Le bolet granulé (Suillus granulatus) pousse aux mêmes endroits et se mange aussi. Il n'a pas d'anneau, et ses jeunes pores perlent de gouttes laiteuses. Tout ce qui a des lames sous le chapeau n'est pas une nonnette voilée. Dans les pinèdes pousse aussi l'amanite tue-mouches rouge, et sous les chênes voisins l'amanite phalloïde.",
+        "habitat": "Il pousse uniquement avec les pins, surtout le pin de Monterey (Pinus radiata). Cherche-le dans les plantations et sous les vieux pins des parcs, là où les aiguilles forment une couche épaisse. Il est arrivé d'Europe avec les pins. Il est courant dans le sud-est et le sud-ouest de l'Australie et en Nouvelle-Zélande.",
+        "season": "C'est un champignon d'automne. En Australie, il sort d'avril à juin, en Nouvelle-Zélande de mars à mai. Il apparaît une ou deux semaines après une bonne pluie, tant que le sol est encore doux.",
+        "picking": "Coupe le pied à la base et prends des chapeaux jeunes et fermes. Laisse les vieux tout mous. Dans les forêts domaniales de Nouvelle-Galles du Sud, tu n'as pas besoin de permis pour cueillir pour toi, mais vérifie que la forêt est ouverte. Les autres forêts et les plantations privées ont leurs propres règles, alors demande avant.",
+        "kitchen": "Une fois sûr de toi, retire la peau visqueuse du chapeau. Sur les plus vieux, gratte aussi les pores mous. Ensuite, fais-le bien cuire. Poêle-le avec de l'oignon et de l'ail, mets-le dans les soupes et les ragoûts, ou fais-le mariner au vinaigre. Il est doux et tendre. Certaines personnes le digèrent mal, alors n'en mange qu'un peu la première fois.",
+        "keeps": "Il se garde un jour ou deux au frigo, dans un sac en papier. En tranches, il sèche bien. Cuit, il se congèle bien.",
+        "source": "Identification et habitat : Diego Bonetto, Milkwood et observations NatureMapr. Règles de cueillette : Forestry Corporation of NSW. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Butterpilz",
+      "description": "Ein Röhrling mit braunem, schleimigem Hut, gelben Poren und einem Ring am Stiel. Im Herbst wächst er unter gepflanzten Kiefern im Süden Australiens und in Neuseeland.",
+      "howTo": "Such von März bis Juni unter Kiefern, ein bis zwei Wochen nach ergiebigem Herbstregen. Prüf die gelben Poren unter dem Hut und den Ring am Stiel",
+      "guide": {
+        "identify": "Der Hut ist kastanien- bis schokoladenbraun und 5 bis 12 cm breit. Bei Nässe ist er schleimig, trocken glänzt er. Unten hat er einen Schwamm aus kleinen gelben Poren, keine Lamellen. Mit dem Alter werden die Poren olivgrün. Der Stiel ist blassgelb und trägt einen Ring: eine weissliche bis violette Manschette, die oft klebt. Über dem Ring ist der Stiel fein braun gepunktet. Er wächst immer bei Kiefern. Der Körnchen-Röhrling (Suillus granulatus) wächst an denselben Stellen und ist ebenfalls essbar. Er hat keinen Ring, und seine jungen Poren schwitzen milchige Tropfen aus. Was unter dem Hut Lamellen hat, ist kein Butterpilz. In Kiefernwäldern wächst auch der rote Fliegenpilz, und unter Eichen in der Nähe der Grüne Knollenblätterpilz.",
+        "habitat": "Er wächst nur bei Kiefern, meist bei der Monterey-Kiefer (Pinus radiata). Such in Pflanzungen und unter älteren Kiefern in Parks, wo die Nadeln dick liegen. Er kam mit den Kiefern aus Europa. Im Südosten und Südwesten Australiens und in Neuseeland ist er häufig.",
+        "season": "Er ist ein Herbstpilz. In Australien kommt er von April bis Juni, in Neuseeland von März bis Mai. Er erscheint ein bis zwei Wochen nach ergiebigem Regen, solange der Boden noch mild ist.",
+        "picking": "Schneid den Stiel am Grund ab und nimm junge, feste Hüte. Lass die alten, weichen stehen. In den Staatsforsten von New South Wales brauchst du für den Eigenbedarf keine Genehmigung, aber prüf, ob der Wald offen ist. Andere Wälder und private Pflanzungen haben eigene Regeln, also frag vorher.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, zieh die schleimige Haut vom Hut ab. Bei älteren kratz auch die weichen Poren weg. Dann gare ihn gut durch. Brat ihn mit Zwiebeln und Knoblauch an, gib ihn in Suppen und Eintöpfe, oder leg ihn sauer ein. Er ist mild und weich. Manche bekommen von ihm Magenbeschwerden, also iss beim ersten Mal nur wenig.",
+        "keeps": "In einer Papiertüte hält er sich ein bis zwei Tage im Kühlschrank. In Scheiben lässt er sich gut trocknen. Gegart kannst du ihn gut einfrieren.",
+        "source": "Bestimmung und Standort: Diego Bonetto, Milkwood und NatureMapr-Funde. Sammelregeln: Forestry Corporation of NSW. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Boleto anillado",
+      "description": "Un boleto de sombrero marrón y viscoso, con poros amarillos y un anillo en el pie. Sale en otoño bajo los pinos plantados del sur de Australia y de Nueva Zelanda.",
+      "howTo": "Búscalo bajo los pinos de marzo a junio, una o dos semanas después de una buena lluvia de otoño. Comprueba los poros amarillos bajo el sombrero y el anillo del pie",
+      "guide": {
+        "identify": "El sombrero es marrón castaño o chocolate y mide de 5 a 12 cm. Mojado es viscoso y, al secarse, queda brillante. Por debajo tiene una esponja de poros amarillos pequeños, no láminas. Con la edad, los poros se vuelven oliváceos. El pie es amarillo pálido y tiene un anillo: una faldita blanquecina o violácea, a menudo pegajosa. Por encima del anillo, el pie tiene puntitos marrones. Siempre crece con pinos. El boleto granulado (Suillus granulatus) sale en los mismos sitios y también es comestible. No tiene anillo, y sus poros jóvenes sueltan gotitas lechosas. Si tiene láminas bajo el sombrero, no es un boleto anillado. En los pinares también sale la amanita matamoscas, roja, y bajo los robles cercanos la oronja verde.",
+        "habitat": "Solo crece con pinos, sobre todo con el pino insigne (Pinus radiata). Búscalo en las plantaciones y bajo los pinos viejos de los parques, donde la pinocha es gruesa. Llegó de Europa con los pinos. Es común en el sureste y el suroeste de Australia y en Nueva Zelanda.",
+        "season": "Es una seta de otoño. En Australia sale de abril a junio, en Nueva Zelanda de marzo a mayo. Aparece una o dos semanas después de una buena lluvia, mientras el suelo sigue templado.",
+        "picking": "Corta el pie por la base y coge sombreros jóvenes y firmes. Deja los viejos y blandos. En los bosques estatales de Nueva Gales del Sur no necesitas permiso para recoger para ti, pero comprueba que el bosque esté abierto. Otros bosques y las plantaciones privadas tienen sus propias normas, así que pregunta antes.",
+        "kitchen": "Cuando estés seguro de que es él, quítale la piel viscosa al sombrero. En los más viejos, raspa también los poros blandos. Después cocínalo bien. Saltéalo con cebolla y ajo, échalo a sopas y guisos, o hazlo en escabeche. Es suave y tierno. A algunas personas les sienta mal al estómago, así que la primera vez come poco.",
+        "keeps": "Aguanta uno o dos días en la nevera, en una bolsa de papel. En láminas se seca bien. Cocinado se congela bien.",
+        "source": "Identificación y hábitat: Diego Bonetto, Milkwood y registros de NatureMapr. Normas de recolección: Forestry Corporation of NSW. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Slippery Jack",
+      "description": "Um boleto de chapéu castanho e viscoso, com poros amarelos e um anel no pé. Aparece no outono debaixo dos pinheiros plantados no sul da Austrália e na Nova Zelândia.",
+      "howTo": "Procura-o debaixo de pinheiros de março a junho, uma ou duas semanas depois de uma boa chuva de outono. Confirma os poros amarelos debaixo do chapéu e o anel no pé",
+      "guide": {
+        "identify": "O chapéu é castanho-avermelhado a cor de chocolate e mede 5 a 12 cm. Molhado é viscoso e, ao secar, fica brilhante. Por baixo tem uma esponja de pequenos poros amarelos, não lâminas. Com a idade, os poros ficam cor de azeitona. O pé é amarelo-pálido e tem um anel: uma saia esbranquiçada a arroxeada, muitas vezes pegajosa. Acima do anel, o pé tem pontinhos castanhos. Cresce sempre com pinheiros. O boleto-granulado (Suillus granulatus) cresce nos mesmos sítios e também se come. Não tem anel, e os poros jovens largam gotinhas leitosas. Se tiver lâminas debaixo do chapéu, não é um slippery jack. Nos pinhais cresce também o mata-moscas vermelho, e debaixo dos carvalhos ali perto a cicuta-verde.",
+        "habitat": "Só cresce com pinheiros, sobretudo o pinheiro-insigne (Pinus radiata). Procura-o nas plantações e debaixo dos pinheiros velhos dos parques, onde a caruma é espessa. Veio da Europa com os pinheiros. É comum no sudeste e no sudoeste da Austrália e na Nova Zelândia.",
+        "season": "É um cogumelo de outono. Na Austrália aparece de abril a junho, na Nova Zelândia de março a maio. Surge uma ou duas semanas depois de uma boa chuva, enquanto o solo ainda está ameno.",
+        "picking": "Corta o pé junto à base e apanha chapéus jovens e firmes. Deixa os velhos e moles. Nas florestas estatais de Nova Gales do Sul não precisas de licença para apanhar para ti, mas confirma que a floresta está aberta. Outras florestas e as plantações privadas têm regras próprias, por isso pergunta antes.",
+        "kitchen": "Quando tiveres a certeza de que é ele, tira a pele viscosa do chapéu. Nos mais velhos, raspa também os poros moles. Depois cozinha-o bem. Salteia-o com cebola e alho, junta-o a sopas e guisados, ou faz conserva em vinagre. É suave e tenro. Há quem fique com o estômago às voltas, por isso da primeira vez come pouco.",
+        "keeps": "Aguenta um ou dois dias no frigorífico, num saco de papel. Às fatias, seca bem. Cozinhado, congela bem.",
+        "source": "Identificação e habitat: Diego Bonetto, Milkwood e registos do NatureMapr. Regras de apanha: Forestry Corporation of NSW. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Suillus luteus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Slippery Jack"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [7777157],
+      "references": ["https://www.gbif.org/species/7777157"]
+    },
+    "rangePrior": {
+      "taxonKeys": [7777157]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [612, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/7777157",
+          "https://diego-bonetto-weeds.squarespace.com/blog/slippery-jacks-the-yummy-delicate-mushrooms-in-pine-forests",
+          "https://www.milkwood.net/?p=7561",
+          "https://www.forestrycorporation.com.au/about/releases/2020/forest-safety-reminder-as-mushroom-season-approaches",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}
