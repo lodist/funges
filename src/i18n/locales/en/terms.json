@@ -12,7 +12,8 @@
     "title": "Foraging Disclaimer",
     "content": "The Service includes recipes and information about wild edible plants, berries, nuts, and mushrooms. While every effort is made to ensure accuracy, the safe consumption of wild edibles depends entirely on correct identification, appropriate preparation, and individual health conditions.",
     "misidentification": "Misidentification of wild plants or fungi can lead to allergic reactions, poisoning, or other serious health consequences. Some edible species have toxic lookalikes. Always consult a local expert or use an authoritative guide when identifying wild edibles, and do not consume anything unless you are 100% certain of its safety.",
-    "preparation": "Additionally, some wild edibles should only be consumed in small quantities or after specific preparation methods to neutralize naturally occurring compounds. Recipes provided by the Service are for educational purposes and assume correct identification and proper handling of ingredients."
+    "preparation": "Additionally, some wild edibles should only be consumed in small quantities or after specific preparation methods to neutralize naturally occurring compounds. Recipes provided by the Service are for educational purposes and assume correct identification and proper handling of ingredients.",
+    "psychoactive": "Some species described by the Service, such as the Liberty Cap (Psilocybe semilanceata), are psychoactive and are not food. Their information is provided for identification and education only. It is not an invitation to pick, possess or consume them where the law forbids it. It is not medical advice either."
   },
   "disclaimer": {
     "title": "Disclaimer of Liability",
@@ -51,7 +52,7 @@
     "intro": "For questions or concerns regarding these Terms, please contact:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Last updated on: 07.11.2026",
+  "lastUpdated": "Last updated on: 11.11.2026",
   "huerta": {
     "title": "Gardening Advice",
     "content": "Huerta’s advice, including frost warnings, sowing and planting times, watering and care steps, is worked out from weather forecasts and long-term climate data for the area around your garden. Forecasts can be wrong, and conditions in your garden may differ from those of the area.",

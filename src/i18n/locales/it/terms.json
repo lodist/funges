@@ -12,7 +12,8 @@
     "title": "Disclaimer per la Raccolta",
     "content": "Il Servizio include ricette e informazioni su piante selvatiche commestibili, bacche, noci e funghi. Sebbene si faccia ogni sforzo per garantire l'accuratezza, il consumo sicuro di alimenti selvatici dipende interamente dall'identificazione corretta, dalla preparazione appropriata e dalle condizioni di salute individuali.",
     "misidentification": "L'errata identificazione di piante o funghi selvatici può portare a reazioni allergiche, avvelenamento o altre gravi conseguenze per la salute. Alcune specie commestibili hanno sosia tossici. Consulta sempre un esperto locale o usa una guida autorevole quando identifichi alimenti selvatici, e non consumare nulla a meno che non sia sicuro al 100%.",
-    "preparation": "Inoltre, alcuni alimenti selvatici dovrebbero essere consumati solo in piccole quantità o dopo metodi di preparazione specifici per neutralizzare i composti naturalmente presenti. Le ricette fornite dal Servizio sono a scopo educativo e presuppongono l'identificazione corretta e la gestione appropriata degli ingredienti."
+    "preparation": "Inoltre, alcuni alimenti selvatici dovrebbero essere consumati solo in piccole quantità o dopo metodi di preparazione specifici per neutralizzare i composti naturalmente presenti. Le ricette fornite dal Servizio sono a scopo educativo e presuppongono l'identificazione corretta e la gestione appropriata degli ingredienti.",
+    "psychoactive": "Alcune specie descritte dal Servizio, come Psilocybe semilanceata, sono psicoattive e non sono alimenti. Le informazioni che le riguardano servono solo all'identificazione e all'educazione. Non sono un invito a raccoglierle, possederle o consumarle dove la legge lo vieta. Non costituiscono nemmeno un consiglio medico."
   },
   "disclaimer": {
     "title": "Disclaimer di Responsabilità",
@@ -51,7 +52,7 @@
     "intro": "Per domande o preoccupazioni riguardo questi Termini, contatta:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Ultimo aggiornamento: 07.11.2026",
+  "lastUpdated": "Ultimo aggiornamento: 11.11.2026",
   "huerta": {
     "title": "Consigli per l’orto",
     "content": "I consigli di Huerta, compresi gli avvisi di gelata, i periodi di semina e trapianto, l’irrigazione e le cure, sono calcolati da previsioni meteo e dati climatici a lungo termine della zona del tuo orto. Le previsioni possono sbagliare e le condizioni del tuo orto possono essere diverse da quelle della zona.",
