@@ -8,6 +8,7 @@ import {
   checkRepository,
   generate,
   LOCALES,
+  MAP_REGIONS,
   REGIONS,
   scaffold,
   SCORING_FILE,
@@ -106,9 +107,8 @@ function forecast(availableIn = REGIONS) {
           ? {
               available: true,
               landCover: [10],
-              landCoverScheme: ['NE', 'SE'].includes(region)
-                ? 'CORINE'
-                : 'NLCD',
+              landCoverScheme:
+                { NE: 'CORINE', SE: 'CORINE', ANZ: 'ANZ' }[region] ?? 'NLCD',
               scoringReferences: ['https://example.test/research'],
             }
           : { available: false },
@@ -135,7 +135,7 @@ function fixtureRoot() {
     );
   }
   fs.mkdirSync(path.join(root, 'public'), { recursive: true });
-  const layers = REGIONS.flatMap(region => {
+  const layers = MAP_REGIONS.flatMap(region => {
     const code = region.toLowerCase();
     return [
       {
@@ -359,7 +359,7 @@ test('forecast generation emits only available regional parameters and map layer
       lastFill < firstSymbol,
       'all fills must remain below symbol layers'
     );
-    for (const region of REGIONS.map(value => value.toLowerCase())) {
+    for (const region of MAP_REGIONS.map(value => value.toLowerCase())) {
       const expected = region !== 'usw';
       assert.equal(ids.has(`new-species_${region}`), expected);
       assert.equal(ids.has(`new-species_${region}_numbers`), expected);
@@ -421,7 +421,7 @@ test('a composite takes its members land cover and is drawn like a species', asy
     fs.readFileSync(path.join(root, 'public/funges_style.json'), 'utf8')
   );
   const ids = new Set(style.layers.map(layer => layer.id));
-  for (const region of REGIONS.map(value => value.toLowerCase()))
+  for (const region of MAP_REGIONS.map(value => value.toLowerCase()))
     assert.ok(
       ids.has(`all-kinds_${region}`) && ids.has(`all-kinds_${region}_numbers`)
     );
@@ -562,7 +562,9 @@ test('repository check reads the scoring file where it is present', async () => 
   await generate(root);
   fs.writeFileSync(
     path.join(root, SCORING_FILE),
-    JSON.stringify({ chant: { NE: scoring(), SE: scoring(), USE: scoring() } })
+    JSON.stringify({
+      chant: { NE: scoring(), SE: scoring(), USE: scoring(), ANZ: scoring() },
+    })
   );
   assert.deepEqual(await checkRepository(root), [
     `${SCORING_FILE}: chant.USW is missing`,

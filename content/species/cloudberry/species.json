@@ -137,6 +137,9 @@
       },
       "USW": {
         "available": false
+      },
+      "ANZ": {
+        "available": false
       }
     },
     "empiricalSeason": {

@@ -332,7 +332,10 @@ def _session():
 def run(region, points, now=None):
     """Tonight's hourly forecast at the region's points, the hours since last night added to
     the past, both copied to R2. Each model is found and read on its own: one model's
-    outage costs that model, not the night."""
+    outage costs that model, not the night. None for a region without model files (ANZ)."""
+    if CONTINENT[region] not in SOURCES:
+        print(f"Hourly weather: no model files for {region}")
+        return None
     started = time.time()
     deadline = started + DEADLINE_MINUTES * 60
     now = pd.Timestamp.now(tz="UTC") if now is None else now

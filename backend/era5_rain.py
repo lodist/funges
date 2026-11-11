@@ -38,9 +38,11 @@ GRID = 0.25                     # ERA5's grid step in degrees, as Copernicus del
 # Copernicus queues two orders per account and dataset: from 22 Oct 2026 US West's order, the
 # night's fourth, was turned away, and on 24 Oct US East's too, with Europe's two still queued.
 # Each continent's two regions order one shared box, and only once (ordered()), so the night
-# places two orders and each region also downloads the other's.
+# places two orders and each region also downloads the other's. Australia/New Zealand orders a
+# third, its own: Europe's box stretched to New Zealand would be most of the world.
 US_BOX = ((25.0, 49.5), (-124.75, -67.0))
 EU_BOX = ((27.5, 70.75), (-24.5, 44.75))
+ANZ_BOX = ((-47.5, -16.0), (114.5, 178.75))
 EMPTY = pd.DataFrame(columns=["Latitude", "Longitude", "Date", "TotalPrecipitation_mm",
                               "Rain Hours", "Rain Measured"])
 
@@ -53,7 +55,7 @@ def box(coords) -> tuple[tuple, tuple]:
     c = np.asarray(coords, float).reshape(-1, 2)
     lo, hi = np.floor(c.min(axis=0) / GRID) * GRID, np.ceil(c.max(axis=0) / GRID) * GRID
     # The continent's shared box, grown if a coord ever falls outside it.
-    (s, n), (w, e) = US_BOX if hi[1] < -50 else EU_BOX
+    (s, n), (w, e) = US_BOX if hi[1] < -50 else ANZ_BOX if hi[0] < 0 else EU_BOX
     lo, hi = np.minimum(lo, (s, w)), np.maximum(hi, (n, e))
     return (float(lo[0]), float(hi[0])), (float(lo[1]), float(hi[1]))
 

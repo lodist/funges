@@ -789,4 +789,6 @@ export const GENERATED_REGION_BOUNDARIES = {
   uswMaxLongitude: -100,
   usMaxLongitude: -25,
   seMaxLatitude: 47,
+  anzMinLongitude: 100,
+  anzMaxLatitude: 0,
 } as const;

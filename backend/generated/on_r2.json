@@ -4,6 +4,7 @@
   "bloom_towns_EU.geojson": "c18df24a26a67234831d545b305703c69336311ecabc89eff6ffaf1c23de0077",
   "bloom_towns_US.geojson": "c3a510eaea39bb21ff26f60334e71953edf7b07b99d715708ab0e0ee658d3eb2",
   "bluebell_woods_EU.parquet": "9083b728ef8725aabc54acaaf0b840fc27091005796de693c64e4efe184f83b9",
+  "era5_normals_ANZ.npz": "d0309b9831454f2047fbe70bcf472fec66a4ac3e07aafbf52638e37e681bfd17",
   "era5_normals_EU.npz": "3be1f25db5bb37d96fd6e908c851c3d97c6e0e2ec0f9566b710de02e4f828af1",
   "era5_normals_US.npz": "99a58d821ae4f049cf0b982ae36c2501b1ce71b8c8f28a8650322376f79204a1",
   "frost_odds_NE.parquet": "509f5760c39efeede7a9c5941dfde4500d150966cb7de34ccbbcbef269c11dba",
@@ -24,7 +25,7 @@
   "local_season.json": "e7a9f9333c0354bbd4b80e0d75e83aab7e7e5f56eee3ba146eb8f417bdbac699",
   "phenology.json": "0029ee2ee4688b66d60f74f6720753e0168cfad4bb846630c93aea60eaf68549",
   "season_atlas.json": "afdd712ad174493d812b10f1a814b1391530d9248b1bbd7c73f6c6b21d0775c9",
-  "species_scoring.json": "5c967513982e7ea5453643f4764101d78639858120068f3baf0b273cd1a358e5",
+  "species_scoring.json": "832218cd1b326e93126a7409336190ddeb79807354b665cc710342abb6467ce5",
   "summer_rain_EU.npz": "955b437b527831c918cac6179f66c230bb40a142d8396403efbd34fdf09cff07",
   "superbloom_ground_US.geojson": "dd29d930bc7a8c84f23a001a6d4c67a89ef9dbe234fc8e3a4c5521ff834b09a3"
 }

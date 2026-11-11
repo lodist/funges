@@ -3,7 +3,9 @@
   "regionBoundaries": {
     "uswMaxLongitude": -100,
     "usMaxLongitude": -25,
-    "seMaxLatitude": 47
+    "seMaxLatitude": 47,
+    "anzMinLongitude": 100,
+    "anzMaxLatitude": 0
   },
   "species": {
     "chant": {
@@ -101,6 +103,14 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954958",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -146,6 +156,14 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2594601",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1769,6 +1787,17 @@
             "https://www.mushroomexpert.com/lactarius_deliciosus.html",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-29-step4-mushrooms.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5248629",
+            "https://www.gbif.org/species/7925734",
+            "https://www.gbif.org/species/5248648",
+            "https://www.gbif.org/species/5463706",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1865,6 +1894,14 @@
             "https://www.mushroomexpert.com/coprinus_comatus.html",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-29-step4-mushrooms.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [612, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/7987658",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1916,6 +1953,15 @@
             "https://www.gbif.org/species/3339928",
             "https://www.mushroomexpert.com/calvatia_gigantea.html",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "ANZ": {
+          "landCover": [612, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2536058",
+            "https://www.gbif.org/species/3339928",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -2234,6 +2280,11 @@
           "landCover": [41, 42, 43],
           "landCoverScheme": "NLCD",
           "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
+        },
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "compositeOf": ["mushroom"]
         }
       }
     },

@@ -156,6 +156,9 @@
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
         ],
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": false
       }
     },
     "empiricalSeason": {

@@ -8,8 +8,22 @@ const PRETTIER_OPTIONS =
   (await prettier.resolveConfig(fileURLToPath(import.meta.url))) || {};
 
 export const LOCALES = ['en', 'it', 'fr', 'de', 'es', 'pt'];
-export const REGIONS = ['NE', 'SE', 'USE', 'USW'];
-const REGION_SUFFIXES = REGIONS.map(region => region.toLowerCase());
+export const REGIONS = ['NE', 'SE', 'USE', 'USW', 'ANZ'];
+// The regions the app's map and catalog show. Australia/New Zealand (ANZ) is scored and
+// in the backend registry, but has no map layers yet.
+export const MAP_REGIONS = ['NE', 'SE', 'USE', 'USW'];
+const REGION_SUFFIXES = MAP_REGIONS.map(region => region.toLowerCase());
+// Each region's land-cover map: CORINE (Europe), NLCD (US), and for Australia/New
+// Zealand ESA WorldCover with Forests of Australia and LCDB (611-632).
+const LAND_COVER_SCHEME = {
+  NE: 'CORINE',
+  SE: 'CORINE',
+  USE: 'NLCD',
+  USW: 'NLCD',
+  ANZ: 'ANZ',
+};
+// Each region's host-tree map in _host_classes.json; ANZ has none, so no hosts there.
+const HOST_MAP = { NE: 'EU', SE: 'EU', USE: 'US', USW: 'US' };
 // Single source of truth for which region a coordinate belongs to. Generated into
 // src/generated/species-catalog.ts (frontend) and backend/generated/species_registry.json
 // (pipeline), so the TS map store and the Python scoring scripts cannot drift apart.
@@ -19,6 +33,9 @@ const REGION_BOUNDARIES = {
   uswMaxLongitude: -100,
   usMaxLongitude: -25,
   seMaxLatitude: 47,
+  // Australia/New Zealand: south of the equator and east of 100° E.
+  anzMinLongitude: 100,
+  anzMaxLatitude: 0,
 };
 // The style layer every generated forecast layer is cloned from. Declared, not
 // inferred: "the first species layer that happens to exist" would silently spread a
@@ -173,8 +190,7 @@ function validateScoring(errors, at, scoring, region) {
     bad('.season_tilt must map months 1-12 to values above 0 and at most 1');
   for (const key of ['wind_sensitive', 'water_relevance', 'sea_relevance'])
     if (typeof scoring[key] !== 'boolean') bad(`.${key} must be boolean`);
-  const hostClasses =
-    HOST_CLASSES[['NE', 'SE'].includes(region) ? 'EU' : 'US'].classes;
+  const hostClasses = HOST_CLASSES[HOST_MAP[region]]?.classes ?? {};
   if (
     scoring.hosts !== undefined &&
     (!Array.isArray(scoring.hosts) ||
@@ -564,9 +580,7 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.landCover is required`
           );
-        const expectedScheme = ['NE', 'SE'].includes(region)
-          ? 'CORINE'
-          : 'NLCD';
+        const expectedScheme = LAND_COVER_SCHEME[region];
         if (config.landCoverScheme !== expectedScheme)
           fail(
             errors,
@@ -645,14 +659,14 @@ export function validateManifests(
     const template = entries.find(x => x.data.id === STYLE_TEMPLATE_SPECIES);
     if (
       !template?.data.forecast?.enabled ||
-      !REGIONS.every(
+      !MAP_REGIONS.every(
         region => template.data.forecast.regions?.[region]?.available
       )
     )
       fail(
         errors,
         'content/species',
-        `${STYLE_TEMPLATE_SPECIES} is the declared style template: it must be a forecast species available in every region`
+        `${STYLE_TEMPLATE_SPECIES} is the declared style template: it must be a forecast species available in every map region`
       );
   }
   // No leftovers: each block belongs to an available region of a forecast species
@@ -693,7 +707,7 @@ function catalogTs(manifests) {
     ...(m.forecast.enabled
       ? {
           showOnMap: true,
-          forecastRegions: REGIONS.filter(
+          forecastRegions: MAP_REGIONS.filter(
             region => m.forecast.regions[region].available
           ),
           ...(m.forecast.compositeOf
@@ -811,7 +825,7 @@ function replaceDeep(value, from, to) {
 function forecastIdsByRegion(entries) {
   const forecastEntries = entries.filter(x => x.data.forecast.enabled);
   return Object.fromEntries(
-    REGIONS.map(region => [
+    MAP_REGIONS.map(region => [
       region,
       forecastEntries
         .filter(x => x.data.forecast.regions[region].available)
@@ -869,7 +883,7 @@ function reconcileStyleLayers(style, wantedIdsByRegion) {
   const clone = (template, id) =>
     replaceDeep(template, `${STYLE_TEMPLATE_SPECIES}_`, `${id}_`);
   const orderedIds = [
-    ...new Set(REGIONS.flatMap(region => wantedIdsByRegion[region])),
+    ...new Set(MAP_REGIONS.flatMap(region => wantedIdsByRegion[region])),
   ];
   for (const id of orderedIds) {
     for (const region of REGION_SUFFIXES) {

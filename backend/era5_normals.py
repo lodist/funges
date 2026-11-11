@@ -11,7 +11,7 @@ import pandas as pd
 import r2
 
 GENERATED = Path(__file__).resolve().parent / "generated"
-CONTINENT = {"NE": "EU", "SE": "EU", "USE": "US", "USW": "US"}
+CONTINENT = {"NE": "EU", "SE": "EU", "USE": "US", "USW": "US", "ANZ": "ANZ"}
 STEP = 0.25
 
 

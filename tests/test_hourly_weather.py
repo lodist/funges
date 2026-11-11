@@ -264,3 +264,7 @@ def test_decode_puts_rows_that_alternate_direction_back_west_to_east():
     assert values.tolist() == [1, 2, 3, 4, 5, 6, 7, 8]
     assert (np.diff(lons.reshape(2, 4), axis=1) > 0).all()  # ecCodes lists every row west to east
     assert valid == pd.Timestamp("2026-10-14 20:00", tz="UTC")
+
+
+def test_a_region_without_model_files_is_skipped():
+    assert hw.run("ANZ", [(-33.9, 151.2)]) is None
