@@ -18,6 +18,9 @@ beforeEach(() => {
   resetTier2Vocabulary();
 });
 
+// Species whose photo identification is on (photoId false: waiting for its look-alike review).
+const IDENTIFIABLE = SPECIES_DATA.filter(s => s.photoId !== false);
+
 describe('vocabulary coverage', () => {
   // The single most important test here. Every name the model can emit for
   // tier 1 must resolve to a bucket that carries safety information. This goes
@@ -34,7 +37,7 @@ describe('vocabulary coverage', () => {
   });
 
   it('resolves every catalog species to catalog', () => {
-    const misresolved = SPECIES_DATA.map(s => ({
+    const misresolved = IDENTIFIABLE.map(s => ({
       name: s.scientificName,
       kind: resolvePrediction(p(s.scientificName)).kind,
     })).filter(r => r.kind !== 'catalog');
@@ -56,7 +59,7 @@ describe('vocabulary coverage', () => {
   it('never lets a tier-2 registration shadow a catalog species', () => {
     registerTier2Vocabulary(SPECIES_DATA.map(s => s.scientificName));
 
-    for (const s of SPECIES_DATA) {
+    for (const s of IDENTIFIABLE) {
       expect(resolvePrediction(p(s.scientificName)).kind).toBe('catalog');
     }
   });
@@ -70,8 +73,18 @@ describe('vocabulary coverage', () => {
     for (const t of TOXIC_SPECIES) {
       expect(resolvePrediction(p(t.scientificName)).kind).toBe('toxic');
     }
-    for (const s of SPECIES_DATA) {
+    for (const s of IDENTIFIABLE) {
       expect(resolvePrediction(p(s.scientificName)).kind).toBe('catalog');
+    }
+  });
+
+  it('names a species before its look-alike review like one outside the catalog', () => {
+    const waiting = SPECIES_DATA.filter(s => s.photoId === false);
+    registerTier2Vocabulary(waiting.map(s => s.scientificName));
+
+    expect(waiting.length).toBeGreaterThan(0);
+    for (const s of waiting) {
+      expect(resolvePrediction(p(s.scientificName)).kind).toBe('other');
     }
   });
 });

@@ -704,6 +704,10 @@ function catalogTs(manifests) {
     howToKey: `${m.catalog.translationKey}.howTo`,
     season: m.catalog.season,
     habitat: m.catalog.habitat,
+    // A group (porcini, chanterelles) is named by its genus; a species waits for its review.
+    ...(m.identification.enabled || m.forecast.compositeOf
+      ? {}
+      : { photoId: false }),
     ...(m.forecast.enabled
       ? {
           showOnMap: true,
