@@ -914,6 +914,7 @@
     "notToday": "Oggi non è di stagione",
     "whereItGrows": "Dove cresce",
     "lookalikes": "Sosia tossici",
+    "psychoactive": "Psicoattivo · non commestibile",
     "tellApart": "Come distinguerli",
     "testedLabel": "Verificato · stagione {{year}}",
     "tested": "Nello stesso punto, la previsione ha valutato i giorni della sua stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>.",
@@ -925,12 +926,14 @@
     "season": "Quando",
     "picking": "Raccolta",
     "kitchen": "Preparazione",
+    "medicine": "Medicina",
     "keeps": "Conservazione",
     "source": "Fonti"
   },
   "page": {
     "title": "{{name}} ({{latin}}): stagione, habitat e sosia",
     "description": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, specie simili e consigli in cucina.",
+    "descriptionPsychoactive": "Come riconoscere {{name}} ({{latin}}): habitat, stagione, sosia mortali e cosa dice la ricerca sulla psilocibina.",
     "allSpecies": "Tutte le specie"
   }
 }

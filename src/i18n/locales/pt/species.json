@@ -914,6 +914,7 @@
     "notToday": "Fora de estação hoje",
     "whereItGrows": "Onde cresce",
     "lookalikes": "Sósias tóxicos",
+    "psychoactive": "Psicoativo · não comestível",
     "tellApart": "Como diferenciá-los",
     "testedLabel": "Testado · temporada {{year}}",
     "tested": "No mesmo ponto, a previsão avaliou melhor os dias da sua temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
@@ -925,12 +926,14 @@
     "season": "Quando",
     "picking": "Apanha",
     "kitchen": "Preparação",
+    "medicine": "Medicina",
     "keeps": "Conservação",
     "source": "Fontes"
   },
   "page": {
     "title": "{{name}} ({{latin}}): época, habitat e espécies parecidas",
     "description": "Como reconhecer {{name}} ({{latin}}): habitat, época, espécies parecidas e dicas de cozinha.",
+    "descriptionPsychoactive": "Como reconhecer {{name}} ({{latin}}): habitat, época, sósias mortais e o que a investigação diz sobre a psilocibina.",
     "allSpecies": "Todas as espécies"
   }
 }

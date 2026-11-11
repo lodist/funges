@@ -26,7 +26,12 @@ export default function SpeciesDetailPage() {
     <>
       <SEO
         title={t('page.title', vars)}
-        description={t('page.description', vars)}
+        description={t(
+          species.psychoactive
+            ? 'page.descriptionPsychoactive'
+            : 'page.description',
+          vars
+        )}
         canonicalUrl={localizedPath(path, lang)}
         alternates={alternates(path, window.location.origin)}
       />

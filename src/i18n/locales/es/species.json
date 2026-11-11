@@ -914,6 +914,7 @@
     "notToday": "Hoy no está de temporada",
     "whereItGrows": "Dónde crece",
     "lookalikes": "Parecidos tóxicos",
+    "psychoactive": "Psicoactivo · no comestible",
     "tellApart": "Cómo distinguirlas",
     "testedLabel": "Comprobado · temporada {{year}}",
     "tested": "En el mismo lugar, la previsión valoró mejor los días de su temporada que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>.",
@@ -925,12 +926,14 @@
     "season": "Cuándo",
     "picking": "Recolección",
     "kitchen": "Preparación",
+    "medicine": "Medicina",
     "keeps": "Conservación",
     "source": "Fuentes"
   },
   "page": {
     "title": "{{name}} ({{latin}}): temporada, hábitat y especies parecidas",
     "description": "Cómo reconocer {{name}} ({{latin}}): dónde y cuándo crece, especies parecidas y consejos de cocina.",
+    "descriptionPsychoactive": "Cómo reconocer {{name}} ({{latin}}): dónde y cuándo crece, sus parecidos mortales y lo que dice la investigación sobre la psilocibina.",
     "allSpecies": "Todas las especies"
   }
 }

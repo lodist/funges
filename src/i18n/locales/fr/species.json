@@ -914,6 +914,7 @@
     "notToday": "Pas de saison aujourd'hui",
     "whereItGrows": "Où elle pousse",
     "lookalikes": "Sosies toxiques",
+    "psychoactive": "Psychoactif · non comestible",
     "tellApart": "Comment les distinguer",
     "testedLabel": "Vérifié · saison {{year}}",
     "tested": "Au même endroit, la prévision a mieux noté les jours de sa saison que les jours hors saison <strong>{{times}} fois sur 10</strong>.",
@@ -925,12 +926,14 @@
     "season": "Quand",
     "picking": "Cueillette",
     "kitchen": "Préparation",
+    "medicine": "Médecine",
     "keeps": "Conservation",
     "source": "Sources"
   },
   "page": {
     "title": "{{name}} ({{latin}}) : saison, habitat et sosies",
     "description": "Reconnaître {{name}} ({{latin}}) : habitat, saison, sosies toxiques et conseils en cuisine.",
+    "descriptionPsychoactive": "Reconnaître {{name}} ({{latin}}) : habitat, saison, sosies mortels et ce que la recherche dit de la psilocybine.",
     "allSpecies": "Toutes les espèces"
   }
 }

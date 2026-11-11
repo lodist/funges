@@ -914,6 +914,7 @@
     "notToday": "Not in season today",
     "whereItGrows": "Where it grows",
     "lookalikes": "Toxic look-alikes",
+    "psychoactive": "Psychoactive · not food",
     "tellApart": "How to tell them apart",
     "testedLabel": "Tested · {{year}} season",
     "tested": "At the same spot, the forecast rated days in its season above days out of season <strong>{{times}} times in 10</strong>.",
@@ -925,12 +926,14 @@
     "season": "When",
     "picking": "Picking",
     "kitchen": "Cooking",
+    "medicine": "Medicine",
     "keeps": "Keeping",
     "source": "Sources"
   },
   "page": {
     "title": "{{name}} ({{latin}}): season, habitat and look-alikes",
     "description": "How to recognise {{name}} ({{latin}}): where and when it grows, its look-alikes and tips for the kitchen.",
+    "descriptionPsychoactive": "How to recognise {{name}} ({{latin}}): where and when it grows, its deadly look-alikes and what research says about psilocybin.",
     "allSpecies": "All species"
   }
 }

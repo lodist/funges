@@ -914,6 +914,7 @@
     "notToday": "Heute nicht in Saison",
     "whereItGrows": "Wo sie wächst",
     "lookalikes": "Giftige Doppelgänger",
+    "psychoactive": "Psychoaktiv · kein Speisepilz",
     "tellApart": "So unterscheidest du sie",
     "testedLabel": "Geprüft · Saison {{year}}",
     "tested": "An derselben Stelle bewertete die Vorhersage Tage in seiner Saison <strong>{{times}} von 10 Mal</strong> besser als Tage ausserhalb.",
@@ -925,12 +926,14 @@
     "season": "Wann",
     "picking": "Sammeln",
     "kitchen": "Zubereitung",
+    "medicine": "Medizin",
     "keeps": "Aufbewahren",
     "source": "Quellen"
   },
   "page": {
     "title": "{{name}} ({{latin}}): Saison, Standort und Doppelgänger",
     "description": "{{name}} ({{latin}}) erkennen: Merkmale, Standort, Saison, Doppelgänger und Tipps für die Küche.",
+    "descriptionPsychoactive": "{{name}} ({{latin}}) erkennen: Merkmale, Standort, Saison, tödliche Doppelgänger und was die Forschung über Psilocybin weiss.",
     "allSpecies": "Alle Arten"
   }
 }
