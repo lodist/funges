@@ -51,7 +51,7 @@ import hourly_weather
 import huerta
 import process_priority
 import r2
-from range_prior import host_prior, load_host_cover, load_range_priors, range_prior_for_species
+from range_prior import attach_climate, host_prior, load_host_cover, load_range_priors, range_prior_for_species
 from seasonality import normalize_curve, season_gate_for_species, season_multiplier_for_species, split_curve
 from species_registry import get_composites, get_region_boundaries, get_species_params
 
@@ -1742,7 +1742,8 @@ def _load_species_and_curves(config):
     attach_habitat(species_params, config.region)
     attach_phenology(species_params, config.region)
     summer_rain.attach(species_params, config.region)
-    _fitted = sorted(s for s, p in species_params.items() if "fruiting" in p)
+    attach_climate(species_params, config.region)
+    _fitted =sorted(s for s, p in species_params.items() if "fruiting" in p)
     print(f"Fitted fruiting model for {len(_fitted)} species: {', '.join(_fitted) or 'none'}")
     _gbm = sorted(s for s, p in species_params.items() if "fruiting_gbm" in p)
     print(f"Fruiting GBM for {len(_gbm)} species: {', '.join(_gbm) or 'none'}")

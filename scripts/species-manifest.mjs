@@ -159,6 +159,22 @@ function validateScoring(errors, at, scoring, region) {
   )
     bad('.pH_gate must be two rising pH values');
   if (
+    scoring.climate_gate !== undefined &&
+    (typeof scoring.climate_gate !== 'object' ||
+      !Object.keys(scoring.climate_gate).length ||
+      Object.entries(scoring.climate_gate).some(
+        ([name, ends]) =>
+          !['summer_tmean', 'autumn_rain'].includes(name) ||
+          !Array.isArray(ends) ||
+          ends.length !== 2 ||
+          !ends.every(Number.isFinite) ||
+          ends[0] === ends[1]
+      ))
+  )
+    bad(
+      '.climate_gate must map summer_tmean or autumn_rain to two different values (at 0, at 1)'
+    );
+  if (
     scoring.season_tilt !== undefined &&
     (typeof scoring.season_tilt !== 'object' ||
       !Object.keys(scoring.season_tilt).length ||

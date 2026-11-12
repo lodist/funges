@@ -76,9 +76,47 @@ def habitat_values(df, params):
 
 
 def range_prior_for_species(df, params):
-    """Range prior times host prior times the learned habitat factor times the soil-pH gate, per row."""
+    """Range prior times host prior times the learned habitat factor times the soil-pH and
+    climate gates, per row."""
     return (grid_values(df, params.get("range_prior")) * grid_values(df, params.get("host_prior"))
-            * habitat_values(df, params) * ph_gate_values(df, params))
+            * habitat_values(df, params) * ph_gate_values(df, params) * climate_gate_values(df, params))
+
+
+def attach_climate(species_params, region):
+    """The ERA5 normals grid on every species with a `climate_gate`. One that cannot load
+    leaves the gates open (1.0), as a missing range prior does."""
+    wanted = [p for p in species_params.values() if "climate_gate" in p]
+    if not wanted:
+        return
+    import era5_normals
+    try:
+        grid = era5_normals.load(region)
+    except Exception as error:
+        print(f"[warn] ERA5 normals not loaded ({error}); climate gates are open")
+        return
+    for p in wanted:
+        p["era5_normals"] = grid
+    print(f"Climate gate for {len(wanted)} species")
+
+
+def climate_gate_values(df, params):
+    """Per-row 0-1 from the place's ERA5 monthly normals, for a species bound to a climate
+    (the Liberty Cap needs cool summers: a gate keeps it off hot lowland ground its range prior
+    cannot exclude). `climate_gate` maps "summer_tmean" (June-August mean, °C) and
+    "autumn_rain" (September-November mean, mm/day) to [value at 0, value at 1], linear
+    between: falling when the first is the higher. 1.0 without a gate, a grid or a cell.
+    ponytail: northern-hemisphere seasons; a southern region needs its own months."""
+    gate, grid = params.get("climate_gate"), params.get("era5_normals")
+    if gate is None or grid is None:
+        return 1.0
+    from era5_normals import cells
+    i, j, inside = cells(grid, df["Latitude"], df["Longitude"])
+    normals = {"summer_tmean": grid["tmean"][5:8].mean(axis=0), "autumn_rain": grid["rain"][8:11].mean(axis=0)}
+    out = np.ones(len(df))
+    for name, (zero, one) in gate.items():
+        x = normals[name][i, j].astype(float)
+        out *= np.where(inside & np.isfinite(x), np.clip((x - zero) / (one - zero), 0.0, 1.0), 1.0)
+    return out
 
 
 def ph_gate_values(df, params):
