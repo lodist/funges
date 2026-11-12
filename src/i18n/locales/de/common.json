@@ -112,7 +112,8 @@
       "NE": "Nordeuropa",
       "SE": "Südeuropa",
       "USE": "US-Ostküste",
-      "USW": "US-Westküste"
+      "USW": "US-Westküste",
+      "ANZ": "Australien und Neuseeland"
     },
     "bestWindowByCategory": {
       "mushroom": "Am besten, wenn noch Feuchtigkeit im Boden steckt.",

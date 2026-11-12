@@ -23,7 +23,7 @@ export interface Species {
   photoId?: false;
 }
 
-export type ForecastRegion = 'NE' | 'SE' | 'USE' | 'USW';
+export type ForecastRegion = 'NE' | 'SE' | 'USE' | 'USW' | 'ANZ';
 
 export interface SpeciesOption {
   code: string;

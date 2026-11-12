@@ -5,11 +5,24 @@ import {
   seasonMonthSet,
   seasonOf,
   seasonPlace,
+  seasonMonths,
   seasonProgress,
+  southern,
   speciesSeasons,
 } from '@/lib/seasons';
 
 describe('seasons', () => {
+  it('reads the south half a year on', () => {
+    expect(seasonOf(new Date(2026, 10, 15), true)).toBe('spring'); // November in Sydney
+    expect(seasonOf(new Date(2027, 0, 15), true)).toBe('summer');
+    expect(seasonMonths('fall', true)).toEqual([2, 4]); // March-May
+    expect(monthsLabel(['winter', 'spring'], 'en', true)).toBe('Jun–Nov');
+    expect(seasonProgress(new Date(2027, 0, 16), true)).toBeCloseTo(0.5, 1);
+    expect(southern('ANZ')).toBe(true);
+    expect(southern('SE', ['ANZ'])).toBe(true); // a species only there
+    expect(southern('SE', ['SE', 'ANZ'])).toBe(false);
+  });
+
   it('maps months to meteorological seasons', () => {
     expect(seasonOf(new Date(2026, 1, 28))).toBe('winter');
     expect(seasonOf(new Date(2026, 2, 1))).toBe('spring');

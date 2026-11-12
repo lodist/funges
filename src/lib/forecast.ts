@@ -1,7 +1,7 @@
 // Forecast slider helpers. One tileset carries both endpoints per feature (`<sp>_score`
 // = today/d0, `<sp>_score_d6` = day 6); the slider interpolates between them, day 0 = d0.
 export const FORECAST_DAYS = 7;
-export const FORECAST_REGIONS = ['ne', 'se', 'use', 'usw'] as const;
+export const FORECAST_REGIONS = ['ne', 'se', 'use', 'usw', 'anz'] as const;
 
 function capitalize(word: string): string {
   return word.length ? word[0].toUpperCase() + word.slice(1) : word;

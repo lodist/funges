@@ -9,10 +9,7 @@ const PRETTIER_OPTIONS =
 
 export const LOCALES = ['en', 'it', 'fr', 'de', 'es', 'pt'];
 export const REGIONS = ['NE', 'SE', 'USE', 'USW', 'ANZ'];
-// The regions the app's map and catalog show. Australia/New Zealand (ANZ) is scored and
-// in the backend registry, but has no map layers yet.
-export const MAP_REGIONS = ['NE', 'SE', 'USE', 'USW'];
-const REGION_SUFFIXES = MAP_REGIONS.map(region => region.toLowerCase());
+const REGION_SUFFIXES = REGIONS.map(region => region.toLowerCase());
 // Each region's land-cover map: CORINE (Europe), NLCD (US), and for Australia/New
 // Zealand ESA WorldCover with Forests of Australia and LCDB (611-632).
 const LAND_COVER_SCHEME = {
@@ -672,21 +669,21 @@ export function validateManifests(
           `forecast.regions.${region}: none of the composite's members is available there`
         );
   }
-  // The style generator clones every forecast layer from this species' layers, so
-  // it has to stay a forecast species available everywhere: were it disabled in a
-  // region, generate would orphan-delete the template it needs on the next run.
+  // The style generator clones every forecast layer from this species' layers, so it
+  // has to stay a forecast species somewhere: a region it is not on (chanterelles in
+  // Australia/New Zealand) takes another region's, moved onto its own source.
   if (entries.some(x => x.data.forecast?.enabled)) {
     const template = entries.find(x => x.data.id === STYLE_TEMPLATE_SPECIES);
     if (
       !template?.data.forecast?.enabled ||
-      !MAP_REGIONS.every(
+      !REGIONS.some(
         region => template.data.forecast.regions?.[region]?.available
       )
     )
       fail(
         errors,
         'content/species',
-        `${STYLE_TEMPLATE_SPECIES} is the declared style template: it must be a forecast species available in every map region`
+        `${STYLE_TEMPLATE_SPECIES} is the declared style template: it must be a forecast species available in a region`
       );
   }
   // No leftovers: each block belongs to an available region of a forecast species
@@ -732,7 +729,7 @@ function catalogTs(manifests) {
     ...(m.forecast.enabled
       ? {
           showOnMap: true,
-          forecastRegions: MAP_REGIONS.filter(
+          forecastRegions: REGIONS.filter(
             region => m.forecast.regions[region].available
           ),
           ...(m.forecast.compositeOf
@@ -850,7 +847,7 @@ function replaceDeep(value, from, to) {
 function forecastIdsByRegion(entries) {
   const forecastEntries = entries.filter(x => x.data.forecast.enabled);
   return Object.fromEntries(
-    MAP_REGIONS.map(region => [
+    REGIONS.map(region => [
       region,
       forecastEntries
         .filter(x => x.data.forecast.regions[region].available)
@@ -876,14 +873,36 @@ function reconcileStyleLayers(style, wantedIdsByRegion) {
   for (const region of REGION_SUFFIXES) {
     const base = existing.get(`${STYLE_TEMPLATE_SPECIES}_${region}`);
     const numbers = existing.get(`${STYLE_TEMPLATE_SPECIES}_${region}_numbers`);
-    if (!base || !numbers) {
-      if (wantedIdsByRegion[region.toUpperCase()].length)
-        throw new Error(
-          `style is missing the ${STYLE_TEMPLATE_SPECIES}_${region} forecast template layers`
-        );
+    if (base && numbers) templates.set(region, { base, numbers });
+  }
+  // A region the template species is not on takes the first region's template layers,
+  // moved onto its own source (overlay-<region>, <region>_forecast).
+  const [from, donor] = [...templates][0] ?? [];
+  for (const region of REGION_SUFFIXES) {
+    if (
+      templates.has(region) ||
+      !wantedIdsByRegion[region.toUpperCase()].length
+    )
       continue;
-    }
-    templates.set(region, { base, numbers });
+    if (!donor || !out.sources?.[`overlay-${region}`])
+      throw new Error(
+        `style is missing the ${STYLE_TEMPLATE_SPECIES}_${region} forecast template layers`
+      );
+    const move = (layer, id) => ({
+      ...replaceDeep(
+        replaceDeep(layer, `overlay-${from}`, `overlay-${region}`),
+        `${from}_forecast`,
+        `${region}_forecast`
+      ),
+      id,
+    });
+    templates.set(region, {
+      base: move(donor.base, `${STYLE_TEMPLATE_SPECIES}_${region}`),
+      numbers: move(
+        donor.numbers,
+        `${STYLE_TEMPLATE_SPECIES}_${region}_numbers`
+      ),
+    });
   }
   if (!templates.size) return out;
 
@@ -908,7 +927,7 @@ function reconcileStyleLayers(style, wantedIdsByRegion) {
   const clone = (template, id) =>
     replaceDeep(template, `${STYLE_TEMPLATE_SPECIES}_`, `${id}_`);
   const orderedIds = [
-    ...new Set(MAP_REGIONS.flatMap(region => wantedIdsByRegion[region])),
+    ...new Set(REGIONS.flatMap(region => wantedIdsByRegion[region])),
   ];
   for (const id of orderedIds) {
     for (const region of REGION_SUFFIXES) {

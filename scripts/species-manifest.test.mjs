@@ -8,7 +8,6 @@ import {
   checkRepository,
   generate,
   LOCALES,
-  MAP_REGIONS,
   REGIONS,
   scaffold,
   SCORING_FILE,
@@ -135,7 +134,7 @@ function fixtureRoot() {
     );
   }
   fs.mkdirSync(path.join(root, 'public'), { recursive: true });
-  const layers = MAP_REGIONS.flatMap(region => {
+  const layers = REGIONS.flatMap(region => {
     const code = region.toLowerCase();
     return [
       {
@@ -359,7 +358,7 @@ test('forecast generation emits only available regional parameters and map layer
       lastFill < firstSymbol,
       'all fills must remain below symbol layers'
     );
-    for (const region of MAP_REGIONS.map(value => value.toLowerCase())) {
+    for (const region of REGIONS.map(value => value.toLowerCase())) {
       const expected = region !== 'usw';
       assert.equal(ids.has(`new-species_${region}`), expected);
       assert.equal(ids.has(`new-species_${region}_numbers`), expected);
@@ -421,7 +420,7 @@ test('a composite takes its members land cover and is drawn like a species', asy
     fs.readFileSync(path.join(root, 'public/funges_style.json'), 'utf8')
   );
   const ids = new Set(style.layers.map(layer => layer.id));
-  for (const region of MAP_REGIONS.map(value => value.toLowerCase()))
+  for (const region of REGIONS.map(value => value.toLowerCase()))
     assert.ok(
       ids.has(`all-kinds_${region}`) && ids.has(`all-kinds_${region}_numbers`)
     );
@@ -612,14 +611,44 @@ test('repository check flags a style layer with no manifest behind it', async ()
   );
 });
 
-test('rejects a style template species that is not available everywhere', () => {
+test('rejects a style template species that is not available anywhere', () => {
   const errors = validateManifests(
-    [entry(manifest({ forecast: forecast(['NE', 'SE']) }))],
+    [entry(manifest({ forecast: forecast([]) }))],
     process.cwd(),
     { checkImages: false }
   ).join('\n');
 
   assert.match(errors, /chant is the declared style template/);
+});
+
+test('a region the template species is not on gets its layers from another region, on its own source', async () => {
+  const root = fixtureRoot();
+  addForecastSpecies(root);
+  const chantFile = path.join(root, 'content/species/chant/species.json');
+  const chant = JSON.parse(fs.readFileSync(chantFile, 'utf8'));
+  chant.forecast.regions.ANZ = { available: false };
+  fs.writeFileSync(chantFile, JSON.stringify(chant));
+  for (const name of fs.readdirSync(path.join(root, 'public'))) {
+    const file = path.join(root, 'public', name);
+    const style = JSON.parse(fs.readFileSync(file, 'utf8'));
+    style.layers = style.layers.filter(
+      layer => !layer.id.startsWith('chant_anz')
+    );
+    style.sources['overlay-anz'] = {
+      type: 'vector',
+      url: 'pmtiles://example.test/anz.pmtiles',
+    };
+    fs.writeFileSync(file, JSON.stringify(style));
+  }
+  await generate(root);
+  const style = JSON.parse(
+    fs.readFileSync(path.join(root, 'public/funges_style.json'), 'utf8')
+  );
+  const layers = new Map(style.layers.map(layer => [layer.id, layer]));
+  assert.equal(layers.get('new-species_anz')?.source, 'overlay-anz');
+  assert.equal(layers.get('new-species_anz_numbers')?.source, 'overlay-anz');
+  assert.ok(!layers.has('chant_anz'));
+  assert.deepEqual(await checkRepository(root), []);
 });
 
 test('generation keeps non-species layers that share the overlay sources', async () => {

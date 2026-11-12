@@ -16,6 +16,8 @@ describe('forecastRegionForCoordinate', () => {
     [[12.5, 41.9], 'SE'],
     [[-74, 40.7], 'USE'],
     [[-122.4, 37.8], 'USW'],
+    [[151.2, -33.9], 'ANZ'], // Sydney
+    [[174.8, -41.3], 'ANZ'], // Wellington
   ] as const)('maps %s to %s', (coordinate, expected) => {
     expect(forecastRegionForCoordinate([...coordinate])).toBe(expected);
   });
@@ -153,6 +155,7 @@ describe('resolveDataNerdRegion', () => {
     ['mushroom_use', 'USE'],
     ['mushroom_usw', 'USW'],
     ['walnut_se_numbers', 'SE'],
+    ['shaggy_mane_anz', null], // no Data page for ANZ yet
   ])('resolves %s -> %s', (id, expected) => {
     expect(resolveDataNerdRegion(id)).toBe(expected);
   });

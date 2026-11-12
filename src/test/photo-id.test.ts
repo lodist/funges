@@ -454,8 +454,11 @@ describe('catalog is reachable from the model vocabulary', () => {
   it('has a label for every catalog species except the documented exclusion', () => {
     const vocabulary = new Set(BIOCLIP_LABELS.map(l => l.scientificName));
     // A composite (Boletus: every porcini-type bolete) is no taxon a photo shows;
-    // a photo resolves to one of its members, each with its own label.
-    const taxa = SPECIES_DATA.filter(s => !s.compositeOf);
+    // a photo resolves to one of its members, each with its own label. A species
+    // waiting for its look-alike review (photoId false) joins the vocabulary then.
+    const taxa = SPECIES_DATA.filter(
+      s => !s.compositeOf && s.photoId !== false
+    );
     const unreachable = [...new Set(taxa.map(s => s.scientificName))]
       .map(name => GENUS_FORMS[name] ?? name)
       .filter(name => !vocabulary.has(name) && !KNOWN_ABSENT.has(name));
