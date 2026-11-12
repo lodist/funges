@@ -10,7 +10,9 @@
  * day the calendar's harvest starts and picked until its end.
  *
  * Days count as the builder's: a 365-day year (29 February is the 28th), from
- * 1 January of the year the crop went in, over four years.
+ * 1 January of the year the crop went in, over four years. South of the
+ * equator the year starts on 1 July, as the builder's does there: its months
+ * and days then fall where the north's rules expect them (growthPlace).
  */
 import type { PlaceYear } from '@/lib/huerta-wire';
 
@@ -52,6 +54,9 @@ export interface GrowthPlace {
   firstm3: number;
   warmEnd: number;
   low: number | null;
+  /** South of the equator: the months, frost days and latitude are on the
+   *  year from 1 July (growthPlace), and so is the planting day. */
+  south?: boolean;
 }
 
 /** The place's daily mean air from a day: observed, then forecast. */
@@ -80,6 +85,7 @@ const BOLT = 21; // days a crop that stood the winter is picked after it grows a
 const GARLIC_GDD = 1400; // degree days above 0 C from the spring equinox to garlic's harvest
 const EQUINOX = 78; // day index of 20 March
 const AUTUMN = 182; // day index + 1 of 1 July
+const HALF_YEAR = 184; // days from 1 July to 1 January: the south's year starts then
 const ONIONS = new Set(['onion', 'onion_sets']);
 const MONTH_START = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
 const MONTH_OF = Array.from({ length: YEAR }, (_, d) => {
@@ -166,8 +172,9 @@ export function growthPlace(
 ): GrowthPlace | null {
   if (!year?.temps || !year.sun || !year.climate) return null;
   const c = year.climate;
-  return {
-    lat: year.lat ?? 45,
+  const lat = year.lat ?? 45;
+  const north: GrowthPlace = {
+    lat,
     temps: year.temps,
     sun: year.sun,
     light: c.light ?? 0,
@@ -175,6 +182,28 @@ export function growthPlace(
     firstm3: c.hard?.[0] ?? 0,
     warmEnd: c.warm10?.[1] ?? 0,
     low: c.low,
+  };
+  if (lat >= 0) return north;
+  // The south on the year from 1 July: its months half a year on, the mirrored
+  // latitude's days and its days of the year from 1 July (0: none; warm nights
+  // all year stay all year).
+  const turn = (months: number[]) => [
+    ...months.slice(6),
+    ...months.slice(0, 6),
+  ];
+  const fromJuly = (day: number) =>
+    day > 0 ? mod(day - 1 + HALF_YEAR, YEAR) + 1 : day;
+  const allYear = c.warm10?.[0] === 1 && c.warm10[1] === YEAR;
+  return {
+    ...north,
+    lat: -lat,
+    temps: turn(year.temps),
+    sun: turn(year.sun),
+    light: fromJuly(north.light),
+    first0: fromJuly(north.first0),
+    firstm3: fromJuly(north.firstm3),
+    warmEnd: allYear ? north.warmEnd : fromJuly(north.warmEnd),
+    south: true,
   };
 }
 
@@ -199,7 +228,9 @@ export function plantedGrowth(
   shift = 0,
   bed?: BedLight
 ): Growth {
-  const s = dayIndex(planted);
+  // In the south the planting day's index is on the year from 1 July; every
+  // other day counts from it, so the dates come out as the calendar's.
+  const s = dayIndex(place.south ? addDays(planted, HALF_YEAR) : planted);
   const dateAt = (i: number) => addDays(planted, i - s);
   const temps = place.temps.map((t, m) => (m < 6 ? t + shift : t));
   const normal = daily(temps);
