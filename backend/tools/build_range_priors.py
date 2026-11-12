@@ -48,7 +48,7 @@ KM_PER_DEG = 111.32
 MACROS = {
     "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5), "env": "EU_RANGE_PRIORS", "regions": ("NE", "SE")},
     "US": {"lat": (24.0, 49.5), "lon": (-125.5, -67.0), "env": "US_RANGE_PRIORS", "regions": ("USE", "USW")},
-    "ANZ": {"lat": (-48.0, -16.0), "lon": (114.0, 179.0), "env": "ANZ_RANGE_PRIORS", "regions": ("ANZ",)},
+    "ANZ": {"lat": (-48.0, -10.0), "lon": (114.0, 179.0), "env": "ANZ_RANGE_PRIORS", "regions": ("ANZ",)},
 }
 
 SIGMA_KM = 50.0  # smoothing radius: wide enough that one empty cell is not evidence

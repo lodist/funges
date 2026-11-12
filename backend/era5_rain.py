@@ -42,7 +42,7 @@ GRID = 0.25                     # ERA5's grid step in degrees, as Copernicus del
 # third, its own: Europe's box stretched to New Zealand would be most of the world.
 US_BOX = ((25.0, 49.5), (-124.75, -67.0))
 EU_BOX = ((27.5, 70.75), (-24.5, 44.75))
-ANZ_BOX = ((-47.5, -16.0), (114.5, 178.75))
+ANZ_BOX = ((-47.5, -12.25), (114.5, 178.75))
 EMPTY = pd.DataFrame(columns=["Latitude", "Longitude", "Date", "TotalPrecipitation_mm",
                               "Rain Hours", "Rain Measured"])
 
