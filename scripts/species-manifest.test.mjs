@@ -721,3 +721,26 @@ test('a psychoactive species is flagged in the catalog and never routed to dishe
   );
   assert.match(catalog, /psychoactive: true/);
 });
+
+test('a climate gate maps known normals to two different values', () => {
+  const check = gate =>
+    validateManifests(
+      [entry(manifest({ forecast: forecast() }))],
+      process.cwd(),
+      {
+        checkImages: false,
+        scoring: {
+          chant: Object.fromEntries(
+            REGIONS.map(region => [region, scoring({ climate_gate: gate })])
+          ),
+        },
+      }
+    ).join(' ');
+  assert.doesNotMatch(
+    check({ summer_tmean: [20.7, 18.7], autumn_rain: [1.03, 1.71] }),
+    /climate_gate/
+  );
+  assert.match(check({ summer_tmean: [18.7, 18.7] }), /climate_gate/);
+  assert.match(check({ july_rain: [1, 2] }), /climate_gate/);
+  assert.match(check({}), /climate_gate/);
+});
