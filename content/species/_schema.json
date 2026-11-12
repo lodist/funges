@@ -41,6 +41,10 @@
         "emoji": { "type": "string", "minLength": 1 },
         "season": { "type": "string", "minLength": 1 },
         "habitat": { "type": "string", "minLength": 1 },
+        "psychoactive": {
+          "const": true,
+          "description": "Not food: a psychoactive species. Badge, a Medicine section in place of Cooking, no recipes."
+        },
         "image": {
           "type": "object",
           "additionalProperties": false,

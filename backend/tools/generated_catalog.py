@@ -223,6 +223,14 @@ CATALOG = [
   [
     "Imleria badia",
     "species"
+  ],
+  [
+    "Psilocybe semilanceata",
+    "species"
+  ],
+  [
+    "Psilocybe cubensis",
+    "species"
   ]
 ]
 CATALOG_NAMES = {name for name, _rank in CATALOG}

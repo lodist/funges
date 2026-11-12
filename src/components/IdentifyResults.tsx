@@ -210,6 +210,14 @@ function CandidateRow({
             {t('results.cautionLabel')}
           </Badge>
         )}
+        {/* Not food: a catalog match must never read as an edible one. */}
+        {candidate.kind === 'catalog' &&
+          candidate.catalogSpecies.some(s => s.psychoactive) && (
+            <Badge variant='warning'>
+              <AlertTriangle />
+              {tSpecies('sheet.psychoactive')}
+            </Badge>
+          )}
 
         <h3 className='text-base font-semibold leading-snug text-foreground'>
           {candidate.kind === 'catalog'

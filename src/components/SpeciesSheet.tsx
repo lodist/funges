@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScorecardLine } from '@/components/ForecastScorecard';
 import { ConditionsMeter } from '@/components/SpeciesSignals';
@@ -150,6 +151,13 @@ export function SpeciesBody({
             </Latin>
           </DialogHeader>
 
+          {species.psychoactive ? (
+            <Badge variant='warning' className='whitespace-normal'>
+              <AlertTriangle />
+              {t('sheet.psychoactive')}
+            </Badge>
+          ) : null}
+
           {scopeLabel ? (
             <div className='flex flex-col gap-2'>
               <p className='type-micro text-muted-foreground'>
@@ -273,7 +281,10 @@ export function SpeciesBody({
       ) : null}
 
       <GuidePart title={t('guide.picking')} text={guide('picking')} />
-      <GuidePart title={t('guide.kitchen')} text={guide('kitchen')} />
+      <GuidePart
+        title={t(species.psychoactive ? 'guide.medicine' : 'guide.kitchen')}
+        text={guide('kitchen')}
+      />
       <GuidePart title={t('guide.keeps')} text={guide('keeps')} />
 
       {dishes.length > 0 ? (

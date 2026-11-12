@@ -122,6 +122,8 @@ const LABELS_0: BioclipLabel[] = [
   { scientificName: 'Pleurotus ostreatus', kind: 'catalog' },
   { scientificName: 'Polygonatum multiflorum', kind: 'toxic' },
   { scientificName: 'Prunus spinosa', kind: 'catalog' },
+  { scientificName: 'Psilocybe cubensis', kind: 'catalog' },
+  { scientificName: 'Psilocybe semilanceata', kind: 'catalog' },
   { scientificName: 'Pteridium aquilinum', kind: 'toxic' },
   { scientificName: 'Rhamnus cathartica', kind: 'toxic' },
   { scientificName: 'Rhododendron ponticum', kind: 'toxic' },
@@ -1011,11 +1013,11 @@ const LABELS_0: BioclipLabel[] = [
   { scientificName: 'Bromus japonicus', kind: 'other' },
   { scientificName: 'Bromus rubens', kind: 'other' },
   { scientificName: 'Bromus sterilis', kind: 'other' },
-  { scientificName: 'Bromus tectorum', kind: 'other' },
-  { scientificName: 'Broussonetia papyrifera', kind: 'other' },
 ];
 
 const LABELS_1: BioclipLabel[] = [
+  { scientificName: 'Bromus tectorum', kind: 'other' },
+  { scientificName: 'Broussonetia papyrifera', kind: 'other' },
   { scientificName: 'Brunnichia ovata', kind: 'other' },
   { scientificName: 'Bryoandersonia illecebra', kind: 'other' },
   { scientificName: 'Bryoria furcellata', kind: 'other' },
@@ -2014,11 +2016,11 @@ const LABELS_1: BioclipLabel[] = [
   { scientificName: 'Cyperus lupulinus', kind: 'other' },
   { scientificName: 'Cyperus odoratus', kind: 'other' },
   { scientificName: 'Cyperus squarrosus', kind: 'other' },
-  { scientificName: 'Cyperus strigosus', kind: 'other' },
-  { scientificName: 'Cypripedium acaule', kind: 'other' },
 ];
 
 const LABELS_2: BioclipLabel[] = [
+  { scientificName: 'Cyperus strigosus', kind: 'other' },
+  { scientificName: 'Cypripedium acaule', kind: 'other' },
   { scientificName: 'Cypripedium calceolus', kind: 'other' },
   { scientificName: 'Cypripedium montanum', kind: 'other' },
   { scientificName: 'Cypripedium parviflorum', kind: 'other' },
@@ -3017,11 +3019,11 @@ const LABELS_2: BioclipLabel[] = [
   { scientificName: 'Gyroporus purpurinus', kind: 'other' },
   { scientificName: 'Habenaria floribunda', kind: 'other' },
   { scientificName: 'Hackelia virginiana', kind: 'other' },
-  { scientificName: 'Halogeton glomeratus', kind: 'other' },
-  { scientificName: 'Halosaccion glandiforme', kind: 'other' },
 ];
 
 const LABELS_3: BioclipLabel[] = [
+  { scientificName: 'Halogeton glomeratus', kind: 'other' },
+  { scientificName: 'Halosaccion glandiforme', kind: 'other' },
   { scientificName: 'Hamamelis virginiana', kind: 'other' },
   { scientificName: 'Hamatocactus hamatacanthus', kind: 'other' },
   { scientificName: 'Hamatocactus setispinus', kind: 'other' },
@@ -4020,11 +4022,11 @@ const LABELS_3: BioclipLabel[] = [
   { scientificName: 'Lysimachia clethroides', kind: 'caution' },
   { scientificName: 'Lysimachia europaea', kind: 'caution' },
   { scientificName: 'Lysimachia foemina', kind: 'caution' },
-  { scientificName: 'Lysimachia latifolia', kind: 'caution' },
-  { scientificName: 'Lysimachia loeflingii', kind: 'caution' },
 ];
 
 const LABELS_4: BioclipLabel[] = [
+  { scientificName: 'Lysimachia latifolia', kind: 'caution' },
+  { scientificName: 'Lysimachia loeflingii', kind: 'caution' },
   { scientificName: 'Lysimachia maritima', kind: 'caution' },
   { scientificName: 'Lysimachia monelli', kind: 'caution' },
   { scientificName: 'Lysimachia nemorum', kind: 'caution' },
@@ -4189,6 +4191,7 @@ const LABELS_4: BioclipLabel[] = [
   { scientificName: 'Meripilus crocatus', kind: 'other' },
   { scientificName: 'Meripilus giganteus', kind: 'other' },
   { scientificName: 'Meripilus sumstinei', kind: 'other' },
+  { scientificName: 'Merismodes fasciculata', kind: 'other' },
   { scientificName: 'Mertensia ciliata', kind: 'other' },
   { scientificName: 'Mertensia lanceolata', kind: 'other' },
   { scientificName: 'Mertensia paniculata', kind: 'other' },
@@ -5022,12 +5025,12 @@ const LABELS_4: BioclipLabel[] = [
   { scientificName: 'Physcia adscendens', kind: 'other' },
   { scientificName: 'Physcia aipolia', kind: 'other' },
   { scientificName: 'Physcia americana', kind: 'other' },
-  { scientificName: 'Physcia caesia', kind: 'other' },
-  { scientificName: 'Physcia clementei', kind: 'other' },
-  { scientificName: 'Physcia dubia', kind: 'other' },
 ];
 
 const LABELS_5: BioclipLabel[] = [
+  { scientificName: 'Physcia caesia', kind: 'other' },
+  { scientificName: 'Physcia clementei', kind: 'other' },
+  { scientificName: 'Physcia dubia', kind: 'other' },
   { scientificName: 'Physcia leptalea', kind: 'other' },
   { scientificName: 'Physcia millegrana', kind: 'other' },
   { scientificName: 'Physcia pumilior', kind: 'other' },
@@ -5402,6 +5405,7 @@ const LABELS_5: BioclipLabel[] = [
   { scientificName: 'Pseudorhizina californica', kind: 'other' },
   { scientificName: 'Pseudoscleropodium purum', kind: 'other' },
   { scientificName: 'Pseudosolorina saccata', kind: 'other' },
+  { scientificName: 'Pseudosperma friabile', kind: 'caution' },
   { scientificName: 'Pseudosperma rimosum', kind: 'caution' },
   { scientificName: 'Pseudosperma sororium', kind: 'caution' },
   { scientificName: 'Pseudotsuga macrocarpa', kind: 'other' },
@@ -5411,11 +5415,9 @@ const LABELS_5: BioclipLabel[] = [
   { scientificName: 'Psilocybe azurescens', kind: 'other' },
   { scientificName: 'Psilocybe caerulescens', kind: 'other' },
   { scientificName: 'Psilocybe caerulipes', kind: 'other' },
-  { scientificName: 'Psilocybe cubensis', kind: 'other' },
   { scientificName: 'Psilocybe cyanescens', kind: 'other' },
   { scientificName: 'Psilocybe ovoideocystidiata', kind: 'other' },
   { scientificName: 'Psilocybe pelliculosa', kind: 'other' },
-  { scientificName: 'Psilocybe semilanceata', kind: 'other' },
   { scientificName: 'Psilocybe serbica', kind: 'other' },
   { scientificName: 'Psilolechia lucida', kind: 'other' },
   { scientificName: 'Psilostrophe cooperi', kind: 'other' },
@@ -6026,11 +6028,11 @@ const LABELS_5: BioclipLabel[] = [
   { scientificName: 'Scirpus microcarpus', kind: 'other' },
   { scientificName: 'Scirpus pendulus', kind: 'other' },
   { scientificName: 'Scirpus sylvaticus', kind: 'other' },
-  { scientificName: 'Scleranthus annuus', kind: 'other' },
-  { scientificName: 'Scleranthus perennis', kind: 'other' },
 ];
 
 const LABELS_6: BioclipLabel[] = [
+  { scientificName: 'Scleranthus annuus', kind: 'other' },
+  { scientificName: 'Scleranthus perennis', kind: 'other' },
   { scientificName: 'Sclerocactus parviflorus', kind: 'other' },
   { scientificName: 'Scoliopus bigelovii', kind: 'other' },
   { scientificName: 'Scolymus hispanicus', kind: 'other' },
@@ -7029,11 +7031,11 @@ const LABELS_6: BioclipLabel[] = [
   { scientificName: 'Viola lanceolata', kind: 'other' },
   { scientificName: 'Viola lobata', kind: 'other' },
   { scientificName: 'Viola lutea', kind: 'other' },
-  { scientificName: 'Viola mirabilis', kind: 'other' },
-  { scientificName: 'Viola missouriensis', kind: 'other' },
 ];
 
 const LABELS_7: BioclipLabel[] = [
+  { scientificName: 'Viola mirabilis', kind: 'other' },
+  { scientificName: 'Viola missouriensis', kind: 'other' },
   { scientificName: 'Viola nuttallii', kind: 'other' },
   { scientificName: 'Viola ocellata', kind: 'other' },
   { scientificName: 'Viola palmata', kind: 'other' },

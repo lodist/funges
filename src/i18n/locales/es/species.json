@@ -885,6 +885,32 @@
         "source": "Identificación y hábitat: First Nature y MushroomExpert. Temporada: registros de GBIF. Cesio: Oficina Federal alemana de Protección Radiológica (BfS) y LGL de Baviera."
       }
     },
+    "liberty_cap": {
+      "name": "Mongui",
+      "description": "Una seta pequeña y parda de los prados, con el sombrero en punta. Es la seta mágica más común de Europa. Contiene psilocibina, que se está probando en ensayos clínicos como medicamento contra la depresión.",
+      "howTo": "Búscalo de septiembre a noviembre en prados de pasto que nadie abona, unos días después de llover. Recogerlo está prohibido en la mayoría de los países. En la misma hierba crecen parecidos mortales",
+      "guide": {
+        "identify": "El sombrero es pequeño, de 5 a 20 mm. Tiene forma de cono puntiagudo, casi siempre con un pequeño pezón en lo alto. Mojado es pardo y algo viscoso. Al secarse se aclara hasta el color crema. Las láminas son gris oliva y se vuelven negro púrpura cuando maduran las esporas. El pie es fino, color crema y casi siempre ondulado, de 4 a 10 cm. Su base a veces es azulada. La esporada es pardo púrpura muy oscura. En la misma hierba crecen otras setas pequeñas y pardas. Pholiotina rugosa es mortal: tiene un anillo en el pie y esporas pardo óxido. Las Galerina mortales también tienen esporas pardo óxido. Solo un experto puede distinguirlas con seguridad.",
+        "habitat": "Búscalo en prados donde pastan ovejas o vacas, en suelo pobre y ácido que nadie abona. Piensa en pastos de montaña, bordes de brezales, prados viejos, parques y campos de deporte. Vive de las raíces muertas de la hierba y no crece sobre el estiércol. Es común en Gran Bretaña, Irlanda, Escandinavia y los Alpes. En España sale sobre todo en los pastos de montaña del norte. En EE. UU. crece en la costa del Pacífico, del norte de California a Washington.",
+        "season": "Sale de finales de agosto a diciembre, sobre todo en octubre. Búscalo unos días después de llover, cuando las noches refrescan. En la costa del Pacífico de EE. UU. sale un mes más tarde, sobre todo en noviembre.",
+        "picking": "En la mayoría de los países está prohibido recogerlo, tenerlo o venderlo, fresco o seco. Así es en el Reino Unido, Irlanda, Suiza y los Países Bajos. En España, llevarlo en un lugar público se castiga con multa. Si quieres encontrarlo, fotografíalo donde crece: el sombrero desde arriba, las láminas y la base del pie.",
+        "kitchen": "No es un alimento. La psilocibina, la sustancia que contiene, se está estudiando como medicamento contra la depresión y las adicciones. En esos ensayos las personas reciben una dosis medida, con terapeutas presentes. Desde 2023, en Australia los psiquiatras autorizados pueden recetarla para la depresión que no ha mejorado con otros tratamientos. Comido fuera de un ensayo, puede causar vómitos, dolor de barriga y ataques de pánico. Algunas personas acaban en el hospital. Las setas silvestres varían mucho de potencia. Un parecido puede matar. Nunca tomes una seta silvestre como medicamento.",
+        "source": "Identificación, hábitat y efectos: First Nature. Medicina: TGA (Australia) y ClinicalTrials.gov. Temporada: registros de GBIF."
+      }
+    },
+    "golden_cap": {
+      "name": "Hongo de San Isidro",
+      "description": "Una seta de color pardo dorado de los pastos, con el pie blanco y un anillo. Es el hongo mágico más conocido. Contiene psilocibina, que se está probando en ensayos clínicos como medicamento contra la depresión.",
+      "howTo": "Búscalo de mayo a octubre sobre boñigas de vaca en los pastos cálidos y húmedos de la costa del golfo de EE. UU., unos días después de una lluvia fuerte. Recogerlo está prohibido en la mayoría de los estados de EE. UU. En los mismos pastos crecen parecidos mortales",
+      "guide": {
+        "identify": "El sombrero mide de 2 a 8 cm. Al principio es una campana redondeada y luego se abre plano, a menudo con un bulto bajo en el centro. Es pardo dorado o color caramelo, más claro en el borde. La superficie es lisa y algo pegajosa. Las láminas son grises al principio y luego negro púrpura, con el borde blanco. El pie es blanco y hueco, de 4 a 15 cm. Arriba tiene un anillo blanco que las esporas al caer oscurecen. Todas sus partes se vuelven azules al tocarlas. La esporada es negro púrpura. En los mismos pastos crecen setas peligrosas. Pholiotina rugosa y las Galerina son pequeñas, mortales y tienen esporas pardo óxido. Chlorophyllum molybdites es una seta grande y blanca con esporas verdes. Provoca vómitos fuertes. Panaeolus semiovatus se le parece, pero nunca se vuelve azul. Solo un experto puede distinguirlas con seguridad.",
+        "habitat": "Búscalo sobre boñigas de vaca y en la tierra rica del pasto de alrededor, a veces sobre estiércol de caballo. Necesita calor y humedad. En EE. UU. crece en los estados de la costa del golfo, de Florida a Texas. Florida tiene la mayoría de los registros.",
+        "season": "Sale de mayo a octubre, unos días después de una lluvia cálida y abundante. En Florida puede aparecer cualquier mes si hace templado y húmedo.",
+        "picking": "En la mayoría de los estados de EE. UU. está prohibido recogerlo, tenerlo o venderlo, fresco o seco. Además, casi todos los pastos son terreno privado, así que pide permiso al dueño antes de entrar. Mantente lejos del ganado. Si quieres encontrarlo, fotografíalo donde crece: el sombrero desde arriba, las láminas y la base del pie.",
+        "kitchen": "No es un alimento. La psilocibina, la sustancia que contiene, se está estudiando como medicamento contra la depresión y las adicciones. En esos ensayos las personas reciben una dosis medida, con terapeutas presentes. Desde 2023, en Australia los psiquiatras autorizados pueden recetarla para la depresión que no ha mejorado con otros tratamientos. Comido fuera de un ensayo, puede causar vómitos, dolor de barriga y ataques de pánico. Algunas personas acaban en el hospital. Las setas silvestres varían mucho de potencia. Un parecido puede matar. Nunca tomes una seta silvestre como medicamento.",
+        "source": "Identificación y parecidos: Stamets (1996), Singer y Smith (1958) y Allen y Merlin (1991), citados por Wikipedia. Efectos: First Nature. Medicina: TGA (Australia) y ClinicalTrials.gov. Temporada: registros de GBIF."
+      }
+    },
     "three_cornered_garlic": {
       "name": "Ajo triquetro",
       "description": "Una cebolla silvestre de campanillas blancas rayadas de verde y tallo de tres aristas. Huele a ajo y cubre los suelos húmedos y sombríos del sur de Australia y de Nueva Zelanda.",
@@ -942,6 +968,7 @@
     "notToday": "Hoy no está de temporada",
     "whereItGrows": "Dónde crece",
     "lookalikes": "Parecidos tóxicos",
+    "psychoactive": "Psicoactivo · no comestible",
     "tellApart": "Cómo distinguirlas",
     "testedLabel": "Comprobado · temporada {{year}}",
     "tested": "En el mismo lugar, la previsión valoró mejor los días de su temporada que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>.",
@@ -953,12 +980,14 @@
     "season": "Cuándo",
     "picking": "Recolección",
     "kitchen": "Preparación",
+    "medicine": "Medicina",
     "keeps": "Conservación",
     "source": "Fuentes"
   },
   "page": {
     "title": "{{name}} ({{latin}}): temporada, hábitat y especies parecidas",
     "description": "Cómo reconocer {{name}} ({{latin}}): dónde y cuándo crece, especies parecidas y consejos de cocina.",
+    "descriptionPsychoactive": "Cómo reconocer {{name}} ({{latin}}), una seta mágica: hábitat, temporada, parecidos mortales y la investigación sobre la psilocibina.",
     "allSpecies": "Todas las especies"
   }
 }

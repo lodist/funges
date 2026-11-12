@@ -885,6 +885,32 @@
         "source": "Bestimmung und Standort: First Nature und MushroomExpert. Saison: GBIF-Funddaten. Cäsium: Bundesamt für Strahlenschutz (BfS) und Bayerisches Landesamt für Gesundheit und Lebensmittelsicherheit (LGL)."
       }
     },
+    "liberty_cap": {
+      "name": "Spitzkegeliger Kahlkopf",
+      "description": "Ein kleiner brauner Pilz von Wiesen und Weiden, mit spitzem Hut. Er ist der häufigste Magic Mushroom Europas, auch Zauberpilz genannt. Er enthält Psilocybin, das in klinischen Studien als Medikament gegen Depressionen getestet wird.",
+      "howTo": "Such ihn von September bis November auf beweideten Wiesen, die niemand düngt, ein paar Tage nach Regen. In den meisten Ländern ist es verboten, ihn zu besitzen. Tödlich giftige Doppelgänger wachsen im selben Gras",
+      "guide": {
+        "identify": "Der Hut ist klein, 5 bis 20 mm breit. Er ist spitz kegelförmig und hat oben meist ein kleines Spitzchen. Nass ist er braun und etwas schmierig. Beim Trocknen wird er blass cremefarben. Die Lamellen sind olivgrau und werden purpurschwarz, wenn die Sporen reifen. Der Stiel ist dünn, cremefarben und meist wellig, 4 bis 10 cm lang. Am Grund ist er manchmal blau. Das Sporenpulver ist sehr dunkel purpurbraun. Im selben Gras wachsen andere kleine braune Pilze. Pholiotina rugosa ist tödlich giftig. Dieser Pilz hat einen Ring am Stiel und rostbraune Sporen. Auch die tödlich giftigen Häublinge (Galerina) haben rostbraune Sporen. Sicher auseinanderhalten kann sie nur, wer sich wirklich auskennt.",
+        "habitat": "Such auf Wiesen und Weiden, wo Schafe oder Kühe grasen, auf magerem, saurem Boden, den niemand düngt. Also auf Bergweiden, an Moorrändern, auf alten Wiesen, in Parks und auf Sportplätzen. Er lebt von abgestorbenen Graswurzeln und wächst nicht auf Kuhfladen. Häufig ist er in Grossbritannien, Irland, Skandinavien und in den Alpen. In den USA wächst er an der Pazifikküste, von Nordkalifornien bis Washington.",
+        "season": "Er kommt von Ende August bis Dezember, am meisten im Oktober. Such ein paar Tage nach Regen, sobald die Nächte kühl werden. An der US-Pazifikküste kommt er einen Monat später, am meisten im November.",
+        "picking": "In den meisten Ländern ist es verboten, ihn zu besitzen oder weiterzugeben, frisch oder getrocknet. Das gilt auch in der Schweiz und in Deutschland. Wenn du ihn finden willst, fotografiere ihn dort, wo er wächst: den Hut von oben, die Lamellen und den Stielgrund.",
+        "kitchen": "Er ist kein Speisepilz. Psilocybin, der Wirkstoff darin, wird als Medikament gegen Depressionen und Sucht erforscht. In diesen Studien bekommen die Leute eine genau abgemessene Dosis. Fachleute begleiten sie dabei. Seit 2023 dürfen zugelassene Psychiater in Australien es bei Depressionen verschreiben, gegen die nichts anderes geholfen hat. Wer ihn ausserhalb einer Studie isst, kann erbrechen und Bauchschmerzen oder Panikattacken bekommen. Manche landen im Krankenhaus. Wilde Pilze sind sehr unterschiedlich stark. Ein Doppelgänger kann tödlich sein. Nimm nie einen wilden Pilz als Medikament.",
+        "source": "Bestimmung, Standort und Wirkung: First Nature. Medizin: australische Arzneimittelbehörde TGA und ClinicalTrials.gov. Saison: GBIF-Funddaten."
+      }
+    },
+    "golden_cap": {
+      "name": "Kubanischer Kahlkopf",
+      "description": "Ein goldbrauner Pilz von Kuhweiden, mit weissem Stiel und Ring. Er ist der bekannteste Magic Mushroom, auch Zauberpilz genannt. Er enthält Psilocybin, das in klinischen Studien als Medikament gegen Depressionen getestet wird.",
+      "howTo": "Such ihn von Mai bis Oktober auf Kuhfladen in warmen, feuchten Weiden an der US-Golfküste, ein paar Tage nach starkem Regen. In den meisten US-Bundesstaaten ist es verboten, ihn zu besitzen. Tödlich giftige Doppelgänger wachsen auf denselben Weiden",
+      "guide": {
+        "identify": "Der Hut ist 2 bis 8 cm breit. Zuerst ist er eine runde Glocke, dann öffnet er sich flach, oft mit einem flachen Buckel in der Mitte. Er ist gold- bis karamellbraun und zum Rand hin heller. Die Oberfläche ist glatt und etwas klebrig. Die Lamellen sind zuerst grau und werden purpurschwarz, mit weissen Schneiden. Der Stiel ist weiss und hohl, 4 bis 15 cm lang. Oben sitzt ein weisser Ring, den die herabfallenden Sporen dunkel färben. Jeder Teil läuft blau an, wenn du ihn anfasst. Das Sporenpulver ist purpurschwarz. Auf denselben Weiden wachsen gefährliche Pilze. Pholiotina rugosa und die Häublinge (Galerina) sind klein, tödlich giftig und haben rostbraunes Sporenpulver. Chlorophyllum molybdites ist ein grosser weisser Pilz mit grünem Sporenpulver. Er verursacht heftiges Erbrechen. Panaeolus semiovatus sieht ähnlich aus, läuft aber nie blau an. Sicher auseinanderhalten kann sie nur, wer sich wirklich auskennt.",
+        "habitat": "Such auf Kuhfladen und auf der fetten Weideerde darum herum, manchmal auch auf Pferdemist. Er braucht Wärme und Feuchtigkeit. In den USA wächst er in den Staaten an der Golfküste, von Florida bis Texas. Aus Florida kommen die meisten Funde.",
+        "season": "Er kommt von Mai bis Oktober, ein paar Tage nach warmem, starkem Regen. In Florida kann er in jedem Monat auftauchen, wenn es mild und nass ist.",
+        "picking": "In den meisten US-Bundesstaaten ist es verboten, ihn zu sammeln, zu besitzen oder zu verkaufen, frisch oder getrocknet. Die meisten Weiden sind ausserdem Privatland. Frag also den Besitzer, bevor du hineingehst. Halte Abstand zu den Rindern. Wenn du ihn finden willst, fotografiere ihn dort, wo er wächst: den Hut von oben, die Lamellen und den Stielgrund.",
+        "kitchen": "Er ist kein Speisepilz. Psilocybin, der Wirkstoff darin, wird als Medikament gegen Depressionen und Sucht erforscht. In diesen Studien bekommen die Leute eine genau abgemessene Dosis. Fachleute begleiten sie dabei. Seit 2023 dürfen zugelassene Psychiater in Australien es bei Depressionen verschreiben, gegen die nichts anderes geholfen hat. Wer ihn ausserhalb einer Studie isst, kann erbrechen und Bauchschmerzen oder Panikattacken bekommen. Manche landen im Krankenhaus. Wilde Pilze sind sehr unterschiedlich stark. Ein Doppelgänger kann tödlich sein. Nimm nie einen wilden Pilz als Medikament.",
+        "source": "Bestimmung und Doppelgänger: Stamets (1996), Singer und Smith (1958) sowie Allen und Merlin (1991), zitiert nach Wikipedia. Wirkung: First Nature. Medizin: australische Arzneimittelbehörde TGA und ClinicalTrials.gov. Saison: GBIF-Funddaten."
+      }
+    },
     "three_cornered_garlic": {
       "name": "Glöckchen-Lauch",
       "description": "Ein wilder Lauch mit weissen, grün gestreiften Glöckchen und einem dreikantigen Stängel. Er riecht nach Knoblauch und wächst in Australien und Neuseeland dicht an feuchten, schattigen Stellen.",
@@ -942,6 +968,7 @@
     "notToday": "Heute nicht in Saison",
     "whereItGrows": "Wo sie wächst",
     "lookalikes": "Giftige Doppelgänger",
+    "psychoactive": "Psychoaktiv · kein Speisepilz",
     "tellApart": "So unterscheidest du sie",
     "testedLabel": "Geprüft · Saison {{year}}",
     "tested": "An derselben Stelle bewertete die Vorhersage Tage in seiner Saison <strong>{{times}} von 10 Mal</strong> besser als Tage ausserhalb.",
@@ -953,12 +980,14 @@
     "season": "Wann",
     "picking": "Sammeln",
     "kitchen": "Zubereitung",
+    "medicine": "Medizin",
     "keeps": "Aufbewahren",
     "source": "Quellen"
   },
   "page": {
     "title": "{{name}} ({{latin}}): Saison, Standort und Doppelgänger",
     "description": "{{name}} ({{latin}}) erkennen: Merkmale, Standort, Saison, Doppelgänger und Tipps für die Küche.",
+    "descriptionPsychoactive": "Zauberpilz {{name}} ({{latin}}) erkennen: Standort, Saison, tödliche Doppelgänger und die Forschung zu Psilocybin.",
     "allSpecies": "Alle Arten"
   }
 }

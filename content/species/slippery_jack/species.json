@@ -5,7 +5,7 @@
   "scientificName": "Suillus luteus",
   "catalog": {
     "enabled": true,
-    "order": 60,
+    "order": 62,
     "translationKey": "slippery_jack",
     "category": "mushroom",
     "emoji": "🍄",

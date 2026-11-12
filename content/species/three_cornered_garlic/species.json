@@ -5,7 +5,7 @@
   "scientificName": "Allium triquetrum",
   "catalog": {
     "enabled": true,
-    "order": 59,
+    "order": 61,
     "translationKey": "three_cornered_garlic",
     "category": "plant",
     "emoji": "🧄",

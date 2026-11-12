@@ -885,6 +885,32 @@
         "source": "Identification and habitat: First Nature and MushroomExpert. Season: GBIF records. Caesium: German Federal Office for Radiation Protection (BfS) and Bavarian LGL."
       }
     },
+    "liberty_cap": {
+      "name": "Liberty Cap",
+      "description": "A small brown grassland mushroom with a pointed cap. It is Europe's most common magic mushroom. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
+      "howTo": "Look in grazed grassland that nobody fertilises, from September to November, a few days after rain. Picking it is illegal in most countries. Deadly look-alikes grow in the same grass",
+      "guide": {
+        "identify": "The cap is small, 5 to 20 mm across. It is a pointed cone, usually with a little nipple on top. When wet it is brown and a little sticky. As it dries it pales to cream. The gills are olive-grey and turn purple-black as the spores ripen. The stem is thin, cream and usually wavy, 4 to 10 cm tall. Its base is sometimes blue. The spore print is very dark purple-brown. Other small brown mushrooms grow in the same grass. The deadly Pholiotina rugosa has a ring on its stem and rusty-brown spores. Deadly Galerina species have rusty-brown spores too. Only an expert should tell them apart.",
+        "habitat": "Look in grassland grazed by sheep or cattle, on poor, acid soil that nobody fertilises. Think hill pastures, moorland edges, old meadows, parks and playing fields. It lives on dead grass roots and does not grow on dung. It is common in Britain, Ireland, Scandinavia and the Alps. In the US it grows on the Pacific coast, from northern California to Washington.",
+        "season": "It comes from late August to December, mostly in October. Look a few days after rain, once the nights turn cool. On the US Pacific coast it comes a month later, mostly in November.",
+        "picking": "In most countries it is illegal to pick, keep or sell it, fresh or dried. That includes the UK, Ireland, Switzerland, the Netherlands and most US states. If you want to find it, photograph it where it grows. Take the cap from above, the gills and the base of the stem.",
+        "kitchen": "It is not a food. Psilocybin, the substance in it, is being tested as a medicine for depression and addiction. In those trials people get a measured dose with therapists present. Since 2023, approved psychiatrists in Australia can prescribe it for depression that other treatments have not helped. Eaten outside a trial, it can cause vomiting, stomach pain and panic attacks. Some people end up in hospital. Wild mushrooms vary a lot in strength. A look-alike can kill. Never take a wild mushroom as medicine.",
+        "source": "Identification, habitat and effects: First Nature. Medicine: Australia's TGA and ClinicalTrials.gov. Season: GBIF records."
+      }
+    },
+    "golden_cap": {
+      "name": "Golden Cap",
+      "description": "A golden-brown pasture mushroom with a white stem and a ring. It is the best-known magic mushroom. It contains psilocybin, which is being tested in clinical trials as a medicine for depression.",
+      "howTo": "Look on cow dung in warm, wet pastures of the US Gulf Coast, from May to October, a few days after heavy rain. Picking it is illegal in most US states. Deadly look-alikes grow in the same pastures",
+      "guide": {
+        "identify": "The cap is 2 to 8 cm across. It starts as a rounded bell and opens out flat, often with a low bump in the middle. It is golden to caramel brown, paler at the edge. The surface is smooth and a little sticky. The gills are grey at first and turn purple-black, with white edges. The stem is white and hollow, 4 to 15 cm tall. A white ring sits near the top and turns dark from the falling spores. Every part bruises blue when you handle it. The spore print is purple-black. Several mushrooms in the same pastures are dangerous. The deadly Pholiotina rugosa and Galerina species are small and drop rusty-brown spores. Chlorophyllum molybdites is a large white mushroom with green spores. It causes severe vomiting. Panaeolus semiovatus looks similar but never bruises blue. Only an expert should tell them apart.",
+        "habitat": "Look on cow dung and the rich pasture soil around it, sometimes on horse dung. It needs warmth and moisture. In the US it grows in the Gulf Coast states, from Florida to Texas. Florida has the most records.",
+        "season": "It comes from May to October, a few days after warm, heavy rain. In Florida it can turn up in any month when it is mild and wet.",
+        "picking": "In most US states it is illegal to pick, keep or sell it, fresh or dried. Most pastures are private land too, so ask the owner before you walk in. Keep away from the cattle. If you want to find it, photograph it where it grows: the cap from above, the gills and the base of the stem.",
+        "kitchen": "It is not a food. Psilocybin, the substance in it, is being tested as a medicine for depression and addiction. In those trials people get a measured dose with therapists present. Since 2023, approved psychiatrists in Australia can prescribe it for depression that other treatments have not helped. Eaten outside a trial, it can cause vomiting, stomach pain and panic attacks. Some people end up in hospital. Wild mushrooms vary a lot in strength. A look-alike can kill. Never take a wild mushroom as medicine.",
+        "source": "Identification and look-alikes: Stamets (1996), Singer and Smith (1958) and Allen and Merlin (1991), as cited by Wikipedia. Effects: First Nature. Medicine: Australia's TGA and ClinicalTrials.gov. Season: GBIF records."
+      }
+    },
     "three_cornered_garlic": {
       "name": "Three-cornered Garlic",
       "description": "A wild onion with white, green-striped bells and a three-sided stem. It smells of garlic and fills damp, shady ground in southern Australia and New Zealand.",
@@ -942,6 +968,7 @@
     "notToday": "Not in season today",
     "whereItGrows": "Where it grows",
     "lookalikes": "Toxic look-alikes",
+    "psychoactive": "Psychoactive · not food",
     "tellApart": "How to tell them apart",
     "testedLabel": "Tested · {{year}} season",
     "tested": "At the same spot, the forecast rated days in its season above days out of season <strong>{{times}} times in 10</strong>.",
@@ -953,12 +980,14 @@
     "season": "When",
     "picking": "Picking",
     "kitchen": "Cooking",
+    "medicine": "Medicine",
     "keeps": "Keeping",
     "source": "Sources"
   },
   "page": {
     "title": "{{name}} ({{latin}}): season, habitat and look-alikes",
     "description": "How to recognise {{name}} ({{latin}}): where and when it grows, its look-alikes and tips for the kitchen.",
+    "descriptionPsychoactive": "How to recognise {{name}} ({{latin}}), a magic mushroom: where and when it grows, its deadly look-alikes and the research on psilocybin.",
     "allSpecies": "All species"
   }
 }

@@ -162,3 +162,20 @@ def test_ph_gate_drops_acid_ground_and_keeps_no_evidence():
     out = range_prior_for_species(df, {"pH_gate": [5.5, 6.2]})
     np.testing.assert_allclose(out, [0.0, 0.0, 0.5, 1.0, 1.0, 1.0])
     assert range_prior_for_species(df, {}) == 1.0
+
+
+def test_climate_gate_cuts_hot_dry_ground_and_keeps_no_evidence():
+    # Two cells of a 0.25 deg grid: a cool wet one and a hot dry one; months 1-12.
+    tmean = np.full((12, 2, 2), 10.0)
+    tmean[5:8, 0, 1] = 21.0                     # summer 21 °C in the second cell
+    rain = np.full((12, 2, 2), 3.0)
+    rain[8:11, 0, 1] = 1.0                      # dry autumn there
+    grid = {"lat": np.array([50.0, 49.75]), "lon": np.array([0.0, 0.25]), "tmean": tmean, "rain": rain}
+    df = pd.DataFrame({"Latitude": [50.0, 50.0, 10.0], "Longitude": [0.0, 0.25, 0.0]})
+    gate = {"summer_tmean": [20.7, 18.7], "autumn_rain": [1.03, 1.71]}
+    out = range_prior_for_species(df, {"climate_gate": gate, "era5_normals": grid})
+    np.testing.assert_allclose(out, [1.0, 0.0, 1.0])   # cool and wet, hot and dry, off the grid
+    half = dict(grid, tmean=np.where(tmean == 21.0, 19.7, tmean))
+    np.testing.assert_allclose(range_prior_for_species(df, {"climate_gate": {"summer_tmean": [20.7, 18.7]},
+                                                            "era5_normals": half})[1], 0.5)
+    assert range_prior_for_species(df, {"climate_gate": gate}) == 1.0  # no grid: open

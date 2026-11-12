@@ -353,3 +353,22 @@ describe('species guide link', () => {
     ).toHaveLength(0);
   });
 });
+
+describe('psychoactive catalog match', () => {
+  // A catalog row otherwise reads as an edible match: the photo, the name and a
+  // guide link, with no warning. A Liberty Cap must say it is not food.
+  it('carries the not-food badge, an edible match does not', () => {
+    render(
+      <IdentifyResults
+        candidates={resolvePredictions([
+          p('Psilocybe semilanceata'),
+          p('Cantharellus cibarius', 0.3),
+        ])}
+      />
+    );
+
+    const [libertyCap, chanterelle] = candidateRows();
+    expect(libertyCap).toHaveTextContent('Psychoactive · not food');
+    expect(chanterelle).not.toHaveTextContent('Psychoactive');
+  });
+});

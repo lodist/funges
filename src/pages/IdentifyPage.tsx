@@ -53,7 +53,7 @@ const BASE = import.meta.env.BASE_URL;
 // list into the page chunk. Update them when the vocabulary is rebuilt.
 // Coverage = share of research-grade sightings in the five scoring regions
 // whose species is in the list; not accuracy.
-const LABEL_COUNT = 7149;
+const LABEL_COUNT = 7151;
 const MUSHROOM_COVERAGE = 0.923;
 const PLANT_COVERAGE = 0.887;
 const formatMb = (bytes: number) => `${Math.round(bytes / 1e6)} MB`;

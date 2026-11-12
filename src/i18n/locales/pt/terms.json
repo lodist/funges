@@ -12,7 +12,8 @@
     "title": "Aviso sobre Coleta",
     "content": "O Serviço inclui receitas e informações sobre plantas, frutas silvestres, nozes e cogumelos comestíveis. Embora todo esforço seja feito para garantir a precisão, o consumo seguro de alimentos silvestres depende inteiramente da identificação correta, preparo adequado e condições de saúde individuais.",
     "misidentification": "A identificação incorreta de plantas ou fungos silvestres pode causar reações alérgicas, intoxicação ou outras consequências graves à saúde. Algumas espécies comestíveis possuem sósias tóxicas. Sempre consulte um especialista local ou utilize um guia confiável ao identificar alimentos silvestres, e não consuma nada a menos que tenha 100% de certeza de sua segurança.",
-    "preparation": "Além disso, alguns alimentos silvestres só devem ser consumidos em pequenas quantidades ou após métodos específicos de preparo para neutralizar compostos naturais. As receitas fornecidas pelo Serviço são para fins educativos e pressupõem identificação correta e manuseio adequado dos ingredientes."
+    "preparation": "Além disso, alguns alimentos silvestres só devem ser consumidos em pequenas quantidades ou após métodos específicos de preparo para neutralizar compostos naturais. As receitas fornecidas pelo Serviço são para fins educativos e pressupõem identificação correta e manuseio adequado dos ingredientes.",
+    "psychoactive": "Algumas espécies descritas pelo Serviço, como Psilocybe semilanceata, são psicoativas e não são alimentos. A informação sobre elas destina-se apenas à identificação e à educação. Não é um convite a apanhá-las, possuí-las ou consumi-las onde a lei o proíbe. Também não é aconselhamento médico."
   },
   "disclaimer": {
     "title": "Isenção de Responsabilidade",
@@ -51,7 +52,7 @@
     "intro": "Para dúvidas ou preocupações sobre estes Termos, entre em contato:",
     "email": "lorisdistefano@pm.me"
   },
-  "lastUpdated": "Última atualização em: 07.11.2026",
+  "lastUpdated": "Última atualização em: 11.11.2026",
   "huerta": {
     "title": "Conselhos para a horta",
     "content": "Os conselhos do Huerta, incluindo alertas de geada, épocas de semeadura e plantio, rega e cuidados, são calculados a partir de previsões do tempo e de dados climáticos de longo prazo da região da sua horta. As previsões podem errar, e as condições da sua horta podem ser diferentes das da região.",

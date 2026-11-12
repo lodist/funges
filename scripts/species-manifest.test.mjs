@@ -682,3 +682,67 @@ test('repository check detects BioCLIP label and embedding drift', async () => {
     /BioCLIP label\/embedding drift/
   );
 });
+
+test('a psychoactive species is flagged in the catalog and never routed to dishes', async () => {
+  const flagged = manifest({
+    catalog: { ...manifest().catalog, psychoactive: true },
+  });
+  assert.deepEqual(
+    validateManifests([entry(flagged)], process.cwd(), { checkImages: false }),
+    []
+  );
+  const routed = manifest({
+    catalog: { ...manifest().catalog, psychoactive: true },
+    forecast: { ...forecast(), routeToDish: true },
+  });
+  assert.match(
+    validateManifests([entry(routed)], process.cwd(), {
+      checkImages: false,
+    }).join('\n'),
+    /psychoactive species is never routed to dishes/
+  );
+  const notTrue = manifest({
+    catalog: { ...manifest().catalog, psychoactive: false },
+  });
+  assert.match(
+    validateManifests([entry(notTrue)], process.cwd(), {
+      checkImages: false,
+    }).join('\n'),
+    /catalog\.psychoactive must be true or left out/
+  );
+
+  const root = fixtureRoot();
+  const file = path.join(root, 'content/species/chant/species.json');
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+  data.catalog.psychoactive = true;
+  fs.writeFileSync(file, JSON.stringify(data));
+  await generate(root);
+  const catalog = fs.readFileSync(
+    path.join(root, 'src/generated/species-catalog.ts'),
+    'utf8'
+  );
+  assert.match(catalog, /psychoactive: true/);
+});
+
+test('a climate gate maps known normals to two different values', () => {
+  const check = gate =>
+    validateManifests(
+      [entry(manifest({ forecast: forecast() }))],
+      process.cwd(),
+      {
+        checkImages: false,
+        scoring: {
+          chant: Object.fromEntries(
+            REGIONS.map(region => [region, scoring({ climate_gate: gate })])
+          ),
+        },
+      }
+    ).join(' ');
+  assert.doesNotMatch(
+    check({ summer_tmean: [20.7, 18.7], autumn_rain: [1.03, 1.71] }),
+    /climate_gate/
+  );
+  assert.match(check({ summer_tmean: [18.7, 18.7] }), /climate_gate/);
+  assert.match(check({ july_rain: [1, 2] }), /climate_gate/);
+  assert.match(check({}), /climate_gate/);
+});

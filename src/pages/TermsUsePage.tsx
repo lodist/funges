@@ -75,6 +75,7 @@ export default function TermsUsePage() {
               <p>{t('foragingDisclaimer.content')}</p>
               <p>{t('foragingDisclaimer.misidentification')}</p>
               <p>{t('foragingDisclaimer.preparation')}</p>
+              <p>{t('foragingDisclaimer.psychoactive')}</p>
             </div>
           </section>
 
