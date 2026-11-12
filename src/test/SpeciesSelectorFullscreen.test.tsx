@@ -13,6 +13,7 @@ import SpeciesSelectorFullscreen from '@/components/SpeciesSelectorFullscreen';
 vi.mock('@/store/mapStore', () => ({
   useMapStore: () => ({
     selectedSpecies: 'mushroom',
+    forecastRegion: 'SE',
     speciesOptions: [
       { code: 'mushroom', emoji: '🍄', category: 'mushroom' },
       { code: 'hazelnut', emoji: '🌰', category: 'nut' },
