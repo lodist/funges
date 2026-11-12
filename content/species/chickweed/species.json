@@ -155,6 +155,14 @@
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 613, 621, 631, 632],
+        "scoringReferences": [
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
       }
     },
     "empiricalSeason": {

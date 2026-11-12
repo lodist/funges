@@ -1,0 +1,158 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "wild_fennel",
+  "scientificName": "Foeniculum vulgare",
+  "catalog": {
+    "enabled": true,
+    "order": 66,
+    "translationKey": "wild_fennel",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-fall",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/wild_fennel.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wild Fennel",
+      "description": "A tall, feathery herb with yellow flower heads and a strong smell of aniseed. It grows wild along roadsides, railway lines and waste ground in southern Australia and New Zealand.",
+      "howTo": "Look along roadsides, railway lines and coasts from September to April. Check the aniseed smell and rule out hemlock before you pick anything",
+      "guide": {
+        "identify": "Wild fennel is a tall plant, 1 to 2.5 m high. Its leaves are split into very fine, thread-like strands, like green feathers. In summer it carries flat heads of tiny yellow flowers. A crushed frond smells strongly of aniseed. Take great care here: hemlock (Conium maculatum) is a common weed in both countries and it is deadly. All of it is poisonous, the seeds and young plants most of all. It often grows right beside fennel, and its seeds have been mistaken for aniseed. Hemlock has white flowers, not yellow. Its stem is smooth and hairless with purple to reddish-brown blotches, and fennel's has none. Its leaf segments are broader, and crushed leaves smell musty. People describe that smell in different ways, and aniseed on your fingers can fool you, so never go by smell alone. Check the flowers, the stem and the leaves every time. Wild carrot (Daucus carota) has white flowers and a hairy stem, and its leaves smell of carrot. Bishop's weed (Ammi majus) has white flowers and no blotches, and it is not safe to eat either. Pick only a plant with fresh, thread-fine fronds that smell of aniseed and a stem with no purple at all. If any one thing is off, leave it.",
+        "habitat": "It grows along roadsides and railway lines, in drains, on waste ground, on creek banks and on dry coasts. It likes open, sunny places with poor, disturbed soil. It came from Europe and Asia. In Australia it is common in the south-east and around Adelaide and Hobart. It also grows along the south-west coast of Western Australia. In New Zealand it grows all over the country.",
+        "season": "New fronds come up in spring, from September. The yellow flowers open from November and last into autumn. The seeds ripen from late summer and stay on the plant through winter. In cold places the plant dies back to its root in winter.",
+        "picking": "Pick the young fronds, the flower heads and the seeds by hand. Take them only from plants you have checked one by one. In winter, dry fennel and dry hemlock stalks can be hard to tell apart. So pick seed only from plants you knew in leaf or flower, and leave any dry stalk you cannot crush. Avoid busy roads and any roadside or railway line that may be sprayed. Wash the green parts well. In Tasmania and Victoria fennel is a declared weed, so it must not be sold or spread. If you think someone has eaten hemlock, keep a piece of the plant and ring the Poisons Information Centre on 13 11 26 in Australia or 0800 764 766 in New Zealand.",
+        "kitchen": "Once you're certain of it, use the young fronds like a fresh herb. Chop them into salads, fish dishes, pesto, butter or green oil, or stir them in at the end of cooking. The yellow flowers and the pollen make a fine finishing touch on pasta. The dry seeds go into bread, sausages, stuffings and tea. The young stems can be peeled and eaten raw.",
+        "keeps": "The fronds keep a few days in the fridge, wrapped in a damp cloth. Butter and green oil made with them keep chilled. Dry the seeds in a paper bag, then store them in a jar. Keep the pollen in an airtight container, somewhere dry and dark.",
+        "source": "Identification and range: Weeds Australia, VicFlora, Biosecurity Tasmania, Weedbusters and Flora of New Zealand. Hemlock: Weeds Australia, HerbiGuide and Weedbusters. Kitchen use: Diego Bonetto and The Spinoff. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Finocchietto selvatico",
+      "description": "Una pianta alta e piumosa, con ombrelle di fiori gialli e un forte profumo di anice. Cresce spontanea lungo le strade, le ferrovie e i terreni incolti dell'Australia meridionale e della Nuova Zelanda.",
+      "howTo": "Cercalo lungo strade, ferrovie e coste da settembre ad aprile. Controlla l'odore d'anice ed escludi la cicuta prima di raccogliere qualsiasi cosa",
+      "guide": {
+        "identify": "Il finocchietto selvatico è una pianta alta, da 1 a 2,5 m. Le foglie sono divise in fili sottilissimi, come piume verdi. In estate porta ombrelle piatte di minuscoli fiori gialli. Una fronda schiacciata profuma forte d'anice. Qui serve la massima attenzione: la cicuta (Conium maculatum) è un'infestante comune in entrambi i Paesi ed è mortale. È velenosa in ogni parte, soprattutto nei semi e nelle piante giovani. Cresce spesso accanto al finocchietto e i suoi semi sono stati scambiati per anice. La cicuta ha fiori bianchi, non gialli. Il fusto è liscio e senza peli, con macchie viola o bruno-rossastre, mentre quello del finocchietto non ne ha. I segmenti delle foglie sono più larghi e, schiacciate, le foglie odorano di chiuso. Ognuno descrive quell'odore a modo suo, e l'anice sulle dita può ingannarti, quindi non fidarti mai solo dell'odore. Controlla ogni volta fiori, fusto e foglie. La carota selvatica (Daucus carota) ha fiori bianchi e fusto peloso, e le foglie profumano di carota. L'ammi maggiore (Ammi majus) ha fiori bianchi e nessuna macchia, e non è sicuro da mangiare nemmeno lui. Raccogli solo una pianta con fronde fresche e sottilissime che profumano d'anice e un fusto senza traccia di viola. Se anche una sola cosa non torna, lascia stare.",
+        "habitat": "Cresce lungo le strade e le ferrovie, nei fossi, nei terreni incolti, sulle rive dei ruscelli e sulle coste asciutte. Ama i posti aperti e soleggiati, con terreno povero e smosso. Viene dall'Europa e dall'Asia. In Australia è comune nel sud-est, intorno ad Adelaide e a Hobart, e lungo la costa sud-occidentale dell'Australia Occidentale. In Nuova Zelanda cresce in tutto il paese.",
+        "season": "I nuovi getti spuntano in primavera, da settembre. I fiori gialli si aprono da novembre e durano fino all'autunno. I semi maturano da fine estate e restano sulla pianta tutto l'inverno. Dove fa freddo, in inverno la pianta secca fino alla radice.",
+        "picking": "Raccogli a mano le fronde giovani, le ombrelle e i semi. Prendili solo da piante che hai controllato una per una. In inverno gli steli secchi di finocchietto e di cicuta possono essere difficili da distinguere. Quindi raccogli i semi solo da piante che hai riconosciuto con le foglie o i fiori, e lascia ogni stelo secco che non riesci a schiacciare. Evita i bordi delle strade e le ferrovie che possono essere trattati con diserbanti, e le strade trafficate. Lava bene le parti verdi. In Tasmania e nel Victoria è un'infestante dichiarata, quindi non va venduta né diffusa. Se pensi che qualcuno abbia mangiato cicuta, chiama il centro antiveleni, 13 11 26 in Australia o 0800 764 766 in Nuova Zelanda, e tieni un pezzo della pianta.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, usa le fronde giovani come erba aromatica fresca. Tritale in insalate, piatti di pesce, pesto, burro o olio verde, oppure aggiungile a fine cottura. I fiori gialli e il polline sono un bel tocco finale sulla pasta. I semi secchi vanno nel pane, nelle salsicce, nei ripieni e nelle tisane. I giovani steli, sbucciati, si mangiano anche crudi.",
+        "keeps": "Le fronde si conservano qualche giorno in frigo, avvolte in un panno umido. Il burro e l'olio verde fatti con la pianta si tengono in frigo. Fai seccare i semi in un sacchetto di carta e conservali in un barattolo. Il polline va in un contenitore ermetico, in un posto asciutto e buio.",
+        "source": "Riconoscimento e diffusione: Weeds Australia, VicFlora, Biosecurity Tasmania, Weedbusters e Flora of New Zealand. Cicuta: Weeds Australia, HerbiGuide e Weedbusters. Uso in cucina: Diego Bonetto e The Spinoff. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Fenouil sauvage",
+      "description": "Une grande plante plumeuse aux ombelles jaunes et à la forte odeur d'anis. Elle pousse à l'état sauvage au bord des routes, des voies ferrées et sur les terrains vagues du sud de l'Australie et de la Nouvelle-Zélande.",
+      "howTo": "Cherche-le au bord des routes, des voies ferrées et sur les côtes de septembre à avril. Vérifie l'odeur d'anis et écarte la ciguë avant de cueillir quoi que ce soit",
+      "guide": {
+        "identify": "Le fenouil sauvage est une grande plante de 1 à 2,5 m. Ses feuilles sont découpées en fils très fins, comme des plumes vertes. En été, il porte des ombelles plates de minuscules fleurs jaunes. Une fronde froissée sent fort l'anis. Ici, la plus grande prudence s'impose : la grande ciguë (Conium maculatum) est une mauvaise herbe courante dans les deux pays, et elle est mortelle. Elle est toxique en entier, surtout les graines et les jeunes plants. Elle pousse souvent juste à côté du fenouil, et ses graines ont déjà été prises pour de l'anis. La ciguë a des fleurs blanches, pas jaunes. Sa tige est lisse et sans poils, avec des taches violettes à brun rougeâtre. Celle du fenouil n'en a pas. Les segments de ses feuilles sont plus larges, et froissées, elles sentent le renfermé. Chacun décrit cette odeur à sa façon, et l'anis sur tes doigts peut te tromper, alors ne te fie jamais à l'odeur seule. Vérifie à chaque fois les fleurs, la tige et les feuilles. La carotte sauvage (Daucus carota) a des fleurs blanches et une tige poilue, et ses feuilles sentent la carotte. L'ammi élevé (Ammi majus) a des fleurs blanches et pas de taches, et il n'est pas sûr à manger lui non plus. Ne cueille qu'une plante aux frondes fraîches et très fines qui sentent l'anis, avec une tige sans la moindre trace de violet. Si un seul détail cloche, laisse-la.",
+        "habitat": "Il pousse au bord des routes et des voies ferrées, dans les fossés, sur les terrains vagues, le long des ruisseaux et sur les côtes sèches. Il aime les endroits ouverts et ensoleillés, au sol pauvre et remué. Il vient d'Europe et d'Asie. En Australie, il est courant dans le sud-est, autour d'Adélaïde et de Hobart, et le long de la côte sud-ouest de l'Australie-Occidentale. En Nouvelle-Zélande, on le trouve dans tout le pays.",
+        "season": "Les nouvelles pousses sortent au printemps, dès septembre. Les fleurs jaunes s'ouvrent à partir de novembre et durent jusqu'à l'automne. Les graines mûrissent dès la fin de l'été et restent sur la plante tout l'hiver. Dans les endroits froids, la plante se dessèche jusqu'à la racine en hiver.",
+        "picking": "Cueille à la main les jeunes frondes, les ombelles et les graines. Ne prends que des plantes que tu as vérifiées une par une. En hiver, les tiges sèches de fenouil et de ciguë peuvent être difficiles à distinguer. Ne cueille donc les graines que sur des plantes que tu connaissais en feuilles ou en fleurs, et laisse toute tige sèche que tu ne peux pas froisser. Évite les bords de route et les voies ferrées qui peuvent être traités, ainsi que les routes très passantes. Lave bien les parties vertes. En Tasmanie et dans le Victoria, c'est une mauvaise herbe déclarée, il est donc interdit de la vendre ou de la propager. Si tu penses que quelqu'un a mangé de la ciguë, appelle le centre antipoison, au 13 11 26 en Australie ou au 0800 764 766 en Nouvelle-Zélande, et garde un morceau de la plante.",
+        "kitchen": "Une fois sûr de toi, utilise les jeunes frondes comme une herbe fraîche. Hache-les dans les salades, les plats de poisson, le pesto, le beurre ou l'huile verte, ou ajoute-les en fin de cuisson. Les fleurs jaunes et le pollen font une belle touche finale sur des pâtes. Les graines sèches vont dans le pain, les saucisses, les farces et les tisanes. Les jeunes tiges, épluchées, se mangent même crues.",
+        "keeps": "Les frondes se gardent quelques jours au frigo, dans un linge humide. Le beurre et l'huile verte préparés avec la plante se gardent au frais. Fais sécher les graines dans un sac en papier, puis range-les dans un bocal. Le pollen se conserve dans une boîte hermétique, au sec et à l'abri de la lumière.",
+        "source": "Identification et répartition : Weeds Australia, VicFlora, Biosecurity Tasmania, Weedbusters et Flora of New Zealand. Ciguë : Weeds Australia, HerbiGuide et Weedbusters. Cuisine : Diego Bonetto et The Spinoff. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Wilder Fenchel",
+      "description": "Eine hohe, feingefiederte Pflanze mit gelben Blütendolden und kräftigem Anisduft. Sie wächst wild an Strassenrändern, Bahnlinien und auf Brachland im Süden Australiens und in Neuseeland.",
+      "howTo": "Such von September bis April an Strassenrändern, Bahnlinien und Küsten. Prüf den Anisgeruch und schliess den Schierling aus, bevor du etwas pflückst",
+      "guide": {
+        "identify": "Wilder Fenchel wird 1 bis 2,5 m hoch. Seine Blätter sind in ganz feine, fadendünne Zipfel geteilt und sehen aus wie grüne Federn. Im Sommer trägt er flache Dolden mit winzigen gelben Blüten. Ein zerriebener Wedel riecht kräftig nach Anis. Hier ist grösste Vorsicht nötig: Der Gefleckte Schierling (Conium maculatum) ist in beiden Ländern ein häufiges Unkraut, und er ist tödlich. Alles an ihm ist giftig, am meisten die Samen und die jungen Pflanzen. Er wächst oft direkt neben dem Fenchel, und seine Samen wurden schon mit Anis verwechselt. Der Schierling hat weisse Blüten, keine gelben. Sein Stängel ist glatt und kahl und hat violette bis rotbraune Flecken. Beim Fenchel fehlen sie. Die Blattzipfel des Schierlings sind breiter, und zerrieben riechen die Blätter muffig. Jeder beschreibt diesen Geruch anders, und der Anis an deinen Fingern kann dich täuschen. Verlass dich deshalb nie allein auf die Nase. Prüf jedes Mal Blüten, Stängel und Blätter. Die Wilde Möhre (Daucus carota) hat weisse Blüten und einen behaarten Stängel, und ihre Blätter riechen nach Möhre. Die Grosse Knorpelmöhre (Ammi majus) hat weisse Blüten und keine Flecken, und auch sie solltest du nicht essen. Pflück nur Pflanzen mit frischen, fadenfeinen Wedeln, die nach Anis riechen, und mit einem Stängel ganz ohne Violett. Stimmt auch nur eine Sache nicht, lass sie stehen.",
+        "habitat": "Er wächst an Strassenrändern und Bahnlinien, in Gräben, auf Brachland, an Bachufern und an trockenen Küsten. Er mag offene, sonnige Stellen mit magerem, aufgerissenem Boden. Ursprünglich stammt er aus Europa und Asien. In Australien ist er im Südosten häufig, rund um Adelaide und Hobart, und an der Südwestküste von Westaustralien. In Neuseeland wächst er im ganzen Land.",
+        "season": "Die neuen Triebe kommen im Frühling, ab September. Die gelben Blüten öffnen sich ab November und halten bis in den Herbst. Die Samen reifen ab dem Spätsommer und bleiben den ganzen Winter an der Pflanze. In kalten Gegenden stirbt die Pflanze im Winter bis zur Wurzel ab.",
+        "picking": "Pflück die jungen Wedel, die Dolden und die Samen von Hand. Nimm nur Pflanzen, die du einzeln geprüft hast. Im Winter sind trockene Stängel von Fenchel und Schierling schwer zu unterscheiden. Pflück Samen deshalb nur von Pflanzen, die du mit Blättern oder Blüten gekannt hast, und lass jeden trockenen Stängel stehen, den du nicht zerreiben kannst. Meide Strassenränder und Bahnlinien, die gespritzt sein könnten, und stark befahrene Strassen. Wasch das Grün gut ab. In Tasmanien und Victoria gilt Fenchel als deklariertes Unkraut, deshalb darf man ihn weder verkaufen noch verbreiten. Wenn du glaubst, dass jemand Schierling gegessen hat, ruf das Giftinformationszentrum an, in Australien unter 13 11 26, in Neuseeland unter 0800 764 766, und nimm ein Stück der Pflanze mit.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, nimm die jungen Wedel wie ein frisches Kraut. Hack sie in Salate, Fischgerichte, Pesto, Butter oder grünes Öl, oder gib sie erst zum Schluss ans Essen. Die gelben Blüten und der Pollen sind ein schöner letzter Schliff auf Pasta. Die trockenen Samen passen in Brot, Würste, Füllungen und Tee. Die jungen Stängel kannst du schälen und roh essen.",
+        "keeps": "In ein feuchtes Tuch gewickelt halten sich die Wedel ein paar Tage im Kühlschrank. Butter und grünes Öl mit der Pflanze hältst du kühl. Trockne die Samen in einer Papiertüte und füll sie dann in ein Glas. Den Pollen bewahrst du luftdicht, trocken und dunkel auf.",
+        "source": "Bestimmung und Verbreitung: Weeds Australia, VicFlora, Biosecurity Tasmania, Weedbusters und Flora of New Zealand. Schierling: Weeds Australia, HerbiGuide und Weedbusters. Küche: Diego Bonetto und The Spinoff. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Hinojo silvestre",
+      "description": "Una planta alta y plumosa, de umbelas amarillas y fuerte olor a anís. Crece silvestre junto a carreteras, vías de tren y solares abandonados del sur de Australia y de Nueva Zelanda.",
+      "howTo": "Búscalo junto a carreteras, vías de tren y costas de septiembre a abril. Comprueba el olor a anís y descarta la cicuta antes de coger nada",
+      "guide": {
+        "identify": "El hinojo silvestre es una planta alta, de 1 a 2,5 m. Sus hojas están divididas en hilos muy finos, como plumas verdes. En verano lleva umbelas planas de florecitas amarillas. Si aplastas una fronda, huele con fuerza a anís. Aquí hay que tener muchísimo cuidado: la cicuta (Conium maculatum) es una mala hierba común en los dos países y es mortal. Es venenosa entera, sobre todo las semillas y las plantas jóvenes. Suele crecer pegada al hinojo, y sus semillas se han confundido con anís. La cicuta tiene flores blancas, no amarillas. Su tallo es liso y sin pelos, con manchas moradas o pardo rojizas. El del hinojo no tiene ninguna. Los segmentos de sus hojas son más anchos y, aplastadas, huelen a cerrado. Cada uno describe ese olor a su manera, y el anís en tus dedos puede engañarte, así que nunca te fíes solo del olfato. Comprueba siempre las flores, el tallo y las hojas. La zanahoria silvestre (Daucus carota) tiene flores blancas y tallo peloso, y sus hojas huelen a zanahoria. El ammi mayor (Ammi majus) tiene flores blancas y no tiene manchas, y tampoco es seguro comerlo. Coge solo plantas con frondas frescas y finísimas que huelan a anís y con un tallo sin nada de morado. Si algo no cuadra, déjala.",
+        "habitat": "Crece junto a carreteras y vías de tren, en cunetas, en solares, a orillas de arroyos y en costas secas. Le gustan los sitios abiertos y soleados, de suelo pobre y removido. Viene de Europa y de Asia. En Australia es común en el sureste, alrededor de Adelaida y de Hobart, y a lo largo de la costa suroeste de Australia Occidental. En Nueva Zelanda crece por todo el país.",
+        "season": "Los brotes nuevos salen en primavera, desde septiembre. Las flores amarillas se abren desde noviembre y duran hasta el otoño. Las semillas maduran desde finales del verano y se quedan en la planta todo el invierno. En los sitios fríos, la planta se seca hasta la raíz en invierno.",
+        "picking": "Coge a mano las frondas jóvenes, las umbelas y las semillas. Cógelas solo de plantas que hayas comprobado una por una. En invierno, los tallos secos de hinojo y de cicuta pueden ser difíciles de distinguir. Por eso coge semillas solo de plantas que conocías con hojas o con flores, y deja cualquier tallo seco que no puedas aplastar. Evita los bordes de carretera y las vías de tren que puedan estar fumigados, y las carreteras con mucho tráfico. Lava bien las partes verdes. En Tasmania y en Victoria es una mala hierba declarada, así que no se puede vender ni extender. Si crees que alguien ha comido cicuta, llama al centro de información toxicológica, al 13 11 26 en Australia o al 0800 764 766 en Nueva Zelanda, y guarda un trozo de la planta.",
+        "kitchen": "Cuando estés seguro de que es él, usa las frondas jóvenes como hierba fresca. Pícalas en ensaladas, platos de pescado, pesto, mantequilla o aceite verde, o añádelas al final de la cocción. Las flores amarillas y el polen quedan muy bien como toque final sobre la pasta. Las semillas secas van al pan, a las salchichas, a los rellenos y a las infusiones. Los tallos jóvenes, pelados, también se comen crudos.",
+        "keeps": "Las frondas aguantan unos días en la nevera, envueltas en un paño húmedo. La mantequilla y el aceite verde hechos con ella se guardan en frío. Seca las semillas en una bolsa de papel y guárdalas en un frasco. El polen va en un recipiente hermético, en un sitio seco y oscuro.",
+        "source": "Identificación y distribución: Weeds Australia, VicFlora, Biosecurity Tasmania, Weedbusters y Flora of New Zealand. Cicuta: Weeds Australia, HerbiGuide y Weedbusters. Cocina: Diego Bonetto y The Spinoff. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Funcho",
+      "description": "Uma planta alta e plumosa, de umbelas amarelas e forte cheiro a anis. Cresce selvagem junto a estradas, linhas de comboio e terrenos baldios do sul da Austrália e da Nova Zelândia.",
+      "howTo": "Procura-o junto a estradas, linhas de comboio e costas de setembro a abril. Confirma o cheiro a anis e exclui a cicuta antes de apanhares o que quer que seja",
+      "guide": {
+        "identify": "O funcho é uma planta alta, de 1 a 2,5 m. As folhas estão divididas em fios muito finos, como penas verdes. No verão leva umbelas planas de florzinhas amarelas. Uma fronde esmagada cheira fortemente a anis. Aqui é preciso muito cuidado: a cicuta (Conium maculatum) é uma infestante comum nos dois países e é mortal. É venenosa por inteiro, sobretudo as sementes e as plantas novas. Cresce muitas vezes mesmo ao lado do funcho, e as suas sementes já foram confundidas com anis. A cicuta tem flores brancas, não amarelas. O caule é liso e sem pelos, com manchas roxas a castanho-avermelhadas. O do funcho não tem nenhuma. Os segmentos das folhas são mais largos e, esmagadas, as folhas cheiram a bafio. Cada pessoa descreve esse cheiro à sua maneira, e o anis nos teus dedos pode enganar-te, por isso nunca te fies só no cheiro. Confirma sempre as flores, o caule e as folhas. A cenoura-brava (Daucus carota) tem flores brancas e caule peludo, e as folhas cheiram a cenoura. O ammi (Ammi majus) tem flores brancas e não tem manchas, e também não é seguro comê-lo. Apanha só plantas com frondes frescas e finíssimas que cheirem a anis, e com um caule sem nada de roxo. Se uma única coisa não bater certo, deixa-a.",
+        "habitat": "Cresce nas bermas das estradas e junto às linhas de comboio, em valas, em terrenos baldios, à beira de ribeiros e em costas secas. Gosta de sítios abertos e soalheiros, de solo pobre e remexido. Veio da Europa e da Ásia. Na Austrália é comum no sudeste, à volta de Adelaide e de Hobart, e ao longo da costa sudoeste da Austrália Ocidental. Na Nova Zelândia cresce por todo o país.",
+        "season": "Os rebentos novos aparecem na primavera, a partir de setembro. As flores amarelas abrem a partir de novembro e duram até ao outono. As sementes amadurecem a partir do fim do verão e ficam na planta todo o inverno. Nos sítios frios, a planta seca até à raiz no inverno.",
+        "picking": "Apanha à mão as frondes novas, as umbelas e as sementes. Apanha-as só de plantas que tenhas confirmado uma a uma. No inverno, os caules secos de funcho e de cicuta podem ser difíceis de distinguir. Por isso apanha sementes só de plantas que conhecias com folhas ou flores, e deixa qualquer caule seco que não consigas esmagar. Evita as bermas e as linhas de comboio que possam ter sido pulverizadas, e as estradas movimentadas. Lava bem as partes verdes. Na Tasmânia e em Victoria é uma infestante declarada, por isso não pode ser vendida nem espalhada. Se achas que alguém comeu cicuta, liga para o centro de informação antivenenos, 13 11 26 na Austrália ou 0800 764 766 na Nova Zelândia, e guarda um bocado da planta.",
+        "kitchen": "Quando tiveres a certeza de que é ele, usa as frondes novas como erva fresca. Pica-as em saladas, pratos de peixe, pesto, manteiga ou azeite verde, ou junta-as no fim da cozedura. As flores amarelas e o pólen ficam muito bem como toque final na massa. As sementes secas vão para o pão, para os enchidos, para os recheios e para infusões. Os caules novos, descascados, também se comem crus.",
+        "keeps": "As frondes aguentam uns dias no frigorífico, embrulhadas num pano húmido. A manteiga e o azeite verde feitos com a planta guardam-se no frio. Seca as sementes num saco de papel e guarda-as num frasco. O pólen vai para um recipiente hermético, num sítio seco e escuro.",
+        "source": "Identificação e distribuição: Weeds Australia, VicFlora, Biosecurity Tasmania, Weedbusters e Flora of New Zealand. Cicuta: Weeds Australia, HerbiGuide e Weedbusters. Cozinha: Diego Bonetto e The Spinoff. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Foeniculum vulgare",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Wild Fennel"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [3034922, 7224221, 3641272]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [612, 621, 631, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/3034922",
+          "https://weeds.org.au/profiles/fennel-anise-aniseed/",
+          "https://vicflora.rbg.vic.gov.au/flora/taxon/cd10828b-4e96-47b8-99a2-285c3a9970cc",
+          "https://nre.tas.gov.au/invasive-species/weeds/weeds-index/declared-weeds-index/fennel",
+          "https://nzflora.info/factsheet/Taxon/Foeniculum-vulgare.html",
+          "https://weeds.org.au/profiles/hemlock-carrot-fern/",
+          "https://www.herbiguide.com.au/Descriptions/hg_Hemlock.htm",
+          "https://www.weedbusters.org.nz/what-are-weeds/weed-list/hemlock/",
+          "https://diego-bonetto-weeds.squarespace.com/blog/fantastic-fennel-fields-forever-more",
+          "https://thespinoff.co.nz/kai/29-11-2025/legal-and-free-weed-why-you-need-to-start-eating-wild-fennel",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

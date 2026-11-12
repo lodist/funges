@@ -1,0 +1,160 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "native_raspberry",
+  "scientificName": "Rubus parvifolius",
+  "catalog": {
+    "enabled": true,
+    "order": 71,
+    "translationKey": "native_raspberry",
+    "category": "berry",
+    "emoji": "🍓",
+    "season": "summer",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/native_raspberry.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Native Raspberry",
+      "description": "A prickly scrambler of south-eastern Australia with small, wrinkled leaves and pink flowers. In summer it carries small red berries that look like tiny raspberries.",
+      "howTo": "Look on forest edges, creek banks and rocky slopes from December to March. Check for curved prickles, white undersides on the leaves and red berries",
+      "guide": {
+        "identify": "Native raspberry is a scrambling shrub. Its stems are about 1 m long and trail over rocks and other plants. They are finely hairy and have small, curved prickles. Each leaf is divided into three leaflets, sometimes five. The leaflets are 1 to 4 cm long, with toothed edges, a wrinkled green top and a white, woolly underside. The end leaflet is the biggest. The flowers are pink to red and sit in short clusters at the tips. The berry is a round cluster of tiny beads, about 1 cm across, and it ripens red. Blackberry (Rubus fruticosus) looks like a bigger, tougher version. It forms thick thickets, its leaves usually have five leaflets of similar size and its berries ripen black. Blackberries are edible, but blackberry is a declared weed in every state and territory. Jerusalem cherry (Solanum pseudocapsicum) grows at the edges of wet forest and has round, shiny red or orange berries. All parts of it are poisonous, especially the berries. Its leaves are smooth and lance-shaped, and each berry is a single smooth ball. Check the curved prickles, the divided leaves and the raspberry-like berry on every plant you pick.",
+        "habitat": "It grows in the cooler, wetter parts of eastern and south-eastern Australia: Queensland, New South Wales, the ACT, Victoria, South Australia and Tasmania. It is native there. Look in moist forest, creek-side scrub and woodland, from near sea level up to the subalpine zone, often scrambling among rocks. It likes dappled shade and takes frost. It is rare in the drier forests.",
+        "season": "The pink flowers open from about November to February. Ripe red berries come from December to March, mostly in January and February. Some hang on into April.",
+        "picking": "Pick only ripe red berries and leave the green ones. The prickles are sharp, so wear long sleeves or gloves. It is a native plant. In the national parks of New South Wales it is against the law to pick or collect plants, and other states have their own rules. So check before you pick in any park or reserve. On private land, ask the owner. Skip berries beside tracks and roads where blackberry has been sprayed. Wash the berries before you eat them.",
+        "kitchen": "Once you're certain of it, eat the ripe berries fresh or cook them. They taste a bit like raspberries, but less sweet. Aboriginal communities in south-eastern Australia ate the red fruit long before the settlers did. The settlers made jam and pies from it. You can make jam, a sauce or a pie filling from the berries.",
+        "keeps": "The berries are soft and keep a day or two in the fridge. Freeze them on a tray and then bag them, and they last much longer. Jam keeps for months.",
+        "source": "Identification and range: VicFlora, PlantNET and Castlemaine Flora. Blackberry: Weeds Australia. Jerusalem cherry: the NZ Department of Conservation weed database and the DELTA Solanum key. Food use: Australian National Botanic Gardens. Picking rules: NSW National Parks. Season: GBIF and iNaturalist records."
+      }
+    },
+    "it": {
+      "name": "Native Raspberry",
+      "description": "Un rampicante spinoso dell'Australia sud-orientale, con foglie piccole e rugose e fiori rosa. In estate porta piccole bacche rosse che sembrano minuscoli lamponi.",
+      "howTo": "Cercalo da dicembre a marzo ai margini dei boschi, lungo i ruscelli e sui pendii rocciosi. Controlla le spine ricurve, la pagina inferiore bianca delle foglie e le bacche rosse",
+      "guide": {
+        "identify": "La Native Raspberry è un arbusto rampicante. I suoi rami sono lunghi circa 1 m e strisciano su rocce e altre piante. Sono finemente pelosi e hanno piccole spine ricurve. Ogni foglia è divisa in tre foglioline, a volte cinque. Le foglioline sono lunghe da 1 a 4 cm, con il margine dentato, verdi e rugose sopra e bianche e lanose sotto. La fogliolina terminale è la più grande. I fiori sono da rosa a rossi e stanno in brevi grappoli sulle punte. La bacca è un grappolo tondo di minuscole drupe, largo circa 1 cm, e matura rossa. Il rovo (Rubus fruticosus) sembra una versione più grande e robusta. Forma fitti roveti, le sue foglie hanno di solito cinque foglioline di dimensioni simili e le bacche maturano nere. Le more sono commestibili, ma il rovo è una pianta infestante dichiarata in ogni stato e territorio dell'Australia. La ciliegia di Gerusalemme (Solanum pseudocapsicum) cresce ai margini dei boschi umidi e ha bacche tonde, lucide, rosse o arancioni. Tutte le sue parti sono velenose, e le bacche più di tutte. Le sue foglie sono lisce e lanceolate, e ogni bacca è una pallina liscia singola. Controlla le spine ricurve, le foglie divise e la bacca simile a un lampone su ogni pianta che raccogli.",
+        "habitat": "Cresce nelle zone più fresche e umide dell'Australia orientale e sud-orientale: Queensland, Nuovo Galles del Sud, ACT, Victoria, Australia Meridionale e Tasmania. Lì è una pianta nativa. Cercala nei boschi umidi, nella macchia lungo i corsi d'acqua e nei boschi radi, dal livello del mare fino alla fascia subalpina, spesso tra le rocce. Ama la mezz'ombra e sopporta il gelo. Nei boschi più asciutti è rara.",
+        "season": "I fiori rosa si aprono da novembre a febbraio circa. Le bacche rosse mature arrivano da dicembre a marzo, soprattutto a gennaio e febbraio. Alcune restano sulla pianta fino ad aprile.",
+        "picking": "Raccogli solo bacche rosse mature e lascia quelle verdi. Le spine sono affilate, quindi metti maniche lunghe o guanti. È una pianta nativa. Nei parchi nazionali del Nuovo Galles del Sud è vietato raccogliere piante, e gli altri stati hanno regole proprie. Controlla quindi prima di raccogliere in qualsiasi parco o riserva. Su terreno privato chiedi al proprietario. Lascia stare le bacche lungo sentieri e strade dove il rovo è stato trattato con diserbanti. Lava le bacche prima di mangiarle.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, mangia le bacche mature fresche oppure cuocile. Sanno un po' di lampone, ma sono meno dolci. Le comunità aborigene dell'Australia sud-orientale mangiavano i frutti rossi molto prima dei coloni. I coloni ne facevano marmellata e torte. Puoi usare le bacche per una marmellata, una salsa o un ripieno per torte.",
+        "keeps": "Le bacche sono morbide e si conservano un giorno o due in frigo. Congelale su un vassoio e poi mettile in un sacchetto, e durano molto di più. La marmellata si conserva per mesi.",
+        "source": "Riconoscimento e diffusione: VicFlora, PlantNET e Castlemaine Flora. Rovo: Weeds Australia. Ciliegia di Gerusalemme: database delle infestanti del Department of Conservation neozelandese e chiave DELTA per Solanum. Uso alimentare: Australian National Botanic Gardens. Regole di raccolta: NSW National Parks. Stagione: segnalazioni GBIF e iNaturalist."
+      }
+    },
+    "fr": {
+      "name": "Native Raspberry",
+      "description": "Un arbuste épineux et rampant du sud-est de l'Australie, aux petites feuilles gaufrées et aux fleurs roses. En été, il porte de petites baies rouges qui ressemblent à des framboises minuscules.",
+      "howTo": "Cherche-le de décembre à mars en lisière de forêt, au bord des ruisseaux et sur les pentes rocheuses. Vérifie les épines recourbées, le dessous blanc des feuilles et les baies rouges",
+      "guide": {
+        "identify": "La Native Raspberry est un arbuste rampant. Ses tiges font environ 1 m de long et courent sur les rochers et sur d'autres plantes. Elles sont finement velues et portent de petites épines recourbées. Chaque feuille est divisée en trois folioles, parfois cinq. Les folioles mesurent 1 à 4 cm, avec le bord denté, le dessus vert et gaufré, le dessous blanc et laineux. La foliole du bout est la plus grande. Les fleurs sont roses à rouges et forment de courtes grappes au bout des tiges. La baie est un amas rond de minuscules grains, d'environ 1 cm, qui mûrit au rouge. La ronce commune (Rubus fruticosus) ressemble à une version plus grande et plus robuste. Elle forme d'épais fourrés, ses feuilles ont le plus souvent cinq folioles de taille semblable et ses mûres noircissent. Les mûres se mangent, mais la ronce est une mauvaise herbe déclarée dans chaque État et territoire d'Australie. Le cerisier d'hiver (Solanum pseudocapsicum) pousse en lisière des forêts humides et a des baies rondes, brillantes, rouges ou orange. Toutes ses parties sont toxiques, les baies plus que le reste. Ses feuilles sont lisses et lancéolées, et chaque baie est une boule lisse isolée. Vérifie les épines recourbées, les feuilles divisées et la baie en forme de framboise sur chaque plante que tu cueilles.",
+        "habitat": "Elle pousse dans les régions plus fraîches et plus humides de l'est et du sud-est de l'Australie : Queensland, Nouvelle-Galles du Sud, ACT, Victoria, Australie-Méridionale et Tasmanie. Elle y est indigène. Cherche-la dans les forêts humides, les fourrés au bord des ruisseaux et les boisements clairs, du niveau de la mer jusqu'à l'étage subalpin, souvent entre les rochers. Elle aime la mi-ombre et supporte le gel. Dans les forêts plus sèches, elle est rare.",
+        "season": "Les fleurs roses s'ouvrent de novembre à février environ. Les baies rouges mûres arrivent de décembre à mars, surtout en janvier et février. Certaines restent sur la plante jusqu'en avril.",
+        "picking": "Ne cueille que des baies rouges mûres et laisse les vertes. Les épines sont piquantes, alors mets des manches longues ou des gants. C'est une plante indigène. Dans les parcs nationaux de Nouvelle-Galles du Sud, il est interdit de cueillir ou de ramasser des plantes, et les autres États ont leurs propres règles. Renseigne-toi donc avant de cueillir dans un parc ou une réserve. Sur un terrain privé, demande au propriétaire. Laisse les baies le long des chemins et des routes où la ronce a été traitée. Lave les baies avant de les manger.",
+        "kitchen": "Une fois sûr de toi, mange les baies mûres fraîches ou fais-les cuire. Elles ont un peu le goût de la framboise, en moins sucré. Les communautés aborigènes du sud-est de l'Australie mangeaient ces fruits rouges bien avant les colons. Les colons en faisaient de la confiture et des tourtes. Tu peux en faire une confiture, une sauce ou une garniture de tarte.",
+        "keeps": "Les baies sont fragiles et se gardent un jour ou deux au frigo. Congèle-les sur un plateau puis mets-les en sachet, et elles tiennent bien plus longtemps. La confiture se garde des mois.",
+        "source": "Identification et répartition : VicFlora, PlantNET et Castlemaine Flora. Ronce : Weeds Australia. Cerisier d'hiver : base de données sur les adventices du Department of Conservation néo-zélandais et clé DELTA des Solanum. Usage alimentaire : Australian National Botanic Gardens. Règles de cueillette : NSW National Parks. Saison : observations GBIF et iNaturalist."
+      }
+    },
+    "de": {
+      "name": "Native Raspberry",
+      "description": "Ein stacheliger Kriechstrauch Südostaustraliens mit kleinen, runzligen Blättern und rosa Blüten. Im Sommer trägt er kleine rote Beeren, die wie winzige Himbeeren aussehen.",
+      "howTo": "Such von Dezember bis März an Waldrändern, Bachufern und felsigen Hängen. Prüf die gebogenen Stacheln, die weissen Blattunterseiten und die roten Beeren",
+      "guide": {
+        "identify": "Die Native Raspberry ist ein Kriechstrauch. Ihre Triebe sind etwa 1 m lang und ranken über Felsen und andere Pflanzen. Sie sind fein behaart und tragen kleine, gebogene Stacheln. Jedes Blatt ist in drei, manchmal fünf Teilblätter geteilt. Die Teilblätter sind 1 bis 4 cm lang, am Rand gezähnt, oben grün und runzlig und unten weiss und filzig. Das Endblättchen ist das grösste. Die Blüten sind rosa bis rot und sitzen in kurzen Büscheln an den Triebspitzen. Die Beere ist ein runder Verband aus winzigen Kügelchen, etwa 1 cm gross, und sie wird rot. Die Brombeere (Rubus fruticosus) sieht aus wie eine grössere, derbere Ausgabe. Sie bildet dichte Dickichte, ihre Blätter haben meist fünf etwa gleich grosse Teilblätter, und ihre Beeren werden schwarz. Brombeeren sind essbar, aber die Brombeere gilt in allen australischen Bundesstaaten und Territorien als deklariertes Unkraut. Die Korallenkirsche (Solanum pseudocapsicum) wächst am Rand feuchter Wälder und hat runde, glänzende rote oder orange Beeren. Alle Teile von ihr sind giftig, am meisten die Beeren. Ihre Blätter sind glatt und lanzettlich, und jede Beere ist eine einzelne glatte Kugel. Prüf bei jeder Pflanze, die du pflückst, die gebogenen Stacheln, die geteilten Blätter und die himbeerartige Beere.",
+        "habitat": "Sie wächst in den kühleren, feuchteren Teilen Ost- und Südostaustraliens: in Queensland, New South Wales, im ACT, in Victoria, South Australia und Tasmanien. Dort ist sie heimisch. Such in feuchten Wäldern, im Ufergebüsch und im Waldland, vom Meeresspiegel bis in die subalpinen Lagen, oft zwischen Felsen. Sie mag Halbschatten und verträgt Frost. In trockeneren Wäldern ist sie selten.",
+        "season": "Die rosa Blüten öffnen sich etwa von November bis Februar. Reife rote Beeren gibt es von Dezember bis März, meist im Januar und Februar. Manche hängen noch bis in den April am Strauch.",
+        "picking": "Pflück nur reife, rote Beeren und lass die grünen hängen. Die Stacheln sind scharf, also trag lange Ärmel oder Handschuhe. Es ist eine einheimische Pflanze. In den Nationalparks von New South Wales ist es verboten, Pflanzen zu pflücken oder zu sammeln, und die anderen Bundesstaaten haben eigene Regeln. Frag also nach, bevor du in einem Park oder Reservat pflückst. Auf Privatland frag den Besitzer. Lass Beeren an Wegen und Strassen stehen, wo Brombeeren gespritzt wurden. Wasch die Beeren, bevor du sie isst.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, iss die reifen Beeren frisch oder koch sie ein. Sie schmecken ein bisschen wie Himbeeren, aber weniger süss. Aboriginal-Gemeinschaften in Südostaustralien assen die roten Früchte schon lange vor den Siedlern. Die Siedler machten Konfitüre und Kuchen daraus. Du kannst aus den Beeren Konfitüre, eine Sauce oder einen Kuchenbelag machen.",
+        "keeps": "Die Beeren sind weich und halten sich ein bis zwei Tage im Kühlschrank. Auf einem Blech vorgefroren und dann in einen Beutel gefüllt, halten sie viel länger. Konfitüre hält sich Monate.",
+        "source": "Bestimmung und Verbreitung: VicFlora, PlantNET und Castlemaine Flora. Brombeere: Weeds Australia. Korallenkirsche: Unkraut-Datenbank des neuseeländischen Department of Conservation und DELTA-Solanum-Schlüssel. Nutzung: Australian National Botanic Gardens. Sammelregeln: NSW National Parks. Saison: GBIF- und iNaturalist-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Native Raspberry",
+      "description": "Un arbusto espinoso y trepador del sureste de Australia, de hojas pequeñas y rugosas y flores rosas. En verano da pequeñas bayas rojas que parecen frambuesas diminutas.",
+      "howTo": "Búscalo de diciembre a marzo en los bordes del bosque, junto a arroyos y en laderas rocosas. Comprueba las espinas curvadas, el envés blanco de las hojas y las bayas rojas",
+      "guide": {
+        "identify": "La Native Raspberry es un arbusto trepador. Sus tallos miden cerca de 1 m y se arrastran sobre rocas y otras plantas. Son finamente pelosos y tienen pequeñas espinas curvadas. Cada hoja se divide en tres foliolos, a veces cinco. Los foliolos miden de 1 a 4 cm, con el borde dentado, el haz verde y rugoso y el envés blanco y lanoso. El foliolo del extremo es el más grande. Las flores son de rosas a rojas y forman racimos cortos en las puntas. La baya es un racimo redondo de diminutas bolitas, de cerca de 1 cm, y madura roja. La zarzamora (Rubus fruticosus) parece una versión más grande y más robusta. Forma matorrales espesos, sus hojas suelen tener cinco foliolos de tamaño parecido y sus moras maduran negras. Las moras se comen, pero la zarza es una mala hierba declarada en todos los estados y territorios de Australia. El cerezo de Jerusalén (Solanum pseudocapsicum) crece en los bordes de los bosques húmedos y tiene bayas redondas, brillantes, rojas o naranjas. Todas sus partes son venenosas, y las bayas más que ninguna. Sus hojas son lisas y lanceoladas, y cada baya es una bola lisa suelta. Comprueba las espinas curvadas, las hojas divididas y la baya parecida a una frambuesa en cada planta que cojas.",
+        "habitat": "Crece en las zonas más frescas y húmedas del este y el sureste de Australia: Queensland, Nueva Gales del Sur, el ACT, Victoria, Australia Meridional y Tasmania. Allí es nativa. Búscala en bosques húmedos, matorral junto a arroyos y bosque abierto, desde el nivel del mar hasta la zona subalpina, a menudo entre rocas. Le gusta la media sombra y aguanta las heladas. En los bosques más secos es rara.",
+        "season": "Las flores rosas se abren de noviembre a febrero más o menos. Las bayas rojas maduras llegan de diciembre a marzo, sobre todo en enero y febrero. Algunas se quedan en la planta hasta abril.",
+        "picking": "Coge solo bayas rojas maduras y deja las verdes. Las espinas pinchan, así que lleva mangas largas o guantes. Es una planta nativa. En los parques nacionales de Nueva Gales del Sur está prohibido coger o recoger plantas, y los demás estados tienen sus propias normas. Por eso pregunta antes de coger en cualquier parque o reserva. En terreno privado, pregunta al dueño. Deja las bayas junto a caminos y carreteras donde se haya fumigado la zarza. Lava las bayas antes de comerlas.",
+        "kitchen": "Cuando estés seguro de que es ella, come las bayas maduras frescas o cocínalas. Saben un poco a frambuesa, pero menos dulces. Las comunidades aborígenes del sureste de Australia comían el fruto rojo mucho antes que los colonos. Los colonos hacían con él mermelada y tartas. Puedes hacer con las bayas una mermelada, una salsa o un relleno de tarta.",
+        "keeps": "Las bayas son blandas y aguantan un día o dos en la nevera. Congélalas en una bandeja y luego en una bolsa, y duran mucho más. La mermelada dura meses.",
+        "source": "Identificación y distribución: VicFlora, PlantNET y Castlemaine Flora. Zarza: Weeds Australia. Cerezo de Jerusalén: base de datos de malas hierbas del Department of Conservation de Nueva Zelanda y clave DELTA de Solanum. Uso alimentario: Australian National Botanic Gardens. Normas de recolección: NSW National Parks. Temporada: registros de GBIF e iNaturalist."
+      }
+    },
+    "pt": {
+      "name": "Native Raspberry",
+      "description": "Um arbusto espinhoso e trepador do sudeste da Austrália, de folhas pequenas e rugosas e flores cor-de-rosa. No verão dá pequenas bagas vermelhas que parecem framboesas minúsculas.",
+      "howTo": "Procura-o de dezembro a março nas orlas da floresta, junto a ribeiros e em encostas rochosas. Confirma os espinhos curvos, a página inferior branca das folhas e as bagas vermelhas",
+      "guide": {
+        "identify": "A Native Raspberry é um arbusto trepador. Os caules medem cerca de 1 m e rastejam sobre rochas e outras plantas. Têm uma penugem fina e pequenos espinhos curvos. Cada folha divide-se em três folíolos, às vezes cinco. Os folíolos medem 1 a 4 cm, com a margem dentada, a página superior verde e rugosa e a inferior branca e lanosa. O folíolo da ponta é o maior. As flores são cor-de-rosa a vermelhas e formam cachos curtos nas pontas. A baga é um cacho redondo de bolinhas minúsculas, com cerca de 1 cm, e amadurece vermelha. A silva (Rubus fruticosus) parece uma versão maior e mais robusta. Forma silvados densos, as folhas costumam ter cinco folíolos de tamanho parecido e as amoras amadurecem pretas. As amoras comem-se, mas a silva é uma infestante declarada em todos os estados e territórios da Austrália. A cerejeira-de-jerusalém (Solanum pseudocapsicum) cresce nas orlas das florestas húmidas e tem bagas redondas, brilhantes, vermelhas ou laranja. Todas as partes dela são venenosas, e as bagas mais do que o resto. As folhas são lisas e lanceoladas, e cada baga é uma bola lisa solta. Confirma os espinhos curvos, as folhas divididas e a baga parecida com uma framboesa em cada planta que apanhas.",
+        "habitat": "Cresce nas zonas mais frescas e húmidas do leste e do sudeste da Austrália: Queensland, Nova Gales do Sul, ACT, Victoria, Austrália do Sul e Tasmânia. Aí é nativa. Procura-a em florestas húmidas, matagal junto a ribeiros e bosque aberto, do nível do mar até à zona subalpina, muitas vezes entre rochas. Gosta de meia-sombra e aguenta a geada. Nas florestas mais secas é rara.",
+        "season": "As flores cor-de-rosa abrem de novembro a fevereiro, mais ou menos. As bagas vermelhas maduras surgem de dezembro a março, sobretudo em janeiro e fevereiro. Algumas ficam na planta até abril.",
+        "picking": "Apanha só bagas vermelhas maduras e deixa as verdes. Os espinhos picam, por isso usa mangas compridas ou luvas. É uma planta nativa. Nos parques nacionais de Nova Gales do Sul é proibido apanhar ou colher plantas, e os outros estados têm regras próprias. Por isso informa-te antes de apanhar em qualquer parque ou reserva. Em terreno privado, pergunta ao dono. Deixa as bagas junto a caminhos e estradas onde a silva foi pulverizada. Lava as bagas antes de as comeres.",
+        "kitchen": "Quando tiveres a certeza de que é ela, come as bagas maduras frescas ou cozinha-as. Sabem um pouco a framboesa, mas são menos doces. As comunidades aborígenes do sudeste da Austrália comiam o fruto vermelho muito antes dos colonos. Os colonos faziam com ele doce e tartes. Podes fazer com as bagas um doce, um molho ou um recheio de tarte.",
+        "keeps": "As bagas são moles e aguentam um ou dois dias no frigorífico. Congela-as num tabuleiro e depois num saco, e duram muito mais. O doce dura meses.",
+        "source": "Identificação e distribuição: VicFlora, PlantNET e Castlemaine Flora. Silva: Weeds Australia. Cerejeira-de-jerusalém: base de dados de infestantes do Department of Conservation da Nova Zelândia e chave DELTA de Solanum. Uso alimentar: Australian National Botanic Gardens. Regras de apanha: NSW National Parks. Época: registos do GBIF e do iNaturalist."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Rubus parvifolius",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Native Raspberry"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [2991373, 2999515, 2998959]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 621],
+        "scoringReferences": [
+          "https://www.gbif.org/species/2991373",
+          "https://www.gbif.org/species/2999515",
+          "https://www.gbif.org/species/2998959",
+          "https://vicflora.rbg.vic.gov.au/flora/taxon/bc19413d-6b07-4c94-84ee-4b5fef7e2f98",
+          "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?page=nswfl&lvl=sp&name=Rubus~parvifolius",
+          "https://castlemaineflora.org.au/pic/r/rubus/rupar.htm",
+          "https://www.anbg.gov.au/aborig.s.e.aust/rubus-parvifolius.html",
+          "https://weeds.org.au/profiles/blackberry/",
+          "https://weeds.doc.govt.nz/node/47983",
+          "https://www.delta-intkey.com/solanum/www/pseudoca.htm",
+          "https://www.nationalparks.nsw.gov.au/conservation-and-heritage/care-for-parks/illegal-activities",
+          "https://www.nationalparks.nsw.gov.au/get-inspired/stories/bush-tucker-on-the-menu",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

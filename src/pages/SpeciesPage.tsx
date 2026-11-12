@@ -37,6 +37,7 @@ import {
   seasonOf,
   seasonPlace,
   seasonProgress,
+  southern,
   speciesSeasons,
   type Season,
   type SeasonPlace,
@@ -127,7 +128,9 @@ export default function SpeciesPage() {
   }, [q]);
 
   const today = useMemo(() => new Date(), []);
-  const season = seasonOf(today);
+  // Australia/New Zealand reads its seasons half a year on.
+  const south = current?.regionId === 'ANZ';
+  const season = seasonOf(today, south);
   const scores = current?.scores ?? null;
 
   const filtered = useMemo(() => {
@@ -213,7 +216,8 @@ export default function SpeciesPage() {
 
           <SeasonBand
             season={season}
-            progress={seasonProgress(today)}
+            progress={seasonProgress(today, south)}
+            south={south}
             counts={{
               now: overview.groups.now.length,
               next: overview.groups.next.length,
@@ -283,6 +287,7 @@ export default function SpeciesPage() {
                   <li key={species.id}>
                     <SpeciesTile
                       species={species}
+                      readerRegion={current?.regionId}
                       score={place === 'now' ? scores?.[species.id] : undefined}
                       large={place === 'now'}
                       onOpen={() => setOpenId(species.id)}
@@ -317,6 +322,7 @@ export default function SpeciesPage() {
                   <li key={species.id}>
                     <SpeciesTile
                       species={species}
+                      readerRegion={current?.regionId}
                       onOpen={() => setOpenId(species.id)}
                     />
                   </li>
@@ -380,9 +386,11 @@ function SeasonBand({
   counts,
   scopeLabel,
   onJump,
+  south,
 }: {
   season: Season;
   progress: number;
+  south: boolean;
   counts: Record<SeasonPlace, number>;
   scopeLabel: string | undefined;
   onJump: (place: SeasonPlace) => void;
@@ -447,7 +455,7 @@ function SeasonBand({
                   {t(`seasons.${placeSeason}`)}
                 </span>
                 <span className='text-xs text-happy-100'>
-                  {monthRange(seasonMonths(placeSeason), i18n.language)}
+                  {monthRange(seasonMonths(placeSeason, south), i18n.language)}
                 </span>
                 <span className='mt-1 text-xs text-happy-100'>
                   {t('speciesCount', { count: counts[place] })}
@@ -469,11 +477,13 @@ function SpeciesTile({
   score,
   large = false,
   onOpen,
+  readerRegion,
 }: {
   species: Species;
   score?: number;
   large?: boolean;
   onOpen: () => void;
+  readerRegion?: string;
 }) {
   const { i18n } = useTranslation('species');
   const lookalike = getWorstLookalike(species.id);
@@ -504,7 +514,11 @@ function SpeciesTile({
           <ConditionsMeter score={score} compact />
         ) : (
           <span className='text-xs text-muted-foreground'>
-            {monthsLabel(seasons, i18n.language)}
+            {monthsLabel(
+              seasons,
+              i18n.language,
+              southern(readerRegion, species.forecastRegions)
+            )}
           </span>
         )}
         {lookalike && (severity === 'lethal' || severity === 'toxic') ? (

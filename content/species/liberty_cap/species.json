@@ -153,6 +153,9 @@
           "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
         ],
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": false
       }
     },
     "empiricalSeason": {

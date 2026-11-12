@@ -1,0 +1,159 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "puha",
+  "scientificName": "Sonchus oleraceus",
+  "catalog": {
+    "enabled": true,
+    "order": 67,
+    "translationKey": "puha",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "winter-spring",
+    "habitat": "meadow",
+    "image": {
+      "path": "src/assets/species/puha.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Sow Thistle (Puha)",
+      "description": "A soft weed with deeply cut leaves, milky sap and small yellow flowers like tiny dandelions. It is the puha of the New Zealand boil-up and grows in gardens and on waste ground in both countries.",
+      "howTo": "Look in gardens, along roadsides and on waste ground, and pick young leaves before the plant flowers. Break a stem to check for white, milky sap",
+      "guide": {
+        "identify": "Sow thistle is a soft, hairless plant. It starts as a rosette of deeply cut leaves, often with a bigger lobe at the tip. At the base each leaf has two pointed lobes that clasp the stem, like ears. The stem is hollow and grows up to about a metre. It carries small yellow heads like tiny dandelions, several to a stalk. After the flowers come fluffy white seed heads. Break a leaf or the stem and white, sticky sap oozes out. Prickly sow thistle (Sonchus asper) is a close relative and is eaten too. Its leaves are spinier and its lobes rounder. Dandelion (Taraxacum officinale) is edible as well. It has one flower on a hollow, leafless stalk. Prickly lettuce (Lactuca serriola) has a row of small spines down the underside of each leaf's midrib and is listed as possibly poisonous, so leave it. Petty spurge (Euphorbia peplus) has milky sap too, and it burns skin and eyes. Its leaves are small, smooth and oval, never cut into lobes. Sap alone is not enough, because many plants have it. Check the stem and the leaf shape of every plant you pick.",
+        "habitat": "It grows in gardens, vegetable beds, paddock and crop edges, on roadsides, in cracks in paving and on waste ground. It likes open, disturbed, fertile soil. It came from Europe and Asia and is now a weed all over Australia and New Zealand. The two kinds you will meet, sow thistle (Sonchus oleraceus) and prickly sow thistle (Sonchus asper), are both introduced. Both are eaten.",
+        "season": "It grows nearly all year, because it sprouts whenever the ground is moist. In New Zealand the best picking is from early spring to midsummer, while the leaves are young. In Australia plants come up after any good rain. Once a plant flowers, its leaves turn bitter and tough.",
+        "picking": "Pick young leaves and tender tips with your fingers or scissors, and leave the root so the plant grows again. Choose plants that have not flowered yet, because old leaves turn bitter and tough. Avoid roadsides, paddocks and garden beds that may have been sprayed with weed killer. Rinse the leaves well. In New Zealand the native shore puha (Sonchus kirkii) grows on coastal cliffs. It is rare and declining, so leave it where it grows.",
+        "kitchen": "Once you're certain of it, eat the young leaves raw in salads or cook them like spinach. Older leaves are bitter, so cook those. Rub the leaves in a bowl of cold water first, and much of the bitterness goes. In New Zealand puha is boiled with pork and other meat in a boil-up. In Greece it is boiled briefly and dressed with oil, lemon and salt. The prickles of prickly sow thistle soften when cooked. The yellow flowers and the young stems are edible too.",
+        "keeps": "Sow thistle wilts fast. Keep the leaves in the fridge, wrapped in a damp cloth, and use them within a day or two. Blanched and squeezed dry, they freeze well.",
+        "source": "Identification and range: WeedScan, HerbiGuide, Massey University weeds database, Flora of New Zealand and NZ Plant Conservation Network. Use: Te Ara, Herb Federation of New Zealand and Diego Bonetto. Prickly lettuce: HerbiGuide. Petty spurge: Queensland Poisons Information Centre. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Grespino (puha)",
+      "description": "Un'erba spontanea tenera, con foglie molto incise, lattice bianco e piccoli fiori gialli simili a minuscoli tarassachi. È il puha che i neozelandesi cuociono nel boil-up, un bollito di carne e verdure, e cresce in orti e terreni incolti in tutta l'Australia meridionale e in Nuova Zelanda.",
+      "howTo": "Cercalo in orti, lungo le strade e su terreni incolti, e raccogli le foglie giovani prima della fioritura. Spezza uno stelo e controlla che esca un lattice bianco",
+      "guide": {
+        "identify": "Il grespino è una pianta tenera e senza peli. Parte come rosetta di foglie molto incise, spesso con un lobo terminale più grande. Alla base ogni foglia ha due lobi appuntiti che abbracciano il fusto, come orecchie. Il fusto è cavo e arriva a circa un metro. Porta piccoli capolini gialli, simili a minuscoli tarassachi, più di uno su ogni peduncolo, e poi soffici pappi bianchi. Spezza una foglia o il fusto: ne esce un lattice bianco e appiccicoso. Il grespino spinoso (Sonchus asper) è un parente stretto e si mangia anche lui. Ha foglie più spinose e lobi più tondi. Il tarassaco (Taraxacum officinale) è commestibile. Ha un solo fiore su un gambo cavo e senza foglie. La lattuga selvatica (Lactuca serriola) ha una fila di piccole spine sotto la nervatura centrale di ogni foglia ed è indicata come possibile velenosa, quindi lasciala stare. Anche l'euforbia minore (Euphorbia peplus) ha un lattice bianco, che brucia pelle e occhi. Le sue foglie sono piccole, lisce e ovali, mai incise. Il lattice da solo non basta, perché ce l'hanno molte piante. Controlla fusto e forma delle foglie di ogni pianta che raccogli.",
+        "habitat": "Cresce in orti, giardini, ai margini di pascoli e campi, lungo le strade, nelle fessure del selciato e sui terreni incolti. Ama il terreno aperto, smosso e fertile. Viene dall'Europa e dall'Asia ed è ormai un'infestante in tutta l'Australia e in tutta la Nuova Zelanda. Le due specie che incontrerai, il grespino comune (Sonchus oleraceus) e il grespino spinoso (Sonchus asper), sono entrambe introdotte. Si mangiano tutte e due.",
+        "season": "Cresce quasi tutto l'anno, perché spunta ogni volta che il terreno è umido. In Nuova Zelanda si raccoglie meglio da inizio primavera a metà estate, finché le foglie sono giovani. In Australia compare dopo ogni buona pioggia. Quando una pianta fiorisce, le foglie diventano amare e dure.",
+        "picking": "Raccogli foglie giovani e cime tenere con le dita o con le forbici, e lascia la radice perché la pianta ricresca. Scegli piante che non hanno ancora fiorito, perché le foglie vecchie diventano amare e dure. Evita i bordi delle strade, i pascoli e le aiuole che possono essere state trattate con diserbante. Sciacqua bene le foglie. In Nuova Zelanda la specie nativa shore puha (Sonchus kirkii) cresce sulle scogliere costiere. È rara e in calo, quindi lasciala dove cresce.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, mangia le foglie giovani crude in insalata o cucinale come gli spinaci. Le foglie più vecchie sono amare, quindi cuocile. Strofina prima le foglie in una ciotola d'acqua fredda, e l'amaro se ne va in gran parte. In Nuova Zelanda il puha si cuoce con maiale e altra carne nel boil-up. In Grecia si lessa brevemente e si condisce con olio, limone e sale. Le spine del grespino spinoso si ammorbidiscono con la cottura. Anche i fiori gialli e i giovani steli sono commestibili.",
+        "keeps": "Il grespino appassisce in fretta. Tieni le foglie in frigo, avvolte in un panno umido, e usale entro un giorno o due. Sbollentate e strizzate si congelano bene.",
+        "source": "Riconoscimento e diffusione: WeedScan, HerbiGuide, Massey University weeds database, Flora of New Zealand e NZ Plant Conservation Network. Usi: Te Ara, Herb Federation of New Zealand e Diego Bonetto. Lattuga selvatica: HerbiGuide. Euforbia minore: Queensland Poisons Information Centre. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Laiteron (puha)",
+      "description": "Une herbe sauvage tendre, aux feuilles très découpées, au latex blanc et aux petites fleurs jaunes comme de minuscules pissenlits. C'est le puha du boil-up néo-zélandais, un pot-au-feu de viande, et il pousse dans les potagers et sur les terrains vagues du sud de l'Australie et de la Nouvelle-Zélande.",
+      "howTo": "Cherche-le dans les potagers, au bord des routes et sur les terrains vagues, et cueille les jeunes feuilles avant la floraison. Casse une tige et vérifie qu'un latex blanc en sort",
+      "guide": {
+        "identify": "Le laiteron est une plante tendre et sans poils. Il commence en rosette de feuilles très découpées, souvent avec un lobe terminal plus grand. À la base, chaque feuille a deux lobes pointus qui entourent la tige, comme des oreilles. La tige est creuse et monte jusqu'à environ un mètre. Il porte de petits capitules jaunes, comme de minuscules pissenlits, plusieurs par tige, puis des aigrettes blanches et duveteuses. Casse une feuille ou la tige : un latex blanc et collant en sort. Le laiteron rude (Sonchus asper) est un proche parent et se mange aussi. Ses feuilles sont plus épineuses et ses lobes plus arrondis. Le pissenlit (Taraxacum officinale) est comestible lui aussi. Il n'a qu'une fleur au bout d'une tige creuse et sans feuilles. La laitue scariole (Lactuca serriola) a une rangée de petites épines sous la nervure centrale de chaque feuille et passe pour possiblement toxique, alors laisse-la. L'euphorbe omblette (Euphorbia peplus) a aussi un latex blanc, qui brûle la peau et les yeux. Ses feuilles sont petites, lisses et ovales, jamais découpées. Le latex seul ne suffit pas, car beaucoup de plantes en ont. Vérifie la tige et la forme des feuilles de chaque plante que tu cueilles.",
+        "habitat": "Il pousse dans les jardins, les potagers, en bordure de pâturages et de champs, au bord des routes, dans les fissures des trottoirs et sur les terrains vagues. Il aime les sols ouverts, remués et riches. Il vient d'Europe et d'Asie et c'est aujourd'hui une mauvaise herbe dans toute l'Australie et toute la Nouvelle-Zélande. Les deux espèces que tu croiseras, le laiteron potager (Sonchus oleraceus) et le laiteron rude (Sonchus asper), sont toutes deux introduites. On mange les deux.",
+        "season": "Il pousse presque toute l'année, car il germe dès que le sol est humide. En Nouvelle-Zélande, on le cueille le mieux du début du printemps au milieu de l'été, tant que les feuilles sont jeunes. En Australie, il sort après chaque bonne pluie. Dès qu'un pied fleurit, ses feuilles deviennent amères et dures.",
+        "picking": "Cueille les jeunes feuilles et les pousses tendres avec les doigts ou des ciseaux, et laisse la racine pour que la plante repousse. Choisis des plantes qui n'ont pas encore fleuri, car les vieilles feuilles deviennent amères et dures. Évite les bords de route, les pâtures et les plates-bandes qui peuvent avoir reçu du désherbant. Rince bien les feuilles. En Nouvelle-Zélande, l'espèce indigène shore puha (Sonchus kirkii) pousse sur les falaises côtières. Elle est rare et en déclin, alors laisse-la là où elle pousse.",
+        "kitchen": "Une fois sûr de toi, mange les jeunes feuilles crues en salade ou cuis-les comme des épinards. Les feuilles plus âgées sont amères, alors fais-les cuire. Frotte d'abord les feuilles dans un bol d'eau froide, et une bonne part de l'amertume part. En Nouvelle-Zélande, le puha cuit avec du porc et d'autres viandes dans le boil-up. En Grèce, on le fait bouillir brièvement et on l'assaisonne d'huile, de citron et de sel. Les piquants du laiteron rude ramollissent à la cuisson. Les fleurs jaunes et les jeunes tiges se mangent aussi.",
+        "keeps": "Le laiteron se fane vite. Garde les feuilles au frigo, dans un linge humide, et utilise-les dans un jour ou deux. Blanchies et bien essorées, elles se congèlent bien.",
+        "source": "Identification et répartition : WeedScan, HerbiGuide, Massey University weeds database, Flora of New Zealand et NZ Plant Conservation Network. Usages : Te Ara, Herb Federation of New Zealand et Diego Bonetto. Laitue scariole : HerbiGuide. Euphorbe omblette : Queensland Poisons Information Centre. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Gänsedistel (Puha)",
+      "description": "Ein zartes Wildkraut mit tief eingeschnittenen Blättern, weissem Milchsaft und kleinen gelben Blüten wie winzige Löwenzahnköpfe. In Neuseeland ist es das Puha im Boil-up, dem Fleischeintopf, und es wächst in Gärten und auf Brachland in ganz Australien und Neuseeland.",
+      "howTo": "Such in Gärten, an Wegrändern und auf Brachland, und pflück die jungen Blätter vor der Blüte. Brich einen Stängel ab und prüf, ob weisser Milchsaft austritt",
+      "guide": {
+        "identify": "Die Gänsedistel ist eine zarte, kahle Pflanze. Sie beginnt als Rosette aus tief eingeschnittenen Blättern, oft mit einem grösseren Zipfel an der Spitze. Am Blattgrund hat jedes Blatt zwei spitze Lappen, die den Stängel umfassen, wie Ohren. Der Stängel ist hohl und wird bis etwa einen Meter hoch. Oben sitzen kleine gelbe Köpfchen wie winzige Löwenzahnblüten, mehrere an einem Stiel, später flauschige weisse Schirmchen. Brich ein Blatt oder den Stängel ab, dann tritt weisser, klebriger Milchsaft aus. Die Raue Gänsedistel (Sonchus asper) ist nah verwandt und wird ebenfalls gegessen. Ihre Blätter sind stachliger, ihre Zipfel runder. Der Löwenzahn (Taraxacum officinale) ist auch essbar. Er hat nur eine Blüte auf einem hohlen, blattlosen Stiel. Der Wilde Lattich (Lactuca serriola) hat unten an der Mittelrippe jedes Blattes eine Reihe kleiner Stacheln und gilt als möglicherweise giftig. Lass ihn stehen. Auch die Garten-Wolfsmilch (Euphorbia peplus) hat weissen Milchsaft, und er brennt auf Haut und Augen. Ihre Blätter sind klein, glatt und oval, nie eingeschnitten. Der Milchsaft allein genügt nicht, denn viele Pflanzen haben ihn. Prüf bei jeder Pflanze Stängel und Blattform.",
+        "habitat": "Sie wächst in Gärten, Gemüsebeeten, an Weide- und Ackerrändern, an Strassenrändern, in Pflasterfugen und auf Brachland. Sie mag offenen, aufgerissenen, nährstoffreichen Boden. Ursprünglich stammt sie aus Europa und Asien und ist heute in ganz Australien und Neuseeland ein Unkraut. Die zwei Arten, denen du hier begegnest, die Gemüse-Gänsedistel (Sonchus oleraceus) und die Raue Gänsedistel (Sonchus asper), sind beide eingeschleppt. Beide werden gegessen.",
+        "season": "Sie wächst fast das ganze Jahr, denn sie keimt, sobald der Boden feucht ist. In Neuseeland pflückt man am besten vom frühen Frühling bis zur Mitte des Sommers, solange die Blätter jung sind. In Australien kommt sie nach jedem guten Regen. Sobald eine Pflanze blüht, werden ihre Blätter bitter und zäh.",
+        "picking": "Pflück junge Blätter und zarte Triebspitzen mit den Fingern oder der Schere, und lass die Wurzel stehen, damit die Pflanze nachwächst. Nimm Pflanzen, die noch nicht blühen, denn alte Blätter werden bitter und zäh. Meide Strassenränder, Weiden und Gartenbeete, die mit Unkrautvernichter gespritzt sein könnten. Wasch die Blätter gut. In Neuseeland wächst das einheimische Küsten-Puha (Sonchus kirkii) an Felsküsten. Es ist selten und geht zurück, also lass es dort stehen, wo es wächst.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, iss die jungen Blätter roh im Salat oder gare sie wie Spinat. Ältere Blätter sind bitter, die garst du besser. Reib die Blätter vorher in einer Schüssel mit kaltem Wasser, dann geht viel von der Bitterkeit weg. In Neuseeland kocht man Puha im Boil-up zusammen mit Schweinefleisch und anderem Fleisch. In Griechenland kocht man sie kurz und macht sie mit Öl, Zitrone und Salz an. Die Stacheln der Rauen Gänsedistel werden beim Kochen weich. Auch die gelben Blüten und die jungen Stängel sind essbar.",
+        "keeps": "Gänsedistel welkt schnell. Wickle die Blätter in ein feuchtes Tuch, leg sie in den Kühlschrank und verbrauch sie innerhalb von ein, zwei Tagen. Kurz blanchiert und gut ausgedrückt lassen sie sich einfrieren.",
+        "source": "Bestimmung und Verbreitung: WeedScan, HerbiGuide, Massey University weeds database, Flora of New Zealand und NZ Plant Conservation Network. Nutzung: Te Ara, Herb Federation of New Zealand und Diego Bonetto. Wilder Lattich: HerbiGuide. Garten-Wolfsmilch: Queensland Poisons Information Centre. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Cerraja (puha)",
+      "description": "Una hierba silvestre tierna, de hojas muy recortadas, látex blanco y pequeñas flores amarillas como diminutos dientes de león. Es el puha del boil-up neozelandés, un cocido de carne, y crece en huertos y baldíos de todo el sur de Australia y de Nueva Zelanda.",
+      "howTo": "Búscala en huertos, junto a carreteras y en baldíos, y coge las hojas jóvenes antes de que florezca. Rompe un tallo y comprueba que sale látex blanco",
+      "guide": {
+        "identify": "La cerraja es una planta tierna y sin pelos. Empieza como una roseta de hojas muy recortadas, a menudo con un lóbulo final más grande. En la base, cada hoja tiene dos lóbulos puntiagudos que abrazan el tallo, como orejas. El tallo es hueco y llega a cerca de un metro. Lleva capítulos amarillos pequeños, como diminutos dientes de león, varios en cada tallito, y luego vilanos blancos y esponjosos. Si rompes una hoja o el tallo, sale un látex blanco y pegajoso. La cerraja áspera (Sonchus asper) es una pariente cercana y también se come. Tiene las hojas más espinosas y los lóbulos más redondeados. El diente de león (Taraxacum officinale) también es comestible. Tiene una sola flor sobre un tallo hueco y sin hojas. La lechuga silvestre (Lactuca serriola) tiene una fila de pequeñas espinas bajo el nervio central de cada hoja y figura como posiblemente venenosa, así que déjala. La euforbia menor (Euphorbia peplus) también tiene látex blanco, y quema la piel y los ojos. Sus hojas son pequeñas, lisas y ovaladas, nunca recortadas. El látex solo no basta, porque lo tienen muchas plantas. Comprueba el tallo y la forma de las hojas de cada planta que cojas.",
+        "habitat": "Crece en jardines, huertos, en los bordes de pastos y cultivos, junto a carreteras, en las grietas del pavimento y en baldíos. Le gusta el suelo abierto, removido y fértil. Viene de Europa y de Asia y hoy es una mala hierba en toda Australia y en toda Nueva Zelanda. Las dos especies que te vas a encontrar, la cerraja común (Sonchus oleraceus) y la cerraja áspera (Sonchus asper), son introducidas las dos. Se comen las dos.",
+        "season": "Crece casi todo el año, porque brota cada vez que el suelo está húmedo. En Nueva Zelanda se recoge mejor desde principios de primavera hasta mediados del verano, mientras las hojas son jóvenes. En Australia sale después de cualquier buena lluvia. Cuando una planta florece, sus hojas se vuelven amargas y duras.",
+        "picking": "Coge las hojas jóvenes y las puntas tiernas con los dedos o con unas tijeras, y deja la raíz para que la planta rebrote. Elige plantas que aún no hayan florecido, porque las hojas viejas se vuelven amargas y duras. Evita los bordes de carretera, los pastos y los bancales que puedan haberse tratado con herbicida. Lava bien las hojas. En Nueva Zelanda, la especie nativa shore puha (Sonchus kirkii) crece en acantilados costeros. Es rara y va a menos, así que déjala donde crece.",
+        "kitchen": "Cuando estés seguro de que es ella, come las hojas jóvenes crudas en ensalada o cocínalas como las espinacas. Las hojas más viejas son amargas, así que cuécelas. Frota antes las hojas en un cuenco de agua fría, y buena parte del amargor se va. En Nueva Zelanda el puha se cuece con cerdo y otras carnes en el boil-up. En Grecia se hierve un momento y se aliña con aceite, limón y sal. Los pinchos de la cerraja áspera se ablandan al cocinarla. Las flores amarillas y los tallos jóvenes también se comen.",
+        "keeps": "La cerraja se marchita enseguida. Guarda las hojas en la nevera, envueltas en un paño húmedo, y úsalas en uno o dos días. Escaldadas y bien escurridas, se congelan bien.",
+        "source": "Identificación y distribución: WeedScan, HerbiGuide, Massey University weeds database, Flora of New Zealand y NZ Plant Conservation Network. Usos: Te Ara, Herb Federation of New Zealand y Diego Bonetto. Lechuga silvestre: HerbiGuide. Euforbia menor: Queensland Poisons Information Centre. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Serralha (puha)",
+      "description": "Uma erva silvestre tenra, de folhas muito recortadas, látex branco e pequenas flores amarelas como minúsculos dentes-de-leão. É o puha do boil-up neozelandês, um cozido de carne, e cresce em hortas e terrenos baldios por todo o sul da Austrália e na Nova Zelândia.",
+      "howTo": "Procura-a em hortas, junto a estradas e em terrenos baldios, e apanha as folhas novas antes de florir. Parte um caule e confirma que sai látex branco",
+      "guide": {
+        "identify": "A serralha é uma planta tenra e sem pelos. Começa como uma roseta de folhas muito recortadas, muitas vezes com um lóbulo final maior. Na base, cada folha tem dois lóbulos pontiagudos que abraçam o caule, como orelhas. O caule é oco e chega a cerca de um metro. Leva pequenos capítulos amarelos, como minúsculos dentes-de-leão, vários em cada haste, e depois penachos brancos e fofos. Se partires uma folha ou o caule, sai um látex branco e pegajoso. A serralha-áspera (Sonchus asper) é uma parente próxima e também se come. Tem as folhas mais espinhosas e os lóbulos mais redondos. O dente-de-leão (Taraxacum officinale) também é comestível. Tem uma só flor numa haste oca e sem folhas. A alface-brava (Lactuca serriola) tem uma fila de pequenos espinhos por baixo da nervura central de cada folha e consta como possivelmente venenosa, por isso deixa-a. A eufórbia (Euphorbia peplus) também tem látex branco, e queima a pele e os olhos. As folhas são pequenas, lisas e ovais, nunca recortadas. O látex sozinho não chega, porque muitas plantas o têm. Confirma o caule e a forma das folhas de cada planta que apanhas.",
+        "habitat": "Cresce em jardins, hortas, nas margens de pastagens e de campos, nas bermas das estradas, nas frestas do pavimento e em terrenos baldios. Gosta de solo aberto, remexido e fértil. Veio da Europa e da Ásia e hoje é uma infestante em toda a Austrália e em toda a Nova Zelândia. As duas espécies que vais encontrar, a serralha-comum (Sonchus oleraceus) e a serralha-áspera (Sonchus asper), são ambas introduzidas. Comem-se as duas.",
+        "season": "Cresce quase o ano todo, porque brota sempre que o solo está húmido. Na Nova Zelândia apanha-se melhor do início da primavera a meio do verão, enquanto as folhas são novas. Na Austrália aparece depois de qualquer boa chuva. Quando uma planta floresce, as folhas ficam amargas e duras.",
+        "picking": "Apanha as folhas novas e as pontas tenras com os dedos ou com uma tesoura, e deixa a raiz para a planta voltar a crescer. Escolhe plantas que ainda não floresceram, porque as folhas velhas ficam amargas e duras. Evita as bermas, as pastagens e os canteiros que possam ter sido tratados com herbicida. Lava bem as folhas. Na Nova Zelândia, a espécie nativa shore puha (Sonchus kirkii) cresce em falésias costeiras. É rara e está em declínio, por isso deixa-a onde cresce.",
+        "kitchen": "Quando tiveres a certeza de que é ela, come as folhas novas cruas em salada ou cozinha-as como espinafres. As folhas mais velhas são amargas, por isso coze-as. Esfrega primeiro as folhas numa taça de água fria, e boa parte do amargo vai-se embora. Na Nova Zelândia o puha coze-se com porco e outras carnes no boil-up. Na Grécia ferve-se pouco tempo e tempera-se com azeite, limão e sal. Os picos da serralha-áspera amolecem com a cozedura. As flores amarelas e os caules novos também se comem.",
+        "keeps": "A serralha murcha depressa. Guarda as folhas no frigorífico, embrulhadas num pano húmido, e usa-as em um ou dois dias. Escaldadas e bem espremidas, congelam bem.",
+        "source": "Identificação e distribuição: WeedScan, HerbiGuide, Massey University weeds database, Flora of New Zealand e NZ Plant Conservation Network. Usos: Te Ara, Herb Federation of New Zealand e Diego Bonetto. Alface-brava: HerbiGuide. Eufórbia: Queensland Poisons Information Centre. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Sonchus oleraceus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Sow Thistle"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [8228544, 3105782, 4250676, 11374076]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [612, 621, 631, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/8228544",
+          "https://www.gbif.org/species/3105782",
+          "https://weedscan.org.au/Weed?Id=83",
+          "https://massey.ac.nz/about/colleges-schools-and-institutes/college-of-sciences/our-research/themes-and-research-strengths/plant-science-research/new-zealand-weeds-database/sow-thistle",
+          "https://nzflora.info/factsheet/Taxon/Sonchus-oleraceus.html",
+          "https://www.nzpcn.org.nz/flora/species/sonchus-kirkii/",
+          "https://herbs.org.nz/herbs/puha/",
+          "https://teara.govt.nz/en/1966/plants-edible-native",
+          "https://diego-bonetto-weeds.squarespace.com/blog/how-to-identify-and-use-sowthistle-the-perfect-edible-weed",
+          "https://www.herbiguide.com.au/Descriptions/hg_Prickly_Lettuce.htm",
+          "https://www.poisonsinfo.health.qld.gov.au/plants-and-mushrooms/petty-spurge-euphorbia-peplus",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

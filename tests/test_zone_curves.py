@@ -33,6 +33,7 @@ def test_sampling_boxes_are_the_bounds_of_each_regions_coordinates(monkeypatch):
     coords = {
         "EU_STATIC_INFO": ([44.4, 37.4, 38.0, 59.9], [8.9, -6.0, 23.7, 10.8]),
         "US_STATIC_INFO": ([39.7, 42.4, 25.8], [-105.0, -71.1, -80.2]),
+        "ANZ_STATIC_INFO": ([-33.9, -43.5], [151.2, 172.6]),  # Sydney, Christchurch
     }
     monkeypatch.setattr(bsc, "load_static_coords", lambda env: (
         np.array(coords[env][0]), np.array(coords[env][1]), np.array(["z"] * len(coords[env][0]))))
@@ -43,6 +44,7 @@ def test_sampling_boxes_are_the_bounds_of_each_regions_coordinates(monkeypatch):
     assert boxes["USE"] == {"lat": (25.8, 42.4), "lon": (-80.2, -71.1)}
     assert boxes["EU"] == {"lat": (37.4, 59.9), "lon": (-6.0, 23.7)}
     assert boxes["US"] == {"lat": (25.8, 42.4), "lon": (-105.0, -71.1)}
+    assert boxes["ANZ"] == {"lat": (-43.5, -33.9), "lon": (151.2, 172.6)}
 
 
 def test_build_zone_curves_sums_cells_and_gates_on_min_total():

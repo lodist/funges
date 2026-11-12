@@ -4,7 +4,7 @@ import { TOXIC_SPECIES, type ToxicSeverity } from '@/data/toxic-species';
 import i18n from '@/i18n';
 
 export type ForagingFocus = 'mixed' | 'mushrooms' | 'plants' | 'berries';
-export type ScoreRegionId = 'NE' | 'SE' | 'USE' | 'USW';
+export type ScoreRegionId = 'NE' | 'SE' | 'USE' | 'USW' | 'ANZ';
 
 export interface WorthForagingNowRecommendation {
   speciesId: string;
@@ -62,7 +62,8 @@ interface RecommendationDataset {
   updated_at: string | null;
   grid_size_degrees: number;
   min_score: number;
-  regions: Record<ScoreRegionId, RecommendationDatasetRegionEntry[]>;
+  // A region the night's upload does not carry yet (ANZ) is missing.
+  regions: Partial<Record<ScoreRegionId, RecommendationDatasetRegionEntry[]>>;
   points: RecommendationDatasetPoint[];
 }
 
@@ -89,6 +90,7 @@ const REGION_MATCHERS: Record<
   SE: ([lng, lat]) => lng >= -25 && lat < 47,
   USE: ([lng]) => lng < -25 && lng >= -100,
   USW: ([lng]) => lng < -100,
+  ANZ: ([lng, lat]) => lat < 0 && lng > 100,
 };
 
 const FOCUS_CATEGORY_MAP: Record<
@@ -208,6 +210,7 @@ function getTranslatedHabitatLabel(habitat: string | null | undefined) {
 }
 
 export function inferScoreRegion(center: [number, number]): ScoreRegionId {
+  if (REGION_MATCHERS.ANZ(center)) return 'ANZ';
   if (REGION_MATCHERS.USW(center)) return 'USW';
   if (REGION_MATCHERS.USE(center)) return 'USE';
   if (REGION_MATCHERS.SE(center)) return 'SE';
