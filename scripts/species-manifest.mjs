@@ -8,8 +8,19 @@ const PRETTIER_OPTIONS =
   (await prettier.resolveConfig(fileURLToPath(import.meta.url))) || {};
 
 export const LOCALES = ['en', 'it', 'fr', 'de', 'es', 'pt'];
-export const REGIONS = ['NE', 'SE', 'USE', 'USW'];
+export const REGIONS = ['NE', 'SE', 'USE', 'USW', 'ANZ'];
 const REGION_SUFFIXES = REGIONS.map(region => region.toLowerCase());
+// Each region's land-cover map: CORINE (Europe), NLCD (US), and for Australia/New
+// Zealand ESA WorldCover with Forests of Australia and LCDB (611-632).
+const LAND_COVER_SCHEME = {
+  NE: 'CORINE',
+  SE: 'CORINE',
+  USE: 'NLCD',
+  USW: 'NLCD',
+  ANZ: 'ANZ',
+};
+// Each region's host-tree map in _host_classes.json; ANZ has none, so no hosts there.
+const HOST_MAP = { NE: 'EU', SE: 'EU', USE: 'US', USW: 'US' };
 // Single source of truth for which region a coordinate belongs to. Generated into
 // src/generated/species-catalog.ts (frontend) and backend/generated/species_registry.json
 // (pipeline), so the TS map store and the Python scoring scripts cannot drift apart.
@@ -19,6 +30,9 @@ const REGION_BOUNDARIES = {
   uswMaxLongitude: -100,
   usMaxLongitude: -25,
   seMaxLatitude: 47,
+  // Australia/New Zealand: south of the equator and east of 100° E.
+  anzMinLongitude: 100,
+  anzMaxLatitude: 0,
 };
 // The style layer every generated forecast layer is cloned from. Declared, not
 // inferred: "the first species layer that happens to exist" would silently spread a
@@ -189,8 +203,7 @@ function validateScoring(errors, at, scoring, region) {
     bad('.season_tilt must map months 1-12 to values above 0 and at most 1');
   for (const key of ['wind_sensitive', 'water_relevance', 'sea_relevance'])
     if (typeof scoring[key] !== 'boolean') bad(`.${key} must be boolean`);
-  const hostClasses =
-    HOST_CLASSES[['NE', 'SE'].includes(region) ? 'EU' : 'US'].classes;
+  const hostClasses = HOST_CLASSES[HOST_MAP[region]]?.classes ?? {};
   if (
     scoring.hosts !== undefined &&
     (!Array.isArray(scoring.hosts) ||
@@ -584,9 +597,7 @@ export function validateManifests(
             where,
             `forecast.regions.${region}.landCover is required`
           );
-        const expectedScheme = ['NE', 'SE'].includes(region)
-          ? 'CORINE'
-          : 'NLCD';
+        const expectedScheme = LAND_COVER_SCHEME[region];
         if (config.landCoverScheme !== expectedScheme)
           fail(
             errors,
@@ -658,21 +669,21 @@ export function validateManifests(
           `forecast.regions.${region}: none of the composite's members is available there`
         );
   }
-  // The style generator clones every forecast layer from this species' layers, so
-  // it has to stay a forecast species available everywhere: were it disabled in a
-  // region, generate would orphan-delete the template it needs on the next run.
+  // The style generator clones every forecast layer from this species' layers, so it
+  // has to stay a forecast species somewhere: a region it is not on (chanterelles in
+  // Australia/New Zealand) takes another region's, moved onto its own source.
   if (entries.some(x => x.data.forecast?.enabled)) {
     const template = entries.find(x => x.data.id === STYLE_TEMPLATE_SPECIES);
     if (
       !template?.data.forecast?.enabled ||
-      !REGIONS.every(
+      !REGIONS.some(
         region => template.data.forecast.regions?.[region]?.available
       )
     )
       fail(
         errors,
         'content/species',
-        `${STYLE_TEMPLATE_SPECIES} is the declared style template: it must be a forecast species available in every region`
+        `${STYLE_TEMPLATE_SPECIES} is the declared style template: it must be a forecast species available in a region`
       );
   }
   // No leftovers: each block belongs to an available region of a forecast species
@@ -711,6 +722,10 @@ function catalogTs(manifests) {
     season: m.catalog.season,
     habitat: m.catalog.habitat,
     ...(m.catalog.psychoactive ? { psychoactive: true } : {}),
+    // A group (porcini, chanterelles) is named by its genus; a species waits for its review.
+    ...(m.identification.enabled || m.forecast.compositeOf
+      ? {}
+      : { photoId: false }),
     ...(m.forecast.enabled
       ? {
           showOnMap: true,
@@ -858,14 +873,36 @@ function reconcileStyleLayers(style, wantedIdsByRegion) {
   for (const region of REGION_SUFFIXES) {
     const base = existing.get(`${STYLE_TEMPLATE_SPECIES}_${region}`);
     const numbers = existing.get(`${STYLE_TEMPLATE_SPECIES}_${region}_numbers`);
-    if (!base || !numbers) {
-      if (wantedIdsByRegion[region.toUpperCase()].length)
-        throw new Error(
-          `style is missing the ${STYLE_TEMPLATE_SPECIES}_${region} forecast template layers`
-        );
+    if (base && numbers) templates.set(region, { base, numbers });
+  }
+  // A region the template species is not on takes the first region's template layers,
+  // moved onto its own source (overlay-<region>, <region>_forecast).
+  const [from, donor] = [...templates][0] ?? [];
+  for (const region of REGION_SUFFIXES) {
+    if (
+      templates.has(region) ||
+      !wantedIdsByRegion[region.toUpperCase()].length
+    )
       continue;
-    }
-    templates.set(region, { base, numbers });
+    if (!donor || !out.sources?.[`overlay-${region}`])
+      throw new Error(
+        `style is missing the ${STYLE_TEMPLATE_SPECIES}_${region} forecast template layers`
+      );
+    const move = (layer, id) => ({
+      ...replaceDeep(
+        replaceDeep(layer, `overlay-${from}`, `overlay-${region}`),
+        `${from}_forecast`,
+        `${region}_forecast`
+      ),
+      id,
+    });
+    templates.set(region, {
+      base: move(donor.base, `${STYLE_TEMPLATE_SPECIES}_${region}`),
+      numbers: move(
+        donor.numbers,
+        `${STYLE_TEMPLATE_SPECIES}_${region}_numbers`
+      ),
+    });
   }
   if (!templates.size) return out;
 

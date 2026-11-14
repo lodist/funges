@@ -38,12 +38,14 @@ REGIONS = {
     "SE":  {"env": "SE_SEASON_CURVES"},
     "USE": {"env": "USE_SEASON_CURVES"},
     "USW": {"env": "USW_SEASON_CURVES"},
+    "ANZ": {"env": "ANZ_SEASON_CURVES"},
 }
 
-# Macro-regions for zone curves (EU = NE∪SE, US = USE∪USW); both EU scripts share the EU file.
+# Macro-regions for zone curves (EU = NE∪SE, US = USE∪USW, ANZ on its own); both EU scripts share the EU file.
 MACROS = {
     "EU": {"static_env": "EU_STATIC_INFO", "out_env": "EU_ZONE_SEASON_CURVES"},
     "US": {"static_env": "US_STATIC_INFO", "out_env": "US_ZONE_SEASON_CURVES"},
+    "ANZ": {"static_env": "ANZ_STATIC_INFO", "out_env": "ANZ_ZONE_SEASON_CURVES"},
 }
 
 _ROOT = Path(__file__).resolve().parents[2]

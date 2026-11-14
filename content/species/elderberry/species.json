@@ -165,6 +165,17 @@
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
         ],
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 613, 621],
+        "scoringReferences": [
+          "https://www.gbif.org/species/2888728",
+          "https://www.gbif.org/species/6369819",
+          "https://www.gbif.org/species/2888726",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
       }
     },
     "empiricalSeason": {

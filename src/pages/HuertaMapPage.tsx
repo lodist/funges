@@ -89,6 +89,7 @@ const railOf = (layer: MapLayer): RailItem =>
 const BOX: Record<Continent, [number, number, number, number]> = {
   eu: [-25, 34, 45, 72],
   us: [-125, 24, -66, 50],
+  anz: [112, -48, 179, -10],
 };
 const inView = (m: maplibregl.Map) => {
   const b = m.getBounds();

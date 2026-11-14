@@ -2,7 +2,7 @@
 
 Europe: DWD's ICON-EU (0.0625°, about 7 km; hourly to 78 h, then 3-hourly to 120 h) and,
 beyond it and north of its 70.5° N edge, ECMWF's IFS (0.25°; 3-hourly to 144 h, then
-6-hourly), from ECMWF's own server or its AWS mirror. US: NOAA's National Blend of Models (2.5 km), the
+6-hourly), from ECMWF's own server or its AWS mirror. Australia/New Zealand: ECMWF's IFS alone (it is global). US: NOAA's National Blend of Models (2.5 km), the
 01/07/13/19z runs, whose rain is hourly all the way out and the rest hourly to 48 h, then
 3-hourly. Probed 15-16 Oct 2026: funges-lab/superpowers/plans/2026-10-16-hourly-weather.md.
 
@@ -207,4 +207,4 @@ NBM = Source(
     },
 )
 
-SOURCES = {"EU": (ICON_EU, ECMWF), "US": (NBM,)}
+SOURCES = {"EU": (ICON_EU, ECMWF), "US": (NBM,), "ANZ": (ECMWF,)}

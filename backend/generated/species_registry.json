@@ -3,7 +3,9 @@
   "regionBoundaries": {
     "uswMaxLongitude": -100,
     "usMaxLongitude": -25,
-    "seMaxLatitude": 47
+    "seMaxLatitude": 47,
+    "anzMinLongitude": 100,
+    "anzMaxLatitude": 0
   },
   "species": {
     "chant": {
@@ -101,6 +103,14 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5954958",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -146,6 +156,14 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2594601",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -201,6 +219,16 @@
             "https://www.gbif.org/species/8235931",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/8436459",
+            "https://www.gbif.org/species/2996525",
+            "https://www.gbif.org/species/8235931",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -254,6 +282,16 @@
             "https://www.gbif.org/species/2888726",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2888728",
+            "https://www.gbif.org/species/6369819",
+            "https://www.gbif.org/species/2888726",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -301,6 +339,13 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -347,6 +392,13 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -719,6 +771,14 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-10-15-temperature-fits.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2927173",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -763,6 +823,13 @@
             "https://data.fung.es/USA/USW/USW_species_params.txt"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -810,6 +877,15 @@
             "https://www.gbif.org/species/3189767",
             "https://www.gbif.org/species/3189781",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
+          ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3189767",
+            "https://www.gbif.org/species/3189781",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -936,6 +1012,16 @@
             "https://www.gbif.org/species/2888726",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2888728",
+            "https://www.gbif.org/species/6369819",
+            "https://www.gbif.org/species/2888726",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -981,6 +1067,14 @@
             "https://www.gbif.org/species/3117424",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3117424",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1025,6 +1119,14 @@
           "scoringReferences": [
             "https://www.gbif.org/species/5331181",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
+          ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5331181",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -1119,6 +1221,13 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1343,6 +1452,13 @@
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-quick-wins.md"
           ],
           "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d"
+        },
+        "ANZ": {
+          "landCover": [621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1769,6 +1885,17 @@
             "https://www.mushroomexpert.com/lactarius_deliciosus.html",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-29-step4-mushrooms.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5248629",
+            "https://www.gbif.org/species/7925734",
+            "https://www.gbif.org/species/5248648",
+            "https://www.gbif.org/species/5463706",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1865,6 +1992,14 @@
             "https://www.mushroomexpert.com/coprinus_comatus.html",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-29-step4-mushrooms.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [612, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/7987658",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -1916,6 +2051,15 @@
             "https://www.gbif.org/species/3339928",
             "https://www.mushroomexpert.com/calvatia_gigantea.html",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-29-step4-mushrooms.md"
+          ]
+        },
+        "ANZ": {
+          "landCover": [612, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2536058",
+            "https://www.gbif.org/species/3339928",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }
@@ -2136,6 +2280,15 @@
             "https://www.gbif.org/species/3002461",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-09-30-step4-plants.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/8395064",
+            "https://www.gbif.org/species/3002461",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
@@ -2234,6 +2387,11 @@
           "landCover": [41, 42, 43],
           "landCoverScheme": "NLCD",
           "compositeOf": ["mushroom", "eastern_king", "rocky_king"]
+        },
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "compositeOf": ["mushroom"]
         }
       }
     },
@@ -2391,6 +2549,300 @@
             "https://www.gbif.org/species/5242510",
             "https://en.wikipedia.org/wiki/Psilocybe_cubensis",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
+          ]
+        }
+      }
+    },
+    "three_cornered_garlic": {
+      "name": "Three-cornered Garlic",
+      "scientificName": "Allium triquetrum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2856457],
+      "dataColumns": ["three_cornered_garlic_score", "Three-cornered Garlic"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2856457",
+            "https://vicflora.rbg.vic.gov.au/flora/taxon/88b31d41-7bd4-4583-ae99-56a728936720",
+            "https://weeds.org.au/profiles/three-corned-garlic/",
+            "https://nzflora.info/factsheet/Taxon/Allium-triquetrum.html",
+            "https://www.weedbusters.co.nz/what-are-weeds/weed-list/onion-weed",
+            "https://www.botanybrisbane.com/plants/amaryllidaceae-s-l/leucojum/leucojum-aestivum/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "slippery_jack": {
+      "name": "Slippery Jack",
+      "scientificName": "Suillus luteus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [7777157],
+      "rangeTaxonKeys": [7777157],
+      "dataColumns": ["slippery_jack_score", "Slippery Jack"],
+      "regions": {
+        "ANZ": {
+          "landCover": [612, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/7777157",
+            "https://diego-bonetto-weeds.squarespace.com/blog/slippery-jacks-the-yummy-delicate-mushrooms-in-pine-forests",
+            "https://www.milkwood.net/?p=7561",
+            "https://www.forestrycorporation.com.au/about/releases/2020/forest-safety-reminder-as-mushroom-season-approaches",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "wood_ear": {
+      "name": "Wood Ear",
+      "scientificName": "Auricularia cornea",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5249287],
+      "rangeTaxonKeys": [5249287],
+      "dataColumns": ["wood_ear_score", "Wood Ear"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5249287",
+            "https://fungalguide.landcareresearch.co.nz/webforms/FG_Group.aspx?Group=jelly",
+            "https://biotanz.landcareresearch.co.nz/scientific-names/19f8436d-5ea1-4de9-9415-b83ea6bee477",
+            "http://australianfungi.blogspot.com/2010/07/34-auricularia-cornea.html",
+            "https://www.australiangeographic.com.au/blogs/creatura-with-bec-crew/2022/04/bizarre-mushrooms-give-australian-forests-an-otherworldly-vibe/",
+            "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/fungi-and-lichens/jelly-ear/",
+            "https://www.nznatureguy.com/2019/06/29/6-facts-new-zealands-wood-ear-fungus/",
+            "https://teara.govt.nz/en/biographies/2c17/chew-chong",
+            "https://practicalselfreliance.com/wood-ear-mushroom-auricularia/",
+            "https://fungimap.org.au/wp-content/uploads/2018/04/Fmap-NL-57.pdf",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "pigface": {
+      "name": "Pigface",
+      "scientificName": "Carpobrotus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3084841],
+      "dataColumns": ["pigface_score", "Pigface"],
+      "regions": {
+        "ANZ": {
+          "landCover": [612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3084841",
+            "https://vicflora.rbg.vic.gov.au/flora/taxon/c01a1b80-5d85-460c-ab13-094247ad1ca4",
+            "https://keyserver.lucidcentral.org/weeds/data/media/Html/carpobrotus_edulis.htm",
+            "https://www.nzpcn.org.nz/flora/species/carpobrotus-edulis/",
+            "https://www.nzpcn.org.nz/flora/species/carpobrotus-chilensis/",
+            "https://www.nzpcn.org.nz/flora/species/carpobrotus-glaucescens/",
+            "https://www.nzpcn.org.nz/flora/species/disphyma-australe-subsp-australe/",
+            "https://www.nzflora.info/factsheet/Taxon/Carpobrotus-edulis.html",
+            "https://www.milkwood.net/2014/01/30/snacks-for-salty-sea-dogs-foraging-pigface/",
+            "https://www.sbs.com.au/food/article/what-is-karkalla-recipes/1b299yev2",
+            "https://www.sgaonline.org.au/pigface-carpobrotus-glaucescens/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "lilly_pilly": {
+      "name": "Lilly Pilly",
+      "scientificName": "Syzygium smithii",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3184410],
+      "dataColumns": ["lilly_pilly_score", "Lilly Pilly"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3184410",
+            "https://anpsa.org.au/plant_profiles/syzygium-smithii/",
+            "https://en.wikipedia.org/wiki/Syzygium_smithii",
+            "https://www.nzpcn.org.nz/flora/species/syzygium-smithii/",
+            "https://keys.landcareresearch.co.nz/nzmyrtaceae/key/nzmyrtaceae/Media/Html/entities/Syzygium_smithii.htm",
+            "https://www.tiakitamakimakaurau.nz/protect-and-restore-our-environment/pests-in-auckland/pest-search/syzsmi/",
+            "https://connected.pmhc.nsw.gov.au/bloged/weed-of-the-month-privet-weeds-ligustrum-spp/",
+            "https://www.aucklandcouncil.govt.nz/environment/plants-animals/protect-trees-disease/Pages/protect-plants-from-myrtle-rust.aspx",
+            "https://tuckerbush.com.au/meet-the-lilly-pilly-this-seasons-backyard-superfood/",
+            "https://plantselector.botanicgardens.sa.gov.au/Plants/Details/17953",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "wild_fennel": {
+      "name": "Wild Fennel",
+      "scientificName": "Foeniculum vulgare",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3034922, 7224221, 3641272],
+      "dataColumns": ["wild_fennel_score", "Wild Fennel"],
+      "regions": {
+        "ANZ": {
+          "landCover": [612, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3034922",
+            "https://weeds.org.au/profiles/fennel-anise-aniseed/",
+            "https://vicflora.rbg.vic.gov.au/flora/taxon/cd10828b-4e96-47b8-99a2-285c3a9970cc",
+            "https://nre.tas.gov.au/invasive-species/weeds/weeds-index/declared-weeds-index/fennel",
+            "https://nzflora.info/factsheet/Taxon/Foeniculum-vulgare.html",
+            "https://weeds.org.au/profiles/hemlock-carrot-fern/",
+            "https://www.herbiguide.com.au/Descriptions/hg_Hemlock.htm",
+            "https://www.weedbusters.org.nz/what-are-weeds/weed-list/hemlock/",
+            "https://diego-bonetto-weeds.squarespace.com/blog/fantastic-fennel-fields-forever-more",
+            "https://thespinoff.co.nz/kai/29-11-2025/legal-and-free-weed-why-you-need-to-start-eating-wild-fennel",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "puha": {
+      "name": "Sow Thistle (Puha)",
+      "scientificName": "Sonchus oleraceus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [8228544, 3105782, 4250676, 11374076],
+      "dataColumns": ["puha_score", "Sow Thistle"],
+      "regions": {
+        "ANZ": {
+          "landCover": [612, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/8228544",
+            "https://www.gbif.org/species/3105782",
+            "https://weedscan.org.au/Weed?Id=83",
+            "https://massey.ac.nz/about/colleges-schools-and-institutes/college-of-sciences/our-research/themes-and-research-strengths/plant-science-research/new-zealand-weeds-database/sow-thistle",
+            "https://nzflora.info/factsheet/Taxon/Sonchus-oleraceus.html",
+            "https://www.nzpcn.org.nz/flora/species/sonchus-kirkii/",
+            "https://herbs.org.nz/herbs/puha/",
+            "https://teara.govt.nz/en/1966/plants-edible-native",
+            "https://diego-bonetto-weeds.squarespace.com/blog/how-to-identify-and-use-sowthistle-the-perfect-edible-weed",
+            "https://www.herbiguide.com.au/Descriptions/hg_Prickly_Lettuce.htm",
+            "https://www.poisonsinfo.health.qld.gov.au/plants-and-mushrooms/petty-spurge-euphorbia-peplus",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "nasturtium": {
+      "name": "Nasturtium",
+      "scientificName": "Tropaeolum majus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2889934],
+      "dataColumns": ["nasturtium_score", "Nasturtium"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2889934",
+            "https://www.herbiguide.com.au/Descriptions/hg_Nasturtium.htm",
+            "https://weedscan.org.au/Weed?id=492",
+            "https://vicflora.rbg.vic.gov.au/flora/taxon/f1c92661-3052-4ef9-b336-495c6d5f4882",
+            "https://www.weedbusters.org.nz/what-are-weeds/weed-list/nasturtium/",
+            "https://www.nzpcn.org.nz/flora/species/tropaeolum-majus/",
+            "https://www.herbiguide.com.au/Descriptions/hg_Taro.htm",
+            "https://www.diggers.com.au/blogs/seasonal-recipes/how-to-make-poor-mans-caper",
+            "https://larderlove.com/pickled-nasturtium-pods-nasturtium-capers/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "watercress": {
+      "name": "Watercress",
+      "scientificName": "Nasturtium officinale",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [7701037, 9184619, 7572471],
+      "dataColumns": ["watercress_score", "Watercress"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/7701037",
+            "https://www.gbif.org/species/9184619",
+            "https://www.gbif.org/species/7572471",
+            "https://vicflora.rbg.vic.gov.au/flora/taxon/cc8f5838-8fd9-4454-86da-4bd45da737d1",
+            "https://www.nzpcn.org.nz/flora/species/nasturtium-officinale/",
+            "https://nzpcn.org.nz/flora/species/helosciadium-nodiflorum",
+            "https://weeds.org.au/profiles/hemlock/",
+            "https://nzpcn.org.nz/flora/species/conium-maculatum",
+            "https://m.scoop.co.nz/stories/GE0006/S00031.htm",
+            "https://www.scoop.co.nz/stories/AK1810/S00624/local-iwi-place-rahui-on-wharemauku-stream.htm",
+            "https://www.cdc.gov/liver-flukes/fasciola/index.html",
+            "https://rauropiwhakaoranga.landcareresearch.co.nz/related-items/64771058-bff7-4bba-a1d9-9d7e59b51e92",
+            "https://www.vegetables.co.nz/vegetables-a-z/watercress-watakirihi",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "kawakawa": {
+      "name": "Kawakawa",
+      "scientificName": "Piper excelsum",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [7305062, 7305291, 4183998],
+      "dataColumns": ["kawakawa_score", "Kawakawa"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/7305062",
+            "https://www.gbif.org/species/7305291",
+            "https://www.gbif.org/species/4183998",
+            "https://www.nzpcn.org.nz/flora/species/piper-excelsum-subsp-excelsum/",
+            "https://nzflora.info/factsheet/Taxon/Piper-excelsum.html",
+            "https://rauropiwhakaoranga.landcareresearch.co.nz/related-items/df6c4669-4a57-4473-8b3f-ce49593273a2",
+            "https://teara.govt.nz/en/interactive/40270/kawakawa-tea",
+            "https://pubmed.ncbi.nlm.nih.gov/30572092/",
+            "https://www.nzpcn.org.nz/flora/species/corynocarpus-laevigatus/",
+            "https://www.nzpcn.org.nz/help/faq/the-law/",
+            "https://www.sbs.com.au/food/article/the-one-ingredient-maori-chefs-swear-by/pu4v9loc1",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+          ]
+        }
+      }
+    },
+    "native_raspberry": {
+      "name": "Native Raspberry",
+      "scientificName": "Rubus parvifolius",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2991373, 2999515, 2998959],
+      "dataColumns": ["native_raspberry_score", "Native Raspberry"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2991373",
+            "https://www.gbif.org/species/2999515",
+            "https://www.gbif.org/species/2998959",
+            "https://vicflora.rbg.vic.gov.au/flora/taxon/bc19413d-6b07-4c94-84ee-4b5fef7e2f98",
+            "https://plantnet.rbgsyd.nsw.gov.au/cgi-bin/NSWfl.pl?page=nswfl&lvl=sp&name=Rubus~parvifolius",
+            "https://castlemaineflora.org.au/pic/r/rubus/rupar.htm",
+            "https://www.anbg.gov.au/aborig.s.e.aust/rubus-parvifolius.html",
+            "https://weeds.org.au/profiles/blackberry/",
+            "https://weeds.doc.govt.nz/node/47983",
+            "https://www.delta-intkey.com/solanum/www/pseudoca.htm",
+            "https://www.nationalparks.nsw.gov.au/conservation-and-heritage/care-for-parks/illegal-activities",
+            "https://www.nationalparks.nsw.gov.au/get-inspired/stories/bush-tucker-on-the-menu",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
           ]
         }
       }

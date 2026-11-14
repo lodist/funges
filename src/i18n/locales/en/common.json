@@ -112,7 +112,8 @@
       "NE": "North Europe",
       "SE": "South Europe",
       "USE": "US East",
-      "USW": "US West"
+      "USW": "US West",
+      "ANZ": "Australia and New Zealand"
     },
     "bestWindowByCategory": {
       "mushroom": "Best when moisture is still in the ground.",

@@ -39,6 +39,10 @@
       "type": "vector",
       "url": "pmtiles://https://data.fung.es/USA/USW/usw_forecast.pmtiles"
     },
+    "overlay-anz": {
+      "type": "vector",
+      "url": "pmtiles://https://data.fung.es/ANZ/anz_forecast.pmtiles"
+    },
     "hillshade": {
       "type": "raster",
       "url": "pmtiles://https://data.fung.es/basemap/hillshade_z10.pmtiles",
@@ -476,6 +480,48 @@
       "source-layer": "usw_forecast"
     },
     {
+      "id": "mushroom_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "mushroom_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "morel_ne",
       "type": "fill",
       "paint": {
@@ -639,6 +685,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "morel_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "morel_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -812,6 +900,48 @@
       }
     },
     {
+      "id": "blackberry_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "elderberry_ne",
       "type": "fill",
       "paint": {
@@ -975,6 +1105,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -1148,6 +1320,48 @@
       }
     },
     {
+      "id": "nettle_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "nettle_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "dandelion_ne",
       "type": "fill",
       "paint": {
@@ -1311,6 +1525,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "dandelion_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "dandelion_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -2576,6 +2832,48 @@
       }
     },
     {
+      "id": "wild-mint_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chickweed_ne",
       "type": "fill",
       "paint": {
@@ -2744,6 +3042,48 @@
       }
     },
     {
+      "id": "chickweed_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chickweed_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "plantain_ne",
       "type": "fill",
       "paint": {
@@ -2907,6 +3247,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3332,6 +3714,48 @@
       }
     },
     {
+      "id": "elderflower_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "daisy_ne",
       "type": "fill",
       "paint": {
@@ -3500,6 +3924,48 @@
       }
     },
     {
+      "id": "daisy_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "violets_ne",
       "type": "fill",
       "paint": {
@@ -3663,6 +4129,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -3999,6 +4507,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "artichoke_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "artichoke_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -4760,6 +5310,48 @@
       }
     },
     {
+      "id": "sorrel_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "sorrel_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "st_george_ne",
       "type": "fill",
       "paint": {
@@ -5432,6 +6024,48 @@
       }
     },
     {
+      "id": "saffron_milk_cap_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "saffron_milk_cap_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "hedgehog_mushroom_ne",
       "type": "fill",
       "paint": {
@@ -5768,6 +6402,48 @@
       }
     },
     {
+      "id": "shaggy_mane_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "shaggy_mane_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "giant_puffball_ne",
       "type": "fill",
       "paint": {
@@ -5931,6 +6607,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "giant_puffball_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "giant_puffball_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -6272,6 +6990,48 @@
       }
     },
     {
+      "id": "rose_hips_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "rose_hips_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "sloes_ne",
       "type": "fill",
       "paint": {
@@ -6603,6 +7363,48 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "boletus_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "boletus_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "visibility": "none"
       }
@@ -8078,6 +8880,468 @@
       }
     },
     {
+      "id": "three_cornered_garlic_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "three_cornered_garlic_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "slippery_jack_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "slippery_jack_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wood_ear_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wood_ear_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "pigface_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "pigface_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lilly_pilly_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lilly_pilly_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild_fennel_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild_fennel_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "puha_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "puha_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "nasturtium_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "nasturtium_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "watercress_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "watercress_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "kawakawa_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "kawakawa_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "native_raspberry_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "native_raspberry_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chant_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -8478,6 +9742,56 @@
       }
     },
     {
+      "id": "mushroom_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "mushroom_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "mushroom_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "mushroom_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "morel_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -8665,6 +9979,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "morel_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "morel_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "morel_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "morel_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -8878,6 +10242,56 @@
       }
     },
     {
+      "id": "blackberry_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "blackberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "blackberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "blackberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "elderberry_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -9065,6 +10479,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "elderberry_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -9278,6 +10742,56 @@
       }
     },
     {
+      "id": "nettle_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "nettle_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "nettle_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "nettle_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "dandelion_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -9465,6 +10979,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "dandelion_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "dandelion_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "dandelion_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "dandelion_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -10978,6 +12542,56 @@
       }
     },
     {
+      "id": "wild-mint_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild-mint_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "wild-mint_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "wild-mint_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chickweed_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -11178,6 +12792,56 @@
       }
     },
     {
+      "id": "chickweed_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "chickweed_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "chickweed_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "chickweed_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "plantain_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -11365,6 +13029,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "plantain_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "plantain_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "plantain_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "plantain_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -11878,6 +13592,56 @@
       }
     },
     {
+      "id": "elderflower_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "elderflower_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "elderflower_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "elderflower_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "daisy_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -12078,6 +13842,56 @@
       }
     },
     {
+      "id": "daisy_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "daisy_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "daisy_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "daisy_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "violets_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -12265,6 +14079,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "violets_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "violets_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "violets_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "violets_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -12665,6 +14529,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "artichoke_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "artichoke_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "artichoke_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "artichoke_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -13578,6 +15492,56 @@
       }
     },
     {
+      "id": "sorrel_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "sorrel_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "sorrel_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "sorrel_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "st_george_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -14378,6 +16342,56 @@
       }
     },
     {
+      "id": "saffron_milk_cap_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "saffron_milk_cap_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "saffron_milk_cap_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "saffron_milk_cap_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "hedgehog_mushroom_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -14778,6 +16792,56 @@
       }
     },
     {
+      "id": "shaggy_mane_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "shaggy_mane_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "shaggy_mane_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "shaggy_mane_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "giant_puffball_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -14965,6 +17029,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "giant_puffball_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "giant_puffball_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "giant_puffball_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "giant_puffball_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -15378,6 +17492,56 @@
       }
     },
     {
+      "id": "rose_hips_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "rose_hips_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "rose_hips_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "rose_hips_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
       "id": "sloes_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -15765,6 +17929,56 @@
       },
       "source": "overlay-usw",
       "source-layer": "usw_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "boletus_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "boletus_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "boletus_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "boletus_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
       "layout": {
         "text-font": ["Noto Sans Medium"],
         "text-field": [
@@ -17522,6 +19736,556 @@
           ["<", ["get", "golden_cap_score"], 1],
           "",
           ["to-string", ["floor", ["get", "golden_cap_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "three_cornered_garlic_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "three_cornered_garlic_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "three_cornered_garlic_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "three_cornered_garlic_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "slippery_jack_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "slippery_jack_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "slippery_jack_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "slippery_jack_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wood_ear_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wood_ear_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "wood_ear_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "wood_ear_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "pigface_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "pigface_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "pigface_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "pigface_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "lilly_pilly_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "lilly_pilly_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "lilly_pilly_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "lilly_pilly_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "wild_fennel_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "wild_fennel_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "wild_fennel_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "wild_fennel_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "puha_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "puha_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "puha_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "puha_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "nasturtium_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "nasturtium_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "nasturtium_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "nasturtium_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "watercress_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "watercress_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "watercress_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "watercress_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "kawakawa_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "kawakawa_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "kawakawa_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "kawakawa_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "native_raspberry_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "native_raspberry_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "native_raspberry_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "native_raspberry_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"

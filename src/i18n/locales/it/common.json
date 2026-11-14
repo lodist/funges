@@ -72,7 +72,8 @@
       "NE": "Europa del Nord",
       "SE": "Europa del Sud",
       "USE": "USA Est",
-      "USW": "USA Ovest"
+      "USW": "USA Ovest",
+      "ANZ": "Australia e Nuova Zelanda"
     },
     "bestWindowByCategory": {
       "mushroom": "Meglio quando l'umidità è ancora presente nel terreno.",

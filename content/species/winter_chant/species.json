@@ -158,6 +158,9 @@
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-06-boletus-chanterelle-split.md"
         ],
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": false
       }
     },
     "empiricalSeason": {

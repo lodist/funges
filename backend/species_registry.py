@@ -49,6 +49,8 @@ def infer_region(longitude, latitude):
     the region the frontend offers species for cannot drift apart.
     """
     boundaries = _registry()["regionBoundaries"]
+    if latitude < boundaries["anzMaxLatitude"] and longitude > boundaries["anzMinLongitude"]:
+        return "ANZ"
     if longitude < boundaries["uswMaxLongitude"]:
         return "USW"
     if longitude < boundaries["usMaxLongitude"]:
@@ -58,7 +60,8 @@ def infer_region(longitude, latitude):
 
 def get_region_boundaries():
     """Where the forecast regions split: US West below uswMaxLongitude, South Europe below
-    seMaxLatitude (infer_region)."""
+    seMaxLatitude, Australia/New Zealand south of anzMaxLatitude and east of anzMinLongitude
+    (infer_region)."""
     return dict(_registry()["regionBoundaries"])
 
 
