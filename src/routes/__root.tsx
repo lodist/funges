@@ -123,6 +123,10 @@ function RootComponent() {
     const main = mainRef.current;
     const target: Window | HTMLElement | null = isMapPage ? window : main;
     if (!target) return;
+    // A new scroll target starts with the bar showing. The map never scrolls,
+    // so a bar hidden on the page before it stayed hidden there for good.
+    setHideNavbar(false);
+    lastScrollYRef.current = 0;
     const onScroll = () => {
       const latest = isMapPage ? window.scrollY : (main?.scrollTop ?? 0);
       if (latest > lastScrollYRef.current && latest > 100) {

@@ -851,8 +851,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       return;
 
     // Anything else came from outside the map (a deep link, the offline page,
-    // a recommendation card, the first load's arrive): ease there instead of
-    // teleporting. MapLibre drops the animation itself under reduced motion.
+    // the first load's arrive): ease there instead of teleporting. MapLibre
+    // drops the animation itself under reduced motion.
     instance.easeTo({
       center,
       zoom,
