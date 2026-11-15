@@ -166,6 +166,9 @@ export function growthPlace(
 ): GrowthPlace | null {
   if (!year?.temps || !year.sun || !year.climate) return null;
   const c = year.climate;
+  // Warm nights all year read 1 to 365, and 365 is no end: 0, which after()
+  // reads as none (New Year would end a tomato in Miami in January).
+  const allYear = c.warm10?.[0] === 1 && c.warm10[1] === YEAR;
   return {
     lat: year.lat ?? 45,
     temps: year.temps,
@@ -173,7 +176,7 @@ export function growthPlace(
     light: c.light ?? 0,
     first0: c.frost?.[0] ?? 0,
     firstm3: c.hard?.[0] ?? 0,
-    warmEnd: c.warm10?.[1] ?? 0,
+    warmEnd: allYear ? 0 : (c.warm10?.[1] ?? 0),
     low: c.low,
   };
 }
