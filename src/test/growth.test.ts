@@ -137,6 +137,47 @@ describe("a planted crop's growth (the calendar's model)", () => {
     expect(g.end).toBe('2027-10-07');
   });
 
+  it('picks a tender crop for its weeks where the nights are warm all year, over New Year', () => {
+    // Warm all year reads 1 to 365, and 365 is no end: put in in December in
+    // Miami, a tomato is picked for its 16 weeks, not until late January.
+    const tomato: Bio = {
+      tb: 10,
+      tlo: 21.1111,
+      thi: 23.8889,
+      tmax: 26.6667,
+      days: 70,
+      kill: 't',
+      end: 'frost',
+      pick: 16,
+      strict: false,
+      hardy: null,
+      night: true,
+    };
+    const miami: PlaceYear = {
+      place: 'Somewhere warm',
+      lat: 25.8,
+      crops: {},
+      temps: flat(24),
+      sun: flat(20),
+      climate: {
+        frost: [0, 0],
+        hard: [0, 0],
+        warm10: [1, 365],
+        warm13: [1, 365],
+        low: 12,
+        light: 0,
+      },
+    };
+    const g = plantedGrowth(
+      'tomato',
+      tomato,
+      growthPlace(miami)!,
+      '2027-12-01'
+    );
+    const weeks = (Date.parse(g.end!) - Date.parse(g.ready!)) / (7 * 864e5);
+    expect(weeks).toBe(16);
+  });
+
   it('lifts garlic after 1400 degree days above 0 C from the spring equinox', () => {
     const garlic: Bio = {
       ...lettuce,
