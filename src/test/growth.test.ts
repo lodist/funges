@@ -312,4 +312,38 @@ describe('a planted crop south of the equator', () => {
     expect(Math.abs(gap(n.end!, s.end!) - 183)).toBeLessThanOrEqual(3);
     expect(s.progress('2028-01-15')).toBeCloseTo(n.progress('2027-07-16'), 1);
   });
+
+  it('picks a tender crop for its weeks where the nights are warm all year, over the turn of the year', () => {
+    // Warm all year reads 1 to 365: neither the south's turn (30 June, in
+    // Darwin's dry season) nor New Year (Miami's winter crop) ends it.
+    const tropics = (lat: number): PlaceYear => ({
+      place: 'Somewhere warm',
+      lat,
+      crops: {},
+      temps: flat(24),
+      sun: flat(20),
+      climate: {
+        frost: [0, 0],
+        hard: [0, 0],
+        warm10: [1, 365],
+        warm13: [1, 365],
+        low: 12,
+        light: 0,
+      },
+    });
+    const gap = (a: string, b: string) =>
+      Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
+    for (const [lat, planted] of [
+      [-12.5, '2027-05-15'],
+      [25.8, '2027-12-01'],
+    ] as const) {
+      const g = plantedGrowth(
+        'tomato',
+        tomato,
+        growthPlace(tropics(lat))!,
+        planted
+      );
+      expect(gap(g.ready!, g.end!)).toBe(16 * 7);
+    }
+  });
 });

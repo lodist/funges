@@ -173,6 +173,9 @@ export function growthPlace(
   if (!year?.temps || !year.sun || !year.climate) return null;
   const c = year.climate;
   const lat = year.lat ?? 45;
+  // Warm nights all year read 1 to 365, and 365 is no end: 0, which after()
+  // reads as none (the year's turn would end a tomato in Miami in January).
+  const allYear = c.warm10?.[0] === 1 && c.warm10[1] === YEAR;
   const north: GrowthPlace = {
     lat,
     temps: year.temps,
@@ -180,20 +183,18 @@ export function growthPlace(
     light: c.light ?? 0,
     first0: c.frost?.[0] ?? 0,
     firstm3: c.hard?.[0] ?? 0,
-    warmEnd: c.warm10?.[1] ?? 0,
+    warmEnd: allYear ? 0 : (c.warm10?.[1] ?? 0),
     low: c.low,
   };
   if (lat >= 0) return north;
   // The south on the year from 1 July: its months half a year on, the mirrored
-  // latitude's days and its days of the year from 1 July (0: none; warm nights
-  // all year stay all year).
+  // latitude's days and its days of the year from 1 July (0: none).
   const turn = (months: number[]) => [
     ...months.slice(6),
     ...months.slice(0, 6),
   ];
   const fromJuly = (day: number) =>
     day > 0 ? mod(day - 1 + HALF_YEAR, YEAR) + 1 : day;
-  const allYear = c.warm10?.[0] === 1 && c.warm10[1] === YEAR;
   return {
     ...north,
     lat: -lat,
@@ -202,7 +203,7 @@ export function growthPlace(
     light: fromJuly(north.light),
     first0: fromJuly(north.first0),
     firstm3: fromJuly(north.firstm3),
-    warmEnd: allYear ? north.warmEnd : fromJuly(north.warmEnd),
+    warmEnd: fromJuly(north.warmEnd),
     south: true,
   };
 }
