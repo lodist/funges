@@ -73,13 +73,6 @@ function whereLabel(pick: Pick, t: TFunction) {
   });
 }
 
-const mapSearch = (pick: Pick) => ({
-  species: pick.speciesId,
-  lat: pick.coordinate[1],
-  lng: pick.coordinate[0],
-  zoom: 8,
-});
-
 export default function WorthForagingNowPage() {
   const { t, i18n } = useTranslation(['common', 'species']);
   const species = useSpeciesData();
@@ -436,7 +429,7 @@ function PickTile({ pick, row = false }: { pick: Pick; row?: boolean }) {
   return (
     <Link
       to='/map'
-      search={mapSearch(pick)}
+      search={{ species: pick.speciesId }}
       className={cn(
         'focus-ring flex h-full flex-col overflow-hidden rounded-card bg-card elevation-raised elevation-interactive',
         row && 'lg:flex-row'
@@ -600,7 +593,7 @@ function PickActions({
   return (
     <div className={cn('flex flex-wrap gap-3', className)}>
       <Button asChild>
-        <Link to='/map' search={mapSearch(pick)}>
+        <Link to='/map' search={{ species: pick.speciesId }}>
           {t('worthForagingNow.openMap')}
           <ArrowUpRight />
         </Link>
