@@ -2522,6 +2522,14 @@
             "https://www.first-nature.com/fungi/psilocybe-semilanceata.php",
             "https://github.com/lodist/funges-lab/blob/main/species/2026-11-11-psilocybin.md"
           ]
+        },
+        "ANZ": {
+          "landCover": [611, 612, 613, 621, 631, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5242507",
+            "https://github.com/lodist/funges-lab/blob/main/species/2026-11-12-anz-region.md"
+          ]
         }
       }
     },
