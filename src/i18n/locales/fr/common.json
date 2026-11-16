@@ -112,7 +112,8 @@
       "NE": "Europe du Nord",
       "SE": "Europe du Sud",
       "USE": "Est des États-Unis",
-      "USW": "Ouest des États-Unis"
+      "USW": "Ouest des États-Unis",
+      "ANZ": "Australie et Nouvelle-Zélande"
     },
     "bestWindowByCategory": {
       "mushroom": "Meilleur quand l'humidité est encore présente dans le sol.",

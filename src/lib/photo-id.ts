@@ -87,6 +87,7 @@ const GENUS_LEVEL_CATALOG: Record<
 const CATALOG_BY_SCIENTIFIC_NAME: ReadonlyMap<string, Species[]> = (() => {
   const map = new Map<string, Species[]>();
   for (const species of SPECIES_DATA) {
+    if (species.photoId === false) continue;
     // `elderberry` and `elderflower` are both Sambucus nigra — the model cannot
     // distinguish them, so both are returned and collapsed into one row later.
     const existing = map.get(species.scientificName);

@@ -156,6 +156,9 @@
         ],
         "scoringSnapshotSha256": "11640dc71250cefe1acae773cbd9a0d8917b6c19f8c17f4bc5efd3ed91b3173d",
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": false
       }
     },
     "empiricalSeason": {

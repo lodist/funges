@@ -53,6 +53,11 @@ def test_species_only_one_region_scores_keep_their_own():
     assert blended["wild-mint_score"].tolist() == pytest.approx(scored["wild-mint_score"].tolist())
 
 
+def test_a_region_without_a_neighbour_keeps_its_own():
+    scored = fp.calculate_mushroom_score(_rows(), {"wild-mint": get_species_params("USW")["wild-mint"]}, {})
+    assert fp.blend_neighbour_settings(scored, {}, SimpleNamespace(region="ANZ")) is scored
+
+
 def test_a_place_across_the_split_takes_the_neighbours_habitat_factor():
     """Each region's habitat factor also lists its neighbour's places, so a place scored with the
     neighbour's model takes the neighbour's factor, as the places on the other side of the line do."""

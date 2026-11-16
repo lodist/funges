@@ -154,6 +154,9 @@
           "https://github.com/lodist/funges-lab/blob/main/species/2026-10-23-bay-bolete.md"
         ],
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": false
       }
     },
     "empiricalSeason": {

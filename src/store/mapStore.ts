@@ -147,8 +147,14 @@ export function forecastRegionForCoordinate([longitude, latitude]: [
   number,
   number,
 ]): ForecastRegion {
-  const { uswMaxLongitude, usMaxLongitude, seMaxLatitude } =
-    GENERATED_REGION_BOUNDARIES;
+  const {
+    uswMaxLongitude,
+    usMaxLongitude,
+    seMaxLatitude,
+    anzMinLongitude,
+    anzMaxLatitude,
+  } = GENERATED_REGION_BOUNDARIES;
+  if (latitude < anzMaxLatitude && longitude > anzMinLongitude) return 'ANZ';
   if (longitude < uswMaxLongitude) return 'USW';
   if (longitude < usMaxLongitude) return 'USE';
   return latitude < seMaxLatitude ? 'SE' : 'NE';
@@ -262,13 +268,14 @@ export const REGION_BBOX: Record<string, [number, number, number, number]> = {
   se: [-25, 27, 45, 72],
   use: [-125, 24, -66, 50], // US (whole): USE+USW always load together
   usw: [-125, 24, -66, 50],
+  anz: [112, -48, 179, -10], // Australia and New Zealand, one region
 };
 
-// Extract the region code (ne/se/use/usw) from a layer id like `mushroom_ne` or
+// Extract the region code (ne/se/use/usw/anz) from a layer id like `mushroom_ne` or
 // `walnut_se_numbers`. Returns null for non-region layers.
 export function layerRegion(id: string): string | null {
   const base = id.replace(/_numbers$/, '');
-  for (const r of ['usw', 'use', 'ne', 'se']) {
+  for (const r of ['usw', 'use', 'ne', 'se', 'anz']) {
     if (base.endsWith(`_${r}`)) return r;
   }
   return null;
@@ -276,9 +283,12 @@ export function layerRegion(id: string): string | null {
 
 // Resolves a clicked map layer id to the uppercase RegionId used by the Data Nerd
 // page/route (layerRegion produces lowercase codes; Data Nerd expects 'NE'/'SE'/'USE'/'USW').
+// The Data page has the regions the nightly score upload carries; ANZ is mapped but not there yet.
+const DATA_REGIONS: readonly string[] = ['NE', 'SE', 'USE', 'USW'];
+
 export function resolveDataNerdRegion(layerId: string): RegionId | null {
-  const region = layerRegion(layerId);
-  return region ? (region.toUpperCase() as RegionId) : null;
+  const region = layerRegion(layerId)?.toUpperCase();
+  return region && DATA_REGIONS.includes(region) ? (region as RegionId) : null;
 }
 
 function regionInView(r: string, bounds: LngLatBounds): boolean {

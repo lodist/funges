@@ -1,0 +1,159 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "kawakawa",
+  "scientificName": "Piper excelsum",
+  "catalog": {
+    "enabled": true,
+    "order": 70,
+    "translationKey": "kawakawa",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-summer",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/kawakawa.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Kawakawa",
+      "description": "A New Zealand shrub with large, heart-shaped leaves and jointed stems. The peppery leaves make a traditional tea, and the ripe orange fruit is edible too.",
+      "howTo": "Look in coastal and lowland forest all year, and for ripe fruit from November to February. Check for jointed stems and heart-shaped leaves",
+      "guide": {
+        "identify": "Kawakawa is a shrub or small tree, up to about 5 m tall. Its stems are jointed and zigzag, and they swell at each joint, a bit like bamboo. The leaves grow in pairs. Each leaf is dark green and glossy, 5 to 12 cm across and heart-shaped with a blunt tip. Five to seven veins fan out from the base. The leaves smell aromatic, and many of them are full of holes eaten by caterpillars. The flowers are tiny and sit on hard green spikes. On female plants these spikes turn into orange fruit spikes, made of tiny fruits packed tightly together. Karaka (Corynocarpus laevigatus) also has orange fruit in coastal forest. Each karaka fruit is a single oval fruit 3 to 4 cm long, and the tree has thick, leathery, oval leaves. The kernel inside the fruit is poisonous unless it has been prepared properly. Check the jointed stems and the heart-shaped leaves of every plant you pick, and don't eat a fruit you haven't identified.",
+        "habitat": "Kawakawa grows only in New Zealand. It lives in the shade, in the understorey of coastal and lowland forest, and in warmer areas it reaches about 500 m. It is common from the far north of the North Island down to about Okarito, North Canterbury and Banks Peninsula. Frost kills it, so it stays near the coast and at low levels.",
+        "season": "The leaves stay on the shrub all year. It flowers from August to November. Ripe orange fruit is most common from November to February and peaks in December and January. You can find a few fruit spikes at other times too.",
+        "picking": "Kawakawa is of great cultural importance to Māori. In rongoā Māori (Māori medicine) it is one of the most widely used plants, and practitioners still use it today. Pick with respect: take a few leaves from the sides of the shrub and never strip it bare. Leaves with insect holes are the ones traditionally preferred for tea. Wash them well and shake off any caterpillars. Plants growing in national parks, reserves and other conservation land are protected by law, so don't pick there. On private land, ask the owner. Respect any rāhui (a local ban).",
+        "kitchen": "Once you're certain of it, wash the leaves well. For tea, boil a few fresh leaves in water for up to 10 minutes, strain it and drink it fresh. The leaves taste peppery. Dried and ground, you can use them like pepper on meat, or infuse them in sauces. Of the ripe fruit, people traditionally ate only the soft pulp and spat out the many small seeds. A New Zealand safety study was done on rats: they took the equivalent of four cups of tea a day for four weeks without harm. So drink it only now and then, and ask your doctor first if you are pregnant, breastfeeding or on medicines.",
+        "keeps": "Fresh leaves keep a few days in the fridge, wrapped in a damp cloth. For longer, dry them in a low oven and keep them whole or ground in a sealed jar. Ripe fruit is best on the day you pick it.",
+        "source": "Identification and range: NZ Plant Conservation Network and Flora of New Zealand. Tea and uses: Te Ara and Manaaki Whenua Landcare Research. Safety study: Plant & Food Research (2019). Karaka: NZ Plant Conservation Network. Season: GBIF and iNaturalist records."
+      }
+    },
+    "it": {
+      "name": "Kawakawa",
+      "description": "Un arbusto della Nuova Zelanda con grandi foglie a forma di cuore e fusti articolati. Le foglie piccanti si usano per un tè tradizionale, e anche i frutti arancioni maturi sono commestibili.",
+      "howTo": "Cercalo tutto l'anno nei boschi costieri e di pianura, e i frutti maturi da novembre a febbraio. Controlla i fusti articolati e le foglie a forma di cuore",
+      "guide": {
+        "identify": "Il kawakawa è un arbusto o un piccolo albero alto fino a circa 5 m. I fusti sono articolati e a zigzag, e si gonfiano a ogni nodo, un po' come il bambù. Le foglie crescono a coppie. Ogni foglia è verde scuro e lucida, larga da 5 a 12 cm, a forma di cuore con la punta smussata. Da cinque a sette nervature si aprono a ventaglio dalla base. Le foglie hanno un odore aromatico, e molte sono piene di buchi mangiati dai bruchi. I fiori sono minuscoli e stanno su spighe verdi e dure. Sulle piante femmina queste spighe diventano spighe di frutti arancioni, fatte di frutti minuscoli stretti l'uno all'altro. Anche il karaka (Corynocarpus laevigatus) ha frutti arancioni nei boschi costieri. Ogni frutto di karaka è un frutto ovale singolo, lungo da 3 a 4 cm, e l'albero ha foglie ovali spesse e coriacee. Il nocciolo dentro il frutto è velenoso se non è preparato nel modo giusto. Controlla i fusti articolati e le foglie a forma di cuore di ogni pianta che raccogli, e non mangiare un frutto che non hai riconosciuto.",
+        "habitat": "Il kawakawa cresce solo in Nuova Zelanda. Sta all'ombra, nel sottobosco dei boschi costieri e di pianura, e nelle zone più calde arriva a circa 500 m. È comune dall'estremo nord dell'Isola del Nord fino a circa Okarito, North Canterbury e la penisola di Banks. Non sopporta il gelo, quindi resta vicino alla costa e a bassa quota.",
+        "season": "Le foglie restano sull'arbusto tutto l'anno. Fiorisce da agosto a novembre. I frutti arancioni maturi sono più comuni da novembre a febbraio, soprattutto a dicembre e gennaio. Qualche spiga di frutti si trova anche in altri periodi.",
+        "picking": "Il kawakawa ha una grande importanza culturale per i Māori. Nella rongoā Māori (la medicina māori) è tra le piante più usate, e i guaritori la usano ancora oggi. Raccoglilo con rispetto: prendi poche foglie dai lati dell'arbusto e non spogliarlo mai. Le foglie con i buchi fatti dagli insetti sono quelle che per tradizione si preferiscono per il tè. Lavale bene e scuoti via eventuali bruchi. Le piante nei parchi nazionali, nelle riserve e nelle altre aree di conservazione sono tutelate per legge, quindi non raccogliere lì. Su terreno privato chiedi al proprietario. Rispetta ogni rāhui (un divieto locale).",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, lava bene le foglie. Per il tè, fai bollire poche foglie fresche in acqua fino a 10 minuti, filtra e bevilo subito. Le foglie sono piccanti. Essiccate e macinate puoi usarle come pepe sulla carne, oppure farle infondere nelle salse. Dei frutti maturi, per tradizione, si mangia solo la polpa morbida e si sputano i tanti semi piccoli. Uno studio di sicurezza neozelandese è stato fatto sui ratti: hanno tollerato l'equivalente di quattro tazze di tè al giorno per quattro settimane senza danni. Per questo bevilo solo ogni tanto, e chiedi prima al medico se sei in gravidanza, se allatti o se prendi farmaci.",
+        "keeps": "Le foglie fresche si conservano qualche giorno in frigo, avvolte in un panno umido. Per più tempo, essiccale in forno a bassa temperatura e conservale intere o macinate in un barattolo chiuso. I frutti maturi sono migliori il giorno stesso della raccolta.",
+        "source": "Riconoscimento e diffusione: NZ Plant Conservation Network e Flora of New Zealand. Tè e usi: Te Ara e Manaaki Whenua Landcare Research. Studio di sicurezza: Plant & Food Research (2019). Karaka: NZ Plant Conservation Network. Stagione: segnalazioni GBIF e iNaturalist."
+      }
+    },
+    "fr": {
+      "name": "Kawakawa",
+      "description": "Un arbuste de Nouvelle-Zélande aux grandes feuilles en forme de cœur et aux tiges articulées. Ses feuilles poivrées font une infusion traditionnelle, et les fruits orange mûrs se mangent aussi.",
+      "howTo": "Cherche-le toute l'année dans les forêts côtières et de plaine, et ses fruits mûrs de novembre à février. Vérifie les tiges articulées et les feuilles en forme de cœur",
+      "guide": {
+        "identify": "Le kawakawa est un arbuste ou un petit arbre qui atteint environ 5 m. Ses tiges sont articulées et en zigzag, et elles gonflent à chaque nœud, un peu comme le bambou. Les feuilles poussent par deux. Chaque feuille est vert foncé et brillante, large de 5 à 12 cm, en forme de cœur avec le bout arrondi. De cinq à sept nervures partent en éventail de la base. Les feuilles ont une odeur aromatique, et beaucoup sont criblées de trous mangés par des chenilles. Les fleurs sont minuscules et se tiennent sur des épis verts et durs. Sur les pieds femelles, ces épis deviennent des épis de fruits orange, faits de minuscules fruits serrés les uns contre les autres. Le karaka (Corynocarpus laevigatus) a lui aussi des fruits orange dans la forêt côtière. Chaque fruit de karaka est un fruit ovale isolé, long de 3 à 4 cm, et l'arbre a des feuilles ovales épaisses et coriaces. L'amande à l'intérieur du fruit est toxique si elle n'a pas été préparée comme il faut. Vérifie les tiges articulées et les feuilles en forme de cœur de chaque plante que tu cueilles, et ne mange aucun fruit que tu n'as pas identifié.",
+        "habitat": "Le kawakawa ne pousse qu'en Nouvelle-Zélande. Il vit à l'ombre, dans le sous-bois des forêts côtières et de plaine, et dans les régions plus chaudes il monte jusqu'à environ 500 m. Il est courant depuis l'extrême nord de l'île du Nord jusqu'à Okarito, au North Canterbury et à la péninsule de Banks. Il ne supporte pas le gel, alors il reste près de la côte et à basse altitude.",
+        "season": "Les feuilles restent sur l'arbuste toute l'année. Il fleurit d'août à novembre. Les fruits orange mûrs sont les plus courants de novembre à février, surtout en décembre et janvier. On trouve aussi quelques épis de fruits à d'autres moments.",
+        "picking": "Le kawakawa a une grande importance culturelle pour les Māori. Dans la rongoā māori (la médecine māori), c'est l'une des plantes les plus utilisées, et les praticiens s'en servent encore aujourd'hui. Cueille-le avec respect : prends quelques feuilles sur les côtés de l'arbuste et ne le dépouille jamais. Les feuilles trouées par les insectes sont celles que l'on préfère traditionnellement pour l'infusion. Lave-les bien et secoue les éventuelles chenilles. Les plantes des parcs nationaux, des réserves et des autres terres de conservation sont protégées par la loi, alors n'y cueille rien. Sur un terrain privé, demande au propriétaire. Respecte tout rāhui (une interdiction locale).",
+        "kitchen": "Une fois sûr de toi, lave bien les feuilles. Pour l'infusion, fais bouillir quelques feuilles fraîches dans l'eau jusqu'à 10 minutes, filtre et bois-la fraîche. Les feuilles ont un goût poivré. Séchées et moulues, tu peux les utiliser comme du poivre sur la viande, ou les faire infuser dans des sauces. Des fruits mûrs, on ne mangeait traditionnellement que la pulpe tendre, en recrachant les nombreux petits pépins. Une étude de sécurité néo-zélandaise a été faite sur des rats : ils ont supporté l'équivalent de quatre tasses d'infusion par jour pendant quatre semaines sans dommage. Bois-la donc seulement de temps en temps, et demande d'abord à ton médecin si tu es enceinte, si tu allaites ou si tu prends des médicaments.",
+        "keeps": "Les feuilles fraîches se gardent quelques jours au frigo, dans un linge humide. Pour plus longtemps, fais-les sécher au four doux et garde-les entières ou moulues dans un bocal fermé. Les fruits mûrs sont meilleurs le jour de la cueillette.",
+        "source": "Identification et répartition : NZ Plant Conservation Network et Flora of New Zealand. Infusion et usages : Te Ara et Manaaki Whenua Landcare Research. Étude de sécurité : Plant & Food Research (2019). Karaka : NZ Plant Conservation Network. Saison : observations GBIF et iNaturalist."
+      }
+    },
+    "de": {
+      "name": "Kawakawa",
+      "description": "Ein neuseeländischer Strauch mit grossen, herzförmigen Blättern und gegliederten Stängeln. Aus den pfeffrigen Blättern macht man einen traditionellen Tee, und die reifen orangen Früchte sind ebenfalls essbar.",
+      "howTo": "Such das ganze Jahr in Küsten- und Tieflandwäldern, nach reifen Früchten von November bis Februar. Prüf die gegliederten Stängel und die herzförmigen Blätter",
+      "guide": {
+        "identify": "Kawakawa ist ein Strauch oder kleiner Baum von bis zu etwa 5 m Höhe. Seine Stängel sind gegliedert und wachsen im Zickzack. An jedem Gelenk sind sie verdickt, ähnlich wie bei Bambus. Die Blätter wachsen paarweise. Jedes Blatt ist dunkelgrün und glänzend, 5 bis 12 cm breit und herzförmig mit stumpfer Spitze. Fünf bis sieben Adern fächern sich vom Blattgrund auf. Die Blätter riechen aromatisch, und viele sind voller Löcher, die Raupen gefressen haben. Die Blüten sind winzig und sitzen auf harten grünen Ähren. An weiblichen Pflanzen werden daraus orange Fruchtstände aus winzigen, dicht gepackten Früchten. Der Karaka (Corynocarpus laevigatus) hat im Küstenwald ebenfalls orange Früchte. Jede Karaka-Frucht ist eine einzelne ovale Frucht von 3 bis 4 cm Länge, und der Baum hat dicke, ledrige, ovale Blätter. Der Kern in der Frucht ist giftig, wenn er nicht richtig zubereitet wurde. Prüf bei jeder Pflanze die gegliederten Stängel und die herzförmigen Blätter, und iss keine Frucht, die du nicht sicher bestimmt hast.",
+        "habitat": "Kawakawa wächst nur in Neuseeland. Er steht im Schatten, im Unterwuchs von Küsten- und Tieflandwäldern, und in wärmeren Gegenden steigt er bis etwa 500 m. Er ist häufig von der Nordspitze der Nordinsel bis etwa Okarito, North Canterbury und zur Banks Peninsula. Frost verträgt er nicht, deshalb bleibt er nah an der Küste und in tiefen Lagen.",
+        "season": "Die Blätter bleiben das ganze Jahr am Strauch. Er blüht von August bis November. Reife orange Früchte gibt es vor allem von November bis Februar, am meisten im Dezember und Januar. Einzelne Fruchtstände findest du auch zu anderen Zeiten.",
+        "picking": "Kawakawa hat für die Māori eine grosse kulturelle Bedeutung. In der Rongoā Māori (der Māori-Heilkunde) gehört er zu den am meisten genutzten Pflanzen, und Heilkundige verwenden ihn bis heute. Pflück mit Respekt: Nimm ein paar Blätter von den Seiten des Strauchs und rupf ihn nie kahl. Blätter mit Insektenlöchern sind traditionell die bevorzugten für Tee. Wasch sie gut und schüttel eventuelle Raupen ab. Pflanzen in Nationalparks, Reservaten und anderen Schutzgebieten stehen unter gesetzlichem Schutz, also pflück dort nichts. Auf Privatland frag den Besitzer. Beachte jedes Rāhui (ein örtliches Verbot).",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, wasch die Blätter gut. Für Tee koch ein paar frische Blätter bis zu 10 Minuten in Wasser, seih den Tee ab und trink ihn frisch. Die Blätter schmecken pfeffrig. Getrocknet und gemahlen kannst du sie wie Pfeffer auf Fleisch geben, oder du ziehst sie in Saucen aus. Von den reifen Früchten hat man traditionell nur das weiche Fruchtfleisch gegessen und die vielen kleinen Samen ausgespuckt. Eine neuseeländische Sicherheitsstudie wurde an Ratten gemacht: Sie vertrugen vier Tassen Tee am Tag vier Wochen lang ohne Schaden. Trink ihn deshalb nur ab und zu, und frag vorher deinen Arzt, wenn du schwanger bist, stillst oder Medikamente nimmst.",
+        "keeps": "Frische Blätter halten sich ein paar Tage im Kühlschrank, in ein feuchtes Tuch gewickelt. Für länger trocknest du sie im Ofen bei niedriger Hitze und bewahrst sie ganz oder gemahlen in einem verschlossenen Glas auf. Reife Früchte schmecken am besten am Tag des Pflückens.",
+        "source": "Bestimmung und Verbreitung: NZ Plant Conservation Network und Flora of New Zealand. Tee und Nutzung: Te Ara und Manaaki Whenua Landcare Research. Sicherheitsstudie: Plant & Food Research (2019). Karaka: NZ Plant Conservation Network. Saison: GBIF- und iNaturalist-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Kawakawa",
+      "description": "Un arbusto de Nueva Zelanda con grandes hojas en forma de corazón y tallos articulados. Con sus hojas picantes se hace una infusión tradicional, y los frutos naranjas maduros también se comen.",
+      "howTo": "Búscalo todo el año en bosques costeros y de tierras bajas, y sus frutos maduros de noviembre a febrero. Comprueba los tallos articulados y las hojas en forma de corazón",
+      "guide": {
+        "identify": "El kawakawa es un arbusto o un árbol pequeño de hasta unos 5 m. Sus tallos son articulados y van en zigzag, y se hinchan en cada nudo, un poco como el bambú. Las hojas crecen por pares. Cada hoja es de un verde oscuro y brillante, mide de 5 a 12 cm de ancho y tiene forma de corazón con la punta roma. De cinco a siete nervios salen en abanico desde la base. Las hojas tienen un olor aromático, y muchas están llenas de agujeros que han comido las orugas. Las flores son diminutas y van en espigas verdes y duras. En las plantas hembra, esas espigas se convierten en espigas de frutos naranjas, hechas de frutos diminutos muy apretados. El karaka (Corynocarpus laevigatus) también tiene frutos naranjas en el bosque costero. Cada fruto de karaka es un fruto ovalado suelto, de 3 a 4 cm de largo, y el árbol tiene hojas ovaladas gruesas y coriáceas. La semilla del interior del fruto es venenosa si no se ha preparado bien. Comprueba los tallos articulados y las hojas en forma de corazón de cada planta que cojas, y no comas ningún fruto que no hayas identificado.",
+        "habitat": "El kawakawa solo crece en Nueva Zelanda. Vive a la sombra, en el sotobosque de los bosques costeros y de tierras bajas, y en las zonas más cálidas llega a unos 500 m. Es común desde el extremo norte de la Isla Norte hasta cerca de Okarito, North Canterbury y la península de Banks. No aguanta las heladas, así que se queda cerca de la costa y a poca altitud.",
+        "season": "Las hojas se quedan en el arbusto todo el año. Florece de agosto a noviembre. Los frutos naranjas maduros son más comunes de noviembre a febrero, sobre todo en diciembre y enero. También se encuentran algunas espigas de fruto en otras épocas.",
+        "picking": "El kawakawa tiene una gran importancia cultural para los maoríes. En la rongoā maorí (la medicina maorí) es una de las plantas más usadas, y quienes la practican la siguen usando hoy. Cógelo con respeto: toma unas pocas hojas de los lados del arbusto y no lo dejes pelado. Las hojas con agujeros de insectos son las que tradicionalmente se prefieren para la infusión. Lávalas bien y sacude las orugas que haya. Las plantas de los parques nacionales, las reservas y otras tierras de conservación están protegidas por ley, así que no cojas nada allí. En terreno privado, pregunta al dueño. Respeta cualquier rāhui (una prohibición local).",
+        "kitchen": "Cuando estés seguro de que es él, lava bien las hojas. Para la infusión, hierve unas pocas hojas frescas en agua hasta 10 minutos, cuélala y bébela recién hecha. Las hojas saben a pimienta. Secas y molidas, puedes usarlas como pimienta en la carne o infusionarlas en salsas. De los frutos maduros, tradicionalmente solo se comía la pulpa blanda y se escupían las muchas semillas pequeñas. Un estudio de seguridad neozelandés se hizo con ratas: toleraron el equivalente a cuatro tazas de infusión al día durante cuatro semanas sin daño. Por eso bébela solo de vez en cuando, y pregunta antes a tu médico si estás embarazada, das el pecho o tomas medicamentos.",
+        "keeps": "Las hojas frescas se conservan unos días en la nevera, envueltas en un paño húmedo. Para más tiempo, sécalas en el horno a baja temperatura y guárdalas enteras o molidas en un tarro cerrado. Los frutos maduros son mejores el mismo día de la recogida.",
+        "source": "Identificación y distribución: NZ Plant Conservation Network y Flora of New Zealand. Infusión y usos: Te Ara y Manaaki Whenua Landcare Research. Estudio de seguridad: Plant & Food Research (2019). Karaka: NZ Plant Conservation Network. Temporada: registros de GBIF e iNaturalist."
+      }
+    },
+    "pt": {
+      "name": "Kawakawa",
+      "description": "Um arbusto da Nova Zelândia com folhas grandes em forma de coração e caules articulados. Com as folhas picantes faz-se uma infusão tradicional, e os frutos laranja maduros também se comem.",
+      "howTo": "Procura-o o ano todo em florestas costeiras e de baixa altitude, e os frutos maduros de novembro a fevereiro. Confirma os caules articulados e as folhas em forma de coração",
+      "guide": {
+        "identify": "O kawakawa é um arbusto ou uma pequena árvore de até cerca de 5 m. Os caules são articulados e em ziguezague, e engrossam em cada nó, um pouco como o bambu. As folhas crescem aos pares. Cada folha é verde-escura e brilhante, mede 5 a 12 cm de largura e tem forma de coração com a ponta romba. Cinco a sete nervuras abrem-se em leque desde a base. As folhas têm um cheiro aromático, e muitas estão cheias de buracos comidos por lagartas. As flores são minúsculas e ficam em espigas verdes e duras. Nas plantas fêmeas, essas espigas tornam-se espigas de frutos laranja, feitas de frutos minúsculos muito apertados. O karaka (Corynocarpus laevigatus) também tem frutos laranja na floresta costeira. Cada fruto de karaka é um fruto oval solto, com 3 a 4 cm de comprimento, e a árvore tem folhas ovais grossas e coriáceas. O caroço dentro do fruto é venenoso se não for bem preparado. Confirma os caules articulados e as folhas em forma de coração de cada planta que apanhas, e não comas um fruto que não tenhas identificado.",
+        "habitat": "O kawakawa só cresce na Nova Zelândia. Vive à sombra, no sub-bosque das florestas costeiras e de baixa altitude, e nas zonas mais quentes chega a cerca de 500 m. É comum desde o extremo norte da Ilha do Norte até perto de Okarito, North Canterbury e à península de Banks. Não aguenta a geada, por isso fica perto da costa e a baixa altitude.",
+        "season": "As folhas ficam no arbusto o ano inteiro. Floresce de agosto a novembro. Os frutos laranja maduros são mais comuns de novembro a fevereiro, sobretudo em dezembro e janeiro. Também se encontram algumas espigas de fruto noutras alturas.",
+        "picking": "O kawakawa tem uma grande importância cultural para os maoris. Na rongoā maori (a medicina maori) é uma das plantas mais usadas, e quem a pratica continua a usá-la hoje. Apanha-o com respeito: tira umas poucas folhas dos lados do arbusto e nunca o deixes despido. As folhas com buracos de insetos são as que tradicionalmente se preferem para a infusão. Lava-as bem e sacode as lagartas que houver. As plantas dos parques nacionais, das reservas e de outras terras de conservação estão protegidas por lei, por isso não apanhes nada aí. Em terreno privado, pergunta ao dono. Respeita qualquer rāhui (uma proibição local).",
+        "kitchen": "Quando tiveres a certeza de que é ele, lava bem as folhas. Para a infusão, ferve umas poucas folhas frescas em água até 10 minutos, coa e bebe-a fresca. As folhas sabem a pimenta. Secas e moídas, podes usá-las como pimenta na carne ou infundi-las em molhos. Dos frutos maduros, tradicionalmente só se comia a polpa mole e cuspiam-se as muitas sementes pequenas. Um estudo de segurança neozelandês foi feito com ratos: aguentaram o equivalente a quatro chávenas de infusão por dia durante quatro semanas sem dano. Por isso bebe-a só de vez em quando e pergunta antes ao teu médico se estás grávida, se amamentas ou se tomas medicamentos.",
+        "keeps": "As folhas frescas aguentam alguns dias no frigorífico, embrulhadas num pano húmido. Para mais tempo, seca-as no forno a baixa temperatura e guarda-as inteiras ou moídas num frasco fechado. Os frutos maduros são melhores no próprio dia da apanha.",
+        "source": "Identificação e distribuição: NZ Plant Conservation Network e Flora of New Zealand. Infusão e usos: Te Ara e Manaaki Whenua Landcare Research. Estudo de segurança: Plant & Food Research (2019). Karaka: NZ Plant Conservation Network. Época: registos do GBIF e do iNaturalist."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Piper excelsum",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Kawakawa"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [7305062, 7305291, 4183998]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 621, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/7305062",
+          "https://www.gbif.org/species/7305291",
+          "https://www.gbif.org/species/4183998",
+          "https://www.nzpcn.org.nz/flora/species/piper-excelsum-subsp-excelsum/",
+          "https://nzflora.info/factsheet/Taxon/Piper-excelsum.html",
+          "https://rauropiwhakaoranga.landcareresearch.co.nz/related-items/df6c4669-4a57-4473-8b3f-ce49593273a2",
+          "https://teara.govt.nz/en/interactive/40270/kawakawa-tea",
+          "https://pubmed.ncbi.nlm.nih.gov/30572092/",
+          "https://www.nzpcn.org.nz/flora/species/corynocarpus-laevigatus/",
+          "https://www.nzpcn.org.nz/help/faq/the-law/",
+          "https://www.sbs.com.au/food/article/the-one-ingredient-maori-chefs-swear-by/pu4v9loc1",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

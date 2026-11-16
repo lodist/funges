@@ -1,0 +1,158 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "wood_ear",
+  "scientificName": "Auricularia cornea",
+  "catalog": {
+    "enabled": true,
+    "order": 63,
+    "translationKey": "wood_ear",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall-winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/wood_ear.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Wood Ear",
+      "description": "A soft, rubbery fungus shaped like an ear, brown with a velvety, grey-haired outside. It grows on dead wood in damp forest in New Zealand and eastern Australia.",
+      "howTo": "Look on dead branches and logs from March to August, while the wood is wet. Check for a rubbery, ear-shaped body with fine hairs on the outside",
+      "guide": {
+        "identify": "Wood ear is a soft, rubbery fungus shaped like a small ear or cup. It grows up to about 9 cm across. The colour runs from reddish brown to dark brown, and it is a little see-through when wet. The outside is covered in fine, pale grey hairs, like velvet. The inside is smooth and shiny, sometimes with a few veins. It has no real stem and sits sideways on the wood. It grows in clusters on dead wood and never straight out of the soil. When it dries it shrinks to a hard, black crust, and it swells up again after rain. The tripe fungus (Auricularia mesenterica) grows in Australia and is a close relative. It is paler and hairier, with bands of colour and a wrinkled, purplish underside. Other jelly fungi grow on dead wood too, such as the lobed Tremella and the smooth, glossy Exidia. They have no velvety hairs and no ear shape. True cup fungi are much more brittle than wood ear. None of these look-alikes is known to be poisonous. They are just bland or tough. Check three things on every piece you pick: it grows on wood, it feels rubbery and the outside is velvety. If one is missing, leave it.",
+        "habitat": "It grows on dead wood of broadleaf trees. In New Zealand look on fallen branches and logs in native forest, on trees such as mahoe, pukatea, tawa and karaka. Most finds are in the North Island, but it turns up in the South Island too. In Australia it grows in the warm, wet forests of Queensland and New South Wales. It also grows on dying trees in suburban gardens. Māori call it hakeke, and from the 1870s it was dried and shipped to China.",
+        "season": "It can fruit all year, but most finds are in autumn and winter. In New Zealand that means April to August, with the most from April to July. In Australia most finds are from March to July. It swells up in wet weather and shrivels in dry spells, so go when the wood is wet.",
+        "picking": "Cut it off the wood with a knife and take only soft, plump pieces. Skip any that are slimy or falling apart. Leave some in every patch. Much of New Zealand's native forest is conservation land, so ask the local Department of Conservation office before you pick. In most Australian national parks you may not pick fungi to eat. On private land, ask the owner.",
+        "kitchen": "Once you're certain of it, rinse it and trim off the part that was stuck to the wood. Cook it well: simmer or stir-fry it for at least 15 to 20 minutes. It has almost no taste, but it stays slippery and crunchy. That suits soups and stir-fries. Māori steamed it in an earth oven and ate it with puha (sow thistle) and potatoes.",
+        "keeps": "Fresh, it keeps three to five days in the fridge. Dry it until it is crisp and keep it in a jar. In water it swells up to several times its size. Cook it before you freeze it, or it turns slimy when it thaws.",
+        "source": "Identification and range: Landcare Research fungal guide, Biota of NZ, Australian Fungi blog and Australian Geographic. Look-alikes: Woodland Trust. History: Te Ara. Cooking and keeping: Practical Self Reliance. Picking rules: Fungimap. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Orecchio di Giuda",
+      "description": "Un fungo molle e gommoso a forma di orecchio, marrone e con l'esterno coperto di peli grigi e vellutati. Cresce sul legno morto nelle foreste umide della Nuova Zelanda e dell'Australia orientale.",
+      "howTo": "Cercalo da marzo ad agosto su rami e tronchi morti, finché il legno è bagnato. Controlla il corpo gommoso a forma di orecchio con fini peli all'esterno",
+      "guide": {
+        "identify": "L'orecchio di Giuda è un fungo molle e gommoso, a forma di piccolo orecchio o di coppa. Arriva a circa 9 cm di larghezza. Il colore va dal marrone rossiccio al marrone scuro, e da bagnato è un po' trasparente. L'esterno è coperto di fini peli grigio chiaro, come velluto. L'interno è liscio e lucido, a volte con qualche nervatura. Non ha un vero gambo e sta attaccato di lato al legno. Cresce in gruppi sul legno morto e mai direttamente dal terreno. Da secco si riduce a una crosta dura e nera, e dopo la pioggia si gonfia di nuovo. L'Auricularia mesenterica (in inglese tripe fungus) cresce in Australia ed è una parente stretta. È più chiara e più pelosa, con bande di colore e una parte inferiore rugosa e violacea. Sul legno morto crescono anche altri funghi gelatinosi, come le tremelle lobate (Tremella) e le esidie lisce e lucide (Exidia). Non hanno peli vellutati né la forma a orecchio. I veri funghi a coppa sono molto più fragili dell'orecchio di Giuda. Di nessuno di questi sosia si sa che sia velenoso. Sono solo insipidi o duri. Controlla tre cose su ogni pezzo che raccogli: cresce sul legno, è gommoso al tatto e l'esterno è vellutato. Se ne manca una, lascialo dov'è.",
+        "habitat": "Cresce sul legno morto di latifoglie. In Nuova Zelanda cercalo su rami e tronchi caduti nella foresta nativa, su alberi come mahoe, pukatea, tawa e karaka. La maggior parte dei ritrovamenti è nell'Isola del Nord, ma compare anche in quella del Sud. In Australia cresce nelle foreste calde e umide del Queensland e del Nuovo Galles del Sud, e su alberi morenti nei giardini di periferia. I Māori lo chiamano hakeke, e dagli anni 1870 veniva seccato e spedito in Cina.",
+        "season": "Può fruttificare tutto l'anno, ma la maggior parte dei ritrovamenti è in autunno e in inverno. In Nuova Zelanda vuol dire da aprile ad agosto, soprattutto da aprile a luglio. In Australia la maggior parte dei ritrovamenti va da marzo a luglio. Con l'umido si gonfia, con il secco si raggrinzisce, quindi esci quando il legno è bagnato.",
+        "picking": "Staccalo dal legno con un coltello e prendi solo pezzi molli e turgidi. Salta quelli viscidi o che si sfaldano. Lasciane un po' in ogni gruppo. Gran parte della foresta nativa della Nuova Zelanda è terreno di conservazione, quindi prima di raccogliere chiedi all'ufficio locale del Department of Conservation. Nella maggior parte dei parchi nazionali australiani non puoi raccogliere funghi da mangiare. Su terreno privato chiedi al proprietario.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, sciacqualo e taglia via la parte che era attaccata al legno. Cuocilo bene: bollilo o saltalo per almeno 15-20 minuti. Non sa quasi di niente, ma resta scivoloso e croccante. Va bene per zuppe e saltati in padella. I Māori lo cuocevano a vapore nel forno di terra e lo mangiavano con puha (grespino) e patate.",
+        "keeps": "Fresco si conserva da tre a cinque giorni in frigo. Fallo seccare finché è croccante e tienilo in un barattolo. In acqua si gonfia fino a diverse volte il suo volume. Cuocilo prima di congelarlo, altrimenti diventa viscido quando si scongela.",
+        "source": "Riconoscimento e diffusione: guida ai funghi di Landcare Research, Biota of NZ, blog Australian Fungi e Australian Geographic. Sosia: Woodland Trust. Storia: Te Ara. Cucina e conservazione: Practical Self Reliance. Regole di raccolta: Fungimap. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Oreille de Judas",
+      "description": "Un champignon mou et caoutchouteux en forme d'oreille, brun et couvert à l'extérieur de poils gris veloutés. Il pousse sur le bois mort dans les forêts humides de Nouvelle-Zélande et de l'est de l'Australie.",
+      "howTo": "Cherche-la de mars à août sur les branches et les troncs morts, tant que le bois est mouillé. Vérifie le corps caoutchouteux en forme d'oreille, avec de fins poils à l'extérieur",
+      "guide": {
+        "identify": "L'oreille de Judas est un champignon mou et caoutchouteux, en forme de petite oreille ou de coupe. Elle atteint environ 9 cm de large. La couleur va du brun rougeâtre au brun foncé, et elle est un peu translucide quand elle est mouillée. L'extérieur est couvert de fins poils gris pâle, comme du velours. L'intérieur est lisse et brillant, parfois avec quelques nervures. Elle n'a pas de vrai pied et se fixe de côté sur le bois. Elle pousse en groupes sur le bois mort, jamais directement dans le sol. En séchant, elle se réduit à une croûte dure et noire, et elle regonfle après la pluie. L'auriculaire mésentérique (Auricularia mesenterica) pousse en Australie et c'est un proche parent. Il est plus pâle et plus poilu, avec des bandes de couleur et un dessous ridé et violacé. D'autres champignons gélatineux poussent aussi sur le bois mort, comme les trémelles lobées (Tremella) et les exidies lisses et brillantes (Exidia). Elles n'ont ni poils veloutés ni forme d'oreille. Les vraies pézizes en coupe sont bien plus cassantes que l'oreille de Judas. On ne connaît aucune de ces ressemblances qui soit toxique. Elles sont juste fades ou coriaces. Vérifie trois choses sur chaque pièce que tu cueilles : elle pousse sur du bois, elle est caoutchouteuse au toucher et l'extérieur est velouté. S'il en manque une, laisse-la.",
+        "habitat": "Elle pousse sur le bois mort des feuillus. En Nouvelle-Zélande, cherche-la sur les branches et les troncs tombés dans la forêt indigène, sur des arbres comme le mahoe, le pukatea, le tawa et le karaka. La plupart des observations viennent de l'île du Nord, mais on la trouve aussi dans l'île du Sud. En Australie, elle pousse dans les forêts chaudes et humides du Queensland et de la Nouvelle-Galles du Sud, et sur les arbres mourants des jardins de banlieue. Les Māori l'appellent hakeke, et dès les années 1870 on la séchait pour l'expédier en Chine.",
+        "season": "Elle peut sortir toute l'année, mais la plupart des observations ont lieu en automne et en hiver. En Nouvelle-Zélande, cela donne d'avril à août, surtout d'avril à juillet. En Australie, la plupart des observations vont de mars à juillet. Elle gonfle par temps humide et se racornit par temps sec, alors pars quand le bois est mouillé.",
+        "picking": "Coupe-la du bois au couteau et ne prends que des pièces molles et gonflées. Laisse celles qui sont visqueuses ou qui se défont. Laisse-en dans chaque groupe. Une grande partie de la forêt indigène néo-zélandaise est un terrain protégé, alors demande au bureau local du Department of Conservation avant de cueillir. Dans la plupart des parcs nationaux australiens, tu n'as pas le droit de cueillir des champignons pour les manger. Sur un terrain privé, demande au propriétaire.",
+        "kitchen": "Une fois sûr de toi, rince-la et coupe la partie qui était collée au bois. Fais-la bien cuire : mijote-la ou saute-la au moins 15 à 20 minutes. Elle n'a presque pas de goût, mais elle reste glissante et croquante. Elle va bien dans les soupes et les sautés. Les Māori la cuisaient à la vapeur dans un four en terre et la mangeaient avec du puha (laiteron) et des pommes de terre.",
+        "keeps": "Fraîche, elle se garde trois à cinq jours au frigo. Fais-la sécher jusqu'à ce qu'elle soit cassante et garde-la dans un bocal. Dans l'eau, elle gonfle jusqu'à plusieurs fois son volume. Fais-la cuire avant de la congeler, sinon elle devient visqueuse à la décongélation.",
+        "source": "Identification et répartition : guide des champignons de Landcare Research, Biota of NZ, blog Australian Fungi et Australian Geographic. Sosies : Woodland Trust. Histoire : Te Ara. Cuisine et conservation : Practical Self Reliance. Règles de cueillette : Fungimap. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Mu-Err-Pilz",
+      "description": "Ein weicher, gummiartiger Pilz in Form eines Ohrs, braun und aussen mit samtigen, grauen Härchen. Er wächst auf totem Holz in feuchten Wäldern Neuseelands und Ostaustraliens.",
+      "howTo": "Such von März bis August an toten Ästen und Stämmen, solange das Holz nass ist. Prüf den gummiartigen, ohrförmigen Pilz mit feinen Härchen aussen",
+      "guide": {
+        "identify": "Der Mu-Err ist ein weicher, gummiartiger Pilz in der Form eines kleinen Ohrs oder Bechers. Er wird bis zu etwa 9 cm gross. Seine Farbe geht von rotbraun bis dunkelbraun, und nass ist er ein wenig durchscheinend. Aussen ist er mit feinen, hellgrauen Härchen besetzt, wie mit Samt. Innen ist er glatt und glänzend, manchmal mit ein paar Adern. Einen richtigen Stiel hat er nicht, er sitzt seitlich am Holz. Er wächst in Gruppen auf totem Holz und nie direkt aus dem Boden. Trocken schrumpft er zu einer harten, schwarzen Kruste und quillt nach Regen wieder auf. Der Gezonte Ohrlappenpilz (Auricularia mesenterica) wächst in Australien und ist ein naher Verwandter. Er ist heller und struppiger, hat farbige Bänder und unten eine runzlige, violette Fläche. Auch andere Gallertpilze wachsen auf totem Holz, etwa die gelappten Zitterlinge (Tremella) und die glatten, glänzenden Drüslinge (Exidia). Sie haben keine samtigen Härchen und keine Ohrform. Echte Becherlinge sind viel spröder als der Mu-Err. Von keinem dieser Doppelgänger ist bekannt, dass er giftig wäre. Sie sind einfach fad oder zäh. Prüf bei jedem Stück, das du pflückst, drei Dinge: Es wächst auf Holz, es fühlt sich gummiartig an, und die Aussenseite ist samtig. Fehlt eins davon, lass es stehen.",
+        "habitat": "Er wächst auf totem Holz von Laubbäumen. In Neuseeland such auf umgefallenen Ästen und Stämmen im Urwald, an Bäumen wie Mahoe, Pukatea, Tawa und Karaka. Die meisten Funde stammen von der Nordinsel, aber es gibt ihn auch auf der Südinsel. In Australien wächst er in den warmen, feuchten Wäldern von Queensland und New South Wales und an absterbenden Bäumen in Vorstadtgärten. Die Māori nennen ihn Hakeke, und ab den 1870er-Jahren wurde er getrocknet und nach China verschifft.",
+        "season": "Er kann das ganze Jahr über wachsen, aber die meisten Funde stammen aus Herbst und Winter. In Neuseeland ist das von April bis August, die meisten von April bis Juli. In Australien kommen die meisten Funde von März bis Juli. Bei Nässe quillt er auf, in Trockenzeiten schrumpft er, also geh los, wenn das Holz nass ist.",
+        "picking": "Schneid ihn mit einem Messer vom Holz ab und nimm nur weiche, pralle Stücke. Lass schleimige und zerfallende stehen. Lass in jedem Bestand einige übrig. Ein grosser Teil von Neuseelands Urwald ist Naturschutzland, also frag vor dem Pflücken beim örtlichen Büro des Department of Conservation nach. In den meisten australischen Nationalparks darfst du keine Pilze zum Essen sammeln. Auf Privatland frag den Besitzer.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, spül ihn ab und schneid die Stelle weg, an der er am Holz klebte. Gar ihn gründlich: Koch ihn oder brat ihn mindestens 15 bis 20 Minuten. Er schmeckt fast nach nichts, bleibt aber glitschig und knackig. Das passt in Suppen und Pfannengerichte. Die Māori dämpften ihn im Erdofen und assen ihn mit Puha (Gänsedistel) und Kartoffeln.",
+        "keeps": "Frisch hält er sich drei bis fünf Tage im Kühlschrank. Trockne ihn, bis er knusprig ist, und bewahr ihn in einem Glas auf. In Wasser quillt er auf ein Mehrfaches seiner Grösse auf. Gar ihn vor dem Einfrieren, sonst wird er beim Auftauen schleimig.",
+        "source": "Bestimmung und Verbreitung: Landcare-Research-Pilzführer, Biota of NZ, Australian-Fungi-Blog und Australian Geographic. Doppelgänger: Woodland Trust. Geschichte: Te Ara. Zubereitung und Haltbarkeit: Practical Self Reliance. Sammelregeln: Fungimap. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Oreja de Judas",
+      "description": "Un hongo blando y gomoso con forma de oreja, marrón y con el exterior cubierto de pelillos grises aterciopelados. Crece sobre madera muerta en los bosques húmedos de Nueva Zelanda y del este de Australia.",
+      "howTo": "Búscala de marzo a agosto en ramas y troncos muertos, mientras la madera esté mojada. Comprueba el cuerpo gomoso con forma de oreja y pelillos finos por fuera",
+      "guide": {
+        "identify": "La oreja de Judas es un hongo blando y gomoso, con forma de orejita o de copa. Llega a medir unos 9 cm. El color va del marrón rojizo al marrón oscuro, y mojada es un poco translúcida. Por fuera está cubierta de pelillos finos de color gris claro, como terciopelo. Por dentro es lisa y brillante, a veces con algunas venas. No tiene un pie de verdad y se pega de lado a la madera. Crece en grupos sobre madera muerta y nunca directamente del suelo. Al secarse se encoge hasta ser una costra dura y negra, y después de la lluvia vuelve a hincharse. La Auricularia mesenterica (en inglés tripe fungus) crece en Australia y es una pariente cercana. Es más pálida y más peluda, con bandas de color y una parte inferior arrugada y violácea. Sobre la madera muerta crecen también otros hongos gelatinosos, como las tremelas lobuladas (Tremella) y las exidias lisas y brillantes (Exidia). No tienen pelillos aterciopelados ni forma de oreja. Los hongos de copa de verdad son mucho más quebradizos que la oreja de Judas. De ninguno de estos parecidos se sabe que sea venenoso. Son simplemente insípidos o duros. Comprueba tres cosas en cada pieza que cojas: crece sobre madera, es gomosa al tacto y el exterior es aterciopelado. Si falta una, déjala.",
+        "habitat": "Crece sobre la madera muerta de árboles de hoja ancha. En Nueva Zelanda búscala en ramas y troncos caídos del bosque nativo, en árboles como el mahoe, el pukatea, el tawa y el karaka. La mayoría de los hallazgos están en la Isla Norte, pero también aparece en la Isla Sur. En Australia crece en los bosques cálidos y húmedos de Queensland y Nueva Gales del Sur, y en árboles moribundos de jardines de las afueras. Los maoríes la llaman hakeke, y desde la década de 1870 se secaba y se enviaba a China.",
+        "season": "Puede salir todo el año, pero la mayoría de los hallazgos son en otoño e invierno. En Nueva Zelanda eso es de abril a agosto, sobre todo de abril a julio. En Australia la mayoría de los hallazgos van de marzo a julio. Se hincha con la humedad y se arruga en los periodos secos, así que sal cuando la madera esté mojada.",
+        "picking": "Córtala de la madera con un cuchillo y coge solo piezas blandas y turgentes. Descarta las que estén viscosas o se deshagan. Deja algunas en cada grupo. Gran parte del bosque nativo de Nueva Zelanda es terreno de conservación, así que antes de recoger pregunta en la oficina local del Department of Conservation. En la mayoría de los parques nacionales australianos no puedes recoger hongos para comer. En terreno privado, pregunta al propietario.",
+        "kitchen": "Cuando estés seguro de que es ella, aclárala y recorta la parte que estaba pegada a la madera. Cocínala bien: hiérvela o saltéala al menos de 15 a 20 minutos. Casi no sabe a nada, pero sigue siendo resbaladiza y crujiente. Va bien en sopas y salteados. Los maoríes la cocían al vapor en un horno de tierra y la comían con puha (cerraja) y patatas.",
+        "keeps": "Fresca, aguanta de tres a cinco días en la nevera. Sécala hasta que quede crujiente y guárdala en un frasco. En agua se hincha hasta varias veces su tamaño. Cocínala antes de congelarla, o se pone viscosa al descongelarse.",
+        "source": "Identificación y distribución: guía de hongos de Landcare Research, Biota of NZ, blog Australian Fungi y Australian Geographic. Parecidos: Woodland Trust. Historia: Te Ara. Cocina y conservación: Practical Self Reliance. Normas de recolección: Fungimap. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Orelha-de-judas",
+      "description": "Um cogumelo mole e borrachudo em forma de orelha, castanho e com o exterior coberto de pelinhos cinzentos e aveludados. Cresce em madeira morta nas florestas húmidas da Nova Zelândia e do leste da Austrália.",
+      "howTo": "Procura-a de março a agosto em ramos e troncos mortos, enquanto a madeira estiver molhada. Confirma o corpo borrachudo em forma de orelha, com pelinhos finos por fora",
+      "guide": {
+        "identify": "A orelha-de-judas é um cogumelo mole e borrachudo, em forma de pequena orelha ou de taça. Chega a medir cerca de 9 cm. A cor vai do castanho-avermelhado ao castanho-escuro, e molhada é um pouco translúcida. Por fora está coberta de pelinhos finos, cinzento-claros, como veludo. Por dentro é lisa e brilhante, às vezes com algumas nervuras. Não tem um pé a sério e fica presa de lado à madeira. Cresce em grupos em madeira morta e nunca diretamente do solo. Ao secar, encolhe até ser uma crosta dura e preta, e depois da chuva volta a inchar. A Auricularia mesenterica (em inglês tripe fungus) cresce na Austrália e é uma parente próxima. É mais pálida e mais peluda, com faixas de cor e uma parte de baixo enrugada e arroxeada. Em madeira morta crescem também outros cogumelos gelatinosos, como as tremelas lobadas (Tremella) e as exídias lisas e brilhantes (Exidia). Não têm pelinhos aveludados nem forma de orelha. Os verdadeiros fungos em taça são muito mais quebradiços do que a orelha-de-judas. De nenhum destes parecidos se sabe que seja venenoso. São só insípidos ou duros. Confirma três coisas em cada peça que apanhas: cresce em madeira, é borrachuda ao toque e o exterior é aveludado. Se faltar uma, deixa-a.",
+        "habitat": "Cresce em madeira morta de árvores de folha larga. Na Nova Zelândia procura-a em ramos e troncos caídos na floresta nativa, em árvores como o mahoe, o pukatea, o tawa e o karaka. A maioria dos achados é na Ilha do Norte, mas também aparece na Ilha do Sul. Na Austrália cresce nas florestas quentes e húmidas do Queensland e de Nova Gales do Sul, e em árvores moribundas de jardins nos arredores. Os maoris chamam-lhe hakeke, e a partir da década de 1870 era seca e enviada para a China.",
+        "season": "Pode aparecer todo o ano, mas a maioria dos achados é no outono e no inverno. Na Nova Zelândia isso quer dizer de abril a agosto, sobretudo de abril a julho. Na Austrália, a maioria dos achados vai de março a julho. Incha com tempo húmido e encolhe nos períodos secos, por isso sai quando a madeira estiver molhada.",
+        "picking": "Corta-a da madeira com uma faca e leva só peças moles e inchadas. Deixa as que estiverem viscosas ou a desfazer-se. Deixa algumas em cada grupo. Grande parte da floresta nativa da Nova Zelândia é terreno de conservação, por isso, antes de apanhar, pergunta no gabinete local do Department of Conservation. Na maioria dos parques nacionais australianos não podes apanhar cogumelos para comer. Em terreno privado, pergunta ao proprietário.",
+        "kitchen": "Quando tiveres a certeza de que é ela, passa-a por água e corta a parte que estava colada à madeira. Cozinha-a bem: coze-a ou salteia-a durante pelo menos 15 a 20 minutos. Quase não sabe a nada, mas continua escorregadia e estaladiça. Fica bem em sopas e salteados. Os maoris cozinhavam-na a vapor num forno de terra e comiam-na com puha (serralha) e batatas.",
+        "keeps": "Fresca, aguenta três a cinco dias no frigorífico. Seca-a até ficar estaladiça e guarda-a num frasco. Em água, incha até várias vezes o seu tamanho. Cozinha-a antes de congelar, senão fica viscosa ao descongelar.",
+        "source": "Identificação e distribuição: guia de fungos da Landcare Research, Biota of NZ, blogue Australian Fungi e Australian Geographic. Parecidos: Woodland Trust. História: Te Ara. Cozinha e conservação: Practical Self Reliance. Regras de apanha: Fungimap. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Auricularia cornea",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Wood Ear"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5249287],
+      "references": ["https://www.gbif.org/species/5249287"]
+    },
+    "rangePrior": {
+      "taxonKeys": [5249287]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 621, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/5249287",
+          "https://fungalguide.landcareresearch.co.nz/webforms/FG_Group.aspx?Group=jelly",
+          "https://biotanz.landcareresearch.co.nz/scientific-names/19f8436d-5ea1-4de9-9415-b83ea6bee477",
+          "http://australianfungi.blogspot.com/2010/07/34-auricularia-cornea.html",
+          "https://www.australiangeographic.com.au/blogs/creatura-with-bec-crew/2022/04/bizarre-mushrooms-give-australian-forests-an-otherworldly-vibe/",
+          "https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/fungi-and-lichens/jelly-ear/",
+          "https://www.nznatureguy.com/2019/06/29/6-facts-new-zealands-wood-ear-fungus/",
+          "https://teara.govt.nz/en/biographies/2c17/chew-chong",
+          "https://practicalselfreliance.com/wood-ear-mushroom-auricularia/",
+          "https://fungimap.org.au/wp-content/uploads/2018/04/Fmap-NL-57.pdf",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

@@ -135,6 +135,9 @@
       },
       "USW": {
         "available": true
+      },
+      "ANZ": {
+        "available": false
       }
     }
   }

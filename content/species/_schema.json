@@ -173,8 +173,8 @@
         },
         "regions": {
           "type": "object",
-          "required": ["NE", "SE", "USE", "USW"],
-          "propertyNames": { "enum": ["NE", "SE", "USE", "USW"] },
+          "required": ["NE", "SE", "USE", "USW", "ANZ"],
+          "propertyNames": { "enum": ["NE", "SE", "USE", "USW", "ANZ"] },
           "additionalProperties": {
             "type": "object",
             "additionalProperties": false,
@@ -186,7 +186,7 @@
                 "minItems": 1,
                 "items": { "type": ["integer", "string"] }
               },
-              "landCoverScheme": { "enum": ["CORINE", "NLCD"] },
+              "landCoverScheme": { "enum": ["CORINE", "NLCD", "ANZ"] },
               "scoringReferences": {
                 "type": "array",
                 "minItems": 1,

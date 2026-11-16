@@ -139,6 +139,9 @@
       "USW": {
         "available": true,
         "without": ["bay_bolete"]
+      },
+      "ANZ": {
+        "available": true
       }
     }
   }

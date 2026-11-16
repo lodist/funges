@@ -1,0 +1,161 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "watercress",
+  "scientificName": "Nasturtium officinale",
+  "catalog": {
+    "enabled": true,
+    "order": 69,
+    "translationKey": "watercress",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-fall",
+    "habitat": "wetland",
+    "image": {
+      "path": "src/assets/species/watercress.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Watercress",
+      "description": "A peppery green that grows in clear, running water. It has rounded leaflets and small white flowers, and it grows wild all over New Zealand and in much of Australia.",
+      "howTo": "Look in clean, running streams and springs, away from farms and livestock. Always cook it before you eat it",
+      "guide": {
+        "identify": "Watercress grows in running water and in the mud at the edge. It makes soft green mats of trailing, hollow stems that root where they touch the ground. Each leaf is divided into a few rounded to oval leaflets with smooth or slightly wavy edges. The leaves are mostly under 10 cm long. Small white flowers sit in short clusters at the stem tips. Later they give narrow, curved pods about 1 to 2 cm long. Fool's watercress (Helosciadium nodiflorum, called water celery in New Zealand) grows in the same streams and is often mistaken for it. Its leaflets are toothed, its leaves are much longer and its flowers form flat, umbrella-shaped clusters. Hemlock (Conium maculatum) grows on creek banks in both countries. Every part of it is poisonous and it can kill. Its hollow stems have purple blotches, and its finely divided leaves smell harsh when crushed. A plant with finely divided leaves or umbrella-shaped flower heads is not watercress. Check the leaf shape and the flowers of every plant you pick, and never taste an unknown plant to test it.",
+        "habitat": "Look in running water: streams, springs, drains and muddy edges where the water is shallow. It came from Europe and Asia as a salad plant. It has gone wild across New Zealand (since the 1850s) and in Victoria, Western Australia, South Australia, Queensland, New South Wales and Tasmania. It often grows in streams that run through farmland, and that is exactly where it is least safe.",
+        "season": "It grows all year as long as the water keeps running. It does best in the cooler months and in spring. It flowers from spring to autumn. Pick the young tips, because the thick stalks are coarse.",
+        "picking": "Safety comes first here. Wild watercress can carry liver fluke (a parasite that sheep and cattle spread) and germs from farm runoff. Health authorities in New Zealand advise against eating stream watercress unless it has been washed and cooked thoroughly in boiling water. So pick only from clean, fast-running water with no paddocks, farm drains, towns or roads upstream, and cook all of it. Cut the young tips with scissors above the water and leave the rest. Don't drop pieces into another stream: it regrows from stem fragments. Ask before you go onto farmland. In New Zealand, check that the stream has no rāhui (a local ban put in place by iwi).",
+        "kitchen": "Once you're certain of it, cook it before you eat it. Wash it well, then boil or steam it thoroughly. Raw wild watercress doesn't belong in a salad or on the plate as a garnish. Use it like spinach: in soup (with potato, for example), omelettes, quiches and stews. In New Zealand it also goes into the boil-up, a one-pot stew. Māori call it wātakirihi or kōwhitiwhiti. They have used it widely as a cooked green and to wrap food in the hāngi (earth oven).",
+        "keeps": "It wilts very fast, so cook it the day you pick it or the day after. Until then keep it in a paper bag in the fridge. Finished soup freezes well.",
+        "source": "Identification and range: VicFlora and NZ Plant Conservation Network. Safety advice: NZ Director-General of Health, NZ Ministry for Primary Industries and US CDC. Hemlock: Weeds Australia and NZ Plant Conservation Network. Māori use: Manaaki Whenua Landcare Research. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Crescione d'acqua",
+      "description": "Un'erba piccante che cresce nell'acqua limpida e corrente. Ha foglioline tonde e piccoli fiori bianchi, e cresce spontaneo in tutta la Nuova Zelanda e in gran parte dell'Australia.",
+      "howTo": "Cercalo in ruscelli e sorgenti puliti, con acqua corrente, lontano da fattorie e bestiame. Cuocilo sempre prima di mangiarlo",
+      "guide": {
+        "identify": "Il crescione d'acqua cresce nell'acqua corrente e nel fango lungo la riva. Forma morbidi tappeti verdi di fusti striscianti e cavi, che mettono radici dove toccano il fondo. Ogni foglia è divisa in poche foglioline da tonde a ovali, con il margine liscio o appena ondulato. Le foglie sono quasi sempre lunghe meno di 10 cm. Piccoli fiori bianchi stanno in brevi grappoli sulle punte dei fusti. Poi fanno baccelli stretti e curvi, lunghi circa 1 o 2 cm. Il sedano d'acqua (Helosciadium nodiflorum, in Nuova Zelanda detto «water celery») cresce negli stessi corsi d'acqua e si scambia spesso con lui. Ha foglioline dentate, foglie molto più lunghe e fiori in ombrelle piatte. La cicuta maggiore (Conium maculatum) cresce sulle rive dei corsi d'acqua in entrambi i paesi. Ogni sua parte è velenosa e può uccidere. Il fusto è cavo e macchiato di viola, e le foglie, finemente divise, sfregate hanno un odore acre. Una pianta con foglie finemente divise o fiori in ombrelle non è crescione. Controlla la forma delle foglie e i fiori di ogni pianta che raccogli, e non assaggiare mai una pianta sconosciuta per provarla.",
+        "habitat": "Cercalo nell'acqua corrente: ruscelli, sorgenti, fossi e margini fangosi dove l'acqua è bassa. È arrivato dall'Europa e dall'Asia come pianta da insalata. Si è inselvatichito in tutta la Nuova Zelanda (dagli anni 1850) e in Victoria, Australia Occidentale, Australia Meridionale, Queensland, Nuovo Galles del Sud e Tasmania. Spesso cresce nei ruscelli che attraversano i pascoli, ed è proprio lì che è meno sicuro.",
+        "season": "Cresce tutto l'anno finché l'acqua scorre. Va meglio nei mesi freschi e in primavera. Fiorisce da primavera ad autunno. Prendi le punte giovani, perché i fusti spessi sono duri.",
+        "picking": "Qui la sicurezza viene prima di tutto. Il crescione selvatico può portare il distomo del fegato (un parassita diffuso da pecore e bovini) e germi provenienti dagli scarichi delle fattorie. Le autorità sanitarie della Nuova Zelanda sconsigliano di mangiare il crescione dei ruscelli se non è lavato e cotto bene in acqua bollente. Raccoglilo quindi solo in acqua pulita e veloce, senza pascoli, fossi di fattorie, paesi o strade a monte, e cuocilo tutto. Taglia le punte giovani con le forbici sopra l'acqua e lascia il resto. Non gettare pezzi in un altro ruscello: ricresce dai frammenti di fusto. Chiedi prima di entrare in un terreno agricolo. In Nuova Zelanda controlla che per il ruscello non ci sia un rāhui (un divieto locale deciso dagli iwi).",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, cuocilo prima di mangiarlo. Lavalo bene, poi bollilo o cuocilo a vapore a lungo. Il crescione selvatico crudo non va né in insalata né come guarnizione nel piatto. Usalo come gli spinaci: in zuppe (per esempio con le patate), frittate, torte salate e stufati. In Nuova Zelanda finisce anche nel boil-up, uno stufato in pentola unica. I Māori lo chiamano wātakirihi o kōwhitiwhiti. Lo hanno usato molto come verdura cotta e per avvolgere il cibo nell'hāngi (il forno di terra).",
+        "keeps": "Appassisce in fretta, quindi cuocilo il giorno stesso o quello dopo. Nel frattempo tienilo in un sacchetto di carta in frigo. La zuppa pronta si congela bene.",
+        "source": "Riconoscimento e diffusione: VicFlora e NZ Plant Conservation Network. Sicurezza: Director-General of Health, Ministry for Primary Industries (entrambi della Nuova Zelanda) e CDC statunitense. Cicuta: Weeds Australia e NZ Plant Conservation Network. Uso dei Māori: Manaaki Whenua Landcare Research. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Cresson de fontaine",
+      "description": "Une plante piquante qui pousse dans l'eau claire et courante. Elle a des folioles arrondies et de petites fleurs blanches, et elle pousse à l'état sauvage dans toute la Nouvelle-Zélande et dans une grande partie de l'Australie.",
+      "howTo": "Cherche-le dans des ruisseaux et des sources propres, à l'eau courante, loin des fermes et du bétail. Fais-le toujours cuire avant de le manger",
+      "guide": {
+        "identify": "Le cresson de fontaine pousse dans l'eau courante et dans la vase au bord. Il forme de doux tapis verts de tiges couchées et creuses, qui s'enracinent là où elles touchent le sol. Chaque feuille est divisée en quelques folioles arrondies à ovales, au bord lisse ou à peine ondulé. Les feuilles font le plus souvent moins de 10 cm. De petites fleurs blanches forment de courtes grappes au bout des tiges. Elles donnent ensuite des siliques étroites et courbes d'environ 1 à 2 cm. L'ache faux-cresson (Helosciadium nodiflorum, appelée « water celery » en Nouvelle-Zélande) pousse dans les mêmes ruisseaux et on la prend souvent pour lui. Ses folioles sont dentées, ses feuilles bien plus longues et ses fleurs forment des ombelles plates. La grande ciguë (Conium maculatum) pousse sur les berges dans les deux pays. Toutes ses parties sont toxiques et elle peut tuer. Sa tige creuse est tachée de violet, et ses feuilles finement découpées dégagent une odeur âcre quand on les froisse. Une plante aux feuilles finement découpées ou aux fleurs en ombelles n'est pas du cresson. Vérifie la forme des feuilles et les fleurs de chaque plante que tu cueilles, et ne goûte jamais une plante inconnue pour la tester.",
+        "habitat": "Cherche-le dans l'eau courante : ruisseaux, sources, fossés et bords vaseux où l'eau est peu profonde. Venu d'Europe et d'Asie comme plante à salade, il s'est naturalisé dans toute la Nouvelle-Zélande (depuis les années 1850) et en Victoria, en Australie-Occidentale, en Australie-Méridionale, au Queensland, en Nouvelle-Galles du Sud et en Tasmanie. Il pousse souvent dans des ruisseaux qui traversent des pâturages, et c'est là qu'il est le moins sûr.",
+        "season": "Il pousse toute l'année tant que l'eau coule. Il se plaît surtout pendant les mois frais et au printemps. Il fleurit du printemps à l'automne. Prends les jeunes pousses, car les grosses tiges sont dures.",
+        "picking": "Ici, la sécurité passe avant tout. Le cresson sauvage peut porter la douve du foie (un parasite que répandent moutons et bovins) et des germes venus des eaux de ruissellement des fermes. Les autorités de santé de Nouvelle-Zélande déconseillent de manger du cresson de ruisseau s'il n'a pas été lavé et cuit à fond dans l'eau bouillante. Ne cueille donc que dans une eau propre et vive, sans pâturages, fossés de ferme, villages ou routes en amont, et fais tout cuire. Coupe les jeunes pousses aux ciseaux au-dessus de l'eau et laisse le reste. Ne jette pas de morceaux dans un autre ruisseau : il repousse à partir de fragments de tige. Demande avant d'entrer sur des terres agricoles. En Nouvelle-Zélande, vérifie qu'il n'y a pas de rāhui sur le ruisseau (une interdiction locale décidée par les iwi).",
+        "kitchen": "Une fois sûr de toi, fais-le cuire avant de le manger. Lave-le bien, puis fais-le bouillir ou cuire à la vapeur à fond. Le cresson sauvage cru n'a sa place ni dans une salade ni en décoration dans l'assiette. Utilise-le comme des épinards : en soupe (par exemple avec des pommes de terre), en omelette, en quiche et en ragoût. En Nouvelle-Zélande, il entre aussi dans le boil-up, un ragoût en une seule marmite. Les Māori l'appellent wātakirihi ou kōwhitiwhiti. Ils l'ont beaucoup utilisé comme légume cuit et pour envelopper les aliments dans le hāngi (le four en terre).",
+        "keeps": "Il se fane très vite, alors fais-le cuire le jour même ou le lendemain. D'ici là, garde-le dans un sac en papier au frigo. La soupe prête se congèle bien.",
+        "source": "Identification et répartition : VicFlora et NZ Plant Conservation Network. Sécurité : Director-General of Health et Ministry for Primary Industries (tous deux de Nouvelle-Zélande) et CDC des États-Unis. Ciguë : Weeds Australia et NZ Plant Conservation Network. Usage māori : Manaaki Whenua Landcare Research. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Echte Brunnenkresse",
+      "description": "Ein pfeffriges Grün aus klarem, fliessendem Wasser. Sie hat runde Teilblätter und kleine weisse Blüten und wächst wild in ganz Neuseeland und in grossen Teilen Australiens.",
+      "howTo": "Such in sauberen, fliessenden Bächen und Quellen, weit weg von Höfen und Weidetieren. Koch sie immer, bevor du sie isst",
+      "guide": {
+        "identify": "Brunnenkresse wächst in fliessendem Wasser und im Schlamm am Ufer. Sie bildet weiche, grüne Matten aus liegenden, hohlen Stängeln, die dort Wurzeln schlagen, wo sie den Boden berühren. Jedes Blatt besteht aus ein paar runden bis ovalen Teilblättern mit glattem oder leicht welligem Rand. Die Blätter sind meist kürzer als 10 cm. Kleine weisse Blüten sitzen in kurzen Büscheln an den Stängelspitzen. Daraus werden schmale, gebogene Schoten von etwa 1 bis 2 cm. Der Knotenblütige Sellerie (Helosciadium nodiflorum, in Neuseeland «water celery» genannt) wächst in denselben Bächen und wird oft mit ihr verwechselt. Seine Teilblätter sind gezähnt, seine Blätter viel länger, und seine Blüten bilden flache, schirmförmige Büschel. Der Gefleckte Schierling (Conium maculatum) wächst in beiden Ländern an Bachufern. Jeder Teil von ihm ist giftig, und er kann tödlich sein. Sein hohler Stängel hat violette Flecken, und seine fein zerteilten Blätter riechen zerrieben scharf und unangenehm. Eine Pflanze mit fein zerteilten Blättern oder schirmförmigen Blütenständen ist keine Brunnenkresse. Prüf bei jeder Pflanze Blattform und Blüten, und probier nie eine unbekannte Pflanze zum Test.",
+        "habitat": "Such in fliessendem Wasser: in Bächen, Quellen, Gräben und am schlammigen Rand, wo das Wasser flach ist. Sie kam als Salatpflanze aus Europa und Asien. Sie ist in ganz Neuseeland (seit den 1850er-Jahren) und in Victoria, Westaustralien, Südaustralien, Queensland, New South Wales und Tasmanien verwildert. Oft wächst sie in Bächen, die durch Weideland fliessen, und genau dort ist sie am wenigsten sicher.",
+        "season": "Sie wächst das ganze Jahr, solange das Wasser fliesst. Am besten gedeiht sie in den kühleren Monaten und im Frühling. Sie blüht von Frühling bis Herbst. Nimm die jungen Triebspitzen, denn die dicken Stängel sind grob.",
+        "picking": "Die Sicherheit kommt hier zuerst. Wilde Brunnenkresse kann Leberegel (einen Parasiten, den Schafe und Rinder verbreiten) und Keime aus dem Abwasser von Höfen tragen. Die Gesundheitsbehörden in Neuseeland raten davon ab, Kresse aus Bächen zu essen, wenn sie nicht gewaschen und in kochendem Wasser gründlich gegart wurde. Pflück also nur an sauberem, schnell fliessendem Wasser, an dem flussaufwärts keine Weiden, Hofgräben, Siedlungen oder Strassen liegen, und koch alles durch. Schneid die jungen Triebspitzen mit einer Schere über dem Wasser ab und lass den Rest stehen. Wirf keine Stücke in einen anderen Bach: Sie wächst aus Stängelstücken wieder an. Frag vorher, bevor du auf Weideland gehst. In Neuseeland prüf, ob für den Bach ein Rāhui gilt (ein örtliches Verbot, das ein Iwi ausspricht).",
+        "kitchen": "Wenn du sie sicher bestimmt hast, koch sie, bevor du sie isst. Wasch sie gut und koch oder dämpf sie dann gründlich. Rohe wilde Brunnenkresse gehört weder in den Salat noch als Garnitur auf den Teller. Verwende sie wie Spinat: in Suppe (zum Beispiel mit Kartoffeln), in Omeletts, Quiches und Eintöpfen. In Neuseeland kommt sie auch ins Boil-up, einen Eintopf aus einem Topf. Auf Māori heisst sie wātakirihi oder kōwhitiwhiti. Die Māori haben sie viel als gekochtes Gemüse gegessen und im Hāngi (Erdofen) zum Einwickeln von Essen benutzt.",
+        "keeps": "Sie welkt sehr schnell, also koch sie am Tag des Pflückens oder am nächsten Tag. Bis dahin hält sie sich in einer Papiertüte im Kühlschrank. Fertige Suppe lässt sich gut einfrieren.",
+        "source": "Bestimmung und Verbreitung: VicFlora und NZ Plant Conservation Network. Sicherheit: Director-General of Health, Ministry for Primary Industries (beide Neuseeland) und US-CDC. Schierling: Weeds Australia und NZ Plant Conservation Network. Māori-Nutzung: Manaaki Whenua Landcare Research. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Berro",
+      "description": "Una planta de sabor picante que crece en agua clara y corriente. Tiene foliolos redondeados y florecillas blancas, y crece silvestre en toda Nueva Zelanda y en gran parte de Australia.",
+      "howTo": "Búscalo en arroyos y manantiales limpios, de agua corriente, lejos de granjas y ganado. Cocínalo siempre antes de comerlo",
+      "guide": {
+        "identify": "El berro crece en agua corriente y en el barro de la orilla. Forma blandas alfombras verdes de tallos tendidos y huecos, que echan raíces donde tocan el suelo. Cada hoja se divide en unos pocos foliolos de redondos a ovalados, con el borde liso o apenas ondulado. Las hojas suelen medir menos de 10 cm. Unas florecillas blancas forman racimos cortos en las puntas de los tallos. Luego dan vainas estrechas y curvadas de 1 a 2 cm. La berraza (Helosciadium nodiflorum, llamada «water celery» en Nueva Zelanda) crece en los mismos arroyos y se confunde a menudo con él. Tiene foliolos dentados, hojas mucho más largas y flores en umbelas planas. La cicuta (Conium maculatum) crece en las orillas de los arroyos en los dos países. Todas sus partes son venenosas y puede matar. Su tallo hueco tiene manchas moradas, y sus hojas muy divididas tienen un olor acre y desagradable al estrujarlas. Una planta de hojas muy divididas o de flores en umbela no es berro. Comprueba la forma de las hojas y las flores de cada planta que cojas, y no pruebes nunca una planta desconocida para comprobarla.",
+        "habitat": "Búscalo en agua corriente: arroyos, manantiales, acequias y orillas fangosas donde el agua es poco profunda. Llegó de Europa y Asia como planta de ensalada. Se ha asilvestrado en toda Nueva Zelanda (desde la década de 1850) y en Victoria, Australia Occidental, Australia Meridional, Queensland, Nueva Gales del Sur y Tasmania. Suele crecer en arroyos que cruzan pastos, y ahí es donde menos seguro es.",
+        "season": "Crece todo el año mientras el agua siga corriendo. Le va mejor en los meses frescos y en primavera. Florece de primavera a otoño. Coge los brotes tiernos, porque los tallos gruesos son duros.",
+        "picking": "Aquí la seguridad va primero. El berro silvestre puede llevar la duela del hígado (un parásito que propagan ovejas y vacas) y gérmenes del agua de escorrentía de las granjas. Las autoridades sanitarias de Nueva Zelanda desaconsejan comer berros de arroyo si no se han lavado y cocido a fondo en agua hirviendo. Coge solo en agua limpia y rápida, sin pastos, desagües de granja, pueblos ni carreteras río arriba, y cuécelo todo. Corta los brotes tiernos con tijeras por encima del agua y deja el resto. No tires trozos en otro arroyo: vuelve a brotar de fragmentos de tallo. Pregunta antes de entrar en tierras de cultivo o de ganado. En Nueva Zelanda comprueba que el arroyo no tenga un rāhui (una prohibición local que dictan los iwi).",
+        "kitchen": "Cuando estés seguro de que es él, cuécelo antes de comerlo. Lávalo bien y luego hiérvelo o cocínalo al vapor a fondo. El berro silvestre crudo no va ni en la ensalada ni como adorno en el plato. Úsalo como las espinacas: en sopa (por ejemplo con patata), en tortillas, quiches y guisos. En Nueva Zelanda también entra en el boil-up, un guiso de una sola olla. Los maoríes lo llaman wātakirihi o kōwhitiwhiti. Lo han usado mucho como verdura cocida y para envolver comida en el hāngi (el horno de tierra).",
+        "keeps": "Se marchita muy rápido, así que cocínalo el mismo día o al siguiente. Hasta entonces guárdalo en una bolsa de papel en la nevera. La sopa ya hecha se congela bien.",
+        "source": "Identificación y distribución: VicFlora y NZ Plant Conservation Network. Seguridad: Director-General of Health y Ministry for Primary Industries (ambos de Nueva Zelanda) y CDC de EE. UU. Cicuta: Weeds Australia y NZ Plant Conservation Network. Uso maorí: Manaaki Whenua Landcare Research. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Agrião",
+      "description": "Uma planta de sabor picante que cresce em água clara e corrente. Tem folíolos redondos e florzinhas brancas, e cresce espontânea em toda a Nova Zelândia e em grande parte da Austrália.",
+      "howTo": "Procura-o em ribeiros e nascentes limpos, de água corrente, longe de quintas e de gado. Coze-o sempre antes de o comeres",
+      "guide": {
+        "identify": "O agrião cresce em água corrente e na lama da margem. Forma tapetes verdes e macios de caules deitados e ocos, que criam raízes onde tocam o chão. Cada folha divide-se em poucos folíolos de redondos a ovais, com a margem lisa ou ligeiramente ondulada. As folhas costumam ter menos de 10 cm. Florzinhas brancas formam cachos curtos nas pontas dos caules. Depois dão vagens estreitas e curvas de 1 a 2 cm. A rabaça (Helosciadium nodiflorum, chamada «water celery» na Nova Zelândia) cresce nos mesmos ribeiros e confunde-se muitas vezes com ele. Tem folíolos dentados, folhas muito mais compridas e flores em umbelas planas. A cicuta (Conium maculatum) cresce nas margens dos ribeiros nos dois países. Todas as partes dela são venenosas e pode matar. O caule oco tem manchas roxas, e as folhas muito recortadas têm um cheiro acre e desagradável quando as esmagas. Uma planta de folhas muito recortadas ou de flores em umbela não é agrião. Confirma a forma das folhas e as flores de cada planta que apanhas, e nunca proves uma planta desconhecida para a testar.",
+        "habitat": "Procura-o em água corrente: ribeiros, nascentes, valas e margens lamacentas onde a água é pouco funda. Veio da Europa e da Ásia como planta de salada. Tornou-se selvagem em toda a Nova Zelândia (desde a década de 1850) e em Victoria, Austrália Ocidental, Austrália do Sul, Queensland, Nova Gales do Sul e Tasmânia. Costuma crescer em ribeiros que atravessam pastagens, e é aí que é menos seguro.",
+        "season": "Cresce o ano inteiro enquanto a água correr. Dá-se melhor nos meses frescos e na primavera. Floresce da primavera ao outono. Apanha os rebentos tenros, porque os caules grossos são duros.",
+        "picking": "Aqui a segurança vem primeiro. O agrião selvagem pode trazer a fascíola hepática (um parasita que as ovelhas e o gado espalham) e germes das águas de escorrência das quintas. As autoridades de saúde da Nova Zelândia desaconselham comer agrião de ribeiro se não foi lavado e bem cozido em água a ferver. Apanha por isso só em água limpa e rápida, sem pastagens, valas de quintas, povoações ou estradas a montante, e coze tudo. Corta os rebentos tenros com uma tesoura acima da água e deixa o resto. Não deites bocados noutro ribeiro: volta a nascer a partir de fragmentos de caule. Pede licença antes de entrares em terrenos agrícolas. Na Nova Zelândia, confirma que o ribeiro não tem um rāhui (uma proibição local decretada pelos iwi).",
+        "kitchen": "Quando tiveres a certeza de que é ele, coze-o antes de o comeres. Lava-o bem e depois ferve-o ou coze-o a vapor a fundo. O agrião selvagem cru não vai nem na salada nem como enfeite no prato. Usa-o como espinafres: em sopa (por exemplo com batata), omeletes, quiches e guisados. Na Nova Zelândia entra também no boil-up, um guisado de uma só panela. Os maoris chamam-lhe wātakirihi ou kōwhitiwhiti. Usaram-no muito como legume cozido e para embrulhar comida no hāngi (o forno de terra).",
+        "keeps": "Murcha muito depressa, por isso coze-o no próprio dia ou no dia seguinte. Até lá, guarda-o num saco de papel no frigorífico. A sopa já feita congela bem.",
+        "source": "Identificação e distribuição: VicFlora e NZ Plant Conservation Network. Segurança: Director-General of Health e Ministry for Primary Industries (ambos da Nova Zelândia) e CDC dos EUA. Cicuta: Weeds Australia e NZ Plant Conservation Network. Uso maori: Manaaki Whenua Landcare Research. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Nasturtium officinale",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Watercress"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [7701037, 9184619, 7572471]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 621, 631, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/7701037",
+          "https://www.gbif.org/species/9184619",
+          "https://www.gbif.org/species/7572471",
+          "https://vicflora.rbg.vic.gov.au/flora/taxon/cc8f5838-8fd9-4454-86da-4bd45da737d1",
+          "https://www.nzpcn.org.nz/flora/species/nasturtium-officinale/",
+          "https://nzpcn.org.nz/flora/species/helosciadium-nodiflorum",
+          "https://weeds.org.au/profiles/hemlock/",
+          "https://nzpcn.org.nz/flora/species/conium-maculatum",
+          "https://m.scoop.co.nz/stories/GE0006/S00031.htm",
+          "https://www.scoop.co.nz/stories/AK1810/S00624/local-iwi-place-rahui-on-wharemauku-stream.htm",
+          "https://www.cdc.gov/liver-flukes/fasciola/index.html",
+          "https://rauropiwhakaoranga.landcareresearch.co.nz/related-items/64771058-bff7-4bba-a1d9-9d7e59b51e92",
+          "https://www.vegetables.co.nz/vegetables-a-z/watercress-watakirihi",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

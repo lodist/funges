@@ -1655,7 +1655,10 @@ def own_settings_weight(region, lat, lon, lists=None):
 def blend_neighbour_settings(df, species_params, config, neighbour=None):
     """Rescore the rows leaning to the neighbour region with its model, for every species both
     regions score, and mix the two scores by own_settings_weight. `neighbour` is the neighbour's
-    (species_params, zone_curves); loaded as the region's own are when not given."""
+    (species_params, zone_curves); loaded as the region's own are when not given. A region
+    with no neighbour (ANZ) keeps its own scores."""
+    if config.region not in NEIGHBOUR_REGION:
+        return df
     other = NEIGHBOUR_REGION[config.region]
     lists = None
     if config.region in ("NE", "SE"):

@@ -18,7 +18,7 @@ import { useCurrentScores } from '@/hooks/use-current-scores';
 import { BAND_OUTLINE_CLASS, BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { CATEGORY_ICONS } from '@/lib/categoryIcons';
 import { ChefHat, Clock, MapPinned, Search, Users } from '@/lib/icons';
-import { monthsLabel, seasonOf, speciesSeasons } from '@/lib/seasons';
+import { monthsLabel, seasonOf, southern, speciesSeasons } from '@/lib/seasons';
 import { comingBack, readyBy, type ReadyBy } from '@/lib/recipe-season';
 import { cn, getSpeciesImage } from '@/lib/utils';
 import { Route as RecipesRoute } from '@/routes/recipes';
@@ -36,7 +36,7 @@ export default function RecipesPage() {
     setSearchQuery(q ?? '');
   }, [q]);
 
-  const season = seasonOf(new Date());
+  const season = seasonOf(new Date(), current?.regionId === 'ANZ');
   const scores = current?.scores ?? null;
 
   const filtered = useMemo(() => {
@@ -141,6 +141,7 @@ export default function RecipesPage() {
                   <li key={recipe.id}>
                     <RecipeCard
                       recipe={recipe}
+                      readerRegion={current?.regionId}
                       by={by}
                       onOpen={() => setSelectedRecipe(recipe)}
                     />
@@ -169,6 +170,7 @@ export default function RecipesPage() {
                 <li key={recipe.id}>
                   <RecipeCard
                     recipe={recipe}
+                    readerRegion={current?.regionId}
                     compact
                     onOpen={() => setSelectedRecipe(recipe)}
                   />
@@ -294,11 +296,13 @@ function RecipeCard({
   by,
   compact = false,
   onOpen,
+  readerRegion,
 }: {
   recipe: Recipe;
   by?: ReadyBy;
   compact?: boolean;
   onOpen: () => void;
+  readerRegion?: string;
 }) {
   const { t, i18n } = useTranslation(['recipes', 'species']);
   // Not ready: name the main ingredient, with the months it comes back.
@@ -350,7 +354,11 @@ function RecipeCard({
               <span className='block text-xs text-muted-foreground'>
                 {monthsLabel(
                   speciesSeasons(getSpeciesById(nextUp)?.season),
-                  i18n.language
+                  i18n.language,
+                  southern(
+                    readerRegion,
+                    getSpeciesById(nextUp)?.forecastRegions
+                  )
                 )}
               </span>
             </SpeciesLine>

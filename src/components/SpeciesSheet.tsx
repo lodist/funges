@@ -17,7 +17,13 @@ import type { SpeciesWithTranslations } from '@/data/species';
 import { TOXIC_SPECIES, type ToxicSeverity } from '@/data/toxic-species';
 import { AlertTriangle, ChefHat, MapPin } from '@/lib/icons';
 import { cn, getSpeciesImage } from '@/lib/utils';
-import { monthsLabel, seasonMonthSet, speciesSeasons } from '@/lib/seasons';
+import {
+  monthsLabel,
+  seasonMonthSet,
+  southern,
+  speciesSeasons,
+} from '@/lib/seasons';
+import { useMapStore } from '@/store/mapStore';
 
 const SEVERITY_ORDER: ToxicSeverity[] = ['lethal', 'toxic', 'inedible'];
 const SEVERITY_LABEL: Record<ToxicSeverity, string> = {
@@ -81,7 +87,12 @@ export function SpeciesBody({
       ? t(`list_of_species.${key}.guide.${part}`)
       : null;
   const seasons = speciesSeasons(species.season);
-  const inSeason = seasonMonthSet(seasons);
+  // Southern months where the reader is in Australia/New Zealand, or the species only is.
+  const south = southern(
+    useMapStore(state => state.forecastRegion),
+    species.forecastRegions
+  );
+  const inSeason = seasonMonthSet(seasons, south);
   const thisMonth = new Date().getMonth();
   const monthLetter = new Intl.DateTimeFormat(i18n.language, {
     month: 'narrow',
@@ -209,7 +220,9 @@ export function SpeciesBody({
               ))}
             </ol>
             {/* The bar is drawn for the eye; the months are said in words. */}
-            <p className='sr-only'>{monthsLabel(seasons, i18n.language)}</p>
+            <p className='sr-only'>
+              {monthsLabel(seasons, i18n.language, south)}
+            </p>
           </div>
 
           <dl className='grid grid-cols-2 gap-4 text-sm'>

@@ -108,6 +108,8 @@ def test_a_region_with_no_available_species_is_rejected(monkeypatch):
         (-74, 40.7, "USE"),
         (12.5, 41.9, "SE"),
         (7.3, 47.8, "NE"),
+        (151.2, -33.9, "ANZ"),  # Sydney; the map store has no ANZ yet
+        (174.8, -41.3, "ANZ"),  # Wellington
     ],
 )
 def test_infer_region_follows_the_generated_boundaries(longitude, latitude, expected):

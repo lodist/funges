@@ -44,10 +44,11 @@ ZOOM = 4  # EPSG:4326 tiles of 11.25°; adhoc clusters records to ~0.2° at any 
 STEP = 0.1  # grid cell, degrees
 KM_PER_DEG = 111.32
 
-# Covers every RegionConfig lat/lon range in the macro (EU = NE ∪ SE, US = USE ∪ USW).
+# Covers every RegionConfig lat/lon range in the macro (EU = NE ∪ SE, US = USE ∪ USW, ANZ its places).
 MACROS = {
     "EU": {"lat": (34.0, 71.5), "lon": (-25.0, 42.5), "env": "EU_RANGE_PRIORS", "regions": ("NE", "SE")},
     "US": {"lat": (24.0, 49.5), "lon": (-125.5, -67.0), "env": "US_RANGE_PRIORS", "regions": ("USE", "USW")},
+    "ANZ": {"lat": (-48.0, -10.0), "lon": (114.0, 179.0), "env": "ANZ_RANGE_PRIORS", "regions": ("ANZ",)},
 }
 
 SIGMA_KM = 50.0  # smoothing radius: wide enough that one empty cell is not evidence

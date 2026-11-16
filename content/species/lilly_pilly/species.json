@@ -1,0 +1,158 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "lilly_pilly",
+  "scientificName": "Syzygium smithii",
+  "catalog": {
+    "enabled": true,
+    "order": 65,
+    "translationKey": "lilly_pilly",
+    "category": "berry",
+    "emoji": "🍒",
+    "season": "fall-winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/lilly_pilly.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Lilly Pilly",
+      "description": "A glossy-leaved rainforest tree with pink new growth and small white to mauve berries. It grows wild on the east coast of Australia and is planted in streets and gardens.",
+      "howTo": "Look under wild and planted trees from March to August, for berries that come off the stem easily. Check for glossy leaves in pairs that smell strong when crushed",
+      "guide": {
+        "identify": "Lilly pilly is a tree with dark, glossy, pointed leaves that sit in pairs along the twig. The leaves have tiny oil dots on the underside and smell strong when you crush them. The new growth is pink or reddish. In spring and summer it carries fluffy clusters of cream-white flowers. The fruit is a round berry 1 to 2 cm across, often a little flattened, with a small hollow at the top. It is white, pink or pale mauve when ripe, and it holds one large, hard seed. Many other lilly pillies are planted too. The brush cherry (Syzygium australe), the riberry (Syzygium luehmannii), the magenta lilly pilly (Syzygium paniculatum) and the blue lilly pilly (Syzygium oleosum) have crimson, hot pink, magenta or blue fruit. They are eaten as well. The look-alike to watch is the tree privet (Ligustrum lucidum), a common weed with glossy leaves in pairs too. Its berries are black, and its new leaves are not reddish. Its leaves and berries are poisonous. In New Zealand the rare native swamp maire (Syzygium maire) has deep crimson fruit, so leave it. On every tree you pick, crush a leaf and check for the strong smell. If the berries are black, it is not a lilly pilly.",
+        "habitat": "In Australia it is a rainforest tree. It grows wild along the east coast, from north Queensland through New South Wales to Wilsons Promontory in Victoria, and on King Island. It is also planted widely in streets, parks and hedges, much further south and west. In New Zealand it is called monkey apple. It has escaped from gardens and grows wild in forest and scrub, mostly in the North Island.",
+        "season": "The flowers come in spring and summer, and the fruit follows. In Australia the fruit ripens from autumn into winter, mostly from March to August. In New Zealand it is ripe from late summer to autumn, roughly February to May. A ripe berry comes off the stem easily.",
+        "picking": "Pick ripe berries that come off the stem easily. The tree has no thorns. Leave some for the birds. In Australian national parks you may not pick plants. In New Zealand monkey apple is a pest plant: you may not sell or spread it, and in Auckland you may not plant it, so don't carry fruit or seeds to a new place. Street trees can be sprayed and dogs visit them, so wash the fruit well. If new shoots are covered in bright yellow powder (myrtle rust), don't touch it and don't carry any plant material away.",
+        "kitchen": "Once you're certain of it, eat the berries fresh. They are crisp and juicy, a bit like a watery apple, mildly sour and not very strong in taste. Spit out the hard seed. They suit jam and pickles better than eating by the handful. You can also stew them and bake them into muffins, in place of blueberries.",
+        "keeps": "The berries are best within a few days, kept in the fridge. Jam and pickles keep in sterilised jars.",
+        "source": "Identification and range: ANPSA, NZ Plant Conservation Network, Manaaki Whenua NZ Myrtaceae key and Wikipedia. Pest rules and look-alikes: Auckland Council. Privet: Port Macquarie-Hastings Council weed profile. Myrtle rust: Auckland Council. Kitchen: Tucker Bush and Botanic Gardens of South Australia."
+      }
+    },
+    "it": {
+      "name": "Lilly Pilly",
+      "description": "Un albero della foresta pluviale dalle foglie lucide, con nuove foglie rosa e piccole bacche da bianche a malva. Cresce selvatico sulla costa orientale dell'Australia e viene piantato nelle strade e nei giardini.",
+      "howTo": "Cercalo da marzo ad agosto sotto alberi selvatici e piantati, per bacche che si staccano facilmente dal picciolo. Controlla le foglie lucide a coppie che profumano forte se sfregate",
+      "guide": {
+        "identify": "Il lilly pilly è un albero con foglie scure, lucide e appuntite, disposte a coppie lungo il rametto. Le foglie hanno sotto minuscoli puntini d'olio e profumano forte se le sfreghi. Le nuove foglie sono rosa o rossicce. In primavera e in estate porta ciuffi soffici di fiori bianco crema. Il frutto è una bacca rotonda di 1-2 cm, spesso un po' appiattita, con una piccola cavità in cima. Da matura è bianca, rosa o malva chiaro e contiene un grosso nocciolo duro. Si piantano anche molti altri lilly pilly. Il brush cherry (Syzygium australe), il riberry (Syzygium luehmannii), il lilly pilly magenta (Syzygium paniculatum) e il lilly pilly blu (Syzygium oleosum) hanno frutti cremisi, rosa acceso, magenta o blu. Si mangiano anche questi. Il sosia da tenere d'occhio è il ligustro lucido (Ligustrum lucidum), un'infestante comune con foglie lucide anch'esse a coppie. Le sue bacche sono nere e le sue nuove foglie non sono rossicce. Foglie e bacche sono velenose. In Nuova Zelanda il raro swamp maire nativo (Syzygium maire) ha frutti rosso intenso, quindi lascialo stare. Su ogni albero da cui raccogli, sfrega una foglia e controlla il profumo forte. Se le bacche sono nere, non è un lilly pilly.",
+        "habitat": "In Australia è un albero della foresta pluviale. Cresce selvatico lungo la costa orientale, dal Queensland settentrionale attraverso il Nuovo Galles del Sud fino a Wilsons Promontory nel Victoria, e a King Island. Viene piantato molto anche in strade, parchi e siepi, molto più a sud e a ovest. In Nuova Zelanda si chiama monkey apple. È scappato dai giardini e cresce selvatico nella foresta e nella macchia, soprattutto nell'Isola del Nord.",
+        "season": "I fiori arrivano in primavera e in estate, poi segue il frutto. In Australia il frutto matura dall'autunno all'inverno, soprattutto da marzo ad agosto. In Nuova Zelanda è maturo da fine estate all'autunno, più o meno da febbraio a maggio. Una bacca matura si stacca facilmente dal picciolo.",
+        "picking": "Raccogli bacche mature che si staccano facilmente dal picciolo. L'albero non ha spine. Lasciane un po' per gli uccelli. Nei parchi nazionali australiani non si possono raccogliere piante. In Nuova Zelanda la monkey apple è una pianta infestante: non si può vendere né diffondere, e ad Auckland non si può nemmeno piantare, quindi non portare frutti o semi in un posto nuovo. Gli alberi di strada possono essere trattati e i cani li frequentano, quindi lava bene i frutti. Se i germogli nuovi sono coperti da una polvere giallo vivo (ruggine del mirto), non toccarli e non portare via materiale vegetale.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, mangia le bacche fresche. Sono croccanti e succose, un po' come una mela acquosa, leggermente acide e non molto saporite. Sputa il nocciolo duro. Vanno meglio in marmellata e sottaceto che mangiate a manciate. Puoi anche stufarle e usarle nei muffin al posto dei mirtilli.",
+        "keeps": "Le bacche sono al meglio entro pochi giorni, in frigo. Marmellata e sottaceti si conservano in vasetti sterilizzati.",
+        "source": "Riconoscimento e diffusione: ANPSA, NZ Plant Conservation Network, chiave delle Myrtaceae di Manaaki Whenua e Wikipedia. Regole sulle infestanti e sosia: Auckland Council. Ligustro: scheda delle infestanti del Port Macquarie-Hastings Council. Ruggine del mirto: Auckland Council. Cucina: Tucker Bush e Botanic Gardens of South Australia."
+      }
+    },
+    "fr": {
+      "name": "Lilly Pilly",
+      "description": "Un arbre de forêt tropicale humide aux feuilles luisantes, aux jeunes pousses roses et aux petites baies blanches à mauves. Il pousse à l'état sauvage sur la côte est de l'Australie et se plante dans les rues et les jardins.",
+      "howTo": "Cherche-le de mars à août sous les arbres sauvages et plantés, pour des baies qui se détachent facilement de la tige. Vérifie les feuilles luisantes par paires qui sentent fort quand on les froisse",
+      "guide": {
+        "identify": "Le lilly pilly est un arbre aux feuilles sombres, luisantes et pointues, disposées par paires le long de la brindille. Les feuilles ont dessous de minuscules points d'huile et sentent fort quand on les froisse. Les jeunes pousses sont roses ou rougeâtres. Au printemps et en été, il porte des grappes cotonneuses de fleurs blanc crème. Le fruit est une baie ronde de 1 à 2 cm, souvent un peu aplatie, avec un petit creux au sommet. Mûre, elle est blanche, rose ou mauve pâle et renferme un gros noyau dur. On plante aussi beaucoup d'autres lilly pillies. Le brush cherry (Syzygium australe), le riberry (Syzygium luehmannii), le lilly pilly magenta (Syzygium paniculatum) et le lilly pilly bleu (Syzygium oleosum) ont des fruits cramoisis, rose vif, magenta ou bleus. On les mange aussi. Le sosie à surveiller est le troène luisant (Ligustrum lucidum), une mauvaise herbe courante dont les feuilles luisantes sont aussi par paires. Ses baies sont noires et ses jeunes pousses ne sont pas rougeâtres. Ses feuilles et ses baies sont toxiques. En Nouvelle-Zélande, le rare swamp maire indigène (Syzygium maire) a des fruits rouge profond : laisse-le. Sur chaque arbre où tu cueilles, froisse une feuille et vérifie la forte odeur. Si les baies sont noires, ce n'est pas un lilly pilly.",
+        "habitat": "En Australie, c'est un arbre de forêt tropicale humide. Il pousse à l'état sauvage sur la côte est, du nord du Queensland à Wilsons Promontory dans le Victoria en passant par la Nouvelle-Galles du Sud, et à King Island. On le plante aussi beaucoup dans les rues, les parcs et les haies, bien plus au sud et à l'ouest. En Nouvelle-Zélande, on l'appelle monkey apple. Il s'est échappé des jardins et pousse à l'état sauvage dans la forêt et les broussailles, surtout dans l'île du Nord.",
+        "season": "Les fleurs viennent au printemps et en été, puis le fruit suit. En Australie, le fruit mûrit de l'automne à l'hiver, surtout de mars à août. En Nouvelle-Zélande, il est mûr de la fin de l'été à l'automne, environ de février à mai. Une baie mûre se détache facilement de la tige.",
+        "picking": "Cueille des baies mûres qui se détachent facilement de la tige. L'arbre n'a pas d'épines. Laisses-en pour les oiseaux. Dans les parcs nationaux australiens, il est interdit de cueillir des plantes. En Nouvelle-Zélande, le monkey apple est une plante nuisible : il est interdit de le vendre ou de le propager, et à Auckland de le planter, alors n'emporte ni fruits ni graines vers un autre endroit. Les arbres de rue peuvent être traités et les chiens y passent, alors lave bien les fruits. Si les jeunes pousses sont couvertes d'une poudre jaune vif (rouille du myrte), ne la touche pas et n'emporte aucun matériel végétal.",
+        "kitchen": "Une fois sûr de toi, mange les baies fraîches. Elles sont croquantes et juteuses, un peu comme une pomme aqueuse, légèrement acides et pas très parfumées. Crache le noyau dur. Elles conviennent mieux en confiture et en pickles qu'à croquer par poignées. Tu peux aussi les faire compoter et les mettre dans des muffins à la place des myrtilles.",
+        "keeps": "Les baies sont meilleures dans les quelques jours, gardées au frigo. La confiture et les pickles se gardent dans des bocaux stérilisés.",
+        "source": "Identification et répartition : ANPSA, NZ Plant Conservation Network, clé des Myrtaceae de Manaaki Whenua et Wikipedia. Règles sur les plantes nuisibles et sosies : Auckland Council. Troène : fiche des mauvaises herbes du Port Macquarie-Hastings Council. Rouille du myrte : Auckland Council. Cuisine : Tucker Bush et Botanic Gardens of South Australia."
+      }
+    },
+    "de": {
+      "name": "Lilly Pilly",
+      "description": "Ein Regenwaldbaum mit glänzenden Blättern, rosa Neuaustrieb und kleinen weissen bis malvenfarbenen Beeren. Er wächst wild an der Ostküste Australiens und wird in Strassen und Gärten gepflanzt.",
+      "howTo": "Such von März bis August unter wilden und gepflanzten Bäumen nach Beeren, die sich leicht vom Stiel lösen. Prüf die glänzenden Blätter in Paaren, die beim Zerreiben stark riechen",
+      "guide": {
+        "identify": "Lilly Pilly ist ein Baum mit dunklen, glänzenden, spitzen Blättern, die paarweise am Zweig sitzen. Die Blätter haben unten winzige Öldrüsen und riechen stark, wenn du sie zerreibst. Der Neuaustrieb ist rosa oder rötlich. Im Frühling und Sommer trägt er flauschige Büschel aus cremeweissen Blüten. Die Frucht ist eine runde Beere von 1 bis 2 cm Durchmesser, oft ein wenig abgeflacht, mit einer kleinen Mulde oben. Reif ist sie weiss, rosa oder blass malvenfarben, und sie enthält einen grossen, harten Kern. Viele andere Lilly Pillies werden ebenfalls gepflanzt. Die Brush Cherry (Syzygium australe), die Riberry (Syzygium luehmannii), die Magenta Lilly Pilly (Syzygium paniculatum) und die Blue Lilly Pilly (Syzygium oleosum) haben karminrote, pinke, magentafarbene oder blaue Früchte. Auch sie isst man. Den Doppelgänger musst du im Auge behalten: den Glanz-Liguster (Ligustrum lucidum), ein häufiges Unkraut, dessen glänzende Blätter ebenfalls paarweise stehen. Seine Beeren sind schwarz, und sein Neuaustrieb ist nicht rötlich. Seine Blätter und Beeren sind giftig. In Neuseeland hat die seltene einheimische Swamp Maire (Syzygium maire) tiefrote Früchte, also lass sie stehen. Zerreib bei jedem Baum, von dem du pflückst, ein Blatt und prüf den starken Geruch. Sind die Beeren schwarz, ist es kein Lilly Pilly.",
+        "habitat": "In Australien ist er ein Regenwaldbaum. Er wächst wild an der Ostküste, von Nord-Queensland durch New South Wales bis zum Wilsons Promontory in Victoria, und auf King Island. Ausserdem wird er viel in Strassen, Parks und Hecken gepflanzt, weit nach Süden und Westen hin. In Neuseeland heisst er Monkey Apple. Er ist aus Gärten verwildert und wächst wild in Wald und Gebüsch, vor allem auf der Nordinsel.",
+        "season": "Die Blüten kommen im Frühling und Sommer, danach folgt die Frucht. In Australien reift sie vom Herbst bis in den Winter, meist von März bis August. In Neuseeland ist sie vom Spätsommer bis in den Herbst reif, ungefähr von Februar bis Mai. Eine reife Beere löst sich leicht vom Stiel.",
+        "picking": "Pflück reife Beeren, die sich leicht vom Stiel lösen. Der Baum hat keine Dornen. Lass einige für die Vögel übrig. In australischen Nationalparks darfst du keine Pflanzen pflücken. In Neuseeland ist die Monkey Apple eine Schadpflanze: Du darfst sie nicht verkaufen oder verbreiten, und in Auckland darfst du sie auch nicht pflanzen, also trag keine Früchte oder Samen an einen neuen Ort. Strassenbäume werden manchmal gespritzt, und Hunde besuchen sie, also wasch die Früchte gut. Sind neue Triebe mit leuchtend gelbem Pulver bedeckt (Myrtenrost), fass sie nicht an und trag kein Pflanzenmaterial weg.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, iss die Beeren frisch. Sie sind knackig und saftig, ein bisschen wie ein wässriger Apfel, leicht sauer und nicht besonders kräftig im Geschmack. Spuck den harten Kern aus. Für Marmelade und Eingelegtes eignen sie sich besser, als sie handvollweise zu essen. Du kannst sie auch dünsten und statt Heidelbeeren in Muffins backen.",
+        "keeps": "Die Beeren sind am besten innerhalb weniger Tage, im Kühlschrank gelagert. Marmelade und Eingelegtes halten sich in sterilisierten Gläsern.",
+        "source": "Bestimmung und Verbreitung: ANPSA, NZ Plant Conservation Network, Myrtaceae-Schlüssel von Manaaki Whenua und Wikipedia. Schadpflanzen-Regeln und Doppelgänger: Auckland Council. Liguster: Unkrautprofil des Port Macquarie-Hastings Council. Myrtenrost: Auckland Council. Küche: Tucker Bush und Botanic Gardens of South Australia."
+      }
+    },
+    "es": {
+      "name": "Lilly Pilly",
+      "description": "Un árbol de selva húmeda de hojas brillantes, brotes nuevos rosados y pequeñas bayas de blancas a malvas. Crece silvestre en la costa este de Australia y se planta en calles y jardines.",
+      "howTo": "Búscalo de marzo a agosto bajo árboles silvestres y plantados, para bayas que se sueltan fácilmente del tallo. Comprueba las hojas brillantes por pares que huelen fuerte al estrujarlas",
+      "guide": {
+        "identify": "El lilly pilly es un árbol de hojas oscuras, brillantes y puntiagudas, que salen por pares a lo largo de la ramita. Las hojas tienen por debajo diminutos puntos de aceite y huelen fuerte al estrujarlas. Los brotes nuevos son rosados o rojizos. En primavera y verano lleva racimos esponjosos de flores blanco crema. El fruto es una baya redonda de 1 a 2 cm, a menudo algo aplastada, con un pequeño hueco arriba. Madura es blanca, rosa o malva pálido y encierra un hueso grande y duro. También se plantan muchos otros lilly pillies. El brush cherry (Syzygium australe), el riberry (Syzygium luehmannii), el lilly pilly magenta (Syzygium paniculatum) y el lilly pilly azul (Syzygium oleosum) tienen frutos carmesí, rosa fuerte, magenta o azules. También se comen. El parecido que hay que vigilar es el aligustre de la China (Ligustrum lucidum), una mala hierba común cuyas hojas brillantes también salen por pares. Sus bayas son negras y sus brotes nuevos no son rojizos. Sus hojas y sus bayas son venenosas. En Nueva Zelanda, el raro swamp maire nativo (Syzygium maire) tiene frutos rojo intenso, así que déjalo. En cada árbol del que cojas, estruja una hoja y comprueba el olor fuerte. Si las bayas son negras, no es un lilly pilly.",
+        "habitat": "En Australia es un árbol de selva húmeda. Crece silvestre en la costa este, desde el norte de Queensland, por Nueva Gales del Sur, hasta Wilsons Promontory en Victoria, y en King Island. También se planta mucho en calles, parques y setos, mucho más al sur y al oeste. En Nueva Zelanda se llama monkey apple. Se ha escapado de los jardines y crece silvestre en el bosque y el matorral, sobre todo en la Isla Norte.",
+        "season": "Las flores salen en primavera y verano, y después viene el fruto. En Australia el fruto madura del otoño al invierno, sobre todo de marzo a agosto. En Nueva Zelanda está maduro desde finales del verano hasta el otoño, más o menos de febrero a mayo. Una baya madura se suelta fácilmente del tallo.",
+        "picking": "Coge bayas maduras que se suelten fácilmente del tallo. El árbol no tiene espinas. Deja algunas para las aves. En los parques nacionales australianos no se pueden recoger plantas. En Nueva Zelanda el monkey apple es una planta dañina: no se puede vender ni propagar, y en Auckland tampoco plantar, así que no lleves frutos ni semillas a otro sitio. Los árboles de calle pueden estar fumigados y los perros los visitan, así que lava bien los frutos. Si los brotes nuevos están cubiertos de un polvo amarillo intenso (roya del mirto), no lo toques y no te lleves material vegetal.",
+        "kitchen": "Cuando estés seguro de que es él, come las bayas frescas. Son crujientes y jugosas, un poco como una manzana aguada, ligeramente ácidas y de poco sabor. Escupe el hueso duro. Van mejor en mermelada y encurtidos que comidas a puñados. También puedes cocerlas en compota y hornearlas en magdalenas en lugar de arándanos.",
+        "keeps": "Las bayas están mejor en pocos días, guardadas en la nevera. La mermelada y los encurtidos se conservan en botes esterilizados.",
+        "source": "Identificación y distribución: ANPSA, NZ Plant Conservation Network, clave de las Myrtaceae de Manaaki Whenua y Wikipedia. Normas sobre plantas dañinas y parecidos: Auckland Council. Aligustre: ficha de malas hierbas del Port Macquarie-Hastings Council. Roya del mirto: Auckland Council. Cocina: Tucker Bush y Botanic Gardens of South Australia."
+      }
+    },
+    "pt": {
+      "name": "Lilly Pilly",
+      "description": "Uma árvore de floresta tropical húmida de folhas brilhantes, rebentos novos cor-de-rosa e pequenas bagas de brancas a malva. Cresce selvagem na costa leste da Austrália e planta-se em ruas e jardins.",
+      "howTo": "Procura-o de março a agosto debaixo de árvores selvagens e plantadas, para bagas que se soltam facilmente do pé. Confirma as folhas brilhantes aos pares que cheiram forte ao esmagá-las",
+      "guide": {
+        "identify": "O lilly pilly é uma árvore de folhas escuras, brilhantes e pontiagudas, que saem aos pares ao longo do raminho. As folhas têm por baixo minúsculos pontos de óleo e cheiram forte ao esmagá-las. Os rebentos novos são cor-de-rosa ou avermelhados. Na primavera e no verão traz cachos fofos de flores branco-creme. O fruto é uma baga redonda de 1 a 2 cm, muitas vezes um pouco achatada, com uma pequena covinha em cima. Madura, é branca, rosa ou malva-clara e tem um caroço grande e duro. Plantam-se também muitos outros lilly pillies. O brush cherry (Syzygium australe), o riberry (Syzygium luehmannii), o lilly pilly magenta (Syzygium paniculatum) e o lilly pilly azul (Syzygium oleosum) têm frutos carmesim, rosa-vivo, magenta ou azuis. Também se comem. O parecido a que deves estar atento é o alfeneiro (Ligustrum lucidum, em inglês tree privet), uma infestante comum cujas folhas brilhantes também saem aos pares. As bagas dele são pretas e os rebentos novos não são avermelhados. As folhas e as bagas são venenosas. Na Nova Zelândia, o raro swamp maire nativo (Syzygium maire) tem frutos vermelho-escuros, por isso deixa-o em paz. Em cada árvore de que apanhas, esmaga uma folha e confirma o cheiro forte. Se as bagas forem pretas, não é um lilly pilly.",
+        "habitat": "Na Austrália é uma árvore de floresta tropical húmida. Cresce selvagem na costa leste, desde o norte do Queensland, por Nova Gales do Sul, até Wilsons Promontory em Victoria, e em King Island. Também se planta muito em ruas, parques e sebes, muito mais a sul e a oeste. Na Nova Zelândia chama-se monkey apple. Escapou dos jardins e cresce selvagem na floresta e no mato, sobretudo na Ilha do Norte.",
+        "season": "As flores vêm na primavera e no verão, e depois segue-se o fruto. Na Austrália o fruto amadurece do outono ao inverno, sobretudo de março a agosto. Na Nova Zelândia está maduro do fim do verão ao outono, mais ou menos de fevereiro a maio. Uma baga madura solta-se facilmente do pé.",
+        "picking": "Apanha bagas maduras que se soltem facilmente do pé. A árvore não tem espinhos. Deixa algumas para as aves. Nos parques nacionais australianos não se podem apanhar plantas. Na Nova Zelândia o monkey apple é uma praga: não se pode vender nem espalhar, e em Auckland também não se pode plantar, por isso não leves frutos nem sementes para outro sítio. As árvores de rua podem ser pulverizadas e os cães visitam-nas, por isso lava bem os frutos. Se os rebentos novos estiverem cobertos de um pó amarelo-vivo (ferrugem do mirto), não lhe toques e não leves material vegetal contigo.",
+        "kitchen": "Quando tiveres a certeza de que é ele, come as bagas frescas. São estaladiças e sumarentas, um pouco como uma maçã aguada, ligeiramente ácidas e de sabor pouco intenso. Cospe o caroço duro. Ficam melhor em doce e em conservas do que comidas aos punhados. Também as podes estufar e usar em queques no lugar de mirtilos.",
+        "keeps": "As bagas estão melhor em poucos dias, guardadas no frigorífico. O doce e as conservas aguentam em frascos esterilizados.",
+        "source": "Identificação e distribuição: ANPSA, NZ Plant Conservation Network, chave das Myrtaceae da Manaaki Whenua e Wikipedia. Regras sobre pragas e parecidos: Auckland Council. Alfeneiro: ficha de infestantes do Port Macquarie-Hastings Council. Ferrugem do mirto: Auckland Council. Cozinha: Tucker Bush e Botanic Gardens of South Australia."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Syzygium smithii",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Lilly Pilly"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [3184410]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 621, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/3184410",
+          "https://anpsa.org.au/plant_profiles/syzygium-smithii/",
+          "https://en.wikipedia.org/wiki/Syzygium_smithii",
+          "https://www.nzpcn.org.nz/flora/species/syzygium-smithii/",
+          "https://keys.landcareresearch.co.nz/nzmyrtaceae/key/nzmyrtaceae/Media/Html/entities/Syzygium_smithii.htm",
+          "https://www.tiakitamakimakaurau.nz/protect-and-restore-our-environment/pests-in-auckland/pest-search/syzsmi/",
+          "https://connected.pmhc.nsw.gov.au/bloged/weed-of-the-month-privet-weeds-ligustrum-spp/",
+          "https://www.aucklandcouncil.govt.nz/environment/plants-animals/protect-trees-disease/Pages/protect-plants-from-myrtle-rust.aspx",
+          "https://tuckerbush.com.au/meet-the-lilly-pilly-this-seasons-backyard-superfood/",
+          "https://plantselector.botanicgardens.sa.gov.au/Plants/Details/17953",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

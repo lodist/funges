@@ -85,6 +85,11 @@ SAFE = 0.1      # tender crops: a frost before harvest in at most 1 year in 10
 RISKY = 0.5     # hardier crops: a hard frost before harvest in at most half the years
 EARLY = 14      # days before the warm nights normally begin that a tender crop may go out
 AUTUMN = 182    # day of year (1 July): soil too cold means too late from here; autumn crops open
+# The south counts its days from 1 July, so its spring and autumn fall where the rules expect them: its
+# frost table and sowing windows are built on that year (data_tools/build_frost_odds.py,
+# build_huerta_windows.py), and the days the app shows go back to the calendar (calendar_day).
+SOUTH = {"ANZ"}
+HALF_YEAR = 184  # 1 July is day 182; this puts it on day 1
 CODES = {"now": "n", "wait_frost": "f", "wait_soil": "s", "wait_warm": "w", "too_warm": "h",
          "too_late": "l", "not_here": "x", "wait_autumn": "a", "wait_spring": "p", "wait_days": "d"}
 # The windows' letters (build_huerta_windows.py), a status each.
@@ -100,7 +105,7 @@ FULL_DAY = 20     # hours a day's mean needs (the forecast's last day is cut sho
 # %: an hour this humid counts toward blight weather (Hutton criteria, AHDB 2017: 90). NBM runs humid against
 # US airports (1.7 times their humid hours, 17 Oct - 1 Nov 2026); at 92 % it keeps every blight day they had
 # and drops 40 % of the false ones. ICON-EU + ECMWF match European airports at 90 %.
-RH_WET = {"SE": 90, "NE": 90, "USE": 92, "USW": 92}
+RH_WET = {"SE": 90, "NE": 90, "USE": 92, "USW": 92, "ANZ": 90}    # ANZ: ECMWF, as Europe's beyond ICON-EU
 WET_HOURS = 6     # such hours a blight day needs
 BLIGHT_MIN = 10   # C: the day's minimum a blight day needs
 BLIGHT_DAYS = 8   # the advice's blight bits: the day before its day through the sixth after
@@ -176,6 +181,19 @@ def conditions(forecast, lift=None):
     night = np.where(out["frostw"] <= 0, out.pop("first_f"), out.pop("first_g"))
     out["frostw_night"] = [None if np.isnan(d) else f"{start + pd.Timedelta(days=int(d)):%Y-%m-%d}" for d in night]
     return out, start
+
+
+def season_day(region, doy):
+    """The day the rules count for a calendar day of year: the same in the north, from 1 July in the south."""
+    return (doy - 1 + HALF_YEAR) % 365 + 1 if region in SOUTH else doy
+
+
+def calendar_day(region, day):
+    """season_day's inverse, for the days the app shows; 0 (none) stays 0."""
+    if region not in SOUTH:
+        return day
+    day = np.asarray(day, float)
+    return np.where(day > 0, (day - 1 - HALF_YEAR) % 365 + 1, day)
 
 
 def frost_risk(place, name, doy, days):
@@ -641,7 +659,9 @@ def publish(region, forecast):
     windows = load_windows(region)
     if windows is None:
         print(f"Huerta: no sowing windows for {region}, the rules decide")
-    advice = advise(place, crops, day.dayofyear, windows)
+    advice = advise(place, crops, season_day(region, day.dayofyear), windows)
+    for column in ("last0_median", "first0_median"):                # the app shows calendar days
+        place[column] = calendar_day(region, place[column])
     s3, bucket = r2.client(), os.environ["R2_BUCKET_NAME"]
     try:
         air = daily_air(region, forecast, s3, bucket)

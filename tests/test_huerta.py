@@ -469,3 +469,12 @@ def test_downy_bits_mark_onion_spore_nights_and_lettuce_infection_mornings():
     h.loc[at("2026-11-07", range(7, 10)), ["t2m_c", "td2m_c"]] = 24.0   # wet but warm: no
     bits = huerta.downy_bits(h, "2026-11-03").loc[(50.0, 0.0)]
     assert bits.tolist() == [1 << 2, 1 << 4]                             # bit 0 is the 2nd: the 4th and the 6th
+
+
+def test_the_south_counts_its_days_from_1_july():
+    assert huerta.season_day("ANZ", 182) == 1         # 1 July
+    assert huerta.season_day("ANZ", 1) == 185         # 1 January: midsummer, the north's early July
+    assert huerta.season_day("SE", 100) == 100
+    days = np.array([1, 182, 183, 365])
+    assert huerta.calendar_day("ANZ", huerta.season_day("ANZ", days)).tolist() == days.tolist()
+    assert huerta.calendar_day("ANZ", np.array([0.0, np.nan]))[0] == 0   # no frost stays none

@@ -96,6 +96,9 @@ def test_each_continent_orders_one_box():
     south = [(27.6, -17.9), (54.9, 44.7), (40.4, -3.7)]
     north = [(70.7, 30.9), (49.6, -24.4), (59.3, 18.1)]
     assert er.box(south) == er.box(north) == er.EU_BOX
+    # Australia/New Zealand orders its own: Europe's box stretched to Dunedin would be most of the world.
+    anz = [(-16.2, 145.0), (-47.2, 168.0), (-31.9, 114.7), (-37.6, 178.5)]
+    assert er.box(anz) == er.ANZ_BOX
 
 
 class _Reply:

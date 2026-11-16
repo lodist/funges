@@ -82,9 +82,13 @@ def range_prior_for_species(df, params):
             * habitat_values(df, params) * ph_gate_values(df, params) * climate_gate_values(df, params))
 
 
+SOUTH = {"ANZ"}   # summer December-February, autumn March-May
+
+
 def attach_climate(species_params, region):
     """The ERA5 normals grid on every species with a `climate_gate`. One that cannot load
-    leaves the gates open (1.0), as a missing range prior does."""
+    leaves the gates open (1.0), as a missing range prior does. South of the equator the
+    months are moved by six, so the gate's summer and autumn are the region's own."""
     wanted = [p for p in species_params.values() if "climate_gate" in p]
     if not wanted:
         return
@@ -94,6 +98,8 @@ def attach_climate(species_params, region):
     except Exception as error:
         print(f"[warn] ERA5 normals not loaded ({error}); climate gates are open")
         return
+    if region in SOUTH:
+        grid = {**grid, **{name: np.roll(grid[name], 6, axis=0) for name in ("tmean", "rain")}}
     for p in wanted:
         p["era5_normals"] = grid
     print(f"Climate gate for {len(wanted)} species")
@@ -105,7 +111,7 @@ def climate_gate_values(df, params):
     cannot exclude). `climate_gate` maps "summer_tmean" (June-August mean, °C) and
     "autumn_rain" (September-November mean, mm/day) to [value at 0, value at 1], linear
     between: falling when the first is the higher. 1.0 without a gate, a grid or a cell.
-    ponytail: northern-hemisphere seasons; a southern region needs its own months."""
+    A southern region's grid comes with its months moved by six (attach_climate)."""
     gate, grid = params.get("climate_gate"), params.get("era5_normals")
     if gate is None or grid is None:
         return 1.0

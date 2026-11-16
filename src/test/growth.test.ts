@@ -303,3 +303,88 @@ describe('a planted crop in a shaded bed', () => {
     expect(shaded.ready).toBe(open.ready);
   });
 });
+
+describe('a planted crop south of the equator', () => {
+  const tomato: Bio = {
+    tb: 10,
+    tlo: 21.1111,
+    thi: 23.8889,
+    tmax: 26.6667,
+    days: 70,
+    kill: 't',
+    end: 'frost',
+    pick: 16,
+    strict: false,
+    hardy: null,
+    night: true,
+  };
+  const temps = [5, 6, 10, 14, 18, 22, 24, 24, 20, 14, 9, 6];
+  const year = (lat: number, months: number[], half: number): PlaceYear => {
+    const day = (d: number) => (d > 0 ? ((d - 1 + half) % 365) + 1 : d);
+    return {
+      place: 'Somewhere',
+      lat,
+      crops: {},
+      temps: months,
+      sun: months.map(t => t / 2 + 5),
+      climate: {
+        frost: [day(290), day(110)],
+        hard: [day(310), day(90)],
+        warm10: [day(150), day(250)],
+        warm13: null,
+        low: -6,
+        light: day(280),
+      },
+    };
+  };
+
+  it('grows as its northern twin does, half a year on', () => {
+    // The south's months are the north's half a year on, and so are its days.
+    const north = growthPlace(year(47, temps, 0))!;
+    const south = growthPlace(
+      year(-47, [...temps.slice(6), ...temps.slice(0, 6)], 181)
+    )!;
+    const n = plantedGrowth('tomato', tomato, north, '2027-05-20');
+    const s = plantedGrowth('tomato', tomato, south, '2027-11-19');
+    const gap = (a: string, b: string) =>
+      Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
+    expect(south.south).toBe(true);
+    expect(Math.abs(gap(n.ready!, s.ready!) - 183)).toBeLessThanOrEqual(3);
+    expect(Math.abs(gap(n.end!, s.end!) - 183)).toBeLessThanOrEqual(3);
+    expect(s.progress('2028-01-15')).toBeCloseTo(n.progress('2027-07-16'), 1);
+  });
+
+  it('picks a tender crop for its weeks where the nights are warm all year, over the turn of the year', () => {
+    // Warm all year reads 1 to 365: neither the south's turn (30 June, in
+    // Darwin's dry season) nor New Year (Miami's winter crop) ends it.
+    const tropics = (lat: number): PlaceYear => ({
+      place: 'Somewhere warm',
+      lat,
+      crops: {},
+      temps: flat(24),
+      sun: flat(20),
+      climate: {
+        frost: [0, 0],
+        hard: [0, 0],
+        warm10: [1, 365],
+        warm13: [1, 365],
+        low: 12,
+        light: 0,
+      },
+    });
+    const gap = (a: string, b: string) =>
+      Math.round((Date.parse(b) - Date.parse(a)) / 864e5);
+    for (const [lat, planted] of [
+      [-12.5, '2027-05-15'],
+      [25.8, '2027-12-01'],
+    ] as const) {
+      const g = plantedGrowth(
+        'tomato',
+        tomato,
+        growthPlace(tropics(lat))!,
+        planted
+      );
+      expect(gap(g.ready!, g.end!)).toBe(16 * 7);
+    }
+  });
+});

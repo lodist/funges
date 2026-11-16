@@ -8,9 +8,9 @@ import {
 } from '@/lib/forecast';
 
 describe('forecast lib', () => {
-  it('has a 7-day window and 4 regions', () => {
+  it('has a 7-day window and 5 regions', () => {
     expect(FORECAST_DAYS).toBe(7);
-    expect(FORECAST_REGIONS).toEqual(['ne', 'se', 'use', 'usw']);
+    expect(FORECAST_REGIONS).toEqual(['ne', 'se', 'use', 'usw', 'anz']);
   });
 
   it('labels a day as "<weekday> <day> <month>" in the given locale, offset from the base date', () => {

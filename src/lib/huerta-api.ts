@@ -205,7 +205,11 @@ export function fetchNeeds(): Promise<Record<string, CropNeeds>> {
 }
 
 /** The garden map's regions, by continent. */
-export const MAP_REGIONS = { eu: ['SE', 'NE'], us: ['USE', 'USW'] } as const;
+export const MAP_REGIONS = {
+  eu: ['SE', 'NE'],
+  us: ['USE', 'USW'],
+  anz: ['ANZ'],
+} as const;
 export type MapRegion = (typeof MAP_REGIONS)[keyof typeof MAP_REGIONS][number];
 
 export interface MapNight {

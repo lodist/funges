@@ -426,8 +426,9 @@ function seasonCover(
 function warmKill(from: string, warm: [number, number] | null): string | null {
   if (!warm) return addDays(from, CHILL_DAYS);
   const open = warm[0] - EARLY_DAYS;
-  const length = warm[1] + WARM_AFTER_DAYS - open;
+  let length = warm[1] + WARM_AFTER_DAYS - open;
   if (length >= 365) return null;
+  if (length < 0) length += 365; // a season over New Year (the south's November to March)
   const into = (dayOfYear(from) - open + 365) % 365;
   if (into <= length) return addDays(from, length - into);
   const wait = 365 - into;

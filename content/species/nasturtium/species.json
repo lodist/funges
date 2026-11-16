@@ -1,0 +1,157 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "nasturtium",
+  "scientificName": "Tropaeolum majus",
+  "catalog": {
+    "enabled": true,
+    "order": 68,
+    "translationKey": "nasturtium",
+    "category": "plant",
+    "emoji": "🌼",
+    "season": "spring-summer",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/nasturtium.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Nasturtium",
+      "description": "A trailing garden plant with round, umbrella-like leaves and bright orange, yellow or red flowers. It has gone wild on coasts, roadsides and creek banks in southern Australia and New Zealand, and the leaves, flowers and green seeds all taste peppery.",
+      "howTo": "Look on coastal banks, roadsides and creek banks from August to May. Check for round leaves with the stalk in the middle underneath and flowers with a long spur",
+      "guide": {
+        "identify": "Nasturtium sprawls along the ground or climbs over fences and shrubs. The leaves are round and a little wavy at the edge, usually 4 to 15 cm across. They look like small umbrellas: the stalk joins the middle of the underside, and seven to ten veins fan out from it like spokes. The flowers are trumpet-shaped, about 3 to 7 cm across, in cream, yellow, orange or red. Each has a long spur at the back. After the flowers come green, three-lobed fruits about 1 cm wide. Those are the seeds. Crush a leaf and it has a peppery smell, like watercress. Wild taro (Colocasia esculenta) also grows on creek banks. Its leaves are 15 to 60 cm long and arrow-shaped with a notch at the base, and the plant contains calcium oxalate and can irritate the skin, so leave it. The flame creeper (Tropaeolum speciosum) is a different climber, with leaves split into five or six fingers and small scarlet flowers. Leave that too. Check the leaf and the flower together on every plant you pick.",
+        "habitat": "It grows on coastal dunes and banks and along roadsides and creek banks. You also find it in hedges and old gardens and near rubbish dumps where garden waste has been tipped. It copes with salt, wind, poor soil and some shade. It came from the Andes and escaped from gardens. In Australia it has gone wild in the southern states, in Victoria mostly near the coast on sandy soil. In New Zealand it has lived wild for more than a hundred years.",
+        "season": "It flowers mostly in spring. The flowers start in July or August in Western Australia and on warm coasts, in September in Victoria and in October in New Zealand. They carry on through summer and into autumn. The green seed pods follow the flowers, from late spring to autumn.",
+        "picking": "Pick young leaves, open flowers and plump green seed pods by hand. Take only plants you are sure are nasturtium. Avoid garden beds and verges that may be sprayed, busy roads and places where dogs go. Wash everything well. In parts of both countries it counts as an environmental weed, because it smothers low plants on creek banks and bush edges. Pieces of stem take root easily, so don't tip scraps in the bush or on a creek bank.",
+        "kitchen": "Once you're certain of it, use the young leaves in salads, sandwiches, pesto or soup. They taste peppery, like watercress. The flowers are edible too and look lovely on salads, cakes and cheese. For \"poor man's capers\", pick the green seed pods while they are still firm and pickle them in salted vinegar. Leave them a few weeks before you eat them.",
+        "keeps": "The leaves and flowers wilt quickly. Keep them in the fridge, wrapped in a damp cloth, and use them within a day or two. Pickled pods keep for several months in a jar. Once the jar is open, keep it in the fridge and eat them within a month.",
+        "source": "Identification and range: HerbiGuide, WeedScan, VicFlora, Weedbusters and NZ Plant Conservation Network. Wild taro: HerbiGuide. Kitchen use: Diggers and Larder Love. Season: GBIF records and Flora of New Zealand."
+      }
+    },
+    "it": {
+      "name": "Nasturzio",
+      "description": "Una pianta da giardino strisciante, con foglie tonde a forma di ombrellino e fiori vivaci arancioni, gialli o rossi. È tornata selvatica su coste, bordi delle strade e rive dei ruscelli dell'Australia meridionale e della Nuova Zelanda, e foglie, fiori e semi verdi hanno tutti un sapore piccante.",
+      "howTo": "Cercalo su scarpate costiere, bordi delle strade e rive dei ruscelli da agosto a maggio. Controlla le foglie tonde con il picciolo al centro sotto e i fiori con un lungo sperone",
+      "guide": {
+        "identify": "Il nasturzio striscia per terra o si arrampica su recinzioni e arbusti. Le foglie sono tonde, larghe di solito da 4 a 15 cm, e un po' ondulate sul bordo. Sembrano piccoli ombrellini: il picciolo si attacca al centro della pagina inferiore e da lì si aprono da sette a dieci nervature, come i raggi di una ruota. I fiori sono a tromba, larghi circa da 3 a 7 cm, color crema, giallo, arancione o rosso. Ognuno ha un lungo sperone dietro. Dopo i fiori arrivano frutti verdi a tre lobi, larghi circa 1 cm. Sono i semi. Sfrega una foglia: ha un odore pungente, come il crescione. Il taro selvatico (Colocasia esculenta) cresce anche sulle rive dei ruscelli. Le sue foglie sono lunghe da 15 a 60 cm, a forma di freccia con una tacca alla base, e la pianta contiene ossalato di calcio e può irritare la pelle, quindi lasciala stare. La rampicante Tropaeolum speciosum è un'altra pianta, con foglie divise in cinque o sei dita e piccoli fiori scarlatti. Lascia stare anche questa. Controlla foglia e fiore insieme su ogni pianta che raccogli.",
+        "habitat": "Cresce su dune e scarpate costiere, ai bordi delle strade, sulle rive dei ruscelli, nelle siepi e nei vecchi giardini, e vicino alle discariche dove si buttano gli scarti del giardino. Sopporta sale, vento, terreno povero e un po' d'ombra. Viene dalle Ande ed è sfuggito ai giardini. In Australia si è inselvatichito negli Stati meridionali, nel Victoria soprattutto vicino alla costa su terreni sabbiosi. In Nuova Zelanda vive allo stato selvatico da più di cent'anni.",
+        "season": "Fiorisce soprattutto in primavera. I fiori cominciano a luglio o agosto nell'Australia Occidentale e sulle coste calde, a settembre nel Victoria e a ottobre in Nuova Zelanda. Durano per tutta l'estate fino all'autunno. I frutti verdi vengono dopo i fiori, da fine primavera all'autunno.",
+        "picking": "Raccogli a mano foglie giovani, fiori aperti e frutti verdi e pieni. Prendi solo piante che riconosci con certezza come nasturzio. Evita le aiuole e i bordi delle strade che possono essere trattati con diserbanti, le strade trafficate e i posti dove passano i cani. Lava tutto bene. In alcune zone di entrambi i Paesi è considerato un'infestante ambientale, perché soffoca le piante basse sulle rive dei ruscelli e ai margini del bush. I pezzi di stelo mettono radici facilmente, quindi non buttare gli scarti nel bush o sulla riva di un ruscello.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, usa le foglie giovani in insalate, panini, pesto o zuppe. Hanno un sapore piccante, come il crescione. Anche i fiori si mangiano e stanno benissimo su insalate, torte e formaggi. Per i finti capperi, raccogli i frutti verdi finché sono ancora sodi e mettili sott'aceto salato. Lasciali riposare qualche settimana prima di mangiarli.",
+        "keeps": "Foglie e fiori appassiscono in fretta. Tienili in frigo, avvolti in un panno umido, e usali entro un giorno o due. I frutti sott'aceto durano diversi mesi in un barattolo. Una volta aperto il barattolo, tienilo in frigo e consumali entro un mese.",
+        "source": "Riconoscimento e diffusione: HerbiGuide, WeedScan, VicFlora, Weedbusters e NZ Plant Conservation Network. Taro selvatico: HerbiGuide. Cucina: Diggers e Larder Love. Stagione: segnalazioni GBIF e Flora of New Zealand."
+      }
+    },
+    "fr": {
+      "name": "Capucine",
+      "description": "Une plante de jardin rampante, aux feuilles rondes en forme de parasol et aux fleurs vives, orange, jaunes ou rouges. Elle s'est ensauvagée sur les côtes, au bord des routes et le long des ruisseaux du sud de l'Australie et de la Nouvelle-Zélande, et ses feuilles, ses fleurs et ses graines vertes ont toutes un goût piquant.",
+      "howTo": "Cherche-la sur les talus côtiers, au bord des routes et le long des ruisseaux d'août à mai. Vérifie les feuilles rondes au pétiole au centre dessous et les fleurs à long éperon",
+      "guide": {
+        "identify": "La capucine rampe sur le sol ou grimpe sur les clôtures et les arbustes. Ses feuilles sont rondes, larges de 4 à 15 cm en général, et un peu ondulées sur le bord. Elles ressemblent à de petits parasols : le pétiole s'attache au milieu du dessous, et sept à dix nervures partent de là comme les rayons d'une roue. Les fleurs sont en trompette, larges de 3 à 7 cm environ, crème, jaunes, orange ou rouges. Chacune a un long éperon à l'arrière. Après les fleurs viennent des fruits verts à trois lobes, d'environ 1 cm de large. Ce sont les graines. Froisse une feuille : elle a une odeur piquante, comme le cresson. Le taro sauvage (Colocasia esculenta) pousse aussi au bord des ruisseaux. Ses feuilles font de 15 à 60 cm de long, en forme de flèche avec une encoche à la base, et la plante contient de l'oxalate de calcium et peut irriter la peau, alors laisse-la. Une autre grimpante, Tropaeolum speciosum, a des feuilles divisées en cinq ou six doigts et de petites fleurs écarlates. Laisse-la aussi. Vérifie la feuille et la fleur ensemble sur chaque plante que tu cueilles.",
+        "habitat": "Elle pousse sur les dunes et les talus côtiers, au bord des routes et des ruisseaux, dans les haies et les vieux jardins, et près des décharges où l'on jette les déchets de jardin. Elle supporte le sel, le vent, les sols pauvres et un peu d'ombre. Elle vient des Andes et s'est échappée des jardins. En Australie, elle s'est naturalisée dans les États du sud, dans le Victoria surtout près de la côte, sur sol sableux. En Nouvelle-Zélande, elle vit à l'état sauvage depuis plus d'un siècle.",
+        "season": "Elle fleurit surtout au printemps. Les fleurs commencent en juillet ou août en Australie-Occidentale et sur les côtes chaudes, en septembre dans le Victoria et en octobre en Nouvelle-Zélande. Elles durent tout l'été jusqu'à l'automne. Les fruits verts suivent les fleurs, de la fin du printemps à l'automne.",
+        "picking": "Cueille à la main les jeunes feuilles, les fleurs ouvertes et les fruits verts bien gonflés. Ne prends que des plantes dont tu es sûr que ce sont des capucines. Évite les plates-bandes et les bords de route qui peuvent être traités, les routes très passantes et les endroits où passent les chiens. Lave bien tout. Dans certaines régions des deux pays, elle passe pour une mauvaise herbe environnementale, car elle étouffe les plantes basses au bord des ruisseaux et en lisière du bush. Les morceaux de tige prennent racine facilement, alors ne jette pas les restes dans le bush ni au bord d'un ruisseau.",
+        "kitchen": "Une fois sûr de toi, utilise les jeunes feuilles dans les salades, les sandwichs, le pesto ou la soupe. Elles ont un goût piquant, comme le cresson. Les fleurs se mangent aussi et sont belles sur les salades, les gâteaux et le fromage. Pour les fausses câpres, cueille les fruits verts tant qu'ils sont fermes et mets-les dans du vinaigre salé. Laisse-les reposer quelques semaines avant de les manger.",
+        "keeps": "Les feuilles et les fleurs se fanent vite. Garde-les au frigo, dans un linge humide, et utilise-les dans un jour ou deux. Les fruits au vinaigre se gardent plusieurs mois dans un bocal. Une fois le bocal ouvert, mets-le au frigo et mange-les dans le mois.",
+        "source": "Identification et répartition : HerbiGuide, WeedScan, VicFlora, Weedbusters et NZ Plant Conservation Network. Taro sauvage : HerbiGuide. Cuisine : Diggers et Larder Love. Saison : observations GBIF et Flora of New Zealand."
+      }
+    },
+    "de": {
+      "name": "Kapuzinerkresse",
+      "description": "Eine kriechende Gartenpflanze mit runden, schirmartigen Blättern und leuchtend orangen, gelben oder roten Blüten. Sie ist an Küsten, Strassenrändern und Bachufern im Süden Australiens und in Neuseeland verwildert, und Blätter, Blüten und grüne Samen schmecken alle scharf.",
+      "howTo": "Such an Küstenhängen, Strassenrändern und Bachufern von August bis Mai. Prüf die runden Blätter mit dem Stiel in der Mitte der Unterseite und die Blüten mit dem langen Sporn",
+      "guide": {
+        "identify": "Die Kapuzinerkresse kriecht über den Boden oder klettert über Zäune und Sträucher. Die Blätter sind rund, meist 4 bis 15 cm gross und am Rand leicht gewellt. Sie sehen aus wie kleine Schirme: Der Stiel setzt in der Mitte der Unterseite an, und sieben bis zehn Adern laufen von dort wie Speichen nach aussen. Die Blüten sind trichterförmig, etwa 3 bis 7 cm gross, und cremefarben, gelb, orange oder rot. Hinten hat jede einen langen Sporn. Nach der Blüte folgen grüne, dreiteilige Früchte von etwa 1 cm Durchmesser. Das sind die Samen. Zerreib ein Blatt, dann riecht es scharf, wie Brunnenkresse. Der Wilde Taro (Colocasia esculenta) wächst auch an Bachufern. Seine Blätter sind 15 bis 60 cm lang, pfeilförmig mit einer Kerbe am Grund, und die Pflanze enthält Kalziumoxalat und kann die Haut reizen. Lass sie stehen. Die Feuerkapuzinerkresse (Tropaeolum speciosum) ist eine andere Kletterpflanze, mit Blättern aus fünf oder sechs Fingern und kleinen scharlachroten Blüten. Auch sie lässt du stehen. Prüf bei jeder Pflanze Blatt und Blüte zusammen.",
+        "habitat": "Sie wächst an Küstendünen und Küstenhängen, an Strassenrändern und Bachufern, in Hecken und alten Gärten, und bei Müllplätzen, wo Gartenabfall abgekippt wurde. Sie verträgt Salz, Wind, magere Böden und etwas Schatten. Ursprünglich stammt sie aus den Anden und ist aus Gärten entwischt. In Australien ist sie in den südlichen Bundesstaaten verwildert, in Victoria vor allem in Küstennähe auf Sandboden. In Neuseeland wächst sie seit über hundert Jahren wild.",
+        "season": "Sie blüht vor allem im Frühling. Die Blüten beginnen in Westaustralien und an warmen Küsten im Juli oder August, in Victoria im September und in Neuseeland im Oktober. Sie halten durch den Sommer bis in den Herbst. Die grünen Samenkapseln folgen auf die Blüten, vom späten Frühling bis in den Herbst.",
+        "picking": "Pflück junge Blätter, offene Blüten und pralle grüne Samenkapseln von Hand. Nimm nur Pflanzen, bei denen du sicher bist, dass es Kapuzinerkresse ist. Meide Gartenbeete und Wegränder, die gespritzt sein könnten, stark befahrene Strassen und Stellen, an denen Hunde laufen. Wasch alles gut. In beiden Ländern gilt sie in manchen Gegenden als Umweltunkraut, weil sie an Bachufern und Buschrändern niedrige Pflanzen überwuchert. Stängelstücke schlagen leicht Wurzeln, also kipp keine Reste in den Busch oder ans Bachufer.",
+        "kitchen": "Wenn du sie sicher bestimmt hast, nimm die jungen Blätter in Salate, aufs Brot, in Pesto oder Suppe. Sie schmecken scharf, wie Brunnenkresse. Die Blüten sind auch essbar und sehen auf Salaten, Kuchen und Käse schön aus. Für falsche Kapern pflückst du die grünen Samen, solange sie noch fest sind, und legst sie in gesalzenen Essig ein. Lass sie ein paar Wochen ziehen, bevor du sie isst.",
+        "keeps": "Blätter und Blüten welken schnell. Wickle sie in ein feuchtes Tuch, leg sie in den Kühlschrank und verbrauch sie innerhalb von ein, zwei Tagen. Eingelegte Samen halten sich mehrere Monate im Glas. Ist das Glas offen, gehören sie in den Kühlschrank, und du isst sie innerhalb eines Monats.",
+        "source": "Bestimmung und Verbreitung: HerbiGuide, WeedScan, VicFlora, Weedbusters und NZ Plant Conservation Network. Wilder Taro: HerbiGuide. Küche: Diggers und Larder Love. Saison: GBIF-Funddaten und Flora of New Zealand."
+      }
+    },
+    "es": {
+      "name": "Capuchina",
+      "description": "Una planta de jardín rastrera, de hojas redondas como pequeños paraguas y flores vistosas naranjas, amarillas o rojas. Se ha asilvestrado en costas, bordes de carretera y orillas de arroyos del sur de Australia y de Nueva Zelanda, y las hojas, las flores y las semillas verdes tienen todas un sabor picante.",
+      "howTo": "Búscala en taludes costeros, junto a carreteras y en orillas de arroyos de agosto a mayo. Comprueba las hojas redondas con el rabillo en el centro por debajo y las flores con un espolón largo",
+      "guide": {
+        "identify": "La capuchina se arrastra por el suelo o trepa por vallas y arbustos. Sus hojas son redondas, de 4 a 15 cm de ancho por lo común, y algo onduladas en el borde. Parecen pequeños paraguas: el rabillo se une en el centro del envés, y de ahí salen de siete a diez nervios como los radios de una rueda. Las flores tienen forma de trompeta, de unos 3 a 7 cm, y son de color crema, amarillo, naranja o rojo. Cada una tiene un espolón largo detrás. Tras las flores vienen frutos verdes de tres lóbulos, de 1 cm de ancho más o menos. Esas son las semillas. Si aplastas una hoja, tiene un olor picante, parecido al del berro. El taro silvestre (Colocasia esculenta) también crece en orillas de arroyos. Sus hojas miden de 15 a 60 cm, tienen forma de flecha con una muesca en la base, y la planta contiene oxalato de calcio y puede irritar la piel, así que déjala. Otra trepadora, Tropaeolum speciosum, tiene hojas divididas en cinco o seis dedos y pequeñas flores escarlata. Déjala también. Comprueba la hoja y la flor juntas en cada planta que cojas.",
+        "habitat": "Crece en dunas y taludes costeros, junto a carreteras y arroyos, en setos y en jardines viejos, y cerca de vertederos donde se tiran restos de jardín. Aguanta la sal, el viento, los suelos pobres y algo de sombra. Viene de los Andes y se escapó de los jardines. En Australia se ha asilvestrado en los estados del sur, en Victoria sobre todo cerca de la costa, en suelo arenoso. En Nueva Zelanda vive asilvestrada desde hace más de un siglo.",
+        "season": "Florece sobre todo en primavera. Las flores empiezan en julio o agosto en Australia Occidental y en las costas cálidas, en septiembre en Victoria y en octubre en Nueva Zelanda. Duran todo el verano hasta el otoño. Los frutos verdes vienen después de las flores, desde finales de primavera hasta el otoño.",
+        "picking": "Coge a mano hojas jóvenes, flores abiertas y frutos verdes bien hinchados. Coge solo plantas de las que estés seguro de que son capuchinas. Evita los parterres y los bordes de carretera que puedan estar fumigados, las carreteras con mucho tráfico y los sitios por donde pasan perros. Lava todo bien. En algunas zonas de los dos países se considera una mala hierba ambiental, porque ahoga las plantas bajas en orillas de arroyos y bordes del monte. Los trozos de tallo echan raíces con facilidad, así que no tires los restos en el monte ni en la orilla de un arroyo.",
+        "kitchen": "Cuando estés seguro de que es ella, usa las hojas jóvenes en ensaladas, bocadillos, pesto o sopa. Tienen un sabor picante, como el berro. Las flores también se comen y quedan preciosas en ensaladas, tartas y quesos. Para las falsas alcaparras, coge los frutos verdes mientras estén firmes y ponlos en vinagre con sal. Déjalos reposar unas semanas antes de comerlos.",
+        "keeps": "Las hojas y las flores se marchitan rápido. Guárdalas en la nevera, envueltas en un paño húmedo, y úsalas en uno o dos días. Los frutos en vinagre duran varios meses en un frasco. Una vez abierto el frasco, ponlo en la nevera y cómelos en un mes.",
+        "source": "Identificación y distribución: HerbiGuide, WeedScan, VicFlora, Weedbusters y NZ Plant Conservation Network. Taro silvestre: HerbiGuide. Cocina: Diggers y Larder Love. Temporada: registros de GBIF y Flora of New Zealand."
+      }
+    },
+    "pt": {
+      "name": "Capuchinha",
+      "description": "Uma planta de jardim rasteira, de folhas redondas como pequenos guarda-chuvas e flores vistosas laranja, amarelas ou vermelhas. Tornou-se selvagem em costas, bermas de estrada e margens de ribeiros do sul da Austrália e da Nova Zelândia, e as folhas, as flores e as sementes verdes têm todas um sabor picante.",
+      "howTo": "Procura-a em taludes costeiros, junto a estradas e em margens de ribeiros de agosto a maio. Confirma as folhas redondas com o pecíolo no centro por baixo e as flores com um esporão comprido",
+      "guide": {
+        "identify": "A capuchinha rasteja pelo chão ou trepa por vedações e arbustos. As folhas são redondas, em geral com 4 a 15 cm de largura, e um pouco onduladas na margem. Parecem pequenos guarda-chuvas: o pecíolo liga-se ao meio da página de baixo, e daí saem sete a dez nervuras como os raios de uma roda. As flores têm forma de trompete, com cerca de 3 a 7 cm, e são cor de creme, amarelas, laranja ou vermelhas. Cada uma tem um esporão comprido atrás. Depois das flores vêm frutos verdes de três lóbulos, com cerca de 1 cm de largura. São as sementes. Se esmagares uma folha, tem um cheiro picante, parecido com o do agrião. O taro selvagem (Colocasia esculenta) também cresce nas margens de ribeiros. As folhas medem de 15 a 60 cm, têm forma de seta com um entalhe na base, e a planta contém oxalato de cálcio e pode irritar a pele, por isso deixa-a. Outra trepadeira, a Tropaeolum speciosum, tem folhas divididas em cinco ou seis dedos e pequenas flores escarlates. Deixa-a também. Confirma a folha e a flor em conjunto em cada planta que apanhas.",
+        "habitat": "Cresce em dunas e taludes costeiros, nas bermas das estradas e nas margens de ribeiros, em sebes e em jardins antigos, e perto de lixeiras onde se despejam restos de jardim. Aguenta o sal, o vento, os solos pobres e alguma sombra. Vem dos Andes e fugiu dos jardins. Na Austrália tornou-se selvagem nos estados do sul, em Victoria sobretudo perto da costa, em solo arenoso. Na Nova Zelândia vive em estado selvagem há mais de um século.",
+        "season": "Floresce sobretudo na primavera. As flores começam em julho ou agosto na Austrália Ocidental e nas costas quentes, em setembro em Victoria e em outubro na Nova Zelândia. Duram todo o verão até ao outono. Os frutos verdes vêm depois das flores, do fim da primavera ao outono.",
+        "picking": "Apanha à mão folhas novas, flores abertas e frutos verdes bem cheios. Apanha só plantas de que tenhas a certeza de que são capuchinhas. Evita os canteiros e as bermas que possam ter sido pulverizados, as estradas movimentadas e os sítios por onde passam cães. Lava tudo bem. Em algumas zonas dos dois países é considerada uma infestante ambiental, porque sufoca as plantas baixas nas margens de ribeiros e nas orlas do mato. Os bocados de caule criam raízes com facilidade, por isso não deites os restos no mato nem à beira de um ribeiro.",
+        "kitchen": "Quando tiveres a certeza de que é ela, usa as folhas novas em saladas, sandes, pesto ou sopa. Têm um sabor picante, como o agrião. As flores também se comem e ficam lindas em saladas, bolos e queijos. Para as falsas alcaparras, apanha os frutos verdes enquanto estão firmes e mete-os em vinagre com sal. Deixa-os descansar umas semanas antes de os comer.",
+        "keeps": "As folhas e as flores murcham depressa. Guarda-as no frigorífico, embrulhadas num pano húmido, e usa-as em um ou dois dias. Os frutos em vinagre duram vários meses num frasco. Depois de aberto, o frasco vai para o frigorífico e comem-se num mês.",
+        "source": "Identificação e distribuição: HerbiGuide, WeedScan, VicFlora, Weedbusters e NZ Plant Conservation Network. Taro selvagem: HerbiGuide. Cozinha: Diggers e Larder Love. Época: registos do GBIF e Flora of New Zealand."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Tropaeolum majus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Nasturtium"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [2889934]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 621, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/2889934",
+          "https://www.herbiguide.com.au/Descriptions/hg_Nasturtium.htm",
+          "https://weedscan.org.au/Weed?id=492",
+          "https://vicflora.rbg.vic.gov.au/flora/taxon/f1c92661-3052-4ef9-b336-495c6d5f4882",
+          "https://www.weedbusters.org.nz/what-are-weeds/weed-list/nasturtium/",
+          "https://www.nzpcn.org.nz/flora/species/tropaeolum-majus/",
+          "https://www.herbiguide.com.au/Descriptions/hg_Taro.htm",
+          "https://www.diggers.com.au/blogs/seasonal-recipes/how-to-make-poor-mans-caper",
+          "https://larderlove.com/pickled-nasturtium-pods-nasturtium-capers/",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-12-anz-region.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

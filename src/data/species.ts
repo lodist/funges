@@ -19,9 +19,11 @@ export interface Species {
   forecastRegions?: readonly ForecastRegion[];
   /** A map layer scored as the best of these species, not a taxon of its own. */
   compositeOf?: readonly string[];
+  /** Off until its look-alike review: photo ID names it like any species outside the catalog. */
+  photoId?: false;
 }
 
-export type ForecastRegion = 'NE' | 'SE' | 'USE' | 'USW';
+export type ForecastRegion = 'NE' | 'SE' | 'USE' | 'USW' | 'ANZ';
 
 export interface SpeciesOption {
   code: string;

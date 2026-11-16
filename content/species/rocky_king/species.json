@@ -146,6 +146,9 @@
           "https://github.com/lodist/funges-lab/blob/main/species/2026-09-27-us-porcini.md"
         ],
         "landCoverScheme": "NLCD"
+      },
+      "ANZ": {
+        "available": false
       }
     },
     "empiricalSeason": {
