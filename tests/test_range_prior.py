@@ -179,3 +179,19 @@ def test_climate_gate_cuts_hot_dry_ground_and_keeps_no_evidence():
     np.testing.assert_allclose(range_prior_for_species(df, {"climate_gate": {"summer_tmean": [20.7, 18.7]},
                                                             "era5_normals": half})[1], 0.5)
     assert range_prior_for_species(df, {"climate_gate": gate}) == 1.0  # no grid: open
+
+
+def test_climate_gate_reads_the_southern_summer(monkeypatch):
+    import era5_normals
+    from range_prior import attach_climate
+
+    tmean = np.full((12, 2, 2), 10.0)
+    tmean[[11, 0, 1]] = 21.0                    # hot December-February: summer in the south, winter in the north
+    grid = {"lat": np.array([-40.0, -40.25]), "lon": np.array([170.0, 170.25]), "tmean": tmean,
+            "rain": np.full((12, 2, 2), 3.0)}
+    monkeypatch.setattr(era5_normals, "load", lambda region: grid)
+    df = pd.DataFrame({"Latitude": [-40.0], "Longitude": [170.0]})
+    for region, expected in (("ANZ", 0.0), ("NE", 1.0)):
+        params = {"lc": {"climate_gate": {"summer_tmean": [20.7, 18.7]}}}
+        attach_climate(params, region)
+        np.testing.assert_allclose(range_prior_for_species(df, params["lc"]), [expected])
