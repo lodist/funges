@@ -24,6 +24,7 @@ import json
 from datetime import date
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,9 @@ MIN_PLACE_FINDS = 100       # a season atlas place shows its own figure from thi
 # 24 Oct, Liberty Cap and Golden Cap on 11 Nov) have no unseen finds this year. A retrain moves it.
 UNSEEN, LATER = "2026-10-16", {"bay_bolete", "liberty_cap", "golden_cap"}
 CONTINENTS = {"EU": ("NE", "SE"), "US": ("USE", "USW")}
+# Measured, but off the page's season list until their seasons are reworked: chicken of the woods
+# (#389) and Golden Cap, whose hand-set months never peak while its records peak in early summer.
+LEFT_OUT = {"chicken-of-the-woods", "golden_cap"}
 
 
 def tally(rows: pd.DataFrame) -> dict:
@@ -50,18 +54,24 @@ def card(rows: pd.DataFrame) -> dict | None:
     return {**tally(single), "species": species}
 
 
+def pooled(rows: list[dict]) -> float:
+    """The rows' season figures pooled by the finds behind each, as qa_season_auc.py pools them."""
+    return round(float(np.average([r["auc"] for r in rows], weights=[r["records"] for r in rows])), 3)
+
+
 def season_card(path: Path) -> dict:
     report = json.loads(path.read_text(encoding="utf-8"))
-    singles = [r for r in report["rows"] if not r.get("composite") and not r.get("left_out")]
-    records = {}
+    singles = [r for r in report["rows"] if not r.get("composite") and r["species"] not in LEFT_OUT]
+    by_species: dict[str, list[dict]] = {}
     for row in singles:
-        records[row["species"]] = records.get(row["species"], 0) + row["records"]
+        by_species.setdefault(row["species"], []).append(row)
     spots = {}
-    for row in singles:                     # every species of a region is read at the same places
+    for row in singles:                     # the most spots any of a region's mushrooms was read at
         spots[row["region"]] = max(spots.get(row["region"], 0), row["locations"])
     return {"since": report["start"], "until": report["end"], "spots": sum(spots.values()),
-            "all": {"finds": sum(records.values()), "auc": report["all"]},
-            "species": {s: {"finds": records[s], "auc": auc} for s, auc in report["species"].items() if s in records}}
+            "all": {"finds": sum(r["records"] for r in singles), "auc": pooled(singles)},
+            "species": {s: {"finds": sum(r["records"] for r in rows), "auc": pooled(rows)}
+                        for s, rows in by_species.items()}}
 
 
 def place_card(replay: Path, places: Path | None = None) -> dict:

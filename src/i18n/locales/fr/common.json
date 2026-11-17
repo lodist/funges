@@ -336,7 +336,7 @@
       "how": {
         "replay": "Nous appliquons la prévision actuelle à la météo de chaque jour et la comparons aux trouvailles de champignons signalées sur GBIF, la base de données mondiale de la biodiversité.",
         "late": "Les trouvailles arrivent sur GBIF avec une à trois semaines de retard, les derniers jours se complètent donc plus tard. Mis à jour le {{updated}}.",
-        "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double.",
+        "season": "La saison : les semaines où chaque champignon était en saison ou hors saison en 2026 viennent de ses trouvailles signalées, rapportées à l'ensemble des signalements de champignons pour que les week-ends chargés ne comptent pas double. Chaque champignon n'est jugé qu'aux endroits où il peut pousser, et ceux dont nous retravaillons encore la saison ne figurent pas ici.",
         "spots": "Chaque trouvaille est comparée à des endroits où des gens ont trouvé d'autres champignons, mais aucun de la même espèce à moins de 10 km : désigner les bois que tout le monde fréquente déjà ne rapporte rien.",
         "unseen": "Sur les {{finds}} trouvailles à partir du {{since}}, après les dernières dont la prévision a appris, elle a mieux noté l'endroit de la trouvaille {{times}} fois sur 10.",
         "everything": "Chaque champignon avec au moins 30 trouvailles figure ici, que le résultat soit bon ou non. Dans l'atlas des saisons, chaque pays ou État américain avec au moins 100 trouvailles affiche son propre résultat. Les plantes ne sont pas incluses."

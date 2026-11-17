@@ -5,7 +5,10 @@ its peak) and out of season (<= 10%), from exact weekly counts divided by all fu
 (qa_season_truth's filters), and today's daily scores at the places of the window's finds (a
 qa_replay.score_region run, kept as scores_<region>.parquet). The figure is the season-timing
 QA's within-location AUC: how often, at the same spot, a day in season scored above a day out
-of season. 0.5 is a coin toss. Only species whose season peaks inside the window are tested.
+of season. 0.5 is a coin toss. Only species whose season peaks inside the window are tested, and
+only at the spots where its forecast moves in the window: where it never does (out of its range or
+height: most of US West's spots for the rocky mountain king) a day in and out of season tie, and
+those coin tosses had pulled range-bound mushrooms toward 0.5.
 A composite (Boletus, Chanterelles) scores the best of its members, as the nightly run makes it,
 against its members' finds added up; it stays out of the pooled figure.
 
@@ -40,7 +43,7 @@ START, END = "2026-05-24", "2026-10-15"     # the masters' first day + the lag d
 CACHE = ROOT.parent / "qa" / "gbif"
 IN_SEASON, OUT_OF_SEASON = 0.5, 0.10        # share of the peak weekly rate, as season-timing QA
 MIN_RECORDS, MIN_WEEKS = 60, 2
-LEFT_OUT = {"chicken-of-the-woods"}       # hand-set, its season runs backwards in SE: #389. Measured, not published
+MOVES = 0.05                              # a spot counts where the species' score moves at least this much
 
 
 def scores(out: Path, region: str, taxa: dict, start: str, end: str, cap: int) -> pd.DataFrame:
@@ -114,6 +117,8 @@ def main():
                 continue
             column = "score"
             days = frame[["Location_Id", "Date"]].assign(score=frame[columns].max(axis=1))
+            spread = days.groupby("Location_Id").score
+            days = days[spread.transform("max") - spread.transform("min") >= MOVES]
             days["week"] = days.Date - pd.to_timedelta(days.Date.dt.weekday, unit="D")
             days["label"] = days.week.map(label)
             days = days[days.label >= 0].assign(in_season=lambda d: d.label == 1)
@@ -122,7 +127,6 @@ def main():
                 continue
             pairs = days.groupby("Location_Id").in_season.agg(lambda s: s.sum() * (~s).sum()).sum()
             rows.append({"region": region, "species": species, "composite": species not in taxa,
-                         "left_out": species in LEFT_OUT,
                          "records": int(counts.sum()), "auc": round(auc, 3),
                          "locations": locations, "pairs": int(pairs),
                          "in_season_weeks": [str(w.date()) for w in label.index[label == 1]],
@@ -130,12 +134,11 @@ def main():
             print({k: rows[-1][k] for k in ("region", "species", "records", "auc", "locations")}, flush=True)
 
     table = pd.DataFrame(rows)
-    shown = table[~table.left_out]
     # Pooled over regions by the finds behind each figure: weighting by day pairs let 69 South European
     # chanterelle finds outweigh 1,644 North European ones, because the south has more spots.
     pooled = lambda g: round(float(np.average(g.auc, weights=g.records)), 3)  # noqa: E731
     result = {"start": args.start, "end": args.end, "commit": qr.git("rev-parse", "--short", "HEAD"),
-              "all": pooled(shown[~shown.composite]), "species": {s: pooled(g) for s, g in shown.groupby("species")},
+              "all": pooled(table[~table.composite]), "species": {s: pooled(g) for s, g in table.groupby("species")},
               "rows": rows}
     (args.out / "season_auc.json").write_text(json.dumps(result, indent=1), encoding="utf-8")
     print(table[["region", "species", "records", "auc", "locations"]].to_string(index=False))

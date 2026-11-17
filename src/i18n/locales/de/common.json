@@ -336,7 +336,7 @@
       "how": {
         "replay": "Wir rechnen die aktuelle Vorhersage mit dem Wetter jedes Tages und vergleichen sie mit Pilzfunden, die Menschen bei GBIF melden, der weltweiten Biodiversitätsdatenbank.",
         "late": "Funde erreichen GBIF ein bis drei Wochen später, die letzten Tage füllen sich also nach. Aktualisiert am {{updated}}.",
-        "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen.",
+        "season": "Die Saison: Die Wochen, in denen jeder Pilz 2026 Saison hatte oder nicht, ergeben sich aus seinen gemeldeten Funden, gemessen an allen Pilzmeldungen, damit volle Wochenenden nicht doppelt zählen. Jeder Pilz wird nur an den Stellen bewertet, an denen er wachsen kann, und Pilze, deren Saison wir noch überarbeiten, fehlen hier.",
         "spots": "Jeder Fund wird mit Stellen verglichen, an denen Menschen andere Pilze gefunden haben, aber keinen derselben Art im Umkreis von 10 km. Auf Wälder zu zeigen, in die ohnehin alle gehen, bringt also nichts.",
         "unseen": "Bei den {{finds}} Funden ab dem {{since}}, nach den letzten Funden, aus denen die Vorhersage gelernt hat, bewertete sie die Fundstelle {{times}} von 10 Mal besser.",
         "everything": "Jeder Pilz mit mindestens 30 Funden steht hier, ob gut oder schlecht. Im Saisonatlas zeigt jedes Land und jeder US-Bundesstaat mit mindestens 100 Funden seinen eigenen Wert. Pflanzen sind nicht dabei."

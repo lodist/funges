@@ -11,21 +11,23 @@ from build_scorecard import MIN_FINDS, build, place_card  # noqa: E402
 
 def season_file(tmp_path):
     path = tmp_path / "season_auc.json"
-    path.write_text(json.dumps({"start": "2026-05-24", "end": "2026-10-15", "all": 0.9,
-                                "species": {"mushroom": 0.92, "boletus": 0.8},
-                                "rows": [{"region": "NE", "species": "mushroom", "records": 100, "locations": 50},
-                                         {"region": "SE", "species": "mushroom", "records": 20, "locations": 30},
+    path.write_text(json.dumps({"start": "2026-05-24", "end": "2026-10-15", "all": 0.5, "species": {},
+                                "rows": [{"region": "NE", "species": "mushroom", "records": 100, "locations": 50, "auc": 0.95},
+                                         {"region": "SE", "species": "mushroom", "records": 20, "locations": 30, "auc": 0.8},
                                          {"region": "NE", "species": "boletus", "composite": True,
-                                          "records": 140, "locations": 50}]}))
+                                          "records": 140, "locations": 50, "auc": 0.9},
+                                         {"region": "USE", "species": "golden_cap", "records": 109, "locations": 70,
+                                          "auc": 0.4}]}))
     return path
 
 
-def test_the_page_gets_the_season_pooled_over_regions_and_no_place_figures(tmp_path):
+def test_the_page_pools_the_season_over_regions_without_composites_or_left_out_species(tmp_path):
     card = build(season_file(tmp_path))
 
+    pooled = round((100 * 0.95 + 20 * 0.8) / 120, 3)
     assert card["season"] == {"since": "2026-05-24", "until": "2026-10-15", "spots": 80,
-                              "all": {"finds": 120, "auc": 0.9}, "species": {"mushroom": {"finds": 120, "auc": 0.92}}}
-    assert "place" not in card                                   # composites and place stay off the page
+                              "all": {"finds": 120, "auc": pooled}, "species": {"mushroom": {"finds": 120, "auc": pooled}}}
+    assert "place" not in card                                   # without a replay, no place figures
 
 
 def test_place_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
