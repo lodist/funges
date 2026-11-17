@@ -76,8 +76,10 @@ export function useScorecard(): Scorecard | null {
   return card;
 }
 
-/** A share as "times in 10", the way the landing and the sheet say it. */
-export const timesInTen = (share: number): number => Math.round(share * 10);
+/** A share as "times in 10", the way the landing and the sheet say it. At most
+ *  9: "10 times in 10" reads as always, and 98.7% is not always. */
+export const timesInTen = (share: number): number =>
+  Math.min(9, Math.round(share * 10));
 
 export function formatShare(share: number, language: string): string {
   return new Intl.NumberFormat(language, {
