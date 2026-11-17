@@ -1064,6 +1064,34 @@
         "keeps": "Las bayas son blandas y aguantan un día o dos en la nevera. Congélalas en una bandeja y luego en una bolsa, y duran mucho más. La mermelada dura meses.",
         "source": "Identificación y distribución: VicFlora, PlantNET y Castlemaine Flora. Zarza: Weeds Australia. Cerezo de Jerusalén: base de datos de malas hierbas del Department of Conservation de Nueva Zelanda y clave DELTA de Solanum. Uso alimentario: Australian National Botanic Gardens. Normas de recolección: NSW National Parks. Temporada: registros de GBIF e iNaturalist."
       }
+    },
+    "australian_chanterelle": {
+      "name": "Rebozuelo australiano",
+      "description": "El rebozuelo de Australia: un embudo pequeño de color albaricoque a naranja rosado, con pliegues romos y bifurcados por debajo. Se esconde entre la hojarasca de los bosques húmedos de eucalipto, del verano al otoño.",
+      "howTo": "Búscalo de diciembre a junio en bosques húmedos de eucalipto, unos días después de una lluvia cálida. Aparta la hojarasca y comprueba que tiene pliegues romos y bifurcados, no láminas",
+      "guide": {
+        "identify": "El sombrero es de color albaricoque, amarillo o naranja rosado y mide solo de 1,5 a 4 cm. De joven es plano. Pronto se convierte en un embudo poco profundo con el borde ondulado. Por debajo no tiene láminas de verdad, sino pliegues bajos y romos. Se bifurcan hacia el borde, bajan por el pie y son más claros que el sombrero. El pie es blanco rosado y a menudo está retorcido. Es tan largo como gruesa es la hojarasca, hasta unos 6 cm. La carne es firme y clara y huele un poco a albaricoque. El Austropaxillus, que es venenoso, también forma embudos pardo amarillentos bajo los eucaliptos, pero tiene láminas apretadas y afiladas. Si tiene láminas finas y afiladas, un velo como de telaraña o crece sobre madera, no es un rebozuelo.",
+        "habitat": "Crece en el suelo, entre la hojarasca, en las partes más húmedas de bosques y arboledas de eucalipto y en el brezal costero. Suele haber casuarinas cerca, y también crece bajo hayas australes. Sale en grupos, pero los sombreros suelen quedar medio enterrados, así que mira bien. Lo encuentras desde el sureste de Queensland, pasando por Nueva Gales del Sur y Victoria, hasta Tasmania. También crece en los bosques de karri y de jarrah más húmedos del suroeste.",
+        "season": "Sale después de lluvias cálidas y abundantes, de diciembre a junio. La mayoría aparecen entre el final del verano y el otoño. La sequía lo frena, y parece faltar donde el monte se quemó hace poco.",
+        "picking": "Córtalo por la base y deja crecer los pequeños. En los parques nacionales está prohibido recolectar. En los bosques estatales normalmente puedes coger un poco para ti, pero antes consulta las normas del lugar. Se sabe poco de lo común que es, así que coge solo lo que vayas a comer.",
+        "kitchen": "Cuando estés seguro de que es él, cocínalo. Es más suave que el rebozuelo europeo, y a algunos les parece casi soso. Saltéalo despacio en mantequilla hasta que se evapore el agua. Luego añádelo a huevos, pasta o risotto. Es pequeño, así que recoge un puñado. La principal guía australiana aún lo cuenta entre los comestibles poco documentados, así que la primera vez come solo un poco.",
+        "keeps": "Aguanta dos o tres días en la nevera, en una bolsa de papel. Salteado, se congela bien. Seco, se vuelve duro.",
+        "source": "Identificación, distribución y comestibilidad: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr y Wikipedia. Comestible pero poco documentado: Wild Mushrooming (Pouliot y May). Austropaxillus: registros de Australia Occidental. Temporada: registros de GBIF."
+      }
+    },
+    "warrigal_greens": {
+      "name": "Espinaca de Nueva Zelanda",
+      "description": "Una espinaca silvestre rastrera de hojas carnosas en forma de flecha, que brillan como si estuvieran saladas. Crece en playas, dunas y estuarios de Australia y Nueva Zelanda.",
+      "howTo": "Búscala todo el año en playas, dunas y matorral costero. Coge las puntas tiernas y escáldalas siempre antes de comerlas",
+      "guide": {
+        "identify": "Forma alfombras sueltas sobre el suelo o trepa por arbustos bajos. Las hojas son gruesas y carnosas, de 3 a 10 cm, con forma de punta de flecha o de rombo. Están cubiertas de diminutas perlas vidriosas, por eso brillan como si estuvieran saladas. Unas flores amarillas pequeñas van pegadas al tallo, donde nacen las hojas. Se convierten en frutos duros y abultados con unos cuernecillos cortos. Su pariente cercana Tetragonia implexicoma trepa entre los arbustos de la costa. Tiene hojas más pequeñas en forma de rombo y bayas rojas jugosas, y se come igual. En las mismas dunas crece la lechetrezna de mar, que es venenosa. Tiene hojas estrechas de color gris verdoso a lo largo de un tallo recto y un látex blanco que quema la piel y los ojos. Nunca cojas una planta que suelte savia blanca.",
+        "habitat": "Crece en playas y dunas, en acantilados y alrededor de marismas y estuarios, a menudo bajo casuarinas, melaleucas o pinos de Norfolk. En Australia también sigue ríos y lagos tierra adentro. En Nueva Zelanda se llama kōkihi y hoy es más escasa. Allí, en la mayoría de las costas, verás sobre todo a su pariente trepadora.",
+        "season": "Las hojas están todo el año. Los brotes nuevos son más tiernos en primavera y verano, después de llover. Con frío o sequía la planta se frena, y las hojas viejas se vuelven duras y amargas.",
+        "picking": "Pellizca los 10 cm de arriba de los brotes tiernos y deja la planta en el suelo. Las dunas son frágiles, así que no salgas de los caminos y coge solo donde haya mucha. En los parques nacionales está prohibido recolectar. Evita las playas cerca de desagües y salidas de pluviales.",
+        "kitchen": "Escalda siempre las hojas primero. Échalas de uno a tres minutos en agua hirviendo, escúrrelas y tira el agua. Así eliminas la mayor parte de los oxalatos, que en grandes cantidades cargan los riñones. Después úsalas como espinacas: con ajo y aceite de oliva, en empanadas y quiches, en sopas o en pesto. Las bayas rojas maduras de su pariente trepadora son dulces y saladas y se comen crudas.",
+        "keeps": "Las puntas frescas aguantan dos o tres días en la nevera, en una bolsa. Escaldadas y bien escurridas, se congelan bien.",
+        "source": "Identificación y uso: Milkwood, Noosa's Native Plants y la serie de bush food del Canberra Daily. Lechetrezna de mar: Weeds Australia. Temporada: registros de GBIF."
+      }
     }
   },
   "place": {

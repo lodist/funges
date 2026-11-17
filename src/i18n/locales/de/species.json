@@ -1064,6 +1064,34 @@
         "keeps": "Die Beeren sind weich und halten sich ein bis zwei Tage im Kühlschrank. Auf einem Blech vorgefroren und dann in einen Beutel gefüllt, halten sie viel länger. Konfitüre hält sich Monate.",
         "source": "Bestimmung und Verbreitung: VicFlora, PlantNET und Castlemaine Flora. Brombeere: Weeds Australia. Korallenkirsche: Unkraut-Datenbank des neuseeländischen Department of Conservation und DELTA-Solanum-Schlüssel. Nutzung: Australian National Botanic Gardens. Sammelregeln: NSW National Parks. Saison: GBIF- und iNaturalist-Funddaten."
       }
+    },
+    "australian_chanterelle": {
+      "name": "Australischer Pfifferling",
+      "description": "Der Pfifferling Australiens: ein kleiner Trichter in Aprikose bis Lachsrosa, mit stumpfen, gegabelten Leisten auf der Unterseite. Er steckt im Laub feuchter Eukalyptuswälder, vom Sommer bis in den Herbst.",
+      "howTo": "Such von Dezember bis Juni in feuchtem Eukalyptuswald, ein paar Tage nach warmem Regen. Schieb das Laub zur Seite und prüf, ob er stumpfe, gegabelte Leisten statt Lamellen hat",
+      "guide": {
+        "identify": "Der Hut ist aprikosenfarben, gelb oder rosa-orange und nur 1,5 bis 4 cm breit. Junge Hüte sind flach. Bald werden sie zu einem flachen Trichter mit welligem Rand. Unten hat er keine echten Lamellen, sondern stumpfe, flache Leisten. Sie gabeln sich zum Rand hin, laufen am Stiel herab und sind heller als der Hut. Der Stiel ist weisslich rosa und oft verdreht. Er ist so lang, wie das Laub tief ist, bis etwa 6 cm. Das Fleisch ist fest und hell und riecht leicht nach Aprikosen. Der giftige Austropaxillus bildet unter Eukalypten ebenfalls gelbbraune Trichter, hat aber dichte, scharfe Lamellen. Was dünne, scharfe Lamellen hat, einen spinnwebartigen Schleier trägt oder auf Holz wächst, ist kein Pfifferling.",
+        "habitat": "Er wächst am Boden im Laub, in den feuchteren Teilen von Eukalyptuswäldern und in der Küstenheide. Oft stehen Kasuarinen in der Nähe. Er wächst auch unter Südbuchen. Er kommt in Gruppen, aber die Hüte stecken oft halb im Laub, also schau genau hin. Du findest ihn vom Südosten Queenslands über New South Wales und Victoria bis Tasmanien. Auch in den Karri- und den feuchteren Jarrah-Wäldern im Südwesten wächst er.",
+        "season": "Er kommt nach warmem, durchdringendem Regen, von Dezember bis Juni. Die meisten erscheinen im Spätsommer und Herbst. Trockenheit bremst ihn. Auf frisch abgebranntem Boden scheint er zu fehlen.",
+        "picking": "Schneid ihn am Grund ab und lass die kleinen stehen. In Nationalparks ist Sammeln verboten. In State Forests darfst du meist etwas für dich sammeln, aber prüf vorher die Regeln vor Ort. Wie häufig er ist, weiss man kaum, also nimm nur, was du isst.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare ihn. Er schmeckt milder als der europäische Pfifferling, manchen sogar fast fade. Brat ihn langsam in Butter, bis das Wasser verdampft ist. Dann gib ihn zu Eiern, Pasta oder Risotto. Er ist klein, also sammle eine Handvoll. Australiens wichtigster Sammelführer zählt ihn noch zu den wenig belegten Speisepilzen, also iss beim ersten Mal nur wenig.",
+        "keeps": "In einer Papiertüte hält er sich zwei, drei Tage im Kühlschrank. Angebraten kannst du ihn gut einfrieren. Getrocknet wird er zäh.",
+        "source": "Bestimmung, Verbreitung und Essbarkeit: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr und Wikipedia. Essbar, aber wenig belegt: Wild Mushrooming (Pouliot und May). Austropaxillus: Pilzfunde aus Westaustralien. Saison: GBIF-Funddaten."
+      }
+    },
+    "warrigal_greens": {
+      "name": "Neuseeländer Spinat",
+      "description": "Ein kriechender wilder Spinat mit dicken, pfeilförmigen Blättern, die glitzern, als wären sie gesalzen. Er wächst an Stränden, Dünen und Flussmündungen in Australien und Neuseeland.",
+      "howTo": "Such das ganze Jahr an Stränden, Dünen und im Küstengebüsch. Pflück die jungen Triebspitzen und blanchier sie immer, bevor du sie isst",
+      "guide": {
+        "identify": "Er wächst in lockeren Matten am Boden oder klettert über niedrige Sträucher. Die Blätter sind dick und fleischig, 3 bis 10 cm lang und geformt wie eine Pfeilspitze oder eine Raute. Sie sind mit winzigen glasigen Bläschen besetzt und glitzern deshalb, als wären sie gesalzen. Kleine gelbe Blüten sitzen direkt am Stängel, dort wo die Blätter ansetzen. Daraus werden harte, knubbelige Früchte mit ein paar kurzen Hörnern. Sein naher Verwandter Tetragonia implexicoma klettert durch Küstensträucher. Er hat kleinere, rautenförmige Blätter und saftige rote Beeren, und du kannst ihn genauso essen. Auf denselben Dünen wächst die giftige Strand-Wolfsmilch. Sie hat schmale, graugrüne Blätter am ganzen geraden Stängel und einen weissen Milchsaft, der Haut und Augen verätzt. Pflück nie eine Pflanze, aus der weisser Saft kommt.",
+        "habitat": "Er wächst an Stränden und Dünen, an Klippen und rund um Salzwiesen und Flussmündungen, oft unter Kasuarinen, Melaleuken oder Norfolk-Tannen. In Australien folgt er auch Flüssen und Seen weit ins Landesinnere. In Neuseeland heisst er kōkihi und ist heute seltener. Dort siehst du an den meisten Küsten eher seinen kletternden Verwandten.",
+        "season": "Die Blätter gibt es das ganze Jahr. Am zartesten ist der Neuaustrieb im Frühling und Sommer, nach Regen. Bei Kälte oder Trockenheit wächst er langsamer, und ältere Blätter werden zäh und bitter.",
+        "picking": "Knips die oberen 10 cm der jungen Triebe ab und lass die Pflanze im Boden. Dünen sind empfindlich, also bleib auf den Wegen und pflück nur aus grossen Beständen. In Nationalparks ist Sammeln verboten. Meide Strände in der Nähe von Abflüssen und Regenwasserausläufen.",
+        "kitchen": "Blanchier die Blätter immer zuerst. Gib sie ein bis drei Minuten in kochendes Wasser, lass sie abtropfen und schütte das Wasser weg. So wäschst du den Grossteil der Oxalate aus, die in grossen Mengen die Nieren belasten. Danach verwendest du sie wie Spinat: mit Knoblauch und Olivenöl, in Quiches und herzhaften Kuchen, in Suppen oder Pesto. Die reifen roten Beeren des Verwandten schmecken salzig-süss und lassen sich roh essen.",
+        "keeps": "Frische Triebspitzen halten sich zwei, drei Tage im Kühlschrank, in einem Beutel. Blanchiert und gut ausgedrückt kannst du sie gut einfrieren.",
+        "source": "Bestimmung und Verwendung: Milkwood, Noosa's Native Plants und die Bush-Food-Serie des Canberra Daily. Strand-Wolfsmilch: Weeds Australia. Saison: GBIF-Funddaten."
+      }
     }
   },
   "place": {

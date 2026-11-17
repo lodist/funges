@@ -1063,6 +1063,34 @@
         "keeps": "Le bacche sono morbide e si conservano un giorno o due in frigo. Congelale su un vassoio e poi mettile in un sacchetto, e durano molto di più. La marmellata si conserva per mesi.",
         "source": "Riconoscimento e diffusione: VicFlora, PlantNET e Castlemaine Flora. Rovo: Weeds Australia. Ciliegia di Gerusalemme: database delle infestanti del Department of Conservation neozelandese e chiave DELTA per Solanum. Uso alimentare: Australian National Botanic Gardens. Regole di raccolta: NSW National Parks. Stagione: segnalazioni GBIF e iNaturalist."
       }
+    },
+    "australian_chanterelle": {
+      "name": "Galletto australiano",
+      "description": "Il galletto dell'Australia: un piccolo imbuto color albicocca o arancio rosato, con pieghe ottuse e biforcate sotto il cappello. Si nasconde tra le foglie dei boschi umidi di eucalipto, dall'estate all'autunno.",
+      "howTo": "Cercalo da dicembre a giugno nei boschi umidi di eucalipto, pochi giorni dopo una pioggia calda. Sposta le foglie e controlla che sotto abbia pieghe ottuse e biforcate, non lamelle",
+      "guide": {
+        "identify": "Il cappello è color albicocca, giallo o arancio rosato e largo solo da 1,5 a 4 cm. Da giovane è piatto. Presto diventa un imbuto poco profondo con il bordo ondulato. Sotto non ha vere lamelle, ma pieghe basse e ottuse. Si biforcano verso il bordo, scendono lungo il gambo e sono più chiare del cappello. Il gambo è bianco rosato e spesso contorto. È lungo quanto è alto lo strato di foglie, fino a circa 6 cm. La carne è soda e chiara e profuma appena di albicocca. Il velenoso Austropaxillus forma anche lui imbuti giallo-bruni sotto gli eucalipti, ma ha lamelle fitte e taglienti. Se ha lamelle sottili e taglienti, un velo simile a una ragnatela o cresce sul legno, non è un galletto.",
+        "habitat": "Cresce a terra tra le foglie, nelle parti più umide di boschi e boscaglie di eucalipto e nella brughiera costiera. Spesso ci sono casuarine vicino, e cresce anche sotto il faggio australe. Spunta in gruppi, ma i cappelli restano spesso mezzi sepolti, quindi guarda bene. Lo trovi dal sud-est del Queensland, attraverso il Nuovo Galles del Sud e il Victoria, fino alla Tasmania. Cresce anche nelle foreste di karri e di jarrah più umide del sud-ovest.",
+        "season": "Arriva dopo piogge calde e abbondanti, da dicembre a giugno. I più spuntano tra la fine dell'estate e l'autunno. La siccità lo ferma, e sembra mancare dove il bosco è bruciato da poco.",
+        "picking": "Taglialo alla base e lascia crescere i piccoli. Nei parchi nazionali raccogliere è vietato. Nelle foreste statali di solito puoi raccoglierne un po' per te, ma controlla prima le regole del posto. Si sa poco di quanto sia comune, quindi prendi solo quello che mangerai.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, cuocilo. È più delicato del galletto europeo, e ad alcuni sembra quasi insipido. Saltalo piano nel burro finché l'acqua non è evaporata. Poi aggiungilo alle uova, alla pasta o al risotto. È piccolo, quindi raccogline una manciata. La principale guida australiana lo conta ancora tra i commestibili poco documentati, quindi la prima volta mangiane poco.",
+        "keeps": "In frigo si conserva due o tre giorni, in un sacchetto di carta. Saltato si congela bene. Essiccato diventa duro.",
+        "source": "Riconoscimento, diffusione e commestibilità: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr e Wikipedia. Commestibile ma poco documentato: Wild Mushrooming (Pouliot e May). Austropaxillus: segnalazioni dall'Australia Occidentale. Stagione: segnalazioni GBIF."
+      }
+    },
+    "warrigal_greens": {
+      "name": "Spinacio della Nuova Zelanda",
+      "description": "Uno spinacio selvatico strisciante, con foglie carnose a punta di freccia che luccicano come se fossero salate. Cresce su spiagge, dune ed estuari in Australia e in Nuova Zelanda.",
+      "howTo": "Cercalo tutto l'anno su spiagge, dune e macchia costiera. Raccogli le cime giovani e sbollentale sempre prima di mangiarle",
+      "guide": {
+        "identify": "Cresce in tappeti radi sul terreno o si arrampica su arbusti bassi. Le foglie sono spesse e carnose, lunghe da 3 a 10 cm, a forma di punta di freccia o di rombo. Sono coperte di minuscole bollicine vitree, per questo luccicano come se fossero salate. Piccoli fiori gialli stanno attaccati al fusto, dove nascono le foglie. Diventano frutti duri e bitorzoluti con qualche cornetto corto. Il suo parente stretto Tetragonia implexicoma si arrampica tra gli arbusti costieri. Ha foglie più piccole a rombo e bacche rosse succose, e si mangia allo stesso modo. Sulle stesse dune cresce l'euforbia marittima, che è velenosa. Ha foglie strette grigioverdi lungo tutto il fusto dritto e un lattice bianco che brucia pelle e occhi. Non raccogliere mai una pianta che perde linfa bianca.",
+        "habitat": "Cresce su spiagge e dune, sulle scogliere e intorno a paludi salmastre ed estuari, spesso sotto casuarine, melaleuche o pini di Norfolk. In Australia segue anche fiumi e laghi fin nell'entroterra. In Nuova Zelanda si chiama kōkihi ed è più raro di un tempo. Lì, sulla maggior parte delle coste, vedrai soprattutto il suo parente rampicante.",
+        "season": "Le foglie ci sono tutto l'anno. I germogli nuovi sono più teneri in primavera e in estate, dopo la pioggia. Con il freddo o la siccità la pianta rallenta, e le foglie vecchie diventano dure e amare.",
+        "picking": "Stacca i 10 cm in cima ai germogli giovani e lascia la pianta nel terreno. Le dune sono fragili, quindi resta sui sentieri e raccogli solo dove ce n'è tanto. Nei parchi nazionali raccogliere è vietato. Evita le spiagge vicino a scarichi e tombini.",
+        "kitchen": "Sbollenta sempre prima le foglie. Mettile in acqua bollente da uno a tre minuti, scolale e butta via l'acqua. Così elimini gran parte degli ossalati, che in grandi quantità affaticano i reni. Poi usale come gli spinaci: con aglio e olio d'oliva, in torte salate e quiche, nelle zuppe o nel pesto. Le bacche rosse mature del parente rampicante sono dolci e salate e si mangiano crude.",
+        "keeps": "Le cime fresche durano due o tre giorni in frigo, in un sacchetto. Sbollentate e strizzate, si congelano bene.",
+        "source": "Riconoscimento e uso: Milkwood, Noosa's Native Plants e la serie sul bush food del Canberra Daily. Euforbia marittima: Weeds Australia. Stagione: segnalazioni GBIF."
+      }
     }
   },
   "search_placeholder": "Cerca una specie",

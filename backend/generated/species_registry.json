@@ -2854,6 +2854,53 @@
           ]
         }
       }
+    },
+    "australian_chanterelle": {
+      "name": "Australian Chanterelle",
+      "scientificName": "Cantharellus concinnus",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [9623860],
+      "rangeTaxonKeys": [9623860],
+      "exactTaxa": true,
+      "dataColumns": ["australian_chanterelle_score", "Australian Chanterelle"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/9623860",
+            "https://keys.lucidcentral.org/keys/v4/101-forest-fungi/web/resource/c/cantharellus%20concinnus.htm",
+            "https://naturemapr.org/species/2330",
+            "https://en.wikipedia.org/wiki/Cantharellus_concinnus",
+            "https://www.publishing.csiro.au/book/7894/",
+            "https://morrie2.com/2010/02/27/a-special-mushroom/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+          ]
+        }
+      }
+    },
+    "warrigal_greens": {
+      "name": "Warrigal Greens",
+      "scientificName": "Tetragonia tetragonioides",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [5554574, 5554654],
+      "dataColumns": ["warrigal_greens_score", "Warrigal Greens"],
+      "regions": {
+        "ANZ": {
+          "landCover": [612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5554574",
+            "https://www.gbif.org/species/5554654",
+            "https://www.milkwood.net/2014/05/21/foraging-warrigal-greens/",
+            "https://noosasnativeplants.com.au/plant-details/?pId=473",
+            "https://canberradaily.com.au/on-the-bush-food-trail-warrigal-greens",
+            "https://weeds.org.au/profiles/sea-spurge/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+          ]
+        }
+      }
     }
   }
 }

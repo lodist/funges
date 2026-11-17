@@ -1064,6 +1064,34 @@
         "keeps": "As bagas são moles e aguentam um ou dois dias no frigorífico. Congela-as num tabuleiro e depois num saco, e duram muito mais. O doce dura meses.",
         "source": "Identificação e distribuição: VicFlora, PlantNET e Castlemaine Flora. Silva: Weeds Australia. Cerejeira-de-jerusalém: base de dados de infestantes do Department of Conservation da Nova Zelândia e chave DELTA de Solanum. Uso alimentar: Australian National Botanic Gardens. Regras de apanha: NSW National Parks. Época: registos do GBIF e do iNaturalist."
       }
+    },
+    "australian_chanterelle": {
+      "name": "Cantarelo australiano",
+      "description": "O cantarelo da Austrália: um funil pequeno, cor de damasco a laranja-rosado, com pregas rombas e bifurcadas por baixo. Esconde-se na folhada das florestas húmidas de eucalipto, do verão ao outono.",
+      "howTo": "Procura-o de dezembro a junho em florestas húmidas de eucalipto, poucos dias depois de uma chuva quente. Afasta as folhas e confirma que tem pregas rombas e bifurcadas, não lâminas",
+      "guide": {
+        "identify": "O chapéu é cor de damasco, amarelo ou laranja-rosado e mede só 1,5 a 4 cm. Em novo é plano. Depressa se torna um funil pouco fundo, de margem ondulada. Por baixo não tem lâminas verdadeiras, só pregas baixas e rombas. Bifurcam-se perto da margem, descem pelo pé e são mais claras do que o chapéu. O pé é branco-rosado e muitas vezes torcido. É tão comprido quanto a folhada é funda, até uns 6 cm. A carne é firme e clara e cheira levemente a damasco. O venenoso Austropaxillus também forma funis castanho-amarelados debaixo dos eucaliptos, mas tem lâminas apertadas e afiadas. Se tem lâminas finas e afiadas, um véu como uma teia de aranha ou cresce na madeira, não é um cantarelo.",
+        "habitat": "Cresce no chão, no meio da folhada, nas partes mais húmidas das florestas e matas de eucalipto e na charneca costeira. Muitas vezes há casuarinas por perto, e também cresce debaixo de faias-austrais. Aparece em grupos, mas os chapéus ficam muitas vezes meio enterrados, por isso olha com atenção. Encontra-se desde o sudeste de Queensland, passando pela Nova Gales do Sul e por Victoria, até à Tasmânia. Também cresce nas florestas de karri e de jarrah mais húmidas do sudoeste.",
+        "season": "Aparece depois de chuvas quentes e fartas, de dezembro a junho. A maioria surge entre o fim do verão e o outono. A seca trava-o, e parece faltar onde a floresta ardeu há pouco tempo.",
+        "picking": "Corta-o pela base e deixa crescer os pequenos. Nos parques nacionais é proibido apanhar. Nas florestas estatais costumas poder apanhar um pouco para ti, mas confirma antes as regras do sítio. Sabe-se pouco sobre a sua abundância, por isso leva só o que vais comer.",
+        "kitchen": "Quando tiveres a certeza de que é ele, cozinha-o. É mais suave do que o cantarelo europeu, e há quem o ache quase insípido. Salteia-o devagar em manteiga até a água evaporar. Depois junta-o a ovos, massa ou risoto. É pequeno, por isso apanha uma mão-cheia. O principal guia australiano ainda o conta entre os comestíveis pouco documentados, por isso da primeira vez come só um pouco.",
+        "keeps": "Aguenta dois ou três dias no frigorífico, num saco de papel. Salteado, congela bem. Seco, fica rijo.",
+        "source": "Identificação, distribuição e comestibilidade: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr e Wikipédia. Comestível mas pouco documentado: Wild Mushrooming (Pouliot e May). Austropaxillus: registos da Austrália Ocidental. Época: registos do GBIF."
+      }
+    },
+    "warrigal_greens": {
+      "name": "Espinafre-da-nova-zelândia",
+      "description": "Um espinafre selvagem rasteiro, de folhas carnudas em forma de seta que brilham como se tivessem sal. Cresce em praias, dunas e estuários da Austrália e da Nova Zelândia.",
+      "howTo": "Procura-o todo o ano em praias, dunas e matos costeiros. Apanha as pontas novas e escalda-as sempre antes de as comer",
+      "guide": {
+        "identify": "Forma tapetes soltos no chão ou trepa por arbustos baixos. As folhas são grossas e carnudas, com 3 a 10 cm, em forma de ponta de seta ou de losango. Estão cobertas de minúsculas pérolas vítreas, por isso brilham como se tivessem sal. Pequenas flores amarelas ficam encostadas ao caule, onde nascem as folhas. Transformam-se em frutos duros e cheios de altos, com uns cornichos curtos. O seu parente próximo Tetragonia implexicoma trepa pelos arbustos da costa. Tem folhas mais pequenas em losango e bagas vermelhas sumarentas, e come-se da mesma maneira. Nas mesmas dunas cresce a morganheira-das-praias, que é venenosa. Tem folhas estreitas verde-acinzentadas ao longo de um caule direito e um látex branco que queima a pele e os olhos. Nunca apanhes uma planta que deite seiva branca.",
+        "habitat": "Cresce em praias e dunas, em arribas e à volta de sapais e estuários, muitas vezes debaixo de casuarinas, melaleucas ou pinheiros-de-norfolk. Na Austrália também segue rios e lagos pelo interior. Na Nova Zelândia chama-se kōkihi e hoje é mais raro. Lá, na maioria das costas, vais ver sobretudo o seu parente trepador.",
+        "season": "As folhas estão lá todo o ano. Os rebentos novos são mais tenros na primavera e no verão, depois da chuva. Com frio ou seca a planta abranda, e as folhas velhas ficam rijas e amargas.",
+        "picking": "Corta os 10 cm de cima dos rebentos novos e deixa a planta na terra. As dunas são frágeis, por isso fica nos caminhos e apanha só onde houver muito. Nos parques nacionais é proibido apanhar. Evita praias perto de esgotos e saídas de águas pluviais.",
+        "kitchen": "Escalda sempre as folhas primeiro. Põe-nas em água a ferver um a três minutos, escorre-as e deita a água fora. Assim tiras a maior parte dos oxalatos, que em grandes quantidades sobrecarregam os rins. Depois usa-as como espinafres: com alho e azeite, em tartes e quiches, em sopas ou em pesto. As bagas vermelhas maduras do parente trepador são doces e salgadas e comem-se cruas.",
+        "keeps": "As pontas frescas aguentam dois ou três dias no frigorífico, num saco. Escaldadas e bem espremidas, congelam bem.",
+        "source": "Identificação e uso: Milkwood, Noosa's Native Plants e a série sobre bush food do Canberra Daily. Morganheira-das-praias: Weeds Australia. Época: registos do GBIF."
+      }
     }
   },
   "place": {

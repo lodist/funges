@@ -1064,6 +1064,34 @@
         "keeps": "The berries are soft and keep a day or two in the fridge. Freeze them on a tray and then bag them, and they last much longer. Jam keeps for months.",
         "source": "Identification and range: VicFlora, PlantNET and Castlemaine Flora. Blackberry: Weeds Australia. Jerusalem cherry: the NZ Department of Conservation weed database and the DELTA Solanum key. Food use: Australian National Botanic Gardens. Picking rules: NSW National Parks. Season: GBIF and iNaturalist records."
       }
+    },
+    "australian_chanterelle": {
+      "name": "Australian Chanterelle",
+      "description": "Australia's own chanterelle: a small apricot to pinkish-orange funnel with blunt, forked ridges underneath. It hides in the leaf litter of damp eucalypt forests from summer into autumn.",
+      "howTo": "Look in damp eucalypt forest from December to June, a few days after warm rain. Brush the leaf litter aside and check for blunt, forked ridges instead of gills",
+      "guide": {
+        "identify": "The cap is apricot, yellow or pinkish orange and only 1.5 to 4 cm across. Young caps are flat. They soon become a shallow funnel with a wavy edge. Underneath there are no true gills, only blunt, shallow ridges. They fork near the edge, run down onto the stem and are paler than the cap. The stem is whitish pink and often twisted. It is as long as the leaf litter is deep, up to about 6 cm. The flesh is solid and pale. It smells faintly of apricots. The poisonous Austropaxillus also makes yellow-brown funnels under eucalypts, but it has crowded, sharp gills. Anything with thin, sharp gills, a cobweb-like veil or growing on wood is not a chanterelle.",
+        "habitat": "It grows on the ground among leaf litter, in the wetter parts of eucalypt forests and woodlands and in coastal heath. She-oaks are often nearby. It also grows under southern beech. It comes up in groups, but the caps are often half buried, so look closely. You find it from south-east Queensland through New South Wales and Victoria to Tasmania. It also grows in the karri and wetter jarrah forests of the south-west.",
+        "season": "It comes up after warm, soaking rain, from December to June. Most appear from late summer into autumn. A dry spell stops it. It also seems to stay away from ground that burnt recently.",
+        "picking": "Cut it at the base and leave the small ones to grow. Picking is not allowed in national parks. In state forests you can usually pick a little for yourself, but check the local rules first. Little is known about how common it is, so take only what you will eat.",
+        "kitchen": "Once you're certain of it, cook it. It tastes milder than the European chanterelle. Some people find it almost bland. Fry it slowly in butter until the water has gone. Then add it to eggs, pasta or risotto. It is small, so gather a handful. Australia's main foraging guide still counts it among the less documented edibles, so try only a little the first time.",
+        "keeps": "It keeps two or three days in the fridge, in a paper bag. Fried first, it freezes well. Dried, it turns tough.",
+        "source": "Identification, range and edibility: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr and Wikipedia. Edible but little documented: Wild Mushrooming (Pouliot and May). Austropaxillus: Western Australian fungus records. Season: GBIF records."
+      }
+    },
+    "warrigal_greens": {
+      "name": "Warrigal Greens",
+      "description": "A sprawling native spinach with fleshy, arrow-shaped leaves that sparkle as if dusted with salt. It grows along beaches, dunes and estuaries in Australia and New Zealand.",
+      "howTo": "Look along beaches, dunes and coastal scrub at any time of year. Pick the young tips and always blanch them before you eat them",
+      "guide": {
+        "identify": "Warrigal greens spread in loose mats along the ground or scramble over low shrubs. The leaves are thick and fleshy, 3 to 10 cm long and shaped like an arrowhead or a diamond. They are covered in tiny glassy bumps, so they sparkle as if dusted with salt. Small yellow flowers sit right on the stem where the leaves join. They turn into hard, knobbly fruits with a few short horns. Bower spinach is a close cousin that climbs through coastal shrubs. It has smaller, diamond-shaped leaves and juicy red berries. You can eat it the same way. Sea spurge grows on the same dunes and is poisonous. It has narrow, grey-green leaves all the way up a straight stem. Its milky sap burns skin and eyes. Never pick a plant that bleeds white sap.",
+        "habitat": "It grows on beaches and dunes, on sea cliffs and around salt marshes and estuaries. Look under coastal she-oaks, paperbarks or Norfolk Island pines. In Australia it also follows rivers and lakes far inland. In New Zealand it is called kōkihi and is less common now. There, bower spinach is the one you will see on most coasts.",
+        "season": "The leaves are there all year. New growth is softest in spring and summer, after rain. In cold or dry spells the plant slows down. Older leaves then turn tough and bitter.",
+        "picking": "Pinch off the top 10 cm of young shoots and leave the plant in the ground. Dunes are fragile, so stay on the paths and pick from big patches. Picking is not allowed in national parks. Skip beaches near drains and stormwater outlets.",
+        "kitchen": "Always blanch the leaves first. Drop them into boiling water for one to three minutes, drain them and throw the water away. That washes out most of the oxalates, which are hard on the kidneys in large amounts. Then use them like spinach: with garlic and olive oil, in pies and quiches, in soups or in pesto. The ripe red berries of bower spinach are salty-sweet and can be eaten raw.",
+        "keeps": "Fresh tips keep two or three days in the fridge, in a bag. Blanched and squeezed dry, they freeze well.",
+        "source": "Identification and use: Milkwood, Noosa's Native Plants and the Canberra Daily bush food series. Sea spurge: Weeds Australia. Season: GBIF records."
+      }
     }
   },
   "place": {

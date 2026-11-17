@@ -38,7 +38,7 @@ sys.path.insert(0, str(_TOOLS.parent))
 sys.path.insert(0, str(_TOOLS))
 sys.path.append(str(_TOOLS.parents[1] / "scripts"))  # qa_spatial_weights.region_config
 import build_range_priors as rp  # noqa: E402  (GBIF map tiles, the 0.1° macro grids)
-from species_registry import get_empirical_taxon_map, get_region_species  # noqa: E402
+from species_registry import gbif_taxon_param, get_empirical_taxon_map, get_region_species  # noqa: E402
 
 APP = _TOOLS.parents[2]
 ROOT = _TOOLS.parents[1]
@@ -66,7 +66,7 @@ def month_grids(macro, keys, years, workers=WORKERS):
         month, (x, y) = job
         params = urllib.parse.urlencode(
             [("srs", "EPSG:4326"), ("basisOfRecord", "HUMAN_OBSERVATION"), ("occurrenceStatus", "PRESENT"),
-             ("mode", "GEO_CENTROID"), ("year", years), ("month", month)] + [("taxonKey", k) for k in keys])
+             ("mode", "GEO_CENTROID"), ("year", years), ("month", month)] + [(gbif_taxon_param(k), k) for k in keys])
         return rp._get(rp.GBIF_TILE.format(z=rp.ZOOM, x=x, y=y) + "?" + params)
 
     with ThreadPoolExecutor(max_workers=workers) as ex:
