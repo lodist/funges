@@ -242,11 +242,13 @@ def gbif_taxa(cache, session=None):
 
 
 def gbif_finds(cache, start, end, species=()):
-    """GBIF taxa and the window's finds of `species` (default all), cached by window and names."""
+    """GBIF taxa and the window's finds of every species of `species`' kingdoms (default all): the
+    others are the background `where` reads, however few species are scored. Cached by window and names."""
     session = requests.Session()
     session.headers["User-Agent"] = "fung.es replay QA"
     taxa = gbif_taxa(cache, session)
-    wanted = {s: t for s, t in taxa.items() if not species or s in species}
+    kingdoms = {t.get("kingdom") for s, t in taxa.items() if not species or s in species}
+    wanted = {s: t for s, t in taxa.items() if t.get("kingdom") in kingdoms}
     if any(t.get("kingdom") == "Fungi" for t in wanted.values()):
         taxa = {**taxa, PLACEBO: {"taxon_key": PLACEBO_KEYS[0], "taxon_keys": PLACEBO_KEYS, "kingdom": "Fungi"}}
         wanted[PLACEBO] = taxa[PLACEBO]
