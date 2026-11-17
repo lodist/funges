@@ -78,7 +78,8 @@
     "live": {
       "line": "Worth a walk today: {{species}}, in {{areas}} areas across {{area}}",
       "europe": "Europe",
-      "northAmerica": "North America"
+      "northAmerica": "North America",
+      "australiaNewZealand": "Australia and New Zealand"
     },
     "journey": {
       "heading": "Find it, know it, cook it"
