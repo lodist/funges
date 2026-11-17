@@ -306,7 +306,18 @@ export default function SeasonAtlasPage() {
       id: 'countries',
       items: byName(places.filter(p => p.kind === 'country')),
     },
-    { id: 'states', items: byName(places.filter(p => p.kind === 'state')) },
+    {
+      id: 'states',
+      items: byName(
+        places.filter(p => p.kind === 'state' && p.continent === 'US')
+      ),
+    },
+    {
+      id: 'auStates',
+      items: byName(
+        places.filter(p => p.kind === 'state' && p.continent === 'ANZ')
+      ),
+    },
   ];
   const speciesOptions = (summary?.species ?? [])
     .map(key => ({ key, label: speciesName(key) }))

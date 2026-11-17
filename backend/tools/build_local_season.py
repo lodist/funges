@@ -18,6 +18,11 @@ month, from three layers, each leaning on the next where its records are few (k 
     python backend/tools/build_local_season.py --test         # held-out test, CSVs in --cache
     python backend/tools/build_local_season.py --show EU chant 43.9 10.9
     python backend/tools/build_local_season.py --export       # R2 + generated/local_season.json
+
+A continent added after the others shipped (ANZ, Nov 2026) runs alone, with the shipped variant:
+
+    python backend/tools/build_local_season.py --crawl --test --decide --add ANZ
+    python backend/tools/build_local_season.py --export --add ANZ
 """
 import argparse
 import json
@@ -86,9 +91,9 @@ def cached_grids(cache, code, name, keys, years):
     return counts
 
 
-def crawl(cache):
-    """Every species' and the fungi's monthly grids, both macros and periods, into the cache."""
-    for code in rp.MACROS:
+def crawl(cache, macros=tuple(rp.MACROS)):
+    """Every species' and the fungi's monthly grids, the macros' and both periods, into the cache."""
+    for code in macros:
         todo = {"fungi": [FUNGI], **macro_species(code)}
         for years in PERIODS:
             for name, keys in todo.items():
@@ -109,8 +114,9 @@ def load_counts(cache, code, name, periods):
 LOW, HIGH = 0.6, 1.0  # build_season_curves' multiplier range: the score's tilt across the season
 MIN_EFFORT = 1.0  # kernel-weighted fungi records below which a month's rate is unknown
 WIDE_KM = 500.0  # the "wide" prior: the species' own curve within this distance
-# Climate space: summer (Jun-Aug) and winter (Dec-Feb) mean temperature and the summer share of
-# the year's rain, binned; the kernel's widths are CLIMATE_SIGMA bins (x the variant's scale).
+# Climate space: summer and winter mean temperature and the summer share of the year's rain,
+# binned; the kernel's widths are CLIMATE_SIGMA bins (x the variant's scale). Summer is Jun-Aug
+# and winter Dec-Feb in the north, the other way round south of the equator.
 CLIMATE_LOW = (-5.0, -35.0, 0.0)
 CLIMATE_STEP = (1.0, 1.5, 0.035)
 CLIMATE_BINS = (40, 40, 20)
@@ -159,7 +165,7 @@ def climate_coords(code):
     from the ERA5 normals, so neighbouring cells move through climate space without steps."""
     import era5_normals
     from scipy.ndimage import map_coordinates
-    grid = era5_normals.load("NE" if code == "EU" else "USE")
+    grid = era5_normals.load(rp.MACROS[code]["regions"][0])
     glat, glon = grid["lat"].astype(float), grid["lon"].astype(float)
     lats, lons = axes(code)
     la, lo = np.meshgrid(lats, lons, indexing="ij")
@@ -173,8 +179,11 @@ def climate_coords(code):
 
     t = np.stack([at(grid["tmean"][m]) for m in range(12)])
     rain = np.stack([at(grid["rain"][m]) for m in range(12)])
+    summer, winter = [5, 6, 7], [11, 0, 1]
+    if rp.MACROS[code]["lat"][1] < 0:
+        summer, winter = winter, summer
     with np.errstate(invalid="ignore", divide="ignore"):
-        features = (t[5:8].mean(axis=0), t[[11, 0, 1]].mean(axis=0), rain[5:8].sum(axis=0) / rain.sum(axis=0))
+        features = (t[summer].mean(axis=0), t[winter].mean(axis=0), rain[summer].sum(axis=0) / rain.sum(axis=0))
     coords = np.stack([(x - low) / step for x, low, step in zip(features, CLIMATE_LOW, CLIMATE_STEP)])
     return np.where(inside, coords, np.nan)
 
@@ -295,6 +304,8 @@ def cell_regions(code):
     b = get_region_boundaries()
     lats, lons = axes(code)
     la, lo = np.meshgrid(lats, lons, indexing="ij")
+    if len(rp.MACROS[code]["regions"]) == 1:  # Australia and New Zealand: one region
+        return np.full(la.shape, rp.MACROS[code]["regions"][0])
     if code == "US":
         return np.where(lo < b["uswMaxLongitude"], "USW", "USE")
     return np.where(la < b["seMaxLatitude"], "SE", "NE")
@@ -640,11 +651,19 @@ def parse_variant(text):
     raise ValueError(f"unknown variant {text!r}")
 
 
-def run_test(cache, macros, species=None):
+def shipped_variant():
+    """The variant local_season.json ships. A continent added later is tested, decided and
+    exported with it, so the continents already shipped keep their method and their grids."""
+    import r2
+    spec = json.loads(r2.generated(ROOT / "backend" / "generated" / "local_season.json").read_text(encoding="utf-8"))
+    return parse_variant(spec["variant"])
+
+
+def run_test(cache, macros, species=None, variants=VARIANTS):
     """The held-out test of each macro region, its rows kept in the cache for run_decide()."""
     import pickle
     for code in macros:
-        rows = test(cache, code, VARIANTS, species)
+        rows = test(cache, code, variants, species)
         path = cache / f"test_rows_{code}.pkl"
         if species and path.exists():   # a rerun of some species replaces only their rows
             rows = [r for r in pickle.loads(path.read_bytes()) if r["species"] not in species] + rows
@@ -652,20 +671,27 @@ def run_test(cache, macros, species=None):
         print(f"[{code}] {len(rows)} test rows kept", flush=True)
 
 
-def run_decide(cache, out):
+def run_decide(cache, out, added=None):
     """From every macro's kept test rows: the variant table, the zone table and the per species
-    and continent verdicts with the seam check, printed and saved to `out`."""
+    and continent verdicts with the seam check, printed and saved to `out`. With `added` (macro
+    codes), only their rows, with the shipped variant, into CSVs named after them."""
     import pickle
     import pandas as pd
     rows = [r for path in sorted(cache.glob("test_rows_*.pkl")) for r in pickle.loads(path.read_bytes())]
-    best, table = choose(rows)
-    print("\nHeld-out log-likelihood gain per record against today's season factor, every species:\n")
-    print(table.round(4).to_string(index=False))
-    print(f"\nChosen: {best}\n")
+    suffix = ""
+    if added:
+        best, suffix = label(shipped_variant()), "_" + "_".join(added)
+        rows = [r for r in rows if r["continent"] in added and r["variant"] == best]
+        print(f"\nShipped variant, for {', '.join(added)}: {best}\n")
+    else:
+        best, table = choose(rows)
+        print("\nHeld-out log-likelihood gain per record against today's season factor, every species:\n")
+        print(table.round(4).to_string(index=False))
+        print(f"\nChosen: {best}\n")
     zones = by_zone(rows)
     print("Gain per record by climate zone, chosen variant (records):\n")
     print(zones[zones.variant == best].sort_values(["continent", "zone"]).round(4).to_string(index=False))
-    zones.to_csv(out / "local_season_zones.csv", index=False)
+    zones.to_csv(out / f"local_season_zones{suffix}.csv", index=False)
     v = pd.DataFrame(verdicts(rows, best))
     variant = parse_variant(best)
     tested = sorted({r["continent"] for r in rows})
@@ -676,13 +702,14 @@ def run_decide(cache, out):
     for _, r in v.iterrows():
         print(f"  {r.species:22s} {r.continent}: {r.regions}")
     out.mkdir(parents=True, exist_ok=True)
-    table.to_csv(out / "local_season_variants.csv", index=False)
-    v.assign(variant=best).to_csv(out / "local_season_test.csv", index=False)
+    if not added:
+        table.to_csv(out / "local_season_variants.csv", index=False)
+    v.assign(variant=best).to_csv(out / f"local_season_test{suffix}.csv", index=False)
     pd.DataFrame([dict(variant=r["variant"], species=r["species"], region=r["region"], held=r["held"],
                        records=r["records"], gain=r["gain"].sum() / max(r["n"].sum(), 1),
                        gain_today=r["gain_today"].sum() / max(r["n"].sum(), 1),
                        dead_today=r["dead_today"], dead_local=r["dead_local"]) for r in rows]
-                 ).to_csv(out / "local_season_all.csv", index=False)
+                 ).to_csv(out / f"local_season_all{suffix}.csv", index=False)
 
 
 def place_table(cache, code, name, lat, lon, variant):
@@ -717,9 +744,10 @@ def export(cache, code, variant, species, step=2):
     return lats[::-1][step // 2::step], lons[step // 2::step], q
 
 
-def run_export(cache, verdict_csv):
-    """Upload the shipped species' grids (R2_FOLDER/<date>/local_season_<EU|US>.npz) and write
-    backend/generated/local_season.json naming each with its sha256."""
+def run_export(cache, verdict_csv, added=None):
+    """Upload the shipped species' grids (R2_FOLDER/<date>/local_season_<EU|US|ANZ>.npz) and write
+    backend/generated/local_season.json naming each with its sha256. With `added` (macro codes),
+    only their grids, into the shipped file: the other continents' entries stay as they are."""
     import hashlib
     import io
     import time
@@ -742,7 +770,13 @@ def run_export(cache, verdict_csv):
                           f"region over {MIN_BLOCKS}+ blocks worse beyond doubt; at least {MIN_TEST} records; "
                           "the seam check",
             "continents": {}}
+    if added:
+        spec = json.loads(r2.generated(ROOT / "backend" / "generated" / "local_season.json").read_text(encoding="utf-8"))
+        if spec["variant"] != label(variant):
+            raise ValueError(f"{verdict_csv} was decided with {label(variant)}, not the shipped {spec['variant']}")
     for code, macro in rp.MACROS.items():
+        if added and code not in added:
+            continue
         species = sorted(shipped[shipped.continent == code].species)
         regions = {r: [sp for sp in species if sp in get_region_species(r)] for r in macro["regions"]}
         if not species:
@@ -766,9 +800,12 @@ def main():
     ap.add_argument("--cache", type=Path, default=APP / "season_local_cache")
     ap.add_argument("--crawl", action="store_true", help="fetch the GBIF month grids into --cache")
     ap.add_argument("--test", action="store_true", help="the held-out test of --macros; rows kept in --cache")
-    ap.add_argument("--macros", nargs="*", default=list(rp.MACROS), help="--test these (EU, US)")
+    ap.add_argument("--macros", nargs="*", default=list(rp.MACROS), help="--crawl and --test these (EU, US, ANZ)")
     ap.add_argument("--species", nargs="*", help="--test only these")
     ap.add_argument("--decide", action="store_true", help="variant, verdicts and seams from the kept rows; CSVs")
+    ap.add_argument("--add", nargs="+", metavar="MACRO",
+                    help="a continent added after the others shipped: --test, --decide and --export it alone, "
+                         "with the shipped variant, leaving the shipped continents as they are")
     ap.add_argument("--show", nargs=4, metavar=("MACRO", "SPECIES", "LAT", "LON"),
                     help="one place's months, with the variant --test chose")
     ap.add_argument("--export", action="store_true", help="upload the shipped grids, write generated/local_season.json")
@@ -776,19 +813,23 @@ def main():
     import forecast_pipeline as fp
     fp.load_dotenv(ROOT / ".env")
     fp.load_dotenv(ROOT / ".env.secret")
+    suffix = "_" + "_".join(args.add) if args.add else ""
     if args.crawl:
-        crawl(args.cache)
+        crawl(args.cache, args.add or args.macros)
     if args.test:
-        run_test(args.cache, args.macros, args.species)
+        if args.add:
+            run_test(args.cache, args.add, args.species, [shipped_variant()])
+        else:
+            run_test(args.cache, args.macros, args.species)
     if args.decide:
-        run_decide(args.cache, args.cache)
+        run_decide(args.cache, args.cache, args.add)
     if args.show:
         import pandas as pd
-        variant = parse_variant(pd.read_csv(args.cache / "local_season_test.csv").variant.iloc[0])
+        variant = parse_variant(pd.read_csv(args.cache / f"local_season_test{suffix}.csv").variant.iloc[0])
         code, name, lat, lon = args.show
         print(place_table(args.cache, code, name, float(lat), float(lon), variant).to_string(index=False))
     if args.export:
-        run_export(args.cache, args.cache / "local_season_test.csv")
+        run_export(args.cache, args.cache / f"local_season_test{suffix}.csv", args.add)
 
 
 if __name__ == "__main__":

@@ -350,7 +350,8 @@
       "groups": {
         "continents": "Continents",
         "countries": "Pays",
-        "states": "États des États-Unis"
+        "states": "États des États-Unis",
+        "auStates": "États et territoires australiens"
       },
       "title": "Saison de {{species}} : {{place}}",
       "peak": "Le pic est en {{month}}.",

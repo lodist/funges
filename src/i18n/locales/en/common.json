@@ -355,7 +355,8 @@
       "groups": {
         "continents": "Continents",
         "countries": "Countries",
-        "states": "US states"
+        "states": "US states",
+        "auStates": "Australian states and territories"
       },
       "title": "{{species}} season in {{place}}",
       "peak": "It peaks in {{month}}.",
