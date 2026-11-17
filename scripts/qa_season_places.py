@@ -17,7 +17,9 @@ and per mushroom with RECORDS there, its 2026 weeks in season (effort-normalised
   usual    the same for the place's usual season, the atlas curve: what a calendar earns
   false    share of out-of-season days the forecast put at WORTH or more, at the species' own 2026 spots
   hit      share of in-season days at WORTH or more, at those spots
-  shift    weeks from the usual peak to 2026's peak in the counts (`seen`) and in the forecast (`said`)
+  shift    weeks from the place's usual peak to 2026's peak in the counts (`seen`) and in the forecast
+           (`said`). Usual is the place's own records in PAST, by month and effort-normalised, so that
+           all three lean on where people look (the atlas curve weighs the area: Sweden's north)
 
   python scripts/qa_season_places.py ../qa/season-review-2026/replay
 """
@@ -50,6 +52,7 @@ RECORDS, MIN_WEEKS = 60, 2
 IN_SEASON, OUT_OF_SEASON = 0.5, 0.10
 WORTH = 4.0                # Worth Foraging Now's MIN_SCORE: the level the app says "go" from
 SMOOTH = 3                 # weeks, before a peak is read
+PAST, PAST_MONTHS = "2016,2025", range(4, 12)
 MIDPOINTS = np.array([15, 46, 74, 105, 135, 166, 196, 227, 258, 288, 319, 349])
 
 
@@ -71,18 +74,24 @@ def place_of(lat, lon, places):
     return owner
 
 
+def by_place(session, params):
+    """GBIF records per country ISO code and US state name for these search parameters."""
+    counts = {}
+    for extra in ({"facet": "country"}, {"facet": "stateProvince", "country": "US"}):
+        facets = truth.gbif(session, {"hasCoordinate": "true", "hasGeospatialIssue": "false", "occurrenceStatus": "PRESENT",
+                                      "limit": 0, "facetLimit": 300, **params, **extra})["facets"]
+        counts.update({c["name"]: c["count"] for c in (facets[0]["counts"] if facets else [])})
+    return counts
+
+
 def weekly_counts(session, keys, weeks):
-    """{week: {country ISO / US state name: records}} for these GBIF names (taxonKey 5: all fungi)."""
-    out = {}
-    for w in weeks:
-        base = {"taxonKey": keys, "eventDate": f"{w},{w + timedelta(days=6)}", "hasCoordinate": "true",
-                "hasGeospatialIssue": "false", "occurrenceStatus": "PRESENT", "limit": 0, "facetLimit": 300}
-        counts = {}
-        for extra in ({"facet": "country"}, {"facet": "stateProvince", "country": "US"}):
-            facets = truth.gbif(session, {**base, **extra})["facets"]
-            counts.update({c["name"]: c["count"] for c in (facets[0]["counts"] if facets else [])})
-        out[str(w)] = counts
-    return out
+    """{week: {place: records}} for these GBIF names (taxonKey 5: all fungi)."""
+    return {str(w): by_place(session, {"taxonKey": keys, "eventDate": f"{w},{w + timedelta(days=6)}"}) for w in weeks}
+
+
+def monthly_past(session, keys):
+    """{month: {place: records}} over the years PAST, months PAST_MONTHS."""
+    return {str(m): by_place(session, {"taxonKey": keys, "year": PAST, "month": m}) for m in PAST_MONTHS}
 
 
 def curve_on(curve, days):
@@ -100,7 +109,7 @@ def peak(series):
     return smooth.idxmax() + pd.Timedelta(days=3)
 
 
-def species_line(rate, counts, days, own, curve, week_index):
+def species_line(rate, counts, days, own, curve, week_index, past=(None, 0)):
     """One place and mushroom: the figures in the module docstring, or None when it can't be told."""
     if counts.sum() < RECORDS or peak(rate) is None:
         return None
@@ -118,12 +127,13 @@ def species_line(rate, counts, days, own, curve, week_index):
     line = {"records": int(counts.sum()), "auc": round(auc, 3), "spots": spots}
     if curve is not None:
         line["usual"] = round(within_location_auc(days.assign(usual=curve_on(curve, days.Date)), "usual")[0], 3)
+    past_curve, past_records = past
+    if past_curve is not None and past_records >= RECORDS:
         window = pd.date_range(rate.index[0], rate.index[-1] + pd.Timedelta(days=6))
-        usual = pd.Series(curve_on(curve, window), index=window)
-        top = usual.idxmax()
+        top = pd.Series(curve_on(past_curve, window), index=window).idxmax()
         if top not in (window[0], window[-1]):
-            seen = peak(rate)
-            line["shift"] = {k: round((v - top).days / 7, 1) for k, v in (("seen", seen), ("said", said)) if v is not None}
+            line["shift"] = {k: round((v - top).days / 7, 1) for k, v in (("seen", peak(rate)), ("said", said)) if v is not None}
+            line["past_records"] = past_records
     mine = days[days.Location_Id.isin(own)]
     for name, flag in (("false", False), ("hit", True)):
         part = mine[mine.in_season == flag]
@@ -164,13 +174,22 @@ def main():
     session = requests.Session()
     session.headers["User-Agent"] = "fung.es season QA"
     for name, keys in [("_fungi", 5)] + [(s, taxa[s]["taxon_keys"]) for s in species]:
-        if name not in weekly:
-            weekly[name] = weekly_counts(session, keys, weeks)
-            cache.write_text(json.dumps(weekly), encoding="utf-8")
-            print(f"GBIF weekly counts: {name}", flush=True)
+        for label, fetch in ((name, weekly_counts), (f"past:{name}", monthly_past)):
+            if label not in weekly:
+                weekly[label] = fetch(session, keys, weeks) if fetch is weekly_counts else fetch(session, keys)
+                cache.write_text(json.dumps(weekly), encoding="utf-8")
+                print(f"GBIF counts: {label}", flush=True)
 
     def series(name, key):
         return pd.Series([weekly[name][str(w)].get(key, 0) for w in weeks], index=pd.to_datetime(weeks), dtype=float)
+
+    def past(name, key):
+        """The place's usual season from its own records: the monthly rate (12, peak 1) and its records."""
+        month = lambda label, m: weekly[label].get(str(m), {}).get(key, 0) if m in PAST_MONTHS else 0  # noqa: E731
+        counts = np.array([month(f"past:{name}", m) for m in range(1, 13)], float)
+        effort = np.array([month("past:_fungi", m) for m in range(1, 13)], float)
+        rate = np.divide(counts, effort, out=np.zeros(12), where=effort > 0)
+        return (list(rate / rate.max()) if rate.max() > 0 else None), int(counts.sum())
 
     out = []
     for i, (place, _, key) in enumerate(places):
@@ -191,7 +210,7 @@ def main():
             days = here[["Location_Id", "Date", f"{s}_score"]].rename(columns={f"{s}_score": "score"})
             curve = place["species"].get(s, {}).get("curve") if "species" in place else None
             line = species_line(counts / effort, counts, days, set(mine.loc[mine.species == s, "loc"]), curve,
-                                week_index.loc[here.index])
+                                week_index.loc[here.index], past(s, key))
             if line:
                 row["species"][s] = line
         lines = list(row["species"].values())
