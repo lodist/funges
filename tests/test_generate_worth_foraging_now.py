@@ -20,6 +20,7 @@ def test_species_columns_are_discovered_from_generated_registry(monkeypatch):
             "SE": {"new-species"},
             "USE": {"legacy"},
             "USW": {"legacy"},
+            "ANZ": {"new-species"},
         }[region],
     )
 
@@ -36,4 +37,5 @@ def test_species_columns_are_discovered_from_generated_registry(monkeypatch):
         "SE": {"new-species"},
         "USE": {"legacy"},
         "USW": {"legacy"},
+        "ANZ": {"new-species"},
     }

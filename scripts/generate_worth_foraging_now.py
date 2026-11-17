@@ -33,11 +33,15 @@ def resolve_species_columns(available_columns: set[str]) -> dict[str, str]:
     return resolved
 
 
+# Every region infer_region can return: a row from a missing one stops the script.
+REGIONS = ("NE", "SE", "USE", "USW", "ANZ")
+
+
 def resolve_region_species() -> dict[str, set[str]]:
     """Return species that are available for scoring in each region."""
     return {
         region: get_region_species(region)
-        for region in ("NE", "SE", "USE", "USW")
+        for region in REGIONS
     }
 
 
@@ -70,12 +74,7 @@ def main() -> None:
     target_date = next((d for d in available_dates if d >= today), available_dates[-1])
     latest_rows = [row for row in rows if iso_date(row["Date"]) == target_date]
 
-    region_best: dict[str, dict[str, dict[str, float]]] = {
-        "NE": {},
-        "SE": {},
-        "USE": {},
-        "USW": {},
-    }
+    region_best: dict[str, dict[str, dict[str, float]]] = {region: {} for region in REGIONS}
     cell_scores: dict[tuple[str, float, float], dict[str, float]] = defaultdict(dict)
 
     for row in latest_rows:
