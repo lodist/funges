@@ -57,6 +57,14 @@ const REGIONS: { id: RegionId; label: string }[] = [
   { id: 'SE', label: 'South Europe' },
   { id: 'USW', label: 'US West' },
   { id: 'USE', label: 'US East' },
+  { id: 'ANZ', label: 'Australia and New Zealand' },
+];
+
+/** The region switch, one segmented control per part of the world. */
+const REGION_GROUPS: { key: string; label: string; ids: RegionId[] }[] = [
+  { key: 'europe', label: 'Europe', ids: ['NE', 'SE'] },
+  { key: 'unitedStates', label: 'United States', ids: ['USW', 'USE'] },
+  { key: 'oceania', label: 'Oceania', ids: ['ANZ'] },
 ];
 
 const DAY_OPTIONS = [7, 14, 30, 90, 365] as const;
@@ -165,10 +173,8 @@ export default function DataPage() {
     defaultValue: REGIONS.find(r => r.id === region)?.label ?? region,
   });
 
-  const zones = useMemo(
-    () => dataset?.regions[region]?.zones ?? [],
-    [dataset, region]
-  );
+  const regionData = dataset?.regions[region];
+  const zones = useMemo(() => regionData?.zones ?? [], [regionData]);
 
   // Reset to "all zones" when region changes
   useEffect(() => {
@@ -185,17 +191,16 @@ export default function DataPage() {
   const [zoneHistory, zoneForecast] = useMemo(() => {
     const today = new Date().toLocaleDateString('en-CA'); // local YYYY-MM-DD
     const key = zone || ALL_ZONE;
-    const rows =
-      dataset?.regions[region].data.filter(row => row.zone === key) ?? [];
+    const rows = regionData?.data.filter(row => row.zone === key) ?? [];
     return [
       rows.filter(row => row.date <= today),
       rows.filter(row => row.date > today),
     ] as const;
-  }, [dataset, region, zone]);
+  }, [regionData, zone]);
 
   const zoneData = useMemo(() => zoneHistory.slice(-days), [zoneHistory, days]);
 
-  const spread = dataset?.regions[region].spread?.[zone || ALL_ZONE];
+  const spread = regionData?.spread?.[zone || ALL_ZONE];
 
   const speciesMap = useMemo(
     () => new Map(speciesData.map(s => [s.id, s.name])),
@@ -881,45 +886,25 @@ export default function DataPage() {
       {/* Controls */}
       <div className='flex flex-wrap items-end justify-between gap-4'>
         <div className='flex flex-wrap items-end gap-4'>
-          {/* Europe regions */}
-          <div className='flex flex-col gap-1.5'>
-            <span className='type-micro text-muted-foreground px-1'>
-              {t('common:data.europe', { defaultValue: 'Europe' })}
-            </span>
-            <SegmentedControl
-              options={REGIONS.filter(r => r.id === 'NE' || r.id === 'SE').map(
-                r => ({
-                  value: r.id,
-                  label: t(`common:data.regions.${r.id}`, {
-                    defaultValue: r.label,
-                  }),
-                })
-              )}
-              value={region}
-              onChange={setRegion}
-            />
-          </div>
-
-          {/* US regions */}
-          <div className='flex flex-col gap-1.5'>
-            <span className='type-micro text-muted-foreground px-1'>
-              {t('common:data.unitedStates', {
-                defaultValue: 'United States',
-              })}
-            </span>
-            <SegmentedControl
-              options={REGIONS.filter(
-                r => r.id === 'USE' || r.id === 'USW'
-              ).map(r => ({
-                value: r.id,
-                label: t(`common:data.regions.${r.id}`, {
-                  defaultValue: r.label,
-                }),
-              }))}
-              value={region}
-              onChange={setRegion}
-            />
-          </div>
+          {REGION_GROUPS.map(group => (
+            <div key={group.key} className='flex flex-col gap-1.5'>
+              <span className='type-micro text-muted-foreground px-1'>
+                {t(`common:data.${group.key}`, { defaultValue: group.label })}
+              </span>
+              <SegmentedControl
+                options={REGIONS.filter(r => group.ids.includes(r.id)).map(
+                  r => ({
+                    value: r.id,
+                    label: t(`common:data.regions.${r.id}`, {
+                      defaultValue: r.label,
+                    }),
+                  })
+                )}
+                value={region}
+                onChange={setRegion}
+              />
+            </div>
+          ))}
 
           {/* Time range */}
           <div className='flex flex-col gap-1.5'>
@@ -963,25 +948,34 @@ export default function DataPage() {
                 region: regionLabel,
               })}
         </div>
-        <Suspense
-          fallback={
-            <div className='flex items-center justify-center h-[280px] rounded-lg border bg-muted/30'>
-              <Loader2 className='h-5 w-5 animate-spin text-muted-foreground' />
-            </div>
-          }
-        >
-          <ZoneMap
-            zonesGeo={dataset.regions[region].zones_geo}
-            selectedZone={zone}
-            onZoneSelect={z => setZone(prev => (prev === z ? '' : z))}
-            region={region}
-            zoneLabelFn={z =>
-              t(`common:data.zones.${z}` as Parameters<typeof t>[0], {
-                defaultValue: formatZoneLabel(z),
-              }) as unknown as string
+        {regionData ? (
+          <Suspense
+            fallback={
+              <div className='flex items-center justify-center h-[280px] rounded-lg border bg-muted/30'>
+                <Loader2 className='h-5 w-5 animate-spin text-muted-foreground' />
+              </div>
             }
-          />
-        </Suspense>
+          >
+            <ZoneMap
+              zonesGeo={regionData.zones_geo}
+              selectedZone={zone}
+              onZoneSelect={z => setZone(prev => (prev === z ? '' : z))}
+              region={region}
+              zoneLabelFn={z =>
+                t(`common:data.zones.${z}` as Parameters<typeof t>[0], {
+                  defaultValue: formatZoneLabel(z),
+                }) as unknown as string
+              }
+            />
+          </Suspense>
+        ) : (
+          // Only in the hours before the night's data first carries a new region.
+          <div className='flex items-center justify-center h-[280px] rounded-lg border bg-muted/30 px-4 text-center text-sm text-muted-foreground'>
+            {t('common:data.noData', {
+              defaultValue: 'No data for selected zone',
+            })}
+          </div>
+        )}
       </div>
 
       {/* Dynamic narrative */}

@@ -26,6 +26,10 @@ const REGION_BOUNDS: Record<string, LatLngBounds> = {
     [22, -128],
     [52, -97],
   ],
+  ANZ: [
+    [-47.5, 113],
+    [-15, 179],
+  ],
 };
 
 const BASEMAP_URL = 'https://data.fung.es/basemap/world_z11_20260619.pmtiles';

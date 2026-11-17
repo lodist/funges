@@ -5,7 +5,13 @@ Run: python scripts/test_generate_data.py
 
 import pandas as pd
 
-from generate_data import window_spread
+from generate_data import (
+    REGION_LABELS,
+    REGION_URLS,
+    VISUAL_REGIONS,
+    assign_visual_regions,
+    window_spread,
+)
 
 TODAY = pd.Timestamp("2026-09-24")
 
@@ -52,5 +58,34 @@ assert window_spread(_cells(lone), TODAY)["14"]["hotspots"] == []
 # Uniform rain has no hotspot.
 uniform = {(lat, lon): {3: 20.0} for lat in range(10) for lon in range(10)}
 assert window_spread(_cells(uniform), TODAY)["14"]["hotspots"] == []
+
+# Every region read has its label and its zones.
+assert REGION_URLS.keys() == REGION_LABELS.keys() == VISUAL_REGIONS.keys()
+
+
+def _zone_of(regions: dict, lon: float, lat: float):
+    return assign_visual_regions(
+        pd.DataFrame({"Longitude": [lon], "Latitude": [lat]}), regions
+    ).iloc[0]
+
+
+# A tilted oval holds the point 4 degrees along its long axis; level, it would not.
+flat = {"z": (0.0, 0.0, 5.0, 1.0, "Z", "#000")}
+tilted = {"z": (0.0, 0.0, 5.0, 1.0, "Z", "#000", 45)}
+assert pd.isna(_zone_of(flat, 2.8, 2.8))
+assert _zone_of(tilted, 2.8, 2.8) == "z"
+
+# AU/NZ towns near where two ovals overlap land in their own zone.
+for lon, lat, zone in [
+    (174.78, -41.29, "north_island"),  # Wellington
+    (173.28, -41.27, "south_island"),  # Nelson
+    (140.78, -37.83, "south_australia"),  # Mount Gambier
+    (149.75, -37.56, "victoria"),  # Mallacoota
+    (153.40, -28.00, "south_east_queensland"),  # Gold Coast
+    (153.60, -28.65, "new_south_wales"),  # Byron Bay
+    (145.77, -16.92, "north_queensland"),  # Cairns
+    (143.87, -39.93, "tasmania"),  # King Island
+]:
+    assert _zone_of(VISUAL_REGIONS["ANZ"], lon, lat) == zone, (lon, lat, zone)
 
 print("ok")

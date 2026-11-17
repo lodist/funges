@@ -155,7 +155,7 @@ describe('resolveDataNerdRegion', () => {
     ['mushroom_use', 'USE'],
     ['mushroom_usw', 'USW'],
     ['walnut_se_numbers', 'SE'],
-    ['shaggy_mane_anz', null], // no Data page for ANZ yet
+    ['shaggy_mane_anz', 'ANZ'],
   ])('resolves %s -> %s', (id, expected) => {
     expect(resolveDataNerdRegion(id)).toBe(expected);
   });

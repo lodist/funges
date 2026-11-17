@@ -179,6 +179,7 @@
     "subtitle": "Explorez les données derrière les recommandations de cueillette.",
     "europe": "Europe",
     "unitedStates": "États-Unis",
+    "oceania": "Océanie",
     "selectedZone": "Sélectionnée : {{zone}}. Cliquez à nouveau pour tout afficher",
     "clickZone": "Toutes les zones de {{region}} affichées. Cliquez sur une pour filtrer",
     "timeRange": "Période",
@@ -191,7 +192,8 @@
       "NE": "Nord Europe",
       "SE": "Sud Europe",
       "USW": "USA Ouest",
-      "USE": "USA Est"
+      "USE": "USA Est",
+      "ANZ": "Australie et Nouvelle-Zélande"
     },
     "species": "Espèce",
     "zones": {
@@ -216,7 +218,16 @@
       "desert_sw": "Sud-Ouest Désertique",
       "great_plains": "Grandes Plaines",
       "pacific_nw": "Nord-Ouest Pacifique",
-      "rockies": "Rocheuses"
+      "rockies": "Rocheuses",
+      "tasmania": "Tasmanie",
+      "south_australia": "Australie-Méridionale",
+      "south_east_queensland": "Sud-Est du Queensland",
+      "new_south_wales": "Nouvelle-Galles du Sud",
+      "victoria": "Victoria",
+      "western_australia": "Australie-Occidentale",
+      "north_queensland": "Nord du Queensland",
+      "south_island": "Île du Sud",
+      "north_island": "Île du Nord"
     },
     "charts": {
       "rainfall": "Précipitations (mm)",
