@@ -179,6 +179,7 @@
     "subtitle": "Explora los datos detrás de las recomendaciones de recolección.",
     "europe": "Europa",
     "unitedStates": "Estados Unidos",
+    "oceania": "Oceanía",
     "selectedZone": "Seleccionada: {{zone}}. Haz clic de nuevo para mostrar todas",
     "clickZone": "Mostrando todas las zonas de {{region}}. Haz clic en una para filtrar",
     "timeRange": "Periodo",
@@ -191,7 +192,8 @@
       "NE": "Norte de Europa",
       "SE": "Sur de Europa",
       "USW": "EE.UU. Oeste",
-      "USE": "EE.UU. Este"
+      "USE": "EE.UU. Este",
+      "ANZ": "Australia y Nueva Zelanda"
     },
     "species": "Especie",
     "zones": {
@@ -216,7 +218,16 @@
       "desert_sw": "Suroeste Desértico",
       "great_plains": "Grandes Llanuras",
       "pacific_nw": "Noroeste del Pacífico",
-      "rockies": "Montañas Rocosas"
+      "rockies": "Montañas Rocosas",
+      "tasmania": "Tasmania",
+      "south_australia": "Australia Meridional",
+      "south_east_queensland": "Sudeste de Queensland",
+      "new_south_wales": "Nueva Gales del Sur",
+      "victoria": "Victoria",
+      "western_australia": "Australia Occidental",
+      "north_queensland": "Norte de Queensland",
+      "south_island": "Isla Sur",
+      "north_island": "Isla Norte"
     },
     "charts": {
       "rainfall": "Precipitación (mm)",

@@ -1,4 +1,4 @@
-export type RegionId = 'NE' | 'SE' | 'USE' | 'USW';
+export type RegionId = 'NE' | 'SE' | 'USE' | 'USW' | 'ANZ';
 
 export interface ForagingRow {
   date: string;
@@ -71,7 +71,9 @@ export interface ForagingRegion {
 export interface ForagingDataset {
   updated_at: string;
   days: number;
-  regions: Record<RegionId, ForagingRegion>;
+  // A file written before a region joined (ANZ, 17 Nov 2026) lacks it, here
+  // or in a visitor's 3-hour copy.
+  regions: Partial<Record<RegionId, ForagingRegion>>;
 }
 
 const DATA_NERD_URL = `${import.meta.env.BASE_URL}data/data_nerd.json`;

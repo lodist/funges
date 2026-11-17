@@ -1,7 +1,7 @@
 """Write public/data/scores_metadata.json: when the forecast map was last refreshed.
 
 The time is the upload time (Last-Modified) of the regions' public forecast tiles. The
-oldest of the four is used, so the label never claims a fresher map than the stalest
+oldest of them is used, so the label never claims a fresher map than the stalest
 region shows.
 """
 
@@ -17,6 +17,7 @@ FORECAST_TILES = [
     "https://data.fung.es/EU/SE/se_forecast.pmtiles",
     "https://data.fung.es/USA/USE/use_forecast.pmtiles",
     "https://data.fung.es/USA/USW/usw_forecast.pmtiles",
+    "https://data.fung.es/ANZ/anz_forecast.pmtiles",
 ]
 JSON_PATH = Path("public/data/scores_metadata.json")
 
