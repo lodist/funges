@@ -43,7 +43,7 @@ CLIMATOLOGY_YEARS = (2021, 2022, 2023, 2024, 2025)
 
 
 def gbif(session: requests.Session, params: dict) -> dict:
-    url = f"{GBIF}/occurrence/search?{urlencode(params)}"
+    url = f"{GBIF}/occurrence/search?{urlencode(params, doseq=True)}"   # a list repeats taxonKey
     for attempt in range(7):
         response = session.get(url, timeout=90)
         if response.status_code == 429 or response.status_code >= 500:

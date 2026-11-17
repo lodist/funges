@@ -87,8 +87,9 @@
       "link": "Ver los datos"
     },
     "proof": {
-      "line": "Probado con la temporada {{year}} en {{spots}} lugares donde la gente encontró setas: la previsión valoró mejor los días de temporada de cada seta que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>.",
-      "link": "Cómo lo comprobamos"
+      "line": "Probado con {{finds}} hallazgos de setas desde el {{since}}: <strong>{{times}} de cada 10 veces</strong>, la previsión valoró mejor el lugar del hallazgo que otros lugares con setas ese día.",
+      "link": "Cómo lo comprobamos",
+      "season": "Y en el mismo lugar, valoró mejor los días de temporada que los de fuera de temporada <strong>{{times}} de cada 10 veces</strong>."
     },
     "metaTitle": "Funges: mapa de recolección y planificador de huerto",
     "metaDescription": "Previsiones de recolección de setas y plantas silvestres y un planificador para tu huerto. Lo que crece a tu alrededor y cuándo."
@@ -327,7 +328,7 @@
     },
     "scorecard": {
       "title": "Cómo le ha ido a la previsión",
-      "intro": "La previsión actual del {{since}} al {{until}}, en {{spots}} lugares donde la gente encontró setas. Cada barra muestra cuántas veces, en el mismo lugar, valoró mejor un día de la temporada de la seta que un día fuera de temporada.",
+      "intro": "La previsión actual, comprobada con los hallazgos de setas registrados del {{since}} al {{until}}. Cada barra muestra cuántas veces valoró mejor el lugar del hallazgo que otro lugar donde la gente encontró setas ese día.",
       "all": "Todas las setas",
       "finds_one": "{{finds}} hallazgo",
       "finds_other": "{{finds}} hallazgos",
@@ -335,8 +336,13 @@
       "how": {
         "replay": "Aplicamos la previsión actual al tiempo de cada día y la comparamos con los hallazgos de setas que la gente registra en GBIF, la base de datos mundial de biodiversidad.",
         "late": "Los hallazgos llegan a GBIF con una a tres semanas de retraso, así que los últimos días se completan más tarde. Actualizado el {{updated}}.",
-        "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble."
-      }
+        "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble. Cada seta se valora solo en los lugares donde puede crecer, y no aparecen las setas cuya temporada aún estamos revisando.",
+        "spots": "Cada hallazgo se compara con lugares donde la gente encontró otras setas pero ninguna de la misma especie a menos de 10 km, así que señalar los bosques que la gente ya visita no suma nada.",
+        "unseen": "En los {{finds}} hallazgos desde el {{since}}, posteriores a los últimos de los que aprendió la previsión, valoró mejor el lugar del hallazgo {{times}} de cada 10 veces.",
+        "everything": "Aparecen todas las setas con al menos 30 hallazgos, les haya ido bien o no. En el atlas de temporadas, cada país o estado de EE. UU. con al menos 100 hallazgos muestra su propio resultado. Las plantas no están incluidas."
+      },
+      "seasonTitle": "La temporada",
+      "seasonIntro": "La previsión actual del {{since}} al {{until}}, en {{spots}} lugares donde la gente encontró setas. Cada barra muestra cuántas veces, en el mismo lugar, valoró mejor un día de la temporada de la seta que un día fuera de temporada."
     },
     "tabs": {
       "label": "Informes de datos",
@@ -376,7 +382,9 @@
       "notFound": "Aún no tenemos mapa de temporada para este lugar.",
       "openEurope": "Abrir Europa",
       "fewRecords": "Pocos registros locales ({{formatted}} desde 2010), así que la temporada se apoya en lugares de clima parecido.",
-      "rareRecords": "Casi nunca se ha registrado aquí, así que la temporada que se ve es la de lugares de clima parecido."
+      "rareRecords": "Casi nunca se ha registrado aquí, así que la temporada que se ve es la de lugares de clima parecido.",
+      "testedLabel": "Comprobado · {{place}} · desde el {{since}}",
+      "tested": "Con {{finds}} hallazgos de setas aquí, la previsión valoró mejor el lugar del hallazgo que otros lugares con setas ese día <strong>{{times}} de cada 10 veces</strong>."
     },
     "seoTitle": "Datos de las previsiones y temporadas de setas",
     "seoDescription": "El tiempo detrás de las previsiones de esta semana, cuánto acertaron con hallazgos reales y la temporada de cada seta, lugar por lugar."

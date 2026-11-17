@@ -87,8 +87,9 @@
       "link": "Ver os dados"
     },
     "proof": {
-      "line": "Testado na temporada de {{year}} em {{spots}} pontos onde as pessoas acharam cogumelos: a previsão avaliou melhor os dias da temporada de cada cogumelo do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>.",
-      "link": "Como verificamos"
+      "line": "Testado com {{finds}} achados de cogumelos desde {{since}}: <strong>{{times}} em cada 10 vezes</strong>, a previsão avaliou melhor o ponto do achado do que outros pontos com cogumelos naquele dia.",
+      "link": "Como verificamos",
+      "season": "E no mesmo ponto, avaliou melhor os dias da temporada do que os dias fora dela <strong>{{times}} em cada 10 vezes</strong>."
     },
     "metaTitle": "Funges: mapa de apanha silvestre e planeador de horta",
     "metaDescription": "Previsões de apanha de cogumelos e plantas silvestres e um planeador para a sua horta. O que cresce à sua volta e quando."
@@ -327,7 +328,7 @@
     },
     "scorecard": {
       "title": "Como a previsão se saiu",
-      "intro": "A previsão atual de {{since}} a {{until}}, em {{spots}} pontos onde as pessoas acharam cogumelos. Cada barra mostra quantas vezes, no mesmo ponto, ela avaliou melhor um dia da temporada do cogumelo do que um dia fora dela.",
+      "intro": "A previsão atual, testada com achados de cogumelos registrados de {{since}} a {{until}}. Cada barra mostra quantas vezes ela avaliou melhor o ponto do achado do que outro ponto onde as pessoas acharam cogumelos naquele dia.",
       "all": "Todos os cogumelos",
       "finds_one": "{{finds}} achado",
       "finds_other": "{{finds}} achados",
@@ -335,8 +336,13 @@
       "how": {
         "replay": "Aplicamos a previsão atual ao tempo de cada dia e a comparamos com os achados de cogumelos que as pessoas registram no GBIF, o banco de dados mundial de biodiversidade.",
         "late": "Os achados chegam ao GBIF com uma a três semanas de atraso, então os últimos dias se completam depois. Atualizado em {{updated}}.",
-        "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro."
-      }
+        "season": "A temporada: as semanas em que cada cogumelo esteve em temporada e fora dela em 2026 vêm dos seus achados registrados, contados contra todos os registros de cogumelos para que fins de semana cheios não contem em dobro. Cada cogumelo é avaliado só nos pontos onde pode crescer, e os cogumelos cuja temporada ainda estamos revendo não aparecem aqui.",
+        "spots": "Cada achado é comparado com pontos onde as pessoas acharam outros cogumelos, mas nenhum da mesma espécie a menos de 10 km, então apontar para bosques que todo mundo já visita não rende nada.",
+        "unseen": "Nos {{finds}} achados a partir de {{since}}, depois dos últimos com que a previsão aprendeu, ela avaliou melhor o ponto do achado {{times}} em cada 10 vezes.",
+        "everything": "Aparecem todos os cogumelos com pelo menos 30 achados, tenham ido bem ou não. No atlas de temporadas, cada país ou estado dos EUA com pelo menos 100 achados mostra o seu próprio resultado. As plantas não estão incluídas."
+      },
+      "seasonTitle": "A temporada",
+      "seasonIntro": "A previsão atual de {{since}} a {{until}}, em {{spots}} pontos onde as pessoas acharam cogumelos. Cada barra mostra quantas vezes, no mesmo ponto, ela avaliou melhor um dia da temporada do cogumelo do que um dia fora dela."
     },
     "tabs": {
       "label": "Relatórios de dados",
@@ -376,7 +382,9 @@
       "notFound": "Ainda não temos mapa de temporada para este lugar.",
       "openEurope": "Abrir a Europa",
       "fewRecords": "Poucos registros locais ({{formatted}} desde 2010), então a temporada se apoia em lugares de clima parecido.",
-      "rareRecords": "Quase nunca registrado aqui, então a temporada mostrada é a de lugares de clima parecido."
+      "rareRecords": "Quase nunca registrado aqui, então a temporada mostrada é a de lugares de clima parecido.",
+      "testedLabel": "Testado · {{place}} · desde {{since}}",
+      "tested": "Em {{finds}} achados de cogumelos aqui, a previsão avaliou melhor o ponto do achado do que outros pontos com cogumelos naquele dia <strong>{{times}} em cada 10 vezes</strong>."
     },
     "seoTitle": "Dados das previsões e épocas dos cogumelos",
     "seoDescription": "O tempo por trás das previsões desta semana, o quanto acertaram em achados reais e a época de cada cogumelo, lugar por lugar."

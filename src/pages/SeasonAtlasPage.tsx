@@ -4,6 +4,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import SEO from '@/components/SEO';
 import { DataTabs } from '@/components/DataTabs';
+import { PlaceScorecardLine } from '@/components/ForecastScorecard';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -328,8 +329,9 @@ export default function SeasonAtlasPage() {
       <SEO title={title} description={description} />
 
       <div>
-        {/* The page's heading is the place's season below; this names the section. */}
-        <p className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
+        {/* The page's heading is the place's season below; this names the section,
+            in the headings' face like the Data page's own h1. */}
+        <p className='font-display text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
           {t('sidebar:data', { defaultValue: 'Data' })}
         </p>
         <p className='mt-3 text-lg text-muted-foreground'>
@@ -547,6 +549,7 @@ export default function SeasonAtlasPage() {
                     {t('data.atlas.note', { species: sName })}{' '}
                     {recordsSentence(curve.records, language, say)}
                   </p>
+                  <PlaceScorecardLine placeId={placeId} placeName={pName} />
                   {speciesKey && place.data ? (
                     <Button asChild variant='outline' className='self-start'>
                       {/* Opens the map on this place, not where it was left. */}

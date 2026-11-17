@@ -1,57 +1,540 @@
 {
-  "updated_at": "2026-10-23",
+  "updated_at": "2026-11-17",
   "season": {
     "since": "2026-05-24",
-    "until": "2026-10-15",
-    "spots": 4745,
+    "until": "2026-10-31",
+    "spots": 16219,
     "all": {
-      "finds": 10582,
-      "auc": 0.917
+      "finds": 33573,
+      "auc": 0.928
     },
     "species": {
       "black_chant": {
-        "finds": 245,
-        "auc": 0.935
+        "finds": 361,
+        "auc": 0.922
+      },
+      "bronze_bolete": {
+        "finds": 72,
+        "auc": 0.734
       },
       "chant": {
-        "finds": 1713,
-        "auc": 0.809
+        "finds": 2674,
+        "auc": 0.834
       },
       "hedgehog_mushroom": {
-        "finds": 180,
-        "auc": 0.953
+        "finds": 952,
+        "auc": 0.956
+      },
+      "liberty_cap": {
+        "finds": 258,
+        "auc": 0.995
       },
       "matsutake": {
-        "finds": 68,
-        "auc": 0.708
+        "finds": 201,
+        "auc": 0.955
       },
       "mushroom": {
-        "finds": 2752,
-        "auc": 0.933
+        "finds": 4634,
+        "auc": 0.917
       },
       "parasol": {
-        "finds": 1405,
-        "auc": 0.894
+        "finds": 2601,
+        "auc": 0.912
       },
       "pine_bolete": {
-        "finds": 326,
-        "auc": 0.894
+        "finds": 387,
+        "auc": 0.901
       },
       "saffron_milk_cap": {
-        "finds": 262,
-        "auc": 0.952
+        "finds": 1614,
+        "auc": 0.983
       },
       "shaggy_mane": {
-        "finds": 2531,
-        "auc": 0.993
+        "finds": 12339,
+        "auc": 0.959
       },
       "summer_bolete": {
-        "finds": 655,
-        "auc": 0.855
+        "finds": 758,
+        "auc": 0.881
       },
       "winter_chant": {
-        "finds": 445,
+        "finds": 811,
+        "auc": 0.987
+      },
+      "bay_bolete": {
+        "finds": 135,
+        "auc": 0.911
+      },
+      "eastern_king": {
+        "finds": 179,
+        "auc": 0.941
+      },
+      "giant_puffball": {
+        "finds": 1559,
+        "auc": 0.995
+      },
+      "oyster-mushroom": {
+        "finds": 3711,
+        "auc": 0.852
+      },
+      "smooth_chant": {
+        "finds": 92,
+        "auc": 0.933
+      },
+      "morel": {
+        "finds": 96,
         "auc": 0.966
+      },
+      "rocky_king": {
+        "finds": 139,
+        "auc": 0.893
+      }
+    }
+  },
+  "place": {
+    "since": "2026-05-24",
+    "until": "2026-10-31",
+    "all": {
+      "finds": 27038,
+      "place": 0.746,
+      "species": {
+        "bay_bolete": {
+          "finds": 1992,
+          "place": 0.694
+        },
+        "black_chant": {
+          "finds": 750,
+          "place": 0.85
+        },
+        "bronze_bolete": {
+          "finds": 135,
+          "place": 0.929
+        },
+        "chant": {
+          "finds": 1651,
+          "place": 0.762
+        },
+        "chicken-of-the-woods": {
+          "finds": 3994,
+          "place": 0.715
+        },
+        "eastern_king": {
+          "finds": 161,
+          "place": 0.859
+        },
+        "giant_puffball": {
+          "finds": 1638,
+          "place": 0.807
+        },
+        "golden_cap": {
+          "finds": 99,
+          "place": 0.987
+        },
+        "hedgehog_mushroom": {
+          "finds": 867,
+          "place": 0.803
+        },
+        "hen_of_the_woods": {
+          "finds": 1042,
+          "place": 0.609
+        },
+        "liberty_cap": {
+          "finds": 306,
+          "place": 0.812
+        },
+        "lions_mane": {
+          "finds": 429,
+          "place": 0.705
+        },
+        "matsutake": {
+          "finds": 186,
+          "place": 0.834
+        },
+        "morel": {
+          "finds": 189,
+          "place": 0.767
+        },
+        "mushroom": {
+          "finds": 2489,
+          "place": 0.738
+        },
+        "oyster-mushroom": {
+          "finds": 2501,
+          "place": 0.707
+        },
+        "pacific_chant": {
+          "finds": 141,
+          "place": 0.941
+        },
+        "parasol": {
+          "finds": 2000,
+          "place": 0.754
+        },
+        "pine_bolete": {
+          "finds": 337,
+          "place": 0.863
+        },
+        "rocky_king": {
+          "finds": 116,
+          "place": 0.985
+        },
+        "saffron_milk_cap": {
+          "finds": 1521,
+          "place": 0.762
+        },
+        "shaggy_mane": {
+          "finds": 2818,
+          "place": 0.726
+        },
+        "smooth_chant": {
+          "finds": 90,
+          "place": 0.899
+        },
+        "st_george": {
+          "finds": 163,
+          "place": 0.654
+        },
+        "summer_bolete": {
+          "finds": 655,
+          "place": 0.755
+        },
+        "winter_chant": {
+          "finds": 766,
+          "place": 0.828
+        }
+      }
+    },
+    "continents": {
+      "EU": {
+        "finds": 18578,
+        "place": 0.748,
+        "species": {
+          "bay_bolete": {
+            "finds": 1962,
+            "place": 0.692
+          },
+          "black_chant": {
+            "finds": 341,
+            "place": 0.857
+          },
+          "bronze_bolete": {
+            "finds": 135,
+            "place": 0.929
+          },
+          "chant": {
+            "finds": 1431,
+            "place": 0.782
+          },
+          "chicken-of-the-woods": {
+            "finds": 2000,
+            "place": 0.751
+          },
+          "giant_puffball": {
+            "finds": 801,
+            "place": 0.808
+          },
+          "hedgehog_mushroom": {
+            "finds": 805,
+            "place": 0.806
+          },
+          "liberty_cap": {
+            "finds": 305,
+            "place": 0.812
+          },
+          "matsutake": {
+            "finds": 57,
+            "place": 0.973
+          },
+          "morel": {
+            "finds": 64,
+            "place": 0.881
+          },
+          "mushroom": {
+            "finds": 2000,
+            "place": 0.703
+          },
+          "oyster-mushroom": {
+            "finds": 1354,
+            "place": 0.631
+          },
+          "parasol": {
+            "finds": 2000,
+            "place": 0.754
+          },
+          "pine_bolete": {
+            "finds": 337,
+            "place": 0.863
+          },
+          "saffron_milk_cap": {
+            "finds": 1460,
+            "place": 0.76
+          },
+          "shaggy_mane": {
+            "finds": 2000,
+            "place": 0.747
+          },
+          "st_george": {
+            "finds": 163,
+            "place": 0.654
+          },
+          "summer_bolete": {
+            "finds": 655,
+            "place": 0.755
+          },
+          "winter_chant": {
+            "finds": 706,
+            "place": 0.822
+          }
+        }
+      },
+      "US": {
+        "finds": 8460,
+        "place": 0.742,
+        "species": {
+          "bay_bolete": {
+            "finds": 30,
+            "place": 0.836
+          },
+          "black_chant": {
+            "finds": 409,
+            "place": 0.844
+          },
+          "chant": {
+            "finds": 220,
+            "place": 0.629
+          },
+          "chicken-of-the-woods": {
+            "finds": 1994,
+            "place": 0.679
+          },
+          "eastern_king": {
+            "finds": 161,
+            "place": 0.859
+          },
+          "giant_puffball": {
+            "finds": 837,
+            "place": 0.806
+          },
+          "golden_cap": {
+            "finds": 99,
+            "place": 0.987
+          },
+          "hedgehog_mushroom": {
+            "finds": 62,
+            "place": 0.767
+          },
+          "hen_of_the_woods": {
+            "finds": 1042,
+            "place": 0.609
+          },
+          "lions_mane": {
+            "finds": 429,
+            "place": 0.705
+          },
+          "matsutake": {
+            "finds": 129,
+            "place": 0.773
+          },
+          "morel": {
+            "finds": 125,
+            "place": 0.709
+          },
+          "mushroom": {
+            "finds": 489,
+            "place": 0.882
+          },
+          "oyster-mushroom": {
+            "finds": 1147,
+            "place": 0.797
+          },
+          "pacific_chant": {
+            "finds": 141,
+            "place": 0.941
+          },
+          "rocky_king": {
+            "finds": 116,
+            "place": 0.985
+          },
+          "saffron_milk_cap": {
+            "finds": 61,
+            "place": 0.817
+          },
+          "shaggy_mane": {
+            "finds": 818,
+            "place": 0.674
+          },
+          "smooth_chant": {
+            "finds": 90,
+            "place": 0.899
+          },
+          "winter_chant": {
+            "finds": 60,
+            "place": 0.892
+          }
+        }
+      }
+    },
+    "unseen": {
+      "since": "2026-10-16",
+      "finds": 3234,
+      "place": 0.719
+    },
+    "places": {
+      "united-kingdom": {
+        "finds": 1417,
+        "place": 0.751
+      },
+      "switzerland": {
+        "finds": 233,
+        "place": 0.655
+      },
+      "sweden": {
+        "finds": 2674,
+        "place": 0.804
+      },
+      "spain": {
+        "finds": 393,
+        "place": 0.739
+      },
+      "romania": {
+        "finds": 104,
+        "place": 0.655
+      },
+      "poland": {
+        "finds": 1096,
+        "place": 0.72
+      },
+      "norway": {
+        "finds": 957,
+        "place": 0.796
+      },
+      "netherlands": {
+        "finds": 2052,
+        "place": 0.751
+      },
+      "lithuania": {
+        "finds": 182,
+        "place": 0.822
+      },
+      "latvia": {
+        "finds": 304,
+        "place": 0.891
+      },
+      "italy": {
+        "finds": 278,
+        "place": 0.708
+      },
+      "hungary": {
+        "finds": 108,
+        "place": 0.663
+      },
+      "germany": {
+        "finds": 3774,
+        "place": 0.712
+      },
+      "france": {
+        "finds": 313,
+        "place": 0.643
+      },
+      "finland": {
+        "finds": 802,
+        "place": 0.821
+      },
+      "estonia": {
+        "finds": 130,
+        "place": 0.827
+      },
+      "denmark": {
+        "finds": 1355,
+        "place": 0.695
+      },
+      "czech-republic": {
+        "finds": 444,
+        "place": 0.714
+      },
+      "belgium": {
+        "finds": 192,
+        "place": 0.655
+      },
+      "austria": {
+        "finds": 408,
+        "place": 0.757
+      },
+      "california": {
+        "finds": 796,
+        "place": 0.635
+      },
+      "colorado": {
+        "finds": 162,
+        "place": 0.891
+      },
+      "iowa": {
+        "finds": 111,
+        "place": 0.758
+      },
+      "illinois": {
+        "finds": 295,
+        "place": 0.757
+      },
+      "massachusetts": {
+        "finds": 260,
+        "place": 0.74
+      },
+      "maryland": {
+        "finds": 157,
+        "place": 0.66
+      },
+      "michigan": {
+        "finds": 653,
+        "place": 0.68
+      },
+      "minnesota": {
+        "finds": 545,
+        "place": 0.66
+      },
+      "north-carolina": {
+        "finds": 158,
+        "place": 0.689
+      },
+      "new-jersey": {
+        "finds": 146,
+        "place": 0.75
+      },
+      "new-york": {
+        "finds": 578,
+        "place": 0.663
+      },
+      "ohio": {
+        "finds": 364,
+        "place": 0.729
+      },
+      "oregon": {
+        "finds": 207,
+        "place": 0.831
+      },
+      "pennsylvania": {
+        "finds": 1074,
+        "place": 0.788
+      },
+      "tennessee": {
+        "finds": 151,
+        "place": 0.929
+      },
+      "virginia": {
+        "finds": 163,
+        "place": 0.666
+      },
+      "vermont": {
+        "finds": 109,
+        "place": 0.687
+      },
+      "washington": {
+        "finds": 574,
+        "place": 0.858
+      },
+      "wisconsin": {
+        "finds": 369,
+        "place": 0.697
       }
     }
   }

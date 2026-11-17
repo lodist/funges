@@ -5,7 +5,10 @@ its peak) and out of season (<= 10%), from exact weekly counts divided by all fu
 (qa_season_truth's filters), and today's daily scores at the places of the window's finds (a
 qa_replay.score_region run, kept as scores_<region>.parquet). The figure is the season-timing
 QA's within-location AUC: how often, at the same spot, a day in season scored above a day out
-of season. 0.5 is a coin toss. Only species whose season peaks inside the window are tested.
+of season. 0.5 is a coin toss. Only species whose season peaks inside the window are tested, and
+only at the spots where its forecast moves in the window: where it never does (out of its range or
+height: most of US West's spots for the rocky mountain king) a day in and out of season tie, and
+those coin tosses had pulled range-bound mushrooms toward 0.5.
 A composite (Boletus, Chanterelles) scores the best of its members, as the nightly run makes it,
 against its members' finds added up; it stays out of the pooled figure.
 
@@ -37,22 +40,23 @@ from qa_season_analysis import within_location_auc  # noqa: E402
 from species_registry import get_composites  # noqa: E402
 
 START, END = "2026-05-24", "2026-10-15"     # the masters' first day + the lag days .. finds caught up
+CACHE = ROOT.parent / "qa" / "gbif"
 IN_SEASON, OUT_OF_SEASON = 0.5, 0.10        # share of the peak weekly rate, as season-timing QA
 MIN_RECORDS, MIN_WEEKS = 60, 2
-LEFT_OUT = {"chicken-of-the-woods"}       # hand-set, its season runs backwards in SE: #389
+MOVES = 0.05                              # a spot counts where the species' score moves at least this much
 
 
-def scores(out: Path, region: str, taxa: dict) -> pd.DataFrame:
-    """Today's daily scores at the places of the window's fungi finds, replayed once and kept."""
+def scores(out: Path, region: str, taxa: dict, start: str, end: str, cap: int) -> pd.DataFrame:
+    """Today's daily scores at the places of the window's fungi finds, replayed once and kept (a
+    qa_replay.py run of the same window and cap writes the same files into its --out)."""
     path = out / f"scores_{region}.parquet"
     if not path.exists():
-        cache = ROOT.parent / "qa" / "gbif" / f"finds_{START}_{END}.json"
-        finds = pd.DataFrame(json.loads(cache.read_text(encoding="utf-8")))
         fungi = {s for s, t in taxa.items() if t.get("kingdom") == "Fungi"}
-        finds = finds[finds.species_id.isin(fungi) & finds.date.between(START, END)]
-        days, masters = pd.date_range(START, END), ROOT.parent / "backups" / "masters"
+        finds, _ = qr.gbif_finds(CACHE, start, end, fungi)
+        finds = finds[finds.species_id.isin(fungi) & finds.date.between(start, end)]
+        days, masters = pd.date_range(start, end), ROOT.parent / "backups" / "masters"
         grid = pd.concat([qr.places(masters, r, days[-1]) for r in qr.CONFIGS], ignore_index=True)
-        finds = qr.assign(finds, grid, taxa)
+        finds = qr.assign(finds, grid, taxa, cap)
         mine = finds[finds.region == region].reset_index(drop=True)
         qr.score_region(region, mine, grid, masters, fungi, [], days)["today"].to_parquet(path)
     frame = pd.read_parquet(path)
@@ -60,7 +64,7 @@ def scores(out: Path, region: str, taxa: dict) -> pd.DataFrame:
     return frame
 
 
-def weekly_rate(session, region: str, key: int, weeks: list[date], effort: pd.Series | None):
+def weekly_rate(session, region: str, key: int | list[int], weeks: list[date], effort: pd.Series | None):
     counts = pd.Series([int(truth.gbif(session, {**truth.region_filter(region), "taxonKey": key, "limit": 0,
                                                  "eventDate": f"{w},{w + timedelta(days=6)}"})["count"])
                         for w in weeks], index=pd.to_datetime(weeks))
@@ -71,6 +75,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("out", type=Path)
     parser.add_argument("--regions", default="NE,SE")
+    parser.add_argument("--start", default=START)
+    parser.add_argument("--end", default=END)
+    parser.add_argument("--cap", type=int, default=qr.FINDS_CAP, help="as qa_replay.py's: finds per species and region")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     qr.fp.load_dotenv(ROOT / ".env")
@@ -78,23 +85,23 @@ def main():
     qr.fp._load_coords_any = functools.lru_cache(maxsize=None)(qr.fp._load_coords_any)
     warnings.filterwarnings("ignore")
 
-    taxa = json.loads((ROOT.parent / "qa" / "gbif" / "taxa.json").read_text(encoding="utf-8"))
-    first = date.fromisoformat(START) + timedelta(days=(7 - date.fromisoformat(START).weekday()) % 7)
-    weeks = [first + timedelta(days=7 * i) for i in range((date.fromisoformat(END) - first).days // 7)]
+    taxa = qr.gbif_taxa(CACHE)
+    first = date.fromisoformat(args.start) + timedelta(days=(7 - date.fromisoformat(args.start).weekday()) % 7)
+    weeks = [first + timedelta(days=7 * i) for i in range((date.fromisoformat(args.end) - first).days // 7)]
     session = requests.Session()
     session.headers["User-Agent"] = "fung.es season QA"
     rows = []
     for region in args.regions.split(","):
-        frame = scores(args.out, region, taxa)
+        frame = scores(args.out, region, taxa, args.start, args.end, args.cap)
         effort = weekly_rate(session, region, 5, weeks, None)
         counted = {}
 
         def counts_of(species):
             if species not in counted:
-                counted[species] = weekly_rate(session, region, taxa[species]["taxon_key"], weeks, None)
+                counted[species] = weekly_rate(session, region, taxa[species]["taxon_keys"], weeks, None)
             return counted[species]
 
-        single = [(s, [s]) for s, meta in sorted(taxa.items()) if meta.get("kingdom") == "Fungi" and s not in LEFT_OUT]
+        single = [(s, [s]) for s, meta in sorted(taxa.items()) if meta.get("kingdom") == "Fungi"]
         for species, members in single + sorted(get_composites(region).items()):
             columns = [f"{m}_score" for m in members]
             if not all(c in frame for c in columns) or not all(m in taxa for m in members):
@@ -110,6 +117,8 @@ def main():
                 continue
             column = "score"
             days = frame[["Location_Id", "Date"]].assign(score=frame[columns].max(axis=1))
+            spread = days.groupby("Location_Id").score
+            days = days[spread.transform("max") - spread.transform("min") >= MOVES]
             days["week"] = days.Date - pd.to_timedelta(days.Date.dt.weekday, unit="D")
             days["label"] = days.week.map(label)
             days = days[days.label >= 0].assign(in_season=lambda d: d.label == 1)
@@ -128,7 +137,7 @@ def main():
     # Pooled over regions by the finds behind each figure: weighting by day pairs let 69 South European
     # chanterelle finds outweigh 1,644 North European ones, because the south has more spots.
     pooled = lambda g: round(float(np.average(g.auc, weights=g.records)), 3)  # noqa: E731
-    result = {"start": START, "end": END, "commit": qr.git("rev-parse", "--short", "HEAD"),
+    result = {"start": args.start, "end": args.end, "commit": qr.git("rev-parse", "--short", "HEAD"),
               "all": pooled(table[~table.composite]), "species": {s: pooled(g) for s, g in table.groupby("species")},
               "rows": rows}
     (args.out / "season_auc.json").write_text(json.dumps(result, indent=1), encoding="utf-8")

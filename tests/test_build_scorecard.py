@@ -11,21 +11,23 @@ from build_scorecard import MIN_FINDS, build, place_card  # noqa: E402
 
 def season_file(tmp_path):
     path = tmp_path / "season_auc.json"
-    path.write_text(json.dumps({"start": "2026-05-24", "end": "2026-10-15", "all": 0.9,
-                                "species": {"mushroom": 0.92, "boletus": 0.8},
-                                "rows": [{"region": "NE", "species": "mushroom", "records": 100, "locations": 50},
-                                         {"region": "SE", "species": "mushroom", "records": 20, "locations": 30},
+    path.write_text(json.dumps({"start": "2026-05-24", "end": "2026-10-15", "all": 0.5, "species": {},
+                                "rows": [{"region": "NE", "species": "mushroom", "records": 100, "locations": 50, "auc": 0.95},
+                                         {"region": "SE", "species": "mushroom", "records": 20, "locations": 30, "auc": 0.8},
                                          {"region": "NE", "species": "boletus", "composite": True,
-                                          "records": 140, "locations": 50}]}))
+                                          "records": 140, "locations": 50, "auc": 0.9},
+                                         {"region": "USE", "species": "golden_cap", "records": 109, "locations": 70,
+                                          "auc": 0.4}]}))
     return path
 
 
-def test_the_page_gets_the_season_pooled_over_regions_and_no_place_figures(tmp_path):
+def test_the_page_pools_the_season_over_regions_without_composites_or_left_out_species(tmp_path):
     card = build(season_file(tmp_path))
 
+    pooled = round((100 * 0.95 + 20 * 0.8) / 120, 3)
     assert card["season"] == {"since": "2026-05-24", "until": "2026-10-15", "spots": 80,
-                              "all": {"finds": 120, "auc": 0.9}, "species": {"mushroom": {"finds": 120, "auc": 0.92}}}
-    assert "place" not in card                                   # composites and place stay off the page
+                              "all": {"finds": 120, "auc": pooled}, "species": {"mushroom": {"finds": 120, "auc": pooled}}}
+    assert "place" not in card                                   # without a replay, no place figures
 
 
 def test_place_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
@@ -52,3 +54,24 @@ def test_place_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
     assert "US" not in card["continents"]
     assert card["since"] == "2026-10-05" and card["until"] == "2026-10-20"
     assert build(season_file(tmp_path), tmp_path)["place"] == card
+
+
+def test_unseen_finds_leave_out_what_the_forecast_learned_from_and_thin_places_stay_off(tmp_path):
+    (tmp_path / "metadata.json").write_text(json.dumps({"start": "2026-05-24", "regions": ["NE"]}))
+
+    def rows(species, day, where, n=MIN_FINDS):
+        return [{"region": "NE", "species": species, "kingdom": "Fungi", "source": "today", "composite": False,
+                 "date": day, "where_absent": where}] * n
+
+    found = rows("mushroom", "2026-10-20", 0.7) + rows("mushroom", "2026-09-01", 0.9)
+    found += rows("bay_bolete", "2026-10-25", 0.1)          # fitted on 24 Oct: nothing of it is unseen
+    pd.DataFrame(found).to_csv(tmp_path / "finds_NE.csv", index=False)
+    places = tmp_path / "places.json"
+    places.write_text(json.dumps({"places": [{"id": "germany", "finds": 150, "where": 0.71},
+                                             {"id": "ireland", "finds": 48, "where": 0.81}]}))
+
+    card = place_card(tmp_path, places)
+
+    assert card["unseen"] == {"since": "2026-10-16", "finds": MIN_FINDS, "place": 0.7}
+    assert card["places"] == {"germany": {"finds": 150, "place": 0.71}}
+    assert "places" not in place_card(tmp_path)

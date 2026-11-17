@@ -87,8 +87,9 @@
       "link": "See the data"
     },
     "proof": {
-      "line": "Tested on the {{year}} season at {{spots}} spots where people found mushrooms: the forecast rated days in a mushroom's season above days out of season <strong>{{times}} times in 10</strong>.",
-      "link": "How we check"
+      "line": "Tested on {{finds}} mushroom finds since {{since}}: <strong>{{times}} times in 10</strong>, the forecast rated the find's spot higher than other mushroom spots that day.",
+      "link": "How we check",
+      "season": "And at the same spot, it rated days in a mushroom's season above days out of season <strong>{{times}} times in 10</strong>."
     },
     "metaTitle": "Funges: foraging map and garden planner",
     "metaDescription": "Foraging forecasts for wild mushrooms and plants, plus a planner for your vegetable garden. What grows around you and when."
@@ -332,7 +333,7 @@
     },
     "scorecard": {
       "title": "How the forecast did",
-      "intro": "The current forecast from {{since}} to {{until}}, at {{spots}} spots where people found mushrooms. Each bar shows how often, at the same spot, it rated a day in the mushroom's season above a day out of season.",
+      "intro": "The current forecast, tested on mushroom finds people reported from {{since}} to {{until}}. Each bar shows how often it rated the find's spot higher than another spot where people found mushrooms that day.",
       "all": "All mushrooms",
       "finds_one": "{{finds}} find",
       "finds_other": "{{finds}} finds",
@@ -340,8 +341,13 @@
       "how": {
         "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
-        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice."
-      }
+        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice. Each mushroom is judged only at the spots where it can grow, and those whose seasons we are still reworking are left out.",
+        "spots": "Each find is compared with spots where people found other mushrooms but none of the same kind within 10 km, so pointing at woods people already visit earns nothing.",
+        "unseen": "On the {{finds}} finds from {{since}} on, after the last finds the forecast learned from, it rated the find's spot higher {{times}} times in 10.",
+        "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. In the season atlas, every country or US state with at least 100 finds shows its own figure. Plants are not included."
+      },
+      "seasonTitle": "The season",
+      "seasonIntro": "The current forecast from {{since}} to {{until}}, at {{spots}} spots where people found mushrooms. Each bar shows how often, at the same spot, it rated a day in the mushroom's season above a day out of season."
     },
     "tabs": {
       "label": "Data reports",
@@ -381,7 +387,9 @@
       "notFound": "We have no season map for this place yet.",
       "openEurope": "Open Europe",
       "fewRecords": "Few local records here ({{formatted}} since 2010), so the season leans on places with a similar climate.",
-      "rareRecords": "Hardly ever recorded here, so the season shown is that of places with a similar climate."
+      "rareRecords": "Hardly ever recorded here, so the season shown is that of places with a similar climate.",
+      "testedLabel": "Tested · {{place}} · since {{since}}",
+      "tested": "On {{finds}} mushroom finds here, the forecast rated the find's spot higher than other mushroom spots that day <strong>{{times}} times in 10</strong>."
     },
     "seoTitle": "Forecast data and mushroom seasons",
     "seoDescription": "The weather behind this week's forecasts, how well they matched real finds and each mushroom's season place by place."
