@@ -8,6 +8,7 @@ import {
   dayOfYear,
   inWindow,
   mapView,
+  placeLabel,
   projection,
   seasonWindows,
 } from '@/lib/season-atlas';
@@ -46,6 +47,26 @@ describe('the season atlas helpers', () => {
     expect(inWindow([11, 1], 0)).toBe(true);
     expect(inWindow([11, 1], 5)).toBe(false);
     expect(seasonWindows(Array(12).fill(1))).toEqual([[0, 11]]);
+  });
+
+  it('names each continent and a country in the reader’s language', () => {
+    const say = (key: string) => `[${key}]`;
+    const continent = (c: 'EU' | 'US' | 'ANZ') =>
+      placeLabel(
+        { kind: 'continent', iso: null, name: '', continent: c },
+        'en',
+        say
+      );
+    expect(continent('EU')).toBe('[europe]');
+    expect(continent('US')).toBe('[unitedStates]');
+    expect(continent('ANZ')).toBe('[regions.ANZ]');
+    const nz = {
+      kind: 'country',
+      iso: 'NZ',
+      name: 'New Zealand',
+      continent: 'ANZ',
+    } as const;
+    expect(placeLabel(nz, 'de', say)).toBe('Neuseeland');
   });
 
   it('counts 29 February as the 28th', () => {

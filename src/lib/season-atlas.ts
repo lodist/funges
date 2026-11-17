@@ -20,9 +20,16 @@ export interface AtlasPlaceSummary {
   kind: 'continent' | 'country' | 'state';
   name: string;
   iso: string | null;
-  continent: 'EU' | 'US';
+  continent: 'EU' | 'US' | 'ANZ';
   species: string[];
 }
+
+/** Each continent's name, a `data.*` string key. */
+const CONTINENT_KEYS = {
+  EU: 'europe',
+  US: 'unitedStates',
+  ANZ: 'regions.ANZ',
+} as const;
 
 export interface AtlasIndex {
   places: AtlasPlaceSummary[];
@@ -59,8 +66,7 @@ export function placeLabel(
   language: string,
   say: Say
 ): string {
-  if (place.kind === 'continent')
-    return say(place.continent === 'EU' ? 'europe' : 'unitedStates');
+  if (place.kind === 'continent') return say(CONTINENT_KEYS[place.continent]);
   if (place.kind !== 'country' || !place.iso) return place.name;
   if (!regionNames.has(language)) {
     try {

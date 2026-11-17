@@ -57,20 +57,27 @@ def natural_earth(name, cache):
 
 
 def load_regions(cache):
-    """Every country (EU grid) and lower-48 state (US grid), with a URL id and its ISO code."""
+    """Every country (EU grid), lower-48 state (US grid) and, on the ANZ grid, New Zealand and
+    Australia's states and territories, with a URL id and its ISO code. The ANZ grid's box also
+    holds Pacific islands the forecast does not cover; Australia itself is its states, as the
+    United States is (a grid's places may not overlap), and both are a continent."""
     regions = []
     for f in natural_earth("ne_50m_admin_0_countries", cache):
         p = f["properties"]
-        regions.append({"name": p["NAME_EN"], "kind": "country", "iso": p["ISO_A2_EH"], "continent": "EU",
-                        "geom": shape(f["geometry"])})
+        regions.append({"name": p["NAME_EN"], "kind": "country", "iso": p["ISO_A2_EH"],
+                        "continent": "ANZ" if p["ISO_A2_EH"] == "NZ" else "EU", "geom": shape(f["geometry"])})
     for f in natural_earth("ne_50m_admin_1_states_provinces", cache):
         p = f["properties"]
         if p["adm0_a3"] == "USA" and p["iso_3166_2"] not in LOWER_48_OUT:
             regions.append({"name": p["name"], "kind": "state", "iso": p["iso_3166_2"], "continent": "US",
                             "geom": shape(f["geometry"])})
+        elif p["adm0_a3"] == "AUS":
+            regions.append({"name": p["name"], "kind": "state", "iso": p["iso_3166_2"], "continent": "ANZ",
+                            "geom": shape(f["geometry"])})
     taken = set()
     for r in regions:
-        r["id"] = slug(r["name"]) + ("-us" if r["kind"] == "state" and slug(r["name"]) in taken else "")
+        clash = r["kind"] == "state" and slug(r["name"]) in taken
+        r["id"] = slug(r["name"]) + (f"-{r['continent'].lower()}" if clash else "")
         taken.add(r["id"])
     return regions
 
