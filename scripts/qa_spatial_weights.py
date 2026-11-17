@@ -38,7 +38,7 @@ from qa_weather_skill import LAG_DAYS  # noqa: E402
 K, WINDOW_DAYS, MIN_CASES = 10, 3, 30
 PARTS = ["weather", "altitude", "ph", "water", "range", "season"]
 SCRIPTS = {"NE": "EU/North_Europe/NE_Scoring.py", "SE": "EU/South_Europe/SE_Scoring.py",
-           "USE": "US/USE/USE_Scoring.py", "USW": "US/USW/USW_Scoring.py"}
+           "USE": "US/USE/USE_Scoring.py", "USW": "US/USW/USW_Scoring.py", "ANZ": "ANZ/ANZ_Scoring.py"}
 
 
 def region_config(region):

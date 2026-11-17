@@ -52,3 +52,24 @@ def test_place_keeps_todays_mushrooms_and_drops_thin_species(tmp_path):
     assert "US" not in card["continents"]
     assert card["since"] == "2026-10-05" and card["until"] == "2026-10-20"
     assert build(season_file(tmp_path), tmp_path)["place"] == card
+
+
+def test_unseen_finds_leave_out_what_the_forecast_learned_from_and_thin_places_stay_off(tmp_path):
+    (tmp_path / "metadata.json").write_text(json.dumps({"start": "2026-05-24", "regions": ["NE"]}))
+
+    def rows(species, day, where, n=MIN_FINDS):
+        return [{"region": "NE", "species": species, "kingdom": "Fungi", "source": "today", "composite": False,
+                 "date": day, "where_absent": where}] * n
+
+    found = rows("mushroom", "2026-10-20", 0.7) + rows("mushroom", "2026-09-01", 0.9)
+    found += rows("bay_bolete", "2026-10-25", 0.1)          # fitted on 24 Oct: nothing of it is unseen
+    pd.DataFrame(found).to_csv(tmp_path / "finds_NE.csv", index=False)
+    places = tmp_path / "places.json"
+    places.write_text(json.dumps({"places": [{"id": "germany", "finds": 150, "where": 0.71},
+                                             {"id": "ireland", "finds": 48, "where": 0.81}]}))
+
+    card = place_card(tmp_path, places)
+
+    assert card["unseen"] == {"since": "2026-10-16", "finds": MIN_FINDS, "place": 0.7}
+    assert card["places"] == {"germany": {"finds": 150, "place": 0.71}}
+    assert "places" not in place_card(tmp_path)

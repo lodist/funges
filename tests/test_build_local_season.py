@@ -95,3 +95,21 @@ def test_few_records_lean_on_the_prior_many_on_their_own():
 def test_the_season_factor_matches_the_app_s():
     # Peak: no tilt, gate open; a tenth of the peak: gate just fully open; 2%: closed.
     assert np.allclose(ls.season_factor([1.0, 0.1, 0.02]), [1.0, 0.64, 0.0])
+
+
+def test_the_south_s_summer_is_december_to_february(monkeypatch):
+    import era5_normals
+    lat, lon = np.arange(-9.0, -50.0, -1.0), np.arange(113.0, 181.0, 1.0)
+    t = np.full((12, len(lat), len(lon)), 15.0)
+    t[[11, 0, 1]], t[[5, 6, 7]] = 25.0, 5.0
+    rain = np.full_like(t, 0.5)
+    rain[[11, 0, 1]] = 1.0
+    monkeypatch.setattr(era5_normals, "load", lambda region: {"lat": lat, "lon": lon, "tmean": t, "rain": rain})
+    summer, winter, wet = (np.nanmedian(c) for c in ls.climate_coords("ANZ"))
+    assert np.isclose(ls.CLIMATE_LOW[0] + summer * ls.CLIMATE_STEP[0], 25.0)
+    assert np.isclose(ls.CLIMATE_LOW[1] + winter * ls.CLIMATE_STEP[1], 5.0)
+    assert np.isclose(ls.CLIMATE_LOW[2] + wet * ls.CLIMATE_STEP[2], 3.0 / 7.5)   # Dec-Feb's share of the rain
+
+
+def test_australia_and_new_zealand_is_one_region():
+    assert set(np.unique(ls.cell_regions("ANZ"))) == {"ANZ"}

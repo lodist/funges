@@ -65,6 +65,7 @@ SPECIES = {
 GBIF = "https://api.gbif.org/v1"
 FUNGI = set(get_empirical_taxon_map())
 ACTIVE_CURVE_THRESHOLD = 0.8
+FULL_UP_TO = 30_000     # records per species and region read in full (100 pages)
 TAXON_KEY_OVERRIDES = {
     "morel": 2594601,
     "wild-mint": 2927173,   # the genus Mentha, as its range prior
@@ -72,7 +73,7 @@ TAXON_KEY_OVERRIDES = {
 
 
 def gbif_get(session: requests.Session, path: str, params: dict) -> dict:
-    url = f"{GBIF}/{path}?{urlencode(params)}"
+    url = f"{GBIF}/{path}?{urlencode(params, doseq=True)}"   # a list repeats the parameter (taxonKey)
     for attempt in range(6):
         response = session.get(url, timeout=60)
         if response.status_code == 429 or response.status_code >= 500:
@@ -167,7 +168,8 @@ def fetch_occurrences(
                 f"{west} {north},{west} {south}))"
             )
             base = {
-                "taxon_key": match["taxon_key"],
+                # Every GBIF name the app counts as the species (US golden chanterelles are 20 of them).
+                "taxonKey": match.get("taxon_keys") or match["taxon_key"],
                 "eventDate": f"{start},{end}",
                 "geometry": geometry,
                 "hasCoordinate": "true",
@@ -176,7 +178,9 @@ def fetch_occurrences(
             }
             total = int(gbif_get(session, "occurrence/search", {**base, "limit": 0})["count"])
             searchable = min(total, 100_000)
-            if searchable <= 1_500:
+            # Offset samples follow GBIF's dataset order, so they are skewed by place: read every
+            # record up to FULL_UP_TO (a season of a mushroom), sample only beyond.
+            if searchable <= FULL_UP_TO:
                 offsets = list(range(0, searchable, 300))
             else:
                 offsets = sorted(set(np.linspace(0, searchable - 300, 5, dtype=int).tolist()))

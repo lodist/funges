@@ -34,7 +34,8 @@ OUT = ROOT / "public" / "season-atlas"
 # the band's deep green lit up to mint, the same in both themes. Not the scores' cream-to-burgundy
 # ramp, and no hue of its own.
 RAMP = ["#00280b", "#005e25", "#00ac4e", "#47c86e", "#93e4a4", "#ccf4d3", "#e8fbeb"]
-CONTINENTS = {"EU": ("europe", "Europe"), "US": ("united-states", "United States")}
+CONTINENTS = {"EU": ("europe", "Europe"), "US": ("united-states", "United States"),
+              "ANZ": ("australia-and-new-zealand", "Australia and New Zealand")}
 # URL slugs where the display name is not what people search ("Black Trumpet (Horn of Plenty)") or
 # once was ("Morchella"); a slug is a URL, so changing one later breaks links.
 SLUG_OVERRIDES = {"morel": "morel", "black_chant": "black-trumpet"}

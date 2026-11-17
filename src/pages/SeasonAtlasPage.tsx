@@ -4,6 +4,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import SEO from '@/components/SEO';
 import { DataTabs } from '@/components/DataTabs';
+import { PlaceScorecardLine } from '@/components/ForecastScorecard';
 import { Button } from '@/components/ui/button';
 import {
   Select,
@@ -306,7 +307,18 @@ export default function SeasonAtlasPage() {
       id: 'countries',
       items: byName(places.filter(p => p.kind === 'country')),
     },
-    { id: 'states', items: byName(places.filter(p => p.kind === 'state')) },
+    {
+      id: 'states',
+      items: byName(
+        places.filter(p => p.kind === 'state' && p.continent === 'US')
+      ),
+    },
+    {
+      id: 'auStates',
+      items: byName(
+        places.filter(p => p.kind === 'state' && p.continent === 'ANZ')
+      ),
+    },
   ];
   const speciesOptions = (summary?.species ?? [])
     .map(key => ({ key, label: speciesName(key) }))
@@ -536,6 +548,7 @@ export default function SeasonAtlasPage() {
                     {t('data.atlas.note', { species: sName })}{' '}
                     {recordsSentence(curve.records, language, say)}
                   </p>
+                  <PlaceScorecardLine placeId={placeId} placeName={pName} />
                   {speciesKey && place.data ? (
                     <Button asChild variant='outline' className='self-start'>
                       {/* Opens the map on this place, not where it was left. */}
