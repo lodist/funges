@@ -5,41 +5,25 @@
     "until": "2026-10-31",
     "spots": 16219,
     "all": {
-      "finds": 33682,
-      "auc": 0.918
+      "finds": 33573,
+      "auc": 0.928
     },
     "species": {
-      "bay_bolete": {
-        "finds": 135,
-        "auc": 0.909
-      },
       "black_chant": {
         "finds": 361,
-        "auc": 0.883
+        "auc": 0.922
       },
       "bronze_bolete": {
         "finds": 72,
-        "auc": 0.684
+        "auc": 0.734
       },
       "chant": {
         "finds": 2674,
         "auc": 0.834
       },
-      "eastern_king": {
-        "finds": 179,
-        "auc": 0.921
-      },
-      "giant_puffball": {
-        "finds": 1559,
-        "auc": 0.995
-      },
-      "golden_cap": {
-        "finds": 109,
-        "auc": 0.455
-      },
       "hedgehog_mushroom": {
         "finds": 952,
-        "auc": 0.955
+        "auc": 0.956
       },
       "liberty_cap": {
         "finds": 258,
@@ -47,51 +31,63 @@
       },
       "matsutake": {
         "finds": 201,
-        "auc": 0.846
-      },
-      "morel": {
-        "finds": 96,
-        "auc": 0.952
+        "auc": 0.955
       },
       "mushroom": {
         "finds": 4634,
-        "auc": 0.912
-      },
-      "oyster-mushroom": {
-        "finds": 3711,
-        "auc": 0.852
+        "auc": 0.917
       },
       "parasol": {
         "finds": 2601,
-        "auc": 0.877
+        "auc": 0.912
       },
       "pine_bolete": {
         "finds": 387,
-        "auc": 0.856
-      },
-      "rocky_king": {
-        "finds": 139,
-        "auc": 0.573
+        "auc": 0.901
       },
       "saffron_milk_cap": {
         "finds": 1614,
-        "auc": 0.982
+        "auc": 0.983
       },
       "shaggy_mane": {
         "finds": 12339,
         "auc": 0.959
       },
-      "smooth_chant": {
-        "finds": 92,
-        "auc": 0.911
-      },
       "summer_bolete": {
         "finds": 758,
-        "auc": 0.876
+        "auc": 0.881
       },
       "winter_chant": {
         "finds": 811,
-        "auc": 0.937
+        "auc": 0.987
+      },
+      "bay_bolete": {
+        "finds": 135,
+        "auc": 0.911
+      },
+      "eastern_king": {
+        "finds": 179,
+        "auc": 0.941
+      },
+      "giant_puffball": {
+        "finds": 1559,
+        "auc": 0.995
+      },
+      "oyster-mushroom": {
+        "finds": 3711,
+        "auc": 0.852
+      },
+      "smooth_chant": {
+        "finds": 92,
+        "auc": 0.933
+      },
+      "morel": {
+        "finds": 96,
+        "auc": 0.966
+      },
+      "rocky_king": {
+        "finds": 139,
+        "auc": 0.893
       }
     }
   },

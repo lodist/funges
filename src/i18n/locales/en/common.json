@@ -341,7 +341,7 @@
       "how": {
         "replay": "We run the current forecast on each day's weather and compare it with mushroom finds people reported to GBIF, the global biodiversity database.",
         "late": "Finds reach GBIF one to three weeks late, so the latest days fill in later. Updated {{updated}}.",
-        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice.",
+        "season": "The season: the weeks each mushroom was in and out of season in 2026 come from its reported finds, counted against all mushroom records so busy weekends don't count twice. Each mushroom is judged only at the spots where it can grow, and those whose seasons we are still reworking are left out.",
         "spots": "Each find is compared with spots where people found other mushrooms but none of the same kind within 10 km, so pointing at woods people already visit earns nothing.",
         "unseen": "On the {{finds}} finds from {{since}} on, after the last finds the forecast learned from, it rated the find's spot higher {{times}} times in 10.",
         "everything": "Every mushroom with at least 30 finds is listed, whether it did well or not. In the season atlas, every country or US state with at least 100 finds shows its own figure. Plants are not included."

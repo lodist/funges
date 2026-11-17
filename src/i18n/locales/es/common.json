@@ -336,7 +336,7 @@
       "how": {
         "replay": "Aplicamos la previsión actual al tiempo de cada día y la comparamos con los hallazgos de setas que la gente registra en GBIF, la base de datos mundial de biodiversidad.",
         "late": "Los hallazgos llegan a GBIF con una a tres semanas de retraso, así que los últimos días se completan más tarde. Actualizado el {{updated}}.",
-        "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble.",
+        "season": "La temporada: las semanas en que cada seta estuvo en temporada y fuera de ella en 2026 salen de sus hallazgos registrados, contados frente a todos los registros de setas para que los fines de semana con mucha gente no cuenten doble. Cada seta se valora solo en los lugares donde puede crecer, y no aparecen las setas cuya temporada aún estamos revisando.",
         "spots": "Cada hallazgo se compara con lugares donde la gente encontró otras setas pero ninguna de la misma especie a menos de 10 km, así que señalar los bosques que la gente ya visita no suma nada.",
         "unseen": "En los {{finds}} hallazgos desde el {{since}}, posteriores a los últimos de los que aprendió la previsión, valoró mejor el lugar del hallazgo {{times}} de cada 10 veces.",
         "everything": "Aparecen todas las setas con al menos 30 hallazgos, les haya ido bien o no. En el atlas de temporadas, cada país o estado de EE. UU. con al menos 100 hallazgos muestra su propio resultado. Las plantas no están incluidas."
