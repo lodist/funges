@@ -265,10 +265,15 @@ export default function LandingPage() {
 
 // ponytail: the continent comes from the time zone, not a location prompt;
 // a visitor abroad sees their home continent until they open the map.
-const AMERICAS = Intl.DateTimeFormat()
-  .resolvedOptions()
-  .timeZone.startsWith('America/');
-const REGIONS: ScoreRegionId[] = AMERICAS ? ['USE', 'USW'] : ['NE', 'SE'];
+const TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const AMERICAS = TIME_ZONE.startsWith('America/');
+/** Australia and New Zealand (the Chatham Islands keep their own clock). */
+const ANZ = /^(Australia\/|Pacific\/(Auckland|Chatham)$)/.test(TIME_ZONE);
+const REGIONS: ScoreRegionId[] = AMERICAS
+  ? ['USE', 'USW']
+  : ANZ
+    ? ['ANZ']
+    : ['NE', 'SE'];
 
 /** What is up tonight, from the nightly forecast: the mushroom strong in the
  *  most areas, or, when no mushroom is (mid-winter), whatever is. Until the
@@ -314,7 +319,13 @@ export function LiveLine() {
         {t('home.live.line', {
           species: name,
           areas: top.areas.toLocaleString(i18n.language),
-          area: t(AMERICAS ? 'home.live.northAmerica' : 'home.live.europe'),
+          area: t(
+            AMERICAS
+              ? 'home.live.northAmerica'
+              : ANZ
+                ? 'home.live.australiaNewZealand'
+                : 'home.live.europe'
+          ),
         })}
       </span>
     </p>
@@ -322,12 +333,13 @@ export function LiveLine() {
 }
 
 /** Why to believe the forecast: how today's model did on the continent's
- *  mushroom finds this season, the Data page holding the rest. */
+ *  mushroom finds this season, the Data page holding the rest. Australia and
+ *  New Zealand have no test yet, so their visitors get no line. */
 function ProofLine() {
   const { t, i18n } = useTranslation('common');
   const card = useScorecard();
   const place = card?.place;
-  const tally = place?.continents[AMERICAS ? 'US' : 'EU'];
+  const tally = ANZ ? undefined : place?.continents[AMERICAS ? 'US' : 'EU'];
   if (!place || !tally) return null;
 
   return (
