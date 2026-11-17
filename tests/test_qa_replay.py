@@ -6,7 +6,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from qa_replay import evaluate, fill_gaps, on_day, percentiles, summarise, with_composites  # noqa: E402
+from qa_replay import PLACEBO, evaluate, fill_gaps, on_day, percentiles, summarise, with_composites  # noqa: E402
 
 
 def test_percentiles_weigh_background_and_count_ties_half():
@@ -65,6 +65,23 @@ def test_a_step_in_the_stored_scores_is_not_timing():
     stored.loc[stored.Date >= days[20], ["a_score", "b_score"]] -= 1.0    # the code changed on day 20
     rows = evaluate("NE", finds, {"today": today, "stored": stored}, days).set_index(["species", "source"])
     assert rows.timing[("a", "stored")] == rows.timing[("a", "today@stored")] == 0.5
+
+
+def test_brackets_give_what_outings_alone_earn_and_are_nobodys_background():
+    days = pd.date_range("2026-09-01", periods=50)
+    finds = pd.DataFrame({"species_id": ["a", PLACEBO, "b"], "date": [str(days[25].date())] * 3,
+                          "loc": ["p0", "p1", "p2"], "kingdom": ["Fungi"] * 3})
+    today = pd.DataFrame({"Location_Id": np.repeat(["p0", "p1", "p2"], 50), "Date": np.tile(days, 3),
+                          "a_score": 1.0, "b_score": 1.0})
+    wet = today.Date == days[25]                     # the day everyone went out, the bracket finder too
+    today.loc[wet, "a_score"] = 5.0
+    today.loc[wet & (today.Location_Id == "p2"), "a_score"] = 9.0
+    rows = evaluate("NE", finds, {"today": today, "stored": today.iloc[:0]}, days)
+    a = rows[(rows.species == "a") & (rows.source == "today")].iloc[0]
+    assert a.timing == 1.0 and a.placebo == 1.0 and a.placebo_n == 1
+    assert a["where"] == 0.0                         # against b's spot only: the bracket's (a tie) is left out
+    assert PLACEBO not in set(rows.species)
+    assert summarise(rows, "stored").set_index("species").net["a"] == 0.0
 
 
 def test_fill_gaps_interpolates_short_holes_and_leaves_long_ones():

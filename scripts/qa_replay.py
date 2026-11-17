@@ -33,6 +33,7 @@ from __future__ import annotations
 
 import argparse
 import functools
+import hashlib
 import json
 import runpy
 import subprocess
@@ -55,7 +56,8 @@ import requests  # noqa: E402
 from scipy.spatial import cKDTree  # noqa: E402
 
 import qa_gbif_scores as gbif  # noqa: E402
-from species_registry import get_composites, get_species_metadata  # noqa: E402
+from species_registry import (get_composites, get_empirical_taxon_map, get_range_taxon_map,  # noqa: E402
+                              get_species_metadata)
 
 CONFIGS = {
     "NE": "backend/EU/North_Europe/NE_Scoring.py",
@@ -90,6 +92,9 @@ ABSENT_KM = 10.0         # where_absent: background spots this close to a find o
 CALENDAR_DRAWS = 20      # calendar days per find, from the species' CALENDAR_NEAREST finds
 CALENDAR_NEAREST = 50    # within CALENDAR_KM in other years
 CALENDAR_KM = 200.0
+# Perennial brackets (qa_weather_skill.py's placebo): on the tree all year, logged on the same walks. A
+# mushroom's timing read on their find days is what outings alone earn (people go out after rain).
+PLACEBO, PLACEBO_KEYS = "placebo", [8068867, 2542395, 2549834, 10825597]
 
 
 def on_day(params, day):
@@ -216,30 +221,52 @@ def places(masters, region, day):
     return table.to_pandas().drop_duplicates("Location_Id").assign(region=region).reset_index(drop=True)
 
 
-def gbif_finds(cache, start, end):
-    """GBIF taxa (with their kingdom) and sampled finds for the window, cached."""
+def gbif_taxa(cache, session=None):
+    """Each species' GBIF taxon (with its kingdom), cached, and as `taxon_keys` every GBIF name the
+    app counts as the species (the registry's), as its season curves and range priors do."""
     cache.mkdir(parents=True, exist_ok=True)
+    path = cache / "taxa.json"
+    taxa = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    names = {**get_range_taxon_map(), **get_empirical_taxon_map()}
+    added = [s for s in gbif.SPECIES if s not in taxa]   # species added since the cache was written
+    for s in added:
+        # The registry's first name where it has one (GBIF matches some, e.g. Pigface, only as a genus).
+        key, name = (names.get(s) or [None])[0], gbif.SPECIES[s][1]
+        session = session or requests.Session()
+        found = gbif.gbif_get(session, f"species/{key}", {}) if key else gbif.gbif_get(session, "species/match", {"name": name})
+        taxa[s] = {"query_name": name, "taxon_key": key or found.get("usageKey"), "matched_name": found.get("scientificName"),
+                   "rank": found.get("rank"), "kingdom": found.get("kingdom")}
+    if added:
+        path.write_text(json.dumps(taxa, indent=1), encoding="utf-8")
+    return {s: {**t, "taxon_keys": sorted(names.get(s) or [t["taxon_key"]])} for s, t in taxa.items()}
+
+
+def gbif_finds(cache, start, end, species=()):
+    """GBIF taxa and the window's finds of `species` (default all), cached by window and names."""
     session = requests.Session()
     session.headers["User-Agent"] = "fung.es replay QA"
-    taxa_path, finds_path = cache / "taxa.json", cache / f"finds_{start}_{end}.json"
-    if not taxa_path.exists():
-        taxa_path.write_text(json.dumps(gbif.match_taxa(session), indent=1), encoding="utf-8")
-    taxa = json.loads(taxa_path.read_text(encoding="utf-8"))
+    taxa = gbif_taxa(cache, session)
+    wanted = {s: t for s, t in taxa.items() if not species or s in species}
+    if any(t.get("kingdom") == "Fungi" for t in wanted.values()):
+        taxa = {**taxa, PLACEBO: {"taxon_key": PLACEBO_KEYS[0], "taxon_keys": PLACEBO_KEYS, "kingdom": "Fungi"}}
+        wanted[PLACEBO] = taxa[PLACEBO]
+    names = json.dumps({s: t["taxon_keys"] for s, t in sorted(wanted.items())})
+    finds_path = cache / f"finds_{start}_{end}_{hashlib.sha1(names.encode()).hexdigest()[:8]}.json"
     if not finds_path.exists():
-        rows, _ = gbif.fetch_occurrences(session, taxa, start, end)
+        rows, _ = gbif.fetch_occurrences(session, wanted, start, end)
         finds_path.write_text(json.dumps(rows), encoding="utf-8")
     return pd.DataFrame(json.loads(finds_path.read_text(encoding="utf-8"))), taxa
 
 
-def assign(finds, grid, taxa):
+def assign(finds, grid, taxa, cap=FINDS_CAP):
     """Each find to its nearest place (any region: the GBIF boxes are not the regions' lists), one
-    per species, place and day, at most FINDS_CAP per species and region."""
+    per species, place and day, at most `cap` per species and region."""
     tree = cKDTree(gbif.unit_xyz(grid.Latitude.to_numpy(), grid.Longitude.to_numpy()))
     distance, index = tree.query(gbif.unit_xyz(finds.lat.to_numpy(), finds.lon.to_numpy()))
     finds = finds.assign(km=gbif.chord_to_km(distance), region=grid.region.to_numpy()[index],
                          loc=grid.Location_Id.to_numpy()[index])
     finds = finds[finds.km <= MAX_KM].drop_duplicates(["species_id", "date", "loc"])
-    finds = finds.sample(frac=1, random_state=0).groupby(["species_id", "region"]).head(FINDS_CAP)
+    finds = finds.sample(frac=1, random_state=0).groupby(["species_id", "region"]).head(cap)
     return finds.assign(kingdom=finds.species_id.map(lambda s: taxa[s].get("kingdom"))).reset_index(drop=True)
 
 
@@ -337,6 +364,7 @@ def evaluate(region, finds, tables, days, past=None):
     members = get_composites(region) if composite.any() else {}
     calendar = (calendar_draws(finds, past, days, members) if located and past is not None
                 else np.full((len(finds), CALENDAR_DRAWS), -1))
+    brackets, none = np.flatnonzero(finds.species_id.to_numpy() == PLACEBO), np.array([], int)
     out = []
     for species, mine in finds.groupby("species_id").groups.items():
         column = f"{species}_score"
@@ -345,7 +373,8 @@ def evaluate(region, finds, tables, days, past=None):
         today, stored = matrix("today", column), matrix("stored", column)
         kingdom = finds.kingdom[mine[0]]
         own = {species, *members.get(species, ())}
-        others = finds.loc[(finds.kingdom == kingdom) & ~composite & ~finds.species_id.isin(own), "loc"].value_counts()
+        others = finds.loc[(finds.kingdom == kingdom) & ~composite & ~finds.species_id.isin([*own, PLACEBO]),
+                           "loc"].value_counts()
         index = finds.index.get_indexer(mine)
         r, c = rows[index], cols[index]
         # In a broad flush the species also stands at many of the other species' spots, and those
@@ -365,13 +394,20 @@ def evaluate(region, finds, tables, days, past=None):
             where, timing, season = percentiles(values, r, c, place.get_indexer(others.index), others.to_numpy())
             where_absent = percentiles(values, r, c, place.get_indexer(absent.index), absent.to_numpy())[0]
             timing_calendar, season_calendar = calendar_shares(values, r, calendar[index])
+            placebo = percentiles(values, rows[brackets], cols[brackets], none, none)[1]
+            placebo = placebo[np.isfinite(placebo)]
             out.append(pd.DataFrame({
                 "region": region, "species": species, "kingdom": kingdom, "composite": bool(composite[index[0]]),
                 "source": source,
                 "date": finds.date.to_numpy()[index], "loc": finds["loc"].to_numpy()[index],
+                **({"lat": finds.lat.to_numpy()[index], "lon": finds.lon.to_numpy()[index]} if located else {}),
                 "score": values[r, c], "where": where, "where_absent": where_absent,
                 "timing": timing, "season": season,
-                "timing_calendar": timing_calendar, "season_calendar": season_calendar}))
+                "timing_calendar": timing_calendar, "season_calendar": season_calendar,
+                # the species' timing on the brackets' find days (mean, its standard error, how many)
+                "placebo": placebo.mean() if len(placebo) else np.nan,
+                "placebo_se": placebo.std(ddof=1) / np.sqrt(len(placebo)) if len(placebo) > 1 else np.nan,
+                "placebo_n": len(placebo)}))
     return pd.concat(out, ignore_index=True)
 
 
@@ -382,7 +418,7 @@ def summarise(results, reference):
     key = ["region", "species", "date", "loc"]
     results = results.assign(composite=results.get("composite", False)).fillna({"composite": False})
     today = results[(results.source == "today") & np.isfinite(results.score)]
-    today = today.assign(beyond=today.timing - today.timing_calendar)
+    today = today.assign(beyond=today.timing - today.timing_calendar, net=today.timing - today.placebo)
     mine = results[results.source == ("today@stored" if reference == "stored" else "today")]
     paired = mine.merge(results[results.source == reference], on=key, suffixes=("", "_ref"))
     paired = paired[np.isfinite(paired.score) & np.isfinite(paired.score_ref)]
@@ -392,9 +428,12 @@ def summarise(results, reference):
         # A composite's finds are its members' again: they stay out of the kingdom's pooled figure.
         mine = today[~today.composite.astype(bool)] if "kingdom" in group else today
         pairs = paired[~paired.composite.astype(bool)] if "kingdom" in group else paired
-        means = mine.groupby(group)[["where", "timing", "season", "timing_calendar", "season_calendar", "beyond"]].mean()
+        means = mine.groupby(group)[["where", "timing", "season", "timing_calendar", "season_calendar", "beyond",
+                                     "net"]].mean()
         means = means.join(mine.groupby(group).size().rename("n"))
         means["beyond_ci"] = 1.96 * mine.groupby(group).beyond.sem()
+        # per species-region: both standard errors (the placebo's is one value per species and region)
+        means["net_ci"] = 1.96 * np.sqrt(mine.groupby(group).timing.sem() ** 2 + mine.groupby(group).placebo_se.mean() ** 2)
         deltas = pairs.groupby(group)[["d_where", "d_timing"]].mean().join(pairs.groupby(group).size().rename("paired"))
         out.append(means.join(deltas).reset_index())
     summary = pd.concat(out, ignore_index=True)
@@ -425,7 +464,9 @@ def write_report(path, summary, meta):
         "**cal.**: the same on calendar days, days the species is found near the place in other years (a "
         "shuffled-date control): what the season alone earns. **beyond cal.**: timing minus its calendar, "
         "the weather's own share, with a 95% interval over finds. Fungi only (the history is the fruiting "
-        "fits' finds).",
+        "fits' finds). **net of brackets**: timing minus the same score's timing on the find days of perennial "
+        "brackets (on the tree all year, logged on the same walks), i.e. what people going out after rain "
+        "earns alone; 95% interval from both.",
         "",
         "Caveats: GBIF plant records include flowering and fruiting plants, not only the stage people "
         f"forage. The years of finds the models learned from: fruiting fits {meta['trained'].get('fruiting_fit')}, "
@@ -438,13 +479,14 @@ def write_report(path, summary, meta):
         pooled = mine.species.str.startswith("all ")
         rows = pd.concat([mine[pooled], mine[~pooled & (mine.n >= MIN_FINDS)]])
         lines += [f"## {region} ({meta['seconds'].get(region, 0) // 60} min)", "",
-                  "| | finds | where | timing | cal. | beyond cal. | season | cal. | Δ where | Δ timing | paired |",
-                  "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
+                  "| | finds | where | timing | cal. | beyond cal. | net of brackets | season | cal. | Δ where | Δ timing | paired |",
+                  "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
         for r in rows.itertuples():
             label = f"**{r.species}**" if r.species.startswith("all ") else names.get(r.species, r.species)
             beyond = number(r.beyond, True) + ("" if pd.isna(r.beyond_ci) else f" ± {r.beyond_ci:.2f}")
+            net = number(r.net, True) + ("" if pd.isna(r.net_ci) or r.species.startswith("all ") else f" ± {r.net_ci:.2f}")
             lines.append(f"| {label} | {r.n} | {number(r.where)} | {number(r.timing)} | {number(r.timing_calendar)} | "
-                         f"{beyond} | {number(r.season)} | {number(r.season_calendar)} | "
+                         f"{beyond} | {net} | {number(r.season)} | {number(r.season_calendar)} | "
                          f"{number(r.d_where, True)} | {number(r.d_timing, True)} | {r.paired} |")
         lines.append("")
     path.write_text("\n".join(lines), encoding="utf-8")
@@ -459,6 +501,7 @@ def main():
     parser.add_argument("--without", default="", help=f"comma-separated parts of {', '.join(PARTS)}")
     parser.add_argument("--start", help="default: the masters' first day + the lag days")
     parser.add_argument("--end", help="default: yesterday")
+    parser.add_argument("--cap", type=int, default=FINDS_CAP, help="finds per species and region (bounds the places scored)")
     parser.add_argument("--masters", type=Path, default=ROOT.parent / "backups" / "masters")
     parser.add_argument("--cache", type=Path, default=ROOT.parent / "qa" / "gbif")
     parser.add_argument("--calendar", type=Path, default=ROOT.parent / "era5_training" / "finds_2016_2026.parquet",
@@ -490,10 +533,10 @@ def main():
     end = args.end or other.get("end") or (date.today() - timedelta(days=1)).isoformat()
     days = pd.date_range(start, end)
 
-    finds, taxa = gbif_finds(args.cache, start, end)
+    finds, taxa = gbif_finds(args.cache, start, end, species)
     finds = finds[finds.date.between(start, end)]
     grid = pd.concat([places(args.masters, r, days[-1]) for r in CONFIGS], ignore_index=True)
-    finds = with_composites(assign(finds, grid, taxa))
+    finds = with_composites(assign(finds, grid, taxa, args.cap))
     past = None
     if args.calendar.exists():
         past = pd.read_parquet(args.calendar, columns=["species", "Location_Id", "Date", "year"])
@@ -506,6 +549,7 @@ def main():
         started = time.time()
         mine = finds[finds.region == region].reset_index(drop=True)
         tables = score_region(region, mine, grid, args.masters, species, without, days)
+        tables["today"].to_parquet(out / f"scores_{region}.parquet")   # qa_season_auc.py reads them from here
         rows = evaluate(region, mine, tables, days, past)
         rows.to_csv(out / f"finds_{region}.csv", index=False)
         results.append(rows)

@@ -46,7 +46,7 @@ def card(rows: pd.DataFrame) -> dict | None:
 
 def season_card(path: Path) -> dict:
     report = json.loads(path.read_text(encoding="utf-8"))
-    singles = [r for r in report["rows"] if not r.get("composite")]
+    singles = [r for r in report["rows"] if not r.get("composite") and not r.get("left_out")]
     records = {}
     for row in singles:
         records[row["species"]] = records.get(row["species"], 0) + row["records"]
