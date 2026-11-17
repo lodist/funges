@@ -179,6 +179,7 @@
     "subtitle": "Erkunde die Daten hinter den Sammelempfehlungen.",
     "europe": "Europa",
     "unitedStates": "Vereinigte Staaten",
+    "oceania": "Ozeanien",
     "selectedZone": "Ausgewählt: {{zone}}. Erneut klicken, um alle anzuzeigen",
     "clickZone": "Alle Zonen in {{region}} werden angezeigt. Klicke auf eine, um zu filtern",
     "timeRange": "Zeitraum",
@@ -191,7 +192,8 @@
       "NE": "Nordeuropa",
       "SE": "Südeuropa",
       "USW": "USA West",
-      "USE": "USA Ost"
+      "USE": "USA Ost",
+      "ANZ": "Australien und Neuseeland"
     },
     "species": "Art",
     "zones": {
@@ -216,7 +218,16 @@
       "desert_sw": "Wüsten-Südwesten",
       "great_plains": "Grosse Ebenen",
       "pacific_nw": "Pazifischer Nordwesten",
-      "rockies": "Rocky Mountains"
+      "rockies": "Rocky Mountains",
+      "tasmania": "Tasmanien",
+      "south_australia": "Südaustralien",
+      "south_east_queensland": "Südost-Queensland",
+      "new_south_wales": "New South Wales",
+      "victoria": "Victoria",
+      "western_australia": "Westaustralien",
+      "north_queensland": "Nord-Queensland",
+      "south_island": "Südinsel",
+      "north_island": "Nordinsel"
     },
     "charts": {
       "rainfall": "Niederschlag (mm)",

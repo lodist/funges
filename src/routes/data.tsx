@@ -6,6 +6,6 @@ import * as z from 'zod/mini';
 export const Route = createFileRoute('/data')({
   component: DataPage,
   validateSearch: z.object({
-    region: z.optional(z.enum(['NE', 'SE', 'USE', 'USW'])),
+    region: z.optional(z.enum(['NE', 'SE', 'USE', 'USW', 'ANZ'])),
   }),
 });

@@ -184,6 +184,7 @@
     "subtitle": "Explore the data behind the foraging recommendations.",
     "europe": "Europe",
     "unitedStates": "United States",
+    "oceania": "Oceania",
     "selectedZone": "Selected: {{zone}}. Click again to show all",
     "clickZone": "Showing all zones in {{region}}. Click one to filter",
     "timeRange": "Time range",
@@ -196,7 +197,8 @@
       "NE": "North Europe",
       "SE": "South Europe",
       "USW": "US West",
-      "USE": "US East"
+      "USE": "US East",
+      "ANZ": "Australia and New Zealand"
     },
     "species": "Species",
     "zones": {
@@ -221,7 +223,16 @@
       "desert_sw": "Desert Southwest",
       "great_plains": "Great Plains",
       "pacific_nw": "Pacific Northwest",
-      "rockies": "Rockies"
+      "rockies": "Rockies",
+      "tasmania": "Tasmania",
+      "south_australia": "South Australia",
+      "south_east_queensland": "Southeast Queensland",
+      "new_south_wales": "New South Wales",
+      "victoria": "Victoria",
+      "western_australia": "Western Australia",
+      "north_queensland": "North Queensland",
+      "south_island": "South Island",
+      "north_island": "North Island"
     },
     "charts": {
       "rainfall": "Rainfall (mm)",

@@ -282,13 +282,10 @@ export function layerRegion(id: string): string | null {
 }
 
 // Resolves a clicked map layer id to the uppercase RegionId used by the Data Nerd
-// page/route (layerRegion produces lowercase codes; Data Nerd expects 'NE'/'SE'/'USE'/'USW').
-// The Data page has the regions the nightly score upload carries; ANZ is mapped but not there yet.
-const DATA_REGIONS: readonly string[] = ['NE', 'SE', 'USE', 'USW'];
-
+// page/route (layerRegion produces lowercase codes; Data Nerd expects 'NE', 'ANZ', ...).
+// Every mapped region has its Data page.
 export function resolveDataNerdRegion(layerId: string): RegionId | null {
-  const region = layerRegion(layerId)?.toUpperCase();
-  return region && DATA_REGIONS.includes(region) ? (region as RegionId) : null;
+  return (layerRegion(layerId)?.toUpperCase() as RegionId | undefined) ?? null;
 }
 
 function regionInView(r: string, bounds: LngLatBounds): boolean {

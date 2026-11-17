@@ -1,8 +1,9 @@
 """Aggregate regional weather parquet files into a compact JSON for the Data Nerd page.
 
-Reads the four R2 weather parquets (NE / SE / USE / USW), assigns each grid
-point to a visually-meaningful oval region (defined as axis-aligned ellipses),
-aggregates daily means per region, and writes public/data/data_nerd.json.
+Reads the R2 weather parquets (NE / SE / USE / USW / ANZ), assigns each grid
+point to a visually-meaningful oval region (ellipses, tilted where a coast runs
+diagonally), aggregates daily means per region, and writes
+public/data/data_nerd.json.
 
 Weather is first averaged into BIN_DEG cells so every patch of land counts once
 however densely its wilderness points are mapped, then summarised per zone and
@@ -39,6 +40,7 @@ REGION_URLS: dict[str, str] = {
     "SE": "https://data.fung.es/EU/SE/SE_weather_data.parquet",
     "USE": "https://data.fung.es/USA/USE/USE_weather_data.parquet",
     "USW": "https://data.fung.es/USA/USW/USW_weather_data.parquet",
+    "ANZ": "https://data.fung.es/ANZ/ANZ_weather_data.parquet",
 }
 
 REGION_LABELS: dict[str, str] = {
@@ -46,10 +48,13 @@ REGION_LABELS: dict[str, str] = {
     "SE": "South Europe",
     "USE": "US East",
     "USW": "US West",
+    "ANZ": "Australia and New Zealand",
 }
 
-# Visual oval regions: (cx_lon, cy_lat, rx_lon, ry_lat, label, hex_color)
-# These are purely for visualization and data selection — not ML zones.
+# Visual oval regions: (cx_lon, cy_lat, rx_lon, ry_lat, label, hex_color[, tilt])
+# These are purely for visualization and data selection — not ML zones. The
+# optional tilt turns the oval anticlockwise by that many degrees, for a coast
+# that runs diagonally (Queensland, New Zealand's islands).
 VISUAL_REGIONS: dict[str, dict[str, tuple]] = {
     "NE": {
         # Order matters: first match wins for overlapping ellipses
@@ -82,6 +87,20 @@ VISUAL_REGIONS: dict[str, dict[str, tuple]] = {
         "rockies":          (-112.0, 43.0,  8.0,  7.0, "Rockies",          "#dcd0fc"),
         "great_plains":     (-100.0, 39.0,  8.0,  7.0, "Great Plains",     "#fceabc"),
         "desert_sw":        (-111.0, 33.0,  7.0,  4.5, "Desert SW",        "#fcc8d8"),
+    },
+    "ANZ": {
+        # Order matters as above: Tasmania takes the Bass Strait islands, South
+        # Australia the Limestone Coast, South Island Nelson and Marlborough.
+        # The outback and tropical towns (Darwin, Alice Springs) are left out.
+        "tasmania":              (145.8, -41.5, 3.1, 2.4, "Tasmania",             "#dcd0fc"),
+        "south_australia":       (138.0, -35.4, 3.9, 2.3, "South Australia",      "#fcd8b4", -35),
+        "south_east_queensland": (151.5, -26.4, 3.2, 2.4, "Southeast Queensland", "#fcc0c0"),
+        "new_south_wales":       (150.8, -32.4, 5.0, 5.0, "New South Wales",      "#b8e8c4"),
+        "victoria":              (145.3, -37.1, 4.9, 2.4, "Victoria",             "#b8ccf0"),
+        "western_australia":     (117.6, -32.2, 6.6, 4.0, "Western Australia",    "#fce8a8"),
+        "north_queensland":      (147.6, -20.4, 5.6, 3.4, "North Queensland",     "#b4ece0", -56.6),
+        "south_island":          (170.4, -43.8, 5.0, 2.3, "South Island",         "#b4e0fc", 42),
+        "north_island":          (175.3, -38.2, 4.8, 3.3, "North Island",         "#fcd4c0", -60),
     },
 }
 
@@ -142,11 +161,15 @@ def _safe_float(value: object, decimals: int) -> float | None:
         return None
 
 
-def make_ellipse_geojson(cx: float, cy: float, rx: float, ry: float, n: int = 72) -> dict:
-    """Return a smooth GeoJSON Polygon for an axis-aligned ellipse."""
+def make_ellipse_geojson(
+    cx: float, cy: float, rx: float, ry: float, tilt: float = 0.0, n: int = 72
+) -> dict:
+    """Return a smooth GeoJSON Polygon for an ellipse turned ``tilt`` degrees."""
     t = np.linspace(0, 2 * np.pi, n, endpoint=False)
-    lons = (cx + rx * np.cos(t)).tolist()
-    lats = (cy + ry * np.sin(t)).tolist()
+    x, y = rx * np.cos(t), ry * np.sin(t)
+    a = math.radians(tilt)
+    lons = (cx + x * math.cos(a) - y * math.sin(a)).tolist()
+    lats = (cy + x * math.sin(a) + y * math.cos(a)).tolist()
     coords = [[lon, lat] for lon, lat in zip(lons, lats)]
     coords.append(coords[0])  # close ring
     return {"type": "Polygon", "coordinates": [coords]}
@@ -157,8 +180,13 @@ def assign_visual_regions(df: pd.DataFrame, regions: dict[str, tuple]) -> pd.Ser
     result = pd.Series(None, index=df.index, dtype="object")
     lon = df["Longitude"].to_numpy()
     lat = df["Latitude"].to_numpy()
-    for name, (cx, cy, rx, ry, _label, _color) in regions.items():
-        inside = ((lon - cx) / rx) ** 2 + ((lat - cy) / ry) ** 2 <= 1.0
+    for name, (cx, cy, rx, ry, _label, _color, *tilt) in regions.items():
+        a = math.radians(tilt[0]) if tilt else 0.0
+        # The point in the ellipse's own axes: turned back by its tilt.
+        dx, dy = lon - cx, lat - cy
+        u = dx * math.cos(a) + dy * math.sin(a)
+        v = dy * math.cos(a) - dx * math.sin(a)
+        inside = (u / rx) ** 2 + (v / ry) ** 2 <= 1.0
         unassigned = result.isna().to_numpy()
         result.iloc[inside & unassigned] = name
     return result
@@ -167,11 +195,11 @@ def assign_visual_regions(df: pd.DataFrame, regions: dict[str, tuple]) -> pd.Ser
 def build_zones_geo(regions: dict[str, tuple]) -> dict:
     """GeoJSON FeatureCollection of ellipse polygons, one per visual region."""
     features = []
-    for name, (cx, cy, rx, ry, label, color) in regions.items():
+    for name, (cx, cy, rx, ry, label, color, *tilt) in regions.items():
         features.append({
             "type": "Feature",
             "properties": {"zone": name, "label": label, "color": color},
-            "geometry": make_ellipse_geojson(cx, cy, rx, ry),
+            "geometry": make_ellipse_geojson(cx, cy, rx, ry, *tilt),
         })
     return {"type": "FeatureCollection", "features": features}
 
