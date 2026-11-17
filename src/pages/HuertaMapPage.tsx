@@ -275,10 +275,14 @@ async function drawContinent(
           : await read(layer === 'crop' ? crop : source),
     };
   };
-  // A 409 means the night run moved on since the index was read.
+  // A 409 means the night run moved on since the index was read: ask again.
+  // Anything else (offline, a 429) would only fail again at once.
   const parts = await Promise.all(
     MAP_REGIONS[continent].map(region =>
-      load(region, false).catch(() => load(region, true))
+      load(region, false).catch((error: unknown) => {
+        if (!String(error).includes(': 409')) throw error;
+        return load(region, true);
+      })
     )
   );
   const places = new Int16Array(parts.reduce((n, p) => n + p.places.length, 0));
