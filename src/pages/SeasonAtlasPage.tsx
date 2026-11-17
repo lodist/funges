@@ -329,8 +329,9 @@ export default function SeasonAtlasPage() {
       <SEO title={title} description={description} />
 
       <div>
-        {/* The page's heading is the place's season below; this names the section. */}
-        <p className='text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
+        {/* The page's heading is the place's season below; this names the section,
+            in the headings' face like the Data page's own h1. */}
+        <p className='font-display text-3xl leading-tight font-semibold text-balance text-foreground sm:text-4xl'>
           {t('sidebar:data', { defaultValue: 'Data' })}
         </p>
         <p className='mt-3 text-lg text-muted-foreground'>
