@@ -37,12 +37,16 @@ RAIN_HOUR_MM = 0.1
 GRID = 0.25                     # ERA5's grid step in degrees, as Copernicus delivers it
 # Copernicus queues two orders per account and dataset: from 22 Oct 2026 US West's order, the
 # night's fourth, was turned away, and on 24 Oct US East's too, with Europe's two still queued.
-# Each continent's two regions order one shared box, and only once (ordered()), so the night
-# places two orders and each region also downloads the other's. Australia/New Zealand orders a
-# third, its own: Europe's box stretched to New Zealand would be most of the world.
+# Each continent's two regions order one shared box, and only once (ordered()), and each region
+# also downloads the other's. Australia/New Zealand has a third box, its own: Europe's stretched
+# to New Zealand would be most of the world. So each night one of the three sits out, in turn
+# (TURNS), and the night still places two orders. An order asks for five days, so a box that
+# orders two nights in three still asks for each day at least three times.
 US_BOX = ((25.0, 49.5), (-124.75, -67.0))
 EU_BOX = ((27.5, 70.75), (-24.5, 44.75))
 ANZ_BOX = ((-47.5, -12.25), (114.5, 178.75))
+BOXES = {"US": US_BOX, "EU": EU_BOX, "ANZ": ANZ_BOX}
+TURNS = ("EU", "US", "ANZ")  # the box that sits out on a day, by its ordinal
 EMPTY = pd.DataFrame(columns=["Latitude", "Longitude", "Date", "TotalPrecipitation_mm",
                               "Rain Hours", "Rain Measured"])
 
@@ -55,9 +59,21 @@ def box(coords) -> tuple[tuple, tuple]:
     c = np.asarray(coords, float).reshape(-1, 2)
     lo, hi = np.floor(c.min(axis=0) / GRID) * GRID, np.ceil(c.max(axis=0) / GRID) * GRID
     # The continent's shared box, grown if a coord ever falls outside it.
-    (s, n), (w, e) = US_BOX if hi[1] < -50 else ANZ_BOX if hi[0] < 0 else EU_BOX
+    (s, n), (w, e) = BOXES[continent(coords)]
     lo, hi = np.minimum(lo, (s, w)), np.maximum(hi, (n, e))
     return (float(lo[0]), float(hi[0])), (float(lo[1]), float(hi[1]))
+
+
+def continent(coords) -> str:
+    """The shared box the coords order: the US west of 50° W, Australia/New Zealand south of the
+    equator, Europe otherwise."""
+    hi = np.ceil(np.asarray(coords, float).reshape(-1, 2).max(axis=0) / GRID) * GRID
+    return "US" if hi[1] < -50 else "ANZ" if hi[0] < 0 else "EU"
+
+
+def sits_out(name, today) -> bool:
+    """Whether the box places no order tonight: one of the three, in turn."""
+    return TURNS[today.toordinal() % len(TURNS)] == name
 
 
 def area(lat_range, lon_range) -> list:
@@ -240,10 +256,14 @@ def start(coords, today):
         if not key:
             raise RuntimeError("CDSAPI_KEY is not set")
         lat_range, lon_range = box(coords)
+        name = continent(coords)
     except Exception as error:
         print(f"[warn] ERA5 rain skipped: {error}", flush=True)
         return lambda: EMPTY.copy()
-    place_orders(key, lat_range, lon_range, today)
+    if sits_out(name, today):  # its finished orders are still downloaded below
+        print(f"ERA5: the {name} box places no order tonight (three boxes, two orders a night)", flush=True)
+    else:
+        place_orders(key, lat_range, lon_range, today)
 
     def rows():
         try:

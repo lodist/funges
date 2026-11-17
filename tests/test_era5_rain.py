@@ -1,5 +1,5 @@
 """ERA5 rain for past days: local-day totals at each fetched coord."""
-from datetime import date
+from datetime import date, timedelta
 
 import netCDF4
 import numpy as np
@@ -152,6 +152,33 @@ def test_the_box_is_ordered_once_a_night(monkeypatch):
     again = _copernicus(monkeypatch, {"successful": [yesterday]})
     er.place_orders("key", lat, lon, today, wait=0)
     assert len(again) == 1
+
+
+def test_three_boxes_take_turns():
+    # Copernicus queues two orders per dataset and three boxes order: each night one sits out.
+    nights = [date(2026, 11, 1) + timedelta(days=n) for n in range(30)]
+    for night in nights:
+        assert sum(er.sits_out(name, night) for name in er.BOXES) == 1
+    # A night asks for days 6-10 back, so each day is still asked for at least three times.
+    for name in er.BOXES:
+        on = {night for night in nights if not er.sits_out(name, night)}
+        day = nights[0] - timedelta(days=er.NEWEST_DAY)
+        while day + timedelta(days=er.OLDEST_DAY) <= nights[-1]:
+            asks = sum(day + timedelta(days=back) in on for back in range(er.NEWEST_DAY, er.OLDEST_DAY + 1))
+            assert asks >= 3, (name, day)
+            day += timedelta(days=1)
+
+
+def test_a_box_sitting_out_places_no_order(monkeypatch, capsys):
+    monkeypatch.setenv("CDSAPI_KEY", "x")
+    monkeypatch.setattr(er.time, "sleep", lambda seconds: None)
+    placed = _copernicus(monkeypatch, {})
+    off = next(night for night in (date(2026, 11, 1) + timedelta(days=n) for n in range(3))
+               if er.sits_out("ANZ", night))
+    er.start([(-37.8, 145.0)], off)
+    assert placed == [] and "places no order tonight" in capsys.readouterr().out
+    er.start([(-37.8, 145.0)], off + timedelta(days=1))
+    assert len(placed) == 1 and placed[0]["area"] == er.area(*er.ANZ_BOX)
 
 
 def test_an_order_turned_away_says_why(monkeypatch, capsys):
