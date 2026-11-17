@@ -43,11 +43,10 @@ import shapely  # noqa: E402
 from shapely.geometry import MultiPolygon, Polygon  # noqa: E402
 
 import qa_season_truth as truth  # noqa: E402
+from build_scorecard import LATER, UNSEEN  # noqa: E402
 import r2  # noqa: E402
 from qa_season_analysis import within_location_auc  # noqa: E402
 
-UNSEEN = "2026-10-16"      # fits trained on finds to 4 Oct, local seasons built 15 Oct
-LATER = {"bay_bolete", "liberty_cap", "golden_cap"}   # fitted or given a season on 24 Oct / 11 Nov: never unseen
 RECORDS, MIN_WEEKS = 60, 2
 IN_SEASON, OUT_OF_SEASON = 0.5, 0.10
 WORTH = 4.0                # Worth Foraging Now's MIN_SCORE: the level the app says "go" from

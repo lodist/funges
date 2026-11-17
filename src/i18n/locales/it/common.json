@@ -47,8 +47,9 @@
       "link": "Vedi i dati"
     },
     "proof": {
-      "line": "Verificata sulla stagione {{year}} in {{spots}} punti dove le persone hanno trovato funghi: la previsione ha valutato i giorni di stagione di ogni fungo meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>.",
-      "link": "Come verifichiamo"
+      "line": "Verificata su {{finds}} ritrovamenti di funghi dal {{since}}: <strong>{{times}} volte su 10</strong> la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi quel giorno.",
+      "link": "Come verifichiamo",
+      "season": "E nello stesso punto ha valutato i giorni di stagione meglio di quelli fuori stagione <strong>{{times}} volte su 10</strong>."
     },
     "metaTitle": "Funges: mappa per la raccolta e pianificatore dell'orto",
     "metaDescription": "Previsioni di raccolta per funghi e piante selvatiche e un pianificatore per il tuo orto. Cosa cresce intorno a te e quando."
@@ -332,7 +333,7 @@
     },
     "scorecard": {
       "title": "Come è andata la previsione",
-      "intro": "La previsione attuale dal {{since}} al {{until}}, in {{spots}} punti dove le persone hanno trovato funghi. Ogni barra mostra quante volte, nello stesso punto, ha valutato un giorno nella stagione del fungo meglio di un giorno fuori stagione.",
+      "intro": "La previsione attuale, verificata sui ritrovamenti di funghi segnalati dal {{since}} al {{until}}. Ogni barra mostra quante volte ha valutato il punto del ritrovamento meglio di un altro punto dove quel giorno sono stati trovati funghi.",
       "all": "Tutti i funghi",
       "finds_one": "{{finds}} ritrovamento",
       "finds_other": "{{finds}} ritrovamenti",
@@ -340,8 +341,13 @@
       "how": {
         "replay": "Applichiamo la previsione attuale al meteo di ogni giorno e la confrontiamo con i ritrovamenti di funghi che le persone segnalano su GBIF, la banca dati mondiale della biodiversità.",
         "late": "I ritrovamenti arrivano su GBIF con una-tre settimane di ritardo, quindi gli ultimi giorni si completano dopo. Aggiornato il {{updated}}.",
-        "season": "La stagione: le settimane in cui ogni fungo era in stagione o fuori nel 2026 vengono dai suoi ritrovamenti segnalati, contati rispetto a tutte le segnalazioni di funghi perché i weekend affollati non contino il doppio."
-      }
+        "season": "La stagione: le settimane in cui ogni fungo era in stagione o fuori nel 2026 vengono dai suoi ritrovamenti segnalati, contati rispetto a tutte le segnalazioni di funghi perché i weekend affollati non contino il doppio.",
+        "spots": "Ogni ritrovamento è confrontato con punti dove le persone hanno trovato altri funghi ma nessuno della stessa specie entro 10 km: indicare i boschi che la gente frequenta già non porta nulla.",
+        "unseen": "Sui {{finds}} ritrovamenti dal {{since}} in poi, successivi agli ultimi da cui la previsione ha imparato, ha valutato il punto del ritrovamento meglio {{times}} volte su 10.",
+        "everything": "Compare ogni fungo con almeno 30 ritrovamenti, che sia andato bene o no. Nell'atlante delle stagioni, ogni paese o stato USA con almeno 100 ritrovamenti mostra il proprio risultato. Le piante non sono incluse."
+      },
+      "seasonTitle": "La stagione",
+      "seasonIntro": "La previsione attuale dal {{since}} al {{until}}, in {{spots}} punti dove le persone hanno trovato funghi. Ogni barra mostra quante volte, nello stesso punto, ha valutato un giorno nella stagione del fungo meglio di un giorno fuori stagione."
     },
     "tabs": {
       "label": "Report dei dati",
@@ -381,7 +387,9 @@
       "notFound": "Non abbiamo ancora una mappa della stagione per questo luogo.",
       "openEurope": "Apri Europa",
       "fewRecords": "Pochi ritrovamenti registrati qui ({{formatted}} dal 2010), quindi la stagione si basa su luoghi dal clima simile.",
-      "rareRecords": "Quasi mai registrato qui, quindi la stagione mostrata è quella di luoghi dal clima simile."
+      "rareRecords": "Quasi mai registrato qui, quindi la stagione mostrata è quella di luoghi dal clima simile.",
+      "testedLabel": "Verificato · {{place}} · dal {{since}}",
+      "tested": "Su {{finds}} ritrovamenti di funghi qui, la previsione ha valutato il punto del ritrovamento meglio di altri punti con funghi quel giorno <strong>{{times}} volte su 10</strong>."
     },
     "seoTitle": "Dati delle previsioni e stagioni dei funghi",
     "seoDescription": "Il meteo dietro le previsioni di questa settimana, quanto hanno azzeccato i ritrovamenti reali e la stagione di ogni fungo, luogo per luogo."

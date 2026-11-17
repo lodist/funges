@@ -2,14 +2,26 @@ import { useEffect, useState } from 'react';
 
 /**
  * How today's forecast did on 2026 mushroom finds, built by
- * scripts/build_scorecard.py from scripts/qa_season_auc.py: per mushroom and
- * for all of them, how often at the same spot a day in its season scored
- * above a day out of season (`auc`), on how many finds and spots.
+ * scripts/build_scorecard.py: per mushroom and for all of them, how often at
+ * the same spot a day in its season scored above a day out of season (`auc`),
+ * on how many finds and spots; and how often it rated the find's spot higher
+ * that day than another spot where people found mushrooms (`place`).
  */
 export interface SeasonTally {
   finds: number;
   auc: number;
 }
+
+export interface Tally {
+  finds: number;
+  place: number;
+}
+
+export interface AreaScorecard extends Tally {
+  species: Record<string, Tally>;
+}
+
+export type Continent = 'EU' | 'US';
 
 export interface Scorecard {
   updated_at: string;
@@ -20,9 +32,21 @@ export interface Scorecard {
     all: SeasonTally;
     species: Record<string, SeasonTally>;
   } | null;
+  place?: {
+    since: string;
+    until: string;
+    /** Every region together. */
+    all: AreaScorecard | null;
+    continents: Partial<Record<Continent, AreaScorecard>>;
+    /** The finds after everything the forecast learned from. */
+    unseen: (Tally & { since: string }) | null;
+    /** Season atlas places (country or US state id) with enough finds. */
+    places?: Record<string, Tally>;
+  };
 }
 
-/** A coin toss: one of two days picked blindly is the right one half the time. */
+/** A coin toss: one of two days (or spots) picked blindly is the right one
+ *  half the time. */
 export const CHANCE = 0.5;
 
 const SCORECARD_URL = `${import.meta.env.BASE_URL}data/scorecard.json`;

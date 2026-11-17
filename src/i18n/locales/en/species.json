@@ -1096,9 +1096,10 @@
     "lookalikes": "Toxic look-alikes",
     "psychoactive": "Psychoactive · not food",
     "tellApart": "How to tell them apart",
-    "testedLabel": "Tested · {{year}} season",
-    "tested": "At the same spot, the forecast rated days in its season above days out of season <strong>{{times}} times in 10</strong>.",
-    "howWeCheck": "How we check"
+    "testedLabel": "Tested · since {{since}}",
+    "tested": "On {{finds}} reported finds, the forecast rated the find's spot higher than other mushroom spots <strong>{{times}} times in 10</strong>.",
+    "howWeCheck": "How we check",
+    "season": "In {{year}}, at the same spot, it rated days in its season above days out of season <strong>{{times}} times in 10</strong>."
   },
   "guide": {
     "identify": "How to recognise it",
