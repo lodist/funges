@@ -78,7 +78,8 @@
     "live": {
       "line": "Hoy merece la pena salir: {{species}}, en {{areas}} zonas de {{area}}",
       "europe": "Europa",
-      "northAmerica": "Norteamérica"
+      "northAmerica": "Norteamérica",
+      "australiaNewZealand": "Australia y Nueva Zelanda"
     },
     "journey": {
       "heading": "Encuéntralo, conócelo, cocínalo"
