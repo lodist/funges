@@ -14,6 +14,7 @@ import foliage
 import heather
 import r2
 import superbloom
+import wattle
 
 
 def _normals(t2m, prec=0.0):
@@ -291,7 +292,8 @@ def test_build_foliage_colours_the_woods_only(tmp_path):
 
 def test_every_spectacle_is_registered():
     names = [name for name, *_ in bloom._spectacles()]
-    assert names == ["cherry_blossom", "cherry_blossom", "bluebell", "heather", "superbloom", "foliage"]
+    assert names == ["cherry_blossom", "cherry_blossom", "bluebell", "heather", "superbloom", "foliage",
+                     "wattle", "mimosa"]
 
 
 def test_cherry_blossom_runs_on_the_southern_year_in_australia_and_new_zealand():
@@ -299,3 +301,46 @@ def test_cherry_blossom_runs_on_the_southern_year_in_australia_and_new_zealand()
     assert "anz" not in north and south == {"anz"}
     assert south_season(date(2026, 9, 1)) == (date(2026, 5, 1), date(2026, 12, 31))
     assert south_season(date(2026, 7, 31)) is None and north_season(date(2026, 9, 1)) is None
+
+
+# --- wattle and mimosa ---------------------------------------------------------------
+
+def test_wattle_and_mimosa_seasons():
+    assert wattle.season_south(date(2026, 8, 1)) == (date(2026, 6, 1), date(2026, 10, 31))
+    assert wattle.season_south(date(2026, 5, 31)) is None and wattle.season_south(date(2026, 11, 1)) is None
+    # Mimosa's winter runs over New Year: December belongs to the next year's bloom.
+    assert wattle.season_north(date(2026, 12, 5)) == (date(2026, 12, 1), date(2027, 4, 30))
+    assert wattle.season_north(date(2027, 2, 1)) == (date(2026, 12, 1), date(2027, 4, 30))
+    assert wattle.season_north(date(2027, 5, 1)) is None and wattle.season_north(date(2026, 11, 30)) is None
+
+
+def test_build_wattle_draws_the_masked_bush_on_its_normal_date(tmp_path, monkeypatch):
+    # Bush (611) inside the mask is drawn; grassland (631) and bush outside the mask are not.
+    monkeypatch.setattr(wattle, "in_mask", lambda lat, lon, macro: np.asarray(lon) < 145.0)
+    land = gpd.GeoDataFrame({"raster_val": [611, 631, 611]},
+                            geometry=[box(144.0, -38.0, 144.1, -37.9), box(144.2, -38.0, 144.3, -37.9),
+                                      box(146.0, -38.0, 146.1, -37.9)], crs="EPSG:4326")
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    out = wattle.build_wattle(tmp_path / "m.parquet", "anz", "ANZ", to_pmtiles, upload, land=land,
+                              build_mbtiles=build_mbtiles, today=date(2026, 7, 15))
+    assert set(uploads) == {"ANZ/anz_wattle.pmtiles"} and layers[0][1] == "anz_wattle"
+    peaks = [f["properties"]["peak"] for f in layers[0][0]["features"]]
+    assert peaks == [(date(2026, 8, 20) - bloom.EPOCH).days] and out == {"pieces": 1}
+    # The same tree in the north is mimosa, peaking on 15 February of the winter's year.
+    land_eu = gpd.GeoDataFrame({"raster_val": [323]}, geometry=[box(6.9, 43.5, 7.0, 43.6)], crs="EPSG:4326")
+    monkeypatch.setattr(wattle, "in_mask", lambda lat, lon, macro: np.ones(len(lat), bool))
+    wattle.build_wattle(tmp_path / "m.parquet", "se", "EU/SE", to_pmtiles, upload, land=land_eu,
+                        build_mbtiles=build_mbtiles, today=date(2026, 12, 20))
+    assert "EU/SE/se_mimosa.pmtiles" in uploads
+    assert layers[1][0]["features"][0]["properties"]["peak"] == (date(2027, 2, 15) - bloom.EPOCH).days
+    assert wattle.build_wattle(tmp_path / "m.parquet", "anz", "ANZ", to_pmtiles, upload, land=land,
+                               today=date(2026, 12, 1)) is None
+
+
+def test_wattle_mask_lookup(monkeypatch, tmp_path):
+    path = tmp_path / "wattle_mask_ANZ.npz"
+    np.savez_compressed(path, lat0=-40.0, lon0=140.0, step=1.0, mask=np.array([[True, False], [False, True]]))
+    monkeypatch.setattr(wattle.r2, "generated", lambda p: path)
+    assert wattle.in_mask([-39.5, -39.5, -38.5, -45.0], [140.5, 141.5, 141.5, 140.5], "ANZ").tolist() == [
+        True, False, True, False]
+

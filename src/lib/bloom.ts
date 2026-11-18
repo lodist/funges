@@ -370,12 +370,57 @@ export const SUPERBLOOM: Spectacle = {
   },
 };
 
+// Wattle gold deepening to the peak over the bush's sage green, then the ochre of spent
+// flowers. Golden and silver wattle in Australia and New Zealand, late winter.
+const WATTLE_RAMP = peakRamp(
+  ['#f2c230', '#f7da74', '#fbeebd'],
+  '#d99a00',
+  'rgba(150, 140, 90, 0.4)',
+  '#b39a4a',
+  '#b7c99a'
+);
+const WATTLE_STATUS: Record<BloomStatus, string> = {
+  later: '#b7c99a',
+  soon: '#f7da74',
+  peak: '#d99a00',
+  past: '#b39a4a',
+  stale: BLOOM_IDLE,
+};
+
+export const WATTLE: Spectacle = {
+  code: 'wattle',
+  scientificName: 'Acacia pycnantha, Acacia dealbata',
+  emoji: '💛',
+  keys: 'wattle',
+  tiles: 'wattle',
+  regions: ['anz'],
+  months: [5, 6, 7, 8, 9],
+  ramp: WATTLE_RAMP,
+  statusColor: WATTLE_STATUS,
+};
+
+// The same tree in the north: silver wattle, the mimosa of the Riviera, Portugal, Galicia,
+// the Italian lakes and California, flowering in late winter.
+export const MIMOSA: Spectacle = {
+  code: 'mimosa',
+  scientificName: 'Acacia dealbata',
+  emoji: '💛',
+  keys: 'mimosa',
+  tiles: 'mimosa',
+  regions: ['se', 'ne', 'usw'],
+  months: [11, 0, 1, 2, 3],
+  ramp: WATTLE_RAMP,
+  statusColor: WATTLE_STATUS,
+};
+
 export const SPECTACLES: readonly Spectacle[] = [
   CHERRY_BLOSSOM,
   BLUEBELL,
   HEATHER,
   SUPERBLOOM,
   FOLIAGE,
+  WATTLE,
+  MIMOSA,
 ];
 
 export const spectacleByCode = (

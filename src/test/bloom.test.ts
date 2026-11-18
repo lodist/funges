@@ -6,7 +6,9 @@ import {
   BLUEBELL,
   FOLIAGE,
   HEATHER,
+  MIMOSA,
   SUPERBLOOM,
+  WATTLE,
   bloomFillColor,
   bloomFillOpacity,
   bloomGradientCss,
@@ -220,33 +222,41 @@ describe('bluebell and superbloom', () => {
 describe('spectaclesInSeason: the Species page tiles', () => {
   const on = (
     month: number,
-    regions: readonly ('ne' | 'se' | 'use' | 'usw')[]
+    regions: readonly ('ne' | 'se' | 'use' | 'usw' | 'anz')[]
   ) => spectaclesInSeason(new Date(2026, month, 15), regions).map(s => s.code);
 
   it('lists what is on now in the region', () => {
     expect(on(9, ['ne'])).toEqual(['foliage']);
-    expect(on(3, ['ne'])).toEqual([BLOOM_CODE, 'bluebell']);
-    expect(on(3, ['usw'])).toEqual([BLOOM_CODE, 'superbloom']);
+    expect(on(3, ['ne'])).toEqual([BLOOM_CODE, 'bluebell', 'mimosa']);
+    expect(on(3, ['usw'])).toEqual([BLOOM_CODE, 'superbloom', 'mimosa']);
+    expect(on(7, ['anz'])).toEqual([BLOOM_CODE, 'wattle']);
   });
 
   it('nothing between seasons, nothing the region does not have', () => {
-    expect(on(11, ['ne', 'se', 'use', 'usw'])).toEqual([]);
+    expect(on(10, ['ne', 'se', 'use', 'usw'])).toEqual(['foliage']);
+    expect(on(11, ['use'])).toEqual([]);
     expect(on(7, ['use', 'usw'])).toEqual([]);
+    expect(on(2, ['anz'])).toEqual([]);
   });
 });
 
 describe('seasonalSpectacle: what the landing points at', () => {
   const europe = ['ne', 'se'] as const;
   const america = ['use', 'usw'] as const;
+  const anz = ['anz'] as const;
   const on = (
     month: number,
-    regions: readonly ('ne' | 'se' | 'use' | 'usw')[]
+    regions: readonly ('ne' | 'se' | 'use' | 'usw' | 'anz')[]
   ) => seasonalSpectacle(new Date(2026, month, 15), regions);
 
   it('picks the spectacle in season', () => {
     expect(on(9, europe)).toEqual({ spectacle: FOLIAGE, inSeason: true });
     expect(on(7, europe).spectacle).toBe(HEATHER);
-    expect(on(0, america)).toEqual({ spectacle: SUPERBLOOM, inSeason: true });
+    expect(on(2, america)).toEqual({ spectacle: SUPERBLOOM, inSeason: true });
+    // Mimosa's months run over New Year: December to April.
+    expect(on(11, europe)).toEqual({ spectacle: MIMOSA, inSeason: true });
+    expect(on(0, america)).toEqual({ spectacle: MIMOSA, inSeason: true });
+    expect(on(6, anz)).toEqual({ spectacle: WATTLE, inSeason: true });
   });
 
   it('of two in season, the one nearer its peak', () => {
@@ -257,17 +267,24 @@ describe('seasonalSpectacle: what the landing points at', () => {
   });
 
   it('with none in season, the next to start', () => {
-    expect(on(11, europe)).toEqual({
-      spectacle: expect.objectContaining({ code: BLOOM_CODE }),
-      inSeason: false,
-    });
-    expect(on(11, america)).toEqual({ spectacle: SUPERBLOOM, inSeason: false });
+    expect(on(6, america)).toEqual({ spectacle: FOLIAGE, inSeason: false });
+    expect(on(0, anz)).toEqual({ spectacle: WATTLE, inSeason: false });
+  });
+
+  it('runs cherry blossom on the southern year in Australia and New Zealand', () => {
+    expect(on(9, anz).spectacle.code).toBe(BLOOM_CODE);
+    expect(on(11, anz).spectacle.code).toBe(BLOOM_CODE);
   });
 
   it('never points at a spectacle the continent does not have', () => {
     for (let month = 0; month < 12; month++) {
-      expect(on(month, europe).spectacle).not.toBe(SUPERBLOOM);
-      expect([BLUEBELL, HEATHER]).not.toContain(on(month, america).spectacle);
+      expect([SUPERBLOOM, WATTLE]).not.toContain(on(month, europe).spectacle);
+      expect([BLUEBELL, HEATHER, WATTLE]).not.toContain(
+        on(month, america).spectacle
+      );
+      expect([BLUEBELL, HEATHER, SUPERBLOOM, FOLIAGE, MIMOSA]).not.toContain(
+        on(month, anz).spectacle
+      );
     }
   });
 });

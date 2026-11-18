@@ -156,5 +156,13 @@
       "good": "Good bloom",
       "superbloom": "Superbloom possible"
     }
+  },
+  "wattle": {
+    "name": "Wattle in bloom",
+    "offSeason": "The wattle forecast starts on 1 June."
+  },
+  "mimosa": {
+    "name": "Mimosa in bloom",
+    "offSeason": "The mimosa forecast starts on 1 December."
   }
 }

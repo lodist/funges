@@ -31,5 +31,8 @@
   "season_atlas.json": "bcfe199538d564a459fd2ea202c50361ccb3148b4528fd860f87d4a0edf81881",
   "species_scoring.json": "9bf0ed9dc9d71a7f7302f4f4bd6e9d218aa2d33def6472b55f63b2125ab174b2",
   "summer_rain_EU.npz": "955b437b527831c918cac6179f66c230bb40a142d8396403efbd34fdf09cff07",
-  "superbloom_ground_US.geojson": "dd29d930bc7a8c84f23a001a6d4c67a89ef9dbe234fc8e3a4c5521ff834b09a3"
+  "superbloom_ground_US.geojson": "dd29d930bc7a8c84f23a001a6d4c67a89ef9dbe234fc8e3a4c5521ff834b09a3",
+  "wattle_mask_ANZ.npz": "8ce5edad0ede932542b1a06466d7428ea2751dcb3cc8546ed6c474277fc405eb",
+  "wattle_mask_EU.npz": "e852c1e353c7ce90e75be6ee13e8874301914d00d37a880b90c6023f4b19c18a",
+  "wattle_mask_US.npz": "6d83818a64e5a197e2346a96f00d1d1bacd02b6deed26c37b2a934b55a47743d"
 }

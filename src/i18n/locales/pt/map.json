@@ -156,5 +156,13 @@
       "good": "Boa floração",
       "superbloom": "Superfloração possível"
     }
+  },
+  "wattle": {
+    "name": "Acácia-dourada em flor",
+    "offSeason": "A previsão da floração da acácia-dourada começa a 1 de junho."
+  },
+  "mimosa": {
+    "name": "Mimosa em flor",
+    "offSeason": "A previsão da floração da mimosa começa a 1 de dezembro."
   }
 }

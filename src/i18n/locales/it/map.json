@@ -156,5 +156,13 @@
       "good": "Bella fioritura",
       "superbloom": "Superbloom possibile"
     }
+  },
+  "wattle": {
+    "name": "Acacia dorata in fiore",
+    "offSeason": "La previsione della fioritura dell'acacia dorata parte il 1° giugno."
+  },
+  "mimosa": {
+    "name": "Mimosa in fiore",
+    "offSeason": "La previsione della fioritura della mimosa parte il 1° dicembre."
   }
 }

@@ -404,13 +404,16 @@ def _spectacles():
     import foliage
     import heather
     import superbloom
+    import wattle
 
     return [("cherry_blossom", frozenset(NORMALS_MACRO) - SOUTH, season, build_bloom),
             ("cherry_blossom", SOUTH, season_south, build_bloom),
             ("bluebell", bluebell.REGIONS, bluebell.season, bluebell.build_bluebell),
             ("heather", heather.REGIONS, heather.season, heather.build_heather),
             ("superbloom", superbloom.REGIONS, superbloom.season, superbloom.build_superbloom),
-            ("foliage", foliage.REGIONS, foliage.season, foliage.build_foliage)]
+            ("foliage", foliage.REGIONS, foliage.season, foliage.build_foliage),
+            ("wattle", wattle.SOUTH, wattle.season_south, wattle.build_wattle),
+            ("mimosa", wattle.NORTH, wattle.season_north, wattle.build_wattle)]
 
 
 def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *, today=None, spectacles=None,
@@ -431,7 +434,11 @@ def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *,
     if not due:
         print(f"Spectacles: none in season on {today}, skipped.")
         return {}
-    local, downloaded = _local_master(master_path)
+    # A spectacle on a fixed date (wattle, mimosa) reads no weather: alone, it downloads nothing.
+    if any(getattr(build, "needs_master", True) for _, build in due):
+        local, downloaded = _local_master(master_path)
+    else:
+        local, downloaded = master_path, False
     out = {}
     try:
         for name, build in due:

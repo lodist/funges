@@ -156,5 +156,13 @@
       "good": "Belle floraison",
       "superbloom": "Superbloom possible"
     }
+  },
+  "wattle": {
+    "name": "Mimosa doré en fleurs",
+    "offSeason": "La prévision de la floraison du mimosa doré commence le 1er juin."
+  },
+  "mimosa": {
+    "name": "Mimosa en fleurs",
+    "offSeason": "La prévision de la floraison du mimosa commence le 1er décembre."
   }
 }

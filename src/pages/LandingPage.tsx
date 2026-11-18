@@ -69,7 +69,7 @@ export default function LandingPage() {
   // with its own photograph (foliage shares Support's beech road).
   const { spectacle, inSeason } = seasonalSpectacle(
     new Date(),
-    AMERICAS ? ['use', 'usw'] : ['ne', 'se']
+    AMERICAS ? ['use', 'usw'] : ANZ ? ['anz'] : ['ne', 'se']
   );
   const spectacleStep = {
     id: 'spectacles',

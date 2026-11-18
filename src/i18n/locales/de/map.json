@@ -156,5 +156,13 @@
       "good": "Gute Blüte",
       "superbloom": "Superbloom möglich"
     }
+  },
+  "wattle": {
+    "name": "Goldakazienblüte",
+    "offSeason": "Die Goldakazien-Prognose beginnt am 1. Juni."
+  },
+  "mimosa": {
+    "name": "Mimosenblüte",
+    "offSeason": "Die Mimosenblüten-Prognose beginnt am 1. Dezember."
   }
 }
