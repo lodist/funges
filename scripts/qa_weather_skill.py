@@ -54,7 +54,7 @@ import forecast_pipeline as fp
 import seasonality as sn
 from qa_season_branch_replay import BRANCH_LAG_COLUMNS, RAW_COLUMNS, load_specs
 from qa_season_scan import chord_to_km, unit_xyz
-from species_registry import get_empirical_taxon_map
+from species_registry import gbif_taxon_param, get_empirical_taxon_map
 
 # Same weekday as the find, outside its 7-day moisture window, symmetric.
 CONTROL_OFFSETS = (-21, -14, 14, 21)
@@ -137,7 +137,7 @@ def fetch_finds(session: requests.Session, keys: list[int], start: str, end: str
     """Every coordinate-precise human observation of `keys` inside `box`, one row each;
     with max_records, an even sample of pages across the whole result instead."""
     west, south, east, north = box
-    params = [("taxonKey", key) for key in keys] + [
+    params = [(gbif_taxon_param(key), key) for key in keys] + [
         ("basisOfRecord", "HUMAN_OBSERVATION"), ("occurrenceStatus", "PRESENT"),
         ("hasCoordinate", "true"), ("hasGeospatialIssue", "false"),
         ("coordinateUncertaintyInMeters", f"0,{MAX_UNCERTAINTY_M}"),

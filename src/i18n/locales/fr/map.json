@@ -126,6 +126,7 @@
     "later": "3 sem. et +",
     "past": "Passée",
     "offSeason": "La prévision de la floraison des cerisiers commence le 1er février.",
+    "offSeason_anz": "En Australie et en Nouvelle-Zélande, la prévision de la floraison des cerisiers commence le 1er août.",
     "atPeak": "en pleine floraison",
     "inDays_one": "dans {{count}} jour",
     "inDays_other": "dans {{count}} jours",
@@ -155,5 +156,13 @@
       "good": "Belle floraison",
       "superbloom": "Superbloom possible"
     }
+  },
+  "wattle": {
+    "name": "Mimosa doré en fleurs",
+    "offSeason": "La prévision de la floraison du mimosa doré commence le 1er juin."
+  },
+  "mimosa": {
+    "name": "Mimosa en fleurs",
+    "offSeason": "La prévision de la floraison du mimosa commence le 1er décembre."
   }
 }

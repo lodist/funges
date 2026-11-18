@@ -7,8 +7,10 @@ from backend import species_registry
 def _clear_registry_caches():
     """_known_regions is memoised, so tests that swap _registry must reset it."""
     species_registry._known_regions.cache_clear()
+    species_registry._exact_taxon_keys.cache_clear()
     yield
     species_registry._known_regions.cache_clear()
+    species_registry._exact_taxon_keys.cache_clear()
 
 
 def test_generated_registry_supplies_land_cover_for_forecast_species():
@@ -124,3 +126,14 @@ def test_a_composite_is_drawn_over_its_members_habitat_but_not_scored_itself():
     assert species_registry.get_composites("USE")["boletus"] == ["mushroom", "eastern_king", "rocky_king"]
     covers = species_registry.get_land_cover_mapping("SE")
     assert set(covers["mushroom"]) | set(covers["pine_bolete"]) <= set(covers["boletus"])
+
+
+def test_an_exact_taxa_species_asks_gbif_for_the_records_named_at_its_taxon(monkeypatch):
+    monkeypatch.setattr(species_registry, "_registry", lambda: {"species": {
+        "australian_chanterelle": {"exactTaxa": True, "empiricalTaxonKeys": [9623860], "rangeTaxonKeys": [9623860]},
+        "chant": {"empiricalTaxonKeys": [5249504], "rangeTaxonKeys": [5249504]},
+    }})
+
+    assert species_registry.gbif_taxon_param(9623860) == "acceptedTaxonKey"
+    assert species_registry.gbif_taxon_param(5249504) == "taxonKey"
+    assert species_registry.gbif_taxon_param(5) == "taxonKey"  # the kingdom, every curve's effort

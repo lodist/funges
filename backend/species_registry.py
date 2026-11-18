@@ -130,6 +130,24 @@ def get_range_taxon_map():
     }
 
 
+@lru_cache(maxsize=1)
+def _exact_taxon_keys():
+    return frozenset(
+        key
+        for config in _registry()["species"].values()
+        if config.get("exactTaxa")
+        for key in config["empiricalTaxonKeys"] + config.get("rangeTaxonKeys", [])
+    )
+
+
+def gbif_taxon_param(key):
+    """GBIF's filter for one of a species' taxon keys: taxonKey, the records named at or
+    below the taxon; or acceptedTaxonKey, those named at exactly it, for a species whose
+    manifest sets exactTaxa (GBIF files Cantharellus concinnus under its genus, beside New
+    Zealand's C. wellingtonensis, so only the genus-level records are concinnus)."""
+    return "acceptedTaxonKey" if key in _exact_taxon_keys() else "taxonKey"
+
+
 def get_species_metadata():
     """Return a mutable copy of forecast-species names and data-column aliases."""
     return {

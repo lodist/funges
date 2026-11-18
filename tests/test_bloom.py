@@ -192,5 +192,8 @@ def test_build_spectacles_downloads_nothing_when_none_is_due(monkeypatch):
     import bloom
 
     monkeypatch.setattr(bloom, "_local_master", lambda path: pytest.fail("downloaded"))
-    assert bloom.build_spectacles("https://data.example/m.parquet", "ne", "EU/NE", None, None,
+    assert bloom.build_spectacles("https://data.example/m.parquet", "use", "USA/USE", None, None,
                                   today=date(2027, 12, 15)) == {}
+    # Wattle alone is due in Australia/New Zealand in June, and it reads no weather.
+    assert bloom.build_spectacles("https://data.example/m.parquet", "anz", "ANZ", None, None,
+                                  today=date(2027, 6, 15)) == {"wattle": None}

@@ -445,6 +445,19 @@ test('rejects a composite of unknown members or with settings of its own', () =>
   assert.match(errors, /landCover is not allowed in a composite/);
 });
 
+test('an exactTaxa species keeps its GBIF keys to itself', () => {
+  const genus = { ...forecast(), rangePrior: { taxonKeys: [9623860] } };
+  const errors = validateManifests(
+    [
+      entry(manifest({ forecast: { ...genus, exactTaxa: true } })),
+      entry({ ...manifest({ forecast: genus }), id: 'other' }, 'other'),
+    ],
+    process.cwd(),
+    { checkImages: false }
+  ).join('\n');
+  assert.match(errors, /forecast\.exactTaxa: other uses the same GBIF keys/);
+});
+
 test('a composite region can leave members out', async () => {
   const root = fixtureRoot();
   addForecastSpecies(root);

@@ -1,0 +1,155 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "australian_chanterelle",
+  "scientificName": "Cantharellus concinnus",
+  "catalog": {
+    "enabled": true,
+    "order": 72,
+    "translationKey": "australian_chanterelle",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/australian_chanterelle.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Australian Chanterelle",
+      "description": "Australia's own chanterelle: a small apricot to pinkish-orange funnel with blunt, forked ridges underneath. It hides in the leaf litter of damp eucalypt forests from summer into autumn.",
+      "howTo": "Look in damp eucalypt forest from December to June, a few days after warm rain. Brush the leaf litter aside and check for blunt, forked ridges instead of gills",
+      "guide": {
+        "identify": "The cap is apricot, yellow or pinkish orange and only 1.5 to 4 cm across. Young caps are flat. They soon become a shallow funnel with a wavy edge. Underneath there are no true gills, only blunt, shallow ridges. They fork near the edge, run down onto the stem and are paler than the cap. The stem is whitish pink and often twisted. It is as long as the leaf litter is deep, up to about 6 cm. The flesh is solid and pale. It smells faintly of apricots. The poisonous Austropaxillus also makes yellow-brown funnels under eucalypts, but it has crowded, sharp gills. Anything with thin, sharp gills, a cobweb-like veil or growing on wood is not a chanterelle.",
+        "habitat": "It grows on the ground among leaf litter, in the wetter parts of eucalypt forests and woodlands and in coastal heath. She-oaks are often nearby. It also grows under southern beech. It comes up in groups, but the caps are often half buried, so look closely. You find it from south-east Queensland through New South Wales and Victoria to Tasmania. It also grows in the karri and wetter jarrah forests of the south-west.",
+        "season": "It comes up after warm, soaking rain, from December to June. Most appear from late summer into autumn. A dry spell stops it. It also seems to stay away from ground that burnt recently.",
+        "picking": "Cut it at the base and leave the small ones to grow. Picking is not allowed in national parks. In state forests you can usually pick a little for yourself, but check the local rules first. Little is known about how common it is, so take only what you will eat.",
+        "kitchen": "Once you're certain of it, cook it. It tastes milder than the European chanterelle. Some people find it almost bland. Fry it slowly in butter until the water has gone. Then add it to eggs, pasta or risotto. It is small, so gather a handful. Australia's main foraging guide still counts it among the less documented edibles, so try only a little the first time.",
+        "keeps": "It keeps two or three days in the fridge, in a paper bag. Fried first, it freezes well. Dried, it turns tough.",
+        "source": "Identification, range and edibility: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr and Wikipedia. Edible but little documented: Wild Mushrooming (Pouliot and May). Austropaxillus: Western Australian fungus records. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Galletto australiano",
+      "description": "Il galletto dell'Australia: un piccolo imbuto color albicocca o arancio rosato, con pieghe ottuse e biforcate sotto il cappello. Si nasconde tra le foglie dei boschi umidi di eucalipto, dall'estate all'autunno.",
+      "howTo": "Cercalo da dicembre a giugno nei boschi umidi di eucalipto, pochi giorni dopo una pioggia calda. Sposta le foglie e controlla che sotto abbia pieghe ottuse e biforcate, non lamelle",
+      "guide": {
+        "identify": "Il cappello è color albicocca, giallo o arancio rosato e largo solo da 1,5 a 4 cm. Da giovane è piatto. Presto diventa un imbuto poco profondo con il bordo ondulato. Sotto non ha vere lamelle, ma pieghe basse e ottuse. Si biforcano verso il bordo, scendono lungo il gambo e sono più chiare del cappello. Il gambo è bianco rosato e spesso contorto. È lungo quanto è alto lo strato di foglie, fino a circa 6 cm. La carne è soda e chiara e profuma appena di albicocca. Il velenoso Austropaxillus forma anche lui imbuti giallo-bruni sotto gli eucalipti, ma ha lamelle fitte e taglienti. Se ha lamelle sottili e taglienti, un velo simile a una ragnatela o cresce sul legno, non è un galletto.",
+        "habitat": "Cresce a terra tra le foglie, nelle parti più umide di boschi e boscaglie di eucalipto e nella brughiera costiera. Spesso ci sono casuarine vicino, e cresce anche sotto il faggio australe. Spunta in gruppi, ma i cappelli restano spesso mezzi sepolti, quindi guarda bene. Lo trovi dal sud-est del Queensland, attraverso il Nuovo Galles del Sud e il Victoria, fino alla Tasmania. Cresce anche nelle foreste di karri e di jarrah più umide del sud-ovest.",
+        "season": "Arriva dopo piogge calde e abbondanti, da dicembre a giugno. I più spuntano tra la fine dell'estate e l'autunno. La siccità lo ferma, e sembra mancare dove il bosco è bruciato da poco.",
+        "picking": "Taglialo alla base e lascia crescere i piccoli. Nei parchi nazionali raccogliere è vietato. Nelle foreste statali di solito puoi raccoglierne un po' per te, ma controlla prima le regole del posto. Si sa poco di quanto sia comune, quindi prendi solo quello che mangerai.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, cuocilo. È più delicato del galletto europeo, e ad alcuni sembra quasi insipido. Saltalo piano nel burro finché l'acqua non è evaporata. Poi aggiungilo alle uova, alla pasta o al risotto. È piccolo, quindi raccogline una manciata. La principale guida australiana lo conta ancora tra i commestibili poco documentati, quindi la prima volta mangiane poco.",
+        "keeps": "In frigo si conserva due o tre giorni, in un sacchetto di carta. Saltato si congela bene. Essiccato diventa duro.",
+        "source": "Riconoscimento, diffusione e commestibilità: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr e Wikipedia. Commestibile ma poco documentato: Wild Mushrooming (Pouliot e May). Austropaxillus: segnalazioni dall'Australia Occidentale. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Girolle australienne",
+      "description": "La girolle de l'Australie : un petit entonnoir abricot à orange rosé, avec des plis obtus et fourchus dessous. Elle se cache dans la litière des forêts humides d'eucalyptus, de l'été à l'automne.",
+      "howTo": "Cherche-la de décembre à juin dans les forêts humides d'eucalyptus, quelques jours après une pluie chaude. Écarte les feuilles et vérifie qu'elle a des plis obtus et fourchus, pas des lames",
+      "guide": {
+        "identify": "Le chapeau est abricot, jaune ou orange rosé et ne mesure que 1,5 à 4 cm. Jeune, il est plat. Il devient vite un entonnoir peu profond au bord ondulé. Dessous, pas de vraies lames, seulement des plis bas et obtus. Ils se divisent vers le bord, descendent sur le pied et sont plus pâles que le chapeau. Le pied est blanc rosé et souvent tordu. Il est aussi long que la litière est épaisse, jusqu'à environ 6 cm. La chair est ferme et pâle et sent un peu l'abricot. L'Austropaxillus, toxique, forme lui aussi des entonnoirs jaune-brun sous les eucalyptus, mais il a des lames serrées et tranchantes. Tout ce qui a des lames fines et tranchantes, un voile en toile d'araignée ou qui pousse sur le bois n'est pas une girolle.",
+        "habitat": "Elle pousse au sol dans la litière, dans les parties les plus humides des forêts et des bois d'eucalyptus et dans la lande côtière. Des filaos sont souvent tout près, et elle pousse aussi sous le hêtre austral. Elle sort en groupes, mais les chapeaux restent souvent à moitié enfouis, alors regarde bien. On la trouve du sud-est du Queensland à la Tasmanie, en passant par la Nouvelle-Galles du Sud et le Victoria. Elle pousse aussi dans les forêts de karri et de jarrah les plus humides du sud-ouest.",
+        "season": "Elle sort après des pluies chaudes et abondantes, de décembre à juin. La plupart apparaissent de la fin de l'été à l'automne. La sécheresse l'arrête, et elle semble absente des sols brûlés depuis peu.",
+        "picking": "Coupe-la à la base et laisse pousser les petites. La cueillette est interdite dans les parcs nationaux. Dans les forêts domaniales, tu peux en général en cueillir un peu pour toi, mais vérifie d'abord les règles locales. On sait peu de choses sur sa fréquence, alors ne prends que ce que tu mangeras.",
+        "kitchen": "Une fois sûr de toi, fais-la cuire. Elle est plus douce que la girolle européenne, et certains la trouvent presque fade. Fais-la revenir doucement au beurre jusqu'à ce que l'eau s'évapore. Ajoute-la ensuite aux œufs, aux pâtes ou au risotto. Elle est petite, alors ramasses-en une poignée. Le principal guide australien la range encore parmi les comestibles peu documentés, alors n'en mange qu'un peu la première fois.",
+        "keeps": "Elle se garde deux ou trois jours au frigo, dans un sac en papier. Revenue au beurre, elle se congèle bien. Séchée, elle devient coriace.",
+        "source": "Identification, répartition et comestibilité : One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr et Wikipédia. Comestible mais peu documentée : Wild Mushrooming (Pouliot et May). Austropaxillus : observations d'Australie-Occidentale. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Australischer Pfifferling",
+      "description": "Der Pfifferling Australiens: ein kleiner Trichter in Aprikose bis Lachsrosa, mit stumpfen, gegabelten Leisten auf der Unterseite. Er steckt im Laub feuchter Eukalyptuswälder, vom Sommer bis in den Herbst.",
+      "howTo": "Such von Dezember bis Juni in feuchtem Eukalyptuswald, ein paar Tage nach warmem Regen. Schieb das Laub zur Seite und prüf, ob er stumpfe, gegabelte Leisten statt Lamellen hat",
+      "guide": {
+        "identify": "Der Hut ist aprikosenfarben, gelb oder rosa-orange und nur 1,5 bis 4 cm breit. Junge Hüte sind flach. Bald werden sie zu einem flachen Trichter mit welligem Rand. Unten hat er keine echten Lamellen, sondern stumpfe, flache Leisten. Sie gabeln sich zum Rand hin, laufen am Stiel herab und sind heller als der Hut. Der Stiel ist weisslich rosa und oft verdreht. Er ist so lang, wie das Laub tief ist, bis etwa 6 cm. Das Fleisch ist fest und hell und riecht leicht nach Aprikosen. Der giftige Austropaxillus bildet unter Eukalypten ebenfalls gelbbraune Trichter, hat aber dichte, scharfe Lamellen. Was dünne, scharfe Lamellen hat, einen spinnwebartigen Schleier trägt oder auf Holz wächst, ist kein Pfifferling.",
+        "habitat": "Er wächst am Boden im Laub, in den feuchteren Teilen von Eukalyptuswäldern und in der Küstenheide. Oft stehen Kasuarinen in der Nähe. Er wächst auch unter Südbuchen. Er kommt in Gruppen, aber die Hüte stecken oft halb im Laub, also schau genau hin. Du findest ihn vom Südosten Queenslands über New South Wales und Victoria bis Tasmanien. Auch in den Karri- und den feuchteren Jarrah-Wäldern im Südwesten wächst er.",
+        "season": "Er kommt nach warmem, durchdringendem Regen, von Dezember bis Juni. Die meisten erscheinen im Spätsommer und Herbst. Trockenheit bremst ihn. Auf frisch abgebranntem Boden scheint er zu fehlen.",
+        "picking": "Schneid ihn am Grund ab und lass die kleinen stehen. In Nationalparks ist Sammeln verboten. In State Forests darfst du meist etwas für dich sammeln, aber prüf vorher die Regeln vor Ort. Wie häufig er ist, weiss man kaum, also nimm nur, was du isst.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare ihn. Er schmeckt milder als der europäische Pfifferling, manchen sogar fast fade. Brat ihn langsam in Butter, bis das Wasser verdampft ist. Dann gib ihn zu Eiern, Pasta oder Risotto. Er ist klein, also sammle eine Handvoll. Australiens wichtigster Sammelführer zählt ihn noch zu den wenig belegten Speisepilzen, also iss beim ersten Mal nur wenig.",
+        "keeps": "In einer Papiertüte hält er sich zwei, drei Tage im Kühlschrank. Angebraten kannst du ihn gut einfrieren. Getrocknet wird er zäh.",
+        "source": "Bestimmung, Verbreitung und Essbarkeit: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr und Wikipedia. Essbar, aber wenig belegt: Wild Mushrooming (Pouliot und May). Austropaxillus: Pilzfunde aus Westaustralien. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Rebozuelo australiano",
+      "description": "El rebozuelo de Australia: un embudo pequeño de color albaricoque a naranja rosado, con pliegues romos y bifurcados por debajo. Se esconde entre la hojarasca de los bosques húmedos de eucalipto, del verano al otoño.",
+      "howTo": "Búscalo de diciembre a junio en bosques húmedos de eucalipto, unos días después de una lluvia cálida. Aparta la hojarasca y comprueba que tiene pliegues romos y bifurcados, no láminas",
+      "guide": {
+        "identify": "El sombrero es de color albaricoque, amarillo o naranja rosado y mide solo de 1,5 a 4 cm. De joven es plano. Pronto se convierte en un embudo poco profundo con el borde ondulado. Por debajo no tiene láminas de verdad, sino pliegues bajos y romos. Se bifurcan hacia el borde, bajan por el pie y son más claros que el sombrero. El pie es blanco rosado y a menudo está retorcido. Es tan largo como gruesa es la hojarasca, hasta unos 6 cm. La carne es firme y clara y huele un poco a albaricoque. El Austropaxillus, que es venenoso, también forma embudos pardo amarillentos bajo los eucaliptos, pero tiene láminas apretadas y afiladas. Si tiene láminas finas y afiladas, un velo como de telaraña o crece sobre madera, no es un rebozuelo.",
+        "habitat": "Crece en el suelo, entre la hojarasca, en las partes más húmedas de bosques y arboledas de eucalipto y en el brezal costero. Suele haber casuarinas cerca, y también crece bajo hayas australes. Sale en grupos, pero los sombreros suelen quedar medio enterrados, así que mira bien. Lo encuentras desde el sureste de Queensland, pasando por Nueva Gales del Sur y Victoria, hasta Tasmania. También crece en los bosques de karri y de jarrah más húmedos del suroeste.",
+        "season": "Sale después de lluvias cálidas y abundantes, de diciembre a junio. La mayoría aparecen entre el final del verano y el otoño. La sequía lo frena, y parece faltar donde el monte se quemó hace poco.",
+        "picking": "Córtalo por la base y deja crecer los pequeños. En los parques nacionales está prohibido recolectar. En los bosques estatales normalmente puedes coger un poco para ti, pero antes consulta las normas del lugar. Se sabe poco de lo común que es, así que coge solo lo que vayas a comer.",
+        "kitchen": "Cuando estés seguro de que es él, cocínalo. Es más suave que el rebozuelo europeo, y a algunos les parece casi soso. Saltéalo despacio en mantequilla hasta que se evapore el agua. Luego añádelo a huevos, pasta o risotto. Es pequeño, así que recoge un puñado. La principal guía australiana aún lo cuenta entre los comestibles poco documentados, así que la primera vez come solo un poco.",
+        "keeps": "Aguanta dos o tres días en la nevera, en una bolsa de papel. Salteado, se congela bien. Seco, se vuelve duro.",
+        "source": "Identificación, distribución y comestibilidad: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr y Wikipedia. Comestible pero poco documentado: Wild Mushrooming (Pouliot y May). Austropaxillus: registros de Australia Occidental. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Cantarelo australiano",
+      "description": "O cantarelo da Austrália: um funil pequeno, cor de damasco a laranja-rosado, com pregas rombas e bifurcadas por baixo. Esconde-se na folhada das florestas húmidas de eucalipto, do verão ao outono.",
+      "howTo": "Procura-o de dezembro a junho em florestas húmidas de eucalipto, poucos dias depois de uma chuva quente. Afasta as folhas e confirma que tem pregas rombas e bifurcadas, não lâminas",
+      "guide": {
+        "identify": "O chapéu é cor de damasco, amarelo ou laranja-rosado e mede só 1,5 a 4 cm. Em novo é plano. Depressa se torna um funil pouco fundo, de margem ondulada. Por baixo não tem lâminas verdadeiras, só pregas baixas e rombas. Bifurcam-se perto da margem, descem pelo pé e são mais claras do que o chapéu. O pé é branco-rosado e muitas vezes torcido. É tão comprido quanto a folhada é funda, até uns 6 cm. A carne é firme e clara e cheira levemente a damasco. O venenoso Austropaxillus também forma funis castanho-amarelados debaixo dos eucaliptos, mas tem lâminas apertadas e afiadas. Se tem lâminas finas e afiadas, um véu como uma teia de aranha ou cresce na madeira, não é um cantarelo.",
+        "habitat": "Cresce no chão, no meio da folhada, nas partes mais húmidas das florestas e matas de eucalipto e na charneca costeira. Muitas vezes há casuarinas por perto, e também cresce debaixo de faias-austrais. Aparece em grupos, mas os chapéus ficam muitas vezes meio enterrados, por isso olha com atenção. Encontra-se desde o sudeste de Queensland, passando pela Nova Gales do Sul e por Victoria, até à Tasmânia. Também cresce nas florestas de karri e de jarrah mais húmidas do sudoeste.",
+        "season": "Aparece depois de chuvas quentes e fartas, de dezembro a junho. A maioria surge entre o fim do verão e o outono. A seca trava-o, e parece faltar onde a floresta ardeu há pouco tempo.",
+        "picking": "Corta-o pela base e deixa crescer os pequenos. Nos parques nacionais é proibido apanhar. Nas florestas estatais costumas poder apanhar um pouco para ti, mas confirma antes as regras do sítio. Sabe-se pouco sobre a sua abundância, por isso leva só o que vais comer.",
+        "kitchen": "Quando tiveres a certeza de que é ele, cozinha-o. É mais suave do que o cantarelo europeu, e há quem o ache quase insípido. Salteia-o devagar em manteiga até a água evaporar. Depois junta-o a ovos, massa ou risoto. É pequeno, por isso apanha uma mão-cheia. O principal guia australiano ainda o conta entre os comestíveis pouco documentados, por isso da primeira vez come só um pouco.",
+        "keeps": "Aguenta dois ou três dias no frigorífico, num saco de papel. Salteado, congela bem. Seco, fica rijo.",
+        "source": "Identificação, distribuição e comestibilidade: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), NatureMapr e Wikipédia. Comestível mas pouco documentado: Wild Mushrooming (Pouliot e May). Austropaxillus: registos da Austrália Ocidental. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Cantharellus concinnus",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Australian Chanterelle"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [9623860],
+      "references": ["https://www.gbif.org/species/9623860"]
+    },
+    "rangePrior": {
+      "taxonKeys": [9623860]
+    },
+    "exactTaxa": true,
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 621],
+        "scoringReferences": [
+          "https://www.gbif.org/species/9623860",
+          "https://keys.lucidcentral.org/keys/v4/101-forest-fungi/web/resource/c/cantharellus%20concinnus.htm",
+          "https://naturemapr.org/species/2330",
+          "https://en.wikipedia.org/wiki/Cantharellus_concinnus",
+          "https://www.publishing.csiro.au/book/7894/",
+          "https://morrie2.com/2010/02/27/a-special-mushroom/",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

@@ -21,6 +21,7 @@ export const BLOOM_REGIONS = {
   se: 'EU/SE',
   use: 'USA/USE',
   usw: 'USA/USW',
+  anz: 'ANZ',
 } as const;
 export type BloomRegion = keyof typeof BLOOM_REGIONS;
 export const BLOOM_REGION_CODES = Object.keys(BLOOM_REGIONS) as BloomRegion[];
@@ -45,11 +46,26 @@ export const spectacleOfLayer = (id: string): Spectacle | undefined =>
   SPECTACLES.find(spectacle => id.startsWith(`${spectacle.code}_`));
 export const isBloomLayer = (id: string) => spectacleOfLayer(id) !== undefined;
 
-/** Whether the backend builds the layer in `date`'s month (cherry: February-June). */
+/** The months (0-11) the backend builds `spectacle` in `region`, or its usual ones. */
+export const spectacleMonths = (
+  spectacle: Spectacle,
+  region?: BloomRegion
+): readonly number[] =>
+  (region && spectacle.monthsIn?.[region]) || spectacle.months;
+
+/**
+ * Whether the backend builds the layer in `date`'s month (cherry: February-June,
+ * August-December in Australia and New Zealand): in `region`, or without one in
+ * any of its regions.
+ */
 export const bloomInSeason = (
   date: Date,
-  spectacle: Spectacle = CHERRY_BLOSSOM
-): boolean => spectacle.months.includes(date.getMonth());
+  spectacle: Spectacle = CHERRY_BLOSSOM,
+  region?: BloomRegion
+): boolean =>
+  (region ? [region] : spectacle.regions).some(here =>
+    spectacleMonths(spectacle, here).includes(date.getMonth())
+  );
 
 /** A local calendar day as days since 1970-01-01, the unit of `peak`. */
 export const unixDay = (date: Date): number =>
@@ -218,6 +234,8 @@ export interface Spectacle {
   regions: readonly BloomRegion[];
   /** The months (0-11) the backend builds it. */
   months: readonly number[];
+  /** Its months where they differ: south of the equator the year turns half way. */
+  monthsIn?: Partial<Record<BloomRegion, readonly number[]>>;
   /** Days to peak -> colour; [1] is the steady "done" colour. */
   ramp: readonly (readonly [number, string])[];
   statusColor: Record<BloomStatus, string>;
@@ -242,6 +260,7 @@ export const CHERRY_BLOSSOM: Spectacle = {
   tiles: 'bloom',
   regions: BLOOM_REGION_CODES,
   months: [1, 2, 3, 4, 5],
+  monthsIn: { anz: [7, 8, 9, 10, 11] },
   ramp: BLOOM_RAMP,
   statusColor: BLOOM_STATUS_COLOR,
 };
@@ -351,12 +370,57 @@ export const SUPERBLOOM: Spectacle = {
   },
 };
 
+// Wattle gold deepening to the peak over the bush's sage green, then the ochre of spent
+// flowers. Golden and silver wattle in Australia and New Zealand, late winter.
+const WATTLE_RAMP = peakRamp(
+  ['#f2c230', '#f7da74', '#fbeebd'],
+  '#d99a00',
+  'rgba(150, 140, 90, 0.4)',
+  '#b39a4a',
+  '#b7c99a'
+);
+const WATTLE_STATUS: Record<BloomStatus, string> = {
+  later: '#b7c99a',
+  soon: '#f7da74',
+  peak: '#d99a00',
+  past: '#b39a4a',
+  stale: BLOOM_IDLE,
+};
+
+export const WATTLE: Spectacle = {
+  code: 'wattle',
+  scientificName: 'Acacia pycnantha, Acacia dealbata',
+  emoji: '💛',
+  keys: 'wattle',
+  tiles: 'wattle',
+  regions: ['anz'],
+  months: [5, 6, 7, 8, 9],
+  ramp: WATTLE_RAMP,
+  statusColor: WATTLE_STATUS,
+};
+
+// The same tree in the north: silver wattle, the mimosa of the Riviera, Portugal, Galicia,
+// the Italian lakes and California, flowering in late winter.
+export const MIMOSA: Spectacle = {
+  code: 'mimosa',
+  scientificName: 'Acacia dealbata',
+  emoji: '💛',
+  keys: 'mimosa',
+  tiles: 'mimosa',
+  regions: ['se', 'ne', 'usw'],
+  months: [11, 0, 1, 2, 3],
+  ramp: WATTLE_RAMP,
+  statusColor: WATTLE_STATUS,
+};
+
 export const SPECTACLES: readonly Spectacle[] = [
   CHERRY_BLOSSOM,
   BLUEBELL,
   HEATHER,
   SUPERBLOOM,
   FOLIAGE,
+  WATTLE,
+  MIMOSA,
 ];
 
 export const spectacleByCode = (
@@ -369,10 +433,12 @@ export const spectaclesInSeason = (
   date: Date,
   regions: readonly BloomRegion[]
 ): Spectacle[] =>
-  SPECTACLES.filter(
-    spectacle =>
-      bloomInSeason(date, spectacle) &&
-      spectacle.regions.some(region => regions.includes(region))
+  SPECTACLES.filter(spectacle =>
+    regions.some(
+      region =>
+        spectacle.regions.includes(region) &&
+        bloomInSeason(date, spectacle, region)
+    )
   );
 
 /**
@@ -389,13 +455,23 @@ export function seasonalSpectacle(
   const here = SPECTACLES.filter(spectacle =>
     spectacle.regions.some(region => regions.includes(region))
   );
-  const start = (spectacle: Spectacle) => spectacle.months[0];
-  const middle = (spectacle: Spectacle) =>
-    (start(spectacle) + spectacle.months[spectacle.months.length - 1] + 1) / 2;
+  // Its months in the first of `regions` it is drawn in; they may run over New Year.
+  const months = (spectacle: Spectacle) =>
+    spectacleMonths(
+      spectacle,
+      regions.find(region => spectacle.regions.includes(region))
+    );
+  const start = (spectacle: Spectacle) => months(spectacle)[0];
+  // Months from now to the middle of its months, the short way round the year.
+  const fromMiddle = (spectacle: Spectacle) => {
+    const away =
+      (start(spectacle) + months(spectacle).length / 2 - month - 0.5 + 12) % 12;
+    return Math.min(away, 12 - away);
+  };
+  const elapsed = (spectacle: Spectacle) =>
+    (month - start(spectacle) + 12) % 12;
   const now = spectaclesInSeason(date, regions).sort(
-    (a, b) =>
-      Math.abs(middle(a) - month - 0.5) - Math.abs(middle(b) - month - 0.5) ||
-      start(b) - start(a)
+    (a, b) => fromMiddle(a) - fromMiddle(b) || elapsed(a) - elapsed(b)
   );
   if (now.length > 0) return { spectacle: now[0], inSeason: true };
   const next = [...here].sort(

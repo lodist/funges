@@ -126,6 +126,7 @@
     "later": "3+ semanas",
     "past": "Pasada",
     "offSeason": "La previsión de la floración de los cerezos empieza el 1 de febrero.",
+    "offSeason_anz": "En Australia y Nueva Zelanda, la previsión de la floración de los cerezos empieza el 1 de agosto.",
     "atPeak": "en plena floración",
     "inDays_one": "en {{count}} día",
     "inDays_other": "en {{count}} días",
@@ -155,5 +156,13 @@
       "good": "Buena floración",
       "superbloom": "Superfloración posible"
     }
+  },
+  "wattle": {
+    "name": "Acacia dorada en flor",
+    "offSeason": "La previsión de la floración de la acacia dorada empieza el 1 de junio."
+  },
+  "mimosa": {
+    "name": "Mimosa en flor",
+    "offSeason": "La previsión de la floración de la mimosa empieza el 1 de diciembre."
   }
 }

@@ -126,6 +126,7 @@
     "later": "3+ settimane",
     "past": "Passata",
     "offSeason": "La previsione della fioritura dei ciliegi parte il 1° febbraio.",
+    "offSeason_anz": "In Australia e Nuova Zelanda la previsione della fioritura dei ciliegi parte il 1° agosto.",
     "atPeak": "in piena fioritura",
     "inDays_one": "tra {{count}} giorno",
     "inDays_other": "tra {{count}} giorni",
@@ -155,5 +156,13 @@
       "good": "Bella fioritura",
       "superbloom": "Superbloom possibile"
     }
+  },
+  "wattle": {
+    "name": "Acacia dorata in fiore",
+    "offSeason": "La previsione della fioritura dell'acacia dorata parte il 1° giugno."
+  },
+  "mimosa": {
+    "name": "Mimosa in fiore",
+    "offSeason": "La previsione della fioritura della mimosa parte il 1° dicembre."
   }
 }

@@ -22,7 +22,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from species_registry import get_empirical_taxon_map, infer_region
+from species_registry import gbif_taxon_param, get_empirical_taxon_map, infer_region
 
 _THIS_YEAR = date.today().year
 
@@ -158,7 +158,7 @@ def _facet_month(taxon_keys, region, years, retries=6):
         ("decimalLongitude", f"{region['lon'][0]},{region['lon'][1]}"),
     ]
     for k in taxon_keys:
-        params.append(("taxonKey", str(k)))
+        params.append((gbif_taxon_param(k), str(k)))
     url = GBIF + "?" + urllib.parse.urlencode(params)
     for attempt in range(retries):
         try:

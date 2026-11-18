@@ -31,7 +31,7 @@ from scipy.ndimage import gaussian_filter1d
 from scipy.special import gammaincc
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from species_registry import get_range_taxon_map, get_region_species
+from species_registry import gbif_taxon_param, get_range_taxon_map, get_region_species
 
 _THIS_YEAR = date.today().year
 _ROOT = Path(__file__).resolve().parents[2]
@@ -235,7 +235,7 @@ def bin_tile(grid, macro, tile, x, y, z=ZOOM):
 
 def count_grid(macro, taxon_key, years, workers=4, datasets=()):
     params = urllib.parse.urlencode([
-        ("srs", "EPSG:4326"), ("taxonKey", taxon_key),
+        ("srs", "EPSG:4326"), (gbif_taxon_param(taxon_key), taxon_key),
         # Human observations only, as in the season curves: specimens carry
         # herbarium-campaign bias and are not the population the app serves.
         ("basisOfRecord", "HUMAN_OBSERVATION"), ("year", years), ("mode", "GEO_CENTROID"),

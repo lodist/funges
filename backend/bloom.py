@@ -46,6 +46,10 @@ MAP_VARIETY = "kanzan"
 # year brings its bloom by this day. The latest place with planted Japanese cherries
 # on iNaturalist, Umeå, comes on 2 June; Tromsø (14 June) and the ski towns have none.
 LATEST_NORMAL_PEAK = (6, 7)  # month, day
+# South of the equator the year turns half way: winter is counted from 1 May, the trees
+# bloom from August and the latest normal peak that keeps a town is 7 December.
+SOUTH = frozenset({"anz"})
+LATEST_NORMAL_PEAK_SOUTH = (12, 7)
 CELL = 0.1  # degrees; base points are averaged into cells this size
 FINE = 5  # sub-cells per cell side the bands are smoothed on (0.02°)
 PEAK_STEP = 0.25  # days: bands this far apart, so the colour ramp's steep part has no visible edges
@@ -54,7 +58,7 @@ LAPSE = 0.0065  # °C per metre, moves a normal to a cell's elevation
 EPOCH = date(1970, 1, 1)
 
 _BACKEND = Path(__file__).resolve().parent
-NORMALS_MACRO = {"ne": "EU", "se": "EU", "use": "US", "usw": "US"}
+NORMALS_MACRO = {"ne": "EU", "se": "EU", "use": "US", "usw": "US", "anz": "ANZ"}
 # Day of year at the middle of each month, where a monthly normal applies exactly.
 _MID = np.array([15.5, 45.0, 74.5, 105.0, 135.5, 166.0, 196.5, 227.5, 258.0, 288.5, 319.0, 349.5])
 _COLS = ["Date", "Latitude", "Longitude", "Elevation (m)", "Temperature (C) Max", "Temperature (C) Min"]
@@ -66,6 +70,13 @@ def season(today):
     if not 2 <= today.month <= 6:
         return None
     return date(today.year - 1, 11, 1), date(today.year, 6, 30)
+
+
+def season_south(today):
+    """The southern season: 1 May - 31 December, or None outside 1 Aug - 31 Dec."""
+    if not 8 <= today.month <= 12:
+        return None
+    return date(today.year, 5, 1), date(today.year, 12, 31)
 
 
 def peak_index(tmean, forcing):
@@ -377,12 +388,14 @@ def build_bloom(master_path, region_code, r2_prefix, to_pmtiles, upload,
                 *, build_mbtiles=_tippecanoe, today=None, normals=None, towns=None):
     """Build and upload `<region>_bloom.pmtiles`, on towns."""
     today = today or date.today()
-    if towns is None and season(today) is not None:
+    south = region_code in SOUTH
+    span = season_south if south else season
+    if towns is None and span(today) is not None:
         towns = load_ground("bloom_towns", region_code)
     return build_peaks(master_path, region_code, r2_prefix, to_pmtiles, upload, label="Bloom", tiles="bloom",
-                       season=season, peak_index=lambda t, _: peak_index(t, FORCING[MAP_VARIETY]),
-                       latest_normal_peak=LATEST_NORMAL_PEAK, ground=towns, build_mbtiles=build_mbtiles,
-                       today=today, normals=normals)
+                       season=span, peak_index=lambda t, _: peak_index(t, FORCING[MAP_VARIETY]),
+                       latest_normal_peak=LATEST_NORMAL_PEAK_SOUTH if south else LATEST_NORMAL_PEAK,
+                       ground=towns, build_mbtiles=build_mbtiles, today=today, normals=normals)
 
 
 def _spectacles():
@@ -391,12 +404,16 @@ def _spectacles():
     import foliage
     import heather
     import superbloom
+    import wattle
 
-    return [("cherry_blossom", frozenset(NORMALS_MACRO), season, build_bloom),
+    return [("cherry_blossom", frozenset(NORMALS_MACRO) - SOUTH, season, build_bloom),
+            ("cherry_blossom", SOUTH, season_south, build_bloom),
             ("bluebell", bluebell.REGIONS, bluebell.season, bluebell.build_bluebell),
             ("heather", heather.REGIONS, heather.season, heather.build_heather),
             ("superbloom", superbloom.REGIONS, superbloom.season, superbloom.build_superbloom),
-            ("foliage", foliage.REGIONS, foliage.season, foliage.build_foliage)]
+            ("foliage", foliage.REGIONS, foliage.season, foliage.build_foliage),
+            ("wattle", wattle.SOUTH, wattle.season_south, wattle.build_wattle),
+            ("mimosa", wattle.NORTH, wattle.season_north, wattle.build_wattle)]
 
 
 def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *, today=None, spectacles=None,
@@ -417,7 +434,11 @@ def build_spectacles(master_path, region_code, r2_prefix, to_pmtiles, upload, *,
     if not due:
         print(f"Spectacles: none in season on {today}, skipped.")
         return {}
-    local, downloaded = _local_master(master_path)
+    # A spectacle on a fixed date (wattle, mimosa) reads no weather: alone, it downloads nothing.
+    if any(getattr(build, "needs_master", True) for _, build in due):
+        local, downloaded = _local_master(master_path)
+    else:
+        local, downloaded = master_path, False
     out = {}
     try:
         for name, build in due:
