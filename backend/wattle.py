@@ -82,8 +82,10 @@ def build_wattle(master_path, region_code, r2_prefix, to_pmtiles, upload,
     pieces = land.loc[land["raster_val"].isin(LAND[macro]), ["geometry"]]
     middle = pieces.geometry.representative_point()
     pieces = pieces[in_mask(middle.y.to_numpy(), middle.x.to_numpy(), macro)].copy()
-    # Simplified multi-part pieces often cross themselves; buffer(0) mends them (fall foliage).
-    pieces["geometry"] = pieces.geometry.simplify(SIMPLIFY, preserve_topology=True).buffer(0)
+    # Simplified multi-part pieces often cross themselves; buffer(0) mends them, as fall foliage's.
+    # Some of Australia/New Zealand's are invalid before that (a hole outside its shell, where
+    # buffer(0) raises), so they are made valid first.
+    pieces["geometry"] = pieces.geometry.simplify(SIMPLIFY, preserve_topology=True).make_valid().buffer(0)
     pieces = pieces[~pieces.is_empty]
     pieces["peak"] = float((date(span[1].year, month, day) - bloom.EPOCH).days)
     print(f"{tiles.capitalize()} {region_code}: {len(pieces)} pieces of bush and woods drawn")

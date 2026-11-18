@@ -337,6 +337,20 @@ def test_build_wattle_draws_the_masked_bush_on_its_normal_date(tmp_path, monkeyp
                                today=date(2026, 12, 1)) is None
 
 
+def test_build_wattle_mends_invalid_pieces_whole(tmp_path, monkeypatch):
+    from shapely.geometry import Polygon
+
+    # A self-crossing bowtie: buffer(0) alone keeps one of its two triangles.
+    bowtie = Polygon([(144.0, -38.0), (144.2, -37.8), (144.2, -38.0), (144.0, -37.8)])
+    monkeypatch.setattr(wattle, "in_mask", lambda lat, lon, macro: np.ones(len(lat), bool))
+    land = gpd.GeoDataFrame({"raster_val": [611]}, geometry=[bowtie], crs="EPSG:4326")
+    uploads, layers, build_mbtiles, to_pmtiles, upload = _capture()
+    wattle.build_wattle(tmp_path / "m.parquet", "anz", "ANZ", to_pmtiles, upload, land=land,
+                        build_mbtiles=build_mbtiles, today=date(2026, 8, 1))
+    drawn = gpd.GeoDataFrame.from_features(layers[0][0]["features"])
+    assert drawn.geometry.is_valid.all() and drawn.area.sum() == pytest.approx(0.02)
+
+
 def test_wattle_mask_lookup(monkeypatch, tmp_path):
     path = tmp_path / "wattle_mask_ANZ.npz"
     np.savez_compressed(path, lat0=-40.0, lon0=140.0, step=1.0, mask=np.array([[True, False], [False, True]]))
