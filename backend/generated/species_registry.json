@@ -2901,6 +2901,130 @@
           ]
         }
       }
+    },
+    "native_hedgehog": {
+      "name": "Native Hedgehog",
+      "scientificName": "Hydnum crocidens",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [2513763],
+      "rangeTaxonKeys": [2513763],
+      "dataColumns": ["native_hedgehog_score", "Native Hedgehog"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 621],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2513763",
+            "https://keys.lucidcentral.org/keys/v4/101-forest-fungi/web/resource/h/hydnum%20aff%20repandum.htm",
+            "https://library.dbca.wa.gov.au/FullTextFiles/PAM09227.pdf",
+            "https://virtualmycota.landcareresearch.co.nz/webforms/vM_Species_Details.aspx?pk=4534",
+            "https://hiddenforest.co.nz/fungi/family/hydnaceae/hydna01.htm",
+            "https://morrie2.com/2010/03/20/the-hedgehog-mushroom-hydnum-repandum/",
+            "https://mykoweb.com/book_reviews/Wild_Mushrooming_Guide.html",
+            "https://www.publishing.csiro.au/book/7894/",
+            "https://fungimap.org.au/?p=4864",
+            "https://canberra.naturemapr.org/categories/guide/1699?1=1",
+            "https://en.wikipedia.org/wiki/Hydnum",
+            "https://en.wikipedia.org/wiki/Hydnellum",
+            "https://en.wikipedia.org/wiki/Phellodon",
+            "https://www.sbs.com.au/language/english/en/podcast-episode/mushroom-foraging-in-australia-is-it-safe/446lxanhk",
+            "https://www.gourmettraveller.com.au/dining-out/food-news/how-to-forage-2468/",
+            "https://www.doc.govt.nz/get-involved/apply-for-permits/research-and-collection/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+          ]
+        }
+      }
+    },
+    "coral_tooth": {
+      "name": "Coral Tooth",
+      "scientificName": "Hericium coralloides",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [5248532, 10755430],
+      "rangeTaxonKeys": [5248532, 10755430],
+      "dataColumns": ["coral_tooth_score", "Coral Tooth"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/5248532",
+            "https://www.gbif.org/species/10755430",
+            "https://keys.lucidcentral.org/keys/v4/101-forest-fungi/web/resource/h/hericium%20coralloides.htm",
+            "https://www.hiddenforest.co.nz/fungi/family/hericiaceae/heric01.htm",
+            "https://www.mycologic.nz/post/wild-edible-mushrooms-of-new-zealand",
+            "https://rauropiwhakaoranga.landcareresearch.co.nz/names/2a5f5a10-ae09-4805-9b25-eb1a4517e8a8",
+            "https://www.sciencelearn.org.nz/images/3729-hericium-sp-pekepekekiore",
+            "https://scd.landcareresearch.co.nz/Specimen/PDD%2055178",
+            "https://www.abc.net.au/news/2020-08-29/first-indigenous-commercialised-mushroom-hit-with-top-chefs/12597012",
+            "https://www.mykoweb.com/CAF/species/Hericium_coralloides.html",
+            "https://zombiemyco.com/pages/coral-tooth-fungus-hericium-coralloides",
+            "https://en.wikipedia.org/wiki/Ramaria",
+            "https://www.gourmettraveller.com.au/dining-out/food-news/how-to-forage-2468/",
+            "https://www.doc.govt.nz/get-involved/apply-for-permits/research-and-collection/",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+          ]
+        }
+      }
+    },
+    "cherry_plum": {
+      "name": "Cherry Plum",
+      "scientificName": "Prunus cerasifera",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [3021730],
+      "dataColumns": ["cherry_plum_score", "Cherry Plum"],
+      "regions": {
+        "ANZ": {
+          "landCover": [612, 621, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/3021730",
+            "https://weedscan.org.au/Weed?id=467",
+            "https://nzpcn.org.nz/flora/species/prunus-cerasifera/",
+            "https://nzflora.info/factsheet/Taxon/Prunus-cerasifera.html",
+            "https://weedsofmelbourne.org/cherry-plum-prunus-cerasifera-2",
+            "https://plantpono.org/hpwra/prunus-cerasifera/",
+            "https://apwt.org.nz/document/weeds/wilding_prunus.pdf",
+            "https://www.weedbusters.org.nz/what-are-weeds/weed-list/cherry-laurel/",
+            "https://diego-bonetto-weeds.squarespace.com/blog/feral-plums-bonanza-the-bounty-in-the-country",
+            "https://temperate.theferns.info/plant/Prunus+cerasifera",
+            "https://www.rhs.org.uk/plants/99810/prunus-cerasifera-pissardii/details",
+            "https://www.doc.govt.nz/get-involved/apply-for-permits/research-and-collection/",
+            "https://www.nationalparks.nsw.gov.au/conservation-and-heritage/care-for-parks/illegal-activities",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+          ]
+        }
+      }
+    },
+    "bunya": {
+      "name": "Bunya Nut",
+      "scientificName": "Araucaria bidwillii",
+      "identificationRank": "species",
+      "empiricalTaxonKeys": [],
+      "rangeTaxonKeys": [2684918],
+      "dataColumns": ["bunya_score", "Bunya Nut"],
+      "regions": {
+        "ANZ": {
+          "landCover": [611, 612, 632],
+          "landCoverScheme": "ANZ",
+          "scoringReferences": [
+            "https://www.gbif.org/species/2684918",
+            "https://anpsa.org.au/?p=6458",
+            "https://en.wikipedia.org/wiki/Araucaria_bidwillii",
+            "https://conifers.org/ar/Araucaria_bidwillii.php",
+            "https://tooheyforesteec.eq.edu.au/support-and-resources/research/bunya-pine",
+            "https://jerry-coleby-williams.net/2015/02/15/bunya-prehistoric-plant-ancient-australian-food-tradition/",
+            "https://www.slq.qld.gov.au/blog/bountiful-bunyas-charismatic-tree-fascinating-history",
+            "https://bushfoodforager.substack.com/p/bunya-nut",
+            "https://www.sbs.com.au/food/article/2018/01/17/these-giant-bunya-nuts-are-key-indigenous-food-well-snacks-dinosaurs",
+            "https://botanicgardens.org.au/discover-and-learn/watch-listen-read/5-kilogram-nuts-come-crashing-down-australias-largest-botanic",
+            "https://koorihistory.com/bunya/",
+            "https://en.wikipedia.org/wiki/Bunya_Mountains_National_Park",
+            "https://www.nationalparks.nsw.gov.au/conservation-and-heritage/care-for-parks/illegal-activities",
+            "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+          ]
+        }
+      }
     }
   }
 }

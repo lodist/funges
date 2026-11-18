@@ -1,0 +1,165 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "coral_tooth",
+  "scientificName": "Hericium coralloides",
+  "catalog": {
+    "enabled": true,
+    "order": 75,
+    "translationKey": "coral_tooth",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "fall-winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/coral_tooth.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Coral Tooth",
+      "description": "A white, branching fungus with soft spines hanging from every branch like icicles. It grows on rotting logs and dead trees in the forests of Australia and New Zealand.",
+      "howTo": "Look on rotting logs and old dead trees from February to July. Check that soft spines hang from the branches and that it grows from wood, never from the ground",
+      "guide": {
+        "identify": "It forms a white, much-branched mass, usually 5 to 20 cm across. It has no cap and no gills. Soft spines 5 to 15 mm long hang from the branches in rows. The flesh is white and soft. The spore print is white. With age the spines turn cream, yellow or brown and the branches go brittle. In New Zealand it is called pekepeke-kiore. There it is now named Hericium novae-zealandiae. It is a smaller, more tufted form with shorter spines. Coral fungi such as Ramaria have thicker branches and no hanging spines. Some of them upset the stomach. Coral tooth grows only from wood, never from the ground.",
+        "habitat": "It grows only on wood. Look on fallen logs and standing dead trunks in forest. In New Zealand it often grows from a wound in a living native tree or on old, storm-damaged trees. It grows on beech, kāmahi and other broadleaf trees. The wood is often well rotted. The trunks are often more than 30 cm wide. In Australia it is known from Queensland, New South Wales, Victoria and Tasmania. In New Zealand it grows throughout, mostly in lowland forest of podocarps and broadleaf trees.",
+        "season": "It is an autumn and winter mushroom. Records run from February to July. Most come in April, May and June. It likes cool, damp weather, especially after a long wet spell.",
+        "picking": "Cut off only part of it and leave the rest to keep making spores. Never take every fruit body from a patch. In New Zealand it is a taonga species and not especially common, so take little. Picking is not allowed in national parks. On New Zealand conservation land you need permission from the Department of Conservation. Elsewhere check the local rules first.",
+        "kitchen": "Once you're certain of it, cook it. Pick young, white ones. Older ones with yellowing spines can turn bitter. Fry it in butter until it has a golden crust. Add garlic and lemon, or stir it into pasta, risotto or chowder. The taste is mild and sweet, a little like crab or lobster. Early records list pekepeke-kiore as an edible fungus. Few accounts of how Māori ate it survive.",
+        "keeps": "It is soft and fragile, so cook it within a day or two. Keep it in the fridge in a paper bag until then.",
+        "source": "Identification and habitat: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), Hidden Forest, Landcare Research and mycologic.nz (New Zealand), MykoWeb, Zombie Myco and Wikipedia. Cooking: ABC News and mycologic.nz. Māori records: Landcare Research (Rauropi Whakaoranga) and Science Learning Hub. Picking rules: Gourmet Traveller, mycologic.nz and the Department of Conservation. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Steccherino corallino",
+      "description": "Un fungo bianco e ramificato, con aculei morbidi che pendono da ogni ramo come ghiaccioli. Cresce su tronchi marci e alberi morti nelle foreste di Australia e Nuova Zelanda.",
+      "howTo": "Cercalo da febbraio a luglio su tronchi marci e vecchi alberi morti. Controlla che gli aculei morbidi pendano dai rami e che cresca dal legno, mai da terra",
+      "guide": {
+        "identify": "Forma una massa bianca e molto ramificata, di solito larga da 5 a 20 cm. Non ha cappello né lamelle. Aculei morbidi, lunghi da 5 a 15 mm, pendono dai rami in file. La carne è bianca e tenera. Anche la sporata è bianca. Con l'età gli aculei diventano crema, gialli o marroni e i rami si fanno fragili. In Nuova Zelanda si chiama pekepeke-kiore e oggi lì ha un nome suo, Hericium novae-zealandiae. È una forma più piccola e ciuffosa, con aculei più corti. I funghi a corallo come Ramaria hanno rami più spessi e nessun aculeo penzolante. Alcuni fanno venire mal di stomaco. Lo steccherino corallino cresce solo sul legno, mai da terra.",
+        "habitat": "Cresce solo sul legno. Cercalo su tronchi caduti e fusti morti ancora in piedi, nel bosco. In Nuova Zelanda spunta spesso da una ferita di un albero nativo vivo o su vecchi alberi spezzati dalle tempeste. Cresce su faggio australe, kāmahi e altre latifoglie. Il legno è spesso ben marcio. I tronchi sono spesso larghi più di 30 cm. In Australia è noto dal Queensland, dal Nuovo Galles del Sud, dal Victoria e dalla Tasmania. In Nuova Zelanda c'è ovunque, soprattutto nei boschi di pianura di podocarpi e latifoglie.",
+        "season": "È un fungo d'autunno e d'inverno. Le segnalazioni vanno da febbraio a luglio, e la maggior parte cade ad aprile, maggio e giugno. Gli piacciono il fresco e l'umido, soprattutto dopo un lungo periodo di pioggia.",
+        "picking": "Stacca solo una parte e lascia il resto, così continua a produrre spore. Non prendere mai tutto da un gruppo. In Nuova Zelanda è una specie taonga e non è molto comune, quindi prendine poco. Nei parchi nazionali raccogliere è vietato. Nelle terre protette della Nuova Zelanda serve il permesso del Department of Conservation. Altrove controlla prima le regole del posto.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, cuocilo. Scegli quelli giovani e bianchi. Quelli più vecchi, con gli aculei che ingialliscono, possono diventare amarognoli. Rosolalo nel burro finché non ha una crosticina dorata. Aggiungi aglio e limone, oppure mescolalo a pasta, risotto o zuppa. Il sapore è delicato e dolce, un po' di granchio o di astice. Le prime fonti elencano il pekepeke-kiore come fungo commestibile. Restano pochi racconti su come lo mangiassero i Māori.",
+        "keeps": "È tenero e fragile, quindi cuocilo entro un giorno o due. Fino ad allora tienilo in frigo, in un sacchetto di carta.",
+        "source": "Riconoscimento e habitat: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), Hidden Forest, Landcare Research e mycologic.nz (Nuova Zelanda), MykoWeb, Zombie Myco e Wikipedia. Cucina: ABC News e mycologic.nz. Fonti sui Māori: Landcare Research (Rauropi Whakaoranga) e Science Learning Hub. Regole di raccolta: Gourmet Traveller, mycologic.nz e il Department of Conservation. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Hydne corail",
+      "description": "Un champignon blanc et ramifié, dont chaque branche laisse pendre des aiguillons mous comme des glaçons. Il pousse sur les troncs pourris et les arbres morts des forêts d'Australie et de Nouvelle-Zélande.",
+      "howTo": "Cherche-le de février à juillet sur les troncs pourris et les vieux arbres morts. Vérifie que des aiguillons mous pendent des branches et qu'il sort du bois, jamais du sol",
+      "guide": {
+        "identify": "Il forme une masse blanche très ramifiée, large de 5 à 20 cm en général. Il n'a ni chapeau ni lames. Des aiguillons mous, longs de 5 à 15 mm, pendent des branches en rangs. La chair est blanche et tendre. La sporée est blanche aussi. Avec l'âge, les aiguillons passent au crème, au jaune ou au brun, et les branches deviennent cassantes. En Nouvelle-Zélande, on l'appelle pekepeke-kiore et on lui donne aujourd'hui son propre nom, Hericium novae-zealandiae. C'est une forme plus petite et plus touffue, aux aiguillons plus courts. Les clavaires comme Ramaria ont des branches plus épaisses et aucun aiguillon pendant. Certaines donnent mal au ventre. L'hydne corail ne pousse que sur le bois, jamais sur le sol.",
+        "habitat": "Il ne pousse que sur le bois. Cherche-le sur les troncs tombés et les arbres morts encore debout, en forêt. En Nouvelle-Zélande, il sort souvent d'une blessure sur un arbre indigène vivant ou de vieux arbres abattus par la tempête. Il vient sur le hêtre austral, le kāmahi et d'autres feuillus. Le bois est souvent bien pourri. Les troncs font souvent plus de 30 cm de large. En Australie, on le connaît du Queensland, de la Nouvelle-Galles du Sud, du Victoria et de la Tasmanie. En Nouvelle-Zélande, il est présent partout, surtout dans les forêts de plaine de podocarpes et de feuillus.",
+        "season": "C'est un champignon d'automne et d'hiver. Les observations vont de février à juillet, surtout en avril, mai et juin. Il aime le frais et l'humide, surtout après une longue période de pluie.",
+        "picking": "Ne coupe qu'une partie et laisse le reste continuer à produire des spores. Ne prends jamais tout un groupe. En Nouvelle-Zélande, c'est une espèce taonga et elle n'est pas très courante, alors prends-en peu. La cueillette est interdite dans les parcs nationaux. Sur les terres protégées de Nouvelle-Zélande, il faut l'accord du Department of Conservation. Ailleurs, vérifie d'abord les règles locales.",
+        "kitchen": "Une fois sûr de toi, fais-le cuire. Choisis les jeunes, bien blancs. Les plus vieux, aux aiguillons jaunissants, peuvent devenir amers. Fais-le dorer au beurre jusqu'à ce qu'il ait une belle croûte. Ajoute de l'ail et du citron, ou mélange-le à des pâtes, à un risotto ou à une soupe. Son goût est doux et sucré, un peu comme le crabe ou le homard. Les premiers écrits le citent comme un champignon comestible. On sait peu de choses sur la façon dont les Māori le mangeaient.",
+        "keeps": "Il est tendre et fragile, alors cuisine-le dans un jour ou deux. D'ici là, garde-le au frigo dans un sac en papier.",
+        "source": "Identification et habitat : One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), Hidden Forest, Landcare Research et mycologic.nz (Nouvelle-Zélande), MykoWeb, Zombie Myco et Wikipédia. Cuisine : ABC News et mycologic.nz. Sources sur les Māori : Landcare Research (Rauropi Whakaoranga) et Science Learning Hub. Règles de cueillette : Gourmet Traveller, mycologic.nz et le Department of Conservation. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Ästiger Stachelbart",
+      "description": "Ein weisser, verzweigter Pilz, an dessen Ästen weiche Stacheln wie Eiszapfen hängen. Er wächst auf morschen Stämmen und toten Bäumen in den Wäldern Australiens und Neuseelands.",
+      "howTo": "Such von Februar bis Juli an morschen Stämmen und alten toten Bäumen. Prüf, ob weiche Stacheln von den Ästen hängen und ob er aus Holz wächst, nie aus dem Boden",
+      "guide": {
+        "identify": "Er bildet eine weisse, stark verzweigte Masse, meist 5 bis 20 cm breit. Einen Hut oder Lamellen hat er nicht. An den Ästen hängen in Reihen weiche Stacheln, 5 bis 15 mm lang. Das Fleisch ist weiss und weich. Das Sporenpulver ist ebenfalls weiss. Mit dem Alter werden die Stacheln cremefarben, gelb oder braun, und die Äste brechen leicht. In Neuseeland heisst er pekepeke-kiore und trägt dort heute einen eigenen Namen, Hericium novae-zealandiae. Er ist kleiner und buschiger und hat kürzere Stacheln. Korallenpilze wie Ramaria haben dickere Äste und keine hängenden Stacheln. Manche schlagen auf den Magen. Der Ästige Stachelbart wächst nur auf Holz, nie aus dem Boden.",
+        "habitat": "Er wächst nur auf Holz. Such an umgestürzten Stämmen und an toten, noch stehenden Bäumen im Wald. In Neuseeland wächst er oft aus einer Wunde an einem lebenden einheimischen Baum oder an alten, sturmgeschädigten Bäumen. Er kommt auf Südbuche, Kāmahi und anderen Laubbäumen vor. Das Holz ist oft gut vermodert. Die Stämme sind oft über 30 cm dick. In Australien kennt man ihn aus Queensland, New South Wales, Victoria und Tasmanien. In Neuseeland gibt es ihn überall, vor allem im Tieflandwald aus Podocarpen und Laubbäumen.",
+        "season": "Er ist ein Herbst- und Winterpilz. Die Funde reichen von Februar bis Juli, die meisten fallen auf April, Mai und Juni. Er mag es kühl und feucht, besonders nach einer langen Regenphase.",
+        "picking": "Schneid nur einen Teil ab und lass den Rest weiter Sporen bilden. Nimm nie alle Fruchtkörper eines Bestands. In Neuseeland ist er eine Taonga-Art und nicht besonders häufig, also nimm wenig. In Nationalparks ist Sammeln verboten. Auf neuseeländischem Schutzland brauchst du die Erlaubnis des Department of Conservation. Anderswo prüf zuerst die Regeln vor Ort.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare ihn. Nimm junge, weisse Exemplare. Ältere mit gelblichen Stacheln können bitter werden. Brat ihn in Butter, bis er eine goldene Kruste hat. Gib Knoblauch und Zitrone dazu oder rühr ihn unter Pasta, Risotto oder in eine Suppe. Er schmeckt mild und süsslich, ein bisschen nach Krebs oder Hummer. Frühe Aufzeichnungen führen den Pekepeke-kiore als essbaren Pilz auf. Wie ihn die Māori assen, ist kaum überliefert.",
+        "keeps": "Er ist weich und empfindlich, also verarbeite ihn innerhalb von ein, zwei Tagen. Bis dahin bleibt er im Kühlschrank, in einer Papiertüte.",
+        "source": "Bestimmung und Standort: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), Hidden Forest, Landcare Research und mycologic.nz (Neuseeland), MykoWeb, Zombie Myco und Wikipedia. Küche: ABC News und mycologic.nz. Māori-Quellen: Landcare Research (Rauropi Whakaoranga) und Science Learning Hub. Sammelregeln: Gourmet Traveller, mycologic.nz und das Department of Conservation. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Diente de coral",
+      "description": "Un hongo blanco y ramificado, con púas blandas que cuelgan de cada rama como carámbanos. Crece en troncos podridos y árboles muertos de los bosques de Australia y Nueva Zelanda.",
+      "howTo": "Búscalo de febrero a julio en troncos podridos y árboles viejos muertos. Comprueba que las púas blandas cuelgan de las ramas y que sale de la madera, nunca del suelo",
+      "guide": {
+        "identify": "Forma una masa blanca y muy ramificada, de 5 a 20 cm de ancho por lo general. No tiene sombrero ni láminas. De las ramas cuelgan, en filas, púas blandas de 5 a 15 mm. La carne es blanca y tierna. La esporada también es blanca. Con la edad las púas se vuelven crema, amarillas o pardas y las ramas se hacen quebradizas. En Nueva Zelanda se llama pekepeke-kiore y allí hoy tiene nombre propio, Hericium novae-zealandiae. Es una forma más pequeña y apretada, con las púas más cortas. Los hongos coral como Ramaria tienen ramas más gruesas y ninguna púa colgante. Algunos sientan mal al estómago. El diente de coral crece solo sobre madera, nunca del suelo.",
+        "habitat": "Crece solo sobre madera. Búscalo en troncos caídos y en árboles muertos aún en pie, dentro del bosque. En Nueva Zelanda sale a menudo de una herida de un árbol nativo vivo o de árboles viejos rotos por tormentas. Crece en hayas australes, kāmahi y otros árboles de hoja ancha. La madera suele estar muy podrida. Los troncos suelen medir más de 30 cm de ancho. En Australia se conoce en Queensland, Nueva Gales del Sur, Victoria y Tasmania. En Nueva Zelanda está en todas partes, sobre todo en bosques de llanura de podocarpos y árboles de hoja ancha.",
+        "season": "Es un hongo de otoño e invierno. Los registros van de febrero a julio, y la mayoría caen en abril, mayo y junio. Le gusta el tiempo fresco y húmedo, sobre todo tras un largo periodo de lluvias.",
+        "picking": "Corta solo una parte y deja el resto para que siga soltando esporas. No te lleves nunca todos los cuerpos fructíferos de un grupo. En Nueva Zelanda es una especie taonga y no es especialmente común, así que coge poco. En los parques nacionales está prohibido recolectar. En las tierras protegidas de Nueva Zelanda necesitas el permiso del Department of Conservation. En otros sitios, consulta antes las normas locales.",
+        "kitchen": "Cuando estés seguro de que es él, cocínalo. Elige los jóvenes y blancos. Los más viejos, con las púas amarilleando, pueden volverse amargos. Dóralo en mantequilla hasta que forme una costra dorada. Añade ajo y limón, o mézclalo con pasta, arroz meloso o una sopa. Su sabor es suave y dulce, algo parecido al cangrejo o la langosta. Los primeros registros lo citan como hongo comestible. Quedan pocos relatos de cómo lo comían los maoríes.",
+        "keeps": "Es blando y frágil, así que cocínalo en uno o dos días. Hasta entonces, guárdalo en la nevera, en una bolsa de papel.",
+        "source": "Identificación y hábitat: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), Hidden Forest, Landcare Research y mycologic.nz (Nueva Zelanda), MykoWeb, Zombie Myco y Wikipedia. Cocina: ABC News y mycologic.nz. Fuentes sobre los maoríes: Landcare Research (Rauropi Whakaoranga) y Science Learning Hub. Normas de recolección: Gourmet Traveller, mycologic.nz y el Department of Conservation. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Dente-de-coral",
+      "description": "Um cogumelo branco e ramificado, com espinhos moles que pendem de cada ramo como pingentes de gelo. Cresce em troncos podres e árvores mortas nas florestas da Austrália e da Nova Zelândia.",
+      "howTo": "Procura-o de fevereiro a julho em troncos podres e árvores velhas mortas. Confirma que os espinhos moles pendem dos ramos e que nasce da madeira, nunca do chão",
+      "guide": {
+        "identify": "Forma uma massa branca e muito ramificada, normalmente com 5 a 20 cm de largura. Não tem chapéu nem lâminas. Dos ramos pendem, em fiadas, espinhos moles de 5 a 15 mm. A carne é branca e macia. A esporada também é branca. Com a idade, os espinhos tornam-se cor de creme, amarelos ou castanhos e os ramos ficam quebradiços. Na Nova Zelândia chama-se pekepeke-kiore e hoje tem lá nome próprio, Hericium novae-zealandiae. É uma forma mais pequena e compacta, de espinhos mais curtos. Os fungos-coral como o Ramaria têm ramos mais grossos e nenhum espinho pendente. Alguns fazem mal ao estômago. O dente-de-coral cresce só na madeira, nunca do chão.",
+        "habitat": "Cresce só na madeira. Procura-o em troncos caídos e em árvores mortas ainda de pé, dentro da floresta. Na Nova Zelândia nasce muitas vezes de uma ferida numa árvore nativa viva ou em árvores velhas partidas por tempestades. Cresce em faias-austrais, kāmahi e outras árvores de folha larga. A madeira costuma estar bem podre. Os troncos têm muitas vezes mais de 30 cm de largura. Na Austrália conhece-se em Queensland, na Nova Gales do Sul, em Victoria e na Tasmânia. Na Nova Zelândia há em todo o lado, sobretudo em florestas de planície de podocarpos e árvores de folha larga.",
+        "season": "É um cogumelo de outono e inverno. Os registos vão de fevereiro a julho, e a maioria cai em abril, maio e junho. Gosta de tempo fresco e húmido, sobretudo depois de um longo período de chuva.",
+        "picking": "Corta só uma parte e deixa o resto a continuar a libertar esporos. Nunca leves todos os corpos frutíferos de um grupo. Na Nova Zelândia é uma espécie taonga e não é especialmente comum, por isso leva pouco. Nos parques nacionais é proibido apanhar. Nas terras protegidas da Nova Zelândia precisas da autorização do Department of Conservation. Noutros sítios, confirma antes as regras locais.",
+        "kitchen": "Quando tiveres a certeza de que é ele, cozinha-o. Escolhe os novos e brancos. Os mais velhos, de espinhos amarelados, podem ficar amargos. Salteia-o em manteiga até ganhar uma crosta dourada. Junta alho e limão, ou mistura-o com massa, risoto ou sopa. O sabor é suave e doce, um pouco como caranguejo ou lavagante. Os primeiros registos citam-no como cogumelo comestível. Restam poucos relatos de como os maoris o comiam.",
+        "keeps": "É mole e frágil, por isso cozinha-o em um ou dois dias. Até lá, guarda-o no frigorífico, num saco de papel.",
+        "source": "Identificação e habitat: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), Hidden Forest, Landcare Research e mycologic.nz (Nova Zelândia), MykoWeb, Zombie Myco e Wikipédia. Cozinha: ABC News e mycologic.nz. Fontes sobre os maoris: Landcare Research (Rauropi Whakaoranga) e Science Learning Hub. Regras de apanha: Gourmet Traveller, mycologic.nz e o Department of Conservation. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Hericium coralloides",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Coral Tooth"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [5248532, 10755430],
+      "references": [
+        "https://www.gbif.org/species/5248532",
+        "https://www.gbif.org/species/10755430"
+      ]
+    },
+    "rangePrior": {
+      "taxonKeys": [5248532, 10755430]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611],
+        "scoringReferences": [
+          "https://www.gbif.org/species/5248532",
+          "https://www.gbif.org/species/10755430",
+          "https://keys.lucidcentral.org/keys/v4/101-forest-fungi/web/resource/h/hericium%20coralloides.htm",
+          "https://www.hiddenforest.co.nz/fungi/family/hericiaceae/heric01.htm",
+          "https://www.mycologic.nz/post/wild-edible-mushrooms-of-new-zealand",
+          "https://rauropiwhakaoranga.landcareresearch.co.nz/names/2a5f5a10-ae09-4805-9b25-eb1a4517e8a8",
+          "https://www.sciencelearn.org.nz/images/3729-hericium-sp-pekepekekiore",
+          "https://scd.landcareresearch.co.nz/Specimen/PDD%2055178",
+          "https://www.abc.net.au/news/2020-08-29/first-indigenous-commercialised-mushroom-hit-with-top-chefs/12597012",
+          "https://www.mykoweb.com/CAF/species/Hericium_coralloides.html",
+          "https://zombiemyco.com/pages/coral-tooth-fungus-hericium-coralloides",
+          "https://en.wikipedia.org/wiki/Ramaria",
+          "https://www.gourmettraveller.com.au/dining-out/food-news/how-to-forage-2468/",
+          "https://www.doc.govt.nz/get-involved/apply-for-permits/research-and-collection/",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

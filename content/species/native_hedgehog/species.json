@@ -1,0 +1,164 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "native_hedgehog",
+  "scientificName": "Hydnum crocidens",
+  "catalog": {
+    "enabled": true,
+    "order": 74,
+    "translationKey": "native_hedgehog",
+    "category": "mushroom",
+    "emoji": "🍄",
+    "season": "winter",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/native_hedgehog.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Native Hedgehog",
+      "description": "The native hedgehog fungus of Australia and New Zealand: a small cream to orange cap with soft spines underneath instead of gills. It hides in the leaf litter of native forests through winter.",
+      "howTo": "Look in native forest and tea-tree scrub from June to September. Turn the cap over and check for soft spines, not gills",
+      "guide": {
+        "identify": "The cap is small, usually 1 to 6 cm across. In New Zealand it is white to cream. In Australia it is often dull orange, apricot or chestnut brown. It is flat or a little sunken, with a wavy edge. It is often lopsided. Turn it over. Underneath there are crowded, soft spines about 3 to 5 mm long, not gills. They are creamy white and break off easily. The stem is short and solid, up to 4 cm long and the same colour as the cap. The flesh is white. Scientists count it as a group of about six species, all very like the European hedgehog. The tooth fungi Hydnellum and Phellodon also have spines under the cap. They have small, dull brown caps and tough, woody or leathery flesh. They are too tough to eat. The Australian chanterelle has blunt ridges, not spines. Anything with gills or pores under the cap is not a hedgehog.",
+        "habitat": "It grows on the ground, in leaf litter and moss, under native trees. Look in eucalypt forest such as karri, jarrah and messmate. It also grows in coastal woodland and tea-tree scrub. In New Zealand it grows under native trees and shrubs, often with tea-tree. It comes up in groups and sometimes in rings. The caps are often small and half buried, so look closely. You find it across eastern Australia and Tasmania. It also grows in Western Australia and throughout New Zealand.",
+        "season": "It comes through winter and into early spring. Most come from June to September. A few turn up as early as May. In the jarrah forests around Perth August is the best month. They resist decay, so they can stay in the forest for weeks.",
+        "picking": "Cut it at the base and leave the tiny ones to grow. Picking is not allowed in national parks. In New Zealand you need the Department of Conservation's permission on its land. Elsewhere check the local rules first.",
+        "kitchen": "Once you're certain of it, cook it well. Australia's main foraging guide counts the native hedgehog among its ten wild edibles. Try it simmered in chicken stock and red wine until the liquid has halved. Then add chicken, vegetables and a little cream. New Zealand's Hidden Forest database lists its edibility as unknown. Eat only a little the first time.",
+        "keeps": "It keeps well in the fridge, in a bag. It is slow to rot and insects leave it alone.",
+        "source": "Identification and range: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), Western Australia's Department of Biodiversity, Conservation and Attractions and Landcare Research (New Zealand). Edibility: Wild Mushrooming (Pouliot and May, reviewed on MykoWeb), a Western Australian forager's blog and Hidden Forest. Tooth fungi: Fungimap and Wikipedia. Picking rules: SBS, Gourmet Traveller and the Department of Conservation. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Steccherino nativo",
+      "description": "Lo steccherino nativo di Australia e Nuova Zelanda: un piccolo cappello da crema ad arancio con aculei morbidi sotto, al posto delle lamelle. Si nasconde tra le foglie dei boschi nativi durante l'inverno.",
+      "howTo": "Cercalo da giugno a settembre nei boschi nativi e nella macchia di tea-tree. Gira il cappello e controlla che sotto ci siano aculei morbidi, non lamelle",
+      "guide": {
+        "identify": "Il cappello è piccolo, di solito largo da 1 a 6 cm. In Nuova Zelanda è da bianco a crema. In Australia spesso è arancio spento, albicocca o marrone castagna. È piatto o un po' incavato, con il bordo ondulato, e spesso storto. Giralo. Sotto ha aculei morbidi e fitti, lunghi da 3 a 5 mm circa, non lamelle. Sono bianco crema e si staccano facilmente. Il gambo è corto e pieno, lungo fino a 4 cm e del colore del cappello. La carne è bianca. Gli scienziati lo trattano come un gruppo di circa sei specie, tutte molto simili allo steccherino europeo. Anche i funghi a denti Hydnellum e Phellodon hanno aculei sotto il cappello. Ma hanno cappelli piccoli, di un marrone spento, e una carne dura, legnosa o coriacea. Sono troppo duri da mangiare. Il galletto australiano ha pieghe ottuse, non aculei. Se sotto il cappello ci sono lamelle o pori, non è uno steccherino.",
+        "habitat": "Cresce a terra, tra foglie e muschio, sotto alberi nativi. Cercalo nei boschi di eucalipto come karri, jarrah e messmate. Cresce anche nella boscaglia costiera e nella macchia di tea-tree. In Nuova Zelanda sta sotto alberi e arbusti nativi, spesso vicino al tea-tree. Spunta in gruppi e a volte in cerchi. I cappelli sono spesso piccoli e mezzi sepolti, quindi guarda bene. Lo trovi nell'Australia orientale e in Tasmania. Cresce anche in Australia Occidentale e in tutta la Nuova Zelanda.",
+        "season": "Viene durante l'inverno e fino all'inizio della primavera. I più spuntano da giugno a settembre. Qualcuno arriva già a maggio. Nei boschi di jarrah attorno a Perth agosto è il mese migliore. Resiste alla marcescenza, quindi può restare nel bosco per settimane.",
+        "picking": "Taglialo alla base e lascia crescere i più piccoli. Nei parchi nazionali raccogliere è vietato. In Nuova Zelanda sui terreni protetti serve il permesso del Department of Conservation. Altrove controlla prima le regole del posto.",
+        "kitchen": "Quando sei sicuro di averlo riconosciuto, cuocilo bene. La principale guida australiana lo conta tra i suoi dieci commestibili selvatici. Provalo cotto piano in brodo di pollo e vino rosso, finché il liquido si è dimezzato. Poi aggiungi pollo, verdure e un po' di panna. Il database neozelandese Hidden Forest dà la sua commestibilità come sconosciuta. La prima volta mangiane solo un po'.",
+        "keeps": "In frigo si conserva bene, in un sacchetto. Marcisce lentamente e gli insetti lo lasciano stare.",
+        "source": "Riconoscimento e diffusione: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), il dipartimento per la biodiversità dell'Australia Occidentale e Landcare Research (Nuova Zelanda). Commestibilità: Wild Mushrooming (Pouliot e May, recensito su MykoWeb), il blog di un raccoglitore dell'Australia Occidentale e Hidden Forest. Funghi a denti: Fungimap e Wikipedia. Regole di raccolta: SBS, Gourmet Traveller e il Department of Conservation. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Pied-de-mouton indigène",
+      "description": "Le pied-de-mouton indigène d'Australie et de Nouvelle-Zélande : un petit chapeau crème à orange, avec des aiguillons mous dessous à la place des lames. Il se cache dans la litière des forêts indigènes pendant l'hiver.",
+      "howTo": "Cherche-le de juin à septembre dans les forêts indigènes et les fourrés de tea-tree. Retourne le chapeau et vérifie qu'il a des aiguillons mous, pas des lames",
+      "guide": {
+        "identify": "Le chapeau est petit, de 1 à 6 cm en général. En Nouvelle-Zélande, il est blanc à crème. En Australie, il est souvent orange terne, abricot ou brun châtaigne. Il est plat ou un peu creusé, au bord ondulé, et souvent de travers. Retourne-le. Dessous, il y a des aiguillons mous et serrés, longs de 3 à 5 mm environ, et pas de lames. Ils sont blanc crème et se cassent facilement. Le pied est court et plein, long de 4 cm au plus, de la couleur du chapeau. La chair est blanche. Les scientifiques y voient un groupe d'environ six espèces, toutes très proches du pied-de-mouton européen. Les champignons à aiguillons Hydnellum et Phellodon ont eux aussi des aiguillons sous le chapeau. Mais leur chapeau est petit et brun terne, et leur chair est dure, ligneuse ou coriace. Ils sont trop durs pour être mangés. La girolle australienne a des plis obtus, pas des aiguillons. Si tu vois des lames ou des pores sous le chapeau, ce n'est pas un pied-de-mouton.",
+        "habitat": "Il pousse au sol, dans la litière et la mousse, sous des arbres indigènes. Cherche-le dans les forêts d'eucalyptus comme le karri, le jarrah et le messmate. Il pousse aussi dans les bois côtiers et les fourrés de tea-tree. En Nouvelle-Zélande, il vient sous des arbres et des arbustes indigènes, souvent près du tea-tree. Il sort en groupes, parfois en ronds. Les chapeaux sont souvent petits et à moitié enfouis, alors regarde bien. On le trouve dans l'est de l'Australie et en Tasmanie. Il pousse aussi en Australie-Occidentale et dans toute la Nouvelle-Zélande.",
+        "season": "Il sort pendant l'hiver et jusqu'au début du printemps. La plupart apparaissent de juin à septembre. Quelques-uns arrivent dès mai. Dans les forêts de jarrah autour de Perth, août est le meilleur mois. Il résiste à la pourriture, alors il peut rester des semaines en forêt.",
+        "picking": "Coupe-le à la base et laisse pousser les tout petits. La cueillette est interdite dans les parcs nationaux. En Nouvelle-Zélande, il faut l'accord du Department of Conservation sur ses terres. Ailleurs, vérifie d'abord les règles locales.",
+        "kitchen": "Une fois sûr de toi, fais-le bien cuire. Le principal guide australien le range parmi ses dix comestibles sauvages. Essaie-le mijoté dans du bouillon de poulet et du vin rouge, jusqu'à ce que le liquide ait réduit de moitié. Ajoute ensuite du poulet, des légumes et un peu de crème. La base néo-zélandaise Hidden Forest donne sa comestibilité comme inconnue. N'en mange donc qu'un peu la première fois.",
+        "keeps": "Il se garde bien au frigo, dans un sac. Il pourrit lentement et les insectes le laissent tranquille.",
+        "source": "Identification et répartition : One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), le département de la Biodiversité d'Australie-Occidentale et Landcare Research (Nouvelle-Zélande). Comestibilité : Wild Mushrooming (Pouliot et May, recensé sur MykoWeb), le blog d'un cueilleur d'Australie-Occidentale et Hidden Forest. Champignons à aiguillons : Fungimap et Wikipédia. Règles de cueillette : SBS, Gourmet Traveller et le Department of Conservation. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Einheimischer Stoppelpilz",
+      "description": "Der einheimische Stoppelpilz Australiens und Neuseelands: ein kleiner Hut von Creme bis Orange mit weichen Stacheln auf der Unterseite statt Lamellen. Er steckt im Winter im Laub einheimischer Wälder.",
+      "howTo": "Such von Juni bis September in einheimischem Wald und Teebaum-Gebüsch. Dreh den Hut um und prüf, ob weiche Stacheln statt Lamellen darunter sitzen",
+      "guide": {
+        "identify": "Der Hut ist klein, meist 1 bis 6 cm breit. In Neuseeland ist er weiss bis creme. In Australien ist er oft mattorange, aprikosenfarben oder kastanienbraun. Er ist flach oder leicht eingesenkt, hat einen welligen Rand und sitzt oft schief. Dreh ihn um. Unten hängen dicht an dicht weiche Stacheln, etwa 3 bis 5 mm lang, keine Lamellen. Sie sind cremeweiss und brechen leicht ab. Der Stiel ist kurz und voll, bis 4 cm lang und so gefärbt wie der Hut. Das Fleisch ist weiss. Fachleute behandeln ihn heute als Gruppe von etwa sechs Arten, die dem europäischen Stoppelpilz sehr ähneln. Auch die Stachelpilze Hydnellum und Phellodon tragen Stacheln unter dem Hut. Ihre Hüte sind aber klein und stumpf braun, und ihr Fleisch ist holzig oder lederartig. Sie sind zu hart zum Essen. Der Australische Pfifferling hat stumpfe Leisten statt Stacheln. Was Lamellen oder Poren unter dem Hut hat, ist kein Stoppelpilz.",
+        "habitat": "Er wächst am Boden, im Laub und Moos, unter einheimischen Bäumen. Such in Eukalyptuswäldern wie Karri, Jarrah und Messmate. Er wächst auch im Küstenwald und im Teebaum-Gebüsch. In Neuseeland steht er unter einheimischen Bäumen und Sträuchern, oft bei Teebäumen. Er steht in Gruppen, manchmal auch in Ringen. Die Hüte sind oft klein und halb im Laub versteckt, also schau genau hin. Du findest ihn im Osten Australiens und in Tasmanien. Er wächst auch in Westaustralien und in ganz Neuseeland.",
+        "season": "Er erscheint im australischen Winter und bis in den frühen Frühling. Die meisten kommen von Juni bis September. Manche zeigen sich schon im Mai. In den Jarrah-Wäldern um Perth ist der August der beste Monat. Er verrottet kaum und kann wochenlang im Wald stehen bleiben.",
+        "picking": "Schneid ihn am Grund ab und lass die ganz kleinen stehen. In Nationalparks ist Sammeln verboten. In Neuseeland brauchst du auf Schutzland die Erlaubnis des Department of Conservation. Anderswo prüf zuerst die Regeln vor Ort.",
+        "kitchen": "Wenn du ihn sicher bestimmt hast, gare ihn gut durch. Australiens wichtigster Sammelführer zählt ihn zu seinen zehn essbaren Wildpilzen. Probier ihn in Hühnerbrühe und Rotwein geschmort, bis die Flüssigkeit auf die Hälfte eingekocht ist. Danach kommen Hühnerfleisch, Gemüse und ein Schuss Sahne dazu. Die neuseeländische Datenbank Hidden Forest führt seine Essbarkeit als unbekannt. Iss beim ersten Mal also nur wenig.",
+        "keeps": "Im Kühlschrank hält er sich gut, in einem Beutel. Er verdirbt langsam, und Insekten lassen ihn in Ruhe.",
+        "source": "Bestimmung und Verbreitung: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), das Biodiversitätsamt von Westaustralien und Landcare Research (Neuseeland). Essbarkeit: Wild Mushrooming (Pouliot und May, besprochen auf MykoWeb), der Blog eines Pilzsammlers aus Westaustralien und Hidden Forest. Stachelpilze: Fungimap und Wikipedia. Sammelregeln: SBS, Gourmet Traveller und das Department of Conservation. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Lengua de vaca nativa",
+      "description": "La lengua de vaca nativa de Australia y Nueva Zelanda: un sombrero pequeño de crema a naranja, con púas blandas por debajo en lugar de láminas. Se esconde entre la hojarasca de los bosques nativos durante el invierno.",
+      "howTo": "Búscala de junio a septiembre en bosque nativo y en matorral de árbol del té. Dale la vuelta al sombrero y comprueba que tiene púas blandas, no láminas",
+      "guide": {
+        "identify": "El sombrero es pequeño, de 1 a 6 cm por lo general. En Nueva Zelanda es de blanco a crema. En Australia suele ser naranja apagado, color albaricoque o castaño. Es plano o algo hundido, con el borde ondulado, y a menudo torcido. Dale la vuelta. Por debajo tiene púas blandas y apretadas, de unos 3 a 5 mm, no láminas. Son blanco crema y se rompen con facilidad. El pie es corto y macizo, de hasta 4 cm y del mismo color que el sombrero. La carne es blanca. Los científicos la tratan como un grupo de unas seis especies, todas muy parecidas a la lengua de vaca europea. Los hongos de púas Hydnellum y Phellodon también tienen púas bajo el sombrero. Pero su sombrero es pequeño y de un marrón apagado, y su carne es dura, leñosa o coriácea. Son demasiado duros para comerlos. El rebozuelo australiano tiene pliegues romos, no púas. Si bajo el sombrero hay láminas o poros, no es una lengua de vaca.",
+        "habitat": "Crece en el suelo, entre hojarasca y musgo, bajo árboles nativos. Búscala en bosques de eucalipto como el karri, el jarrah y el messmate. También crece en arboledas costeras y en matorral de árbol del té. En Nueva Zelanda sale bajo árboles y arbustos nativos, a menudo cerca del árbol del té. Sale en grupos y a veces en corros. Los sombreros suelen ser pequeños y estar medio enterrados, así que mira bien. La encuentras en el este de Australia y en Tasmania. También crece en Australia Occidental y en toda Nueva Zelanda.",
+        "season": "Sale durante el invierno y hasta principios de la primavera. La mayoría aparecen de junio a septiembre. Algunas asoman ya en mayo. En los bosques de jarrah de los alrededores de Perth, agosto es el mejor mes. Resiste bien la podredumbre, así que puede quedarse semanas en el bosque.",
+        "picking": "Córtala por la base y deja crecer las más pequeñas. En los parques nacionales está prohibido recolectar. En Nueva Zelanda necesitas el permiso del Department of Conservation en sus terrenos. En otros sitios, consulta antes las normas locales.",
+        "kitchen": "Cuando estés seguro de que es ella, cocínala bien. La principal guía australiana la cuenta entre sus diez comestibles silvestres. Pruébala a fuego lento en caldo de pollo y vino tinto, hasta que el líquido se reduzca a la mitad. Después añade pollo, verduras y un poco de nata. La base de datos neozelandesa Hidden Forest da su comestibilidad como desconocida. La primera vez come solo un poco.",
+        "keeps": "Aguanta bien en la nevera, en una bolsa. Tarda en pudrirse y los insectos la dejan en paz.",
+        "source": "Identificación y distribución: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), el departamento de Biodiversidad de Australia Occidental y Landcare Research (Nueva Zelanda). Comestibilidad: Wild Mushrooming (Pouliot y May, reseñado en MykoWeb), el blog de un recolector de Australia Occidental y Hidden Forest. Hongos de púas: Fungimap y Wikipedia. Normas de recolección: SBS, Gourmet Traveller y el Department of Conservation. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Pé-de-carneiro nativo",
+      "description": "O pé-de-carneiro nativo da Austrália e da Nova Zelândia: um chapéu pequeno, de creme a laranja, com espinhos moles por baixo em vez de lâminas. Esconde-se na folhada das florestas nativas durante o inverno.",
+      "howTo": "Procura-o de junho a setembro em floresta nativa e em mato de árvore-do-chá. Vira o chapéu e confirma que tem espinhos moles, não lâminas",
+      "guide": {
+        "identify": "O chapéu é pequeno, normalmente com 1 a 6 cm. Na Nova Zelândia é de branco a creme. Na Austrália é muitas vezes laranja-baço, cor de damasco ou castanho. É plano ou um pouco afundado, de margem ondulada, e muitas vezes torto. Vira-o. Por baixo tem espinhos moles e apertados, de 3 a 5 mm mais ou menos, e não lâminas. São branco-creme e partem-se com facilidade. O pé é curto e cheio, com até 4 cm e da cor do chapéu. A carne é branca. Os cientistas tratam-no como um grupo de umas seis espécies, todas muito parecidas com o pé-de-carneiro europeu. Os fungos de espinhos Hydnellum e Phellodon também têm espinhos debaixo do chapéu. Mas o chapéu deles é pequeno e castanho-baço, e a carne é dura, lenhosa ou coriácea. São duros demais para comer. O cantarelo australiano tem pregas rombas, não espinhos. Se debaixo do chapéu houver lâminas ou poros, não é um pé-de-carneiro.",
+        "habitat": "Cresce no chão, no meio da folhada e do musgo, debaixo de árvores nativas. Procura em florestas de eucalipto como as de karri, jarrah e messmate. Também cresce em matas costeiras e em mato de árvore-do-chá. Na Nova Zelândia aparece debaixo de árvores e arbustos nativos, muitas vezes junto da árvore-do-chá. Aparece em grupos e às vezes em círculos. Os chapéus são muitas vezes pequenos e meio enterrados, por isso olha com atenção. Encontra-se no leste da Austrália e na Tasmânia. Também cresce na Austrália Ocidental e em toda a Nova Zelândia.",
+        "season": "Aparece durante o inverno e até ao início da primavera. A maioria surge de junho a setembro. Alguns aparecem já em maio. Nas florestas de jarrah à volta de Perth, agosto é o melhor mês. Resiste à podridão, por isso pode ficar semanas na floresta.",
+        "picking": "Corta-o pela base e deixa crescer os mais pequenos. Nos parques nacionais é proibido apanhar. Na Nova Zelândia precisas da autorização do Department of Conservation nos terrenos dele. Noutros sítios, confirma antes as regras locais.",
+        "kitchen": "Quando tiveres a certeza de que é ele, cozinha-o bem. O principal guia australiano conta-o entre os seus dez comestíveis silvestres. Experimenta-o em lume brando, em caldo de galinha e vinho tinto, até o líquido reduzir para metade. Depois junta galinha, legumes e um pouco de natas. A base de dados neozelandesa Hidden Forest dá a comestibilidade como desconhecida. Da primeira vez come só um pouco.",
+        "keeps": "Aguenta bem no frigorífico, num saco. Demora a apodrecer e os insetos deixam-no em paz.",
+        "source": "Identificação e distribuição: One Hundred and One Forest Fungi of Eastern Australia (Lucidcentral), o departamento de Biodiversidade da Austrália Ocidental e a Landcare Research (Nova Zelândia). Comestibilidade: Wild Mushrooming (Pouliot e May, recenseado no MykoWeb), o blogue de um apanhador da Austrália Ocidental e o Hidden Forest. Fungos de espinhos: Fungimap e Wikipédia. Regras de apanha: SBS, Gourmet Traveller e o Department of Conservation. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Hydnum crocidens",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Native Hedgehog"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": true,
+      "taxonKeys": [2513763],
+      "references": ["https://www.gbif.org/species/2513763"]
+    },
+    "rangePrior": {
+      "taxonKeys": [2513763]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 621],
+        "scoringReferences": [
+          "https://www.gbif.org/species/2513763",
+          "https://keys.lucidcentral.org/keys/v4/101-forest-fungi/web/resource/h/hydnum%20aff%20repandum.htm",
+          "https://library.dbca.wa.gov.au/FullTextFiles/PAM09227.pdf",
+          "https://virtualmycota.landcareresearch.co.nz/webforms/vM_Species_Details.aspx?pk=4534",
+          "https://hiddenforest.co.nz/fungi/family/hydnaceae/hydna01.htm",
+          "https://morrie2.com/2010/03/20/the-hedgehog-mushroom-hydnum-repandum/",
+          "https://mykoweb.com/book_reviews/Wild_Mushrooming_Guide.html",
+          "https://www.publishing.csiro.au/book/7894/",
+          "https://fungimap.org.au/?p=4864",
+          "https://canberra.naturemapr.org/categories/guide/1699?1=1",
+          "https://en.wikipedia.org/wiki/Hydnum",
+          "https://en.wikipedia.org/wiki/Hydnellum",
+          "https://en.wikipedia.org/wiki/Phellodon",
+          "https://www.sbs.com.au/language/english/en/podcast-episode/mushroom-foraging-in-australia-is-it-safe/446lxanhk",
+          "https://www.gourmettraveller.com.au/dining-out/food-news/how-to-forage-2468/",
+          "https://www.doc.govt.nz/get-involved/apply-for-permits/research-and-collection/",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

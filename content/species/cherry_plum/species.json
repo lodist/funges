@@ -1,0 +1,161 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "cherry_plum",
+  "scientificName": "Prunus cerasifera",
+  "catalog": {
+    "enabled": true,
+    "order": 76,
+    "translationKey": "cherry_plum",
+    "category": "berry",
+    "emoji": "🍒",
+    "season": "summer",
+    "habitat": "hedgerow",
+    "image": {
+      "path": "src/assets/species/cherry_plum.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Cherry Plum",
+      "description": "A small, thorny tree with early white blossom and round plums in yellow, orange or red. It has gone wild along roadsides, hedges and creeks in Australia and New Zealand.",
+      "howTo": "Look along roadsides, hedges and creeks from December to February. Pick ripe plums and never crush the stones",
+      "guide": {
+        "identify": "Cherry plum is a bushy tree or large shrub, up to about 8 m tall. Wild ones often have several stems and form thickets. The branches carry thorns, mostly low down. The leaves are egg-shaped with fine teeth. They are 3 to 7 cm long and sit on very short stalks. On most trees they are green. On some they are purple. The white flowers open in late winter, before most other fruit trees. The fruit is round, 2 to 3 cm across and has no hair. It ripens from yellow to orange, red or dark crimson. The ripe flesh is sweet and juicy around one stone. Purple-leaved garden trees are the same species. Their dark red plums are edible too. Garden plums have bigger fruit. Sweet cherry has darker fruit and leaves on much longer stalks. Cherry laurel is the look-alike to avoid. It is evergreen with big, glossy, leathery leaves and clusters of dark purple fruit. The plant is poisonous.",
+        "habitat": "It grows along roadsides and fences, in hedges, on the edges of bush and beside creeks and rivers. It came from the Balkans and western Asia. People brought it to Australia and New Zealand as a garden tree. Birds spread the fruit, so it has gone wild. In Australia you see it most in the cooler south-east, in New South Wales, Victoria and South Australia. It also grows in the south-west of Western Australia. In New Zealand it grows on forest edges, stream banks and dunes. In both countries it counts as an environmental weed.",
+        "season": "The fruit ripens in summer, mostly from December to February. The white blossom comes first, in August and September. A ripe plum is fully coloured, sweet and juicy. Wild fruit is often small and tart, so taste one before you fill a bag.",
+        "picking": "Pick ripe plums by hand and take only what you will use. Leave plenty for birds and other people. The branches are thorny, so reach in with care. It is a weed, so never carry stones or seedlings to a new place. Skip trees that have been cut back and painted with weedkiller. Ask first on private land. Picking is not allowed in national parks. On New Zealand conservation land you need permission from the Department of Conservation.",
+        "kitchen": "Taste a plum first. Ripe ones are good raw. Tart ones are better cooked. Wash the fruit and take the stones out before you cook. Simmer the plums with sugar and lemon juice for about 20 minutes to make jam. They also make sauce, syrup or fruit leather. Never crush a stone or eat the kernel inside. The kernels and young shoots contain amygdalin and prunasin, which release cyanide. The leaves can be toxic too.",
+        "keeps": "Ripe plums are best within a few days, kept in the fridge. Stoned fruit freezes well. Jam keeps in sterilised jars in a cool, dark place.",
+        "source": "Identification and range: WeedScan, NZ Plant Conservation Network, Flora of New Zealand and Weeds of Melbourne. Look-alikes: Weedbusters and Environment Canterbury. Picking and jam: Diego Bonetto. Stones: Plants For A Future. Purple-leaved forms: Royal Horticultural Society. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Mirabolano",
+      "description": "Un piccolo albero spinoso con fiori bianchi precoci e susine tonde, gialle, arancioni o rosse. In Australia e in Nuova Zelanda è inselvatichito lungo strade, siepi e torrenti.",
+      "howTo": "Cercalo lungo strade, siepi e torrenti da dicembre a febbraio. Raccogli le susine mature e non schiacciare mai i noccioli",
+      "guide": {
+        "identify": "Il mirabolano è un albero cespuglioso o un grande arbusto, alto fino a circa 8 m. Quelli selvatici hanno spesso più fusti e formano macchie fitte. I rami hanno spine, soprattutto in basso. Le foglie sono ovali e finemente dentate, lunghe da 3 a 7 cm, attaccate a piccioli cortissimi. Sulla maggior parte degli alberi sono verdi, su alcuni sono purpuree. I fiori bianchi si aprono a fine inverno, prima di quelli di quasi tutti gli altri alberi da frutto. Il frutto è tondo, largo da 2 a 3 cm e senza peluria. Matura dal giallo all'arancio, al rosso o al cremisi scuro. Maturo, ha la polpa dolce e succosa attorno a un nocciolo. Gli alberi da giardino con foglie purpuree sono la stessa specie, e anche le loro susine rosso scuro si mangiano. Le susine da orto hanno frutti più grandi. Il ciliegio dolce ha frutti più scuri e foglie su piccioli molto più lunghi. Da evitare è il lauroceraso. È sempreverde, con foglie grandi, lucide e coriacee e grappoli di frutti viola scuro. La pianta è velenosa.",
+        "habitat": "Cresce lungo strade e recinzioni, nelle siepi, ai margini del bush e vicino a torrenti e fiumi. Viene dai Balcani e dall'Asia occidentale. In Australia e in Nuova Zelanda è arrivato come albero da giardino. Gli uccelli ne spargono i frutti, ed è diventato selvatico. In Australia lo vedi soprattutto nel sud-est, più fresco, in Nuovo Galles del Sud, nel Victoria e nell'Australia Meridionale. Cresce anche nel sud-ovest dell'Australia Occidentale. In Nuova Zelanda spunta ai margini dei boschi, sulle rive dei torrenti e sulle dune. In entrambi i paesi è considerato una pianta infestante per l'ambiente.",
+        "season": "I frutti maturano in estate, soprattutto da dicembre a febbraio. Prima arrivano i fiori bianchi, ad agosto e settembre. Una susina matura ha il colore pieno, è dolce e succosa. I frutti selvatici sono spesso piccoli e aspri, quindi assaggiane una prima di riempire il sacchetto.",
+        "picking": "Raccogli le susine mature a mano e prendi solo quelle che userai. Lasciane tante per gli uccelli e per gli altri. I rami hanno spine, quindi infila la mano con cautela. È una pianta infestante, perciò non portare mai noccioli o piantine altrove. Evita gli alberi tagliati con il ceppo trattato con diserbante. Su terreno privato chiedi prima. Nei parchi nazionali raccogliere è vietato. Sui terreni protetti della Nuova Zelanda serve il permesso del Department of Conservation.",
+        "kitchen": "Assaggia prima una susina. Quelle mature sono buone crude. Quelle aspre sono meglio cotte. Lava i frutti e togli i noccioli prima di cuocerli. Fai cuocere le susine con zucchero e succo di limone per circa 20 minuti e ne esce una marmellata. Vengono bene anche in salsa, in sciroppo o in rotolini di frutta essiccata. Non schiacciare mai un nocciolo e non mangiare la mandorla all'interno. Le mandorle e i germogli giovani contengono amigdalina e prunasina, che liberano cianuro. Anche le foglie possono essere tossiche.",
+        "keeps": "Le susine mature danno il meglio entro pochi giorni, in frigo. Snocciolate si congelano bene. La marmellata si conserva in vasetti sterilizzati, in un posto fresco e buio.",
+        "source": "Riconoscimento e diffusione: WeedScan, NZ Plant Conservation Network, Flora of New Zealand e Weeds of Melbourne. Specie simili: Weedbusters ed Environment Canterbury. Raccolta e marmellata: Diego Bonetto. Noccioli: Plants For A Future. Forme con foglie purpuree: Royal Horticultural Society. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Prunier myrobolan",
+      "description": "Un petit arbre épineux aux fleurs blanches précoces et aux prunes rondes, jaunes, orange ou rouges. Il est devenu sauvage le long des routes, des haies et des ruisseaux d'Australie et de Nouvelle-Zélande.",
+      "howTo": "Cherche-le le long des routes, des haies et des ruisseaux de décembre à février. Cueille les prunes mûres et n'écrase jamais les noyaux",
+      "guide": {
+        "identify": "Le prunier myrobolan est un arbre buissonnant ou un grand arbuste, haut d'environ 8 m au plus. Les pieds sauvages ont souvent plusieurs troncs et forment des fourrés. Les branches portent des épines, surtout en bas. Les feuilles sont ovales et finement dentées, longues de 3 à 7 cm, portées par un pétiole très court. Elles sont vertes sur la plupart des arbres, pourpres sur certains. Les fleurs blanches s'ouvrent à la fin de l'hiver, avant celles de presque tous les autres arbres fruitiers. Le fruit est rond, large de 2 à 3 cm et sans poils. Il passe du jaune à l'orange, au rouge ou au cramoisi foncé en mûrissant. Mûr, il a une chair sucrée et juteuse autour d'un noyau. Les arbres de jardin à feuilles pourpres sont de la même espèce, et leurs prunes rouge foncé se mangent aussi. Les prunes de jardin ont de plus gros fruits. Le cerisier doux a des fruits plus sombres et des feuilles sur des pétioles bien plus longs. Le laurier-cerise est à éviter. Il est à feuillage persistant, avec de grandes feuilles brillantes et coriaces et des grappes de fruits violet foncé. La plante est toxique.",
+        "habitat": "Il pousse au bord des routes et des clôtures, dans les haies, en lisière du bush et le long des ruisseaux et des rivières. Il vient des Balkans et d'Asie occidentale. On l'a apporté en Australie et en Nouvelle-Zélande comme arbre de jardin. Les oiseaux dispersent ses fruits, alors il s'est ensauvagé. En Australie, on le voit surtout dans le sud-est, plus frais, en Nouvelle-Galles du Sud, au Victoria et en Australie-Méridionale. Il pousse aussi dans le sud-ouest de l'Australie-Occidentale. En Nouvelle-Zélande, il pousse en lisière de forêt, au bord des ruisseaux et sur les dunes. Dans les deux pays, il compte parmi les plantes envahissantes des milieux naturels.",
+        "season": "Les fruits mûrissent en été, surtout de décembre à février. Les fleurs blanches viennent avant, en août et en septembre. Une prune mûre est bien colorée, sucrée et juteuse. Les fruits sauvages sont souvent petits et acides, alors goûte-en un avant de remplir ton sac.",
+        "picking": "Cueille les prunes mûres à la main et ne prends que ce que tu utiliseras. Laisses-en beaucoup pour les oiseaux et pour les autres. Les branches sont épineuses, alors avance la main avec précaution. C'est une plante envahissante, donc n'emporte jamais de noyaux ni de jeunes plants ailleurs. Évite les arbres coupés dont la souche est peinte au désherbant. Sur un terrain privé, demande d'abord. La cueillette est interdite dans les parcs nationaux. Sur les terres de conservation de Nouvelle-Zélande, il faut l'autorisation du Department of Conservation.",
+        "kitchen": "Goûte d'abord une prune. Mûres, elles sont bonnes crues. Acides, elles sont meilleures cuites. Lave les fruits et enlève les noyaux avant de cuire. Fais mijoter les prunes avec du sucre et du jus de citron pendant environ 20 minutes pour en faire de la confiture. Elles donnent aussi une sauce, un sirop ou du cuir de fruits. N'écrase jamais un noyau et ne mange pas l'amande qu'il contient. Les amandes et les jeunes pousses contiennent de l'amygdaline et de la prunasine, qui libèrent du cyanure. Les feuilles peuvent aussi être toxiques.",
+        "keeps": "Les prunes mûres sont meilleures dans les quelques jours qui suivent, gardées au frigo. Dénoyautées, elles se congèlent bien. La confiture se garde dans des bocaux stérilisés, dans un endroit frais et sombre.",
+        "source": "Identification et répartition : WeedScan, NZ Plant Conservation Network, Flora of New Zealand et Weeds of Melbourne. Espèces proches : Weedbusters et Environment Canterbury. Cueillette et confiture : Diego Bonetto. Noyaux : Plants For A Future. Formes à feuilles pourpres : Royal Horticultural Society. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Kirschpflaume",
+      "description": "Ein kleiner, dorniger Baum mit früher weisser Blüte und runden Pflaumen in Gelb, Orange oder Rot. In Australien und Neuseeland ist er an Strassen, Hecken und Bächen verwildert.",
+      "howTo": "Such von Dezember bis Februar an Strassen, Hecken und Bächen. Pflück reife Pflaumen und knack nie die Steine",
+      "guide": {
+        "identify": "Die Kirschpflaume ist ein buschiger Baum oder grosser Strauch, bis etwa 8 m hoch. Wild wachsende haben oft mehrere Stämme und bilden dichte Gebüsche. Die Zweige tragen Dornen, vor allem weiter unten. Die Blätter sind eiförmig und fein gezähnt, 3 bis 7 cm lang und sitzen an sehr kurzen Stielen. Bei den meisten Bäumen sind sie grün, bei manchen purpurn. Die weissen Blüten öffnen sich im späten Winter, vor denen der meisten anderen Obstbäume. Die Frucht ist rund, 2 bis 3 cm gross und kahl. Sie reift von Gelb über Orange zu Rot oder dunklem Karmesin. Reif ist das Fleisch süss und saftig und umgibt einen Stein. Purpurblättrige Gartenbäume gehören zur selben Art. Auch ihre dunkelroten Pflaumen kannst du essen. Gartenpflaumen haben grössere Früchte. Die Süsskirsche hat dunklere Früchte und Blätter an viel längeren Stielen. Den Kirschlorbeer meidest du besser. Er ist immergrün, mit grossen, glänzenden, ledrigen Blättern und Trauben dunkelvioletter Früchte. Die Pflanze ist giftig.",
+        "habitat": "Sie wächst an Strassen und Zäunen, in Hecken, am Rand des Buschs und an Bächen und Flüssen. Ursprünglich kommt sie vom Balkan und aus Westasien. Nach Australien und Neuseeland kam sie als Gartenbaum. Vögel verbreiten die Früchte, darum ist sie verwildert. In Australien siehst du sie am häufigsten im kühleren Südosten, in New South Wales, Victoria und South Australia. Auch im Südwesten von Westaustralien wächst sie. In Neuseeland wächst sie an Waldrändern, Bachufern und Dünen. In beiden Ländern gilt sie als invasive Pflanze in der Natur.",
+        "season": "Die Früchte reifen im Sommer, meist von Dezember bis Februar. Die weisse Blüte kommt vorher, im August und September. Eine reife Pflaume ist ganz ausgefärbt, süss und saftig. Wilde Früchte sind oft klein und säuerlich, also probier eine, bevor du den Beutel füllst.",
+        "picking": "Pflück reife Pflaumen von Hand und nimm nur so viel, wie du brauchst. Lass reichlich für Vögel und andere Sammler übrig. Die Zweige sind dornig, also greif vorsichtig hinein. Sie ist eine Problempflanze, darum trag nie Steine oder Jungpflanzen an einen neuen Ort. Meide Bäume, die zurückgeschnitten und mit Unkrautvernichter bestrichen wurden. Auf Privatland fragst du zuerst nach. In Nationalparks ist Sammeln verboten. In neuseeländischen Schutzgebieten brauchst du die Erlaubnis des Department of Conservation.",
+        "kitchen": "Probier zuerst eine Pflaume. Reife schmecken roh gut. Säuerliche sind gekocht besser. Wasch die Früchte und entsteine sie vor dem Kochen. Koch die Pflaumen etwa 20 Minuten mit Zucker und Zitronensaft zu Marmelade ein. Daraus werden auch Sauce, Sirup oder Fruchtleder. Knack nie einen Stein und iss nie den Kern darin. Die Kerne und jungen Triebe enthalten Amygdalin und Prunasin, die Blausäure freisetzen. Auch die Blätter können giftig sein.",
+        "keeps": "Reife Pflaumen schmecken am besten in den ersten Tagen, im Kühlschrank aufbewahrt. Entsteint lassen sie sich gut einfrieren. Marmelade hält sich in sterilisierten Gläsern, kühl und dunkel.",
+        "source": "Bestimmung und Verbreitung: WeedScan, NZ Plant Conservation Network, Flora of New Zealand und Weeds of Melbourne. Ähnliche Arten: Weedbusters und Environment Canterbury. Sammeln und Marmelade: Diego Bonetto. Steine: Plants For A Future. Purpurblättrige Formen: Royal Horticultural Society. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Ciruelo mirobolano",
+      "description": "Un árbol pequeño y espinoso, de flores blancas tempranas y ciruelas redondas, amarillas, naranjas o rojas. En Australia y Nueva Zelanda se ha asilvestrado junto a caminos, setos y arroyos.",
+      "howTo": "Búscalo junto a caminos, setos y arroyos de diciembre a febrero. Coge ciruelas maduras y no machaques nunca los huesos",
+      "guide": {
+        "identify": "El ciruelo mirobolano es un árbol de porte arbustivo o un arbusto grande, de hasta unos 8 m. Los silvestres suelen tener varios tallos y formar matorrales densos. Las ramas llevan espinas, sobre todo abajo. Las hojas son ovaladas y de borde finamente dentado, miden de 3 a 7 cm y cuelgan de peciolos muy cortos. En la mayoría de los árboles son verdes, en algunos son púrpuras. Las flores blancas se abren al final del invierno, antes que las de casi todos los demás frutales. El fruto es redondo, de 2 a 3 cm y sin pelo. Madura de amarillo a naranja, a rojo o a carmesí oscuro. Maduro, tiene la pulpa dulce y jugosa alrededor de un hueso. Los árboles de jardín de hojas púrpuras son de la misma especie, y sus ciruelas rojo oscuro también se comen. Las ciruelas de huerta tienen frutos más grandes. El cerezo dulce tiene frutos más oscuros y hojas con peciolos mucho más largos. El laurel cerezo es el que hay que evitar. Es de hoja perenne, con hojas grandes, brillantes y coriáceas y racimos de frutos morado oscuro. La planta es venenosa.",
+        "habitat": "Crece junto a caminos y vallas, en setos, en el borde del monte y junto a arroyos y ríos. Viene de los Balcanes y de Asia occidental. Llegó a Australia y Nueva Zelanda como árbol de jardín. Las aves dispersan sus frutos, así que se ha asilvestrado. En Australia se ve sobre todo en el sureste, más fresco, en Nueva Gales del Sur, Victoria y Australia Meridional. También crece en el suroeste de Australia Occidental. En Nueva Zelanda crece en bordes de bosque, orillas de arroyos y dunas. En los dos países cuenta como planta invasora de los espacios naturales.",
+        "season": "Los frutos maduran en verano, sobre todo de diciembre a febrero. Antes llega la flor blanca, en agosto y septiembre. Una ciruela madura tiene todo el color, es dulce y jugosa. Los frutos silvestres suelen ser pequeños y ácidos, así que prueba uno antes de llenar la bolsa.",
+        "picking": "Coge las ciruelas maduras a mano y llévate solo lo que vayas a usar. Deja muchas para las aves y para otras personas. Las ramas tienen espinas, así que mete la mano con cuidado. Es una planta invasora, por eso nunca lleves huesos ni plantones a otro sitio. Evita los árboles cortados con el tocón pintado con herbicida. En terreno privado pregunta primero. En los parques nacionales está prohibido recolectar. En las tierras de conservación de Nueva Zelanda necesitas permiso del Department of Conservation.",
+        "kitchen": "Prueba primero una ciruela. Las maduras están buenas crudas. Las ácidas son mejores cocidas. Lava la fruta y quítale los huesos antes de cocinarla. Cuece las ciruelas unos 20 minutos con azúcar y zumo de limón para hacer mermelada. También sirven para salsa, jarabe o cuero de fruta. Nunca machaques un hueso ni comas la almendra de dentro. Las almendras y los brotes tiernos contienen amigdalina y prunasina, que liberan cianuro. Las hojas también pueden ser tóxicas.",
+        "keeps": "Las ciruelas maduras están mejor en los primeros días, guardadas en la nevera. Sin hueso se congelan bien. La mermelada aguanta en tarros esterilizados, en un sitio fresco y oscuro.",
+        "source": "Identificación y distribución: WeedScan, NZ Plant Conservation Network, Flora of New Zealand y Weeds of Melbourne. Especies parecidas: Weedbusters y Environment Canterbury. Recolección y mermelada: Diego Bonetto. Huesos: Plants For A Future. Formas de hoja púrpura: Royal Horticultural Society. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Ameixoeira-cereja",
+      "description": "Uma árvore pequena e espinhosa, de flores brancas precoces e ameixas redondas, amarelas, laranja ou vermelhas. Na Austrália e na Nova Zelândia tornou-se selvagem ao longo de estradas, sebes e ribeiros.",
+      "howTo": "Procura-a ao longo de estradas, sebes e ribeiros de dezembro a fevereiro. Apanha ameixas maduras e nunca esmagues os caroços",
+      "guide": {
+        "identify": "A ameixoeira-cereja é uma árvore arbustiva ou um arbusto grande, com até cerca de 8 m. As selvagens têm muitas vezes vários troncos e formam moitas cerradas. Os ramos têm espinhos, sobretudo em baixo. As folhas são ovais e de bordo finamente dentado, medem 3 a 7 cm e têm pecíolos muito curtos. Na maioria das árvores são verdes, em algumas são púrpura. As flores brancas abrem no fim do inverno, antes das da maioria das outras árvores de fruto. O fruto é redondo, com 2 a 3 cm e sem pelos. Amadurece de amarelo a laranja, a vermelho ou a carmesim escuro. Maduro, tem a polpa doce e sumarenta à volta de um caroço. As árvores de jardim de folhas púrpura são da mesma espécie, e as ameixas vermelho-escuro delas também se comem. As ameixas de pomar têm frutos maiores. A cerejeira tem frutos mais escuros e folhas com pecíolos muito mais compridos. O louro-cerejo é o parecido a evitar. É de folha persistente, com folhas grandes, brilhantes e coriáceas e cachos de frutos roxo-escuros. A planta é venenosa.",
+        "habitat": "Cresce à beira de estradas e vedações, em sebes, na orla do mato e junto a ribeiros e rios. Veio dos Balcãs e da Ásia Ocidental. Foi levada para a Austrália e para a Nova Zelândia como árvore de jardim. As aves espalham os frutos, por isso tornou-se selvagem. Na Austrália vê-se sobretudo no sudeste, mais fresco, na Nova Gales do Sul, em Victoria e na Austrália Meridional. Também cresce no sudoeste da Austrália Ocidental. Na Nova Zelândia cresce na orla das florestas, nas margens de ribeiros e nas dunas. Nos dois países conta como planta invasora dos espaços naturais.",
+        "season": "Os frutos amadurecem no verão, sobretudo de dezembro a fevereiro. A flor branca vem antes, em agosto e setembro. Uma ameixa madura tem a cor toda, é doce e sumarenta. Os frutos selvagens costumam ser pequenos e azedos, por isso prova um antes de encheres o saco.",
+        "picking": "Apanha as ameixas maduras à mão e leva só o que vais usar. Deixa muitas para as aves e para outras pessoas. Os ramos têm espinhos, por isso mete a mão com cuidado. É uma planta invasora, por isso nunca leves caroços nem plantas novas para outro sítio. Evita árvores cortadas com o toco pintado com herbicida. Em terreno privado, pergunta primeiro. Nos parques nacionais é proibido apanhar. Em terras de conservação da Nova Zelândia precisas de autorização do Department of Conservation.",
+        "kitchen": "Prova primeiro uma ameixa. As maduras são boas cruas. As azedas ficam melhores cozinhadas. Lava a fruta e tira-lhe os caroços antes de cozinhar. Coze as ameixas cerca de 20 minutos com açúcar e sumo de limão para fazer compota. Também dão molho, xarope ou rolinhos de fruta desidratada. Nunca esmagues um caroço nem comas a amêndoa lá dentro. As amêndoas e os rebentos novos contêm amigdalina e prunasina, que libertam cianeto. As folhas também podem ser tóxicas.",
+        "keeps": "As ameixas maduras ficam melhor nos primeiros dias, guardadas no frigorífico. Sem caroço, congelam bem. A compota aguenta em frascos esterilizados, num sítio fresco e escuro.",
+        "source": "Identificação e distribuição: WeedScan, NZ Plant Conservation Network, Flora of New Zealand e Weeds of Melbourne. Espécies parecidas: Weedbusters e Environment Canterbury. Apanha e compota: Diego Bonetto. Caroços: Plants For A Future. Formas de folha púrpura: Royal Horticultural Society. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Prunus cerasifera",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Cherry Plum"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [3021730]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [612, 621, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/3021730",
+          "https://weedscan.org.au/Weed?id=467",
+          "https://nzpcn.org.nz/flora/species/prunus-cerasifera/",
+          "https://nzflora.info/factsheet/Taxon/Prunus-cerasifera.html",
+          "https://weedsofmelbourne.org/cherry-plum-prunus-cerasifera-2",
+          "https://plantpono.org/hpwra/prunus-cerasifera/",
+          "https://apwt.org.nz/document/weeds/wilding_prunus.pdf",
+          "https://www.weedbusters.org.nz/what-are-weeds/weed-list/cherry-laurel/",
+          "https://diego-bonetto-weeds.squarespace.com/blog/feral-plums-bonanza-the-bounty-in-the-country",
+          "https://temperate.theferns.info/plant/Prunus+cerasifera",
+          "https://www.rhs.org.uk/plants/99810/prunus-cerasifera-pissardii/details",
+          "https://www.doc.govt.nz/get-involved/apply-for-permits/research-and-collection/",
+          "https://www.nationalparks.nsw.gov.au/conservation-and-heritage/care-for-parks/illegal-activities",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}
