@@ -126,6 +126,7 @@
     "later": "3+ Wochen",
     "past": "Vorbei",
     "offSeason": "Die Kirschblüten-Prognose beginnt am 1. Februar.",
+    "offSeason_anz": "In Australien und Neuseeland beginnt die Kirschblüten-Prognose am 1. August.",
     "atPeak": "jetzt in Vollblüte",
     "inDays_one": "in {{count}} Tag",
     "inDays_other": "in {{count}} Tagen",

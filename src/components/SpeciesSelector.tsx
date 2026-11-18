@@ -6,7 +6,7 @@ import { BAND_SURFACE_CLASS } from '@/lib/band-surface';
 import { cn } from '@/lib/utils';
 import { getSpeciesImage } from '@/lib/utils';
 import { getSpeciesById } from '@/data/species';
-import { bloomInSeason, spectacleByCode } from '@/lib/bloom';
+import { bloomInSeason, spectacleByCode, type BloomRegion } from '@/lib/bloom';
 import SpeciesSelectorFullscreen from './SpeciesSelectorFullscreen';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -19,7 +19,8 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
 }) => {
   const { t } = useTranslation('map');
   const { t: tSpecies } = useTranslation('species');
-  const { selectedSpecies, selectedSpeciesOnMap } = useMapStore();
+  const { selectedSpecies, selectedSpeciesOnMap, forecastRegion } =
+    useMapStore();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,6 +38,8 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
   // A spectacle (cherry blossom, ...) is picked like a species but has no catalog
   // entry; its picture sits with the species' in src/assets/species.
   const spectacle = spectacleByCode(selectedSpecies);
+  // The region the map is centred on: its season, its "starts on" line.
+  const here = forecastRegion.toLowerCase() as BloomRegion;
   const selected = spectacle
     ? {
         id: spectacle.code,
@@ -170,9 +173,14 @@ const SpeciesSelector: React.FC<SpeciesSelectorProps> = ({
           notice says when it starts, or its empty map reads as a bug too. */}
       <div role='status'>
         {selected &&
-          (spectacle && !bloomInSeason(new Date(), spectacle) ? (
+          (spectacle &&
+          spectacle.regions.includes(here) &&
+          !bloomInSeason(new Date(), spectacle, here) ? (
             <p className='elevation-raised mt-2 max-w-[min(18rem,calc(100vw-5.5rem))] rounded-card bg-card px-3 py-2 text-xs text-muted-foreground'>
-              {t(`${spectacle.keys}.offSeason`)}
+              {t([
+                `${spectacle.keys}.offSeason_${here}`,
+                `${spectacle.keys}.offSeason`,
+              ])}
             </p>
           ) : (
             !selectedSpeciesOnMap && (

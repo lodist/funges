@@ -291,4 +291,11 @@ def test_build_foliage_colours_the_woods_only(tmp_path):
 
 def test_every_spectacle_is_registered():
     names = [name for name, *_ in bloom._spectacles()]
-    assert names == ["cherry_blossom", "bluebell", "heather", "superbloom", "foliage"]
+    assert names == ["cherry_blossom", "cherry_blossom", "bluebell", "heather", "superbloom", "foliage"]
+
+
+def test_cherry_blossom_runs_on_the_southern_year_in_australia_and_new_zealand():
+    (_, north, north_season, _), (_, south, south_season, _) = bloom._spectacles()[:2]
+    assert "anz" not in north and south == {"anz"}
+    assert south_season(date(2026, 9, 1)) == (date(2026, 5, 1), date(2026, 12, 31))
+    assert south_season(date(2026, 7, 31)) is None and north_season(date(2026, 9, 1)) is None

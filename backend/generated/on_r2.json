@@ -1,6 +1,8 @@
 {
+  "bloom_normals_ANZ.npz": "b8a3813de5940e7b4b5523f6627ac55b774d41b649e6a102a9c477e552680f93",
   "bloom_normals_EU.npz": "8dec57155936a5890ba7f1df19ad9bcc6a6d81c019697e50eec259cb6226292a",
   "bloom_normals_US.npz": "553efc22964744339e90a87cedb5b43e8f5da20d2bd6c2e766741108454a30ba",
+  "bloom_towns_ANZ.geojson": "b4d57cd1995243769799ee3e8e43fd61209e6065cf5e501ccce0748bc9997456",
   "bloom_towns_EU.geojson": "c18df24a26a67234831d545b305703c69336311ecabc89eff6ffaf1c23de0077",
   "bloom_towns_US.geojson": "c3a510eaea39bb21ff26f60334e71953edf7b07b99d715708ab0e0ee658d3eb2",
   "bluebell_woods_EU.parquet": "9083b728ef8725aabc54acaaf0b840fc27091005796de693c64e4efe184f83b9",

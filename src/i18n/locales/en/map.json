@@ -126,6 +126,7 @@
     "later": "3+ weeks",
     "past": "Past",
     "offSeason": "The cherry blossom forecast starts on 1 February.",
+    "offSeason_anz": "In Australia and New Zealand the cherry blossom forecast starts on 1 August.",
     "atPeak": "at peak now",
     "inDays_one": "in {{count}} day",
     "inDays_other": "in {{count}} days",

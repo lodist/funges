@@ -26,6 +26,7 @@ import {
   bloomInSeason,
   spectacleOfLayer,
   unixDay,
+  type BloomRegion,
 } from '@/lib/bloom';
 
 export interface MapViewport {
@@ -576,7 +577,13 @@ export const useMapStore = create<MapState>()(
                 // stay in their "done" colour until the season ends, then the
                 // layer goes.
                 const spectacle = spectacleOfLayer(id)!;
-                if (bloomInSeason(new Date(), spectacle)) {
+                if (
+                  bloomInSeason(
+                    new Date(),
+                    spectacle,
+                    (region ?? undefined) as BloomRegion | undefined
+                  )
+                ) {
                   mapRef.setPaintProperty(
                     id,
                     'fill-color',

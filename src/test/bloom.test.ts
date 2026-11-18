@@ -46,6 +46,22 @@ describe('bloom days', () => {
     expect(bloomInSeason(new Date(2027, 5, 30))).toBe(true);
     expect(bloomInSeason(new Date(2027, 6, 1))).toBe(false);
   });
+
+  it('runs on the southern year in Australia and New Zealand: August to December', () => {
+    const september = new Date(2026, 8, 15);
+    expect(bloomInSeason(september, undefined, 'anz')).toBe(true);
+    expect(bloomInSeason(september, undefined, 'ne')).toBe(false);
+    expect(bloomInSeason(new Date(2027, 2, 1), undefined, 'anz')).toBe(false);
+    expect(spectaclesInSeason(september, ['anz']).map(s => s.code)).toContain(
+      BLOOM_CODE
+    );
+    expect(
+      spectaclesInSeason(september, ['ne', 'se']).map(s => s.code)
+    ).not.toContain(BLOOM_CODE);
+    expect(bloomTilesUrl('anz')).toBe(
+      'pmtiles://https://data.fung.es/ANZ/anz_bloom.pmtiles'
+    );
+  });
 });
 
 describe('bloomStatus', () => {
