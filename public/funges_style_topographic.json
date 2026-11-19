@@ -9497,6 +9497,258 @@
       }
     },
     {
+      "id": "australian_chanterelle_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "australian_chanterelle_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "warrigal_greens_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "warrigal_greens_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "native_hedgehog_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "native_hedgehog_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "coral_tooth_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "coral_tooth_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "cherry_plum_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "cherry_plum_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bunya_anz",
+      "type": "fill",
+      "paint": {
+        "fill-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bunya_score"],
+          0,
+          "hsla(60, 92%, 95%, 0.18)",
+          0.5,
+          "#ffffcc",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "#ffe1b1",
+          3,
+          "#fecca4",
+          4,
+          "#feb383",
+          5,
+          "#fb9361",
+          6,
+          "#f85d40",
+          7,
+          "#ea5141",
+          8,
+          "#dc3233",
+          9,
+          "#a60310",
+          10,
+          "#800020"
+        ],
+        "fill-opacity": ["interpolate", ["linear"], ["zoom"], 5, 1, 8, 0.85],
+        "fill-antialias": ["step", ["zoom"], true, 8, false]
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "visibility": "none"
+      }
+    },
+    {
       "id": "chant_ne_numbers",
       "type": "symbol",
       "paint": {
@@ -20491,6 +20743,306 @@
           ["<", ["get", "native_raspberry_score"], 1],
           "",
           ["to-string", ["floor", ["get", "native_raspberry_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "australian_chanterelle_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "australian_chanterelle_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "australian_chanterelle_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "australian_chanterelle_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "warrigal_greens_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "warrigal_greens_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "warrigal_greens_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "warrigal_greens_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "native_hedgehog_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "native_hedgehog_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "native_hedgehog_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "native_hedgehog_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "coral_tooth_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "coral_tooth_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "coral_tooth_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "coral_tooth_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "cherry_plum_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "cherry_plum_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "cherry_plum_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "cherry_plum_score"]]]
+        ],
+        "text-size": 20,
+        "visibility": "none"
+      }
+    },
+    {
+      "id": "bunya_anz_numbers",
+      "type": "symbol",
+      "paint": {
+        "text-color": "rgb(0, 0, 0)",
+        "text-opacity": 0.88,
+        "text-halo-color": [
+          "interpolate",
+          ["linear"],
+          ["get", "bunya_score"],
+          0,
+          "rgb(254, 254, 230)",
+          1,
+          "rgb(255, 255, 204)",
+          2,
+          "rgb(255, 228, 181)",
+          3,
+          "rgb(255, 218, 185)",
+          4,
+          "rgb(254, 201, 154)",
+          5,
+          "rgb(251, 174, 126)",
+          6,
+          "rgb(250, 115, 61)",
+          7,
+          "rgb(251, 109, 81)",
+          8,
+          "rgb(251, 70, 70)",
+          9,
+          "rgb(166, 3, 16)",
+          10,
+          "rgb(128, 0, 32)"
+        ],
+        "text-halo-width": 40,
+        "text-halo-blur": 2
+      },
+      "source": "overlay-anz",
+      "source-layer": "anz_forecast",
+      "layout": {
+        "text-font": ["Noto Sans Medium"],
+        "text-field": [
+          "case",
+          ["<", ["get", "bunya_score"], 1],
+          "",
+          ["to-string", ["floor", ["get", "bunya_score"]]]
         ],
         "text-size": 20,
         "visibility": "none"

@@ -171,6 +171,10 @@
             }
           }
         },
+        "exactTaxa": {
+          "description": "Count only the GBIF records named at exactly these taxon keys, not below them (GBIF acceptedTaxonKey), for a species GBIF files under a higher taxon: Cantharellus concinnus sits under its genus beside other chanterelles",
+          "type": "boolean"
+        },
         "regions": {
           "type": "object",
           "required": ["NE", "SE", "USE", "USW", "ANZ"],

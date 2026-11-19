@@ -519,6 +519,8 @@ gdf_full = gdf_full[~gdf_full['geometry'].isnull()]
 
 # Keep geometry + score columns; gdf_full is reused below only for CRS and bounds.
 score_columns = [col for col in gdf_full.columns if col.endswith('_score')]
+# Each piece's land cover, for the spectacles at the end (wattle blooms in the bush).
+land = gdf_full[['raster_val', 'geometry']]
 gdf_full = gdf_full[['geometry', 'tri_id'] + score_columns]
 
 
@@ -623,7 +625,16 @@ with tempfile.TemporaryDirectory() as tmpdir:
         if convert_mbtiles_to_pmtiles(fc_mbtiles_path, fc_pmtiles_path):
             upload_mbtiles_to_r2(fc_pmtiles_path, f"ANZ/{region_code}_forecast.pmtiles")
 
-# No spectacles (cherry blossom, foliage, ...): they are calibrated for Europe and the US.
+# ---------- SPECTACLES: cherry blossom, wattle; their own tilesets ----------
+# Each only in its season, on the southern year; see backend/bloom.py. The forecast is
+# up by now, so a failure here is printed and the run carries on.
+try:
+    from bloom import build_spectacles
+    build_spectacles(FILE_PATH, region_code, "ANZ", convert_mbtiles_to_pmtiles, upload_mbtiles_to_r2,
+                     land=land)
+except Exception:
+    import traceback
+    traceback.print_exc()
 
 print(f"✅ Processing & Upload Completed at {datetime.now()}")
 print(f"Script ended at {datetime.now()}")

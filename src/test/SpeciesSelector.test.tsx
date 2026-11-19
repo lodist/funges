@@ -30,6 +30,7 @@ vi.mock('@/store/mapStore', () => ({
     get selectedSpeciesOnMap() {
       return onMap.current;
     },
+    forecastRegion: 'NE',
   }),
 }));
 

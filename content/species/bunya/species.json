@@ -1,0 +1,161 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "bunya",
+  "scientificName": "Araucaria bidwillii",
+  "catalog": {
+    "enabled": true,
+    "order": 77,
+    "translationKey": "bunya",
+    "category": "nut",
+    "emoji": "🌰",
+    "season": "summer-fall",
+    "habitat": "forest",
+    "image": {
+      "path": "src/assets/species/bunya.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Bunya Nut",
+      "description": "The big, chestnut-like nut of the bunya pine, a tall tree with sharp, glossy leaves and heavy cones. It comes from south-east Queensland and is planted in parks and gardens in Australia and New Zealand.",
+      "howTo": "Look for fallen cones under bunya pines from January to March. Never stand under a tree that still holds cones, because they weigh up to 10 kg",
+      "guide": {
+        "identify": "The bunya pine is among the tallest trees around, often 30 to 45 m. It has a dome-shaped crown and one straight trunk with dark, knobbly bark. The branches grow in rings around the trunk. The leaves are flat, glossy and dark green, about 5 cm long and sharp at the tip. They spiral around the branch. Young trees are very spiky and look like Christmas trees. The female cone is as big as a football or bigger and weighs up to 10 kg. It is green and made of sharp scales. Each cone holds 50 to 100 nuts. A nut is 2.5 to 5 cm long and sits in a tough, buff-coloured shell. A tree carries cones about once every three years. It starts at around 15 years old. Hoop pine, Norfolk Island pine and Cook pine look similar. They have much finer leaves. Their cones are much smaller and break apart on the tree.",
+        "habitat": "It grows wild only in south-east Queensland. The main stands are in the rainforest of the Bunya Mountains and the Blackall Range. People have planted it far beyond that. You see it in parks, botanic gardens and old homestead gardens from Queensland to Victoria and around Perth. In New Zealand it is planted in the warmer parts, such as Auckland. The bunya is deeply important to the Aboriginal peoples of south-east Queensland. In big crop years clans came from far away to the Bunya Mountains and the Blackall Range. They feasted, traded and held ceremonies there.",
+        "season": "The cones fall from January to March, about a year and a half after pollination. A tree carries a heavy crop only about every three years. Trees are not in step with each other. Some years you find very little. From November, watch the trees to see which ones carry big cones.",
+        "picking": "Never stand or sit under a bunya pine in cone season. A cone can weigh up to 10 kg and drops from high up. Look up before you go near. Leave the tree alone while it still holds cones. Don't climb it. Gardens and parks sometimes rope off the ground below, so respect the ropes. Picking is not allowed in national parks. For trees in parks and streets, check the council's rules first. Take what you need and leave some for others.",
+        "kitchen": "Raw, the nuts are grainy and bland, so always cook them. First open the cone. Dry it for a week or two, then wear gloves and pull the scales apart. Cut a deep slit in each nut shell, or the nut can burst. Boil the nuts in their shells for about 30 minutes. Or roast them at 180 to 200 °C for 15 to 30 minutes. Peel the shell once they are cool. The nut tastes like a mild chestnut or potato. Use it in soups and stews in place of potatoes. It also works in pesto in place of pine nuts. Roasted and ground, it makes a gluten-free flour for bread and biscuits. The red cooking water makes a tea.",
+        "keeps": "Nuts keep best inside the whole cone. Shelled raw nuts go mouldy at room temperature. Fresh nuts keep a week or more in the fridge. Boiled in the shell and frozen, they keep for a year or more.",
+        "source": "Identification and range: ANPSA, Gymnosperm Database and Wikipedia. Look-alikes, cones and cooking: Bush Food Forager. Cooking and safety: Jerry Coleby-Williams. Bunya feasts: State Library of Queensland and Koori History. Ropes and fences: Australian Botanic Garden Mount Annan. National parks: NSW National Parks. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Noce di bunya",
+      "description": "La grossa noce, simile alla castagna, del pino bunya: un albero altissimo con foglie lucide e appuntite e pigne pesanti. Viene dal Queensland sud-orientale ed è piantato nei parchi e nei giardini di Australia e Nuova Zelanda.",
+      "howTo": "Cerca le pigne cadute sotto i pini bunya da gennaio a marzo. Non fermarti mai sotto un albero che ha ancora le pigne, perché pesano fino a 10 kg",
+      "guide": {
+        "identify": "Il pino bunya è tra gli alberi più alti della zona, spesso da 30 a 45 m. Ha la chioma a cupola e un solo tronco dritto, con corteccia scura e bitorzoluta. I rami crescono a cerchi attorno al tronco. Le foglie sono piatte, lucide, verde scuro e appuntite, lunghe circa 5 cm, e girano a spirale sul ramo. Gli alberi giovani sono molto pungenti e sembrano alberi di Natale. La pigna femminile è grande come un pallone da calcio o più e pesa fino a 10 kg. È verde e fatta di scaglie appuntite. Ogni pigna contiene da 50 a 100 noci. Una noce è lunga da 2,5 a 5 cm e sta in un guscio duro color camoscio. Un albero fa le pigne più o meno ogni tre anni, e comincia verso i 15 anni. L'Hoop pine, il pino di Norfolk e il Cook pine gli somigliano. Hanno foglie molto più sottili e pigne molto più piccole, che si sfaldano sull'albero.",
+        "habitat": "Selvatico cresce solo nel Queensland sud-orientale. I boschi principali sono nella foresta pluviale dei Bunya Mountains e del Blackall Range. L'uomo lo ha piantato ben oltre. Lo vedi in parchi, orti botanici e giardini di vecchie fattorie dal Queensland al Victoria e intorno a Perth. In Nuova Zelanda è piantato nelle zone più calde, come Auckland. Il bunya è molto importante per i popoli aborigeni del Queensland sud-orientale. Negli anni di grande raccolto i clan arrivavano da lontano ai Bunya Mountains e al Blackall Range. Lì facevano banchetti, scambi e cerimonie.",
+        "season": "Le pigne cadono da gennaio a marzo, circa un anno e mezzo dopo l'impollinazione. Un albero fa un raccolto abbondante solo ogni tre anni circa, e gli alberi non vanno tutti allo stesso passo. In certi anni si trova pochissimo. Da novembre osserva gli alberi per vedere quali hanno pigne grosse.",
+        "picking": "Non fermarti e non sederti mai sotto un pino bunya nella stagione delle pigne. Una pigna può pesare fino a 10 kg e cade da molto in alto. Guarda in su prima di avvicinarti. Lascia in pace l'albero finché ha ancora pigne, e non arrampicarti. Giardini e parchi a volte recintano con corde il terreno sotto gli alberi, quindi rispetta le corde. Nei parchi nazionali raccogliere è vietato. Per gli alberi di parchi e strade controlla prima le regole del comune. Prendi quello che ti serve e lascia il resto agli altri.",
+        "kitchen": "Crude, le noci sono granulose e insipide, quindi cuocile sempre. Prima apri la pigna. Lasciala asciugare una o due settimane, poi mettiti i guanti e stacca le scaglie. Incidi profondamente il guscio di ogni noce, altrimenti può scoppiare. Lessa le noci nel guscio per circa 30 minuti. Oppure arrostiscile a 180-200 °C per 15-30 minuti. Sbuccia il guscio quando si sono raffreddate. La noce sa di castagna o di patata, in modo delicato. Usala in zuppe e stufati al posto delle patate. Va bene anche nel pesto al posto dei pinoli. Arrostita e macinata, dà una farina senza glutine per pane e biscotti. L'acqua di cottura diventa rossa e fa una tisana.",
+        "keeps": "Le noci si conservano meglio dentro la pigna intera. Sgusciate e crude, ammuffiscono a temperatura ambiente. Quelle fresche durano una settimana o più in frigo. Lessate nel guscio e congelate, durano un anno o più.",
+        "source": "Riconoscimento e diffusione: ANPSA, Gymnosperm Database e Wikipedia. Specie simili, pigne e cottura: Bush Food Forager. Cucina e sicurezza: Jerry Coleby-Williams. Banchetti del bunya: State Library of Queensland e Koori History. Corde e recinzioni: Australian Botanic Garden Mount Annan. Parchi nazionali: NSW National Parks. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Noix de bunya",
+      "description": "La grosse noix, proche de la châtaigne, du pin bunya : un arbre très haut aux feuilles luisantes et pointues et aux cônes lourds. Il vient du sud-est du Queensland et il est planté dans les parcs et les jardins d'Australie et de Nouvelle-Zélande.",
+      "howTo": "Cherche les cônes tombés sous les pins bunya de janvier à mars. Ne reste jamais sous un arbre qui porte encore des cônes, car ils pèsent jusqu'à 10 kg",
+      "guide": {
+        "identify": "Le pin bunya fait partie des arbres les plus hauts du coin, souvent de 30 à 45 m. Il a une cime en dôme et un seul tronc droit, à l'écorce sombre et bosselée. Les branches poussent en cercles autour du tronc. Les feuilles sont plates, luisantes, vert foncé et pointues, longues d'environ 5 cm, et elles tournent en spirale sur la branche. Les jeunes arbres sont très piquants et ressemblent à des sapins de Noël. Le cône femelle est gros comme un ballon de football ou plus et pèse jusqu'à 10 kg. Il est vert et fait d'écailles pointues. Chaque cône contient de 50 à 100 noix. Une noix mesure de 2,5 à 5 cm et se trouve dans une coque dure, couleur chamois. Un arbre porte des cônes environ tous les trois ans, et seulement à partir de 15 ans environ. Le Hoop pine, le pin de Norfolk et le Cook pine lui ressemblent. Leurs feuilles sont bien plus fines et leurs cônes bien plus petits, et ils se défont sur l'arbre.",
+        "habitat": "Il ne pousse à l'état sauvage que dans le sud-est du Queensland. Les principaux peuplements sont dans la forêt tropicale des Bunya Mountains et du Blackall Range. On l'a planté bien au-delà. Tu le vois dans les parcs, les jardins botaniques et les jardins de vieilles fermes, du Queensland au Victoria et autour de Perth. En Nouvelle-Zélande, il est planté dans les régions plus chaudes, comme Auckland. Le bunya est très important pour les peuples aborigènes du sud-est du Queensland. Les années de grande récolte, les clans venaient de loin aux Bunya Mountains et au Blackall Range. Ils y faisaient des festins, des échanges et des cérémonies.",
+        "season": "Les cônes tombent de janvier à mars, environ un an et demi après la pollinisation. Un arbre ne donne une grosse récolte que tous les trois ans environ, et les arbres ne sont pas synchronisés. Certaines années, on trouve très peu de cônes. Dès novembre, observe les arbres pour voir lesquels portent de gros cônes.",
+        "picking": "Ne reste jamais sous un pin bunya, et ne t'y assieds pas, pendant la saison des cônes. Un cône peut peser jusqu'à 10 kg et tombe de très haut. Lève les yeux avant de t'approcher. Laisse l'arbre tranquille tant qu'il porte des cônes, et ne grimpe pas dedans. Les jardins et les parcs balisent parfois le sol dessous avec des cordes, alors respecte-les. La cueillette est interdite dans les parcs nationaux. Pour les arbres des parcs et des rues, vérifie d'abord les règles de la commune. Prends ce qu'il te faut et laisses-en aux autres.",
+        "kitchen": "Crues, les noix sont granuleuses et fades, alors cuis-les toujours. Ouvre d'abord le cône. Laisse-le sécher une ou deux semaines, puis mets des gants et détache les écailles. Entaille profondément la coque de chaque noix, sinon elle peut éclater. Fais bouillir les noix dans leur coque environ 30 minutes. Ou fais-les rôtir à 180-200 °C pendant 15 à 30 minutes. Retire la coque quand elles ont refroidi. La noix a un goût doux de châtaigne ou de pomme de terre. Mets-la dans les soupes et les ragoûts à la place des pommes de terre. Elle va aussi dans un pesto à la place des pignons. Rôtie et moulue, elle donne une farine sans gluten pour le pain et les biscuits. L'eau de cuisson rougit et fait une tisane.",
+        "keeps": "Les noix se gardent mieux dans le cône entier. Décortiquées et crues, elles moisissent à température ambiante. Fraîches, elles tiennent une semaine ou plus au frigo. Bouillies dans leur coque puis congelées, elles se gardent un an ou plus.",
+        "source": "Identification et répartition : ANPSA, Gymnosperm Database et Wikipédia. Espèces proches, cônes et cuisson : Bush Food Forager. Cuisine et sécurité : Jerry Coleby-Williams. Festins du bunya : State Library of Queensland et Koori History. Cordes et clôtures : Australian Botanic Garden Mount Annan. Parcs nationaux : NSW National Parks. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Bunya-Nuss",
+      "description": "Die grosse, kastanienartige Nuss der Bunya-Araukarie, eines hohen Baums mit glänzenden, spitzen Blättern und schweren Zapfen. Sie stammt aus dem Südosten von Queensland und wird in Parks und Gärten Australiens und Neuseelands gepflanzt.",
+      "howTo": "Such von Januar bis März unter Bunya-Araukarien nach heruntergefallenen Zapfen. Bleib nie unter einem Baum stehen, an dem noch Zapfen hängen, denn sie wiegen bis zu 10 kg",
+      "guide": {
+        "identify": "Die Bunya-Araukarie gehört zu den höchsten Bäumen weit und breit, oft 30 bis 45 m. Sie hat eine kuppelförmige Krone und einen einzelnen geraden Stamm mit dunkler, knorriger Rinde. Die Äste wachsen in Kreisen um den Stamm. Die Blätter sind flach, glänzend, dunkelgrün, etwa 5 cm lang und an der Spitze scharf. Sie sitzen spiralig am Zweig. Junge Bäume sind sehr stachelig und sehen aus wie Weihnachtsbäume. Der weibliche Zapfen ist so gross wie ein Fussball oder grösser und wiegt bis zu 10 kg. Er ist grün und besteht aus spitzen Schuppen. In jedem Zapfen stecken 50 bis 100 Nüsse. Eine Nuss ist 2,5 bis 5 cm lang und sitzt in einer harten, gelbbraunen Schale. Ein Baum trägt etwa alle drei Jahre Zapfen. Damit fängt er erst mit etwa 15 Jahren an. Hoop-Araukarie, Norfolk-Tanne und Cook-Araukarie sehen ähnlich aus. Ihre Blätter sind viel feiner. Ihre Zapfen sind viel kleiner und zerfallen schon am Baum.",
+        "habitat": "Wild wächst sie nur im Südosten von Queensland. Die wichtigsten Bestände stehen im Regenwald der Bunya Mountains und der Blackall Range. Gepflanzt wurde sie weit darüber hinaus. Du siehst sie in Parks, botanischen Gärten und alten Farmgärten von Queensland bis Victoria und rund um Perth. In Neuseeland steht sie in den wärmeren Gegenden, etwa um Auckland. Die Bunya ist für die Aboriginal-Völker im Südosten von Queensland von tiefer Bedeutung. In Jahren mit grosser Ernte kamen die Clans von weit her in die Bunya Mountains und die Blackall Range. Dort feierten sie Feste, tauschten Waren und hielten Zeremonien ab.",
+        "season": "Die Zapfen fallen von Januar bis März, etwa anderthalb Jahre nach der Bestäubung. Ein Baum trägt nur etwa alle drei Jahre viel, und die Bäume sind nicht im Gleichtakt. In manchen Jahren findest du kaum etwas. Beobachte die Bäume ab November, um zu sehen, welche grosse Zapfen tragen.",
+        "picking": "Steh oder sitz in der Zapfenzeit nie unter einer Bunya-Araukarie. Ein Zapfen kann bis zu 10 kg wiegen und fällt aus grosser Höhe. Schau nach oben, bevor du näher kommst. Lass den Baum in Ruhe, solange er noch Zapfen trägt, und klettere nicht hinauf. Gärten und Parks sperren den Boden darunter manchmal mit Seilen ab, also halt dich daran. In Nationalparks ist Sammeln verboten. Bei Bäumen in Parks und Strassen prüf zuerst die Regeln der Gemeinde. Nimm, was du brauchst, und lass den anderen etwas übrig.",
+        "kitchen": "Roh sind die Nüsse körnig und fad, also gare sie immer. Öffne zuerst den Zapfen. Lass ihn ein bis zwei Wochen trocknen, zieh dann Handschuhe an und brich die Schuppen auseinander. Schneid jede Nussschale tief ein, sonst kann die Nuss platzen. Koch die Nüsse in der Schale etwa 30 Minuten. Oder röste sie bei 180 bis 200 °C 15 bis 30 Minuten. Schäl die Schale ab, wenn sie abgekühlt sind. Die Nuss schmeckt mild nach Kastanie oder Kartoffel. Nimm sie in Suppen und Eintöpfen statt Kartoffeln. Im Pesto ersetzt sie Pinienkerne. Geröstet und gemahlen gibt sie glutenfreies Mehl für Brot und Kekse. Aus dem roten Kochwasser kannst du Tee machen.",
+        "keeps": "Am besten halten sich die Nüsse im ganzen Zapfen. Geschälte rohe Nüsse schimmeln bei Zimmertemperatur. Frische halten sich eine Woche oder länger im Kühlschrank. In der Schale gekocht und eingefroren halten sie ein Jahr oder länger.",
+        "source": "Bestimmung und Verbreitung: ANPSA, Gymnosperm Database und Wikipedia. Ähnliche Arten, Zapfen und Zubereitung: Bush Food Forager. Zubereitung und Sicherheit: Jerry Coleby-Williams. Bunya-Feste: State Library of Queensland und Koori History. Seile und Zäune: Australian Botanic Garden Mount Annan. Nationalparks: NSW National Parks. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Nuez de bunya",
+      "description": "La gran nuez, parecida a la castaña, del pino bunya: un árbol muy alto de hojas brillantes y punzantes y piñas pesadas. Viene del sureste de Queensland y se planta en parques y jardines de Australia y Nueva Zelanda.",
+      "howTo": "Busca piñas caídas bajo los pinos bunya de enero a marzo. No te pongas nunca bajo un árbol que aún tenga piñas, porque pesan hasta 10 kg",
+      "guide": {
+        "identify": "El pino bunya es de los árboles más altos de la zona, a menudo de 30 a 45 m. Tiene la copa en forma de cúpula y un solo tronco recto, de corteza oscura y nudosa. Las ramas crecen en anillos alrededor del tronco. Las hojas son planas, brillantes, verde oscuro y punzantes en la punta, de unos 5 cm, y se disponen en espiral sobre la rama. Los árboles jóvenes son muy espinosos y parecen árboles de Navidad. La piña femenina es grande como un balón de fútbol o más y pesa hasta 10 kg. Es verde y está hecha de escamas puntiagudas. Cada piña contiene de 50 a 100 nueces. Una nuez mide de 2,5 a 5 cm y va en una cáscara dura de color ante. Un árbol da piñas más o menos cada tres años, y solo a partir de los 15 años. El Hoop pine, el pino de Norfolk y el Cook pine se le parecen. Tienen las hojas mucho más finas y las piñas mucho más pequeñas, que se deshacen en el árbol.",
+        "habitat": "Silvestre, solo crece en el sureste de Queensland. Las masas principales están en la selva de los Bunya Mountains y del Blackall Range. Se ha plantado mucho más allá. Lo ves en parques, jardines botánicos y jardines de antiguas granjas, de Queensland a Victoria y alrededor de Perth. En Nueva Zelanda se planta en las zonas más cálidas, como Auckland. El bunya es muy importante para los pueblos aborígenes del sureste de Queensland. En los años de gran cosecha, los clanes venían de lejos a los Bunya Mountains y al Blackall Range. Allí celebraban banquetes, hacían trueques y organizaban ceremonias.",
+        "season": "Las piñas caen de enero a marzo, año y medio más o menos después de la polinización. Un árbol da una cosecha grande solo cada tres años más o menos, y los árboles no van todos a la vez. Algunos años se encuentra muy poco. Desde noviembre, observa los árboles para ver cuáles llevan piñas grandes.",
+        "picking": "No te pongas ni te sientes nunca bajo un pino bunya en la época de las piñas. Una piña puede pesar hasta 10 kg y cae desde muy alto. Mira hacia arriba antes de acercarte. Deja el árbol en paz mientras tenga piñas, y no te subas a él. Jardines y parques a veces acordonan el suelo de debajo con cuerdas, así que respétalas. En los parques nacionales está prohibido recolectar. Con los árboles de parques y calles, consulta antes las normas del ayuntamiento. Coge lo que necesites y deja algo para los demás.",
+        "kitchen": "Crudas, las nueces son granulosas e insípidas, así que cuécelas siempre. Primero abre la piña. Déjala secar una o dos semanas, luego ponte guantes y separa las escamas. Haz un corte profundo en la cáscara de cada nuez, o puede reventar. Hierve las nueces con cáscara unos 30 minutos. O tuéstalas a 180-200 °C durante 15 a 30 minutos. Quita la cáscara cuando se hayan enfriado. La nuez sabe a castaña o a patata, en versión suave. Úsala en sopas y guisos en lugar de patatas. También va bien en un pesto en lugar de piñones. Tostada y molida, da una harina sin gluten para pan y galletas. El agua de cocción se vuelve roja y sirve para hacer una infusión.",
+        "keeps": "Las nueces se conservan mejor dentro de la piña entera. Peladas y crudas, se enmohecen a temperatura ambiente. Frescas, duran una semana o más en la nevera. Hervidas con cáscara y congeladas, duran un año o más.",
+        "source": "Identificación y distribución: ANPSA, Gymnosperm Database y Wikipedia. Especies parecidas, piñas y cocción: Bush Food Forager. Cocina y seguridad: Jerry Coleby-Williams. Banquetes del bunya: State Library of Queensland y Koori History. Cuerdas y vallas: Australian Botanic Garden Mount Annan. Parques nacionales: NSW National Parks. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Noz de bunya",
+      "description": "A grande noz, parecida à castanha, do pinheiro-bunya: uma árvore muito alta, de folhas brilhantes e bicudas e pinhas pesadas. Vem do sudeste de Queensland e é plantada em parques e jardins da Austrália e da Nova Zelândia.",
+      "howTo": "Procura pinhas caídas debaixo dos pinheiros-bunya de janeiro a março. Nunca fiques debaixo de uma árvore que ainda tenha pinhas, porque pesam até 10 kg",
+      "guide": {
+        "identify": "O pinheiro-bunya está entre as árvores mais altas dos arredores, muitas vezes com 30 a 45 m. Tem a copa em cúpula e um só tronco direito, de casca escura e nodosa. Os ramos crescem em anéis à volta do tronco. As folhas são planas, brilhantes, verde-escuras e bicudas na ponta, com cerca de 5 cm, e dispõem-se em espiral no ramo. As árvores novas são muito espinhosas e parecem árvores de Natal. A pinha feminina é grande como uma bola de futebol ou mais e pesa até 10 kg. É verde e feita de escamas pontiagudas. Cada pinha tem 50 a 100 nozes. Uma noz mede 2,5 a 5 cm e fica numa casca dura cor de camurça. Uma árvore dá pinhas mais ou menos de três em três anos, e só a partir dos 15 anos. O Hoop pine, o pinheiro-de-norfolk e o Cook pine parecem-se com ele. Têm as folhas muito mais finas e as pinhas muito mais pequenas, que se desfazem na árvore.",
+        "habitat": "Selvagem, só cresce no sudeste de Queensland. Os maiores povoamentos estão na floresta tropical das Bunya Mountains e da Blackall Range. Foi plantada muito para lá disso. Vê-se em parques, jardins botânicos e jardins de quintas antigas, de Queensland a Victoria e à volta de Perth. Na Nova Zelândia é plantada nas zonas mais quentes, como Auckland. O bunya é muito importante para os povos aborígenes do sudeste de Queensland. Nos anos de grande colheita, os clãs vinham de longe às Bunya Mountains e à Blackall Range. Lá faziam banquetes, trocas e cerimónias.",
+        "season": "As pinhas caem de janeiro a março, cerca de ano e meio depois da polinização. Uma árvore dá uma grande colheita só de três em três anos, mais ou menos, e as árvores não andam todas ao mesmo ritmo. Em alguns anos encontra-se muito pouco. A partir de novembro, observa as árvores para ver quais têm pinhas grandes.",
+        "picking": "Nunca fiques nem te sentes debaixo de um pinheiro-bunya na época das pinhas. Uma pinha pode pesar até 10 kg e cai de muito alto. Olha para cima antes de te aproximares. Deixa a árvore em paz enquanto tiver pinhas, e não trepes a ela. Jardins e parques às vezes isolam o chão por baixo com cordas, por isso respeita-as. Nos parques nacionais é proibido apanhar. Nas árvores de parques e ruas, confirma primeiro as regras da câmara municipal. Leva o que precisares e deixa algumas para os outros.",
+        "kitchen": "Cruas, as nozes são granulosas e sem sabor, por isso cozinha-as sempre. Primeiro abre a pinha. Deixa-a secar uma ou duas semanas, depois calça luvas e separa as escamas. Faz um corte fundo na casca de cada noz, senão ela pode rebentar. Coze as nozes com casca cerca de 30 minutos. Ou assa-as a 180-200 °C durante 15 a 30 minutos. Tira a casca quando arrefecerem. A noz sabe a castanha ou a batata, numa versão suave. Usa-a em sopas e guisados no lugar da batata. Também fica bem num pesto no lugar dos pinhões. Assada e moída, dá uma farinha sem glúten para pão e bolachas. A água da cozedura fica vermelha e dá um chá.",
+        "keeps": "As nozes conservam-se melhor dentro da pinha inteira. Descascadas e cruas, bolorecem à temperatura ambiente. Frescas, duram uma semana ou mais no frigorífico. Cozidas com casca e congeladas, duram um ano ou mais.",
+        "source": "Identificação e distribuição: ANPSA, Gymnosperm Database e Wikipédia. Espécies parecidas, pinhas e cozedura: Bush Food Forager. Cozinha e segurança: Jerry Coleby-Williams. Banquetes do bunya: State Library of Queensland e Koori History. Cordas e vedações: Australian Botanic Garden Mount Annan. Parques nacionais: NSW National Parks. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Araucaria bidwillii",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Bunya Nut"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [2684918]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [611, 612, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/2684918",
+          "https://anpsa.org.au/?p=6458",
+          "https://en.wikipedia.org/wiki/Araucaria_bidwillii",
+          "https://conifers.org/ar/Araucaria_bidwillii.php",
+          "https://tooheyforesteec.eq.edu.au/support-and-resources/research/bunya-pine",
+          "https://jerry-coleby-williams.net/2015/02/15/bunya-prehistoric-plant-ancient-australian-food-tradition/",
+          "https://www.slq.qld.gov.au/blog/bountiful-bunyas-charismatic-tree-fascinating-history",
+          "https://bushfoodforager.substack.com/p/bunya-nut",
+          "https://www.sbs.com.au/food/article/2018/01/17/these-giant-bunya-nuts-are-key-indigenous-food-well-snacks-dinosaurs",
+          "https://botanicgardens.org.au/discover-and-learn/watch-listen-read/5-kilogram-nuts-come-crashing-down-australias-largest-botanic",
+          "https://koorihistory.com/bunya/",
+          "https://en.wikipedia.org/wiki/Bunya_Mountains_National_Park",
+          "https://www.nationalparks.nsw.gov.au/conservation-and-heritage/care-for-parks/illegal-activities",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

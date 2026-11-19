@@ -28,7 +28,7 @@ from scipy.spatial import cKDTree
 ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / "backend"))
-from species_registry import get_empirical_taxon_map, get_species_metadata, get_species_params
+from species_registry import gbif_taxon_param, get_empirical_taxon_map, get_species_metadata, get_species_params
 import r2  # noqa: E402
 
 
@@ -167,9 +167,10 @@ def fetch_occurrences(
                 f"POLYGON(({west} {south},{east} {south},{east} {north},"
                 f"{west} {north},{west} {south}))"
             )
+            keys = match.get("taxon_keys") or match["taxon_key"]
             base = {
                 # Every GBIF name the app counts as the species (US golden chanterelles are 20 of them).
-                "taxonKey": match.get("taxon_keys") or match["taxon_key"],
+                gbif_taxon_param(keys[0] if isinstance(keys, list) else keys): keys,
                 "eventDate": f"{start},{end}",
                 "geometry": geometry,
                 "hasCoordinate": "true",

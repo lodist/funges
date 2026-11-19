@@ -633,6 +633,25 @@ export function validateManifests(
       }
     }
   }
+  // An exactTaxa species' keys mean "named at exactly this taxon" wherever GBIF is
+  // asked (species_registry.gbif_taxon_param), so no other species may use them.
+  const gbifKeys = m => [
+    ...(m.forecast?.empiricalSeason?.taxonKeys ?? []),
+    ...(m.forecast?.rangePrior?.taxonKeys ?? []),
+  ];
+  for (const { filename, data: m } of entries) {
+    if (!m.forecast?.exactTaxa) continue;
+    for (const { data: other } of entries)
+      if (
+        other.id !== m.id &&
+        gbifKeys(other).some(key => gbifKeys(m).includes(key))
+      )
+        fail(
+          errors,
+          path.relative(root, filename),
+          `forecast.exactTaxa: ${other.id} uses the same GBIF keys`
+        );
+  }
   // A composite (e.g. every porcini-type bolete) is scored as the best of its
   // members at each place and day, so it needs forecast members of its own in
   // every region it is shown in.
@@ -803,6 +822,7 @@ function backendRegistry(manifests) {
         ? m.forecast.empiricalSeason.taxonKeys
         : [],
       rangeTaxonKeys: m.forecast.rangePrior.taxonKeys,
+      ...(m.forecast.exactTaxa ? { exactTaxa: true } : {}),
       dataColumns: [
         ...new Set([`${m.id}_score`, ...(m.forecast.dataColumns || [])]),
       ],

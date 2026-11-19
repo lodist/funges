@@ -1,0 +1,154 @@
+{
+  "$schema": "../_schema.json",
+  "schemaVersion": 1,
+  "id": "warrigal_greens",
+  "scientificName": "Tetragonia tetragonioides",
+  "catalog": {
+    "enabled": true,
+    "order": 73,
+    "translationKey": "warrigal_greens",
+    "category": "plant",
+    "emoji": "🌿",
+    "season": "spring-summer",
+    "habitat": "grassland",
+    "image": {
+      "path": "src/assets/species/warrigal_greens.webp"
+    }
+  },
+  "locales": {
+    "en": {
+      "name": "Warrigal Greens",
+      "description": "A sprawling native spinach with fleshy, arrow-shaped leaves that sparkle as if dusted with salt. It grows along beaches, dunes and estuaries in Australia and New Zealand.",
+      "howTo": "Look along beaches, dunes and coastal scrub at any time of year. Pick the young tips and always blanch them before you eat them",
+      "guide": {
+        "identify": "Warrigal greens spread in loose mats along the ground or scramble over low shrubs. The leaves are thick and fleshy, 3 to 10 cm long and shaped like an arrowhead or a diamond. They are covered in tiny glassy bumps, so they sparkle as if dusted with salt. Small yellow flowers sit right on the stem where the leaves join. They turn into hard, knobbly fruits with a few short horns. Bower spinach is a close cousin that climbs through coastal shrubs. It has smaller, diamond-shaped leaves and juicy red berries. You can eat it the same way. Sea spurge grows on the same dunes and is poisonous. It has narrow, grey-green leaves all the way up a straight stem. Its milky sap burns skin and eyes. Never pick a plant that bleeds white sap.",
+        "habitat": "It grows on beaches and dunes, on sea cliffs and around salt marshes and estuaries. Look under coastal she-oaks, paperbarks or Norfolk Island pines. In Australia it also follows rivers and lakes far inland. In New Zealand it is called kōkihi and is less common now. There, bower spinach is the one you will see on most coasts.",
+        "season": "The leaves are there all year. New growth is softest in spring and summer, after rain. In cold or dry spells the plant slows down. Older leaves then turn tough and bitter.",
+        "picking": "Pinch off the top 10 cm of young shoots and leave the plant in the ground. Dunes are fragile, so stay on the paths and pick from big patches. Picking is not allowed in national parks. Skip beaches near drains and stormwater outlets.",
+        "kitchen": "Always blanch the leaves first. Drop them into boiling water for one to three minutes, drain them and throw the water away. That washes out most of the oxalates, which are hard on the kidneys in large amounts. Then use them like spinach: with garlic and olive oil, in pies and quiches, in soups or in pesto. The ripe red berries of bower spinach are salty-sweet and can be eaten raw.",
+        "keeps": "Fresh tips keep two or three days in the fridge, in a bag. Blanched and squeezed dry, they freeze well.",
+        "source": "Identification and use: Milkwood, Noosa's Native Plants and the Canberra Daily bush food series. Sea spurge: Weeds Australia. Season: GBIF records."
+      }
+    },
+    "it": {
+      "name": "Spinacio della Nuova Zelanda",
+      "description": "Uno spinacio selvatico strisciante, con foglie carnose a punta di freccia che luccicano come se fossero salate. Cresce su spiagge, dune ed estuari in Australia e in Nuova Zelanda.",
+      "howTo": "Cercalo tutto l'anno su spiagge, dune e macchia costiera. Raccogli le cime giovani e sbollentale sempre prima di mangiarle",
+      "guide": {
+        "identify": "Cresce in tappeti radi sul terreno o si arrampica su arbusti bassi. Le foglie sono spesse e carnose, lunghe da 3 a 10 cm, a forma di punta di freccia o di rombo. Sono coperte di minuscole bollicine vitree, per questo luccicano come se fossero salate. Piccoli fiori gialli stanno attaccati al fusto, dove nascono le foglie. Diventano frutti duri e bitorzoluti con qualche cornetto corto. Il suo parente stretto Tetragonia implexicoma si arrampica tra gli arbusti costieri. Ha foglie più piccole a rombo e bacche rosse succose, e si mangia allo stesso modo. Sulle stesse dune cresce l'euforbia marittima, che è velenosa. Ha foglie strette grigioverdi lungo tutto il fusto dritto e un lattice bianco che brucia pelle e occhi. Non raccogliere mai una pianta che perde linfa bianca.",
+        "habitat": "Cresce su spiagge e dune, sulle scogliere e intorno a paludi salmastre ed estuari, spesso sotto casuarine, melaleuche o pini di Norfolk. In Australia segue anche fiumi e laghi fin nell'entroterra. In Nuova Zelanda si chiama kōkihi ed è più raro di un tempo. Lì, sulla maggior parte delle coste, vedrai soprattutto il suo parente rampicante.",
+        "season": "Le foglie ci sono tutto l'anno. I germogli nuovi sono più teneri in primavera e in estate, dopo la pioggia. Con il freddo o la siccità la pianta rallenta, e le foglie vecchie diventano dure e amare.",
+        "picking": "Stacca i 10 cm in cima ai germogli giovani e lascia la pianta nel terreno. Le dune sono fragili, quindi resta sui sentieri e raccogli solo dove ce n'è tanto. Nei parchi nazionali raccogliere è vietato. Evita le spiagge vicino a scarichi e tombini.",
+        "kitchen": "Sbollenta sempre prima le foglie. Mettile in acqua bollente da uno a tre minuti, scolale e butta via l'acqua. Così elimini gran parte degli ossalati, che in grandi quantità affaticano i reni. Poi usale come gli spinaci: con aglio e olio d'oliva, in torte salate e quiche, nelle zuppe o nel pesto. Le bacche rosse mature del parente rampicante sono dolci e salate e si mangiano crude.",
+        "keeps": "Le cime fresche durano due o tre giorni in frigo, in un sacchetto. Sbollentate e strizzate, si congelano bene.",
+        "source": "Riconoscimento e uso: Milkwood, Noosa's Native Plants e la serie sul bush food del Canberra Daily. Euforbia marittima: Weeds Australia. Stagione: segnalazioni GBIF."
+      }
+    },
+    "fr": {
+      "name": "Épinard de Nouvelle-Zélande",
+      "description": "Un épinard sauvage rampant aux feuilles charnues en forme de flèche, qui scintillent comme si elles étaient salées. Il pousse sur les plages, les dunes et les estuaires d'Australie et de Nouvelle-Zélande.",
+      "howTo": "Cherche-le toute l'année sur les plages, les dunes et dans les fourrés côtiers. Cueille les jeunes pousses et blanchis-les toujours avant de les manger",
+      "guide": {
+        "identify": "Il forme des tapis lâches au sol ou grimpe sur les arbustes bas. Les feuilles sont épaisses et charnues, longues de 3 à 10 cm, en forme de pointe de flèche ou de losange. Elles sont couvertes de minuscules perles vitreuses, c'est pourquoi elles scintillent comme si elles étaient salées. De petites fleurs jaunes sont collées à la tige, là où partent les feuilles. Elles deviennent des fruits durs et bosselés, avec quelques petites cornes. Son proche cousin Tetragonia implexicoma grimpe dans les arbustes du littoral. Il a des feuilles plus petites en losange et des baies rouges juteuses, et il se mange de la même façon. Sur les mêmes dunes pousse l'euphorbe maritime, qui est toxique. Elle a des feuilles étroites gris-vert tout le long d'une tige droite et un latex blanc qui brûle la peau et les yeux. Ne cueille jamais une plante qui laisse couler une sève blanche.",
+        "habitat": "Il pousse sur les plages et les dunes, sur les falaises et autour des prés salés et des estuaires, souvent sous des filaos, des melaleucas ou des pins de Norfolk. En Australie, il suit aussi les rivières et les lacs loin à l'intérieur des terres. En Nouvelle-Zélande, on l'appelle kōkihi et il s'y fait plus rare. Là-bas, sur la plupart des côtes, tu verras surtout son cousin grimpant.",
+        "season": "Les feuilles sont là toute l'année. Les nouvelles pousses sont les plus tendres au printemps et en été, après la pluie. Par temps froid ou sec, la plante ralentit, et les vieilles feuilles deviennent dures et amères.",
+        "picking": "Pince les 10 cm du haut des jeunes pousses et laisse la plante en terre. Les dunes sont fragiles, alors reste sur les sentiers et ne cueille que là où il y en a beaucoup. La cueillette est interdite dans les parcs nationaux. Évite les plages près des égouts et des sorties d'eaux pluviales.",
+        "kitchen": "Blanchis toujours les feuilles d'abord. Plonge-les une à trois minutes dans l'eau bouillante, égoutte-les et jette l'eau. Tu élimines ainsi la plupart des oxalates, qui fatiguent les reins en grande quantité. Ensuite, utilise-les comme des épinards : à l'ail et à l'huile d'olive, dans des tartes et des quiches, dans des soupes ou un pesto. Les baies rouges mûres du cousin grimpant sont sucrées-salées et se mangent crues.",
+        "keeps": "Les jeunes pousses fraîches se gardent deux ou trois jours au frigo, dans un sac. Blanchies et bien essorées, elles se congèlent bien.",
+        "source": "Identification et usage : Milkwood, Noosa's Native Plants et la série bush food du Canberra Daily. Euphorbe maritime : Weeds Australia. Saison : observations GBIF."
+      }
+    },
+    "de": {
+      "name": "Neuseeländer Spinat",
+      "description": "Ein kriechender wilder Spinat mit dicken, pfeilförmigen Blättern, die glitzern, als wären sie gesalzen. Er wächst an Stränden, Dünen und Flussmündungen in Australien und Neuseeland.",
+      "howTo": "Such das ganze Jahr an Stränden, Dünen und im Küstengebüsch. Pflück die jungen Triebspitzen und blanchier sie immer, bevor du sie isst",
+      "guide": {
+        "identify": "Er wächst in lockeren Matten am Boden oder klettert über niedrige Sträucher. Die Blätter sind dick und fleischig, 3 bis 10 cm lang und geformt wie eine Pfeilspitze oder eine Raute. Sie sind mit winzigen glasigen Bläschen besetzt und glitzern deshalb, als wären sie gesalzen. Kleine gelbe Blüten sitzen direkt am Stängel, dort wo die Blätter ansetzen. Daraus werden harte, knubbelige Früchte mit ein paar kurzen Hörnern. Sein naher Verwandter Tetragonia implexicoma klettert durch Küstensträucher. Er hat kleinere, rautenförmige Blätter und saftige rote Beeren, und du kannst ihn genauso essen. Auf denselben Dünen wächst die giftige Strand-Wolfsmilch. Sie hat schmale, graugrüne Blätter am ganzen geraden Stängel und einen weissen Milchsaft, der Haut und Augen verätzt. Pflück nie eine Pflanze, aus der weisser Saft kommt.",
+        "habitat": "Er wächst an Stränden und Dünen, an Klippen und rund um Salzwiesen und Flussmündungen, oft unter Kasuarinen, Melaleuken oder Norfolk-Tannen. In Australien folgt er auch Flüssen und Seen weit ins Landesinnere. In Neuseeland heisst er kōkihi und ist heute seltener. Dort siehst du an den meisten Küsten eher seinen kletternden Verwandten.",
+        "season": "Die Blätter gibt es das ganze Jahr. Am zartesten ist der Neuaustrieb im Frühling und Sommer, nach Regen. Bei Kälte oder Trockenheit wächst er langsamer, und ältere Blätter werden zäh und bitter.",
+        "picking": "Knips die oberen 10 cm der jungen Triebe ab und lass die Pflanze im Boden. Dünen sind empfindlich, also bleib auf den Wegen und pflück nur aus grossen Beständen. In Nationalparks ist Sammeln verboten. Meide Strände in der Nähe von Abflüssen und Regenwasserausläufen.",
+        "kitchen": "Blanchier die Blätter immer zuerst. Gib sie ein bis drei Minuten in kochendes Wasser, lass sie abtropfen und schütte das Wasser weg. So wäschst du den Grossteil der Oxalate aus, die in grossen Mengen die Nieren belasten. Danach verwendest du sie wie Spinat: mit Knoblauch und Olivenöl, in Quiches und herzhaften Kuchen, in Suppen oder Pesto. Die reifen roten Beeren des Verwandten schmecken salzig-süss und lassen sich roh essen.",
+        "keeps": "Frische Triebspitzen halten sich zwei, drei Tage im Kühlschrank, in einem Beutel. Blanchiert und gut ausgedrückt kannst du sie gut einfrieren.",
+        "source": "Bestimmung und Verwendung: Milkwood, Noosa's Native Plants und die Bush-Food-Serie des Canberra Daily. Strand-Wolfsmilch: Weeds Australia. Saison: GBIF-Funddaten."
+      }
+    },
+    "es": {
+      "name": "Espinaca de Nueva Zelanda",
+      "description": "Una espinaca silvestre rastrera de hojas carnosas en forma de flecha, que brillan como si estuvieran saladas. Crece en playas, dunas y estuarios de Australia y Nueva Zelanda.",
+      "howTo": "Búscala todo el año en playas, dunas y matorral costero. Coge las puntas tiernas y escáldalas siempre antes de comerlas",
+      "guide": {
+        "identify": "Forma alfombras sueltas sobre el suelo o trepa por arbustos bajos. Las hojas son gruesas y carnosas, de 3 a 10 cm, con forma de punta de flecha o de rombo. Están cubiertas de diminutas perlas vidriosas, por eso brillan como si estuvieran saladas. Unas flores amarillas pequeñas van pegadas al tallo, donde nacen las hojas. Se convierten en frutos duros y abultados con unos cuernecillos cortos. Su pariente cercana Tetragonia implexicoma trepa entre los arbustos de la costa. Tiene hojas más pequeñas en forma de rombo y bayas rojas jugosas, y se come igual. En las mismas dunas crece la lechetrezna de mar, que es venenosa. Tiene hojas estrechas de color gris verdoso a lo largo de un tallo recto y un látex blanco que quema la piel y los ojos. Nunca cojas una planta que suelte savia blanca.",
+        "habitat": "Crece en playas y dunas, en acantilados y alrededor de marismas y estuarios, a menudo bajo casuarinas, melaleucas o pinos de Norfolk. En Australia también sigue ríos y lagos tierra adentro. En Nueva Zelanda se llama kōkihi y hoy es más escasa. Allí, en la mayoría de las costas, verás sobre todo a su pariente trepadora.",
+        "season": "Las hojas están todo el año. Los brotes nuevos son más tiernos en primavera y verano, después de llover. Con frío o sequía la planta se frena, y las hojas viejas se vuelven duras y amargas.",
+        "picking": "Pellizca los 10 cm de arriba de los brotes tiernos y deja la planta en el suelo. Las dunas son frágiles, así que no salgas de los caminos y coge solo donde haya mucha. En los parques nacionales está prohibido recolectar. Evita las playas cerca de desagües y salidas de pluviales.",
+        "kitchen": "Escalda siempre las hojas primero. Échalas de uno a tres minutos en agua hirviendo, escúrrelas y tira el agua. Así eliminas la mayor parte de los oxalatos, que en grandes cantidades cargan los riñones. Después úsalas como espinacas: con ajo y aceite de oliva, en empanadas y quiches, en sopas o en pesto. Las bayas rojas maduras de su pariente trepadora son dulces y saladas y se comen crudas.",
+        "keeps": "Las puntas frescas aguantan dos o tres días en la nevera, en una bolsa. Escaldadas y bien escurridas, se congelan bien.",
+        "source": "Identificación y uso: Milkwood, Noosa's Native Plants y la serie de bush food del Canberra Daily. Lechetrezna de mar: Weeds Australia. Temporada: registros de GBIF."
+      }
+    },
+    "pt": {
+      "name": "Espinafre-da-nova-zelândia",
+      "description": "Um espinafre selvagem rasteiro, de folhas carnudas em forma de seta que brilham como se tivessem sal. Cresce em praias, dunas e estuários da Austrália e da Nova Zelândia.",
+      "howTo": "Procura-o todo o ano em praias, dunas e matos costeiros. Apanha as pontas novas e escalda-as sempre antes de as comer",
+      "guide": {
+        "identify": "Forma tapetes soltos no chão ou trepa por arbustos baixos. As folhas são grossas e carnudas, com 3 a 10 cm, em forma de ponta de seta ou de losango. Estão cobertas de minúsculas pérolas vítreas, por isso brilham como se tivessem sal. Pequenas flores amarelas ficam encostadas ao caule, onde nascem as folhas. Transformam-se em frutos duros e cheios de altos, com uns cornichos curtos. O seu parente próximo Tetragonia implexicoma trepa pelos arbustos da costa. Tem folhas mais pequenas em losango e bagas vermelhas sumarentas, e come-se da mesma maneira. Nas mesmas dunas cresce a morganheira-das-praias, que é venenosa. Tem folhas estreitas verde-acinzentadas ao longo de um caule direito e um látex branco que queima a pele e os olhos. Nunca apanhes uma planta que deite seiva branca.",
+        "habitat": "Cresce em praias e dunas, em arribas e à volta de sapais e estuários, muitas vezes debaixo de casuarinas, melaleucas ou pinheiros-de-norfolk. Na Austrália também segue rios e lagos pelo interior. Na Nova Zelândia chama-se kōkihi e hoje é mais raro. Lá, na maioria das costas, vais ver sobretudo o seu parente trepador.",
+        "season": "As folhas estão lá todo o ano. Os rebentos novos são mais tenros na primavera e no verão, depois da chuva. Com frio ou seca a planta abranda, e as folhas velhas ficam rijas e amargas.",
+        "picking": "Corta os 10 cm de cima dos rebentos novos e deixa a planta na terra. As dunas são frágeis, por isso fica nos caminhos e apanha só onde houver muito. Nos parques nacionais é proibido apanhar. Evita praias perto de esgotos e saídas de águas pluviais.",
+        "kitchen": "Escalda sempre as folhas primeiro. Põe-nas em água a ferver um a três minutos, escorre-as e deita a água fora. Assim tiras a maior parte dos oxalatos, que em grandes quantidades sobrecarregam os rins. Depois usa-as como espinafres: com alho e azeite, em tartes e quiches, em sopas ou em pesto. As bagas vermelhas maduras do parente trepador são doces e salgadas e comem-se cruas.",
+        "keeps": "As pontas frescas aguentam dois ou três dias no frigorífico, num saco. Escaldadas e bem espremidas, congelam bem.",
+        "source": "Identificação e uso: Milkwood, Noosa's Native Plants e a série sobre bush food do Canberra Daily. Morganheira-das-praias: Weeds Australia. Época: registos do GBIF."
+      }
+    }
+  },
+  "identification": {
+    "enabled": false,
+    "label": "Tetragonia tetragonioides",
+    "rank": "species",
+    "safetyReview": {
+      "status": "pending",
+      "references": []
+    }
+  },
+  "forecast": {
+    "enabled": true,
+    "dataColumns": ["Warrigal Greens"],
+    "routeToDish": false,
+    "empiricalSeason": {
+      "enabled": false,
+      "taxonKeys": [],
+      "references": []
+    },
+    "rangePrior": {
+      "taxonKeys": [5554574, 5554654]
+    },
+    "regions": {
+      "NE": {
+        "available": false
+      },
+      "SE": {
+        "available": false
+      },
+      "USE": {
+        "available": false
+      },
+      "USW": {
+        "available": false
+      },
+      "ANZ": {
+        "available": true,
+        "landCover": [612, 621, 632],
+        "scoringReferences": [
+          "https://www.gbif.org/species/5554574",
+          "https://www.gbif.org/species/5554654",
+          "https://www.milkwood.net/2014/05/21/foraging-warrigal-greens/",
+          "https://noosasnativeplants.com.au/plant-details/?pId=473",
+          "https://canberradaily.com.au/on-the-bush-food-trail-warrigal-greens",
+          "https://weeds.org.au/profiles/sea-spurge/",
+          "https://github.com/lodist/funges-lab/blob/master/species/2026-11-18-anz-wave2.md"
+        ],
+        "landCoverScheme": "ANZ"
+      }
+    }
+  }
+}

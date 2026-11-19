@@ -1,6 +1,8 @@
 {
+  "bloom_normals_ANZ.npz": "b8a3813de5940e7b4b5523f6627ac55b774d41b649e6a102a9c477e552680f93",
   "bloom_normals_EU.npz": "8dec57155936a5890ba7f1df19ad9bcc6a6d81c019697e50eec259cb6226292a",
   "bloom_normals_US.npz": "553efc22964744339e90a87cedb5b43e8f5da20d2bd6c2e766741108454a30ba",
+  "bloom_towns_ANZ.geojson": "b4d57cd1995243769799ee3e8e43fd61209e6065cf5e501ccce0748bc9997456",
   "bloom_towns_EU.geojson": "c18df24a26a67234831d545b305703c69336311ecabc89eff6ffaf1c23de0077",
   "bloom_towns_US.geojson": "c3a510eaea39bb21ff26f60334e71953edf7b07b99d715708ab0e0ee658d3eb2",
   "bluebell_woods_EU.parquet": "9083b728ef8725aabc54acaaf0b840fc27091005796de693c64e4efe184f83b9",
@@ -14,7 +16,7 @@
   "frost_odds_USW.parquet": "9fe74aa59c119b14ce1b79bd9a12ceca1c08ba13db191549eef0b41bab7624e7",
   "fruiting_fit.json": "6aba285bb0d24cd4fbab81390d39d3ab9aafaeb53085a65524d787a174233aee",
   "fruiting_gbm.json": "c8d75922b01d8cbf6c714e78e8df5d87cd6cfae5be5890728ffe725852f11890",
-  "fruiting_scale.json": "59cc836b3e96783224f9ee9b2b67fa0084b20485a8f8d95379d640406c6f59d6",
+  "fruiting_scale.json": "83883cc72b641b3d1f5f842a199c9e7daf2646d68448cece0c423a6cc68c4d03",
   "habitat_factor.json": "ee079c10259e510d907e4319e96db67e19f9e7c3b1e1aaf8a273c8b5605ff2ac",
   "heather_moors_EU.parquet": "653d5b42cac8ee602a607a61e46ed2454a5b02dd77851b5dafb4180522c12fea",
   "huerta_crops.csv": "6eb6f3f09a637ccea82e964f73b60aa5288cec70228683ee45acef25f3c9a52b",
@@ -24,10 +26,13 @@
   "huerta_windows_USE.npz": "2407049685578aa8473317bffa3894051472de01f1a389614dad81a6af74b128",
   "huerta_windows_USW.npz": "ae96e596611848e8f188aefab273a963ec26d5e435c2d6a41a5e3b8a9761d8cd",
   "larch_mask_EU.npz": "d72d5c0ecfe2668964f348d82de5cfaa4aceb40893daddffa6782df6b0ce695e",
-  "local_season.json": "b13d1c036ac7fd1d3ff4a23b336ea650a1833c18d6588ec9c9a2d730e5c31b4e",
+  "local_season.json": "82b64d442f2e57f9b9245108d4cd9e50fd29a3865215411a508e14f7bf88a52b",
   "phenology.json": "0029ee2ee4688b66d60f74f6720753e0168cfad4bb846630c93aea60eaf68549",
-  "season_atlas.json": "bcfe199538d564a459fd2ea202c50361ccb3148b4528fd860f87d4a0edf81881",
-  "species_scoring.json": "4ed48f7da29ca0d5e764f9ed72538f5a3123c900a4e0910193b1fc498862e287",
+  "season_atlas.json": "2d2ae87ec8d071c8093cf17bd7d99d6da24c876c644ec24c16475941aaba5665",
+  "species_scoring.json": "dd6a020f4013c4c46615e082fe54e5bbadaf36a1ab03ea056a8ef723274ca616",
   "summer_rain_EU.npz": "955b437b527831c918cac6179f66c230bb40a142d8396403efbd34fdf09cff07",
-  "superbloom_ground_US.geojson": "dd29d930bc7a8c84f23a001a6d4c67a89ef9dbe234fc8e3a4c5521ff834b09a3"
+  "superbloom_ground_US.geojson": "dd29d930bc7a8c84f23a001a6d4c67a89ef9dbe234fc8e3a4c5521ff834b09a3",
+  "wattle_mask_ANZ.npz": "8ce5edad0ede932542b1a06466d7428ea2751dcb3cc8546ed6c474277fc405eb",
+  "wattle_mask_EU.npz": "e852c1e353c7ce90e75be6ee13e8874301914d00d37a880b90c6023f4b19c18a",
+  "wattle_mask_US.npz": "6d83818a64e5a197e2346a96f00d1d1bacd02b6deed26c37b2a934b55a47743d"
 }

@@ -7,7 +7,7 @@ footprints): the layer shows where the trees are, not the whole land. Their
 angular outlines are rounded off and cut to Natural Earth's land, so no town
 spills over a bay. Writes one GeoJSON per macro into backend/generated/.
 
-    python backend/tools/build_bloom_towns.py
+    python backend/tools/build_bloom_towns.py [EU US ANZ]
 """
 import sys
 import tempfile
@@ -23,7 +23,7 @@ from shapely.geometry import box
 NE = ("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/"
       "ca96624a56bd078437bca8184e78163e5039ad19/geojson/{}.geojson")
 # The same boxes as build_range_priors.py's macros.
-MACROS = {"EU": (-25.0, 34.0, 42.5, 71.5), "US": (-125.5, 24.0, -67.0, 49.5)}
+MACROS = {"EU": (-25.0, 34.0, 42.5, 71.5), "US": (-125.5, 24.0, -67.0, 49.5), "ANZ": (114.0, -48.0, 179.0, -10.0)}
 ROUND = 0.01  # degrees, ~1 km: grown by this and shrunk back, corners come out round
 SIMPLIFY = 0.002  # degrees, ~200 m
 DECIMALS = 4  # ~10 m
@@ -43,7 +43,8 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         towns = fetch("ne_10m_urban_areas", tmp)
         land = fetch("ne_10m_land", tmp)
-    for macro, (w, s, e, n) in MACROS.items():
+    for macro in sys.argv[1:] or MACROS:
+        w, s, e, n = MACROS[macro]
         shore = shapely.intersection(shapely.union_all(land.cx[w:e, s:n].geometry.values), box(w, s, e, n))
         part = towns.cx[w:e, s:n].geometry.values
         part = shapely.buffer(shapely.buffer(part, ROUND * 1.2, quad_segs=4), -ROUND, quad_segs=4)

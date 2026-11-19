@@ -27,7 +27,8 @@ MONTHS = ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", 
 # The API serves boxes of at most 10°. Edges on multiples of 10° keep every box on
 # the native grid, so neighbouring boxes share their edge points exactly.
 MACROS = {"EU": {"lat": (30, 75), "lon": (-30, 50), "params": ("T2M",)},
-          "US": {"lat": (20, 50), "lon": (-130, -60), "params": ("T2M", "PRECTOTCORR")}}
+          "US": {"lat": (20, 50), "lon": (-130, -60), "params": ("T2M", "PRECTOTCORR")},
+          "ANZ": {"lat": (-50, -10), "lon": (110, 180), "params": ("T2M",)}}
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import r2  # noqa: E402
 

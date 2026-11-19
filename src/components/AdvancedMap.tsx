@@ -1333,6 +1333,8 @@ const AdvancedMap: React.FC<MapProps> = ({ className = '' }) => {
       layer => layer.id === `${DEFAULT_MAP_SPECIES}_ne` && layer.type === 'fill'
     ) as maplibregl.FillLayerSpecification | undefined;
     for (const region of spectacle.regions) {
+      // Only where it is in season: south of the equator its months differ.
+      if (!bloomInSeason(new Date(), spectacle, region)) continue;
       if (!instance.getSource(bloomSourceId(region, spectacle))) {
         instance.addSource(bloomSourceId(region, spectacle), {
           type: 'vector',

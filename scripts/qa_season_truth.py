@@ -20,7 +20,7 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / "backend"))
-from species_registry import get_empirical_taxon_map
+from species_registry import gbif_taxon_param, get_empirical_taxon_map
 
 GBIF = "https://api.gbif.org/v1"
 # (west, south, east, north) -- same extents as the production score regions.
@@ -43,6 +43,9 @@ CLIMATOLOGY_YEARS = (2021, 2022, 2023, 2024, 2025)
 
 
 def gbif(session: requests.Session, params: dict) -> dict:
+    keys = params.get("taxonKey")
+    if keys is not None and gbif_taxon_param(keys[0] if isinstance(keys, list) else keys) != "taxonKey":
+        params = {("acceptedTaxonKey" if k == "taxonKey" else k): v for k, v in params.items()}
     url = f"{GBIF}/occurrence/search?{urlencode(params, doseq=True)}"   # a list repeats taxonKey
     for attempt in range(7):
         response = session.get(url, timeout=90)
