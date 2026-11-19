@@ -508,11 +508,17 @@ def _resolve_output_schema(source_path, tail):
     tail_schema = pa.Schema.from_pandas(tail, preserve_index=False)
     if source_path is None:
         return tail_schema
-    source_schema = pq.ParquetFile(source_path).schema_arrow
+    source_file = pq.ParquetFile(source_path)
+    source_schema = source_file.schema_arrow
     fields = []
     for field in tail_schema:
         index = source_schema.get_field_index(field.name)
         if index < 0 or source_schema.field(index).type == field.type:
+            fields.append(field)
+            continue
+        # A column the history holds only nulls for had a placeholder type: Rain Measured was
+        # double on a new region's master until its first measured rain came as bool.
+        if source_file.read(columns=[field.name]).column(0).null_count == source_file.metadata.num_rows:
             fields.append(field)
             continue
         unified = pa.unify_schemas(
