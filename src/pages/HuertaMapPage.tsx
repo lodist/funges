@@ -781,12 +781,14 @@ function Legend({
       : null;
   const timed = ahead !== null;
   return (
-    // On the band, as Terra's map dock.
+    // On the band, as Terra's map dock. Clear of the rail (right-4, one
+    // button wide): seven buttons reach it on a short phone.
     <div
       className={cn(
-        'pointer-events-auto rounded-card p-3 text-sm elevation-raised',
+        'pointer-events-auto mr-16 rounded-card p-3 text-sm elevation-raised',
         BAND_SURFACE_CLASS,
-        timed && 'flex w-full max-w-sm flex-col gap-3'
+        // Stretched, not w-full: a full width ignores the margin.
+        timed && 'flex max-w-sm flex-col gap-3 self-stretch'
       )}
     >
       {timed ? <Timeline ahead={ahead} onAhead={onAhead} /> : null}
