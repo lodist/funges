@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import numpy as np
 import pandas as pd
+import pyarrow as pa
 import pyarrow.parquet as pq
 import pytest
 
@@ -464,6 +465,34 @@ def test_narrower_tail_dtype_does_not_truncate_history(tmp_path):
     got = pd.read_parquet(output).sort_values("Date").reset_index(drop=True)
     frozen = got[got["Date"] < pd.Timestamp("2026-04-01")]["score"].tolist()
     assert frozen == [1.7, 2.9], f"history truncated to {frozen}"
+
+
+def test_a_history_column_of_only_nulls_takes_the_tails_type(tmp_path):
+    """Australia/New Zealand's master stored Rain Measured as an all-null double until ERA5's
+    first rain came as booleans, and the two would not unify (nightly of 19 Nov 2026)."""
+    source = tmp_path / "source.parquet"
+    output = tmp_path / "output.parquet"
+    pd.DataFrame({
+        "Location_Id": ["A"] * 3,
+        "Date": pd.to_datetime(["2026-03-01", "2026-04-01", "2026-04-02"]),
+        "Rain Measured": [np.nan] * 3,
+    }).to_parquet(source, index=False)
+
+    tail = pd.DataFrame({
+        "Location_Id": ["A", "A"],
+        "Date": pd.to_datetime(["2026-04-01", "2026-04-02"]),
+        "Rain Measured": [True, None],
+    })
+
+    fp._write_streaming_parquet(
+        source, output, tail,
+        split_date=pd.Timestamp("2026-04-01"),
+        cutoff_date=pd.Timestamp("2026-01-01"),
+    )
+
+    assert pq.ParquetFile(output).schema_arrow.field("Rain Measured").type == pa.bool_()
+    got = pd.read_parquet(output).sort_values("Date")["Rain Measured"].tolist()
+    assert got == [None, True, None]
 
 
 def test_a_composite_scores_the_best_of_its_members_on_the_forward_days(tmp_path, monkeypatch):
