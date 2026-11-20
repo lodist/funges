@@ -2939,7 +2939,7 @@
       "name": "Coral Tooth",
       "scientificName": "Hericium coralloides",
       "identificationRank": "species",
-      "empiricalTaxonKeys": [5248532, 10755430],
+      "empiricalTaxonKeys": [],
       "rangeTaxonKeys": [5248532, 10755430],
       "dataColumns": ["coral_tooth_score", "Coral Tooth"],
       "regions": {

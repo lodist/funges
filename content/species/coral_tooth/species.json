@@ -115,7 +115,7 @@
     "dataColumns": ["Coral Tooth"],
     "routeToDish": false,
     "empiricalSeason": {
-      "enabled": true,
+      "enabled": false,
       "taxonKeys": [5248532, 10755430],
       "references": [
         "https://www.gbif.org/species/5248532",

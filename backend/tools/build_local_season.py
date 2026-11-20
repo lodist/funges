@@ -777,7 +777,8 @@ def run_export(cache, verdict_csv, added=None):
     for code, macro in rp.MACROS.items():
         if added and code not in added:
             continue
-        species = sorted(shipped[shipped.continent == code].species)
+        # A species whose manifest turns its empirical season off stays on its months.
+        species = sorted(set(shipped[shipped.continent == code].species) & set(macro_species(code)))
         regions = {r: [sp for sp in species if sp in get_region_species(r)] for r in macro["regions"]}
         if not species:
             continue
