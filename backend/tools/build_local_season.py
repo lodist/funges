@@ -291,6 +291,9 @@ N_BOOT = 2000
 MIN_TEST = 150  # held-out records of a species-region, both periods together, before it can ship
 DEAD = 0.3  # a season factor below this reads as out of season on the map
 EPS = 0.01  # floor of the season factor in the test: a closed month is unlikely, not impossible
+# Passed the test but kept on their months on one continent: the grid divides by all fungi records,
+# and the southern summer has few, so it opened November for shaggy mane in ANZ (2-3% of its records).
+HELD_BACK = {("ANZ", "shaggy_mane")}
 VARIANTS = ([("wide", km, k, None) for km in (50.0, 100.0) for k in (10.0, 30.0)]
             + [("climate", km, k, s) for km in (50.0, 100.0) for k in (10.0, 30.0) for s in (1.0, 2.0)]
             + [("climate only", None, k, s) for k in (10.0, 30.0) for s in (1.0, 2.0)]
@@ -778,7 +781,8 @@ def run_export(cache, verdict_csv, added=None):
         if added and code not in added:
             continue
         # A species whose manifest turns its empirical season off stays on its months.
-        species = sorted(set(shipped[shipped.continent == code].species) & set(macro_species(code)))
+        species = sorted(set(shipped[shipped.continent == code].species) & set(macro_species(code))
+                         - {sp for c, sp in HELD_BACK if c == code})
         regions = {r: [sp for sp in species if sp in get_region_species(r)] for r in macro["regions"]}
         if not species:
             continue
