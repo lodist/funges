@@ -1404,6 +1404,10 @@ def attach_phenology(species_params, region, path=None, fetch=None):
             species_params[specie]["phenology"] = {"lat": grid["lat"], "lon": grid["lon"], "ratio": grid["ratio"][k]}
 
 
+# ponytail: ANZ's region and zone curves divide by all fungi records, and the southern summer has
+# few, so they opened November-February for species that fruit in autumn. Its species use their
+# months until curves built on all observations ship.
+REGIONS_ON_MONTHS = {"ANZ"}
 LOCAL_SEASON_PATH = Path(__file__).resolve().parent / "generated" / "local_season.json"
 
 
@@ -1720,6 +1724,12 @@ def _load_species_and_curves(config):
             print(f"Loaded zone season curves for {len(zone_curves)} climate zones.")
         except Exception as _e:
             print(f"[warn] could not load zone curves from {_zone_curves_path}: {_e}; falling back to region/season_months")
+
+    if config.region in REGIONS_ON_MONTHS:
+        for _p in species_params.values():
+            _p.pop("season_curve", None)
+        zone_curves = {}
+        print(f"Season curves: none in {config.region}; its species are on their months.")
 
     _priors_path = os.getenv(config.range_priors_env) if config.range_priors_env else None
     if _priors_path:
