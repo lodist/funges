@@ -55,6 +55,8 @@ EFFORT_KEYS = {"fungi": [FUNGI], "all": []}
 def denominator(code):
     """The name of a macro's denominator in the cache: "all" observations or "fungi"."""
     return "all" if code in ALL_OBSERVATIONS else "fungi"
+
+
 # Two periods, so the curves can be fitted on one and tested on the other; production sums them.
 PERIODS = ("2010,2019", "2020,2026")
 WORKERS = 4
