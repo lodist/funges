@@ -23,6 +23,7 @@ interface Case {
     number,
     number | null,
     number,
+    number?,
   ];
   sown: number;
   ready: number;
@@ -67,6 +68,7 @@ describe.skipIf(!file)(
               strict,
               hardy,
               night,
+              tmin,
             ] = c.bio;
             const bio: Bio = {
               tb,
@@ -80,6 +82,7 @@ describe.skipIf(!file)(
               strict: Boolean(strict),
               hardy,
               night: Boolean(night),
+              ...(typeof tmin === 'number' ? { tmin } : {}),
             };
             const planted = dateOf(c.sown);
             const g = plantedGrowth(c.crop, bio, p[which], planted);

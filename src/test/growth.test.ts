@@ -178,6 +178,40 @@ describe("a planted crop's growth (the calendar's model)", () => {
     expect(weeks).toBe(16);
   });
 
+  it('ends a tender crop where no frost comes when the air cools out of its season', () => {
+    // Porto's normals, no frost, warm nights all year: nothing else ends a
+    // tomato before the winter. Its field minimum (65 F = 18.3 C) less 2 C:
+    // picked until the day before the typical air first falls under 16.3 C.
+    const tomato: Bio = {
+      tb: 10,
+      tlo: 21.1111,
+      thi: 23.8889,
+      tmax: 26.6667,
+      days: 70,
+      kill: 't',
+      end: 'frost',
+      pick: 16,
+      strict: false,
+      hardy: null,
+      night: true,
+      tmin: 18.3333,
+    };
+    const temps = [
+      9.8, 10.8, 11.7, 13.9, 16.7, 18.9, 21.5, 21.8, 19.8, 17.3, 13.1, 10.9,
+    ];
+    const porto = place({ lat: 41.2, temps, light: 0, warmEnd: 0, low: 2 });
+    const g = plantedGrowth('tomato', tomato, porto, '2027-05-01');
+    const air = daily(temps);
+    const ready = dayIndex(g.ready!);
+    let cool = ready;
+    while (air[cool % 365] >= 18.3333 - 2) cool++;
+    expect(dayIndex(g.end!)).toBe(cool - 1);
+    // Year files from before the field minimum: picked as before, for longer.
+    const { tmin: _, ...before } = tomato;
+    const old = plantedGrowth('tomato', before, porto, '2027-05-01');
+    expect(old.end! > g.end!).toBe(true);
+  });
+
   it('lifts garlic after 1400 degree days above 0 C from the spring equinox', () => {
     const garlic: Bio = {
       ...lettuce,
@@ -386,5 +420,37 @@ describe('a planted crop south of the equator', () => {
       );
       expect(gap(g.ready!, g.end!)).toBe(16 * 7);
     }
+  });
+
+  it('ends a tender crop where no frost comes when the autumn air cools out of its season', () => {
+    // Auckland: no frost, and ERA5-Land reads its nights as warm all year, so
+    // only the cooling air ends a tomato: before May, not through the winter.
+    const auckland: PlaceYear = {
+      place: 'Parnell',
+      lat: -36.9,
+      crops: {},
+      temps: [
+        19.6, 20.1, 18.6, 16.8, 14.5, 12.7, 11.8, 11.6, 12.7, 14.2, 16.3, 18.4,
+      ],
+      sun: [24, 21, 17, 12, 9, 7, 8, 10, 14, 18, 22, 24],
+      climate: {
+        frost: [0, 0],
+        hard: [0, 0],
+        warm10: [1, 365],
+        warm13: [126, 311],
+        low: 5,
+        light: 0,
+      },
+    };
+    const where = growthPlace(auckland)!;
+    const g = plantedGrowth(
+      'tomato',
+      { ...tomato, tmin: 18.3333 },
+      where,
+      '2027-12-15'
+    );
+    const old = plantedGrowth('tomato', tomato, where, '2027-12-15');
+    expect(g.end! < '2028-05-01').toBe(true);
+    expect(old.end! > g.end!).toBe(true);
   });
 });
