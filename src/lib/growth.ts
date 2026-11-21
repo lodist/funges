@@ -38,6 +38,10 @@ export interface Bio {
   hardy: number | null;
   /** It needs warm nights (chilling-sensitive). */
   night: boolean;
+  /** Its class's field minimum (Lorenz & Maynard), C: where no frost comes, a
+   *  tender crop's season ends with the air (seasonAir). Year files from before
+   *  21 Nov 2026 lack it, and their crops are picked as before. */
+  tmin?: number;
 }
 
 /** The place, as the model reads it. */
@@ -81,6 +85,7 @@ const R_SAT = 8; // MJ m-2 day-1: sun above which growth is not light-limited
 const DORMANT = 0.1; // under this share of its pace a day, it stands still
 const T_TRIAL = 19; // C: the summer mean of the seed firms' trials
 const COOL_END = 30; // days tender crops still ripen after the warm nights end
+const SEASON_MARGIN = 2; // C under a tender crop's season air where no frost comes (the builder's)
 const BOLT = 21; // days a crop that stood the winter is picked after it grows again
 const GARLIC_GDD = 1400; // degree days above 0 C from the spring equinox to garlic's harvest
 const EQUINOX = 78; // day index of 20 March
@@ -313,6 +318,17 @@ export function plantedGrowth(
   if (bio.end === 'frost') {
     E = Math.min(E, after(place.light, s) - 1);
     E = Math.min(E, rest(H) - 1);
+    // Where no frost comes, the air cooling out of its season ends it: its
+    // field minimum, or 3 C under its optimum if that is higher, and no warmer
+    // than the place's warmest normal, less 2 C (the builder's season_air).
+    if (place.light === 0 && bio.tmin !== undefined) {
+      const season =
+        Math.min(
+          Math.max(bio.tmin, bio.tlo - 3),
+          Math.max(...daily(place.temps))
+        ) - SEASON_MARGIN;
+      E = Math.min(E, nextWhere(usual.map(a => a < season))(H) - 1);
+    }
     if (bio.night) E = Math.min(E, after(place.warmEnd, s) + COOL_END);
   } else if (bio.end !== 'bulb') {
     const hard = lives

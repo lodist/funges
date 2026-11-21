@@ -162,7 +162,8 @@ export interface PlaceYear {
   bio?: Record<string, Bio | null>;
 }
 
-/** A crop's model parameters as the year files list them (bio_rows). */
+/** A crop's model parameters as the year files list them (bio_rows); the
+ *  field minimum is in year files from 21 Nov 2026 on. */
 type BioRow = [
   number,
   number,
@@ -175,6 +176,7 @@ type BioRow = [
   number,
   number | null,
   number,
+  number?,
 ];
 
 export interface YearResponse {
@@ -271,6 +273,7 @@ export const decodeYear = ({
                 strict: Boolean(b[8]),
                 hardy: b[9],
                 night: Boolean(b[10]),
+                ...(typeof b[11] === 'number' ? { tmin: b[11] } : {}),
               },
             ];
           })
