@@ -7,7 +7,11 @@ on:
   repository_dispatch:
     types: [scores-uploaded]
   schedule:
-    - cron: '0 */3 * * *'
+    # Off the hour: GitHub delays and drops scheduled runs most at :00.
+    - cron: '23 */3 * * *'
+    # The label dates from the LAST region's forecast tiles: the map job ends by
+    # ~05:00 UTC on a normal night, hours after the scores upload above.
+    - cron: '15 5 * * *'
 
 permissions:
   contents: write
