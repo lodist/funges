@@ -305,12 +305,12 @@ N_BOOT = 2000
 MIN_TEST = 150  # held-out records of a species-region, both periods together, before it can ship
 DEAD = 0.3  # a season factor below this reads as out of season on the map
 EPS = 0.01  # floor of the season factor in the test: a closed month is unlikely, not impossible
-# Passed the test but kept on their months on one continent. The test scores only places with
-# records; away from them these grids open months with under 3% of the species' records across
-# a tenth or more of its range, where the map opens none now. Native hedgehog took Australia's
-# earlier start into New Zealand (April open in 57% of its places, with 1.5% of its NZ records);
-# shaggy mane gave subtropical Queensland a spring and summer from a few Brisbane records.
-HELD_BACK = {("ANZ", "native_hedgehog"), ("ANZ", "shaggy_mane")}
+# Passed the test but kept on their months in one country, which the sea keeps seamless: native
+# hedgehog's grid beats the months in Australia beyond doubt, not in New Zealand, where the climate
+# analogues brought Australia's earlier start (April open in 57% of its places, with 3 of its 196
+# New Zealand records). Its New Zealand cells carry no curve, so the months score them.
+HELD_BACK = {("ANZ", "native_hedgehog"): "New Zealand"}
+COUNTRIES = {"New Zealand": lambda la, lo: (lo >= 165) & (la <= -33)}
 VARIANTS = ([("wide", km, k, None) for km in (50.0, 100.0) for k in (10.0, 30.0)]
             + [("climate", km, k, s) for km in (50.0, 100.0) for k in (10.0, 30.0) for s in (1.0, 2.0)]
             + [("climate only", None, k, s) for k in (10.0, 30.0) for s in (1.0, 2.0)]
@@ -758,6 +758,8 @@ def export(cache, code, variant, species, step=2):
         s = load_counts(cache, code, name, PERIODS)
         caches = {"fungi": fungi_cache, "own": {}}
         ratio = season_ratio(s, fungi, lats, variant, coords, caches)
+        if (code, name) in HELD_BACK:
+            ratio = np.where(COUNTRIES[HELD_BACK[code, name]](*np.meshgrid(lats, lons, indexing="ij")), np.nan, ratio)
         out.append(ratio[:, ::-1][:, step // 2::step, step // 2::step])
     ratio = np.stack(out)
     q = np.where(np.isfinite(ratio), np.rint(np.clip(ratio, 0.0, 1.0) * 254), 255).astype(np.uint8)
@@ -798,8 +800,7 @@ def run_export(cache, verdict_csv, added=None):
         if added and code not in added:
             continue
         # A species whose manifest turns its empirical season off stays on its months.
-        species = sorted(set(shipped[shipped.continent == code].species) & set(macro_species(code))
-                         - {sp for c, sp in HELD_BACK if c == code})
+        species = sorted(set(shipped[shipped.continent == code].species) & set(macro_species(code)))
         regions = {r: [sp for sp in species if sp in get_region_species(r)] for r in macro["regions"]}
         if not species:
             continue
