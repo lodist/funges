@@ -100,9 +100,9 @@ describe.skipIf(!file)(
             if (ready !== c.ready || last !== c.end) {
               const text = `${p.place} ${c.crop} ${planted}: ${ready}/${last} vs ${c.ready}/${c.end}`;
               const apart =
-                ready === null || last === null
-                  ? Infinity
-                  : Math.max(Math.abs(ready - c.ready), Math.abs(last - c.end));
+                typeof ready === 'number' && typeof last === 'number'
+                  ? Math.max(Math.abs(ready - c.ready), Math.abs(last - c.end))
+                  : Infinity;
               (apart <= 1 ? flips : misses).push(text);
             }
           }
