@@ -9,9 +9,9 @@ on:
   schedule:
     # Off the hour: GitHub delays and drops scheduled runs most at :00.
     - cron: '23 */3 * * *'
-    # The label dates from the LAST region's forecast tiles, which land around
-    # 08:10 UTC, hours after the scores upload above.
-    - cron: '40 8 * * *'
+    # The label dates from the LAST region's forecast tiles: the map job ends by
+    # ~05:00 UTC on a normal night, hours after the scores upload above.
+    - cron: '15 5 * * *'
 
 permissions:
   contents: write
