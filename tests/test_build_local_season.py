@@ -113,3 +113,13 @@ def test_the_south_s_summer_is_december_to_february(monkeypatch):
 
 def test_australia_and_new_zealand_is_one_region():
     assert set(np.unique(ls.cell_regions("ANZ"))) == {"ANZ"}
+
+
+def test_australia_and_new_zealand_divide_by_every_observation(monkeypatch, tmp_path):
+    # Few fungi are recorded in their dry summer, so a fungi divider read the few finds as a season.
+    asked = []
+    monkeypatch.setattr(ls, "macro_species", lambda code: {})
+    monkeypatch.setattr(ls, "cached_grids",
+                        lambda cache, code, name, keys, years: asked.append((code, name, tuple(keys))) or np.zeros((12, 1, 1)))
+    ls.crawl(tmp_path, ("ANZ", "EU"))
+    assert set(asked) == {("ANZ", "all", ()), ("EU", "fungi", (ls.FUNGI,))}

@@ -6,7 +6,8 @@ the chanterelles' October is half their July peak (11 against 22 records per 1,0
 in the US East as a whole a tenth, so the US East curve closed Florida's season a month
 early; central Italy's chanterelles peak in October, the Alps' in July.
 
-Every 0.1° cell gets its own curve, the species' records against all fungi records, month by
+Every 0.1° cell gets its own curve, the species' records against all fungi records (all
+observations in ALL_OBSERVATIONS), month by
 month, from three layers, each leaning on the next where its records are few (k pseudo-records):
   - here: a Gaussian kernel of `km` around the cell;
   - its climate: every place on the continent with a similar summer, winter and summer share of
@@ -42,7 +43,18 @@ from species_registry import gbif_taxon_param, get_empirical_taxon_map, get_regi
 
 APP = _TOOLS.parents[2]
 ROOT = _TOOLS.parents[1]
-FUNGI = 5  # kingdom: everyone's effort, the denominator of every curve
+FUNGI = 5  # kingdom: everyone's effort, the denominator of every curve outside ALL_OBSERVATIONS
+# These divide by every observation (no taxon key) instead. Australia and New Zealand's dry summer
+# has few fungi records, so a fungi divider read the few summer finds as a season and opened
+# November for coral tooth and shaggy mane. People are still out then: all observations stay
+# above half their peak in every month, the fungi fall to a tenth.
+ALL_OBSERVATIONS = {"ANZ"}
+EFFORT_KEYS = {"fungi": [FUNGI], "all": []}
+
+
+def denominator(code):
+    """The name of a macro's denominator in the cache: "all" observations or "fungi"."""
+    return "all" if code in ALL_OBSERVATIONS else "fungi"
 # Two periods, so the curves can be fitted on one and tested on the other; production sums them.
 PERIODS = ("2010,2019", "2020,2026")
 WORKERS = 4
@@ -94,7 +106,7 @@ def cached_grids(cache, code, name, keys, years):
 def crawl(cache, macros=tuple(rp.MACROS)):
     """Every species' and the fungi's monthly grids, the macros' and both periods, into the cache."""
     for code in macros:
-        todo = {"fungi": [FUNGI], **macro_species(code)}
+        todo = {denominator(code): EFFORT_KEYS[denominator(code)], **macro_species(code)}
         for years in PERIODS:
             for name, keys in todo.items():
                 counts = cached_grids(cache, code, name, keys, years)
@@ -105,7 +117,7 @@ def crawl(cache, macros=tuple(rp.MACROS)):
 
 def load_counts(cache, code, name, periods):
     """The cached month grids of one taxon, summed over `periods`."""
-    keys = [FUNGI] if name == "fungi" else macro_species(code)[name]
+    keys = EFFORT_KEYS[name] if name in EFFORT_KEYS else macro_species(code)[name]
     return sum(cached_grids(cache, code, name, keys, years) for years in periods)
 
 
@@ -291,9 +303,12 @@ N_BOOT = 2000
 MIN_TEST = 150  # held-out records of a species-region, both periods together, before it can ship
 DEAD = 0.3  # a season factor below this reads as out of season on the map
 EPS = 0.01  # floor of the season factor in the test: a closed month is unlikely, not impossible
-# Passed the test but kept on their months on one continent: the grid divides by all fungi records,
-# and the southern summer has few, so it opened November for shaggy mane in ANZ (2-3% of its records).
-HELD_BACK = {("ANZ", "shaggy_mane")}
+# Passed the test but kept on their months on one continent. The test scores only places with
+# records; away from them these grids open months with under 3% of the species' records across
+# a tenth or more of its range, where the map opens none now. Native hedgehog took Australia's
+# earlier start into New Zealand (April open in 57% of its places, with 1.5% of its NZ records);
+# shaggy mane gave subtropical Queensland a spring and summer from a few Brisbane records.
+HELD_BACK = {("ANZ", "native_hedgehog"), ("ANZ", "shaggy_mane")}
 VARIANTS = ([("wide", km, k, None) for km in (50.0, 100.0) for k in (10.0, 30.0)]
             + [("climate", km, k, s) for km in (50.0, 100.0) for k in (10.0, 30.0) for s in (1.0, 2.0)]
             + [("climate only", None, k, s) for k in (10.0, 30.0) for s in (1.0, 2.0)]
@@ -441,7 +456,7 @@ def test(cache, code, variants, species=None):
     rows_b = np.arange(len(lats))[:, None] // per
     cols_b = np.arange(len(lons))[None, :] // per
     block_of = rows_b * (len(lons) // per + 1) + cols_b
-    fungi = {p: load_counts(cache, code, "fungi", [p]) for p in PERIODS}
+    fungi = {p: load_counts(cache, code, denominator(code), [p]) for p in PERIODS}
     fungi_caches = {p: {} for p in PERIODS}
     out = []
     for name in sorted(species or macro_species(code)):
@@ -720,7 +735,7 @@ def place_table(cache, code, name, lat, lon, variant):
     import pandas as pd
     lats, lons = axes(code)
     i, j = int(np.argmin(np.abs(lats - lat))), int(np.argmin(np.abs(lons - lon)))
-    ratio = season_ratio(load_counts(cache, code, name, PERIODS), load_counts(cache, code, "fungi", PERIODS),
+    ratio = season_ratio(load_counts(cache, code, name, PERIODS), load_counts(cache, code, denominator(code), PERIODS),
                          lats, variant, climate_coords(code), {"fungi": {}, "own": {}})[:, i, j]
     region = str(cell_regions(code)[i, j])
     today = todays_factor(region, name, np.array([lats[i]]), np.array([lons[j]]), cell_zones(code)[i:i + 1, j])[:, 0]
@@ -735,7 +750,7 @@ def export(cache, code, variant, species, step=2):
     seam, and where the species does not grow its range prior zeroes it anyway."""
     lats, lons = axes(code)
     coords = climate_coords(code)
-    fungi = load_counts(cache, code, "fungi", PERIODS)
+    fungi = load_counts(cache, code, denominator(code), PERIODS)
     fungi_cache, out = {}, []
     for name in species:
         s = load_counts(cache, code, name, PERIODS)
