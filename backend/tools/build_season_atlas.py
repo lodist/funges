@@ -136,8 +136,9 @@ def build(grids, counts, regions, bounds=None):
                                    for k, sp in enumerate(g["species"])}
         for idx, r in enumerate(mine):
             mask = owner == idx
+            # A species whose grid carries no curve in the place (held back there) is not listed.
             species = {sp: {"records": int(records[sp][mask].sum()), "curve": place_curve(g["ratio"][k], area, mask)}
-                       for k, sp in enumerate(g["species"])} if mask.any() else {}
+                       for k, sp in enumerate(g["species"]) if ((g["ratio"][k] != 255) & mask[None]).any()}
             inside = r["geom"].intersection(frame).area / max(r["geom"].area, 1e-12)
             clipped = r["geom"].intersection(frame).simplify(SIMPLIFY, preserve_topology=True)
             out["regions"].append({

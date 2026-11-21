@@ -1405,8 +1405,10 @@ def attach_phenology(species_params, region, path=None, fetch=None):
 
 
 # ponytail: ANZ's region and zone curves divide by all fungi records, and the southern summer has
-# few, so they opened November-February for species that fruit in autumn. Its species use their
-# months until curves built on all observations ship.
+# few, so they opened November-February for species that fruit in autumn. Divided by all
+# observations they only tie with the months on held-out years (funges-lab
+# qa/anz-effort-curves-2026-11-21.md), so ANZ's species use their months or their local grid.
+# Build ANZ's curves on all observations before taking ANZ out of this.
 REGIONS_ON_MONTHS = {"ANZ"}
 LOCAL_SEASON_PATH = Path(__file__).resolve().parent / "generated" / "local_season.json"
 

@@ -62,6 +62,14 @@ def test_every_place_lists_every_species_with_its_records():
     assert atlas["grids"]["EU"] == {"file": "models/x/local_season_EU.npz", "sha256": "abc"}
 
 
+def test_a_species_without_a_curve_in_a_place_is_not_listed_there():
+    # Native hedgehog's grid has none in New Zealand: its pages there would show an empty season.
+    grids, counts, regions = _grid(3)
+    grids["EU"]["ratio"][0, :, :, 0] = 255   # the west column, the place
+    region = sa.build(grids, counts, regions, bounds={"EU": (0, 0, 2, 2)})["regions"][0]
+    assert "mushroom" not in region["species"]
+
+
 def test_the_place_curve_is_what_the_map_shows_not_where_finds_are():
     # Italy: the records sit in the Alps (August), most of the map peaks in September.
     grids, counts, regions = _grid(1000)            # every record in the south-west cell
