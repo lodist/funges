@@ -92,6 +92,8 @@ const EQUINOX = 78; // day index of 20 March
 const AUTUMN = 182; // day index + 1 of 1 July
 const HALF_YEAR = 184; // days from 1 July to 1 January: the south's year starts then
 const ONIONS = new Set(['onion', 'onion_sets']);
+const ONION_SEED = 28; // days of leaves onions from seed need before they bulb (sets: 21)
+const ONION_MILD = 5; // C: no day's normal colder, onions are sown in autumn (the builder's)
 const MONTH_START = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
 const MONTH_OF = Array.from({ length: YEAR }, (_, d) => {
   let m = 11;
@@ -148,10 +150,19 @@ function dayLength(lat: number, d: number) {
 }
 
 /** The day onions start to bulb: when the days first reach the local type's
- *  length (short-day south of 30 N, intermediate to 36 N, long-day north). */
-function bulbing(lat: number) {
-  const length = lat < 30 ? 12 : lat < 36 ? 13.5 : 15;
-  for (let d = 0; d < 182; d++) if (dayLength(lat, d) >= length) return d;
+ *  length (short-day within 30 degrees of the equator, intermediate to 36,
+ *  long-day beyond; intermediate where the days stay under 15 h and the winter
+ *  is mild, as onions are sown in autumn there: the builder's bulb_length). */
+function bulbing(place: GrowthPlace) {
+  const days = Array.from({ length: YEAR }, (_, d) => dayLength(place.lat, d));
+  let length = place.lat < 30 ? 12 : place.lat < 36 ? 13.5 : 15;
+  if (
+    length === 15 &&
+    Math.max(...days) < 15 &&
+    Math.min(...daily(place.temps)) >= ONION_MILD
+  )
+    length = 13.5;
+  for (let d = 0; d < 182; d++) if (days[d] >= length) return d;
   return 171;
 }
 
@@ -293,8 +304,13 @@ export function plantedGrowth(
     h = cum.findIndex(c => c >= target);
     if (h < 0 || h > 2 * YEAR) return { progress, ready: null, end: null };
     if (ONIONS.has(crop)) {
-      const start = bulbing(place.lat) + 42;
+      // Bulbs form six weeks after the days get long enough, the first time
+      // they do once the plant has its leaves.
+      const b = bulbing(place);
+      const start = b + 42;
       if (mod(h, YEAR) < start) h = h - mod(h, YEAR) + start;
+      const leaves = s + (crop === 'onion_sets' ? 21 : ONION_SEED);
+      h = Math.max(h, (leaves <= b ? b : b + YEAR) + 42);
     }
   }
 

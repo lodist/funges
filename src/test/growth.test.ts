@@ -234,6 +234,46 @@ describe("a planted crop's growth (the calendar's model)", () => {
     expect(g.end).toBe('2027-09-18');
   });
 
+  it('lifts onions once their type bulbs: after a mild winter in spring, after a cold one at midsummer', () => {
+    const onion: Bio = {
+      tb: 4.4,
+      tlo: 12.7778,
+      thi: 23.8889,
+      tmax: 29.4444,
+      days: 120,
+      kill: 'h',
+      end: 'bulb',
+      pick: 4,
+      strict: false,
+      hardy: -12,
+      night: false,
+      tmin: 7.2222,
+    };
+    // Lisbon: the days never reach a long-day onion's 15 h and no day's normal
+    // is under 5 C, so the intermediate type is grown (13.5 h on 24 April).
+    // Sown on 1 September, it is lifted six weeks after that, not in its first
+    // winter by its warmth alone.
+    const temps = [
+      12, 12.6, 13.3, 15.1, 17.4, 19.5, 21.4, 21.8, 20.6, 18.7, 15, 13,
+    ];
+    const lisbon = place({ lat: 38.76, temps, light: 0, warmEnd: 0, low: 4.8 });
+    expect(plantedGrowth('onion', onion, lisbon, '2026-09-01').ready).toBe(
+      '2027-06-05'
+    );
+    // The same days with a cold winter keep the long-day type, which never
+    // gets its 15 h there and bulbs at midsummer: 21 June and six weeks.
+    const cold = place({
+      lat: 38.76,
+      temps: [2, 2, ...temps.slice(2, 11), 2],
+      light: 0,
+      warmEnd: 0,
+      low: -10,
+    });
+    expect(plantedGrowth('onion', onion, cold, '2027-03-01').ready).toBe(
+      '2027-08-02'
+    );
+  });
+
   it('comes on sooner after a warmer spell than the typical year', () => {
     const cool = place({ temps: flat(10) });
     const typical = plantedGrowth('lettuce', lettuce, cool, '2027-05-01');
