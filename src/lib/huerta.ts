@@ -42,7 +42,11 @@ export interface Crop {
   sun: 6 | 4 | 3;
   /** When it gives its first harvest, where that is not a matter of weeks. */
   note?:
-    'spring_flowers' | 'next_year' | 'second_year' | 'third_year' | 'perennial';
+    | 'spring_flowers'
+    | 'next_year'
+    | 'second_year'
+    | 'third_year'
+    | 'perennial';
 }
 
 /** The crops the advice covers, in the order the page lists them. */
@@ -382,20 +386,20 @@ export const CROPS: Crop[] = [
   },
   {
     id: 'cucumber',
-    how: 'sow',
+    how: 'plant',
     kind: 'vegetable',
     scientific: 'Cucumis sativus',
-    depth: 2,
+    depth: null,
     spacing: 45,
     rows: 90,
     sun: 6,
   },
   {
     id: 'courgette',
-    how: 'sow',
+    how: 'plant',
     kind: 'vegetable',
     scientific: 'Cucurbita pepo',
-    depth: 2,
+    depth: null,
     spacing: 90,
     rows: 90,
     sun: 6,

@@ -234,6 +234,55 @@ describe("a planted crop's growth (the calendar's model)", () => {
     expect(g.end).toBe('2027-09-18');
   });
 
+  it('ends melons when the air cools out of their season, frost or not', () => {
+    // Zug: the first light frost on 7 November, the warm nights end on 28
+    // September. A melon planted on 1 July is picked from late August until
+    // the typical air first falls under its season air (its field minimum,
+    // 15.6 C, less 2 C), early in October.
+    const melon: Bio = {
+      tb: 10,
+      tlo: 18.3333,
+      thi: 23.8889,
+      tmax: 32.2222,
+      days: 64,
+      kill: 't',
+      end: 'frost',
+      pick: 6.2857,
+      strict: false,
+      hardy: null,
+      night: true,
+      tmin: 15.5556,
+    };
+    const temps = [
+      1.96, 3.71, 6.05, 9.56, 13.31, 18.62, 20.08, 20.23, 16.25, 12.04, 6.37,
+      3.39,
+    ];
+    const sun = [
+      4.29, 7.15, 12.19, 17.15, 18.18, 19.92, 19.51, 17.11, 12.17, 7.85, 4.78,
+      3.48,
+    ];
+    const zug = place({
+      lat: 47.16,
+      temps,
+      sun,
+      light: 311,
+      first0: 322,
+      firstm3: 334,
+      warmEnd: 271,
+      low: -6.8,
+    });
+    const g = plantedGrowth('melon', melon, zug, '2027-07-01');
+    const air = daily(temps);
+    let cool = dayIndex(g.ready!);
+    while (air[cool % 365] >= 15.5556 - 2) cool++;
+    expect(dayIndex(g.end!)).toBe(cool - 1);
+    // A courgette with the same needs is picked for its weeks (44 days), on
+    // into the cool of October: the air does not end it.
+    const courgette = plantedGrowth('courgette', melon, zug, '2027-07-01');
+    expect(dayIndex(courgette.end!)).toBe(dayIndex(courgette.ready!) + 44);
+    expect(courgette.end! > g.end!).toBe(true);
+  });
+
   it('lifts onions once their type bulbs: after a mild winter in spring, after a cold one at midsummer', () => {
     const onion: Bio = {
       tb: 4.4,

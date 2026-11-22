@@ -94,6 +94,7 @@ const HALF_YEAR = 184; // days from 1 July to 1 January: the south's year starts
 const ONIONS = new Set(['onion', 'onion_sets']);
 const ONION_SEED = 28; // days of leaves onions from seed need before they bulb (sets: 21)
 const ONION_MILD = 5; // C: no day's normal colder, onions are sown in autumn (the builder's)
+const RIPEN_WARM = new Set(['melon', 'watermelon']); // picked until the air cools, frost or not
 const MONTH_START = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
 const MONTH_OF = Array.from({ length: YEAR }, (_, d) => {
   let m = 11;
@@ -337,7 +338,8 @@ export function plantedGrowth(
     // Where no frost comes, the air cooling out of its season ends it: its
     // field minimum, or 3 C under its optimum if that is higher, and no warmer
     // than the place's warmest normal, less 2 C (the builder's season_air).
-    if (place.light === 0 && bio.tmin !== undefined) {
+    // Melons too where frost comes: their fruit ripens sweet only in warm air.
+    if ((place.light === 0 || RIPEN_WARM.has(crop)) && bio.tmin !== undefined) {
       const season =
         Math.min(
           Math.max(bio.tmin, bio.tlo - 3),
