@@ -39,7 +39,6 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
   const {
     selectedSpecies,
     speciesOptions,
-    forecastRegion,
     setSelectedSpecies,
     updateVisibleLayers,
   } = useMapStore();
@@ -108,12 +107,9 @@ const SpeciesSelectorFullscreen: React.FC<SpeciesSelectorFullscreenProps> = ({
         image: getSpeciesImage(option.code),
       };
     }),
-    // Like a species, a spectacle is offered where it is mapped (none in Australia/New Zealand).
-    ...SPECTACLES.filter(spectacle =>
-      (spectacle.regions as readonly string[]).includes(
-        forecastRegion.toLowerCase()
-      )
-    ).map(spectacle => ({
+    // Unlike a species, every spectacle is offered everywhere: people travel to
+    // see one, so an Australian can pick fall foliage and read "No forecast here".
+    ...SPECTACLES.map(spectacle => ({
       code: spectacle.code,
       emoji: spectacle.emoji,
       category: 'spectacle' as string | undefined,

@@ -113,3 +113,26 @@ def test_the_south_s_summer_is_december_to_february(monkeypatch):
 
 def test_australia_and_new_zealand_is_one_region():
     assert set(np.unique(ls.cell_regions("ANZ"))) == {"ANZ"}
+
+
+def test_australia_and_new_zealand_divide_by_every_observation(monkeypatch, tmp_path):
+    # Few fungi are recorded in their dry summer, so a fungi divider read the few finds as a season.
+    asked = []
+    monkeypatch.setattr(ls, "macro_species", lambda code: {})
+    monkeypatch.setattr(ls, "cached_grids",
+                        lambda cache, code, name, keys, years: asked.append((code, name, tuple(keys))) or np.zeros((12, 1, 1)))
+    ls.crawl(tmp_path, ("ANZ", "EU"))
+    assert set(asked) == {("ANZ", "all", ()), ("EU", "fungi", (ls.FUNGI,))}
+
+
+def test_a_species_held_back_in_new_zealand_has_no_curve_there(monkeypatch):
+    lats, lons = np.array([-40.0, -30.0]), np.array([150.0, 175.0])   # south to north
+    monkeypatch.setattr(ls, "axes", lambda code: (lats, lons))
+    monkeypatch.setattr(ls, "climate_coords", lambda code: None)
+    monkeypatch.setattr(ls, "load_counts", lambda *a: np.zeros((12, 2, 2)))
+    monkeypatch.setattr(ls, "season_ratio", lambda *a: np.full((12, 2, 2), 0.5))
+    lat, lon, q = ls.export(None, "ANZ", None, ["morel", "native_hedgehog"], step=1)
+    assert lat.tolist() == [-30.0, -40.0]                     # rows north to south
+    assert (q[0] == 127).all()                                # morel: everywhere
+    assert (q[1, :, 1, 1] == 255).all()                       # hedgehog: none at 40 S 175 E
+    assert (q[1, :, :, 0] == 127).all() and (q[1, :, 0, 1] == 127).all()
