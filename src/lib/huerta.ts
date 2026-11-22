@@ -42,11 +42,7 @@ export interface Crop {
   sun: 6 | 4 | 3;
   /** When it gives its first harvest, where that is not a matter of weeks. */
   note?:
-    | 'spring_flowers'
-    | 'next_year'
-    | 'second_year'
-    | 'third_year'
-    | 'perennial';
+    'spring_flowers' | 'next_year' | 'second_year' | 'third_year' | 'perennial';
 }
 
 /** The crops the advice covers, in the order the page lists them. */
