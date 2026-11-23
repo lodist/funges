@@ -234,11 +234,12 @@ export interface Bands {
   kinds?: boolean;
 }
 
-/** The crop layer's groups as an order: now, not yet, too late. */
+/** The crop layer's groups as an order: now, not yet, too late, and not
+ *  outdoors here at all (no time of year: not "too late"). */
 const STATUS = (byte: number) => {
   if (byte === 255) return NaN;
   const code = String.fromCharCode(byte);
-  return code === 'n' ? 0 : 'fswhapd'.includes(code) ? 1 : 2;
+  return code === 'n' ? 0 : 'fswhapd'.includes(code) ? 1 : code === 'x' ? 3 : 2;
 };
 
 /** A crop's status at each place in `month` (1-12) of a typical year, as the
@@ -287,8 +288,8 @@ export function bands(source: MapSource, dark = false): Bands {
     case 'crop':
       return {
         value: STATUS,
-        edges: [0.5, 1.5],
-        fills: [palette.crop.now, palette.crop.wait, 'over'],
+        edges: [0.5, 1.5, 2.5],
+        fills: [palette.crop.now, palette.crop.wait, 'over', palette.wash],
         step: 0.5,
         smooth: 1,
         kinds: true,

@@ -2026,6 +2026,7 @@
       "month": "Semer ou planter ce mois-ci",
       "wait": "Pas encore",
       "over": "Trop tard",
+      "none": "Pas en plein air ici",
       "frost": "Gel dans les 3 prochains jours",
       "ground": "Gelée au sol dans les 3 prochains jours",
       "soilLow": "0 °C",

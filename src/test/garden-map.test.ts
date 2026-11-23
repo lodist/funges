@@ -195,6 +195,19 @@ describe('the garden map drawing', () => {
     expect(fills.map(f => !!f.properties.hatch)).toEqual([false, true]);
   });
 
+  it('draws where a crop is not grown outdoors at all as its own band: the wash, unhatched', () => {
+    // Ten columns: the west five going in now, the east five not outdoors
+    // here (no time of year, so not "too late").
+    const bytes = new Uint8Array(
+      Array.from({ length: 60 }, (_, i) => (i % 10 < 5 ? 110 : 120)) // n, x
+    );
+    const { features } = shapes(grid(block(10, 6)), 'crop', bytes);
+    const fills = features.filter(f => f.properties.fill);
+    expect(fills.map(f => !!f.properties.hatch)).toEqual([false, false]);
+    expect(fills[1].properties.fill).toBe('rgb(236,234,228)');
+    expect(bands('crop').value(120)).toBe(3);
+  });
+
   it('no band runs along its own hole where a warmer band reaches the edge of the places', () => {
     // Nine by eight places, the east half warmer and reaching the block's
     // edge: the cooler band stops at the warm one instead of running on round
