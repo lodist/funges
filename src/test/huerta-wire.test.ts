@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { decodeAdvice, decodeYear } from '@/lib/huerta-wire';
+import { decodeAdvice, decodeYear, plantingSeasons } from '@/lib/huerta-wire';
 
 describe("the Worker's advice answer", () => {
   const body = {
@@ -126,5 +126,37 @@ describe("the Worker's year answer", () => {
       warm13: null,
       low: null,
     });
+  });
+});
+
+describe("a perennial's planting seasons", () => {
+  const mask = (...months: number[]) =>
+    months.reduce((m, month) => m | (1 << month), 0);
+  const harvest = mask(10, 11, 0, 1, 2, 3, 4); // November to May
+
+  it("puts spring and autumn plantings in rows of their own, each with the grown plant's harvest", () => {
+    // Rome's artichoke: March to May and August to November.
+    expect(plantingSeasons(mask(2, 3, 4, 7, 8, 9, 10), harvest)).toEqual([
+      { season: 'spring', sow: mask(2, 3, 4), harvest },
+      { season: 'autumn', sow: mask(7, 8, 9, 10), harvest },
+    ]);
+  });
+
+  it('keeps one window that runs over the new year in one row', () => {
+    // Rhubarb: November to April.
+    expect(plantingSeasons(mask(10, 11, 0, 1, 2, 3), harvest)).toBeNull();
+  });
+
+  it('names them half a year on south of the equator', () => {
+    // Melbourne: September to November is spring, March to May autumn.
+    expect(plantingSeasons(mask(2, 3, 4, 8, 9, 10), 0, true)).toEqual([
+      { season: 'spring', sow: mask(8, 9, 10), harvest: 0 },
+      { season: 'autumn', sow: mask(2, 3, 4), harvest: 0 },
+    ]);
+  });
+
+  it('keeps two windows of one season, and planting all year, in one row', () => {
+    expect(plantingSeasons(mask(2, 4), harvest)).toBeNull(); // March and May
+    expect(plantingSeasons(0xfff, harvest)).toBeNull();
   });
 });

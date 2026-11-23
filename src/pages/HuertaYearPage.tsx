@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Skeleton, SkeletonGroup } from '@/components/ui/skeleton';
 import { useHuertaYearLoad } from '@/hooks/use-huerta-year';
 import { CROPS, huertaImage, KINDS } from '@/lib/huerta';
-import type { Season } from '@/lib/huerta-wire';
+import { plantingSeasons, type Season } from '@/lib/huerta-wire';
 import {
   huertaApiConfigured,
   plain,
@@ -215,13 +215,20 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                 <tbody>
                   {rows.flatMap(crop => {
                     const { sow, harvest, seasons } = year.crops[crop.id];
+                    // A perennial or bulb planted in two seasons: a row for
+                    // each too, each with the grown plant's harvest.
+                    const planted =
+                      !seasons && crop.note
+                        ? plantingSeasons(sow, harvest, (year.lat ?? 0) < 0)
+                        : null;
                     // A crop sown in more than one season: a row for each,
                     // named where it has more than one besides overwintering.
                     const lines: {
                       season: Season | null;
                       sow: number;
                       harvest: number;
-                    }[] = seasons ?? [{ season: null, sow, harvest }];
+                    }[] = seasons ??
+                      planted ?? [{ season: null, sow, harvest }];
                     const named =
                       lines.filter(l => l.season && l.season !== 'overwinter')
                         .length > 1;
@@ -238,6 +245,12 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                             : harvestFirst(line.sow, line.harvest)
                               ? t('year.season.overwinter')
                               : null;
+                      // A perennial's own line from its sheet stays, under
+                      // its name, above its first season.
+                      const note =
+                        planted && k === 0 && crop.note
+                          ? t(`sheet.ready.${crop.note}`)
+                          : null;
                       return (
                         <tr
                           key={`${crop.id}-${line.season ?? 'all'}`}
@@ -269,6 +282,11 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                                 >
                                   {t(`crops.${crop.id}`)}
                                 </span>
+                                {note ? (
+                                  <span className='text-xs leading-tight break-words hyphens-auto text-muted-foreground'>
+                                    {note}
+                                  </span>
+                                ) : null}
                                 {caption ? (
                                   <span className='text-xs leading-tight break-words hyphens-auto text-muted-foreground'>
                                     {caption}
