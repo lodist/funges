@@ -124,6 +124,9 @@ export interface CropYear {
   sow: number;
   harvest: number;
   seasons?: { season: Season; sow: number; harvest: number }[];
+  /** Grown from early varieties here: the main crop is too slow for the
+   *  season, so the calendar's months are theirs (Bio.early). */
+  early?: boolean;
 }
 
 /** What a place's climate does to crops in the ground: its frost season
@@ -163,7 +166,8 @@ export interface PlaceYear {
 }
 
 /** A crop's model parameters as the year files list them (bio_rows); the
- *  field minimum is in year files from 21 Nov 2026 on. */
+ *  field minimum is in year files from 21 Nov 2026 on, the early varieties'
+ *  days (null for crops without) from 23 Nov 2026 on. */
 type BioRow = [
   number,
   number,
@@ -177,6 +181,7 @@ type BioRow = [
   number | null,
   number,
   number?,
+  (number | null)?,
 ];
 
 export interface YearResponse {
@@ -194,6 +199,8 @@ export interface YearResponse {
      *  months as three hex digits each. */
     seasons?: Record<string, string>;
     temps?: number[];
+    /** The crops grown from early varieties here, by index in `crops`. */
+    early?: number[];
     /** Topsoil pH, clay %, sand %. */
     soil?: [number, number, number];
     /** First frost, last frost, first hard frost, last hard frost, warm
@@ -274,6 +281,7 @@ export const decodeYear = ({
                 hardy: b[9],
                 night: Boolean(b[10]),
                 ...(typeof b[11] === 'number' ? { tmin: b[11] } : {}),
+                ...(typeof b[12] === 'number' ? { early: b[12] } : {}),
               },
             ];
           })
@@ -290,6 +298,7 @@ export const decodeYear = ({
           sow: parseInt(code.slice(0, 3), 16),
           harvest: parseInt(code.slice(3), 16),
           ...(seasons ? { seasons: seasonsOf(seasons) } : {}),
+          ...(place.early?.includes(i) ? { early: true } : {}),
         },
       ];
     })

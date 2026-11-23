@@ -86,6 +86,53 @@ describe("the Worker's year answer", () => {
     ]);
   });
 
+  it('marks the crops a place grows from early varieties, and reads their days', () => {
+    const year = decodeYear({
+      crops: ['potato', 'lettuce'],
+      bio: [
+        [
+          4.4,
+          15.5556,
+          18.3333,
+          23.8889,
+          90,
+          't',
+          'hold',
+          8,
+          0,
+          null,
+          0,
+          10,
+          72,
+        ],
+        [
+          4.4,
+          15.5556,
+          18.3333,
+          23.8889,
+          45,
+          's',
+          'growth',
+          4,
+          1,
+          -5,
+          0,
+          7.2222,
+          36,
+        ],
+      ],
+      place: { name: 'Tromsø', months: '020300' + '060180', early: [0] },
+    });
+    expect(year.crops.potato).toEqual({
+      sow: 0x020,
+      harvest: 0x300,
+      early: true,
+    });
+    expect(year.crops.lettuce).toEqual({ sow: 0x060, harvest: 0x180 });
+    expect(year.bio?.potato?.early).toBe(72);
+    expect(year.bio?.potato?.days).toBe(90);
+  });
+
   it('has no soil where the soil map has none', () => {
     expect(
       decodeYear({ crops: [], place: { name: 'Sea', months: '' } }).soil

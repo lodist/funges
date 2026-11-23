@@ -323,6 +323,43 @@ describe("a planted crop's growth (the calendar's model)", () => {
     );
   });
 
+  it('bulbs onions once the long days are warm, never where they stay cold', () => {
+    const sets: Bio = {
+      tb: 4.4,
+      tlo: 12.7778,
+      thi: 23.8889,
+      tmax: 29.4444,
+      days: 88, // early sets: the north grows them where the main crop is too slow
+      kill: 'h',
+      end: 'bulb',
+      pick: 4,
+      strict: false,
+      hardy: -12,
+      night: false,
+      tmin: 7.2222,
+    };
+    // Trondheim: the days pass 15 h in April, the air reaches the onion's
+    // 12.8 C on 10 June, when they bulb. Sets planted on 1 May are lifted that
+    // year once grown; by day length alone they bulbed in April, before they
+    // had their leaves, and waited a year.
+    const temps = [
+      -3.7, -2.8, 0, 3.7, 9.5, 13.8, 15.5, 14.3, 11.4, 5.8, 0.3, -2.5,
+    ];
+    const trondheim = place({ lat: 63.43, temps, low: -15 });
+    expect(
+      plantedGrowth('onion_sets', sets, trondheim, '2027-05-01').ready
+    ).toBe('2027-09-27');
+    // 3.5 C colder, its warmest normal 12 C: the long days never warm enough.
+    const cold = place({
+      lat: 63.43,
+      temps: temps.map(t => t - 3.5),
+      low: -15,
+    });
+    expect(
+      plantedGrowth('onion_sets', sets, cold, '2027-05-01').ready
+    ).toBeNull();
+  });
+
   it('comes on sooner after a warmer spell than the typical year', () => {
     const cool = place({ temps: flat(10) });
     const typical = plantedGrowth('lettuce', lettuce, cool, '2027-05-01');
