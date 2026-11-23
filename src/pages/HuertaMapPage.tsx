@@ -753,6 +753,7 @@ function Legend({
           ],
           [css(palette.crop.wait), t('map.legend.wait')],
           [hatched, t('map.legend.over')],
+          [css(palette.wash), t('map.legend.none')],
         ]
       : source === 'frost'
         ? [
