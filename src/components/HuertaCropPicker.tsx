@@ -17,6 +17,7 @@ import {
 import { ChevronDown, Search, X } from '@/lib/icons';
 import { DURATION_BASE, EASE_STANDARD } from '@/lib/motion';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { shownPlace } from '@/lib/place-names';
 import { cn } from '@/lib/utils';
 
 // The panel unmounts on close, so the filters live here, as in Terra's panel.
@@ -229,7 +230,9 @@ function Panel({
         ) : null}
         <div className='mt-1 text-center text-sm text-white/60'>
           {t('count', { count: shown.length })}
-          {advice ? ` · ${t('map.place', { place: advice.place })}` : null}
+          {advice
+            ? ` · ${t('map.place', { place: shownPlace(advice) })}`
+            : null}
         </div>
       </div>
 

@@ -19,6 +19,7 @@ import {
 import { MapPinned, Search } from '@/lib/icons';
 import { ScopeHeader } from '@/components/ScopeHeader';
 import { alternates, localizedPath, pathLanguage } from '@/lib/seo-pages';
+import { shownPlace } from '@/lib/place-names';
 import { cn } from '@/lib/utils';
 
 /** The calendar: every crop's sowing and harvest months at the visitor's place,
@@ -80,7 +81,7 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
           <ScopeHeader
             title={t('year.title')}
             scopeLabel={
-              year ? t('year.around', { place: year.place }) : undefined
+              year ? t('year.around', { place: shownPlace(year) }) : undefined
             }
             action={
               huertaApiConfigured ? (

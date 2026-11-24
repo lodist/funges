@@ -33,6 +33,7 @@ import { MapPinned, Search } from '@/lib/icons';
 import { chooseGarden, gardenLabel, useGardens } from '@/lib/gardens';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
 import { indexedLanguage, localizedPath, pathLanguage } from '@/lib/seo-pages';
+import { shownPlace } from '@/lib/place-names';
 import { cn } from '@/lib/utils';
 
 type Load =
@@ -54,9 +55,9 @@ export default function HuertaPage() {
     }).format(new Date(`${advice.day}T12:00:00`));
     // Its date is already in the line: a kept advice adds only that it is.
     return huertaApiConfigured
-      ? t('around', { place: advice.place, day }) +
+      ? t('around', { place: shownPlace(advice), day }) +
           (advice.offline ? ` · ${t('offlineShort')}` : '')
-      : t('sample', { place: advice.place, day });
+      : t('sample', { place: shownPlace(advice), day });
   };
   const [place, setPlace] = useState<Place | null>(() =>
     huertaApiConfigured ? savedPlace() : null

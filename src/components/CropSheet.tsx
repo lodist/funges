@@ -30,6 +30,7 @@ import { nextYear, partners, type Plan } from '@/lib/planner';
 import { PLANT_LOOK } from '@/lib/planner-data';
 import { gardenSoil, type Acidity } from '@/lib/soil';
 import { CalendarRange, Check, Clock, MapPin } from '@/lib/icons';
+import { shownPlace } from '@/lib/place-names';
 import { cn } from '@/lib/utils';
 import { MonthCell } from '@/components/MonthCell';
 
@@ -146,7 +147,7 @@ export function CropBody({
               </Badge>
               <section className='flex flex-col gap-2'>
                 <p className='type-micro text-muted-foreground'>
-                  {t('sheet.week', { place: advice.place })}
+                  {t('sheet.week', { place: shownPlace(advice) })}
                 </p>
                 <ul className='flex flex-col gap-2'>
                   {reasons.map(reason => {
@@ -187,7 +188,7 @@ export function CropBody({
         </div>
       </div>
       {months && advice ? (
-        <YearStrip year={months} place={advice.place} />
+        <YearStrip year={months} place={shownPlace(advice)} />
       ) : null}
       <Facts crop={crop} need={need} harvest={months?.harvest} />
       <Weather

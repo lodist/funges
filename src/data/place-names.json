@@ -1,0 +1,2802 @@
+{
+  "Adelaide": [[-34.93, 138.6, { "es": "Adelaida", "fr": "Adélaïde" }]],
+  "Agrinio": [[38.62, 21.41, { "fr": "Agrínio" }]],
+  "Alexandroupoli": [
+    [
+      40.85,
+      25.87,
+      {
+        "es": "Alejandrópolis",
+        "fr": "Alexandroúpoli",
+        "it": "Alessandropoli",
+        "pt": "Alexandrópolis"
+      }
+    ]
+  ],
+  "Algeciras": [[36.13, -5.47, { "fr": "Algésiras" }]],
+  "Almeria": [
+    [
+      36.83,
+      -2.43,
+      {
+        "de": "Almería",
+        "en": "Almería",
+        "es": "Almería",
+        "fr": "Almería",
+        "it": "Almería"
+      }
+    ]
+  ],
+  "Amsterdam": [[52.35, 4.91, { "es": "Ámsterdam", "pt": "Amesterdão" }]],
+  "Ancona": [[43.6, 13.5, { "fr": "Ancône" }]],
+  "Ankara": [[39.93, 32.86, { "pt": "Ancara" }]],
+  "Antakya": [[36.23, 36.12, { "es": "Antioquía", "it": "Antiochia" }]],
+  "Antalya": [[36.89, 30.7, { "it": "Adalia", "pt": "Antália" }]],
+  "Antwerp": [
+    [
+      51.22,
+      4.41,
+      {
+        "de": "Antwerpen",
+        "es": "Amberes",
+        "fr": "Anvers",
+        "it": "Anversa",
+        "pt": "Antuérpia"
+      }
+    ]
+  ],
+  "Aosta": [[45.74, 7.32, { "fr": "Aoste" }]],
+  "Arnhem": [[51.99, 5.92, { "de": "Arnheim" }]],
+  "Arras": [[50.28, 2.78, { "es": "Arrás" }]],
+  "Augsburg": [
+    [
+      48.35,
+      10.9,
+      {
+        "es": "Augsburgo",
+        "fr": "Augsbourg",
+        "it": "Augusta",
+        "pt": "Augsburgo"
+      }
+    ]
+  ],
+  "Baltimore": [[39.3, -76.62, { "it": "Baltimora" }]],
+  "Banja Luka": [[44.78, 17.18, { "es": "Bania Luka" }]],
+  "Banska Bystrica": [
+    [
+      48.73,
+      19.15,
+      {
+        "de": "Banská Bystrica",
+        "en": "Banská Bystrica",
+        "es": "Banská Bystrica",
+        "fr": "Banská Bystrica",
+        "it": "Banská Bystrica",
+        "pt": "Banská Bystrica"
+      }
+    ]
+  ],
+  "Barcelona": [[41.39, 2.18, { "fr": "Barcelone", "it": "Barcellona" }]],
+  "Basel": [
+    [
+      47.58,
+      7.59,
+      { "es": "Basilea", "fr": "Bâle", "it": "Basilea", "pt": "Basileia" }
+    ]
+  ],
+  "Bekescsaba": [
+    [
+      46.67,
+      21.1,
+      {
+        "de": "Békéscsaba",
+        "en": "Békéscsaba",
+        "es": "Békéscsaba",
+        "fr": "Békéscsaba",
+        "it": "Békéscsaba",
+        "pt": "Békéscsaba"
+      }
+    ]
+  ],
+  "Belgrade": [
+    [
+      44.82,
+      20.47,
+      { "de": "Belgrad", "es": "Belgrado", "it": "Belgrado", "pt": "Belgrado" }
+    ]
+  ],
+  "Bellinzona": [[46.2, 9.02, { "fr": "Bellinzone" }]],
+  "Benevento": [[41.13, 14.75, { "fr": "Bénévent" }]],
+  "Bergamo": [
+    [45.7, 9.67, { "es": "Bérgamo", "fr": "Bergame", "pt": "Bérgamo" }]
+  ],
+  "Berlin": [
+    [52.52, 13.4, { "es": "Berlín", "it": "Berlino", "pt": "Berlim" }]
+  ],
+  "Besancon": [
+    [
+      47.23,
+      6.03,
+      {
+        "de": "Besançon",
+        "en": "Besançon",
+        "es": "Besanzón",
+        "fr": "Besançon",
+        "it": "Besançon",
+        "pt": "Besançon"
+      }
+    ]
+  ],
+  "Beziers": [
+    [
+      43.35,
+      3.21,
+      {
+        "de": "Béziers",
+        "en": "Béziers",
+        "es": "Béziers",
+        "fr": "Béziers",
+        "it": "Béziers",
+        "pt": "Béziers"
+      }
+    ]
+  ],
+  "Bialystok": [
+    [
+      53.15,
+      23.17,
+      {
+        "de": "Białystok",
+        "en": "Białystok",
+        "es": "Białystok",
+        "fr": "Białystok",
+        "it": "Białystok",
+        "pt": "Białystok"
+      }
+    ]
+  ],
+  "Biel": [
+    [
+      47.17,
+      7.25,
+      {
+        "de": "Biel/Bienne",
+        "en": "Biel/Bienne",
+        "es": "Biena",
+        "fr": "Bienne",
+        "it": "Bienne",
+        "pt": "Bienna"
+      }
+    ]
+  ],
+  "Bilbao": [[43.25, -2.93, { "pt": "Bilbau" }]],
+  "Bingol": [
+    [
+      38.89,
+      40.5,
+      {
+        "de": "Bingöl",
+        "en": "Bingöl",
+        "es": "Bingöl",
+        "fr": "Bingöl",
+        "it": "Bingöl",
+        "pt": "Bingöl"
+      }
+    ]
+  ],
+  "Bistrita": [
+    [
+      47.14,
+      24.51,
+      {
+        "de": "Bistritz",
+        "en": "Bistrița",
+        "es": "Bistrița",
+        "fr": "Bistrița",
+        "it": "Bistrița",
+        "pt": "Bistrița"
+      }
+    ]
+  ],
+  "Bollnas": [
+    [
+      61.35,
+      16.37,
+      {
+        "de": "Bollnäs",
+        "en": "Bollnäs",
+        "es": "Bollnäs",
+        "fr": "Bollnäs",
+        "it": "Bollnäs",
+        "pt": "Bollnäs"
+      }
+    ]
+  ],
+  "Bologna": [
+    [44.5, 11.34, { "es": "Bolonia", "fr": "Bologne", "pt": "Bolonha" }]
+  ],
+  "Bonn": [[50.72, 7.08, { "pt": "Bona" }]],
+  "Borlange": [
+    [
+      60.48,
+      15.42,
+      {
+        "de": "Borlänge",
+        "en": "Borlänge",
+        "es": "Borlänge",
+        "fr": "Borlänge",
+        "it": "Borlänge",
+        "pt": "Borlänge"
+      }
+    ]
+  ],
+  "Botosani": [
+    [
+      47.75,
+      26.66,
+      {
+        "de": "Botoschan",
+        "en": "Botoșani",
+        "es": "Botoșani",
+        "fr": "Botoșani",
+        "it": "Botoșani",
+        "pt": "Botoșani"
+      }
+    ]
+  ],
+  "Braganca": [
+    [
+      41.81,
+      -6.76,
+      {
+        "de": "Bragança",
+        "en": "Bragança",
+        "es": "Bragança",
+        "fr": "Bragança",
+        "it": "Braganza",
+        "pt": "Bragança"
+      }
+    ]
+  ],
+  "Braila": [
+    [
+      45.29,
+      27.97,
+      {
+        "de": "Brăila",
+        "en": "Brăila",
+        "es": "Brăila",
+        "fr": "Brăila",
+        "it": "Brăila",
+        "pt": "Brăila"
+      }
+    ]
+  ],
+  "Brasov": [
+    [
+      45.65,
+      25.61,
+      {
+        "de": "Brașov",
+        "en": "Brașov",
+        "es": "Brașov",
+        "fr": "Brașov",
+        "it": "Brașov",
+        "pt": "Brașov"
+      }
+    ]
+  ],
+  "Bregenz": [[47.52, 9.77, { "fr": "Brégence" }]],
+  "Bremen": [[53.08, 8.8, { "fr": "Brême", "it": "Brema" }]],
+  "Brest": [[52.1, 23.7, { "it": "Brėst" }]],
+  "Bristol": [[51.45, -2.58, { "es": "Brístol" }]],
+  "Brno": [[49.2, 16.61, { "de": "Brünn" }]],
+  "Brunswick": [
+    [
+      52.25,
+      10.5,
+      { "de": "Braunschweig", "it": "Braunschweig", "pt": "Brunsvique" }
+    ]
+  ],
+  "Brussels": [
+    [
+      50.84,
+      4.33,
+      {
+        "de": "Brüssel",
+        "es": "Bruselas",
+        "fr": "Bruxelles",
+        "it": "Bruxelles",
+        "pt": "Bruxelas"
+      }
+    ]
+  ],
+  "Bucharest": [
+    [
+      44.44,
+      26.1,
+      {
+        "de": "Bukarest",
+        "es": "Bucarest",
+        "fr": "Bucarest",
+        "it": "Bucarest",
+        "pt": "Bucareste"
+      }
+    ]
+  ],
+  "Budapest": [[47.5, 19.08, { "pt": "Budapeste" }]],
+  "Buffalo": [[42.88, -78.88, { "es": "Búfalo" }]],
+  "Burgas": [[42.51, 27.47, { "fr": "Bourgas" }]],
+  "Buzau": [
+    [
+      45.16,
+      26.81,
+      {
+        "en": "Buzău",
+        "es": "Buzău",
+        "fr": "Buzău",
+        "it": "Buzău",
+        "pt": "Buzău"
+      }
+    ]
+  ],
+  "Cacak": [
+    [
+      43.89,
+      20.33,
+      {
+        "de": "Čačak",
+        "en": "Čačak",
+        "es": "Čačak",
+        "fr": "Čačak",
+        "it": "Čačak",
+        "pt": "Čačak"
+      }
+    ]
+  ],
+  "Calarasi": [
+    [
+      44.21,
+      27.33,
+      {
+        "de": "Călărași",
+        "en": "Călărași",
+        "es": "Călărași",
+        "fr": "Călărași",
+        "it": "Călărași",
+        "pt": "Călărași"
+      }
+    ]
+  ],
+  "Canakkale": [
+    [
+      40.15,
+      26.41,
+      {
+        "de": "Çanakkale",
+        "en": "Çanakkale",
+        "es": "Çanakkale",
+        "fr": "Çanakkale",
+        "it": "Çanakkale",
+        "pt": "Çanakkale"
+      }
+    ]
+  ],
+  "Canberra": [[-35.28, 149.13, { "pt": "Camberra" }]],
+  "Cape Coral": [[26.6, -81.98, { "es": "Cabo Coral" }]],
+  "Cape Girardeau": [[37.31, -89.52, { "fr": "Cap-Girardeau" }]],
+  "Cartagena": [[37.6, -0.98, { "fr": "Carthagène" }]],
+  "Catania": [[37.5, 15.08, { "fr": "Catane", "pt": "Catânia" }]],
+  "Ceske Budejovice": [
+    [
+      48.98,
+      14.46,
+      {
+        "de": "České Budějovice",
+        "en": "České Budějovice",
+        "es": "České Budějovice",
+        "fr": "České Budějovice",
+        "it": "České Budějovice",
+        "pt": "České Budějovice"
+      }
+    ]
+  ],
+  "Chania": [
+    [35.51, 24.02, { "es": "La Canea", "fr": "La Canée", "it": "La Canea" }]
+  ],
+  "Chios": [[38.37, 26.14, { "es": "Quíos", "it": "Chio", "pt": "Quios" }]],
+  "Chur": [
+    [46.85, 9.5, { "es": "Coira", "fr": "Coire", "it": "Coira", "pt": "Coira" }]
+  ],
+  "Cluj-Napoca": [[46.79, 23.6, { "de": "Klausenburg" }]],
+  "Coburg": [
+    [
+      50.27,
+      10.97,
+      { "es": "Coburgo", "fr": "Cobourg", "it": "Coburgo", "pt": "Coburgo" }
+    ]
+  ],
+  "Coimbra": [[40.2, -8.42, { "es": "Coímbra" }]],
+  "Cologne": [
+    [
+      50.93,
+      6.95,
+      { "de": "Köln", "es": "Colonia", "it": "Colonia", "pt": "Colónia" }
+    ]
+  ],
+  "Columbia": [[34.04, -80.9, { "pt": "Colúmbia" }]],
+  "Como": [[45.81, 9.08, { "fr": "Côme" }]],
+  "Constanta": [
+    [
+      44.2,
+      28.61,
+      {
+        "de": "Konstanza",
+        "en": "Constanța",
+        "es": "Constanza",
+        "fr": "Constanța",
+        "it": "Costanza",
+        "pt": "Constança"
+      }
+    ]
+  ],
+  "Copenhagen": [
+    [
+      55.68,
+      12.56,
+      {
+        "de": "Kopenhagen",
+        "es": "Copenhague",
+        "fr": "Copenhague",
+        "it": "Copenaghen",
+        "pt": "Copenhaga"
+      }
+    ]
+  ],
+  "Cordoba": [
+    [
+      37.88,
+      -4.77,
+      {
+        "de": "Córdoba",
+        "en": "Córdoba",
+        "es": "Córdoba",
+        "fr": "Cordoue",
+        "it": "Cordova",
+        "pt": "Córdova"
+      }
+    ]
+  ],
+  "Corovode": [
+    [
+      40.52,
+      20.23,
+      {
+        "de": "Çorovoda",
+        "en": "Çorovodë",
+        "es": "Çorovodë",
+        "fr": "Çorovodë",
+        "it": "Çorovodë",
+        "pt": "Çorovodë"
+      }
+    ]
+  ],
+  "Corum": [
+    [
+      40.52,
+      34.95,
+      {
+        "de": "Çorum",
+        "en": "Çorum",
+        "es": "Çorum",
+        "fr": "Çorum",
+        "it": "Çorum",
+        "pt": "Çorum"
+      }
+    ]
+  ],
+  "Covilha": [
+    [
+      40.28,
+      -7.5,
+      {
+        "de": "Covilhã",
+        "en": "Covilhã",
+        "es": "Covilhã",
+        "fr": "Covilhã",
+        "it": "Covilhã",
+        "pt": "Covilhã"
+      }
+    ]
+  ],
+  "Craiova": [[44.33, 23.83, { "de": "Krajowa" }]],
+  "Crotone": [[39.08, 17.12, { "es": "Crotona" }]],
+  "Del Rio": [[29.36, -100.9, { "es": "Del Río" }]],
+  "Delemont": [
+    [
+      47.37,
+      7.34,
+      {
+        "de": "Delsberg",
+        "en": "Delémont",
+        "es": "Delémont",
+        "fr": "Delémont",
+        "it": "Delémont",
+        "pt": "Delémont"
+      }
+    ]
+  ],
+  "Detroit": [[42.33, -83.08, { "fr": "Détroit" }]],
+  "Donegal": [[54.65, -8.12, { "it": "Donegal Town" }]],
+  "Dresden": [
+    [51.05, 13.75, { "es": "Dresde", "fr": "Dresde", "it": "Dresda" }]
+  ],
+  "Drobeta-Turnu Severin": [[44.65, 22.67, { "de": "Turm Severin" }]],
+  "Dublin": [[53.34, -6.25, { "es": "Dublín", "it": "Dublino" }]],
+  "Dubrovnik": [[42.66, 18.09, { "it": "Ragusa" }]],
+  "Duisburg": [
+    [51.43, 6.75, { "es": "Duisburgo", "fr": "Duisbourg", "pt": "Duisburgo" }]
+  ],
+  "Durres": [
+    [
+      41.32,
+      19.45,
+      {
+        "de": "Durrës",
+        "en": "Durrës",
+        "es": "Durrës",
+        "fr": "Durrës",
+        "it": "Durazzo",
+        "pt": "Durrës"
+      }
+    ]
+  ],
+  "Dusseldorf": [
+    [
+      51.22,
+      6.78,
+      {
+        "de": "Düsseldorf",
+        "en": "Düsseldorf",
+        "es": "Düsseldorf",
+        "fr": "Düsseldorf",
+        "it": "Düsseldorf",
+        "pt": "Düsseldorf"
+      }
+    ]
+  ],
+  "Edinburgh": [
+    [
+      55.95,
+      -3.22,
+      {
+        "es": "Edimburgo",
+        "fr": "Édimbourg",
+        "it": "Edimburgo",
+        "pt": "Edimburgo"
+      }
+    ]
+  ],
+  "Elblag": [
+    [
+      54.19,
+      19.4,
+      {
+        "de": "Elbląg",
+        "en": "Elbląg",
+        "es": "Elbląg",
+        "fr": "Elbląg",
+        "it": "Elbląg",
+        "pt": "Elbląg"
+      }
+    ]
+  ],
+  "Elk": [
+    [
+      53.83,
+      22.35,
+      {
+        "de": "Ełk",
+        "en": "Ełk",
+        "es": "Ełk",
+        "fr": "Ełk",
+        "it": "Ełk",
+        "pt": "Ełk"
+      }
+    ]
+  ],
+  "Eregli": [
+    [
+      37.51,
+      34.05,
+      {
+        "de": "Ereğli",
+        "en": "Ereğli",
+        "es": "Ereğli",
+        "fr": "Ereğli",
+        "it": "Ereğli",
+        "pt": "Ereğli"
+      }
+    ]
+  ],
+  "Erfurt": [[50.97, 11.03, { "es": "Érfurt" }]],
+  "Erie": [[42.13, -80.08, { "fr": "Érié" }]],
+  "Ermoupolis": [
+    [
+      37.45,
+      24.93,
+      {
+        "de": "Ermoupoli",
+        "es": "Ermúpoli",
+        "fr": "Ermoúpoli",
+        "it": "Ermoupoli",
+        "pt": "Hermópolis"
+      }
+    ]
+  ],
+  "Erseke": [
+    [
+      40.33,
+      20.68,
+      {
+        "de": "Erseka",
+        "en": "Ersekë",
+        "es": "Ersekë",
+        "fr": "Ersekë",
+        "it": "Ersekë",
+        "pt": "Ersekë"
+      }
+    ]
+  ],
+  "Eskisehir": [
+    [
+      39.79,
+      30.53,
+      {
+        "de": "Eskişehir",
+        "en": "Eskişehir",
+        "es": "Eskişehir",
+        "fr": "Eskişehir",
+        "it": "Eskişehir",
+        "pt": "Eskişehir"
+      }
+    ]
+  ],
+  "Evora": [
+    [
+      38.56,
+      -7.91,
+      {
+        "de": "Évora",
+        "en": "Évora",
+        "es": "Évora",
+        "fr": "Évora",
+        "it": "Évora",
+        "pt": "Évora"
+      }
+    ]
+  ],
+  "Famagusta": [[35.13, 33.95, { "fr": "Famagouste", "it": "Famagosta" }]],
+  "Ferrara": [[44.85, 11.61, { "fr": "Ferrare" }]],
+  "Flensburg": [
+    [
+      54.78,
+      9.43,
+      { "es": "Flensburgo", "fr": "Flensbourg", "it": "Flensburgo" }
+    ]
+  ],
+  "Florence": [
+    [
+      43.78,
+      11.25,
+      { "de": "Florenz", "es": "Florencia", "it": "Firenze", "pt": "Florença" }
+    ]
+  ],
+  "Focsani": [
+    [
+      45.7,
+      27.19,
+      {
+        "de": "Fokschan",
+        "en": "Focșani",
+        "es": "Focșani",
+        "fr": "Focșani",
+        "it": "Focșani",
+        "pt": "Focșani"
+      }
+    ]
+  ],
+  "Freiburg": [
+    [
+      48.0,
+      7.87,
+      {
+        "de": "Freiburg im Breisgau",
+        "en": "Freiburg im Breisgau",
+        "es": "Friburgo de Brisgovia",
+        "fr": "Fribourg-en-Brisgau",
+        "it": "Friburgo in Brisgovia",
+        "pt": "Freiburg im Breisgau"
+      }
+    ]
+  ],
+  "Fribourg": [
+    [
+      46.8,
+      7.15,
+      {
+        "de": "Freiburg im Üechtland",
+        "es": "Friburgo",
+        "it": "Friburgo",
+        "pt": "Friburgo"
+      }
+    ]
+  ],
+  "Furth": [
+    [
+      49.47,
+      11.0,
+      {
+        "de": "Fürth",
+        "en": "Fürth",
+        "es": "Fürth",
+        "fr": "Fürth",
+        "it": "Fürth",
+        "pt": "Fürth"
+      }
+    ]
+  ],
+  "Galati": [
+    [
+      45.46,
+      28.05,
+      {
+        "de": "Galatz",
+        "en": "Galați",
+        "es": "Galați",
+        "fr": "Galați",
+        "it": "Galați",
+        "pt": "Galați"
+      }
+    ]
+  ],
+  "Gdansk": [
+    [
+      54.36,
+      18.64,
+      {
+        "de": "Danzig",
+        "en": "Gdańsk",
+        "fr": "Gdańsk",
+        "it": "Danzica",
+        "pt": "Gdańsk"
+      }
+    ]
+  ],
+  "Genoa": [
+    [
+      44.41,
+      8.93,
+      {
+        "de": "Genua",
+        "es": "Génova",
+        "fr": "Gênes",
+        "it": "Genova",
+        "pt": "Génova"
+      }
+    ]
+  ],
+  "Gent": [
+    [
+      51.03,
+      3.7,
+      {
+        "en": "Ghent",
+        "es": "Gante",
+        "fr": "Gand",
+        "it": "Gand",
+        "pt": "Gante"
+      }
+    ]
+  ],
+  "Gijon": [
+    [
+      43.53,
+      -5.67,
+      {
+        "de": "Gijón",
+        "en": "Gijón",
+        "es": "Gijón",
+        "fr": "Gijón",
+        "it": "Gijón",
+        "pt": "Gijón"
+      }
+    ]
+  ],
+  "Girne": [
+    [
+      35.33,
+      33.33,
+      {
+        "en": "Kyrenia",
+        "es": "Kyrenia",
+        "fr": "Kyrenia",
+        "it": "Kyrenia",
+        "pt": "Cirénia"
+      }
+    ]
+  ],
+  "Gjirokaster": [
+    [
+      40.08,
+      20.15,
+      {
+        "de": "Gjirokastra",
+        "en": "Gjirokastër",
+        "es": "Gjirokastra",
+        "fr": "Gjirokastër",
+        "it": "Argirocastro",
+        "pt": "Gjirokastër"
+      }
+    ]
+  ],
+  "Glarus": [
+    [
+      47.05,
+      9.07,
+      {
+        "es": "Glaris",
+        "fr": "Glaris Centre",
+        "it": "Glarona",
+        "pt": "Glarona"
+      }
+    ]
+  ],
+  "Gliwice": [[50.33, 18.67, { "de": "Gleiwitz" }]],
+  "Goteborg": [
+    [
+      57.75,
+      12.0,
+      {
+        "de": "Göteborg",
+        "en": "Gothenburg",
+        "es": "Gotemburgo",
+        "fr": "Göteborg",
+        "it": "Göteborg",
+        "pt": "Gotemburgo"
+      }
+    ]
+  ],
+  "Granada": [[37.16, -3.59, { "fr": "Grenade" }]],
+  "Grand Canyon": [
+    [
+      36.05,
+      -112.14,
+      {
+        "de": "Grand Canyon Village",
+        "en": "Grand Canyon Village",
+        "es": "Grand Canyon Village",
+        "fr": "Grand Canyon Village",
+        "it": "Grand Canyon Village",
+        "pt": "Grand Canyon Village"
+      }
+    ]
+  ],
+  "Groningen": [
+    [
+      53.22,
+      6.58,
+      {
+        "es": "Groninga",
+        "fr": "Groningue",
+        "it": "Groninga",
+        "pt": "Groninga"
+      }
+    ]
+  ],
+  "Grudziadz": [
+    [
+      53.48,
+      18.75,
+      {
+        "de": "Graudenz",
+        "en": "Grudziądz",
+        "es": "Grudziądz",
+        "fr": "Grudziądz",
+        "it": "Grudziądz",
+        "pt": "Grudziądz"
+      }
+    ]
+  ],
+  "Gumushane": [
+    [
+      40.46,
+      39.48,
+      {
+        "de": "Gümüşhane",
+        "en": "Gümüşhane",
+        "es": "Gümüşhane",
+        "fr": "Gümüşhane",
+        "it": "Gümüşhane",
+        "pt": "Gümüşhane"
+      }
+    ]
+  ],
+  "Gyor": [
+    [
+      47.7,
+      17.63,
+      {
+        "de": "Győr",
+        "en": "Győr",
+        "es": "Győr",
+        "fr": "Győr",
+        "it": "Győr",
+        "pt": "Győr"
+      }
+    ]
+  ],
+  "Göttingen": [[51.52, 9.92, { "es": "Gotinga", "it": "Gottinga" }]],
+  "Hakkari": [
+    [
+      37.57,
+      43.74,
+      {
+        "de": "Hakkâri",
+        "en": "Hakkâri",
+        "es": "Hakkâri",
+        "it": "Hakkâri",
+        "pt": "Hakkâri"
+      }
+    ]
+  ],
+  "Hamar": [
+    [60.82, 11.07, { "de": "Gemeinde Hamar", "it": "comune di Hamar" }]
+  ],
+  "Hameenlinna": [
+    [
+      61.0,
+      24.47,
+      {
+        "de": "Hämeenlinna",
+        "en": "Hämeenlinna",
+        "es": "Hämeenlinna",
+        "fr": "Hämeenlinna",
+        "it": "Hämeenlinna",
+        "pt": "Hämeenlinna"
+      }
+    ]
+  ],
+  "Hanover": [
+    [
+      52.37,
+      9.72,
+      { "de": "Hannover", "es": "Hannover", "fr": "Hanovre", "it": "Hannover" }
+    ]
+  ],
+  "Harnosand": [
+    [
+      62.63,
+      17.93,
+      {
+        "de": "Härnösand",
+        "en": "Härnösand",
+        "es": "Härnösand",
+        "fr": "Härnösand",
+        "it": "Härnösand",
+        "pt": "Härnösand"
+      }
+    ]
+  ],
+  "Haskovo": [[41.94, 25.56, { "de": "Chaskowo" }]],
+  "Hawera": [[-39.58, 174.28, { "en": "Hāwera", "pt": "Hāwera" }]],
+  "Helsinki": [[60.18, 24.93, { "pt": "Helsínquia" }]],
+  "Hof": [[50.32, 11.92, { "fr": "Hof-sur-Saale" }]],
+  "Hradec Kralove": [
+    [
+      50.21,
+      15.81,
+      {
+        "de": "Hradec Králové",
+        "en": "Hradec Králové",
+        "es": "Hradec Králové",
+        "fr": "Hradec Králové",
+        "it": "Hradec Králové",
+        "pt": "Hradec Králové"
+      }
+    ]
+  ],
+  "Iasi": [
+    [
+      47.17,
+      27.57,
+      {
+        "de": "Iași",
+        "en": "Iași",
+        "es": "Iași",
+        "fr": "Iași",
+        "it": "Iași",
+        "pt": "Iași"
+      }
+    ]
+  ],
+  "Indianapolis": [
+    [39.75, -86.17, { "es": "Indianápolis", "pt": "Indianápolis" }]
+  ],
+  "Inowroclaw": [
+    [
+      52.78,
+      18.25,
+      {
+        "de": "Inowrocław",
+        "en": "Inowrocław",
+        "es": "Inowrocław",
+        "fr": "Inowrocław",
+        "it": "Inowrocław",
+        "pt": "Inowrocław"
+      }
+    ]
+  ],
+  "Iskenderun": [
+    [
+      36.58,
+      36.17,
+      {
+        "de": "İskenderun",
+        "en": "İskenderun",
+        "es": "Alejandreta",
+        "fr": "Alexandrette",
+        "it": "Alessandretta",
+        "pt": "İskenderun"
+      }
+    ]
+  ],
+  "Istanbul": [[41.11, 29.01, { "es": "Estambul", "pt": "Istambul" }]],
+  "Izmir": [
+    [
+      38.44,
+      27.15,
+      { "en": "İzmir", "es": "Esmirna", "it": "Smirne", "pt": "Esmirna" }
+    ]
+  ],
+  "Izmit": [
+    [
+      40.78,
+      29.93,
+      {
+        "de": "İzmit",
+        "en": "İzmit",
+        "es": "İzmit",
+        "it": "İzmit",
+        "pt": "İzmit"
+      }
+    ]
+  ],
+  "Jaen": [
+    [
+      37.77,
+      -3.8,
+      {
+        "de": "Jaén",
+        "en": "Jaén",
+        "es": "Jaén",
+        "fr": "Jaén",
+        "it": "Jaén",
+        "pt": "Jaén"
+      }
+    ]
+  ],
+  "Jena": [[50.93, 11.58, { "fr": "Iéna" }]],
+  "Jonkoping": [
+    [
+      57.77,
+      14.17,
+      {
+        "de": "Jönköping",
+        "en": "Jönköping",
+        "es": "Jönköping",
+        "fr": "Jönköping",
+        "it": "Jönköping",
+        "pt": "Jönköping"
+      }
+    ]
+  ],
+  "Jyvaskyla": [
+    [
+      62.26,
+      25.75,
+      {
+        "de": "Jyväskylä",
+        "en": "Jyväskylä",
+        "es": "Jyväskylä",
+        "fr": "Jyväskylä",
+        "it": "Jyväskylä",
+        "pt": "Jyväskylä"
+      }
+    ]
+  ],
+  "Kahramanmaras": [
+    [
+      37.61,
+      36.95,
+      {
+        "de": "Kahramanmaraş",
+        "en": "Kahramanmaraş",
+        "es": "Kahramanmaraş",
+        "fr": "Kahramanmaraş",
+        "it": "Kahramanmaraş",
+        "pt": "Kahramanmaraş"
+      }
+    ]
+  ],
+  "Kalamata": [[37.04, 22.11, { "it": "Calamata" }]],
+  "Kalgoorlie": [[-30.74, 121.46, { "de": "Kalgoorlie-Boulder" }]],
+  "Kaposvar": [
+    [
+      46.37,
+      17.8,
+      {
+        "de": "Kaposvár",
+        "en": "Kaposvár",
+        "es": "Kaposvár",
+        "fr": "Kaposvár",
+        "it": "Kaposvár",
+        "pt": "Kaposvár"
+      }
+    ]
+  ],
+  "Karabuk": [
+    [
+      41.2,
+      32.6,
+      {
+        "de": "Karabük",
+        "en": "Karabük",
+        "es": "Karabük",
+        "fr": "Karabük",
+        "it": "Karabük",
+        "pt": "Karabük"
+      }
+    ]
+  ],
+  "Kassel": [[51.3, 9.5, { "fr": "Cassel" }]],
+  "Kavala": [[40.94, 24.4, { "pt": "Cavala" }]],
+  "Kecskemet": [
+    [
+      46.9,
+      19.7,
+      {
+        "de": "Kecskemét",
+        "en": "Kecskemét",
+        "es": "Kecskemét",
+        "fr": "Kecskemét",
+        "it": "Kecskemét",
+        "pt": "Kecskemét"
+      }
+    ]
+  ],
+  "Kingston South East": [
+    [
+      -36.83,
+      139.85,
+      {
+        "de": "Kingston SE",
+        "en": "Kingston SE",
+        "es": "Kingston",
+        "fr": "Kingston",
+        "it": "Kingston SE",
+        "pt": "Kingston"
+      }
+    ]
+  ],
+  "Kjustendil": [
+    [
+      42.28,
+      22.69,
+      {
+        "en": "Kyustendil",
+        "es": "Kyustendil",
+        "fr": "Kyoustendil",
+        "pt": "Kyustendil"
+      }
+    ]
+  ],
+  "Klagenfurt": [
+    [
+      46.62,
+      14.31,
+      { "de": "Klagenfurt am Wörthersee", "it": "Klagenfurt am Wörthersee" }
+    ]
+  ],
+  "Klaipeda": [
+    [
+      55.72,
+      21.12,
+      {
+        "de": "Klaipėda",
+        "en": "Klaipėda",
+        "es": "Klaipėda",
+        "fr": "Klaipėda",
+        "it": "Klaipėda",
+        "pt": "Klaipėda"
+      }
+    ]
+  ],
+  "Koblenz": [
+    [
+      50.35,
+      7.6,
+      { "es": "Coblenza", "fr": "Coblence", "it": "Coblenza", "pt": "Coblença" }
+    ]
+  ],
+  "Komotini": [[41.13, 25.42, { "es": "Komotiní", "fr": "Komotiní" }]],
+  "Konya": [[37.88, 32.47, { "pt": "Cónia" }]],
+  "Korce": [
+    [
+      40.62,
+      20.77,
+      {
+        "de": "Korça",
+        "en": "Korçë",
+        "es": "Korçë",
+        "fr": "Korçë",
+        "it": "Coriza",
+        "pt": "Korçë"
+      }
+    ]
+  ],
+  "Kos": [
+    [36.89, 27.29, { "es": "Cos", "fr": "Cos", "it": "Coo", "pt": "Cós" }]
+  ],
+  "Kosice": [
+    [
+      48.73,
+      21.25,
+      {
+        "de": "Košice",
+        "en": "Košice",
+        "es": "Košice",
+        "fr": "Košice",
+        "it": "Košice",
+        "pt": "Košice"
+      }
+    ]
+  ],
+  "Kruje": [
+    [
+      41.52,
+      19.8,
+      {
+        "de": "Kruja",
+        "en": "Krujë",
+        "es": "Krujë",
+        "fr": "Krujë",
+        "it": "Croia",
+        "pt": "Krujë"
+      }
+    ]
+  ],
+  "Kukes": [
+    [
+      42.08,
+      20.43,
+      {
+        "de": "Kukës",
+        "en": "Kukës",
+        "es": "Kukës",
+        "fr": "Kukës",
+        "it": "Kukës",
+        "pt": "Kukës"
+      }
+    ]
+  ],
+  "Kutahya": [
+    [
+      39.42,
+      29.93,
+      {
+        "de": "Kütahya",
+        "en": "Kütahya",
+        "es": "Kütahya",
+        "fr": "Kütahya",
+        "it": "Kütahya",
+        "pt": "Kütahya"
+      }
+    ]
+  ],
+  "Kwinana": [
+    [-32.24, 115.77, { "de": "Kwinana Beach", "en": "Kwinana Beach" }]
+  ],
+  "Lamia": [[38.9, 22.43, { "es": "Lamía", "fr": "Lamía", "pt": "Lamía" }]],
+  "Larisa": [
+    [
+      39.63,
+      22.42,
+      {
+        "en": "Larissa",
+        "es": "Lárisa",
+        "fr": "Larissa",
+        "it": "Larissa",
+        "pt": "Lárissa"
+      }
+    ]
+  ],
+  "Larnaca": [[34.92, 33.64, { "de": "Larnaka", "es": "Lárnaca" }]],
+  "Las Palmas": [
+    [
+      28.1,
+      -15.43,
+      {
+        "de": "Las Palmas de Gran Canaria",
+        "en": "Las Palmas de Gran Canaria",
+        "es": "Las Palmas de Gran Canaria",
+        "fr": "Las Palmas de Gran Canaria",
+        "it": "Las Palmas de Gran Canaria"
+      }
+    ]
+  ],
+  "Le Havre": [[49.5, 0.1, { "es": "El Havre" }]],
+  "Leipzig": [[51.34, 12.41, { "it": "Lipsia" }]],
+  "Leiria": [[39.74, -8.8, { "es": "Leiría" }]],
+  "Leon": [
+    [
+      42.58,
+      -5.57,
+      {
+        "de": "León",
+        "en": "León",
+        "es": "León",
+        "fr": "León",
+        "it": "León",
+        "pt": "Leão"
+      }
+    ]
+  ],
+  "Lezhe": [
+    [
+      41.79,
+      19.65,
+      {
+        "de": "Lezha",
+        "en": "Lezhë",
+        "es": "Lezhë",
+        "fr": "Lezhë",
+        "it": "Alessio",
+        "pt": "Lezhë"
+      }
+    ]
+  ],
+  "Liege": [
+    [
+      50.63,
+      5.58,
+      {
+        "de": "Lüttich",
+        "en": "Liège",
+        "es": "Lieja",
+        "fr": "Liège",
+        "it": "Liegi",
+        "pt": "Liège"
+      }
+    ]
+  ],
+  "Lille": [[50.65, 3.08, { "it": "Lilla" }]],
+  "Linkoping": [
+    [
+      58.41,
+      15.63,
+      {
+        "de": "Linköping",
+        "en": "Linköping",
+        "es": "Linköping",
+        "fr": "Linköping",
+        "it": "Linköping",
+        "pt": "Linköping"
+      }
+    ]
+  ],
+  "Ljubljana": [
+    [46.06, 14.51, { "es": "Liubliana", "it": "Lubiana", "pt": "Liubliana" }]
+  ],
+  "Logrono": [
+    [
+      42.47,
+      -2.43,
+      {
+        "de": "Logroño",
+        "en": "Logroño",
+        "es": "Logroño",
+        "fr": "Logrogne",
+        "it": "Logroño",
+        "pt": "Logroño"
+      }
+    ]
+  ],
+  "Los Alamos": [[35.89, -106.3, { "es": "Los Álamos" }]],
+  "Los Angeles": [[33.99, -118.18, { "es": "Los Ángeles" }]],
+  "Lovech": [
+    [43.14, 24.72, { "de": "Lowetsch", "fr": "Lovetch", "it": "Loveč" }]
+  ],
+  "Lubeck": [
+    [
+      53.87,
+      10.67,
+      {
+        "de": "Lübeck",
+        "en": "Lübeck",
+        "es": "Lübeck",
+        "fr": "Lübeck",
+        "it": "Lubecca",
+        "pt": "Lübeck"
+      }
+    ]
+  ],
+  "Lublin": [[51.25, 22.57, { "it": "Lublino" }]],
+  "Luleburgaz": [
+    [
+      41.41,
+      27.36,
+      {
+        "de": "Lüleburgaz",
+        "en": "Lüleburgaz",
+        "es": "Lüleburgaz",
+        "it": "Lüleburgaz",
+        "pt": "Lüleburgaz"
+      }
+    ]
+  ],
+  "Lushnje": [
+    [
+      40.94,
+      19.72,
+      {
+        "de": "Lushnja",
+        "en": "Lushnjë",
+        "es": "Lushnjë",
+        "fr": "Lushnjë",
+        "it": "Lushnjë",
+        "pt": "Lushnjë"
+      }
+    ]
+  ],
+  "Luzern": [
+    [
+      47.05,
+      8.28,
+      {
+        "en": "Lucerne",
+        "es": "Lucerna",
+        "fr": "Lucerne",
+        "it": "Lucerna",
+        "pt": "Lucerna"
+      }
+    ]
+  ],
+  "Magdeburg": [
+    [
+      52.13,
+      11.62,
+      {
+        "es": "Magdeburgo",
+        "fr": "Magdebourg",
+        "it": "Magdeburgo",
+        "pt": "Magdeburgo"
+      }
+    ]
+  ],
+  "Mainz": [
+    [49.98, 8.27, { "es": "Maguncia", "fr": "Mayence", "it": "Magonza" }]
+  ],
+  "Malaga": [
+    [
+      36.72,
+      -4.42,
+      { "de": "Málaga", "en": "Málaga", "es": "Málaga", "pt": "Málaga" }
+    ]
+  ],
+  "Manisa": [[38.63, 27.44, { "it": "Magnesia" }]],
+  "Marseille": [
+    [43.29, 5.37, { "es": "Marsella", "it": "Marsiglia", "pt": "Marselha" }]
+  ],
+  "Merida": [
+    [
+      38.91,
+      -6.34,
+      {
+        "de": "Mérida",
+        "en": "Mérida",
+        "es": "Mérida",
+        "fr": "Mérida",
+        "it": "Mérida",
+        "pt": "Mérida"
+      }
+    ]
+  ],
+  "Mersin": [[36.8, 34.62, { "it": "Mersina" }]],
+  "Messina": [[38.2, 15.55, { "fr": "Messine" }]],
+  "Middelburg": [[51.5, 3.61, { "fr": "Middelbourg", "pt": "Midelburgo" }]],
+  "Milan": [
+    [
+      45.47,
+      9.2,
+      { "de": "Mailand", "es": "Milán", "it": "Milano", "pt": "Milão" }
+    ]
+  ],
+  "Minneapolis": [[44.98, -93.25, { "es": "Mineápolis" }]],
+  "Monterey": [[36.6, -121.89, { "es": "Monterrey" }]],
+  "Mugla": [
+    [
+      37.22,
+      28.36,
+      {
+        "de": "Muğla",
+        "en": "Muğla",
+        "es": "Muğla",
+        "fr": "Muğla",
+        "it": "Muğla",
+        "pt": "Muğla"
+      }
+    ]
+  ],
+  "Mulhouse": [[47.75, 7.35, { "de": "Mülhausen" }]],
+  "Munich": [
+    [
+      48.13,
+      11.57,
+      {
+        "de": "München",
+        "es": "Múnich",
+        "it": "Monaco di Baviera",
+        "pt": "Munique"
+      }
+    ]
+  ],
+  "Munster": [
+    [
+      51.97,
+      7.62,
+      {
+        "de": "Münster",
+        "en": "Münster",
+        "es": "Münster",
+        "fr": "Münster",
+        "it": "Münster",
+        "pt": "Münster"
+      }
+    ]
+  ],
+  "Murcia": [[37.98, -1.13, { "fr": "Murcie", "pt": "Múrcia" }]],
+  "Mus": [
+    [
+      38.75,
+      41.5,
+      {
+        "de": "Muş",
+        "en": "Muş",
+        "es": "Muş",
+        "fr": "Muş",
+        "it": "Muş",
+        "pt": "Muş"
+      }
+    ]
+  ],
+  "Naples": [
+    [
+      40.84,
+      14.24,
+      { "de": "Neapel", "es": "Nápoles", "it": "Napoli", "pt": "Nápoles" }
+    ]
+  ],
+  "Neuchatel": [
+    [
+      47.0,
+      6.92,
+      {
+        "de": "Neuenburg",
+        "en": "Neuchâtel",
+        "es": "Neuchâtel",
+        "fr": "Neuchâtel",
+        "it": "Neuchâtel",
+        "pt": "Neuchâtel"
+      }
+    ]
+  ],
+  "Nevsehir": [
+    [
+      38.62,
+      34.72,
+      {
+        "de": "Nevşehir",
+        "en": "Nevşehir",
+        "es": "Nevşehir",
+        "fr": "Nevşehir",
+        "it": "Nevşehir",
+        "pt": "Nevşehir"
+      }
+    ]
+  ],
+  "New Iberia": [
+    [30.0, -91.82, { "es": "Nueva Iberia", "fr": "La Nouvelle-Ibérie" }]
+  ],
+  "New Orleans": [
+    [
+      30.0,
+      -90.04,
+      {
+        "es": "Nueva Orleans",
+        "fr": "La Nouvelle-Orléans",
+        "pt": "Nova Orleães"
+      }
+    ]
+  ],
+  "New York": [
+    [
+      40.75,
+      -73.98,
+      {
+        "de": "New York City",
+        "en": "New York City",
+        "es": "Nueva York",
+        "pt": "Nova Iorque"
+      }
+    ]
+  ],
+  "Nice": [[43.72, 7.26, { "de": "Nizza", "es": "Niza", "it": "Nizza" }]],
+  "Nicosia": [
+    [35.17, 33.37, { "de": "Nikosia", "fr": "Nicosie", "pt": "Nicósia" }]
+  ],
+  "Nigde": [
+    [
+      37.98,
+      34.69,
+      {
+        "de": "Niğde",
+        "en": "Niğde",
+        "es": "Niğde",
+        "fr": "Niğde",
+        "it": "Niğde",
+        "pt": "Niğde"
+      }
+    ]
+  ],
+  "Nimes": [
+    [
+      43.83,
+      4.35,
+      {
+        "de": "Nîmes",
+        "en": "Nîmes",
+        "fr": "Nîmes",
+        "it": "Nîmes",
+        "pt": "Nîmes"
+      }
+    ]
+  ],
+  "Norrkoping": [
+    [
+      58.6,
+      16.18,
+      {
+        "de": "Norrköping",
+        "en": "Norrköping",
+        "es": "Norrköping",
+        "fr": "Norrköping",
+        "it": "Norrköping",
+        "pt": "Norrköping"
+      }
+    ]
+  ],
+  "Novara": [[45.45, 8.62, { "fr": "Novare" }]],
+  "Novi Sad": [[45.25, 19.85, { "de": "Neusatz" }]],
+  "Nuremberg": [
+    [
+      49.45,
+      11.08,
+      {
+        "de": "Nürnberg",
+        "es": "Núremberg",
+        "it": "Norimberga",
+        "pt": "Nuremberga"
+      }
+    ]
+  ],
+  "Nyiregyhaza": [
+    [
+      47.97,
+      21.72,
+      {
+        "de": "Nyíregyháza",
+        "en": "Nyíregyháza",
+        "es": "Nyíregyháza",
+        "fr": "Nyíregyháza",
+        "it": "Nyíregyháza",
+        "pt": "Nyíregyháza"
+      }
+    ]
+  ],
+  "Nykoping": [
+    [
+      58.76,
+      17.02,
+      {
+        "de": "Nyköping",
+        "en": "Nyköping",
+        "es": "Nyköping",
+        "fr": "Nyköping",
+        "it": "Nyköping",
+        "pt": "Nyköping"
+      }
+    ]
+  ],
+  "Oldenburg": [
+    [
+      53.13,
+      8.22,
+      { "es": "Oldemburgo", "fr": "Oldenbourg", "pt": "Oldemburgo" }
+    ]
+  ],
+  "Olomouc": [[49.63, 17.25, { "de": "Olmütz" }]],
+  "Ontario": [[44.03, -116.96, { "pt": "Ontário" }]],
+  "Opole": [[50.68, 17.93, { "de": "Oppeln" }]],
+  "Oporto": [
+    [
+      41.15,
+      -8.62,
+      {
+        "de": "Porto",
+        "en": "Porto",
+        "fr": "Porto",
+        "it": "Porto",
+        "pt": "Porto"
+      }
+    ]
+  ],
+  "Ordu": [[41.0, 37.87, { "de": "Altınordu" }]],
+  "Orebro": [
+    [
+      59.28,
+      15.22,
+      {
+        "de": "Örebro",
+        "en": "Örebro",
+        "es": "Örebro",
+        "fr": "Örebro",
+        "it": "Örebro",
+        "pt": "Örebro"
+      }
+    ]
+  ],
+  "Ornskoldsvik": [
+    [
+      63.32,
+      18.72,
+      {
+        "de": "Örnsköldsvik",
+        "en": "Örnsköldsvik",
+        "es": "Örnsköldsvik",
+        "fr": "Örnsköldsvik",
+        "it": "Örnsköldsvik",
+        "pt": "Örnsköldsvik"
+      }
+    ]
+  ],
+  "Ostersund": [
+    [
+      63.18,
+      14.65,
+      {
+        "de": "Östersund",
+        "en": "Östersund",
+        "es": "Östersund",
+        "fr": "Östersund",
+        "it": "Östersund",
+        "pt": "Östersund"
+      }
+    ]
+  ],
+  "Pafos": [
+    [
+      34.76,
+      32.42,
+      { "de": "Paphos", "en": "Paphos", "fr": "Paphos", "it": "Pafo" }
+    ]
+  ],
+  "Palermo": [[38.13, 13.35, { "fr": "Palerme" }]],
+  "Palma": [
+    [
+      39.57,
+      2.65,
+      {
+        "en": "Palma de Mallorca",
+        "es": "Palma de Mallorca",
+        "fr": "Palma de Majorque",
+        "it": "Palma di Maiorca",
+        "pt": "Palma de Maiorca"
+      }
+    ]
+  ],
+  "Palmerston North": [[-40.35, 175.61, { "es": "Palmerston Norte" }]],
+  "Pamplona": [[42.82, -1.65, { "fr": "Pampelune" }]],
+  "Panevezys": [
+    [
+      55.74,
+      24.37,
+      {
+        "de": "Panevėžys",
+        "es": "Panevėžys",
+        "fr": "Panevėžys",
+        "it": "Panevėžys",
+        "pt": "Panevėžys"
+      }
+    ]
+  ],
+  "Parma": [[44.81, 10.32, { "fr": "Parme" }]],
+  "Parnu": [
+    [
+      58.37,
+      24.51,
+      {
+        "de": "Pärnu",
+        "en": "Pärnu",
+        "es": "Pärnu",
+        "fr": "Pärnu",
+        "it": "Pärnu",
+        "pt": "Pärnu"
+      }
+    ]
+  ],
+  "Paso Robles": [
+    [
+      35.63,
+      -120.69,
+      {
+        "de": "El Paso de Robles",
+        "es": "El Paso de Robles",
+        "pt": "El Paso de Robles"
+      }
+    ]
+  ],
+  "Passau": [[48.58, 13.44, { "it": "Passavia" }]],
+  "Patra": [
+    [
+      38.23,
+      21.73,
+      {
+        "de": "Patras",
+        "en": "Patras",
+        "es": "Patras",
+        "fr": "Patras",
+        "it": "Patrasso",
+        "pt": "Pátras"
+      }
+    ]
+  ],
+  "Pecs": [
+    [
+      46.08,
+      18.22,
+      {
+        "de": "Pécs",
+        "en": "Pécs",
+        "es": "Pécs",
+        "fr": "Pécs",
+        "it": "Pécs",
+        "pt": "Pécs"
+      }
+    ]
+  ],
+  "Permet": [
+    [
+      40.23,
+      20.35,
+      {
+        "de": "Përmet",
+        "en": "Përmet",
+        "es": "Përmet",
+        "fr": "Përmet",
+        "it": "Përmet",
+        "pt": "Përmet"
+      }
+    ]
+  ],
+  "Perugia": [[43.11, 12.39, { "fr": "Pérouse", "pt": "Perúgia" }]],
+  "Peshkopi": [[41.68, 20.43, { "de": "Peshkopia" }]],
+  "Philadelphia": [
+    [
+      40.0,
+      -75.17,
+      {
+        "es": "Filadelfia",
+        "fr": "Philadelphie",
+        "it": "Filadelfia",
+        "pt": "Filadélfia"
+      }
+    ]
+  ],
+  "Pisa": [[43.72, 10.4, { "fr": "Pise" }]],
+  "Pitesti": [
+    [
+      44.86,
+      24.88,
+      {
+        "de": "Pitești",
+        "en": "Pitești",
+        "es": "Pitești",
+        "fr": "Pitești",
+        "it": "Pitești",
+        "pt": "Pitești"
+      }
+    ]
+  ],
+  "Pleven": [[43.42, 24.61, { "de": "Plewen" }]],
+  "Plovdiv": [[42.15, 24.75, { "de": "Plowdiw" }]],
+  "Polatli": [
+    [
+      39.58,
+      32.15,
+      {
+        "de": "Polatlı",
+        "en": "Polatlı",
+        "es": "Polatlı",
+        "fr": "Polatlı",
+        "it": "Polatlı",
+        "pt": "Polatlı"
+      }
+    ]
+  ],
+  "Polygyros": [[40.38, 23.45, { "es": "Polígiros", "pt": "Polígiros" }]],
+  "Port Augusta": [[-32.49, 137.77, { "es": "Puerto Augusta" }]],
+  "Poznan": [
+    [
+      52.41,
+      16.9,
+      {
+        "de": "Posen",
+        "en": "Poznań",
+        "es": "Poznań",
+        "fr": "Poznań",
+        "it": "Poznań",
+        "pt": "Poznań"
+      }
+    ]
+  ],
+  "Prague": [
+    [
+      50.09,
+      14.46,
+      { "de": "Prag", "es": "Praga", "it": "Praga", "pt": "Praga" }
+    ]
+  ],
+  "Presov": [
+    [
+      49.0,
+      21.24,
+      {
+        "de": "Prešov",
+        "en": "Prešov",
+        "es": "Prešov",
+        "fr": "Prešov",
+        "it": "Prešov",
+        "pt": "Prešov"
+      }
+    ]
+  ],
+  "Puke": [
+    [
+      42.03,
+      19.88,
+      {
+        "de": "Puka",
+        "en": "Pukë",
+        "es": "Pukë",
+        "fr": "Pukë",
+        "it": "Pukë",
+        "pt": "Pukë"
+      }
+    ]
+  ],
+  "Pula": [[44.87, 13.85, { "it": "Pola" }]],
+  "Pyrgos": [[37.68, 21.45, { "es": "Pirgos" }]],
+  "Ragusa": [[36.93, 14.73, { "fr": "Raguse" }]],
+  "Raton": [[36.9, -104.44, { "es": "Ratón" }]],
+  "Ravenna": [
+    [44.42, 12.22, { "es": "Rávena", "fr": "Ravenne", "pt": "Ravena" }]
+  ],
+  "Razgrad": [[43.53, 26.54, { "de": "Rasgrad" }]],
+  "Reggio Calabria": [
+    [
+      38.11,
+      15.64,
+      {
+        "es": "Regio de Calabria",
+        "fr": "Reggio de Calabre",
+        "pt": "Reggio di Calabria"
+      }
+    ]
+  ],
+  "Resita": [
+    [
+      45.3,
+      21.89,
+      {
+        "de": "Reschitz",
+        "en": "Reșița",
+        "es": "Reșița",
+        "fr": "Reșița",
+        "it": "Reșița",
+        "pt": "Reșița"
+      }
+    ]
+  ],
+  "Reykjavík": [[64.15, -21.95, { "es": "Reikiavik", "fr": "Reykjavik" }]],
+  "Rezekne": [
+    [
+      56.5,
+      27.32,
+      {
+        "de": "Rēzekne",
+        "en": "Rēzekne",
+        "es": "Rēzekne",
+        "fr": "Rēzekne",
+        "it": "Rēzekne"
+      }
+    ]
+  ],
+  "Rodos": [
+    [
+      36.44,
+      28.22,
+      {
+        "de": "Rhodos",
+        "en": "Rhodes",
+        "es": "Rodas",
+        "fr": "Rhodes",
+        "it": "Rodi",
+        "pt": "Rodes"
+      }
+    ]
+  ],
+  "Rome": [
+    [41.9, 12.48, { "de": "Rom", "es": "Roma", "it": "Roma", "pt": "Roma" }]
+  ],
+  "Rreshen": [
+    [
+      41.78,
+      19.82,
+      {
+        "de": "Rrëshen",
+        "en": "Rrëshen",
+        "es": "Rrëshen",
+        "fr": "Rrëshen",
+        "it": "Rrëshen",
+        "pt": "Rrëshen"
+      }
+    ]
+  ],
+  "Ruse": [[43.85, 25.97, { "de": "Russe", "fr": "Roussé" }]],
+  "Rzeszow": [
+    [
+      50.07,
+      22.0,
+      {
+        "de": "Rzeszów",
+        "en": "Rzeszów",
+        "es": "Resovia",
+        "fr": "Rzeszów",
+        "it": "Rzeszów",
+        "pt": "Rzeszów"
+      }
+    ]
+  ],
+  "Saarbrucken": [
+    [
+      49.25,
+      6.97,
+      {
+        "de": "Saarbrücken",
+        "en": "Saarbrücken",
+        "es": "Sarrebruck",
+        "fr": "Sarrebruck",
+        "it": "Saarbrücken",
+        "pt": "Saarbrücken"
+      }
+    ]
+  ],
+  "Saint Augustine": [
+    [
+      29.89,
+      -81.31,
+      {
+        "de": "St. Augustine",
+        "en": "St. Augustine",
+        "es": "San Agustín",
+        "it": "St. Augustine"
+      }
+    ]
+  ],
+  "Saint Charles": [
+    [
+      38.78,
+      -90.51,
+      { "en": "St. Charles", "es": "St. Charles", "pt": "St. Charles" }
+    ]
+  ],
+  "Saint Cloud": [
+    [
+      45.56,
+      -94.16,
+      {
+        "de": "St. Cloud",
+        "en": "St. Cloud",
+        "es": "St. Cloud",
+        "pt": "St. Cloud"
+      }
+    ]
+  ],
+  "Saint George": [
+    [
+      37.1,
+      -113.58,
+      {
+        "de": "St. George",
+        "en": "St. George",
+        "es": "St. George",
+        "it": "St. George",
+        "pt": "St. George"
+      }
+    ]
+  ],
+  "Saint Joseph": [
+    [
+      39.77,
+      -94.85,
+      {
+        "en": "St. Joseph",
+        "es": "St. Joseph",
+        "it": "St. Joseph",
+        "pt": "St. Joseph"
+      }
+    ]
+  ],
+  "Saint Louis": [
+    [
+      38.64,
+      -90.24,
+      {
+        "de": "St. Louis",
+        "en": "St. Louis",
+        "es": "San Luis",
+        "fr": "Saint-Louis",
+        "pt": "St. Louis"
+      }
+    ]
+  ],
+  "Saint-Etienne": [
+    [
+      45.43,
+      4.38,
+      {
+        "de": "Saint-Étienne",
+        "en": "Saint-Étienne",
+        "es": "Saint-Étienne",
+        "fr": "Saint-Étienne",
+        "it": "Saint-Étienne",
+        "pt": "Saint-Étienne"
+      }
+    ]
+  ],
+  "Salamanca": [[40.97, -5.67, { "fr": "Salamanque" }]],
+  "Salerno": [[40.68, 14.77, { "fr": "Salerne" }]],
+  "Salgotarjan": [
+    [
+      48.1,
+      19.83,
+      {
+        "de": "Salgótarján",
+        "en": "Salgótarján",
+        "es": "Salgótarján",
+        "fr": "Salgótarján",
+        "it": "Salgótarján",
+        "pt": "Salgótarján"
+      }
+    ]
+  ],
+  "San Francisco": [[37.77, -122.42, { "pt": "São Francisco" }]],
+  "San Jose": [
+    [
+      37.3,
+      -121.85,
+      { "de": "San José", "es": "San José", "fr": "San José", "pt": "São José" }
+    ]
+  ],
+  "Santa Barbara": [
+    [34.43, -119.72, { "es": "Santa Bárbara", "pt": "Santa Bárbara" }]
+  ],
+  "Santa Fe": [[35.69, -105.94, { "pt": "Santa Fé" }]],
+  "Santa Maria": [[34.94, -120.44, { "es": "Santa María" }]],
+  "Santarem": [
+    [
+      39.23,
+      -8.68,
+      {
+        "de": "Santarém",
+        "en": "Santarém",
+        "es": "Santarém",
+        "fr": "Santarém",
+        "it": "Santarém",
+        "pt": "Santarém"
+      }
+    ]
+  ],
+  "Sarande": [
+    [
+      39.88,
+      20.0,
+      {
+        "de": "Saranda",
+        "en": "Saranda",
+        "es": "Sarandë",
+        "fr": "Saranda",
+        "it": "Saranda",
+        "pt": "Sarandë"
+      }
+    ]
+  ],
+  "Sassari": [[40.73, 8.57, { "es": "Sácer" }]],
+  "Satu Mare": [[47.79, 22.89, { "de": "Sathmar" }]],
+  "Schaffhausen": [[47.71, 8.63, { "fr": "Schaffhouse", "it": "Sciaffusa" }]],
+  "Schwyz": [[47.02, 8.65, { "fr": "Schwytz", "it": "Svitto" }]],
+  "Serres": [[41.09, 23.55, { "fr": "Serrès" }]],
+  "Sevilla": [
+    [
+      37.41,
+      -5.98,
+      { "en": "Seville", "fr": "Séville", "it": "Siviglia", "pt": "Sevilha" }
+    ]
+  ],
+  "Shannon": [[52.7, -8.86, { "es": "Shannon Town", "it": "Shannon Town" }]],
+  "Shkoder": [
+    [
+      42.07,
+      19.52,
+      {
+        "de": "Shkodra",
+        "en": "Shkodër",
+        "es": "Shkodër",
+        "fr": "Shkodër",
+        "it": "Scutari",
+        "pt": "Shkodër"
+      }
+    ]
+  ],
+  "Shumen": [
+    [43.27, 26.93, { "de": "Schumen", "fr": "Choumen", "it": "Šumen" }]
+  ],
+  "Siauliai": [
+    [
+      55.94,
+      23.33,
+      {
+        "de": "Šiauliai",
+        "en": "Šiauliai",
+        "es": "Šiauliai",
+        "fr": "Šiauliai",
+        "it": "Šiauliai",
+        "pt": "Šiauliai"
+      }
+    ]
+  ],
+  "Sibenik": [
+    [
+      43.73,
+      15.91,
+      {
+        "de": "Šibenik",
+        "en": "Šibenik",
+        "es": "Šibenik",
+        "fr": "Šibenik",
+        "it": "Sebenico",
+        "pt": "Šibenik"
+      }
+    ]
+  ],
+  "Sibiu": [[45.8, 24.14, { "de": "Hermannstadt" }]],
+  "Siena": [[43.32, 11.35, { "fr": "Sienne" }]],
+  "Sinop": [[42.02, 35.15, { "es": "Sinope", "it": "Sinope" }]],
+  "Skopje": [[42.0, 21.43, { "es": "Skopie" }]],
+  "Sliven": [[42.68, 26.33, { "de": "Sliwen" }]],
+  "Sodankyla": [
+    [
+      67.42,
+      26.6,
+      {
+        "de": "Sodankylä",
+        "en": "Sodankylä",
+        "es": "Sodankylä",
+        "fr": "Sodankylä",
+        "it": "Sodankylä",
+        "pt": "Sodankylä"
+      }
+    ]
+  ],
+  "Sofia": [[42.69, 23.31, { "es": "Sofía", "pt": "Sófia" }]],
+  "Soke": [
+    [37.75, 27.41, { "de": "Söke", "en": "Söke", "fr": "Söke", "it": "Söke" }]
+  ],
+  "Solothurn": [
+    [
+      47.21,
+      7.54,
+      { "es": "Soleura", "fr": "Soleure", "it": "Soletta", "pt": "Soleura" }
+    ]
+  ],
+  "Sparti": [
+    [
+      37.07,
+      22.43,
+      {
+        "de": "Sparta",
+        "es": "Esparta",
+        "fr": "Sparte",
+        "it": "Sparta",
+        "pt": "Esparta"
+      }
+    ]
+  ],
+  "Stara Zagora": [[42.42, 25.62, { "de": "Stara Sagora" }]],
+  "Stockholm": [
+    [59.35, 18.1, { "es": "Estocolmo", "it": "Stoccolma", "pt": "Estocolmo" }]
+  ],
+  "Stuttgart": [[48.78, 9.2, { "it": "Stoccarda", "pt": "Estugarda" }]],
+  "Syracuse": [
+    [
+      37.07,
+      15.29,
+      { "de": "Syrakus", "es": "Siracusa", "it": "Siracusa", "pt": "Siracusa" }
+    ],
+    [43.05, -76.15, { "es": "Siracusa" }]
+  ],
+  "Szczecin": [
+    [53.42, 14.53, { "de": "Stettin", "it": "Stettino", "pt": "Estetino" }]
+  ],
+  "Szeged": [[46.25, 20.15, { "it": "Seghedino" }]],
+  "Szekesfehervar": [
+    [
+      47.19,
+      18.41,
+      {
+        "de": "Székesfehérvár",
+        "en": "Székesfehérvár",
+        "es": "Székesfehérvár",
+        "fr": "Székesfehérvár",
+        "it": "Székesfehérvár",
+        "pt": "Székesfehérvár"
+      }
+    ]
+  ],
+  "Szekszard": [
+    [
+      46.34,
+      18.71,
+      {
+        "de": "Szekszárd",
+        "en": "Szekszárd",
+        "es": "Szekszárd",
+        "fr": "Szekszárd",
+        "it": "Szekszárd",
+        "pt": "Szekszárd"
+      }
+    ]
+  ],
+  "Tallinn": [[59.43, 24.73, { "es": "Tallin" }]],
+  "Taranto": [
+    [
+      40.51,
+      17.23,
+      { "de": "Tarent", "es": "Tarento", "fr": "Tarente", "pt": "Tarento" }
+    ]
+  ],
+  "Targoviste": [
+    [
+      44.94,
+      25.46,
+      {
+        "de": "Tergowisch",
+        "en": "Târgoviște",
+        "es": "Târgoviște",
+        "fr": "Târgoviște",
+        "it": "Târgoviște",
+        "pt": "Târgoviște"
+      }
+    ]
+  ],
+  "Targu Jiu": [
+    [
+      45.05,
+      23.27,
+      {
+        "de": "Tergoschwyl",
+        "en": "Târgu Jiu",
+        "es": "Târgu Jiu",
+        "fr": "Târgu Jiu",
+        "it": "Târgu Jiu",
+        "pt": "Târgu Jiu"
+      }
+    ]
+  ],
+  "Tarsus": [
+    [
+      36.92,
+      34.88,
+      { "es": "Tarso", "fr": "Tarse", "it": "Tarso", "pt": "Tarso" }
+    ]
+  ],
+  "Tatabanya": [
+    [
+      47.55,
+      18.43,
+      {
+        "de": "Tatabánya",
+        "en": "Tatabánya",
+        "es": "Tatabánya",
+        "fr": "Tatabánya",
+        "it": "Tatabánya",
+        "pt": "Tatabánya"
+      }
+    ]
+  ],
+  "Taupo": [[-38.69, 176.08, { "en": "Taupō" }]],
+  "Tekirdag": [
+    [
+      40.99,
+      27.51,
+      {
+        "de": "Tekirdağ",
+        "en": "Tekirdağ",
+        "es": "Tekirdağ",
+        "fr": "Tekirdağ",
+        "it": "Tekirdağ",
+        "pt": "Tekirdağ"
+      }
+    ]
+  ],
+  "Tepelene": [
+    [
+      40.28,
+      20.03,
+      {
+        "de": "Tepelena",
+        "en": "Tepelenë",
+        "es": "Tepelenë",
+        "fr": "Tepelen",
+        "it": "Tepelenë",
+        "pt": "Tepelenë"
+      }
+    ]
+  ],
+  "The Hague": [
+    [
+      52.08,
+      4.27,
+      {
+        "de": "Den Haag",
+        "es": "La Haya",
+        "fr": "La Haye",
+        "it": "L'Aia",
+        "pt": "Haia"
+      }
+    ]
+  ],
+  "Timisoara": [
+    [
+      45.76,
+      21.22,
+      {
+        "en": "Timișoara",
+        "es": "Timișoara",
+        "fr": "Timișoara",
+        "it": "Timișoara",
+        "pt": "Timișoara"
+      }
+    ]
+  ],
+  "Toledo": [[39.87, -4.02, { "fr": "Tolède" }]],
+  "Toulon": [[43.13, 5.92, { "es": "Tolón", "it": "Tolone" }]],
+  "Toulouse": [[43.62, 1.45, { "it": "Tolosa" }]],
+  "Trabzon": [
+    [
+      40.98,
+      39.72,
+      {
+        "es": "Trebisonda",
+        "fr": "Trébizonde",
+        "it": "Trebisonda",
+        "pt": "Trebizonda"
+      }
+    ]
+  ],
+  "Treviso": [[45.67, 12.24, { "fr": "Trévise" }]],
+  "Trieste": [[45.65, 13.8, { "de": "Triest" }]],
+  "Tripoli": [[37.51, 22.38, { "es": "Trípoli", "pt": "Trípoli" }]],
+  "Turangi": [
+    [-38.99, 175.81, { "en": "Tūrangi", "it": "Tūrangi", "pt": "Tūrangi" }]
+  ],
+  "Turin": [[45.07, 7.67, { "es": "Turín", "it": "Torino", "pt": "Turim" }]],
+  "Ulm": [[48.4, 10.0, { "it": "Ulma" }]],
+  "Uppsala": [[59.86, 17.64, { "es": "Upsala" }]],
+  "Usak": [
+    [
+      38.68,
+      29.42,
+      {
+        "de": "Uşak",
+        "en": "Uşak",
+        "es": "Uşak",
+        "fr": "Uşak",
+        "it": "Uşak",
+        "pt": "Uşak"
+      }
+    ]
+  ],
+  "Uzhhorod": [
+    [
+      48.63,
+      22.25,
+      { "de": "Uschhorod", "es": "Úzhgorod", "fr": "Oujhorod", "it": "Užhorod" }
+    ]
+  ],
+  "Vac": [
+    [
+      47.78,
+      19.13,
+      {
+        "de": "Vác",
+        "en": "Vác",
+        "es": "Vác",
+        "fr": "Vác",
+        "it": "Vác",
+        "pt": "Vác"
+      }
+    ]
+  ],
+  "Valencia": [[39.49, -0.4, { "fr": "Valence", "pt": "Valência" }]],
+  "Varna": [[43.22, 27.9, { "de": "Warna" }]],
+  "Vatican City": [
+    [
+      41.9,
+      12.45,
+      {
+        "de": "Vatikanstadt",
+        "es": "Ciudad del Vaticano",
+        "fr": "Cité du Vatican",
+        "it": "Città del Vaticano",
+        "pt": "Vaticano"
+      }
+    ]
+  ],
+  "Vaxjo": [
+    [
+      56.88,
+      14.82,
+      {
+        "de": "Växjö",
+        "en": "Växjö",
+        "es": "Växjö",
+        "fr": "Växjö",
+        "it": "Växjö",
+        "pt": "Växjö"
+      }
+    ]
+  ],
+  "Veszprem": [
+    [
+      47.09,
+      17.91,
+      {
+        "de": "Veszprém",
+        "en": "Veszprém",
+        "es": "Veszprém",
+        "fr": "Veszprém",
+        "it": "Veszprém",
+        "pt": "Veszprém"
+      }
+    ]
+  ],
+  "Viana Do Castelo": [
+    [
+      41.7,
+      -8.84,
+      {
+        "de": "Viana do Castelo",
+        "en": "Viana do Castelo",
+        "es": "Viana do Castelo",
+        "fr": "Viana do Castelo",
+        "it": "Viana do Castelo",
+        "pt": "Viana do Castelo"
+      }
+    ]
+  ],
+  "Vienna": [
+    [
+      48.2,
+      16.36,
+      { "de": "Wien", "es": "Viena", "fr": "Vienne", "pt": "Viena" }
+    ]
+  ],
+  "Vilnius": [[54.68, 25.32, { "es": "Vilna" }]],
+  "Vitoria": [
+    [
+      42.85,
+      -2.67,
+      {
+        "de": "Vitoria-Gasteiz",
+        "en": "Vitoria-Gasteiz",
+        "fr": "Vitoria-Gasteiz",
+        "pt": "Vitoria-Gasteiz"
+      }
+    ]
+  ],
+  "Vlore": [
+    [
+      40.48,
+      19.5,
+      {
+        "de": "Vlora",
+        "en": "Vlorë",
+        "es": "Vlorë",
+        "fr": "Vlora",
+        "it": "Valona",
+        "pt": "Vlorë"
+      }
+    ]
+  ],
+  "Vraca": [
+    [
+      43.21,
+      23.56,
+      {
+        "de": "Wraza",
+        "en": "Vratsa",
+        "es": "Vratsa",
+        "fr": "Vratsa",
+        "pt": "Vratsa"
+      }
+    ]
+  ],
+  "Warsaw": [
+    [
+      52.25,
+      21.0,
+      {
+        "de": "Warschau",
+        "es": "Varsovia",
+        "fr": "Varsovie",
+        "it": "Varsavia",
+        "pt": "Varsóvia"
+      }
+    ]
+  ],
+  "Washington": [[38.9, -77.01, { "es": "Washington D. C." }]],
+  "Whakatane": [
+    [
+      -37.96,
+      176.98,
+      { "de": "Whakatāne", "en": "Whakatāne", "pt": "Whakatāne" }
+    ]
+  ],
+  "Wroclaw": [
+    [
+      51.11,
+      17.03,
+      {
+        "de": "Breslau",
+        "en": "Wrocław",
+        "es": "Breslavia",
+        "fr": "Wrocław",
+        "it": "Breslavia",
+        "pt": "Wrocław"
+      }
+    ]
+  ],
+  "Wurzburg": [
+    [
+      49.8,
+      9.95,
+      {
+        "de": "Würzburg",
+        "en": "Würzburg",
+        "es": "Wurzburgo",
+        "fr": "Wurtzbourg",
+        "it": "Würzburg",
+        "pt": "Wurtzburgo"
+      }
+    ]
+  ],
+  "Xanthi": [[41.14, 24.88, { "es": "Xánthi", "fr": "Xánthi", "pt": "Xanti" }]],
+  "York": [[53.97, -1.08, { "pt": "Iorque" }]],
+  "Zadar": [[44.12, 15.26, { "it": "Zara" }]],
+  "Zagreb": [[45.8, 16.0, { "it": "Zagabria" }]],
+  "Zalau": [
+    [
+      47.18,
+      23.06,
+      {
+        "de": "Zillenmarkt",
+        "en": "Zalău",
+        "es": "Zalău",
+        "fr": "Zalău",
+        "it": "Zalău",
+        "pt": "Zalău"
+      }
+    ]
+  ],
+  "Zaragoza": [
+    [
+      41.65,
+      -0.89,
+      {
+        "de": "Saragossa",
+        "fr": "Saragosse",
+        "it": "Saragozza",
+        "pt": "Saragoça"
+      }
+    ]
+  ],
+  "Zielona Gora": [
+    [
+      51.95,
+      15.5,
+      {
+        "de": "Zielona Góra",
+        "en": "Zielona Góra",
+        "es": "Zielona Góra",
+        "fr": "Zielona Góra",
+        "it": "Zielona Góra",
+        "pt": "Zielona Góra"
+      }
+    ]
+  ],
+  "Zilina": [
+    [
+      49.22,
+      18.75,
+      {
+        "de": "Žilina",
+        "en": "Žilina",
+        "es": "Žilina",
+        "fr": "Žilina",
+        "it": "Žilina",
+        "pt": "Žilina"
+      }
+    ]
+  ],
+  "Zlin": [
+    [
+      49.23,
+      17.65,
+      {
+        "de": "Zlín",
+        "en": "Zlín",
+        "es": "Zlín",
+        "fr": "Zlín",
+        "it": "Zlín",
+        "pt": "Zlín"
+      }
+    ]
+  ],
+  "Zug": [[47.18, 8.49, { "fr": "Zoug", "it": "Zugo" }]],
+  "Århus": [
+    [
+      56.16,
+      10.21,
+      {
+        "de": "Aarhus",
+        "en": "Aarhus",
+        "es": "Aarhus",
+        "fr": "Aarhus",
+        "it": "Aarhus",
+        "pt": "Aarhus"
+      }
+    ]
+  ]
+}
