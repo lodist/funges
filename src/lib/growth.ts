@@ -42,6 +42,10 @@ export interface Bio {
    *  tender crop's season ends with the air (seasonAir). Year files from before
    *  21 Nov 2026 lack it, and their crops are picked as before. */
   tmin?: number;
+  /** For a cool-season crop with early varieties, their days: where its main
+   *  crop is too slow for the season, the calendar grows it from those
+   *  (CropYear.early; year files from 23 Nov 2026 on). */
+  early?: number;
 }
 
 /** The place, as the model reads it. */
@@ -94,6 +98,7 @@ const HALF_YEAR = 184; // days from 1 July to 1 January: the south's year starts
 const ONIONS = new Set(['onion', 'onion_sets']);
 const ONION_SEED = 28; // days of leaves onions from seed need before they bulb (sets: 21)
 const ONION_MILD = 5; // C: no day's normal colder, onions are sown in autumn (the builder's)
+const BULB_AIR = (55 - 32) / 1.8; // C: the bottom of the onion's optimum, from which its bulbs grow (the builder's)
 const RIPEN_WARM = new Set(['melon', 'watermelon']); // picked until the air cools, frost or not
 const MONTH_START = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
 const MONTH_OF = Array.from({ length: YEAR }, (_, d) => {
@@ -150,21 +155,22 @@ function dayLength(lat: number, d: number) {
   return 24 - (24 / Math.PI) * Math.acos(Math.min(1, Math.max(-1, x)));
 }
 
-/** The day onions start to bulb: when the days first reach the local type's
- *  length (short-day within 30 degrees of the equator, intermediate to 36,
- *  long-day beyond; intermediate where the days stay under 15 h and the winter
- *  is mild, as onions are sown in autumn there: the builder's bulb_length). */
+/** The day onions start to bulb: the first day the days have reached the
+ *  local type's length (short-day within 30 degrees of the equator,
+ *  intermediate to 36, long-day beyond; intermediate where the days stay under
+ *  15 h and the winter is mild, as onions are sown in autumn there: the
+ *  builder's bulb_length) and the air the bottom of the onion's optimum
+ *  (BULB_AIR); NEVER where the long days never get that warm, day 171 where
+ *  the days never reach that length (the builder's bulbing). */
 function bulbing(place: GrowthPlace) {
   const days = Array.from({ length: YEAR }, (_, d) => dayLength(place.lat, d));
+  const air = daily(place.temps);
   let length = place.lat < 30 ? 12 : place.lat < 36 ? 13.5 : 15;
-  if (
-    length === 15 &&
-    Math.max(...days) < 15 &&
-    Math.min(...daily(place.temps)) >= ONION_MILD
-  )
+  if (length === 15 && Math.max(...days) < 15 && Math.min(...air) >= ONION_MILD)
     length = 13.5;
-  for (let d = 0; d < 182; d++) if (days[d] >= length) return d;
-  return 171;
+  if (!days.slice(0, 182).some(h => h >= length)) return 171;
+  const first = days.findIndex((h, d) => h >= length && air[d] >= BULB_AIR);
+  return first < 0 ? NEVER : first;
 }
 
 /** The first index at or after `i` where `test` holds over the run, else NEVER. */
@@ -305,9 +311,11 @@ export function plantedGrowth(
     h = cum.findIndex(c => c >= target);
     if (h < 0 || h > 2 * YEAR) return { progress, ready: null, end: null };
     if (ONIONS.has(crop)) {
-      // Bulbs form six weeks after the days get long enough, the first time
-      // they do once the plant has its leaves.
+      // Bulbs form six weeks after the days get long and warm enough, the
+      // first time they do once the plant has its leaves; never where the
+      // long days never get warm enough.
       const b = bulbing(place);
+      if (b >= NEVER) return { progress, ready: null, end: null };
       const start = b + 42;
       if (mod(h, YEAR) < start) h = h - mod(h, YEAR) + start;
       const leaves = s + (crop === 'onion_sets' ? 21 : ONION_SEED);
