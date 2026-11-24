@@ -876,6 +876,26 @@ describe("a planted crop on the calendar's model", () => {
     expect(stage('2027-07-20')).toBe('bare');
   });
 
+  it("is ready on its early varieties' days where the place grows it from those", () => {
+    const days = { ...year.bio!.lettuce!, early: 36 };
+    const early = growIn(
+      {
+        ...year,
+        crops: { lettuce: { sow: 0xfff, harvest: 0xfff, early: true } },
+        bio: { lettuce: days },
+      },
+      'loam'
+    )!;
+    expect(readyDay('lettuce', NEEDS.lettuce, early, '2027-05-01')).toBe(
+      '2027-06-03'
+    );
+    // a place that grows the main crop keeps its days
+    const main = growIn({ ...year, bio: { lettuce: days } }, 'loam')!;
+    expect(readyDay('lettuce', NEEDS.lettuce, main, '2027-05-01')).toBe(
+      '2027-06-11'
+    );
+  });
+
   it('is ready later in the shade of a house, where light is short', () => {
     // In early spring a bed right behind a house on the south side gets less
     // light than lettuce needs for its full pace (the low sun behind the

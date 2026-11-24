@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SpeciesSelectorFullscreen from '@/components/SpeciesSelectorFullscreen';
+import { SPECTACLES } from '@/lib/bloom';
 
 /**
  * The map's species panel searched common names only, so the scientific name
@@ -13,7 +14,8 @@ import SpeciesSelectorFullscreen from '@/components/SpeciesSelectorFullscreen';
 vi.mock('@/store/mapStore', () => ({
   useMapStore: () => ({
     selectedSpecies: 'mushroom',
-    forecastRegion: 'SE',
+    // Australia: most spectacles are mapped elsewhere only.
+    forecastRegion: 'ANZ',
     speciesOptions: [
       { code: 'mushroom', emoji: '🍄', category: 'mushroom' },
       { code: 'hazelnut', emoji: '🌰', category: 'nut' },
@@ -51,5 +53,15 @@ describe('SpeciesSelectorFullscreen', () => {
     open();
     expect(screen.getByText('Corylus avellana')).toBeInTheDocument();
     expect(screen.queryByText('Boletus edulis')).toBeNull();
+  });
+
+  // People travel to see a spectacle, so it is offered wherever the map is;
+  // where it has no layer the map says "No forecast here".
+  it('offers every spectacle outside the regions it is mapped in', async () => {
+    open();
+    await userEvent.click(screen.getByText('bloom.spectacles'));
+    for (const spectacle of SPECTACLES) {
+      expect(screen.getByText(`${spectacle.keys}.name`)).toBeInTheDocument();
+    }
   });
 });

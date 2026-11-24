@@ -59,8 +59,13 @@ export function growIn(
   const modelFor = (share?: number[]) => {
     const kept = new Map<string, Growth | null>();
     return (crop: string, planted: string) => {
-      const bio = year.bio?.[crop];
-      if (!bio) return null;
+      const own = year.bio?.[crop];
+      if (!own) return null;
+      // where the calendar grows it from early varieties, their days
+      const bio =
+        year.crops[crop]?.early && own.early
+          ? { ...own, days: own.early }
+          : own;
       const key = `${crop}|${planted}`;
       if (!kept.has(key))
         kept.set(

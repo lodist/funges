@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { decodeAdvice, decodeYear } from '@/lib/huerta-wire';
+import { decodeAdvice, decodeYear, plantingSeasons } from '@/lib/huerta-wire';
 
 describe("the Worker's advice answer", () => {
   const body = {
@@ -86,6 +86,53 @@ describe("the Worker's year answer", () => {
     ]);
   });
 
+  it('marks the crops a place grows from early varieties, and reads their days', () => {
+    const year = decodeYear({
+      crops: ['potato', 'lettuce'],
+      bio: [
+        [
+          4.4,
+          15.5556,
+          18.3333,
+          23.8889,
+          90,
+          't',
+          'hold',
+          8,
+          0,
+          null,
+          0,
+          10,
+          72,
+        ],
+        [
+          4.4,
+          15.5556,
+          18.3333,
+          23.8889,
+          45,
+          's',
+          'growth',
+          4,
+          1,
+          -5,
+          0,
+          7.2222,
+          36,
+        ],
+      ],
+      place: { name: 'Tromsø', months: '020300' + '060180', early: [0] },
+    });
+    expect(year.crops.potato).toEqual({
+      sow: 0x020,
+      harvest: 0x300,
+      early: true,
+    });
+    expect(year.crops.lettuce).toEqual({ sow: 0x060, harvest: 0x180 });
+    expect(year.bio?.potato?.early).toBe(72);
+    expect(year.bio?.potato?.days).toBe(90);
+  });
+
   it('has no soil where the soil map has none', () => {
     expect(
       decodeYear({ crops: [], place: { name: 'Sea', months: '' } }).soil
@@ -126,5 +173,37 @@ describe("the Worker's year answer", () => {
       warm13: null,
       low: null,
     });
+  });
+});
+
+describe("a perennial's planting seasons", () => {
+  const mask = (...months: number[]) =>
+    months.reduce((m, month) => m | (1 << month), 0);
+  const harvest = mask(10, 11, 0, 1, 2, 3, 4); // November to May
+
+  it("puts spring and autumn plantings in rows of their own, each with the grown plant's harvest", () => {
+    // Rome's artichoke: March to May and August to November.
+    expect(plantingSeasons(mask(2, 3, 4, 7, 8, 9, 10), harvest)).toEqual([
+      { season: 'spring', sow: mask(2, 3, 4), harvest },
+      { season: 'autumn', sow: mask(7, 8, 9, 10), harvest },
+    ]);
+  });
+
+  it('keeps one window that runs over the new year in one row', () => {
+    // Rhubarb: November to April.
+    expect(plantingSeasons(mask(10, 11, 0, 1, 2, 3), harvest)).toBeNull();
+  });
+
+  it('names them half a year on south of the equator', () => {
+    // Melbourne: September to November is spring, March to May autumn.
+    expect(plantingSeasons(mask(2, 3, 4, 8, 9, 10), 0, true)).toEqual([
+      { season: 'spring', sow: mask(8, 9, 10), harvest: 0 },
+      { season: 'autumn', sow: mask(2, 3, 4), harvest: 0 },
+    ]);
+  });
+
+  it('keeps two windows of one season, and planting all year, in one row', () => {
+    expect(plantingSeasons(mask(2, 4), harvest)).toBeNull(); // March and May
+    expect(plantingSeasons(0xfff, harvest)).toBeNull();
   });
 });
