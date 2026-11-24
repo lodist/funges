@@ -216,10 +216,11 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                   {rows.flatMap(crop => {
                     const { sow, harvest, seasons } = year.crops[crop.id];
                     // A perennial or bulb planted in two seasons: a row for
-                    // each too, each with the grown plant's harvest.
+                    // each planting, then one for the grown plant's harvest,
+                    // which is the same whenever it went in.
                     const planted =
                       !seasons && crop.note
-                        ? plantingSeasons(sow, harvest, (year.lat ?? 0) < 0)
+                        ? plantingSeasons(sow, 0, (year.lat ?? 0) < 0)
                         : null;
                     // A crop sown in more than one season: a row for each,
                     // named where it has more than one besides overwintering.
@@ -228,14 +229,18 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                       sow: number;
                       harvest: number;
                     }[] = seasons ??
-                      planted ?? [{ season: null, sow, harvest }];
+                      (planted && [
+                        ...planted,
+                        { season: null, sow: 0, harvest },
+                      ]) ?? [{ season: null, sow, harvest }];
                     const named =
                       lines.filter(l => l.season && l.season !== 'overwinter')
                         .length > 1;
                     return lines.map((line, k) => {
                       // What tells a row's harvest from the same season's:
                       // its season, a perennial's or bulb's own line from
-                      // its sheet, or that it overwinters.
+                      // its sheet (by the grown plant's harvest), or that
+                      // it overwinters.
                       const caption =
                         line.season === 'overwinter' ||
                         (named && line.season !== null)
@@ -245,12 +250,9 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                             : harvestFirst(line.sow, line.harvest)
                               ? t('year.season.overwinter')
                               : null;
-                      // A perennial's own line from its sheet stays, under
-                      // its name, above its first season.
-                      const note =
-                        planted && k === 0 && crop.note
-                          ? t(`sheet.ready.${crop.note}`)
-                          : null;
+                      // A row with only planting or only harvest: one bar,
+                      // in the middle of the row.
+                      const both = line.sow > 0 && line.harvest > 0;
                       return (
                         <tr
                           key={`${crop.id}-${line.season ?? 'all'}`}
@@ -282,11 +284,6 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                                 >
                                   {t(`crops.${crop.id}`)}
                                 </span>
-                                {note ? (
-                                  <span className='text-xs leading-tight break-words hyphens-auto text-muted-foreground'>
-                                    {note}
-                                  </span>
-                                ) : null}
                                 {caption ? (
                                   <span className='text-xs leading-tight break-words hyphens-auto text-muted-foreground'>
                                     {caption}
@@ -299,7 +296,12 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                             {/* The year as twelve columns, each season one bar. */}
                             <span
                               aria-hidden='true'
-                              className='grid grid-cols-12 grid-rows-[0.5rem_0.5rem] gap-y-0.5 sm:grid-rows-[0.625rem_0.625rem]'
+                              className={cn(
+                                'grid grid-cols-12 gap-y-0.5',
+                                both
+                                  ? 'grid-rows-[0.5rem_0.5rem] sm:grid-rows-[0.625rem_0.625rem]'
+                                  : 'grid-rows-[0.5rem] sm:grid-rows-[0.625rem]'
+                              )}
                             >
                               {runs(line.sow).map(([from, to]) => (
                                 <span
@@ -317,7 +319,7 @@ function Calendar({ onMoved }: { onMoved: () => void }) {
                                   className='mx-px rounded-full bg-happy-300'
                                   style={{
                                     gridColumn: `${from + 1} / ${to + 2}`,
-                                    gridRow: 2,
+                                    gridRow: both ? 2 : 1,
                                   }}
                                 />
                               ))}
