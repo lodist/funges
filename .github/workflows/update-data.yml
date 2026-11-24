@@ -16,6 +16,12 @@ on:
 permissions:
   contents: write
 
+# The scores upload and a late cron can start runs a minute apart: both checked
+# out the same main, so the second push was rejected. One at a time instead.
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
@@ -88,6 +94,14 @@ jobs:
           echo "--- visitors.json ---" && [ -f public/data/visitors.json ] && cat public/data/visitors.json || echo "missing"
           echo "--- scores_metadata.json ---" && [ -f public/data/scores_metadata.json ] && cat public/data/scores_metadata.json || echo "missing"
           echo "--- CSV.gz head ---" && gzip -cd public/data/foraging_scores.csv.gz | head -3 || true
+
+      # A PR merged during the ~12 min run moves main, and the push is rejected.
+      - name: Catch up with main
+        # --autostash makes a stash commit, which needs an identity.
+        run: >-
+          git -c user.name='funges-bot[bot]'
+          -c user.email='228909006+funges-bot[bot]@users.noreply.github.com'
+          pull --rebase --autostash origin main
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
