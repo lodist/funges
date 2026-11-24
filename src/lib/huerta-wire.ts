@@ -30,6 +30,8 @@ export interface AdviceResponse {
   crops: string[];
   place: {
     name: string;
+    lat?: number;
+    lon?: number;
     frost: string;
     soil: number | null;
     nights: number | null;
@@ -82,6 +84,9 @@ export const decodeAdvice = ({
   place,
 }: AdviceResponse): PlaceAdvice => ({
   place: place.name,
+  ...(place.lat !== undefined && place.lon !== undefined
+    ? { lat: place.lat, lon: place.lon }
+    : {}),
   day,
   frost: FROST[place.frost] ?? 'none',
   soil: place.soil,
@@ -151,8 +156,9 @@ export interface Climate {
  *  files carry them. */
 export interface PlaceYear {
   place: string;
-  /** The place's latitude, when the Worker gives it. */
+  /** The place's position, when the Worker gives it. */
   lat?: number;
+  lon?: number;
   crops: Record<string, CropYear>;
   temps?: number[];
   soil?: MapSoil | null;
@@ -192,6 +198,7 @@ export interface YearResponse {
   place: {
     name: string;
     lat?: number;
+    lon?: number;
     /** Six hex digits per entry of `crops`: sowing months, harvest months. */
     months: string;
     /** The crops sown in more than one season, by index in `crops`: seven
@@ -232,6 +239,7 @@ export const decodeYear = ({
 }: YearResponse): PlaceYear => ({
   place: place.name,
   ...(place.lat !== undefined ? { lat: place.lat } : {}),
+  ...(place.lon !== undefined ? { lon: place.lon } : {}),
   temps: place.temps,
   soil: place.soil
     ? { ph: place.soil[0], clay: place.soil[1], sand: place.soil[2] }

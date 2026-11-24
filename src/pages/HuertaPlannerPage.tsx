@@ -137,6 +137,7 @@ import {
 import type { PlaceYear } from '@/lib/huerta-wire';
 import { prefersReducedMotion } from '@/lib/motion';
 import { localizedPath, pathLanguage } from '@/lib/seo-pages';
+import { shownPlace } from '@/lib/place-names';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { nextMonth, useHuertaYear } from '@/hooks/use-huerta-year';
@@ -688,13 +689,13 @@ function Planner({ onMoved }: { onMoved: () => void }) {
             title={t('planner.title')}
             scopeLabel={
               sample
-                ? t('planner.sample', { place: advice.place })
+                ? t('planner.sample', { place: shownPlace(advice) })
                 : (forMonths
                     ? t('planner.forMonth', {
                         month: monthName(target),
-                        place: advice.place,
+                        place: shownPlace(advice),
                       })
-                    : t('planner.for', { place: advice.place })) +
+                    : t('planner.for', { place: shownPlace(advice) })) +
                   (offlineDay(advice, i18n.language)
                     ? ` · ${t('offline', { day: offlineDay(advice, i18n.language) })}`
                     : '')
@@ -1012,7 +1013,7 @@ function Planner({ onMoved }: { onMoved: () => void }) {
                   {year?.soil ? (
                     <p className='basis-full text-xs text-muted-foreground'>
                       {t('planner.soilHint', {
-                        place: year.place,
+                        place: shownPlace(year),
                         texture: t(`planner.soilWord.${textureOf(year.soil)}`),
                         ph: year.soil.ph.toLocaleString(i18n.language),
                       })}
@@ -2428,7 +2429,7 @@ function SectionPanel({
           <SelectContent>
             <SelectGroup>
               <SelectLabel>
-                {t('planner.goesInNow', { place: advice.place })}
+                {t('planner.goesInNow', { place: shownPlace(advice) })}
               </SelectLabel>
               {options.now.map(c => (
                 <SelectItem key={c.id} value={c.id}>

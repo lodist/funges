@@ -58,6 +58,7 @@ import {
 } from '@/lib/icons';
 import { ONLINE_MAX_ZOOM } from '@/lib/offline-packages';
 import { protocol } from '@/lib/pmtiles-protocol';
+import { shownPlace } from '@/lib/place-names';
 import { cn } from '@/lib/utils';
 import { HILLSHADE_LAYER_ID, useMapStore } from '@/store/mapStore';
 import { huertaPage, localizedPath, pathLanguage } from '@/lib/seo-pages';
@@ -965,7 +966,7 @@ function PlaceCard({
           )}
         >
           <p className={cn('pt-1 font-semibold', compact && 'text-sm')}>
-            {t('map.place', { place: advice.place })}
+            {t('map.place', { place: shownPlace(advice) })}
           </p>
           {close}
         </div>
