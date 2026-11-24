@@ -756,6 +756,9 @@ export const CROPS: Crop[] = [
 /** This week at one place. */
 export interface PlaceAdvice {
   place: string;
+  /** The place's position, when the Worker gives it (lib/place-names). */
+  lat?: number;
+  lon?: number;
   /** The day the advice is for, YYYY-MM-DD. */
   day: string;
   /** The coldest hour of the next three days: ≤ 0 °C frost, ≤ 2 °C ground frost. */
