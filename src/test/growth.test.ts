@@ -340,15 +340,16 @@ describe("a planted crop's growth (the calendar's model)", () => {
     };
     // Trondheim: the days pass 15 h in April, the air reaches the onion's
     // 12.8 C on 10 June, when they bulb. Sets planted on 1 May are lifted that
-    // year once grown; by day length alone they bulbed in April, before they
-    // had their leaves, and waited a year.
+    // year once grown, in August as the guides there lift them (September
+    // before cool days counted on the curve, 25 Nov 2026); by day length alone
+    // they bulbed in April, before they had their leaves, and waited a year.
     const temps = [
       -3.7, -2.8, 0, 3.7, 9.5, 13.8, 15.5, 14.3, 11.4, 5.8, 0.3, -2.5,
     ];
     const trondheim = place({ lat: 63.43, temps, low: -15 });
     expect(
       plantedGrowth('onion_sets', sets, trondheim, '2027-05-01').ready
-    ).toBe('2027-09-27');
+    ).toBe('2027-08-19');
     // 3.5 C colder, its warmest normal 12 C: the long days never warm enough.
     const cold = place({
       lat: 63.43,
