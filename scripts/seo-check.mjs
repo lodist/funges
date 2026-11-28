@@ -121,7 +121,7 @@ async function check(pathname, wait = 20000) {
       path: location.pathname,
       h1: document.querySelector('#root h1')?.textContent?.trim() ?? '',
     }));
-    const lang = pathname.startsWith('/de/') ? 'de' : 'en';
+    const lang = /^\/(de|fr|es|it|pt)\//.exec(pathname)?.[1] ?? 'en';
     const problems = [];
     if (seen.title !== expected.title)
       problems.push(`title "${seen.title}" != "${expected.title}"`);

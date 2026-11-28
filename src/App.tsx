@@ -47,7 +47,8 @@ function App() {
   useDailySpeciesRefresh();
 
   useEffect(() => {
-    // Set default language; a /de/… page is German, and stays the choice.
+    // Set default language; a /de/… page is German (/fr/… French…), and
+    // stays the choice.
     const fromPath = pathLanguage(window.location.pathname);
     if (fromPath) localStorage.setItem('language', fromPath);
     const savedLanguage = localStorage.getItem('language') || 'en';

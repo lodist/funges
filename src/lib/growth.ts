@@ -88,6 +88,7 @@ const NEVER = 1e6;
 const R_SAT = 8; // MJ m-2 day-1: sun above which growth is not light-limited
 const DORMANT = 0.1; // under this share of its pace a day, it stands still
 const T_TRIAL = 19; // C: the summer mean of the seed firms' trials
+const WARM_BASE = 10; // C: the warm-season base; crops on a cooler one grow on a curve below their optimum
 const COOL_END = 30; // days tender crops still ripen after the warm nights end
 const SEASON_MARGIN = 2; // C under a tender crop's season air where no frost comes (the builder's)
 const BOLT = 21; // days a crop that stood the winter is picked after it grows again
@@ -106,6 +107,20 @@ const MONTH_OF = Array.from({ length: YEAR }, (_, d) => {
   while (MONTH_START[m] > d) m--;
   return m;
 });
+
+/** Degree days a day in mean air `a`, before light (the builder's
+ *  degree_days): above the crop's base up to the top of its optimum. A
+ *  cool-season crop climbs to the middle of its optimum on the rise of a beta
+ *  curve (Yin et al. 1995, none at its base and at its class's maximum), so a
+ *  cool day counts for more than a straight line from its base gives. */
+const degreeDays = (bio: Bio, a: number) => {
+  const line = Math.max(0, Math.min(a, bio.thi) - bio.tb);
+  const topt = (bio.tlo + bio.thi) / 2;
+  if (bio.tb >= WARM_BASE || a >= topt) return line;
+  const t = Math.max(a, bio.tb);
+  const k = (bio.tmax - topt) / (topt - bio.tb);
+  return (t - bio.tb) * ((bio.tmax - t) / (bio.tmax - topt)) ** k;
+};
 
 /** Python's and numpy's rounding: halves to even. */
 const round = (x: number) => {
@@ -266,14 +281,14 @@ export function plantedGrowth(
     return MONTH_OF[i % YEAR] < 6 ? t + shift : t;
   });
 
-  const pace = Math.min((bio.tlo + bio.thi) / 2, T_TRIAL) - bio.tb;
+  const pace = degreeDays(bio, Math.min((bio.tlo + bio.thi) / 2, T_TRIAL));
   const need = bio.days * pace;
   // A shaded bed: the light it gets of what the crop needs for its full pace.
   const shade = bed
     ? daily(bed.share).map(share => Math.min(1, share / bed.need))
     : null;
   const rateOf = (a: number, i: number) =>
-    Math.max(0, Math.min(a, bio.thi) - bio.tb) *
+    degreeDays(bio, a) *
     Math.min(1, sunny[i % YEAR] / R_SAT) *
     (shade ? shade[i % YEAR] : 1);
   const rate = air.map(rateOf);
