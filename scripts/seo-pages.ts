@@ -1,6 +1,6 @@
 /**
  * The HTML of every page the site serves, written at build time: each species
- * and crop page and the space front pages in English and German, the app's
+ * and crop page and the space front pages in each indexed language, the app's
  * own pages (src/lib/seo-pages.ts) and the season atlas. A page is the built
  * index.html with its own title, description, canonical, share tags and
  * structured data, and for the indexed pages their text as plain HTML inside
@@ -66,7 +66,14 @@ export type Photos = ReadonlyMap<string, string>;
 /** What a shared link shows for a page without a picture: the logo on the
  *  app's sand, 1200×630. */
 const SHARE_CARD = '/share.jpg';
-const OG_LOCALE = { en: 'en_US', de: 'de_DE' } as const;
+const OG_LOCALE = {
+  en: 'en_US',
+  de: 'de_DE',
+  fr: 'fr_FR',
+  es: 'es_ES',
+  it: 'it_IT',
+  pt: 'pt_PT',
+} as const;
 const PLAY_URL = 'https://play.google.com/store/apps/details?id=es.fung.app';
 const GITHUB_URL = 'https://github.com/lodist/funges';
 
