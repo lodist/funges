@@ -34,7 +34,8 @@ const lazyLocales: BackendModule = {
   },
 };
 
-// A /de/… page is German whatever the visitor stored, and stores it.
+// A /de/… page is German (/fr/… French…) whatever the visitor stored, and
+// stores it.
 const detector = new LanguageDetector();
 detector.addDetector({
   name: 'indexedPath',

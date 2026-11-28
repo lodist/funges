@@ -10,8 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangRouteImport } from './routes/$lang'
 import { Route as DataRouteImport } from './routes/data'
-import { Route as DeRouteImport } from './routes/de'
 import { Route as DeleteAccountRouteImport } from './routes/delete-account'
 import { Route as HuertaRouteImport } from './routes/huerta'
 import { Route as IdentifyRouteImport } from './routes/identify'
@@ -28,8 +28,8 @@ import { Route as SupportRouteImport } from './routes/support'
 import { Route as TermsuseRouteImport } from './routes/termsuse'
 import { Route as TerraRouteImport } from './routes/terra'
 import { Route as WorthForagingNowRouteImport } from './routes/worth-foraging-now'
-import { Route as DeHuertaRouteImport } from './routes/de_.huerta'
-import { Route as DeTerraRouteImport } from './routes/de_.terra'
+import { Route as LangHuertaRouteImport } from './routes/$lang_.huerta'
+import { Route as LangTerraRouteImport } from './routes/$lang_.terra'
 import { Route as HuertaAccountRouteImport } from './routes/huerta_.account'
 import { Route as HuertaCropsRouteImport } from './routes/huerta_.crops'
 import { Route as HuertaGardenPlannerRouteImport } from './routes/huerta_.garden-planner'
@@ -39,29 +39,26 @@ import { Route as HuertaPlantingCalendarRouteImport } from './routes/huerta_.pla
 import { Route as HuertaSettingsRouteImport } from './routes/huerta_.settings'
 import { Route as HuertaSigninRouteImport } from './routes/huerta_.signin'
 import { Route as SpeciesIdRouteImport } from './routes/species_.$id'
+import { Route as LangHuertaPageRouteImport } from './routes/$lang_.huerta_.$page'
+import { Route as LangSpeciesIdRouteImport } from './routes/$lang_.species_.$id'
 import { Route as DataSeasonsIndexRouteImport } from './routes/data_.seasons.index'
-import { Route as DeHuertaGartenplanerRouteImport } from './routes/de_.huerta_.gartenplaner'
-import { Route as DeHuertaKarteRouteImport } from './routes/de_.huerta_.karte'
-import { Route as DeHuertaPflanzenRouteImport } from './routes/de_.huerta_.pflanzen'
-import { Route as DeHuertaPflanzkalenderRouteImport } from './routes/de_.huerta_.pflanzkalender'
-import { Route as DeSpeciesIdRouteImport } from './routes/de_.species_.$id'
 import { Route as HuertaCropsIdRouteImport } from './routes/huerta_.crops_.$id'
+import { Route as LangHuertaPageIdRouteImport } from './routes/$lang_.huerta_.$page_.$id'
 import { Route as DataSeasonsPlaceSpeciesRouteImport } from './routes/data_.seasons.$place.$species'
-import { Route as DeHuertaPflanzenIdRouteImport } from './routes/de_.huerta_.pflanzen_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataRoute = DataRouteImport.update({
   id: '/data',
   path: '/data',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DeRoute = DeRouteImport.update({
-  id: '/de',
-  path: '/de',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DeleteAccountRoute = DeleteAccountRouteImport.update({
@@ -144,14 +141,14 @@ const WorthForagingNowRoute = WorthForagingNowRouteImport.update({
   path: '/worth-foraging-now',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DeHuertaRoute = DeHuertaRouteImport.update({
-  id: '/de_/huerta',
-  path: '/de/huerta',
+const LangHuertaRoute = LangHuertaRouteImport.update({
+  id: '/$lang_/huerta',
+  path: '/$lang/huerta',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DeTerraRoute = DeTerraRouteImport.update({
-  id: '/de_/terra',
-  path: '/de/terra',
+const LangTerraRoute = LangTerraRouteImport.update({
+  id: '/$lang_/terra',
+  path: '/$lang/terra',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HuertaAccountRoute = HuertaAccountRouteImport.update({
@@ -199,34 +196,19 @@ const SpeciesIdRoute = SpeciesIdRouteImport.update({
   path: '/species/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangHuertaPageRoute = LangHuertaPageRouteImport.update({
+  id: '/$lang_/huerta_/$page',
+  path: '/$lang/huerta/$page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangSpeciesIdRoute = LangSpeciesIdRouteImport.update({
+  id: '/$lang_/species_/$id',
+  path: '/$lang/species/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataSeasonsIndexRoute = DataSeasonsIndexRouteImport.update({
   id: '/data_/seasons/',
   path: '/data/seasons/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DeHuertaGartenplanerRoute = DeHuertaGartenplanerRouteImport.update({
-  id: '/de_/huerta_/gartenplaner',
-  path: '/de/huerta/gartenplaner',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DeHuertaKarteRoute = DeHuertaKarteRouteImport.update({
-  id: '/de_/huerta_/karte',
-  path: '/de/huerta/karte',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DeHuertaPflanzenRoute = DeHuertaPflanzenRouteImport.update({
-  id: '/de_/huerta_/pflanzen',
-  path: '/de/huerta/pflanzen',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DeHuertaPflanzkalenderRoute = DeHuertaPflanzkalenderRouteImport.update({
-  id: '/de_/huerta_/pflanzkalender',
-  path: '/de/huerta/pflanzkalender',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DeSpeciesIdRoute = DeSpeciesIdRouteImport.update({
-  id: '/de_/species_/$id',
-  path: '/de/species/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HuertaCropsIdRoute = HuertaCropsIdRouteImport.update({
@@ -234,21 +216,21 @@ const HuertaCropsIdRoute = HuertaCropsIdRouteImport.update({
   path: '/huerta/crops/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangHuertaPageIdRoute = LangHuertaPageIdRouteImport.update({
+  id: '/$lang_/huerta_/$page_/$id',
+  path: '/$lang/huerta/$page/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataSeasonsPlaceSpeciesRoute = DataSeasonsPlaceSpeciesRouteImport.update({
   id: '/data_/seasons/$place/$species',
   path: '/data/seasons/$place/$species',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DeHuertaPflanzenIdRoute = DeHuertaPflanzenIdRouteImport.update({
-  id: '/de_/huerta_/pflanzen_/$id',
-  path: '/de/huerta/pflanzen/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRoute
   '/data': typeof DataRoute
-  '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
@@ -265,8 +247,8 @@ export interface FileRoutesByFullPath {
   '/termsuse': typeof TermsuseRoute
   '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
-  '/de/huerta': typeof DeHuertaRoute
-  '/de/terra': typeof DeTerraRoute
+  '/$lang/huerta': typeof LangHuertaRoute
+  '/$lang/terra': typeof LangTerraRoute
   '/huerta/account': typeof HuertaAccountRoute
   '/huerta/crops': typeof HuertaCropsRoute
   '/huerta/garden-planner': typeof HuertaGardenPlannerRoute
@@ -276,20 +258,17 @@ export interface FileRoutesByFullPath {
   '/huerta/settings': typeof HuertaSettingsRoute
   '/huerta/signin': typeof HuertaSigninRoute
   '/species/$id': typeof SpeciesIdRoute
-  '/de/huerta/gartenplaner': typeof DeHuertaGartenplanerRoute
-  '/de/huerta/karte': typeof DeHuertaKarteRoute
-  '/de/huerta/pflanzen': typeof DeHuertaPflanzenRoute
-  '/de/huerta/pflanzkalender': typeof DeHuertaPflanzkalenderRoute
-  '/de/species/$id': typeof DeSpeciesIdRoute
+  '/$lang/huerta/$page': typeof LangHuertaPageRoute
+  '/$lang/species/$id': typeof LangSpeciesIdRoute
   '/huerta/crops/$id': typeof HuertaCropsIdRoute
   '/data/seasons/': typeof DataSeasonsIndexRoute
+  '/$lang/huerta/$page/$id': typeof LangHuertaPageIdRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
-  '/de/huerta/pflanzen/$id': typeof DeHuertaPflanzenIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRoute
   '/data': typeof DataRoute
-  '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
@@ -306,8 +285,8 @@ export interface FileRoutesByTo {
   '/termsuse': typeof TermsuseRoute
   '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
-  '/de/huerta': typeof DeHuertaRoute
-  '/de/terra': typeof DeTerraRoute
+  '/$lang/huerta': typeof LangHuertaRoute
+  '/$lang/terra': typeof LangTerraRoute
   '/huerta/account': typeof HuertaAccountRoute
   '/huerta/crops': typeof HuertaCropsRoute
   '/huerta/garden-planner': typeof HuertaGardenPlannerRoute
@@ -317,21 +296,18 @@ export interface FileRoutesByTo {
   '/huerta/settings': typeof HuertaSettingsRoute
   '/huerta/signin': typeof HuertaSigninRoute
   '/species/$id': typeof SpeciesIdRoute
-  '/de/huerta/gartenplaner': typeof DeHuertaGartenplanerRoute
-  '/de/huerta/karte': typeof DeHuertaKarteRoute
-  '/de/huerta/pflanzen': typeof DeHuertaPflanzenRoute
-  '/de/huerta/pflanzkalender': typeof DeHuertaPflanzkalenderRoute
-  '/de/species/$id': typeof DeSpeciesIdRoute
+  '/$lang/huerta/$page': typeof LangHuertaPageRoute
+  '/$lang/species/$id': typeof LangSpeciesIdRoute
   '/huerta/crops/$id': typeof HuertaCropsIdRoute
   '/data/seasons': typeof DataSeasonsIndexRoute
+  '/$lang/huerta/$page/$id': typeof LangHuertaPageIdRoute
   '/data/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
-  '/de/huerta/pflanzen/$id': typeof DeHuertaPflanzenIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang': typeof LangRoute
   '/data': typeof DataRoute
-  '/de': typeof DeRoute
   '/delete-account': typeof DeleteAccountRoute
   '/huerta': typeof HuertaRoute
   '/identify': typeof IdentifyRoute
@@ -348,8 +324,8 @@ export interface FileRoutesById {
   '/termsuse': typeof TermsuseRoute
   '/terra': typeof TerraRoute
   '/worth-foraging-now': typeof WorthForagingNowRoute
-  '/de_/huerta': typeof DeHuertaRoute
-  '/de_/terra': typeof DeTerraRoute
+  '/$lang_/huerta': typeof LangHuertaRoute
+  '/$lang_/terra': typeof LangTerraRoute
   '/huerta_/account': typeof HuertaAccountRoute
   '/huerta_/crops': typeof HuertaCropsRoute
   '/huerta_/garden-planner': typeof HuertaGardenPlannerRoute
@@ -359,22 +335,19 @@ export interface FileRoutesById {
   '/huerta_/settings': typeof HuertaSettingsRoute
   '/huerta_/signin': typeof HuertaSigninRoute
   '/species_/$id': typeof SpeciesIdRoute
-  '/de_/huerta_/gartenplaner': typeof DeHuertaGartenplanerRoute
-  '/de_/huerta_/karte': typeof DeHuertaKarteRoute
-  '/de_/huerta_/pflanzen': typeof DeHuertaPflanzenRoute
-  '/de_/huerta_/pflanzkalender': typeof DeHuertaPflanzkalenderRoute
-  '/de_/species_/$id': typeof DeSpeciesIdRoute
+  '/$lang_/huerta_/$page': typeof LangHuertaPageRoute
+  '/$lang_/species_/$id': typeof LangSpeciesIdRoute
   '/huerta_/crops_/$id': typeof HuertaCropsIdRoute
   '/data_/seasons/': typeof DataSeasonsIndexRoute
+  '/$lang_/huerta_/$page_/$id': typeof LangHuertaPageIdRoute
   '/data_/seasons/$place/$species': typeof DataSeasonsPlaceSpeciesRoute
-  '/de_/huerta_/pflanzen_/$id': typeof DeHuertaPflanzenIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$lang'
     | '/data'
-    | '/de'
     | '/delete-account'
     | '/huerta'
     | '/identify'
@@ -391,8 +364,8 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/terra'
     | '/worth-foraging-now'
-    | '/de/huerta'
-    | '/de/terra'
+    | '/$lang/huerta'
+    | '/$lang/terra'
     | '/huerta/account'
     | '/huerta/crops'
     | '/huerta/garden-planner'
@@ -402,20 +375,17 @@ export interface FileRouteTypes {
     | '/huerta/settings'
     | '/huerta/signin'
     | '/species/$id'
-    | '/de/huerta/gartenplaner'
-    | '/de/huerta/karte'
-    | '/de/huerta/pflanzen'
-    | '/de/huerta/pflanzkalender'
-    | '/de/species/$id'
+    | '/$lang/huerta/$page'
+    | '/$lang/species/$id'
     | '/huerta/crops/$id'
     | '/data/seasons/'
+    | '/$lang/huerta/$page/$id'
     | '/data/seasons/$place/$species'
-    | '/de/huerta/pflanzen/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$lang'
     | '/data'
-    | '/de'
     | '/delete-account'
     | '/huerta'
     | '/identify'
@@ -432,8 +402,8 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/terra'
     | '/worth-foraging-now'
-    | '/de/huerta'
-    | '/de/terra'
+    | '/$lang/huerta'
+    | '/$lang/terra'
     | '/huerta/account'
     | '/huerta/crops'
     | '/huerta/garden-planner'
@@ -443,20 +413,17 @@ export interface FileRouteTypes {
     | '/huerta/settings'
     | '/huerta/signin'
     | '/species/$id'
-    | '/de/huerta/gartenplaner'
-    | '/de/huerta/karte'
-    | '/de/huerta/pflanzen'
-    | '/de/huerta/pflanzkalender'
-    | '/de/species/$id'
+    | '/$lang/huerta/$page'
+    | '/$lang/species/$id'
     | '/huerta/crops/$id'
     | '/data/seasons'
+    | '/$lang/huerta/$page/$id'
     | '/data/seasons/$place/$species'
-    | '/de/huerta/pflanzen/$id'
   id:
     | '__root__'
     | '/'
+    | '/$lang'
     | '/data'
-    | '/de'
     | '/delete-account'
     | '/huerta'
     | '/identify'
@@ -473,8 +440,8 @@ export interface FileRouteTypes {
     | '/termsuse'
     | '/terra'
     | '/worth-foraging-now'
-    | '/de_/huerta'
-    | '/de_/terra'
+    | '/$lang_/huerta'
+    | '/$lang_/terra'
     | '/huerta_/account'
     | '/huerta_/crops'
     | '/huerta_/garden-planner'
@@ -484,21 +451,18 @@ export interface FileRouteTypes {
     | '/huerta_/settings'
     | '/huerta_/signin'
     | '/species_/$id'
-    | '/de_/huerta_/gartenplaner'
-    | '/de_/huerta_/karte'
-    | '/de_/huerta_/pflanzen'
-    | '/de_/huerta_/pflanzkalender'
-    | '/de_/species_/$id'
+    | '/$lang_/huerta_/$page'
+    | '/$lang_/species_/$id'
     | '/huerta_/crops_/$id'
     | '/data_/seasons/'
+    | '/$lang_/huerta_/$page_/$id'
     | '/data_/seasons/$place/$species'
-    | '/de_/huerta_/pflanzen_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRoute
   DataRoute: typeof DataRoute
-  DeRoute: typeof DeRoute
   DeleteAccountRoute: typeof DeleteAccountRoute
   HuertaRoute: typeof HuertaRoute
   IdentifyRoute: typeof IdentifyRoute
@@ -515,8 +479,8 @@ export interface RootRouteChildren {
   TermsuseRoute: typeof TermsuseRoute
   TerraRoute: typeof TerraRoute
   WorthForagingNowRoute: typeof WorthForagingNowRoute
-  DeHuertaRoute: typeof DeHuertaRoute
-  DeTerraRoute: typeof DeTerraRoute
+  LangHuertaRoute: typeof LangHuertaRoute
+  LangTerraRoute: typeof LangTerraRoute
   HuertaAccountRoute: typeof HuertaAccountRoute
   HuertaCropsRoute: typeof HuertaCropsRoute
   HuertaGardenPlannerRoute: typeof HuertaGardenPlannerRoute
@@ -526,15 +490,12 @@ export interface RootRouteChildren {
   HuertaSettingsRoute: typeof HuertaSettingsRoute
   HuertaSigninRoute: typeof HuertaSigninRoute
   SpeciesIdRoute: typeof SpeciesIdRoute
-  DeHuertaGartenplanerRoute: typeof DeHuertaGartenplanerRoute
-  DeHuertaKarteRoute: typeof DeHuertaKarteRoute
-  DeHuertaPflanzenRoute: typeof DeHuertaPflanzenRoute
-  DeHuertaPflanzkalenderRoute: typeof DeHuertaPflanzkalenderRoute
-  DeSpeciesIdRoute: typeof DeSpeciesIdRoute
+  LangHuertaPageRoute: typeof LangHuertaPageRoute
+  LangSpeciesIdRoute: typeof LangSpeciesIdRoute
   HuertaCropsIdRoute: typeof HuertaCropsIdRoute
   DataSeasonsIndexRoute: typeof DataSeasonsIndexRoute
+  LangHuertaPageIdRoute: typeof LangHuertaPageIdRoute
   DataSeasonsPlaceSpeciesRoute: typeof DataSeasonsPlaceSpeciesRoute
-  DeHuertaPflanzenIdRoute: typeof DeHuertaPflanzenIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -546,18 +507,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/data': {
       id: '/data'
       path: '/data'
       fullPath: '/data'
       preLoaderRoute: typeof DataRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/de': {
-      id: '/de'
-      path: '/de'
-      fullPath: '/de'
-      preLoaderRoute: typeof DeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/delete-account': {
@@ -672,18 +633,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorthForagingNowRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/de_/huerta': {
-      id: '/de_/huerta'
-      path: '/de/huerta'
-      fullPath: '/de/huerta'
-      preLoaderRoute: typeof DeHuertaRouteImport
+    '/$lang_/huerta': {
+      id: '/$lang_/huerta'
+      path: '/$lang/huerta'
+      fullPath: '/$lang/huerta'
+      preLoaderRoute: typeof LangHuertaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/de_/terra': {
-      id: '/de_/terra'
-      path: '/de/terra'
-      fullPath: '/de/terra'
-      preLoaderRoute: typeof DeTerraRouteImport
+    '/$lang_/terra': {
+      id: '/$lang_/terra'
+      path: '/$lang/terra'
+      fullPath: '/$lang/terra'
+      preLoaderRoute: typeof LangTerraRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/huerta_/account': {
@@ -749,46 +710,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpeciesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang_/huerta_/$page': {
+      id: '/$lang_/huerta_/$page'
+      path: '/$lang/huerta/$page'
+      fullPath: '/$lang/huerta/$page'
+      preLoaderRoute: typeof LangHuertaPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang_/species_/$id': {
+      id: '/$lang_/species_/$id'
+      path: '/$lang/species/$id'
+      fullPath: '/$lang/species/$id'
+      preLoaderRoute: typeof LangSpeciesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/data_/seasons/': {
       id: '/data_/seasons/'
       path: '/data/seasons'
       fullPath: '/data/seasons/'
       preLoaderRoute: typeof DataSeasonsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/de_/huerta_/gartenplaner': {
-      id: '/de_/huerta_/gartenplaner'
-      path: '/de/huerta/gartenplaner'
-      fullPath: '/de/huerta/gartenplaner'
-      preLoaderRoute: typeof DeHuertaGartenplanerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/de_/huerta_/karte': {
-      id: '/de_/huerta_/karte'
-      path: '/de/huerta/karte'
-      fullPath: '/de/huerta/karte'
-      preLoaderRoute: typeof DeHuertaKarteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/de_/huerta_/pflanzen': {
-      id: '/de_/huerta_/pflanzen'
-      path: '/de/huerta/pflanzen'
-      fullPath: '/de/huerta/pflanzen'
-      preLoaderRoute: typeof DeHuertaPflanzenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/de_/huerta_/pflanzkalender': {
-      id: '/de_/huerta_/pflanzkalender'
-      path: '/de/huerta/pflanzkalender'
-      fullPath: '/de/huerta/pflanzkalender'
-      preLoaderRoute: typeof DeHuertaPflanzkalenderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/de_/species_/$id': {
-      id: '/de_/species_/$id'
-      path: '/de/species/$id'
-      fullPath: '/de/species/$id'
-      preLoaderRoute: typeof DeSpeciesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/huerta_/crops_/$id': {
@@ -798,6 +738,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HuertaCropsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang_/huerta_/$page_/$id': {
+      id: '/$lang_/huerta_/$page_/$id'
+      path: '/$lang/huerta/$page/$id'
+      fullPath: '/$lang/huerta/$page/$id'
+      preLoaderRoute: typeof LangHuertaPageIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/data_/seasons/$place/$species': {
       id: '/data_/seasons/$place/$species'
       path: '/data/seasons/$place/$species'
@@ -805,20 +752,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DataSeasonsPlaceSpeciesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/de_/huerta_/pflanzen_/$id': {
-      id: '/de_/huerta_/pflanzen_/$id'
-      path: '/de/huerta/pflanzen/$id'
-      fullPath: '/de/huerta/pflanzen/$id'
-      preLoaderRoute: typeof DeHuertaPflanzenIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangRoute: LangRoute,
   DataRoute: DataRoute,
-  DeRoute: DeRoute,
   DeleteAccountRoute: DeleteAccountRoute,
   HuertaRoute: HuertaRoute,
   IdentifyRoute: IdentifyRoute,
@@ -835,8 +775,8 @@ const rootRouteChildren: RootRouteChildren = {
   TermsuseRoute: TermsuseRoute,
   TerraRoute: TerraRoute,
   WorthForagingNowRoute: WorthForagingNowRoute,
-  DeHuertaRoute: DeHuertaRoute,
-  DeTerraRoute: DeTerraRoute,
+  LangHuertaRoute: LangHuertaRoute,
+  LangTerraRoute: LangTerraRoute,
   HuertaAccountRoute: HuertaAccountRoute,
   HuertaCropsRoute: HuertaCropsRoute,
   HuertaGardenPlannerRoute: HuertaGardenPlannerRoute,
@@ -846,15 +786,12 @@ const rootRouteChildren: RootRouteChildren = {
   HuertaSettingsRoute: HuertaSettingsRoute,
   HuertaSigninRoute: HuertaSigninRoute,
   SpeciesIdRoute: SpeciesIdRoute,
-  DeHuertaGartenplanerRoute: DeHuertaGartenplanerRoute,
-  DeHuertaKarteRoute: DeHuertaKarteRoute,
-  DeHuertaPflanzenRoute: DeHuertaPflanzenRoute,
-  DeHuertaPflanzkalenderRoute: DeHuertaPflanzkalenderRoute,
-  DeSpeciesIdRoute: DeSpeciesIdRoute,
+  LangHuertaPageRoute: LangHuertaPageRoute,
+  LangSpeciesIdRoute: LangSpeciesIdRoute,
   HuertaCropsIdRoute: HuertaCropsIdRoute,
   DataSeasonsIndexRoute: DataSeasonsIndexRoute,
+  LangHuertaPageIdRoute: LangHuertaPageIdRoute,
   DataSeasonsPlaceSpeciesRoute: DataSeasonsPlaceSpeciesRoute,
-  DeHuertaPflanzenIdRoute: DeHuertaPflanzenIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

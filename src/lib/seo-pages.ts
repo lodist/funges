@@ -1,12 +1,12 @@
 /**
  * The pages search engines index, in their languages: English at today's URLs,
- * German under /de. Shared by the app (canonical, hreflang, titles) and the
- * build step that writes each page's static HTML (scripts/seo-pages.ts), so it
- * imports nothing through `@/`.
+ * each other language under its code (/de, /fr…). Shared by the app (canonical,
+ * hreflang, titles) and the build step that writes each page's static HTML
+ * (scripts/seo-pages.ts), so it imports nothing through `@/`.
  */
-import { CROP_DE } from './crop-slugs';
+import { CROP_SLUGS } from './crop-slugs';
 
-export const INDEXED_LANGUAGES = ['en', 'de'] as const;
+export const INDEXED_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'pt'] as const;
 export type IndexedLanguage = (typeof INDEXED_LANGUAGES)[number];
 
 const withSlash = (path: string) => (path.endsWith('/') ? path : `${path}/`);
@@ -28,37 +28,77 @@ export function stripLanguage(pathname: string): string {
   return withSlash(lang ? pathname.slice(lang.length + 1) || '/' : pathname);
 }
 
-/** Huerta's pages, each in the language's own words: German under /de. */
+/** Huerta's pages, each in the language's own words: /de/huerta/karte. */
 export const HUERTA_PAGES = {
-  crops: { en: '/huerta/crops', de: '/de/huerta/pflanzen' },
-  map: { en: '/huerta/map', de: '/de/huerta/karte' },
-  planner: { en: '/huerta/garden-planner', de: '/de/huerta/gartenplaner' },
+  crops: {
+    en: '/huerta/crops',
+    de: '/de/huerta/pflanzen',
+    fr: '/fr/huerta/cultures',
+    es: '/es/huerta/cultivos',
+    it: '/it/huerta/colture',
+    pt: '/pt/huerta/culturas',
+  },
+  map: {
+    en: '/huerta/map',
+    de: '/de/huerta/karte',
+    fr: '/fr/huerta/carte',
+    es: '/es/huerta/mapa',
+    it: '/it/huerta/mappa',
+    pt: '/pt/huerta/mapa',
+  },
+  planner: {
+    en: '/huerta/garden-planner',
+    de: '/de/huerta/gartenplaner',
+    fr: '/fr/huerta/planificateur-potager',
+    es: '/es/huerta/planificador-huerto',
+    it: '/it/huerta/pianificatore-orto',
+    pt: '/pt/huerta/planejador-horta',
+  },
   calendar: {
     en: '/huerta/planting-calendar',
     de: '/de/huerta/pflanzkalender',
+    fr: '/fr/huerta/calendrier-semis',
+    es: '/es/huerta/calendario-siembra',
+    it: '/it/huerta/calendario-semine',
+    pt: '/pt/huerta/calendario-plantio',
   },
 } as const satisfies Record<string, Record<IndexedLanguage, string>>;
-/** A Huerta page's path for an app language: German words in German. */
-export const huertaPage = (page: keyof typeof HUERTA_PAGES, language: string) =>
-  HUERTA_PAGES[page][indexedLanguage(language)];
+/** A Huerta page's path for an app language, in its words. Typed as a plain
+ *  path: the router knows these by their `/$lang/huerta/$page` pattern. */
+export const huertaPage = (
+  page: keyof typeof HUERTA_PAGES,
+  language: string
+): string => HUERTA_PAGES[page][indexedLanguage(language)];
 const HUERTA_PAGE = new Map(
   Object.values(HUERTA_PAGES).flatMap(page =>
     INDEXED_LANGUAGES.map(lang => [stripLanguage(page[lang]), page] as const)
   )
 );
+/** Which Huerta page a path is, in its language's words; undefined for none. */
+export const huertaPageOf = (pathname: string) => {
+  const lang = pathLanguage(pathname) ?? 'en';
+  return (Object.keys(HUERTA_PAGES) as (keyof typeof HUERTA_PAGES)[]).find(
+    page => withSlash(HUERTA_PAGES[page][lang]) === withSlash(pathname)
+  );
+};
 
 // A crop's page has the language's own words in its path, which search
 // engines read: /huerta/crops/broad-beans/, /de/huerta/pflanzen/dicke-bohnen/
 // (a hyphen keeps two words apart, an underscore runs them together).
-const CROP_PAGE = /^\/huerta\/(crops|pflanzen)\/([^/]+)\/$/;
-const CROP_IDS = new Set(Object.keys(CROP_DE));
-const CROP_BY_DE = new Map(
-  Object.entries(CROP_DE).map(([id, word]) => [word, id])
+const CROP_PAGE = /^\/huerta\/([^/]+)\/([^/]+)\/$/;
+const CROP_IDS = new Set(Object.keys(CROP_SLUGS.de));
+const CROP_BY_WORD = Object.fromEntries(
+  Object.entries(CROP_SLUGS).map(([lang, words]) => [
+    lang,
+    new Map(Object.entries(words).map(([id, word]) => [word, id])),
+  ])
 );
-const CROP_PATH: Record<IndexedLanguage, (id: string) => string> = {
-  en: id => `/huerta/crops/${id.replace(/_/g, '-')}/`,
-  de: id => `/de/huerta/pflanzen/${CROP_DE[id]}/`,
-};
+const listWord = (lang: IndexedLanguage) =>
+  HUERTA_PAGES.crops[lang].split('/').pop();
+const cropPath = (id: string, lang: IndexedLanguage) =>
+  lang === 'en'
+    ? `/huerta/crops/${id.replace(/_/g, '-')}/`
+    : `${HUERTA_PAGES.crops[lang]}/${CROP_SLUGS[lang][id]}/`;
 
 /** The crop a page's path is for, in any language and under its older
  *  forms (its id, the English words under /de); null for any other page. */
@@ -66,16 +106,21 @@ export function cropOfPath(pathname: string): string | null {
   const match = CROP_PAGE.exec(stripLanguage(pathname));
   if (!match) return null;
   const [, list, word] = match;
+  const lang = pathLanguage(pathname);
   const id =
-    list === 'pflanzen' ? CROP_BY_DE.get(word) : word.replace(/-/g, '_');
+    list === 'crops'
+      ? word.replace(/-/g, '_')
+      : lang && list === listWord(lang)
+        ? CROP_BY_WORD[lang]?.get(word)
+        : undefined;
   return id && CROP_IDS.has(id) ? id : null;
 }
 
 /** A page's path in a language, ending in a slash (GitHub Pages serves folders). */
 export function localizedPath(path: string, lang: IndexedLanguage): string {
   const bare = stripLanguage(path);
-  const crop = cropOfPath(bare);
-  if (crop) return CROP_PATH[lang](crop);
+  const crop = cropOfPath(path);
+  if (crop) return cropPath(crop, lang);
   const huerta = HUERTA_PAGE.get(bare);
   if (huerta) return withSlash(huerta[lang]);
   return lang === 'en' ? bare : `/${lang}${bare}`;

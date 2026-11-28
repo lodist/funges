@@ -7,6 +7,8 @@ import {
   cropOfPath,
   cropPageDescription,
   huertaPage,
+  huertaPageOf,
+  INDEXED_LANGUAGES,
   localizedPath,
   pageTitle,
   pathLanguage,
@@ -24,7 +26,7 @@ import {
 } from '../../scripts/seo-pages';
 
 describe('seo-pages', () => {
-  it('puts English at the root and German under /de, always with a slash', () => {
+  it('puts English at the root and each other language under its code, always with a slash', () => {
     expect(localizedPath('/species/porcini', 'en')).toBe('/species/porcini/');
     expect(localizedPath('/species/porcini/', 'de')).toBe(
       '/de/species/porcini/'
@@ -34,6 +36,10 @@ describe('seo-pages', () => {
     );
     expect(localizedPath('/', 'de')).toBe('/de/');
     expect(localizedPath('/', 'en')).toBe('/');
+    expect(localizedPath('/de/terra/', 'pt')).toBe('/pt/terra/');
+    expect(localizedPath('/it/species/porcini/', 'fr')).toBe(
+      '/fr/species/porcini/'
+    );
   });
 
   it("gives Huerta's pages the language's words", () => {
@@ -46,7 +52,16 @@ describe('seo-pages', () => {
     );
     expect(localizedPath('/de/huerta/pflanzen', 'en')).toBe('/huerta/crops/');
     expect(huertaPage('crops', 'de-CH')).toBe('/de/huerta/pflanzen');
-    expect(huertaPage('calendar', 'fr')).toBe('/huerta/planting-calendar');
+    expect(huertaPage('calendar', 'fr')).toBe('/fr/huerta/calendrier-semis');
+    expect(huertaPage('map', 'pt-BR')).toBe('/pt/huerta/mapa');
+    expect(huertaPage('planner', 'nl')).toBe('/huerta/garden-planner');
+    expect(localizedPath('/es/huerta/mapa/', 'it')).toBe('/it/huerta/mappa/');
+    // Which page a path is, only in its own language's words.
+    expect(huertaPageOf('/es/huerta/planificador-huerto')).toBe('planner');
+    expect(huertaPageOf('/pt/huerta/mapa/')).toBe('map');
+    expect(huertaPageOf('/huerta/crops/')).toBe('crops');
+    expect(huertaPageOf('/fr/huerta/karte/')).toBeUndefined();
+    expect(huertaPageOf('/fr/huerta/settings/')).toBeUndefined();
   });
 
   it("gives a crop's page the language's words, hyphens between them", () => {
@@ -59,6 +74,14 @@ describe('seo-pages', () => {
     expect(localizedPath('/de/huerta/pflanzen/moehre/', 'en')).toBe(
       '/huerta/crops/carrot/'
     );
+    expect(localizedPath('/de/huerta/pflanzen/moehre/', 'fr')).toBe(
+      '/fr/huerta/cultures/carotte/'
+    );
+    expect(localizedPath('/huerta/crops/marigold/', 'fr')).toBe(
+      '/fr/huerta/cultures/oeillet-d-inde/'
+    );
+    expect(cropOfPath('/es/huerta/cultivos/habas/')).toBe('broad_beans');
+    expect(cropOfPath('/it/huerta/colture/pomodoro')).toBe('tomato');
     expect(
       alternates('/de/huerta/pflanzen/dicke-bohnen/', 'https://www.fung.es')
     ).toEqual(alternates('/huerta/crops/broad-beans/', 'https://www.fung.es'));
@@ -74,6 +97,10 @@ describe('seo-pages', () => {
       '/huerta/crops/',
       '/huerta/crops/constructor/',
       '/de/huerta/pflanzen/tomato/',
+      // Another language's words: no page.
+      '/fr/huerta/pflanzen/tomate/',
+      '/de/huerta/cultures/ail/',
+      '/huerta/cultures/ail/',
       '/species/porcini/',
     ])
       expect(cropOfPath(path), path).toBeNull();
@@ -82,6 +109,8 @@ describe('seo-pages', () => {
   it('reads the language from the path, null when unprefixed', () => {
     expect(pathLanguage('/de/huerta/crops/tomato/')).toBe('de');
     expect(pathLanguage('/de')).toBe('de');
+    expect(pathLanguage('/pt/huerta/')).toBe('pt');
+    expect(pathLanguage('/en/species/')).toBeNull();
     expect(pathLanguage('/species/porcini/')).toBeNull();
     expect(pathLanguage('/delete-account/')).toBeNull();
     expect(pathLanguage('/')).toBeNull();
@@ -93,9 +122,21 @@ describe('seo-pages', () => {
     const fromEn = alternates('/species/porcini/', 'https://www.fung.es');
     const fromDe = alternates('/de/species/porcini/', 'https://www.fung.es');
     expect(fromEn).toEqual(fromDe);
-    expect(fromEn.map(a => a.hreflang)).toEqual(['en', 'de', 'x-default']);
+    expect(alternates('/es/species/porcini/', 'https://www.fung.es')).toEqual(
+      fromEn
+    );
+    expect(fromEn.map(a => a.hreflang)).toEqual([
+      'en',
+      'de',
+      'fr',
+      'es',
+      'it',
+      'pt',
+      'x-default',
+    ]);
     expect(fromEn[1].href).toBe('https://www.fung.es/de/species/porcini/');
-    expect(fromEn[2].href).toBe('https://www.fung.es/species/porcini/');
+    expect(fromEn[4].href).toBe('https://www.fung.es/it/species/porcini/');
+    expect(fromEn[6].href).toBe('https://www.fung.es/species/porcini/');
   });
 
   it('formats titles once for the app and the static pages', () => {
@@ -116,8 +157,8 @@ describe('seo-pages', () => {
 describe('buildPages', () => {
   const pages = buildPages();
 
-  it('has every species and crop in English and German', () => {
-    for (const lang of ['en', 'de'] as const) {
+  it('has every species and crop in every indexed language', () => {
+    for (const lang of INDEXED_LANGUAGES) {
       for (const s of SPECIES_DATA)
         expect(
           pages.some(p => p.path === localizedPath(`/species/${s.id}/`, lang)),
@@ -211,6 +252,10 @@ describe('every page the site serves', () => {
       'de/huerta/karte',
       'de/huerta/gartenplaner',
       'de/huerta/pflanzkalender',
+      'fr/huerta/cultures',
+      'es/huerta/mapa',
+      'it/huerta/pianificatore-orto',
+      'pt/huerta/calendario-plantio',
       'identify',
       'impressum',
       'instructions',
@@ -237,6 +282,7 @@ describe('every page the site serves', () => {
       expect(p.description.length, p.path).toBeLessThanOrEqual(160);
     }
     expect(page('/de/huerta/karte/').lang).toBe('de');
+    expect(page('/fr/huerta/carte/').lang).toBe('fr');
     expect(page('/map/').hreflang).toBe(false);
     expect(page('/huerta/crops/').hreflang).toBe(true);
   });
@@ -253,6 +299,8 @@ describe('every page the site serves', () => {
     expect(xml).toContain(
       `hreflang="de" href="${ORIGIN}/de/huerta/pflanzkalender/"`
     );
+    expect(xml).toContain(`<loc>${ORIGIN}/es/huerta/cultivos/habas/</loc>`);
+    expect(xml).toContain(`<loc>${ORIGIN}/fr/species/mushroom/</loc>`);
   });
 
   it('writes share tags with full URLs, and noindex where asked', () => {
